@@ -11,7 +11,7 @@
 
 Summary: Dictionary lookup program
 Name: ding
-Version: 1.5
+Version: 1.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -71,6 +71,9 @@ for quick and easy lookups.
 %{?_without_freedesktop:/etc/X11/applnk/Utilities/ding.desktop}
 
 %changelog
+* Sat Apr 18 2009 Dries Verachtert <dries@ulyssis.org> - 1.6-1
+- Updated to release 1.6.
+
 * Mon Apr 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Updated to release 1.5.
 

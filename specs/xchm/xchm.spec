@@ -10,7 +10,7 @@
 
 Summary: GUI front-end to chmlib
 Name: xchm
-Version: 1.14
+Version: 1.15
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -95,5 +95,8 @@ update-desktop-database &> /dev/null ||:
 %exclude %{_datadir}/pixmaps/
 
 %changelog
+* Sat Apr 18 2009 Dries Verachtert <dries@ulyssis.org> - 1.15-1
+- Updated to release 1.15.
+
 * Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.14-1
 - Initial package. (using DAR)

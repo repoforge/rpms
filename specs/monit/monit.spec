@@ -6,8 +6,8 @@
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 4.9
-Release: 2
+Version: 5.0
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/
@@ -157,7 +157,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt CONTRIBUTORS COPYING FAQ.txt LICENSE PACKAGES README* STATUS UPGRADE.txt
+%doc CHANGES.txt CONTRIBUTORS COPYING FAQ.txt LICENSE PACKAGES README*
 %doc %{_mandir}/man1/monit.1*
 %config(noreplace) %{_sysconfdir}/monit.conf
 %config %{_initrddir}/monit
@@ -168,6 +168,9 @@ fi
 %{_localstatedir}/lib/monit/
 
 %changelog
+* Sat Apr 18 2009 Dries Verachtert <dries@ulyssis.org> - 5.0-1
+- Updated to release 5.0.
+
 * Mon Jun 18 2007 Dag Wieers <dag@wieers.com> - 4.9-2
 - Enable the use of /etc/monit.d/ in the config-file. (Oren Held)
 

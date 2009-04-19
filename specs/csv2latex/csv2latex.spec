@@ -4,13 +4,13 @@
 
 Summary: Convert CSV files to LaTeX documents
 Name: csv2latex
-Version: 0.10
+Version: 0.14
 Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://brouits.free.fr/csv2latex/
 
-Source: http://brouits.free.fr/csv2latex/csv2latex_%{version}-1.tar.gz
+Source: http://brouits.free.fr/csv2latex/csv2latex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires:
@@ -37,6 +37,9 @@ gcc -Wall -o csv2latex csv2latex.c
 %{_bindir}/csv2latex
 
 %changelog
+* Sun Apr 19 2008 Dries Verachtert <dries@ulyssis.org> - 0.14-1
+- Updated to release 0.14.
+
 * Mon Jan  1 2008 Dries Verachtert <dries@ulyssis.org> - 0.10-1
 - Updated to release 0.10.
 
