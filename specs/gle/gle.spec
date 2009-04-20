@@ -16,7 +16,7 @@
 
 Summary: Graphics Layout Engine
 Name: gle
-Version: 4.1.2
+Version: 4.2.0
 Release: 1
 License: BSD
 Group: Applications/Multimedia
@@ -64,6 +64,9 @@ JPEG, and PNG.
 %{_datadir}/gle
 
 %changelog
+* Tue Apr 14 2009 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1
+- Updated to release 4.2.0.
+
 * Thu Mar 13 2008 Dries Verachtert <dries@ulyssis.org> - 4.1.2-1
 - Updated to release 4.1.2.
 
