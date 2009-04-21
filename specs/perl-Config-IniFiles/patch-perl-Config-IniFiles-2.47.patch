@@ -1,0 +1,9 @@
+diff -ru perl-Config-IniFiles-orig/Makefile.PL perl-Config-IniFiles/Makefile.PL
+--- perl-Config-IniFiles-orig/Makefile.PL	2009-01-21 10:37:49.000000000 +0100
++++ perl-Config-IniFiles/Makefile.PL	2009-04-21 13:47:13.000000000 +0200
+@@ -4,4 +4,5 @@
+ WriteMakefile(
+     'NAME'	=> 'Config::IniFiles',
+     'VERSION_FROM' => 'lib/Config/IniFiles.pm', # finds $VERSION
++    PL_FILES => {},
+ );
