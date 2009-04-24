@@ -9,13 +9,13 @@
 
 Summary: Perl module named Class-C3-Componentised
 Name: perl-Class-C3-Componentised
-Version: 1.0003
+Version: 1.0005
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-C3-Componentised/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-C3-Componentised-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASH/Class-C3-Componentised-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/C3/Componentised.pm
 
 %changelog
+* Fri Apr 24 2009 Christoph Maser <cmr@financial.com> - 1.0005-1
+- Updated to release 1.0005.
+
 * Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 1.0003-1
 - Updated to release 1.0003.
 
