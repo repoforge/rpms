@@ -9,7 +9,7 @@
 
 Summary: Unified interface to MIME encoding and decoding
 Name: perl-Email-MIME-Encodings
-Version: 1.311
+Version: 1.313
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/MIME/Encodings.pm
 
 %changelog
+* Fri Apr 24 2009 Christoph Maser <cmr@financial.com> - 1.313-1
+- Updated to release 1.313.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.311-1
 - Updated to release 1.311.
 
