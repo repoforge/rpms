@@ -9,7 +9,7 @@
 
 Summary: Portable LIMIT emulation
 Name: perl-SQL-Abstract-Limit
-Version: 0.12
+Version: 0.141
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL/Abstract/Limit.pm
 
 %changelog
+* Fri Apr 24 2009 Christoph Maser <cmr@financial.com> - 0.141-1
+- Update version to 0.141
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.12-1
 - Initial package. (using DAR)
