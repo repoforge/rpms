@@ -9,7 +9,7 @@
 
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
-Version: 1.23
+Version: 1.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,12 +52,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/DBD::SQLite.3pm*
+%doc %{_mandir}/man3/DBD::SQLite::Cookbook.3pm*
 %dir %{perl_vendorarch}/DBD/
 %{perl_vendorarch}/DBD/SQLite.pm
+%{perl_vendorarch}/DBD/SQLite/Cookbook.pod
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/SQLite/
 
 %changelog
+* Tue Apr 28 2009 Christoph Maser <cmr@financial.com> - 1.25-1
+- Updated to release 1.25.
+
 * Tue Apr 21 2009 Christoph Maser <cmr@financial.com> - 1.23-1
 - Updated to release 1.23.
 
