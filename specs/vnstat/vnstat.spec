@@ -4,7 +4,7 @@
 
 Summary: Console-based network traffic monitor
 Name: vnstat
-Version: 1.6
+Version: 1.7
 Release: 1
 License: GPL
 Group: Applications/System
@@ -67,7 +67,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES COPYING cron/ FAQ INSTALL pppd/ README
+%doc CHANGES COPYING cron/ FAQ INSTALL README
 %doc %{_mandir}/man1/vnstat.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/vnstat
 %config %{_sysconfdir}/cron.d/vnstat
@@ -78,6 +78,9 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
+* Thu Apr 30 2009 Christoph Maser <cmr@financial.com> - 1.7-1
+- Updated to release 1.7.
+
 * Sun Sep 14 2008 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 
