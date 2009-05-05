@@ -4,7 +4,7 @@
 
 Summary: Host-based tool to scan for rootkits, backdoors and local exploits
 Name: rkhunter
-Version: 1.3.2
+Version: 1.3.4
 Release: 1
 License: GPL
 Group: Applications/System
@@ -68,6 +68,9 @@ RPM_BUILD_ROOT="%{buildroot}" ./installer.sh --layout RPM --install
 %exclude %{_docdir}
  
 %changelog
+* Tue May 05 2009 Christoph Maser <cmr@financial.com> - 1.3.4 - 1
+- Updated to release 1.3.4.
+
 * Tue Dec 23 2008 Christoph Maser <cmr@financial.com> - 1.3.2 - 1
 - Updated to release 1.3.2.
 - Use --layout RPM from installer.sh.
