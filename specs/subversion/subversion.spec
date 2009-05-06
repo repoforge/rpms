@@ -28,7 +28,7 @@ Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.5.6
 ### FC3 comes with release 1.1
-Release: 0.2
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -173,7 +173,7 @@ export CC=gcc CXX=g++
 #    --disable-neon-version-check \
 # 1.3.0 tarball ships with generated swig sources
 #%{__make} extraclean-swig-headers swig-headers
-%{__make} %{?_smp_mflags} all
+%{__make} %{?_smp_mflags} all tools
 
 %if %{!?_without_swig:1}0
 %{__make} %{?_smp_mflags} swig-py swig-py-lib %{swigdirs}
@@ -318,6 +318,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Wed Apr 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-1
+- call "make tools"
+
 * Wed Mar 18 2009 Christoph Maser <cmr@financial.com> - 1.5.6-0.2
 - Updated to swig 1.3.38
 - Added --mandir= to swig configure
