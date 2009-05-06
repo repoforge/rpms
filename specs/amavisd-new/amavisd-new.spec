@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 # Upstream: <amavis-user$lists,sourceforge,net>
-# Tag: test
 
 ### FIXME: If clamd is installed, add user clamav to group amavis
 ### FIXME: Look into amavis own stop/reload functionality
@@ -12,7 +11,7 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.6.2
+Version: 2.6.3
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -336,6 +335,10 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Wed May 06 2009 Christoph Maser <cmr@financial.com> - 2.6.3-1
+- Updated to release 2.6.3.
+- Removed test-tag
+
 * Mon Apr 20 2009 Christoph Maser <cmr@financial.com> - 2.6.2-1
 - Updated to release 2.6.2.
 
