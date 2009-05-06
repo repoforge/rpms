@@ -15,20 +15,20 @@
 %{?el2:%define _without_pie 1}
 %{?el2:%define _without_swig 1}
 
-%define swig_version 1.3.38
+%define swig_version 1.3.39
 
 # set to zero to avoid running test suite
 %define make_check 0
 
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
-%define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')
+%{!?_without_ruby:%define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')}
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.5.6
 ### FC3 comes with release 1.1
-Release: 1
+Release: 2
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -318,6 +318,10 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Wed Apr 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-2
+- Updated to swig 1.3.39
+- only set ruby_sitearch if _without_ruby is not set
+
 * Wed Apr 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-1
 - call "make tools"
 
