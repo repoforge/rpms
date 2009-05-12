@@ -12,7 +12,7 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 3.0.1b6
+Version: 3.0.1
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -359,6 +359,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Tue May 12 2009 Chritsoph Maser <cmr@financial.com> - 3.0.1
+- Bump version: 3.0.1
+
 * Wed Apr 15 2009 Chritsoph Maser <cmr@financial.com> - 3.0.1b6-1
 - Bump version: 3.0.1b6
 
