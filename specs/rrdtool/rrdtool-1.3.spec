@@ -13,8 +13,8 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.3.6
-Release: 2
+Version: 1.3.7
+Release: 1
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -225,6 +225,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{ruby_sitearch}/RRD.so
 
 %changelog
+* Fri May 15 2009 Christoph Maser <cmr@financial.com> - 1.3.7-1
+- Update to 1.3.7
+
 * Fri Feb 13 2009 Christoph Maser <cmr@financial.com> - 1.3.6-1
 - Update to 1.3.6
 
