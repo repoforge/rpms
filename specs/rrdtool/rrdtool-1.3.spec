@@ -1,7 +1,6 @@
 # $Id: rrdtool.spec 3101 2005-04-04 20:13:17Z dag $
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
-# Tag: test
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
