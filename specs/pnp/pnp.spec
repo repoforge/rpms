@@ -1,6 +1,6 @@
 Name:		pnp
-Version: 	0.4.13	
-Release:	1%{?dist}
+Version: 	0.4.14	
+Release:	1
 Summary: 	PNP is not PerfParse. A Nagios perfdata graphing solution	
 
 Group:	 	Applications/System	
@@ -24,7 +24,7 @@ sed -i -e 's/INSTALL_OPTS="-o $nagios_user -g $nagios_grp"/INSTALL_OPTS=""/' con
 sed -i -e 's/INIT_OPTS=-o root -g root/INIT_OPTS=/' scripts/Makefile.in
 %configure --with-perfdata-logfile=%{_localstatedir}/log/perfdata.log \
 	--sysconfdir=%{_sysconfdir}/nagios/pnp \
-	--datarootdir=%{_datadir}/pnp
+	--datarootdir=%{_datadir}/nagios/pnp
 make %{?_smp_mflags} all
 
 
@@ -37,6 +37,7 @@ mv %{buildroot}%{_sysconfdir}/nagios/pnp/pages/web_traffic.cfg-sample %{buildroo
 mv %{buildroot}%{_sysconfdir}/nagios/pnp/process_perfdata.cfg-sample %{buildroot}%{_sysconfdir}/nagios/pnp/process_perfdata.cfg
 mv %{buildroot}%{_sysconfdir}/nagios/pnp/rra.cfg-sample %{buildroot}%{_sysconfdir}/nagios/pnp/rra.cfg
 
+sed -i -e 's*log_file = /var/npcd.log*log_file = /var/log/nagios/npcd.log*' %{buildroot}%{_sysconfdir}/nagios/pnp/npcd.cfg
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -44,6 +45,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,nagios,nagios,-)
+%doc AUTHORS
+%doc BUGS
+%doc ChangeLog
+%doc COPYING
+%doc INSTALL
+%doc NEWS
+%doc README
+%doc README.npcd
+%doc README.pnpsender
+%doc THANKS
+%doc TODO
 %config(noreplace) %{_sysconfdir}/nagios/pnp/check_commands/check_nwstat.cfg
 %config(noreplace) %{_sysconfdir}/nagios/pnp/npcd.cfg
 %config(noreplace) %{_sysconfdir}/nagios/pnp/pages/web_traffic.cfg
@@ -57,10 +69,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/npcdmod.o
 %{_libexecdir}/check_pnp_rrds.pl
 %{_libexecdir}/process_perfdata.pl
-%{_datadir}/pnp
+%{_datadir}/nagios/pnp
 
 
 %changelog
+* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -  0.4.14 - 2
+- Update to version 0.4.14
+
+* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -  0.4.13 - 2
+- modify log path
+- add documentation files
+
 * Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -  0.4.13 - 1
 - Initial package (using brain ;)
 
