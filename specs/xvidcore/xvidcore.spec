@@ -1,9 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%define somaj 4
-%define somin 1
-
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
@@ -14,7 +11,7 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.2.0
+Version: 1.2.1
 Release: 1
 License: XviD
 Group: System Environment/Libraries
@@ -26,8 +23,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: yasm
 %{!?_without_selinux:BuildRequires: prelink}
-Obsoletes: lib%{name} <= %{version}-%{release}
-Provides: lib%{name} = %{version}-%{release}
+Obsoletes: libxvidcore <= %{version}-%{release}
+Provides: libxvidcore = %{version}-%{release}
 
 %description
 Free reimplementation of the OpenDivX video codec. You can play OpenDivX
@@ -39,8 +36,8 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 
 Obsoletes: xvidcore-static <= 1.0.0
-Obsoletes: lib%{name}-devel <= %{version}-%{release}
-Provides: lib%{name}-devel = %{version}-%{release}
+Obsoletes: libxvidcore-devel <= %{version}-%{release}
+Provides: libxvidcore-devel = %{version}-%{release}
 
 %description devel
 Free reimplementation of the OpenDivX video codec. You can play OpenDivX
@@ -55,7 +52,7 @@ needed to build applications that will use the XviD video codec.
 
 %build
 cd build/generic/
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 cd -
 
@@ -65,12 +62,12 @@ cd build/generic/
 %{__make} install DESTDIR="%{buildroot}"
 cd -
 ### Make .so and .so.x symlinks to the so.x.y file, +x to get proper stripping
-%{__ln_s} -f lib%{name}.so.%{somaj}.%{somin} %{buildroot}%{_libdir}/lib%{name}.so.%{somaj}
-%{__ln_s} -f lib%{name}.so.%{somaj}.%{somin} %{buildroot}%{_libdir}/lib%{name}.so
-%{__chmod} +x %{buildroot}%{_libdir}/lib%{name}.so.%{somaj}.%{somin}
-# Remove unwanted files from the docs
+%{__ln_s} -f libxvidcore.so.4.2 %{buildroot}%{_libdir}/libxvidcore.so.4
+%{__ln_s} -f libxvidcore.so.4.2 %{buildroot}%{_libdir}/libxvidcore.so
+%{__chmod} +x %{buildroot}%{_libdir}/libxvidcore.so.4.2
+### Remove unwanted files from the docs
 %{__rm} -f doc/Makefile
-# Clear executable stack flag bit (should not be needed)
+### Clear executable stack flag bit (should not be needed)
 #execstack -c %{buildroot}%{_libdir}/*.so.*.* || :
 
 %post -p /sbin/ldconfig
@@ -86,12 +83,15 @@ cd -
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc CodingStyle doc/* examples
+%doc CodingStyle doc/* examples/
 %{_includedir}/xvid.h
-%{_libdir}/libxvidcore.a
 %{_libdir}/libxvidcore.so
+%exclude %{_libdir}/libxvidcore.a
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Tue Dec 02 2008 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

@@ -17,21 +17,34 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.3.8
+Version: 3.3.9
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
 
-Source: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
+Source0: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
+Source1: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+Source2: http://www.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
-BuildRequires: gd-devel, gcc-c++, automake, autoconf, gettext, libtool
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: gcc-c++
+BuildRequires: gd-devel
+BuildRequires: gdbm-devel
+BuildRequires: gettext
+BuildRequires: glib-devel
+BuildRequires: libtool
+BuildRequires: libpcap
+BuildRequires: openssl-devel
+BuildRequires: rrdtool-devel
+BuildRequires: zlib-devel
 %{?_with_libpcapdevel:BuildRequires: libpcap-devel}
 %{?_with_tcpwrappersdevel:BuildRequires: tcp_wrappers-devel}
 %{!?_without_tcpwrappers:BuildRequires: tcp_wrappers}
-Requires: /sbin/chkconfig, /sbin/ldconfig
+Requires: /sbin/chkconfig
+Requires: /sbin/ldconfig
 
 %description
 ntop is a network and traffic analyzer that provides a wealth of information on
@@ -41,6 +54,8 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 
 %prep
 %setup
+zcat %SOURCE3 > GeoLiteCity.dat
+zcat %SOURCE4 > GeoIPASNum.dat
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
@@ -176,7 +191,10 @@ EOF
 ### Logging messages to syslog (instead of the console):
 ###  NOTE: To log to a specific facility, use --use-syslog=local3
 ###  NOTE: The = is REQUIRED and no spaces are permitted.
---use-syslog
+--use-syslog=daemon
+
+# Amount and severity of messages that ntop will put out
+--trace-level 3
 
 ### Tells ntop to track only local hosts as specified by the --local-subnets option
 #--track-local-hosts
@@ -196,9 +214,13 @@ EOF
 ### Sets the domain.  ntop should be able to determine this automatically.
 #--domain mydomain.com
 
-### Sets program to run as a daemon
-###  NOTE: For more than casual use, you probably want this.
-#--daemon
+# Under certain circumstances, the sched_yield() function causes the ntop web 
+# server to lock up.  It shouldn't happen, but it does.  This option causes 
+# ntop to skip those calls, at a tiny performance penalty.
+--disable-schedyield
+
+# Disables "phone home" behavior
+--skip-version-check=yes
 EOF
 
 %build
@@ -209,7 +231,9 @@ EOF
     --disable-static \
     --enable-i18n \
     --enable-largerrdpop \
+    --enable-mysql \
     --enable-optimize \
+    --enable-snmp \
     --enable-sslv3 \
 %{!?_without_tcpwrappers:--with-tcpwrap}
 #   --with-pcap-include="%{_includedir}/pcap" \
@@ -221,8 +245,7 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_bindir} \
             %{buildroot}%{_datadir}/ntop/ \
             %{buildroot}%{_localstatedir}/ntop/ #/rrd/{flows,graphics,interfaces/eth0}
-%{__make} install install-data-local \
-    DESTDIR="%{buildroot}"
+%{__make} install install-data-local DESTDIR="%{buildroot}"
 
 %{__install} -Dp -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
 %{__install} -Dp -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
@@ -269,9 +292,9 @@ fi
 %doc AUTHORS ChangeLog CONTENTS COPYING INSTALL MANIFESTO NEWS PORTING THANKS
 %doc *.txt docs/* ntop.conf.sample
 %doc %{_mandir}/man8/ntop.8*
-%config(noreplace) %{_sysconfdir}/ntop.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/ntop
-%config %{_sysconfdir}/ntop/
+%config(noreplace) %{_sysconfdir}/ntop/
+%config(noreplace) %{_sysconfdir}/ntop.conf
 %config %{_initrddir}/ntop
 %{_bindir}/ntop
 %{_datadir}/ntop/
@@ -280,6 +303,14 @@ fi
 
 %defattr(-, ntop, nobody, 0775)
 %{_localstatedir}/ntop/
+%ghost %{_localstatedir}/ntop/addressQueue.db
+%ghost %{_localstatedir}/ntop/dnsCache.db
+%ghost %{_localstatedir}/ntop/fingerprint.db
+%ghost %{_localstatedir}/ntop/LsWatch.db
+%ghost %{_localstatedir}/ntop/macPrefix.db
+%ghost %{_localstatedir}/ntop/ntop_pw.db
+%ghost %{_localstatedir}/ntop/prefsCache.db
+
 %exclude %{_libdir}/*.la
 #%exclude %{_libdir}/plugins/
 

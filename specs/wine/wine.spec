@@ -59,8 +59,6 @@ Patch0: wine-prefixfonts.patch
 Patch1: wine-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: %{ix86}
-
 BuildRequires: bison, flex, libstdc++-devel
 BuildRequires: audiofile-devel, esound-devel
 BuildRequires: libjpeg-devel, lcms-devel, fontforge
@@ -301,8 +299,9 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 
 %build
 %configure \
-    --sysconfdir="%{_sysconfdir}/wine" \
     --disable-static \
+    --libdir="%{_prefix}/lib" \
+    --sysconfdir="%{_sysconfdir}/wine" \
 %{?_without_opengl:--without-opengl}
 %{__make} depend
 %{__make} %{?_smp_mflags}
@@ -312,6 +311,7 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 %{__make} install DESTDIR="%{buildroot}" \
     dlldir="%{_libdir}/wine" \
     includedir="%{_includedir}/wine" \
+    libdir="%{_libdir}" \
     sysconfdir="%{_sysconfdir}/wine" \
     LDCONFIG="/bin/true" \
     UPDATE_DESKTOP_DATABASE="/bin/true"

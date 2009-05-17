@@ -11,8 +11,8 @@
 
 Summary: Graphical tool for producing a multipage PDF from a scan
 Name: gscan2pdf
-Version: 0.9.27
-Release: 1
+Version: 0.9.29
+Release: 2
 License: GPL
 Group: Applications/Publishing
 URL: http://gscan2pdf.sourceforge.net/
@@ -28,6 +28,7 @@ BuildRequires: perl(Sane) >= 0.02
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: djvulibre
 Requires: gocr
+Requires: perl(Cairo)
 Requires: perl(Gtk2::Ex::PodViewer)
 Requires: perl(PDF::API2)
 Requires: perl(Sane) >= 0.02
@@ -81,17 +82,27 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %defattr(-, root, root, 0755)
 %doc History LICENCE
 %doc %{_mandir}/man1/gscan2pdf.1*
-%doc %{_mandir}/man1/scanadf.pl.1p*
-%doc %{_mandir}/man1/scanimage.pl.1p*
+%doc %{_mandir}/man1/scanadf-perl.1p.gz
+%doc %{_mandir}/man1/scanimage-perl.1p.gz
 %{_bindir}/gscan2pdf
-%{_bindir}/scanadf.pl
-%{_bindir}/scanimage.pl
+%{_bindir}/scanadf-perl
+%{_bindir}/scanimage-perl
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gscan2pdf.desktop}
 %{?_without_freedesktop:%{_datadir}/applications/gscan2pdf.desktop}
 %{_datadir}/gscan2pdf/
 %{perl_vendorlib}/Gscan2pdf.pm
+%{_datadir}/pixmaps/gscan2pdf.svg
 
 %changelog
+* Sun May 10 2009 Dag Wieers <dag@wieers.com> - 0.9.29-2
+- Added missing perl(Cairo) dependency.
+
+* Wed May 06 2009 Dag Wieers <dag@wieers.com> - 0.9.29-1
+- Updated to release 0.9.29.
+
+* Fri May 01 2009 Dag Wieers <dag@wieers.com> - 0.9.28-1
+- Updated to release 0.9.28.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.9.27-1
 - Updated to release 0.9.27.
 

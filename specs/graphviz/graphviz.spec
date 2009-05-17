@@ -289,30 +289,31 @@ Some demo graphs for %{name}.
 %{__perl} -pi -e 's/INCLTDL=.*/INCLTDL=/' configure
 
 %build
+%{?_without_java:export -n JAVA}
 %{expand: %%define optflags %{optflags} -ffast-math}
 %configure \
-	--with-mylibgd \
-	--with-x \
-	%{?_without_java:--disable-java} \
-	%{?_without_ruby:--disable-ruby} \
-	%{?_without_ocaml:--disable-ocaml} \
-	%{?_without_python:--disable-python} \
-	%{?_without_lua:--disable-lua} \
-	%{?_without_php:--disable-php} \
-	%{?_without_perl:--disable-perl} \
-	%{?_without_pangocairo:--without-pangocairo} \
-	%{?_without_rsvg:--without-rsvg} \
-	%{?_without_freetype:--without-freetype2} \
-	%{?_without_fontconfig:--without-fontconfig} \
-	%{!?_without_ipsepcola:--with-ipsepcola} \
-	%{!?_with_gdk_pixbuf:--without-gdk-pixbuf}
+    --with-mylibgd \
+    --with-x \
+    %{!?_with_gdk_pixbuf:--without-gdk-pixbuf} \
+    %{?_without_fontconfig:--without-fontconfig} \
+    %{?_without_freetype:--without-freetype2} \
+    %{!?_without_ipsepcola:--with-ipsepcola} \
+    %{?_without_java:--disable-java} \
+    %{?_without_lua:--disable-lua} \
+    %{?_without_ocaml:--disable-ocaml} \
+    %{?_without_pangocairo:--without-pangocairo} \
+    %{?_without_perl:--disable-perl} \
+    %{?_without_php:--disable-php} \
+    %{?_without_python:--disable-python} \
+    %{?_without_rsvg:--without-rsvg} \
+    %{?_without_ruby:--disable-ruby}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" \
-	pkgconfigdir=%{_libdir}/pkgconfig \
-	transform='s,x,x,'
+    pkgconfigdir=%{_libdir}/pkgconfig \
+    transform='s,x,x,'
 %{__mv} %{buildroot}%{_datadir}/graphviz/doc rpmdoc
 %{__chmod} -x %{buildroot}%{_datadir}/graphviz/lefty/*
 

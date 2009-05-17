@@ -1,0 +1,30 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2007-11-30 12:06:23.000000000 -0500
++++ livecd-tools-013/creator/livecd-creator	2007-11-30 18:27:15.000000000 -0500
+@@ -223,7 +223,7 @@
+             os.unlink(self.conf.installroot + "/yum.conf")
+         except:
+             pass
+-        yum.YumBase.close(self)
++        # yum.YumBase.close(self)
+ 
+     def _writeConf(self, datadir, installroot):
+         conf  = "[main]\n"
+@@ -530,6 +530,17 @@
+             self.ayum.close()
+             self.ayum = None
+ 
++        # FIXME: Make one last ditch effort to close fds still open
++        # in the install root; this is only needed because
++        # there's no way to ask yum to close its sqlite dbs,
++        # though. See https://bugzilla.redhat.com/236409
++        # This bug is fixed in yum 3.1.7
++        for i in range(3, os.sysconf("SC_OPEN_MAX")):
++            try:
++                os.close(i)
++            except:
++                pass
++
+         try:
+             os.unlink(self.build_dir + "/install_root/etc/mtab")
+         except OSError:

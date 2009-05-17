@@ -34,7 +34,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 2.1.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SDL_Perl/
@@ -113,6 +113,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/SDL_perl.pm
 
 %changelog
+* Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 2.1.3-2
+- Rebuild against SDL_gfx 2.0.19.
+
 * Fri Mar 30 2007 Dag Wieers <dag@wieers.com> - 2.1.3-1
 - Move the modules from %%{perl_sitearch} to %{perl_vendorarch}.
 - Updated to release 2.1.3.

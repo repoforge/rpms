@@ -4,7 +4,7 @@
 
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
-Version: 1.7.0.0
+Version: 1.7.1.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -27,7 +27,7 @@ line editor, a program, or a combination of two of these.
 %setup
 
 %build
-%configure
+%configure --disable-fips
 %{__make} %{?_smp_mflags}
 
 %install
@@ -47,6 +47,12 @@ line editor, a program, or a combination of two of these.
 %{_bindir}/socat
 
 %changelog
+* Sun May 10 2009 Dag Wieers <dag@wieers.com> - 1.7.1.1-1
+- Updated to release 1.7.1.1.
+
+* Fri Apr 03 2009 Dag Wieers <dag@wieers.com> - 1.7.1.0-1
+- Updated to release 1.7.1.0.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.7.0.0-1
 - Updated to release 1.7.0.0.
 

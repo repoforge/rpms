@@ -14,7 +14,7 @@
 Summary: Mother of all Gravity Games
 Name: moagg
 Version: 0.16
-Release: 3
+Release: 4
 License: GPL
 Group: Amusements/Games
 URL: http://moagg.sourceforge.net/
@@ -22,6 +22,7 @@ URL: http://moagg.sourceforge.net/
 Source: http://dl.sf.net/moagg/moagg-%{version}-src.tar.bz2
 #Source1: http://dl.sf.net/moagg/moagg-%{version}-data.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: expat-devel, SDL-devel, SDL_gfx-devel, SDL_mixer-devel
 BuildRequires: paragui-devel, freetype-devel, gcc-c++, SDL_image-devel
 BuildRequires: desktop-file-utils, zlib-devel
@@ -55,35 +56,35 @@ EOF
 
 %build
 %configure \
-	--disable-paraguitest
+    --disable-paraguitest
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} \
-	prefix=%{buildroot}%{_prefix} \
-	exec_prefix=%{buildroot}%{_prefix} \
-	bindir=%{buildroot}%{_bindir} \
-	sbindir=%{buildroot}%{_sbindir} \
-	sysconfdir=%{buildroot}%{_sysconfdir} \
-	datadir=%{buildroot}%{_datadir} \
-	includedir=%{buildroot}%{_includedir} \
-	libdir=%{buildroot}%{_libdir} \
-	libexecdir=%{buildroot}%{_libexecdir} \
-	localstatedir=%{buildroot}%{_localstatedir} \
-	sharedstatedir=%{buildroot}%{_sharedstatedir} \
-	mandir=%{buildroot}%{_mandir} \
-	infodir=%{buildroot}%{_infodir} install-bin install-doc install-man
+    prefix=%{buildroot}%{_prefix} \
+    exec_prefix=%{buildroot}%{_prefix} \
+    bindir=%{buildroot}%{_bindir} \
+    sbindir=%{buildroot}%{_sbindir} \
+    sysconfdir=%{buildroot}%{_sysconfdir} \
+    datadir=%{buildroot}%{_datadir} \
+    includedir=%{buildroot}%{_includedir} \
+    libdir=%{buildroot}%{_libdir} \
+    libexecdir=%{buildroot}%{_libexecdir} \
+    localstatedir=%{buildroot}%{_localstatedir} \
+    sharedstatedir=%{buildroot}%{_sharedstatedir} \
+    mandir=%{buildroot}%{_mandir} \
+    infodir=%{buildroot}%{_infodir} install-bin install-doc install-man
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/moagg
 
 %if %{?_without_freedesktop:1}0
         %{__install} -Dp -m0644 %{name}.desktop %{buildroot}%{_datadir}/applnk/Games/%{name}.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor net                  \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		%{name}.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor net                  \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        %{name}.desktop
 %endif
 
 %clean
@@ -92,12 +93,15 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc INSTALL moagg.dxy README TODO
+%doc %{_mandir}/man6/moagg*
 %{_bindir}/moagg
 %{!?_without_freedesktop:%{_datadir}/applications/*.desktop}
 %{?_without_freedesktop:%{_datadir}/applnk/Games/*.desktop}
-%{_mandir}/man6/moagg*
 
 %changelog
+* Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 0.16-4
+- Rebuild against SDL_gfx 2.0.19.
+
 * Thu Dec 28 2006 Dag Wieers <dag@wieers.com> - 0.16-3
 - Rebuild against SDL_gfx 2.0.15.
 

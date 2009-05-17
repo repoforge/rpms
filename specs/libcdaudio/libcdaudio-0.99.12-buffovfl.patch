@@ -1,0 +1,11 @@
+--- src/cddb.c~	2005-09-13 13:19:44.000000000 +0200
++++ src/cddb.c	2005-09-13 13:21:12.000000000 +0200
+@@ -1601,7 +1601,7 @@
+     return -1;
+   }
+    
+-  if((inbuffer = malloc(256)) == NULL) {
++  if((inbuffer = malloc(512)) == NULL) {
+     free(root_dir);
+     free(file);
+     return -1;

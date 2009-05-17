@@ -1,0 +1,26 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2008-06-25 19:58:08.000000000 -0400
++++ livecd-tools-013/creator/livecd-creator	2008-06-25 22:44:04.000000000 -0400
+@@ -1257,8 +1257,11 @@
+                 s = self._getImageStanzaXen()
+ 
+             short = "linux%s" %(count,)
++            shorttext = "linuxtext%s" %(count,)
+             long = "Boot %s%s" %(self.fs_label,q)
++            longtext = long + " (text mode)"
+             extra = ""
++            extratext = "3"
+ 
+             cfg += s %{"label": self.fs_label,
+                        "short": short, "long": long, "extra": extra,
+@@ -1266,6 +1269,10 @@
+             if default:
+                 cfg += "menu default\n"
+ 
++            cfg += s %{"label": self.fs_label,
++                       "short": shorttext, "long": longtext, "extra": extratext,
++                       "liveargs": self._getKernelOptions(), "index": count}
++
+             if self._checkIsoMD5:
+                 short = "check%s" %(count,)
+                 long = "Verify and boot %s%s" %(self.fs_label,q)

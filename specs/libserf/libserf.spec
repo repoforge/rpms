@@ -1,6 +1,8 @@
 # $Id$
 # Authority: cmr
-# Upstream: serf-dev@googlegroups.com
+# Upstream: <serf-dev@googlegroups.com>
+
+%define real_name serf
 
 Summary: HTTP client library written in C using apr
 Name: libserf
@@ -10,13 +12,18 @@ License: Apache License 2.0
 Group: Development/Libraries
 URL: http://code.google.com/p/serf/
 
-Source: serf-%{version}.tar.bz2
+Source: http://serf.googlecode.com/files/serf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: apr-devel apr-util-devel openssl-devel
-Requires: apr apr-util openssl
+BuildRequires: apr-devel
+BuildRequires: apr-util-devel
+BuildRequires: openssl-devel
+Requires: apr
+Requires: apr-util
+Requires: openssl
 
 %description
+HTTP client library written in C using apr.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -29,19 +36,17 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n serf-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
@@ -50,8 +55,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc README
-%{_libdir}/libserf-0.so.0
-%{_libdir}/libserf-0.so.0.0.0
+%{_libdir}/libserf-0.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -60,9 +64,8 @@ you will need to install %{name}-devel.
 %{_includedir}/serf_bucket_util.h
 %{_includedir}/serf_declare.h
 %{_libdir}/libserf-0.so
-%exclude %{_libdir}/*.a
-%exclude %{_libdir}/*.la
-
+%exclude %{_libdir}/libserf-0.a
+%exclude %{_libdir}/libserf-0.la
 
 %changelog
 * Fri May 08 2009 Christoph Maser <cmr@financial.com> - 0.3.0-1

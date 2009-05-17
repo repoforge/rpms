@@ -125,8 +125,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-%define real_version 0.9.9-rc
-Version: 0.9.9
+%define real_version 1.0.0-rc1
+Version: 1.0.0
 Release: 0.rc1
 License: GPL
 Group: Applications/Multimedia
@@ -471,6 +471,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Wed May 13 2009 Dag Wieers <dag@wieers.com> - 1.0.0-0.rc1
+- Updated to release 1.0.0-rc1.
+
 * Wed Feb 11 2009 Dag Wieers <dag@wieers.com> - 0.9.9-0.rc
 - Updated to release 0.9.9-rc.
 

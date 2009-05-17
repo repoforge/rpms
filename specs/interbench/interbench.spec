@@ -8,9 +8,9 @@ Version: 0.30
 Release: 1.2
 License: GPL
 Group: System Environment/Base
-URL: http://members.optusnet.com.au/ckolivas/interbench/
+URL: http://users.on.net/~ckolivas/interbench/
 
-Source: http://ck.kolivas.org/apps/interbench/interbench-%{version}.tar.bz2
+Source: http://www.kernel.org/pub/linux/kernel/people/ck/apps/interbench/interbench-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -40,9 +40,6 @@ hardware can be compared.
 %{_bindir}/interbench
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.30-1
 - Updated to release 0.30.
 

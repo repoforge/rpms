@@ -4,7 +4,7 @@
 
 Summary: Prints filenames for backup
 Name: rdup
-Version: 0.9.0
+Version: 0.9.9
 Release: 1
 License: GPL
 Group: Applications/File
@@ -76,6 +76,12 @@ this list and implement the backup strategy.
 %{_libdir}/rdup/
 
 %changelog
+* Wed May 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
+
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 0.9.1-1
+- Updated to release 0.9.1.
+
 * Mon Mar 02 2009 Dag Wieers <dag@wieers.com> - 0.9.0-1
 - Updated to release 0.9.0.
 

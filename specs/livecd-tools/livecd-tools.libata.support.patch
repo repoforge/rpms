@@ -1,0 +1,33 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2009-04-06 19:56:24.000000000 -0400
++++ livecd-tools-013/creator/livecd-creator	2009-04-06 19:59:28.000000000 -0400
+@@ -904,6 +904,9 @@
+         mcfg.write('MODULES+="squashfs ext3 ext2 vfat msdos "\n')
+         mcfg.write('MODULES+="sr_mod sd_mod ide-cd "\n')
+ 
++        if "=ata" in self._modules:
++            mcfg.write('MODULES+="libata ahci ata_piix "\n')
++            self._modules.remove("=ata")
+         if "=usb" in self._modules:
+             mcfg.write('MODULES+="ehci_hcd uhci_hcd ohci_hcd usb_storage usbhid "\n')
+             self._modules.remove("=usb")
+diff -Nur livecd-tools-013.orig/creator/mayflower livecd-tools-013/creator/mayflower
+--- livecd-tools-013.orig/creator/mayflower	2009-04-06 19:56:24.000000000 -0400
++++ livecd-tools-013/creator/mayflower	2009-04-06 19:58:12.000000000 -0400
+@@ -103,15 +103,7 @@
+     char=$(echo $m | cut -c1)
+     if [ $char = '=' ]; then
+ 	NAME=$(echo $m | cut -c2-)
+-	if [ "$NAME" = "ata" ]; then
+-	    if [ -f /lib/modules/$KERNEL/modules.libata ]; then
+-		MODS="$MODS $(cat /lib/modules/$KERNEL/modules.libata |sed -e 's/.ko//')"
+-	    else
+-		MODS="$MODS $(cat /lib/modules/$KERNEL/modules.block |egrep '(ata|ahci)' |sed -e 's/.ko//')"
+-	    fi
+-	else
+-	    MODS="$MODS $(cat /lib/modules/$KERNEL/modules.$NAME |sed -e 's/.ko//')"
+-	fi
++	MODS="$MODS $(cat /lib/modules/$KERNEL/modules.$NAME |sed -e 's/.ko//')"
+     else
+ 	MODS="$MODS $m"
+     fi

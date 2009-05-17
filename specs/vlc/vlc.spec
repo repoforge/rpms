@@ -24,7 +24,7 @@
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 %{?el5:%define _without_glide 1}
 %{?el5:%define _without_jack 1}
-%{?el5:%define _without_theora 1}
+#{?el5:#define _without_theora 1}
 
 %{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_avahi 1}
@@ -33,7 +33,7 @@
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_modxorg 1}
 %{?el4:%define _without_sysfs 1}
-%{?el4:%define _without_theora 1}
+#{?el4:#define _without_theora 1}
 
 %{?fc3:%define _without_avahi 1}
 %{?fc3:%define _without_jack 1}
@@ -123,8 +123,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.9.8a
-Release: 1
+Version: 0.9.9
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -303,17 +303,17 @@ pushd ffmpeg-%{ffmpeg_date}
         --enable-libmp3lame \
 %{!?_without_gsm:--enable-libgsm} \
         --enable-libfaac \
+        --enable-libfaad \
 %{!?_without_theora:--enable-libtheora} \
 %{!?_without_vorbis:--enable-libvorbis} \
+%{!?_without_x246:--enable-libx264} \
         --enable-libxvid \
         --enable-nonfree \
         --enable-pp \
         --enable-pthreads \
         --enable-shared
-#{!?_without_x246:--enable-libx264} \
-#        --enable-static
 #        --enable-libdc1394 \
-#        --enable-libfaad \
+#        --enable-static
     %{__make} %{?_smp_mflags}
 popd
 
@@ -468,6 +468,12 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Sat Apr 04 2009 Dag Wieers <dag@wieers.com> - 0.9.9-2
+- Enable theora again.
+
+* Fri Apr 03 2009 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
+
 * Fri Dec 05 2008 Dag Wieers <dag@wieers.com> - 0.9.8a-1
 - Updated to release 0.9.8a.
 

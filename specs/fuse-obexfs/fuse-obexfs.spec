@@ -5,7 +5,7 @@
 
 Summary: FUSE based filesystem using ObexFTP
 Name: fuse-obexfs
-Version: 0.11
+Version: 0.12
 Release: 1
 License: GPL
 Group: System Environment/Kernel
@@ -46,6 +46,9 @@ ObexFS is a FUSE based filesystem using ObexFTP.
 %{_bindir}/obexautofs
 
 %changelog
+* Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Mon Jun 16 2008 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 

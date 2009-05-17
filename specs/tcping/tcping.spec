@@ -4,9 +4,9 @@
 
 Summary: Check TCP connection to a given ip/port
 Name: tcping
-Version: 1.3.4
-Release: 1.2
-License: GPL
+Version: 1.3.5
+Release: 1
+License: LGPL
 Group: Applications/Internet
 URL: http://www.linuxco.de/tcping/tcping.html
 
@@ -26,8 +26,7 @@ start connection establishment.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,8 +41,8 @@ start connection establishment.
 %{_bindir}/tcping
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.3.4-1.2
-- Rebuild for Fedora Core 5.
+* Fri May 08 2009 Dag Wieers <dag@wieers.com> - 1.3.5-1
+- Updated to release 1.3.5.
 
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Updated to release 1.3.4.

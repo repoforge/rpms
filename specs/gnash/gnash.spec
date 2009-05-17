@@ -5,12 +5,6 @@
 
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 
-%define _without_kde32 1
-
-#ifarch x86_64
-#define _without_kde32 1
-#endif
-
 Summary: Flash player
 Name: gnash
 Version: 0.8.5
@@ -20,7 +14,7 @@ Group: Applications/Multimedia
 URL: http://www.gnu.org/software/gnash/
 
 Source: http://ftp.gnu.org/gnu/gnash/%{version}/gnash-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-%{_arch}-root
 
 BuildRequires: SDL-devel
 BuildRequires: SDL_mixer-devel
@@ -38,22 +32,12 @@ BuildRequires: libmad-devel
 BuildRequires: libogg-devel
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
-%{!?_without_kde32:BuildRequires: kdebase-devel >= 3.2}
 %{!?_without_modxorg:BuildRequires: libGLU-devel, libXmu-devel, libXi-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_mozilla:BuildRequires: %{mozilla}}
 
 %description
 Gnash is an open-source flash player.
-
-%package -n konqueror-gnash
-Summary: Konqueror plugin for playing Flash movies
-Group: Applications/Multimedia
-Requires: gnash = %{version}-%{release}
-Requires: kdebase-core
-
-%description -n konqueror-gnash
-Konqueror plugin for playing Flash movies
 
 %package -n mozilla-gnash
 Summary: Mozilla plugin for playing Flash movies
@@ -67,6 +51,7 @@ Firefox plugin for playing Flash movies
 %setup
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' configure
+%{__perl} -pi.orig -e 's|spx_uint32_t|uint32_t|g;' libmedia/AudioDecoderSpeex.cpp
 
 %build
 #./autogen.sh
@@ -77,23 +62,14 @@ source %{_sysconfdir}/profile.d/qt.sh
     --disable-docbook \
     --disable-rpath \
     --disable-static \
-    --enable-dom \
     --enable-extensions="ALL" \
     --enable-glext \
 %{!?_without_gstreamer:--enable-gstreamer} \
 %{?_without_gstreamer:--disable-gstreamer} \
     --enable-gui="gtk" \
-    --enable-http \
     --enable-jpeg \
-%{!?_without_kde32:--enable-klash} \
-%{?_without_kde32:--disable-klash} \
-    --enable-mp3 \
-    --enable-net-conn \
-    --enable-ogg \
-    --enable-plugin \
-    --enable-pthreads \
     --enable-png \
-    --enable-xmlreader \
+    --with-boost_lib="%{_libdir}" \
     --with-plugindir="%{_libdir}/mozilla/plugins"
 #   --with-qtdir="$QTDIR"
 %{__make} %{?_smp_mflags}
@@ -116,6 +92,7 @@ source %{_sysconfdir}/profile.d/qt.sh
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS TODO rpm-docs/*
 %doc %{_mandir}/man1/cygnal.1*
 %doc %{_mandir}/man1/dumpshm.1*
+%doc %{_mandir}/man1/flvdumper.1*
 %doc %{_mandir}/man1/gnash.1*
 %doc %{_mandir}/man1/gprocessor.1*
 %doc %{_mandir}/man1/soldumper.1*
@@ -125,7 +102,6 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_bindir}/flvdumper
 %{_bindir}/gnash
 %{_bindir}/gtk-gnash
-%{!?_without_kde32:%{_bindir}/kde-gnash}
 #%{_bindir}/gparser
 %{_bindir}/gprocessor
 %{_bindir}/soldumper
@@ -133,17 +109,6 @@ source %{_sysconfdir}/profile.d/qt.sh
 %{_libdir}/gnash/
 %exclude %{_libdir}/gnash/*.la
 %exclude %{_libdir}/gnash/plugins/*.la
-
-%if %{!?_without_kde32:1}0
-%files -n konqueror-gnash
-%defattr(-, root, root, 0755)
-#%config %{_datadir}/config/klashrc
-#%{_bindir}/klash
-%{_datadir}/apps/klash
-%{_datadir}/services/klash_part.desktop
-#%{_libdir}/kde3/libklashpart.la
-#%{_libdir}/kde3/libklashpart.so
-%endif
 
 %if %{!?_without_mozilla:1}0
 %files -n mozilla-gnash

@@ -50,7 +50,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.17
+Version: 1.1.21
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -302,13 +302,12 @@ EOF
 echo "%{_libdir}/wine/" >wine.ld.conf
 
 %build
+%{expand: %%define optflags %%(echo %{optflags} | sed -e 's|-m64|-m32|')}
 %configure \
-    --sysconfdir="%{_sysconfdir}/wine" \
     --disable-static \
-%ifarch x86_64
-    --enable-win64 \
-%endif
-%{?_without_opengl:--without-opengl}
+    --libdir="%{_prefix}/lib" \
+    --sysconfdir="%{_sysconfdir}/wine" \
+%{?_without_opengl:--without-opengl} \
 %{__make} depend
 %{__make} %{?_smp_mflags}
 
@@ -317,6 +316,7 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 %{__make} install DESTDIR="%{buildroot}" \
     dlldir="%{_libdir}/wine" \
     includedir="%{_includedir}/wine" \
+    libdir="%{_libdir}" \
     sysconfdir="%{_sysconfdir}/wine" \
     LDCONFIG="/bin/true" \
     UPDATE_DESKTOP_DATABASE="/bin/true"
@@ -455,12 +455,15 @@ update-desktop-database &>/dev/null || :
 ### exe16.so
 %{_libdir}/wine/winhelp.exe16.so
 
+
+### cpl.so
+%{_libdir}/wine/appwiz.cpl.so
+
 ### exe.so
 %{_libdir}/wine/cacls.exe.so
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
-%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
 %{_libdir}/wine/explorer.exe.so
@@ -485,6 +488,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/start.exe.so
 %{_libdir}/wine/svchost.exe.so
 %{_libdir}/wine/taskmgr.exe.so
+%{_libdir}/wine/termsv.exe.so
 %{_libdir}/wine/uninstaller.exe.so
 %{_libdir}/wine/unlodctr.exe.so
 %{_libdir}/wine/wineboot.exe.so
@@ -505,31 +509,24 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/xcopy.exe.so
 
 ### dll16
-%{_libdir}/wine/avifile.dll16
 %{_libdir}/wine/commdlg.dll16
-%{_libdir}/wine/ctl3d.dll16
-%{_libdir}/wine/ctl3dv2.dll16
-%{_libdir}/wine/ddeml.dll16
-%{_libdir}/wine/imm.dll16
 %{_libdir}/wine/mmsystem.dll16
 %{_libdir}/wine/msvideo.dll16
-%{_libdir}/wine/rasapi16.dll16
 %{_libdir}/wine/setupx.dll16
-%{_libdir}/wine/shell.dll16
 %{_libdir}/wine/toolhelp.dll16
 %{_libdir}/wine/ver.dll16
-%{_libdir}/wine/w32sys.dll16
-%{_libdir}/wine/win32s16.dll16
-%{_libdir}/wine/winaspi.dll16
 %{_libdir}/wine/wing.dll16
-%{_libdir}/wine/winnls.dll16
 %{_libdir}/wine/winsock.dll16
-%{_libdir}/wine/wintab.dll16
 %{_libdir}/wine/wprocs.dll16
 
 ### dll16.so
+%{_libdir}/wine/avifile.dll16.so
 %{_libdir}/wine/compobj.dll16.so
+%{_libdir}/wine/ctl3d.dll16.so
+%{_libdir}/wine/ctl3dv2.dll16.so
+%{_libdir}/wine/ddeml.dll16.so
 %{_libdir}/wine/dispdib.dll16.so
+%{_libdir}/wine/imm.dll16.so
 %{_libdir}/wine/lzexpand.dll16.so
 %{_libdir}/wine/msacm.dll16.so
 %{_libdir}/wine/ole2.dll16.so
@@ -540,11 +537,18 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ole2thk.dll16.so
 %{_libdir}/wine/olecli.dll16.so
 %{_libdir}/wine/olesvr.dll16.so
+%{_libdir}/wine/rasapi16.dll16.so
+%{_libdir}/wine/shell.dll16.so
 %{_libdir}/wine/storage.dll16.so
 %{_libdir}/wine/stress.dll16.so
 %{_libdir}/wine/typelib.dll16.so
+%{_libdir}/wine/w32sys.dll16.so
+%{_libdir}/wine/win32s16.dll16.so
 %{_libdir}/wine/win87em.dll16.so
+%{_libdir}/wine/winaspi.dll16.so
 %{_libdir}/wine/windebug.dll16.so
+%{_libdir}/wine/winnls.dll16.so
+%{_libdir}/wine/wintab.dll16.so
 
 ### dll.so
 %{_libdir}/wine/acledit.dll.so
@@ -554,11 +558,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/advapi32.dll.so
 %{_libdir}/wine/advpack.dll.so
 %{_libdir}/wine/amstream.dll.so
-%{_libdir}/wine/appwiz.cpl.so
 %{_libdir}/wine/atl.dll.so
 %{_libdir}/wine/authz.dll.so
 %{_libdir}/wine/avicap32.dll.so
 %{_libdir}/wine/avifil32.dll.so
+%{_libdir}/wine/bcrypt.dll.so
 %{_libdir}/wine/browseui.dll.so
 %{_libdir}/wine/cabinet.dll.so
 %{_libdir}/wine/cards.dll.so
@@ -571,6 +575,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/credui.dll.so
 %{_libdir}/wine/crtdll.dll.so
 %{_libdir}/wine/crypt32.dll.so
+%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/cryptdll.dll.so
 %{_libdir}/wine/cryptnet.dll.so
 %{_libdir}/wine/cryptui.dll.so
@@ -600,6 +605,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx9_38.dll.so
 %{_libdir}/wine/d3dx9_39.dll.so
 %{_libdir}/wine/d3dx9_40.dll.so
+%{_libdir}/wine/d3dx9_41.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -759,6 +765,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/sti.dll.so
 %{_libdir}/wine/svrapi.dll.so
 %{_libdir}/wine/sxs.dll.so
+%{_libdir}/wine/t2embed.dll.so
 %{_libdir}/wine/tapi32.dll.so
 %{_libdir}/wine/traffic.dll.so
 %{_libdir}/wine/unicows.dll.so
@@ -772,6 +779,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
 %{_libdir}/wine/w32skrnl.dll.so
+%{_libdir}/wine/wbemprox.dll.so
 %{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
 %{_libdir}/wine/winedos.dll.so
 %{_libdir}/wine/wing32.dll.so
@@ -793,13 +801,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/xinput1_2.dll.so
 %{_libdir}/wine/xinput1_3.dll.so
 %{_libdir}/wine/xinput9_1_0.dll.so
+%{_libdir}/wine/xmllite.dll.so
 
 ### ds.so
 %{_libdir}/wine/gphoto2.ds.so
 %{_libdir}/wine/sane.ds.so
 
 ### drv16
-%{_libdir}/wine/sound.drv16
 %{_libdir}/wine/system.drv16
 %{_libdir}/wine/wineps16.drv16
 
@@ -808,6 +816,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/display.drv16.so
 %{_libdir}/wine/keyboard.drv16.so
 %{_libdir}/wine/mouse.drv16.so
+%{_libdir}/wine/sound.drv16.so
 
 ### drv.so
 %{_libdir}/wine/msacm32.drv.so
@@ -885,7 +894,7 @@ update-desktop-database &>/dev/null || :
 %files twain
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/wine/
-%{_libdir}/wine/twain.dll16
+%{_libdir}/wine/twain.dll16.so
 %{_libdir}/wine/twain_32.dll.so
 
 %files devel
@@ -917,6 +926,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun May 17 2009 Dag Wieers <dag@wieers.com> - 1.1.21-1
+- Updated to release 1.1.21.
+
+* Tue Apr 28 2009 Dag Wieers <dag@wieers.com> - 1.1.20-1
+- Updated to release 1.1.20.
+
 * Mon Mar 16 2009 Dag Wieers <dag@wieers.com> - 1.1.17-1
 - Updated to release 1.1.17.
 

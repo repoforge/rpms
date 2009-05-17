@@ -9,14 +9,14 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-%define real_version 3.73-pre7
-Version: 3.73
+%define real_version 3.80-pre7
+Version: 3.80
 Release: 0.pre7
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
+Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -60,7 +60,8 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README TODO doc/* menu/ sample/
+%doc BUGS COPYING NEWS README TODO doc/* sample/
+%doc %{_mandir}/man1/extlinux.1*
 %doc %{_mandir}/man1/gethostip.1*
 %doc %{_mandir}/man1/lss16toppm.1*
 %doc %{_mandir}/man1/ppmtolss16.1*
@@ -81,6 +82,27 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Sun May 03 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre7
+- Updated to release 3.80pre7.
+
+* Fri May 01 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre5
+- Updated to release 3.80pre5.
+
+* Thu Apr 30 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre4
+- Updated to release 3.80pre4.
+
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 3.75-0.pre4
+- Updated to release 3.75pre4.
+
+* Wed Apr 15 2009 Dag Wieers <dag@wieers.com> - 3.75-0.pre2
+- Updated to release 3.75pre2.
+
+* Thu Apr 09 2009 Dag Wieers <dag@wieers.com> - 3.74-0.pre21
+- Updated to release 3.74pre21.
+
+* Tue Apr 07 2009 Dag Wieers <dag@wieers.com> - 3.74-0.pre19
+- Updated to release 3.74pre19.
+
 * Wed Jan 07 2009 Dag Wieers <dag@wieers.com> - 3.73-0.pre7
 - Updated to release 3.73pre7
 

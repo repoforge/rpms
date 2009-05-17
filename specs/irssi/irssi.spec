@@ -9,7 +9,7 @@
 
 Summary: Modular text-mode IRC client
 Name: irssi
-Version: 0.8.12
+Version: 0.8.13
 Release: 1
 License: GPL
 Group: Applications/Communications
@@ -20,7 +20,7 @@ Patch0: irssi-0.8.10-dcc-unregister.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++,
-BuildRequires: glib2-devel
+BuildRequires: glib2-devel >= 2.6
 BuildRequires: imlib-devel
 BuildRequires: ncurses-devel
 BuildRequires: openssl-devel
@@ -94,6 +94,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{_docdir}/irssi/
 
 %changelog
+* Thu Apr 02 2009 Dag Wieers <dag@wieers.com> - 0.8.13-1
+- Updated to release 0.8.13.
+
 * Wed Apr 09 2008 Dag Wieers <dag@wieers.com> - 0.8.12-1
 - Updated to release 0.8.12.
 

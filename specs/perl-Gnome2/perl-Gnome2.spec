@@ -65,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Gnome2/
 
 %changelog
+* Sat Nov 10 2007 Dag Wieers <dag@wieers.com> - 1.042-1
+- Updated to release 1.042.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.041-2
 - Cosmetic cleanup.
 

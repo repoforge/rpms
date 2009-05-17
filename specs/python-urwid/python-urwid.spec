@@ -7,7 +7,7 @@
 
 Summary: Console UI Library for Python
 Name: python-urwid
-Version: 0.9.8.2
+Version: 0.9.8.3
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -51,6 +51,9 @@ widget types. It is flexible, modular, and leaves the developer in control.
 %ghost %{python_sitelib}/urwid/*.pyo
 
 %changelog
+* Wed Mar 11 2009 Dag Wieers <dag@wieers.com> - 0.9.8.3-1
+- Updated to release 0.9.8.3.
+
 * Fri Jun 06 2008 Dag Wieers <dag@wieers.com> - 0.9.8.2-1
 - Updated to release 0.9.8.2.
 

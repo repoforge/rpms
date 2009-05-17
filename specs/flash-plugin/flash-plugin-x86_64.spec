@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
-
 # ExcludeDist: el2 rh7 rh9 el3 el4
 
 ### Disable stripping
@@ -12,7 +10,7 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 10.0.d21.1
+Version: 10.0.22.87
 Release: 1
 License: Commercial
 Group: Applications/Internet
@@ -70,6 +68,9 @@ fi
 %{_libdir}/flash-plugin/
 
 %changelog
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 10.0.22.87.
+- Updated to release 10.0.22.87.
+
 * Fri Dec 19 2008 Dag Wieers <dag@wieers.com> - 10.0.d21.1-1
 - Initial test-release for x86_64.
 

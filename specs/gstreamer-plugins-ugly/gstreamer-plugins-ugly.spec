@@ -7,13 +7,13 @@
 %define majorminor   0.10
 %define gstreamer    gstreamer
 
-%define gst_minver   0.10.6
-%define gstpb_minver 0.10.3
+%define gst_minver   0.10.10.1
+%define gstpb_minver 0.10.10.1
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
-Version: 0.10.5
-Release: 3
+Version: 0.10.9
+Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -87,26 +87,27 @@ gstreamer-plugins-good because:
 %files -f gst-plugins-ugly-%{majorminor}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING README REQUIREMENTS
-# Plugins without external dependencies
-%{_libdir}/gstreamer-%{majorminor}/libgstasf.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdvdsub.so
-%{_libdir}/gstreamer-%{majorminor}/libgstiec958.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
-%{_libdir}/gstreamer-%{majorminor}/libgstrmdemux.so
-# Plugins with external dependencies
 %{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
+%{_libdir}/gstreamer-%{majorminor}/libgstasf.so
+%{_libdir}/gstreamer-%{majorminor}/libgstcdio.so
+%{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
 #%{_libdir}/gstreamer-%{majorminor}/libgstdvdnav.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdread.so
+%{_libdir}/gstreamer-%{majorminor}/libgstdvdsub.so
+%{_libdir}/gstreamer-%{majorminor}/libgstiec958.so
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmad.so
 %{_libdir}/gstreamer-%{majorminor}/libgstmpeg2dec.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
+%{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
+%{_libdir}/gstreamer-%{majorminor}/libgstrmdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsid.so
 
-
 %changelog
+* Thu Apr 02 2009 Dag Wieers <dag@wieers.com> - 0.10.9-1
+- Updated to release 0.10.9.
+
 * Wed Jul 09 2008 Dag Wieers <dag@wieers.com> - 0.10.5-3
 - Rebuild against amrnb-7.0.0.2.
 

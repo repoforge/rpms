@@ -15,8 +15,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.95
-Release: 3
+Version: 0.95.1
+Release: 4
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -30,9 +30,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bzip2-devel
 BuildRequires: curl-devel
 BuildRequires: gmp-devel
+BuildRequires: ncurses-devel
 BuildRequires: zlib-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
-BuildRequires: ncurses-devel
 
 ### Do not require the latest release of clamav-db specifically (people may use freshclam onward)
 #Requires: clamav-db = %{version}-%{release}
@@ -121,6 +121,7 @@ you will need to install %{name}-devel.
 
 %{__perl} -pi.orig -e '
         s|^(Example)|#$1|;
+        s|^(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
         s|^#(LogFile) .+$|$1 %{_localstatedir}/log/clamav/clamd.log|;
         s|^#(LogFileMaxSize) .*|$1 0|;
         s|^#(LogTime)|$1|;
@@ -128,7 +129,6 @@ you will need to install %{name}-devel.
         s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/clamd.pid|;
         s|^#(TemporaryDirectory) .+$|$1 %{_localstatedir}/tmp|;
         s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
-        s|^#(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
         s|^#(FixStaleSocket)|$1|;
         s|^#(TCPSocket) .+$|$1 3310|;
         s|^#(TCPAddr) .+$|$1 127.0.0.1|;
@@ -151,12 +151,24 @@ you will need to install %{name}-devel.
 
 %{__perl} -pi.orig -e '
         s|^(Example)|#$1|;
-        s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
-        s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
+        s|^#(AllowSupplementaryGroups) .+$|$1 yes|;
+        s|^#(ClamdSocket) .+$|$1 unix:%{_localstatedir}/run/clamav/clamd.sock|;
+        s|^#(LogFile) .+$|$1 %{_localstatedir}/log/clamav/clamav-milter.log|;
+        s|^#(LogFileMaxSize) .*|$1 0|;
         s|^#(LogSyslog)|$1|;
-        s|^#(DatabaseOwner) .+$|$1 clamav|;
+        s|^#(LogTime)|$1|;
+        s|^#(MilterSocket) /.*$|$1 unix:%{_localstatedir}/clamav/clmilter.socket|;
+        s|^#(User) .+$|$1 clamav|;
+    ' etc/clamav-milter.conf
+
+%{__perl} -pi.orig -e '
         s|^(Checks) .+$|$1 24|;
+        s|^(Example)|#$1|;
+        s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
+        s|^#(DatabaseOwner) .+$|$1 clamav|;
+        s|^#(LogSyslog)|$1|;
         s|^#(NotifyClamd) .+$|$1 %{_sysconfdir}/clamd.conf|;
+        s|^#(UpdateLogFile) .+$|$1 %{_localstatedir}/log/clamav/freshclam.log|;
     ' etc/freshclam.conf
 
 %{__cat} <<EOF >clamd.logrotate
@@ -196,7 +208,6 @@ fi
     --quiet \
     --datadir="%{_localstatedir}/clamav" \
     --log="$LOG_FILE" \
-    --log-verbose \
     --daemon-notify="%{_sysconfdir}/clamd.conf"
 EOF
 
@@ -204,16 +215,7 @@ EOF
 ### Simple config file for clamav-milter, you should
 ### read the documentation and tweak it as you wish.
 
-CLAMAV_FLAGS="
-    --config-file=%{_sysconfdir}/clamd.conf
-    --force-scan
-    --local
-    --max-children=10
-    --noreject
-    --outgoing
-    --quiet
-"
-SOCKET_ADDRESS="local:%{_localstatedir}/clamav/clmilter.socket"
+CLAMAV_FLAGS="--config-file=%{_sysconfdir}/clamav-milter.conf"
 EOF
 
 %build
@@ -384,8 +386,20 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
-* Wed Apr 15 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> - 0.95-3
-- Added a missing BuildRequires: ncurses-devel to build clamdtop
+* Mon May 04 2009 Dag Wieers <dag@wieers.com> - 0.95.1-4
+- Fix the inconsistency between LocalSocket in clamd.conf and clamav-milter.conf. (Gerald Teschl)
+
+* Sat May 02 2009 Dag Wieers <dag@wieers.com> - 0.95.1-3
+- Fix the LocalSocket in clamd.conf. (Gerald Teschl)
+
+* Wed Apr 15 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> - 0.95.1-2
+- Added a missing BuildRequires: ncurses-devel to build clamdtop.
+
+* Fri Apr 10 2009 Dag Wieers <dag@wieers.com> - 0.95.1-2
+- Corrected LogFile definition. (Vadim Druzhin)
+
+* Wed Apr  8 2009 Dag Wieers <dag@wieers.com> - 0.95.1-1
+- Updated to release 0.95.1.
 
 * Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 0.95-3
 - Ugly fix for clamd which needs the .so files.

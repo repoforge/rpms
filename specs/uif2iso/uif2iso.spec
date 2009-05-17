@@ -3,7 +3,7 @@
 
 Summary: Convert MagicISO UIF Files to ISO9660
 Name: uif2iso
-Version: 0.1.7
+Version: 0.1.7c
 Release: 1
 License: GPL
 Group: Applications/File
@@ -43,6 +43,9 @@ image which can be created through the commercial program MagicISO.
 %{_bindir}/uif2iso
 
 %changelog
+* Sun May 17 2009 Dag Wieers <dag@wieers.com> - 0.1.7c-1
+- Updated to release 0.1.7c.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 0.1.7-1
 - Updated to release 0.1.7.
 

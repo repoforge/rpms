@@ -1,0 +1,27 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2007-11-30 12:06:23.000000000 -0500
++++ livecd-tools-013/creator/livecd-creator	2007-11-30 19:15:53.000000000 -0500
+@@ -598,13 +598,16 @@
+ 
+         # do some clean up to avoid lvm info leakage.  this sucks.
+         for subdir in ("cache", "backup", "archive"):
+-            for f in os.listdir("%s/install_root/etc/lvm/%s"
+-                                %(self.build_dir, subdir)):
+-                try:
+-                    os.unlink("%s/install_root/etc/lvm/%s/%s"
+-                              %(self.build_dir, subdir, f))
+-                except:
+-                    pass
++            try:
++                for f in os.listdir("%s/install_root/etc/lvm/%s"
++                                    %(self.build_dir, subdir)):
++                    try:
++                        os.unlink("%s/install_root/etc/lvm/%s/%s"
++                                  %(self.build_dir, subdir, f))
++                    except:
++                        pass
++            except:
++                pass
+ 
+     def writeNetworkIfCfg(self, instroot, network):
+         path = instroot + "/etc/sysconfig/network-scripts/ifcfg-" + network.device

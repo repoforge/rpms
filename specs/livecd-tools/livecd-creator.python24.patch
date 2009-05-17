@@ -1,0 +1,71 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2007-11-30 12:06:23.000000000 -0500
++++ livecd-tools-013/creator/livecd-creator	2007-11-30 12:06:44.000000000 -0500
+@@ -563,36 +563,37 @@
+             rpm.addMacro("_excludedocs","1")
+ 
+         try:
+-            for pkg in (self.ksparser.handler.packages.packageList + 
+-                        self._getRequiredPackages()):
+-                try:
+-                    self.ayum.selectPackage(pkg)
+-                except yum.Errors.InstallError, e:
+-                    if self.ksparser.handler.packages.handleMissing != \
+-                           pykickstart.constants.KS_MISSING_IGNORE:
+-                        raise InstallationError("Failed to find package '%s' : %s" % (pkg, e))
+-                    else:
+-                        print >> sys.stderr, "Unable to find package '%s'; skipping" %(pkg,)
+-
+-            for group in self.ksparser.handler.packages.groupList:
+-                try:
+-                    self.ayum.selectGroup(group.name, group.include)
+-                except (yum.Errors.InstallError, yum.Errors.GroupsError), e:
+-                    if self.ksparser.handler.packages.handleMissing != \
+-                           pykickstart.constants.KS_MISSING_IGNORE:
+-                        raise InstallationError("Failed to find group '%s' : %s" % (group.name, e))
+-                    else:
+-                        print >> sys.stderr, "Unable to find group '%s'; skipping" %(group.name,)
+-
+-            map(lambda pkg: self.ayum.deselectPackage(pkg),
+-                self.ksparser.handler.packages.excludedList +
+-                self._getRequiredExcludePackages())
+-
+-            self.ayum.runInstall()
+-        except yum.Errors.RepoError, e:
+-            raise InstallationError("Unable to download from repo : %s" %(e,))
+-        except yum.Errors.YumBaseError, e:
+-            raise InstallationError("Unable to install: %s" %(e,))
++            try:
++                for pkg in (self.ksparser.handler.packages.packageList + 
++                            self._getRequiredPackages()):
++                    try:
++                        self.ayum.selectPackage(pkg)
++                    except yum.Errors.InstallError, e:
++                        if self.ksparser.handler.packages.handleMissing != \
++                               pykickstart.constants.KS_MISSING_IGNORE:
++                            raise InstallationError("Failed to find package '%s' : %s" % (pkg, e))
++                        else:
++                            print >> sys.stderr, "Unable to find package '%s'; skipping" %(pkg,)
++
++                for group in self.ksparser.handler.packages.groupList:
++                    try:
++                        self.ayum.selectGroup(group.name, group.include)
++                    except (yum.Errors.InstallError, yum.Errors.GroupsError), e:
++                        if self.ksparser.handler.packages.handleMissing != \
++                               pykickstart.constants.KS_MISSING_IGNORE:
++                            raise InstallationError("Failed to find group '%s' : %s" % (group.name, e))
++                        else:
++                            print >> sys.stderr, "Unable to find group '%s'; skipping" %(group.name,)
++                            
++                map(lambda pkg: self.ayum.deselectPackage(pkg),
++                    self.ksparser.handler.packages.excludedList +
++                    self._getRequiredExcludePackages())
++
++                self.ayum.runInstall()
++            except yum.Errors.RepoError, e:
++                raise InstallationError("Unable to download from repo : %s" %(e,))
++            except yum.Errors.YumBaseError, e:
++                raise InstallationError("Unable to install: %s" %(e,))
+         finally:
+             self.ayum.closeRpmDB()
+ 

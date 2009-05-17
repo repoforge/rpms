@@ -1,0 +1,29 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2009-04-06 19:56:24.000000000 -0400
++++ livecd-tools-013/creator/livecd-creator	2009-04-07 10:35:45.000000000 -0400
+@@ -359,6 +359,7 @@
+ 
+         self._modules = []
+         self._timeout = 10
++        self._append = None
+         self._defaultKernel = "kernel"
+ 
+     def _getRequiredPackages(self):
+@@ -370,6 +371,8 @@
+         r = "ro quiet liveimg"
+         if os.path.exists("%s/install_root/usr/bin/rhgb" %(self.build_dir,)):
+             r += " rhgb"
++        if self._append is not None:
++            r += " %s" % self._append
+         return r
+         
+     def parse(self, kscfg):
+@@ -407,6 +410,8 @@
+             self._timeout = int(self.ksparser.handler.bootloader.timeout)
+         if hasattr(self.ksparser.handler.bootloader, "default") and self.ksparser.handler.bootloader.default:
+             self._defaultKernel = self.ksparser.handler.bootloader.default
++        if hasattr(self.ksparser.handler.bootloader, "appendLine") and self.ksparser.handler.bootloader.appendLine:
++            self._append = self.ksparser.handler.bootloader.appendLine
+ 
+         # more sanity checks
+         if self.ksparser.handler.selinux.selinux and not \

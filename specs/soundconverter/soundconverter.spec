@@ -21,8 +21,10 @@ BuildRequires: intltool, perl(XML::Parser)
 Requires: python >= 2.3.3, pygtk2, gstreamer-python >= 0.10, gnome-python2-gconf
 
 %description
-A simple sound converter application. It can convert from and to all
-gstreamer supported formats.
+soundconverter is a sound conversion application. It reads anything the
+GStreamer library can read (Ogg Vorbis, AAC, MP3, FLAC, WAV, AVI, MPEG,
+MOV, M4A, AC3, DTS, ALAC, MPC, Shorten, APE, SID, etc...), and writes
+WAV, FLAC, MP3, AAC, and Ogg Vorbis files. 
 
 %prep
 %setup
@@ -50,7 +52,7 @@ gstreamer supported formats.
 %{_datadir}/soundconverter/
 
 %changelog
-* Sat Apr 18 2009 Dries Verachtert <dries@ulyssis.org> - 1.4.3-1
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 1.4.3-1
 - Updated to release 1.4.3.
 
 * Tue Jan 27 2009 Dag Wieers <dag@wieers.com> - 1.4.2-1

@@ -1,0 +1,21 @@
+diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
+--- livecd-tools-013.orig/creator/livecd-creator	2007-12-03 17:04:10.000000000 -0500
++++ livecd-tools-013/creator/livecd-creator	2007-12-03 19:38:19.000000000 -0500
+@@ -1276,6 +1276,17 @@
+ 
+             count += 1
+ 
++        installer = glob.glob("%s/install_root/boot/vmlinuz-installer*" %(self.build_dir,))
++        installer_img = glob.glob("%s/install_root/boot/livecd-installer.img" %(self.build_dir,))
++        if len(installer) > 0 and len(installer_img) > 0:
++            shutil.copy(installer[0], "%s/out/isolinux/vminst" %(self.build_dir,))
++            shutil.copy(installer_img[0], "%s/out/isolinux/install.img" %(self.build_dir,))
++            cfg += """label installer
++  menu label Network Installation
++  kernel vminst
++  append initrd=install.img text
++"""
++
+         memtest = glob.glob("%s/install_root/boot/memtest86*" %(self.build_dir,))
+         if len(memtest) > 0:
+             shutil.copy(memtest[0], "%s/out/isolinux/memtest" %(self.build_dir,))

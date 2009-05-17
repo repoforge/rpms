@@ -1,0 +1,13 @@
+--- qtparted-0.4.5/src/qp_libparted.h	2006-06-02 17:49:42.000000000 +0100
++++ qtparted-0.4.5/src/qp_libparted.h	2006-06-02 17:51:18.000000000 +0100
+@@ -35,6 +35,10 @@
+ #include "qtparted.h"
+ #include "qp_devlist.h"
+ 
++#ifndef PED_SECTOR_SIZE
++#define PED_SECTOR_SIZE PED_SECTOR_SIZE_DEFAULT
++#endif
++
+ class QP_PartWidget;
+ class QP_ListViewItem;
+ class QP_LibParted;

@@ -23,13 +23,15 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.5.%{prever}
+Release: 0.6.%{prever}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
+
 Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}%{prever}.tar.gz
 #Source: mjpegtools-%{version}cvs.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
 %{?_with_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel}
@@ -48,7 +50,6 @@ DC10(+), Marvel G200/G400), these can also playback video using the
 hardware. With the rest of the tools, this video can be edited and
 encoded into mpeg1/2 or divx video.
 
-
 %package devel
 Summary: Development headers and libraries for the mjpegtools
 Group: Development/Libraries
@@ -59,26 +60,22 @@ This package contains static libraries and C system header files
 needed to compile applications that use part of the libraries
 of the mjpegtools package.
 
-
 %prep
 %setup -n %{name}-%{version}%{prever}
 
-
 %build
-%configure
+%configure \
+    --disable-static
 # Don't use %{?_smp_mflags}, the build can fail! (1.8.0)
 %{__make}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__rm} -f %{buildroot}%{_infodir}/dir || :
-
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 /sbin/ldconfig
@@ -91,25 +88,25 @@ fi
 
 %postun -p /sbin/ldconfig
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS CHANGES COPYING HINTS PLANS README TODO
+%doc %{_infodir}/mjpeg-howto.info*
+%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
-%{_mandir}/man?/*
-%{_infodir}/mjpeg-howto.info*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/mjpegtools/
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
+%{_libdir}/pkgconfig/mjpegtools.pc
 %{_libdir}/*.so
-
+%exclude %{_libdir}/*.la
 
 %changelog
+* Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 1.9.0-0.6.rc2
+- Rebuild against SDL_gfx 2.0.19.
+
 * Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.9.0-0.5.rc2
 - Update to 1.9.0rc2.
 

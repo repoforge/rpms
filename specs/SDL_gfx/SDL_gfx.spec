@@ -7,14 +7,15 @@
 
 Summary: Graphic primitives, rotozoomer, framerate control and image filters
 Name: SDL_gfx
-Version: 2.0.15
+Version: 2.0.19
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/mambo/index.php?option=com_content&task=view&id=14&Itemid=29
-Source: http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
 
+Source: http://www.ferzkopp.net/Software/SDL_gfx-2.0/SDL_gfx-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: SDL-devel, gcc-c++, automake, autoconf, perl
 
 %description
@@ -42,35 +43,39 @@ you will need to install %{name}-devel.
 %build
 %configure \
 %ifnarch %{ix86}
-    --disable-mmx
+    --disable-mmx \
 %endif
+    --disable-static 
 ### Buildtools have problems even when -j1 is added
 %{__make} #%{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
-%clean
-%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p/sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%clean
+%{__rm} -rf %{buildroot}
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING LICENSE NEWS README
-%{_libdir}/lib*.so.*
+%{_libdir}/libSDL_gfx.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %dir %{_includedir}/SDL/
 %{_includedir}/SDL/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
-%exclude %{_libdir}/*.la
+%{_libdir}/libSDL_gfx.so
+%{_libdir}/pkgconfig/SDL_gfx.pc
+%exclude %{_libdir}/libSDL_gfx.la
 
 %changelog
+* Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 2.0.19-1
+- Updated to release 2.0.19.
+
 * Sat Dec 23 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.15-1
 - Updated to release 2.0.15.
 

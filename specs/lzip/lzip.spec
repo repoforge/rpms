@@ -3,14 +3,13 @@
 
 Summary: Lossless LZMA-based data compression
 Name: lzip
-Version: 1.4
+Version: 1.5
 Release: 1
 License: GPL
 Group: Applications/File
 URL: http://www.nongnu.org/lzip/lzip.html
 
 Source: http://download.savannah.gnu.org/releases/lzip/lzip-%{version}.tar.gz
-Patch1: lzip-0.3-fix_types.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-%{_arch}-root
 
 BuildRequires: gcc-c++
@@ -25,7 +24,6 @@ these tasks.
 
 %prep
 %setup
-%patch1
 
 %build
 %configure
@@ -54,6 +52,9 @@ these tasks.
 %{_bindir}/lzip
 
 %changelog
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 1.5-1
+- Updated to release 1.5.
+
 * Mon Jan 26 2009 Dag Wieers <dag@wieers.com> - 1.4-1
 - Updated to release 1.4.
 

@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.73
+Version: 3.80
 Release: 1
 License: GPL
 Group: Applications/System
@@ -34,7 +34,6 @@ MEMDISK, which loads legacy operating systems from these media.
 %setup
 
 %build
-export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 %{__make} clean
 %{__make} %{?_smp_mflags} installer
 
@@ -59,7 +58,8 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README TODO doc/* menu/ sample/
+%doc BUGS COPYING NEWS README TODO doc/* sample/
+%doc %{_mandir}/man1/extlinux.1*
 %doc %{_mandir}/man1/gethostip.1*
 %doc %{_mandir}/man1/lss16toppm.1*
 %doc %{_mandir}/man1/ppmtolss16.1*
@@ -80,6 +80,15 @@ export CFLAGS="-Werror -Wno-unused -finline-limit=2000"
 /boot/extlinux/
 
 %changelog
+* Wed May 06 2009 Dag Wieers <dag@wieers.com> - 3.80-1
+- Updated to release 3.80.
+
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 3.75-1
+- Updated to release 3.75.
+
+* Fri Apr 10 2009 Dag Wieers <dag@wieers.com> - 3.74-1
+- Updated to release 3.74.
+
 * Mon Jan 26 2009 Dag Wieers <dag@wieers.com> - 3.73-1
 - Updated to release 3.73.
 

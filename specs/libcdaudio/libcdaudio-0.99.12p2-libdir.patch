@@ -1,0 +1,11 @@
+--- libcdaudio-0.99.12p2/libcdaudio-config.in~	2003-02-10 21:46:14.000000000 +0100
++++ libcdaudio-0.99.12p2/libcdaudio-config.in	2006-12-29 19:24:25.000000000 +0100
+@@ -49,7 +49,7 @@
+ 		echo @LIB_LDADD@
+ 	;;
+ 	--libs)
+-		libdir=-L${exec_prefix}/lib
++		libdir=-L@libdir@
+ 		echo $libdir -lcdaudio @LIBS@
+ 	;;
+ 	*)

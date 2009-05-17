@@ -1,0 +1,144 @@
+--- wdiff-0.5.orig/README
++++ wdiff-0.5/README
+@@ -1,7 +1,7 @@
+ `wdiff' is a front-end to GNU `diff'.  It compares two files, finding
+ which words have been deleted or added to the first in order to create
+ the second.  It has many output formats and interacts well with
+-terminals and pagers (notably with `less').  `wdiff' is particularily
++terminals and pagers (notably with `less').  `wdiff' is particularly
+ useful when two texts differ only by a few words and paragraphs have
+ been refilled.
+ 
+--- wdiff-0.5.orig/Makefile.in
++++ wdiff-0.5/Makefile.in
+@@ -73,8 +73,8 @@
+ INCLUDES = -I. -I$(srcdir)
+ 
+ HEADERS =
+-SOURCES = wdiff.c readpipe.c writepipe.c
+-OBJECTS = wdiff$O readpipe$O writepipe$O
++SOURCES = wdiff.c readpipe.c # writepipe.c
++OBJECTS = wdiff$O readpipe$O # writepipe$O
+ LIBHDRS = getopt.h pathmax.h
+ LIBSRCS = error.c getopt.c getopt1.c alloca.c strstr.c xmalloc.c
+ LIBOBJS = error.o getopt.o getopt1.o @ALLOCA@ @LIBOBJS@
+--- wdiff-0.5.orig/wdiff.texi
++++ wdiff-0.5/wdiff.texi
+@@ -86,7 +86,7 @@
+ finding which words have been deleted or added to the first in order to
+ create the second.  It has many output formats and interacts well with
+ terminals and pagers (notably with @code{less}).  @code{wdiff} is
+-particularily useful when two texts differ only by a few words and
++particularly useful when two texts differ only by a few words and
+ paragraphs have been refilled.
+ 
+ This is release @value{VERSION}.
+--- wdiff-0.5.orig/wdiff.c
++++ wdiff-0.5/wdiff.c
+@@ -59,8 +59,6 @@
+ # endif
+ #endif
+ 
+-char *strstr ();
+-
+ #if HAVE_TPUTS
+ # if HAVE_TERMCAP_H
+ #  include <termcap.h>
+@@ -95,9 +93,13 @@
+ # define _(Args) ()
+ #endif
+ 
++#ifndef PATH_MAX
++# include "pathmax.h"
++#endif
++
+ char *getenv ();
+ FILE *readpipe _((const char *, ...));
+-FILE *writepipe _((const char *, ...));
++/* FILE *writepipe _((const char *, ...)); */
+ char *tmpnam ();
+ void error ();
+ 
+@@ -112,8 +114,11 @@
+   {"no-deleted"  , 0, NULL, '1'},
+   {"no-inserted" , 0, NULL, '2'},
+   {"no-common"   , 0, NULL, '3'},
++  {"auto-pager"  , 0, NULL, 'a'},
+   {"help"        , 0, NULL, 'h'},
+   {"ignore-case" , 0, NULL, 'i'},
++  {"less-mode"   , 0, NULL, 'l'},
++  {"avoid-wraps" , 0, NULL, 'n'},
+   {"printer"     , 0, NULL, 'p'},
+   {"statistics"  , 0, NULL, 's'},
+   {"terminal"    , 0, NULL, 't'},
+@@ -923,6 +928,7 @@
+ {
+   char *program;		/* name of the pager */
+   char *basename;		/* basename of the pager */
++  char buf[PATH_MAX];		/* buffer to resolve default pager */
+ 
+   /* Check if a output program should be called, and which one.  Avoid
+      all paging if only statistics are needed.  */
+@@ -933,7 +939,12 @@
+       program = getenv ("PAGER");
+ #ifdef PAGER_PROGRAM
+       if (program == NULL)
+-	program = PAGER_PROGRAM;
++	{
++	  /* Try to figure out if PAGER_PROGRAM is less. */
++	  program = realpath (PAGER_PROGRAM, buf);
++	  if (!program)         /* Resolve didn't work for some reason. */
++	    program = PAGER_PROGRAM; /* fallback */
++	}
+ #endif
+     }
+   else
+@@ -958,7 +969,7 @@
+ 
+   if (program && *program)
+     {
+-      output_file = writepipe (program, NULL);
++      output_file = popen (program, "w");
+       if (!output_file)
+ 	error (EXIT_OTHER_REASON, errno, program);
+ 
+@@ -1194,7 +1205,7 @@
+ 	print_copyright ();
+ 	exit (0);
+ 
+-      case 'v':
++      case 'V':
+ 	printf ("GNU %s %s\n%s\n", PRODUCT, VERSION, copyright);
+ 	exit (0);
+ 
+@@ -1304,12 +1315,13 @@
+       reformat_diff_output ();
+       fclose (input_file);
+     }
+-
+-  /* Clean up.  Beware that input_file and output_file might not exist,
+-     if a signal occurred early in the program.  */
+-
+-  if (input_file)
+-    complete_input_program ();
++  else
++    {
++      /* Clean up.  Beware that input_file and output_file might not
++	 exist, if a signal occurred early in the program.  */
++      if (input_file)
++        complete_input_program ();
++    }
+ 
+   if (*left_side->temp_name)
+     unlink (left_side->temp_name);
+--- wdiff-0.5.orig/wdiff.info
++++ wdiff-0.5/wdiff.info
+@@ -34,7 +34,7 @@
+    `wdiff' is a front-end to GNU `diff'.  It compares two files,
+ finding which words have been deleted or added to the first in order to
+ create the second.  It has many output formats and interacts well with
+-terminals and pagers (notably with `less').  `wdiff' is particularily
++terminals and pagers (notably with `less').  `wdiff' is particularly
+ useful when two texts differ only by a few words and paragraphs have
+ been refilled.
+ 

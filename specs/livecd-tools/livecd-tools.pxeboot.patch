@@ -1,0 +1,22 @@
+diff -Nur livecd-tools-013.orig/creator/mayflower livecd-tools-013/creator/mayflower
+--- livecd-tools-013.orig/creator/mayflower	2008-06-10 19:02:17.000000000 -0400
++++ livecd-tools-013/creator/mayflower	2008-06-10 19:04:58.000000000 -0400
+@@ -424,6 +424,18 @@
+             waitforsymlink=1
+             thingtomount=/dev/root
+             ;;
++        *.iso|*.img)
++            if [ -f \$root ] ; then
++                /sbin/modprobe loop max_loop=16
++                [ -b /dev/loop0 ] || mknod /dev/loop0 b 7 0
++                LO=\`losetup -f\`
++                if [ -b "\$LO" ] ; then
++                    losetup \$LO \$root
++                    ln -s \$LO /dev/root
++                    thingtomount=\$LO
++                fi
++            fi
++            ;;
+         /dev/*)
+             ln -s \$root /dev/root
+             thingtomount=\$root
