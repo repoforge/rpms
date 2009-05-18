@@ -10,7 +10,7 @@
 Summary: serialize / deserialize AMF data
 Name: perl-Data-AMF
 Version: 0.02004
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-AMF/
@@ -23,6 +23,10 @@ BuildRequires: perl >= 3:5.8.1
 BuildRequires: perl(Test::More)
 BuildRequires: perl(YAML)
 Requires: perl >= 3:5.8.1
+Requires: perl(Class::C3)
+Requires: perl(Algorithm::C3)
+Requires: perl(Sub::Name)
+Requires: perl(Devel::GlobalDestruction)
 
 %description
 This perl module is (de)serializer for Adobe's AMF (Action Message Format).
@@ -59,5 +63,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Data/AMF.pm
 
 %changelog
+* Mon May 18 2009 Christoph Maser <cmr@financial.com> - 0.02004-2
+- Add dependencies
+
 * Tue May 12 2009 Christoph Maser <cmr@financial.com> - 0.02004-1
 - Initial package. (using DAR)
