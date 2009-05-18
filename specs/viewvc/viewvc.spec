@@ -3,7 +3,7 @@
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
-Version: 1.0.8
+Version: 1.1.0
 Release: 1
 License: BSD
 Group: Development/Tools
@@ -68,9 +68,9 @@ EOF
 
 ### Fix paths in configuration
 %{__perl} -pi \
-    -e 's|templates/|%{_datadir}/viewvc/templates/|g;' \
     -e 's|^#docroot = .*|docroot = /viewvc-static|;' \
     -e 's|^cvsgraph_conf = .*|cvsgraph_conf = %{_sysconfdir}/viewvc/cvsgraph.conf|;' \
+    -e 's|^template_dir = .*|template_dir = %{_datadir}/viewvc/templates|;' \
     %{buildroot}%{_datadir}/viewvc/viewvc.conf
 
 ### Install config to sysconf directory
@@ -97,7 +97,7 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README INSTALL TODO
+%doc CHANGES README INSTALL
 %config(noreplace) %{_sysconfdir}/viewvc/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/viewvc.conf
 %{_datadir}/viewvc/
@@ -107,6 +107,9 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 %{_localstatedir}/www/viewvc/
 
 %changelog
+* Mon May 18 2009 Christoph Maser <cmr@financial.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Wed May 06 2009 Dag Wieers <dag@wieers.com> - 1.0.8-1
 - Updated to release 1.0.8.
 
