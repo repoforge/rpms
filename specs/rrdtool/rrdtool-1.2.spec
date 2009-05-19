@@ -2,6 +2,21 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
+%{?fc1:%define _without_python 1}
+%{?el3:%define _without_python 1}
+
+%{?rh9:%define _without_python 1}
+%{?rh9:%define _without_ruby 1}
+%{?rh9:%define _without_tcltk_devel 1}
+
+%{?rh7:%define _without_python 1}
+%{?rh7:%define _without_ruby 1}
+%{?rh7:%define _without_tcltk_devel 1}
+
+%{?el2:%define _without_python 1}
+%{?el2:%define _without_ruby 1}
+%{?el2:%define _without_tcltk_devel 1}
+
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
@@ -9,55 +24,24 @@
 %define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
 %define ruby_archdir %(ruby -rrbconfig -e "puts Config::CONFIG['archdir']")
 
-
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.3.7
+Version: 1.2.30
 Release: 1
 License: GPL
 Group: Applications/Databases
-URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+URL: http://oss.oetiker.ch/rrdtool/
 
 Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: freetype-devel
-BuildRequires: gcc-c++
-BuildRequires: libpng-devel
-BuildRequires: libxml2-devel
-BuildRequires: openssl-devel
-BuildRequires: python-devel >= 2.3
-BuildRequires: ruby-devel
-BuildRequires: tcl-devel
-BuildRequires: tk-devel
-BuildRequires: zlib-devel
-BuildRequires: gettext-devel
-BuildRequires: ruby
-Requires: libxml2
-Requires: openssl
+BuildRequires: gcc-c++, openssl-devel, cgilib-devel, libart_lgpl-devel >= 2.0
+BuildRequires: libpng-devel, zlib-devel, freetype-devel
+%{!?_without_python:BuildRequires: python-devel >= 2.3}
+%{!?_without_ruby:BuildRequires: ruby, ruby-devel}
+%{!?_without_tcltk_devel:BuildRequires: tcl-devel, tk-devel}
+%{?_without_tcltk_devel:BuildRequires: tcl, tk}
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
-Requires: python
-Requires: ruby
-Requires: zlib
-Requires: gettext
-
-%if 0%{?el4}
-BuildRequires: evolution28-pango-devel
-BuildRequires: evolution28-cairo-devel
-BuildRequires: evolution28-glib2-devel
-Requires: evolution28-pango
-Requires: evolution28-cairo
-Requires: evolution28-glib2
-%else
-BuildRequires: pango-devel
-BuildRequires: cairo-devel
-BuildRequires: glib2-devel
-BuildRequires: xulrunner-devel
-Requires: pango
-Requires: cairo
-Requires: glib2
-%endif
-
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
@@ -110,6 +94,17 @@ Provides: rrdtool-python = %{version}-%{release}
 %description -n python-rrdtool
 Python RRDtool bindings.
 
+%package -n php-rrdtool
+Summary: RRDtool module for PHP
+Group: Development/Languages
+Requires: %{name} = %{version}, php >= 4.0
+Obsoletes: rrdtool-php <= %{version}-%{release}
+Provides: rrdtool-php = %{version}-%{release}
+
+%description -n php-rrdtool
+The php-%{name} package includes a dynamic shared object (DSO) that adds
+RRDtool bindings to the PHP HTML-embedded scripting language.
+
 %package -n ruby-rrdtool
 Summary: RRDtool module for Ruby
 Group: Development/Languages
@@ -122,72 +117,74 @@ The ruby-%{name} package includes a library that implements RRDtool bindings
 for the Ruby language.
 
 %prep
-%if 0%{?el4}
-# Filter auto-requires for pango
-cat > find-requires-%{name} <<EOT
-#!/bin/sh
-%{__find_requires} | grep -v 'pango'
-exit 0
-EOT
-chmod 755 find-requires-%{name}
-%define __find_requires %{_builddir}/find-requires-%{name}
-%define _use_internal_dependency_generator 0
-%endif
-
 %setup
 
+### FIXME: Fixes to /usr/lib(64) for x86_64. (Fix upstream)
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure Makefile.in php4/configure php4/ltconfig*
+
+### Fix to find correct python dir on lib64
+%{__perl} -pi.orig -e 's|get_python_lib\(0,0,prefix|get_python_lib\(1,0,prefix|g' configure
 
 %build
-%if 0%{?el4}
-export LD_LIBRARY_PATH=/usr/evolution28/%{_lib}
-export PKG_CONFIG_PATH=/usr/evolution28/%{_lib}/pkgconfig
-export RUBYARCHDIR=%{ruby_sitearch}
-export CFLAGS="`pkg-config --cflags cairo pangocairo pango pangoft2`"
-export LDFLAGS="`pkg-config --libs  cairo pangocairo pango pangoft2`"
-%endif
-
 %configure \
-    --with-tcllib="%{_libdir}" \
-    --with-perl-options='INSTALLDIRS="vendor"' \
-    --enable-ruby-site-install
-
-%if 0%{?el4}
-%{__make} %{?_smp_mflags}  LDFLAGS="-Wl,-rpath-link /usr/evolution28/%{_lib} -Wl,-rpath /usr/evolution28/%{_lib} $LDFLAGS"
-%else
+%{?_without_python:--disable-python} \
+%{?_without_ruby:--disable-ruby} \
+	--disable-static \
+%{?_without_tcl:--disable-tcl} \
+	--enable-perl-site-install \
+%{!?_without_python:--enable-python} \
+%{!?_without_ruby:--enable-ruby} \
+	--enable-ruby-site-install \
+%{!?_without_tcl:--enable-tcl} \
+	--enable-tcl-site \
+	--with-perl-options='INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"' \
+	--with-pic \
+	--with-tcllib="%{_libdir}"
 %{__make} %{?_smp_mflags}
-%endif
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-find %{buildroot} -name .packlist -exec %{__rm} {} \;
-%{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
-%{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
+### FIXME: Another dirty hack to install perl modules with old and new perl-ExtUtils-MakeMaker (Fix upstream)
+%{__rm} -rf %{buildroot}%{buildroot}
+%{__make} -C bindings/perl-piped install INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"
+%{__make} -C bindings/perl-shared install INSTALLDIRS="vendor" DESTDIR="" PREFIX="%{buildroot}%{_prefix}"
 
+### FIXME: Another dirty hack to install ruby files if they're available
+if [ -f bindings/ruby/RRD.so ]; then
+	%{__install} -Dp -m0755 bindings/ruby/RRD.so %{buildroot}%{ruby_sitearch}/RRD.so
+	%{__rm} -rf %{buildroot}%{ruby_archdir}
+fi
+
+### We only want .txt and .html files for the main documentation
+%{__mkdir_p} rpm-doc/docs/
+%{__cp} -ap doc/*.txt doc/*.html rpm-doc/docs/
+
+### Clean up examples dir
+%{__rm} -f examples/Makefile* examples/*.in
+find examples/ -type f -exec chmod 0644 {} \;
+find examples/ -type f -exec %{__perl} -pi -e 's|^#! \@perl\@|#!%{__perl}|gi' {} \;
+find examples/ -name "*.pl" -exec %{__perl} -pi -e 's|\015||gi' {} \;
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}/auto/*{,/*{,/*}}/.packlist
+%{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
 %clean
 %{__rm} -rf %{buildroot}
-%if 0%{?el4}
-%{__rm} -f %{_builddir}/find-requires-%{name}
-%endif
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
-%doc examples/ 
+%doc examples/ rpm-doc/docs/
 %doc %{_mandir}/man1/*.1*
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool
 %{_bindir}/rrdupdate
 %{_libdir}/librrd.so.*
 %{_libdir}/librrd_th.so.*
-%{_libdir}/librrd.a
-%{_libdir}/librrd_th.a
-%{_libdir}/pkgconfig/librrd.pc
 %{_datadir}/rrdtool/
-%{_includedir}/rrd_format.h
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -202,55 +199,48 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc bindings/perl-shared/MANIFEST bindings/perl-shared/README
 %doc %{_mandir}/man3/RRDp.3*
 %doc %{_mandir}/man3/RRDs.3*
-%{perl_vendorarch}/RRDs.pm
-%{perl_vendorarch}/auto/RRDs/*
 %{perl_vendorlib}/RRDp.pm
+%{perl_vendorarch}/RRDs.pm
+%{perl_vendorarch}/auto/RRDs/
 
 %files -n tcl-rrdtool
 %defattr(-, root, root, 0755)
 %doc bindings/tcl/README
+%{_libdir}/tclrrd%{version}.so
 %{_libdir}/rrdtool/ifOctets.tcl
 %{_libdir}/rrdtool/pkgIndex.tcl
-%{_libdir}/tclrrd%{version}.so
 
+%if %{!?_without_python:1}0
 %files -n python-rrdtool
 %defattr(-, root, root, 0755)
 %doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
 %{python_sitearch}/rrdtoolmodule.so
+%endif
 
+%if %{!?_without_ruby:1}0
 %files -n ruby-rrdtool
 %defattr(-, root, root, 0755)
 %doc bindings/ruby/CHANGES bindings/ruby/README
 %{ruby_sitearch}/RRD.so
+%endif
 
 %changelog
-* Fri May 15 2009 Christoph Maser <cmr@financial.com> - 1.3.7-1
-- Update to 1.3.7
+* Fri Feb 13 2009 Christoph Maser <cmr@financial.com> - 1.2.30
+- Update to 1.2.30
 
-* Fri Feb 13 2009 Christoph Maser <cmr@financial.com> - 1.3.6-1
-- Update to 1.3.6
+* Mon Dec 29 2008 Christoph Maser <cmr@financial.com> - 1.2.29-1
+- Update to 1.2.29
+- Remove fontpath patch as the problem is fixed in this release 
 
-* Mon Jan 05 2009 Christoph Maser <cmr@financial.com> - 1.3.5-2
-- Remove fc10 conditionals
-- Compile against evolution28 version of pango,cairo,glib on el4
-
-* Tue Dec 30 2008 Christoph Maser <cmr@financial.com> - 1.3.5-1
-- Update version
-- Add BuildRequires: ruby for macro expansion
-- Add BuildRequires: gettext-devel
-- Add Requires: gettext
-- Add fc10 conditionals
-
-* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-2
-- Removed 1.2.x patches.
-- Removed dependencies cgilib.
-- Added dependencies pango, cairo.
-
-* Sun Nov 23 2008 Christoph Maser <cmr@financial.com> - 1.3.4-1
-- Updated to release 1.3.4.
+* Fri Dec 12 2008 Christoph Maser <cmr@financial.com> - 1.2.28-2
+- Remove unused patches
+- Add fontpath patch (http://oss.oetiker.ch/rrdtool-trac/changeset/1653)
 
 * Wed Oct 15 2008 Christoph Maser <cmr@financial.com> - 1.2.28-1
 - Updated to release 1.2.28.
+
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 1.2.27-1
+- Updated to release 1.2.27.
 
 * Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 1.2.23-1
 - Updated to release 1.2.23.
