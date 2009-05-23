@@ -54,8 +54,8 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 
 %prep
 %setup
-zcat %SOURCE3 > GeoLiteCity.dat
-zcat %SOURCE4 > GeoIPASNum.dat
+zcat %SOURCE1 > GeoLiteCity.dat
+zcat %SOURCE2 > GeoIPASNum.dat
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
 
