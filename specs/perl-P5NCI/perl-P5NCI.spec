@@ -19,6 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHROMATIC/P5NCI-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl-Module-Build
 
 %description
 A perl extension for loading shared libraries and their functions.
@@ -48,5 +49,7 @@ A perl extension for loading shared libraries and their functions.
 %{perl_vendorarch}/auto/P5NCI/
 
 %changelog
+* Sun May 24 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> - 0.31-1
+- Added a missing BuildRequires: perl-Module-Build
 * Sat May 23 2009 Dries Verachtert <dries@ulyssis.org> - 0.31-1
 - Initial package.
