@@ -26,19 +26,18 @@
 
 Summary: PDF document editing solution
 Name: pdfedit
-Version: 0.3.2
+Version: 0.4.1
 Release: 1
 License: GPL
 Group: Applications/Publishing
 URL: http://sourceforge.net/projects/pdfedit/
 
 Source: http://dl.sf.net/pdfedit/pdfedit-%{version}.tar.bz2
-Patch: pdfedit-0.3.2-destdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: boost-devel, libpaper-devel, qt-devel
 BuildRequires: doxygen, t1lib-devel
-%{!?_without_modxorg:BuildRequires: libXpù-devel}
+%{!?_without_modxorg:BuildRequires: libXpm-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_lesstif:BuildRequires: lesstif-devel}
 %{!?_with_lesstif:BuildRequires: openmotif-devel}
@@ -52,7 +51,8 @@ everything is based on a script.
 
 %prep
 %setup
-%patch0 -p1 -b .destdir
+
+%{__perl} -pi.orig -e 's|(\$\$[A-Z]+_PATH)|\$(QMAKE_DESTDIR)/$1|g' src/gui/pdfedit.pro
 
 %{__cat} <<EOF >pdfedit.desktop
 [Desktop Entry]
@@ -114,5 +114,8 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/pdfedit/
 
 %changelog
+* Wed Jun 11 2008 Dag Wieers <dag@wieers.com> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.3.2-1
 - Initial package. (using DAR)

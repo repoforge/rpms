@@ -54,7 +54,7 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 * Sun Apr 26 2009 Dries Verachtert <dries@ulyssis.org> - 4.13-1
 - Updated to release 4.13.
 
-* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 4.12-1
+* Sat Apr 04 2009 Dag Wieers <dag@wieers.com> - 4.12-1
 - Updated to release 4.12.
 
 * Sun Oct 05 2008 Dag Wieers <dag@wieers.com> - 4.11-1

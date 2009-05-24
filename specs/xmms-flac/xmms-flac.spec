@@ -16,7 +16,7 @@
 Summary: XMMS plugin needed to play FLAC (Free Lossless Audio Codec) files
 Name: xmms-flac
 Version: 1.2.1
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://flac.sourceforge.net/
