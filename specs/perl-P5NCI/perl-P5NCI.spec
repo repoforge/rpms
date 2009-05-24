@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHROMATIC/P5NCI-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl-Module-Build
+BuildRequires: perl-Module-Build, perl-ExtUtils-CBuilder, perl-Test-Exception
 
 %description
 A perl extension for loading shared libraries and their functions.
