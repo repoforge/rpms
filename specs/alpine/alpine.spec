@@ -4,7 +4,7 @@
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 2.00
-Release: 1
+Release: 2
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -19,7 +19,9 @@ Patch0: alpine-2.00-maildir.patch
 Patch1: alpine-2.00-fillpara.patch
 #Patch2: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/rules.patch.gz
 Patch2: alpine-2.00-rules.patch
-Patch3: alpine-1.10-select-bold-x.patch
+#Patch3: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/searchheader.patch.gz
+Patch3: alpine-2.00-searchheader.patch
+Patch4: alpine-1.10-select-bold-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel, ncurses-devel
@@ -43,7 +45,8 @@ personal-preference options.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0 -b .orig
+%patch3 -p1
+%patch4 -p0 -b .orig
 
 #%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure */Makefile */*/Makefile imap/src/osdep/unix/Makefile.gss
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' imap/src/osdep/unix/Makefile.gss
@@ -116,6 +119,9 @@ fi
 %{_sbindir}/mlock
 
 %changelog
+* Sat May 23 2009 Dag Wieers <dag@wieers.com> - 2.00-2
+- Added searchheader patch.
+
 * Thu Sep 11 2008 Dag Wieers <dag@wieers.com> - 2.00-1
 - Updated to release 2.00.
 

@@ -1,0 +1,22 @@
+geteltorito
+===========
+
+Author: Rainer Krienke
+Email:  krienke@uni-koblenz.de
+License: GPL v2
+Version: 0.4
+Description: A El Torito boot image extractor
+
+call: 	geteltorito CD-image > toritoimagefile
+example:geteltorito /dev/sr0  > /tmp/bootimage
+
+The perl-script will extract the initial/default boot image from a CD if
+existant. It will not extract any of other possibly existing bootimages
+that are allowed by the El Torito standard.
+The imagedata are written to STDOUT all other information is written to
+STDERR (eg type and size of image).
+If you want to write the image to a file instead of STDOUT you can
+secify the filename wanted on the commandline using option -o <filename>
+
+Rainer Krienke
+krienke@uni-koblenz.de

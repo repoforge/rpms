@@ -34,7 +34,7 @@ information on your desktop.
 
 %build
 %configure
-%{__make} %{?_smp_mflags} prefix=%{_prefix}
+%{__make} %{?_smp_mflags} prefix="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -47,9 +47,9 @@ information on your desktop.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc %{_mandir}/man1/conky.1*
-%{_bindir}/conky
-%dir %{_sysconfdir}/conky
 %config(noreplace) %{_sysconfdir}/conky/conky.conf
+%{_bindir}/conky
+%dir %{_sysconfdir}/conky/
 
 %changelog
 * Sun Apr 19 2009 Dries Verachtert <dries@ulyssis.org> - 1.6.1-1

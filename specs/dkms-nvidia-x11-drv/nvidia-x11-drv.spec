@@ -2,17 +2,16 @@
 %define nvidialibdir   %{_libdir}/nvidia
 %define nvidialib32dir %{_prefix}/lib/nvidia
 
-%define beta .beta
-
 %define debug_package  %{nil}
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
-Name: nvidia-x11-drv
-Version: 173.08
-Release: 1%{?beta}%{?dist}
+Name: dkms-nvidia-x11-drv
+Version: 180.51
+Release: 1%{?dist}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html
+
 # i386
 Source0: http://us.download.nvidia.com/XFree86/Linux-x86/%{version}/NVIDIA-Linux-x86-%{version}-pkg0.run
 # x86_64
@@ -25,19 +24,21 @@ Source6: nvidia.nodes
 # http://www.nvnews.net/vbulletin/attachment.php?attachmentid=20486&d=1158955681
 Patch0: NVIDIA_kernel-1.0-9625-NOSMBUS.diff.txt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+ExclusiveArch: i386 x86_64
+# Required by the NVIDIA run file
+Buildrequires: tar
+# Required for our build
+BuildRequires: desktop-file-utils
 # Required for proper dkms operation
 Requires: gcc, make
 Requires(post): dkms, /sbin/ldconfig
 Requires(preun): dkms
 # Required by the nvidia-config-display utility/script
 Requires: pyxf86config
-# Required by the NVIDIA run file
-Buildrequires: tar
-# Required for our build
-BuildRequires: desktop-file-utils
-ExclusiveArch: i386 x86_64
 Provides: dkms-nvidia = %{version}-%{release}
 Conflicts: xorg-x11-drv-nvidia
+Obsoletes: nvidia-x11-drv <= 173.08
 
 %description
 Proprietary NVIDIA GL libraries, Xorg and Linux module for hardware
@@ -45,7 +46,6 @@ accelerated OpenGL support.
 
 INSTALLING THIS PACKAGE WILL TAINT YOUR KERNEL, SO PLEASE DO NOT REPORT *ANY*
 BUGS BEFORE YOU UNINSTALL THE PACKAGE AND REBOOT THE SYSTEM.
-
 
 %package 32bit
 Summary: Compatibility 32bit files for the 64bit Proprietary NVIDIA driver
@@ -55,9 +55,8 @@ Requires: %{name} = %{version}-%{release}
 %description 32bit
 Compatibility 32bit files for the 64bit Proprietary NVIDIA driver.
 
-
 %prep
-%setup -q -T -c
+%setup -T -c
 # Extract the proper "sources" for the current architecture
 # We need to extract to a "not yet existing" directory first, so no "."
 %ifarch i386
@@ -71,9 +70,7 @@ sh %{SOURCE1} --extract-only --target tmp/
 %{__rm} -rf tmp/
 %patch0 -p0
 
-
 %build
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -243,9 +240,8 @@ fi
 # Required since xorg-x11-server-Xorg empties the "Files" section
 %{_sbindir}/nvidia-config-display enable || :
 
-
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc LICENSE usr/share/doc/*
 # Kernel and dkms related bits
 %config %{_sysconfdir}/modprobe.d/nvidia
@@ -276,7 +272,7 @@ fi
 
 %ifarch x86_64
 %files 32bit
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %dir %{nvidialib32dir}/
 %{nvidialib32dir}/*.so.*
 %{nvidialib32dir}/tls/
@@ -286,8 +282,10 @@ fi
 %{nvidialib32dir}/*.so
 %endif
 
-
 %changelog
+* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 180.51-1
+- Updated to release 180.51.
+
 * Wed May 14 2008 Matthias Saou <http://freshrpms.net/> 173.08-1
 - Update to 173.08 beta, which includes support for Fedora 9's X snapshot.
 

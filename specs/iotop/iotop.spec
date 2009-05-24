@@ -1,15 +1,17 @@
 # $Id$
 # Authority: dag
 
-Summary: Top like utility for I/O
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
+Summary: Per process I/O bandwidth monitor
 Name: iotop
-Version: 0.1
+Version: 0.3
 Release: 1
 License: GPL
-Group: Applications/System
-URL: http://guichaz.free.fr/misc/#iotop
+Group: System Environment/Base
+URL: http://guichaz.free.fr/iotop/
 
-Source: http://guichaz.free.fr/misc/%{name}.py
+Source: http://guichaz.free.fr/iotop/files/iotop-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -17,26 +19,30 @@ BuildRequires: python >= 2.5
 Requires: python >= 2.5
 
 %description
-Linux has always been able to show how much I/O was going on
-(the bi and bo columns of the vmstat 1 command).
-iotop is a Python program with a top like UI used to
-show of behalf of which process is the I/O going on.
+Iotop is a Python program with a top like UI used to show of behalf of which
+process is the I/O going on.
 
 %prep
+%setup
 
 %build
+%{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 %{SOURCE0} %{buildroot}%{_bindir}/iotop
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
+%doc ChangeLog COPYING NEWS THANKS
+%doc %{_mandir}/man1/iotop.1*
 %{_bindir}/iotop
+%{python_sitelib}/iotop/
+%exclude %{python_sitelib}/*.egg-info/
 
 %changelog
-* Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.1-1
+* Fri May 08 2009 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)

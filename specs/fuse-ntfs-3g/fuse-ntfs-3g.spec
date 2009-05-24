@@ -8,7 +8,7 @@
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
 Version: 2009.4.4
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/
@@ -65,8 +65,8 @@ you will need to install %{name}-devel.
 %{__make} install DESTDIR="%{buildroot}"
 
 ### Symlink different locations
+%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs
 %{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs-3g
-%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs-fuse
 %{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_bindir}/ntfsmount
 
 %clean
@@ -81,8 +81,8 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man8/mount.ntfs-3g.8*
 %doc %{_mandir}/man8/ntfs-3g.8*
 %doc %{_mandir}/man8/ntfs-3g.probe.8*
+%{_sbindir}/mount.ntfs
 %{_sbindir}/mount.ntfs-3g
-%{_sbindir}/mount.ntfs-fuse
 %{_bindir}/ntfs-3g
 %{_bindir}/ntfs-3g.probe
 %{_bindir}/ntfsmount
@@ -97,6 +97,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Thu May 21 2009 Dag Wieers <dag@wieers.com> - 2009.4.4-2
+- Added symlink for mount.ntfs so Gnome's Disk Mounter applet doesn't crash.
+
 * Tue May 05 2009 Dag Wieers <dag@wieers.com> - 2009.4.4-1
 - Updated to release 2009.4.4.
 

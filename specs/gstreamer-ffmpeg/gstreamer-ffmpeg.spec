@@ -1,28 +1,25 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: fc5
-
 %define desktop_vendor rpmforge
 
 %define gst_minver 0.10.0
 %define gstpb_minver 0.10.0
 %define majorminor 0.10
-%define gstreamer gstreamer
 
 Summary: GStreamer streaming media framework FFmpeg-based plugin
-Name: %{gstreamer}-ffmpeg
+Name: gstreamer-ffmpeg
 Version: 0.10.2
 Release: 1
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
+
 Source: http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: %{gstreamer} >= %{gst_minver}
-Requires: %{gstreamer}-plugins-base >= %{gstpb_minver}
-BuildRequires: %{gstreamer}-devel >= %{gst_minver}
-BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
+
+BuildRequires: gstreamer-devel >= %{gst_minver}
+BuildRequires: gstreamer-plugins-base-devel >= %{gstpb_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # The FFmpeg dependencies we need to get the codecs we want
@@ -31,6 +28,8 @@ BuildRequires: imlib2-devel
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
 Buildrequires: liboil-devel
+Requires: gstreamer >= %{gst_minver}
+Requires: gstreamer-plugins-base >= %{gstpb_minver}
 
 %description
 GStreamer is a streaming-media framework, based on graphs of filters which
@@ -42,10 +41,8 @@ plugins.
 
 This package provides FFmpeg-based GStreamer plug-ins.
 
-
 %prep
 %setup -n gst-ffmpeg-%{version}
-
 
 %build
 %configure \
@@ -57,15 +54,12 @@ This package provides FFmpeg-based GStreamer plug-ins.
     --with-package-origin='http://www.rpmforge.net/'
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -74,7 +68,6 @@ This package provides FFmpeg-based GStreamer plug-ins.
 %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.la
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
-
 
 %changelog
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-1
