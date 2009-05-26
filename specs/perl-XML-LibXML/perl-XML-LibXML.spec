@@ -66,7 +66,7 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/LibXML.pod
 
 %changelog
-* Tue May 26 2008 Dag Wieers <cmr@financial.com> - 1.69-1
+* Tue May 26 2008 Christoph Maser <cmr@financial.com> - 1.69-1
 - Updated to release 1.69.
 
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.66-1
