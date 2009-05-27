@@ -7,8 +7,8 @@
 
 Summary: Network-wide graphing framework (grapher/gatherer)
 Name: munin
-Version: 1.2.5
-Release: 2
+Version: 1.2.6
+Release: 1
 License: GPL
 Group: System Environment/Daemons
 URL: http://munin.projects.linpro.no/
@@ -16,13 +16,14 @@ URL: http://munin.projects.linpro.no/
 Source0: http://dl.sf.net/sourceforge/munin/munin_%{version}.tar.gz
 Source1: munin-1.2.5-hddtemp_smartctl-config
 Source2: munin-1.2.4-sendmail-config
-Patch0: munin-1.2.4-cron.patch
 Patch1: munin-1.2.4-conf.patch
+Patch2: munin-1.2.6-rrdtool-1.3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: perl-Net-Server, perl-Net-SNMP
 Requires: rrdtool, shadow-utils
+BuildRequires: which
 
 %description
 Munin is a highly flexible and powerful solution used to create graphs of
@@ -64,8 +65,8 @@ SNMP or similar technology.
 
 %prep
 %setup
-%patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 ### htmldoc and html2text are not available for Red Hat. Quick hack with perl:
 ### Skip the PDFs.
@@ -243,12 +244,14 @@ fi
 %dir %{_sysconfdir}/httpd/conf.d/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/munin.conf
 %{_bindir}/munin-cron
+%{_bindir}/munindoc
 %{_datadir}/munin/munin-graph
 %{_datadir}/munin/munin-html
 %{_datadir}/munin/munin-limits
 %{_datadir}/munin/munin-update
 %{_datadir}/munin/VeraMono.ttf
 %{perl_vendorlib}/Munin.pm
+%{perl_vendorlib}/Munin/Plugin.pm
 
 %defattr(-, munin, munin, 0755)
 %{_localstatedir}/www/munin/
@@ -287,6 +290,11 @@ fi
 %dir %{_localstatedir}/log/munin/
 
 %changelog
+* Wed May 27 2009 Christoph Maser <cmr@financial.com> - 1.2.6-1
+- Update to 1.2.6
+- Remove cron.d patch
+- Add patch for rrdtool 1.3
+
 * Mon Mar 23 2009 Dries Verachtert <dries@ulyssis.org> - 1.2.5-2
 - Fixes by Mitsuru Hayasaka.
 
