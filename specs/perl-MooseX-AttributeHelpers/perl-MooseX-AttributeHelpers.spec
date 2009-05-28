@@ -9,7 +9,7 @@
 
 Summary: Extend your attribute interfaces
 Name: perl-MooseX-AttributeHelpers
-Version: 0.14
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/AttributeHelpers.pm
 
 %changelog
+* Thu May 28 2009 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to release 0.17.
+
 * Wed Nov 26 2008 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 
