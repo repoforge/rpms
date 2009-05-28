@@ -9,7 +9,7 @@
 
 Summary: Atom API and Feed Support
 Name: perl-XML-Atom
-Version: 0.32
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,7 +38,7 @@ Atom API and Feed Support.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,6 +61,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Atom.pm
 
 %changelog
+* Thu May 28 2009 Christoph Maser <cmr@financial.com> - 0.33-1
+- Updated to release 0.33.
+- use --skipdeps because installed perl-DateTime is not detected correctly
+
 * Wed Nov 26 2008 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 
