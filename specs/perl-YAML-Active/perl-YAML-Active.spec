@@ -9,7 +9,7 @@
 
 Summary: Combine data and logic in YAML
 Name: perl-YAML-Active
-Version: 1.06
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -41,7 +41,7 @@ encapsulated in the data structure itself.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,12 +57,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/YAML::Active.3pm*
+%doc %{_mandir}/man3/YAML::Active*.3pm*
 %dir %{perl_vendorlib}/YAML/
 %{perl_vendorlib}/YAML/Active/
 %{perl_vendorlib}/YAML/Active.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.06-1
 - Updated to release 1.06.
 
