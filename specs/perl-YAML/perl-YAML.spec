@@ -9,7 +9,7 @@
 
 Summary: Machine parseable data serialization format
 Name: perl-YAML
-Version: 0.66
+Version: 0.68
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -47,17 +47,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man1/ysh.1*
 %doc %{_mandir}/man3/Test::YAML.3pm*
 %doc %{_mandir}/man3/YAML.3pm*
 %doc %{_mandir}/man3/YAML::*.3pm*
-%{_bindir}/ysh
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/YAML.pm
 %{perl_vendorlib}/YAML/
 %{perl_vendorlib}/YAML.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.68-1
+- Updated to version 0.68.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.66-1
 - Updated to release 0.66.
 
