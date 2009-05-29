@@ -9,7 +9,7 @@
 
 Summary: SAX2 XML Writer
 Name: perl-XML-SAX-Writer
-Version: 0.50
+Version: 0.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/SAX/Writer
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.52-1
+- Updated to version 0.52.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.50-1
 - Updated to release 0.50.
 
