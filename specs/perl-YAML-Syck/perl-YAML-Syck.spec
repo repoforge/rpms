@@ -9,7 +9,7 @@
 
 Summary: Fast, lightweight YAML loader and dumper
 Name: perl-YAML-Syck
-Version: 1.05
+Version: 1.07
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -44,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes MANIFEST META.yml README SIGNATURE
+%doc COPYING Changes MANIFEST META.yml README 
 %doc %{_mandir}/man3/JSON::Syck.3pm*
 %doc %{_mandir}/man3/YAML::Syck.3pm*
 %dir %{perl_vendorarch}/auto/YAML/
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/YAML/Syck.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.07-1
+- Updated to version 1.07.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.05-1
 - Updated to release 1.05.
 
