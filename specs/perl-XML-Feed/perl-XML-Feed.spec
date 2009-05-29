@@ -9,7 +9,7 @@
 
 Summary: XML Syndication Feed Support
 Name: perl-XML-Feed
-Version: 0.12
+Version: 0.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -41,15 +41,12 @@ XML Syndication Feed Support.
 %setup -n %{real_name}-%{version}
 
 %build
-#%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-#%{__make} %{?_smp_mflags}
-echo n | %{__perl} Build.PL
-./Build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-#%{__make} pure_install
-PERL_INSTALL_ROOT="%{buildroot}" ./Build install installdirs="vendor"
+%{__make} pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -67,5 +64,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Feed.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.43-1
+- Updated to version 0.43.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.12-1
 - Initial package. (using DAR)
