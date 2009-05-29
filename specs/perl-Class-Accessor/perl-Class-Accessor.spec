@@ -50,7 +50,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/
 
 %changelog
-* Mon Aug 20 2007 Christoph Maser <cmr$financial,com>  - 0.33-1
+* Fri May 29 2009 Christoph Maser <cmr$financial,com>  - 0.33-1
 - Updated to release 0.33.
 
 * Mon Aug 20 2007 Christoph Maser <cmr$financial,com>  - 0.31-1
