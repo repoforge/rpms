@@ -9,7 +9,7 @@
 
 Summary: Compilation based XML processing
 Name: perl-XML-Compile
-Version: 0.81
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Compile.pod
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.81-1
 - Updated to release 0.81.
 
