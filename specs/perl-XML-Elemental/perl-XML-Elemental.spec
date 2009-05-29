@@ -9,7 +9,7 @@
 
 Summary: Perl module implements simplistic and perlish handling of XML data
 Name: perl-XML-Elemental
-Version: 2.02
+Version: 2.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Parser/Style/Elemental.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 2.1-1
+- Updated to version 2.1.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release 2.02.
 
