@@ -8,7 +8,7 @@
 
 Summary: Perl module to merge arbitrarily deep hashes into a single hash
 Name: perl-Hash-Merge
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Hash/Merge.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Update version 0.11.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Initial package. (using DAR)
