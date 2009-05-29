@@ -9,7 +9,7 @@
 
 Summary: XML::RSS with XML::LibXML
 Name: perl-XML-RSS-LibXML
-Version: 0.3002
+Version: 0.3004
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Class::Accessor::Fast)
+BuildRequires: perl(DateTime::Format::Mail)
+BuildRequires: perl(DateTime::Format::W3CDTF)
+BuildRequires: perl(XML::LibXML)
+
+
+
 
 %description
 XML::RSS with XML::LibXML.
@@ -28,7 +35,7 @@ XML::RSS with XML::LibXML.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -44,12 +51,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/XML::RSS::LibXML.3pm*
+%doc %{_mandir}/man3/XML::RSS::LibXML*.3pm*
 %dir %{perl_vendorlib}/XML/
 %dir %{perl_vendorlib}/XML/RSS/
-#%{perl_vendorlib}/XML/RSS/LibXML/
+%{perl_vendorlib}/XML/RSS/LibXML/
 %{perl_vendorlib}/XML/RSS/LibXML.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.3004-1
+- Updated to version 0.3004.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.3002-1
 - Initial package. (using DAR)
