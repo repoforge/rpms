@@ -9,7 +9,7 @@
 
 Summary: Pure Perl implementation for an XML-RPC client and server
 Name: perl-XML-RPC
-Version: 0.8
+Version: 0.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/RPC.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.9-1
+- Updated to version 0.9.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.8-1
 - Updated to release 0.8.
 
