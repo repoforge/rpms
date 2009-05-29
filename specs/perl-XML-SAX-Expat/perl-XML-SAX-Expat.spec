@@ -9,7 +9,7 @@
 
 Summary: Perl module is a SAX2 Driver for Expat (XML::Parser)
 Name: perl-XML-SAX-Expat
-Version: 0.39
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/SAX/Expat.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.39-1
 - Initial package. (using DAR)
