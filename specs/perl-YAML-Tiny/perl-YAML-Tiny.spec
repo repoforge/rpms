@@ -9,7 +9,7 @@
 
 Summary: Read/Write YAML files with as little code as possible
 Name: perl-YAML-Tiny
-Version: 1.31
+Version: 1.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAML/Tiny.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.39-1
+- Updated to version 1.39.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.31-1
 - Updated to release 1.31.
 
