@@ -10,7 +10,7 @@
 
 Summary: Perl module for parsing XML encoding maps
 Name: perl-XML-Encoding
-Version: 2.01
+Version: 2.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,12 +47,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST README
 %doc %{_mandir}/man3/XML::Encoding.3pm*
+%doc %{_mandir}/man1/compile_encoding.1.gz
+%doc %{_mandir}/man1/make_encmap.1.gz
 %{_bindir}/compile_encoding
 %{_bindir}/make_encmap
 %dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Encoding.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 2.07-1
+- Updated to version 2.07.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.01-1
 - Updated to release 2.01.
 
