@@ -9,7 +9,7 @@
 
 Summary: Simple lightweight parser for a subset of XML
 Name: perl-XML-Tiny
-Version: 1.11
+Version: 2.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Tiny.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 2.02-1
+- Updated to version 2.02.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 
