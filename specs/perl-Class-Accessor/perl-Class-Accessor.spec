@@ -9,7 +9,7 @@
 
 Summary: Automated accessor generation
 Name: perl-Class-Accessor
-Version: 0.31
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/
 
 %changelog
+* Mon Aug 20 2007 Christoph Maser <cmr$financial,com>  - 0.33-1
+- Updated to release 0.33.
+
 * Mon Aug 20 2007 Christoph Maser <cmr$financial,com>  - 0.31-1
 - Updated to release 0.31.
 
