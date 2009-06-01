@@ -9,7 +9,7 @@
 
 Summary: Perl extension for representing and manipulating MAC addresses
 Name: perl-Net-MAC
-Version: 1.4
+Version: 1.5
 Release: 1
 License: GPL/LGPL
 Group: Applications/CPAN
@@ -44,12 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes GPL.txt INSTALL MANIFEST META.yml README
+%doc Changes INSTALL MANIFEST META.yml README
 %doc %{_mandir}/man3/Net::MAC.3pm*
 %dir %{perl_vendorlib}/Net/
 #%{perl_vendorlib}/Net/MAC/
 %{perl_vendorlib}/Net/MAC.pm
 
 %changelog
+* Mon Jun  1 2009 Dries Verachtert <dries@ulyssis.org> - 1.5-1
+- Updated to release 1.5.
+
 * Tue Sep 16 2008 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)
