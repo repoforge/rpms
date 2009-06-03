@@ -10,7 +10,7 @@
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
 Version: 1.25
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-SQLite/
@@ -22,6 +22,7 @@ BuildRequires: perl
 BuildRequires: perl(DBI)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: sqlite-devel
+Requires: perl-DBI >= 1.57
 
 %description
 SQLite is a small fast embedded SQL database engine.
@@ -60,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DBD/SQLite/
 
 %changelog
+* Tue Jun 03 2009 Christoph Maser <cmr@financial.com> - 1.25-2
+- Add dependency for perl-DBI >= 1.57
+
 * Tue Apr 28 2009 Christoph Maser <cmr@financial.com> - 1.25-1
 - Updated to release 1.25.
 
