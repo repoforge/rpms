@@ -9,7 +9,7 @@
 
 Summary: Syslog module for perl
 Name: perl-Unix-Syslog
-Version: 1.0
+Version: 1.1
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Unix/Syslog.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.1-1
+- Updated to version 1.1.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 
