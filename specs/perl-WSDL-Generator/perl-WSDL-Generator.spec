@@ -9,8 +9,8 @@
 
 Summary: Generate wsdl file automagically
 Name: perl-WSDL-Generator
-Version: 0.02
-Release: 1.2
+Version: 0.04
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WSDL-Generator/
@@ -61,6 +61,9 @@ with the server. It contains also the namespace and URL as well.
 %{perl_vendorlib}/WSDL/Generator/*
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1.2
 - Rebuild for Fedora Core 5.
 
