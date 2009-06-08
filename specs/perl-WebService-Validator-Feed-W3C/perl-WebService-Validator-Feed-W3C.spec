@@ -9,7 +9,7 @@
 
 Summary: Find errors in feeds
 Name: perl-WebService-Validator-Feed-W3C
-Version: 0.5
+Version: 0.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/Validator/Feed/W3C.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.6-1
+- Updated to version 0.6.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
 
