@@ -9,7 +9,7 @@
 
 Summary: Perl module to implement a simple interface to URI::Find
 Name: perl-URI-Find-Simple
-Version: 0.7
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/Find/Simple.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.01-1
+- Updated to version 1.01.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.7-1
 - Initial package. (using DAR)
