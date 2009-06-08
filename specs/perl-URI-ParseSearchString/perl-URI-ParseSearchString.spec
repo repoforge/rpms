@@ -9,7 +9,7 @@
 
 Summary: Parse Apache referer logs and extract search engine query strings
 Name: perl-URI-ParseSearchString
-Version: 2.2
+Version: 3.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/URI/ParseSearchString.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 3.0-1
+- Updated to version 3.0.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.2-1
 - Updated to release 2.2.
 
