@@ -9,7 +9,7 @@
 
 Summary: Mediawiki-style formatter for Wiki::Toolkit
 Name: perl-Wiki-Toolkit-Formatter-Mediawiki
-Version: 0.02
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,13 +46,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man3/Wiki::Toolkit::Formatter::Mediawiki.3pm*
+%doc %{_mandir}/man3/Wiki::Toolkit::Formatter::Mediawiki::Link.3pm*
 %dir %{perl_vendorlib}/Wiki/
 %dir %{perl_vendorlib}/Wiki/Toolkit/
 %dir %{perl_vendorlib}/Wiki/Toolkit/Formatter/
-#%{perl_vendorlib}/Wiki/Toolkit/Formatter/Mediawiki/
+%{perl_vendorlib}/Wiki/Toolkit/Formatter/Mediawiki/Link.pm
 %{perl_vendorlib}/Wiki/Toolkit/Formatter/Mediawiki.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Updated to release 0.02.
 
