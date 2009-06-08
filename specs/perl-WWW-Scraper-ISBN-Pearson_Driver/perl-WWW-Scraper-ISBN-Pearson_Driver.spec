@@ -9,7 +9,7 @@
 
 Summary: Search driver for Pearson Education's online catalog
 Name: perl-WWW-Scraper-ISBN-Pearson_Driver
-Version: 0.09
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/WWW/Scraper/ISBN/Pearson_Driver.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.10-1
+- Updated to version 0.10.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Updated to release 0.09.
 
