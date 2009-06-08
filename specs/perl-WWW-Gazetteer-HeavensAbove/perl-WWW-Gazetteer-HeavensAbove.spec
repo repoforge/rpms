@@ -9,7 +9,7 @@
 
 Summary: Find location of world towns and cities
 Name: perl-WWW-Gazetteer-HeavensAbove
-Version: 0.16
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/WWW/Gazetteer/
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.18-1
+- Updated to version 0.18.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Initial package.
