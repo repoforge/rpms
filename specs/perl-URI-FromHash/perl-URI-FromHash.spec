@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements the fantastic new URI::FromHash
 Name: perl-URI-FromHash
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 perl-URI-FromHash is a Perl module that implements the fantastic
@@ -55,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/FromHash.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.03-1
+- Updated to version 0.03.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)
