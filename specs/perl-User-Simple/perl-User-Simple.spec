@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a simple user sessions management
 Name: perl-User-Simple
-Version: 1.35
+Version: 1.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 perl-User-Simple is a Perl module that implements
@@ -59,5 +60,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/User/Simple.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.43-1
+- Updated to version 1.43.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 1.35-1
 - Initial package. (using DAR)
