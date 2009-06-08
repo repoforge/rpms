@@ -10,7 +10,7 @@
 
 Summary: Simple, flexible system to implement workflows
 Name: perl-Workflow
-Version: 0.31
+Version: 1.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,12 +47,15 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README TODO VERSION doc/ eg/
+%doc Changes MANIFEST META.yml README TODO doc/ eg/
 %doc %{_mandir}/man3/*.3pm*
 %{perl_vendorlib}/Workflow/
 %{perl_vendorlib}/Workflow.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.32-1
+- Updated to version 1.32.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.31-1
 - Updated to release 0.31.
 
