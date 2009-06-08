@@ -9,7 +9,7 @@
 
 Summary: Per-processor information
 Name: perl-Unix-Processors
-Version: 2.034
+Version: 2.041
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Unix/Processors/
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 2.041-1
+- Updated to version 2.041.
+
 * Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 2.034-1
 - Updated to latest upstream version { old source not available }
 
