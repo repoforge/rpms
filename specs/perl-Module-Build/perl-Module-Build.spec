@@ -12,7 +12,8 @@
 Summary: System for building perl modules
 Name: perl-Module-Build
 Version: 0.33
-Release: 1
+Release: 2
+Epoch: 1
 License: Artistic or GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Build/
@@ -59,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Build.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.33-2
+- Use epoch due to broken version numbers upstream
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.33-1
 - Updated to version 0.33.
 
