@@ -9,7 +9,7 @@
 
 Summary: Perl module for handling Byte Order Mark for UTF-8 files
 Name: perl-UTF8BOM
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/UTF8BOM.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.02-1
+- Updated to version 1.02.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)
