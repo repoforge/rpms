@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the Video4linux framegrabber interface
 Name: perl-Video-Capture-V4l
-Version: 0.901
+Version: 0.902
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Video/XawTV.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.902-1
+- Updated to version 0.902.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.901-1
 - Updated to release 0.901.
 
