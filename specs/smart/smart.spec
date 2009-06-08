@@ -10,6 +10,14 @@
 %{?el4:%define _without_channels 1}
 %{?el3:%define _without_channels 1}
 %{?el3:%define _without_gui 1}
+%{?el3:%define _without_ksmarttray 1}
+
+%ifarch x86_64
+%define _without_rpmhelper 0
+%else
+%define _without_rpmhelper 1
+%endif
+%{?el5:%define _without_rpmhelper 1}
 
 %define desktop_vendor rpmforge
 
@@ -20,8 +28,8 @@
 
 Summary: Next generation package handling tool
 Name: smart
-Version: 0.52
-Release: 1
+Version: 1.2
+Release: 0
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/
@@ -29,8 +37,9 @@ URL: http://www.smartpm.org/
 Source: http://labix.org/download/smart/smart-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, rpm-python
-%{!?_without_gui:BuildRequires: gcc-c++, kdelibs-devel, qt-devel, pygtk2-devel >= 2.3.94}
+BuildRequires: popt, rpm-devel >= 4.2.1, python-devel, rpm-python, gettext
+%{!?_without_gui:BuildRequires: pygtk2-devel >= 2.3.94}
+%{!?_without_ksmarttray:BuildRequires: gcc-c++, kdelibs-devel, qt-devel}
 # *** KDE requires autoconf 2.52, 2.53 or 2.54
 # *** KDE requires automake 1.6.1 or newer
 BuildRequires: autoconf, automake
@@ -76,6 +85,7 @@ KDE tray program for watching updates with Smart Package Manager.
 if not sysconf.getReadOnly():
        pkgconf.setFlag("multi-version", "kernel")
        pkgconf.setFlag("multi-version", "kernel-smp")
+       pkgconf.setFlag("multi-version", "kernel-xen")
 EOF
 
 %{__cat} <<EOF >smart-gui.sh
@@ -128,19 +138,19 @@ EOF
 
 %{__cat} <<EOF >smart-gui.pam
 #%PAM-1.0
-auth       sufficient	/lib/security/pam_rootok.so
-auth       sufficient	/lib/security/pam_timestamp.so
-auth       required	/lib/security/pam_stack.so service=system-auth
-session    required	/lib/security/pam_permit.so
-session    optional	/lib/security/pam_timestamp.so
-session    optional	/lib/security/pam_xauth.so
-account    required	/lib/security/pam_permit.so
+auth       sufficient	pam_rootok.so
+auth       sufficient	pam_timestamp.so
+auth       required	pam_stack.so service=system-auth
+session    required	pam_permit.so
+session    optional	pam_timestamp.so
+session    optional	pam_xauth.so
+account    required	pam_permit.so
 EOF
 
 %build
 env CFLAGS="%{optflags}" %{__python} setup.py build
 
-%if %{!?_without_gui:1}0
+%if %{!?_without_ksmarttray:1}0
 cd contrib/ksmarttray
 %{__make} -f admin/Makefile.common
 %configure
@@ -150,7 +160,7 @@ cd -
 
 %{__make} -C contrib/smart-update
 
-%ifarch x86_64
+%if %{!?_without_rpmhelper:1}0
 cd contrib/rpmhelper/
 %{__python} setup.py build
 cd -
@@ -161,9 +171,9 @@ cd -
 
 %{__python} setup.py install --root="%{buildroot}"
 
-%{!?_without_gui:%{__make} install -C contrib/ksmarttray DESTDIR="%{buildroot}"}
+%{!?_without_ksmarttray:%{__make} install -C contrib/ksmarttray DESTDIR="%{buildroot}" iconsdir=%{_datadir}/icons/hicolor/48x48/apps}
 
-%ifarch x86_64
+%if %{!?_without_rpmhelper:1}0
 cd contrib/rpmhelper/
 %{__python} setup.py install --root="%{buildroot}"
 cd -
@@ -215,7 +225,7 @@ touch %{buildroot}%{_prefix}/lib/smart/distro.py{c,o}
 %{python_sitearch}/smart/
 %exclude %{python_sitearch}/smart/interfaces/gtk/
 %{_localstatedir}/lib/smart/
-%ifarch x86_64
+%if %{!?_without_rpmhelper:1}0
 %{python_sitearch}/rpmhelper.so
 %endif
 
@@ -238,14 +248,22 @@ touch %{buildroot}%{_prefix}/lib/smart/distro.py{c,o}
 %defattr(4755, root, root, 0755)
 %{_bindir}/smart-update
 
-%if %{!?_without_gui:1}0
+%if %{!?_without_ksmarttray:1}0
 %files -n ksmarttray
 %defattr(-, root, root, 0755)
 %{_bindir}/ksmarttray
 %{_datadir}/apps/ksmarttray/
+%{_datadir}/icons/hicolor/48x48/apps/ksmarttray.png
 %endif
 
 %changelog
+* Tue May 19 2009 Anders F Bjorklund <afb@users.sf.net>
+- Updated to release 1.2.
+- fix hardcoded pam paths
+- multiversion kernel-xen
+- add --without ksmarttray
+- add --without rpmhelper
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.52-1
 - Updated to release 0.52.
 
