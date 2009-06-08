@@ -9,7 +9,7 @@
 
 Summary: Perl module to extract search strings from more referrers
 Name: perl-URI-ParseSearchString-More
-Version: 0.05
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,8 +26,7 @@ perl-URI-ParseSearchString-More is a Perl module to extract search strings
 from more referrers.
 
 %prep
-#setup -n %{real_name}-%{version}
-%setup -n uri-parsesearchstring-more
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -53,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/ParseSearchString/More.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.10-1
+- Updated to version 0.10.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Updated to release 0.05.
 
