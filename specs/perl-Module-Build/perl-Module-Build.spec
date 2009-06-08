@@ -11,7 +11,7 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.2808
+Version: 0.33
 Release: 1
 License: Artistic or GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Build.pm
 
 %changelog
+* Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.33-1
+- Updated to version 0.33.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.2808-1
 - Updated to release 0.2808.
 
