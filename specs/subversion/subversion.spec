@@ -1,7 +1,8 @@
 # $Id: subversion.spec 4608 2006-08-02 15:32:29Z dag $
 # Authority: dag
 
-# Tag: test
+##ExcludeDist: fc3
+##Tag: test
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
@@ -16,6 +17,7 @@
 %{?el2:%define _without_swig 1}
 
 %define swig_version 1.3.39
+%define sqlite_version 3.6.13
 
 # set to zero to avoid running test suite
 %define make_check 0
@@ -26,21 +28,22 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.0
+Version: 1.6.2
 ### FC3 comes with release 1.1
-Release: 0.1
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
 
 Source0: http://subversion.tigris.org/tarballs/subversion-%{version}.tar.bz2
 Source1: subversion.conf
+Source2: http://sqlite.org/sqlite-amalgamation-%{sqlite_version}.tar.gz
 Source3: filter-requires.sh
 Source4: http://www.xsteve.at/prg/emacs/psvn.el
 Source10: http://dl.sf.net/swig/swig-%{swig_version}.tar.gz
 #Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
-#Patch3: subversion-0.31.0-rpath.patch
+Patch3: subversion-1.6.0-rpath.patch
 Patch6: subversion-1.6.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -120,14 +123,14 @@ Requires: ruby(abi) = 1.8
 This package includes the Ruby bindings to the Subversion libraries.
 
 %prep
-%setup -a 10
-#patch1 -p1 -b .swig
+%setup -a 10 -a 2
 %patch2 -p1 -b .deplibs
-#patch3 -p1 -b .rpath
+%patch3 -p1 -b .rpath
 %{!?_without_pie:%patch6 -p1 -b .pie}
 %{?_with_java:%patch7 -p1 -b .java}
 
 %{__rm} -rf neon apr apr-util
+%{__mv} sqlite-3.6.13 sqlite-amalgamation
 
 echo _without_swig: %_without_swig
 echo _without_pie: %_without_pie
@@ -160,7 +163,6 @@ export CC=gcc CXX=g++
 %configure \
     --disable-mod-activation \
     --disable-neon-version-check \
-    --disable-sqlite \
     --disable-static \
     --with-apr="%{_prefix}" \
     --with-apr-util="%{_prefix}" \
@@ -171,6 +173,7 @@ export CC=gcc CXX=g++
     --with-sasl="%{_prefix}" \
     --with-ssl \
 %{!?_without_swig:--with-swig="swig-%{swig_version}/install"}
+#    --disable-neon-version-check \
 # 1.3.0 tarball ships with generated swig sources
 #%{__make} extraclean-swig-headers swig-headers
 %{__make} %{?_smp_mflags} all tools
@@ -318,14 +321,15 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Mon Mar 23 2009 Dag Wieers <dag@wieers.com> - 1.6.0-0.1
-- Updated to release 1.6.0.
+* Mon May 11 2009 Christoph Maser <cmr@financial.com> - 1.6.2-1
+- Add sqlite3-amalgamation
+- Add new .rpath .pie patches from fedora cvs
 
-* Wed Apr 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-2
+* Wed May 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-2
 - Updated to swig 1.3.39
 - only set ruby_sitearch if _without_ruby is not set
 
-* Wed Apr 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-1
+* Wed May 06 2009 Christoph Maser <cmr@financial.com> - 1.5.6-1
 - call "make tools"
 
 * Wed Mar 18 2009 Christoph Maser <cmr@financial.com> - 1.5.6-0.2
