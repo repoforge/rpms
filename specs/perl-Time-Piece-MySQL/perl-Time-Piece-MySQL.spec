@@ -8,7 +8,7 @@
 
 Summary: Perl module adds MySQL-specific methods to Time::Piece
 Name: perl-Time-Piece-MySQL
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Time/Piece/MySQL.pm
 
 %changelog
+* Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)
