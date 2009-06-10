@@ -9,7 +9,7 @@
 
 Summary: Parse string that represents time duration
 Name: perl-Time-Duration-Parse
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Time/Duration/Parse.pm
 
 %changelog
+* Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.05-1
 - Initial package. (using DAR)
