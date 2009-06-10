@@ -9,8 +9,8 @@
 
 Summary: Perl implementation of Red/Black tree, a type of balanced tree
 Name: perl-Tree-RedBlack
-Version: 0.3
-Release: 1.2
+Version: 0.5
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-RedBlack/
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tree/RedBlack
 
 %changelog
+* Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 0.5-1
+- Updated to version 0.5.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.3-1.2
 - Rebuild for Fedora Core 5.
 
