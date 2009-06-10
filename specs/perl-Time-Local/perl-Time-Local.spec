@@ -10,7 +10,7 @@
 Summary: Efficiently compute time from local and GMT time
 Summary: Perl module named Time-Local
 Name: perl-Time-Local
-Version: 1.18
+Version: 1.1901
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Time/Local.pm
 
 %changelog
+* Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 1.1901-1
+- Updated to version 1.1901.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 1.18-1
 - Initial package. (using DAR)
