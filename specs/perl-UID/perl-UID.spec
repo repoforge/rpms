@@ -9,7 +9,7 @@
 
 Summary: Define unique identifier objects that can be used like a kind of keyword
 Name: perl-UID
-Version: 0.21
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,5 +58,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/UID.pm
 
 %changelog
+* Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 0.24-1
+- Updated to version 0.24.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.21-1
 - Initial package. (using DAR)
