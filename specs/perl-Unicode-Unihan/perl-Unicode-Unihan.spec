@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements the Unihan Data Base
 Name: perl-Unicode-Unihan
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Unicode/Unihan.pm
 
 %changelog
+* Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)
