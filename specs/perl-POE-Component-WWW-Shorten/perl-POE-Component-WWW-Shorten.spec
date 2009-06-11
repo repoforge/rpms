@@ -9,7 +9,7 @@
 
 Summary: Non-blocking POE wrapper around WWW::Shorten
 Name: perl-POE-Component-WWW-Shorten
-Version: 1.14
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl(WWW::Shorten)
 
 %description
 This module provides a non-blocking POE wrapper around WWW::Shorten.
@@ -57,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/WWW/Shorten.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.18-1
+- Updated to version 1.18.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 
