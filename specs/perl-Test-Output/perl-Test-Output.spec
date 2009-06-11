@@ -9,7 +9,7 @@
 
 Summary: Utilities to test STDOUT and STDERR messages
 Name: perl-Test-Output
-Version: 0.10
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Output.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Initial package. (using DAR)
