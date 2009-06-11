@@ -11,7 +11,7 @@
 
 Summary: Embed your tests in your code, next to what is being tested
 Name: perl-Test-Inline
-Version: 2.208
+Version: 2.210
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -81,6 +81,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Inline.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 2.210-1
+- Updated to version 2.210.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.207-1
 - Updated to release 2.207.
 
