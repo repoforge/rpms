@@ -9,7 +9,7 @@
 
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
-Version: 0.45
+Version: 0.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Text/CSV_XS.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 0.65-1
+- Updated to version 0.65.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.45-1
 - Updated to release 0.45.
 
