@@ -9,7 +9,7 @@
 
 Summary: Track the number of times subs are called
 Name: perl-Test-SubCalls
-Version: 1.07
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
-BuildRequires: perl(Test::Builder::Tester) >= 1.02
+%{!?el4:BuildRequires: perl(Test::Builder::Tester) >= 1.02}
 Requires: perl >= 0:5.6.0
 
 %description
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/SubCalls.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.09-1
+- Updated to version 1.09.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 
