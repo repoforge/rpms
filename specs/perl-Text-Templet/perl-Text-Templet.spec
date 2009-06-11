@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Text-Templet
-%define real_version 2.8
 
 Summary: Lightweight Text Template Processor
 Name: perl-Text-Templet
-Version: 2.8a
+Version: 2.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,7 +27,7 @@ Requires: perl >= 0:5.006
 template processor built using Perl's eval().
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -53,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Templet.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 2.9-1
+- Updated to version 2.9.
+
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.8a-1
 - Updated to release 2.8a.
 
