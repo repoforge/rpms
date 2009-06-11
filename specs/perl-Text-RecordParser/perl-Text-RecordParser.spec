@@ -10,13 +10,13 @@
 
 Summary: Parse record-oriented data in a text file
 Name: perl-Text-RecordParser
-Version: 1.2.1
+Version: 1.3.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-RecordParser/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-RecordParser-v%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-RecordParser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -27,7 +27,7 @@ BuildRequires: perl(Module::Build)
 Parse record-oriented data in a text file.
 
 %prep
-%setup -n %{real_name}-v%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
@@ -48,14 +48,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes INSTALL MANIFEST META.yml README TODO
 %doc %{_mandir}/man1/tablify.1*
 %doc %{_mandir}/man1/tabmerge.1*
+%doc %{_mandir}/man1/tab2graph.1*
 %doc %{_mandir}/man3/Text::RecordParser.3pm*
 %doc %{_mandir}/man3/Text::RecordParser::Tab.3pm*
+%doc %{_mandir}/man3/Text::RecordParser::Object.3pm.gz
 %{_bindir}/tablify
 %{_bindir}/tabmerge
+%{_bindir}/tab2graph
 %dir %{perl_vendorlib}/Text/
 %{perl_vendorlib}/Text/RecordParser/
 %{perl_vendorlib}/Text/RecordParser.pm
 
+
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.3.0-1
+- Updated to version 1.3.0.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Initial package. (using DAR)
