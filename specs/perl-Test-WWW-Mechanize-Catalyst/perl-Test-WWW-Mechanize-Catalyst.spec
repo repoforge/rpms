@@ -9,7 +9,7 @@
 
 Summary: Test::WWW::Mechanize for Catalyst
 Name: perl-Test-WWW-Mechanize-Catalyst
-Version: 0.42
+Version: 0.51
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,8 +53,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/Mechanize/Catalyst.pm
 
 %changelog
-* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.42-1
-- Updated to release 1.42.
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 0.51-1
+- Updated to version 0.51.
+
+* Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.42-1
+- Updated to release 0.42.
 
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.41-1
 - Initial package. (using DAR)
