@@ -9,7 +9,7 @@
 
 Summary: Report test results of a package retrieved from CPAN
 Name: perl-Test-Reporter
-Version: 1.38
+Version: 1.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,15 +46,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
-%doc %{_mandir}/man1/cpantest.1*
-%doc %{_mandir}/man3/Test::Reporter.3pm*
-%{_bindir}/cpantest
+%doc Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README
+%doc %{_mandir}/man3/Test::Reporter*.3pm*
 %dir %{perl_vendorlib}/Test/
-#%{perl_vendorlib}/Test/Reporter/
+%{perl_vendorlib}/Test/Reporter/
 %{perl_vendorlib}/Test/Reporter.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.54-1
+- Updated to version 1.54.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.38-1
 - Updated to release 1.38.
 
