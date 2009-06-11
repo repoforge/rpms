@@ -9,7 +9,7 @@
 
 Summary: Highly polymorphic testing object
 Name: perl-Test-MockObject
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/MockObject.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.09-1
+- Updated to version 1.09.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.08-1
 - Updated to release 1.08.
 
