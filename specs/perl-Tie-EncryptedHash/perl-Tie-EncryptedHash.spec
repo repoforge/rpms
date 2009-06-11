@@ -9,8 +9,8 @@
 
 Summary: Hashes (and objects based on hashes) with encrypting fields
 Name: perl-Tie-EncryptedHash
-Version: 1.21
-Release: 1.2
+Version: 1.24
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-EncryptedHash/
@@ -49,6 +49,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tie/EncryptedHash.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.8-1
+- Updated to version 1.8.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
 - Rebuild for Fedora Core 5.
 
