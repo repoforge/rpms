@@ -9,7 +9,7 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.14
+Version: 1.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,11 +21,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Mock::LWP)
-BuildRequires: perl(URI::Escape))
+BuildRequires: perl(URI::Escape)
 
 %description
 Test applications using Selenium Remote Control.
@@ -52,14 +53,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes README todo.txt
 %doc %{_mandir}/man3/Test::WWW::Selenium.3pm*
 %doc %{_mandir}/man3/WWW::Selenium.3pm*
+%doc %{_mandir}/man3/WWW::Selenium::Util.3pm*
 %dir %{perl_vendorlib}/Test/
 %dir %{perl_vendorlib}/Test/WWW/
-#%{perl_vendorlib}/Test/WWW/Selenium/
 %{perl_vendorlib}/Test/WWW/Selenium.pm
 %dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/Selenium.pm
+%{perl_vendorlib}/WWW/Selenium/Util.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.17-1
+- Updated to version 1.17.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.14-1
 - Updated to release 1.14.
 
