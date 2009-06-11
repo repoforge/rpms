@@ -9,7 +9,7 @@
 
 Summary: Perl module implements a testing-specific WWW::Mechanize subclass
 Name: perl-Test-WWW-Mechanize
-Version: 1.20
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/Mechanize.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.20-1
 - Updated to release 1.20.
 
