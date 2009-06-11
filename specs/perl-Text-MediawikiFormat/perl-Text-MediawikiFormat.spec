@@ -9,13 +9,13 @@
 
 Summary: Translate Wiki markup into other text formats
 Name: perl-Text-MediawikiFormat
-Version: 0.05
+Version: 1.0
 Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-MediawikiFormat/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-MediawikiFormat-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Text/Text-MediawikiFormat-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +26,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Translate Wiki markup into other text formats.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-v%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/MediawikiFormat.pm
 
 %changelog
+* Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.0-1
+- Updated to version 1.0.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.05-1
 - Updated to release 0.05.
 
