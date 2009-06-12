@@ -9,7 +9,7 @@
 
 Summary: Perlish declarative templates
 Name: perl-Template-Declare
-Version: 0.28
+Version: 0.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Class::Accessor::Fast)
+BuildRequires: perl(Class::Data::Inheritable)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(HTML::Lint)
+BuildRequires: perl(String::BufferStack) >= 1.1
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Warn)
 Requires: perl >= 0:5.6.0
@@ -56,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Declare.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.39-1
+- Updated to version 0.39.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 
