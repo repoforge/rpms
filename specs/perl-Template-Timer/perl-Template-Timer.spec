@@ -9,7 +9,7 @@
 
 Summary: Rudimentary profiling for Template Toolkit
 Name: perl-Template-Timer
-Version: 0.04
+Version: 1.00
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Timer.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.00-1
+- Updated to version 1.00.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Initial package. (using DAR)
