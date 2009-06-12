@@ -9,8 +9,8 @@
 
 Summary: Test strings and data structures and show differences if not ok
 Name: perl-Test-Differences
-Version: 0.47
-Release: 1.2
+Version: 0.4801
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Differences/
@@ -54,5 +54,8 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Test/Differences.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.4801-1
+- Updated to version 0.4801.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.47-1
 - Initial package.
