@@ -15,7 +15,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.95.1
+Version: 0.95.2
 Release: 4
 License: GPL
 Group: Applications/System
@@ -386,6 +386,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.95.2-1
+- Updated to release 0.95.2.
+
 * Mon May 04 2009 Dag Wieers <dag@wieers.com> - 0.95.1-4
 - Fix the inconsistency between LocalSocket in clamd.conf and clamav-milter.conf. (Gerald Teschl)
 
