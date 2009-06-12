@@ -9,7 +9,7 @@
 
 Summary: Allow calling of class methods on arbitrary classes
 Name: perl-Template-Plugin-Class
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,12 +44,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/Template::Plugin::Class.3pm*
 %dir %{perl_vendorlib}/Template/
 %dir %{perl_vendorlib}/Template/Plugin/
 %{perl_vendorlib}/Template/Plugin/Class.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.14-1
+- Updated to version 0.14.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Initial package. (using DAR)
