@@ -6,13 +6,12 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Term-ReadLine-Gnu
-%define real_version 1.17
 
 # todo mv dir, wrong name
 
 Summary: Extension for the GNU Readline/History library
 Name: perl-Term-ReadLine-Gnu
-Version: 1.17a
+Version: 1.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,7 +37,7 @@ with Perl.  TRG may be useful for a C programmer to prototype
 a program which uses the GNU Readline Library.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -72,6 +71,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Term/ReadLine/Gnu.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.19-1
+- Updated to version 1.19.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 1.17a-1
 - Updated to release 1.17a.
 
