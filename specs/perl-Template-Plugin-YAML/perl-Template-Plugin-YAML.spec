@@ -9,8 +9,8 @@
 
 Summary: Plugin interface to YAML
 Name: perl-Template-Plugin-YAML
-Version: 1.22
-Release: 1.2
+Version: 1.23
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-YAML/
@@ -48,6 +48,9 @@ This module contains a plugin interface to YAML.
 %{perl_vendorlib}/Template/Plugin/YAML.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.23-1
+- Updated to version 1.23.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
 - Rebuild for Fedora Core 5.
 
