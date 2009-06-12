@@ -9,7 +9,7 @@
 
 Summary: Subversion repository mirroring tool
 Name: perl-SVN-Mirror
-Version: 0.73
+Version: 0.75
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -20,13 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: subversion-perl
-BuildRequires: perl-Data-UUID
-BuildRequires: perl-Term-ReadKey
-BuildRequires: perl-SVN-Simple
-BuildRequires: perl-TimeDate
-BuildRequires: perl-File-chdir
-BuildRequires: perl-Class-Accessor
+BuildRequires: perl(Class::Accessor)
+BuildRequires: perl(Date::Format)
+BuildRequires: perl(File::chdir)
+BuildRequires: perl(SVN::Core) >= 1.2.0
+BuildRequires: perl(SVN::Simple::Edit)
+BuildRequires: perl(Term::ReadKey)
+BuildRequires: perl(URI::Escape)
+BuildRequires: perl(URI::file)
 
 %description
 SVN::Mirror is a subversion repository mirroring tool.
@@ -59,6 +60,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SVN/Mirror/
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.75-1
+- Updated to version 0.75.
+- Rewrote build-requirements from META.yml
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.73-1
 - Updated to release 0.73.
 
