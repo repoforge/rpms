@@ -9,7 +9,7 @@
 
 Summary: Dispatcher module for command line interface programs
 Name: perl-App-CLI
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/App/CLI.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.08-1
+- Updated to version 0.08.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.07-1
 - Initial package. (using DAR)
