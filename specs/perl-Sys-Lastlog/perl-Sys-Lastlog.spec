@@ -9,7 +9,7 @@
 
 Summary: Perl module to provide an OO interface to lastlog files
 Name: perl-Sys-Lastlog
-Version: 1.5
+Version: 1.6
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Sys/Lastlog/
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.6-1
+- Updated to version 1.6.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.5-1
 - Initial package. (using DAR)
