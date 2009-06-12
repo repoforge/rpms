@@ -9,7 +9,7 @@
 
 Summary: Perl module implements an extremely flexible deep comparison
 Name: perl-Test-Deep
-Version: 0.100
+Version: 0.104
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Deep.pod
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.104-1
+- Updated to version 0.104.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.100-1
 - Updated to release 0.100.
 
