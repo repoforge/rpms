@@ -9,7 +9,7 @@
 
 Summary: Provides basic first-pass API testing for large class trees
 Name: perl-Test-ClassAPI
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/ClassAPI.pm
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Updated to release 1.04.
 
