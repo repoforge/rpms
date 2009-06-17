@@ -9,7 +9,7 @@
 
 Summary: Perl module to install subroutines into packages easily
 Name: perl-Sub-Install
-Version: 0.924
+Version: 0.925
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sub/Install.pm
 
 %changelog
+* Wed Jun 17 2009 Christoph Maser <cmr@financial.com> - 0.925-1
+- Updated to version 0.925.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.924-1
 - Initial package. (using DAR)
