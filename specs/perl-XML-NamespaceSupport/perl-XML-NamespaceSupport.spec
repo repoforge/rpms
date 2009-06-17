@@ -12,8 +12,8 @@
 
 Summary: Perl module that implements a simple generic namespace support class
 Name: perl-XML-NamespaceSupport
-Version: 1.09
-Release: 1.2
+Version: 1.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-NamespaceSupport/
@@ -24,6 +24,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 perl-XML-NamespaceSupport is a Perl module that implements
@@ -33,7 +34,7 @@ a simple generic namespace support class.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"  --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -54,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/NamespaceSupport.pm
 
 %changelog
+* Wed Jun 17 2009 Christoph Maser <cmr@financial.com> - 1.10-1
+- Updated to version 1.10.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Updated to release 1.09.
 
