@@ -9,7 +9,7 @@
 
 Summary: IPv6 related part of the C socket.h defines and structure manipulators
 Name: perl-Socket6
-Version: 0.20
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Socket6.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.23-1
+- Updated to version 0.23.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.20-1
 - Updated to release 0.20.
 
