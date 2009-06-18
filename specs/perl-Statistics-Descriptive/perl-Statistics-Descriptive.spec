@@ -6,17 +6,18 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Statistics-Descriptive
+%define real_version 3.0000
 
 Summary: Module of basic descriptive statistical functions
 Name: perl-Statistics-Descriptive
-Version: 2.6
-Release: 1.2
+Version: 3.0
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Descriptive/
 
-Source: http://www.cpan.org/modules/by-module/Statistics/Statistics-Descriptive-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Source: http://www.cpan.org/modules/by-module/Statistics/Statistics-Descriptive-%{real_version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{real_version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
@@ -26,7 +27,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Module of basic descriptive statistical functions.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -49,6 +50,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Statistics/Descriptive.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 3.0000-1
+- Updated to version 3.0.
+- Added real_version 
+
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 3.000-1
+- Updated to version 3.000.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2.6-1.2
 - Rebuild for Fedora Core 5.
 
