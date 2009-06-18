@@ -9,7 +9,7 @@
 
 Summary: Get information from Excel file
 Name: perl-Spreadsheet-ParseExcel
-Version: 0.32
+Version: 0.49
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Spreadsheet/ParseExcel.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.49-1
+- Updated to version 0.49.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 
