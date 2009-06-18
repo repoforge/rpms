@@ -9,8 +9,8 @@
 
 Summary: Find similar strings by trigram (or 1, 2, 4, etc.-gram) method
 Name: perl-String-Trigram
-Version: 0.1
-Release: 1.2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Trigram/
@@ -58,5 +58,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/String/Trigram/
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.1-1
 - Initial package.
