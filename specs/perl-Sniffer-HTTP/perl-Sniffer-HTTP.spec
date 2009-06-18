@@ -9,7 +9,7 @@
 
 Summary: Multi-connection sniffer driver
 Name: perl-Sniffer-HTTP
-Version: 0.17
+Version: 0.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sniffer/
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.19-1
+- Updated to version 0.19.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Updated to release 0.17.
 
