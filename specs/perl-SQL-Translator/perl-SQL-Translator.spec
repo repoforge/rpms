@@ -9,7 +9,7 @@
 
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
-Version: 0.09000
+Version: 0.09006
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,11 +20,22 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp::Clan)
+BuildRequires: perl(Class::Base)
+BuildRequires: perl(Class::Accessor::Fast)
+BuildRequires: perl(Class::MakeMethods)
+BuildRequires: perl(Class::Data::Inheritable) >= 0.02
+BuildRequires: perl(DBI)
+BuildRequires: perl(Digest::SHA1) >= 2
 BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::ShareDir) >= 1
 BuildRequires: perl(File::Spec)
+BuildRequires: perl(IO::Scalar) >= 2.11
 BuildRequires: perl(Test::Differences)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More) >= 0.6
+BuildRequires: perl(Parse::RecDescent)
+BuildRequires: perl(XML::Writer) >= 0.5
 BuildRequires: perl(YAML) >= 0.39
 
 %description
@@ -40,7 +51,7 @@ EOF
 %define __perl_requires %{_tmppath}/%{name}-filter-requirements.sh
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -55,7 +66,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README
+%doc AUTHORS BUGS Changes LICENSE MANIFEST MANIFEST.SKIP README
 %doc %{_mandir}/man1/sqlt.1*
 %doc %{_mandir}/man1/sqlt-diagram.1*
 %doc %{_mandir}/man1/sqlt-diff.1*
@@ -71,6 +82,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/Test/
 %dir %{perl_vendorlib}/Test/SQL/
 %{perl_vendorlib}/Test/SQL/Translator.pm
+%{perl_vendorlib}/auto/share/dist/SQL-Translator/
 %{_bindir}/sqlt
 %{_bindir}/sqlt-diagram
 %{_bindir}/sqlt-diff
@@ -79,6 +91,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt-graph
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.09006-1
+- Updated to version 0.09006.
+
 * Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 0.09000-1
 - Updated to release 0.09000.
 
