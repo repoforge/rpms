@@ -9,7 +9,7 @@
 
 Summary: Perl module to retrieve names of code references
 Name: perl-Sub-Identify
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -18,7 +18,6 @@ URL: http://search.cpan.org/dist/Sub-Identify/
 Source: http://www.cpan.org/modules/by-module/Sub/Sub-Identify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl
 Requires: perl
 
@@ -46,10 +45,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/Sub::Identify.3pm*
-%dir %{perl_vendorlib}/Sub/
-%{perl_vendorlib}/Sub/Identify.pm
+%dir %{perl_vendorarch}/Sub/
+%{perl_vendorarch}/Sub/Identify.pm
+%{perl_vendorarch}/auto/Sub/Identify/Identify.bs
+%{perl_vendorarch}/auto/Sub/Identify/Identify.so
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Fri Jul 25 2008 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Updated to release 0.03.
 
