@@ -9,7 +9,7 @@
 
 Summary: Write to a cross platform Excel binary file
 Name: perl-Spreadsheet-WriteExcel
-Version: 2.24
+Version: 2.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Spreadsheet/WriteExcel.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 2.25-1
+- Updated to version 2.25.
+
 * Tue Sep  9 2008 Dries Verachtert <dries@ulyssis.org> - 2.24-1
 - Updated to release 2.24.
 
