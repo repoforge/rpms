@@ -9,7 +9,7 @@
 
 Summary: Set of objects and strings
 Name: perl-Set-Object
-Version: 1.25
+Version: 1.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Set/Object.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 1.27-1
+- Updated to version 1.27.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.25-1
 - Updated to release 1.25.
 
