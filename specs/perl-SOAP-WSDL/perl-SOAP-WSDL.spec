@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name SOAP-WSDL
-%define real_version 2.000001
+%define real_version 2.000010
 
 Summary: SOAP with WSDL support
 Name: perl-SOAP-WSDL
-Version: 2.00.01
+Version: 2.00.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -75,6 +75,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/SOAP/WSDL.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 2.00.10-1
+- Updated to release 2.00.10.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.00.01-1
 - Updated to release 2.00.01.
 
