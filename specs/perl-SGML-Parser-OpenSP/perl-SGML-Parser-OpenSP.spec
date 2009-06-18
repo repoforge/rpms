@@ -9,7 +9,7 @@
 
 Summary: Perl module to parse SGML documents using OpenSP
 Name: perl-SGML-Parser-OpenSP
-Version: 0.991
+Version: 0.994
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/SGML/Parser/OpenSP.pm
 
 %changelog
+* Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.994-1
+- Updated to version 0.994.
+
 * Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 0.991-1
 - Updated to release 0.991.
 
