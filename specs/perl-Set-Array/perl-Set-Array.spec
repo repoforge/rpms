@@ -9,7 +9,7 @@
 
 Summary: Arrays as objects with lots of handy methods
 Name: perl-Set-Array
-Version: 0.14
+Version: 0.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,11 +55,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Set/Array.pm
 
 %changelog
+* Fri Jun 19 2009 Christoph Maser <cmr@financial.com> - 0.18-1
+- Updated to version 0.18.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 
