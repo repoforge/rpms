@@ -10,7 +10,7 @@
 Summary: Perl module that implements a JSON converter that Does What I Want
 Name: perl-JSON-DWIW
 Version: 0.27
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-DWIW/
@@ -20,6 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+# this module satisfies the requirements for JSON::Any
+Provides: perl-JSON-Any-alternative = 1.19
 
 %description
 perl-JSON-DWIW is a Perl module that implements a JSON converter that
@@ -54,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/JSON/DWIW.pm
 
 %changelog
+* Fri Jun 12 2009 Steve Huff <shuff@vecna.org> - 0.27-2
+- Added Provides: perl-JSON-Any-alternative.
+
 * Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.27-1
 - Updated to release 0.27.
 
