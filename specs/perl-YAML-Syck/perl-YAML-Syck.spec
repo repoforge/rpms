@@ -10,7 +10,7 @@
 Summary: Fast, lightweight YAML loader and dumper
 Name: perl-YAML-Syck
 Version: 1.07
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Syck/
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 0:5.3.7
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.3.7
+
+# this module satisfies the requirements for JSON::Any
+Provides: perl-JSON-Any-alternative = 1.19
 
 %description
 perl-YAML-Syck contains a fast, lightweight YAML loader and dumper.
@@ -59,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/YAML/Syck.pm
 
 %changelog
+* Fri Jun 12 2009 Steve Huff <shuff@vecna.org> - 1.07-2
+- Added Provides: perl-JSON-Any-alternative.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.07-1
 - Updated to version 1.07.
 
