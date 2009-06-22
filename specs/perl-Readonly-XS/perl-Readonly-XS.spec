@@ -9,8 +9,8 @@
 
 Summary: Companion module to Readonly.pm
 Name: perl-Readonly-XS
-Version: 1.04
-Release: 1.2
+Version: 1.05
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Readonly-XS/
@@ -55,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Readonly/XS/
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.
