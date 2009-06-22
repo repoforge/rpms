@@ -9,7 +9,7 @@
 
 Summary: Data, client and server classes for XML-RPC
 Name: perl-RPC-XML
-Version: 0.64
+Version: 0.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/RPC/XML.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.65-1
+- Updated to version 0.65.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.64-1
 - Updated to release 0.64.
 
