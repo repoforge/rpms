@@ -9,7 +9,7 @@
 
 Summary: Perl module to do simplified queries for the non-programmer
 Name: perl-Querylet
-Version: 0.323
+Version: 0.324
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Querylet.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.324-1
+- Updated to version 0.324.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.323-1
 - Initial package. (using DAR)
