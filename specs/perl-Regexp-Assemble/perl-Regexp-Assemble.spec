@@ -9,7 +9,7 @@
 
 Summary: Create Regular expressions
 Name: perl-Regexp-Assemble
-Version: 0.32
+Version: 0.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Regexp/Assemble.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.34-1
+- Updated to version 0.34.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 
