@@ -9,7 +9,7 @@
 
 Summary: Launch and control background processes
 Name: perl-Proc-Simple
-Version: 1.22
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Proc/Simple.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.22-1
 - Updated to release 1.22.
 
