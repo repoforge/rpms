@@ -9,7 +9,7 @@
 
 Summary: Optimized module loading for forking or non-forking processes
 Name: perl-prefork
-Version: 1.02
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/prefork.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 1.03-1
+- Updated to version 1.03.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.02-1
 - Updated to release 1.02.
 
