@@ -9,7 +9,7 @@
 
 Summary: wxPerl-based interactive PPI debugger/tester
 Name: perl-PPI-Tester
-Version: 0.06
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,7 +22,6 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(File::Spec) >= 0.82
-BuildRequires: perl(ExtUtils::AutoInstall) >= 0.49
 BuildRequires: perl(PPI) >= 0.840
 BuildRequires: perl(Wx) >= 0.19
 Requires: perl >= 0:5.005
@@ -59,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PPI/Tester.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.15-1
+- Updated to version 0.15.
+
 * Mon Aug 06 2007 Jim <quien-sabe@metaorg.com> - 0.06-2
 - Added BuildRequires perl(PPI) perl(Wx)
 - Fixed unpackagedfiles error for ppitester
