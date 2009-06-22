@@ -9,18 +9,22 @@
 
 Summary: Perl bindings for the RPM Package Manager API
 Name: perl-RPM2
-Version: 0.67
+Version: 0.68
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM2/
 
-Source: http://www.cpan.org/authors/id/C/CH/CHIPT/RPM2-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/L/LK/LKUNDRAK/RPM2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: bzip2-devel
+BuildRequires: elfutils-devel
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: rpm-devel
+BuildRequires: selinux-devel
+BuildRequires: zlib-devel
 
 %description
 Perl bindings for the RPM Package Manager API.
@@ -50,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/RPM2.pm
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.68-1
+- Updated to version 0.68.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Initial package.
