@@ -9,13 +9,13 @@
 
 Summary: Compiler for Perl 6 regexes
 Name: perl-Pugs-Compiler-Rule
-Version: 0.28
+Version: 0.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pugs-Compiler-Rule/
 
-Source: http://www.cpan.org/authors/id/A/AG/AGENT/Pugs-Compiler-Rule-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FG/FGLOCK/Pugs-Compiler-Rule-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,6 +54,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Pugs/
 
 %changelog
+* Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.37-1
+- Updated to version 0.37.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 
