@@ -9,7 +9,7 @@
 
 Summary: Object Oriented time objects
 Name: perl-Time-Piece
-Version: 1.14
+Version: 1.15
 Release: 1
 Epoch: 1
 License: Artistic/GPL
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Time/Seconds.pm
 
 %changelog
+* Mon Jun 29 2009 Christoph Maser <cmr@financial.com> - 1.15-1
+- Updated to version 1.15.
+
 * Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 1.14-1
 - Updated to version 1.14.
 
