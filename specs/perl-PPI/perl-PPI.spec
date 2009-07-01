@@ -9,7 +9,7 @@
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 1.201
+Version: 1.203
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -79,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PPI.pm
 
 %changelog
+* Wed Jul  1 2009 Christoph Maser <cmr@financial.com> - 1.203-1
+- Updated to version 1.203.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.201-1
 - Updated to release 1.201.
 
