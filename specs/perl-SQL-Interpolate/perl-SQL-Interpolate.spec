@@ -9,7 +9,7 @@
 
 Summary: Interpolate Perl variables into SQL statements
 Name: perl-SQL-Interpolate
-Version: 0.33
+Version: 0.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Interpolate.pm
 
 %changelog
+* Wed Jul  1 2009 Christoph Maser <cmr@financial.com> - 0.41-1
+- Updated to version 0.41.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.33-1
 - Initial package.
