@@ -4,7 +4,7 @@
 Summary: Tool to migrate across IMAP servers
 Name: imapsync
 Version: 1.255
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://www.linux-france.org/prj/imapsync/
@@ -13,9 +13,11 @@ Source: http://www.linux-france.org/prj/imapsync/dist/imapsync-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Mail::IMAPClient)
+BuildRequires: perl(Mail::IMAPClient) = 2.2.9
 Requires: perl(Date::Manip)
 Requires: perl(IO::Socket::SSL)
+Requires: perl(Mail::IMAPClient) = 2.2.9
+Requires: perl(Term::ReadKey)
 #Requires: perl(Digest::HMAC)
 #Requires: perl(Digest::MD5::M4p)
 #Requires: perl(Net::SSLeay)
@@ -56,6 +58,11 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Jul 01 2009 Christoph Maser <cmr@financial.com> -1.255-2
+- Add dependency for perl(TermReadKey)
+- set dependency for perl(Mail::IMAPClient) to version 2.2.9
+- reported by Phil Durbin, patch from Steve Huff
+
 * Mon Jun 30 2008 Dag Wieers <dag@wieers.com> - 1.255-1
 - Updated to release 1.255.
 
