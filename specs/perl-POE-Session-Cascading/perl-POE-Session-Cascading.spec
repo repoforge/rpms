@@ -9,8 +9,8 @@
 
 Summary: Stack-like POE sessions
 Name: perl-POE-Session-Cascading
-Version: 1.03
-Release: 1.2
+Version: 1.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Session-Cascading/
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Session/Cascading.pm
 
 %changelog
+* Wed Jul  1 2009 Christoph Maser <cmr@financial.com> - 1.04-1
+- Updated to version 1.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-1.2
 - Rebuild for Fedora Core 5.
 
