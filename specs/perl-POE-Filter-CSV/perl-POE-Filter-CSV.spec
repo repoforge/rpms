@@ -9,7 +9,7 @@
 
 Summary: POE-based parser for CSV based files
 Name: perl-POE-Filter-CSV
-Version: 1.12
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/CSV.pm
 
 %changelog
+* Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 
