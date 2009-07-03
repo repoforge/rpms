@@ -7,7 +7,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.6.2
+Version: 4.6.3
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -16,7 +16,12 @@ URL: http://collectd.org/
 Source: http://collectd.org/files/collectd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mysql-devel, rrdtool-devel
+BuildRequires: mysql-devel
+BuildRequires: rrdtool-devel
+BuildRequires: perl-rrdtool
+BuildRequires: perl
+BuildRequires: which
+
 %{!?_without_lmsensors:BuildRequires: lm_sensors-devel}
 
 Obsoletes: collectd-apache <= %{version}-%{release}
@@ -122,6 +127,9 @@ fi
 %exclude %{_libdir}/libcollectdclient.la
 
 %changelog
+* Fri Jul 03 2009 Christoph Maser <cmr@financial.com> - 4.6.3-1
+- Update version 4.6.3
+
 * Mon Mar 23 2009 Dag Wieers <dag@wieers.com> - 4.6.2-1
 - Updated to release 4.6.2.
 
