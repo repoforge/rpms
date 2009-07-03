@@ -10,7 +10,7 @@
 Summary: Perl module named Email-Store
 Name: perl-Email-Store
 Version: 0.255
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Store/
@@ -20,6 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+
+Requires: perl(Class::DBI)
+Requires: perl(Class::Data::Inheritable)
+Requires: perl(Ima::DBI)
 
 %description
 perl-Email-Store is a Perl module.
@@ -63,5 +67,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Store/Mail.pm
 
 %changelog
+* Thu Jul  2 2009 Steve Huff <hakamadare@users.sourceforge.net> - 0.255-2
+- uncaptured Perl dependencies 
+
 * Thu Jun 11 2009 Unknown - 0.255-1
 - Initial package. (using DAR)
