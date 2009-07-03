@@ -9,7 +9,7 @@
 
 Summary: Use SSL in POE
 Name: perl-POE-Component-SSLify
-Version: 0.10
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/SSLify.pm
 
 %changelog
+* Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 0.15-1
+- Updated to version 0.15.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Updated to release 0.10.
 
