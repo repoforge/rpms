@@ -9,8 +9,8 @@
 
 Summary: Generic interface to background process management
 Name: perl-Proc-Background
-Version: 1.08
-Release: 1.2
+Version: 1.09
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Background/
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Proc/Background
 
 %changelog
+* Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.09-1
+- Updated to version 1.09.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.08-1.2
 - Rebuild for Fedora Core 5.
 
