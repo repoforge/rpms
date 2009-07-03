@@ -9,7 +9,7 @@
 
 Summary: Manage a simple logging system for POE
 Name: perl-POE-Component-SimpleLog
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Component/SimpleLog.pm
 
 %changelog
+* Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.04-1
 - Initial package.
