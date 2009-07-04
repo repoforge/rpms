@@ -9,7 +9,7 @@
 
 Summary: Extension for UPnP
 Name: perl-Net-UPnP
-Version: 1.2.1
+Version: 1.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/UPnP/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.41-1
+- Updated to version 1.41.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.1-1
 - Updated to release 1.2.1.
 
