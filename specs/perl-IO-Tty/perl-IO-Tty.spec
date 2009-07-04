@@ -9,7 +9,7 @@
 
 Summary: Interface to pseudo Tty
 Name: perl-IO-Tty
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/IO/Tty/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.07-1
 - Updated to release 1.07.
 
