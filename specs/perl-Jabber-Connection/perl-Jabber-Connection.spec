@@ -9,7 +9,7 @@
 
 Summary: Perl module that provides simple connectivity functions for Jabber
 Name: perl-Jabber-Connection
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,5 +61,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Jabber/NodeFactory.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)
