@@ -9,8 +9,8 @@
 
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
-Version: 1.082
-Release: 2
+Version: 1.098
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Critic/
@@ -22,7 +22,28 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(B::Keywords)
 BuildRequires: perl(Test::More)
-Requires: perl(Module::Pluggable)
+BuildRequires: perl(Config::Tiny) >= 2
+BuildRequires: perl(Exception::Class) >= 1.23
+BuildRequires: perl(IO::String)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Module::Pluggable) >= 3.1
+BuildRequires: perl(PPI) >= 1.203
+BuildRequires: perl(Readonly) >= 1.03
+BuildRequires: perl(String::Format) >= 1.13 
+BuildRequires: perl(version)
+
+Requires: perl
+Requires: perl(B::Keywords)
+Requires: perl(Test::More)
+Requires: perl(Config::Tiny) >= 2
+Requires: perl(Exception::Class) >= 1.23
+Requires: perl(IO::String)
+Requires: perl(List::MoreUtils)
+Requires: perl(Module::Pluggable) >= 3.1
+Requires: perl(PPI) >= 1.203
+Requires: perl(Readonly) >= 1.03
+Requires: perl(String::Format) >= 1.13
+Requires: perl(version)
 
 %description
 Critique Perl source code for best-practices.
@@ -61,6 +82,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.098-1
+- Updated to version 1.098.
+
 * Fri Jul 18 2008 Dries Verachtert <dries@ulyssis.org> - 1.082-1
 - Fix: perl(Module::Pluggable) requirement added, thanks to Philip Durbin.
 
