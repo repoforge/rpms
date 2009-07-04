@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a MVC web application framework
 Name: perl-Maypole
-Version: 2.121
+Version: 2.13
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(DBD::SQLite2)
+Requires: perl(DBD::SQLite2)
 
 %description
 Maypole is a Perl module that implements a MVC web application framework.
@@ -61,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Maypole/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.13-1
+- Updated to version 2.13.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 2.121-1
 - Updated to release 2.121.
 
