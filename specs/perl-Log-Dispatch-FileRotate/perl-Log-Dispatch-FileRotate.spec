@@ -9,7 +9,7 @@
 
 Summary: Automatically archive and rotate logfiles
 Name: perl-Log-Dispatch-FileRotate
-Version: 1.18
+Version: 1.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Log/Dispatch/FileRotate.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.19-1
+- Updated to version 1.19.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 1.18-1
 - Updated to release 1.18.
 
