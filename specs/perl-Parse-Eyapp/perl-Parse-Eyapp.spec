@@ -9,7 +9,7 @@
 
 Summary: Extensions for Parse::Yapp
 Name: perl-Parse-Eyapp
-Version: 1.115
+Version: 1.147
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,16 +51,20 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man1/eyapp.1*
 %doc %{_mandir}/man1/treereg.1*
 %doc %{_mandir}/man1/vgg.1*
-#%doc %{_mandir}/man3/Parse::Eyapp.3pm*
-#%doc %{_mandir}/man3/Parse::Eyapp::*.3pm*
+%doc %{_mandir}/man3/Parse::Eyapp.3pm*
+%doc %{_mandir}/man3/Parse::Eyapp::*.3pm*
 %{_bindir}/eyapp
 %{_bindir}/treereg
 %{_bindir}/vgg
 %dir %{perl_vendorlib}/Parse/
 %{perl_vendorlib}/Parse/Eyapp/
 %{perl_vendorlib}/Parse/Eyapp.pm
+%{perl_vendorlib}/Parse/Eyapp.pod
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.147-1
+- Updated to version 1.147.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.115-1
 - Updated to release 1.115.
 
