@@ -9,7 +9,7 @@
 
 Summary: Interprocess Publish/Subscribe channels
 Name: perl-IPC-PubSub
-Version: 0.28
+Version: 0.29
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/PubSub.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.29-1
+- Updated to version 0.29.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 
