@@ -9,7 +9,7 @@
 
 Summary: IPC functions
 Name: perl-IPC-Run
-Version: 0.80
+Version: 0.82
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ This module provides various IPC functionalities.
 %{perl_vendorlib}/IPC/Run/*
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.82-1
+- Updated to version 0.82.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.80-1
 - Updated to release 0.80.
 
