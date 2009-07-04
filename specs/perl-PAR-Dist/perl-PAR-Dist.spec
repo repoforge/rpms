@@ -9,7 +9,7 @@
 
 Summary: Create and manipulate PAR distributions
 Name: perl-PAR-Dist
-Version: 0.29
+Version: 0.45
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PAR/Dist.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.45-1
+- Updated to version 0.45.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 0.29-1
 - Updated to release 0.29.
 
