@@ -9,7 +9,7 @@
 
 Summary: Search engine library
 Name: perl-KinoSearch
-Version: 0.163
+Version: 0.165
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,6 +22,9 @@ BuildRequires: perl >= 2:5.8.3
 BuildRequires: perl(ExtUtils::CBuilder)
 BuildRequires: perl(ExtUtils::ParseXS)
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Lingua::StopWords)
+BuildRequires: perl(Lingua::Stem::Snowball)
+
 Requires: perl >= 2:5.8.3
 
 %description
@@ -54,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/KinoSearch.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.165-1
+- Updated to version 0.165.
+
 * Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.163-1
 - Updated to release 0.163.
 
