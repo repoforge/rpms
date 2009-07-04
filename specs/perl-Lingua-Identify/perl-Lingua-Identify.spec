@@ -9,7 +9,7 @@
 
 Summary: Identify languages
 Name: perl-Lingua-Identify
-Version: 0.19
+Version: 0.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Lingua/Identify/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.23-1
+- Updated to version 0.23.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.19-1
 - Updated to release 0.19.
 
