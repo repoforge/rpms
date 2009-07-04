@@ -9,7 +9,7 @@
 
 Summary: Routines to pick apart, examine and put together DNS packets
 Name: perl-Net-DNS-ToolKit
-Version: 0.36
+Version: 0.42
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -32,7 +32,7 @@ applications to interact directly with remote DNS servers.
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Net/DNS/ToolKit/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.42-1
+- Updated to version 0.42.
+
 * Mon Mar 03 2008 Dag Wieers <dag@wieers.com> - 0.36-1
 - Updated to release 0.36.
 
