@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Math-Pari
-%define real_version 2.3.3
+%define real_version 2.3.4
 
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
-Version: 2.010800
+Version: 2.010801
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Math/libPARI.pod
 
 %changelog
+* Sat Jul 04 2009 Chritoph Maser <cmr@financial.com> 2.010801-
+- Updated to release 2.010801.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.010800-1
 - Updated to release 2.010800.
 
