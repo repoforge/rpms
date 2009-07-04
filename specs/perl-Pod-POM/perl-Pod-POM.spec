@@ -9,8 +9,8 @@
 
 Summary: POD Object Model
 Name: perl-Pod-POM
-Version: 0.17
-Release: 1.2
+Version: 0.25
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-POM/
@@ -54,6 +54,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes README
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man3/*
+%{_bindir}/pomdump
 %{_bindir}/podlint
 %{_bindir}/pom2
 %dir %{perl_vendorlib}/Pod/
@@ -61,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Pod/POM/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.25-1
+- Updated to version 0.25.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-1.2
 - Rebuild for Fedora Core 5.
 
