@@ -9,7 +9,7 @@
 
 Summary: Perl module that provides a unified way to configure network interfaces
 Name: perl-Net-Ifconfig-Wrapper
-Version: 0.09
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,5 +55,8 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/Ifconfig/Wrapper.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)
