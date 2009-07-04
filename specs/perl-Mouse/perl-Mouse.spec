@@ -9,7 +9,7 @@
 
 Summary: Moose minus the antlers
 Name: perl-Mouse
-Version: 0.09
+Version: 0.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,15 +46,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml SIGNATURE
+%doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/Mouse.3pm*
+%doc %{_mandir}/man3/ouse.3pm*
 %doc %{_mandir}/man3/Mouse::*.3pm*
 %doc %{_mandir}/man3/Squirrel.3pm*
 %{perl_vendorlib}/Mouse/
 %{perl_vendorlib}/Mouse.pm
+%{perl_vendorlib}/ouse.pm
 %{perl_vendorlib}/Squirrel/
 %{perl_vendorlib}/Squirrel.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.27-1
+- Updated to version 0.27.
+
 * Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)
