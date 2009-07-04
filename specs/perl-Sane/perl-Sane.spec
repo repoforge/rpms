@@ -9,7 +9,7 @@
 
 Summary: Perl extension for the SANE (Scanner Access Now Easy) Project
 Name: perl-Sane
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,11 @@ URL: http://search.cpan.org/dist/Sane/
 Source: http://www.cpan.org/authors/id/R/RA/RATCLIFFE/Sane-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: sane-backends-devel
 BuildRequires: perl
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: pkgconfig
 
 %description
 Perl extension for the SANE (Scanner Access Now Easy) Project.
@@ -51,6 +55,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Sane.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.03-1
+- Updated to version 0.03.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 0.02-1
 - Updated to release 0.02.
 
