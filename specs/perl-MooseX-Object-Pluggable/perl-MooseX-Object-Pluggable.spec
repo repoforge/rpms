@@ -9,7 +9,7 @@
 
 Summary: Perl module to make your classes pluggable
 Name: perl-MooseX-Object-Pluggable
-Version: 0.0007
+Version: 0.0011
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -32,7 +32,7 @@ MooseX-Object-Pluggable is a Perl module to make your classes pluggable.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Object/Pluggable.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.0011-1
+- Updated to version 0.0011.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.0007-1
 - Updated to release 0.0007.
 
