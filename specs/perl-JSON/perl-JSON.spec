@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Makamaka Hannyaharamitu <makamaka$cpan,org>
+# Tag: test
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +10,8 @@
 
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
-Version: 1.15
-Release: 2
+Version: 2.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON/
@@ -62,19 +63,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Apache::JSONRPC.3pm*
 %doc %{_mandir}/man3/JSON.3pm*
 %doc %{_mandir}/man3/JSON::*.3pm*
-%doc %{_mandir}/man3/JSONRPC.3pm*
-%doc %{_mandir}/man3/JSONRPC::*.3pm*
-%dir %{perl_vendorlib}/Apache/
-%{perl_vendorlib}/Apache/JSONRPC.pm
 %{perl_vendorlib}/JSON/
 %{perl_vendorlib}/JSON.pm
-%{perl_vendorlib}/JSONRPC/
-%{perl_vendorlib}/JSONRPC.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.15-1
+- Updated to version 2.15.
+
 * Fri Jun 12 2009 Steve Huff <shuff@vecna.org> - 1.15-2
 - Added Provides: perl-JSON-Any-alternative.
 
