@@ -9,7 +9,7 @@
 
 Summary: Interface to Sun's Network Information Service
 Name: perl-Net-NIS
-Version: 0.34
+Version: 0.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Net/NISTable.pod
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.43-1
+- Updated to version 0.43.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.34-1
 - Initial package. (using DAR)
