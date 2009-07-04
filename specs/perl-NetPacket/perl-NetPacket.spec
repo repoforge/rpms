@@ -9,8 +9,8 @@
 
 Summary: Assemble and dissassemble network packets
 Name: perl-NetPacket
-Version: 0.04
-Release: 1.2
+Version: 0.41.1
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetPacket/
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 
 %description
 These modules do basic disassembly of network packets of various Internet
@@ -51,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/NetPacket/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.41.1-1
+- Updated to version 0.41.1.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.04-1.2
 - Rebuild for Fedora Core 5.
 
