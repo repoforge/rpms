@@ -9,7 +9,7 @@
 
 Summary: Parse mailer logs from syslog
 Name: perl-Parse-Syslog-Mail
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Parse/Syslog/Mail.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to version 0.17.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.16-1
 - Updated to release 0.16.
 
