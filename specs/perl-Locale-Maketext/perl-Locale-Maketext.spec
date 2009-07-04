@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Locale/Maketext.pod
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.13-1
+- Updated to version 1.13.
+
 * Tue Jun 24 2008 Dag Wieers <dag@wieers.com> - 1.13-1
 - Updated to release 1.13.
 
