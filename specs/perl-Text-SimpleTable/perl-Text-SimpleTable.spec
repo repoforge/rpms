@@ -9,7 +9,7 @@
 
 Summary: Simple Eyecandy ASCII Tables
 Name: perl-Text-SimpleTable
-Version: 1.1
+Version: 1.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/SimpleTable.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.2-1
+- Updated to version 1.2.
+
 * Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.1-1
 - Updated to version 1.1.
 
