@@ -9,13 +9,13 @@
 
 Summary: mro::* interface compatibility for Perls < 5.9.5
 Name: perl-MRO-Compat
-Version: 0.10
-Release: 2
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MRO-Compat/
 
-Source: http://www.cpan.org/authors/id/B/BL/BLBLACK/MRO-Compat-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/MRO-Compat-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MRO/Compat.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Tue Apr 28 2009 Christoph Maser <cmr@financial.com> - 0.10-2
 - Add missing requirement "perl(Class::C3)"
 
