@@ -9,7 +9,7 @@
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
-Version: 1.32
+Version: 1.35
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/SSLeay.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.35-1
+- Updated to version 1.35.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.32-1
 - Updated to release 1.32.
 
