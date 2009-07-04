@@ -9,7 +9,7 @@
 
 Summary: Runtime require of both modules and files
 Name: perl-Module-Load
-Version: 0.12
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Load.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Wed Nov 14 2007 Dag Wieers <dag@wieers.com> - 0.12-1
 - Updated to release 0.12.
 
