@@ -9,7 +9,7 @@
 
 Summary: Fast lookup of country codes from IP addresses
 Name: perl-IP-Country
-Version: 2.25
+Version: 2.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,12 +62,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/IP::Country::*.3pm*
 %{_bindir}/ip2cc
 %dir %{perl_vendorlib}/IP/
+%{perl_vendorlib}/IP/._Authority.pm
 %{perl_vendorlib}/IP/Authority/
 %{perl_vendorlib}/IP/Authority.pm
 %{perl_vendorlib}/IP/Country/
 %{perl_vendorlib}/IP/Country.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.26-1
+- Updated to version 2.26.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 2.25-1
 - Updated to release 2.25.
 
