@@ -13,7 +13,7 @@
 
 Summary: Perl DNS resolver module
 Name: perl-Net-DNS
-Version: 0.63
+Version: 0.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -71,6 +71,9 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %exclude %{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.65-1
+- Updated to version 0.65.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.63-1
 - Updated to release 0.63.
 
