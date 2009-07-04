@@ -9,7 +9,7 @@
 
 Summary: Framework for parsing Pod
 Name: perl-Pod-Simple
-Version: 3.05
+Version: 3.07
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ This module contains a framework for parsing Pod.
 %{perl_vendorlib}/Pod/Simple/*
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 3.07-1
+- Updated to version 3.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 3.05-1
 - Updated to release 3.05.
 
