@@ -9,7 +9,7 @@
 
 Summary: Perl module to mark modules as loaded or unloaded
 Name: perl-Module-Loaded
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Loaded.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.02-1
+- Updated to version 0.02.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)
