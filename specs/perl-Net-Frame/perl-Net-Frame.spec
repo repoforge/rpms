@@ -9,7 +9,7 @@
 
 Summary: the base framework for frame crafting
 Name: perl-Net-Frame
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/Frame.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Tue Jan 06 2009 Christoph Maser <cmr@financial.com> - 1.05-1
 - Initial package. (using DAR)
