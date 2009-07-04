@@ -9,7 +9,7 @@
 
 Summary: Read and write (Acrobat) FDF files
 Name: perl-PDF-FDF-Simple
-Version: 0.17
+Version: 0.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,14 +51,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README
-%doc %{_mandir}/man3/PDF::FDF::Simple.3pm*
+%doc %{_mandir}/man3/PDF::FDF::Simple*.3pm*
 %dir %{perl_vendorlib}/PDF/
 %dir %{perl_vendorlib}/PDF/FDF/
-#%{perl_vendorlib}/PDF/FDF/Simple/
+%{perl_vendorlib}/PDF/FDF/Simple/
 %{perl_vendorlib}/PDF/FDF/Simple.pm
 %{perl_vendorlib}/PDF/FDF/Simple.pod
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.21-1
+- Updated to version 0.21.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.17-1
 - Updated to release 0.17.
 
