@@ -6,10 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Number-Format
+%define real_version 1.72
 
 Summary: Convert numbers to strings with pretty formatting
 Name: perl-Number-Format
-Version: 1.52
+Version: 1.72a
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -33,7 +34,7 @@ separator come from the locale information or can be specified by the
 user.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Number/Format.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.72a-1
+- Updated to version 1.72a.
+
 * Sat Sep 23 2006 Dries Verachtert <dries@ulyssis.org> - 1.52-1
 - Updated to release 1.52.
 
