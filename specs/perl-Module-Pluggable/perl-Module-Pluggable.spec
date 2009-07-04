@@ -9,7 +9,7 @@
 
 Summary: Automatically give your module the ability to have plugins
 Name: perl-Module-Pluggable
-Version: 3.8
+Version: 3.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Pluggable.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 3.9-1
+- Updated to version 3.9.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 3.8-1
 - Updated to release 3.8.
 
