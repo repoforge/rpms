@@ -9,8 +9,8 @@
 
 Summary: Wrapper Class for the various JSON classes
 Name: perl-JSON-Any
-Version: 1.19
-Release: 2
+Version: 1.21
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-Any/
@@ -37,7 +37,7 @@ Wrapper Class for the various JSON classes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/JSON/Any.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.21-1
+- Updated to version 1.21.
+
 * Fri Jun 12 2009 Steve Huff <shuff@vecna.org> - 1.19-2
 - Added dependency on perl-JSON-Any-alternative.
 - JSON::PC no longer a supported module; removed dependency.
