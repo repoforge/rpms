@@ -9,7 +9,7 @@
 
 Summary: Portable interface to open and send raw data to network
 Name: perl-Net-Write
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/Write.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Tue Jan 06 2009 Dag Wieers <cmr@financial.com> - 1.04-1
 - Updated to release 1.04.
 
