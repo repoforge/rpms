@@ -9,7 +9,7 @@
 
 Summary: Perl module to parse and utilize MySQL's /etc/my.cnf and ~/.my.cnf files
 Name: perl-MySQL-Config
-Version: 1.03
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MySQL/Config.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.04-1
+- Updated to version 1.04.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.03-1
 - Initial package. (using DAR)
