@@ -9,8 +9,8 @@
 
 Summary: Perl extension for secure shell
 Name: perl-Net-SSH
-Version: 0.08
-Release: 1.2
+Version: 0.09
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSH/
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/SSH.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.09-1
+- Updated to version 0.09.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.08-1.2
 - Rebuild for Fedora Core 5.
 
