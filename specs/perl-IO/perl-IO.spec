@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IO
-%define real_version 1.23
 
 Summary: Perl module to load various IO modules
 Name: perl-IO
-Version: 1.2301
+Version: 1.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/IO.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.25-1
+- Updated to version 1.25.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.2301-1
 - Switch to upstream version.
 
