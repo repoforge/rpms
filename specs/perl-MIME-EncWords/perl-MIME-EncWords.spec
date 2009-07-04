@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name MIME-EncWords
-%define real_version 1.010101
 
 Summary: Deal with RFC-1522 encoded words
 Name: perl-MIME-EncWords
-Version: 1.010.101
+Version: 1.011.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MIME/EncWords.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.011.1-1
+- Updated to version 1.011.1.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.010.101-1
 - Updated to release 1.010.101.
 
