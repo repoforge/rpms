@@ -9,8 +9,8 @@
 
 Summary: Perl client interface to SSH
 Name: perl-Net-SSH-Perl
-Version: 1.30
-Release: 2
+Version: 1.34
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSH-Perl/
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/SSH/Perl/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.34-1
+- Updated to version 1.34.
+
 * Fri Apr 07 2006 Dries Verachtert <dries@ulyssis.org> - 1.30-2
 - Fix for error about missing object method 'blocking', thanks to Igor Bujna.
 
