@@ -9,7 +9,7 @@
 
 Summary: Detect errors in log files
 Name: perl-Log-Detect
-Version: 1.422
+Version: 1.424
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Log/Delayed.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.424-1
+- Updated to version 1.424.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.422-1
 - Updated to release 1.422.
 
