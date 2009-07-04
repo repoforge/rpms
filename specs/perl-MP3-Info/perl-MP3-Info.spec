@@ -9,7 +9,7 @@
 
 Summary: Edit MP3 tags
 Name: perl-MP3-Info
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 #%{perl_vendorlib}/MPEG/MP3Info.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.
 
