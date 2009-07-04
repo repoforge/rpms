@@ -9,8 +9,8 @@
 
 Summary: Patricia Trie perl module for fast IP address lookups
 Name: perl-Net-Patricia
-Version: 1.014
-Release: 1.2
+Version: 1.15
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Patricia/
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Net/Patricia/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.15-1
+- Updated to version 1.15.
+
 * Sat Jan  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.014-1
 - Updated to release 1.014.
 
