@@ -9,7 +9,7 @@
 
 Summary: Perl module to list all constants declared in a package
 Name: perl-Package-Constants
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Package/Constants.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.02-1
+- Updated to version 0.02.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)
