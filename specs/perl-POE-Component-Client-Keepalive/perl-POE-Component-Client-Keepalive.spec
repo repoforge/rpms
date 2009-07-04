@@ -9,7 +9,7 @@
 
 Summary: Manages and keeps alive client connections
 Name: perl-POE-Component-Client-Keepalive
-Version: 0.1001
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Component/Connection/Keepalive.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.25-1
+- Updated to version 0.25.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.1001-1
 - Updated to release 0.1001.
 
