@@ -15,7 +15,7 @@
 
 Summary: Manipulate raw ip packets with interface to libpcap
 Name: perl-Net-RawIP
-Version: 0.23
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/RawIP.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.25-1
+- Updated to version 0.25.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 
