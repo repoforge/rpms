@@ -9,7 +9,7 @@
 
 Summary: Programmatic access to Google's Calendar API
 Name: perl-Net-Google-Calendar
-Version: 0.94
+Version: 0.97
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Google/Calendar.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.97-1
+- Updated to version 0.97.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.94-1
 - Updated to release 0.94.
 
