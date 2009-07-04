@@ -9,7 +9,7 @@
 
 Summary: Network appliance command-line phrasebook
 Name: perl-Net-Appliance-Phrasebook
-Version: 1.2
+Version: 1.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,10 +48,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Net::Appliance::Phrasebook.3pm*
 %dir %{perl_vendorlib}/Net/
 %dir %{perl_vendorlib}/Net/Appliance/
-#%{perl_vendorlib}/Net/Appliance/Phrasebook/
+%{perl_vendorlib}/Net/Appliance/Phrasebook/nas-pb.yml
 %{perl_vendorlib}/Net/Appliance/Phrasebook.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.8-1
+- Updated to version 1.8.
+
 * Tue Sep 16 2008 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.
 
