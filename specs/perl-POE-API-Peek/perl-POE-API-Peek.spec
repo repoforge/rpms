@@ -9,7 +9,7 @@
 
 Summary: Peek into the internals of a running POE environment
 Name: perl-POE-API-Peek
-Version: 1.0802
+Version: 1.34
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(Module::Signature)
 BuildRequires: perl(Test::Distribution)
 BuildRequires: perl(Test::Pod::Coverage)
@@ -50,7 +51,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE VERSION
+%doc LICENSE MANIFEST MANIFEST.SKIP META.yml README VERSION
 %doc %{_mandir}/man3/POE::API::Peek.3pm*
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/API/
@@ -58,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/API/Peek.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.34-1
+- Updated to version 1.34.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.0802-1
 - Updated to release 1.0802.
 
