@@ -9,7 +9,7 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.42
+Version: 0.46
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.46-1
+- Updated to version 0.46.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.42-1
 - Updated to release 0.42.
 
