@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements dynamic PerlIO layers
 Name: perl-PerlIO-via-dynamic
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PerlIO/via/dynamic.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Wed May 02 2007 Dag Wieers <dag@wieers.com> - 0.12-1
 - Initial package. (using DAR)
