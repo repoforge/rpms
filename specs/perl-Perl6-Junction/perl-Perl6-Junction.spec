@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Perl6-Junction
-%define real_version 1.30
 
 Summary: Perl6 style Junction operators in Perl5
 Name: perl-Perl6-Junction
-Version: 1.30000
+Version: 1.40000
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Perl6/Junction.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.40000-1
+- Updated to version 1.40000.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.30000-1
 - Switch to upstream version.
 
