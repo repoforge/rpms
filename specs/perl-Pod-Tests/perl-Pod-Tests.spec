@@ -9,7 +9,7 @@
 
 Summary: Perl module named Pod-Tests
 Name: perl-Pod-Tests
-Version: 0.18
+Version: 1.19
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Pod/Tests.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.19-1
+- Updated to version 1.19.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)
