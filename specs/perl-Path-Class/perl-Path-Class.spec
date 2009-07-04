@@ -9,7 +9,7 @@
 
 Summary: Cross-platform path specification manipulation
 Name: perl-Path-Class
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Path/Class/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to version 0.17.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.16-1
 - Updated to release 0.16.
 
