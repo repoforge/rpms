@@ -10,7 +10,7 @@
 
 Summary: Checks if the documentation of a module is comprehensive
 Name: perl-Pod-Coverage
-Version: 0.19
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,7 +53,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README examples/
+%doc Changes MANIFEST META.yml examples/
 %doc %{_mandir}/man3/Pod::Coverage.3pm*
 %doc %{_mandir}/man3/Pod::Coverage::*.3pm*
 %{_bindir}/pod_cover
@@ -62,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Pod/Coverage.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.20-1
+- Updated to version 0.20.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.19-1
 - Updated to release 0.19.
 
