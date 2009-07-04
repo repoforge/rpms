@@ -9,17 +9,18 @@
 
 Summary: Perl extension to model fractions
 Name: perl-Number-Fraction
-Version: 1.11
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-Fraction/
 
-Source: http://www.cpan.org/modules/by-module/Number/Number-Fraction-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAVECROSS/Number-Fraction-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Module::Build)
 BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.6.0
 
@@ -30,6 +31,7 @@ Perl extension to model fractions.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} Build.PL
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -52,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Number/Fraction.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.12-1
+- Updated to version 1.12.
+
 * Fri Mar 14 2008 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 
