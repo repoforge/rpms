@@ -9,7 +9,7 @@
 
 Summary: Retrieve currently available tld names and descriptions
 Name: perl-Net-Domain-TLD
-Version: 1.67
+Version: 1.68
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Domain/TLD.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.68-1
+- Updated to version 1.68.
+
 * Fri Dec 14 2007 Dag Wieers <dag@wieers.com> - 1.67-1
 - Updated to release 1.67.
 
