@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements an interface to libdnet
 Name: perl-Net-Libdnet
-Version: 0.01
+Version: 0.92
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,6 +19,8 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Libdnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: libdnet-devel
+Requires: libdnet
 
 %description
 perl-Net-Libdnet is a Perl module that implements an interface to libdnet.
@@ -43,12 +45,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST README
-%doc %{_mandir}/man3/Net::Libdnet.3pm*
+%doc %{_mandir}/man3/Net::Libdnet*.3pm*
 %dir %{perl_vendorarch}/Net/
 %{perl_vendorarch}/Net/Libdnet.pm
-%dir %{perl_vendorarch}/auto/Net/
-%{perl_vendorarch}/auto/Net/Libdnet/
+%dir %{perl_vendorarch}/Net/
+%{perl_vendorarch}/Net/Libdnet/
+%{perl_vendorarch}/auto/Net/Libdnet/Libdnet.bs
+%{perl_vendorarch}/auto/Net/Libdnet/Libdnet.so
+%{_bindir}/dnet.pl
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.92-1
+- Updated to version 0.92.
+
 * Sat Aug 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)
