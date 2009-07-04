@@ -9,8 +9,8 @@
 
 Summary: Makes Perl slightly more functional like Haskell
 Name: perl-Language-Functional
-Version: 0.03
-Release: 1.2
+Version: 0.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-Functional/
@@ -47,11 +47,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Language/Functional.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.03-1.2
 - Rebuild for Fedora Core 5.
 
