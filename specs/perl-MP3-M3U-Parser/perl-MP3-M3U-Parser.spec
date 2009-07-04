@@ -9,7 +9,7 @@
 
 Summary: MP3 playlist parser
 Name: perl-MP3-M3U-Parser
-Version: 2.20
+Version: 2.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MP3/M3U/Parser.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.23-1
+- Updated to version 2.23.
+
 * Sat Jun 16 2007 Who Knows ( aka Jim ) <quien-sabe@metaorg.com> - 2.20-1
 - Updated to release 2.20.
 
