@@ -9,7 +9,7 @@
 
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
-Version: 0.31
+Version: 0.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.33-1
+- Updated to version 0.33.
+
 * Mon Dec 22 2008 Christoph Maser <cmr@financial.com> - 0.31-1
 - Updated to release 0.31
 
