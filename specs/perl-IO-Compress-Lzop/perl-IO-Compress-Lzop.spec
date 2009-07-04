@@ -9,7 +9,7 @@
 
 Summary: Write lzop files/buffers
 Name: perl-IO-Compress-Lzop
-Version: 2.015
+Version: 2.020
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.020-1
+- Updated to version 2.020.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 2.015-1
 - Updated to release 2.015.
 
