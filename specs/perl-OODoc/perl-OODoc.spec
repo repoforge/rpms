@@ -9,7 +9,7 @@
 
 Summary: Creates code related documentation
 Name: perl-OODoc
-Version: 1.03
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/OODoc.pod
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 1.03-1
 - Updated to release 1.03.
 
