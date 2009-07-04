@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a client for Rsh protocol
 Name: perl-Net-Rsh
-Version: 0.02
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Rsh.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)
