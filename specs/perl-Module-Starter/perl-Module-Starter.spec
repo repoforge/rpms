@@ -9,7 +9,7 @@
 
 Summary: Simple starterkit for any module
 Name: perl-Module-Starter
-Version: 1.470
+Version: 1.50
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Starter.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.50-1
+- Updated to version 1.50.
+
 * Thu Nov 15 2007 Dag Wieers <dag@wieers.com> - 1.470-1
 - Updated to release 1.470.
 
