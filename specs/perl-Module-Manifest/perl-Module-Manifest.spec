@@ -9,7 +9,7 @@
 
 Summary: Parse and examine a Perl distribution MANIFEST file
 Name: perl-Module-Manifest
-Version: 0.03
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Manifest.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.03-1
 - Updated to release 0.03.
 
