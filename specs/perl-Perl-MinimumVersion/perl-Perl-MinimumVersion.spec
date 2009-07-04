@@ -9,7 +9,7 @@
 
 Summary: Find a minimum required version of perl for Perl code
 Name: perl-Perl-MinimumVersion
-Version: 0.15
+Version: 1.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Perl/MinimumVersion.pm
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.20-1
+- Updated to version 1.20.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.15-1
 - Initial package. (using DAR)
