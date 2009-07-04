@@ -9,7 +9,7 @@
 
 Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
-Version: 5.76
+Version: 6.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,7 +53,7 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README docs/ examples/
+%doc Changes LICENSE MANIFEST META.yml README docs/ examples/
 %doc %{_mandir}/man3/POE::Component::IRC.3pm*
 %doc %{_mandir}/man3/POE::Component::IRC::*.3pm*
 %doc %{_mandir}/man3/POE::Filter::*.3pm*
@@ -64,6 +64,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 6.08-1
+- Updated to version 6.08.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 5.76-1
 - Updated to release 5.76.
 
