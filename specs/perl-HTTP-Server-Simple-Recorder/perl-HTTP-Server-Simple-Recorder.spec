@@ -9,7 +9,7 @@
 
 Summary: Mixin to record HTTP::Server::Simple's sockets
 Name: perl-HTTP-Server-Simple-Recorder
-Version: 0.02
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Server/Simple/Recorder.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.03-1
+- Updated to version 0.03.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)
