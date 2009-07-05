@@ -9,7 +9,7 @@
 
 Summary: Interface to the Virtual Terminal Emulation library
 Name: perl-Gnome2-Vte
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Gnome2/Vte/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.09-1
+- Updated to version 0.09.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.08-1
 - Updated to release 0.08.
 
