@@ -9,8 +9,8 @@
 
 Summary: FreezeThaw module for perl
 Name: perl-FreezeThaw
-Version: 0.43
-Release: 1.2
+Version: 0.45
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FreezeThaw/
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/FreezeThaw.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.45-1
+- Updated to version 0.45.
+
 * Fri Jan 13 2006 Dag Wieers <dag@wieers.com> - 0.43-1
 - Cosmetic cleanup.
 
