@@ -9,7 +9,7 @@
 
 Summary: Perl interface to libnotify
 Name: perl-Gtk2-Notify
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,11 +18,17 @@ URL: http://search.cpan.org/dist/Gtk2-Notify/
 Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-Notify-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gtk2-devel
+BuildRequires: libnotify-devel
 BuildRequires: perl
+BuildRequires: perl(Cairo::Install::Files)
 BuildRequires: perl(ExtUtils::Depends)
 BuildRequires: perl(ExtUtils::PkgConfig)
 BuildRequires: perl(Glib::CodeGen)
+BuildRequires: perl(Gtk2)
 BuildRequires: pkgconfig
+Requires: gtk2
+Requires: libnotify
 
 %description
 Perl interface to libnotify.
@@ -60,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Gtk2/Notify/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Updated to release 0.04.
 
