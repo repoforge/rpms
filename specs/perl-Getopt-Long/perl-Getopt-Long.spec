@@ -9,7 +9,7 @@
 
 Summary: Extended processing of command line options
 Name: perl-Getopt-Long
-Version: 2.37
+Version: 2.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/newgetopt.pl
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2.38-1
+- Updated to version 2.38.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 2.37-1
 - Updated to release 2.37.
 
