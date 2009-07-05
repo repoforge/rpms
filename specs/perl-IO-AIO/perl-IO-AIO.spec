@@ -9,7 +9,7 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 3.15
+Version: 3.261
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -53,8 +53,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/IO/AIO/
 %dir %{perl_vendorarch}/IO/
 %{perl_vendorarch}/IO/AIO.pm
+%{_bindir}/treescan
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 3.261-1
+- Updated to version 3.261.
+
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 3.15-1
 - Updated to release 3.15.
 
