@@ -9,7 +9,7 @@
 
 Summary: Perl bindings for the GtkImageView widget
 Name: perl-Gtk2-ImageView
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,8 +18,15 @@ URL: http://search.cpan.org/dist/Gtk2-ImageView/
 Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-ImageView-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gtk2-devel
 BuildRequires: gtkimageview-devel
 BuildRequires: perl
+BuildRequires: perl(Cairo::Install::Files)
+BuildRequires: perl(ExtUtils::Depends)
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Glib)
+BuildRequires: perl(Gtk2)
+Requires: gtk2
 
 %description
 Perl bindings for the GtkImageView widget.
@@ -62,5 +69,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Gtk2/ImageView.pod
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Tue Dec 09 2008 Dag Wieers <dag@wieers.com> - 0.04-1
 - Initial package. (using DAR)
