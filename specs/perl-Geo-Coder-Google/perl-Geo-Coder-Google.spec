@@ -9,7 +9,7 @@
 
 Summary: Google Maps Geocoding API 
 Name: perl-Geo-Coder-Google
-Version: 0.03
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/Coder/Google.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Thu Feb 28 2008 Dries Verachtert <dries@ulyssis.org> - 0.03-1
 - Initial package.
