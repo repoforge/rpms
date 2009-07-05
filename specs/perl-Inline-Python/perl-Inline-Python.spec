@@ -9,7 +9,7 @@
 
 Summary: Write Perl subs and classes in Python
 Name: perl-Inline-Python
-Version: 0.25
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Inline/Python.pod
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.28-1
+- Updated to version 0.28.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.25-1
 - Updated to release 0.25.
 
