@@ -9,7 +9,7 @@
 
 Summary: Object oriented interface for the Perl IO modules
 Name: perl-IO-All
-Version: 0.38
+Version: 0.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/All.pod
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.39-1
+- Updated to version 0.39.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.38-1
 - Updated to release 0.38.
 
