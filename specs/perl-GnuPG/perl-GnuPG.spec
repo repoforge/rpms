@@ -9,8 +9,8 @@
 
 Summary: Interface to the GNU Privacy Guard
 Name: perl-GnuPG
-Version: 0.09
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG/
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/GnuPG
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.10-1
+- Updated to version 0.10.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1.2
 - Rebuild for Fedora Core 5.
 
