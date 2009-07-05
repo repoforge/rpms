@@ -6,17 +6,16 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IO-CaptureOutput
-%define real_version 1.10
 
 Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
-Version: 1.1000
+Version: 1.1101
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-CaptureOutput/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-CaptureOutput-%{real_version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/IO/IO-CaptureOutput-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -30,7 +29,7 @@ BuildRequires: perl(IO::File)
 Capture STDOUT and STDERR from Perl code, subprocesses or XS.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -59,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/CaptureOutput.pod
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.1101-1
+- Updated to version 1.1101.
+
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 1.1000-1
 - Updated to release 1.10.
 
