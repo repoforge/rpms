@@ -9,7 +9,7 @@
 
 Summary: Interface to the GraphViz graphing tool
 Name: perl-GraphViz
-Version: 2.03
+Version: 2.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/GraphViz.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2.04-1
+- Updated to version 2.04.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.03-1
 - Updated to release 2.03.
 
