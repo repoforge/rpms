@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Image-Size
-%define real_version 3.100001
 
 Summary: Library to extract height/width from images
 Name: perl-Image-Size
-Version: 3.1.1
+Version: 3.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,10 +47,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README README.Win32 SIGNATURE
-%doc %{_mandir}/man1/imgsize.1*
+%doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
 %doc %{_mandir}/man3/Image::Size.3pm*
-%{_bindir}/imgsize
 %dir %{perl_vendorlib}/Image/
 #%{perl_vendorlib}/Image/Size/
 %{perl_vendorlib}/Image/Size.pm
@@ -59,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/auto/Image/Size/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 3.2-1
+- Updated to version 3.2.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 3.1.1-1
 - Updated to release 3.1.1.
 
