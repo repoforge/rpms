@@ -9,8 +9,8 @@
 
 Summary: Classes for 2-letter, 3-letter, and numerical codes for countries
 Name: perl-Geography-Countries
-Version: 1.4
-Release: 2.2
+Version: 2009041301
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geography-Countries/
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geography/Countries.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2009041301-1
+- Updated to version 2009041301.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.4-2.2
 - Rebuild for Fedora Core 5.
 
