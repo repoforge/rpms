@@ -9,7 +9,7 @@
 
 Summary: Perl module to check for HTML errors in a string or file
 Name: perl-HTML-Lint
-Version: 2.04
+Version: 2.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/HTML/Lint.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2.06-1
+- Updated to version 2.06.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 2.04-1
 - Updated to release 2.04.
 
