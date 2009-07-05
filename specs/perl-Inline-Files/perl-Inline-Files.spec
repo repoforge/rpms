@@ -9,8 +9,8 @@
 
 Summary: Multiple virtual files at the end of your code
 Name: perl-Inline-Files
-Version: 0.62
-Release: 1.2
+Version: 0.63
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Files/
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Inline/Files
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.63-1
+- Updated to version 0.63.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.62-1.2
 - Rebuild for Fedora Core 5.
 
