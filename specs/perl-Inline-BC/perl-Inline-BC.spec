@@ -9,8 +9,8 @@
 
 Summary: Inline ILSM for bc the arbitrary precision math Language
 Name: perl-Inline-BC
-Version: 0.06
-Release: 1.2
+Version: 0.08
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-BC/
@@ -52,5 +52,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Inline/BC/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.08-1
+- Updated to version 0.08.
+
 * Thu Jul 22 2004 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Initial package.
