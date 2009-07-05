@@ -8,8 +8,8 @@
 
 Summary: Graph plotting module for Perl
 Name: perl-GD-Graph
-Version: 1.43
-Release: 1.2
+Version: 1.44
+Release: 1
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GDGraph/
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/GD/Graph.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.44-1
+- Updated to version 1.44.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.43-1.2
 - Rebuild for Fedora Core 5.
 
