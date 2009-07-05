@@ -9,7 +9,7 @@
 
 Summary: Perl module to write Perl subroutines in other programming languages
 Name: perl-Inline
-Version: 0.44
+Version: 0.45
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/auto/Inline/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.45-1
+- Updated to version 0.45.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 0.44-1
 - Initial package. (using DAR)
