@@ -9,7 +9,7 @@
 
 Summary: Connect to a local Clam Anti-Virus clamd service and send commands
 Name: perl-File-Scan-ClamAV
-Version: 1.8
+Version: 1.91
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Scan/ClamAV.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.91-1
+- Updated to version 1.91.
+
 * Thu Nov 22 2007 Dag Wieers <dag@wieers.com> - 1.8-1
 - Initial package. (using DAR)
