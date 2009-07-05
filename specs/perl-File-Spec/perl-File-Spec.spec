@@ -9,7 +9,7 @@
 
 Summary: Tools for working with paths and file specs across platforms
 Name: perl-File-Spec
-Version: 3.25
+Version: 3.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Cwd/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 3.30-1
+- Updated to version 3.30.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 3.25-1
 - Initial package. (using DAR)
