@@ -9,8 +9,8 @@
 
 Summary: File locking with flock
 Name: perl-File-Flock
-Version: 104.111901
-Release: 1.2
+Version: 2008.01
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Flock/
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Flock.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2008.01-1
+- Updated to version 2008.01.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 104.111901-1
 - Initial package.
