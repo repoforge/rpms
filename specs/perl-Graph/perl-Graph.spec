@@ -9,7 +9,7 @@
 
 Summary: Graph operations
 Name: perl-Graph
-Version: 0.84
+Version: 0.91
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/auto/Heap071/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.91-1
+- Updated to version 0.91.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.84-1
 - Updated to release 0.84.
 
