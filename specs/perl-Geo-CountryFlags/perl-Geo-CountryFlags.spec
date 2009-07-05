@@ -9,7 +9,7 @@
 
 Summary: Fetch images of country flags
 Name: perl-Geo-CountryFlags
-Version: 1.00
+Version: 1.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/CountryFlags.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.01-1
+- Updated to version 1.01.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Updated to release 1.00.
 
