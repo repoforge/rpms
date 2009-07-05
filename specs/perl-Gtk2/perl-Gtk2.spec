@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
-Version: 1.220
+Version: 1.221
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,12 +18,13 @@ URL: http://search.cpan.org/dist/Gtk2/
 Source: http://www.cpan.org/modules/by-module/Gtk2/Gtk2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gtk2-devel >= 2.0.0
 BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(Cairo)
 Buildrequires: perl(ExtUtils::Depends)
 BuildRequires: perl(ExtUtils::PkgConfig)
 BuildRequires: perl(Glib) >= 1.0.0
-BuildRequires: gtk2-devel >= 2.0.0
-BuildRequires: perl(Cairo)
+BuildRequires: perl(Pango)
 Requires: perl >= 2:5.8.0
 
 %description
@@ -54,7 +55,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod examples/
+%doc AUTHORS LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod examples/
 %doc %{_mandir}/man3/Gtk2.3pm*
 %doc %{_mandir}/man3/Gtk2::*.3pm*
 %{perl_vendorarch}/auto/Gtk2/
@@ -62,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Gtk2.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.221-1
+- Updated to version 1.221.
+
 * Sun May 10 2009 Dag Wieers <dag@wieers.com> - 1.220-1
 - Updated to release 1.220.
 
