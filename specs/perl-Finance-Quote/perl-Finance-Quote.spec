@@ -9,13 +9,13 @@
 
 Summary: Perl module to get stock and mutual fund quotes from various exchanges
 Name: perl-Finance-Quote
-Version: 1.13
+Version: 1.16
 Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Finance-Quote/
 
-Source: http://www.cpan.org/modules/by-module/Finance/Finance-Quote-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EC/ECOCODE/Finance-Quote-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Finance/Quote.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.13-1
 - Initial package. (using DAR)
