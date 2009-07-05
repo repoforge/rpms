@@ -9,7 +9,7 @@
 
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
-Version: 1.04
+Version: 1.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Body.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.04-1
 - Updated to release 1.04.
 
