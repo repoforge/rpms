@@ -9,7 +9,7 @@
 
 Summary: Map states and provinces to their codes and vica versa
 Name: perl-Geography-States
-Version: 2.1
+Version: 2009040901
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geography/States.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2009040901-1
+- Updated to version 2009040901.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Initial package.
