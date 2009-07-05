@@ -9,7 +9,7 @@
 
 Summary: Setup a CGI enviroment from a HTTP::Request
 Name: perl-HTTP-Request-AsCGI
-Version: 0.5
+Version: 0.9
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Request/AsCGI.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.9-1
+- Updated to version 0.9.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
 
