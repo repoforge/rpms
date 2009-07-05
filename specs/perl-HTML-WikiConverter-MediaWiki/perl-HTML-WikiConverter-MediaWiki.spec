@@ -9,7 +9,7 @@
 
 Summary: Converts HTML to MediaWiki markup
 Name: perl-HTML-WikiConverter-MediaWiki
-Version: 0.55
+Version: 0.59
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTML/WikiConverter/MediaWiki.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.59-1
+- Updated to version 0.59.
+
 * Tue Sep 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.55-1
 - Initial package.
