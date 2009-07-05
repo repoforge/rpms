@@ -8,13 +8,13 @@
 
 Summary: Lexically scoped subroutine wrappers
 Name: perl-Hook-LexWrap
-Version: 0.20
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hook-LexWrap/
 
-Source: http://www.cpan.org/modules/by-module/Hook/Hook-LexWrap-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/Hook-LexWrap-%{version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Hook/LexWrap.pm
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Mon Jun 05 2006 Dag Wieers <dag@wieers.com> - 0.20-1
 Initial package. (using DAR)
