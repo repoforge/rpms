@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements a HTML parser class
 Name: perl-HTML-Parser
-Version: 3.59
+Version: 3.61
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -64,6 +64,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/HTML/Parser/
 
 %changelog
+* Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 3.61-1
+- Updated to version 3.61.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 3.56-1
 - Updated to release 3.56.
 
