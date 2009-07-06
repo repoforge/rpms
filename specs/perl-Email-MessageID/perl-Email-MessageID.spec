@@ -9,7 +9,7 @@
 
 Summary: Generate world unique message-ids
 Name: perl-Email-MessageID
-Version: 1.400
+Version: 1.401
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/MessageID.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.401-1
+- Updated to version 1.401.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.400-1
 - Updated to release 1.400.
 
