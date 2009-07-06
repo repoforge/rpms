@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements character encodings
 Name: perl-Encode
-Version: 2.26
+Version: 2.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/encoding.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.33-1
+- Updated to version 2.33.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.26-1
 - Updated to release 2.26.
 
