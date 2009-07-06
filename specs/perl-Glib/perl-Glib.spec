@@ -9,7 +9,7 @@
 
 Summary: Perl wrappers for the GLib utility and object libraries
 Name: perl-Glib
-Version: 1.221
+Version: 1.222
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,7 +52,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod
+%doc AUTHORS LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README TODO copyright.pod
 %doc %{_mandir}/man3/Glib.3pm*
 %doc %{_mandir}/man3/Glib::*.3pm*
 %{perl_vendorarch}/auto/Glib/
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Glib.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.222-1
+- Updated to version 1.222.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.221-1
 - Updated to version 1.221.
 
