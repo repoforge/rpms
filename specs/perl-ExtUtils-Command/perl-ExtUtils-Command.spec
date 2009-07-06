@@ -9,7 +9,7 @@
 
 Summary: Utilities to replace common UNIX commands in Makefiles
 Name: perl-ExtUtils-Command
-Version: 1.15
+Version: 1.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Shell/Command.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 1.15-1
 - Updated to release 1.15.
 
