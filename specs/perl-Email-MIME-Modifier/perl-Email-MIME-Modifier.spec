@@ -9,7 +9,7 @@
 
 Summary: Modify Email::MIME Objects Easily
 Name: perl-Email-MIME-Modifier
-Version: 1.442
+Version: 1.444
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/MIME/Modifier.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.444-1
+- Updated to version 1.444.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 1.442-1
 - Updated to release 1.442.
 
