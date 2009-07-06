@@ -9,7 +9,7 @@
 
 Summary: Interface to IMDB
 Name: perl-IMDB-Film
-Version: 0.38
+Version: 0.39
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IMDB/
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.39-1
+- Updated to version 0.39.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.38-1
 - Updated to version 0.38.
 
