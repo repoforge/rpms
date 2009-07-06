@@ -9,7 +9,7 @@
 
 Summary: Get information about a class and its structure
 Name: perl-Class-Inspector
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,11 +53,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Class::Inspector.3pm*
+%doc %{_mandir}/man3/Class::Inspector::Functions.3pm*
 %dir %{perl_vendorlib}/Class/
-#%{perl_vendorlib}/Class/Inspector/
+%{perl_vendorlib}/Class/Inspector/Functions.pm
 %{perl_vendorlib}/Class/Inspector.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.
 
