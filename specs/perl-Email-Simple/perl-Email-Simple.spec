@@ -9,7 +9,7 @@
 
 Summary: Simple parsing of RFC2822 message format and headers
 Name: perl-Email-Simple
-Version: 2.004
+Version: 2.005
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Simple.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.005-1
+- Updated to version 2.005.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.004-1
 - Updated to release 2.004.
 
