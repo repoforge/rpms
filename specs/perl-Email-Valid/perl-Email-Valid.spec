@@ -9,7 +9,7 @@
 
 Summary: Check validity of Internet email addresses
 Name: perl-Email-Valid
-Version: 0.179
+Version: 0.181
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Valid.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.181-1
+- Updated to version 0.181.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.179-1
 - Updated to release 0.179.
 
