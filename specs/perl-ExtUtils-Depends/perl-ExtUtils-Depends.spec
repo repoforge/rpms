@@ -8,7 +8,7 @@
 
 Summary: ExtUtils-Depends module for perl
 Name: perl-ExtUtils-Depends
-Version: 0.301
+Version: 0.302
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/Depends.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.302-1
+- Updated to version 0.302.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.301-1
 - Updated to release 0.301.
 
