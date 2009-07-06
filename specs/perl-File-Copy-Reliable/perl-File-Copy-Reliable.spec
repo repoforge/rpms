@@ -9,7 +9,7 @@
 
 Summary: Copy and move files with extra checking
 Name: perl-File-Copy-Reliable
-Version: 0.31
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Copy/Reliable.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.32-1
+- Updated to version 0.32.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.31-1
 - Updated to release 0.31.
 
