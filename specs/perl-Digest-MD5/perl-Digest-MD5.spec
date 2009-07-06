@@ -10,7 +10,7 @@
 
 Summary: Perl interface to the MD5 algorithm
 Name: perl-Digest-MD5
-Version: 2.36
+Version: 2.39
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Digest/MD5/
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.39-1
+- Updated to version 2.39.
+
 * Thu Jan 12 2006 Dag Wieers <dag@wieers.com> - 2.36-1
 - Initial package. (using DAR)
