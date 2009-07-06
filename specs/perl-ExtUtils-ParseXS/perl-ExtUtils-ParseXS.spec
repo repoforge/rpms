@@ -9,7 +9,7 @@
 
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
-Version: 2.19
+Version: 2.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/xsubpp
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.20-1
+- Updated to version 2.20.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 2.19-1
 - Updated to release 2.19.
 
