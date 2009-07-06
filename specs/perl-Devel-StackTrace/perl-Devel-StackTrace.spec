@@ -9,7 +9,7 @@
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-Version: 1.1902
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 Requires: perl >= 0:5.006
 
 %description
@@ -34,6 +35,7 @@ and backwards as you want or retrieve specific frames.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} Build.PL
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -56,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.21-1
+- Updated to version 1.21.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.1902-1
 - Updated to release 1.1902.
 
