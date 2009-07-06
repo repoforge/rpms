@@ -9,8 +9,8 @@
 
 Summary: Send email
 Name: perl-Email-Send
-Version: 2.192
-Release: 2
+Version: 2.197
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Send/
@@ -56,6 +56,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Email/Send.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.197-1
+- Updated to version 2.197.
+
 * Sat Dec 08 2007 Dag Wieers <dag@wieers.com> - 2.192-2
 - Added missing dependency to perl(Module::Pluggable). (Max Kanat-Alexander)
 
