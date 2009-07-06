@@ -9,7 +9,7 @@
 
 Summary: Linux/POSIX emulation of Win32::SerialPort functions
 Name: perl-Device-SerialPort
-Version: 1.003001
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,6 +65,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Device/SerialPort/
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.04-1
+- Updated to version 1.04.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 1.003001-1
 - Updated to release 1.003001.
 
