@@ -9,7 +9,7 @@
 
 Summary: Generic interface to background process management
 Name: perl-Proc-Background
-Version: 1.09
+Version: 1.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Proc/Background
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.10-1
+- Updated to version 1.10.
+
 * Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.09-1
 - Updated to version 1.09.
 
