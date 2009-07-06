@@ -9,7 +9,7 @@
 
 Summary: Unified interface to mail representations
 Name: perl-Email-Abstract
-Version: 2.134
+Version: 3.001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Abstract.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 3.001-1
+- Updated to version 3.001.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 2.134-1
 - Updated to release 2.134.
 
