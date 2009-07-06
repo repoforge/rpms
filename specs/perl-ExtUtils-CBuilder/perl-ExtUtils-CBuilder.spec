@@ -9,7 +9,7 @@
 
 Summary: Compile and link C code for Perl modules
 Name: perl-ExtUtils-CBuilder
-Version: 0.24
+Version: 0.2602
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -45,15 +45,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL MANIFEST META.yml README SIGNATURE
+%doc Changes INSTALL MANIFEST META.yml README 
 %doc %{_mandir}/man3/ExtUtils::CBuilder.3pm*
 %doc %{_mandir}/man3/ExtUtils::CBuilder::Platform::Windows.3pm*
 %dir %{perl_vendorlib}/ExtUtils/
 %{perl_vendorlib}/ExtUtils/CBuilder/
 %{perl_vendorlib}/ExtUtils/CBuilder.pm
-%{perl_vendorlib}/ExtUtils/bleadcheck.pl
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.2602-1
+- Updated to version 0.2602.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.24-1
 - Updated to release 0.24.
 
