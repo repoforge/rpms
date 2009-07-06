@@ -9,7 +9,7 @@
 
 Summary: Parse a MIME Content-Type Header
 Name: perl-Email-MIME-ContentType
-Version: 1.014
+Version: 1.015
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/MIME/ContentType.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.015-1
+- Updated to version 1.015.
+
 * Sat May 05 2007 Dag Wieers <dag@wieers.com> - 1.014-1
 - Updated to release 1.014.
 
