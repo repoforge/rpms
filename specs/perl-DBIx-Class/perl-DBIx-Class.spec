@@ -9,7 +9,7 @@
 
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
-Version: 0.08010
+Version: 0.08107
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,7 +24,7 @@ BuildRequires: perl(Carp::Clan) >= 5.9
 BuildRequires: perl(Class::Accessor::Grouped) >= 0.05002
 BuildRequires: perl(Class::C3) >= 0.13
 BuildRequires: perl(Class::C3::Componentised)
-BuildRequires: perl(Class::Inspector) >= 1.18
+BuildRequires: perl(Class::Inspector) >= 1.24
 BuildRequires: perl(Class::Trigger)
 BuildRequires: perl(Data::Page) >= 2.00
 BuildRequires: perl(DBD::SQLite) >= 1.13
@@ -32,12 +32,16 @@ BuildRequires: perl(DBI) >= 1.4
 BuildRequires: perl(DBIx::ContextualFetch)
 BuildRequires: perl(JSON::Any) >= 1
 BuildRequires: perl(Module::Find)
+BuildRequires: perl(Path::Class) >= 0.16
 BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Scope::Guard) >= 0.03
 BuildRequires: perl(SQL::Abstract) >= 1.2
 BuildRequires: perl(SQL::Abstract::Limit) >= 0.10
 BuildRequires: perl(Storable)
 #BuildRequires: perl(Test::Builder) >= 0.33
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::Warn)
 Requires: perl >= 1:5.6.1
 
 %description
@@ -47,7 +51,7 @@ Extensible and flexible object <-> relational mapper.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,12 +67,21 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/DBIx::Class.3pm*
+%doc %{_mandir}/man3/DBIx::Class*.3pm*
+%doc %{_mandir}/man3/SQL::Translator::Parser::DBIx::Class.3pm*
+%doc %{_mandir}/man3/SQL::Translator::Producer::DBIx::Class::File.3pm*
+%doc %{_mandir}/man1/dbicadmin.1*
+%{_bindir}/dbicadmin
 %dir %{perl_vendorlib}/DBIx/
-#%{perl_vendorlib}/DBIx/Class/
+%dir %{perl_vendorlib}/SQL/Translator/Parser/DBIx/Class.pm
+%dir %{perl_vendorlib}/SQL/Translator/Producer/DBIx/Class/File.pm
+%{perl_vendorlib}/DBIx/Class/
 %{perl_vendorlib}/DBIx/Class.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.08107-1
+- Updated to version 0.08107.
+
 * Sun Mar 02 2008 Dag Wieers <dag@wieers.com> - 0.08010-1
 - Updated to release 0.08010.
 
