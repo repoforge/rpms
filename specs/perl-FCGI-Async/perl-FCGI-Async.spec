@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Paul Evans <leonerd$leonerd,org,uk>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Module to allow use of FastCGI asynchronously
 Name: perl-FCGI-Async
-Version: 0.14
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(IO::Async)
+BuildRequires: perl(Test::HexString)
 BuildRequires: perl(Test::More)
 
 %description
@@ -48,7 +51,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml fcgi-spec.html examples/
+%doc Changes MANIFEST META.yml examples/
 %doc %{_mandir}/man3/FCGI::Async.3pm*
 %doc %{_mandir}/man3/FCGI::Async::*.3pm*
 %dir %{perl_vendorlib}/FCGI/
@@ -56,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/FCGI/Async.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 
