@@ -9,7 +9,7 @@
 
 Summary: Easy MIME message parsing
 Name: perl-Email-MIME
-Version: 1.861
+Version: 1.863
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,11 +54,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Email::MIME.3pm*
+%doc %{_mandir}/man3/Email::MIME::Header.3pm*
 %dir %{perl_vendorlib}/Email/
-#%{perl_vendorlib}/Email/MIME/
+%{perl_vendorlib}/Email/MIME/Header.pm
 %{perl_vendorlib}/Email/MIME.pm
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.863-1
+- Updated to version 1.863.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.861-1
 - Updated to release 1.861.
 
