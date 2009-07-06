@@ -9,8 +9,8 @@
 
 Summary: Create web userinterfaces to DBI databases
 Name: perl-DBIx-HTMLView
-Version: 0.1
-Release: 1.2
+Version: 0.9
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-HTMLView/
@@ -50,9 +50,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/DBIx/HTMLView.pm
+%{perl_vendorlib}/DBIx/comp2.pl
+%{perl_vendorlib}/DBIx/config.pm
+%{perl_vendorlib}/DBIx/fmt_srv.pl
+%{perl_vendorlib}/DBIx/gen_act.pl
 %{perl_vendorlib}/DBIx/HTMLView
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.9-1
+- Updated to version 0.9.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.1-1.2
 - Rebuild for Fedora Core 5.
 
