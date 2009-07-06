@@ -9,7 +9,7 @@
 
 Summary: Check what OS we are running on
 Name: perl-Devel-CheckOS
-Version: 1.44
+Version: 1.61
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,14 +49,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Devel::AssertOS.3pm*
 %doc %{_mandir}/man3/Devel::AssertOS::*.3pm*
 %doc %{_mandir}/man3/Devel::CheckOS.3pm*
+%doc %{_mandir}/man3/Devel::CheckOS::Families.3pm*
 %{_bindir}/use-devel-assertos
 %dir %{perl_vendorlib}/Devel/
 %{perl_vendorlib}/Devel/AssertOS/
 %{perl_vendorlib}/Devel/AssertOS.pm
 #%{perl_vendorlib}/Devel/CheckOS/
 %{perl_vendorlib}/Devel/CheckOS.pm
+%{perl_vendorlib}/Devel/CheckOS/Families.pod
 
 %changelog
+* Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.61-1
+- Updated to version 1.61.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.44-1
 - Updated to release 1.44.
 
