@@ -9,7 +9,7 @@
 
 Summary: SSH File Transfer Protocol client
 Name: perl-Net-SFTP-Foreign
-Version: 1.51
+Version: 1.53
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/SFTP/Foreign.pm
 
 %changelog
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 1.53-1
+- Updated to version 1.53.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.51-1
 - Updated to version 1.51.
 
