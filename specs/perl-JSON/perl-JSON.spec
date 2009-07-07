@@ -11,7 +11,7 @@
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
 Version: 2.15
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON/
@@ -27,7 +27,7 @@ BuildRequires: perl(HTTP::Request)
 BuildRequires: perl(HTTP::Response)
 
 # this module satisfies the requirements for JSON::Any
-Provides: perl-JSON-Any-alternative = 1.19
+Provides: perl-JSON-Any-alternative = 1.21
 
 %description
 JSON (JavaScript Object Notation) is a lightweight data-interchange format.
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/JSON.pm
 
 %changelog
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.34-2
+- Update Provides: perl-JSON-Any-alternative to 1.21
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.15-1
 - Updated to version 2.15.
 
