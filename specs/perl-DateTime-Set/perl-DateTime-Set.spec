@@ -9,8 +9,8 @@
 
 Summary: Datetime sets and set math
 Name: perl-DateTime-Set
-Version: 0.25
-Release: 2.2
+Version: 0.27
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Set/
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Set/Infinite/
 
 %changelog
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.27-1
+- Updated to version 0.27.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.25-2.2
 - Rebuild for Fedora Core 5.
 
