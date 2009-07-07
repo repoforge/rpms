@@ -9,7 +9,7 @@
 
 Summary: Perl5 access to Berkeley DB version 1.x
 Name: perl-DB_File
-Version: 1.817
+Version: 1.820
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,6 +19,8 @@ Source: http://www.cpan.org/modules/by-module/DB_File/DB_File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: db4-devel
+Requires: db4
 
 %description
 perl-DB_File is a Perl module providing access to Berkeley DB version 1.x.
@@ -50,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DB_File.pm
 
 %changelog
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 1.820-1
+- Updated to version 1.820.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.817-1
 - Updated to release 1.817.
 
