@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements date conversion routines.
 Name: perl-DateTime-Format-HTTP
-Version: 0.37
+Version: 0.38
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -35,6 +35,7 @@ This package contains the following Perl module:
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} Build.PL
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -50,12 +51,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Artistic COPYING CREDITS Changes INSTALL LICENCE MANIFEST MANIFEST.SKIP META.yml README
+%doc CREDITS Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/DateTime::Format::HTTP.3pm*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/
 %{perl_vendorlib}/DateTime/Format/HTTP.pm
 
 %changelog
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.38-1
+- Updated to version 0.38.
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 0.37-1
 - Initial package. (using DAR)
