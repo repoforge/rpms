@@ -9,7 +9,7 @@
 
 Summary: PostgreSQL emulation mode for SQLite
 Name: perl-DBD-PgLite
-Version: 0.09
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBD/PgLite.pm
 
 %changelog
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)
