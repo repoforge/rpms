@@ -3,7 +3,7 @@
 
 Summary: Geographic Information Systems Extensions to PostgreSQL
 Name: postgis
-Version: 1.3.2
+Version: 1.3.6
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -108,6 +108,9 @@ The postgis-utils package provides the utilities for PostGIS.
 %{_datadir}/postgis/
 
 %changelog
+* Wed Jul  8 2009 Christoph Maser <cmr@financial.com> - 1.3.6-1
+- Updated to version 1.3.6.
+
 * Tue Jan 22 2008 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Updated to release 1.3.2.
 
