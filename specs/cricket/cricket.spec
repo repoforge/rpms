@@ -2,7 +2,7 @@
 # $Id$
 
 %define version     1.0.5
-%define release     6.1
+%define release     6.2
 %define name        cricket
 %define httpd_user  apache
 
@@ -37,7 +37,7 @@ Release: %{release}
 License: GPL
 Group: Applications/System
 URL: http://cricket.sourceforge.net
-Requires: perl(RRDs), perl(DB_File), perl(Time::HiRes), perl-SNMP-Session
+Requires: perl(RRDs), perl(DB_File), perl(Time::HiRes), perl(SNMP::Session)
 Requires: perl(Date::Format), perl(Digest::MD5), perl(LWP), webserver
 Source0: http://download.sourceforge.net/cricket/%{name}-%{version}.tar.gz
 Source1: cricket.cron
@@ -122,7 +122,10 @@ fi
 %doc CHANGES COPYING DEV-INFO README THANKS TODO VERSION doc sample-config
 
 %changelog
-* Wed Jul 07 2009 Christoph Maser <cmr@financial.com> - 1.0.5-6.1
+* Wed Jul 08 2009 Christoph Maser <cmr@financial.com> - 1.0.5-6.2
+- fix previous fix
+ 
+* Wed Jul 08 2009 Christoph Maser <cmr@financial.com> - 1.0.5-6.1
 - fix typo Requires: perl-SNMP_Session -> perl-SNMP-Session
  
 * Wed Apr 06 2005 Wil Cooley <wcooley@nakedape.cc> - 1.0.5-6.nac.0.0
