@@ -7,7 +7,7 @@
 Summary: Console monitor for Nagios
 Name: nsc
 Version: 0.80.2
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://nsc-gothix.sourceforge.net/
@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: nagios, perl(Curses)
+Provides: perl(nsc_nagios)
 
 %description
 nsc is a curses-based console monitor for Nagios. It allows you to monitor
@@ -51,6 +52,9 @@ Nagios services without the expense or availability of a GUI.
 %{_libdir}/nsc/
 
 %changelog
+* Wed Jul 23 2009 Dag Wieers <dag@wieers.com> - 0.80.2-3
+- This provides perl(nsc_nagios) locally (file not package)
+
 * Fri Mar 23 2007 Dag Wieers <dag@wieers.com> - 0.80.2-2
 - Added missing perl modules. (Boris Folgmann)
 
