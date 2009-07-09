@@ -9,7 +9,7 @@
 
 Summary: Pretty print data
 Name: perl-Data-Dump
-Version: 1.11
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,11 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Data::Dump.3pm*
+%doc %{_mandir}/man3/Data::Dump::Trace.3pm*
 %dir %{perl_vendorlib}/Data/
-#%{perl_vendorlib}/Data/Dump/
+%{perl_vendorlib}/Data/Dump/Trace.pm
 %{perl_vendorlib}/Data/Dump.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.14-1
+- Updated to version 1.14.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 
