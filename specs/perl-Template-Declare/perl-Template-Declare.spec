@@ -9,7 +9,7 @@
 
 Summary: Perlish declarative templates
 Name: perl-Template-Declare
-Version: 0.39
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Declare.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.39-1
 - Updated to version 0.39.
 
