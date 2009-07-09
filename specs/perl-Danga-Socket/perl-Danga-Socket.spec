@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements an event loop and event-driven async socket base class
 Name: perl-Danga-Socket
-Version: 1.59
+Version: 1.61
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Danga/Socket.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.61-1
+- Updated to version 1.61.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.59-1
 - Updated to release 1.59.
 
