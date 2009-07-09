@@ -9,7 +9,7 @@
 
 Summary: Taint-aware, XML-ish data serialization
 Name: perl-Data-Taxi
-Version: 0.94
+Version: 0.95
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Taxi.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.95-1
+- Updated to version 0.95.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.94-1
 - Initial package. (using DAR)
