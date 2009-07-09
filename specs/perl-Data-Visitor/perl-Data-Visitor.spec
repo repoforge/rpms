@@ -9,7 +9,7 @@
 
 Summary: Visitor style traversal of Perl data structures
 Name: perl-Data-Visitor
-Version: 0.21
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,7 +43,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml SIGNATURE TODO
+%doc Changes MANIFEST MANIFEST.SKIP META.yml SIGNATURE
 %doc %{_mandir}/man3/Data::Visitor.3pm*
 %doc %{_mandir}/man3/Data::Visitor::Callback.3pm*
 %dir %{perl_vendorlib}/Data/
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Visitor.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.25-1
+- Updated to version 0.25.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.21-1
 - Updated to release 0.21.
 
