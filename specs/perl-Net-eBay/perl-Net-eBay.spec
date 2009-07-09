@@ -9,7 +9,7 @@
 
 Summary: Perl Interface to XML based eBay API
 Name: perl-Net-eBay
-Version: 0.52
+Version: 0.53
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -70,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/eBay.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.53-1
+- Updated to version 0.53.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.52-1
 - Updated to version 0.52.
 
