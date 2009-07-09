@@ -9,7 +9,7 @@
 
 Summary: Object oriented X.509 certificate parser
 Name: perl-Crypt-X509
-Version: 0.32
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -27,7 +27,7 @@ Crypt::X509 is an object oriented X.509 certificate parser with numerous
 methods for directly extracting information from certificates.
 
 %prep
-%setup -n %{real_name}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Crypt/X509.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.32-1
 - Updated to release 0.32.
 
