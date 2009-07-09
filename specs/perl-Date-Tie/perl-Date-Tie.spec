@@ -9,7 +9,7 @@
 
 Summary: Perlish interface to dates
 Name: perl-Date-Tie
-Version: 0.18
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Date/Tie.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.20-1
+- Updated to version 0.20.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.18-1
 - Updated to release 0.18.
 
