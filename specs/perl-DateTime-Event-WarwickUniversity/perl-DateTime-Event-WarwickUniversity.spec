@@ -9,7 +9,7 @@
 
 Summary: Warwick University academic calendar
 Name: perl-DateTime-Event-WarwickUniversity
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/DateTime::Event::WarwickUniversity*
 %{perl_vendorlib}/DateTime/Event/WarwickUniversity.pm
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Updated to release 0.04.
 
