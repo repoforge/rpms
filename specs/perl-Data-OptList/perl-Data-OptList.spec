@@ -9,7 +9,7 @@
 
 Summary: Perl module to parse and validate simple name/value option pairs
 Name: perl-Data-OptList
-Version: 0.103
+Version: 0.104
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/OptList.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.104-1
+- Updated to version 0.104.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.103-1
 - Updated to release 0.103.
 
