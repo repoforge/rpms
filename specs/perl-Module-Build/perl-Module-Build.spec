@@ -11,8 +11,8 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.33
-Release: 2
+Version: 0.34
+Release: 1
 Epoch: 1
 License: Artistic or GPL
 Group: Applications/CPAN
@@ -22,8 +22,57 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Build-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Archive::Tar)
-BuildRequires: perl(ExtUtils::CBuilder), perl(ExtUtils::Manifest)
+BuildRequires: perl
+BuildRequires: perl(Archive::Tar) >= 1.08
+BuildRequires: perl(Cwd)
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(ExtUtils::CBuilder) >= 0.15
+BuildRequires: perl(ExtUtils::Install)
+BuildRequires: perl(ExtUtils::Install) >= 0.3
+BuildRequires: perl(ExtUtils::Manifest)
+BuildRequires: perl(ExtUtils::Mkbootstrap)
+BuildRequires: perl(ExtUtils::ParseXS) >= 1.02
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Compare)
+BuildRequires: perl(File::Copy)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(File::Spec) >= 0.82
+#BuildRequires: perl(File::Temp) >= 0.15
+BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(Module::Signature) >= 0.21
+BuildRequires: perl(Pod::Readme) >= 0.04
+#BuildRequires: perl(Test::Harness) >= 3.16
+#BuildRequires: perl(Test::More) >= 0.49
+BuildRequires: perl(Text::Abbrev)
+BuildRequires: perl(Text::ParseWords)
+BuildRequires: perl(version) >= 0.74
+
+Requires: perl(Archive::Tar) >= 1.08
+Requires: perl(Cwd)
+Requires: perl(Data::Dumper)
+Requires: perl(ExtUtils::CBuilder) >= 0.15
+Requires: perl(ExtUtils::Install)
+Requires: perl(ExtUtils::Install) >= 0.3
+Requires: perl(ExtUtils::Manifest)
+Requires: perl(ExtUtils::Mkbootstrap)
+Requires: perl(ExtUtils::ParseXS) >= 1.02
+Requires: perl(File::Basename)
+Requires: perl(File::Compare)
+Requires: perl(File::Copy)
+Requires: perl(File::Find)
+Requires: perl(File::Path)
+Requires: perl(File::Spec) >= 0.82
+Requires: perl(Getopt::Long)
+Requires: perl(IO::File)
+Requires: perl(Module::Signature) >= 0.21
+Requires: perl(Pod::Readme) >= 0.04
+Requires: perl(Text::Abbrev)
+Requires: perl(Text::ParseWords)
+Requires: perl(version) >= 0.74
+
+AutoReq: no
 
 %description
 "Module::Build" is a system for building, testing, and installing Perl
@@ -60,6 +109,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Build.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.34-1
+- Updated to version 0.34.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.33-2
 - Use epoch due to broken version numbers upstream
 
