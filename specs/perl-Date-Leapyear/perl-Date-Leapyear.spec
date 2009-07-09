@@ -9,8 +9,8 @@
 
 Summary: Is a particular year a leap year
 Name: perl-Date-Leapyear
-Version: 1.71
-Release: 1.2
+Version: 1.72
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Leapyear/
@@ -45,11 +45,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README
+%doc README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Date/Leapyear.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.72-1
+- Updated to version 1.72.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.71-1.2
 - Rebuild for Fedora Core 5.
 
