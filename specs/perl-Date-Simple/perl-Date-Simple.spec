@@ -9,8 +9,8 @@
 
 Summary: Simple date object
 Name: perl-Date-Simple
-Version: 3.02
-Release: 1.2
+Version: 3.03
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Simple/
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Date/Simple/
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 3.03-1
+- Updated to version 3.03.
+
 * Wed Dec 21 2005 Dries Verachtert <dries@ulyssis.org> - 3.02-1
 - Initial package.
