@@ -9,7 +9,7 @@
 
 Summary: an extension of Params::Validate for using Moose's types
 Name: perl-MooseX-Params-Validate
-Version: 0.10
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Params/Validate.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.10-1
 - Updated to version 0.10.
 
