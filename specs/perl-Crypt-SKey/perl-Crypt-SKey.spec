@@ -9,8 +9,8 @@
 
 Summary: Perl S/Key calculator
 Name: perl-Crypt-SKey
-Version: 0.07
-Release: 1.2
+Version: 0.10
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-SKey/
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Crypt/SKey.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.10-1
+- Updated to version 0.10.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
 - Rebuild for Fedora Core 5.
 
