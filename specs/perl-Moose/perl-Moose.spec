@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Stevan Little <stevan$iinteractive,com>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 0.86
+Version: 0.87
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,20 +20,17 @@ Source: http://www.cpan.org/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl >= 5.8.1
 BuildRequires: perl(Carp)
-BuildRequires: perl(Class::MOP) >= 0.64
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Filter::Simple)
-BuildRequires: perl(Scalar::Util) >= 1.18
-BuildRequires: perl(Sub::Exporter) >= 0.972
-BuildRequires: perl(Sub::Name) >= 0.02
-BuildRequires: perl(Test::Exception) >= 0.21
-BuildRequires: perl(Test::LongString)
+BuildRequires: perl(Class::MOP) >= 0.89
+BuildRequires: perl(Data::OptList)
+BuildRequires: perl(List::MoreUtils) >= 0.12
+BuildRequires: perl(Scalar::Util) >= 1.19
+BuildRequires: perl(Sub::Exporter) >= 0.980
+BuildRequires: perl(Sub::Name)
+BuildRequires: perl(Task::Weaken)
 #BuildRequires: perl(Test::More) >= 0.62
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Class::MOP)
-Requires: perl >= 2:5.8.0
+Requires: perl >= 5.8.1
 
 %description
 Moose is a Perl module that implements a complete modern object system.
@@ -68,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.87-1
+- Updated to version 0.87.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.86-1
 - Updated to version 0.86.
 
