@@ -9,7 +9,7 @@
 
 Summary: RSA public-key cryptosystem
 Name: perl-Crypt-RSA
-Version: 1.98
+Version: 1.99
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Crypt/RSA.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.99-1
+- Updated to version 1.99.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.98-1
 - Updated to release 1.98.
 
