@@ -9,7 +9,7 @@
 
 Summary: Exclude files/directories for Version Control Systems
 Name: perl-File-Find-Rule-VCS
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Find/Rule/VCS.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.05-1
 - Updated to release 1.05.
 
