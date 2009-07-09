@@ -8,7 +8,7 @@
 
 summary: A simple mason server
 Name: perl-HTTP-Server-Simple-Mason
-Version: 0.11
+Version: 0.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Server/Simple/Mason.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 
