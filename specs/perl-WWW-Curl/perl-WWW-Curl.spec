@@ -9,13 +9,13 @@
 
 Summary: Perl extension interface for libcurl
 Name: perl-WWW-Curl
-Version: 4.07
+Version: 4.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Curl/
 
-Source: http://www.cpan.org/modules/by-module/WWW/WWW-Curl-%{version}.tar.gz
+Source: http://cpan.cpantesters.org/authors/id/S/SZ/SZBALINT/WWW-Curl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 1:5.6.1 curl-devel
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/WWW/Curl.pm
 
 %changelog
+* Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 4.09-1
+- Updated to version 4.09.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 4.07-1
 - Updated to version 4.07.
 
