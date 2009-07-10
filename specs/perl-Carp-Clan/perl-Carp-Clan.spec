@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 # Upstream: Joshua ben Jore <jjore$cpan,org>
+# el4 ships /usr/share/man/man3/Carp::Clan.3pm.gz inside perl-Date-Calc!
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -54,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Carp/Clan.pod
 
 %changelog
+* Fri Feb 22 2008 Dag Wieers <dag@wieers.com> - 6.00-2
+- add ExcludeDist el4
+
 * Fri Feb 22 2008 Dag Wieers <dag@wieers.com> - 6.00-1
 - Updated to release 6.00.
 
