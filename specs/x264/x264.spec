@@ -9,26 +9,10 @@
 %{?fc6:  %define _with_modxorg 1}
 %{?fc5:  %define _with_modxorg 1}
 
-%{?el4:%define _without_gtk26 1}
-%{?fc3:%define _without_gtk26 1}
-%{?fc2:%define _without_gtk26 1}
-
-%{?fc1:%define _without_glibc232 1}
-%{?fc1:%define _without_gtk26 1}
-
+%{?el3:%define _without_asm 1}
 %{?el3:%define _without_glibc232 1}
-%{?el3:%define _without_gtk26 1}
 
-%{?rh9:%define _without_glibc232 1}
-%{?rh9:%define _without_gtk26 1}
-
-%{?rh7:%define _without_glibc232 1}
-%{?rh7:%define _without_gtk26 1}
-
-%{?el2:%define _without_glibc232 1}
-%{?el2:%define _without_gtk26 1}
-
-%define date 20070529
+%define date 20090708
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
@@ -37,47 +21,31 @@ Release: 0.4.%{date}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html
+
 Source: http://downloads.videolan.org/pub/videolan/x264/snapshots/x264-snapshot-%{date}-2245.tar.bz2
-Patch0: x264-snapshot-20070529-2245-glibc232.patch
+Patch0: x264-20090708-glibc232.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: nasm, yasm, gettext
-%{?!_without_gtk26:BuildRequires: gtk2-devel >= 2.6}
+
+BuildRequires: gettext
+BuildRequires: nasm
+BuildRequires: yasm
 %{?_with_visualize:%{?_with_modxorg:BuildRequires: libXt-devel}}
 %{?_with_visualize:%{!?_with_modxorg:BuildRequires: XFree86-devel}}
-# version.sh requires svnversion
-BuildRequires: subversion
+
+Obsoletes: x264-gtk <= %{version}-%{release}
 
 %description
 Utility and library for encoding H264/AVC video streams.
-
 
 %package devel
 Summary: Development files for the x264 library
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}, pkgconfig
+Obsoletes: x264-gtk-devel <= %{version}-%{release}
 
 %description devel
 This package contains the files required to develop programs that will encode
 H264/AVC video streams using the x264 library.
-
-
-%package gtk
-Summary: GTK x264 frontend
-Group: Applications/Multimedia
-
-%description gtk
-Graphical utility for encoding H264/AVC video streams.
-
-
-%package gtk-devel
-Summary: Development files for the GTK x264 frontend
-Group: Development/Libraries
-Requires: %{name}-gtk = %{version}-%{release}, pkgconfig
-
-%description gtk-devel
-This package contains the files required to develop programs that will encode
-H264/AVC video streams using the x264 graphical utility.
-
 
 %prep
 %setup -n %{name}-snapshot-%{date}-2245
@@ -92,38 +60,28 @@ H264/AVC video streams using the x264 graphical utility.
 %build
 # Force PIC as applications fail to recompile against the lib on x86_64 without
 ./configure \
-    --prefix=%{_prefix} \
-    --bindir=%{_bindir} \
-    --includedir=%{_includedir} \
-    --libdir=%{_libdir} \
-%{?!_without_gtk26:    --enable-gtk} \
-    --enable-pthread \
+    --prefix="%{_prefix}" \
+    --bindir="%{_bindir}" \
+    --includedir="%{_includedir}" \
+    --libdir="%{_libdir}" \
+%{?_without_asm:--disable-asm} \
     --enable-debug \
-    %{?_with_visualize:--enable-visualize} \
     --enable-pic \
+    --enable-pthread \
     --enable-shared \
+%{?_with_visualize:--enable-visualize} \
     --extra-cflags="%{optflags}"
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
-%{?!_without_gtk26:%find_lang x264_gtk}
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
-%post gtk -p /sbin/ldconfig
-
-%postun gtk -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -139,25 +97,10 @@ H264/AVC video streams using the x264 graphical utility.
 %{_libdir}/libx264.a
 %{_libdir}/libx264.so
 
-%if %{!?_without_gtk26:1}0
-%files gtk -f x264_gtk.lang
-%defattr(-, root, root, 0755)
-%doc AUTHORS COPYING
-%{_bindir}/x264_gtk_encode
-%{_libdir}/libx264gtk.so.*
-%{_datadir}/x264/x264.png
-
-%files gtk-devel
-%defattr(-, root, root, 0755)
-%doc doc/*.txt
-%{_includedir}/x264_gtk.h
-%{_includedir}/x264_gtk_enum.h
-%{_libdir}/pkgconfig/x264gtk.pc
-%{_libdir}/libx264gtk.a
-%{_libdir}/libx264gtk.so
-%endif
-
 %changelog
+* Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 0.0.0-0.4.20090708
+- Updated to git release 20090708 (soname .68).
+
 * Wed May 30 2007 Matthias Saou <http://freshrpms.net/> 0.0.0-0.4.20070529
 - Update to 20070529 snasphot for F7 (soname .54 bump to .55).
 - Add missing ldconfig calls for the gtk sub-package.

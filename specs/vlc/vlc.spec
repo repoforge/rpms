@@ -15,6 +15,7 @@
 #define _without_dirac 1
 #define _without_opencv 1
 %define _without_directfb 1
+%define _without_ffmpeg 1
 %define _without_portaudio 1
 
 %ifarch %{ix86}
@@ -35,25 +36,6 @@
 %{?el4:%define _without_sysfs 1}
 #{?el4:#define _without_theora 1}
 
-%{?fc3:%define _without_avahi 1}
-%{?fc3:%define _without_jack 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc3:%define _without_sysfs 1}
-
-%{?fc2:%define _without_avahi 1}
-%{?fc2:%define _without_hal 1}
-%{?fc2:%define _without_jack 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc2:%define _without_sysfs 1}
-
-%{?fc1:%define _without_avahi 1}
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_hal 1}
-%{?fc1:%define _without_jack 1}
-%{?fc1:%define _without_modxorg 1}
-%{?fc1:%define _without_sysfs 1}
-%{?fc1:%define _without_theora 1}
-
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_avahi 1}
@@ -65,66 +47,18 @@
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
 
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_avahi 1}
-%{?rh9:%define _without_dbus1 1}
-%{?rh9:%define _without_fribidi 1}
-%{?rh9:%define _without_hal 1}
-%{?rh9:%define _without_jack 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh9:%define _without_sysfs 1}
-%{?rh9:%define _without_theora 1}
-%{?rh9:%define _without_x264 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_avahi 1}
-%{?rh7:%define _without_dbus1 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_fribidi 1}
-%{?rh7:%define _without_hal 1}
-%{?rh7:%define _without_jack 1}
-%{?rh7:%define _without_modxorg 1}
-%{?rh7:%define _without_sysfs 1}
-%{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_vorbis 1}
-#{?rh7:#define _without_wxwidgets 1}
-%{?rh7:%define _without_x264 1}
-%{?rh7:%define _without_xosd 1}
-
-%{?el2:%define mozilla seamonkey-devel}
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_arts 1}
-%{?el2:%define _without_avahi 1}
-%{?el2:%define _without_dbus1 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_fribidi 1}
-%{?el2:%define _without_glx 1}
-%{?el2:%define _without_hal 1}
-%{?el2:%define _without_jack 1}
-%{?el2:%define _without_modxorg 1}
-%{?el2:%define _without_sysfs 1}
-%{?el2:%define _without_theora 1}
-#{?el2:#define _without_upnp 1}
-%{?el2:%define _without_vorbis 1}
-#{?el2:#define _without_wxwidgets 1}
-%{?el2:%define _without_x264 1}
-%{?el2:%define _without_xosd 1}
-
-%{?yd3:%define _without_alsa 1}
-%{?yd3:%define _without_fribidi 1}
-
 %define desktop_vendor rpmforge
 #define ffmpeg_date 20061215
 #define ffmpeg_date 20071121
 #define ffmpeg_date 20080113
 %define ffmpeg_date 20080225
 #define live_date 2006.12.08
-%define live_date 2008.09.02
+%define live_date 2009.07.09
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 0.9.9
-Release: 2
+Version: 0.9.9a
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -133,12 +67,7 @@ Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version
 #Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source1: http://rpm.greysector.net/livna/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
-Patch0: vlc-0.8.6-ffmpegX11.patch
-Patch1: vlc-0.8.6-wx28.patch
-#Patch2: vlc-0.8.6a-faad2.patch
 Patch4: ffmpeg-20080225-asmreg.patch
-Patch21: vlc-0.8.6e-directfb.patch
-Patch80: vlc-0.8.6e-xulrunner.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildrequires: autoconf
@@ -260,15 +189,9 @@ IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
 %setup -a 1 -a 2
-#patch0 -p1 -b .ffmpegX11
-#patch1 -p1 -b .wx28
 
 ### Use regex to change FAAD2 interface
-#patch2 -p1 -b .faad2
 %{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
-
-#patch21 -p1 -b .directfb
-#patch80 -p1 -b .libxul
 
 ### Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib\b|/%{_lib}|g' vlc-config.in.in configure*
@@ -277,6 +200,7 @@ IPv4 or IPv6 on a high-bandwidth network.
 %{__perl} -pi -e 's|\bgsm.h|gsm/gsm.h|g' ffmpeg-%{ffmpeg_date}/configure ffmpeg-%{ffmpeg_date}/libavcodec/libgsm.c
 
 %build
+source /etc/profile.d/qt.sh
 export CFLAGS="%{optflags}"
 
 ### Build bundeled ffmpeg first
@@ -409,6 +333,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_twolame:--enable-twolame} \
 %{!?_without_upnp:--enable-upnp} \
 %{!?_without_v4l:--enable-v4l} \
+%{?_without_v4l2:--disable-v4l2} \
 %{?_without_vorbis:--disable-vorbis} \
 %{?_without_wxwidgets:--disable-wxwidgets --disable-skins2} \
 %{?_without_x264:--disable-x264} \
@@ -420,6 +345,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 %install
 %{__rm} -rf %{buildroot} _docs
+source /etc/profile.d/qt.sh
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 # Include the docs below, our way
@@ -468,6 +394,12 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Tue Jul 07 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-1
+- Updated to release 0.9.9a.
+- Rebuild against ffmpeg-0.5.
+- Rebuild against x264-0.4.20090708.
+- Rebuild against libmodplug-0.8.7.
+
 * Sat Apr 04 2009 Dag Wieers <dag@wieers.com> - 0.9.9-2
 - Enable theora again.
 

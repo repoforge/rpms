@@ -1,0 +1,46 @@
+--- k3b-0.12.17.orig/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp 2008-09-29 15:27:50.000000000 -0600
++++ k3b-0.12.17/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp 2008-11-16 03:36:42.384349570 -0700
+@@ -194,8 +194,13 @@
+     return i18n("Windows Media v1");
+   case CODEC_ID_WMAV2:
+     return i18n("Windows Media v2");
++#if defined(CODEC_ID_MP3)
++  case CODEC_ID_MP3:
++    return i18n("MPEG 1 Layer III");
++#elif defined(CODEC_ID_MP3LAME)
+   case CODEC_ID_MP3LAME:
+     return i18n("MPEG 1 Layer III");
++#endif
+   default:
+     return QString::fromLocal8Bit( d->codec->name );
+   }
+@@ -285,10 +290,16 @@
+ 
+     d->outputBufferPos = d->outputBuffer;
+ 
++#if LIBAVCODEC_VERSION_MAJOR >= 52
++    d->outputBufferSize = sizeof(d->outputBuffer);
++    int len = avcodec_decode_audio2(
++#else
++    int len = avcodec_decode_audio(
++#endif
+ #ifdef FFMPEG_BUILD_PRE_4629
+-    int len = avcodec_decode_audio( &d->formatContext->streams[0]->codec,
++    &d->formatContext->streams[0]->codec,
+ #else
+-    int len = avcodec_decode_audio( d->formatContext->streams[0]->codec,
++    d->formatContext->streams[0]->codec,
+ #endif
+ 				    (short*)d->outputBuffer, &d->outputBufferSize,
+ 				    d->packetData, d->packetSize );
+--- k3b-0.12.17.orig/plugins/decoder/ffmpeg/k3bffmpegdecoder.cpp	2009-07-09 21:08:16.000000000 +0200
++++ k3b-0.12.17/plugins/decoder/ffmpeg/k3bffmpegdecoder.cpp	2009-07-09 21:08:32.000000000 +0200
+@@ -96,7 +96,7 @@
+ 
+     // ffmpeg cannot handle vbr mp3 files properly (their length)
+     // so we have to decode the whole file in order to get the correct length
+-    if( m_file->type() == CODEC_ID_MP3LAME ) {
++    if( m_file->type() == CODEC_ID_MP3 ) {
+       kdDebug() << "(K3bFFMpegDecoder) mp3. Have to decode the hole file to get it's length." << endl;
+       char buffer[10*2048];
+       int len = 0;

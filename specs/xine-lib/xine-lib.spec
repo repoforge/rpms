@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 # Upstream: <xine-user$lists,sf,net>
 
 %{?dtag: %{expand: %%define %dtag 1}}
@@ -12,13 +12,6 @@
 
 %{?el4:%define _with_speex104 1}
 
-%{?fc2:%define _without_gettextdevel 1}
-
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_gettextdevel 1}
-%{?fc1:%define _without_theora 1}
-%{?fc1:%define _without_xvmc 1}
-
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_freetype2_pc 1}
 %{?el3:%define _without_fribidi 1}
@@ -26,41 +19,12 @@
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
 
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_freetype2_pc 1}
-%{?rh9:%define _without_fribidi 1}
-%{?rh9:%define _without_gettextdevel 1}
-%{?rh9:%define _without_theora 1}
-%{?rh9:%define _without_xvmc 1}
-
-%{?rh8:%define _without_alsa 1}
-%{?rh8:%define _without_freetype2_pc 1}
-%{?rh8:%define _without_fribidi 1}
-%{?rh8:%define _without_gettextdevel 1}
-%{?rh8:%define _without_theora 1}
-%{?rh8:%define _without_xvmc 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_freetype2_pc 1}
-%{?rh7:%define _without_fribidi 1}
-%{?rh7:%define _without_gettextdevel 1}
-%{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_gnomevfs2 1}
-%{?rh7:%define _without_xvmc 1}
-
-%{?yd3:%define _without_alsa 1}
-%{?yd3:%define _without_freetype2_pc 1}
-%{?yd3:%define _without_fribidi 1}
-%{?yd3:%define _without_gettextdevel 1}
-%{?yd3:%define _without_theora 1}
-%{?yd3:%define _without_xvmc 1}
-
 %define libname libxine1
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.13
-Release: 3
+Version: 1.1.16.3
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -212,6 +176,12 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 1.1.16.3-1
+- Updated to release 1.1.16.3.
+
+* Tue May 26 2009 Dag Wieers <dag@wieers.com> - 1.1.16-1
+- Updated to release 1.1.16.
+
 * Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.1.13-3
 - Rebuild against directfb-1.2.4.
 

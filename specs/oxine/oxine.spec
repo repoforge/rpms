@@ -9,12 +9,9 @@
 %{?fc6: %define _with_modxorg 1}
 %{?fc5: %define _with_modxorg 1}
 
-%{?rh9: %define _without_lirc 1}
-%{?rh7: %define _without_lirc 1}
-
 Summary: Lightweight, purely OSD based xine frontend
 Name: oxine
-Version: 0.7.0
+Version: 0.7.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -53,7 +50,7 @@ entertainment systems or kiosk systems.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -66,6 +63,9 @@ entertainment systems or kiosk systems.
 %{_datadir}/oxine/
 
 %changelog
+* Fri Jul 10 2009 Dag Wieers <dag@wieers.com> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Tue Sep 25 2007 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 

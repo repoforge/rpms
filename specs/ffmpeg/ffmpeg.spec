@@ -1,60 +1,52 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?rh7:%define _without_faac 1}
-%{?el2:%define _without_faac 1}
+### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
 
-%{?el4:%define _without_theora 1}
-%{?el3:%define _without_theora 1}
-%{?rh9:%define _without_theora 1}
-%{?rh7:%define _without_theora 1}
-%{?el2:%define _without_theora 1}
+%{?el5:%define _without_gsm 1}
+%{?el5:%define _without_speex 1}
 
+%{?el4:%define _without_gsm 1}
+%{?el4:%define _without_speex 1}
 %{?el4:%define _without_texi2html 1}
-%{?fc3:%define _without_texi2html 1}
-%{?fc2:%define _without_texi2html 1}
-%{?fc1:%define _without_texi2html 1}
+%{?el4:%define _without_theora 1}
+%{?el4:%define _without_v4l 1}
+
+%{?el3:%define _without_gsm 1}
+%{?el3:%define _without_speex 1}
 %{?el3:%define _without_texi2html 1}
-%{?rh9:%define _without_texi2html 1}
-%{?rh7:%define _without_texi2html 1}
-%{?el2:%define _without_texi2html 1}
-
-%{?el2:%define _without_vorbis 1}
-
-%{?rh9:%define _without_x264 1}
-%{?rh7:%define _without_x264 1}
-%{?el2:%define _without_x264 1}
-
-%define date 20070530
+%{?el3:%define _without_theora 1}
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
-Version: 0.4.9
-Release: 0.9%{?date:.%{date}}
+Version: 0.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/
-# svn checkout svn://svn.mplayerhq.hu/ffmpeg/trunk ffmpeg
-# find ffmpeg -name .svn | xargs rm -rf
-# then rename the directory and compress
-Source: ffmpeg-%{date}.tar.bz2
-Patch0: ffmpeg-20070530-gsm.patch
-Patch1: ffmpeg-20070530-faad2.patch
+
+Source: http://www.ffmpeg.org/releases/ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel
-%{!?_without_texi2html:BuildRequires: texi2html}
-%{!?_without_lame:BuildRequires: lame-devel}
-%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
-%{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
-%{!?_without_faad:BuildRequires: faad2-devel}
-%{!?_without_faac:BuildRequires: faac-devel}
-%{!?_without_gsm:BuildRequires: gsm-devel}
-%{!?_without_xvid:BuildRequires: xvidcore-devel}
-%{!?_without_x264:BuildRequires: x264-devel}
-%{!?_without_a52dec:Requires: a52dec}
+
+BuildRequires: SDL-devel
+BuildRequires: freetype-devel
+BuildRequires: imlib2-devel
+BuildRequires: zlib-devel
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
+%{!?_without_amrnb:BuildRequires: amrnb-devel}
+%{!?_without_amrwb:BuildRequires: amrwb-devel}
+#%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
+%{!?_without_faac:BuildRequires: faac-devel}
+%{!?_without_faad:BuildRequires: faad2-devel}
+%{!?_without_gsm:BuildRequires: gsm-devel}
+%{!?_without_lame:BuildRequires: lame-devel}
+%{!?_without_texi2html:BuildRequires: texi2html}
+%{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
+%{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_xvid:BuildRequires: xvidcore-devel}
+%{!?_without_a52dec:Requires: a52dec}
 
 %description
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -68,20 +60,19 @@ quality polyphase filter.
 Available rpmbuild rebuild options :
 --without : lame vorbis theora faad faac gsm xvid x264 a52dec altivec
 
-
 %package devel
 Summary: Header files and static library for the ffmpeg codec library
 Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
-%{!?_without_lame:Requires: lame-devel}
-%{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
-%{!?_without_faad:Requires: faad2-devel}
-%{!?_without_faac:Requires: faac-devel}
-%{!?_without_gsm:Requires: gsm-devel}
-%{!?_without_xvid:Requires: xvidcore-devel}
-%{!?_without_x264:Requires: x264-devel}
 %{!?_without_a52dec:Requires: a52dec-devel}
+%{!?_without_faac:Requires: faac-devel}
+%{!?_without_faad:Requires: faad2-devel}
+%{!?_without_gsm:Requires: gsm-devel}
+%{!?_without_lame:Requires: lame-devel}
+#%{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
+%{!?_without_x264:Requires: x264-devel}
+%{!?_without_xvid:Requires: xvidcore-devel}
 
 %description devel
 FFmpeg is a very fast video and audio converter. It can also grab from a
@@ -93,7 +84,6 @@ from any sample rate to any other, and resize video on the fly with a high
 quality polyphase filter.
 
 Install this package if you want to compile apps with ffmpeg support.
-
 
 %package libpostproc
 Summary: Video postprocessing library from ffmpeg
@@ -113,12 +103,10 @@ This package contains only ffmpeg's libpostproc post-processing library which
 other projects such as transcode may use. Install this package if you intend
 to use MPlayer, transcode or other similar programs.
 
-
 %prep
-%setup -n ffmpeg-%{date}
-%patch0 -p1 -b .gsm
-%patch1 -p1 -b .faad2
+%setup
 
+%{__perl} -pi.orig -e 's|gsm.h|gsm/gsm.h|' configure libavcodec/libgsm.c
 
 %build
 export CFLAGS="%{optflags}"
@@ -127,34 +115,38 @@ export CFLAGS="%{optflags}"
 ./configure \
     --prefix="%{_prefix}" \
     --libdir="%{_libdir}" \
+    --shlibdir="%{_libdir}" \
     --mandir="%{_mandir}" \
     --incdir="%{_includedir}/ffmpeg" \
+%{?_without_v4l:--disable-demuxer=v4l} \
 %ifarch x86_64
     --extra-cflags="-fPIC" \
 %endif
-    %{!?_without_lame:   --enable-libmp3lame} \
-    %{!?_without_vorbis: --enable-libogg --enable-libvorbis} \
-    %{!?_without_theora: --enable-libogg --enable-libtheora} \
-    %{!?_without_faad:   --enable-libfaad} \
-    %{!?_without_faac:   --enable-libfaac} \
-    %{!?_without_gsm:    --enable-libgsm} \
-    %{!?_without_xvid:   --enable-xvid} \
-    %{!?_without_x264:   --enable-x264} \
-    %{!?_without_a52:    --enable-liba52 --enable-liba52bin} \
-    --enable-pp \
-    --enable-shared \
-    --enable-pthreads \
+%{!?_without_amrnb:--enable-libamr-nb} \
+%{!?_without_amrwb:--enable-libamr-wb} \
+%{!?_without_dirac:--enable-libdirac} \
+%{!?_without_faac:--enable-libfaac} \
+%{!?_without_faad:--enable-libfaad} \
+%{!?_without_gsm:--enable-libgsm} \
+%{!?_without_lame:--enable-libmp3lame} \
+%{!?_without_speex:--enable-libspeex} \
+%{!?_without_theora:--enable-libtheora} \
+%{!?_without_x264:--enable-libx264} \
     --enable-gpl \
-    --disable-strip
+    --enable-nonfree \
+    --enable-postproc \
+    --enable-pthreads \
+    --enable-shared \
+    --enable-swscale \
+    --enable-x11grab
+#    %{!?_without_dc1394: --enable-libdc1394} \
+#    %{!?_without_vorbis: --enable-libvorbis} \
+#    %{!?_without_xvid:   --enable-libxvid} \
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot} _docs
-%makeinstall \
-    incdir="%{buildroot}%{_includedir}/ffmpeg" \
-    shlibdir="%{buildroot}%{_libdir}" \
-    libdir="%{buildroot}%{_libdir}"
+%{__make} install DESTDIR="%{buildroot}"
 
 # Remove unwanted files from the included docs
 %{__cp} -a doc _docs
@@ -163,43 +155,57 @@ export CFLAGS="%{optflags}"
 # The <postproc/postprocess.h> is now at <ffmpeg/postprocess.h>, so provide
 # a compatibility symlink
 %{__mkdir_p} %{buildroot}%{_includedir}/postproc/
-%{__ln_s}    ../ffmpeg/postprocess.h \
-             %{buildroot}%{_includedir}/postproc/postprocess.h
-
+%{__ln_s} ../ffmpeg/postprocess.h %{buildroot}%{_includedir}/postproc/postprocess.h
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post
 /sbin/ldconfig
-chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
-    &>/dev/null || :
+chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/dev/null || :
 
 %postun -p /sbin/ldconfig
 
-
 %post libpostproc -p /sbin/ldconfig
-
 %postun libpostproc -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING CREDITS README
-%{_bindir}/*
-%{_libdir}/*.so.*
-%exclude %{_libdir}/libpostproc.so*
+%doc Changelog COPYING* CREDITS INSTALL MAINTAINERS README
+%doc %{_mandir}/man1/ffmpeg.1*
+%doc %{_mandir}/man1/ffplay.1*
+%doc %{_mandir}/man1/ffserver.1*
+%{_bindir}/ffmpeg
+%{_bindir}/ffplay
+%{_bindir}/ffserver
+%{_datadir}/ffmpeg/
+%{_libdir}/libavcodec.so.*
+%{_libdir}/libavdevice.so.*
+%{_libdir}/libavformat.so.*
+%{_libdir}/libavutil.so.*
+%{_libdir}/libswscale.so.*
 %{_libdir}/vhook/
-%{_mandir}/man1/*
+%exclude %{_libdir}/libpostproc.so*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc _docs/*
 %{_includedir}/ffmpeg/
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
+%{_libdir}/libavcodec.a
+%{_libdir}/libavdevice.a
+%{_libdir}/libavformat.a
+%{_libdir}/libavutil.a
+%{_libdir}/libswscale.a
+%{_libdir}/libavcodec.so
+%{_libdir}/libavdevice.so
+%{_libdir}/libavformat.so
+%{_libdir}/libavutil.so
+%{_libdir}/libswscale.so
+%{_libdir}/pkgconfig/libavcodec.pc
+%{_libdir}/pkgconfig/libavdevice.pc
+%{_libdir}/pkgconfig/libavformat.pc
+%{_libdir}/pkgconfig/libavutil.pc
+%{_libdir}/pkgconfig/libswscale.pc
 %exclude %{_libdir}/pkgconfig/libpostproc.pc
 
 %files libpostproc
@@ -208,8 +214,12 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,format,util}.so.*.*.* \
 %{_libdir}/libpostproc.so*
 %{_libdir}/pkgconfig/libpostproc.pc
 
-
 %changelog
+* Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+- Disabled speex support, lacking speex 1.2.
+- Rebuild against x264-0.4.20090708.
+
 * Mon Jun 04 2007 Dag Wieers <dag@wieers.com> - 0.4.9-0.9.20070530
 - Rebuild against x264-0.4.20070529 because I missed it.
 

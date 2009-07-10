@@ -12,101 +12,36 @@
 
 %{?el5:%define _without_nas 1}
 %{?el4:%define _without_nas 1}
-%{?fc3:%define _without_nas 1}
-%{?fc2:%define _without_nas 1}
-
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_nas 1}
-%{?fc1:%define _without_theora 1}
-%{?fc1:%define _without_xvmc 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_nas 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
-
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_fribidi 1}
-%{?rh9:%define _without_nas 1}
-%{?rh9:%define _without_theora 1}
-%{?rh9:%define _without_x264 1}
-%{?rh9:%define _without_xvmc 1}
-
-%{?rh8:%define _without_alsa 1}
-%{?rh8:%define _without_fribidi 1}
-%{?rh8:%define _without_nas 1}
-%{?rh8:%define _without_theora 1}
-%{?rh8:%define _without_twolame 1}
-%{?rh8:%define _without_x264 1}
-%{?rh8:%define _without_xvmc 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_faac 1}
-%{?rh7:%define _without_fribidi 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_gcccheck 1}
-%{?rh7:%define _without_nas 1}
-%{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_twolame 1}
-%{?rh7:%define _without_x264 1}
-%{?rh7:%define _without_xvmc 1}
-
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_arts 1}
-%{?el2:%define _without_caca 1}
-%{?el2:%define _without_dv 1}
-%{?el2:%define _without_faac 1}
-%{?el2:%define _without_fribidi 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_gcccheck 1}
-%{?el2:%define _without_gtk2 1}
-%{?el2:%define _without_nas 1}
-%{?el2:%define _without_theora 1}
-%{?el2:%define _without_twolame 1} 
-%{?el2:%define _without_x264 1}
-%{?el2:%define _without_xvmc 1}
-
-%{?yd3:%define _without_alsa 1}
-%{?yd3:%define _without_fribidi 1}
-%{?yd3:%define _without_nas 1}
-%{?yd3:%define _without_theora 1}
-
-# Is this a daily build? If so, put the date like "20020808" otherwise put 0
-#define date      20060919
-%define rcver     rc1
+%{?el3:%define _without_x264_patch 1}
+%{?el3:%define _without_binutils214 1}
 
 %define livever   2006.10.18a
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
+%define real_version 1.0rc2
 Version: 1.0
-Release: 0.40%{?rcver:.%{rcver}}%{?date:.%{date}}try2
+Release: 0.40.rc2
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
-%if %{?date:1}0
-# svn checkout svn://svn.mplayerhq.hu/mplayer/trunk mplayer
-# cp -a mplayer MPlayer-%{date}
-# find MPlayer-%{date} -name .svn -type d | xargs rm -rf
-# tar cjvf MPlayer-%{date}.tar.bz2 MPlayer-%{date}/
-Source0: MPlayer-%{date}.tar.bz2
-%else
-Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{?rcver}.tar.bz2
-%endif
+
+Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
 Source1: http://www.live555.com/liveMedia/public/live.%{livever}.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.6.tar.bz2
 Source3: mplayer.png
-# Only for reference, required on YDL4 at least
-Source10: uio.h-ppc.patch
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
 Patch2: MPlayer-0.90pre10-redhat.patch
+Patch3: ffmpeg-0.4.9_p20080326-libx264.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
-# Fixes to 1.0rc1 which won't be needed anymore with 1.0rc2
-Patch50: MPlayer-1.0rc1-dct64_amd.patch
-Patch51: asmrules_fix_20061231.diff
-Patch100: mplayer-1.0rc1-h264-static.patch
+#Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: mplayer-fonts
 BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
@@ -157,7 +92,6 @@ Available rpmbuild rebuild options :
             theora osdmenu gcccheck fribidi xvmc x264 faac mpc live ladspa
             amrnb samba speex twolame
 
-
 %package -n mencoder
 Summary: MPlayer’s Movie Encoder
 Group: Applications/Multimedia
@@ -171,7 +105,6 @@ in 1, 2 or 3 passes.  Furthermore  it has stream copying abilities, a
 powerful filter system (crop, expand, flip, postprocess, rotate, scale,
 noise, rgb/yuv conversion) and more.
 
-
 %package docs
 Summary: Documentation for MPlayer, the Movie Player for Linux
 Group: Applications/Multimedia
@@ -183,20 +116,14 @@ nice antialiased shaded subtitles and OSD.
 
 This package contains the end user documentation.
 
-
 %prep
-%if %{?date:1}0
-%setup -n MPlayer-%{date} -a 1
-%else
-%setup -n MPlayer-%{version}%{?rcver} -a 1
-%endif
+%setup -n MPlayer-%{real_version} -a 1
 %patch0 -p1 -b .runtimemsg
 %patch1 -p1 -b .playlist
 %patch2 -p0 -b .redhat
+%patch3 -p1 -b .x264
 %patch10 -p1 -b .fribidi
-%patch50 -p1 -b .dct64_amd
-%patch51 -p0 -b .asmrules_fix
-%patch100 -p0 -b .h264_static
+#patch100 -p0 -b .h264_static
 
 # Overwrite some of the details of the provided system menu entry
 %{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
@@ -204,7 +131,6 @@ This package contains the end user documentation.
                   s|^Icon=.*|Icon=mplayer.png|g' \
     etc/mplayer.desktop
 echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;video/x-anim;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;video/x-nsv;video/x-flc;video/x-fli;application/ogg;application/x-ogg;application/x-matroska;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-m4a;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;misc/ultravox;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo;audio/x-pn-realaudio-plugin;" >> etc/mplayer.desktop
-
 
 %build
 # Build statically linked live555 libraries
@@ -225,25 +151,26 @@ echo | ./configure \
     --mandir="%{_mandir}" \
     --confdir="%{_sysconfdir}/mplayer" \
     --libdir="%{_libdir}" \
-    %{!?_with_dvdread:--disable-dvdread} \
-    %{?_without_gcccheck:--disable-gcc-check} \
+%{!?_with_dvdread:--disable-dvdread} \
+%{?_without_gcccheck:--disable-gcc-check} \
+%{?_without_binutils214:--disable-ssse3} \
     --enable-dynamic-plugins \
     --enable-gui \
     --enable-joystick \
     --enable-largefiles \
-    %{?_without_live:--disable-live} \
-    %{!?_without_osdmenu:--enable-menu} \
-    %{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib="XvMCW"}} \
-    %{?_with_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
+%{?_without_live:--disable-live} \
+%{!?_without_osdmenu:--enable-menu} \
+%{!?_with_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib="XvMCW"}} \
+%{?_with_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
 %ifarch %{ix86}
     --enable-runtime-cpudetection \
-    --enable-win32 \
-    --with-win32libdir="%{_libdir}/codecs" \
-    --with-xanimlibdir="%{_libdir}/codecs" \
 %endif
-    --with-reallibdir="%{_libdir}/codecs" \
-    --language="all" \
-    %{!?_without_live:--with-livelibdir="$(pwd)/live"}
+    --language="all"
+#    --enable-win32 \
+#    --with-win32libdir="%{_libdir}/codecs" \
+#    --with-xanimlibdir="%{_libdir}/codecs" \
+#    --with-reallibdir="%{_libdir}/codecs" \
+#%{!?_without_live:--with-livelibdir="$(pwd)/live"}
 
 %{__make} %{?_smp_mflags}
 
@@ -275,7 +202,6 @@ echo | ./configure \
 %{__install} -p -m 0644 %{SOURCE3} \
            %{buildroot}%{_datadir}/pixmaps/mplayer.png
 
-
 %post
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
@@ -284,14 +210,21 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 /sbin/ldconfig
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog Copyright LICENSE README etc/*.conf
+%doc AUTHORS Changelog Copyright LICENSE README etc/*.conf
+%doc %{_mandir}/man1/mplayer.1*
+%doc %lang(cs) %{_mandir}/cs/man1/mplayer.1*
+%doc %lang(de) %{_mandir}/de/man1/mplayer.1*
+%doc %lang(es) %{_mandir}/es/man1/mplayer.1*
+%doc %lang(fr) %{_mandir}/fr/man1/mplayer.1*
+%doc %lang(hu) %{_mandir}/hu/man1/mplayer.1*
+%doc %lang(it) %{_mandir}/it/man1/mplayer.1*
+%doc %lang(pl) %{_mandir}/pl/man1/mplayer.1*
+%doc %lang(ru) %{_mandir}/ru/man1/mplayer.1*
 %dir %{_sysconfdir}/mplayer/
 #ghost %config %{_sysconfdir}/mplayer/codecs.conf
 #ghost %config %{_sysconfdir}/mplayer/input.conf
@@ -300,40 +233,33 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_bindir}/gmplayer
 %{_bindir}/mplayer
 %dir %{_libdir}/codecs/
-%{_libdir}/libdha.so*
-%{_libdir}/mplayer/
+#%{_libdir}/libdha.so*
+#%{_libdir}/mplayer/
 %{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
 %{_datadir}/mplayer/
 %{_datadir}/pixmaps/mplayer.png
-%{_mandir}/man1/mplayer.1*
-%lang(cs) %{_mandir}/cs/man1/mplayer.1*
-%lang(de) %{_mandir}/de/man1/mplayer.1*
-%lang(es) %{_mandir}/es/man1/mplayer.1*
-%lang(fr) %{_mandir}/fr/man1/mplayer.1*
-%lang(hu) %{_mandir}/hu/man1/mplayer.1*
-%lang(it) %{_mandir}/it/man1/mplayer.1*
-%lang(pl) %{_mandir}/pl/man1/mplayer.1*
-%lang(sv) %{_mandir}/sv/man1/mplayer.1*
 
 %files -n mencoder
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/mencoder.1*
+%doc %lang(cs) %{_mandir}/cs/man1/mencoder.1*
+%doc %lang(de) %{_mandir}/de/man1/mencoder.1*
+%doc %lang(es) %{_mandir}/es/man1/mencoder.1*
+%doc %lang(fr) %{_mandir}/fr/man1/mencoder.1*
+%doc %lang(hu) %{_mandir}/hu/man1/mencoder.1*
+%doc %lang(it) %{_mandir}/it/man1/mencoder.1*
+%doc %lang(pl) %{_mandir}/pl/man1/mencoder.1*
+%doc %lang(ru) %{_mandir}/ru/man1/mencoder.1*
 %{_bindir}/mencoder
-%{_mandir}/man1/mencoder.1*
-%lang(cs) %{_mandir}/cs/man1/mencoder.1*
-%lang(de) %{_mandir}/de/man1/mencoder.1*
-%lang(es) %{_mandir}/es/man1/mencoder.1*
-%lang(fr) %{_mandir}/fr/man1/mencoder.1*
-%lang(hu) %{_mandir}/hu/man1/mencoder.1*
-%lang(it) %{_mandir}/it/man1/mencoder.1*
-%lang(pl) %{_mandir}/pl/man1/mencoder.1*
-%lang(sv) %{_mandir}/sv/man1/mencoder.1*
 
 %files docs
 %defattr(-, root, root, 0755)
 %doc DOCS/*
 
-
 %changelog
+* Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 1.0-0.40.rc2
+- Updated to release 1.0rc2.
+
 * Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.0-0.40.rc1tr2
 - Rebuild against directfb-1.2.4.
 
