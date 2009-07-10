@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: Matt S. Trout <mst$shadowcatsystems,co,uk>
+# perl-Carp-Clan >= 6 not available on el4
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
