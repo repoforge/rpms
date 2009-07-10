@@ -5,13 +5,13 @@
 
 Summary: FUSE-Filesystem to access WebDAV servers
 Name: davfs2
-Version: 1.3.0
+Version: 1.4.1
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://dav.sourceforge.net/
 
-Source: http://dl.sf.net/dav/davfs2-%{version}.tar.gz
+Source: http://www.very-clever.com/download/nongnu/davfs2/davfs2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: fuse-devel >= 2.2, neon-devel >= 0.25
@@ -86,6 +86,9 @@ fi
 %dir %{_localstatedir}/cache/davfs2/
 
 %changelog
+* Wed Jun 24 2009 Dag Wieers <dag@wieers.com> - 1.4.1-1
+- Updated to release 1.4.1.
+
 * Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Updated to release 1.3.0.
 - Renamed package to davfs2. (Werner Baumann)
