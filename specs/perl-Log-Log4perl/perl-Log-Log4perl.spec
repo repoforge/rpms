@@ -88,6 +88,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
 %changelog
+* Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 1.23-1
+- Updated to version 1.23.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.23-1
 - Updated to version 1.23.
 
