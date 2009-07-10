@@ -1,11 +1,12 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 # Upstream: <libquicktime-devel$lists,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
+# ExclusiveDist: el3
 
-### Problems when compiling against EL4 alsa-lib
-%{?el4:%define _without_alsa 1}
+%{?dtag: %{expand: %%define %dtag 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
 %{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_alsa 1}
@@ -14,7 +15,7 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 1.1.2
+Version: 1.0.3
 Release: 2
 License: GPL
 Group: System Environment/Libraries
@@ -26,25 +27,18 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 BuildRequires: lame-devel
+BuildRequires: libdv-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel >= 1.0.8
-%{?_with_modxorg:BuildRequires: libXt-devel, libGLU-devel, libXaw-devel, libXv-devel}
+BuildRequires: libvorbis-devel
 %{!?_without_1394:BuildRequires: libraw1394-devel, libavc1394-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_dv:BuildRequires: libdv-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_faad2:BuildRequires: faad2-devel}
 %{!?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 %{!?_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
-%{!?_without_vorbis:BuildRequires: libvorbis-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
-# A bug, the devel libs don't require the main ones :-(
-%{?yd3:BuildRequires: libraw1394, libavc1394}
-
-# The configure automatically adds MMX stuff if detected, so x86 becomes i586
-#ifarch %{ix86}
-#BuildArch: i586
-#endif
+%{!?_without_modxorg:BuildRequires: libXt-devel, libGLU-devel, libXaw-devel, libXv-devel}
 
 %description
 Libquicktime is a library for reading and writing QuickTime files
@@ -69,16 +63,13 @@ You will need to install this development package if you intend to rebuild
 programs that need to access quicktime files using libquicktime.
 
 %prep
-%setup
+%setup -n %{name}-%{version}
 %patch0 -p0 -b .plugin_dir
 
 %build
 %configure \
     --enable-gpl \
-    --with-cpuflags="%{optflags}" \
-%{?_without_alsa:--without-alsa} \
-%{?_without_dv:--without-dv} \
-%{?_without_vorbis:--without-vorbis}
+    --with-cpuflags="%{optflags}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -88,13 +79,13 @@ programs that need to access quicktime files using libquicktime.
 
 # Add compatibility symlink for "quicktime/lqt.h" includes
 # (for transcode 1.0.0beta3)
-%{__ln_s} -f lqt %{buildroot}%{_includedir}/quicktime
-
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%{__ln_s} lqt %{buildroot}%{_includedir}/quicktime
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -110,7 +101,7 @@ programs that need to access quicktime files using libquicktime.
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*.html doc/*.html doc/apiref/
-%{?!_without_gtk24:%{_bindir}/libquicktime_config}
+%{!?_without_gtk24:%{_bindir}/libquicktime_config}
 %{_bindir}/lqt-config
 %{_datadir}/aclocal/*.m4
 %{_includedir}/lqt/
@@ -118,22 +109,12 @@ programs that need to access quicktime files using libquicktime.
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/libquicktime.pc
 %exclude %{_docdir}/libquicktime/
-%exclude %{_libdir}/libquicktime.la
+%exclude %{_libdir}/*.la
 %exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
-* Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 1.1.2-2
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 1.0.3-2
 - Rebuild against x264-0.4.20090708.
-- Rebuild against ffmpeg-0.5.
-
-* Thu Jun 18 2009 Dag Wieers <dag@wieers.com> - 1.1.2-1
-- Updated to release 1.1.2.
-
-* Mon Dec 15 2008 Dag Wieers <dag@wieers.com> - 1.1.1-1
-- Updated to release 1.1.1.
-
-* Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.1.0-1
-- Updated to release 1.1.0.
 
 * Mon Jul 14 2008 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
