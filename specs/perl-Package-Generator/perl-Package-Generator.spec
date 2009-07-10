@@ -9,7 +9,7 @@
 
 Summary: Perl module to generate new packages quickly and easily
 Name: perl-Package-Generator
-Version: 0.102
+Version: 0.103
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Package/Reaper.pm
 
 %changelog
+* Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.103-1
+- Updated to version 0.103.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.100-1
 - Initial package. (using DAR)
