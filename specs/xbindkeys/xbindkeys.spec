@@ -3,8 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Binds keys or mouse buttons to shell commands under X
 Name: xbindkeys
@@ -19,8 +19,8 @@ Patch0: xbindkeys-1.7.3-rplmalloc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: guile-devel
-%{?_with_modxorg:BuildRequires: libX11-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: tk
 
 %description

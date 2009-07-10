@@ -13,7 +13,8 @@ URL: http://www.simphalempin.com/dev/miredo/
 Source: http://www.remlab.net/files/miredo/v0.8/miredo-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, judy-devel
+BuildRequires: gcc-c++
+BuildRequires: judy-devel
 
 %description
 Miredo is an implementation of the "Teredo: Tunneling IPv6 over UDP
@@ -42,16 +43,14 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
+
 %{__mkdir} rpmdocs
-%{__mv} %{buildroot}%{_docdir}/miredo/examples rpmdocs/
+%{__mv} %{buildroot}%{_docdir}/miredo/examples/ rpmdocs/
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -7,11 +7,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define real_name GD
 
@@ -34,8 +31,8 @@ BuildRequires: zlib-devel
 BuildRequires: freetype-devel
 BuildRequires: libjpeg-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
-%{?_with_modxorg:BuildRequires: libX11-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: perl >= 2:5.8.0
 
 %description

@@ -3,11 +3,9 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
-%{?fc7: %define _with_modxorg 1}
-%{?fc6: %define _with_modxorg 1}
-%{?fc5: %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
@@ -21,8 +19,8 @@ Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, gcc-c++, doxygen, gettext
-%{?_with_modxorg:BuildRequires: libXt-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Obsoletes: libzvbi <= 0.2.4
 
 %description

@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 %define desktop_vendor rpmforge
 
@@ -10,7 +10,7 @@
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: gstreamer-ffmpeg
 Version: 0.10.2
-Release: 1
+Release: 2
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/
@@ -18,16 +18,15 @@ URL: http://gstreamer.net/
 Source: http://gstreamer.freedesktop.org/src/gst-ffmpeg/gst-ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: alsa-lib-devel
+Buildrequires: ffmpeg-devel
+BuildRequires: freetype-devel
+BuildRequires: gcc-c++
 BuildRequires: gstreamer-devel >= %{gst_minver}
 BuildRequires: gstreamer-plugins-base-devel >= %{gstpb_minver}
-# libtool needs this, sigh
-BuildRequires: gcc-c++
-# The FFmpeg dependencies we need to get the codecs we want
-BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
-BuildRequires: SDL-devel
-BuildRequires: alsa-lib-devel
 Buildrequires: liboil-devel
+BuildRequires: SDL-devel
 Requires: gstreamer >= %{gst_minver}
 Requires: gstreamer-plugins-base >= %{gstpb_minver}
 
@@ -50,8 +49,8 @@ This package provides FFmpeg-based GStreamer plug-ins.
 %ifarch ppc
     --disable-altivec \
 %endif
-    --with-package-name='gst-plugins-ffmpeg %{desktop_vendor} rpm' \
-    --with-package-origin='http://www.rpmforge.net/'
+    --with-package-name="gst-plugins-ffmpeg %{desktop_vendor} rpm" \
+    --with-package-origin="http://www.rpmforge.net/"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,6 +69,9 @@ This package provides FFmpeg-based GStreamer plug-ins.
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
 
 %changelog
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.10.2-2
+- Rebuild against ffmpeg-0.5.
+
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 0.10.2-1
 - Update to 0.10.2.
 - Add new liboil-devel build requirement.

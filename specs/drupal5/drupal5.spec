@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal5
-Version: 5.18
+Version: 5.19
 Release: 1
 License: GPL
 Group: Development/Languages
@@ -57,6 +57,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Thu Jul 02 2009 Dag Wieers <dag@wieers.com> - 5.19-1
+- Updated to release 5.19.
+
 * Sun May 17 2009 Dag Wieers <dag@wieers.com> - 5.18-1
 - Updated to release 5.18.
 

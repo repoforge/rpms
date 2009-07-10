@@ -4,11 +4,9 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 %define xmms_generaldir %(xmms-config --general-plugin-dir 2>/dev/null || echo %{_libdir}/xmms/General)
 
@@ -23,8 +21,8 @@ Source: http://dl.sf.net/libxosd/xosd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, gtk+-devel, gdk-pixbuf-devel
 %{!?_without_xmms:BuildRequires: xmms-devel}
-%{?_with_modxorg:BuildRequires: libX11-devel, libXext-devel, libXinerama-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXext-devel, libXinerama-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 XOSD displays text on your screen, sounds simple right? The difference is

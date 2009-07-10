@@ -6,14 +6,15 @@
 
 Summary: Firmware for IntelÂ® Wireless WiFi Link 5000AGN series network adapters
 Name: iwl5000-firmware
-Version: 5.4.A.11
-Release: 2
+Version: 8.24.2.12
+Release: 1
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/
 
-Source: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-5000-ucode-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-build
+Source0: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-5000-ucode-%{version}.tar.gz
+Source1: http://intellinuxwireless.org/iwlwifi/downloads/iwlwifi-5000-ucode-5.4.A.11.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 
@@ -29,6 +30,7 @@ WiFi Link 5000AGN series adapters with the Linux kernel iwlagn driver.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0644 iwlwifi-5000-1.ucode %{buildroot}/lib/firmware/iwlwifi-5000-1.ucode
+%{__install} -Dp -m0644 iwlwifi-5000-2.ucode %{buildroot}/lib/firmware/iwlwifi-5000-2.ucode
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,8 +39,12 @@ WiFi Link 5000AGN series adapters with the Linux kernel iwlagn driver.
 %defattr(-, root, root, 0755)
 %doc LICENSE* README*
 /lib/firmware/iwlwifi-5000-1.ucode
+/lib/firmware/iwlwifi-5000-2.ucode
 
 %changelog
+* Wed May 27 2009 Dag Wieers <dag@wieers.com> - 8.24.2.12-1
+- Updated to release 8.24.2.12.
+
 * Sat Jan 24 2009 Dag Wieers <dag@wieers.com> - 5.4.A.11-2
 - Moved the LICENSE and README to %%{_docdir}.
 

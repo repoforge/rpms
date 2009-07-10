@@ -4,11 +4,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 #define prever -WIP1
 %define real_version 1.51
@@ -25,8 +22,8 @@ Patch0: snes9x-1.43-wmclass.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, zlib-devel, libpng-devel
 BuildRequires: libGL-devel, libGLU-devel
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXxf86dga-devel, libXxf86vm-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXext-devel, libXxf86dga-devel, libXxf86vm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 BuildRequires: nasm
 
 %description

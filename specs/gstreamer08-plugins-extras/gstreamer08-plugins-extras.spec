@@ -3,11 +3,8 @@
 
 # ExclusiveDist: el4 fc5
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define gst_minver 0.8.8.1
 %define gstp_minver 0.8.8
@@ -40,8 +37,8 @@ BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 # libtool needs this, sigh
 BuildRequires: gcc-c++
 # so gst-libs can build
-%{?_with_modxorg:BuildRequires: libXt-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 # so glimagesink can build
 Buildrequires: libGL-devel, libGLU-devel
 # so configure passes

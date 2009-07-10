@@ -3,11 +3,9 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Anti-Grain Geometry, a rendering engine
 Name: agg
@@ -23,8 +21,8 @@ Patch1: agg-2.5-pkgconfig.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake, libtool, freetype-devel, SDL-devel
-%{?_with_modxorg:BuildRequires: libX11-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Anti-Grain Geometry is a high quality rendering engine for C++.

@@ -1,10 +1,8 @@
 # $Id$
 # Authority: dag
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Audio file volume normalizer
 Name: normalize
@@ -19,8 +17,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel, gtk2-devel, libmad-devel,
 BuildRequires: xmms-devel, audiofile-devel
-%{?_with_modxorg:BuildRequires: libXi-devel, libX11-devel, libXext-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXi-devel, libX11-devel, libXext-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Normalize is a tool for adjusting the volume of audio files to a

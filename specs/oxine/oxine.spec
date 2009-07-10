@@ -3,11 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7: %define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
-%{?fc6: %define _with_modxorg 1}
-%{?fc5: %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Lightweight, purely OSD based xine frontend
 Name: oxine
@@ -23,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: xine-lib-devel >= 1.0.1, gettext
 BuildRequires: curl-devel, ImageMagick-devel
 BuildRequires: eject, hal-devel >= 0.5
-%{?_with_modxorg:BuildRequires: libX11-devel, libXtst-devel, libXinerama-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXtst-devel, libXinerama-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 
 %description

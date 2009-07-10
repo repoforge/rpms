@@ -3,7 +3,7 @@
 
 Summary: Inotify cron system
 Name: incron
-Version: 0.5.8
+Version: 0.5.9
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -148,6 +148,9 @@ fi
 %{_bindir}/incrontab
 
 %changelog
+* Wed Jun 24 2009 Dag Wieers <dag@wieers.com> - 0.5.9-1
+- Updated to release 0.5.9.
+
 * Tue Jan 06 2009 Dag Wieers <dag@wieers.com> - 0.5.8-1
 - Updated to release 0.5.8.
 

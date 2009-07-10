@@ -3,11 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Set of portable libraries especially useful for games
 Name: plib
@@ -25,8 +22,8 @@ Patch3: plib-1.8.4-autorepeat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, freeglut-devel, libpng-devel
-%{?_with_modxorg:BuildRequires: libXext-devel, libXi-devel, libXmu-devel, libSM-devel, libXxf86vm-devel}
-%{!?_with_modxorg:BuildRequires: Mesa-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel, libXi-devel, libXmu-devel, libSM-devel, libXxf86vm-devel}
+%{?_without_modxorg:BuildRequires: Mesa-devel}
 
 %description
 This is a set of OpenSource (LGPL) libraries that will permit programmers

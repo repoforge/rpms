@@ -6,15 +6,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
-
-%{?rh7:%define _without_gnome2 1}
-%{?el2:%define _without_gnome2 1}
-%{?rh6:%define _without_gnome2 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Fast and small X11 window manager
 Name: icewm
@@ -31,8 +24,8 @@ BuildRequires: autoconf, automake, libtool
 BuildRequires: gcc-c++, gettext
 BuildRequires: imlib-devel, imlib2-devel, libpng-devel, kdelibs
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel, XFree86-font-utils}
-%{?_with_modxorg:BuildRequires: libX11-devel, xorg-x11-font-utils}
+%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-font-utils}
+%{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-font-utils}
 Obsoletes: icewm-common <= %{version}
 Obsoletes: icewm-l10n <= %{version}
 Obsoletes: icewm-menu-gnome2 <= %{version}

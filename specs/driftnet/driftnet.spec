@@ -5,15 +5,13 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
-%{!?dtag:%define _with_modxorg 1}
 
 %{?el5:%define _with_libpcapdevel 1}
-%{?el5:%define _with_modxorg 1}
 
 %{?fc6:%define _with_libpcapdevel 1}
-%{?fc6:%define _with_modxorg 1}
 
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Sniff the network for images and movies and displays them
 Name: driftnet
@@ -27,7 +25,7 @@ Source: http://www.ex-parrot.com/~chris/driftnet/driftnet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap, gtk+-devel, libungif-devel, libjpeg-devel
-%{?_with_modxorg:BuildRequires: imake}
+%{!?_without_modxorg:BuildRequires: imake}
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description

@@ -4,11 +4,9 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 %define prever cvs6
 
@@ -25,7 +23,8 @@ BuildRequires: libgnomeui-devel, libglade2-devel, gtk2-devel >= 2.4
 BuildRequires: scrollkeeper, gettext, libjpeg-devel, libpng-devel
 BuildRequires: zvbi-devel, arts-devel, lirc-devel
 BuildRequires: python-devel, desktop-file-utils, gcc-c++, intltool
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXmu-devel, libXxf86dga-devel, libXxf86vm-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libXmu-devel, libXxf86dga-devel, libXxf86vm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_rte:BuildRequires: rte-devel >= 0.5}
 # This one is to get /usr/bin/consolehelper
 BuildRequires: usermode

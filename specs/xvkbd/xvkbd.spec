@@ -4,11 +4,9 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Virtual keyboard for X window system
 Name: xvkbd
@@ -22,8 +20,8 @@ Source: http://homepage3.nifty.com/tsato/xvkbd/xvkbd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: Xaw3d-devel
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_with_modxorg:BuildRequires: libXaw-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXaw-devel}
 Requires: Xaw3d
 
 %description
@@ -41,16 +39,16 @@ client.
 %build
 xmkmf
 %{__make} %{?_smp_mflags} \
-	LIBDIR="%{_datadir}/X11"
+    LIBDIR="%{_datadir}/X11"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install install.man \
-	DESTDIR="%{buildroot}" \
-	BINDIR="%{_bindir}" \
-	LIBDIR="%{_datadir}/X11" \
-	SHLIBDIR="%{_libdir}" \
-	MANPATH="%{_mandir}"
+    DESTDIR="%{buildroot}" \
+    BINDIR="%{_bindir}" \
+    LIBDIR="%{_datadir}/X11" \
+    SHLIBDIR="%{_libdir}" \
+    MANPATH="%{_mandir}"
 
 %clean
 %{__rm} -rf %{buildroot}

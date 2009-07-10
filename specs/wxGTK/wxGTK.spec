@@ -26,7 +26,7 @@
 
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
-Version: 2.8.9
+Version: 2.8.10
 Release: 1
 License: wxWidgets Library Licence
 Group: System Environment/Libraries
@@ -163,6 +163,9 @@ export GDK_USE_XFT="1"
 %{_libdir}/libwx_*.so
 
 %changelog
+* Mon May 25 2009 Dag Wieers <dag@wieers.com> - 2.8.10-1
+- Updated to release 2.8.10.
+
 * Sat Oct 18 2008 Christoph Maser <cmr@financial.com> - 2.8.9-1
 - Updated to release 2.8.9.
 

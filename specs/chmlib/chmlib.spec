@@ -4,7 +4,7 @@
 
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
-Version: 0.39
+Version: 0.40
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
@@ -34,21 +34,20 @@ you will need to install %{name}-devel.
 #patch0 -p1
 
 %build
-%configure
+%configure --disable-static
 # %{?_smp_mflags}
 %{__make}  INSTALLPREFIX="%{_prefix}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}
+%{__install} -d -m0755 %{buildroot}%{_libdir}
+%{__install} -d -m0755 %{buildroot}%{_includedir}
 %{__make} install DESTDIR="%{buildroot}" INSTALLPREFIX="%{_prefix}" libdir="%{_libdir}"
 #%{__install} -Dp -m0755 chm_http %{buildroot}%{_bindir}/chm_http
 #%{__install} -Dp -m0755 enum_chmLib %{buildroot}%{_bindir}/enum_chmLib
 #%{__install} -Dp -m0755 enumdir_chmLib %{buildroot}%{_bindir}/enumdir_chmLib
 #%{__install} -Dp -m0755 extract_chmLib %{buildroot}%{_bindir}/extract_chmLib
 #%{__install} -Dp -m0755 test_chmLib %{buildroot}%{_bindir}/test_chmLib
-
 
 ### Fix library symlinks
 #for lib in $(ls %{buildroot}%{_libdir}); do
@@ -75,13 +74,15 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc ChmLib-ds6.zip
-%{_libdir}/libchm.a
 %{_libdir}/libchm.la
 %{_libdir}/libchm.so
 %{_includedir}/chm_lib.h
 %{_includedir}/lzx.h
 
 %changelog
+* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 0.40-1
+- Updated to release 0.40.
+
 * Thu Jan 25 2007 Dag Wieers <dag@wieers.com> - 0.39-1
 - Updated to release 0.39.
 

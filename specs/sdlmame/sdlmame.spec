@@ -4,11 +4,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define mamever 115
 
@@ -24,8 +21,8 @@ Source: http://rbelmont.mameworld.info/sdlmame0%{mamever}.zip
 Patch0: sdlmame0109-genericbuild.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, expat-devel, zlib-devel
-%{?_with_modxorg:BuildRequires: libXinerama-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXinerama-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This is a simple SDL port of the almost legendary MAME. MAME is an arcade

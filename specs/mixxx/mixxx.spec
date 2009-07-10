@@ -4,17 +4,10 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 
-%{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh8:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
-%{?el2:%define _without_alsa 1}
+%{?el3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
@@ -31,8 +24,8 @@ BuildRequires: qt-devel >= 3.0, glib-devel
 BuildRequires: audiofile-devel, libmad-devel, libid3tag-devel
 BuildRequires: libvorbis-devel, libogg-devel, libsndfile-devel
 BuildRequires: portaudio, fftw-devel, gcc-c++
-%{?_with_modxorg:BuildRequires: libXmu-devel, mesa-libGLU-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXmu-devel, mesa-libGLU-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 

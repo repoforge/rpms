@@ -7,20 +7,10 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 
-%{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh8:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
-%{?el2:%define _without_alsa 1}
-%{?rh6:%define _without_alsa 1}
-%{?yd3:%define _without_alsa 1}
+%{?el3:%define _without_modxorg 1}
 
 # Altivec on PPC fails (starting with gcc 4.1 / FC5 it seems)
 %ifarch ppc
@@ -39,10 +29,10 @@ Source1: bluecurve-xine.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel >= 0.9.4, libjpeg-devel, a52dec-devel >= 0.7.3
 BuildRequires: libxml2-devel >= 2.4.19, libmad-devel, gcc-c++
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: desktop-file-utils
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXv-devel, libXxf86vm-devel, libXinerama-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXext-devel, libXv-devel, libXxf86vm-devel, libXinerama-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Ogle is a DVD player. It's features are: Supports DVD menus and navigation,
@@ -75,8 +65,8 @@ to build programs that use it (like GUIs).
 %build
 %configure \
     --disable-static \
-    %{?_without_altivec:--disable-altivec} \
-    %{?_without_mmx:--disable-mmx}
+%{?_without_altivec:--disable-altivec} \
+%{?_without_mmx:--disable-mmx}
 %{__make} %{?_smp_mflags}
 
 
@@ -100,17 +90,11 @@ Encoding=UTF-8
 Categories=X-Red-Hat-Base;Application;AudioVideo;
 EOF
 
-%if %{!?_without_freedesktop:1}0
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
     ogle.desktop
-%else
-%{__install} -D -p -m 0644 ogle.desktop \
-    %{buildroot}/etc/X11/applnk/Multimedia/ogle.desktop
-%endif
-
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -127,17 +111,16 @@ test -e /dev/dvd || test -L /dev/dvd || ln -s cdrom /dev/dvd || :
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING README
+%doc %{_mandir}/man?/*
 %{_bindir}/*
 %dir %{_libdir}/ogle/
 %{_libdir}/ogle/*.so.*
 %{_libdir}/ogle/ogle_*
-%{_mandir}/man?/*
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-ogle.desktop}
+:%{_datadir}/applications/%{desktop_vendor}-ogle.desktop
 %dir %{_datadir}/ogle/
 %config %{_datadir}/ogle/oglerc
 %{_datadir}/ogle/ogle_conf.dtd
 %{_datadir}/pixmaps/ogle.png
-%{?_without_freedesktop:/etc/X11/applnk/Multimedia/ogle.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)

@@ -7,11 +7,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: X client for remote desktop into Windows Terminal Server
 Name: rdesktop
@@ -27,8 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libsamplerate-devel
 BuildRequires: openssl-devel
-%{?_with_modxorg:BuildRequires: libXt-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 rdesktop is an open source client for Windows NT Terminal Server and

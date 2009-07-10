@@ -6,10 +6,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
@@ -34,7 +32,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
 BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
-%{?_with_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel}
 # Some other -devel package surely forgot this as a dependency
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 # Required by some other package, it seems... (SDL-devel is a good guess)

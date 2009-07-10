@@ -2,33 +2,26 @@
 # Authority: dag
 
 %{?dtag: %{expand: %%define %dtag 1}}
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define mozilla xulrunner}
 %{!?dtag:%define _without_gstreamer 1}
-%{!?dtag:%define _without_mozilla 1}
-
-%{?el5:%define mozilla xulrunner}
 %{?el5:%define _without_gstreamer 1}
-### Can't figure out why only EL5 produces swfdec-mozilla-player
-%{?el5:%define _with_mozilla_player 1}
 
-%{?el4:%define mozilla seamonkey}
 %{?el4:%define _without_modxorg 1}
 
-%{?el3:%define mozilla seamonkey}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_gstreamer 1}
 %{?el3:%define _without_modxorg 1}
 
 Summary: Flash animations rendering library
 Name: swfdec
-Version: 0.4.5
+Version: 0.8.4
 Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.freedesktop.org/wiki/
 
-Source: http://swfdec.freedesktop.org/download/swfdec/0.4/swfdec-%{version}.tar.gz
+Source: http://swfdec.freedesktop.org/download/swfdec/0.8/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: directfb
@@ -36,7 +29,7 @@ BuildRequires: ffmpeg-devel
 BuildRequires: GConf2-devel
 BuildRequires: gcc-c++
 BuildRequires: gdk-pixbuf-devel
-BuildRequires: gtk2-devel >= 2.1.2
+BuildRequires: gtk2-devel >= 2.16
 BuildRequires: js-devel
 BuildRequires: libart_lgpl-devel
 BuildRequires: libmad-devel
@@ -44,7 +37,6 @@ BuildRequires: liboil-devel
 BuildRequires: SDL-devel
 BuildRequires: x264-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
-#%{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 %{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
 %{!?_without_modxorg:BuildRequires: libXt-devel}
 
@@ -63,24 +55,11 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-%package -n mozilla-swfdec
-Summary: Mozilla plugin for Flash rendering
-Group: Applications/Internet
-Requires: %{name} = %{version}
-
-%description -n mozilla-swfdec
-Mozilla plugin for rendering of Flash animations based on the swfdec library.
-
 %prep
 %setup
 
-%{__perl} -pi -e 's|<avcodec.h>|<libavcodec/avcodec.h>|g' libswfdec/swfdec_codec_ffmpeg.c
-
 %build
-export FFMPEG_CFLAGS="$(pkg-config --cflags libavcodec)"
-export FFMPEG_LIBS="$(pkg-config --libs libavcodec)"
 %configure \
-%{?_without_mozilla:--disable-mozilla-plugin} \
     --enable-shared \
 %{!?_without_alsa:--with-audio="alsa"}
 %{__make} %{?_smp_mflags} 
@@ -131,9 +110,10 @@ export FFMPEG_LIBS="$(pkg-config --libs libavcodec)"
 %{_libdir}/pkgconfig/swfdec*.pc
 
 %changelog
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.8.4-1
+- Updated to release 0.8.4.
 
-* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.4.5-1
-- Updated to release 0.4.5.
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.4.3-2
 - Rebuild against ffmpeg-0.5.
 - Rebuild against x264-0.4.20090708.
 

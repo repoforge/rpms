@@ -5,15 +5,10 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-
 %define _without_freeglut 0
 %define _without_glut 1
 
-%{?fc7:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 
 ### EL3 has neither glut nor freeglut
 %{?el3:%define _without_alsa 1}
@@ -21,36 +16,13 @@
 %{?el3:%define _without_glut 1}
 %{?el3:%define _without_ieee1284 1}
 %{?el3:%define _without_isdn4k 1}
-
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_freeglut 1}
-%{?rh9:%define _without_glut 0}
-%{?rh9:%define _without_ieee1284 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_freeglut 1}
-%{?rh7:%define _without_glut 0}
-%{?rh7:%define _without_ieee1284 1}
-%{?rh7:%define _without_opengl 1}
-
-### EL2 has neither glut nor freeglut
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_cups 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_freeglut 1}
-%{?el2:%define _without_glut 1}
-%{?el2:%define _without_gphoto2 1}
-%{?el2:%define _without_ieee1284 1}
-%{?el2:%define _without_isdn4k 1}
-%{?el2:%define _without_libusb 1}
-%{?el2:%define _without_opengl 1}
+%{?el3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.21
+Version: 1.1.22
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -78,8 +50,8 @@ BuildRequires: sane-backends-devel
 %{!?_without_isdn4k:BuildRequires: isdn4k-utils-devel}
 %{!?_without_ieee1284:BuildRequires: libieee1284-devel}
 %{!?_without_libusb:BuildRequires: libusb-devel}
-%{?_with_modxorg:BuildRequires: libXxf86dga-devel libXxf86vm-devel libXrandr-devel libXrender-devel libXext-devel libXinerama-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXxf86dga-devel libXxf86vm-devel libXrandr-devel libXrender-devel libXext-devel libXinerama-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 Requires: wine-capi = %{version}-%{release}
 Requires: wine-cms = %{version}-%{release}
@@ -107,8 +79,8 @@ Summary: Wine core package
 Group: Applications/Emulators
 Requires(post): /sbin/ldconfig, /sbin/chkconfig, /sbin/service,
 Requires(preun): /sbin/chkconfig, /sbin/service
-%{?_with_modxorg:Requires: /usr/bin/xmessage}
-%{!?_with_modxorg:Requires: /usr/X11R6/bin/xmessage}
+%{!?_without_modxorg:Requires: /usr/bin/xmessage}
+%{?_without_modxorg:Requires: /usr/X11R6/bin/xmessage}
 Obsoletes: wine-tools <= %{version}-%{release}
 Obsoletes: wine-arts <= %{version}-%{release}
 Provides: wine-tools = %{version}-%{release}
@@ -511,7 +483,6 @@ update-desktop-database &>/dev/null || :
 ### dll16
 %{_libdir}/wine/commdlg.dll16
 %{_libdir}/wine/mmsystem.dll16
-%{_libdir}/wine/msvideo.dll16
 %{_libdir}/wine/setupx.dll16
 %{_libdir}/wine/toolhelp.dll16
 %{_libdir}/wine/ver.dll16
@@ -529,6 +500,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/imm.dll16.so
 %{_libdir}/wine/lzexpand.dll16.so
 %{_libdir}/wine/msacm.dll16.so
+%{_libdir}/wine/msvideo.dll16.so
 %{_libdir}/wine/ole2.dll16.so
 %{_libdir}/wine/ole2conv.dll16.so
 %{_libdir}/wine/ole2disp.dll16.so
@@ -926,6 +898,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 1.1.22-1
+- Updated to release 1.1.22.
+
 * Sun May 17 2009 Dag Wieers <dag@wieers.com> - 1.1.21-1
 - Updated to release 1.1.21.
 

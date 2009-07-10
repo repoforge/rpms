@@ -13,14 +13,13 @@ Source: http://linux-ha.org/download/%{name}-%{version}.tar.gz
 Patch0: ldirectord.passwd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-
 BuildRequires: glib-devel, lynx, perl, iputils, /usr/bin/ssh, openssl-devel, libnet
 Requires: sysklogd
 
 %package ldirectord
 Summary: Monitor daemon for maintaining high availability resources
 Group: Applications/Internet
-Requires: perl, perl-libwww-perl perl-Net-SSLeay, ipvsadm, perl-HTML-Parser, perl-ldap, perl-Mail-IMAPClient
+Requires: perl, perl-libwww-perl perl-Net-SSLeay, ipvsadm, perl-HTML-Parser, perl-LDAP, perl-Mail-IMAPClient
 
 %package stonith
 Summary: Provides an interface to Shoot The Other Node In The Head

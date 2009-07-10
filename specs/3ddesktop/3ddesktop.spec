@@ -7,11 +7,9 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
@@ -27,8 +25,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf >= 2.58, gcc-c++, zlib-devel
 BuildRequires: imlib2-devel, qt-devel, kdelibs-devel
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libICE-devel, libXxf86vm-devel, libXmu-devel, libXi-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXext-devel, libICE-devel, libXxf86vm-devel, libXmu-devel, libXi-devel}
 %{?el2:BuildRequires: Mesa-devel}
 Requires: imlib2
 

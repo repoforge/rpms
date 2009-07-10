@@ -9,17 +9,8 @@
 %{?fc6:  %define _with_moles 1}
 %{?fc5:  %define _with_moles 1}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
-
-%{?rh7:%define _without_caca 1}
-%{?el2:%define _without_caca 1}
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
@@ -30,12 +21,14 @@ Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
+
 Source0: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
 Source1: xine.png
 Source2: http://www.bluebeamentertainment.com/xine/smokeyglass_splash.png
 Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
 Patch0: xine-ui-0.99.3-shared-lirc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 %{!?_with_moles:Requires: xine-lib >= 1.1.2}
 %{?_with_moles:Requires: xine-lib-moles >= 1.1.2}
 BuildRequires: gcc-c++, gettext, libpng-devel >= 2:1.2.8, xine-lib-devel >= 1.0.0
@@ -45,9 +38,9 @@ BuildRequires: pkgconfig, /usr/bin/find
 Buildrequires: autoconf, automake, libtool
 # Required to overwrite the ugly icons
 BuildRequires: ImageMagick
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+BuildRequires: desktop-file-utils
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 
@@ -91,16 +84,16 @@ EOF
 
 %{__cat} <<EOF >xine.applications
 xine
-	command=xine
-	name=Xine
-	can_open_multiple_files=true
-	expects_uris=yes
-	requires_terminal=false
-	all_gnome_vfs_schemes_supported=yes
-	uses_gnomevfs=true
-	startup_notify=false
-	supported_uri_schemes=rtp,mms,net,rtsp,pnm
-	mime_types=video/mpeg,video/msvideo,video/quicktime,video/x-avi,video/x-ms-asf,video/x-ms-wmv,video/x-msvideo,application/x-ogg,application/ogg,audio/x-mp3,audio/x-mpeg,video/x-mpeg,video/x-fli,audio/x-wav,audio/x-mpegurl,audio/x-scpls,audio/x-ms-asx,application/vnd.rn-realmedia,audio/x-real-audio,audio/x-pn-realaudio,application/x-flac,audio/x-flac,application/x-shockwave-flash,audio/mpeg,audio/x-ms-asf,audio/x-m4a,audio/x-ms-wax,video/dv,video/x-anim,video/x-flc,misc/ultravox,application/x-matroska,audio/vnd.rn-realaudio,audio/x-pn-aiff,audio/x-pn-au,audio/x-pn-wav,audio/x-pn-windows-acm,image/vnd.rn-realpix,video/vnd.rn-realvideo
+    command=xine
+    name=Xine
+    can_open_multiple_files=true
+    expects_uris=yes
+    requires_terminal=false
+    all_gnome_vfs_schemes_supported=yes
+    uses_gnomevfs=true
+    startup_notify=false
+    supported_uri_schemes=rtp,mms,net,rtsp,pnm
+    mime_types=video/mpeg,video/msvideo,video/quicktime,video/x-avi,video/x-ms-asf,video/x-ms-wmv,video/x-msvideo,application/x-ogg,application/ogg,audio/x-mp3,audio/x-mpeg,video/x-mpeg,video/x-fli,audio/x-wav,audio/x-mpegurl,audio/x-scpls,audio/x-ms-asx,application/vnd.rn-realmedia,audio/x-real-audio,audio/x-pn-realaudio,application/x-flac,audio/x-flac,application/x-shockwave-flash,audio/mpeg,audio/x-ms-asf,audio/x-m4a,audio/x-ms-wax,video/dv,video/x-anim,video/x-flc,misc/ultravox,application/x-matroska,audio/vnd.rn-realaudio,audio/x-pn-aiff,audio/x-pn-au,audio/x-pn-wav,audio/x-pn-windows-acm,image/vnd.rn-realpix,video/vnd.rn-realvideo
 EOF
 
 # Replace all of the ugly icons with ours
@@ -145,19 +138,13 @@ find %{buildroot} -name 'xitk*' | xargs rm -rf || :
 # Remove aaxine man pages, since we don't include it anymore
 find %{buildroot} -name 'aaxine.1*' | xargs rm -f || :
 
-%if %{?_without_freedesktop:1}0
-%{__install} -D -m 0644 xine.desktop %{buildroot}/etc/X11/applnk/Multimedia/xine.desktop
-%else
 %{__mkdir_p} %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     xine.desktop
-%endif
-
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 update-desktop-database %{_datadir}/applications &>/dev/null || :
@@ -165,10 +152,14 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %postun
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
-
 %files -f xine-ui.lang
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc _doc/*
+%doc %{_mandir}/man1/*.1*
+%doc %lang(de)%{_mandir}/de/man1/*.1*
+%doc %lang(es)%{_mandir}/es/man1/*.1*
+%doc %lang(fr)%{_mandir}/fr/man1/*.1*
+%doc %lang(pl)%{_mandir}/pl/man1/*.1*
 %{!?_without_caca:%{_bindir}/cacaxine}
 %{_bindir}/fbxine
 %{_bindir}/xine
@@ -176,17 +167,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_bindir}/xine-check
 %{_bindir}/xine-remote
 %{_datadir}/application-registry/xine.applications
+%{_datadir}/applications/%{desktop_vendor}-xine.desktop
 %{_datadir}/icons/hicolor/*/apps/xine.png
 %{_datadir}/pixmaps/xine.png
 %{_datadir}/xine/
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xine.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Multimedia/xine.desktop}
-%{_mandir}/man1/*
-%lang(de)%{_mandir}/de/man1/*
-%lang(es)%{_mandir}/es/man1/*
-%lang(fr)%{_mandir}/fr/man1/*
-%lang(pl)%{_mandir}/pl/man1/*
-
 
 %changelog
 * Fri May  4 2007 Matthias Saou <http://freshrpms.net/> 0.99.5-1

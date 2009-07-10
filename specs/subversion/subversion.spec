@@ -28,9 +28,9 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.2
+Version: 1.6.3
 ### FC3 comes with release 1.1
-Release: 1
+Release: 0.1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -321,6 +321,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Wed Jun 24 2009 Dag Wieers <dag@wieers.com> - 1.6.3-0.1
+- Updated to release 1.6.3.
+
 * Mon May 11 2009 Christoph Maser <cmr@financial.com> - 1.6.2-1
 - Add sqlite3-amalgamation
 - Add new .rpath .pie patches from fedora cvs

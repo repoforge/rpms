@@ -9,14 +9,14 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-%define real_version 3.81-pre9
-Version: 3.81
-Release: 0.pre9
+%define real_version 3.82-pre5
+Version: 3.82
+Release: 0.pre5
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.gz
+Source: http://www.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -84,47 +84,56 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Tue Jun 09 2009 Dag Wieers <dag@wieers.com> - 3.82-0.pre5
+- Updated to release 3.82-pre5.
+
+* Tue May 26 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre13
+- Updated to release 3.81-pre13.
+
+* Mon May 25 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre10
+- Updated to release 3.81-pre10.
+
 * Thu May 21 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre9
-- Updated to release 3.81pre9.
+- Updated to release 3.81-pre9.
 
 * Thu May 21 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre7
-- Updated to release 3.81pre7.
+- Updated to release 3.81-pre7.
 
 * Tue May 19 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre6
-- Updated to release 3.81pre6.
+- Updated to release 3.81-pre6.
 
 * Sun May 03 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre7
-- Updated to release 3.80pre7.
+- Updated to release 3.80-pre7.
 
 * Fri May 01 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre5
-- Updated to release 3.80pre5.
+- Updated to release 3.80-pre5.
 
 * Thu Apr 30 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre4
-- Updated to release 3.80pre4.
+- Updated to release 3.80-pre4.
 
 * Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 3.75-0.pre4
-- Updated to release 3.75pre4.
+- Updated to release 3.75-pre4.
 
 * Wed Apr 15 2009 Dag Wieers <dag@wieers.com> - 3.75-0.pre2
-- Updated to release 3.75pre2.
+- Updated to release 3.75-pre2.
 
 * Thu Apr 09 2009 Dag Wieers <dag@wieers.com> - 3.74-0.pre21
-- Updated to release 3.74pre21.
+- Updated to release 3.74-pre21.
 
 * Tue Apr 07 2009 Dag Wieers <dag@wieers.com> - 3.74-0.pre19
-- Updated to release 3.74pre19.
+- Updated to release 3.74-pre19.
 
 * Wed Jan 07 2009 Dag Wieers <dag@wieers.com> - 3.73-0.pre7
-- Updated to release 3.73pre7
+- Updated to release 3.73-pre7
 
 * Sun Nov 23 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre6
-- Updated to release 3.73pre6.
+- Updated to release 3.73-pre6.
 
 * Thu Oct 16 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre4
-- Updated to release 3.73pre4.
+- Updated to release 3.73-pre4.
 
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre3
-- Updated to release 3.73pre3.
+- Updated to release 3.73-pre3.
 
 * Sun Sep 28 2008 Dag Wieers <dag@wieers.com> - 3.72-2
 - Fixed Patch1.

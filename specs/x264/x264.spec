@@ -4,13 +4,11 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_asm 1}
 %{?el3:%define _without_glibc232 1}
+%{?el3:%define _without_modxorg 1}
 
 %define date 20090708
 
@@ -29,8 +27,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext
 BuildRequires: nasm
 BuildRequires: yasm
-%{?_with_visualize:%{?_with_modxorg:BuildRequires: libXt-devel}}
-%{?_with_visualize:%{!?_with_modxorg:BuildRequires: XFree86-devel}}
+%{?_with_visualize:%{!?_without_modxorg:BuildRequires: libXt-devel}}
+%{?_with_visualize:%{?_without_modxorg:BuildRequires: XFree86-devel}}
 
 Obsoletes: x264-gtk <= %{version}-%{release}
 

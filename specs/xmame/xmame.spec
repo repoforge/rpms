@@ -4,22 +4,14 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
-
 %{?el5:%define _without_glide3 1}
-%{?el4:%define _without_glide3 1}
-%{?el3:%define _without_glide3 1}
-%{?el2:%define _without_glide3 1}
 
-%{?fc1:%define _without_alsa 1}
+%{?el4:%define _without_glide3 1}
+%{?el4:%define _without_modxorg 1}
+
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
-%{?el2:%define _without_alsa 1}
+%{?el3:%define _without_glide3 1}
+%{?el3:%define _without_modxorg 1}
 
 #define rcver cvs
 %define targets %{?!_without_mame:mame} %{?!_without_mess:mess}
@@ -53,10 +45,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: %{name}-x11 <= 0.87
 Obsoletes: %{name}-xgl <= 0.87
 BuildRequires: unzip, p7zip, zlib-devel, expat-devel
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXext-devel}
-%{?_with_modxorg:%{?opengl:BuildRequires: mesa-libGLU-devel, libjpeg-devel}}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{!?_with_modxorg:%{?opengl:BuildRequires: Mesa-devel, libjpeg-devel}}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libXext-devel}
+%{!?_without_modxorg:%{?opengl:BuildRequires: mesa-libGLU-devel, libjpeg-devel}}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_without_modxorg:%{?opengl:BuildRequires: Mesa-devel, libjpeg-devel}}
 %{?glide3:BuildRequires: Glide3-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_esound:BuildRequires: esound-devel}

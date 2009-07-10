@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.80
+Version: 3.82
 Release: 1
 License: GPL
 Group: Applications/System
@@ -80,6 +80,12 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Tue Jun 09 2009 Dag Wieers <dag@wieers.com> - 3.82-1
+- Updated to release 3.82.
+
+* Sat May 30 2009 Dag Wieers <dag@wieers.com> - 3.81-1
+- Updated to release 3.81.
+
 * Wed May 06 2009 Dag Wieers <dag@wieers.com> - 3.80-1
 - Updated to release 3.80.
 

@@ -3,14 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
-
-%{?rh7:%define _without_fontconfig 1}
-%{?el2:%define _without_fontconfig 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Window Manager based on Blackbox
 Name: fluxbox
@@ -26,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, imlib2-devel, gcc-c++
 %{!?_without_fontconfig:BuildRequires: fontconfig-devel}
-%{?_with_modxorg:BuildRequires: libICE-devel, libSM-devel, libX11-devel, libXext-devel, libXft-devel, libXinerama-devel, libXpm-devel, libXrandr-devel, libXrender-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libICE-devel, libSM-devel, libX11-devel, libXext-devel, libXft-devel, libXinerama-devel, libXpm-devel, libXrandr-devel, libXrender-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: python-xdg, artwiz-aleczapka-fonts
 
 %description
@@ -54,8 +48,8 @@ EOF
 %build
 %configure \
 	--x-includes="%{_includedir}" \
-%{?_with_modxorg:--x-libraries="%{_libdir}"} \
-%{!?_with_modxorg:--x-libraries="%{_prefix}/X11R6/%{_lib}"} \
+%{!?_without_modxorg:--x-libraries="%{_libdir}"} \
+%{?_without_modxorg:--x-libraries="%{_prefix}/X11R6/%{_lib}"} \
 	--enable-gnome \
 	--enable-imlib2 \
 	--enable-kde \

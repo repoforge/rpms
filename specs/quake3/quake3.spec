@@ -4,10 +4,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define svn 908
 
@@ -26,8 +24,8 @@ Source1: quake3.png
 Patch0: quake3-1.34-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, openal-devel, nasm, subversion
-%{?_with_modxorg:BuildRequires: libXt-devel, libGL-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libGL-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 This is Quake 3 Arena.

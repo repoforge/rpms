@@ -4,11 +4,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Nintendo GameBoy Color emulator
 Name: gnuboy
@@ -22,8 +19,8 @@ Patch0: gnuboy-1.0.3-s64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: SDL >= 1.2.0
 BuildRequires: SDL-devel >= 1.2.0
-%{?_with_modxorg:BuildRequires: libXt-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 gnuboy (all lowercase) is a portable program for emulating the

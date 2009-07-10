@@ -5,17 +5,10 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
 
-%{?fc1:%define _without_kde32 1}
 %{?el3:%define _without_kde32 1}
-%{?rh9:%define _without_kde32 1}
-%{?rh7:%define _without_kde32 1}
-%{?el2:%define _without_kde32 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Additional codec plugins for the k3b CD/DVD burning application
 Name: k3b-extras
@@ -46,8 +39,8 @@ BuildRequires: libsndfile-devel
 BuildRequires: taglib-devel
 BuildRequires: zlib-devel
 %{!?_without_kde32:BuildRequires: libmng-devel fam-devel glib2-devel alsa-lib-devel esound-devel}
-%{?_with_modxorg:BuildRequires: libX11-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 Requires: k3b = %{version}
 

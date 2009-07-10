@@ -1,13 +1,18 @@
-%define desktop_vendor freshrpms
-%define nvidialibdir   %{_libdir}/nvidia
+# $Id$
+# Authority: dag
+
+# Dist: nodist
+
+%define desktop_vendor rpmforge
+%define nvidialibdir %{_libdir}/nvidia
 %define nvidialib32dir %{_prefix}/lib/nvidia
 
-%define debug_package  %{nil}
+%define debug_package %{nil}
 
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: dkms-nvidia-x11-drv
 Version: 180.51
-Release: 1%{?dist}
+Release: 1
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html

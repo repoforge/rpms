@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 # ExclusiveDist: fc5 fc6 el5 fc7
 
 %define desktop_vendor rpmforge
@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.4
-Release: 2
+Release: 3
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -50,6 +50,7 @@ BuildRequires: libcdaudio-devel
 BuildRequires: jack-audio-connection-kit-devel
 BuildRequires: ladspa-devel
 BuildRequires: mjpegtools-devel
+BuildRequires: x264-devel
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -58,13 +59,11 @@ operate on media data.
 This package contains plug-ins that have licensing issues, aren't tested
 well enough, or the code is not of good enough quality.
 
-
 %prep
 %setup -q -n gst-plugins-bad-%{version}
 %patch0 -p1 -b .faad2
 ### Use correct soundtouch pkgconfig package name
 %{__perl} -pi.orig -e 's|libSoundTouch|soundtouch-1.0|g' configure
-
 
 %build
 %configure \
@@ -73,7 +72,6 @@ well enough, or the code is not of good enough quality.
     --enable-debug \
     --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -84,10 +82,8 @@ well enough, or the code is not of good enough quality.
 %{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
 %{__rm} -f %{buildroot}%{_libdir}/*.la
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f gst-plugins-bad-%{majorminor}.lang
 %defattr(-,root,root,-)
@@ -136,8 +132,10 @@ well enough, or the code is not of good enough quality.
 %{_libdir}/gstreamer-%{majorminor}/libgstxvid.so
 %{_libdir}/gstreamer-%{majorminor}/libgsty4menc.so
 
-
 %changelog
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.10.4-3
+- Rebuild against x264-0.4.20090708.
+
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.10.4-2
 - Rebuild against libmpcdec 1.2.6.
 

@@ -9,11 +9,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Clone of skyroads, jump and speed along platforms to reach the goal
 Name: skystreets
@@ -27,8 +24,8 @@ Source: http://skystreets.kaosfusion.com/skystreets-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: imlib-devel, imlib, gcc-c++, SDL-devel, SDL_image-devel
 BuildRequires: libtiff-devel, libtiff, libjpeg, zlib
-%{?_with_modxorg:BuildRequires: libX11-devel, mesa-libGL, mesa-libGLU}
-%{!?_with_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
+%{!?_without_modxorg:BuildRequires: libX11-devel, mesa-libGL, mesa-libGLU}
+%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU, XFree86-Mesa-libGL}
 Requires: SDL, SDL_image, libtiff, imlib
 
 %description

@@ -4,10 +4,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Presentation software
 Name: magicpoint
@@ -33,8 +31,8 @@ BuildRequires: autoconf, automake, libtool, byacc, flex
 BuildRequires: libungif-devel, libpng-devel, libmng-devel, imlib-devel
 BuildRequires: fontconfig-devel
 #Requires: VFlib2 >= 2.25.6-8, VFlib2-conf-ja >= 2.25.6-8
-%{?_with_modxorg:BuildRequires: libXt-devel, libXext-devel, libXft-devel, libXmu-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXext-devel, libXft-devel, libXmu-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: imlib
 Obsoletes: mgp <= %{version}-%{release}
 Obsoletes: MagicPoint <= %{version}-%{release}

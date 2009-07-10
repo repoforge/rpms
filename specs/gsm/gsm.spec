@@ -2,18 +2,18 @@
 # Authority: dag
 # Upstream: Jutta Degener <jutta$pobox,com>
 
-%define srcver 1.0-pl12
 
 Summary: Shared libraries for GSM speech compressor
 Name: gsm
-Version: 1.0.12
+%define real_version 1.0-pl13
+Version: 1.0.13
 Release: 1
 License: MIT
 Group: System Environment/Libraries
 URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html
 
 #Source: ftp://ftp.cs.tu-berlin.de/pub/local/kbs/tubmik/gsm/gsm-%{version}.tar.gz
-Source: http://kbs.cs.tu-berlin.de/~jutta/gsm/gsm-1.0.12.tar.gz
+Source: http://kbs.cs.tu-berlin.de/~jutta/gsm/gsm-%{version}.tar.gz
 Patch: gsm-makefile-dag.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -34,7 +34,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{srcver}
+%setup -n %{name}-%{real_version}
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %patch0 -b .orig
 
@@ -76,6 +76,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgsm.a
 
 %changelog
+* Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 1.0.13-1
+- Updated to release 1.0.13.
+
 * Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 1.0.12-1
 - Update to 1.0.12.
 

@@ -7,7 +7,6 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
 %{!?dtag:%define _with_avahi 1}
 
 ### Problems with dirac
@@ -16,11 +15,6 @@
 %ifarch %{ix86}
 %define _with_loader 1
 %endif
-
-%{?fc7:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
 
 %{?fc7:%define _with_avahi 1}
 %{?el5:%define _with_avahi 1}
@@ -32,79 +26,20 @@
 
 %{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_jack 1}
+%{?el4:%define _without_modxorg 1}
 %{?el4:%define _without_sysfs 1}
 %{?el4:%define _without_upnp 1}
-
-%{?fc3:%define _without_jack 1}
-%{?fc3:%define _without_sysfs 1}
-%{?fc3:%define _without_upnp 1}
-#{?fc3:#define _without_wxwidgets 1}
-
-%{?fc2:%define _without_hal 1}
-%{?fc2:%define _without_jack 1}
-%{?fc2:%define _without_sysfs 1}
-%{?fc2:%define _without_upnp 1}
-#{?fc2:#define _without_wxwidgets 1}
-
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_hal 1}
-%{?fc1:%define _without_jack 1}
-%{?fc1:%define _without_sysfs 1}
-%{?fc1:%define _without_theora 1}
-%{?fc1:%define _without_upnp 1}
-#{?fc1:#define _without_wxwidgets 1}
 
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
+%{?el3:%define _without_modxorg 1}
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
 #{?el3:#define _without_upnp 1}
 #{?el3:#define _without_wxwidgets 1}
-
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_fribidi 1}
-%{?rh9:%define _without_hal 1}
-%{?rh9:%define _without_jack 1}
-%{?rh9:%define _without_sysfs 1}
-%{?rh9:%define _without_theora 1}
-#{?rh9:#define _without_upnp 1}
-#{?rh9:#define _without_wxwidgets 1}
-%{?rh9:%define _without_x264 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_fribidi 1}
-%{?rh7:%define _without_hal 1}
-%{?rh7:%define _without_jack 1}
-%{?rh7:%define _without_sysfs 1}
-%{?rh7:%define _without_theora 1}
-#{?rh7:#define _without_upnp 1}
-%{?rh7:%define _without_vorbis 1}
-#{?rh7:#define _without_wxwidgets 1}
-%{?rh7:%define _without_x264 1}
-%{?rh7:%define _without_xosd 1}
-
-%{?el2:%define mozilla seamonkey-devel}
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_arts 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_fribidi 1}
-%{?el2:%define _without_glx 1}
-%{?el2:%define _without_hal 1}
-%{?el2:%define _without_jack 1}
-%{?el2:%define _without_sysfs 1}
-%{?el2:%define _without_theora 1}
-#{?el2:#define _without_upnp 1}
-%{?el2:%define _without_vorbis 1}
-#{?el2:#define _without_wxwidgets 1}
-%{?el2:%define _without_x264 1}
-%{?el2:%define _without_xosd 1}
-
-%{?yd3:%define _without_alsa 1}
-%{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
 %define ffmpeg_date 20061215
@@ -134,8 +69,8 @@ Buildrequires: autoconf, automake, libtool
 %{?_with_cddax:BuildRequires: cdparanoia-devel}
 %{?_with_glide:BuildRequires: Glide3-devel}
 %{?_with_hal:BuildRequires: hal-devel}
-%{?_with_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_mozilla:BuildRequires: %{mozilla}}
 %{?_with_portaudio:BuildRequires: portaudio-devel}
 %{!?_without_a52:BuildRequires: a52dec-devel}

@@ -4,11 +4,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}
@@ -35,8 +32,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl >= 1:5.7.0
 BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
-%{?_with_modxorg:BuildRequires: libX11-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tk}
 Requires: perl >= 1:5.7.0

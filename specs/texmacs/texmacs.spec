@@ -1,15 +1,13 @@
 # $Id: $
-
 # Authority: dries
+
 # Screenshot: http://www.texmacs.org/Samples/texmacs-1.png
 # ScreenshotURL: http://www.texmacs.org/tmweb/home/screenshots.en.html
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Structured WYSIWYG scientific text editor
 Name: texmacs
@@ -23,8 +21,8 @@ Source: ftp://ftp.texmacs.org/pub/TeXmacs/targz/TeXmacs-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tetex-latex, guile-devel, gcc-c++, python
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_with_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel}
 
 ### Fedora Extras introduced them differently :(
 Obsoletes: TeXmacs < %{version}-%{release}

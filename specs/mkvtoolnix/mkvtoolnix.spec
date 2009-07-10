@@ -5,7 +5,7 @@
 
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
-Version: 2.7.0
+Version: 2.9.0
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -116,7 +116,10 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/mkvtoolnix/
 
 %changelog
-* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 2.7.0
+* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 2.9.0-1
+- Updated to release 2.9.0.
+
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 2.7.0-1
 - Updated to release 2.7.0.
 
 * Mon Jan 19 2009 Dag Wieers <dag@wieers.com> - 2.4.2-1

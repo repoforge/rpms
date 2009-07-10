@@ -18,11 +18,8 @@
 %{?el4:  %define _with_banks 1}
 %{?fc3:  %define _with_banks 1}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: 68k Macintosh emulator
 Name: BasiliskII
@@ -40,7 +37,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
 BuildRequires: desktop-file-utils, readline-devel
-%{?_with_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel, libXxf86vm-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel, libXxf86vm-devel}
 %{?_with_sdl:BuildRequires: SDL-devel}
 
 %description

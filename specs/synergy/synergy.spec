@@ -3,11 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
@@ -20,8 +17,8 @@ Source: http://dl.sf.net/synergy2/synergy-%{version}.tar.gz
 Patch: synergy-1.2.2-werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, autoconf, automake
-%{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel, libXinerama-devel, libXtst-devel, libXext-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel, libXinerama-devel, libXtst-devel, libXext-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 Synergy lets you easily share a single mouse and keyboard between

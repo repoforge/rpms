@@ -3,8 +3,8 @@
 
 Summary: MOD music file playing library
 Name: libmodplug
-Version: 0.7
-Release: 1.2
+Version: 0.8.7
+Release: 1
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://modplug-xmms.sourceforge.net/
@@ -31,7 +31,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --enable-static
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -41,11 +41,8 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -55,14 +52,13 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libmodplug/
-%{_libdir}/libmodplug.a
-%exclude %{_libdir}/libmodplug.la
 %{_libdir}/libmodplug.so
 %{_libdir}/pkgconfig/libmodplug.pc
+%exclude %{_libdir}/libmodplug.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7-1.2
-- Rebuild for Fedora Core 5.
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.8.7-1
+- Updated to release 0.8.7.
 
 * Wed Apr 06 2005 Dag Wieers <dag@wieers.com> - 0.7-1
 - Initial package. (using DAR)
