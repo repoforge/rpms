@@ -9,7 +9,7 @@
 
 Summary: Localization support for DateTime.pm
 Name: perl-DateTime-Locale
-Version: 0.4001
+Version: 0.43
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.006
+BuildRequires: perl(Module::Build)
 Requires: perl >= 0:5.006
 
 %description
@@ -30,6 +31,7 @@ DateTime.pm class.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} Build.PL
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -55,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog
+* Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.43-1
+- Updated to version 0.43.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 0.4001-1
 - Updated to release 0.4001.
 
