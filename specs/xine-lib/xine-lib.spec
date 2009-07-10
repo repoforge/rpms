@@ -5,17 +5,14 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
-%{?fc6: %define _with_modxorg 1}
-%{?fc5: %define _with_modxorg 1}
-
 %{?el4:%define _with_speex104 1}
+%{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_freetype2_pc 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_gettextdevel 1}
+%{?el3:%define _without_modxorg 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
 
@@ -39,9 +36,9 @@ BuildRequires: libvorbis-devel, SDL-devel, bzip2-devel
 BuildRequires: libpng-devel, libmng-devel, libjpeg-devel, freetype-devel
 BuildRequires: gtk2-devel
 BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{!?_with_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_with_rte:BuildRequires: rte-devel}
 %{?_with_extdvdnav:BuildRequires: libdvdnav-devel >= 0.1.4}
 %{?_with_extffmpeg:BuildRequires: ffmpeg-devel}
@@ -96,8 +93,8 @@ Available rpmbuild rebuild options :
 Summary: Development files for the xine library
 Group: Development/Libraries
 Requires: %{name} = %{version}, pkgconfig, zlib-devel
-%{?_with_modxorg:Requires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
-%{!?_with_modxorg:Requires: XFree86-devel}
+%{!?_without_modxorg:Requires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
+%{?_without_modxorg:Requires: XFree86-devel}
 Obsoletes: xine-libs-devel <= 1.0.0
 
 %description devel
@@ -133,8 +130,8 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
     --with-fontconfig \
     --with-freetype \
     --with-pic \
-%{?_with_modxorg:--with-xv-path="%{_libdir}"} \
-%{!?_with_modxorg:--with-xv-path="%{_prefix}/X11R6/%{_lib}"}
+%{!?_without_modxorg:--with-xv-path="%{_libdir}"} \
+%{?_without_modxorg:--with-xv-path="%{_prefix}/X11R6/%{_lib}"}
 %{__make} %{?_smp_mflags}
 
 %install
