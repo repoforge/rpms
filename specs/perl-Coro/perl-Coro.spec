@@ -6,28 +6,36 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Coro
+%define real_version 5.151
 
 Summary: Coroutine process abstraction
 Name: perl-Coro
 ### FIXME: Versions >= 4.31 require perl-BDB and db4 >= 4.4
-Version: 5.1
+Version: 5.1.51
 Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Coro/
 
-Source: http://www.cpan.org/modules/by-module/Coro/Coro-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Coro/Coro-%{real_version}.tar.gz
 Patch0: Coro-3.63-noprompt.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(BDB)
-BuildRequires: perl(Event) >= 0.86
-BuildRequires: perl(IO::AIO) >= 1.6
-# This would introduce a circular dependency since AnyEvent requires Coro...
-#BuildRequires: perl(AnyEvent)
-# Provided by either perl or perl-devel
+BuildRequires: perl(AnyEvent) >= 4.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(EV)
+BuildRequires: perl(Guard) >= 0.5
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Storable) >= 2.15
+BuildRequires: perl(Time::HiRes)
+Requires: perl(AnyEvent) >= 4.42
+Requires: perl(EV)
+Requires: perl(Guard) >= 0.5
+Requires: perl(Scalar::Util)
+Requires: perl(Storable) >= 2.15
+Requires: perl(Time::HiRes)
+AutoReq: no
 
 %description
 This module collection manages coroutines.
@@ -35,7 +43,7 @@ Coroutines are similar to threads but don't run in parallel.
 
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 %patch0 -p1 -b .noprompt
 
 %build
@@ -65,6 +73,9 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Coro.pm
 
 %changelog
+* Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 5.1.51-1
+- Updated to version 5.151.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 5.1-1
 - Updated to release 5.1.
 
