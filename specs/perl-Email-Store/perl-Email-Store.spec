@@ -9,8 +9,8 @@
 
 Summary: Perl module named Email-Store
 Name: perl-Email-Store
-Version: 0.255
-Release: 2
+Version: 0.256
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Store/
@@ -67,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Store/Mail.pm
 
 %changelog
+* Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.256-1
+- Updated to version 0.256.
+
 * Thu Jul  2 2009 Steve Huff <hakamadare@users.sourceforge.net> - 0.255-2
 - uncaptured Perl dependencies 
 
