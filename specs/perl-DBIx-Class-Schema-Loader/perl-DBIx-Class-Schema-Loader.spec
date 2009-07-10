@@ -9,7 +9,7 @@
 
 Summary: Dynamic definition of a DBIx::Class::Schema
 Name: perl-DBIx-Class-Schema-Loader
-Version: 0.04005
+Version: 0.04006
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,13 +22,14 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Carp::Clan)
 BuildRequires: perl(Class::Accessor::Fast) >= 0.30
-BuildRequires: perl(Class::Data::Accessor) >= 0.03
 BuildRequires: perl(Class::C3) >= 0.18
+BuildRequires: perl(Class::Data::Accessor) >= 0.03
 BuildRequires: perl(Class::Inspector)
 BuildRequires: perl(DBD::SQLite) >= 1.12
 BuildRequires: perl(DBI) >= 1.56
 BuildRequires: perl(DBIx::Class) >= 0.07006
 BuildRequires: perl(Data::Dump) >= 1.06
+BuildRequires: perl(Date::Calc)
 BuildRequires: perl(Digest::MD5) >= 2.36
 BuildRequires: perl(File::Path)
 BuildRequires: perl(File::Spec)
@@ -69,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Class/Schema/Loader.pm
 
 %changelog
+* Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.04006-1
+- Updated to version 0.04006.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.04005-1
 - Updated to release 0.04005.
 
