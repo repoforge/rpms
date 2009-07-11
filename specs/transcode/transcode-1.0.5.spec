@@ -1,6 +1,8 @@
-# $Id$
+# $Id: transcode.spec 6435 2008-08-06 01:13:29Z dag $
 # Authority: dag
 # Upstream: <transcode-users$exit1.org>
+
+# ExclusiveDist: el3
 
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
@@ -14,7 +16,7 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.1.0
+Version: 1.0.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -125,15 +127,6 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %exclude %{_libdir}/transcode/*.la
 
 %changelog
-* Mon Jan 19 2009 Dag Wieers <dag@wieers.com> - 1.1.0-1
-- Updated to release 1.1.0.
-
-* Mon Nov 17 2008 Dag Wieers <dag@wieers.com> - 1.0.7-1
-- Updated to release 1.0.7.
-
-* Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 1.0.6-1
-- Updated to release 1.0.6.
-
 * Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 

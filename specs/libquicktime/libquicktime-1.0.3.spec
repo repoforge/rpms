@@ -12,6 +12,7 @@
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_gtk24 1}
 %{?el3:%define _without_modxorg 1}
+%{?el3:%define _without_libswscale 1}
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
@@ -23,6 +24,7 @@ URL: http://libquicktime.sourceforge.net/
 
 Source: http://dl.sf.net/libquicktime/libquicktime-%{version}.tar.gz
 Patch0: libquicktime-1.0.0-plugin_dir.patch
+Patch1: libquicktime-1.0.3-x264.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -65,9 +67,11 @@ programs that need to access quicktime files using libquicktime.
 %prep
 %setup -n %{name}-%{version}
 %patch0 -p0 -b .plugin_dir
+%patch1 -p0 -b .x264
 
 %build
 %configure \
+%{?_without_libswscale:--disable-libswscale} \
     --enable-gpl \
     --with-cpuflags="%{optflags}"
 %{__make} %{?_smp_mflags}

@@ -5,11 +5,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 #define date 20040610
 
@@ -25,8 +22,8 @@ Patch0: mpeg2dec-0.4.0b-pic.patch
 Patch1: mpeg2dec-0.4.1-automake-1.10.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, pkgconfig, gcc-c++
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 # Required for ./bootstrap
 BuildRequires: autoconf, automake, libtool
 

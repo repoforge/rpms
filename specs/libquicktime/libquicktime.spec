@@ -11,6 +11,7 @@
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_gtk24 1}
 %{?el3:%define _without_modxorg 1}
+%{?el3:%define _without_libswscale 1}
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
@@ -74,6 +75,7 @@ programs that need to access quicktime files using libquicktime.
 
 %build
 %configure \
+%{?_without_libswscale:--disable-libswscale} \
     --enable-gpl \
     --with-cpuflags="%{optflags}" \
 %{?_without_alsa:--without-alsa} \

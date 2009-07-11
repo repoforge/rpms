@@ -5,11 +5,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Free MPEG-1 and MPEG-2 video stream decoder
 Name: libmpeg2
@@ -23,8 +20,8 @@ Source: http://libmpeg2.sourceforge.net/files/libmpeg2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, pkgconfig, gcc-c++
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 A free library for decoding MPEG-2 and MPEG-1 video streams.
