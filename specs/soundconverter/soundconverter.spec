@@ -6,13 +6,13 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 1.4.3
+Version: 1.4.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://soundconverter.berlios.de/
 
-Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.gz
+Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -52,6 +52,9 @@ WAV, FLAC, MP3, AAC, and Ogg Vorbis files.
 %{_datadir}/soundconverter/
 
 %changelog
+* Sat Jul 11 2009 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1
+- Updated to release 1.4.4.
+
 * Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 1.4.3-1
 - Updated to release 1.4.3.
 

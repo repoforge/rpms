@@ -32,12 +32,12 @@
 %{?el3:%define _with_openmotif 1}
 %{?el2:%define _with_lesstif 1}
 
-%define real_version 0.29beta1199
+%define real_version 0.29beta1294
 
 Summary: Graphical VRML97 editor and animation tool
 Name: white_dune
 Version: 0.29
-Release: 0.beta1225
+Release: 0.beta1294
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/
