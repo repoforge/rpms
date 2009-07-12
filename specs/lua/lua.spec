@@ -1,9 +1,9 @@
 # $Id$
-# Authority: rudolf
+# Authority: dag
 
 Summary: Lua scripting language
 Name: lua
-Version: 5.1.3
+Version: 5.1.4
 Release: 1
 License: MIT
 Group: Development/Libraries
@@ -38,23 +38,19 @@ you will need to install %{name}-devel.
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
-        s|^(INSTALL_ROOT=).*$|$1 \$(prefix)|;
-        s|^(INSTALL_BIN=).*$|$1 \$(bindir)|;
-        s|^(INSTALL_INC=).*$|$1 \$(includedir)|;
-        s|^(INSTALL_LIB=).*$|$1 \$(libdir)|;
-        s|^(INSTALL_MAN=).*$|$1 \$(mandir)/man1|;
+        s|^(INSTALL_TOP=).*$|$1 %{buildroot}%{_prefix}|;
+        s|^(INSTALL_LIB=).*$|$1 %{buildroot}%{_libdir}|;
+        s|^(INSTALL_MAN=).*$|$1 %{buildroot}%{_mandir}/man1|;
         s|^(INSTALL_EXEC=).*$|$1 %{__install} -p -m0755|;
         s|^(INSTALL_DATA=).*$|$1 %{__install} -p -m0644|;
-    ' config
+    ' Makefile
 
 %build
-%{__make} %{?_smp_mflags} all so \
-    MYCFLAGS="%{optflags} -fPIC"
+%{__make} linux all
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__install} -p -m0755 lib/*.so* %{buildroot}%{_libdir}
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -64,18 +60,25 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYRIGHT doc/*gif doc/*html HISTORY INSTALL MANIFEST README UPDATE
-%doc %{_mandir}/man?/*
-%{_bindir}/*
-%{_libdir}/*.so.*
+%doc COPYRIGHT doc/*gif doc/*html HISTORY INSTALL README
+%doc %{_mandir}/man1/lua.1*
+%doc %{_mandir}/man1/luac.1*
+%{_bindir}/lua
+%{_bindir}/luac
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
-%{_libdir}/*.a
-%{_libdir}/*.so
+%{_includedir}/lauxlib.h
+%{_includedir}/lua.h
+%{_includedir}/lua.hpp
+%{_includedir}/luaconf.h
+%{_includedir}/lualib.h
+%{_libdir}/liblua.a
 
 %changelog
+* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 5.1.4-1
+- Updated to release 5.1.4.
+
 * Sun Feb 10 2008 Dag Wieers <dag@wieers.com> - 5.1.3-1
 - Updated to release 5.1.3.
 

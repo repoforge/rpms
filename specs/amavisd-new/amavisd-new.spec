@@ -11,7 +11,7 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.6.3
+Version: 2.6.4
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -335,9 +335,11 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
-* Wed May 06 2009 Christoph Maser <cmr@financial.com> - 2.6.3-1
+* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 2.6.4-1
+- Updated to release 2.6.4.
+
+* Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 2.6.3-1
 - Updated to release 2.6.3.
-- Removed test-tag
 
 * Mon Apr 20 2009 Christoph Maser <cmr@financial.com> - 2.6.2-1
 - Updated to release 2.6.2.
