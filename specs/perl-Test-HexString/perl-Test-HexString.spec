@@ -10,7 +10,7 @@
 
 Summary: test binary strings with hex dump diagnostics
 Name: perl-Test-HexString
-Version: 0.01
+Version: 0.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/HexString.pm
 
 %changelog
+* Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 0.02-1
+- Updated to version 0.02.
+
 * Mon Jul 06 2009 Unknown - 0.01-1
 - Initial package. (using DAR)
