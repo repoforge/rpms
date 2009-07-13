@@ -9,7 +9,7 @@
 
 Summary: Perl extension for simple IMAP account handling
 Name: perl-Net-IMAP-Simple
-Version: 1.1801
+Version: 1.1900
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/IMAP/Simple.pod
 
 %changelog
+* Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 1.1900-1
+- Updated to version 1.1900.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.1801-1
 - Updated to version 1.1801.
 
