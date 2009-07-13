@@ -9,7 +9,7 @@
 
 Summary: Perl module that implemens RIPE Whois
 Name: perl-Net-Whois-RIPE
-Version: 1.22
+Version: 1.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 
 %description
 perl-Net-Whois-RIPE is a Perl module that implemens RIPE Whois.
@@ -28,12 +29,12 @@ perl-Net-Whois-RIPE is a Perl module that implemens RIPE Whois.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -53,8 +54,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Whois/RIPE/
 %{perl_vendorlib}/Net/Whois/RIPE.pm
 %{perl_vendorlib}/Net/Whois/RIPE.pod
-%{perl_vendorlib}/Net/Whois/update.pl
 
 %changelog
+* Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 1.30-1
+- Updated to version 1.30.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.22-1
 - Initial package. (using DAR)
