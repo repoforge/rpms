@@ -4,7 +4,7 @@
 
 Summary: Console MUD client
 Name: tintin
-Version: 1.99.4
+Version: 1.99.6
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -33,7 +33,8 @@ cd src
 %{__rm} -rf %{buildroot}
 cd src
 %{__install} -d %{buildroot}%{_bindir}
-%{__make} install DESTDIR="%{buildroot}"
+# FIXME: DESTDIR doesn't work anymore
+%{__make} install DESTDIR="%{buildroot}" bindir="%{buildroot}%{_bindir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,6 +45,9 @@ cd src
 %{_bindir}/tt++
 
 %changelog
+* Sun Jul 12 2009 Dries Verachtert <dries@ulyssis.org> - 1.99.6-1
+- Updated to release 1.99.6.
+
 * Tue Apr 14 2009 Dries verachtert <dries@ulyssis.org> - 1.99.4-1
 - Updated to release 1.99.4.
 

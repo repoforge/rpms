@@ -38,13 +38,13 @@
 
 Summary: Screen lock and screen saver.
 Name: xlockmore
-Version: 5.18
-Release: 2.2
+Version: 5.28
+Release: 1
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html
 
-Source: http://www.tux.org/~bagleyd/latest/xlockmore-%{version}.tar.bz2
+Source: http://www.tux.org/~bagleyd/xlock/xlockmore-%{version}/xlockmore-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, esound-devel, gtk2-devel, pam-devel
@@ -127,6 +127,9 @@ desktop-file-install \
 %{_datadir}/applications/%{desktop_vendor}-xlockmore.desktop
 
 %changelog
+* Sun Jul 12 2009 Dries Verachtert <dries@ulyssis.org> - 5.28-1
+- Updated to release 5.28.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.18-2.2
 - Rebuild for Fedora Core 5.
 

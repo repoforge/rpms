@@ -3,13 +3,13 @@
 
 Summary: Light download accelerator
 Name: axel
-Version: 1.1
+Version: 2.4
 Release: 1
 License: GPLv2
 Group: Applications/Internet
 URL: http://axel.alioth.debian.org/
 
-Source: http://alioth.debian.org/frs/download.php/2287/axel-%{version}.tar.gz
+Source: http://alioth.debian.org/frs/download.php/3015/axel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc, binutils
@@ -44,9 +44,13 @@ on byte-critical systems.
 %defattr(-, root, root, 0755)
 %doc API CHANGES COPYING CREDITS README axelrc.example
 %doc %{_mandir}/man1/axel.1*
+%doc %{_mandir}/*/man1/axel.1*
 %config %{_sysconfdir}/axelrc
 %{_bindir}/axel
 
 %changelog
+* Sun Jul 12 2009 Dries Verachtert <dries@ulyssis.org> - 2.4-1
+- Updated to release 2.4.
+
 * Mon Jul 28 2008 Ahmed Medhat <ultimatetux@gmail.com> - 1.1-1
 - Initial RPM creation.
