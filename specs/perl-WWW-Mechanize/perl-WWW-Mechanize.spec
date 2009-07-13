@@ -12,7 +12,7 @@
 
 Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.54
+Version: 1.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 1.56-1
+- Updated to version 1.56.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.54-1
 - Updated to version 1.54.
 
