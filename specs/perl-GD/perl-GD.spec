@@ -14,7 +14,7 @@
 
 Summary: Interface to Gd Graphics Library
 Name: perl-GD
-Version: 2.43
+Version: 2.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,7 +25,8 @@ Patch0: perl-GD-2.41-Group.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.0
-BuildRequires: gd-devel >= 2.0.12
+BuildRequires: gd-devel >= 2.0.28
+BuildRequires: gd-progs >= 2.0.28
 BuildRequires: libpng-devel
 BuildRequires: zlib-devel
 BuildRequires: freetype-devel
@@ -34,6 +35,11 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: perl >= 2:5.8.0
+Requires: gd >= 2.0.28
+Requires: libpng
+Requires: zlib
+Requires: freetype
+Requires: libjpeg
 
 %description
 perl-GD is a Perl interface to the gd graphics library. GD allows you
@@ -77,6 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/qd.pl
 
 %changelog
+* Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 2.44-1
+- Updated to version 2.44.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2.43-1
 - Updated to version 2.43.
 
