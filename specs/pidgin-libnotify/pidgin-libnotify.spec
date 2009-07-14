@@ -3,7 +3,7 @@
 
 Summary: Libnotify Pidgin plugin 
 Name: pidgin-libnotify
-Version: 0.13
+Version: 0.14
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -31,8 +31,7 @@ such as a buddy signing on or off.
 %setup
 
 %build
-%configure \
-    --disable-static
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -50,6 +49,9 @@ such as a buddy signing on or off.
 %exclude %{_libdir}/purple-2/pidgin-libnotify.la
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
+
 * Tue Jul 01 2007 Heiko Adams <info@fedora-blog.de> - 0.13-1
 - Updated to 0.13 and rebuild for CentOS
 

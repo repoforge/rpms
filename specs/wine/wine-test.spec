@@ -22,7 +22,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.22
+Version: 1.1.25
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -603,6 +603,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dpnhpast.dll.so
 %{_libdir}/wine/dpnlobby.dll.so
 %{_libdir}/wine/dpwsockx.dll.so
+%{_libdir}/wine/drmclien.dll.so
 %{_libdir}/wine/dsound.dll.so
 %{_libdir}/wine/dssenh.dll.so
 %{_libdir}/wine/dswave.dll.so
@@ -715,6 +716,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rpcrt4.dll.so
 %{_libdir}/wine/rsabase.dll.so
 %{_libdir}/wine/rsaenh.dll.so
+%{_libdir}/wine/rtutils.dll.so
 %{_libdir}/wine/sccbase.dll.so
 %{_libdir}/wine/schannel.dll.so
 %{_libdir}/wine/secur32.dll.so
@@ -753,6 +755,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/w32skrnl.dll.so
 %{_libdir}/wine/wbemprox.dll.so
 %{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
+%{_libdir}/wine/windowscodecs.dll.so
 %{_libdir}/wine/winedos.dll.so
 %{_libdir}/wine/wing32.dll.so
 %{_libdir}/wine/winhttp.dll.so
@@ -898,6 +901,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 1.1.25-1
+- Updated to release 1.1.25.
+
 * Sun May 24 2009 Dag Wieers <dag@wieers.com> - 1.1.22-1
 - Updated to release 1.1.22.
 

@@ -6,7 +6,7 @@
 Summary: Facebook chat plugin for Pidgin Instant Messenger
 Name: pidgin-facebook
 Version: 1.50
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://code.google.com/p/pidgin-facebookchat
@@ -29,7 +29,7 @@ key.
 %setup -n %{real_name}
 
 %build
-%{__cc} %{optflags} -shared $(pkg-config --cflags purple) -fPIC -DPURPLE_PLUGINS *.c -o libfacebook.so
+%{__cc} %{optflags} -shared $(pkg-config --cflags purple) -fPIC -DPURPLE_PLUGINS -DENABLE_NLS *.c -o libfacebook.so
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,5 +50,8 @@ key.
 %{_libdir}/purple-2/libfacebook.so
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.50-2
+- Compiled with -DENABLE_NLS.
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.50-1
 - Initial package. (using DAR)
