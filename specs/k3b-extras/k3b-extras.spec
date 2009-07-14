@@ -19,7 +19,7 @@ Group: Applications/Multimedia
 URL: http://www.k3b.org/
 
 Source: http://dl.sf.net/k3b/k3b-%{version}.tar.bz2
-Patch0: k3b-0.12.17-ffmpeg-0.5.patch
+Patch0: k3b-extras-0.12.17-ffmpeg-0.5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExcludeArch: s390 s390x
@@ -113,8 +113,9 @@ export CPPFLAGS="-I%{_includedir}/ffmpeg"
 %{_datadir}/apps/k3b/plugins/k3bmpcdecoder.plugin
 
 %changelog
-* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.12.17-4
+* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 0.12.17-4
 - Rebuild against ffmpeg-0.5.
+- Fixed build system & patched against the new FFMPEG API. (Yury V. Zaytsev)
 
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.12.17-3
 - Rebuild against libmpcdec 1.2.6.

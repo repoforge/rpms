@@ -11,7 +11,7 @@
 
 Summary: Small and fast GUI web browser
 Name: dillo
-Version: 0.8.6
+Version: 2.0
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -47,13 +47,13 @@ EOF
 
 %build
 %configure \
-	--enable-cookies \
-	--enable-ipv6
+    --enable-cookies \
+    --enable-ipv6
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -Dp %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dillo.png
 
@@ -63,11 +63,11 @@ EOF
 %if %{?_without_freedesktop:1}0
         %{__install} -Dp -m0644 dillo.desktop %{buildroot}%{_datadir}/gnome/apps/Internet/dillo.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		dillo.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        dillo.desktop
 %endif
 
 %post

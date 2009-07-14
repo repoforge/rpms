@@ -4,7 +4,7 @@
 Summary: File manager for the GNOME desktop
 Name: gnome-commander
 Version: 1.2.7
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/File
 URL: http://www.nongnu.org/gcmd/
@@ -12,15 +12,17 @@ URL: http://www.nongnu.org/gcmd/
 Source: http://ftp.gnome.org/pub/GNOME/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: scrollkeeper, gettext >= 0.10.36, intltool
-BuildRequires: gnome-vfs2-devel >= 2.0, libgnomeui-devel >= 2.0
+BuildRequires: gcc-c++
+BuildRequires: gettext >= 0.10.36
+BuildRequires: glib2-devel >= 2.6
 BuildRequires: gnome-doc-utils >= 0.3.2
-BuildRequires: glib2-devel >= 2.6, gcc-c++
+BuildRequires: gnome-vfs2-devel >= 2.0
+BuildRequires: intltool
+BuildRequires: libgnomeui-devel >= 2.0
+BuildRequires: scrollkeeper
 
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-Requires(post): scrollkeeper
-Requires(postun): scrollkeeper
+Requires: desktop-file-utils
+Requires: scrollkeeper
 
 %description
 GNOME Commander is a nice and fast file manager for the GNOME desktop.
@@ -32,7 +34,7 @@ is also an FTP-client and it can browse SMB-networks.
 
 %build
 %configure \
-	--disable-scrollkeeper
+    --disable-scrollkeeper
 %{__make} %{?_smp_mflags}
 
 %install
@@ -65,8 +67,11 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/gnome-commander.png
 
 %changelog
+* Fri Jul 10 2009 Dag Wieers <dag@wieers.com> - 1.2.7-2
+- Rebuild against exiv2-0.18.2.
+
 * Wed Jul 30 2008 Heiko Adams <info-2K8@ha-software.de> 1.2.7-1
-- Updated to release 1.2.7
+- Updated to release 1.2.7.
 
 * Sun Jun 01 2008 Heiko Adams <info-2K8@ha-software.de> 1.2.6-1
 - Updated to release 1.2.6.

@@ -47,7 +47,7 @@ You can also process video with included filters. It requires a DivX
 compatible encoder and the Gimp Toolkit (GTK) libraries.
 
 %prep
-%setup
+%setup -n %{name}_%{version}
 
 %{__cat} <<EOF >avidemux.desktop
 [Desktop Entry]
@@ -62,6 +62,7 @@ MimeType=video/mp4v-es;video/mpeg;video/quicktime;video/x-msvideo;video/x-avi;au
 EOF
 
 %build
+source /etc/profile.d/qt.sh
 %{__make} -f Makefile.dist
 %{__perl} -pi.orig -e 's|/usr/X11R6/lib|\$x_libraries|g' configure
 %{__perl} -pi.orig -e 's|/usr/X11R6/lib|%{_prefix}/X11R6/%{_lib}|g' Makefile.in */Makefile.in */*/Makefile.in
@@ -73,6 +74,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
+source /etc/profile.d/qt.sh
 ### FIXME: Base kde_locale on $(datadir). (Please fix upstream)
 %makeinstall \
     kde_locale="%{buildroot}%{_datadir}/locale"

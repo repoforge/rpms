@@ -1,0 +1,430 @@
+diff -Naupr k3b-0.12.17-orig/configure k3b-0.12.17-new/configure
+--- k3b-0.12.17-orig/configure	2006-08-23 11:46:04.000000000 +0400
++++ k3b-0.12.17-new/configure	2009-07-11 19:03:53.000000000 +0400
+@@ -464,7 +464,7 @@ ac_includes_default="\
+ # include <unistd.h>
+ #endif"
+ 
+-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot KDECONFIG kde_libs_prefix kde_libs_htmldir CONF_FILES CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE WOVERLOADED_VIRTUAL HAVE_GCC_VISIBILITY unsermake_enable_pch_TRUE unsermake_enable_pch_FALSE USE_EXCEPTIONS USE_RTTI CXXCPP NOOPT_CXXFLAGS NOOPT_CFLAGS ENABLE_PERMISSIVE_FLAG LDFLAGS_AS_NEEDED LDFLAGS_NEW_DTAGS KDE_USE_FINAL_TRUE KDE_USE_FINAL_FALSE KDE_USE_CLOSURE_TRUE KDE_USE_CLOSURE_FALSE KDE_NO_UNDEFINED KDE_USE_NMCHECK_TRUE KDE_USE_NMCHECK_FALSE EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB F77 FFLAGS ac_ct_F77 LIBTOOL KDE_PLUGIN MSGFMT GMSGFMT XGETTEXT LIBUTIL LIBCOMPAT LIBCRYPT LIBRESOLV LIB_POLL FRAMEWORK_COREAUDIO LIBSOCKET X_EXTRA_LIBS LIBUCB LIBDL include_x11_TRUE include_x11_FALSE X_PRE_LIBS LIB_X11 LIB_XRENDER LIBSM X_INCLUDES X_LDFLAGS x_includes x_libraries QTE_NORTTI LIB_XEXT LIBPTHREAD USE_THREADS KDE_MT_LDFLAGS KDE_MT_LIBS USER_INCLUDES USER_LDFLAGS LIBZ LIBPNG LIBJPEG qt_libraries qt_includes QT_INCLUDES QT_LDFLAGS PERL MOC UIC UIC_TR LIB_QT LIB_QPE kde_qtver KDE_EXTRA_RPATH KDE_RPATH X_RPATH kde_libraries kde_includes KDE_LDFLAGS KDE_INCLUDES all_includes all_libraries AUTODIRS include_ARTS_TRUE include_ARTS_FALSE MAKEKDEWIDGETS KCONFIG_COMPILER KCFG_DEPENDENCIES DCOPIDLNG DCOPIDL DCOPIDL2CPP DCOP_DEPENDENCIES MCOPIDL ARTSCCONFIG MEINPROC KDE_XSL_STYLESHEET XMLLINT kde_htmldir kde_appsdir kde_icondir kde_sounddir kde_datadir kde_locale kde_confdir kde_kcfgdir kde_mimedir kde_wallpaperdir kde_bindir xdg_appsdir xdg_menudir xdg_directorydir kde_templatesdir kde_servicesdir kde_servicetypesdir kde_moduledir kdeinitdir kde_styledir kde_widgetdir LIB_KDECORE LIB_KDEUI LIB_KIO LIB_KJS LIB_SMB LIB_KAB LIB_KABC LIB_KHTML LIB_KSPELL LIB_KPARTS LIB_KDEPRINT LIB_KUTILS LIB_KDEPIM LIB_KIMPROXY LIB_KNEWSTUFF LIB_KDNSSD LIB_KUNITTEST LIB_KSYCOCA LIB_KFILE LIB_KFM ARCH_CFLAGS CCAS CCASFLAGS include_OGG_TRUE include_OGG_FALSE MAD_LIB include_MP3_TRUE include_MP3_FALSE PKG_CONFIG SNDFILE_CFLAGS SNDFILE_LIBS include_AIFF_TRUE include_AIFF_FALSE include_FLAC_TRUE include_FLAC_FALSE include_LAME_TRUE include_LAME_FALSE RESMGR_LIB LIBSAMPLERATE compile_libsamplerate_TRUE compile_libsamplerate_FALSE ARTS_LIBS include_arts_TRUE include_arts_FALSE with_k3bsetup1_TRUE with_k3bsetup1_FALSE CAM_LIB TAGLIB_CONFIG taglib_includes taglib_libs MUSICBRAINZ_LIBS MPC_LIBS include_MPC_TRUE include_MPC_FALSE HAL_INCS HAL_LIBS DBUS_INCS DBUS_LIBS DBUSQT_INCS DBUSQT_LIBS include_HAL_TRUE include_HAL_FALSE HAL_DBUS_LIBS LIBASOUND include_ALSA_TRUE include_ALSA_FALSE include_FFMPEG_TRUE include_FFMPEG_FALSE TOPSUBDIRS LIBOBJS LTLIBOBJS'
++ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os target target_cpu target_vendor target_os INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM AWK SET_MAKE am__leading_dot KDECONFIG kde_libs_prefix kde_libs_htmldir CONF_FILES CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE WOVERLOADED_VIRTUAL HAVE_GCC_VISIBILITY unsermake_enable_pch_TRUE unsermake_enable_pch_FALSE USE_EXCEPTIONS USE_RTTI CXXCPP NOOPT_CXXFLAGS NOOPT_CFLAGS ENABLE_PERMISSIVE_FLAG LDFLAGS_AS_NEEDED LDFLAGS_NEW_DTAGS KDE_USE_FINAL_TRUE KDE_USE_FINAL_FALSE KDE_USE_CLOSURE_TRUE KDE_USE_CLOSURE_FALSE KDE_NO_UNDEFINED KDE_USE_NMCHECK_TRUE KDE_USE_NMCHECK_FALSE EGREP LN_S ECHO AR ac_ct_AR RANLIB ac_ct_RANLIB F77 FFLAGS ac_ct_F77 LIBTOOL KDE_PLUGIN MSGFMT GMSGFMT XGETTEXT LIBUTIL LIBCOMPAT LIBCRYPT LIBRESOLV LIB_POLL FRAMEWORK_COREAUDIO LIBSOCKET X_EXTRA_LIBS LIBUCB LIBDL include_x11_TRUE include_x11_FALSE X_PRE_LIBS LIB_X11 LIB_XRENDER LIBSM X_INCLUDES X_LDFLAGS x_includes x_libraries QTE_NORTTI LIB_XEXT LIBPTHREAD USE_THREADS KDE_MT_LDFLAGS KDE_MT_LIBS USER_INCLUDES USER_LDFLAGS LIBZ LIBPNG LIBJPEG qt_libraries qt_includes QT_INCLUDES QT_LDFLAGS PERL MOC UIC UIC_TR LIB_QT LIB_QPE kde_qtver KDE_EXTRA_RPATH KDE_RPATH X_RPATH kde_libraries kde_includes KDE_LDFLAGS KDE_INCLUDES all_includes all_libraries AUTODIRS include_ARTS_TRUE include_ARTS_FALSE MAKEKDEWIDGETS KCONFIG_COMPILER KCFG_DEPENDENCIES DCOPIDLNG DCOPIDL DCOPIDL2CPP DCOP_DEPENDENCIES MCOPIDL ARTSCCONFIG MEINPROC KDE_XSL_STYLESHEET XMLLINT kde_htmldir kde_appsdir kde_icondir kde_sounddir kde_datadir kde_locale kde_confdir kde_kcfgdir kde_mimedir kde_wallpaperdir kde_bindir xdg_appsdir xdg_menudir xdg_directorydir kde_templatesdir kde_servicesdir kde_servicetypesdir kde_moduledir kdeinitdir kde_styledir kde_widgetdir LIB_KDECORE LIB_KDEUI LIB_KIO LIB_KJS LIB_SMB LIB_KAB LIB_KABC LIB_KHTML LIB_KSPELL LIB_KPARTS LIB_KDEPRINT LIB_KUTILS LIB_KDEPIM LIB_KIMPROXY LIB_KNEWSTUFF LIB_KDNSSD LIB_KUNITTEST LIB_KSYCOCA LIB_KFILE LIB_KFM ARCH_CFLAGS CCAS CCASFLAGS include_OGG_TRUE include_OGG_FALSE MAD_LIB include_MP3_TRUE include_MP3_FALSE PKG_CONFIG SNDFILE_CFLAGS SNDFILE_LIBS include_AIFF_TRUE include_AIFF_FALSE include_FLAC_TRUE include_FLAC_FALSE include_LAME_TRUE include_LAME_FALSE RESMGR_LIB LIBSAMPLERATE compile_libsamplerate_TRUE compile_libsamplerate_FALSE ARTS_LIBS include_arts_TRUE include_arts_FALSE with_k3bsetup1_TRUE with_k3bsetup1_FALSE CAM_LIB TAGLIB_CONFIG taglib_includes taglib_libs MUSICBRAINZ_LIBS MPC_LIBS include_MPC_TRUE include_MPC_FALSE HAL_INCS HAL_LIBS DBUS_INCS DBUS_LIBS DBUSQT_INCS DBUSQT_LIBS include_HAL_TRUE include_HAL_FALSE HAL_DBUS_LIBS LIBASOUND include_ALSA_TRUE include_ALSA_FALSE FFMPEG_CFLAGS FFMPEG_LIBS include_FFMPEG_TRUE include_FFMPEG_FALSE TOPSUBDIRS LIBOBJS LTLIBOBJS'
+ ac_subst_files=''
+ 
+ # Initialize some variables set by options.
+@@ -874,13 +874,13 @@ echo X"$0" |
+   	  /^X\(\/\).*/{ s//\1/; q; }
+   	  s/.*/./; q'`
+   srcdir=$ac_confdir
+-  if test ! -r "$srcdir/$ac_unique_file"; then
++  if test ! -r $srcdir/$ac_unique_file; then
+     srcdir=..
+   fi
+ else
+   ac_srcdir_defaulted=no
+ fi
+-if test ! -r "$srcdir/$ac_unique_file"; then
++if test ! -r $srcdir/$ac_unique_file; then
+   if test "$ac_srcdir_defaulted" = yes; then
+     { echo "$as_me: error: cannot find sources ($ac_unique_file) in $ac_confdir or .." >&2
+    { (exit 1); exit 1; }; }
+@@ -889,7 +889,7 @@ if test ! -r "$srcdir/$ac_unique_file"; 
+    { (exit 1); exit 1; }; }
+   fi
+ fi
+-(cd $srcdir && test -r "./$ac_unique_file") 2>/dev/null ||
++(cd $srcdir && test -r ./$ac_unique_file) 2>/dev/null ||
+   { echo "$as_me: error: sources are in $srcdir, but \`cd $srcdir' does not work" >&2
+    { (exit 1); exit 1; }; }
+ srcdir=`echo "$srcdir" | sed 's%\([^\\/]\)[\\/]*$%\1%'`
+@@ -36964,114 +36964,104 @@ fi;
+ #
+ have_ffmpeg=no
+ if test "$ac_cv_use_ffmpeg" = "yes"; then
+-	echo "$as_me:$LINENO: checking for ffmpeg >= 0.4.9" >&5
+-echo $ECHO_N "checking for ffmpeg >= 0.4.9... $ECHO_C" >&6
+ 
++  succeeded=no
+ 
+-	 ac_ext=cc
+-ac_cpp='$CXXCPP $CPPFLAGS'
+-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
++  if test -z "$PKG_CONFIG"; then
++    # Extract the first word of "pkg-config", so it can be a program name with args.
++set dummy pkg-config; ac_word=$2
++echo "$as_me:$LINENO: checking for $ac_word" >&5
++echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
++if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
++  echo $ECHO_N "(cached) $ECHO_C" >&6
++else
++  case $PKG_CONFIG in
++  [\\/]* | ?:[\\/]*)
++  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
++  ;;
++  *)
++  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
++for as_dir in $PATH
++do
++  IFS=$as_save_IFS
++  test -z "$as_dir" && as_dir=.
++  for ac_exec_ext in '' $ac_executable_extensions; do
++  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
++    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
++    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
++    break 2
++  fi
++done
++done
+ 
+-ac_link='rm -rf SunWS_cache; ${CXX-g++} -o conftest${ac_exeext} $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
++  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
++  ;;
++esac
++fi
++PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+ 
++if test -n "$PKG_CONFIG"; then
++  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
++echo "${ECHO_T}$PKG_CONFIG" >&6
++else
++  echo "$as_me:$LINENO: result: no" >&5
++echo "${ECHO_T}no" >&6
++fi
+ 
+-	cat >conftest.$ac_ext <<_ACEOF
+-#include <ffmpeg/avformat.h>
+-		#include <ffmpeg/avcodec.h>
++  fi
+ 
+-		int main() {
+-		  AVFormatContext* fc = 0;
+-		  AVPacket* p = 0;
+-		  av_register_all();
+-		  return av_read_frame( fc, p );
+-		}
+-_ACEOF
+-rm -f conftest.$ac_objext
+-if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+-  (eval $ac_compile) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_cxx_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest.$ac_objext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  ffmpeg_compiles=yes
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
++  if test "$PKG_CONFIG" = "no" ; then
++     echo "*** The pkg-config script could not be found. Make sure it is"
++     echo "*** in your path, or set the PKG_CONFIG environment variable"
++     echo "*** to the full path to pkg-config."
++     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
++  else
++     PKG_CONFIG_MIN_VERSION=0.9.0
++     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
++        echo "$as_me:$LINENO: checking for libavcodec libavformat" >&5
++echo $ECHO_N "checking for libavcodec libavformat... $ECHO_C" >&6
+ 
+-ffmpeg_compiles=no
+-fi
+-rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
+-	OLD_LIBS=$LIBS
+-	LIBS="-lavformat -lavcodec -lavutil"
+-	cat >conftest.$ac_ext <<_ACEOF
+-#include <ffmpeg/avformat.h>
+-		#include <ffmpeg/avcodec.h>
++        if $PKG_CONFIG --exists "libavcodec libavformat" ; then
++            echo "$as_me:$LINENO: result: yes" >&5
++echo "${ECHO_T}yes" >&6
++            succeeded=yes
+ 
+-		int main() {
+-		  AVFormatContext* fc = 0;
+-		  AVPacket* p = 0;
+-		  av_register_all();
+-		  return av_read_frame( fc, p );
+-		}
+-_ACEOF
+-rm -f conftest.$ac_objext conftest$ac_exeext
+-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+-  (eval $ac_link) 2>conftest.er1
+-  ac_status=$?
+-  grep -v '^ *+' conftest.er1 >conftest.err
+-  rm -f conftest.er1
+-  cat conftest.err >&5
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); } &&
+-	 { ac_try='test -z "$ac_cxx_werror_flag"
+-			 || test ! -s conftest.err'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; } &&
+-	 { ac_try='test -s conftest$ac_exeext'
+-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+-  (eval $ac_try) 2>&5
+-  ac_status=$?
+-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; }; then
+-  ffmpeg_links=yes
+-else
+-  echo "$as_me: failed program was:" >&5
+-sed 's/^/| /' conftest.$ac_ext >&5
++            echo "$as_me:$LINENO: checking FFMPEG_CFLAGS" >&5
++echo $ECHO_N "checking FFMPEG_CFLAGS... $ECHO_C" >&6
++            FFMPEG_CFLAGS=`$PKG_CONFIG --cflags "libavcodec libavformat"`
++            echo "$as_me:$LINENO: result: $FFMPEG_CFLAGS" >&5
++echo "${ECHO_T}$FFMPEG_CFLAGS" >&6
++
++            echo "$as_me:$LINENO: checking FFMPEG_LIBS" >&5
++echo $ECHO_N "checking FFMPEG_LIBS... $ECHO_C" >&6
++            FFMPEG_LIBS=`$PKG_CONFIG --libs "libavcodec libavformat"`
++            echo "$as_me:$LINENO: result: $FFMPEG_LIBS" >&5
++echo "${ECHO_T}$FFMPEG_LIBS" >&6
++        else
++            FFMPEG_CFLAGS=""
++            FFMPEG_LIBS=""
++            ## If we have a custom action on failure, don't print errors, but
++            ## do set a variable so people can do so.
++            FFMPEG_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libavcodec libavformat"`
++            echo $FFMPEG_PKG_ERRORS
++        fi
+ 
+-ffmpeg_links=no
+-fi
+-rm -f conftest.err conftest.$ac_objext \
+-      conftest$ac_exeext conftest.$ac_ext
+-	ac_ext=c
+-ac_cpp='$CPP $CPPFLAGS'
+-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+-ac_compiler_gnu=$ac_cv_c_compiler_gnu
+ 
+-	LIBS=$OLD_LIBS
+-	have_ffmpeg=$ffmpeg_links
+-	echo "$as_me:$LINENO: result: $have_ffmpeg" >&5
+-echo "${ECHO_T}$have_ffmpeg" >&6
++
++     else
++        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
++        echo "*** See http://www.freedesktop.org/software/pkgconfig"
++     fi
++  fi
++
++  if test $succeeded = yes; then
++     have_ffmpeg=yes
++  else
++     { { echo "$as_me:$LINENO: error: Library requirements (libavcodec libavformat) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
++echo "$as_me: error: Library requirements (libavcodec libavformat) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
++   { (exit 1); exit 1; }; }
++  fi
++
+ fi
+ 
+ 
+@@ -38303,6 +38293,8 @@ s,@HAL_DBUS_LIBS@,$HAL_DBUS_LIBS,;t t
+ s,@LIBASOUND@,$LIBASOUND,;t t
+ s,@include_ALSA_TRUE@,$include_ALSA_TRUE,;t t
+ s,@include_ALSA_FALSE@,$include_ALSA_FALSE,;t t
++s,@FFMPEG_CFLAGS@,$FFMPEG_CFLAGS,;t t
++s,@FFMPEG_LIBS@,$FFMPEG_LIBS,;t t
+ s,@include_FFMPEG_TRUE@,$include_FFMPEG_TRUE,;t t
+ s,@include_FFMPEG_FALSE@,$include_FFMPEG_FALSE,;t t
+ s,@TOPSUBDIRS@,$TOPSUBDIRS,;t t
+@@ -39004,11 +38996,6 @@ cat >>$CONFIG_STATUS <<\_ACEOF
+ 
+ { (exit 0); exit 0; }
+ _ACEOF
+-if test "x$with_fast_perl" = "xyes"; then    
+-  perl -i.bak $ac_aux_dir/conf.change.pl $CONFIG_STATUS    \
+-    || mv $CONFIG_STATUS.bak $CONFIG_STATUS    
+-  rm -f $CONFIG_STATUS.bak
+-fi    
+ chmod +x $CONFIG_STATUS
+ ac_clean_files=$ac_clean_files_save
+ 
+diff -Naupr k3b-0.12.17-orig/configure.in k3b-0.12.17-new/configure.in
+--- k3b-0.12.17-orig/configure.in	2006-08-23 11:45:55.000000000 +0400
++++ k3b-0.12.17-new/configure.in	2009-07-11 18:53:34.000000000 +0400
+@@ -841,37 +841,7 @@ AC_ARG_WITH(
+ #
+ have_ffmpeg=no
+ if test "$ac_cv_use_ffmpeg" = "yes"; then
+-	AC_MSG_CHECKING(for ffmpeg >= 0.4.9)
+-	AC_LANG_SAVE
+-	AC_LANG_CPLUSPLUS
+-	AC_COMPILE_IFELSE( 
+-		#include <ffmpeg/avformat.h>
+-		#include <ffmpeg/avcodec.h>
+-
+-		int main() {
+-		  AVFormatContext* fc = 0;
+-		  AVPacket* p = 0;
+-		  av_register_all();
+-		  return av_read_frame( fc, p );
+-		},
+-	[ffmpeg_compiles=yes], [ffmpeg_compiles=no] )
+-	OLD_LIBS=$LIBS
+-	LIBS="-lavformat -lavcodec -lavutil"
+-	AC_LINK_IFELSE( 
+-		#include <ffmpeg/avformat.h>
+-		#include <ffmpeg/avcodec.h>
+-
+-		int main() {
+-		  AVFormatContext* fc = 0;
+-		  AVPacket* p = 0;
+-		  av_register_all();
+-		  return av_read_frame( fc, p );
+-		},
+-	[ffmpeg_links=yes], [ffmpeg_links=no] )
+-	AC_LANG_RESTORE
+-	LIBS=$OLD_LIBS
+-	have_ffmpeg=$ffmpeg_links
+-	AC_MSG_RESULT($have_ffmpeg)
++	PKG_CHECK_MODULES([FFMPEG], [libavcodec libavformat], have_ffmpeg=yes)
+ fi
+ AM_CONDITIONAL(include_FFMPEG, [test x$have_ffmpeg = xyes])
+ 
+diff -Naupr k3b-0.12.17-orig/plugins/decoder/ffmpeg/configure.in.in k3b-0.12.17-new/plugins/decoder/ffmpeg/configure.in.in
+--- k3b-0.12.17-orig/plugins/decoder/ffmpeg/configure.in.in	2006-08-23 11:31:46.000000000 +0400
++++ k3b-0.12.17-new/plugins/decoder/ffmpeg/configure.in.in	2009-07-11 18:52:52.000000000 +0400
+@@ -14,37 +14,7 @@ AC_ARG_WITH(
+ #
+ have_ffmpeg=no
+ if test "$ac_cv_use_ffmpeg" = "yes"; then
+-	AC_MSG_CHECKING(for ffmpeg >= 0.4.9)
+-	AC_LANG_SAVE
+-	AC_LANG_CPLUSPLUS
+-	AC_COMPILE_IFELSE( 
+-		#include <ffmpeg/avformat.h>
+-		#include <ffmpeg/avcodec.h>
+-
+-		int main() {
+-		  AVFormatContext* fc = 0;
+-		  AVPacket* p = 0;
+-		  av_register_all();
+-		  return av_read_frame( fc, p );
+-		},
+-	[ffmpeg_compiles=yes], [ffmpeg_compiles=no] )
+-	OLD_LIBS=$LIBS
+-	LIBS="-lavformat -lavcodec -lavutil"
+-	AC_LINK_IFELSE( 
+-		#include <ffmpeg/avformat.h>
+-		#include <ffmpeg/avcodec.h>
+-
+-		int main() {
+-		  AVFormatContext* fc = 0;
+-		  AVPacket* p = 0;
+-		  av_register_all();
+-		  return av_read_frame( fc, p );
+-		},
+-	[ffmpeg_links=yes], [ffmpeg_links=no] )
+-	AC_LANG_RESTORE
+-	LIBS=$OLD_LIBS
+-	have_ffmpeg=$ffmpeg_links
+-	AC_MSG_RESULT($have_ffmpeg)
++	PKG_CHECK_MODULES([FFMPEG], [libavcodec libavformat], have_ffmpeg=yes)
+ fi
+ AM_CONDITIONAL(include_FFMPEG, [test x$have_ffmpeg = xyes])
+ 
+diff -Naupr k3b-0.12.17-orig/plugins/decoder/ffmpeg/k3bffmpegdecoder.cpp k3b-0.12.17-new/plugins/decoder/ffmpeg/k3bffmpegdecoder.cpp
+--- k3b-0.12.17-orig/plugins/decoder/ffmpeg/k3bffmpegdecoder.cpp	2006-08-23 11:31:46.000000000 +0400
++++ k3b-0.12.17-new/plugins/decoder/ffmpeg/k3bffmpegdecoder.cpp	2009-07-11 19:43:07.000000000 +0400
+@@ -19,7 +19,11 @@
+ #include <kdebug.h>
+ #include <k3bpluginfactory.h>
+ 
+-#include <ffmpeg/avcodec.h>
++// ZYV
++extern "C" {
++    #include <libavcodec/avcodec.h>
++};
++
+ #include <math.h>
+ 
+ 
+@@ -96,7 +100,10 @@ bool K3bFFMpegDecoder::analyseFileIntern
+ 
+     // ffmpeg cannot handle vbr mp3 files properly (their length)
+     // so we have to decode the whole file in order to get the correct length
+-    if( m_file->type() == CODEC_ID_MP3LAME ) {
++
++// ZYV
++//    if( m_file->type() == CODEC_ID_MP3LAME ) {
++    if( m_file->type() == CODEC_ID_MP3 ) {
+       kdDebug() << "(K3bFFMpegDecoder) mp3. Have to decode the hole file to get it's length." << endl;
+       char buffer[10*2048];
+       int len = 0;
+diff -Naupr k3b-0.12.17-orig/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp k3b-0.12.17-new/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
+--- k3b-0.12.17-orig/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2006-08-23 11:31:46.000000000 +0400
++++ k3b-0.12.17-new/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2009-07-11 19:52:57.000000000 +0400
+@@ -15,8 +15,11 @@
+ 
+ #include "k3bffmpegwrapper.h"
+ 
+-#include <ffmpeg/avcodec.h>
+-#include <ffmpeg/avformat.h>
++// ZYV
++extern "C" {
++    #include <libavcodec/avcodec.h>
++    #include <libavformat/avformat.h>
++};
+ 
+ #include <string.h>
+ 
+@@ -194,7 +197,9 @@ QString K3bFFMpegFile::typeComment() con
+     return i18n("Windows Media v1");
+   case CODEC_ID_WMAV2:
+     return i18n("Windows Media v2");
+-  case CODEC_ID_MP3LAME:
++// ZYV
++//  case CODEC_ID_MP3LAME:
++  case CODEC_ID_MP3:
+     return i18n("MPEG 1 Layer III");
+   default:
+     return QString::fromLocal8Bit( d->codec->name );
+@@ -288,7 +293,9 @@ int K3bFFMpegFile::fillOutputBuffer()
+ #ifdef FFMPEG_BUILD_PRE_4629
+     int len = avcodec_decode_audio( &d->formatContext->streams[0]->codec,
+ #else
+-    int len = avcodec_decode_audio( d->formatContext->streams[0]->codec,
++// ZYV
++    d->outputBufferSize = AVCODEC_MAX_AUDIO_FRAME_SIZE;
++    int len = avcodec_decode_audio2( d->formatContext->streams[0]->codec,
+ #endif
+ 				    (short*)d->outputBuffer, &d->outputBufferSize,
+ 				    d->packetData, d->packetSize );
+diff -Naupr k3b-0.12.17-orig/plugins/decoder/ffmpeg/Makefile.am k3b-0.12.17-new/plugins/decoder/ffmpeg/Makefile.am
+--- k3b-0.12.17-orig/plugins/decoder/ffmpeg/Makefile.am	2006-08-23 11:31:46.000000000 +0400
++++ k3b-0.12.17-new/plugins/decoder/ffmpeg/Makefile.am	2009-07-11 18:19:26.000000000 +0400
+@@ -1,10 +1,12 @@
+-AM_CPPFLAGS = -I$(srcdir)/../../../libk3b/core -I$(srcdir)/../../../libk3b/plugin -I$(srcdir)/../../../libk3bdevice $(all_includes)
++# ZYV
++AM_CPPFLAGS = -I$(srcdir)/../../../libk3b/core -I$(srcdir)/../../../libk3b/plugin -I$(srcdir)/../../../libk3bdevice $(all_includes) $(FFMPEG_CFLAGS)
+ 
+ kde_module_LTLIBRARIES = libk3bffmpegdecoder.la
+ 
+ libk3bffmpegdecoder_la_SOURCES = k3bffmpegdecoder.cpp k3bffmpegwrapper.cpp
+ 
+-libk3bffmpegdecoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDEUI) -lavcodec -lavformat
++# ZYV
++libk3bffmpegdecoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDEUI) $(FFMPEG_LIBS)
+ libk3bffmpegdecoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins

@@ -17,25 +17,25 @@
 %{?el3:%define _without_x264_patch 1}
 %{?el3:%define _without_binutils214 1}
 
-%define live_version 2006.10.18a
+%define live_version 2009.07.09
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
-%define real_version 1.0rc2
 Version: 1.0
-Release: 0.40.rc2
+%define real_version 2009-07-11
+Release: 0.40.svn20090711
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 
-Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
+#Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
+#Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2
+Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot-%{real_version}.tar.bz2
 Source1: http://www.live555.com/liveMedia/public/live.%{live_version}.tar.gz
-Source2: http://www.mplayerhq.hu/MPlayer/Skin/Blue-1.6.tar.bz2
+Source2: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
 Source3: mplayer.png
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch1: MPlayer-0.90-playlist.patch
-Patch2: MPlayer-0.90pre10-redhat.patch
-Patch3: ffmpeg-0.4.9_p20080326-libx264.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
 #Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -113,11 +113,8 @@ nice antialiased shaded subtitles and OSD.
 This package contains the end user documentation.
 
 %prep
-%setup -n MPlayer-%{real_version} -a 1
-%patch0 -p1 -b .runtimemsg
+%setup -n mplayer-export-%{real_version} -a 1
 %patch1 -p1 -b .playlist
-%patch2 -p0 -b .redhat
-%patch3 -p1 -b .x264
 %patch10 -p1 -b .fribidi
 #patch100 -p0 -b .h264_static
 
@@ -168,8 +165,8 @@ echo | ./configure \
 #    --with-reallibdir="%{_libdir}/codecs" \
 #%{!?_without_live:--with-livelibdir="$(pwd)/live"}
 
-%{__make} %{?_smp_mflags}
-
+#%{__make} %{?_smp_mflags}
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -219,6 +216,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc %lang(it) %{_mandir}/it/man1/mplayer.1*
 %doc %lang(pl) %{_mandir}/pl/man1/mplayer.1*
 %doc %lang(ru) %{_mandir}/ru/man1/mplayer.1*
+%doc %lang(zh_CN) %{_mandir}/zh_CN/man1/mplayer.1*
 %dir %{_sysconfdir}/mplayer/
 #ghost %config %{_sysconfdir}/mplayer/codecs.conf
 #ghost %config %{_sysconfdir}/mplayer/input.conf
@@ -244,6 +242,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc %lang(it) %{_mandir}/it/man1/mencoder.1*
 %doc %lang(pl) %{_mandir}/pl/man1/mencoder.1*
 %doc %lang(ru) %{_mandir}/ru/man1/mencoder.1*
+%doc %lang(zh_CN) %{_mandir}/zh_CN/man1/mencoder.1*
 %{_bindir}/mencoder
 
 %files docs
@@ -251,6 +250,10 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc DOCS/*
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.0-0.40.svn20090711
+- Updated to subversion snapshot 20090711.
+- Updated live to version 2009.07.09.
+
 * Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 1.0-0.40.rc2
 - Updated to release 1.0rc2.
 

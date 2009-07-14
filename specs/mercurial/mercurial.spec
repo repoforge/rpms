@@ -20,7 +20,8 @@ URL: http://www.selenic.com/mercurial/wiki/
 Source: http://www.selenic.com/mercurial/release/mercurial-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel >= 2.3
+BuildRequires: python-devel >= 2.4
+Requires: python >= 2.4
 
 %description
 Mercurial is a fast, lightweight Source Control Management system designed 

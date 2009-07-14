@@ -9,7 +9,7 @@
 
 Summary: Music Jukebox with a Curses Based GUI
 Name: pytone
-Version: 3.0.1
+Version: 3.0.2
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -66,6 +66,9 @@ export CFLAGS="%{optflags}"
 %{python_sitearch}/pytone/
 
 %changelog
+* Sat Jun 06 2009 Dag Wieers <dag@wieers.com> - 3.0.2-1
+- Updated to release 3.0.2.
+
 * Thu Aug 16 2007 Dag Wieers <dag@wieers.com> - 3.0.1-1
 - Updated to release 3.0.1.
 

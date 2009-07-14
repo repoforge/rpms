@@ -8,7 +8,7 @@
 
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
-Version: 0.98.1
+Version: 1.2.0
 Release: 1
 License: MIT
 Group: Development/Tools
@@ -37,7 +37,7 @@ SCons is an easier, more reliable and faster way to build software.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --root="%{buildroot}" --install-data=%{_datadir}
+%{__python} setup.py install --root="%{buildroot}" --install-data="%{_datadir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,16 +45,21 @@ SCons is an easier, more reliable and faster way to build software.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt LICENSE.txt README.txt RELEASE.txt
-%doc %{_mandir}/man1/scons*.1*
-%{_prefix}/bin/scons
-%{_prefix}/bin/scons-%{version}
-%{_prefix}/bin/scons-time
-%{_prefix}/bin/scons-time-%{version}
-%{_prefix}/bin/sconsign
-%{_prefix}/bin/sconsign-%{version}
+%doc %{_mandir}/man1/scons.1*
+%doc %{_mandir}/man1/scons-time.1*
+%doc %{_mandir}/man1/sconsign.1*
+%{_bindir}/scons
+%{_bindir}/scons-%{version}
+%{_bindir}/scons-time
+%{_bindir}/scons-time-%{version}
+%{_bindir}/sconsign
+%{_bindir}/sconsign-%{version}
 %{_prefix}/lib/scons-%{version}/
 
 %changelog
+* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 0.98.1-1
 - Updated to release 0.98.1.
 

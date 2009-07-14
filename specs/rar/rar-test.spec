@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# Tag: test
+
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?el3:%define _with_static_rar 1}
 
@@ -13,14 +15,15 @@
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.8.0
-Release: 1
+%define real_version 3.9.b3
+Version: 3.9.0
+Release: 0.1.b3
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
 
-Source0: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
-Source1: http://www.rarlabs.com/rar/rarlinux-x64-%{version}.tar.gz
+Source0: http://www.rarlabs.com/rar/rarlinux-%{real_version}.tar.gz
+Source1: http://www.rarlabs.com/rar/rarlinux-x64-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: %{ix86} x86_64
@@ -55,12 +58,15 @@ a ".rar" extension. ZIP and other formats are not supported.
 
 %files
 %defattr(-, root, root, 0755)
-%doc file_id.diz *.htm *.txt
+%doc *.htm *.txt
 %{_sysconfdir}/rarfiles.lst
 %{_bindir}/rar
 %{_libdir}/default.sfx
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 3.9.0-0.1.b3
+- Updated to release 3.9.b3.
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 3.8.0-1
 - Updated to release 3.8.0.
 

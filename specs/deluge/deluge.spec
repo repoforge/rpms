@@ -8,13 +8,13 @@
 
 Summary: Graphical BitTorrent client with support for DHT, UPnP, and PEX
 Name: deluge
-Version: 0.5.8.6
+Version: 0.5.9.0
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://deluge-torrent.org/
 
-Source: http://download.deluge-torrent.org/source/%{version}/deluge-%{version}.tar.gz
+Source: http://download.deluge-torrent.org/source/deluge-%{version}.tar.gz
 Patch1: deluge-0.5.7.1-default-prefs-no-release-notifications.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -81,6 +81,9 @@ touch --no-create %{_datadir}/icons/hicolor
 %{python_sitearch}/deluge/
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 0.5.9.0-1
+- Updated to release 0.5.9.0.
+
 * Sat Mar 15 2008 Dag Wieers <dag@wieers.com> - 0.5.8.6-1
 - Updated to release 0.5.8.6.
 

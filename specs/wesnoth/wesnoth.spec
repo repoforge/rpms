@@ -38,8 +38,7 @@ and are carried over from one scenario to the next campaign.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-	DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,8 +46,9 @@ and are carried over from one scenario to the next campaign.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README
-%doc %{_mandir}/man6/wesnoth*
-%doc %{_mandir}/*/man6/wesnoth*
+%doc %{_docdir}/wesnoth/
+%doc %{_mandir}/man6/wesnoth.6*
+%doc %{_mandir}/*/man6/wesnoth.6*
 %{_bindir}/wesnoth
 %{_bindir}/wesnothd
 %{_datadir}/applications/wesnoth.desktop
@@ -56,7 +56,6 @@ and are carried over from one scenario to the next campaign.
 %{_datadir}/icons/wesnoth-icon.png
 %{_datadir}/icons/wesnoth_editor-icon.png
 %{_datadir}/wesnoth/
-%doc %{_docdir}/wesnoth/
 
 %changelog
 * Sat Jul 11 2009 Dries Verachtert <dries@ulyssis.org> - 1.6.4-1

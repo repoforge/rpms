@@ -11,37 +11,10 @@
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_nas 1}
 
-%{?fc3:%define _without_jack 1}
-%{?fc3:%define _without_nas 1}
-
-%{?fc2:%define _without_jack 1}
-%{?fc2:%define _without_nas 1}
-
-%{?fc1:%define audio esd oss}
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_jack 1}
-%{?fc1:%define _without_nas 1}
-
 %{?el3:%define audio esd oss}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_nas 1}
-
-%{?rh9:%define audio esd oss}
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_jack 1}
-%{?rh9:%define _without_nas 1}
-
-%{?rh7:%define audio esd oss}
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_jack 1}
-%{?rh7:%define _without_nas 1}
-
-%{?el2:%define audio oss}
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_esound 1}
-%{?el2:%define _without_jack 1}
-%{?el2:%define _without_nas 1}
 
 Summary: MPEG audio player
 Name: mpg123

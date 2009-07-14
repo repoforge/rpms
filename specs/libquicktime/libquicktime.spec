@@ -15,8 +15,8 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 1.1.2
-Release: 2
+Version: 1.1.3
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -124,6 +124,9 @@ programs that need to access quicktime files using libquicktime.
 %exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.1.3-1
+- Updated to release 1.1.3.
+
 * Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 1.1.2-2
 - Rebuild against x264-0.4.20090708.
 - Rebuild against ffmpeg-0.5.

@@ -2,13 +2,10 @@
 # Authority: matthias
 
 %{?el3:%define _without_gettextdevel 1}
-%{?rh9:%define _without_gettextdevel 1}
-%{?rh7:%define _without_gettextdevel 1}
-%{?el2:%define _without_gettextdevel 1}
 
 Summary: Client for ED2K Peer-to-Peer Networks based on eMule
 Name: amule
-Version: 2.2.2
+Version: 2.2.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -49,8 +46,8 @@ same network.
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf %{buildroot} _docs
-%{__make} install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 # Move the docs back to be included with %%doc
 %{__mv} %{buildroot}%{_defaultdocdir}/aMule-* _docs
@@ -104,6 +101,9 @@ update-desktop-database -q 2>/dev/null || :
 %{_datadir}/pixmaps/wxcas.xpm
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 2.2.5-1
+- Updated to release 2.2.5.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Updated to release 2.2.2.
 

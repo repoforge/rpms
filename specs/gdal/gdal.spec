@@ -7,7 +7,7 @@
 Summary: Geospatial Data Abstraction Library
 Name: gdal
 Version: 1.4.4
-Release: 1
+Release: 2
 License: MIT/X
 Group: Applications/Engineering
 URL: http://www.gdal.org/
@@ -15,9 +15,17 @@ URL: http://www.gdal.org/
 Source: http://download.osgeo.org/gdal/gdal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, python, curl-devel, openssl-devel, geos-devel
-BuildRequires: libtiff-devel, libpng-devel, netcdf-devel, giflib-devel
-BuildRequires: libjpeg-devel, postgresql-devel, python-devel
+BuildRequires: curl-devel
+BuildRequires: gcc-c++
+BuildRequires: geos-devel
+BuildRequires: giflib-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: libtiff-devel
+BuildRequires: netcdf-devel
+BuildRequires: openssl-devel
+BuildRequires: postgresql-devel
+BuildRequires: python-devel
 
 %description
 The Geospatial Data Abstraction Library (GDAL) is a unifying C/C++ API for 
@@ -41,7 +49,9 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --datadir="%{_datadir}/gdal"
+%configure \
+    --datadir="%{_datadir}/gdal" \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -83,10 +93,12 @@ you will need to install %{name}-devel.
 %{_includedir}/gvgcpfit.h
 %{_includedir}/thinplatespline.h
 %{_libdir}/libgdal.so
-%exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.4.4-2
+- Rebuild against geos-3.1.0.
+
 * Mon Dec  3 2007 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1
 - Updated to release 1.4.4.
 

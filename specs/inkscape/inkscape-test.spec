@@ -27,13 +27,14 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.45.1+0.46pre1
-Release: 1
+%define real_version 0.47pre0
+Version: 0.47
+Release: 0.pre0
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
 
-Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.bz2
+Source: http://dl.sf.net/inkscape/inkscape-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
@@ -57,7 +58,7 @@ Requires: perl(Image::Magick)
 Inkscape is a SVG based generic vector-drawing program.
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %configure \
@@ -106,6 +107,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Thu Jul 02 2009 Dag Wieers <dag@wieers.com> - 0.47-0.pre0
+- Updated to release 0.47pre0.
+
 * Tue Feb 12 2008 Dag Wieers <dag@wieers.com> - 0.45.1+0.46pre1-1
 - Updated to release 0.45.1+0.46pre1.
 

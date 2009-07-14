@@ -1,29 +1,21 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
-%{?el3:%define _with_static_rar 1}
-
 # The source contains only binaries...
 %define _use_internal_dependency_generator 0
 # Disable stripping or the default.sfx will get trashed
 %define __strip /bin/true
-# Don't create a debuginfo package since it would be empty
-%define debug_package %{nil}
 
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
-Version: 3.8.0
+Version: 3.5.1
 Release: 1
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/
 
-Source0: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
-Source1: http://www.rarlabs.com/rar/rarlinux-x64-%{version}.tar.gz
+Source: http://www.rarlabs.com/rar/rarlinux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-ExclusiveArch: %{ix86} x86_64
 
 %description
 RAR is a powerful tool allowing you to manage and control archive files.
@@ -31,52 +23,25 @@ Console RAR supports archives only in RAR format, which names usually have
 a ".rar" extension. ZIP and other formats are not supported.
 
 %prep
-%ifarch %{ix86}
-%setup -T -b0 -n %{name}
-%endif
-%ifarch x86_64
-%setup -T -b1 -n %{name}
-%endif
-
-%build
+%setup -n %{name}
 
 %install
 %{__rm} -rf %{buildroot}
-%if %{?_with_static_rar:1}0
-%{__install} -D -p -m0755 rar_static %{buildroot}%{_bindir}/rar
-%else
-%{__install} -D -p -m0755 rar %{buildroot}%{_bindir}/rar
-%endif
-%{__install} -D -p -m0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
-%{__install} -D -p -m0755 default.sfx %{buildroot}%{_libdir}/default.sfx
+%{__install} -Dp -m0755 rar %{buildroot}%{_bindir}/rar
+%{__install} -Dp -m0644 rarfiles.lst %{buildroot}%{_sysconfdir}/rarfiles.lst
+%{__install} -Dp -m0755 default.sfx %{buildroot}%{_libdir}/default.sfx
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc file_id.diz *.htm *.txt
+%doc *.txt file_id.diz
 %{_sysconfdir}/rarfiles.lst
 %{_bindir}/rar
 %{_libdir}/default.sfx
 
 %changelog
-* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 3.8.0-1
-- Updated to release 3.8.0.
-
-* Wed Mar  7 2007 Matthias Saou <http://freshrpms.net/> 3.7.0-0.1.beta1
-- Update to 3.7.0 beta1 (aka 3.7.b1).
-- Disable (empty) debuginfo package.
-- Add empty %%build section.
-- Fix macros inside the %%changelog.
-
-* Fri Apr 28 2006 Dag Wieers <dag@wieers.com> - 3.6.0-0.2.beta2
-- Added _with_static_rar for older distributions (<= FC1).
-
-* Wed Apr 19 2006 Matthias Saou <http://freshrpms.net/> 3.6.0-0.1.beta2
-- Update to 3.6.0 beta2 (aka 3.6.b2).
-- Put exclusive arch back, not removed on purpose.
-
 * Fri Oct 14 2005 Matthias Saou <http://freshrpms.net/> 3.5.1-1
 - Update to 3.5.1 (aka 3.51).
 
@@ -107,7 +72,7 @@ a ".rar" extension. ZIP and other formats are not supported.
 - Remove the internal dep check to avoid "corrupted program header size" msg.
 
 * Sun Mar 18 2001 Matthias Saou <http://freshrpms.net/>
-- Fix the %%files with a %%dir (cleaner uninstall)
+- Fix the %files with a %dir (cleaner uninstall)
 - Spec file cleanup
 
 * Sun Mar 18 2001 Alexander Skwar <ASkwar@Linux-Mandrake.com> 2.80-1

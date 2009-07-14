@@ -7,13 +7,14 @@
 
 Summary: Plugin Pack for Pidgin
 Name: pidgin-plugin_pack
-Version: 2.0.0
+Version: 2.5.1
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://plugins.guifications.org/trac/
 
-Source: http://downloads.guifications.org/plugins/Plugin%20Pack%20Archive/purple-plugin_pack-%{version}.tar.bz2
+#Source: http://plugins.guifications.org/trac/downloads/22
+Source: purple-plugin_pack-2.5.1.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, libtool, gettext, xmms-devel, pidgin-devel, gtk2-devel
@@ -51,21 +52,26 @@ Plugin Pack is a collection of plugins for libpurple and derived IM clients.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*.txt
+%doc AUTHORS ChangeLog COPYING NEWS README doc/*.txt
 %dir %{_libdir}/pidgin/
 %{_libdir}/pidgin/*.so
 %dir %{_datadir}/pixmaps/pidgin/
 %{_datadir}/pixmaps/pidgin/plugin_pack/
+%dir %{_datadir}/pixmaps/pidgin/protocols/
+%{_datadir}/pixmaps/pidgin/protocols/*/napster.png
 %exclude %{_libdir}/pidgin/*.la
 
 %files -n purple-plugin_pack -f plugin_pack.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*.txt
+%doc AUTHORS ChangeLog COPYING NEWS README doc/*.txt
 %dir %{_libdir}/purple-2/
 %{_libdir}/purple-2/*.so
 %exclude %{_libdir}/purple-2/*.la
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 2.5.1-1
+- Updated to release 2.5.1.
+
 * Sat Mar 01 2008 Dag Wieers <dag@wieers.com> - 2.0.0-1
 - Updated to release 2.0.0.
 - Split package into purple-plugin_pack and pidgin-plugin_pack.

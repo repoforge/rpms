@@ -6,14 +6,17 @@
 
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
-Version: 0.3.13
+Version: 0.3.16
 Release: 0.1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://liboil.freedesktop.org/
+
 Source: http://liboil.freedesktop.org/download/liboil-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: glib2-devel, gcc-c++
+
+BuildRequires: gcc-c++
+BuildRequires: glib2-devel
 
 %description
 Liboil is a library of simple functions that are optimized for various CPUs.
@@ -40,7 +43,7 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 %setup
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -61,14 +64,16 @@ extended instructions provided by modern CPUs (Altivec, MMX, SSE, etc.).
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc %{_datadir}/gtk-doc/html/liboil/
 %{_includedir}/liboil-0.3/
-%exclude %{_libdir}/liboil-0.3.a
-%exclude %{_libdir}/liboil-0.3.la
 %{_libdir}/liboil-0.3.so
 %{_libdir}/pkgconfig/liboil-0.3.pc
-%doc %{_datadir}/gtk-doc/html/liboil/
+%exclude %{_libdir}/liboil-0.3.la
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 0.3.16-1
+- Updated to release 0.3.16.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 0.3.13-1
 - Updated to release 0.3.13.
 
