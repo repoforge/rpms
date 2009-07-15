@@ -4,7 +4,7 @@
 
 Summary: Generates frontcards and traycards for inserting in CD jewelcases
 Name: cdlabelgen
-Version: 3.6.0
+Version: 4.1.0
 Release: 1
 License: GPL
 Group: Applications/Publishing
@@ -44,5 +44,8 @@ Cdlabelgen is a utility which generates frontcards and traycards
 %{_datadir}/cdlabelgen/
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 4.1.0-1
+- Updated to release 4.1.0.
+
 * Thu May 31 2007 Dag Wieers <dag@wieers.com> - 3.6.0-1
 - Initial package. (using DAR)

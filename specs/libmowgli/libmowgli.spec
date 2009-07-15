@@ -3,13 +3,13 @@
 
 Summary: Development framework for C with high performance and flexible algorithms
 Name: libmowgli
-Version: 0.5.0
+Version: 0.7.0
 Release: 1
 License: BSD
 Group: Development/Libraries
 URL: http://www.atheme.org/projects/mowgli.shtml
 
-Source: http://distfiles.atheme.org/libmowgli-%{version}.tgz
+Source: http://distfiles.atheme.org/libmowgli-%{version}.tbz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -55,10 +55,13 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
+%{_includedir}/libmowgli/
 %{_libdir}/libmowgli.so
 %{_libdir}/pkgconfig/libmowgli.pc
-%{_includedir}/libmowgli/
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Wed Oct 17 2007 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Initial package. (using DAR)

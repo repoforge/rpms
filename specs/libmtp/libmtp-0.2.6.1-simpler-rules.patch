@@ -1,0 +1,28 @@
+diff -up libmtp-0.2.6.1/examples/hotplug.c.jx libmtp-0.2.6.1/examples/hotplug.c
+--- libmtp-0.2.6.1/examples/hotplug.c.jx	2007-11-10 19:06:28.000000000 -0500
++++ libmtp-0.2.6.1/examples/hotplug.c	2008-05-23 11:06:12.000000000 -0400
+@@ -93,7 +93,7 @@ int main (int argc, char **argv)
+       printf("ATTR{dev}!=\"?*\", GOTO=\"libmtp_rules_end\"\n");
+       printf("SUBSYSTEM==\"usb\", GOTO=\"libmtp_usb_rules\"\n"
+ 	     "# The following thing will be deprecated when older kernels are phased out.\n"
+-             "SUBSYSTEM==\"usb_device\", GOTO=\"libmtp_usb_device_rules\"\n"
++             "SUBSYSTEM==\"usb_device\", GOTO=\"libmtp_usb_rules\"\n"
+ 	     "GOTO=\"libmtp_rules_end\"\n\n"
+ 	     "LABEL=\"libmtp_usb_rules\"\n\n");
+       break;
+@@ -182,6 +182,7 @@ int main (int argc, char **argv)
+   // For backward comparibility with the #$!+@! ever changing
+   // udev rule style...
+   if (style == style_udev) {
++#if 0
+     printf("GOTO=\"libmtp_rules_end\"\n\n");
+     printf("LABEL=\"libmtp_usb_device_rules\"\n");
+     for (i = 0; i < numentries; i++) {
+@@ -190,6 +191,7 @@ int main (int argc, char **argv)
+       printf("# %s %s\n", entry->vendor, entry->product);
+       printf("ATTRS{idVendor}==\"%04x\", ATTRS{idProduct}==\"%04x\", %s\n", entry->vendor_id, entry->product_id, action); 
+     }
++#endif
+     printf("GOTO=\"libmtp_rules_end\"\n\n");
+   }
+ 

@@ -1,42 +1,45 @@
 # $Id$
 # Authority: hadams
 
-%define desktop_vendor 	rpmforge
-%define plugin_version	1.3.0
+%define desktop_vendor rpmforge
+%define plugin_version 1.4.5
 
-Summary: 	Graphical media player similar to xmms
-Name: 		audacious
-Version: 	1.3.2
-Release: 	6
-License: 	GPL
-Group: 		Applications/Multimedia
-URL: 		http://audacious-media-player.org/
+Summary: Graphical media player similar to xmms
+Name: audacious
+Version: 1.4.6
+Release: 1
+License: GPL
+Group: Applications/Multimedia
+URL: http://audacious-media-player.org/
 
-Source: 	http://static.audacious-media-player.org/release/%{name}-%{version}.tgz
-Patch0: 	audacious-1.3.1-xmms-skins.patch
-Patch1: 	audacious-1.3.1-default-skin.patch
-#Patch2: 	audacious-1.1.0-no-rpath.patch
-Patch3: 	audacious-1.2.1-relative-links.patch
-#Patch4: 	audacious-1.1.0-quoting.patch
-#Patch5: 	audacious-1.1.0-amidi-backend.patch
-Patch6: 	audacious-1.2.1-shaded-skin.patch
-#Patch7: 	audacious-1.1.1-controlsocket-name.patch
-#Patch8: 	audacious-1.1.1-playlist-twenty.patch
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-root
+#Source0: http://static.audacious-media-player.org/release/audacious-%{version}.tgz
+Source0: http://distfiles.atheme.org/audacious-%{version}.tbz2
+Patch0: audacious-1.3.1-xmms-skins.patch
+Patch1: audacious-1.4.0-default-skin.patch
+#Patch2: audacious-1.1.0-no-rpath.patch
+Patch3: audacious-1.2.1-relative-links.patch
+#Patch4: audacious-1.1.0-quoting.patch
+#Patch5: audacious-1.1.0-amidi-backend.patch
+Patch6: audacious-1.2.1-shaded-skin.patch
+#Patch7: audacious-1.1.1-controlsocket-name.patch
+#Patch8: audacious-1.1.1-playlist-twenty.patch
+Patch9: audacious-1.4.2-id3tag-close-file.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel >= 2.6
-BuildRequires: zlib-devel, desktop-file-utils >= 0.9
-BuildRequires: libglade2-devel >= 2.4
+BuildRequires: desktop-file-utils >= 0.9
 BuildRequires: GConf2-devel
 BuildRequires: gettext
-BuildRequires: mcs-devel = 0.4.1
+BuildRequires: gtk2-devel >= 2.6
+BuildRequires: libglade2-devel >= 2.4
+BuildRequires: libmowgli-devel >= 0.4
+BuildRequires: libmcs-devel >= 0.4.1
+BuildRequires: zlib-devel
 
-Requires: 		audacious-plugins >= %{plugin_version}
-Requires(post): 	desktop-file-utils >= 0.9
-Requires(postun): 	desktop-file-utils >= 0.9
+Requires: audacious-plugins >= %{plugin_version}
+Requires: desktop-file-utils >= 0.9
 
-Obsoletes: 	bmp <= 0.9.7.1
-Provides: 	audacious = %{version}
+Obsoletes: bmp <= 0.9.7.1
+Provides: bmp = 0.9.7.1
 
 %description
 Audacious is a media player that currently uses a skinned
@@ -45,23 +48,30 @@ user interface based on Winamp 2.x skins. It is based on BMP.
 %package libs
 Summary: Library files for Audacious
 Group: System Environment/Libraries
+Requires: /sbin/ldconfig
 
 %description libs
 Library files for Audacious
 
 %package devel
-Summary: 	Development files for Audacious
-Group: 		Development/Libraries
-Requires: 	%{name}-libs = %{version}-%{release}
-Requires: 	glib2-devel, gtk2-devel >= 2.6, GConf2-devel, libglade2-devel >= 2.4
-Requires: 	mcs-libs = 0.4.1
-Requires: 	pkgconfig
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: %{name}-libs = %{version}-%{release}
+Requires: GConf2-devel
+Requires: glib2-devel
+Requires: gtk2-devel >= 2.6
+Requires: libglade2-devel >= 2.4
+Requires: libmowgli-devel >= 0.4
+Requires: libmcs-devel >= 0.4.1
+Requires: pkgconfig
 
-Obsoletes: 	bmp-devel <= 0.9.7.1
-Provides: 	audacious-devel = %{version}
+Obsoletes: bmp-devel <= 0.9.7.1
+Provides: bmp-devel = 0.9.7.1
 
 %description devel
-Development files for Audacious
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
 %setup
@@ -93,12 +103,15 @@ Development files for Audacious
 # Fix "%20" in playlist entries
 # %patch8 -p1 -b playlist-twenty
 
+%{__perl} -pi -e 's|^\.SILENT:.*$||' buildsys.mk.in
+
 %build
 %configure \
     --disable-dependency-tracking \
     --disable-gnome-vfs \
     --disable-rpath \
     --enable-chardet \
+    --enable-dbus \
     --enable-gconf
 %{__make} %{?_smp_mflags} V="1"
 
@@ -106,6 +119,8 @@ Development files for Audacious
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
+
+%{__install} -Dp -m0644 pixmaps/audacious.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/audacious.png
 
 desktop-file-install --delete-original \
     --dir %{buildroot}%{_datadir}/applications  \
@@ -130,7 +145,7 @@ touch --no-create %{_datadir}/icons/hicolor || :
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS COPYING NEWS README
 %doc %{_mandir}/man1/audacious.1*
 %doc %{_mandir}/man1/audtool.1*
 %{_bindir}/audacious
@@ -138,19 +153,23 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/applications/%{desktop_vendor}-audacious.desktop
 %{_datadir}/audacious/
 %{_datadir}/pixmaps/audacious.png
+%{_datadir}/icons/hicolor/48x48/apps/audacious.png
 
 %files libs
 %defattr(-, root, root, 0755)
 %{_libdir}/audacious/
-%{_libdir}/libaudacious.so.*
+%{_libdir}/libaudclient.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/audacious/
-%{_libdir}/libaudacious.so
+%{_libdir}/libaudclient.so
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 1.4.6-1
+- Updated to release 1.4.6.
+
 * Sat Jun 14 2008 Heiko Adams <info@fedora-blog.de> - 1.3.2-6
 - force to require mcs-devel = 0.4.1 and mcs = 0.4.1
 

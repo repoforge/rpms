@@ -2,35 +2,59 @@
 # Authority: hadams
 
 %define desktop_vendor rpmforge
-%define         aud_ver 1.3.0
+%define audacity_version 1.4.6
 
-Name:           audacious-plugins
-Version:        1.3.5
-Release:        5
-Summary:        Plugins for the Audacious media player
+Summary: Plugins for the Audacious media player
+Name: audacious-plugins
+Version: 1.4.5
+Release: 1
+License: GPL
+Group: Applications/Multimedia
+URL: http://audacious-media-player.org/
 
-Group:          Applications/Multimedia
-License:        GPL
-URL:            http://audacious-media-player.org/
-Source0:        http://static.audacious-media-player.org/release/%{name}-%{version}.tgz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source: http://distfiles.atheme.org/audacious-plugins-%{version}.tbz2
+Patch0: audacious-plugins-1.2.2-cddb-buffer.patch
+Patch1: audacious-plugins-1.4.1-neon-locking.patch
+Patch2: audacious-plugins-1.4.4-gcc43.patch
+Patch100: audacious-plugins-1.4.5-libvorbis_1.1.patch
+Patch101: audacious-plugins-1.4.5-libmtp_0.3.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  audacious-devel >= %{aud_ver}, taglib-devel >= 1.4, alsa-lib-devel
-BuildRequires:  libmad-devel, libnotify-devel, gettext, curl-devel, libmms-devel
-BuildRequires:  libogg-devel >= 1.0,, zlib-devel, SDL-devel >= 1.2.9
-BuildRequires:	gettext, flac-devel >= 1.1.2
-#BuildRequires:  libmpcdec-devel, libmusicbrainz-devel, libsidplay-devel
-#BuildRequires:  libvisual-devel >= 0.2, libbinio-devel
-#BuildRequires:  arts-devel, libmodplug-devel, lirc-devel
-#BuildRequires:  jack-audio-connection-kit-devel, libsamplerate-devel
-#BuildRequires:  pulseaudio-devel, fluidsynth-devel
-#BuildRequires:  wavpack-devel >= 4.31
-#BuildRequires:  libXcomposite-devel
+BuildRequires: alsa-lib-devel
+BuildRequires: arts-devel
+BuildRequires: audacious-devel >= %{audacious_version}
+BuildRequires: curl-devel
+BuildRequires: flac-devel >= 1.1.2
+#BuildRequires: fluidsynth-devel
+BuildRequires: gettext
+#BuildRequires: jack-audio-connection-kit-devel
+BuildRequires: libbinio-devel
+BuildRequires: libmad-devel
+BuildRequires: libmcs-devel >= 0.6.0
+BuildRequires: libmms-devel
+BuildRequires: libmodplug-devel
+BuildRequires: libmpcdec-devel
+BuildRequires: libmusicbrainz-devel
+BuildRequires: libmowgli >= 0.5.0
+BuildRequires: libmtp-devel
+BuildRequires: libnotify-devel
+BuildRequires: libogg-devel >= 1.0
+BuildRequires: libsamplerate-devel
+BuildRequires: libsidplay-devel
+BuildRequires: libvisual-devel >= 0.2
+BuildRequires: libXcomposite-devel
+#BuildRequires: lirc-devel
+BuildRequires: neon-devel >= 0.25
+#BuildRequires: pulseaudio-devel
+BuildRequires: SDL-devel >= 1.2.9
+BuildRequires: taglib-devel >= 1.4
+BuildRequires: wavpack-devel >= 4.31
+BuildRequires: zlib-devel
 
-Requires:       audacious >= %{aud_ver}
+Requires: audacious >= %{audacious_version}
 
-Requires(post):   desktop-file-utils >= 0.9, /sbin/ldconfig
-Requires(postun): desktop-file-utils >= 0.9, /sbin/ldconfig
+Requires: desktop-file-utils >= 0.9
+Requires: /sbin/ldconfig
 
 %description
 Audacious is a media player that currently uses a skinned
@@ -39,212 +63,289 @@ BMP.
 This package provides essential plugins for audio input, audio output
 and visualization.
 
+%package aac
+Summary: AAC playback plugin for Audacious
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
-#%package        jack
-#Summary:        Audacious output plugin for JACK sound service
-#Group:          Applications/Multimedia
-#Obsoletes:      audacious-jack <= 1.1.2
+%description aac
+Audacious is a media player that currently uses a skinned
+user interface based on Winamp 2.x skins. It is based on ("forked off")
+BMP.
 
-#Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
+This is the plugin needed to play AAC audio files.
 
-#%description    jack
-#This package provides an Audacious output plugin that uses the
-#JACK sound service.
+%package alac
+Summary: ALAC playback plugin for Audacious
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
+%description alac
+Audacious is a media player that currently uses a skinned
+user interface based on Winamp 2.x skins. It is based on ("forked off")
 
-%package        esd
-Summary:        Audacious output plugin for esd sound service
-Group:          Applications/Multimedia
-Obsoletes:      audacious-esd <= 1.1.2
+%package amidi
+Summary: Audacious imput plugin for amidi
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
-Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
-
-%description    esd
-This package provides an Audacious output plugin that uses the
-ESD sound server.
-
-
-#%package        arts
-#Summary:        Audacious output plugin for KDE arts sound service
-#Group:          Applications/Multimedia
-#Obsoletes:      audacious-arts <= 1.1.2
-
-#Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
-
-#%description    arts
-#This package provides an Audacious output plugin that uses the
-#KDE arts sound server.
-
-
-#%package        pulseaudio
-#Summary:        Audacious output plugin for PulseAudio
-#Group:          Applications/Multimedia
-
-#Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
-
-#%description    pulseaudio
-#This package provides an Audacious output plugin that uses the
-#PulseAudio sound server.
-
-
-
-%package        amidi
-Summary:        Audacious imput plugin for amidi
-Group:          Applications/Multimedia
-
-Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
-
-%description    amidi
+%description amidi
 This package provides an Audacious input plugin that uses the
 amidi sound service.
 
+%package arts
+Summary: Audacious output plugin for KDE arts sound service
+Group: Applications/Multimedia
+Obsoletes: audacious-arts <= 1.1.2
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
+%description arts
+This package provides an Audacious output plugin that uses the
+KDE arts sound server.
 
-#%package        wavpack
-#Summary:        Audacious imput plugin for wavpack
-#Group:          Applications/Multimedia
+%package esd
+Summary: Audacious output plugin for esd sound service
+Group: Applications/Multimedia
+Obsoletes: audacious-esd <= 1.1.2
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
-#Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
+%description esd
+This package provides an Audacious output plugin that uses the
+ESD sound server.
 
-#%description    wavpack
-#This package provides an Audacious input plugin that reads WavPack
-#compressed files.
+%package jack
+Summary: Audacious output plugin for JACK sound service
+Group: Applications/Multimedia
+Obsoletes: audacious-jack <= 1.1.2
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
+%description jack
+This package provides an Audacious output plugin that uses the
+JACK sound service.
 
+%package metronome
+Summary: Audacious imput plugin simulating a metronome
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
-%package        metronome
-Summary:        Audacious imput plugin simulating a metronome
-Group:          Applications/Multimedia
-
-Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
-
-%description    metronome
+%description metronome
 This package provides an Audacious input plugin that simulates
 a metronome.
 
+%package mms
+Summary: MMS stream plugin for Audacious
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
+%description mms
+Audacious is a media player that currently uses a skinned
+user interface based on Winamp 2.x skins. It is based on ("forked off")
+BMP.
 
-%package        vortex
-Summary:        Audacious imput plugin for vortex audio files
-Group:          Applications/Multimedia
+This is the plugin needed to access MMS streams.
 
-Requires:       audacious >= %{aud_ver}, audacious-plugins >= %{aud_ver}
+%package mp3
+Summary: MP3 playback plugin for Audacious
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
-%description    vortex
+%description mp3
+Audacious is a media player that currently uses a skinned
+user interface based on Winamp 2.x skins. It is based on ("forked off")
+BMP.
+
+This is the plugin needed to play MP3 audio files.
+
+%package pulseaudio
+Summary: Audacious output plugin for PulseAudio
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
+
+%description pulseaudio
+This package provides an Audacious output plugin that uses the
+PulseAudio sound server.
+
+%package tta
+Summary: TTA playback plugin for Audacious
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
+
+%description tta
+Audacious is a media player that currently uses a skinned
+user interface based on Winamp 2.x skins. It is based on ("forked off")
+
+This is the plugin needed to play TTA audio files.
+
+%package vortex
+Summary: Audacious imput plugin for vortex audio files
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
+
+%description vortex
 This package provides an Audacious input plugin that reads
 vortex compressed files.
 
+%package wavpack
+Summary: Audacious imput plugin for wavpack
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
 
+%description wavpack
+This package provides an Audacious input plugin that reads WavPack
+compressed files.
+
+%package wma
+Summary: WMA playback plugin for Audacious
+Group: Applications/Multimedia
+Requires: audacious >= %{audacious_version}
+Requires: audacious-plugins >= %{version}
+
+%description wma
+Audacious is a media player that currently uses a skinned
+user interface based on Winamp 2.x skins. It is based on ("forked off")
+BMP.
+
+This is the plugin needed to play WMA audio files.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup
+# Fix regressions due to stricter GCC 4.3 checking
+%patch2 -p1 -b .gcc43
 
-# Fix incorrect use of sprintf in the cdaudio plugin
-# %patch0 -p1 -b .cddb-buffer
+%{__perl} -pi.orig -e 's|^\.SILENT:.*$||' buildsys.mk.in
+
+%patch100 -p1 -b .vorbis_1.1
+%patch101 -p1 -b .libmtp_0.3
 
 %build
 %configure \
-    --disable-rpath \
-    --enable-gconf \
-    --disable-gnome-vfs \
-    --enable-chardet \
-    --disable-dependency-tracking \
-    --enable-amidiplug \
     --disable-amidiplug-dummy \
-    --disable-sndfile
+    --disable-dependency-tracking \
+    --disable-gnome-vfs \
+    --disable-rpath \
+    --disable-sndfile \
+    --disable-sse2 \
+    --enable-amidiplug \
+    --enable-chardet \
+    --enable-gconf \
+    --enable-neon
 
-make V=1 %{?_smp_mflags}
-
+%{__make} V=1 %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-#desktop-file-install --vendor fedora \
-#    --dir $RPM_BUILD_ROOT%{_datadir}/applications   \
-#    %{SOURCE1}
-
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
-
-%post
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications
-
-
-%postun
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog NEWS
-%{_libdir}/audacious/Input
-%{_libdir}/audacious/Output
-%{_libdir}/audacious/Container
-%{_libdir}/audacious/Effect
-%{_libdir}/audacious/General
-%{_libdir}/audacious/Visualization
-%exclude %{_libdir}/audacious/Input/libamidi-plug.so
-#%exclude %{_libdir}/audacious/Input/libwavpack.so
-%exclude %{_libdir}/audacious/Input/libmetronom.so
-%exclude %{_libdir}/audacious/Input/libvtx.so
-#%exclude %{_libdir}/audacious/Output/libjackout.so
-#%exclude %{_libdir}/audacious/Output/libarts.so
-%exclude %{_libdir}/audacious/Output/libESD.so
-#%exclude %{_libdir}/audacious/Output/libpulse_audio.so
-#%{_datadir}/applications/fedora-audacious-plugins.desktop
-%{_datadir}/audacious/images/audioscrobbler.png
-%{_datadir}/audacious/images/audioscrobbler_badge.png
-%{_datadir}/audacious-plugins
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING NEWS
+%{_datadir}/audacious/
+%{_libdir}/audacious/
+%exclude %{_libdir}/audacious/Input/aac.so
+%exclude %{_libdir}/audacious/Input/alac.so
+%exclude %{_libdir}/audacious/Input/madplug.so
+%exclude %{_libdir}/audacious/Input/amidi-plug.so
+%exclude %{_libdir}/audacious/Input/metronom.so
+%exclude %{_libdir}/audacious/Input/tta.so
+%exclude %{_libdir}/audacious/Input/vtx.so
+%exclude %{_libdir}/audacious/Input/wavpack.so
+%exclude %{_libdir}/audacious/Input/wma.so
+%exclude %{_libdir}/audacious/Output/arts.so
+%exclude %{_libdir}/audacious/Output/ESD.so
+#%exclude %{_libdir}/audacious/Output/jackout.so
+#%exclude %{_libdir}/audacious/Output/pulseaudio.so
+%exclude %{_libdir}/audacious/Transport/mms.so
 
-#%files jack
-#%defattr(-,root,root,-)
-#%{_libdir}/audacious/Output/libjackout.so
+%files aac
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/aac.so
 
-#%files arts
-#%defattr(-,root,root,-)
-#%{_bindir}/audacious-arts-helper
-#%{_libdir}/audacious/Output/libarts.so
-
-%files esd
-%defattr(-,root,root,-)
-%{_libdir}/audacious/Output/libESD.so
-
-#%files pulseaudio
-#%defattr(-,root,root,-)
-#%{_libdir}/audacious/Output/libpulse_audio.so
+%files alac
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/alac.so
 
 %files amidi
-%defattr(-,root,root,-)
-%{_libdir}/audacious/Input/libamidi-plug.so
-%{_libdir}/audacious/amidi-plug
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/amidi-plug.so
+# %{_libdir}/audacious/amidi-plug
 
-#%files wavpack
-#%defattr(-,root,root,-)
-#%{_libdir}/audacious/Input/libwavpack.so
+%files arts
+%defattr(-, root, root, 0755)
+%{_bindir}/audacious-arts-helper
+%{_libdir}/audacious/Output/arts.so
+
+%files esd
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Output/ESD.so
+
+#%files jack
+#%defattr(-, root, root, 0755)
+#%{_libdir}/audacious/Output/libjackout.so
 
 %files metronome
-%defattr(-,root,root,-)
-%{_libdir}/audacious/Input/libmetronom.so
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/metronom.so
+
+%files mms
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Transport/mms.so
+
+%files mp3
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/madplug.so
+
+#%files pulseaudio
+#%defattr(-, root, root, 0755)
+#%{_libdir}/audacious/Output/pulseaudio.so
+
+%files tta
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/tta.so
 
 %files vortex
-%defattr(-,root,root,-)
-%{_libdir}/audacious/Input/libvtx.so
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/vtx.so
 
+%files wavpack
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/wavpack.so
+
+%files wma
+%defattr(-, root, root, 0755)
+%{_libdir}/audacious/Input/wma.so
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 1.4.5-1
+- Updated to release 1.4.5.
+
 * Mon Mar 24 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-5
-- added more dependencies to BuildRequires
+- Added more dependencies to BuildRequires.
 
 * Mon Mar 24 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-4
-- added libmms-devel and libogg-devel to BuildRequires
+- Added libmms-devel and libogg-devel to BuildRequires.
 
 * Sat Mar 22 2008 Heiko Adams <info-2007@fedora-blog.de> 1.3.5-3
-- rebuild for rpmforge
+- Rebuild for rpmforge.
 
 * Sat Jun 16 2007 Ralf Ertzinger <ralf@skytale.net> 1.3.5-2.fc6
 - Update to 1.3.5

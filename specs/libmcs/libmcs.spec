@@ -3,16 +3,17 @@
 
 Summary: Configuration file abstraction library
 Name: libmcs
-Version: 0.6.0
+Version: 0.7.1
 Release: 1
 License: BSD
 Group: Applications/System
 URL: http://www.atheme.org/projects/mcs.shtml
 
-Source: http://distfiles.atheme.org/libmcs-%{version}.tgz
+Source: http://distfiles.atheme.org/libmcs-%{version}.tbz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: GConf2-devel, libmowgli-devel
+BuildRequires: GConf2-devel
+BuildRequires: libmowgli-devel
 
 Obsoletes: mcs <= %{version}-%{release}
 Provides: mcs = %{version}-%{release}
@@ -90,5 +91,8 @@ source "/etc/profile.d/qt.sh"
 %{_libdir}/pkgconfig/libmcs.pc
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Wed Oct 17 2007 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Initial package. (using DAR)
