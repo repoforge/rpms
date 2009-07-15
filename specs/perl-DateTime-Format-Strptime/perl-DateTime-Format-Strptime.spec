@@ -9,7 +9,7 @@
 
 Summary: Parse and format strp and strf time patterns
 Name: perl-DateTime-Format-Strptime
-Version: 1.0901
+Version: 1.1000
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(DateTime) >= 0.4304            
+BuildRequires: perl(DateTime::Locale) >= 0.43      
+BuildRequires: perl(DateTime::TimeZone) >= 0.79    
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Params::Validate) >= 0.64      
 
 %description
 This module replicates most of Strptime for DateTime. Strptime is the
@@ -55,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/Format/Strptime.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.1000-1
+- Updated to version 1.1000.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 1.0901-1
 - Updated to version 1.0901.
 
