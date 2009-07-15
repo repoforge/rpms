@@ -9,7 +9,7 @@
 
 Summary: Provides basic first-pass API testing for large class trees
 Name: perl-Test-ClassAPI
-Version: 1.05
+Version: 1.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,10 +19,14 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-ClassAPI-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More) >= 0.47
-Requires: perl >= 0:5.005
+BuildRequires: perl >= 5.6.0
+BuildRequires: perl(Class::Inspector) >= 1.12
+BuildRequires: perl(Config::Tiny) >= 2.00
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(File::Spec) >= 0.83
+BuildRequires: perl(Params::Util) >= 1.00
+BuildRequires: perl(Test::More) >= 0.47 
+Requires: perl >= 5.6.0
 
 %description
 For many APIs with large numbers of classes, it can be very useful to be
@@ -55,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/ClassAPI.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.05-1
 - Updated to version 1.05.
 
