@@ -8,8 +8,9 @@
 
 Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
-Version: 1.051
-Release: 1.2
+Version: 1.12
+Release: 1
+Epoch: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UUlib/
@@ -18,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Convert/Convert-UUlib-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker) >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker) 
 Requires: perl >= 2:5.8.0
 
 %description
@@ -49,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Convert/
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.12-1
+- Updated to version 1.12.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.051-1.2
 - Rebuild for Fedora Core 5.
 
