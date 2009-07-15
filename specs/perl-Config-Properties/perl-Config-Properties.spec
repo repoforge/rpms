@@ -9,7 +9,7 @@
 
 Summary: Read and write property files
 Name: perl-Config-Properties
-Version: 1.68
+Version: 1.70
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Wrap) >= 2001.0929       
+
 
 %description
 Read and write property files.
@@ -51,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/Properties.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.70-1
+- Updated to version 1.70.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.68-1
 - Updated to release 1.68.
 
