@@ -3,31 +3,41 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh8:%define _without_alsa 1}
-%{?yd3:%define _without_alsa 1}
 
-Summary: Powerful audio editor
+Summary: Multitrack audio editor
 Name: audacity
-Version: 1.3.0b
-Release: 2
+Version: 1.3.4
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
-Source: http://dl.sf.net/audacity/audacity-src-%{version}.tar.gz
-Patch0: audacity-src-1.3.0-beta-localeinstall.patch
-Patch1: audacity-src-1.3.0-beta-desktop.patch
-Patch2: audacity-src-1.3.0b-beta-samplerate.patch
+
+Source: http://dl.sf.net/audacity/audacity-src-%{version}.tar.bz2
+Patch0: audacity-1.3.4-portaudio.patch
+Patch1: audacity-1.3.4-libmp3lame-default.patch
+Patch2: audacity-1.3.4-libdir.patch
+Patch3: audacity-1.3.5-gcc43.patch
+Patch4: audacity-1.3.5-fr.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: wxGTK >= 2.6.0
-BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
-BuildRequires: wxGTK-devel >= 2.6.0, libogg-devel, libvorbis-devel
-BuildRequires: libmad-devel, flac-devel, libsndfile-devel
-BuildRequires: libsamplerate-devel, libid3tag-devel
-BuildRequires: autoconf
+
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+BuildRequires: desktop-file-utils
+BuildRequires: expat-devel
+BuildRequires: flac-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: ladspa-devel
+BuildRequires: libid3tag-devel
+BuildRequires: libmad-devel
+BuildRequires: libogg-devel
+BuildRequires: libsamplerate-devel
+BuildRequires: libsndfile-devel
+BuildRequires: libvorbis-devel
+BuildRequires: soundtouch-devel
+BuildRequires: zip
+BuildRequires: zlib-devel
+BuildRequires: wxGTK-devel >= 2.6.0
 
 %description
 Audacity is a free audio editor. You can record sounds, play sounds, import
@@ -38,60 +48,81 @@ editor, a customizable spectrogram mode and a frequency analysis window for
 audio analysis applications. Built-in effects include Bass Boost, Wahwah,
 and Noise Removal, and it also supports VST plug-in effects.
 
-
 %prep
 %setup -n %{name}-src-%{version}-beta
-%patch0 -p1 -b .localeinstall
-%patch1 -p1 -b .desktop
-%patch2 -p1 -b .samplerate
+%patch0 -p1
+### Substitute hardcoded library paths.
+%patch1 -p1
+%patch2 -p1
+for file in src/effects/ladspa/LoadLadspa.cpp src/export/ExportMP3.cpp src/AudacityApp.cpp lib-src/libvamp/vamp-sdk/PluginHostAdapter.cpp
+do
+    %{__perl} -pi -e 's|__RPM_LIBDIR__|%{_libdir}|g' $file
+    %{__perl} -pi -e 's|__RPM_LIB__|%{_lib}|g' $file
+done
+grep -s __RPM_LIB * -R && exit 1
+
+%patch3 -p1 -b .gcc43
+%patch4 -p1 -b .fr
+
+### Substitute occurences of "libmp3lame.so" with "libmp3lame.so.0".
+%{__perl} -pi.orig -e 's|libmp3lame.so\([^.]\)|libmp3lame.so.0\1|g' locale/*.po src/export/ExportMP3.cpp
+
 %{__perl} -pi -e 's|SoundTouch::||g;' ./lib-src/soundtouch/include/SoundTouch.h
 
 %build
 %configure \
-    --with-libsndfile="system" \
+    --with-help \
+    --with-expat="system" \
+    --with-id3tag="system" \
+    --with-ladspa \
+    --with-libflac="system" \
+    --with-libmad="system" \
     --with-libsamplerate="system" \
-    --with-portaudio="v18"
-%{__make} %{?_smp_mflags}
-
+    --with-libsndfile="system" \
+    --with-portaudio="v18" \
+    --with-soundtouch="system" \
+    --with-vorbis="system" \
+    --without-libresample
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 %find_lang %{name}
 
-# Install the icon (not automatically done in 1.3.0)
-%{__install} -D -m 0644 images/AudacityLogo.xpm \
-    %{buildroot}%{_datadir}/pixmaps/audacity.xpm
+### Install the icon (not automatically done in 1.3.0)
+%{__install} -D -m 0644 images/AudacityLogo.xpm %{buildroot}%{_datadir}/pixmaps/audacity.xpm
 
-# Remove those two text files we include in %%doc instead (1.3.0)
+### Remove those two text files we include in %%doc instead (1.3.0)
 %{__rm} %{buildroot}%{_docdir}/audacity/{LICENSE.txt,README.txt}
 
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post
+update-mime-database %{_datadir}/mime &>/dev/null || :
 update-desktop-database -q || :
 
 %postun
+umask 022
+update-mime-database %{_datadir}/mime &>/dev/null || :
 update-desktop-database -q || :
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc LICENSE.txt README.txt
+%doc %{_mandir}/man1/audacity.1*
 %{_bindir}/audacity
 %{_datadir}/applications/audacity.desktop
 %{_datadir}/audacity/
 %{_datadir}/mime/packages/audacity.xml
 %{_datadir}/pixmaps/audacity.xpm
-%{_mandir}/man1/audacity.1*
-
 
 %changelog
-* Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.3.0b-2
-- Rebuild against wxGTK 2.8.8.
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 1.3.4-1
+- Rebuild against wxGTK 2.8.10.
+- Updated to release 1.3.4.
 
 * Mon Mar  6 2006 Matthias Saou <http://freshrpms.net/> 1.3.0b-1
 - Update to 1.3.0b.
