@@ -9,7 +9,7 @@
 
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
-Version: 1.26
+Version: 1.40
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Pod::Simple) >= 3.07
+#BuildRequires: perl(Test::Builder::Tester) >= 1.02
+#BuildRequires: perl(Test::More) >= 0.62
 
 %description
 This module allows you to check for POD errors in files.
@@ -50,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Pod.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.40-1
+- Updated to version 1.40.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.26-1
 - Updated to release 1.26.
 
