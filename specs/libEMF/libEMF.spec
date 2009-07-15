@@ -39,8 +39,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-static \
-	--enable-editing
+    --disable-static \
+    --enable-editing
 %{__make} %{?_smp_mflags}
 
 %install
@@ -48,7 +48,7 @@ you will need to install %{name}-devel.
 %{__make} install DESTDIR="%{buildroot}" CPPROG="%{__cp} -avp"
 
 %post -p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}

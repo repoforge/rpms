@@ -3,13 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-
-%{?el5:%define _with_modxorg 1}
-%{?fc8:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Friendly interactive shell
 Name: fish
@@ -23,8 +18,8 @@ Source: http://fishshell.org/files/%{version}/fish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, doxygen, groff, gettext, autoconf
-%{?_with_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel, libXext-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel, libXext-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
 fish is a shell geared towards interactive use. It's features are

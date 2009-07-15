@@ -3,15 +3,25 @@
 
 Summary: Diagram drawing program
 Name: dia
-Version: 0.96.1
+Version: 0.97
 Release: 1
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnome.org/projects/dia/
 
-#Source: http://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
-Source: http://ftp.gnome.org/pub/gnome/sources/dia/0.96/dia-%{version}.tar.bz2
+Source0: http://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
+Source11: http://dia-installer.de/shapes/central_data_processing/central_data_processing.zip
+Source12: http://dia-installer.de/shapes/chemistry_lab/chemistry_lab.zip
+Source13: http://dia-installer.de/shapes/cmos/cmos.zip
+Source14: http://dia-installer.de/shapes/digital/digital.zip
+Source15: http://dia-installer.de/shapes/edpc/edpc.zip
+Source16: http://dia-installer.de/shapes/electronic/electronic.zip
+Source17: http://dia-installer.de/shapes/lst/lst.zip
+Source18: http://dia-installer.de/shapes/optics/optics.zip
+Source19: http://dia-installer.de/shapes/Racks/Racks.zip
+Source20: http://dia-installer.de/shapes/renewable_energy/renewable_energy.zip
+Source21: http://dia-installer.de/shapes/scenegraph/scenegraph.zip
 Patch1: dia-0.92.2-dtd.patch
 Patch2: dia-0.95-pre6-help.patch
 Patch3: dia-0.94-fallbacktoxpmicons.patch
@@ -19,15 +29,26 @@ Patch4: dia-0.96-python-detect.patch
 Patch5: dia-0.96.1-64bit.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.6, gtk2-devel >= 2.6, libxml2-devel >= 2.3.9
-BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0, pango-devel >= 1.1.5
-BuildRequires: libart_lgpl-devel >= 2.3.10, libxslt-devel, libpng-devel
-BuildRequires: python-devel >= 2.2.1, pygtk2-devel, gcc-c++, gettext, pkgconfig >= 0.9
-BuildRequires: intltool, perl(XML::Parser), gettext, PyXML, docbook-style-xsl
+BuildRequires: docbook-style-xsl
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: glib2-devel >= 2.6
+BuildRequires: gtk2-devel >= 2.6
+BuildRequires: intltool
+BuildRequires: libart_lgpl-devel >= 2.3.10
+BuildRequires: libEMF-devel
+BuildRequires: libgnome-devel >= 2.0
+BuildRequires: libgnomeui-devel >= 2.0
+BuildRequires: libpng-devel
+BuildRequires: libxml2-devel >= 2.3.9
+BuildRequires: libxslt-devel
+BuildRequires: pango-devel >= 1.1.5
+BuildRequires: perl(XML::Parser)
+BuildRequires: pkgconfig >= 0.9
+BuildRequires: python-devel >= 2.2.1
+BuildRequires: pygtk2-devel
+BuildRequires: PyXML
 %{?el4:BuildRequires: gcc-g77}
-%{?fc5:BuildRequires: gcc-gfortran}
-%{?fc4:BuildRequires: gcc-gfortran}
-%{?fc3:BuildRequires: gcc-g77}
 
 %description
 The Dia drawing program is designed to be like the Microsoft(R) Visio
@@ -39,17 +60,20 @@ format, and can export to PostScript(TM).
 
 %prep
 %setup
-%patch1 -p1 -b .dtd
-%patch2 -p1 -b .help
+#patch1 -p1 -b .dtd
+#patch2 -p1 -b .help
 %patch3 -p1 -b .fallbacktoxpmicons
 %patch4 -p1 -b .py-detect
-%patch5 -p1 -b .64bit
+#patch5 -p1 -b .64bit
+
+%{__perl} -pi.orig -e 's|\(W32::HDC\)user_data;|(W32::HDC)(guint64)user_data;|g' plug-ins/wmf/wmf.cpp
 
 %build
+#autoreconf --force --install --symlink
 %configure \
-	--enable-db2html \
-	--enable-gnome \
-	--with-python
+    --enable-db2html \
+    --enable-gnome \
+    --with-python
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,8 +81,20 @@ format, and can export to PostScript(TM).
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-### Clean up buildroot
-#{__rm} -f %{buildroot}%{_libdir}/dia/*.la
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE11}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE12}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE13}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE14}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE15}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE16}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE17}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE18}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE19}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE20}
+unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE21}
+
+### Conflicts with Assorted/square.shape
+%{__perl} -pi -e "s|Square|Square2|" %{buildroot}%{_datadir}/dia/shapes/chemistry_lab/square.shape
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,27 +103,35 @@ format, and can export to PostScript(TM).
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc/ KNOWN_BUGS NEWS README THANKS TODO
 %doc %{_datadir}/gnome/help/dia/
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man1/dia.1*
+%doc %lang(fr) %{_mandir}/fr/man1/dia.1*
 %{_bindir}/dia
 %{_datadir}/applications/dia.desktop
 %{_datadir}/dia/
+%{_datadir}/icons/hicolor/*/apps/dia.png
+%{_datadir}/icons/hicolor/scalable/apps/dia.svg
 %{_datadir}/mime-info/dia.keys
 %{_datadir}/mime-info/dia.mime
-%{_datadir}/pixmaps/dia-diagram.png
-%{_datadir}/pixmaps/dia_gnome_icon.png
+%{_datadir}/omf/dia/
+#%{_datadir}/pixmaps/dia-diagram.png
+#%{_datadir}/pixmaps/dia_gnome_icon.png
+%{_docdir}/dia/
 %{_libdir}/dia/
 
 %changelog
-* Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 0.96.1-1.
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 0.97-1
+- Updated to release 0.97.
+
+* Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 0.96.1-1
 - Updated to release 0.96.1.
 
 * Sat May 06 2006 Dries Verachtert <dries@ulyssis.org> - 0.95-1
 - Updated to release 0.95.
 
-* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.94-1.
+* Wed Aug 25 2004 Dag Wieers <dag@wieers.com> - 0.94-1
 - Updated to release 0.94.
 
-* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.93-1.
+* Wed May 05 2004 Dag Wieers <dag@wieers.com> - 0.93-1
 - Updated to release 0.93.
 
 * Sun Nov 09 2003 Dag Wieers <dag@wieers.com> - 0.92.2-1

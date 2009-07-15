@@ -2,16 +2,22 @@
 # Authority: dag
 # Upstream: Benjamin Zores <ben$geexbox,org>
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?el3:%define _without_ffmpeg05 1}
+
 Summary: Implementation of Digital Living Network Alliance (DLNA) standards
 Name: libdlna
 Version: 0.2.3
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdlna.geexbox.org/
 
 Source: http://libdlna.geexbox.org/releases/libdlna-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: ffmpeg-devel
 
 %description
 libdlna aims at being the reference open-source implementation of DLNA
@@ -32,9 +38,15 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' config.mak
+%if %{!?_without_ffmpeg05:1}0
+%{__perl} -pi.orig -e '
+        s|ffmpeg/avformat.h|ffmpeg/libavformat/avformat.h|;
+        s|ffmpeg/avcodec.h|ffmpeg/libavcodec/avcodec.h|;
+    ' configure src/*.c src/*.h
+%endif
 
 %build
+export CFLAGS="%{optflags} -I%{_includedir}/ffmpeg -I%{_includedir}/ffmpeg/avformat -I%{_includedir}/ffmpeg/avcodec"
 ./configure \
     --disable-static \
     --libdir="%{_libdir}" \
@@ -62,6 +74,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libdlna.pc
 
 %changelog
+* Mon Jul 13 2009 Dag Wieers <dag@wieers.com> - 0.2.3-2
+- Rebuild against ffmpeg-0.5.
+
 * Tue Nov 27 2007 Dag Wieers <dag@wieers.com> - 0.2.3-1
 - Updated to release 0.2.3.
 
