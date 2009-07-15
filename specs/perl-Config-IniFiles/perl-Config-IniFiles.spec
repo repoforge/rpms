@@ -8,14 +8,13 @@
 
 Summary: Module for reading .ini-style configuration files
 Name: perl-Config-IniFiles
-Version: 2.47
-Release: 2
+Version: 2.52
+Release: 1
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-IniFiles/
 
 Source: http://www.cpan.org/modules/by-module/Config/Config-IniFiles-%{version}.tar.gz
-Patch: patch-perl-Config-IniFiles-2.47.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,7 +28,6 @@ Module for reading .ini-style configuration files.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -53,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/IniFiles.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 2.52-1
+- Updated to version 2.52.
+
 * Tue Apr 21 2009 Dries Verachtert <dries@ulyssis.org> - 2.47-2
 - Added changes by Erik Wasser so it also builds on el4.
 
