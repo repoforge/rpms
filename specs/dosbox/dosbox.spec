@@ -12,7 +12,7 @@
 
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
-Version: 0.72
+Version: 0.73
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -22,11 +22,13 @@ Source0: http://dl.sf.net/dosbox/dosbox-%{version}.tar.gz
 Source1: dosbox.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, SDL-devel, SDL_net-devel
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: desktop-file-utils
+BuildRequires: libpng-devel
+BuildRequires: SDL-devel
+BuildRequires: SDL_net-devel
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_modxorg:BuildRequires: libX11-devel libGLU-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
 DOSBox is a DOS-emulator using SDL for easy portability to different
@@ -65,14 +67,10 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%if %{?_without_freedesktop:1}0
-    %{__install} -Dp -m0644 dosbox.desktop %{buildroot}/etc/X11/applnk/Applications/dosbox.desktop
-%else
-    %{__mkdir_p} %{buildroot}%{_datadir}/applications/
-    desktop-file-install --vendor %{desktop_vendor} \
-        --dir %{buildroot}%{_datadir}/applications  \
-        dosbox.desktop
-%endif
+%{__mkdir_p} %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications  \
+    dosbox.desktop
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/dosbox.png
 
@@ -84,11 +82,13 @@ EOF
 %doc AUTHORS ChangeLog COPYING NEWS README THANKS
 %doc %{_mandir}/man1/dosbox.1*
 %{_bindir}/dosbox
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dosbox.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Applications/dosbox.desktop}
+%{_datadir}/applications/%{desktop_vendor}-dosbox.desktop
 %{_datadir}/pixmaps/dosbox.png
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 0.73-1
+- Updated to release 0.73.
+
 * Tue Aug 28 2007 Dag Wieers <dag@wieers.com> - 0.72-1
 - Updated to release 0.72.
 

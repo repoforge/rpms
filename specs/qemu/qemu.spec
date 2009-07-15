@@ -19,7 +19,7 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.10.4
+Version: 0.10.5
 Release: 1
 License: GPL
 Group: Applications/Emulators
@@ -30,7 +30,8 @@ Patch0: qemu-0.7.0-build.patch
 Patch2: qemu-0.9.1-dhcp.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, SDL-devel
+BuildRequires: SDL-devel
+BuildRequires: zlib-devel
 %{?_with_compat_gcc_version:BuildRequires: compat-gcc-%{_with_compat_gcc_version}}
 #BuildRequires: texi2html
 
@@ -204,6 +205,9 @@ fi
 %{_datadir}/qemu/
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 0.10.5-1
+- Updated to release 0.10.5.
+
 * Thu May 21 2009 Dag Wieers <dag@wieers.com> - 0.10.4-1
 - Updated to release 0.10.4.
 
