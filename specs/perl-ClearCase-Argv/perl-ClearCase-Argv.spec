@@ -9,7 +9,7 @@
 
 Summary: ClearCase-specific subclass of Argv
 Name: perl-ClearCase-Argv
-Version: 1.40
+Version: 1.45
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Argv) >= 1.22
 
 %description
 ClearCase-specific subclass of Argv.
@@ -53,6 +54,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/ClearCase/Argv.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.45-1
+- Updated to version 1.45.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.40-1
 - Updated to release 1.40.
 
