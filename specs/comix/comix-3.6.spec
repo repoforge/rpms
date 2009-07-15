@@ -4,8 +4,8 @@
 
 Summary: Comic book viewer
 Name: comix
-Version: 4.0.4
-Release: 2
+Version: 3.6.5
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://comix.sourceforge.net/
@@ -14,12 +14,12 @@ Source: http://dl.sf.net/comix/comix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: gtk2-devel >= 2.12.0
-BuildRequires: pygtk2-devel >= 2.12.0
+BuildRequires: gtk2-devel
+BuildRequires: pygtk2-devel
 BuildRequires: python
 BuildRequires: python-imaging
-Requires: gtk2 >= 2.12.0
-Requires: pygtk2 >= 2.12.0
+Requires: gtk2
+Requires: pygtk2
 Requires: python
 Requires: python-imaging
 Requires: rar
@@ -36,7 +36,7 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d %{buildroot}%{_prefix}
-%{__python} install.py install --no-mime --dir %{buildroot}%{_prefix}
+%{__python} install.py install --no-mime --installdir %{buildroot}%{_prefix}
 %find_lang %{name}
 
 %clean
@@ -50,23 +50,12 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 %{_datadir}/applications/*comix.desktop
 %{_datadir}/icons/hicolor/*/apps/comix.png
 %{_datadir}/icons/hicolor/*/apps/comix.svg*
-%{_datadir}/comix/
+%{_datadir}/pixmaps/comix/
+%{_datadir}/pixmaps/comix.png
 
 %changelog
-* Wed Jul  1 2009 Steve Huff <hakamadare@users.sourceforge.net> - 4.0.4-2
-- Added version to pygtk2 related BuildRequires.
-
-* Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 4.0.4-1
-- Updated to release 4.0.4.
-
-* Fri Jan  2 2009 Dries Verachtert <dries@ulyssis.org> - 4.0.2-1
-- Updated to release 4.0.2.
-
-* Thu Jan  1 2009 Dries Verachtert <dries@ulyssis.org> - 4.0.1-1
-- Updated to release 4.0.1.
-
-* Thu Dec 11 2008 Dries Verachtert <dries@ulyssis.org> - 4.0.0-1
-- Updated to release 4.0.0.
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 3.6.5-1
+- Updated to release 3.6.5.
 
 * Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 3.6.4-1
 - Updated to release 3.6.4.

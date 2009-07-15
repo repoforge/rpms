@@ -4,16 +4,20 @@
 
 Summary: BitTorrent client for KDE
 Name: ktorrent
-Version: 2.2.1
+Version: 2.2.8
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://ktorrent.pwsp.net/
 
-Source: http://ktorrent.org/downloads/%{version}/ktorrent-%{version}.tar.gz
+Source: http://ktorrent.org/downloads/%{version}/ktorrent-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, gettext, gcc-c++, gmp-devel
+BuildRequires: avahi-qt3-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: gmp-devel
+BuildRequires: kdelibs-devel
 
 %description
 KTorrent is a BitTorrent program for KDE.
@@ -22,19 +26,16 @@ KTorrent is a BitTorrent program for KDE.
 %setup
 
 %build
-%configure LDFLAGS=-L$QTLIB
+%configure LDFLAGS="-L$QTLIB"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -61,6 +62,9 @@ KTorrent is a BitTorrent program for KDE.
 #%{_datadir}/mimelnk/application/x-bittorrent.desktop
 
 %changelog
+* Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 2.2.8-1
+- Updated to release 2.2.8.
+
 * Tue Sep  4 2007 Dries Verachtert <dries@ulyssis.org> - 2.2.1-1
 - Updated to release 2.2.1.
 
