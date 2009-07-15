@@ -1,23 +1,12 @@
 # $Id$
 # Authority: dag
 
-%{!?dtag:%define _with_modxorg 1}
 %{!?dtag:%define _with_avahi 1}
-   
-%{?fc7:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+
+%{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_freedesktop 1}
-
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_opengl 1}
+%{?el3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
@@ -35,8 +24,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, SDL-devel, SDL_net-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: libX11-devel libGLU-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel libGLU-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 
 %description
