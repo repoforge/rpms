@@ -9,7 +9,7 @@
 
 Summary: Cache response to be polite
 Name: perl-WWW-Mechanize-Cached
-Version: 1.32
+Version: 1.33
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Cache::Cache) >= 1.02
+BuildRequires: perl(Carp)
+BuildRequires: perl(Storable) >= 2.08
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::Warn) >= 0.11
+BuildRequires: perl(WWW::Mechanize) >= 1.00
+Requires: perl
+Requires: perl(Cache::Cache) >= 1.02
+Requires: perl(Carp)
+Requires: perl(Storable) >= 2.08
+Requires: perl(Test::More) >= 0.47
+Requires: perl(Test::Warn) >= 0.11
+Requires: perl(WWW::Mechanize) >= 1.00
+
 
 %description
 Cache response to be polite.
@@ -51,5 +65,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize/Cached.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.33-1
+- Updated to version 1.33.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.32-1
 - Initial package. (using DAR)
