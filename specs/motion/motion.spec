@@ -4,7 +4,7 @@
 Summary: Video-surveilance system
 Name: motion
 Version: 3.2.7
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.lavrsen.dk/twiki/bin/view/Motion/WebHome
@@ -12,7 +12,10 @@ URL: http://www.lavrsen.dk/twiki/bin/view/Motion/WebHome
 Source: http://dl.sf.net/motion/motion-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libjpeg-devel, ffmpeg-devel, mysql-devel, postgresql-devel
+BuildRequires: ffmpeg-devel
+BuildRequires: libjpeg-devel
+BuildRequires: mysql-devel
+BuildRequires: postgresql-devel
 
 %description
 Motion is a software motion detector. It grabs images from video4linux
@@ -28,9 +31,9 @@ and http remote control.
 
 %build
 %configure \
-	--sysconfdir="%{_sysconfdir}/motion" \
-	--without-libjpeg-mmx \
-	--without-optimizecpu
+    --sysconfdir="%{_sysconfdir}/motion" \
+    --without-libjpeg-mmx \
+    --without-optimizecpu
 
 %{__make} %{?_smp_mflags}
 
@@ -55,7 +58,10 @@ and http remote control.
 %{_bindir}/motion
 
 %changelog
-* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 3.2.7-1
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 3.2.7-3
+- Rebuild against ffmpeg-0.5.
+
+* Thu Jan 11 2007 Dag Wieers <dag@wieers.com> - 3.2.7-2
 - Rebuild against newer ffmpeg.
 
 * Mon Oct 23 2006 Dag Wieers <dag@wieers.com> - 3.2.7-1
