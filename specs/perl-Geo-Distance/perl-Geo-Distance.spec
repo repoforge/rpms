@@ -9,8 +9,8 @@
 
 Summary: Calculate distances
 Name: perl-Geo-Distance
-Version: 0.11
-Release: 1.2
+Version: 0.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Distance/
@@ -19,8 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Geo/Geo-Distance-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.3
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl >= 5.8.3
 
 %description
 This perl library aims to provide as many tools to make it as simple as possible to calculate
@@ -53,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/Distance.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Sun Dec 11 2005 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Initial package.
