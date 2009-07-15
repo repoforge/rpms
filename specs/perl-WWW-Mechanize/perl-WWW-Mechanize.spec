@@ -2,9 +2,6 @@
 # Authority: dries
 # Upstream: Andy Lester <andy$petdance,com>
 
-### Requires a newer HTTP::Headers from perl-libwww-perl
-# ExclusiveDist: el5
-
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -12,7 +9,7 @@
 
 Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.56
+Version: 1.58
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,6 +21,51 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(FindBin)
+BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(HTML::Form) >= 1.038
+BuildRequires: perl(HTML::HeadParser)
+BuildRequires: perl(HTML::Parser) >= 3.33
+BuildRequires: perl(HTML::TokeParser) >= 2.28
+BuildRequires: perl(HTTP::Daemon)
+BuildRequires: perl(HTTP::Request) >= 1.3
+BuildRequires: perl(HTTP::Server::Simple) >= 0.35
+BuildRequires: perl(HTTP::Server::Simple::CGI)
+BuildRequires: perl(HTTP::Status)
+BuildRequires: perl(IO::Socket::SSL)
+#BuildRequires: perl(LWP) >= 5.829
+#BuildRequires: perl(LWP::UserAgent) >= 5.829
+BuildRequires: perl(Pod::Usage)
+BuildRequires: perl(Test::More) >= 0.34
+BuildRequires: perl(Test::Warn) >= 0.11
+BuildRequires: perl(URI) >= 1.36
+BuildRequires: perl(URI::URL)
+BuildRequires: perl(URI::file)
+Requires: perl(Carp)
+Requires: perl(File::Temp)
+Requires: perl(FindBin)
+Requires: perl(Getopt::Long)
+Requires: perl(HTML::Form) >= 1.038
+Requires: perl(HTML::HeadParser)
+Requires: perl(HTML::Parser) >= 3.33
+Requires: perl(HTML::TokeParser) >= 2.28
+Requires: perl(HTTP::Daemon)
+Requires: perl(HTTP::Request) >= 1.3
+Requires: perl(HTTP::Server::Simple) >= 0.35
+Requires: perl(HTTP::Server::Simple::CGI)
+Requires: perl(HTTP::Status)
+Requires: perl(IO::Socket::SSL)
+#Requires: perl(LWP) >= 5.829
+#Requires: perl(LWP::UserAgent) >= 5.829
+Requires: perl(Pod::Usage)
+Requires: perl(Test::More) >= 0.34
+Requires: perl(Test::Warn) >= 0.11
+Requires: perl(URI) >= 1.36
+Requires: perl(URI::URL)
+Requires: perl(URI::file)
+AutoReq: no
 
 %description
 Handy web browsing in a Perl object.
@@ -57,6 +99,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.58-1
+- Updated to version 1.58.
+- Switch to manual dependencies
+
 * Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 1.56-1
 - Updated to version 1.56.
 
