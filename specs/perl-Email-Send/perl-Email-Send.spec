@@ -9,7 +9,7 @@
 
 Summary: Send email
 Name: perl-Email-Send
-Version: 2.197
+Version: 2.198
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,26 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Email::Address) >= 1.80
+BuildRequires: perl(Email::Simple) >= 1.92
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl(Module::Pluggable)
+BuildRequires: perl(File::Spec) >= 0
+BuildRequires: perl(Module::Pluggable) >= 2.97
+BuildRequires: perl(Return::Value) >= 1.28
+BuildRequires: perl(Scalar::Util) >= 1.02
+BuildRequires: perl(Symbol)
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl
+Requires: perl(Email::Address) >= 1.80
+Requires: perl(Email::Simple) >= 1.92
+Requires: perl(ExtUtils::MakeMaker)
+Requires: perl(File::Spec) >= 0
+Requires: perl(Module::Pluggable) >= 2.97
+Requires: perl(Return::Value) >= 1.28
+Requires: perl(Scalar::Util) >= 1.02
+Requires: perl(Symbol)
+Requires: perl(Test::More) >= 0.47
+AutoReq: no
 
 %description
 Perl module for sending mail.
@@ -56,6 +74,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Email/Send.pm
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 2.198-1
+- Updated to version 2.198.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.197-1
 - Updated to version 2.197.
 
