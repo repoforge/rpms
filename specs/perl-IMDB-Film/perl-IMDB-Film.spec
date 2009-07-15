@@ -9,7 +9,7 @@
 
 Summary: Interface to IMDB
 Name: perl-IMDB-Film
-Version: 0.39
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Cache::FileCache)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Digest::SHA1)
+BuildRequires: perl(Error)
+BuildRequires: perl(HTML::TokeParser) >= 2.28      
+BuildRequires: perl(LWP::Simple)
+BuildRequires: perl(Pod::Checker)
+Requires:perl
+Requires: perl(ExtUtils::MakeMaker)
+Requires: perl(Cache::FileCache)
+Requires: perl(Carp)
+Requires: perl(Digest::SHA1)
+Requires: perl(Error)
+Requires: perl(HTML::TokeParser) >= 2.28
+Requires: perl(LWP::Simple)
+Requires: perl(Pod::Checker)
+AutoReq: no
 
 %description
 IMDB::Film is OO Perl interface to the database of films
@@ -54,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IMDB/
 
 %changelog
+* Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.39-1
 - Updated to version 0.39.
 
