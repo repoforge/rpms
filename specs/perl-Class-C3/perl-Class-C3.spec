@@ -9,7 +9,7 @@
 
 Summary: Pragma for the C3 method resolution order algorithm
 Name: perl-Class-C3
-Version: 0.19
+Version: 0.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,11 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Algorithm::C3) >= 0.07
+BuildRequires: perl(Algorithm::C3) >= 0.06
 BuildRequires: perl(Class::C3::XS) >= 0.07
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Scalar::Util) >= 1.10
 BuildRequires: perl(Test::More) >= 0.47
+Requires: perl(Algorithm::C3) >= 0.06
 
 %description
 Pragma for the C3 method resolution order algorithm.
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/C3.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.21-1
+- Updated to version 0.21.
+
 * Wed Nov 07 2007 Dag Wieers <dag@wieers.com> - 0.19-1
 - Updated to release 0.19.
 
