@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Devel-StackTrace
-%define real_version 1.21
+%define real_version 1.22
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-Version: 1.2100
+Version: 1.2200
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Mon Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.2200-1
+- Updated to version 1.22.
+
 * Mon Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.2100-1
 - Change version number to 1.2100
 
