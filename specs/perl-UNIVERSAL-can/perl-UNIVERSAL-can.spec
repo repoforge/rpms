@@ -9,7 +9,7 @@
 
 Summary: Hack around people calling UNIVERSAL::can() as a function
 Name: perl-UNIVERSAL-can
-Version: 1.12
+Version: 1.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Scalar::Util)
 
 %description
 Hack around people calling UNIVERSAL::can() as a function.
@@ -29,12 +30,12 @@ Hack around people calling UNIVERSAL::can() as a function.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -49,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/UNIVERSAL/can.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.15-1
+- Updated to version 1.15.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Updated to release 1.12.
 
