@@ -9,7 +9,7 @@
 
 Summary: Hack around people using UNIVERSAL::isa
 Name: perl-UNIVERSAL-isa
-Version: 0.06
+Version: 1.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Scalar::Util)
 
 %description
 Hack around module authors using UNIVERSAL::isa as a function when they shouldn't.
@@ -29,12 +30,12 @@ Hack around module authors using UNIVERSAL::isa as a function when they shouldn'
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -48,6 +49,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/UNIVERSAL/isa.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.03-1
+- Updated to version 1.03.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 
