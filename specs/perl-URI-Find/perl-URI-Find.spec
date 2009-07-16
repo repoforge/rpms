@@ -9,7 +9,7 @@
 
 Summary: Perl module to find URIs in arbitrary text
 Name: perl-URI-Find
-Version: 0.16
+Version: 20090319
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,9 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
 BuildRequires: perl(URI)
 BuildRequires: perl(URI::URL)
-BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This module does one thing: Finds URIs and URLs in plain text. It finds them
@@ -33,12 +33,12 @@ only finds URIs which include a scheme (http:// or the like).
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -55,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/Find/
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 20090319-1
+- Updated to version 20090319.
+
 * Sat Sep 09 2006 Al Pacifico <adpacifico@users.sourceforge.net> - 0.16-1
 - initial packaging.
