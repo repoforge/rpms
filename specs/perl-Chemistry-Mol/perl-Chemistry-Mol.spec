@@ -9,8 +9,8 @@
 
 Summary: Molecule object toolkit
 Name: perl-Chemistry-Mol
-Version: 0.36
-Release: 1.2
+Version: 0.37
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chemistry-Mol/
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Math::VectorReal) >= 1         
+BuildRequires: perl(Scalar::Util) >= 1.01          
+BuildRequires: perl(Test::Simple)
+BuildRequires: perl(Text::Balanced)
+
 
 %description
 his toolkit includes basic objects and methods to describe molecules. It
@@ -55,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Chemistry/Tutorial.pod
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.37-1
+- Updated to version 0.37.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 0.36-1
 - Updated to release 0.36.
 
