@@ -9,7 +9,7 @@
 
 Summary: Provide signals and slots for standard classes
 Name: perl-Class-Std-Slots
-Version: 0.2
+Version: 0.31
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Class::Std)
+BuildRequires: perl(Module::Build)
 
 %description
 Provide signals and slots for standard classes.
@@ -28,12 +30,13 @@ Provide signals and slots for standard classes.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
+
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -43,7 +46,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE TODO
+%doc Changes MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man3/Class::Std::Slots.3pm*
 %dir %{perl_vendorlib}/Class/
 %dir %{perl_vendorlib}/Class/Std/
@@ -51,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Std/Slots.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.31-1
+- Updated to version 0.31.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.2-1
 - Initial package. (using DAR)
