@@ -9,7 +9,7 @@
 
 Summary: Module for creating generic methods
 Name: perl-Class-MethodMaker
-Version: 2.12
+Version: 2.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/Class/Class-MethodMaker-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 This package allows you to create generic methods for OO Perl.
@@ -56,6 +56,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Class/MethodMaker/
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 2.15-1
+- Updated to version 2.15.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.12-1
 - Updated to release 2.12.
 
