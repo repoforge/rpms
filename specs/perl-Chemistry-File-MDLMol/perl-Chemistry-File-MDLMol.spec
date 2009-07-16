@@ -9,8 +9,8 @@
 
 Summary: MDL molfile reader and writer
 Name: perl-Chemistry-File-MDLMol
-Version: 0.20
-Release: 1.2
+Version: 0.21
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chemistry-File-MDLMol/
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Chemistry::Mol) >= 0.35
+BuildRequires: perl(Chemistry::Ring) >= 0.19
+Requires: perl(Chemistry::Mol) >= 0.35
+Requires: perl(Chemistry::Ring) >= 0.19
+AutoReq: no
 
 %description
 This modules read MDL mol and sd files. Please note that they are at an early
@@ -60,6 +65,9 @@ The SDF module registers the 'sdf' format.
 %{perl_vendorlib}/Chemistry/File/SDF.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.21-1
+- Updated to version 0.21.
+
 * Wed Jun  8 2005 Dries Verachtert <dries@ulyssis.org> - 0.20-1
 - Updated to release 0.20.
 
