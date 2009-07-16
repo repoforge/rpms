@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements another class and object builder
 Name: perl-Class-Gomor
-Version: 1.01
+Version: 1.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
@@ -54,5 +55,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Class/Gomor.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.02-1
+- Updated to version 1.02.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)
