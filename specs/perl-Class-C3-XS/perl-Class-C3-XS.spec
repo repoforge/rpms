@@ -9,7 +9,7 @@
 
 Summary: XS speedups for Class::C3
 Name: perl-Class-C3-XS
-Version: 0.08
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Class/C3/XS/
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.08-1
 - Initial package. (using DAR)
