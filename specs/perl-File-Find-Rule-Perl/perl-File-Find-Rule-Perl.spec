@@ -9,7 +9,7 @@
 
 Summary: Common rules for searching for Perl things
 Name: perl-File-Find-Rule-Perl
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.005
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Find::Rule) >= 0.20
 BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(Params::Util) >= 0.38
+BuildRequires: perl(Parse::CPAN::Meta) >= 0.04
 BuildRequires: perl(Test::More) >= 0.47
+
 Requires: perl >= 0:5.005
 
 %description
@@ -55,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Find/Rule/Perl.pm
 
 %changelog
+* Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.07-1
+- Updated to version 1.07.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.06-1
 - Updated to version 1.06.
 
