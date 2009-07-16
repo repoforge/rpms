@@ -6,16 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Devel-StackTrace
+%define real_version 1.21
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-Version: 1.21
+Version: 1.2100
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-StackTrace/
 
-Source: http://www.cpan.org/modules/by-module/Devel/Devel-StackTrace-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Devel/Devel-StackTrace-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,7 +33,7 @@ returned from caller()).  You can step through these frames forwards
 and backwards as you want or retrieve specific frames.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Build.PL
@@ -58,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Mon Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.2100-1
+- Change version number to 1.2100
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.21-1
 - Updated to version 1.21.
 
