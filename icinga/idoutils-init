@@ -1,0 +1,66 @@
+#!/bin/sh
+# Startup script for ido-daemon
+#
+# chkconfig: 2345 95 05
+# description: icinga Database Objects daemon
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+
+BINARY=ido2db
+DAEMON=@BINDIR@/$BINARY
+CONFIG=@CONFDIR@/ido2db.cfg
+
+[ -f $DAEMON ] || exit 0
+
+prog="ido2db"
+
+start() {
+    echo -n $"Starting $prog: " 
+    daemon --user icinga $DAEMON -c $CONFIG
+    RETVAL=$?
+    echo
+    return $RETVAL
+}
+
+stop() {
+    if test "x`pidof $BINARY`" != x; then
+        echo -n $"Stopping $prog: "
+        killproc ido2db
+        echo
+    fi
+    RETVAL=$?
+    return $RETVAL
+}
+
+case "$1" in
+        start)
+            start
+            ;;
+
+        stop)
+            stop
+            ;;
+
+        status)
+            status $BINARY
+            ;;
+        restart)
+            stop
+            start
+            ;;
+        condrestart)
+            if test "x`pidof $BINARY`" != x; then
+                stop
+                start
+            fi
+            ;;
+
+        *)
+            echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+            exit 1
+
+esac
+
+exit $RETVAL
