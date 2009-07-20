@@ -10,8 +10,8 @@
 
 Summary: Keeps insertion order; allows duplicate keys
 Name: perl-Tie-DxHash
-Version: 1.03
-Release: 1.0
+Version: 1.05
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-DxHash/
@@ -52,5 +52,8 @@ See the module's POD for details.
 %{perl_vendorlib}/Tie/DxHash.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
 * Mon Jul 07 2008 Eric Heydrick <erichey@speakeasy.net> - 1.03-1
 - Initial package.
