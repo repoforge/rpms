@@ -10,7 +10,7 @@
 Summary: Subversion repository mirroring tool
 Name: perl-SVN-Mirror
 Version: 0.75
-Release: 1
+Release: 2
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Mirror/
@@ -28,6 +28,15 @@ BuildRequires: perl(SVN::Simple::Edit)
 BuildRequires: perl(Term::ReadKey)
 BuildRequires: perl(URI::Escape)
 BuildRequires: perl(URI::file)
+Requires: perl(Class::Accessor)
+Requires: perl(Date::Format)
+Requires: perl(File::chdir)
+Requires: perl(SVN::Core) >= 1.2.0
+Requires: perl(SVN::Simple::Edit)
+Requires: perl(Term::ReadKey)
+Requires: perl(URI::Escape)
+Requires: perl(URI::file)
+AutoReq: no
 
 %description
 SVN::Mirror is a subversion repository mirroring tool.
@@ -60,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SVN/Mirror/
 
 %changelog
+* Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.75-2
+- Change to manual dependencies
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.75-1
 - Updated to version 0.75.
 - Rewrote build-requirements from META.yml
