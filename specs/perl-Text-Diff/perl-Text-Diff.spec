@@ -8,8 +8,8 @@
 
 Summary: Perform diffs on files and record sets
 Name: perl-Text-Diff
-Version: 0.35
-Release: 1.2
+Version: 1.37
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Diff/
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Algorithm::Diff)
 
 %description
 Perform diffs on files and record sets.
@@ -50,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Diff.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 1.37-1
+- Updated to version 1.37.
+
 * Fri Jan  7 2005 Dries Verachtert <dries@ulyssis.org> - 0.35-1
 - Initial package.
 
