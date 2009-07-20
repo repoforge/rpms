@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name ZM-Session
-%define real_version 0.002000
 
 Summary: Perl module that implements a sessions manager for CGI
 Name: perl-ZM-Session
-Version: 0.2.0
+Version: 0.2.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ZM/Session.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 0.2.1-1
+- Updated to version 0.2.1.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.2.0-1
 - Initial package. (using DAR)
