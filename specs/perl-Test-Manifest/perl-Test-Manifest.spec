@@ -9,7 +9,7 @@
 
 Summary: Interact with a t/test_manifest file
 Name: perl-Test-Manifest
-Version: 1.22
+Version: 1.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -48,12 +48,15 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/Test::Manifest.3*
+#%doc %{_mandir}/man3/Test::Manifest*
 %dir %{perl_vendorlib}/Test/
 #%{perl_vendorlib}/Test/Manifest/
 %{perl_vendorlib}/Test/Manifest.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 1.23-1
+- Updated to version 1.23.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.22-1
 - Updated to release 1.22
 
