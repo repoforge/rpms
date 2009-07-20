@@ -6,11 +6,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name ZM-Template
-%define real_version 0.005002
 
 Summary: Perl module to merges runtime data with static HTML or plain text
 Name: perl-ZM-Template
-Version: 0.5.2
+Version: 0.7.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ZM/Template.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 0.7.2-1
+- Updated to version 0.7.2.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Initial package. (using DAR)
