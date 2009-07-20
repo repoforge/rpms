@@ -5,11 +5,10 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name YAML-LibYAML
-%define real_version 0.18
 
 Summary: Perl module that implements YAML using XS and libyaml
 Name: perl-YAML-LibYAML
-Version: 0.26
+Version: 0.32
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,6 +18,7 @@ Source: http://www.cpan.org/modules/by-module/YAML/YAML-LibYAML-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.3 
+BuildRequires: perl(Filter::Util::Call)
 Requires: perl >= 2:5.8.3 
 
 %description
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/YAML/LibYAML/
 %{perl_vendorarch}/auto/YAML/XS/
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 0.32-1
+- Updated to version 0.32.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.26-1
 - Initial package. (using DAR)
