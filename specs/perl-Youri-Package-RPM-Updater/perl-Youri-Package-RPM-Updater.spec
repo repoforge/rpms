@@ -2,15 +2,17 @@
 # Authority: dag
 # Upstream: Youri project <youri$zarb,org>
 
+# rpm on el4 is to old
+# ExcludeDist: el4
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Youri-Package-RPM-Updater
-%define real_version 0.004002
 
 Summary: Perl module to update RPM packages automatically
 Name: perl-Youri-Package-RPM-Updater
-Version: 0.4.2
+Version: 0.4.7
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Youri/Package/RPM/Updater.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 0.4.7-1
+- Updated to version 0.4.7.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.4.2-1
 - Updated to release 0.4.2.
 
