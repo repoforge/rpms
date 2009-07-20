@@ -9,7 +9,7 @@
 
 Summary: Backend for searching www.ebay.com
 Name: perl-WWW-Search-Ebay
-Version: 2.245
+Version: 3.011
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Search/Ebay.pm
 
 %changelog
+* Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 3.011-1
+- Updated to version 3.011.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 2.245-1
 - Updated to version 2.245.
 
