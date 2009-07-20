@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Chia-liang Kao <clkao@clkao.org>
+# EclusiveDist: el5
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
