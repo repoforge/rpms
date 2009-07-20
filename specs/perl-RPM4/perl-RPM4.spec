@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Olivier Thauvin <nanardon$nanardon,zarb,org>
 
+# rpm on el4 is too odl
+# EcludeDist: el4
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
