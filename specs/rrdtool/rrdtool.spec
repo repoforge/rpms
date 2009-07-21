@@ -2,6 +2,10 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
+# A fairly new intltool is needed
+# ExcludsiveDist: el5
+
+
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
@@ -12,7 +16,7 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.3.7
+Version: 1.3.8
 Release: 1
 License: GPL
 Group: Applications/Databases
@@ -23,6 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
+BuildRequires: intltool
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
@@ -40,6 +45,7 @@ Requires: python
 Requires: ruby
 Requires: zlib
 Requires: gettext
+Requires: xorg-x11-fonts-Typo1
 
 %if 0%{?el4}
 BuildRequires: evolution28-pango-devel
@@ -224,6 +230,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{ruby_sitearch}/RRD.so
 
 %changelog
+* Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 1.3.8-1
+- Updated to version 1.3.8.
+
 * Fri May 15 2009 Christoph Maser <cmr@financial.com> - 1.3.7-1
 - Update to 1.3.7
 
