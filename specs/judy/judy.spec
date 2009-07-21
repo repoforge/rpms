@@ -4,7 +4,7 @@
 
 Summary: Library which provides fully dynamic arrays
 Name: judy
-Version: 1.0.4
+Version: 1.0.5
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -34,11 +34,12 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n Judy-%{version}
+%setup
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+# FIXME: build fails with %{?_smp_mflags}
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -64,5 +65,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tue Jul 21 2009 Dries Verachtert <dries@ulyssis.org> - 1.0.5-1
+- Updated to releae 1.0.5.
+
 * Wed Nov 14 2007 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1
 - Initial package.

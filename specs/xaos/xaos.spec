@@ -21,13 +21,13 @@
 
 Summary: Fast, portable, real-time, and interactive fractal zoomer
 Name: xaos
-Version: 3.2.3
+Version: 3.5
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://wmi.math.u-szeged.hu/xaos/doku.php
 
-Source: http://dl.sf.net/xaos/XaoS-%{version}.tar.gz
+Source: http://dl.sf.net/xaos/xaos-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: aalib-devel
@@ -44,7 +44,7 @@ switching between Julia and Mandelbrot fractal types and on-the-fly
 plane switching is provided.
 
 %prep
-%setup -n XaoS-%{version}
+%setup
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -54,7 +54,7 @@ Exec=xaos
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=Application;Graphics;Scientific;
+Categories=Application;Graphics;
 EOF
 
 %build
@@ -65,6 +65,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
 %if %{?_without_freedesktop:1}0
 %{__install} -D -m0644 xaos.desktop %{buildroot}/etc/X11/applnk/Multimedia/xaos.desktop
@@ -81,7 +82,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING doc/PROBLEMS README doc/SPONSORS TODO
+%doc ChangeLog COPYING README TODO
 %doc %{_infodir}/xaos.info*
 %doc %{_mandir}/man6/xaos.6*
 %{_bindir}/xaos
@@ -90,5 +91,8 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/XaoS/
 
 %changelog
+* Mon Jul 20 2009 Dries Verachtert <dries@ulyssis.org> - 3.5-1
+- Updated to release 3.5.
+
 * Fri Nov 30 2007 Dries Verachtert <dries@ulyssis.org> - 3.2.3-1
 - Updated to release 3.2.3.

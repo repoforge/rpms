@@ -4,7 +4,7 @@
 
 Summary: Tunneling of Ipv6 over UDP through NATs
 Name: miredo
-Version: 1.1.6
+Version: 1.1.7
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -72,6 +72,8 @@ you will need to install %{name}-devel.
 %{_bindir}/teredo-mire
 %{_libdir}/libteredo.so.*
 %{_libdir}/libtun6.so.*
+%dir %{_libdir}/miredo/
+%{_libdir}/miredo/miredo-privproc
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -85,6 +87,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libtun6.la
 
 %changelog
+* Tue Jul 21 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.7-1
+- Updated to release 1.1.7.
+
 * Tue Apr 14 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.6-1
 - Updated to release 1.1.6.
 

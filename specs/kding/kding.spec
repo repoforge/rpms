@@ -4,7 +4,7 @@
 
 Summary: Frontend for ding, a dictionary lookup program
 Name: kding
-Version: 0.4.3
+Version: 0.5
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -28,12 +28,12 @@ Ding.
 %setup
 
 %build
-%configure
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DPREFIX=%{_prefix} .
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -43,14 +43,18 @@ Ding.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %{_bindir}/kding
-%{_datadir}/applications/kde/kding.desktop
-%{_datadir}/apps/kding/
+%{_datadir}/applications/kde4/kding.desktop
+%{_datadir}/kde4/apps/kding/
 %{_datadir}/config.kcfg/kding.kcfg
 %{_datadir}/doc/HTML/*/kding/
 %{_datadir}/icons/*/*/apps/kding.png
 %{_datadir}/icons/*/*/actions/kding_search.png
+%{_datadir}/icons/*/*/actions/kding_babelfish.png
 
 %changelog
+* Tue Jul 21 2009 Dries Verachtert <dries@ulyssis.org> - 0.5-1
+- Updated to release 0.5.
+
 * Tue May 20 2008 Dries Verachtert <dries@ulyssis.org> - 0.4.3-1
 - Updated to release 0.4.3.
 
