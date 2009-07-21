@@ -8,6 +8,7 @@
 %{?el4:%define _without_magick 1}
 %{?el4:%define _without_modxorg 1}
 
+%{?el3:%define _without_alsa 1}
 %{?el3:%define _without_magick 1}
 %{?el3:%define _without_modxorg 1}
 %{?el3:%define _without_theora 1}
@@ -38,6 +39,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: mpeg2dec-devel
 %{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
 %{!?_without_libdv:BuildRequires: libdv-devel}
@@ -47,6 +49,7 @@ BuildRequires: mpeg2dec-devel
 %{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
 %{!?_without_modxorg:BuildRequires: libXv-devel, libXaw-devel, libXpm-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_mpeg3:BuildRequires: libmpeg3-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
 %{!?_without_postproc:BuildRequires: ffmpeg-libpostproc-devel}

@@ -3,7 +3,7 @@
 
 Summary: Alter MIME-encoded mailpacks
 Name: altermime
-Version: 0.3.7
+Version: 0.3.9
 Release: 1
 License: BSD
 Group: Applications/Internet
@@ -38,5 +38,8 @@ attachments based on filename.
 %{_bindir}/altermime
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.3.9-1
+- Updated to release 0.3.9.
+
 * Mon Jan 28 2008 Dag Wieers <dag@wieers.com> - 0.3.7-1
 - Initial package. (using DAR)
