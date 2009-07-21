@@ -9,7 +9,7 @@
 
 Summary: Lazy evaluation in Perl
 Name: perl-Scalar-Defer
-Version: 0.18
+Version: 0.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Scalar/Defer.pm
 
 %changelog
+* Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 0.20-1
+- Updated to version 0.20.
+
 * Fri Jun 19 2009 Christoph Maser <cmr@financial.com> - 0.18-1
 - Updated to version 0.18.
 
