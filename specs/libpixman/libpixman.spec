@@ -3,11 +3,8 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Merge of libpixregion and libic
 Name: libpixman
@@ -31,8 +28,8 @@ Summary: Header files, libraries and development documentation for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: libpixman-devel
-%{!?_with_modxorg:Requires: XFree86-devel}
-%{?_with_modxorg:Requires: libX11-devel}
+%{?_without_modxorg:Requires: XFree86-devel}
+%{!?_without_modxorg:Requires: libX11-devel}
 
 %description devel
 This package contains the header files, static libraries and development
