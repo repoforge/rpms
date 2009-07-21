@@ -14,11 +14,16 @@ URL: http://soundconverter.berlios.de/
 
 Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: noarch
 
-BuildRequires: python-devel >= 2.3.3, gstreamer-python >= 0.10
-BuildRequires: intltool, perl(XML::Parser)
-Requires: python >= 2.3.3, pygtk2, gstreamer-python >= 0.10, gnome-python2-gconf
+BuildArch: noarch
+BuildRequires: gstreamer-python >= 0.10
+BuildRequires: intltool
+BuildRequires: perl(XML::Parser)
+BuildRequires: python-devel >= 2.3.3
+Requires: gnome-python2-gconf
+Requires: gstreamer-python >= 0.10
+Requires: pygtk2
+Requires: python >= 2.3.3
 
 %description
 soundconverter is a sound conversion application. It reads anything the
@@ -52,7 +57,7 @@ WAV, FLAC, MP3, AAC, and Ogg Vorbis files.
 %{_datadir}/soundconverter/
 
 %changelog
-* Sat Jul 11 2009 Dries Verachtert <dries@ulyssis.org> - 1.4.4-1
+* Sat Jul 04 2009 Dag Wieers <dag@wieers.com> - 1.4.4-1
 - Updated to release 1.4.4.
 
 * Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 1.4.3-1
