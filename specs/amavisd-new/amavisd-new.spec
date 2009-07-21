@@ -12,7 +12,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.6.4
-Release: 1
+Release: 2
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -20,18 +20,49 @@ URL: http://www.ijs.si/software/amavisd/
 Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 5.8.1, sendmail-devel >= 8.12, sendmail
-Requires: arc >= 5.21e, nomarch >= 1.2, unrar >= 2.71, zoo >= 2.10
-Requires: bzip2, cpio, file, freeze, lha, lzop, ncompress, unarj
-Requires: cabextract, ripole, perl(BerkeleyDB)
-Requires: perl(Archive::Tar), perl(Archive::Zip) >= 1.14, perl(Compress::Zlib) >= 1.35
-Requires: perl(Convert::TNEF), perl(Convert::UUlib), perl(IO::Stringy)
-Requires: perl(MIME::Base64), perl(MIME::Tools) >= 5.420, perl(Unix::Syslog)
-Requires: perl(Time::HiRes) >= 1.49, perl(Digest::MD5), perl(Digest::SHA1)
-Requires: perl(Digest::HMAC), perl(Net::DNS), perl(Mail::SpamAssassin)
-Requires: perl-MailTools, perl(Net::Server) >= 0.93, perl-HTML-Parser >= 3.24
-Requires: perl(DB_File), perl(Digest::MD5) >= 2.22, perl(DBI) >= 1.43
+BuildRequires: perl >= 5.8.1
+BuildRequires: sendmail
+BuildRequires: sendmail-devel >= 8.12
+Requires: altermime
+Requires: arc >= 5.21e
+Requires: bzip2
+Requires: cabextract
+Requires: cpio
+Requires: file
+Requires: freeze
+Requires: lha
+Requires: lzop
+Requires: ncompress
+Requires: nomarch >= 1.2
+Requires: p7zip
+Requires: ripole
+Requires: unarj
+Requires: unrar >= 2.71
+Requires: zoo >= 2.10
+Requires: perl(Archive::Tar)
+Requires: perl(Archive::Zip) >= 1.14
+Requires: perl(BerkeleyDB)
+Requires: perl(Compress::Zlib) >= 1.35
+Requires: perl(Convert::TNEF)
+Requires: perl(Convert::UUlib)
+Requires: perl(Crypt::OpenSSL::RSA)
+Requires: perl(DB_File)
+Requires: perl(DBI) >= 1.43
+Requires: perl(Digest::MD5) >= 2.22
+Requires: perl(Digest::SHA1)
+Requires: perl(Digest::HMAC)
+Requires: perl(IO::Stringy)
+Requires: perl(Mail::DKIM)
+Requires: perl(Mail::SpamAssassin)
+Requires: perl(MIME::Base64)
+Requires: perl(MIME::Tools) >= 5.420
 Requires: perl(Net::Cmd) >= 2.24
+Requires: perl(Net::DNS)
+Requires: perl(Net::Server) >= 0.93
+Requires: perl(Time::HiRes) >= 1.49
+Requires: perl(Unix::Syslog)
+Requires: perl-HTML-Parser >= 3.24
+Requires: perl-MailTools
 
 Obsoletes: amavisd
 Obsoletes: amavisd-new-utils <= %{version}-%{release}
@@ -335,6 +366,10 @@ fi
 %{_sbindir}/amavis-milter
 
 %changelog
+* Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 2.6.4-2
+- Added p7zip, perl(Digest::SHA), perl(Mail::DKIM) and
+  perl(Crypt::OpenSSL::RSA) dependencies (Ned Slider, David Hrbá))
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 2.6.4-1
 - Updated to release 2.6.4.
 

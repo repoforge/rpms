@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
+### RHEL 5.4 ships with 0.7.3-3.el5
+# ExclusiveDist el3 el4
+
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_gtk24 1}

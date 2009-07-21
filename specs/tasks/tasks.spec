@@ -3,7 +3,7 @@
 
 Summary: Tasks to-do list
 Name: tasks
-Version: 0.14
+Version: 0.16
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -33,7 +33,7 @@ other frameworks (such as Maemo as used on the Nokia N800).
 
 %build
 %configure
-%{__make} %{?_smp_mflags} 
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,6 +61,9 @@ touch %{_datadir}/icons/hicolor
 %{_datadir}/tasks/
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.16-1
+- Updated to release 0.16.
+
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 

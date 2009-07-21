@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### RHEL 5.4 ships with blktrace-1.0.0-6.el5
+# ExclusiveDist: el3 el4
+
 Summary: Utilities for performing block layer IO tracing in the linux kernel
 Name: blktrace
 Version: 0.99.3

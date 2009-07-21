@@ -4,21 +4,15 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-
 %{?el4: %define _without_libiec61883 1}
+%{?el4:%define _without_modxorg 1}
+
 %{?el3: %define _without_libiec61883 1}
-%{?rh9: %define _without_libiec61883 1}
-%{?rh7: %define _without_libiec61883 1}
-%{?el2: %define _without_libiec61883 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 1.3.2
+Version: 1.3.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -96,6 +90,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %exclude %{_libdir}/kino-gtk2/*.la
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.3.3-1
+- Updated to release 1.3.3.
+
 * Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.3.2-1
 - Updated to release 1.3.2.
 

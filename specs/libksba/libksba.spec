@@ -2,7 +2,8 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-# Distcc: 0
+### RHEL 5.4 ships with libksba-1.0.2-6.el5
+# ExclusiveDist: el3 el4
 
 Summary: X.509 library
 Name: libksba
@@ -33,13 +34,13 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 %{__make} check
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_infodir}/dir
@@ -47,11 +48,8 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %post devel
 install-info %{_infodir}/ksba.info.gz %{_infodir}/dir
@@ -64,21 +62,17 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README* THANKS TODO VERSION
-%{_libdir}/*.so.*
+%{_libdir}/libksba.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_infodir}/*.info*
-%{_bindir}/*
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_includedir}/*.h
-%{_datadir}/aclocal/*.m4
-%exclude %{_libdir}/*.la
+%{_bindir}/ksba-config
+%{_datadir}/aclocal/ksba.m4
+%{_includedir}/ksba.h
+%{_libdir}/libksba.so
+%exclude %{_libdir}/libksba.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.7-1.2
-- Rebuild for Fedora Core 5.
-
-* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.4.6-1
+* Tue Apr 06 2004 Dag Wieers <dag@wieers.com> - 0.4.7-1
 - Initial package. (using DAR)

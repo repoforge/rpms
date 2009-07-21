@@ -17,7 +17,12 @@ URL: http://plugins.guifications.org/trac/
 Source: purple-plugin_pack-2.5.1.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, libtool, gettext, xmms-devel, pidgin-devel, gtk2-devel
+BuildRequires: gettext
+BuildRequires: gtk2-devel
+BuildRequires: libtool
+BuildRequires: pidgin-devel
+BuildRequires: pkgconfig
+BuildRequires: xmms-devel
 ### Require purple-plugin_pack for translations and to help people install all the plugins
 Requires: purple-plugin_pack = %{version}-%{release}
 

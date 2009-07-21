@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Daniel P. Berrangé <dan$berrange,com>
 
+### RHEL 5.4 ships with perl-Sys-Virt-0.2.0
+# ExclusiveDist: el3 el4
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 
 Summary: Perl module to represent and manage a libvirt hypervisor connection
 Name: perl-Sys-Virt
-Version: 0.1.2
+Version: 0.2.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -29,8 +32,8 @@ BuildRequires: perl(XML::XPath::XMLParser)
 BuildRequires: xen-libs-devel
 
 %description
-perl-Sys-Virt is a Perl module to represent and manage
-a libvirt hypervisor connection.
+perl-Sys-Virt is a Perl module to represent and manage a libvirt hypervisor
+connection.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -62,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Sys/Virt.pm
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.2.0-1
+- Updated to release 0.2.0.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.1.2-1
 - Updated to release 0.1.2.
 

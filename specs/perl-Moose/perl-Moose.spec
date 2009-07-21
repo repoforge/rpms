@@ -20,17 +20,19 @@ Source: http://www.cpan.org/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 5.8.1
+BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::MOP) >= 0.89
 BuildRequires: perl(Data::OptList)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(List::MoreUtils) >= 0.12
 BuildRequires: perl(Scalar::Util) >= 1.19
 BuildRequires: perl(Sub::Exporter) >= 0.980
 BuildRequires: perl(Sub::Name)
 BuildRequires: perl(Task::Weaken)
-#BuildRequires: perl(Test::More) >= 0.62
-Requires: perl >= 5.8.1
+BuildRequires: perl(Test::Exception) >= 0.27
+#BuildRequires: perl(Test::More) >= 0.77
+Requires: perl >= 2:5.8.1
 
 %description
 Moose is a Perl module that implements a complete modern object system.

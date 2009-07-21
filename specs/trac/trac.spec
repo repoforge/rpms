@@ -8,7 +8,7 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.11.3
+Version: 0.11.5
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -94,6 +94,9 @@ EOF
 %{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.11.5-1
+- Updated to release 0.11.5.
+
 * Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 0.11.3-1
 - Updated to release 0.11.3.
 

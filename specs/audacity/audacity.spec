@@ -3,7 +3,11 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%{?el4:%define _without_flac 1}
+
 %{?el3:%define _without_alsa 1}
+%{?el3:%define _without_flac 1}
+%{?el3:%define _without_soundtouch 1}
 
 Summary: Multitrack audio editor
 Name: audacity
@@ -24,7 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 BuildRequires: desktop-file-utils
 BuildRequires: expat-devel
-BuildRequires: flac-devel
+%{!?_without_flac:BuildRequires: flac-devel}
 BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: ladspa-devel
@@ -34,7 +38,7 @@ BuildRequires: libogg-devel
 BuildRequires: libsamplerate-devel
 BuildRequires: libsndfile-devel
 BuildRequires: libvorbis-devel
-BuildRequires: soundtouch-devel
+%{!?_without_soundtouch:BuildRequires: soundtouch-devel}
 BuildRequires: zip
 BuildRequires: zlib-devel
 BuildRequires: wxGTK-devel >= 2.6.0
@@ -75,12 +79,14 @@ grep -s __RPM_LIB * -R && exit 1
     --with-expat="system" \
     --with-id3tag="system" \
     --with-ladspa \
-    --with-libflac="system" \
+%{?_without_flac:--without-libflac} \
+%{!?_without_flac:--with-libflac="system"} \
     --with-libmad="system" \
     --with-libsamplerate="system" \
     --with-libsndfile="system" \
     --with-portaudio="v18" \
-    --with-soundtouch="system" \
+%{?_without_soundtouch:--without-soundtouch} \
+%{!?_without_soundtouch:--with-soundtouch="system"} \
     --with-vorbis="system" \
     --without-libresample
 %{__make}

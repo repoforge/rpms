@@ -1,12 +1,12 @@
 # $Id$
 # Authority: dag
 
+### RHEL 5.4 ships with fuse 2.7.4-8.el5
+# ExclusiveDist: el3 el4
+
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_udev 1}
-%{?rh9:%define _without_udev 1}
-%{?rh7:%define _without_udev 1}
-%{?el2:%define _without_udev 1}
 
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
@@ -110,7 +110,7 @@ touch %{buildroot}/dev/fuse
 
 %pre 
 if [ $1 -eq 1 ]; then
-	%{_sbindir}/groupadd -r fuse &>/dev/null || :
+    %{_sbindir}/groupadd -r fuse &>/dev/null || :
 fi
 
 %post

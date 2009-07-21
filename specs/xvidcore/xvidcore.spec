@@ -11,7 +11,7 @@
 
 Summary: Free reimplementation of the OpenDivX video codec
 Name: xvidcore
-Version: 1.2.1
+Version: 1.2.2
 Release: 1
 License: XviD
 Group: System Environment/Libraries
@@ -89,6 +89,9 @@ cd -
 %exclude %{_libdir}/libxvidcore.a
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

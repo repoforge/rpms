@@ -14,13 +14,14 @@
 
 Summary: Linux video stream processing utility
 Name: transcode
-Version: 1.1.0
+Version: 1.1.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
 
-Source: http://fromani.exit1.org/transcode-%{version}.tar.bz2
+#Source: http://prdownload.berlios.de/tcforge/transcode-%{version}.tar.bz2
+Source: http://download.berlios.de/tcforge/transcode-%{version}.tar.bz2
 Patch0: transcode-1.0.3-lzo2.patch
 Patch1: transcode-1.0.2-libmpeg3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -31,30 +32,31 @@ BuildRequires: ffmpeg-devel
 BuildRequires: freetype-devel >= 2.0
 BuildRequires: gcc-c++
 BuildRequires: gtk+-devel
-BuildRequires: libdv-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
 BuildRequires: libjpeg-devel
-BuildRequires: libogg-devel
 BuildRequires: libpng-devel
-BuildRequires: libvorbis-devel
-BuildRequires: libxml2-devel
-BuildRequires: lzo-devel
 BuildRequires: mpeg2dec-devel
-BuildRequires: SDL-devel
 %{!?_without_a52:BuildRequires: a52dec-devel >= 0.7.3}
 %{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_lame:BuildRequires: lame-devel >= 3.89}
+%{!?_without_libdv:BuildRequires: libdv-devel}
 %{!?_without_libfame:BuildRequires: libfame-devel}
+%{!?_without_libxml2:BuildRequires: libxml2-devel}
+%{!?_without_lzo:BuildRequires: lzo-devel}
 %{!?_without_magick:BuildRequires: ImageMagick-devel >= 5.4.3}
 %{!?_without_mjpeg:BuildRequires: mjpegtools-devel}
 %{!?_without_modxorg:BuildRequires: libXv-devel, libXaw-devel, libXpm-devel}
 %{!?_without_mpeg3:BuildRequires: libmpeg3-devel}
+%{!?_without_ogg:BuildRequires: libogg-devel}
 %{!?_without_postproc:BuildRequires: ffmpeg-libpostproc-devel}
+%{?_with_pvm3:BuildRequires: pvm}
 %{!?_without_quicktime:BuildRequires: libquicktime-devel}
+%{!?_without_sdl:BuildRequires: SDL-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
-# Non configure options
-%{!?_without_xvidcore:BuildRequires: xvidcore-devel}
+%{!?_without_vorbis:BuildRequires: libvorbis-devel}
+%{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_xvid:BuildRequires: xvidcore-devel}
 Conflicts: perl-Video-DVDRip < 0.51.2
 
 %description
@@ -81,40 +83,48 @@ Available rpmbuild rebuild options :
 export CFLAGS="%{optflags} -I%{_includedir}/postproc -DSDL_VIDEO_DRIVER_X11"
 export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %configure \
-    %{?_without_dvdread:--disable-dvdread} \
-    %{?_without_lame:--disable-lame} \
-    %{!?_without_a52:--enable-a52 --enable-a52-default-decoder} \
+%{?_without_dvdread:--disable-dvdread} \
+%{?_without_lame:--disable-lame} \
+%{!?_without_a52:--enable-a52 --enable-a52-default-decoder} \
+%{!?_without_alsa:--enable-alsa} \
+%{!?_without_faac:--enable-faac} \
     --enable-freetype2 \
     --enable-gtk \
-    %{!?_without_magick:--enable-imagemagick} \
-    --enable-libdv \
-    %{!?_without_libfame:--enable-libfame} \
-    %{!?_without_mpeg3:--enable-libmpeg3} \
-    %{!?_without_postproc:--enable-libpostproc} \
-    %{!?_without_quicktime:--enable-libquicktime} \
-    --enable-libxml2 \
-    --enable-lzo \
-    %{!?_without_mjpeg:--enable-mjpegtools} \
+%{!?_without_magick:--enable-imagemagick} \
+%{!?_without_libdv:--enable-libdv} \
+%{!?_without_libfame:--enable-libfame} \
+%{!?_without_mpeg3:--enable-libmpeg3} \
+%{!?_without_nuv:--enable-nuv} \
+%{!?_without_postproc:--enable-libpostproc} \
+%{!?_without_quicktime:--enable-libquicktime} \
+%{!?_without_libxml2:--enable-libxml2} \
+%{!?_without_lzo:--enable-lzo --with-lzo-includes="%{_includedir}/lzo"} \
+%{!?_without_mjpeg:--enable-mjpegtools} \
     --enable-netstream \
-    --enable-ogg \
-    --enable-sdl \
-    %{!?_without_theora:--enable-theora} \
-    --enable-v4l \
-    --enable-vorbis \
-    --with-lzo-includes=%{_includedir}/lzo
+%{!?_without_ogg:--enable-ogg} \
+%{!?_without_oss:--enable-oss} \
+%{?_with_pv3:--enable-pv3} \
+%{?_with_pvm3:--enable-pvm3 --with-pvm3-prefix="%{_datadir}/pvm3"} \
+%{!?_without_sdl:--enable-sdl} \
+%{!?_without_theora:--enable-theora} \
+%{!?_without_v4l:--enable-v4l} \
+%{!?_without_vorbis:--enable-vorbis} \
+%{!?_without_x264:--enable-x264} \
+%{!?_without_xvid:--enable-xvid}
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf %{buildroot} _docs
-%makeinstall \
-    docsdir="../_docs/"
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+
+%{__mv} -v %{buildroot}%{_docdir}/transcode/ rpm-doc/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO _docs/*
+%doc AUTHORS COPYING README TODO rpm-doc/*
 %doc %{_mandir}/man1/*.1*
 %config %{_libdir}/transcode/*.cfg
 %{_bindir}/*
@@ -125,6 +135,9 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %exclude %{_libdir}/transcode/*.la
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.1.3-1
+- Updated to release 1.1.3.
+
 * Mon Jan 19 2009 Dag Wieers <dag@wieers.com> - 1.1.0-1
 - Updated to release 1.1.0.
 

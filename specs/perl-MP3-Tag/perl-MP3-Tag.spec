@@ -10,7 +10,7 @@
 Summary: Module for reading tags of MP3 audio files
 Name: perl-MP3-Tag
 Version: 1.11
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP3-Tag/
@@ -21,11 +21,16 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 
+Provides: perl(Normalize::Text::Normalize_Fields)
+
 %description
 Module for reading tags of MP3 audio files.
 
 %prep
 %setup -n %{real_name}-%{version}
+
+### FIXME: Examples pull int additional requires/provides
+%{__rm} -rf examples/mod/
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -36,7 +41,7 @@ Module for reading tags of MP3 audio files.
 %{__make} pure_install
 
 ### Clean up buildroot
-find %{buildroot} -name .packlist -exec %{__rm} {} \;
+find %{buildroot} -type f -name .packlist -exec %{__rm} {} \;
 
 ### Clean up docs
 find examples/ -type f -exec %{__chmod} a-x {} \;
@@ -56,15 +61,21 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/audio_rename
 %{_bindir}/mp3info2
 %{_bindir}/typeset_audio_dir
+%dir %{perl_vendorlib}/Encode/
+%{perl_vendorlib}/Encode/transliterate_win1251.pm
+%dir %{perl_vendorlib}/Normalize/
+%dir %{perl_vendorlib}/Normalize/Text/
+%{perl_vendorlib}/Normalize/Text/Music_Fields/
+%{perl_vendorlib}/Normalize/Text/Music_Fields.pm
 %dir %{perl_vendorlib}/MP3/
 %{perl_vendorlib}/MP3/Tag/
 %{perl_vendorlib}/MP3/Tag.pm
-%{perl_vendorlib}/Normalize/Text/Music_Fields.pm
-%{perl_vendorlib}/Normalize/Text/Music_Fields/
-%{perl_vendorlib}/Encode/transliterate_win1251.pm
 
 %changelog
-* Thu Aug 28 2009 Christoph Maser <cmr@financial.com> 1.11-1
+* Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 1.11-2
+- Remove examples/mod to not pull incorrect requires.
+
+* Thu May 28 2009 Christoph Maser <cmr@financial.com> 1.11-1
 - Update to version 1.11.
 
 * Tue Aug 19 2008 Dag Wieers <dag@wieers.com> - 0.9710-1

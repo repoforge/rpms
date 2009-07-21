@@ -9,7 +9,7 @@
 
 Summary: Comprehensive template processing system
 Name: perl-Template-Toolkit
-Version: 2.20
+Version: 2.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,15 +51,12 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-### Clean up docs
-find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes HACKING INSTALL MANIFEST META.yml README TODO docs/ examples/
+%doc Changes HACKING INSTALL MANIFEST META.yml README TODO
 %doc %{_mandir}/man1/tpage.1*
 %doc %{_mandir}/man1/ttree.1*
 %doc %{_mandir}/man3/Template.3pm*
@@ -72,6 +69,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Template/
 
 %changelog
+* Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 2.21-1
+- Updated to release 2.21.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.20-1
 - Updated to release 2.20.
 
