@@ -9,7 +9,7 @@
 
 Summary: Data, client and server classes for XML-RPC
 Name: perl-RPC-XML
-Version: 0.65
+Version: 0.67
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,14 @@ Source: http://www.cpan.org/modules/by-module/RPC/RPC-XML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.006001
 BuildRequires: perl-libwww-perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(constant) >= 1.03
+BuildRequires: perl(File::Spec) >= 0.8
+BuildRequires: perl(Scalar::Util) >= 1.2
+BuildRequires: perl(Test::More)
+BuildRequires: perl(XML::Parser) >= 2.31
 ### Apparently I used the wrong name: XML-RPC doesn't exist, it's RPC-XML
 Obsoletes: perl-XML-RPC
 
@@ -66,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/RPC/XML.pm
 
 %changelog
+* Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 0.67-1
+- Updated to version 0.67.
+
 * Mon Jun 22 2009 Christoph Maser <cmr@financial.com> - 0.65-1
 - Updated to version 0.65.
 
