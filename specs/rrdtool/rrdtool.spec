@@ -45,7 +45,7 @@ Requires: python
 Requires: ruby
 Requires: zlib
 Requires: gettext
-Requires: xorg-x11-fonts-Typo1
+Requires: xorg-x11-fonts-Type1
 
 %if 0%{?el4}
 BuildRequires: evolution28-pango-devel
