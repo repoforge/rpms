@@ -1,6 +1,9 @@
 # $Id$
 # Authority: cmr
 # Upstream: Robert "phaylon" Sedlacek <rs$474,at>
+# el4 ships /usr/share/man/man3/Carp::Clan.3pm.gz inside perl-Date-Calc!
+# and we need a new Carp::Clan here
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +12,7 @@
 
 Summary: Organise your Moose types in libraries
 Name: perl-MooseX-Types
-Version: 0.11
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,5 +62,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Types.pm
 
 %changelog
+* Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Initial package. (using DAR)
