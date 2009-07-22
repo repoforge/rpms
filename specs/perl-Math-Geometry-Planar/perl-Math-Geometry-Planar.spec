@@ -9,8 +9,8 @@
 
 Summary: Collection of planar geometry functions
 Name: perl-Math-Geometry-Planar
-Version: 1.16
-Release: 1.2
+Version: 1.17
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Geometry-Planar/
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/Geometry/Planar.pm
 
 %changelog
+* Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 1.17-1
+- Updated to version 1.17.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
 - Rebuild for Fedora Core 5.
 
