@@ -6,16 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Return-Value
+%define real_version 1.666001
 
 Summary: Polymorphic return values
 Name: perl-Return-Value
-Version: 1.302
+Version: 1.666.001
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Return-Value/
 
-Source: http://www.cpan.org/authors/id/R/RJ/RJBS/Return-Value-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/R/RJ/RJBS/Return-Value-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,7 +27,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 This package provides polymorphic return values.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -51,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Return/Value.pm
 
 %changelog
+* Wed Jul 22 2009 Christoph Maser <cmr@finanial.com> - 1.666.001-1
+- Updated to version 1.666.001.
+
 * Wed Dec 20 2006 Dries Verachtert <dries@ulyssis.org> - 1.302-1
 - Initial package.
