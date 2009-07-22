@@ -2,12 +2,7 @@
 # Authority: dag
 # Upstream: Pádraig Brady <P$draigBrady,com>
 
-##ExclusiveDist: fc1 el3 rh9 rh8
-
 %{?dtag: %{expand: %%define %dtag 1}}
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 
@@ -15,7 +10,7 @@
 
 Summary: Utility to find and clean "lint" on a filesystem
 Name: fslint
-Version: 2.24
+Version: 2.40
 Release: 1
 License: GPL
 Group: System Environment/Base
@@ -26,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.0, gettext >= 0.13, pygtk2-devel
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: desktop-file-utils
 Requires: python >= 2.0, pygtk2, pygtk2-libglade, textutils >= 2.0.21, gettext >= 0.11.1, cpio
 
 %description
@@ -38,9 +33,9 @@ for e.g.). It includes a GUI as well as a command line interface.
 %setup
 
 %{__perl} -pi.orig -e '
-		s|^liblocation=.*$|liblocation="%{_datadir}/fslint"|;
-		s|^locale_base=.*$|locale_base=None #RPM edit|;
-	' fslint-gui
+        s|^liblocation=.*$|liblocation="%{_datadir}/fslint"|;
+        s|^locale_base=.*$|locale_base=None #RPM edit|;
+    ' fslint-gui
 
 #%{__cat} <<EOF >fslint.desktop
 #[Desktop Entry]
@@ -79,15 +74,11 @@ for e.g.). It includes a GUI as well as a command line interface.
 %{__make} install -C po DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%if %{?_without_freedesktop:1}0
-        %{__install} -Dp -m0644 fslint.desktop %{buildroot}%{_datadir}/gnome/apps/Applications/fslint.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-                fslint.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor %{desktop_vendor}    \
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+            fslint.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -104,6 +95,9 @@ for e.g.). It includes a GUI as well as a command line interface.
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-fslint.desktop}
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 2.40-1
+- Updated to release 2.40.
+
 * Sat Sep 22 2007 Dag Wieers <dag@wieers.com> - 2.24-1
 - Updated to release 2.24.
 

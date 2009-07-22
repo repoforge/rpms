@@ -90,7 +90,7 @@ desktop-file-install --delete-original          \
 %doc changelog COPYING INSTALL
 %doc %{_mandir}/man1/exaile*.1*
 %{_bindir}/exaile
-%{_datadir}/applications/*.desktop
+%{_datadir}/applications/%{desktop_vendor}-exaile.desktop
 %{_datadir}/exaile/
 %{_datadir}/pixmaps/exaile.png
 %{_libdir}/exaile/

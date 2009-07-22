@@ -4,75 +4,77 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc7:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define prever 20070108
 
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.1
-Release: 0.13%{?prever:.%{prever}}
+Release: 0.14%{?prever:.%{prever}}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/
+
 # Obtained from :
+# git clone git://git.cinelerra.org/j6t/cinelerra.git cinelerra
 # svn checkout svn://cvs.cinelerra.org/repos/cinelerra/trunk/hvirtual
-# cd hvirtual; find . -name .svn | xargs rm -rf
+# cd cinelerra; find . -name .svn | xargs rm -rf
 # ./autogen.sh && ./configure && make dist
 # mv cinelerra-2.1.tar.gz cinelerra-2.1-svn20060918.tar.gz
 Source0: cinelerra-%{version}%{?prever:-svn%{prever}}.tar.gz
 Source1: cinelerra-64x64.png
 Patch0: cinelerra-2.1-faad2.patch
+Patch1: cinelerra-2.1-zyv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-%{?_with_modxorg:BuildRequires: libXt-devel, libXv-devel, libXxf86vm-devel, libXext-devel}
-%{!?_with_modxorg:BuildRequires: xorg-x11-devel}
-BuildRequires: gettext-devel
-Buildrequires: esound-devel
-BuildRequires: alsa-lib-devel >= 1.0.2
-BuildRequires: mjpegtools-devel
-# Required for libuuid
-BuildRequires: e2fsprogs-devel
-BuildRequires: fftw3-devel
+
 BuildRequires: a52dec-devel
-BuildRequires: lame-devel
-BuildRequires: libsndfile-devel
-BuildRequires: OpenEXR-devel
+BuildRequires: alsa-lib-devel >= 1.0.2
+BuildRequires: e2fsprogs-devel
+Buildrequires: esound-devel
 BuildRequires: faad2-devel
-BuildRequires: libraw1394-devel >= 1.2.0
-BuildRequires: libiec61883-devel
+Buildrequires: ffmpeg-devel
+# Required for libuuid
+BuildRequires: fftw3-devel
+BuildRequires: freetype-devel
+BuildRequires: gettext-devel
+BuildRequires: gcc-c++
+BuildRequires: lame-devel
 # >= 0.5.0 required because of the use of avc1394_vcr_get_timecode2
 BuildRequires: libavc1394-devel >= 0.5.0
+BuildRequires: libdv-devel
+BuildRequires: libiec61883-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libogg-devel
+BuildRequires: libpng-devel
+BuildRequires: libraw1394-devel >= 1.2.0
+BuildRequires: libsndfile-devel
+BuildRequires: libtheora-devel
+BuildRequires: libtiff-devel
+BuildRequires: libtool
+BuildRequires: libvorbis-devel
+BuildRequires: mjpegtools-devel
+BuildRequires: nasm
+BuildRequires: OpenEXR-devel
 BuildRequires: x264-devel
-BuildRequires: libogg-devel, libvorbis-devel, libtheora-devel
 # This seems to actually require OpenGL 2.0 (NVidia proprietary only?)
 %{?_with_opengl:BuildRequires: libGL-devel, libGLU-devel}
-# Stuff not checked by configure, but still required
-BuildRequires: nasm
-BuildRequires: libtool
-BuildRequires: freetype-devel
-# Included ffmpeg snapshot requires this - No longer needed with shared ffmpeg
-#BuildRequires: faac-devel
-BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel
-BuildRequires: libdv-devel
-Buildrequires: ffmpeg-devel
-BuildRequires: gcc-c++
+%{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libXxf86vm-devel, libXext-devel}
+%{?_without_modxorg:BuildRequires: xorg-x11-devel}
 
 %description
 Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
-
 %prep
 %setup
 %patch0 -p1 -b .faad2
+%patch1 -p1
+
 # Add category "AudioVideo", as it ends up in "Others" otherwise
 # Replace the ugly small xpm icon with a nicer png one
 %{__perl} -pi -e 's|^(Categories=.*)|$1AudioVideo;|g;
                   s|^Icon=.*|Icon=cinelerra.png|g' image/cinelerra.desktop
-
 
 %build
 %configure \
@@ -87,7 +89,6 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
     --disable-rpath
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
@@ -96,17 +97,13 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 
 # Remove xpm icon and place png one
 %{__rm} -f %{buildroot}%{_datadir}/pixmaps/cinelerra.xpm
-%{__install} -m 0644 -p %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/cinelerra.png
-
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/cinelerra.png
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -116,16 +113,20 @@ Heroine Virtual Ltd. presents an advanced content creation system for Linux.
 %{_bindir}/mpeg3dump
 %{_bindir}/mpeg3toc
 %{_bindir}/mplexlo
-%exclude %{_includedir}/
-%{_libdir}/cinelerra/
-%exclude %{_libdir}/*.la
-%exclude %{_libdir}/*.so
-%{_libdir}/*.so.*
 %{_datadir}/applications/*cinelerra.desktop
 %{_datadir}/pixmaps/cinelerra.png
-
+%{_libdir}/cinelerra/
+%{_libdir}/*.so.*
+%exclude %{_includedir}/
+%exclude %{_libdir}/*.la
+%exclude %{_libdir}/*.so
 
 %changelog
+* Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 2.0-0.14.20070108
+- Rebuild against ffmpeg-0.5.
+- Rebuild against x264-0.4.20090708.
+- Patches around latest FFMPEG interface changes. (Yury V. Zaytsev)
+
 * Sun Jun 03 2007 Dag Wieers <dag@wieers.com> - 2.0-0.13.20070108
 - Rebuild against x264-0.4.20070529 because I missed it.
 

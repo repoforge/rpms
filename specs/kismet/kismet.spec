@@ -4,20 +4,16 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?rh7:%define _without_gpsmap 1}
-%{?el2:%define _without_gpsmap 1}
+%define _without_gpsmap 1
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-%define real_version 2008-05-R1
-Release: 200805r1.1
+%define real_version 2009-06-R1
+Release: 200906r1.1
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -25,11 +21,21 @@ URL: http://www.kismetwireless.net/
 Source: http://www.kismetwireless.net/code/kismet-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ImageMagick-devel, ncurses-devel, autoconf, flex, gcc-c++
-BuildRequires: zlib-devel, expat-devel, byacc, gmp-devel, wget
-BuildRequires: libtiff-devel, libjpeg-devel, bzip2-devel
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_with_modxorg:BuildRequires: libX11-devel}
+BuildRequires: autoconf
+BuildRequires: byacc
+BuildRequires: bzip2-devel
+BuildRequires: expat-devel
+BuildRequires: flex
+BuildRequires: gcc-c++
+BuildRequires: gmp-devel
+BuildRequires: ImageMagick-devel
+BuildRequires: ncurses-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libtiff-devel
+BuildRequires: wget
+BuildRequires: zlib-devel
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
 
 %description
 Kismet is an 802.11 (wireless) network sniffer and network dissector.
@@ -77,9 +83,9 @@ echo -e "/* make dbus shut up when dbus < 1.0 */\n#define DBUS_API_SUBJECT_TO_CH
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG GPL README TODO docs/DEVEL.* docs/README*
+%doc CHANGELOG GPL README docs/DEVEL.* docs/README*
 %doc %{_mandir}/man1/kismet*.1*
-%doc %{_mandir}/man5/*
+%doc %{_mandir}/man5/*.5*
 %config(noreplace) %{_sysconfdir}/*
 %{_bindir}/kismet*
 %{_datadir}/kismet/
@@ -92,6 +98,9 @@ echo -e "/* make dbus shut up when dbus < 1.0 */\n#define DBUS_API_SUBJECT_TO_CH
 %endif
 
 %changelog
+* Sat Jul 04 2009 Dag Wieers <dag@wieers.com> - 3.0.1-200906r1-1
+- Updated to release 2009-06-R1.
+
 * Tue Jun 03 2008 Dag Wieers <dag@wieers.com> - 3.0.1-200805r1-1
 - Updated to release 2008-05-R1.
 

@@ -7,8 +7,8 @@
 
 Summary: Collection of cryptographic algorithms and protocols for python
 Name: python-crypto
-Version: 2.0
-Release: 1.2
+Version: 2.0.1
+Release: 1
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.amk.ca/python/code/crypto.html
@@ -52,8 +52,8 @@ implemented for use from Python. Among the contents of the package:
 %{python_sitearch}/Crypto/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0-1.2
-- Rebuild for Fedora Core 5.
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 2.0.1-1
+- Updated to release 2.0.1.
 
 * Mon Dec 20 2004 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.

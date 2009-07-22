@@ -22,7 +22,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.25
+Version: 1.1.26
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -559,7 +559,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3d10core.dll.so
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
-%{_libdir}/wine/d3dx8.dll.so
+#%{_libdir}/wine/d3dx8.dll.so
 %{_libdir}/wine/d3dx9_24.dll.so
 %{_libdir}/wine/d3dx9_25.dll.so
 %{_libdir}/wine/d3dx9_26.dll.so
@@ -615,7 +615,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
 %{!?_without_opengl:%{_libdir}/wine/glu32.dll.so}
-#%{_libdir}/wine/glut32.dll.so
 %{_libdir}/wine/gpkcsp.dll.so
 %{_libdir}/wine/hal.dll.so
 %{_libdir}/wine/hid.dll.so
@@ -766,6 +765,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wintab32.dll.so
 %{_libdir}/wine/wintrust.dll.so
 %{_libdir}/wine/wmi.dll.so
+%{_libdir}/wine/wmiutils.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
 %{_libdir}/wine/wow32.dll.so
 %{_libdir}/wine/ws2_32.dll.so
@@ -901,6 +901,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.1.26-1
+- Updated to release 1.1.26.
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 1.1.25-1
 - Updated to release 1.1.25.
 

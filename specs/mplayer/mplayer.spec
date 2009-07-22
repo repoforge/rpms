@@ -39,41 +39,49 @@ Patch1: MPlayer-0.90-playlist.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
 #Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: mplayer-fonts
-BuildRequires: libpng-devel, libjpeg-devel, libungif-devel
-BuildRequires: lame-devel, libmad-devel, flac-devel
-BuildRequires: libmatroska-devel, gcc-c++
-BuildRequires: SDL-devel, ImageMagick
-%{!?_without_gtk2:BuildRequires: gtk2-devel}
-%{?_with_dvdread:BuildRequires: libdvdread-devel}
-%{!?_without_dv:BuildRequires: libdv-devel}
-%{!?_without_ladspa:BuildRequires: ladspa-devel}
-%{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.1}
-%{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_fribidi:BuildRequires: fribidi-devel}
+
+BuildRequires: flac-devel
+BuildRequires: gcc-c++
+BuildRequires: ImageMagick
+BuildRequires: lame-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libmad-devel
+BuildRequires: libmatroska-devel
+BuildRequires: libpng-devel
+BuildRequires: libungif-devel
+BuildRequires: SDL-devel
 %{!?_without_aalib:BuildRequires: aalib-devel}
-%{!?_without_lirc:BuildRequires: lirc-devel}
-%{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
-%{!?_without_arts:BuildRequires: arts-devel}
-%{!?_without_xvid:BuildRequires: xvidcore-devel}
-%{!?_without_x264:BuildRequires: x264-devel}
-%{!?_without_esd:BuildRequires: esound-devel}
-%{!?_without_lzo:BuildRequires: lzo-devel}
-%{!?_without_fame:BuildRequires: libfame-devel}
-%{!?_without_caca:BuildRequires: libcaca-devel}
-%{!?_without_theora:BuildRequires: libtheora-devel}
-%{!?_without_dts:BuildRequires: libdca-devel}
-%{!?_without_faac:BuildRequires: faac-devel}
-%{!?_without_mpc:BuildRequires: libmpcdec-devel}
-%{!?_without_vstream:BuildRequires: vstream-client-devel}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_amrnb:BuildRequires: amrnb-devel}
+%{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
+%{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.1}
+%{!?_without_dts:BuildRequires: libdca-devel}
+%{!?_without_dv:BuildRequires: libdv-devel}
+%{?_with_dvdread:BuildRequires: libdvdread-devel}
+%{!?_without_esd:BuildRequires: esound-devel}
+%{!?_without_faac:BuildRequires: faac-devel}
+%{!?_without_fame:BuildRequires: libfame-devel}
+%{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_gtk2:BuildRequires: gtk2-devel}
+%{!?_without_ladspa:BuildRequires: ladspa-devel}
+%{!?_without_lirc:BuildRequires: lirc-devel}
+%{!?_without_lzo:BuildRequires: lzo-devel}
+%{!?_without_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel}
+%{!?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
+%{!?_without_mpc:BuildRequires: libmpcdec-devel}
+%{!?_without_nas:BuildRequires: nas-devel}
 %{!?_without_samba:BuildRequires: samba-common}
 %{!?_without_speex:BuildRequires: speex-devel}
-%{!?_without_nas:BuildRequires: nas-devel}
+%{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_twolame:BuildRequires: twolame-devel}
-%{!?_without_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel}
-%{?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
-%{!?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
+%{!?_without_vstream:BuildRequires: vstream-client-devel}
+%{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_xvid:BuildRequires: xvidcore-devel}
+Requires: mplayer-fonts
 
 %description
 MPlayer is a multimedia player. It plays most video formats as well as DVDs.

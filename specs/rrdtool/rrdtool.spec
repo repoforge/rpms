@@ -3,8 +3,7 @@
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
 # A fairly new intltool is needed
-# ExcludsiveDist: el5
-
+# ExclusiveDist: el5
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -13,57 +12,55 @@
 %define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
 %define ruby_archdir %(ruby -rrbconfig -e "puts Config::CONFIG['archdir']")
 
-
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.3.8
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
-Source0: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
+Source: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
+BuildRequires: gettext-devel
 BuildRequires: intltool
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
 BuildRequires: python-devel >= 2.3
+BuildRequires: ruby
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
 BuildRequires: zlib-devel
-BuildRequires: gettext-devel
-BuildRequires: ruby
+Requires: gettext
 Requires: libxml2
 Requires: openssl
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
 Requires: python
 Requires: ruby
-Requires: zlib
-Requires: gettext
 Requires: xorg-x11-fonts-Type1
+Requires: zlib
 
 %if 0%{?el4}
-BuildRequires: evolution28-pango-devel
 BuildRequires: evolution28-cairo-devel
 BuildRequires: evolution28-glib2-devel
-Requires: evolution28-pango
+BuildRequires: evolution28-pango-devel
 Requires: evolution28-cairo
 Requires: evolution28-glib2
+Requires: evolution28-pango
 %else
-BuildRequires: pango-devel
 BuildRequires: cairo-devel
 BuildRequires: glib2-devel
+BuildRequires: pango-devel
 BuildRequires: xulrunner-devel
-Requires: pango
 Requires: cairo
 Requires: glib2
+Requires: pango
 %endif
-
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
@@ -142,14 +139,13 @@ chmod 755 find-requires-%{name}
 
 %setup
 
-
 %build
 %if 0%{?el4}
 export LD_LIBRARY_PATH=/usr/evolution28/%{_lib}
 export PKG_CONFIG_PATH=/usr/evolution28/%{_lib}/pkgconfig
 export RUBYARCHDIR=%{ruby_sitearch}
-export CFLAGS="`pkg-config --cflags cairo pangocairo pango pangoft2`"
-export LDFLAGS="`pkg-config --libs  cairo pangocairo pango pangoft2`"
+export CFLAGS="$(pkg-config --cflags cairo pangocairo pango pangoft2)"
+export LDFLAGS="$(pkg-config --libs  cairo pangocairo pango pangoft2)"
 %endif
 
 %configure \
@@ -171,18 +167,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
-
 %clean
 %{__rm} -rf %{buildroot}
 %if 0%{?el4}
 %{__rm} -f %{_builddir}/find-requires-%{name}
 %endif
 
-
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
-%doc examples/ 
+%doc examples/
 %doc %{_mandir}/man1/*.1*
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool
@@ -230,6 +224,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{ruby_sitearch}/RRD.so
 
 %changelog
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.3.8-2
+- Fixed the Typo in the xorg-x11-fonts-Typo1 requirement :) (Ben)
+
 * Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 1.3.8-1
 - Updated to version 1.3.8.
 
