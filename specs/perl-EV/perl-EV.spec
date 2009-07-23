@@ -8,7 +8,7 @@
 
 Summary: Perl module named EV
 Name: perl-EV
-Version: 3.6
+Version: 3.7
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -48,5 +48,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/EV
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 3.7-1
+- Updated to version 3.7.
+
 * Wed Jul 08 2009 Christoph Maser <cmr@financial.com> - 3.6-1
 - Initial package. (using DAR)
