@@ -9,7 +9,7 @@
 
 Summary: Perl extension for managing Lemonldap::NG Web-SSO system
 Name: perl-Lemonldap-NG-Manager
-Version: 0.86
+Version: 0.90
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(CGI) >= 3.08                   
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(IO::String) 
+BuildRequires: perl(Lemonldap::NG::Common) >= 0.93 
+BuildRequires: perl(Lemonldap::NG::Handler) >= 0.91
+BuildRequires: perl(LWP::UserAgent) 
+BuildRequires: perl(XML::Simple) 
+
 
 %description
 Perl extension for managing Lemonldap::NG Web-SSO system.
@@ -48,10 +55,8 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README TODO example/
-%doc %{_mandir}/man1/lmConfig_File2MySQL.1*
 %doc %{_mandir}/man3/Lemonldap::NG::Manager.3pm*
 %doc %{_mandir}/man3/Lemonldap::NG::Manager::*.3pm*
-%{_bindir}/lmConfig_File2MySQL
 %dir %{perl_vendorlib}/auto/Lemonldap/
 %dir %{perl_vendorlib}/auto/Lemonldap/NG/
 %{perl_vendorlib}/auto/Lemonldap/NG/Manager/
@@ -61,6 +66,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Lemonldap/NG/Manager.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.90-1
+- Updated to version 0.90.
+
 * Thu Oct 09 2008 Dag Wieers <dag@wieers.com> - 0.86-1
 - Updated to release 0.86.
 
