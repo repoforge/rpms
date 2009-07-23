@@ -9,7 +9,7 @@
 
 Summary: Kwiki Page Attachments plugin
 Name: perl-Kwiki-Attachments
-Version: 0.18
+Version: 0.21
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Kwiki)
 
 %description
 Kwiki Page Attachments plugin.
@@ -52,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Kwiki/Attachments.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.21-1
+- Updated to version 0.21.
+
 * Thu May 03 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)
