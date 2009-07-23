@@ -6,27 +6,37 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name ExtUtils-ParseXS
+%define real_version 2.2002
 
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
-Version: 2.20
+Version: 2.20.02
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-ParseXS/
 
-Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-ParseXS-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-ParseXS-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp) 
+BuildRequires: perl(DynaLoader) 
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::CBuilder) 
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Cwd) 
+BuildRequires: perl(Exporter) 
+BuildRequires: perl(File::Basename) 
+BuildRequires: perl(File::Spec) 
+BuildRequires: perl(Symbol) 
 
 %description
 With this module, you can Convert Perl XS code into C code.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -51,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/xsubpp
 
 %changelog
+* Mon Jul 23 2009 Christoph Maser <cmr@financial.com> - 2.20.02-1
+- Updated to version 2.20.02.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.20-1
 - Updated to version 2.20.
 
