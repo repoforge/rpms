@@ -10,7 +10,7 @@
 
 Summary: Module to allow use of FastCGI asynchronously
 Name: perl-FCGI-Async
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,9 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::Async)
 BuildRequires: perl(Test::HexString)
 BuildRequires: perl(Test::More)
+Provides: perl(FCGI::Async::ClientConnection)
+Provides: perl(FCGI::Async::BuildParse)
+Provides: perl(FCGI::Async::Constants)
 
 %description
 Module to allow use of FastCGI asynchronously.
@@ -59,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/FCGI/Async.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to version 0.17.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.16-1
 - Updated to version 0.16.
 
