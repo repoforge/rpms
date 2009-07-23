@@ -9,7 +9,7 @@
 
 Summary: Common rules for searching for Perl things
 Name: perl-File-Find-Rule-Perl
-Version: 1.07
+Version: 1.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Find/Rule/Perl.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.07-1
 - Updated to version 1.07.
 
