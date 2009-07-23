@@ -9,7 +9,7 @@
 
 Summary: obtain the REFCNT value of a referent
 Name: perl-Devel-Refcount
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Devel/Refcount.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Sun Jul 19 2009 Unknown - 0.05-1
 - Initial package. (using DAR)
