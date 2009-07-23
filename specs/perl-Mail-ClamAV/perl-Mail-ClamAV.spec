@@ -9,7 +9,7 @@
 
 Summary: Perl module with bindings for the clamav virus scanner
 Name: perl-Mail-ClamAV
-Version: 0.22
+Version: 0.29
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -22,8 +22,9 @@ BuildRequires: bzip2-devel
 BuildRequires: clamav-devel
 BuildRequires: gmp-devel
 BuildRequires: perl
-BuildRequires: perl(Inline)
+BuildRequires: perl-Inline
 BuildRequires: perl(Parse::RecDescent)
+BuildRequires: zlib-devel
 Requires: perl
 
 %description
@@ -34,7 +35,7 @@ Mail-ClamAV is a Perl module with bindings for the clamav virus scanner.
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Mail/ClamAV.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.29-1
+- Updated to version 0.29.
+
 * Wed May 28 2008 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 
