@@ -9,7 +9,7 @@
 
 Summary: Compile and link C code for Perl modules
 Name: perl-ExtUtils-CBuilder
-Version: 0.2602
+Version: 0.2603
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Cwd)
 BuildRequires: perl(ExtUtils::MakeMaker)
-#BuildRequires: perl(Test)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(Text::ParseWords)
+
 
 %description
 With this perl module, you can compile and link C code for perl modules
@@ -53,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/CBuilder.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.2603-1
+- Updated to version 0.2603.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.2602-1
 - Updated to version 0.2602.
 
