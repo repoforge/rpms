@@ -10,7 +10,7 @@
 Summary: a collection of modules that implement asynchronous filehandle IO
 Name: perl-IO-Async
 Version: 0.21
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Async/
@@ -20,10 +20,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Async::MergePoint)
+BuildRequires: perl(Heap) >= 0.8
+BuildRequires: perl(IO::Poll)
+BuildRequires: perl(Socket::GetAddrInfo) >= 0.08
+BuildRequires: perl(Storable)
+BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(File::Temp)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Refcount)
+
 
 %description
 a collection of modules that implement asynchronous filehandle
@@ -58,5 +65,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Async.pm
 
 %changelog
+* Mon Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.21-2
+- Fix deps
+
 * Mon Jul 06 2009 Christoph Maser <cmr@financial.com> - 0.21-1
 - Initial package. (using DAR)
