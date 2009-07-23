@@ -3,12 +3,12 @@
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
-%define desktop-vendor rpmforge
+%define desktop_vendor rpmforge
 
 Summary: Sudoku, a logic puzzle game
 Name: gnome-sudoku
 Version: 0.7.1
-Release: 1
+Release: 2
 License: GPL
 Group: Amusements/Games
 URL: http://gnome-sudoku.sourceforge.net/
@@ -71,5 +71,8 @@ desktop-file-install --delete-original         \
 %{python_sitelib}/gnome_sudoku/
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.7.1-2
+- Rebuild after correcting %%{desktop_vendor}.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.7.1-1
 - Initial package. (using DAR)

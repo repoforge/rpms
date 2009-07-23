@@ -12,8 +12,8 @@
 
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
-Version: 1.5.0
-Release: 2
+Version: 1.4.2
+Release: 5
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
@@ -101,11 +101,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-mixxx.desktop
 
 %changelog
-* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.5.0-2
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.4.2-5
 - Rebuild against portaudio-19.
-
-* Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 1.5.0-1
-- Updated to release 1.5.0.
 
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 1.4.2-4
 - Release bump to drop the disttag number in FC5 build.

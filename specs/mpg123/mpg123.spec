@@ -19,7 +19,7 @@
 Summary: MPEG audio player
 Name: mpg123
 Version: 1.8.1
-Release: 1
+Release: 2
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/
@@ -89,6 +89,9 @@ export SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.8.1-2
+- Rebuild against portaudio-19.
+
 * Thu Jun 18 2009 Dag Wieers <dag@wieers.com> - 1.8.1-1
 - Updated to release 1.8.1.
 

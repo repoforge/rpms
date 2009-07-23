@@ -2,18 +2,28 @@
 # Authority: dag
 # Upstream: <portaudio$techweb,rfa,org>
 
-%define real_version v18_1
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?el3:%define _without_alsa 1}
+
+%define real_name pa_stable
 
 Summary: Free, cross platform, open-source, audio I/O library
 Name: portaudio
-Version: 18.1
-Release: 2.2
-License: BSD-like
+%define real_version v19_20071207
+Version: 19
+Release: 1.20071207
+License: MIT
 Group: System Environment/Libraries
 URL: http://www.portaudio.com/
 
-Source: http://www.portaudio.com/archives/portaudio_%{real_version}.zip
+Source: http://www.portaudio.com/archives/pa_stable_%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%{!?_without_alsa:BuildRequires: alsa-lib-devel}
+BuildRequires: doxygen
+BuildRequires: gcc-c++
+Requires: pkgconfig
 
 Provides: %{name}-devel = %{version}-%{release}
 
@@ -24,29 +34,41 @@ Audio can be generated in various formats, including 32 bit floating point,
 and will be converted to the native format internally.
 
 %prep
-%setup -n %{name}_%{real_version}
-
-%{__perl} -pi.orig -e 's|^(LIBINST) = /usr/local/lib|$1 = %{_libdir}|' Makefile.linux
+%setup -n %{name}
 
 %build
-%{__make} %{?_smp_mflags} -f Makefile.linux sharedlib CFLAGS="-fPIC"
+%configure \
+    --disable-static \
+    --enable-cxx
+%{__make} %{?_smp_mflags}
+doxygen
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 pa_unix_oss/libportaudio.so %{buildroot}%{_libdir}/libportaudio.so
-%{__install} -Dp -m0644 pa_common/portaudio.h %{buildroot}%{_includedir}/portaudio.h
+%{__make} install DESTDIR="%{buildroot}"
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE.txt README.txt docs/
-%{_libdir}/libportaudio.so
-%{_includedir}/portaudio.h
+%doc LICENSE.txt README.txt
+%{_includedir}/*
+%{_libdir}/libportaudio.so*
+%{_libdir}/libportaudiocpp.so*
+%{_libdir}/pkgconfig/portaudio-2.0.pc
+%{_libdir}/pkgconfig/portaudiocpp.pc
+%exclude %{_libdir}/libportaudio.la
+%exclude %{_libdir}/libportaudiocpp.la
 
 %changelog
-* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> 1.18-2
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 19-1.20071207
+- Updated to release v19_20071207.
+
+* Fri Nov  5 2004 Matthias Saou <http://freshrpms.net/> - 18.1-2
 - Add -devel provides.
 - Fix .so 644 mode (overidden in defattr).
 

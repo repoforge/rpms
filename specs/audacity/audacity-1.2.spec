@@ -3,31 +3,36 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh8:%define _without_alsa 1}
-%{?yd3:%define _without_alsa 1}
 
-#define prever         pre3
 %define desktop_vendor rpmforge
 
 Summary: Powerful audio editor
 Name: audacity
-Version: 1.2.4b
-Release: %{?prever:0.%{prever}.}2
+Version: 1.2.6
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
 Source: http://dl.sf.net/audacity/audacity-src-%{version}%{?prever:-%{prever}}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: wxGTK >= 2.4.0
-BuildRequires: gcc-c++, zip, zlib-devel, gettext, desktop-file-utils
-BuildRequires: wxGTK-devel >= 2.4.0, libogg-devel, libvorbis-devel
-BuildRequires: libmad-devel, flac-devel, libsndfile-devel
-BuildRequires: libsamplerate-devel, libid3tag-devel
-BuildRequires: autoconf
+
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+BuildRequires: autoconf
+BuildRequires: desktop-file-utils
+BuildRequires: flac-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: libid3tag-devel
+BuildRequires: libmad-devel
+BuildRequires: libogg-devel
+BuildRequires: libsamplerate-devel
+BuildRequires: libsndfile-devel
+BuildRequires: libvorbis-devel
+BuildRequires: wxGTK-devel >= 2.4.0
+BuildRequires: zlib-devel
+BuildRequires: zip
+Requires: wxGTK >= 2.4.0
 
 %description
 Audacity is a free audio editor. You can record sounds, play sounds, import
@@ -38,30 +43,27 @@ editor, a customizable spectrogram mode and a frequency analysis window for
 audio analysis applications. Built-in effects include Bass Boost, Wahwah,
 and Noise Removal, and it also supports VST plug-in effects.
 
-
 %prep
 %setup -n %{name}-src-%{version}%{?prever:-%{prever}}
-
 
 %build
 # This is required or the configure in that directory will fail (1.2.1 & 1.2.2)
 (cd lib-src/portaudio-v19/ && autoconf)
 %configure \
     --with-libsndfile="system" \
-    --with-portaudio="v18" \
+    --with-portaudio="v19" \
     --without-portmixer
 %{__perl} -pi.orig -e 's|^(CFLAGS) = -g |$1 = -fPIC |' \
     lib-src/portaudio-v19/Makefile
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 # Create a desktop entry
-%{__cat} << EOF > %{name}.desktop
+%{__cat} << EOF >%{name}.desktop
 [Desktop Entry]
 Name=Audacity Audio Editor
 Comment=Audio editor to record, play sounds and import, export files
@@ -78,28 +80,27 @@ desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     %{name}.desktop
 
-# Install the image used in the desktop entry
-%{__install} -Dp -m 644 images/AudacityLogo.xpm \
-    %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
-
+%{__install} -Dp -m 644 images/AudacityLogo.xpm %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/*
 # The help is actually in %{_docdir}/%{name} in order to be accessible directly
 #doc LICENSE.txt README.txt help
+%doc %{_docdir}/audacity/
 %{_bindir}/audacity
 %{_datadir}/applications/%{desktop_vendor}-audacity.desktop
 %{_datadir}/audacity/
-%{_docdir}/audacity/
 %{_datadir}/pixmaps/audacity.xpm
-%{_mandir}/man1/*
-
 
 %changelog
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.2.6-1
+- Rebuild against portaudio-19.
+- Updated to release 1.2.6.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.2.4b-2
 - Rebuild against wxGTK 2.8.8.
 

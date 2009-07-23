@@ -16,7 +16,6 @@
 #define _without_opencv 1
 %define _without_directfb 1
 %define _without_ffmpeg 1
-%define _without_portaudio 1
 
 %ifarch %{ix86}
 %define _with_loader 1
@@ -58,7 +57,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.9.9a
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -394,6 +393,9 @@ source /etc/profile.d/qt.sh
 %endif
 
 %changelog
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-2
+- Rebuild against portaudio-19.
+
 * Tue Jul 07 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-1
 - Updated to release 0.9.9a.
 - Rebuild against ffmpeg-0.5.

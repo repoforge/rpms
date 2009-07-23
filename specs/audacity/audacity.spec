@@ -12,7 +12,7 @@
 Summary: Multitrack audio editor
 Name: audacity
 Version: 1.3.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/
@@ -84,7 +84,7 @@ grep -s __RPM_LIB * -R && exit 1
     --with-libmad="system" \
     --with-libsamplerate="system" \
     --with-libsndfile="system" \
-    --with-portaudio="v18" \
+    --with-portaudio="v19" \
 %{?_without_soundtouch:--without-soundtouch} \
 %{!?_without_soundtouch:--with-soundtouch="system"} \
     --with-vorbis="system" \
@@ -126,6 +126,9 @@ update-desktop-database -q || :
 %{_datadir}/pixmaps/audacity.xpm
 
 %changelog
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.3.4-2
+- Rebuild against portaudio-19.
+
 * Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Rebuild against wxGTK 2.8.10.
 - Updated to release 1.3.4.

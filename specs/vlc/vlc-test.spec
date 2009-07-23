@@ -17,7 +17,6 @@
 #define _without_dirac 1
 #define _without_opencv 1
 %define _without_directfb 1
-%define _without_portaudio 1
 
 %ifarch %{ix86}
 %define _with_loader 1
