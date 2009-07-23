@@ -9,7 +9,7 @@
 
 Summary: Common files for Lemonldap::NG infrastructure
 Name: perl-Lemonldap-NG-Common
-Version: 0.92
+Version: 0.94
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Cache::Cache) 
+BuildRequires: perl(CGI) >= 3.08                   
+BuildRequires: perl(Crypt::Rijndael) 
+BuildRequires: perl(DBI) 
+BuildRequires: perl(IO::String) 
+BuildRequires: perl(Regexp::Assemble) 
+BuildRequires: perl(SOAP::Lite) 
+BuildRequires: perl(Storable) 
+
 
 %description
 Common files for Lemonldap::NG infrastructure.
@@ -51,5 +60,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Lemonldap/NG/Common.pm
 
 %changelog
+* Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.94-1
+- Updated to version 0.94.
+
 * Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.92-1
 - Initial package. (using DAR)
