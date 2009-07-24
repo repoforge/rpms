@@ -3,7 +3,7 @@
 
 Summary: DVD backup tool
 Name: lxdvdrip
-Version: 1.70
+Version: 1.74
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -23,19 +23,19 @@ automates the process of ripping, authoring, preview and burning a DVD.
 
 ### I never saw so many Makefiles being inconsistent in 1 project
 %{__perl} -pi.orig -e '
-		s|(-ldvdread)|$1 -ldl|g;
-		s|\$\(INSTALLDIR\)/bin|\$(DESTDIR)%{_bindir}|g;
-		s|\$\(INSTALLDIR\)/man/man1|\$(DESTDIR)%{_mandir}/man1|g;
-		s|\$\(INSTALLDIR\)/share|\$(DESTDIR)%{_datadir}/lxdvdrip|g;
-		s|/etc\b|\$(DESTDIR)%{_sysconfdir}|g;
-		s|\$\(PREFIX\)/bin|\$(DESTDIR)%{_bindir}|g;
-		s|\$\(INSTBIN\)|\$(DESTDIR)%{_bindir}|g;
-	' Makefile */Makefile
+        s|(-ldvdread)|$1 -ldl|g;
+        s|\$\(INSTALLDIR\)/bin|\$(DESTDIR)%{_bindir}|g;
+        s|\$\(INSTALLDIR\)/man/man1|\$(DESTDIR)%{_mandir}/man1|g;
+        s|\$\(INSTALLDIR\)/share|\$(DESTDIR)%{_datadir}/lxdvdrip|g;
+        s|/etc\b|\$(DESTDIR)%{_sysconfdir}|g;
+        s|\$\(PREFIX\)/bin|\$(DESTDIR)%{_bindir}|g;
+        s|\$\(INSTBIN\)|\$(DESTDIR)%{_bindir}|g;
+    ' Makefile */Makefile
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 #%{__make} %{?_smp_mflags} -C vamps \
-#	CFLAGS="%{optflags}"
+#   CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -67,6 +67,9 @@ automates the process of ripping, authoring, preview and burning a DVD.
 %{_datadir}/lxdvdrip/lxdvdrip.wav
 
 %changelog
+* Sat Feb 21 2009 Dag Wieers <dag@wieers.com> - 1.74-1
+- Updated to release 1.74.
+
 * Sat Mar 31 2007 Dag Wieers <dag@wieers.com> - 1.70-1
 - Updated to release 1.70.
 

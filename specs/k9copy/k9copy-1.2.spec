@@ -3,36 +3,37 @@
 
 Summary: Video DVD backup tool
 Name: k9copy
-Version: 2.3.2
+Version: 1.2.4
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://k9copy.sf.net/
 
-Source: http://dl.sf.net/k9copy/k9copy-%{version}-Source.tar.gz
+Source0: http://dl.sf.net/k9copy/k9copy-%{version}.tar.gz
+Source1: http://dl.sf.net/vamps/vamps-0.99.2.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
-BuildRequires: gettext
-BuildRequires: kdelibs-devel
+BuildRequires: kdelibs-devel, gettext, gcc-c++
 
 %description
 k9copy is a DVD backup utility which allows copying of one or more titles
 from a 9.6 GB DVD to a normal DVD.
 
 %prep
-%setup -n %{name}-%{version}-Source
+%setup -a 1
 
 %build
 source /etc/profile.d/qt.sh
-export CFLAGS="%{optflags} -DHAVE_BUILTIN_EXPECT"
+export CFLAGS="%{optflags} -DHAVE_BUILTIN_EXPECT -I%{_includedir}/ffmpeg"
 export LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
-cmake .
+%configure
+%{__make} -C vamps-* %{?_smp_mflags} PREFIX="%{_prefix}" CFLAGS="%{optflags} -DHAVE_BUILTIN_EXPECT -I%{_includedir}/ffmpeg"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
+%{__make} install -C vamps-* PREFIX="%{buildroot}%{_prefix}"
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
@@ -50,9 +51,6 @@ source /etc/profile.d/qt.sh
 %exclude %{_includedir}
 
 %changelog
-* Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 2.3.2-1
-- Updated to release 2.3.2.
-
 * Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Updated to release 1.2.4.
 

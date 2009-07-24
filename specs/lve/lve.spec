@@ -17,8 +17,12 @@ Source: http://dl.sf.net/lvempeg/lve-%{real_version}.src.tar.bz2
 Source1: http://dl.sf.net/ffmpeg/ffmpeg-0.4.8.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ffmpeg-devel, mpeg2dec-devel, SDL-devel, gcc-c++, qt-devel
 BuildRequires: a52dec-devel
+BuildRequires: ffmpeg-devel
+BuildRequires: gcc-c++
+BuildRequires: mpeg2dec-devel
+BuildRequires: qt-devel
+BuildRequires: SDL-devel
 
 %description
 LVE provides frame and GOP accurate editing of MPEG1/2 elementary ("ES") and
@@ -59,11 +63,8 @@ sed -i "s/\/usr\/local\/lve\/bin/\/usr\/bin/g;" src/lve.h
 %{__install} -d -m755 %{buildroot}%{_datadir}/lve/lib
 %{__install} -p -m0755 lib/* %{buildroot}%{_datadir}/lve/lib/
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}

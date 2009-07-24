@@ -22,7 +22,7 @@
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.5
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/
@@ -117,7 +117,7 @@ export CFLAGS="%{optflags}"
     --libdir="%{_libdir}" \
     --shlibdir="%{_libdir}" \
     --mandir="%{_mandir}" \
-    --incdir="%{_includedir}/ffmpeg" \
+    --incdir="%{_includedir}" \
 %{?_without_v4l:--disable-demuxer=v4l} \
 %ifarch x86_64
     --extra-cflags="-fPIC" \
@@ -139,9 +139,10 @@ export CFLAGS="%{optflags}"
     --enable-shared \
     --enable-swscale \
     --enable-x11grab
-#    %{!?_without_dc1394: --enable-libdc1394} \
-#    %{!?_without_vorbis: --enable-libvorbis} \
-#    %{!?_without_xvid:   --enable-libxvid} \
+#%{!?_without_dc1394:--enable-libdc1394} \
+### Native encoding exists for vorbis and xvid
+#%{!?_without_vorbis: --enable-libvorbis} \
+#%{!?_without_xvid:--enable-libxvid} \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -185,12 +186,15 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/libavutil.so.*
 %{_libdir}/libswscale.so.*
 %{_libdir}/vhook/
-%exclude %{_libdir}/libpostproc.so*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc _docs/*
-%{_includedir}/ffmpeg/
+%{_includedir}/libavcodec/
+%{_includedir}/libavdevice/
+%{_includedir}/libavformat/
+%{_includedir}/libavutil/
+%{_includedir}/libswscale/
 %{_libdir}/libavcodec.a
 %{_libdir}/libavdevice.a
 %{_libdir}/libavformat.a
@@ -206,15 +210,19 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/pkgconfig/libavformat.pc
 %{_libdir}/pkgconfig/libavutil.pc
 %{_libdir}/pkgconfig/libswscale.pc
-%exclude %{_libdir}/pkgconfig/libpostproc.pc
 
 %files libpostproc
 %defattr(-, root, root, 0755)
+%{_includedir}/libpostproc/
 %{_includedir}/postproc/
+%{_libdir}/libpostproc.a
 %{_libdir}/libpostproc.so*
 %{_libdir}/pkgconfig/libpostproc.pc
 
 %changelog
+* Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 0.5-2
+- Change incdir to %%{_includedir}.
+
 * Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 0.5-1
 - Updated to release 0.5.
 - Disabled speex support, lacking speex 1.2.

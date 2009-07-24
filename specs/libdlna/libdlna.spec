@@ -40,13 +40,13 @@ you will need to install %{name}-devel.
 
 %if %{!?_without_ffmpeg05:1}0
 %{__perl} -pi.orig -e '
-        s|ffmpeg/avformat.h|ffmpeg/libavformat/avformat.h|;
-        s|ffmpeg/avcodec.h|ffmpeg/libavcodec/avcodec.h|;
+        s|ffmpeg/avformat.h|libavformat/avformat.h|;
+        s|ffmpeg/avcodec.h|libavcodec/avcodec.h|;
     ' configure src/*.c src/*.h
 %endif
 
 %build
-export CFLAGS="%{optflags} -I%{_includedir}/ffmpeg -I%{_includedir}/ffmpeg/avformat -I%{_includedir}/ffmpeg/avcodec"
+export CFLAGS="%{optflags}"
 ./configure \
     --disable-static \
     --libdir="%{_libdir}" \

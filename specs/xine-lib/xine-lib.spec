@@ -2,13 +2,13 @@
 # Authority: dag
 # Upstream: <xine-user$lists,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
+%{?dtag:%{expand: %%define %dtag 1}}
 
 %{?el4:%define _with_speex104 1}
 %{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_alsa 1}
+%{?el3:%define _without_freeglut 1}
 %{?el3:%define _without_freetype2_pc 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_gettextdevel 1}
@@ -30,12 +30,23 @@ Source: http://downloads.sf.net/xine/xine-lib-%{version}.tar.bz2
 Patch0: xine-lib-1.1.9-speex104.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, pkgconfig, zlib-devel, libtiff-devel
-BuildRequires: libvorbis-devel, SDL-devel, bzip2-devel
-# BUG : libmng-devel should apparently require libjpeg-devel for includes
-BuildRequires: libpng-devel, libmng-devel, libjpeg-devel, freetype-devel
+BuildRequires: a52dec-devel
+BuildRequires: bzip2-devel
+BuildRequires: freetype-devel
+BuildRequires: gcc-c++
 BuildRequires: gtk2-devel
-BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
+BuildRequires: libcdio-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libmad-devel
+# BUG : libmng-devel should apparently require libjpeg-devel for includes
+BuildRequires: libmng-devel
+BuildRequires: libpng-devel
+BuildRequires: libtiff-devel
+BuildRequires: libvorbis-devel
+BuildRequires: pkgconfig
+BuildRequires: SDL-devel
+BuildRequires: vcdimager-devel
+BuildRequires: zlib-devel
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
@@ -58,15 +69,10 @@ BuildRequires: libcdio-devel, vcdimager-devel, a52dec-devel, libmad-devel
 %{!?_without_magick:BuildRequires: ImageMagick-devel}
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 %{?_without_gettextdevel:BuildRequires: gettext}
-%{!?dtag:BuildRequires: freeglut-devel}
-%{?fc6:BuildRequires: freeglut-devel}
-%{?fc5:BuildRequires: freeglut-devel}
-%{?fc4:BuildRequires: freeglut-devel}
-%{?fc3:BuildRequires: freeglut-devel}
-%{?fc2:BuildRequires: freeglut-devel}
-%{?fc1:BuildRequires: freeglut-devel}
-%{?rh9:BuildRequires: glut-devel}
+%{!?_without_freeglut:BuildRequires: freeglut-devel}
+%{?_without_freeglut:BuildRequires: glut-devel}
 Requires: libdvdcss
+
 Obsoletes: xine-libs <= 1.0.0
 Obsoletes: libxine <= %{version}-%{release}
 Obsoletes: xine-libs-moles <= %{version}-%{release}
@@ -92,7 +98,9 @@ Available rpmbuild rebuild options :
 %package devel
 Summary: Development files for the xine library
 Group: Development/Libraries
-Requires: %{name} = %{version}, pkgconfig, zlib-devel
+Requires: %{name} = %{version}
+Requires: pkgconfig
+Requires: zlib-devel
 %{!?_without_modxorg:Requires: libXt-devel, libXv-devel, libGL-devel, libGLU-devel, libXinerama-devel, libXvMC-devel}
 %{?_without_modxorg:Requires: XFree86-devel}
 Obsoletes: xine-libs-devel <= 1.0.0

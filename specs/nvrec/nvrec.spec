@@ -14,9 +14,14 @@ Source: http://nvrec.sf.net/downloads/nvrec-%{version}.tar.gz
 #Source1: http://dl.sf.net/ffmpeg-0.4.6.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: avifile-devel, libquicktime-devel, lame-devel, xvidcore-devel
-BuildRequires: SDL-devel >= 1.2, libmad-devel, librte-devel
+BuildRequires: avifile-devel
 #BuildRequires: ffmpeg-devel
+BuildRequires: lame-devel
+BuildRequires: libmad-devel
+BuildRequires: libquicktime-devel
+BuildRequires: librte-devel
+BuildRequires: SDL-devel >= 1.2
+BuildRequires: xvidcore-devel
 
 %description
 nvrec supports v4l1 and v4l2 devices as video sources, and oss as an audio
@@ -41,30 +46,30 @@ with existing applications, or add your own output formats.
 #ln -sf ffmpeg-0.4.6/ ffmpeg
 #cd ffmpeg
 #configure \
-#	--enable-a52bin \
-#	--enable-mp3lame \
-#	--enable-vorbis \
-#	--enable-shared
+#   --enable-a52bin \
+#   --enable-mp3lame \
+#   --enable-vorbis \
+#   --enable-shared
 #%{__make}
 #cd -
 
 ./bootstrap
 %configure \
-	--disable-dependency-tracking \
-	--enable-v4l2 \
-	--with-avifile \
-	--with-divx4linux \
-	--with-ffmpeg \
-	--with-mad \
-	--with-mp3lame \
-	--with-quicktime \
-	--with-rte \
-	--with-sdl
+    --disable-dependency-tracking \
+    --enable-v4l2 \
+    --with-avifile \
+    --with-divx4linux \
+    --with-ffmpeg \
+    --with-mad \
+    --with-mp3lame \
+    --with-quicktime \
+    --with-rte \
+    --with-sdl
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -73,13 +78,10 @@ with existing applications, or add your own output formats.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS FAQ KNOWN_BUGS NEWS README* STATUS VERSION
 %doc etc/nvrec.conf
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/*.1*
 %{_bindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 20030316-2.2
-- Rebuild for Fedora Core 5.
-
 * Mon Apr 07 2003 Dag Wieers <dag@wieers.com> - 20030316-2
 - Build against new (renamed) libxvidcore package.
 

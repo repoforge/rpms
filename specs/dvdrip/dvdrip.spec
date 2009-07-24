@@ -3,31 +3,41 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
+%define perl_sitelib %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
-%define desktop_vendor  rpmforge
-%define perl_sitelib    %(eval "`perl -V:installsitelib`"; echo $installsitelib)
+%define desktop_vendor rpmforge
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
-Version: 0.98.7
+Version: 0.98.10
 Release: 1
 License: GPL+ or Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/
+
 Source: http://www.exit1.org/dvdrip/dist/dvdrip-%{version}.tar.gz
 Patch0: Video-DVDRip-0.97.8-nontplworkaround.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: transcode >= 0.6.13
-Requires: ImageMagick, ogmtools, subtitleripper, vcdimager, lsdvd
-Requires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
-Requires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
-BuildRequires: perl(Gtk2) >= 1.081, perl(Gtk2::Ex::FormFactory) >= 0.65
-BuildRequires: perl(Locale::TextDomain) >= 1.16, perl(Event::ExecFlow) >= 0.62
+
+BuildRequires: desktop-file-utils
+BuildRequires: perl(Event::ExecFlow) >= 0.62
 BuildRequires: perl(Event::RPC)
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Obsoletes: perl-Video-DVDRip <= 0.98.1-2
+BuildRequires: perl(Gtk2) >= 1.081
+BuildRequires: perl(Gtk2::Ex::FormFactory) >= 0.65
+BuildRequires: perl(Locale::TextDomain) >= 1.16
+Requires: ImageMagick
+Requires: lsdvd
+Requires: ogmtools
+Requires: perl(Event::ExecFlow) >= 0.62
+Requires: perl(Gtk2) >= 1.081
+Requires: perl(Gtk2::Ex::FormFactory) >= 0.65
+Requires: perl(Locale::TextDomain) >= 1.16
+Requires: subtitleripper
+Requires: transcode >= 0.6.13
+Requires: vcdimager
+
+Obsoletes: perl-Video-DVDRip <= %{version}-%{release}
+Provides: perl-Video-DVDRip = %{version}-%{release}
 
 %description
 dvd::rip is a full featured DVD copy program. It provides an easy to use but
@@ -40,34 +50,8 @@ transcode and many other Open Source tools.
 %setup
 %patch0 -p1 -b .nontplworkaround
 
-
-%build
-%{__perl} Makefile.PL
-# Disable %{?_smp_mflags}, it makes build fail (0.98.0)
-%{__make}
-
-
-%install
-%{__rm} -rf %{buildroot}
-%{__make} install \
-    INSTALLSCRIPT=%{buildroot}%{_bindir} \
-    INSTALLSITELIB=%{buildroot}%{perl_sitelib} \
-    INSTALLSITEARCH=%{buildroot}%{perl_sitearch} \
-    INSTALLMAN1DIR=%{buildroot}%{_mandir}/man1 \
-    INSTALLSITEMAN1DIR=%{buildroot}%{_mandir}/man1 \
-    INST_MAN1DIR=%{buildroot}%{_mandir}/man1 \
-    INSTALLMAN3DIR=%{buildroot}%{_mandir}/man3 \
-    INSTALLSITEMAN3DIR=%{buildroot}%{_mandir}/man3 \
-    INST_MAN3DIR=%{buildroot}%{_mandir}/man3
-
-# Unpackaged strange files!
-%{__rm} -f %{buildroot}%{_mandir}/man?/.exists* || :
-
-# Unneeded, all is in sitelib (only a .packlist in there)
-%{__rm} -rf %{buildroot}%{perl_sitearch}
-
 # Desktop entry
-%{__cat} > dvdrip.desktop << EOF
+%{__cat} <<EOF >dvdrip.desktop
 [Desktop Entry]
 Name=DVD Ripper and Encoder
 Comment=Backup and compression utility for DVDs
@@ -78,38 +62,57 @@ Type=Application
 Categories=AudioVideo;
 EOF
 
-%if %{?_without_freedesktop:1}0
-    %{__install} -D -p -m 0644 dvdrip.desktop \
-        %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/dvdrip.desktop
-%else
-    %{__mkdir_p} %{buildroot}%{_datadir}/applications
-    desktop-file-install --vendor %{desktop_vendor} \
-        --dir %{buildroot}%{_datadir}/applications \
-        dvdrip.desktop
-%endif
+%build
+%{__perl} Makefile.PL
+# Disable %{?_smp_mflags}, it makes build fail (0.98.0)
+%{__make} #%{?_smp_mflags}
 
+%install
+%{__rm} -rf %{buildroot}
+%{__make} install \
+    INSTALLSCRIPT="%{buildroot}%{_bindir}" \
+    INSTALLSITELIB="%{buildroot}%{perl_sitelib}" \
+    INSTALLSITEARCH="%{buildroot}%{perl_sitearch}" \
+    INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
+    INSTALLSITEMAN1DIR="%{buildroot}%{_mandir}/man1" \
+    INST_MAN1DIR="%{buildroot}%{_mandir}/man1" \
+    INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3" \
+    INSTALLSITEMAN3DIR="%{buildroot}%{_mandir}/man3" \
+    INST_MAN3DIR="%{buildroot}%{_mandir}/man3"
+
+# Unpackaged strange files!
+%{__rm} -f %{buildroot}%{_mandir}/man?/.exists* || :
+
+# Unneeded, all is in sitelib (only a .packlist in there)
+%{__rm} -rf %{buildroot}%{perl_sitearch}
+
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications \
+    dvdrip.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc Changes COPYRIGHT Credits README TODO
-%attr(0755,root,root) %{_bindir}/*
+%doc %{_mandir}/man*/*
+%attr(0755, root, root) %{_bindir}/*
 %lang(cs) %{perl_sitelib}/LocaleData/cs/LC_MESSAGES/video.dvdrip.mo
+%lang(da) %{perl_sitelib}/LocaleData/da/LC_MESSAGES/video.dvdrip.mo
 %lang(de) %{perl_sitelib}/LocaleData/de/LC_MESSAGES/video.dvdrip.mo
 %lang(es) %{perl_sitelib}/LocaleData/es/LC_MESSAGES/video.dvdrip.mo
 %lang(fr) %{perl_sitelib}/LocaleData/fr/LC_MESSAGES/video.dvdrip.mo
 %lang(it) %{perl_sitelib}/LocaleData/it/LC_MESSAGES/video.dvdrip.mo
 %lang(sr) %{perl_sitelib}/LocaleData/sr*/LC_MESSAGES/video.dvdrip.mo
 %{perl_sitelib}/Video/
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-dvdrip.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Multimedia/dvdrip.desktop}
-%{_mandir}/man*/*
-
+%{_datadir}/applications/%{desktop_vendor}-dvdrip.desktop
 
 %changelog
+* Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 0.98.10-1
+- Updated to release 0.98.10.
+
 * Mon Aug  6 2007 Matthias Saou <http://freshrpms.net/> 0.98.7-1
 - Update to 0.98.7.
 
