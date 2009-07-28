@@ -10,7 +10,7 @@
 Summary: Simple, transparent data interface, with caching
 Name: perl-Data-ObjectDriver
 Version: 0.06
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-ObjectDriver/
@@ -20,7 +20,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Class::Accessor::Fast)
+BuildRequires: perl(Class::Data::Inheritable)
+BuildRequires: perl(Class::Trigger)
+BuildRequires: perl(DBI)
+BuildRequires: perl(List::Util)
 BuildRequires: perl(Test::Exception)
+Requires: perl(Class::Accessor::Fast)
+Requires: perl(Class::Data::Inheritable)
+Requires: perl(Class::Trigger)
+Requires: perl(DBI)
+Requires: perl(List::Util)
+AutoReq: no
+
+
 
 %description
 Simple, transparent data interface, with caching.
@@ -52,5 +65,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/ObjectDriver.pm
 
 %changelog
+* Sun Jul 28 2009 Christoph Maser <cmr@financial.com> - 0.06-2
+- Turn off AutoReq to get rid of DBD::Oracle dep
+
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 0.06-1
 - Initial package. (using DAR)
