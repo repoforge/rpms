@@ -9,7 +9,7 @@
 
 Summary: Interface for Yahoo! Search Marketing's Web Services
 Name: perl-Yahoo-Marketing
-Version: 5.06
+Version: 5.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,11 +20,19 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
+BuildRequires: perl(Cache::Cache) >= 1.01
+BuildRequires: perl(Class::Accessor::Chained) >= 0.01
+BuildRequires: perl(Crypt::SSLeay) >= 0.40
+BuildRequires: perl(DateTime::Format::ISO8601) 
+BuildRequires: perl(DateTime::Format::W3CDTF) 
+BuildRequires: perl(Error) >= 0.15
 BuildRequires: perl(Module::Build) >= 0.26
-BuildRequires: perl(SOAP::Lite)
-BuildRequires: perl(Test::Class)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(XML::XPath)
+BuildRequires: perl(SOAP::Lite) >= 0.66
+BuildRequires: perl(Scalar::Util) >= 1.01
+BuildRequires: perl(Test::Class) >= 0.10
+BuildRequires: perl(Test::More) 
+#BuildRequires: perl(Test::Simple) >= 0.60
+BuildRequires: perl(XML::XPath) >= 1.10
 BuildRequires: perl(YAML) >= 0.01
 Requires: perl >= 1:5.6.1
 
@@ -58,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Yahoo/Marketing.pm
 
 %changelog
+* Tue Jul 28 2009 Christoph Maser <cmr@financial.com> - 5.10-1
+- Updated to version 5.10.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 5.06-1
 - Updated to version 5.06.
 
