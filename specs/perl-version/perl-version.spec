@@ -6,17 +6,18 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name version
+%define real_version 0.7701
 
 Summary: Perl module that implements for Version Objects
 Name: perl-version
-Version: 0.76
+Version: 0.77.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/version/
 
-Source: http://www.cpan.org/modules/by-module/version/version-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Source: http://www.cpan.org/modules/by-module/version/version-%{real_version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{real_version}-%{release}-root
 
 BuildRequires: perl >= 0:5.005
 BuildRequires: perl(ExtUtils::MakeMaker)
@@ -26,7 +27,7 @@ Requires: perl >= 0:5.005
 version is a Perl module that implements for Version Objects.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -46,12 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/version.3pm*
+%doc %{_mandir}/man3/version::Internals.3pm*
 %{perl_vendorarch}/auto/version/
 %{perl_vendorarch}/version/
 %{perl_vendorarch}/version.pm
 %{perl_vendorarch}/version.pod
 
 %changelog
+* Wed Jul 27 2009 Christoph Maser <cmr@financial.com> - 0.77.1-1
+- Updated to version 0.77.1.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.76-1
 - Updated to version 0.76.
 
