@@ -9,7 +9,7 @@
 
 Summary: Access the W3Cs online HTML validator
 Name: perl-WebService-Validator-HTML-W3C
-Version: 0.24
+Version: 0.25
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Class::Accessor)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(LWP)
 BuildRequires: perl(Test::More)
 
 %description
@@ -58,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/WebService/Validator/HTML/W3C.pm
 
 %changelog
+* Wed Jul 29 2009 Christoph Maser <cmr@financial.com> - 0.25-1
+- Updated to version 0.25.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.24-1
 - Updated to version 0.24.
 
