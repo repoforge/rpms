@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Statistics-Descriptive
-%define real_version 3.0000
+%define real_version 3.0100
 
 Summary: Module of basic descriptive statistical functions
 Name: perl-Statistics-Descriptive
-Version: 3.0
+Version: 3.0.100
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Statistics/Descriptive.pm
 
 %changelog
+* Thu Jun 29 2009 Christoph Maser <cmr@financial.com> - 3.0100-1
+- Updated to version 3.0.100.
+
 * Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 3.0000-1
 - Updated to version 3.0.
 - Added real_version 
