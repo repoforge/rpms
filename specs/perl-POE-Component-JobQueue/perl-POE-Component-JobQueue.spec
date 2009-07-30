@@ -9,7 +9,7 @@
 
 Summary: Handle large numbers of tasks with finite numbers of workers.
 Name: perl-POE-Component-JobQueue
-Version: 0.55
+Version: 0.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,19 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Errno) >= 1.09
+BuildRequires: perl(Exporter)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec) >= 0.87
+#BuildRequires: perl(IO::Handle) >= 1.27
+BuildRequires: perl(IO::Tty) >= 1.08
+BuildRequires: perl(POE::Test::Loops) >= 1.021
+BuildRequires: perl(POSIX) >= 1.02
+BuildRequires: perl(Socket) >= 1.7
+BuildRequires: perl(Storable) >= 2.16
+BuildRequires: perl(Test::Harness) >= 2.26
+
 
 %description
 Handle large numbers of tasks with finite numbers of workers..
@@ -51,5 +63,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Component/JobQueue.pm
 
 %changelog
+* Thu Jul 30 2009 Christoph Maser <cmr@financial.com> - 0.56-1
+- Updated to version 0.56.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.55-1
 - Initial package. (using DAR)
