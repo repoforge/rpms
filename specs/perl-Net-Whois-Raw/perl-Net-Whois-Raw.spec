@@ -9,7 +9,7 @@
 
 Summary: Get Whois information for domains
 Name: perl-Net-Whois-Raw
-Version: 2.00
+Version: 2.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Getopt::Long) >= 2
+BuildRequires: perl(HTTP::Headers)
+BuildRequires: perl(HTTP::Request)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI::URL)
+
 
 %description
 Get Whois information for domains.
@@ -29,6 +37,7 @@ Get Whois information for domains.
 %setup -n %{real_name}-%{version}
 
 %build
+%{__perl} Build.PL
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -54,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Whois/Raw.pm
 
 %changelog
+* Thu Jul 30 2009 Christoph Maser <cmr@financial.com> - 2.01-1
+- Updated to version 2.01.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.00-1
 - Updated to version 2.00.
 
