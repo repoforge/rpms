@@ -9,7 +9,7 @@
 
 Summary: Obtain expiration date of domain names
 Name: perl-Net-Domain-ExpireDate
-Version: 0.95
+Version: 0.96
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Getopt::Long) >= 2
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Net::Whois::Raw) >= 1
+BuildRequires: perl(Time::Piece) 
+
 
 %description
 Obtain expiration date of domain names.
@@ -29,12 +34,12 @@ Obtain expiration date of domain names.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -52,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Domain/ExpireDate.pm
 
 %changelog
+* Thu Jul 30 2009 Christoph Maser <cmr@financial.com> - 0.96-1
+- Updated to version 0.96.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.95-1
 - Updated to version 0.95.
 
