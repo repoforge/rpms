@@ -9,7 +9,7 @@
 
 Summary: Extend your attribute interfaces
 Name: perl-MooseX-AttributeHelpers
-Version: 0.20
+Version: 0.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-#BuildRequires: perl(Moose)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(Test::Exception) >= 0.21
+BuildRequires: perl(Test::Moose) 
+#BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Moose) >= 0.56
 
 %description
 Extend your attribute interfaces.
@@ -52,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/AttributeHelpers.pm
 
 %changelog
+* Thu Jul 30 2009 Christoph Maser <cmr@financial.com> - 0.21-1
+- Updated to version 0.21.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.20-1
 - Updated to version 0.20.
 
