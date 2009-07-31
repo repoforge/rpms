@@ -9,7 +9,7 @@
 
 Summary: The authentication portal part of Lemonldap::NG Web-SSO
 Name: perl-Lemonldap-NG-Portal
-Version: 0.87
+Version: 0.89
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Apache::Session)
+BuildRequires: perl(CGI) >= 3.08                   
+BuildRequires: perl(CGI::Session)
+BuildRequires: perl(Email::Date::Format)
+BuildRequires: perl(HTML::Template)
+BuildRequires: perl(IO::String)
+BuildRequires: perl(Lemonldap::NG::Common) >= 0.93 
+BuildRequires: perl(Lemonldap::NG::Handler) >= 0.91
+BuildRequires: perl(MIME::Lite)
+BuildRequires: perl(Net::LDAP)
+BuildRequires: perl(String::Random)
+BuildRequires: perl(XML::LibXML)
+BuildRequires: perl(XML::LibXSLT)
+
 
 %description
 The authentication portal part of Lemonldap::NG Web-SSO.
@@ -57,5 +71,8 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Lemonldap/NG/Portal.pm
 
 %changelog
+* Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 0.89-1
+- Updated to version 0.89.
+
 * Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 0.87-1
 - Initial package. (using DAR)
