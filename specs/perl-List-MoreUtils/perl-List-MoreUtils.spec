@@ -5,17 +5,18 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name list-moreutils
+%define real_name List-MoreUtils
+%define real_version 0.25_01
 
 Summary: Additions to List::Util
 Name: perl-List-MoreUtils
-Version: 0.23
+Version: 0.25.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-MoreUtils/
 
-Source: http://search.cpan.org/CPAN/authors/id/V/VP/VPARSEVAL/list-moreutils-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/V/VP/VPARSEVAL/List-MoreUtils-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -26,7 +27,7 @@ This module provide the missing functionality from List::Util (see
 "SUGGESTED ADDITIONS" in its manpage).
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -52,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/List/MoreUtils/
 
 %changelog
+* Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 0.25.1-1
+- Updated to version 0.25.1
+
 * Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 0.23-1
 - Updated to version 0.23.
 
