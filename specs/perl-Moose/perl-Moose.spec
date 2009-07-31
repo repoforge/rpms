@@ -10,7 +10,7 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 0.87
+Version: 0.88
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 0.88-1
+- Updated to version 0.88.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.87-1
 - Updated to version 0.87.
 
