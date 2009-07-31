@@ -9,7 +9,7 @@
 
 Summary: Recursively scan Perl code for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.91
+Version: 0.93
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Module::Build::ModuleInfo)
 BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.6.0
 
@@ -62,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/ScanDeps.pm
 
 %changelog
+* Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 0.93-1
+- Updated to version 0.93.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.91-1
 - Updated to version 0.91.
 
