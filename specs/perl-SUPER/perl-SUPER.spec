@@ -10,7 +10,7 @@
 Summary: Control superclass method dispatch
 Name: perl-SUPER
 Version: 1.16
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SUPER/
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::Simple) >= 0.61
+#BuildRequires: perl(Test::Simple) >= 0.61
 
 %description
 Control superclass method dispatch.
@@ -49,5 +49,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SUPER.pm
 
 %changelog
+* Sun Aug 02 2009 Christoph Maser <cmr@financial.com> - 1.16-2
+- Comment out BuildRequires so build on el4 works.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.16-1
 - Initial package. (using DAR)
