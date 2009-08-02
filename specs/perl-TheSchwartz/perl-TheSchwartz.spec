@@ -10,7 +10,7 @@
 Summary: Reliable job queue
 Name: perl-TheSchwartz
 Version: 1.07
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TheSchwartz/
@@ -20,6 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Data::ObjectDriver) >= 0.04
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(Storable)
+Requires: perl
+Requires: perl(Data::ObjectDriver) >= 0.04
+Requires: perl(Digest::MD5)
+Requires: perl(Storable)
+AutoReq: no
 
 %description
 Reliable job queue.
@@ -54,5 +62,8 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/TheSchwartz.pm
 
 %changelog
+* Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 1.07-2
+- Set AutoReq: no to get rid of DBD-driver deps
+
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 1.07-1
 - Initial package. (using DAR)
