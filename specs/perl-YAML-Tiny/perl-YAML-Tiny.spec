@@ -9,7 +9,7 @@
 
 Summary: Read/Write YAML files with as little code as possible
 Name: perl-YAML-Tiny
-Version: 1.39
+Version: 1.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(Test::More) >= 0.47
 
 %description
 Read/Write YAML files with as little code as possible.
@@ -51,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAML/Tiny.pm
 
 %changelog
+* Mon Aug  3 2009 Christoph Maser <cmr@financial.com> - 1.40-1
+- Updated to version 1.40.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.39-1
 - Updated to version 1.39.
 
