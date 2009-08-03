@@ -9,7 +9,7 @@
 
 Summary: Simple Eyecandy ASCII Tables
 Name: perl-Text-SimpleTable
-Version: 1.4
+Version: 1.8
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,11 @@ Source: http://www.cpan.org/modules/by-module/Text/Text-SimpleTable-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+# From yaml requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.008001
+
 
 %description
 Simple eyecandy ASCII tables, as seen in Catalyst.
@@ -49,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/SimpleTable.pm
 
 %changelog
+* Mon Aug  3 2009 Christoph Maser <cmr@financial.com> - 1.8-1
+- Updated to version 1.8.
+
 * Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 1.4-1
 - Updated to version 1.4.
 
