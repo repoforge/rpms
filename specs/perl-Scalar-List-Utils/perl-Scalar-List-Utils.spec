@@ -9,7 +9,7 @@
 
 Summary: Common Scalar and List utility subroutines
 Name: perl-Scalar-List-Utils
-Version: 1.19
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -46,13 +46,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man3/Scalar::Util.3pm*
 %doc %{_mandir}/man3/List::Util.3pm*
+%doc %{_mandir}/man3/List::Util::XS.3pm*
 %dir %{perl_vendorarch}/auto/List/
 %{perl_vendorarch}/auto/List/Util/
 %dir %{perl_vendorarch}/List/
 %{perl_vendorarch}/List/Util.pm
+%{perl_vendorarch}/List/Util/PP.pm
+%{perl_vendorarch}/List/Util/XS.pm
 %dir %{perl_vendorarch}/Scalar/
 %{perl_vendorarch}/Scalar/Util.pm
+%{perl_vendorarch}/Scalar/Util/PP.pm
 
 %changelog
+* Mon Aug  3 2009 Christoph Maser <cmr@financial.com> - 1.21-1
+- Updated to version 1.21.
+
 * Fri Jan 02 2009 Dag Wieers <dag@wieers.com> - 1.19-1
 - Initial package. (using DAR)
