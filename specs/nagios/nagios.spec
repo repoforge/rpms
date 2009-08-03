@@ -18,7 +18,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 3.1.0
+Version: 3.1.2
 Release: 1
 License: GPL
 Group: Applications/System
@@ -125,6 +125,7 @@ you will need to install %{name}-devel.
 %{__mkdir} -p %{buildroot}%{logdir}/archives/
 
 ### Install logos
+%{__mkdir} -p %{buildroot}%{_datadir}/nagios/images/logos
 tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}
 
 %pre
@@ -204,6 +205,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Mon Aug 03 2009 Christoph Maser <cmr$financial,com> - 3.1.2-1
+- Updated to release 3.1.2.
+
 * Mon Jan 26 2009 Christoph Maser <cmr$financial,com> - 3.1.0-1
 - Updated to release 3.1.0.
 
