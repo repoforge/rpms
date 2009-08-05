@@ -9,7 +9,7 @@
 
 Summary: Simple starterkit for any module
 Name: perl-Module-Starter
-Version: 1.50
+Version: 1.52
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,14 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Starter-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(ExtUtils::Command)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(Pod::Usage)
+BuildRequires: perl(Test::More)
 
 %description
 A simple starterkit for any module.
@@ -54,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Starter.pm
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.52-1
+- Updated to version 1.52.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.50-1
 - Updated to version 1.50.
 
