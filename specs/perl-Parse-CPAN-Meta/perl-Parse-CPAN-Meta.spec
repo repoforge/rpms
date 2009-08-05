@@ -9,7 +9,7 @@
 
 Summary: Parse META.yml and other similar CPAN metadata files
 Name: perl-Parse-CPAN-Meta
-Version: 1.39
+Version: 1.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(Test::More) >= 0.47
+
 
 %description
 Parse META.yml and other similar CPAN metadata files.
@@ -44,7 +48,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
+%doc Changes MANIFEST META.yml 
 %doc %{_mandir}/man3/Parse::CPAN::Meta.3pm*
 %dir %{perl_vendorlib}/Parse/
 %dir %{perl_vendorlib}/Parse/CPAN/
@@ -52,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Parse/CPAN/Meta.pm
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.40-1
+- Updated to version 1.40.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 1.39-1
 - Initial package. (using DAR)
