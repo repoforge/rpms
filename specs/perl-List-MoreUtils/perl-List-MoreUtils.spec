@@ -1,16 +1,17 @@
 # $Id$
 # Authority: dries
 # Upstream: Tassilo von Parseval <tassilo,parseval$post,rwth-aachen,de>
+# Tag: test  
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name List-MoreUtils
-%define real_version 0.25_01
+%define real_version 0.25_02
 
 Summary: Additions to List::Util
 Name: perl-List-MoreUtils
-Version: 0.25.1
+Version: 0.25.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/List/MoreUtils/
 
 %changelog
+* Wed Aug 05 2009 Christoph Maser <cmr@financial.com> - 0.25.2-1
+- Updated to version 0.25.2 (Dev. release, setting test-Tag)
+
 * Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 0.25.1-1
 - Updated to version 0.25.1
 
