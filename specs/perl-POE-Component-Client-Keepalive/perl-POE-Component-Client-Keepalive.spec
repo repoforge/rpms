@@ -9,7 +9,7 @@
 
 Summary: Manages and keeps alive client connections
 Name: perl-POE-Component-Client-Keepalive
-Version: 0.25
+Version: 0.260
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-Keepalive
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Net::IP) >= 1.25
+BuildRequires: perl(POE) >= 1.007
+BuildRequires: perl(POE::Component::Client::DNS) >= 1.04
 
 %description
 POE::Component::Client::Keepalive creates and manages connections for
@@ -60,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Component/Connection/Keepalive.pm
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.260-1
+- Updated to version 0.260.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.25-1
 - Updated to version 0.25.
 
