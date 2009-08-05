@@ -9,7 +9,7 @@
 
 Summary: Base class for creating plugin enabled POE Components
 Name: perl-POE-Component-Pluggable
-Version: 1.20
+Version: 1.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,15 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Pluggable-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Test::More) >= 0.47
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) => 0.47
+# From yaml requires
+BuildRequires: perl(POE) >= 1.004
+BuildRequires: perl(Task::Weaken)
+#BuildRequires: perl(constant) >= 1.17
+BuildRequires: perl >= 5.6.0
+
 
 %description
 A base class for creating plugin enabled POE Components.
@@ -57,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Pluggable.pm
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.22-1
+- Updated to version 1.22.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.20-1
 - Updated to version 1.20.
 
