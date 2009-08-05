@@ -9,7 +9,7 @@
 
 Summary: Non-blocking/concurrent HTTP queries with POE
 Name: perl-POE-Component-Client-HTTP
-Version: 0.88
+Version: 0.890
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(HTTP::Request) >= 1.3
+BuildRequires: perl(HTTP::Response) >= 1.37
+BuildRequires: perl(Net::HTTP::Methods) >= 0.02
+BuildRequires: perl(POE) >= 1.007
+BuildRequires: perl(POE::Component::Client::Keepalive) >= 0.26
+BuildRequires: perl(Test::POE::Server::TCP)
+BuildRequires: perl(URI) >= 1.24
+
 
 %description
 A HTTP user-agent component.
@@ -59,6 +69,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.890-1
+- Updated to version 0.890.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.88-1
 - Updated to version 0.88.
 
