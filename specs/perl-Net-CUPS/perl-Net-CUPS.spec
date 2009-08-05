@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: D. Hageman <dhageman$dracken,com>
+# Needs cups >= 1.2.2
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +11,7 @@
 
 Summary: Perl module that implements a Common Unix Printing System Interface
 Name: perl-Net-CUPS
-Version: 0.59
+Version: 0.60
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/CUPS.pm
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.60-1
+- Updated to version 0.60.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.59-1
 - Updated to version 0.59.
 
