@@ -9,7 +9,7 @@
 
 Summary: Event driven wrapper for Net::DNS::Resolver
 Name: perl-POE-Component-Client-DNS
-Version: 1.03
+Version: 1.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Net::DNS) >= 0.59
+BuildRequires: perl(POE) >= 1.007
+BuildRequires: perl(Test::More)
 
 %description
 POE::Component::Client::DNS is an event driven wrapper for
@@ -55,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Component/Client/DNS.pm
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.04-1
+- Updated to version 1.04.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.03-1
 - Updated to version 1.03.
 
