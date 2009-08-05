@@ -9,7 +9,7 @@
 
 Summary: Comprehensive inside-out object support module
 Name: perl-Object-InsideOut
-Version: 3.55
+Version: 3.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(B)
+BuildRequires: perl(Config)
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(Exception::Class) >= 1.29
+#BuildRequires: perl(Scalar::Util) >= 1.21
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::More) >= 0.5
+BuildRequires: perl(attributes)
+BuildRequires: perl(overload)
+BuildRequires: perl(strict)
+BuildRequires: perl(warnings)
 
 %description
 perl-Object-InsideOut is a Perl module with comprehensive inside-out
@@ -61,6 +74,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Object/InsideOut.pod
 
 %changelog
+* Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 3.56-1
+- Updated to version 3.56.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 3.55-1
 - Updated to version 3.55.
 
