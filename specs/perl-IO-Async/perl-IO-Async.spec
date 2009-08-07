@@ -9,8 +9,8 @@
 
 Summary: a collection of modules that implement asynchronous filehandle IO
 Name: perl-IO-Async
-Version: 0.21
-Release: 2
+Version: 0.22
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Async/
@@ -65,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Async.pm
 
 %changelog
+* Fri Aug  7 2009 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Mon Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.21-2
 - Fix deps
 
