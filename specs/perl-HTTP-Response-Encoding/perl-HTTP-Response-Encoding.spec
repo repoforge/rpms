@@ -9,7 +9,7 @@
 
 Summary: Adds encoding() to HTTP::Response
 Name: perl-HTTP-Response-Encoding
-Version: 0.05
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Encode) >= 2
+BuildRequires: perl(HTTP::Response)
+BuildRequires: perl(Test::More)
+
 
 %description
 Adds encoding() to HTTP::Response.
@@ -51,5 +58,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Response/Encoding.pm
 
 %changelog
+* Fri Aug  7 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Mon Jun 29 2009 Unknown - 0.05-1
 - Initial package. (using DAR)
