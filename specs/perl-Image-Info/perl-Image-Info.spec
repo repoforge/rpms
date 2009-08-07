@@ -9,7 +9,7 @@
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.28
+Version: 1.29
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,8 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.2
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(IO::String)
-BuildRequires: perl(Test::More) >= 0.62
+#BuildRequires: perl(Test::More) >= 0.62
 Requires: perl >= 1:5.6.2
 
 %description
@@ -33,7 +32,7 @@ various types of image files.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Fri Aug  7 2009 Christoph Maser <cmr@financial.com> - 1.29-1
+- Updated to version 1.29.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 1.28-1
 - Updated to release 1.28.
 
