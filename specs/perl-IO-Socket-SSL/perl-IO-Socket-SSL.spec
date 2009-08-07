@@ -9,7 +9,7 @@
 
 Summary: Nearly transparent SSL encapsulation for IO::Socket::INET
 Name: perl-IO-Socket-SSL
-Version: 1.26
+Version: 1.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Net::SSLeay) >= 1.21
+BuildRequires: perl(Scalar::Util)
 Requires: perl >= 2:5.8.0
 
 %description
@@ -55,6 +58,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Fri Aug  7 2009 Christoph Maser <cmr@financial.com> - 1.27-1
+- Updated to version 1.27.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.26-1
 - Updated to version 1.26.
 
