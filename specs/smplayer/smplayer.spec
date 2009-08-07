@@ -4,7 +4,7 @@
 
 Summary: Frontend for mplayer
 Name: smplayer
-Version: 0.6.6
+Version: 0.6.8
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -12,7 +12,8 @@ URL: http://smplayer.berlios.de/
 
 Source: http://dl.sf.net/smplayer/smplayer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: smplayer-0.6.6-centos5-zyv.patch
+Patch0: smplayer-0.6.8-el5-logic-zyv.patch
+Patch1: smplayer-0.6.8-el5-ui-zyv.patch
 
 BuildRequires: gcc-c++
 BuildRequires: qt4-devel
@@ -28,7 +29,8 @@ the Qt toolkit, so it's multi-platform.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 export PATH="%{_libdir}/qt4/bin:$PATH"
@@ -55,6 +57,9 @@ export PATH="%{_libdir}/qt4/bin:$PATH"
 %{_datadir}/smplayer/
 
 %changelog
+* Fri Jul 31 2009 Yury V. Zaytsev <yury@shurup.com> - 0.6.8-1
+- New patches for CentOS 5 for smplayer 0.6.8 (HTTPS & Socks5 disabled).
+
 * Wed Feb 11 2009 Yury V. Zaytsev <yury@shurup.com> - 0.6.6-1
 - New patch for CentOS 5 for smplayer 0.6.6 (HTTPS & Socks5 disabled).
 
