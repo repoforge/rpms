@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
-# Tag: test
-
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_embedperl 1}
@@ -18,7 +16,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 3.1.2
+Version: 3.2.0
 Release: 1
 License: GPL
 Group: Applications/System
@@ -28,8 +26,13 @@ Source0: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gd-devel > 1.8, zlib-devel, libpng-devel, libjpeg-devel
+BuildRequires: gd-devel > 1.8
+BuildRequires: zlib-devel
+BuildRequires: libpng-devel
+BuildRequires: libjpeg-devel
 Obsoletes: nagios-www <= %{version}
+Requires: httpd
+Requires: php
 
 %description
 Nagios is an application, system and network monitoring application.
@@ -205,6 +208,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Thu Aug 12 2009 Christoph Maser <cmr$financial,com> - 3.2.0-1
+- Updated to release 3.2.0.
+
 * Mon Aug 03 2009 Christoph Maser <cmr$financial,com> - 3.1.2-1
 - Updated to release 3.1.2.
 
