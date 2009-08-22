@@ -9,7 +9,7 @@
 
 Summary: Encapsulate SQL queries and rows in simple perl objects
 Name: perl-DBIx-SearchBuilder
-Version: 1.54
+Version: 1.56
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,22 +19,25 @@ Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-SearchBuilder-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21
-BuildRequires: perl(capitalization) >= 0.03
-BuildRequires: perl(Class::Accessor)
-BuildRequires: perl(Class::ReturnValue) >= 0.4
-BuildRequires: perl(Clone)
+# From yaml build_requires
 BuildRequires: perl(DBD::SQLite)
-BuildRequires: perl(DBI)
-BuildRequires: perl(DBIx::DBSchema)
-BuildRequires: perl(Encode)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42    <- kills el4 build
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Temp)
-#BuildRequires: perl(Test::More) >= 0.52
+#BuildRequires: perl(Test::More) >= 0.52 <- kills el4 build
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(Cache::Simple::TimedExpiry) >= 0.21
+BuildRequires: perl(Class::ReturnValue) >= 0.4
+BuildRequires: perl(Clone)
+BuildRequires: perl(DBI)
+BuildRequires: perl(Encode) >= 1.99
 BuildRequires: perl(Want)
+# From build
+BuildRequires: perl(capitalization) >= 0.03
+BuildRequires: perl(DBIx::DBSchema)
+BuildRequires: perl(Class::Accessor)
 
-Requires: perl
 
 %description
 Encapsulate SQL queries and rows in simple perl objects.
@@ -46,7 +49,7 @@ Encapsulate SQL queries and rows in simple perl objects.
 %{__perl} -pi.orig -e "s|^(build_requires\('Test::More'.+$)|#$1|" Makefile.PL
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -70,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DBIx/SearchBuilder/Handle/Oracle.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.56-1
+- Updated to version 1.56.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.54-1
 - Updated to release 1.54.
 
