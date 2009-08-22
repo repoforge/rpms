@@ -9,7 +9,7 @@
 
 Summary: Minimal lightweight exception class
 Name: perl-Class-Throwable
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Throwable.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.10-1
 - Initial package. (using DAR)
