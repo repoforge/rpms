@@ -10,7 +10,7 @@
 
 Summary: Framework for building reusable web-applications
 Name: perl-CGI-Application
-Version: 4.20
+Version: 4.31
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,7 +21,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+# From yaml requires
+BuildRequires: perl(CGI)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::ISA)
+BuildRequires: perl(HTML::Template)
+BuildRequires: perl(Test::More)
 Requires: perl-HTML-Template
 
 %description
@@ -34,12 +40,12 @@ document, easier to write, and easier to evolve.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -57,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CGI/Application.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 4.31-1
+- Updated to version 4.31.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 4.20-1
 - Updated to release 4.20.
 
