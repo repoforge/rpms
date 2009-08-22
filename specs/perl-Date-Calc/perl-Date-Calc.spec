@@ -11,7 +11,7 @@
 
 Summary: Gregorian calendar date calculations
 Name: perl-Date-Calc
-Version: 5.4
+Version: 5.6
 Release: 1
 License: Artistic/GPL/LGPL
 Group: Applications/CPAN
@@ -54,5 +54,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Date/
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 5.6-1
+- Updated to version 5.6.
+
 * Tue Sep 13 2005 Dag Wieers <dag@wieers.com> - 5.4-1
 - Initial package. (using DAR)
