@@ -9,7 +9,7 @@
 
 Summary: Simple totally OO CGI interface that is CGI.pm compliant
 Name: perl-CGI-Simple
-Version: 1.106
+Version: 1.112
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(Test::More)
+
 
 %description
 CGI-Simple is a perl module that implements a CGI.pm compliant CGI interface.
@@ -52,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CGI/Simple.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.112-1
+- Updated to version 1.112.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.106-1
 - Updated to release 1.106.
 
