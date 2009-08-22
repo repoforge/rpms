@@ -9,7 +9,7 @@
 
 Summary: Functions for managing FastCGI applications
 Name: perl-FCGI-ProcManager
-Version: 0.18
+Version: 0.19
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/FCGI/ProcManager.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.19-1
+- Updated to version 0.19.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.18-1
 - Initial package. (using DAR)
