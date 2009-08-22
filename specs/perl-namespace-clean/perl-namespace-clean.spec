@@ -10,7 +10,7 @@
 Summary: Keep imports and functions out of your namespace
 Name: perl-namespace-clean
 Version: 0.11
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/namespace-clean/
@@ -19,10 +19,12 @@ Source: http://www.cpan.org/modules/by-module/namespace/namespace-clean-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(B::Hooks::EndOfScope)
+# From yaml build_requires
 BuildRequires: perl(FindBin)
-BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(B::Hooks::EndOfScope) >= 0.07
+BuildRequires: perl(Symbol)
 
 %description
 Keep imports and functions out of your namespace.
@@ -31,7 +33,7 @@ Keep imports and functions out of your namespace.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/namespace/clean.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.11-2
+- Fix dependencies
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Update to version 0.11.
 
