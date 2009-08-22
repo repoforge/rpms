@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: Marc Lehmann <pcg$goof,com>
+# db4 is too old on el4
+# ExcludeDist: el4 el3
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +11,21 @@
 
 Summary: Asynchronous Berkeley DB access
 Name: perl-BDB
-Version: 1.801
+Version: 1.84
 Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BDB/
 
-Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/BDB-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/BDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: db4 >= 4.4
-BuildRequires: perl
+BuildRequires: db4-devel >= 4.3
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(common::sense)
+
 
 %description
 Asynchronous Berkeley DB access.
@@ -52,6 +58,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/BDB.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.84-1
+- Updated to version 1.84.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.801-1
 - Updated to release 1.801.
 
