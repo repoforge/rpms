@@ -9,7 +9,7 @@
 
 Summary: Common rules for searching for Perl things
 Name: perl-File-Find-Rule-Perl
-Version: 1.08
+Version: 1.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,15 +19,17 @@ Source: http://www.cpan.org/modules/by-module/File/File-Find-Rule-Perl-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
+# From yaml build_requires
+#BuildRequires: perl(ExtUtils::MakeMaker) => 6.42  <- kills el4 build
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) => 0.47
+# From yaml requires
 BuildRequires: perl(File::Find::Rule) >= 0.20
 BuildRequires: perl(File::Spec) >= 0.82
 BuildRequires: perl(Params::Util) >= 0.38
-BuildRequires: perl(Parse::CPAN::Meta) >= 0.04
-BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Parse::CPAN::Meta) >= 1.38
+BuildRequires: perl >= 5.00503
 
-Requires: perl >= 0:5.005
 
 %description
 Common rules for searching for Perl things.
@@ -60,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Find/Rule/Perl.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.09-1
+- Updated to version 1.09.
+
 * Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 1.08-1
 - Updated to version 1.08.
 
