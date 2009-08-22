@@ -6,35 +6,41 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Coro
-%define real_version 5.151
+%define real_version 5.162
 
 Summary: Coroutine process abstraction
 Name: perl-Coro
 ### FIXME: Versions >= 4.31 require perl-BDB and db4 >= 4.4
-Version: 5.1.51
+Version: 5.1.62
 Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Coro/
 
 Source: http://www.cpan.org/modules/by-module/Coro/Coro-%{real_version}.tar.gz
-Patch0: Coro-3.63-noprompt.patch
+#Patch0: Coro-3.63-noprompt.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-BuildRequires: perl(AnyEvent) >= 4.42
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(EV)
+# From yaml requires
+BuildRequires: perl(AnyEvent) >= 4.81
 BuildRequires: perl(Guard) >= 0.5
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Storable) >= 2.15
 BuildRequires: perl(Time::HiRes)
-Requires: perl(AnyEvent) >= 4.42
-Requires: perl(EV)
+BuildRequires: perl(common::sense)
+# From yaml recommends
+BuildRequires: perl(AnyEvent::AIO)
+BuildRequires: perl(AnyEvent::BDB)
+BuildRequires: perl(BDB)
+BuildRequires: perl(EV)
+BuildRequires: perl(Event)
+BuildRequires: perl(IO::AIO)
+Requires: perl(AnyEvent) >= 4.81
 Requires: perl(Guard) >= 0.5
 Requires: perl(Scalar::Util)
 Requires: perl(Storable) >= 2.15
 Requires: perl(Time::HiRes)
+Requires: perl(common::sense)
 AutoReq: no
 
 %description
@@ -44,7 +50,7 @@ Coroutines are similar to threads but don't run in parallel.
 
 %prep
 %setup -n %{real_name}-%{real_version}
-%patch0 -p1 -b .noprompt
+#%patch0 -p1 -b .noprompt
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -73,6 +79,9 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Coro.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 5.1.62-1
+- Updated to version 5.162.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 5.1.51-1
 - Updated to version 5.151.
 
