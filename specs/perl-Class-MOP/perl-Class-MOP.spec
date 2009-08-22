@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: Stevan Little <stevan$iinteractive,com>
+# needs new Scalar::Util
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +11,7 @@
 
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
-Version: 0.89
+Version: 0.91
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,11 +20,19 @@ URL: http://search.cpan.org/dist/Class-MOP/
 Source: http://www.cpan.org/modules/by-module/Class/Class-MOP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
-BuildRequires: perl(Test::Exception) >= 0.21
-#BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(Carp)
+BuildRequires: perl(Devel::GlobalDestruction)
+BuildRequires: perl(MRO::Compat) >= 0.05
+BuildRequires: perl(Scalar::Util) >= 1.18
+BuildRequires: perl(Sub::Name) >= 0.04
+BuildRequires: perl(Task::Weaken)
+BuildRequires: perl >= 5.8.1
 
 %description
 Class-MOP is a Perl module that implements a Meta Object Protocol.
@@ -61,6 +71,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.91-1
+- Updated to version 0.91.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.89-1
 - Updated to version 0.89.
 
