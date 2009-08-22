@@ -9,7 +9,7 @@
 
 Summary: Persistent session data in CGI applications
 Name: perl-CGI-Session
-Version: 4.38
+Version: 4.41
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,8 +21,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(CGI) >= 3.26
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::More)
-BuildRequires: perl(Test::Pod)
+
 
 %description
 CGI-Session is a Perl5 library that provides an easy, reliable and
@@ -62,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/CGI/Session.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 4.41-1
+- Updated to version 4.41.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 4.38-1
 - Updated to release 4.38.
 
