@@ -9,7 +9,7 @@
 
 Summary: Perl module to make powerful application writing fun and easy
 Name: perl-CGI-Ex
-Version: 2.24
+Version: 2.27
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Template::Alloy) >= 1.004
+
 
 %description
 perl-CGI-Ex is a Perl module to make powerful application writing fun and easy.
@@ -55,6 +58,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/CGI/Ex.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 2.27-1
+- Updated to version 2.27.
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 2.24-1
 - Updated to release 2.24.
 
