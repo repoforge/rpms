@@ -9,7 +9,7 @@
 
 Summary: Datetime sets and set math
 Name: perl-DateTime-Set
-Version: 0.27
+Version: 0.28
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Set-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+# From yaml requires
+BuildRequires: perl(DateTime) >= 0.12
+BuildRequires: perl(Set::Infinite) >= 0.59
+BuildRequires: perl(Test::More)
+
 
 %description
 The DateTime::Set module provides a date/time sets implementation.
@@ -35,12 +39,12 @@ pattern, within a time range.
 %{__perl} -pi -e 's|use Set::Infinite 0.5502;|use Set::Infinite;|g;' lib/Set/Infinite/_recurrence.pm
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -57,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Set/Infinite/
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.28-1
+- Updated to version 0.28.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.27-1
 - Updated to version 0.27.
 
