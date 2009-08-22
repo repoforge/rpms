@@ -11,7 +11,7 @@
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
 Version: 2.15
-Release: 2
+Release: 3
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON/
@@ -21,10 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: dos2unix
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(HTTP::Request)
-BuildRequires: perl(HTTP::Response)
+# From yaml requires
+BuildRequires: perl(Test::More)
+
 
 # this module satisfies the requirements for JSON::Any
 Provides: perl-JSON-Any-alternative = 1.21
@@ -69,7 +68,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/JSON.pm
 
 %changelog
-* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.34-2
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 2.15-3
+- Update dependencies from META.yml
+
+* Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 2.15-2
 - Update Provides: perl-JSON-Any-alternative to 1.21
 
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.15-1
