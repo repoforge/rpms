@@ -8,7 +8,7 @@
 
 Summary: Perl module named Guard
 Name: perl-Guard
-Version: 1.02
+Version: 1.021
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -47,5 +47,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Guard.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.021-1
+- Updated to version 1.021.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 1.02-1
 - Initial package. (using DAR)
