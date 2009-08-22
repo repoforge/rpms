@@ -9,7 +9,7 @@
 
 Summary: DBI PostgreSQL interface
 Name: perl-DBD-Pg
-Version: 2.13.1
+Version: 2.14.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,17 +18,31 @@ URL: http://search.cpan.org/dist/DBD-Pg/
 Source: http://www.cpan.org/modules/by-module/DBD/DBD-Pg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 1:5.6.1
+# From yaml build_requires
 BuildRequires: perl(DBI) >= 1.52
-BuildRequires: perl(Module::Signature) >= 0.5
-BuildRequires: perl(Test::Harness) >= 2.03
-#BuildRequires: perl(Test::More) >= 0.61
+#BuildRequires: perl(Test::More) >= 0.61   <- kills el4 build
 BuildRequires: perl(Test::More)
-BuildRequires: perl(Test::Simple) >= 0.47
 BuildRequires: perl(version)
+# From yaml requires
+BuildRequires: perl(DBI) >= 1.52
+BuildRequires: perl >= 5.006001
+BuildRequires: perl(version)
+# From yaml recommends
+BuildRequires: perl(Cwd)
+BuildRequires: perl(Encode)
+#BuildRequires: perl(File::Comments)             <- missing
+#BuildRequires: perl(File::Comments::Plugin::C)  <- missing
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Module::Signature)
+BuildRequires: perl(Perl::Critic)
+BuildRequires: perl(Pod::Spell)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
+BuildRequires: perl(Test::Warn)
+#BuildRequires: perl(Test::YAML::Meta)           <- missing
+#BuildRequires: perl(Text::SpellChecker)         <- missing
+BuildRequires: perl(Time::HiRes)
 BuildRequires: postgresql-devel
-Requires: perl >= 1:5.6.1
-Requires: perl(DBI) >= 1.52
 Requires: postgresql
 
 %description
@@ -65,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 2.14.1-1
+- Updated to version 2.14.1.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 2.13.1-1
 - Updated to version 2.13.1.
 
