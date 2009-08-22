@@ -12,22 +12,22 @@
 
 Summary: Organise your Moose types in libraries
 Name: perl-MooseX-Types
-Version: 0.16
+Version: 0.17
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Types/
 
-Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-Types-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RK/RKITOVER/MooseX-Types-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(Carp::Clan) >= 6.00
-BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Moose) >= 0.61
-BuildRequires: perl(SubInstall) >= 0.924
+BuildRequires: perl(Sub::Install) >= 0.924
 BuildRequires: perl(Test::More) >= 0.8
 BuildRequires: perl(namespace::clean) >= 0.08
 Requires: perl >= 2:5.8.0
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Types.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to version 0.17.
+
 * Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 0.16-1
 - Updated to version 0.16.
 
