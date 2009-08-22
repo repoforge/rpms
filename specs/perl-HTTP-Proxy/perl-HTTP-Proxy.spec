@@ -9,7 +9,7 @@
 
 Summary: Pure Perl HTTP proxy
 Name: perl-HTTP-Proxy
-Version: 0.23
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(HTTP::Daemon) >= 1.25
+BuildRequires: perl(LWP::UserAgent) >= 2
+BuildRequires: perl(Test::More)
+
 
 %description
 HTTP-Proxy is a Perl module that implements a HTTP proxy.
@@ -55,6 +60,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTTP/Proxy.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.24-1
+- Updated to version 0.24.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 
