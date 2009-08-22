@@ -9,8 +9,8 @@
 
 Summary: Buffer output when building CGI programs
 Name: perl-CGI-Out
-Version: 101.121401
-Release: 1.2
+Version: 2006.0215
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Out/
@@ -59,5 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CGI/Wrap.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 2006.0215-1
+- Updated to version 2006.0215.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 101.121401-1
 - Initial package.
