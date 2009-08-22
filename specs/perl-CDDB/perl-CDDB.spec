@@ -9,7 +9,7 @@
 
 Summary: High-level interface to cddb protocol servers (freedb and CDDB)
 Name: perl-CDDB
-Version: 1.17
+Version: 1.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Test::More)
+
 
 %description
 CDDB is a high-level interface to databases based on the Compact Disc
@@ -50,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CDDB.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.21-1
+- Updated to version 1.21.
+
 * Sun Mar 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.17-1
 - Updated to release 1.17.
 
