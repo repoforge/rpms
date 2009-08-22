@@ -10,7 +10,7 @@
 Summary: Execute code after a scope finished compilation
 Name: perl-B-Hooks-EndOfScope
 Version: 0.08
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Hooks-EndOfScope/
@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.0
-BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
 Requires: perl >= 2:5.8.0
 
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/B/Hooks/EndOfScope.pm
 
 %changelog
+* Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.08-2
+- Adjust dependencies
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.08-1
 - Initial package. (using DAR)
