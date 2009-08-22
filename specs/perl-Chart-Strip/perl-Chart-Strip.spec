@@ -9,7 +9,7 @@
 
 Summary: Draw strip chart type graphs
 Name: perl-Chart-Strip
-Version: 1.05
+Version: 1.07
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Chart/Strip.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.07-1
+- Updated to version 1.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 
