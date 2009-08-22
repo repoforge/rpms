@@ -1,20 +1,21 @@
 # $Id$
 # Authority: cmr
 # Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
-# Tag: test
+# Needs libdbi
+# ExcludeDist: el4
 
 %define logdir %{_localstatedir}/log/icinga
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 0.8.1
+Version: 0.8.2
 Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
 
 Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
-Source1: idoutils-init
+#Source1: idoutils-init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel > 1.8
@@ -116,7 +117,7 @@ mv %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg-sample %{buildroot}%{_sysconfdir
 mv %{buildroot}%{_sysconfdir}/icinga/idomod.cfg-sample %{buildroot}%{_sysconfdir}/icinga/idomod.cfg
 
 ### copy ido init script
-%{__sed} -e 's*@CONFDIR@*%{_sysconfdir}/icinga*' -e 's*@BINDIR@*%{_bindir}*' %{SOURCE1} > %{buildroot}/%{_initrddir}/idoutils
+#%{__sed} -e 's*@CONFDIR@*%{_sysconfdir}/icinga*' -e 's*@BINDIR@*%{_bindir}*' %{SOURCE1} > %{buildroot}/%{_initrddir}/idoutils
 
 %pre
 # Add icinga user
@@ -176,7 +177,7 @@ fi
 
 %files idoutils
 %defattr(-,icinga,icinga,-)
-%attr(755,root,root) %{_initrddir}/idoutils
+%attr(755,root,root) %{_initrddir}/ido2db
 %config(noreplace) %{_sysconfdir}/icinga/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/icinga/idomod.cfg
 %{_bindir}/ido2db
@@ -184,6 +185,10 @@ fi
 
 
 %changelog
-* Sun Jul 19 2009 Christoph Maser <cmr at financial.com> - 0.8.1-1
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.8.2-1
+- Update to release 0.8.2.
+- remove idoutils-init, init-script for ido2db is shipped now 
+
+* Sun Jul 19 2009 Christoph Maser <cmr@financial.com> - 0.8.1-1
 - initial package
 
