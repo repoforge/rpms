@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +10,23 @@
 
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
-Version: 0.91
+Version: 0.93
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-TimeZone/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-TimeZone-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-TimeZone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+# From yaml build_requires
+BuildRequires: perl(Module::Build)
+# From yaml requires
+BuildRequires: perl(Class::Singleton) >= 1.03
+BuildRequires: perl(Cwd) >= 3
+BuildRequires: perl(Params::Validate) >= 0.72
+BuildRequires: perl(Pod::Man) >= 1.14
 Provides: perl(DateTime::TimeZoneCatalog)
 
 %description
@@ -34,12 +41,12 @@ tools/parse_olson.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -61,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DateTime/TimeZone/Local/Win32.pm
 
 %changelog
+* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.93-1
+- Updated to version 0.93.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.91-1
 - Updated to version 0.91.
 
