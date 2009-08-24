@@ -12,13 +12,13 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 3.0.1
+Version: 3.0.2
 Release: 1
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
 
-Source: http://www.cfengine.org/downloads/cfengine-%{version}.tar.gz
+Source: http://www.cfengine.org/tarballs/cfengine-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -328,13 +328,12 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_infodir}/*.info*
 %doc %{_mandir}/man8/cf-agent.8*
 %doc %{_mandir}/man8/cf-execd.8*
 %doc %{_mandir}/man8/cf-key.8*
 %doc %{_mandir}/man8/cf-know.8*
 %doc %{_mandir}/man8/cf-monitord.8*
-%doc %{_mandir}/man8/cf-promise.8*
+%doc %{_mandir}/man8/cf-promises.8*
 %doc %{_mandir}/man8/cf-report.8*
 %doc %{_mandir}/man8/cf-runagent.8*
 %doc %{_mandir}/man8/cf-serverd.8*
@@ -359,6 +358,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Mon Aug 24 2009 Chritsoph Maser <cmr@financial.com> - 3.0.2
+- Update to version 3.0.2.
+
 * Tue May 12 2009 Chritsoph Maser <cmr@financial.com> - 3.0.1
 - Bump version: 3.0.1
 
