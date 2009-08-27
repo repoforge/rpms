@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 0.8.2
-Release: 1
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -116,8 +116,8 @@ database storage via libdbi.
 mv %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg-sample %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg
 mv %{buildroot}%{_sysconfdir}/icinga/idomod.cfg-sample %{buildroot}%{_sysconfdir}/icinga/idomod.cfg
 
-### copy ido init script
-#%{__sed} -e 's*@CONFDIR@*%{_sysconfdir}/icinga*' -e 's*@BINDIR@*%{_bindir}*' %{SOURCE1} > %{buildroot}/%{_initrddir}/idoutils
+### copy idutils db-script
+cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
 
 %pre
 # Add icinga user
@@ -135,7 +135,7 @@ fi
 
 
 %post idoutils
-/sbin/chkconfig --add idoutils
+/sbin/chkconfig --add ido2db
 
 %preun idoutils
 if [ $1 -eq 0 ]; then
@@ -180,11 +180,19 @@ fi
 %attr(755,root,root) %{_initrddir}/ido2db
 %config(noreplace) %{_sysconfdir}/icinga/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/icinga/idomod.cfg
+%{_sysconfdir}/icinga/idoutils
 %{_bindir}/ido2db
 %{_bindir}/idomod.o
 
 
 %changelog
+* Thu Aug 27 2009 Christoph Maser <cmr@financial.com> - 0.8.2-3
+- fix dir name ndoutils -> idoutils
+
+* Thu Aug 27 2009 Christoph Maser <cmr@financial.com> - 0.8.2-2
+- fix idututils post script
+- copy database scripts from source to sysconfigdir
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.8.2-1
 - Update to release 0.8.2.
 - remove idoutils-init, init-script for ido2db is shipped now 
