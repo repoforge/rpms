@@ -4,13 +4,13 @@
 
 Summary: Library for processing UTF-8 encoded unicode strings
 Name: utf8proc
-Version: 1.1.2
+Version: 1.1.4
 Release: 1
 License: BSD
 Group: Development/Libraries
 URL: http://www.flexiguided.de/publications.utf8proc.en.html
 
-Source: http://www.flexiguided.de/pub/utf8proc-v%{version}.tar.gz
+Source: http://www.public-software-group.org/pub/projects/utf8proc/v%{version}/utf8proc-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildRequires: 
@@ -31,7 +31,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n utf8proc
+%setup -n utf8proc-v%{version}
 
 %build
 %{__make} %{?_smp_mflags}
@@ -60,6 +60,9 @@ you will need to install %{name}-devel.
 %{_includedir}/utf8proc.h
 
 %changelog
+* Sat Aug 29 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.4-1
+- Updated to release 1.1.4.
+
 * Sun Jul 29 2007 Dries Verachtert <dries@ulyssis.org> - 1.1.2-1
 - Updated to release 1.1.2.
 
