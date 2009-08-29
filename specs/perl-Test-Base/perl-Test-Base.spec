@@ -8,7 +8,7 @@
 
 Summary: Data driven testing framework for perl
 Name: perl-Test-Base
-Version: 0.58
+Version: 0.59
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Filter::Util::Call)
+BuildRequires: perl(Spiffy) >= 0.30
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.6.1
+# From yaml recommends
+BuildRequires: perl(Test::Deep)
+
 Requires: perl >= 1:5.6.1
 
 %description
@@ -56,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Base/
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.59-1
+- Updated to version 0.59.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.58-1
 - Updated to version 0.58.
 
