@@ -9,7 +9,7 @@
 
 Summary: Perl module to magically force all URIs to be absolute
 Name: perl-URI-ImpliedBase
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Cwd)
+BuildRequires: perl(Test::Simple) >= 0.44
+BuildRequires: perl(URI)
+
 
 %description
 perl-URI-ImpliedBase is a Perl module to magically force all URIs
@@ -55,5 +62,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/ImpliedBase.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.06-1
 - Initial package. (using DAR)
