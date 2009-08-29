@@ -9,7 +9,7 @@
 
 Summary: Configurable web traversal engine
 Name: perl-WWW-Robot
-Version: 0.025
+Version: 0.026
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Robot.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.026-1
+- Updated to version 0.026.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.025-1
 - Updated to release 0.025.
 
