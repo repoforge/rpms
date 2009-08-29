@@ -9,7 +9,7 @@
 Summary: Free open-source disk encryption software
 Name: truecrypt
 Version: 6.2a
-Release: 1
+Release: 2
 License: TrueCrypt License 2.7
 Group: Applications/System
 URL: http://www.truecrypt.org/
@@ -81,7 +81,10 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/icons/hicolor/48x48/apps/truecrypt.png
 
 %changelog
-* Sun Jul 26 2009 Yury V. Zaytsev <yury@shurup.com> - 6.2a
+* Sat Aug 29 2009 Yury V. Zaytsev <yury@shurup.com> - 6.2a-2
+- Added sources to the VCS tree
+
+* Sun Jul 26 2009 Yury V. Zaytsev <yury@shurup.com> - 6.2a-1
 - Bumped to the new version and fixed missing PKCS includes
 
 * Sun May 24 2009 Dag Wieers <dag@wieers.com> - 6.2-1 - 6477+/dag
