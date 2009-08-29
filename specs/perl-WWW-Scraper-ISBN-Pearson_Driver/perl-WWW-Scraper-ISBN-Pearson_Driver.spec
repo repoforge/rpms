@@ -9,7 +9,7 @@
 
 Summary: Search driver for Pearson Education's online catalog
 Name: perl-WWW-Scraper-ISBN-Pearson_Driver
-Version: 0.10
+Version: 0.11
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,19 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Scraper-ISBN-Pearson_Drive
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More) >= 0.45
+# From yaml build_requires
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(Test::More)
+BuildRequires: perl(WWW::Mechanize)
+BuildRequires: perl(WWW::Scraper::ISBN) >= 0.25
+BuildRequires: perl(WWW::Scraper::ISBN::Driver) >= 0.18
+# From yaml recommends
+#BuildRequires: perl(Test::CPAN::Meta)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
+
 
 %description
 Search driver for Pearson Education's online catalog.
@@ -57,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/WWW/Scraper/ISBN/Pearson_Driver.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.10-1
 - Updated to version 0.10.
 
