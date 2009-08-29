@@ -9,7 +9,7 @@
 
 Summary: Get information from Excel file
 Name: perl-Spreadsheet-ParseExcel
-Version: 0.49
+Version: 0.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(Test::More) >= 0.47
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(IO::File)
+BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(OLE::Storage_Lite)
+BuildRequires: perl(Scalar::Util)
+
 
 %description
 Get information from Excel file.
@@ -52,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Spreadsheet/ParseExcel.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.54-1
+- Updated to version 0.54.
+
 * Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 0.49-1
 - Updated to version 0.49.
 
