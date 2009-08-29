@@ -9,7 +9,7 @@
 
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
-Version: 1.44
+Version: 1.45
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml build_requires
+BuildRequires: perl(Test::Manifest) >= 0.9
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(DateTime)
+BuildRequires: perl(DateTime::Format::Mail)
+BuildRequires: perl(DateTime::Format::W3CDTF)
+BuildRequires: perl(HTML::Entities)
+BuildRequires: perl(XML::Parser) >= 2.23
+BuildRequires: perl >= 5.006
+
 
 %description
 This module was created to help those who need to manage
@@ -56,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/RSS.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 1.45-1
+- Updated to version 1.45.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.44-1
 - Updated to version 1.44.
 
