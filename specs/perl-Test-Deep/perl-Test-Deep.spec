@@ -9,7 +9,7 @@
 
 Summary: Perl module implements an extremely flexible deep comparison
 Name: perl-Test-Deep
-Version: 0.104
+Version: 0.106
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(List::Util) >= 1.09
+BuildRequires: perl(Scalar::Util) >= 1.09
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::NoWarnings) >= 0.02
+BuildRequires: perl(Test::Tester) >= 0.04
+
 
 %description
 perl-Test-Deep is a Perl module implements an extremely flexible deep comparison.
@@ -53,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Deep.pod
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.106-1
+- Updated to version 0.106.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.104-1
 - Updated to version 0.104.
 
