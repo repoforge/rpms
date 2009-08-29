@@ -9,7 +9,7 @@
 
 Summary: Simple text template engine
 Name: perl-Text-Template-Simple
-Version: 0.70
+Version: 0.80
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,6 +22,11 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Temp)
+# From yaml recommends
+BuildRequires: perl(Devel::Size)
+BuildRequires: perl(Perl::Tidy)
+BuildRequires: perl(Text::Table)
+
 
 %description
 Simple text template engine.
@@ -54,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Template/Simple.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.80-1
+- Updated to version 0.80.
+
 * Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 0.70-1
 - Updated to version 0.70.
 
