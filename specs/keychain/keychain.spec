@@ -4,13 +4,13 @@
 
 Summary: Agent manager for OpenSSH, ssh.com, Sun SSH, and GnuPG
 Name: keychain
-Version: 2.5.1
-Release: 1.2
+Version: 2.6.8
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.gentoo.org/proj/en/keychain/
 
-Source: http://dev.gentoo.org/~agriffis/keychain/keychain-%{version}.tar.bz2
+Source: http://agriffis.n01se.net/keychain/keychain-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -44,6 +44,9 @@ local machine is rebooted.
 %{_bindir}/keychain
 
 %changelog
+* Sat Aug 29 2009 Dries Verachtert <dries@ulyssis.org> - 2.6.8-1
+- Updated to release 2.6.8.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.1-1.2
 - Rebuild for Fedora Core 5.
 

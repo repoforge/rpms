@@ -4,7 +4,7 @@
 
 Summary: Frontend for ding, a dictionary lookup program
 Name: kding
-Version: 0.5
+Version: 0.5.2
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -48,10 +48,13 @@ cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DPREFIX=%{_prefix} .
 %{_datadir}/config.kcfg/kding.kcfg
 %{_datadir}/doc/HTML/*/kding/
 %{_datadir}/icons/*/*/apps/kding.png
-%{_datadir}/icons/*/*/actions/kding_search.png
+#{_datadir}/icons/*/*/actions/kding_search.png
 %{_datadir}/icons/*/*/actions/kding_babelfish.png
 
 %changelog
+* Sat Aug 29 2009 Dries Verachtert <dries@ulyssis.org> - 0.5.2-1
+- Updated to release 0.5.2.
+
 * Tue Jul 21 2009 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
 

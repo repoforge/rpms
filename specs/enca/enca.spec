@@ -3,13 +3,13 @@
 
 Summary: Charset and encoding analyser
 Name: enca
-Version: 1.9
-Release: 4
+Version: 1.10
+Release: 1
 License: GPL
 Group: Applications/Text
-URL: http://trific.ath.cx/software/enca/
+URL: http://gitorious.org/enca
 
-Source: http://trific.ath.cx/Ftp/enca/enca-%{version}.tar.bz2
+Source: http://dl.cihar.com/enca/enca-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -50,7 +50,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README THANKS TODO
+%doc AUTHORS ChangeLog COPYING FAQ INSTALL README THANKS* TODO
 %doc %{_datadir}/man/man1/enca.1*
 %doc %{_datadir}/man/man1/enconv.1*
 %{_bindir}/enca
@@ -67,6 +67,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libenca.la
 
 %changelog
+* Sat Aug 29 2009 Dries Verachtert <dries@ulyssis.org> - 1.10-1
+- Updated to release 1.10.
+
 * Fri Jun 08 2007 Dag Wieers <dag@wieers.com> - 1.9-4
 - Build without recode, removed recode requirement.
 - Removed %%{_libexecdir} and static library.
