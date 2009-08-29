@@ -9,7 +9,7 @@
 
 Summary: Machine parseable data serialization format
 Name: perl-YAML
-Version: 0.68
+Version: 0.70
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAML.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.70-1
+- Updated to version 0.70.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.68-1
 - Updated to version 0.68.
 
