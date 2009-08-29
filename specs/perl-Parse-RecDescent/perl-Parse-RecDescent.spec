@@ -9,7 +9,7 @@
 
 Summary: Generate Recursive-Descent Parsers
 Name: perl-Parse-RecDescent
-Version: 1.94
+Version: 1.962.2
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Parse/RecDescent.p*
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 1.962.2-1
+- Updated to version 1.962.2.
+
 * Sun May  7 2006 Dries Verachtert <dries@ulyssis.org> - 1.94-1
 - Initial package.
