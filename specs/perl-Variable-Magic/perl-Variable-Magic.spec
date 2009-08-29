@@ -9,7 +9,7 @@
 
 Summary: Associate user-defined magic to variables from Perl
 Name: perl-Variable-Magic
-Version: 0.36
+Version: 0.37
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,6 +23,7 @@ BuildRequires: perl(Carp)
 BuildRequires: perl(Config)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(XSLoader)
 Requires: perl >= 1:5.008
 
 %description
@@ -58,6 +59,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Variable/Magic.pm
 
 %changelog
+* Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.37-1
+- Updated to version 0.37.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.36-1
 - Updated to version 0.36.
 
