@@ -4,7 +4,7 @@
 
 Summary: Library which handles page faults
 Name: libsigsegv
-Version: 2.5
+Version: 2.7
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -64,6 +64,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 2.7-1
+- Updated to release 2.7.
+
 * Wed Nov 14 2007 Dries Verachtert <dries@ulyssis.org> - 2.5-1
 - Updated to release 2.5.
 
