@@ -1,4 +1,4 @@
-# $Id: qcomicbook.spec 4949 2006-11-30 21:49:46Z dries $
+# $Id$
 # Authority: dries
 # Upstream: Pawel Stolowski <yogin$linux,bydg,org>
 
@@ -14,13 +14,13 @@
 
 Summary: Viewer for comic book archives
 Name: qcomicbook
-Version: 0.3.4
+Version: 0.4.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://linux.bydg.org/~yogin/
 
-Source: http://linux.bydg.org/~yogin/qcomicbook-%{version}.tar.gz
+Source: http://linux.bydg.org/~yogin/qcomicbook/qcomicbook-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: kdelibs-devel, gettext, gcc-c++, imlib2-devel
@@ -74,6 +74,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/qcomicbook/
 
 %changelog
+* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
+- Updated to release 0.4.1.
+
 * Thu Nov 30 2006 Dries Verachtert <dries@ulyssis.org> - 0.3.4-1
 - Updated to release 0.3.4.
 

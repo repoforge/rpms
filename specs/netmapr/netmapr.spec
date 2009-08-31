@@ -5,8 +5,8 @@
 
 Summary: Shows network diagrams
 Name: netmapr
-Version: 1.8
-Release: 3
+Version: 1.9
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.nethack.net/software/netmapr/
@@ -66,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/*netmapr.desktop
 
 %changelog
+* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.9-1
+- Updated to release 1.9.
+
 * Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 1.8-3
 - Fixed group name.
 

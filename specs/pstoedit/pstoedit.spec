@@ -3,7 +3,7 @@
 
 Summary: Translates PostScript and PDF graphics into other vector formats
 Name: pstoedit
-Version: 3.45
+Version: 3.50
 Release: 1
 License: GPL
 Group: Applications/Productivity
@@ -80,6 +80,9 @@ dos2unix doc/*.htm doc/readme.txt
 %exclude %{_libdir}/libpstoedit.la
 
 %changelog
+* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 3.50-1
+- Updated to release 3.50.
+
 * Mon Sep 10 2007 Dries Verachtert <dries@ulyssis.org> - 3.45-1
 - Updated to release 3.45.
 

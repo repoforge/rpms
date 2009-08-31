@@ -3,7 +3,7 @@
 
 Summary: XML-parsing library
 Name: iksemel
-Version: 1.3
+Version: 1.4
 Release: 1
 License: LGPL
 Group: Development/Libraries
@@ -64,8 +64,12 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/iksemel.pc
 %exclude %{_libdir}/libiksemel.a
 %exclude %{_libdir}/*.la
+%exclude %{_infodir}/dir
 
 %changelog
+* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.4-1
+- Updated to release 1.4.
+
 * Fri Jul 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.
 

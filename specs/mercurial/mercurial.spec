@@ -11,7 +11,7 @@
 
 Summary: Fast lightweight source control management system
 Name: mercurial
-Version: 1.3
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -69,6 +69,9 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/hgk
 
 %changelog
+* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Sat Jul 11 2009 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.
 
