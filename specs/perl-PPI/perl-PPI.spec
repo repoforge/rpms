@@ -9,7 +9,7 @@
 
 Summary: Parse and manipulate perl code non-destructively
 Name: perl-PPI
-Version: 1.205
+Version: 1.206
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,22 +19,26 @@ Source: http://www.cpan.org/modules/by-module/PPI/PPI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
-BuildRequires: perl(Class::Autouse)
-BuildRequires: perl(Clone)
-BuildRequires: perl(File::Remove) >= 0.34
-BuildRequires: perl(File::Slurp)
-BuildRequires: perl(File::Spec) >= 0.84
-BuildRequires: perl(IO::Stringy)
-BuildRequires: perl(List::MoreUtils)
-BuildRequires: perl(Params::Util)
-BuildRequires: perl(Storable)
-BuildRequires: perl(Test::ClassAPI) >= 1.03
-BuildRequires: perl(Test::More) >= 0.47
+# From yaml build_requires
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42  <- to new
+BuildRequires: perl(ExtUtils::MakeMaker) 
+BuildRequires: perl(File::Remove) >= 1.42
+BuildRequires: perl(Test::ClassAPI) >= 1.04
+#BuildRequires: perl(Test::More) >= 0.86  <- kills el4 build
+BuildRequires: perl(Test::NoWarnings) >= 0.084
 BuildRequires: perl(Test::Object) >= 0.07
-BuildRequires: perl(Test::SubCalls) >= 1.06
-BuildRequires: perl(Test::ClassAPI)
-#perl(List::Util) > 1.18
+BuildRequires: perl(Test::SubCalls) >= 1.07
+# From yaml requires
+BuildRequires: perl(Clone) >= 0.30
+BuildRequires: perl(Digest::MD5) >= 2.35
+BuildRequires: perl(File::Spec) >= 0.84
+BuildRequires: perl(IO::String) >= 1.07
+BuildRequires: perl(List::MoreUtils) >= 0.16
+# BuildRequires: perl(List::Util) >= 1.20  <- kills el4 build
+BuildRequires: perl(Params::Util) >= 1.00
+BuildRequires: perl(Storable) >= 2.17
+BuildRequires: perl(Task::Weaken)
+BuildRequires: perl >= 5.6.0
 Requires: perl >= 0:5.005
 
 %description
@@ -79,6 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PPI.pm
 
 %changelog
+* Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 1.206-1
+- Updated to version 1.206.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.205-1
 - Updated to version 1.205.
 
