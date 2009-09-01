@@ -9,7 +9,7 @@
 
 Summary: Base class for creating plugin enabled POE Components
 Name: perl-POE-Component-Pluggable
-Version: 1.22
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -64,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Pluggable.pm
 
 %changelog
+* Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.22-1
 - Updated to version 1.22.
 
