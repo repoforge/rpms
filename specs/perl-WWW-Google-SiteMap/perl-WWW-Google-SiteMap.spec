@@ -9,7 +9,7 @@
 
 Summary: Perl module to create sitemaps
 Name: perl-WWW-Google-SiteMap
-Version: 1.09
+Version: 1.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,7 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
-BuildRequires: perl(XML::Twig), perl(URI::Escape)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(XML::Twig)
+
 
 %description
 perl-WWW-Google-SiteMap is a Perl module to create sitemaps.
@@ -37,7 +39,7 @@ This package contains the following Perl modules:
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,7 +54,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/WWW/
 %dir %{perl_vendorlib}/WWW/Google/
@@ -60,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Google/SiteMap.pm
 
 %changelog
+* Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 1.10-1
+- Updated to version 1.10.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.09-1
 - Updated to release 1.09.
 
