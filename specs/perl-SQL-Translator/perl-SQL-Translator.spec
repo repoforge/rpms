@@ -9,7 +9,7 @@
 
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
-Version: 0.11001
+Version: 0.11002
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -106,6 +106,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt-graph
 
 %changelog
+* Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 0.11002-1
+- Updated to version 0.11002.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.11001-1
 - Updated to version 0.11001.
 
