@@ -11,7 +11,7 @@
 
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
-Version: 1.007
+Version: 1.266
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -35,7 +35,9 @@ BuildRequires: perl(POSIX) >= 1.02
 BuildRequires: perl(Socket) >= 1.7
 BuildRequires: perl(Storable) >= 2.16
 BuildRequires: perl(Test::Harness) >= 2.26
-#Provides: perl(POE::Resource::Controls)
+# From yaml recommends
+BuildRequires: perl(Time::HiRes)
+
 
 %description
 POE is a networking and multitasking (some say cooperative threading)
@@ -70,6 +72,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE.pm
 
 %changelog
+* Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 1.266-1
+- Updated to version 1.266.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.007-1
 - Updated to version 1.007.
 
