@@ -12,7 +12,7 @@
 
 Summary: Basic utilities for writing tests
 Name: perl-Test-Simple
-Version: 0.92
+Version: 0.94
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,6 +24,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Test::Harness) >= 2.03
+
 
 ### Obsolete wrong packages from the past
 Obsoletes: perl-Test-Builder-Tester
@@ -62,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Fri Sep  4 2009 Christoph Maser <cmr@financial.com> - 0.94-1
+- Updated to version 0.94.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.92-1
 - Updated to version 0.92.
 
