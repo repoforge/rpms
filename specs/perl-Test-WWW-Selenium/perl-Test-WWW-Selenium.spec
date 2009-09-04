@@ -9,7 +9,7 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.17
+Version: 1.18
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -35,7 +35,7 @@ Test applications using Selenium Remote Control.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -60,8 +60,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/WWW/
 %{perl_vendorlib}/WWW/Selenium.pm
 %{perl_vendorlib}/WWW/Selenium/Util.pm
+%{perl_vendorlib}/Test/WWW/mypod2html.pl
 
 %changelog
+* Fri Sep  4 2009 Christoph Maser <cmr@financial.com> - 1.18-1
+- Updated to version 1.18.
+
 * Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.17-1
 - Updated to version 1.17.
 
