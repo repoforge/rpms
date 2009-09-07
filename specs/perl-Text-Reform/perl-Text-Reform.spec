@@ -9,8 +9,8 @@
 
 Summary: Manual text wrapping and reformatting
 Name: perl-Text-Reform
-Version: 1.11
-Release: 1.2
+Version: 1.20
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Reform/
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Exporter)
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
@@ -34,7 +35,6 @@ This package contains the following Perl module:
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} -pi -e 's|/usr/local/bin/perl|%{__perl}|g;' demo*.pl
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -55,8 +55,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/Text/
 #%{perl_vendorlib}/Text/Reform/
 %{perl_vendorlib}/Text/Reform.pm
-%{perl_vendorlib}/Text/demo*.pl
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 1.20-1
+- Updated to version 1.20.
+
 * Sun Dec 19 2004 Dries Verachtert <dries@ulyssis.org> - 1.11
 - Initial package.
