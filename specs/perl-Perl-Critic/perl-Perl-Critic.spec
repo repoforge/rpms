@@ -9,7 +9,7 @@
 
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
-Version: 1.098
+Version: 1.104
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,31 +19,56 @@ Source: http://www.cpan.org/modules/by-module/Perl/Perl-Critic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(B::Keywords)
+# From yaml build_requires
 BuildRequires: perl(Test::More)
+BuildRequires: perl(lib)
+# From yaml requires
+BuildRequires: perl(B::Keywords) >= 1.05
+BuildRequires: perl(Carp)
 BuildRequires: perl(Config::Tiny) >= 2
+BuildRequires: perl(English)
 BuildRequires: perl(Exception::Class) >= 1.23
+BuildRequires: perl(Exporter)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Spec::Unix)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Getopt::Long)
 BuildRequires: perl(IO::String)
-BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(List::MoreUtils) >= 0.19
+BuildRequires: perl(List::Util)
 BuildRequires: perl(Module::Pluggable) >= 3.1
-BuildRequires: perl(PPI) >= 1.203
+BuildRequires: perl(PPI) >= 1.205
+BuildRequires: perl(PPI::Document) >= 1.205
+BuildRequires: perl(PPI::Document::File) >= 1.205
+BuildRequires: perl(PPI::Node) >= 1.205
+BuildRequires: perl(PPI::Token::Quote::Single) >= 1.205
+BuildRequires: perl(PPI::Token::Whitespace) >= 1.205
+BuildRequires: perl(Pod::PlainText)
+BuildRequires: perl(Pod::Select)
+BuildRequires: perl(Pod::Usage)
 BuildRequires: perl(Readonly) >= 1.03
-BuildRequires: perl(String::Format) >= 1.13 
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(String::Format) >= 1.13
+BuildRequires: perl(base)
+BuildRequires: perl(charnames)
+BuildRequires: perl(overload)
+BuildRequires: perl(strict)
 BuildRequires: perl(version)
-
-Requires: perl
-Requires: perl(B::Keywords)
-Requires: perl(Test::More)
-Requires: perl(Config::Tiny) >= 2
-Requires: perl(Exception::Class) >= 1.23
-Requires: perl(IO::String)
-Requires: perl(List::MoreUtils)
-Requires: perl(Module::Pluggable) >= 3.1
-Requires: perl(PPI) >= 1.203
-Requires: perl(Readonly) >= 1.03
-Requires: perl(String::Format) >= 1.13
-Requires: perl(version)
+BuildRequires: perl(warnings)
+# From yaml recommends
+BuildRequires: perl(Email::Address)
+BuildRequires: perl(File::HomeDir)
+BuildRequires: perl(File::Which)
+BuildRequires: perl(IPC::Open2)
+BuildRequires: perl(Perl::Tidy)
+BuildRequires: perl(Pod::Spell)
+BuildRequires: perl(Readonly::XS)
+BuildRequires: perl(Regexp::Parser)
+BuildRequires: perl(Term::ANSIColor)
+BuildRequires: perl(Text::ParseWords)
 
 %description
 Critique Perl source code for best-practices.
@@ -82,6 +107,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 1.104-1
+- Updated to version 1.104.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.098-1
 - Updated to version 1.098.
 
