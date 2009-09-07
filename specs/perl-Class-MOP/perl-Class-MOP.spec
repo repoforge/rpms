@@ -11,7 +11,7 @@
 
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
-Version: 0.91
+Version: 0.92
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -71,6 +71,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 0.92-1
+- Updated to version 0.92.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.91-1
 - Updated to version 0.91.
 
