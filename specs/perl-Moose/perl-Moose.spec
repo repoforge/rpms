@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 # Upstream: Stevan Little <stevan$iinteractive,com>
-# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,7 +10,7 @@
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
 Version: 0.89
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
@@ -26,7 +25,8 @@ BuildRequires: perl(Class::MOP) >= 0.92
 BuildRequires: perl(Data::OptList)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(List::MoreUtils) >= 0.12
-BuildRequires: perl(Scalar::Util) >= 1.19
+#BuildRequires: perl(Scalar::Util) >= 1.19
+BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Sub::Exporter) >= 0.980
 BuildRequires: perl(Sub::Name)
 BuildRequires: perl(Task::Weaken)
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 0.89-2
+- Remove version from Scalar::Util dependency
+
 * Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 0.89-1
 - Updated to version 0.89.
 
