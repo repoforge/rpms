@@ -9,8 +9,8 @@
 
 Summary: Control superclass method dispatch
 Name: perl-SUPER
-Version: 1.16
-Release: 2
+Version: 1.17
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SUPER/
@@ -19,8 +19,13 @@ Source: http://www.cpan.org/modules/by-module/SUPER/SUPER-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 #BuildRequires: perl(Test::Simple) >= 0.61
+BuildRequires: perl(Module::Build)
+# From yaml requires
+#BuildRequires: perl(Scalar::Util) >= 1.20
+BuildRequires: perl(Sub::Identify) >= 0.03
+BuildRequires: perl >= v5.6.2
+
 
 %description
 Control superclass method dispatch.
@@ -29,12 +34,13 @@ Control superclass method dispatch.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
+
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -49,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SUPER.pm
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 1.17-1
+- Updated to version 1.17.
+
 * Sun Aug 02 2009 Christoph Maser <cmr@financial.com> - 1.16-2
 - Comment out BuildRequires so build on el4 works.
 
