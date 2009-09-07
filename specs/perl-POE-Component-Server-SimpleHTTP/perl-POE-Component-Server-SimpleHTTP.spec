@@ -9,7 +9,7 @@
 
 Summary: Perl extension to serve HTTP requests in POE
 Name: perl-POE-Component-Server-SimpleHTTP
-Version: 1.58
+Version: 2.0
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,13 +19,24 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-SimpleHTT
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(LWP::ConnCache)
-BuildRequires: perl(LWP::UserAgent)
-BuildRequires: perl(POE::Component::Client::HTTP)
-BuildRequires: perl(POE::Component::SSLify)
+BuildRequires: perl(POE::Filter::HTTP::Parser) >= 0.02
 BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::POE::Client::TCP) >= 0.1
+# From yaml requires
+BuildRequires: perl(Carp)
+BuildRequires: perl(HTTP::Date)
+BuildRequires: perl(HTTP::Request)
+BuildRequires: perl(HTTP::Response)
+BuildRequires: perl(Moose) >= 0.81
+BuildRequires: perl(MooseX::AttributeHelpers)
+BuildRequires: perl(MooseX::POE) >= 0.205
+BuildRequires: perl(POE) >= 1.0000
+BuildRequires: perl(Socket)
+BuildRequires: perl(Storable)
+BuildRequires: perl(Sys::Hostname)
+BuildRequires: perl >= 5.6.0
 
 %description
 Perl extension to serve HTTP requests in POE.
@@ -62,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/SimpleHTTP.pm
 
 %changelog
+* Fri Sep  4 2009 Christoph Maser <cmr@financial.com> - 2.0-1
+- Updated to version 2.0.
+
 * Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.58-1
 - Updated to version 1.58.
 
