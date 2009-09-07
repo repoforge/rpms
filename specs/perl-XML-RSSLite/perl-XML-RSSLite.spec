@@ -9,7 +9,7 @@
 
 Summary: Lightweight, "relaxed" RSS (and XML-ish) parser
 Name: perl-XML-RSSLite
-Version: 0.11
+Version: 0.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/RSSLite.pm
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 0.15-1
+- Updated to version 0.15.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)
