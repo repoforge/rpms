@@ -9,7 +9,7 @@
 
 Summary: Asynchronous mail sending with POE
 Name: perl-POE-Component-Client-SMTP
-Version: 0.21
+Version: 0.22
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Module::Build)
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Carp)
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(POE) >= 0.26
+BuildRequires: perl(POE::Filter::Line)
+BuildRequires: perl(POE::Filter::Stream)
+BuildRequires: perl(POE::Filter::Transparent::SMTP) >= 0.2
+BuildRequires: perl(POE::Wheel::ReadWrite)
+BuildRequires: perl(POE::Wheel::SocketFactory)
+BuildRequires: perl(Socket)
+BuildRequires: perl(Symbol)
+BuildRequires: perl(Test::More)
 
 %description
 Asynchronous mail sending with POE.
@@ -59,6 +73,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Client/SMTP.pm
 
 %changelog
+* Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.21-1
 - Updated to version 0.21.
 
