@@ -1,4 +1,4 @@
-# $Id: lksctp-tools.spec 7464 2009-09-08 19:28:54Z shuff $
+# $Id$
 # Authority: shuff
 # Upstream: Sridhar Samudrala <sri$us,ibm,com>
 

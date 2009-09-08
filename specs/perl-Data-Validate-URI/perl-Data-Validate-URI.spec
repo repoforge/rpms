@@ -1,4 +1,4 @@
-# $Id: perl-Data-Validate-URI.spec 6205 2008-03-08 23:37:36Z shuff $
+# $Id$
 # Authority: shuff
 # Upstream: Richard Sonnen <sonnen$richardsonnen,com>
 

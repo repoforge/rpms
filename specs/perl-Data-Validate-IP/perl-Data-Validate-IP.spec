@@ -1,4 +1,4 @@
-# $Id: perl-Data-Validate-IP.spec 6205 2008-03-08 23:37:36Z shuff $
+# $Id$
 # Authority: shuff
 # Upstream: Neil A. Neely <neil$neely,cx>
 

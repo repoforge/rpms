@@ -1,4 +1,4 @@
-# $Id: perl-Config-Any.spec 7464 2009-07-15 13:43:54Z shuff $
+# $Id$
 # Authority: shuff
 # Upstream: Nate Wiger <nwiger$cpan,org>
 
