@@ -9,7 +9,7 @@
 
 Summary: Parse BIND zone files
 Name: perl-Net-DNS-ZoneFile-Fast
-Version: 1.11
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(IO::File)
+BuildRequires: perl(MIME::Base64)
+BuildRequires: perl(Net::DNS) >= 0.65
+BuildRequires: perl(Net::DNS::SEC) >= 0.15
+
 
 %description
 The Net::DNS::ZoneFile::Fast module provides an ability to parse zone
@@ -57,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/DNS/ZoneFile/Fast.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.12-1
+- Updated to version 1.12.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.11-1
 - Updated to version 1.11.
 
