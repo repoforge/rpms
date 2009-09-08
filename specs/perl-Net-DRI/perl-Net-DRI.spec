@@ -9,7 +9,7 @@
 
 Summary: Interface to Domain Name Registries/Registrars/Resellers
 Name: perl-Net-DRI
-Version: 0.92
+Version: 0.95
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml requires
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::Accessor)
+BuildRequires: perl(Class::Accessor::Chained)
+BuildRequires: perl(DateTime)
+BuildRequires: perl(DateTime::Duration)
+BuildRequires: perl(DateTime::Format::ISO8601) >= 0.06
+BuildRequires: perl(DateTime::Format::Strptime)
+BuildRequires: perl(DateTime::TimeZone)
+BuildRequires: perl(Email::Valid)
+BuildRequires: perl(IO::Socket::INET)
+BuildRequires: perl(IO::Socket::SSL) >= 0.90
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Time::HiRes)
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl(XML::LibXML)
+
 
 %description
 Net::DRI is a Perl library which offers a uniform API to access services
@@ -58,6 +75,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/DRI.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.95-1
+- Updated to version 0.95.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.92-1
 - Updated to version 0.92.
 
