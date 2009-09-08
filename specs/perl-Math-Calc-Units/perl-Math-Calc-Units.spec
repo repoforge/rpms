@@ -9,7 +9,7 @@
 
 Summary: Human-readable unit-aware calculator
 Name: perl-Math-Calc-Units
-Version: 1.06
+Version: 1.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/Calc/Units
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.07-1
+- Updated to version 1.07.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.06-1
 - Updated to release 1.06.
 
