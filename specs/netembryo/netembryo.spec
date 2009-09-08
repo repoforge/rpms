@@ -1,5 +1,6 @@
 # $Id$
 # Authority: shuff
+# Upstream: <LScube-devel$lscube,org>
 
 Summary: Netembryo network abstraction library
 Name: netembryo
