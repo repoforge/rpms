@@ -9,7 +9,7 @@
 
 Summary: E-mail handling
 Name: perl-Mail-Box
-Version: 2.090
+Version: 2.091
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,25 +20,27 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml requires
+BuildRequires: perl(Date::Format)
 BuildRequires: perl(Date::Parse)
 BuildRequires: perl(Digest::HMAC_MD5)
+%{?el5:BuildRequires: perl(Encode) >= 2.26}
 BuildRequires: perl(Errno)
-BuildRequires: perl(File::Remove)
+BuildRequires: perl(File::Remove) >= 0.20
 BuildRequires: perl(File::Spec) >= 0.7
-BuildRequires: perl(IO::Scalar) >= 2.110
-BuildRequires: perl(Mail::Address)
+BuildRequires: perl(IO::Scalar)
 BuildRequires: perl(MIME::Base64)
-BuildRequires: perl(MIME::Types)
-BuildRequires: perl(Object::Realize::Later)
+BuildRequires: perl(MIME::Types) >= 1.004
+BuildRequires: perl(Mail::Address)
+BuildRequires: perl(Object::Realize::Later) >= 0.14
 BuildRequires: perl(Scalar::Util) >= 1.13
 BuildRequires: perl(Sys::Hostname)
-BuildRequires: perl(Test::Harness)
-#BuildRequires: perl(Test::Harness) >= 2.62
+#BuildRequires: perl(TAP::Harness) >= 3.00
 BuildRequires: perl(Test::More) >= 0.47
-BuildRequires: perl(Test::Pod) >= 1
+BuildRequires: perl(Test::Pod) >= 1.00
 BuildRequires: perl(Time::Zone)
-BuildRequires: perl(User::Identity)
 BuildRequires: perl(URI) >= 1.23
+BuildRequires: perl(User::Identity) >= 0.90
 
 ### Missing provides from autoprov
 Provides: perl(Mail::Message::Body::Construct) = %{version}
@@ -81,6 +83,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 2.091-1
+- Updated to version 2.091.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.090-1
 - Updated to version 2.090.
 
