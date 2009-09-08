@@ -9,7 +9,7 @@
 
 Summary: MP3 playlist parser
 Name: perl-MP3-M3U-Parser
-Version: 2.23
+Version: 2.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml build_requires
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(Cwd)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(Text::Template)
+
 
 %description
 Parses M3U mp3 playlists and if wanted, exports the parsed data to
@@ -52,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MP3/M3U/Parser.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 2.24-1
+- Updated to version 2.24.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.23-1
 - Updated to version 2.23.
 
