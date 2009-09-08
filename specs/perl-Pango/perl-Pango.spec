@@ -8,7 +8,7 @@
 
 Summary: Layout and render international text
 Name: perl-Pango
-Version: 1.220
+Version: 1.221
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,6 +18,16 @@ Source: http://www.cpan.org/authors/id/T/TS/TSCH/Pango-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: pkgconfig
+BuildRequires: pango-devel
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Cairo) >= 1.000
+BuildRequires: perl(ExtUtils::Depends) >= 0.300
+BuildRequires: perl(ExtUtils::PkgConfig)
+BuildRequires: perl(Glib) >= 1.220
+
 
 %description
 Layout and render international text.
@@ -44,7 +54,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README copyright.pod examples/
+%doc AUTHORS LICENSE MANIFEST MANIFEST.SKIP META.yml NEWS README copyright.pod examples/
 %doc %{_mandir}/man3/Pango.3pm*
 %doc %{_mandir}/man3/Pango::*.3pm*
 %{perl_vendorarch}/auto/Pango/
@@ -52,5 +62,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Pango.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.221-1
+- Updated to version 1.221.
+
 * Sun May 10 2009 Unknown - 1.220-1
 - Initial package. (using DAR)
