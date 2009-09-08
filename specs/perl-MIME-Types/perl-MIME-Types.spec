@@ -9,7 +9,7 @@
 
 Summary: Definition of MIME types
 Name: perl-MIME-Types
-Version: 1.27
+Version: 1.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MIME/Types.pod
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.28-1
+- Updated to version 1.28.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.27-1
 - Updated to version 1.27.
 
