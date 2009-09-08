@@ -1,4 +1,4 @@
-# $Id: libnetembryo.spec 6653 2009-01-16 11:23:09Z shuff $
+# $Id$
 # Authority: shuff
 
 Summary: Netembryo network abstraction library
