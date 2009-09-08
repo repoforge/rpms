@@ -9,7 +9,7 @@
 
 Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
-Version: 3.19
+Version: 3.20
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Carp)
+BuildRequires: perl(Errno)
+BuildRequires: perl(Fcntl)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(IO::Select)
+BuildRequires: perl(IO::Socket)
+BuildRequires: perl(IO::Socket::INET) >= 1.26
+BuildRequires: perl(List::Util)
+BuildRequires: perl(MIME::Base64)
+BuildRequires: perl(Parse::RecDescent) >= 1.94
+BuildRequires: perl(Test::More)
+
 
 %description
 This module provides perl routines that simplify a sockets connection
@@ -57,6 +71,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/IMAPClient.pod
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 3.20-1
+- Updated to version 3.20.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 3.19-1
 - Updated to version 3.19.
 
