@@ -9,16 +9,18 @@
 
 Summary: Thin fast full interface to the libmemcached client API
 Name: perl-Memcached-libmemcached
-Version: 0.2101
+Version: 0.3102
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Memcached-libmemcached/
 
-Source: http://www.cpan.org/authors/id/T/TI/TIMB/Memcached-libmemcached-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/Memcached-libmemcached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: memcached
+Requires: memcached
 
 %description
 Thin fast full interface to the libmemcached client API.
@@ -42,7 +44,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO responses.txt
+%doc Changes MANIFEST META.yml
 %doc %{_mandir}/man3/Memcached::libmemcached.3pm*
 %doc %{_mandir}/man3/Memcached::libmemcached::*.3pm*
 %dir %{perl_vendorarch}/auto/Memcached/
@@ -52,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Memcached/libmemcached.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.3102-1
+- Updated to version 0.3102.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.2101-1
 - Initial package. (using DAR)
