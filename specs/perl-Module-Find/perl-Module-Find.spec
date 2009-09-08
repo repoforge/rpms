@@ -9,7 +9,7 @@
 
 Summary: Find and use installed modules in a (sub)category
 Name: perl-Module-Find
-Version: 0.06
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Module/Find.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.08-1
+- Updated to version 0.08.
+
 * Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 0.06-1
 - Updated to release 0.06.
 
