@@ -9,7 +9,7 @@
 
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
-Version: 1.104
+Version: 1.105
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -107,6 +107,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.105-1
+- Updated to version 1.105.
+
 * Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 1.104-1
 - Updated to version 1.104.
 
