@@ -9,7 +9,7 @@
 
 Summary: Framework for SIP and Voice Over IP
 Name: perl-Net-SIP
-Version: 0.53
+Version: 0.54
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Net::DNS) >= 0.56
+
 
 %description
 Framework SIP (Voice Over IP, RFC3261).
@@ -56,6 +58,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/SIP.pod
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.54-1
+- Updated to version 0.54.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.53-1
 - Updated to version 0.53.
 
