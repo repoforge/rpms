@@ -11,7 +11,7 @@
 
 Summary: Perl module that implements a Common Unix Printing System Interface
 Name: perl-Net-CUPS
-Version: 0.60
+Version: 0.61
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/CUPS.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.61-1
+- Updated to version 0.61.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.60-1
 - Updated to version 0.60.
 
