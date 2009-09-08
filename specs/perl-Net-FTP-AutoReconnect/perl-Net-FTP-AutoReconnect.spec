@@ -9,7 +9,7 @@
 
 Summary: FTP client class with automatic reconnect on failure
 Name: perl-Net-FTP-AutoReconnect
-Version: 0.2
+Version: 0.3
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml requires
+BuildRequires: perl(Fcntl)
+BuildRequires: perl(IO::Handle)
+BuildRequires: perl(Net::FTP)
+
 
 %description
 FTP client class with automatic reconnect on failure.
@@ -51,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/FTP/AutoReconnect.pm
 
 %changelog
+* Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.3-1
+- Updated to version 0.3.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 0.2-1
 - Initial package. (using DAR)
