@@ -2,14 +2,14 @@
 # Authority: cmr
 # Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
 # Needs libdbi
-# ExcludeDist: el4
+# ExcludeDist: el4 el3
 
 %define logdir %{_localstatedir}/log/icinga
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 0.8.2
-Release: 3
+Version: 0.8.3
+Release: 1
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -186,6 +186,9 @@ fi
 
 
 %changelog
+* Wed Sep 09 2009 Christoph Maser <cmr@financial.com> - 0.8.3-1
+- Update to version 0.8.3.
+
 * Thu Aug 27 2009 Christoph Maser <cmr@financial.com> - 0.8.2-3
 - fix dir name ndoutils -> idoutils
 
