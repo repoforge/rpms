@@ -9,7 +9,7 @@
 
 Summary: Lets you build groups of accessors
 Name: perl-Class-Accessor-Grouped
-Version: 0.08003
+Version: 0.09000
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,8 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.1
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::Inspector)
 BuildRequires: perl(MRO::Compat)
-BuildRequires: perl(Class::Inspector), perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Sub::Name) >= 0.04
+BuildRequires: perl(Sub::Identify)
 Requires: perl >= 1:5.6.1
 
 %description
@@ -31,7 +35,7 @@ Lets you build groups of accessors.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -54,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Grouped.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.09000-1
+- Updated to version 0.09000.
+
 * Wed May 13 2009 Dag Wieers <dag@wieers.com> - 0.08003-1
 - Updated to release 0.08003.
 
