@@ -9,12 +9,15 @@
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
 Version: 2.6
-Release: 3
+Release: 4
 License: GPL
 Group: Applications/Internet
 URL: http://denyhosts.sourceforge.net/
 
 Source: http://dl.sf.net/denyhosts/%{real_name}-%{version}.tar.gz
+
+Patch0: denyhosts-2.6-regex.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -31,6 +34,7 @@ logins.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1
 
 %build
 %{__python} setup.py build
@@ -70,6 +74,11 @@ fi
 /etc/init.d/denyhosts
 
 %changelog
+* Wed Sep 09 2009 Steve Huff <shuff_@_hmdc.harvard.edu> - 2.6-4
+- imported regex security patch from Fedora
+  https://bugzilla.redhat.com/show_bug.cgi?id=244943
+  http://www.ossec.net/main/attacking-log-analysis-tools#denyhosts
+
 * Tue Dec 18 2007 Laurence Hurst <l.a.hurst@lboro.ac.uk> - 2.6-3
 - run chkconfig on the newly installed init script upon install and uninstall.
 
