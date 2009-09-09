@@ -9,7 +9,7 @@
 
 Summary: Write lzop files/buffers
 Name: perl-IO-Compress-Lzop
-Version: 2.020
+Version: 2.021
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Compress::LZO)
+BuildRequires: perl(IO::Compress::Base) >= 2.021
+BuildRequires: perl(IO::Uncompress::Base) >= 2.021
+
 
 %description
 Write and read Lzop files of buffers.
@@ -52,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 2.021-1
+- Updated to version 2.021.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.020-1
 - Updated to version 2.020.
 
