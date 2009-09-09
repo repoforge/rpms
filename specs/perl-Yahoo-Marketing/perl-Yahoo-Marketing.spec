@@ -9,7 +9,7 @@
 
 Summary: Interface for Yahoo! Search Marketing's Web Services
 Name: perl-Yahoo-Marketing
-Version: 5.10
+Version: 5.21
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -31,7 +31,7 @@ BuildRequires: perl(SOAP::Lite) >= 0.66
 BuildRequires: perl(Scalar::Util) >= 1.01
 BuildRequires: perl(Test::Class) >= 0.10
 BuildRequires: perl(Test::More) 
-#BuildRequires: perl(Test::Simple) >= 0.60
+BuildRequires: perl(Test::Simple)
 BuildRequires: perl(XML::XPath) >= 1.10
 BuildRequires: perl(YAML) >= 0.01
 Requires: perl >= 1:5.6.1
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Yahoo/Marketing.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 5.21-1
+- Updated to version 5.21.
+
 * Tue Jul 28 2009 Christoph Maser <cmr@financial.com> - 5.10-1
 - Updated to version 5.10.
 
