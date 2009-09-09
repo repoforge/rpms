@@ -9,7 +9,7 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.46
+Version: 0.50
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Locale::Maketext::Simple)
+BuildRequires: perl(Module::Load::Conditional)
+BuildRequires: perl(Params::Check) >= 0.20
+BuildRequires: perl(Test::More)
 
 %description
 Allows for the searching and execution of any binary on your system.
@@ -52,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.50-1
+- Updated to version 0.50.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.46-1
 - Updated to version 0.46.
 
