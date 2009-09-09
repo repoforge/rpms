@@ -9,7 +9,7 @@
 
 Summary: Low-Level Interface to bzip2 compression library
 Name: perl-Compress-Raw-Bzip2
-Version: 2.020
+Version: 2.021
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Compress/Raw/Bzip2.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 2.021-1
+- Updated to version 2.021.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 2.020-1
 - Updated to version 2.020.
 
