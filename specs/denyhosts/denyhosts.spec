@@ -74,7 +74,7 @@ fi
 /etc/init.d/denyhosts
 
 %changelog
-* Wed Sep 09 2009 Steve Huff <shuff_@_hmdc.harvard.edu> - 2.6-4
+* Wed Sep 09 2009 Steve Huff <shuff@vecna.org> - 2.6-4
 - imported regex security patch from Fedora
   https://bugzilla.redhat.com/show_bug.cgi?id=244943
   http://www.ossec.net/main/attacking-log-analysis-tools#denyhosts
