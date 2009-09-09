@@ -9,7 +9,7 @@
 
 Summary: Kwiki plugin for page archival using RCS
 Name: perl-Kwiki-Archive-Rcs
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Kwiki) >= 0.38
+Requires: perl >= 5.6.1
+
 
 %description
 Kwiki plugin for page archival using RCS.
@@ -53,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Kwiki/Archive/Rcs.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Thu May 03 2007 Dag Wieers <dag@wieers.com> - 0.15-1
 - Initial package. (using DAR)
