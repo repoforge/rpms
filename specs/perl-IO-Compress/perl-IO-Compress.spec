@@ -9,8 +9,8 @@
 
 Summary: IO Interface to compressed data files/buffers
 Name: perl-IO-Compress
-Version: 2.020
-Release: 2
+Version: 2.021
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Compress/
@@ -65,6 +65,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 2.021-1
+- Updated to version 2.021.
+
 * Sat Jul 04 2009 Chritoph Maser <cmr@financial.com> - 2.020-2
 - Obsoletes perl-Compress-Zlib, perl-IO-Compress-Zlib
 
