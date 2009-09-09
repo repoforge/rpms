@@ -9,7 +9,7 @@
 
 Summary: Retrieve the Mandarin(PinYin) of Chinese character(HanZi)
 Name: perl-Lingua-Han-PinYin
-Version: 0.13
+Version: 0.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Lingua::Han::Utils) >= 0.10
+
 
 %description
 Retrieve the Mandarin(PinYin) of Chinese character(HanZi).
@@ -52,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Lingua/Han/PinYin.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.14-1
+- Updated to version 0.14.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.13-1
 - Updated to version 0.13.
 
