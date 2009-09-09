@@ -9,17 +9,18 @@
 
 Summary: Moose minus the antlers
 Name: perl-Mouse
-Version: 0.27
+Version: 0.28
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mouse/
 
-Source: http://www.cpan.org/authors/id/S/SA/SARTAK/Mouse-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUNNAVY/Mouse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.6.0
@@ -58,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Squirrel.pm
 
 %changelog
+* Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.28-1
+- Updated to version 0.28.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.27-1
 - Updated to version 0.27.
 
