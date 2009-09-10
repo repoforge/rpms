@@ -10,7 +10,7 @@
 Summary: Extract meta information from image files
 Name: perl-Image-Info
 Version: 1.29
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Info/
@@ -23,6 +23,9 @@ BuildRequires: perl >= 1:5.6.2
 BuildRequires: perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Test::More) >= 0.62
 Requires: perl >= 1:5.6.2
+
+# don't install without at least one of our XML modules
+Requires: perl-Image-Info-alternative = %{version}
 
 %description
 This Perl extention allows you to extract meta information from
@@ -56,6 +59,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Thu Sep 10 2009 Steve Huff <shuff@vecna.org> - 1.29-2
+- added dependency on perl-Image-Info-alternative
+  currently satisfied by perl-XML-LibXML >= 1.62
+  or perl-XML-Simple
+
 * Fri Aug  7 2009 Christoph Maser <cmr@financial.com> - 1.29-1
 - Updated to version 1.29.
 

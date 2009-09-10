@@ -13,7 +13,7 @@
 Summary: Interface to Gnome libxml2 xml parsing and DOM library
 Name: perl-XML-LibXML
 Version: 1.69
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML/
@@ -28,6 +28,8 @@ BuildRequires: perl(XML::NamespaceSupport)
 BuildRequires: perl(XML::SAX)
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 2:5.8.0
+
+Provides: perl-Image-Info-alternative = 1.29
 
 %description
 perl-XML-LibXML is a Perl module that implements binding for libxml2.
@@ -66,6 +68,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/LibXML.pod
 
 %changelog
+* Thu Sep 10 2009 Steve Huff <shuff_@_hmdc.harvard.edu> - 1.69-2
+- This provides perl-Image-Info-alternative = 1.29.
+
 * Tue May 26 2008 Christoph Maser <cmr@financial.com> - 1.69-1
 - Updated to release 1.69.
 
