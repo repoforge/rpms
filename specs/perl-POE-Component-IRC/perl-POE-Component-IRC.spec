@@ -9,7 +9,7 @@
 
 Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
-Version: 6.10
+Version: 6.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -82,6 +82,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Thu Sep 10 2009 Christoph Maser <cmr@financial.com> - 6.12-1
+- Updated to version 6.12.
+
 * Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 6.10-1
 - Updated to version 6.10.
 
