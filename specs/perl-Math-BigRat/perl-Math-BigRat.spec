@@ -9,7 +9,7 @@
 
 Summary: Arbitrary big rational numbers
 Name: perl-Math-BigRat
-Version: 0.23
+Version: 0.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/BigRat.pm
 
 %changelog
+* Thu Sep 10 2009 Christoph Maser <cmr@financial.com> - 0.24-1
+- Updated to version 0.24.
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.23-1
 - Updated to version 0.23.
 
