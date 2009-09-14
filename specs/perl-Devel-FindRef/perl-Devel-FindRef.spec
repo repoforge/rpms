@@ -8,7 +8,7 @@
 
 Summary: Perl module named Devel-FindRef
 Name: perl-Devel-FindRef
-Version: 1.42
+Version: 1.422
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -19,6 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(common::sense)
+
 
 %description
 perl-Devel-FindRef is a Perl module.
@@ -50,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Devel/FindRef.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 1.422-1
+- Updated to version 1.422.
+
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 1.42-1
 - Initial package. (using DAR)
