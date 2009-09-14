@@ -8,7 +8,7 @@
 
 Summary: Standardized logging facilities using Log::Message perl module
 Name: perl-Log-Message-Simple
-Version: 0.04
+Version: 0.06
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,8 +18,13 @@ Source: http://www.cpan.org/modules/by-module/Log/Log-Message-Simple-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Carp)
+BuildRequires: perl(Log::Message)
+BuildRequires: perl(Test::More)
+
 
 %description
 This module provides standardized logging facilities using the Log::Message
@@ -51,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Log/Message/Simple.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Updated to release 0.04.
 
