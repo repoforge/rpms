@@ -9,7 +9,7 @@
 
 Summary: Visitor style traversal of Perl data structures
 Name: perl-Data-Visitor
-Version: 0.25
+Version: 0.26
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,17 @@ Source: http://www.cpan.org/modules/by-module/Data/Data-Visitor-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Moose) >= 0.89
+BuildRequires: perl(Task::Weaken)
+BuildRequires: perl(Test::MockObject) >= 1.04
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::use::ok)
+BuildRequires: perl(Tie::ToObject) >= 0.01
+BuildRequires: perl(namespace::clean) >= 0.08
+
 
 %description
 Visitor style traversal of Perl data structures.
@@ -51,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Visitor.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.26-1
+- Updated to version 0.26.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.25-1
 - Updated to version 0.25.
 
