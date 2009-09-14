@@ -9,7 +9,7 @@
 
 Summary: Leo Charre's default debug subroutines
 Name: perl-LEOCHARRE-DEBUG
-Version: 1.12
+Version: 1.14
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Data::Dumper) >= 2
+#BuildRequires: perl(Term::ANSIColor) >= 1.10
+BuildRequires: perl(Term::ANSIColor)
+BuildRequires: perl(Test::Simple)
+
 
 %description
 Leo Charre's default debug subroutines.
@@ -50,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/LEOCHARRE/DEBUG.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 1.14-1
+- Updated to version 1.14.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 
