@@ -9,7 +9,7 @@
 
 Summary: Localization support for DateTime.pm
 Name: perl-DateTime-Locale
-Version: 0.43
+Version: 0.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Locale-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.006
 BuildRequires: perl(Module::Build)
+# From yaml requires
+BuildRequires: perl(Class::ISA)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Params::Validate) >= 0.91
+BuildRequires: perl >= 0:5.006
 Requires: perl >= 0:5.006
 
 %description
@@ -57,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.44-1
+- Updated to version 0.44.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.43-1
 - Updated to version 0.43.
 
