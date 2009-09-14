@@ -9,7 +9,7 @@
 
 Summary: Check validity of Internet email addresses
 Name: perl-Email-Valid
-Version: 0.181
+Version: 0.182
 Release: 1
 License: distributable
 Group: Applications/CPAN
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(Mail::Address)
+BuildRequires: perl(Net::DNS)
+BuildRequires: perl(Test::More)
+
 Requires: perl
 
 %description
@@ -52,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Valid.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.182-1
+- Updated to version 0.182.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 0.181-1
 - Updated to version 0.181.
 
