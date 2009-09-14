@@ -9,7 +9,7 @@
 
 Summary: Getopt::Long with usage text
 Name: perl-Getopt-Long-Descriptive
-Version: 0.074
+Version: 0.077
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,12 +54,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Getopt::Long::Descriptive.3pm*
+%doc %{_mandir}/man3/Getopt::Long::Descriptive::Usage.3pm*
 %dir %{perl_vendorlib}/Getopt/
 %dir %{perl_vendorlib}/Getopt/Long/
-#%{perl_vendorlib}/Getopt/Long/Descriptive/
+%{perl_vendorlib}/Getopt/Long/Descriptive/Usage.pm
 %{perl_vendorlib}/Getopt/Long/Descriptive.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.077-1
+- Updated to version 0.077.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.074-1
 - Updated to version 0.074.
 
