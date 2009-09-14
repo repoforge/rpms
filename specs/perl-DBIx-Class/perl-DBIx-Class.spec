@@ -11,7 +11,7 @@
 
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
-Version: 0.08108
+Version: 0.08111
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,23 +26,27 @@ BuildRequires: perl(Carp::Clan) >= 6
 BuildRequires: perl(Class::Accessor::Grouped) >= 0.08003
 BuildRequires: perl(Class::C3::Componentised) >= 1.0005
 BuildRequires: perl(Class::Inspector) >= 1.24
+BuildRequires: perl(Data::Page) >= 2
 BuildRequires: perl(DBD::SQLite) >= 1.25
 BuildRequires: perl(DBI) >= 1.605
-BuildRequires: perl(Data::Page) >= 2
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
 BuildRequires: perl(JSON::Any) >= 1.18
 BuildRequires: perl(List::Util)
-BuildRequires: perl(MRO::Compat) >= 0.09
 BuildRequires: perl(Module::Find) >= 0.06
+BuildRequires: perl(MRO::Compat) >= 0.09
 BuildRequires: perl(Path::Class) >= 0.16
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Scope::Guard) >= 0.03
 BuildRequires: perl(SQL::Abstract) >= 1.56
 BuildRequires: perl(SQL::Abstract::Limit) >= 0.13
 BuildRequires: perl(SQL::Translator) >= 0.09004
-BuildRequires: perl(Scalar::Util)
-BuildRequires: perl(Scope::Guard) >= 0.03
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Storable)
 #BuildRequires: perl(Test::Builder) >= 0.33
+#BuildRequires: perl(Test::Deep)
 BuildRequires: perl(Test::Exception)
+#BuildRequires: perl(Test::More) >= 0.92
 BuildRequires: perl(Test::Warn)
 Requires: perl >= 1:5.6.1
 Requires: perl(Carp::Clan) >= 6
@@ -102,6 +106,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Class.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.08111-1
+- Updated to version 0.08111.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.08108-1
 - Updated to version 0.08108.
 
