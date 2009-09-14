@@ -6,16 +6,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name ExtUtils-CBuilder
+%define real_version 0.260301
 
 Summary: Compile and link C code for Perl modules
 Name: perl-ExtUtils-CBuilder
-Version: 0.2603
+Version: 0.2603.01
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-CBuilder/
 
-Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-CBuilder-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-CBuilder-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,7 +33,7 @@ BuildRequires: perl(Text::ParseWords)
 With this perl module, you can compile and link C code for perl modules
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/CBuilder.pm
 
 %changelog
+* Mon Aug 14 2009 Christoph Maser <cmr@financial.com> - 0.2603.01-1
+- Updated to version 0.2603.01.
+
 * Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.2603-1
 - Updated to version 0.2603.
 
