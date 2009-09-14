@@ -9,7 +9,7 @@
 
 Summary: Perl extension for Generating 24 bit Images
 Name: perl-Imager
-Version: 0.67
+Version: 0.69
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,6 +26,9 @@ BuildRequires: libungif-devel
 BuildRequires: libtiff-devel
 BuildRequires: libjpeg-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Parse::RecDescent)
+
 
 %description
 Perl extension for Generating 24 bit Images.
@@ -60,6 +63,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Imager.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.69-1
+- Updated to version 0.69.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.67-1
 - Updated to version 0.67.
 
