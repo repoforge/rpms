@@ -6,7 +6,7 @@
 
 Summary: Typing tutor
 Name: klavaro
-Version: 1.2.2
+Version: 1.3.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -77,6 +77,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/icons/hicolor/*/apps/klavaro.png
 
 %changelog
+* Mon Sep 14 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.2.2-1
 - Updated to release 1.2.2.
 

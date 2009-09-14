@@ -16,16 +16,17 @@
 
 Summary: Graphics Layout Engine
 Name: gle
-Version: 4.2.0
+Version: 4.2.1
 Release: 1
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.gle-graphics.org/
 
-Source: http://dl.sf.net/glx/GLE-%{version}-src.zip
+Source: http://dl.sf.net/glx/gle-graphics-%{version}f-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, libpng-devel, libtiff-devel, ncurses-devel, zlib-devel
+BuildRequires: qt-devel
 BuildRequires: libstdc++-devel >= 3.0
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel}
@@ -41,15 +42,15 @@ simple looping structures. Current output formats include EPS, PS, PDF,
 JPEG, and PNG.
 
 %prep
-%setup -n gle4
+%setup -n gle-graphics-%{version}
 
 %build
 %configure
-%{__make} %{?_smp_mflags}
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR=%{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,11 +60,16 @@ JPEG, and PNG.
 %doc README.txt LICENSE.txt
 %doc %{_mandir}/man1/gle.1*
 %{_libdir}/pkgconfig/gle-graphics.pc
+%{_libdir}/libgle-graphics*.so
 %{_bindir}/gle
+%{_bindir}/qgle
 %{_bindir}/manip
-%{_datadir}/gle
+%{_datadir}/gle-graphics/
 
 %changelog
+* Mon Sep 14 2009 Dries Verachtert <dries@ulyssis.org> - 4.2.1-1
+- Updated to release 4.2.1.
+
 * Tue Apr 14 2009 Dries Verachtert <dries@ulyssis.org> - 4.2.0-1
 - Updated to release 4.2.0.
 

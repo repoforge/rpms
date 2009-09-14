@@ -2,15 +2,17 @@
 # Authority: dries
 # Upstream: Ricardo Garcia Gonzalez <sarbalap$gmail,com>
 
+%define real_version 2009.09.13
+
 Summary: Download videos from YouTube.com
 Name: youtube-dl
 Version: 0
-Release: 0.2009.05.30
+Release: 0.%{real_version}
 License: GPL
 Group: Applications/Internet
-URL: http://www.arrakis.es/~rggi3/youtube-dl/
+URL: http://bitbucket.org/rg3/youtube-dl/wiki/Home
 
-Source: http://www.arrakis.es/~rggi3/youtube-dl/youtube-dl
+Source: http://bitbucket.org/rg3/youtube-dl/get/%{real_version}.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -21,13 +23,13 @@ youtube-dl is a small command-line program for downloading videos from
 YouTube.com.
 
 %prep
-%setup -c -T
+%setup -n youtube-dl
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -p -m0755 -D %{SOURCE0} %{buildroot}%{_bindir}/youtube-dl
+%{__install} -p -m0755 -D youtube-dl %{buildroot}%{_bindir}/youtube-dl
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,6 +39,11 @@ YouTube.com.
 %{_bindir}/youtube-dl
 
 %changelog
+* Mon Jul 13 2009 Dries Verachtert <dries@ulyssis.org> - 2009.09.13-1
+- Updated to release 2009.09.13.
+- Source url now points to versioned tar ball from revision system => 
+  a unique name for each version.
+
 * Mon Jul 13 2009 Dries Verachtert <dries@ulyssis.org> - 2009.05.30-1
 - Updated to release 2009.05.30.
 

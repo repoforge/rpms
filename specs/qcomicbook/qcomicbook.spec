@@ -14,7 +14,7 @@
 
 Summary: Viewer for comic book archives
 Name: qcomicbook
-Version: 0.4.1
+Version: 0.4.3
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -35,18 +35,6 @@ mouse or keyboard navigation.
 %prep
 %setup
 
-%{__cat} <<EOF >%{name}.desktop
-[Desktop Entry]
-Name=qcomicbook
-Comment=Read comics
-Exec=qcomicbook
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=Application;AudioVideo;
-Encoding=UTF-8
-EOF
-
 %build
 %{expand: %%define optflags -O2}
 %configure
@@ -54,13 +42,7 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor rpmforge             \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -72,8 +54,12 @@ desktop-file-install --vendor rpmforge             \
 %{_bindir}/qcomicbook
 %{_datadir}/applications/*qcomicbook.desktop
 %{_datadir}/qcomicbook/
+%{_datadir}/pixmaps/qcomicbook.png
 
 %changelog
+* Mon Sep 14 2009 Dries Verachtert <dries@ulyssis.org> - 0.4.3-1
+- Updated to release 0.4.3.
+
 * Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 0.4.1-1
 - Updated to release 0.4.1.
 
