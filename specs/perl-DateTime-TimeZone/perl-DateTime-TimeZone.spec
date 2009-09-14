@@ -10,7 +10,7 @@
 
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
-Version: 0.93
+Version: 0.98
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DateTime/TimeZone/Local/Win32.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.98-1
+- Updated to version 0.98.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.93-1
 - Updated to version 0.93.
 
