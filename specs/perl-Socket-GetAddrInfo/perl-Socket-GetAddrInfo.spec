@@ -9,7 +9,7 @@
 
 Summary: RFC 2553's C<getaddrinfo> and C<getnameinfo> functions
 Name: perl-Socket-GetAddrInfo
-Version: 0.12
+Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,7 @@ BuildRequires: perl(Module::Build::Compat)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
+#BuildRequires: perl(Test::Warn)
 
 %description
 RFC 2553's C<getaddrinfo> and C<getnameinfo> functions.
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Socket/GetAddrInfo.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.12-1
 - Updated to version 0.12.
 
