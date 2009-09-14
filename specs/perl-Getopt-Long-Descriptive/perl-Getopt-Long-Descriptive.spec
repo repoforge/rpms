@@ -20,6 +20,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
+BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(List::Util)
+BuildRequires: perl(Params::Validate) >= 0.74
+BuildRequires: perl(Sub::Exporter)
+BuildRequires: perl(Test::More)
+
 
 %description
 Getopt::Long with usage text.
@@ -51,5 +60,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Getopt/Long/Descriptive.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.074-1
+- Updated to version 0.074.
+
 * Sat Jul 04 2009 Unknown - 0.074-1
 - Initial package. (using DAR)
