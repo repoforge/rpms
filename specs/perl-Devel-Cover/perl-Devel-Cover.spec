@@ -9,7 +9,7 @@
 
 Summary: Code coverage metrics for Perl
 Name: perl-Devel-Cover
-Version: 0.64
+Version: 0.65
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,15 +18,12 @@ URL: http://search.cpan.org/dist/Devel-Cover/
 Source: http://www.cpan.org/modules/by-module/Devel/Devel-Cover-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml requires
 BuildRequires: perl(Digest::MD5)
-BuildRequires: perl(Pod::Coverage) >= 0.06
-BuildRequires: perl(PPI::HTML) >= 1.07
 BuildRequires: perl(Storable)
-BuildRequires: perl(Template) >= 2.00
-BuildRequires: perl(Test::Differences)
-BuildRequires: perl-Tidy >= 20060719
-#BuildRequires: perl(Tidy) >= 20060719
+
 
 %description
 Devel-Cover module for perl.
@@ -66,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Devel/Cover/
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.65-1
+- Updated to version 0.65.
+
 * Fri May 02 2008 Dag Wieers <dag@wieers.com> - 0.64-1
 - Updated to release 0.64.
 
