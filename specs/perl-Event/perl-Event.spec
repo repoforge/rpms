@@ -9,7 +9,7 @@
 
 Summary: Generic Perl Event Loop
 Name: perl-Event
-Version: 1.11
+Version: 1.12
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test) >= 1
+
 
 %description
 This extension aims to provide an simple and optimized event loop for
@@ -53,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Event.pod
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 1.12-1
+- Updated to version 1.12.
+
 * Mon Jun 23 2008 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 
