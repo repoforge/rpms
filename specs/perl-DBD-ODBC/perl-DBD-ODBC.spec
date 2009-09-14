@@ -11,7 +11,7 @@
 
 Summary: Perl DBD module for interfacing with ODBC databases
 Name: perl-DBD-ODBC
-Version: 1.22
+Version: 1.23
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/DBD/ODBC.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 1.23-1
+- Updated to version 1.23.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 1.22-1
 - Updated to version 1.22.
 
