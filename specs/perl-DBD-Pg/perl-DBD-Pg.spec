@@ -9,7 +9,7 @@
 
 Summary: DBI PostgreSQL interface
 Name: perl-DBD-Pg
-Version: 2.14.1
+Version: 2.15.1
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,9 +38,9 @@ BuildRequires: perl(Perl::Critic)
 BuildRequires: perl(Pod::Spell)
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Pod::Coverage)
-BuildRequires: perl(Test::Warn)
-#BuildRequires: perl(Test::YAML::Meta)           <- missing
-#BuildRequires: perl(Text::SpellChecker)         <- missing
+#BuildRequires: perl(Test::Warn)		<- kills el4 build
+#BuildRequires: perl(Test::YAML::Meta)		<- missing
+#BuildRequires: perl(Text::SpellChecker)	<- missing
 BuildRequires: perl(Time::HiRes)
 BuildRequires: postgresql-devel
 Requires: postgresql
@@ -79,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 2.15.1-1
+- Updated to version 2.15.1.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 2.14.1-1
 - Updated to version 2.14.1.
 
