@@ -9,7 +9,7 @@
 
 Summary: Calculate distances
 Name: perl-Geo-Distance
-Version: 0.14
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl >= 5.8.3
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Math::Complex)
+
 Requires: perl >= 5.8.3
 
 %description
@@ -54,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/Distance.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.14-1
 - Updated to version 0.14.
 
