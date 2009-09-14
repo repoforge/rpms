@@ -9,7 +9,7 @@
 
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
-Version: 0.38
+Version: 0.40
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(CGI)
+BuildRequires: perl(Socket)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI::Escape)
+
 
 %description
 HTTP::Server::Simple is a very simple standalone HTTP daemon with no non-core
@@ -55,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Server/Simple.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.38-1
 - Updated to version 0.38.
 
