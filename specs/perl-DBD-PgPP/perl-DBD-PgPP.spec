@@ -9,7 +9,7 @@
 
 Summary: Perl module provides a pure Perl PostgreSQL driver for DBI
 Name: perl-DBD-PgPP
-Version: 0.06
+Version: 0.07
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(DBI) >= 1.59
+BuildRequires: perl(Test::More)
+
 
 %description
 perl-DBD-PgPP is a Perl module provides a pure Perl PostgreSQL driver for DBI.
@@ -49,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBD/PgPP.pm
 
 %changelog
+* Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.06-1
 - Updated to version 0.06.
 
