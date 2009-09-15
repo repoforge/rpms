@@ -6,7 +6,7 @@
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0
-Release: 1.2
+Release: 1.3
 License: GPL
 Group: Development/Tools
 URL: http://rpmforge.net/
@@ -116,6 +116,41 @@ RPM macros used by the RPMForge project.
 %%_without_nasm 1
 %%_without_quicktime 1
 %endif
+
+#==============================================================================
+# ---- Generic auto req/prov filtering macros
+#
+# http://fedoraproject.org/wiki/PackagingDrafts/AutoProvidesAndRequiresFiltering
+
+# prevent anything matching from being scanned for provides
+%%filter_provides_in(P) %%{expand: \\
+%%global __filter_prov_cmd %%{?__filter_prov_cmd} %%{__grep} -v %%{-P} '%%*' | \\
+}
+
+# prevent anything matching from being scanned for requires
+%%filter_requires_in(P) %%{expand: \\
+%%global __filter_req_cmd %%{?__filter_req_cmd} %%{__grep} -v %%{-P} '%%*' | \\
+}
+
+# filter anything matching out of the provides stream
+%%filter_from_provides() %%{expand: \\
+%%global __filter_from_prov %%{?__filter_from_prov} | %%{__sed} -e '%%*' \\
+}
+
+# filter anything matching out of the requires stream
+%%filter_from_requires() %%{expand: \\
+%%global __filter_from_req %%{?__filter_from_req} | %%{__sed} -e '%%*' \\
+}
+
+# actually set up the filtering bits 
+%%filter_setup %%{expand: \\
+%%global _use_internal_dependency_generator 0 \\
+%%global __deploop() while read FILE; do /usr/lib/rpm/rpmdeps -%%{1} \${FILE}; done | /bin/sort -u \\
+%%global __find_provides /bin/sh -c "%%{?__filter_prov_cmd} %%{__deploop P} %%{?__filter_from_prov}" \\
+%%global __find_requires /bin/sh -c "%%{?__filter_req_cmd}  %%{__deploop R} %%{?__filter_from_req}" \\
+}
+
+
 EOF
 
 %build
@@ -132,5 +167,8 @@ EOF
 %config %{_sysconfdir}/rpm/macros.rpmforge
 
 %changelog
+* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0-1.3
+- Add __find_provides/__find_requires filter macros from fedora
+
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0-1
 - Initial package. (using DAR)
