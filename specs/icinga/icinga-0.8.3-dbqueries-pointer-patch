@@ -1,0 +1,43 @@
+--- icinga-0.8.3/module/idoutils/src/dbqueries.c.orig	2009-09-15 08:27:22.000000000 +0200
++++ icinga-0.8.3/module/idoutils/src/dbqueries.c	2009-09-15 08:27:43.000000000 +0200
+@@ -1878,8 +1878,8 @@
+                                         *(char **) data[11],
+                                         *(char **) data[12],
+                                         *(int *) data[13],
+-                                        *(int *) data[14],
+-                                        *(int *) data[15],
++                                        *(char **) data[14],
++                                        *(char **) data[15],
+                                         *(int *) data[16],
+                                         *(char **) data[17],
+                                         *(char **) data[18],
+@@ -1933,8 +1933,8 @@
+                                         *(char **) data[11],
+                                         *(char **) data[12],
+                                         *(int *) data[13],
+-                                        *(int *) data[14],
+-                                        *(int *) data[15],
++                                        *(char **) data[14],
++                                        *(char **) data[15],
+                                         *(int *) data[16],
+                                         *(char **) data[17],
+                                         *(char **) data[18],
+@@ -1968,6 +1968,7 @@
+                                         *(unsigned long *) data[46],     /* update end */
+                                         *(unsigned long *) data[1]     /* unique constraint start/end */
+                         );
++
+                         /* send query to db */
+                         result = ndo2db_db_query(idi, query1);
+ 			free(query1);
+@@ -1991,8 +1992,8 @@
+                                         *(char **) data[11],
+                                         *(char **) data[12],
+                                         *(int *) data[13],
+-                                        *(int *) data[14],
+-                                        *(int *) data[15],
++                                        *(char **) data[14],
++                                        *(char **) data[15],
+                                         *(int *) data[16],
+                                         *(char **) data[17],
+                                         *(char **) data[18],
