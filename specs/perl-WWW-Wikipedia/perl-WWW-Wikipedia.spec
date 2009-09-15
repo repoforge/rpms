@@ -9,7 +9,7 @@
 
 Summary: Automated interface to the Wikipedia
 Name: perl-WWW-Wikipedia
-Version: 1.95
+Version: 1.96
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,9 +19,14 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Wikipedia-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More), perl(Text::Autoformat), perl(LWP::UserAgent), perl(CGI)
+BuildRequires: perl(Test::More)
+# From yaml requires
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Text::Autoformat)
+BuildRequires: perl(URI)
+
 
 %description
 Automated interface to the Wikipedia.
@@ -55,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Wikipedia.pm
 
 %changelog
+* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 1.96-1
+- Updated to version 1.96.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.95-1
 - Updated to version 1.95.
 
