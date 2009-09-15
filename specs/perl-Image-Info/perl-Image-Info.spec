@@ -27,6 +27,10 @@ Requires: perl >= 1:5.6.2
 # don't install without at least one of our XML modules
 Requires: perl-Image-Info-alternative = %{version}
 
+%filter_from_requires /^perl(XML.*/d
+%filter_setup
+
+
 %description
 This Perl extention allows you to extract meta information from
 various types of image files.
@@ -59,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Thu Sep 10 2009 Christoph Maser <cmr@financial.com> - 1.29-3
+- filter perl(XML* dependencies with %filter_from_requires
+
 * Thu Sep 10 2009 Steve Huff <shuff@vecna.org> - 1.29-2
 - added dependency on perl-Image-Info-alternative
   currently satisfied by perl-XML-LibXML >= 1.62
