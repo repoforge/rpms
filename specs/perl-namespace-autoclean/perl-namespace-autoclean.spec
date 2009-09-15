@@ -9,7 +9,7 @@
 
 Summary: Keep imports out of your namespace
 Name: perl-namespace-autoclean
-Version: 0.08
+Version: 0.09
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,10 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 # From yaml requires
-BuildRequires: perl(B::Hooks::EndOfScope) >= 0.07
-BuildRequires: perl(Class::MOP) >= 0.80
-BuildRequires: perl(List::Util)
-BuildRequires: perl(namespace::clean) >= 0.11
+Requires: perl(B::Hooks::EndOfScope) >= 0.07
+Requires: perl(Class::MOP) >= 0.80
+Requires: perl(List::Util)
+Requires: perl(namespace::clean) >= 0.11
 
 
 %description
@@ -56,5 +56,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/namespace/autoclean.pm
 
 %changelog
+* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0.09-1
+- Updated to version 0.09.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.08-1
 - Initial package. (using DAR)
