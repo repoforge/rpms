@@ -9,13 +9,13 @@
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 0.8.3
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
 
 Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
-#Source1: idoutils-init
+Patch0: icinga-0.8.3-dbqueries-pointer-patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel > 1.8
@@ -60,6 +60,7 @@ database storage via libdbi.
 
 %prep
 %setup
+%patch0 -p1
 
 # /usr/local/nagios is hardcoded in many places
 %{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' contrib/eventhandlers/submit_check_result
@@ -186,6 +187,10 @@ fi
 
 
 %changelog
+* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0.8.3-2
+- Apply patch from 
+  https://git.icinga.org/index?p=icinga-core.git;a=commit;h=068baf7bfc99a2a5a88b64d06df49d7395008b40
+
 * Wed Sep 09 2009 Christoph Maser <cmr@financial.com> - 0.8.3-1
 - Update to version 0.8.3.
 
