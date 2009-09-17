@@ -12,7 +12,7 @@
 
 Summary: code attribute introspection
 Name: perl-MooseX-MethodAttributes
-Version: 0.15
+Version: 0.16
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -79,5 +79,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.15-1
 - Initial package. (using DAR)
