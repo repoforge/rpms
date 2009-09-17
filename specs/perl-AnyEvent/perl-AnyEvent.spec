@@ -9,7 +9,7 @@
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 4.151
+Version: 5.2
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -27,22 +27,6 @@ BuildRequires: perl(Tk)
 
 %description
 AnyEvent provides a framework for multiple event loops.
-
-%package Qt
-Summary: Perl AnyEvent implementation for perl-Qt
-Group: Applications/CPAN
-Requires: %{name} = %{version}-%{release}
-
-%description Qt
-This subpackage contains the AnyEvent implementation for perl-Qt.
-
-%package Tk
-Summary: Perl AnyEvent implementation for perl-Tk
-Group: Applications/CPAN
-Requires: %{name} = %{version}-%{release}
-
-%description Tk
-This subpackage contains the AnyEvent implementation for perl-Tk.
 
 %package EV
 Summary: Perl AnyEvent implementation for perl-EV and libev
@@ -68,6 +52,30 @@ Requires: %{name} = %{version}-%{release}
 %description EventLib
 This subpackage contains the AnyEvent implementation for perl-Event-Lib.
 
+%package Glib
+Summary: Perl AnyEvent implementation for perl-Glib
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Glib
+This subpackage contains the AnyEvent implementation for perl-Glib
+
+%package IOAsync
+Summary: Perl AnyEvent implementation for perl-IOAsync
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description IOAsync
+This subpackage contains the AnyEvent implementation for perl-IOAsync
+
+%package Irssi
+Summary: Perl AnyEvent implementation for perl-Irssi
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Irssi
+This subpackage contains the AnyEvent implementation for perl-Irssi
+
 %package POE
 Summary: Perl AnyEvent implementation for perl-POE
 Group: Applications/CPAN
@@ -76,13 +84,21 @@ Requires: %{name} = %{version}-%{release}
 %description POE
 This subpackage contains the AnyEvent implementation for perl-POE.
 
-%package Glib
-Summary: Perl AnyEvent implementation for perl-Glib
+%package Qt
+Summary: Perl AnyEvent implementation for perl-Qt
 Group: Applications/CPAN
 Requires: %{name} = %{version}-%{release}
 
-%description Glib
-This subpackage contains the AnyEvent implementation for perl-Glib
+%description Qt
+This subpackage contains the AnyEvent implementation for perl-Qt.
+
+%package Tk
+Summary: Perl AnyEvent implementation for perl-Tk
+Group: Applications/CPAN
+Requires: %{name} = %{version}-%{release}
+
+%description Tk
+This subpackage contains the AnyEvent implementation for perl-Tk.
 
 
 %prep
@@ -109,16 +125,20 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %defattr(-, root, root, 0755)
 %doc COPYING Changes MANIFEST META.yml README eg/
 %doc %{_mandir}/man3/AnyEvent.3pm*
+%doc %{_mandir}/man3/AE.3pm*
 %doc %{_mandir}/man3/AnyEvent::*.3pm*
 %dir %{perl_vendorlib}/AnyEvent/
-%{perl_vendorlib}/AnyEvent/
+%{perl_vendorlib}/AnyEvent/*.pm
 %{perl_vendorlib}/AnyEvent/Intro.pod
 %{perl_vendorlib}/AnyEvent/Impl/Perl.pm
 %{perl_vendorlib}/AnyEvent.pm
+%{perl_vendorlib}/AE.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/EV.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/Event.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/Glib.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/IOAsync.pm
+%exclude %{perl_vendorlib}/AnyEvent/Impl/Irssi.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/POE.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/Qt.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
@@ -139,6 +159,14 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/Glib.pm
 
+%files IOAsync
+%dir %{perl_vendorlib}/AnyEvent/Impl/
+%{perl_vendorlib}/AnyEvent/Impl/IOAsync.pm
+
+%files Irssi
+%dir %{perl_vendorlib}/AnyEvent/Impl/
+%{perl_vendorlib}/AnyEvent/Impl/Irssi.pm
+
 %files POE
 %dir %{perl_vendorlib}/AnyEvent/Impl/
 %{perl_vendorlib}/AnyEvent/Impl/POE.pm
@@ -152,6 +180,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
 
 %changelog
+* Thu Sep 17 2009 Steve Huff <shuff@vecna.org> - 5.2-1
+- Updated to release 5.2.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 4.151-1
 - Updated to release 4.151.
 
