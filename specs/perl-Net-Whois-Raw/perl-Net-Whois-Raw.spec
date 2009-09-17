@@ -9,7 +9,7 @@
 
 Summary: Get Whois information for domains
 Name: perl-Net-Whois-Raw
-Version: 2.02
+Version: 2.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Whois/Raw.pm
 
 %changelog
+* Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 2.04-1
+- Updated to version 2.04.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 2.02-1
 - Updated to version 2.02.
 
