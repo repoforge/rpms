@@ -11,7 +11,7 @@
 
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
-Version: 1.267
+Version: 1.268
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 # From yaml build_requires
-BuildRequires: perl(POE::Test::Loops) => 1.021
+BuildRequires: perl(POE::Test::Loops) >= 1.022
 # From yaml requires
 BuildRequires: perl(Carp)
 BuildRequires: perl(Errno) >= 1.09
@@ -30,13 +30,14 @@ BuildRequires: perl(Exporter)
 BuildRequires: perl(File::Spec) >= 0.87
 #BuildRequires: perl(IO::Handle) >= 1.27
 #BuildRequires: perl(IO::Tty) >= 1.08
-BuildRequires: perl(POE::Test::Loops) >= 1.021
+BuildRequires: perl(POE::Test::Loops) >= 1.022
 BuildRequires: perl(POSIX) >= 1.02
 BuildRequires: perl(Socket) >= 1.7
 BuildRequires: perl(Storable) >= 2.16
 BuildRequires: perl(Test::Harness) >= 2.26
 # From yaml recommends
 BuildRequires: perl(Time::HiRes)
+
 
 
 %description
@@ -72,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE.pm
 
 %changelog
+* Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 1.268-1
+- Updated to version 1.268.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.267-1
 - Updated to version 1.267.
 
