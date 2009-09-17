@@ -9,7 +9,7 @@
 
 Summary: Emulate Class::Accessor::Fast behavior using Moose attributes
 Name: perl-MooseX-Emulate-Class-Accessor-Fast
-Version: 0.00902
+Version: 0.00903
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -64,5 +64,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Emulate/Class/Accessor/Fast/Meta/Role/Attribute.pm
 
 %changelog
+* Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 0.00903-1
+- Updated to version 0.00903.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.00902-1
 - Initial package. (using DAR)
