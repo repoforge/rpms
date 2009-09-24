@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
 # Upstream: Marc Lehmann <pcg$goof,com>
+# ExcludeDist: el3
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
 Version: 5.2
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent/
@@ -19,7 +20,7 @@ Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/AnyEvent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.8.1
 #BuildRequires: perl(Coro)
 BuildRequires: perl(Event)
 BuildRequires: perl(Glib)
@@ -180,6 +181,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
 
 %changelog
+* Thu Sep 24 2009 Steve Huff <shuff@vecna.org> - 5.2-2
+- This needs Perl 5.8.1; too bad for el3.
+
 * Thu Sep 17 2009 Steve Huff <shuff@vecna.org> - 5.2-1
 - Updated to release 5.2.
 
