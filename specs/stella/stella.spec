@@ -2,29 +2,25 @@
 # Authority: shuff
 # Upstream: Stephen Anthony <stephena$users,sf,net>
 
-%define name    stella
-%define version 3.0
-%define rel     1
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
-%define enable_gl 1
-%define enable_sound 1
-%define enable_debugger 1
-%define enable_joystick 1
-%define enable_cheats 1
-%define enable_static 0
+Summary: Atari 2600 Video Computer System emulator
+Name: stella
+Version: 3.0
+Release: 1
+License: GPL
+Group: Emulators
+URL: http://stella.sourceforge.net/
 
-%define release %rel
+Source: http://dl.sf.net/stella/stella-%{version}-src.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Summary:        An Atari 2600 Video Computer System emulator
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
-Group:          Emulators
-License:        GPL
-URL:            http://stella.sourceforge.net
-Source:         %{name}-%{version}-src.tar.gz
-BuildRoot:      %_tmppath/%name-%version-%release-root
-BuildRequires:  SDL-devel mesa-libGLU zlib-devel
+BuildRequires: SDL-devel
+BuildRequires: zlib-devel
+#%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
+%{?_without_modxorg:BuildRequires: XFree86-devel, xorg-x11-Mesa-libGLU}
+%{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
 
 %description
 The Atari 2600 Video Computer System (VCS), introduced in 1977, was the most
@@ -33,83 +29,44 @@ most Atari ROM images, so that you can play your favorite old Atari 2600 games
 on your PC.
 
 %prep
-
-%setup -q
+%setup
 
 %build
-export CXXFLAGS=$RPM_OPT_FLAGS
+export CXXFLAGS="%{optflags}"
 ./configure \
-%if %enable_gl
- --enable-gl \
-%else
- --disable-gl \
-%endif
-%if %enable_sound
- --enable-sound \
-%else
- --disable-sound \
-%endif
-%if %enable_debugger
- --enable-debugger \
-%else
- --disable-debugger \
-%endif
-%if %enable_joystick
- --enable-joystick \
-%else
- --disable-joystick \
-%endif
-%if %enable_cheats
- --enable-cheats \
-%else
- --disable-cheats \
-%endif
-%if %enable_static
- --enable-static \
-%else
- --enable-shared \
-%endif
- --prefix=/usr \
- --docdir=%{_docdir}/stella-%{version} \
- --x-libraries=%{_prefix}/X11R6/%{_lib}
-
-make
+    --prefix="%{_prefix}" \
+    --docdir="/rpm-doc" \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --enable-cheats \
+    --enable-debugger \
+    --enable-gl \
+    --enable-joystick \
+    --enable-shared \
+    --enable-sound
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
-make install-strip DESTDIR=%{buildroot}
-# Mandriva menu entries
-install -d -m0755 %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/%{name} << EOF
-?package(%{name}): command="stella" \
-icon="stella.png" \
-needs="x11" \
-title="Stella" \
-longtitle="A multi-platform Atari 2600 emulator" \
-section="More Applications/Emulators" \
-xdg="true"
-EOF
+### Move documentation back into pwd
+%{__mv} %{buildroot}/rpm-doc .
 
 %clean
-rm -rf $RPM_BUILD_ROOT
-rm -rf $RPM_BUILD_DIR/%{name}-%{version}
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
-%_bindir/*
-%{_menudir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%dir %{_docdir}/stella-%{version}
-%_docdir/stella-%{version}/*
-%_datadir/icons/%{name}.png
-%_datadir/icons/mini/%{name}.png
-%_datadir/icons/large/%{name}.png
+%defattr(-, root, root, 0755)
+%doc rpm-doc/*
+%{_bindir}/*
+%{_datadir}/applications/stella.desktop
+%{_datadir}/icons/stella.png
+%{_datadir}/icons/mini/stella.png
+%{_datadir}/icons/large/stella.png
 
 %changelog
-* Sat Sep 12 2009 Greg Bailey <gbailey@lxpro.com> 3.0-1
-- Modified for RHEL
-- Initial rpmforge package
+* Sat Sep 12 2009 Greg Bailey <gbailey@lxpro.com> - 3.0-1
+- Initial RPMforge package.
 
 * Fri Sep 11 2009 Stephen Anthony <stephena@users.sf.net> 3.0-1
 - Version 3.0 release
@@ -164,4 +121,3 @@ rm -rf $RPM_BUILD_DIR/%{name}-%{version}
 
 * Mon Aug 27 2007 Stephen Anthony <stephena@users.sf.net> 2.4.1-1
 - Version 2.4.1 release
-
