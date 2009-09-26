@@ -125,8 +125,8 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 %define real_version 1.0.0-rc1
-Version: 1.0.0
-Release: 0.rc1
+Version: 1.0.1
+Release: 0.1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -341,9 +341,14 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 
 ### Workaround to make -lX11 work on 64bit
 export LDFLAGS="-L/usr/X11R6/%{_lib}"
+export QTDIR="$(/usr/bin/pkg-config --variable=prefix QtGui)"
+export PATH="$QTDIR/bin:$PATH"
+export QTINC="$QTDIR/include"
+export QTLIB="$QTDIR/lib"
 %configure \
     --disable-dependency-tracking \
     --disable-rpath \
+    --disable-nls --disable-mozilla \
     --disable-static \
     --with-PIC \
     --enable-release \
@@ -422,6 +427,10 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 %install
 %{__rm} -rf %{buildroot} _docs
+export QTDIR="$(/usr/bin/pkg-config --variable=prefix QtGui)"
+export PATH="$QTDIR/bin:$PATH"
+export QTINC="$QTDIR/include"
+export QTLIB="$QTDIR/lib"
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 # Include the docs below, our way
@@ -470,6 +479,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Wed Jul 29 2009 Dag Wieers <dag@wieers.com> - 1.0.1-0.1
+- Updated to release 1.0.1.
+
 * Wed May 13 2009 Dag Wieers <dag@wieers.com> - 1.0.0-0.rc1
 - Updated to release 1.0.0-rc1.
 

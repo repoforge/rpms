@@ -8,10 +8,12 @@ Release: 3
 License: MPL
 Group: System Environment/Libraries
 URL: http://resare.com/libmp4v2/
+
 Source0: http://resare.com/libmp4v2/dist/libmp4v2-%{version}.tar.bz2
-# Only here to be in the source package, "just in case, and FYI"
+### Only here to be in the source package, "just in case, and FYI"
 Source1: http://resare.com/libmp4v2/mklibmp4v2/mklibmp4v2-r51.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gcc-c++
 
 %description
@@ -19,20 +21,18 @@ The libmp4v2 library provides an abstraction layer for working with files
 using the mp4 container format. This library is developed by mpeg4ip project
 and is an exact copy of the library distributed in the mpeg4ip package.
 
-
 %package devel
-Summary: Development files for the mp4v2 library
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-Development files and documentation needed to develop and compile programs
-using the libmp4v2 library.
-
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -q 
-
+%setup
 
 %build
 %configure \
@@ -40,36 +40,35 @@ using the libmp4v2 library.
     --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 %{__rm} -rf %{buildroot}%{_mandir}/manm/
 
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-
 %files
-%defattr(-,root,root,0755)
-%doc COPYING
-%{_bindir}/*
-%{_libdir}/*.so.*
+%defattr(-, root, root, 0755)
+%doc COPYING README TODO
+%{_bindir}/mp4art
+%{_bindir}/mp4dump
+%{_bindir}/mp4extract
+%{_bindir}/mp4info
+%{_bindir}/mp4tags
+%{_bindir}/mp4trackdump
+%{_libdir}/libmp4v2.so.*
 
 %files devel
-%defattr(-,root,root,0755)
-%doc README TODO INTERNALS API_CHANGES
-%{_includedir}/*.h
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_mandir}/man?/*
-
+%defattr(-, root, root, 0755)
+%doc API_CHANGES INTERNALS
+%doc %{_mandir}/man?/*
+%{_includedir}/mp4.h
+%{_libdir}/libmp4v2.so
+%exclude %{_libdir}/libmp4v2.la
 
 %changelog
 * Fri Dec 15 2006 Matthias Saou <http://freshrpms.net/> 1.5.0.1-3

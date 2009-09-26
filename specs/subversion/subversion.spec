@@ -28,14 +28,14 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.3
+Version: 1.6.5
 ### FC3 comes with release 1.1
 Release: 0.1
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
 
-Source0: http://subversion.tigris.org/tarballs/subversion-%{version}.tar.bz2
+Source0: http://subversion.tigris.org/downloads/subversion-%{version}.tar.bz2
 Source1: subversion.conf
 Source2: http://sqlite.org/sqlite-amalgamation-%{sqlite_version}.tar.gz
 Source3: filter-requires.sh
@@ -321,6 +321,12 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Wed Aug 26 2009 Dag Wieers <dag@wieers.com> - 1.6.5-0.1
+- Updated to release 1.6.5.
+
+* Wed Aug 12 2009 Dag Wieers <dag@wieers.com> - 1.6.4-0.1
+- Updated to release 1.6.4.
+
 * Wed Jun 24 2009 Dag Wieers <dag@wieers.com> - 1.6.3-0.1
 - Updated to release 1.6.3.
 

@@ -1,0 +1,488 @@
+diff -Naur HandBrake-0.9.3-pristine/gtk/src/Makefile.am HandBrake-0.9.3/gtk/src/Makefile.am
+--- HandBrake-0.9.3-pristine/gtk/src/Makefile.am	2008-11-09 12:12:00.000000000 -0700
++++ HandBrake-0.9.3/gtk/src/Makefile.am	2009-04-09 22:03:39.000000000 -0600
+@@ -4,28 +4,42 @@
+ 
+ #HB_LIBS=$(HB_DIR)/libhb/libhb.a -la52 -lmkv -lavformat -lavcodec -lavutil -ldca -ldvdread -lfaac -lmp3lame -lmpeg2 -lvorbis -lvorbisenc -logg -lsamplerate -lx264 -lxvidcore -lmp4v2 -lswscale -ltheora -lfaad -lz -lbz2 -lpthread
+ 
++#HB_LIBS=\
++#	$(HB_DIR)/libhb/libhb.a \
++#	$(HB_DIR)/contrib/lib/liba52.a \
++#	$(HB_DIR)/contrib/lib/libmkv.a \
++#	$(HB_DIR)/contrib/lib/libavformat.a \
++#	$(HB_DIR)/contrib/lib/libavcodec.a \
++#	$(HB_DIR)/contrib/lib/libavutil.a \
++#	$(HB_DIR)/contrib/lib/libdca.a \
++#	$(HB_DIR)/contrib/lib/libdvdread.a \
++#	$(HB_DIR)/contrib/lib/libfaac.a \
++#	$(HB_DIR)/contrib/lib/libmp3lame.a \
++#	$(HB_DIR)/contrib/lib/libmpeg2.a \
++#	$(HB_DIR)/contrib/lib/libvorbis.a \
++#	$(HB_DIR)/contrib/lib/libvorbisenc.a \
++#	$(HB_DIR)/contrib/lib/libogg.a \
++#	$(HB_DIR)/contrib/lib/libsamplerate.a \
++#	$(HB_DIR)/contrib/lib/libx264.a \
++#	$(HB_DIR)/contrib/lib/libxvidcore.a \
++#	$(HB_DIR)/contrib/lib/libmp4v2.a \
++#	$(HB_DIR)/contrib/lib/libswscale.a \
++#	$(HB_DIR)/contrib/lib/libtheora.a \
++#	$(HB_DIR_/contrib/lib/libfaad.a \
++#	-lz \
++#	-lbz2 \
++#	-lpthread
++
+ HB_LIBS=\
+ 	$(HB_DIR)/libhb/libhb.a \
+-	$(HB_DIR)/contrib/lib/liba52.a \
+-	$(HB_DIR)/contrib/lib/libmkv.a \
+ 	$(HB_DIR)/contrib/lib/libavformat.a \
+ 	$(HB_DIR)/contrib/lib/libavcodec.a \
+ 	$(HB_DIR)/contrib/lib/libavutil.a \
+ 	$(HB_DIR)/contrib/lib/libdca.a \
+-	$(HB_DIR)/contrib/lib/libdvdread.a \
+-	$(HB_DIR)/contrib/lib/libfaac.a \
+-	$(HB_DIR)/contrib/lib/libmp3lame.a \
+-	$(HB_DIR)/contrib/lib/libmpeg2.a \
+-	$(HB_DIR)/contrib/lib/libvorbis.a \
+-	$(HB_DIR)/contrib/lib/libvorbisenc.a \
+-	$(HB_DIR)/contrib/lib/libogg.a \
+-	$(HB_DIR)/contrib/lib/libsamplerate.a \
+-	$(HB_DIR)/contrib/lib/libx264.a \
+-	$(HB_DIR)/contrib/lib/libxvidcore.a \
+ 	$(HB_DIR)/contrib/lib/libmp4v2.a \
+ 	$(HB_DIR)/contrib/lib/libswscale.a \
+-	$(HB_DIR)/contrib/lib/libtheora.a \
+-	$(HB_DIR)/contrib/lib/libfaad.a \
++	-la52 -lmkv -ldvdread -lfaac -lmp3lame -lmpeg2 -lvorbis -lvorbisenc -logg \
++	-lsamplerate -lx264 -lxvidcore -ltheora -lfaad \
+ 	-lz \
+ 	-lbz2 \
+ 	-lpthread
+diff -Naur HandBrake-0.9.3-pristine/Jamfile HandBrake-0.9.3/Jamfile
+--- HandBrake-0.9.3-pristine/Jamfile	2008-09-21 13:16:40.000000000 -0600
++++ HandBrake-0.9.3/Jamfile	2009-04-09 22:03:55.000000000 -0600
+@@ -7,17 +7,25 @@
+ SubDir TOP ;
+ 
+ # libhb + contrib libraries
++#HANDBRAKE_LIBS = libhb.a
++#          contrib/lib/liba52.a        contrib/lib/libavformat.a
++#          contrib/lib/libavcodec.a    contrib/lib/libavutil.a
++#          contrib/lib/libdca.a        contrib/lib/libdvdread.a
++#          contrib/lib/libmp4v2.a      contrib/lib/libfaac.a
++#          contrib/lib/libmp3lame.a    contrib/lib/libmpeg2.a
++#          contrib/lib/libvorbis.a     contrib/lib/libvorbisenc.a
++#          contrib/lib/libogg.a        contrib/lib/libsamplerate.a
++#          contrib/lib/libx264.a       contrib/lib/libxvidcore.a
++#          contrib/lib/libmkv.a        contrib/lib/libswscale.a
++#          contrib/lib/theora.a        contrib/lib/libfaad.a ;
++
+ HANDBRAKE_LIBS = libhb.a
+-          contrib/lib/liba52.a        contrib/lib/libavformat.a
++          contrib/lib/libavformat.a
+           contrib/lib/libavcodec.a    contrib/lib/libavutil.a
+-          contrib/lib/libdca.a        contrib/lib/libdvdread.a
+-          contrib/lib/libmp4v2.a      contrib/lib/libfaac.a
+-          contrib/lib/libmp3lame.a    contrib/lib/libmpeg2.a
+-          contrib/lib/libvorbis.a     contrib/lib/libvorbisenc.a
+-          contrib/lib/libogg.a        contrib/lib/libsamplerate.a
+-          contrib/lib/libx264.a       contrib/lib/libxvidcore.a
+-          contrib/lib/libmkv.a        contrib/lib/libswscale.a
+-          contrib/lib/libtheora.a     contrib/lib/libfaad.a ;
++          contrib/lib/libdca.a
++          contrib/lib/libmp4v2.a
++          contrib/lib/libswscale.a
++          ;
+ 
+ if $(OS) = UNKNOWN
+ {
+diff -Naur HandBrake-0.9.3-pristine/libhb/Makefile HandBrake-0.9.3/libhb/Makefile
+--- HandBrake-0.9.3-pristine/libhb/Makefile	2008-10-15 17:44:38.000000000 -0600
++++ HandBrake-0.9.3/libhb/Makefile	2009-04-09 22:04:44.000000000 -0600
+@@ -29,20 +29,30 @@
+ OTMP = $(SRCS:%.c=%.o) 
+ OBJS = $(OTMP:%.cpp=%.o)
+ 
+-CONTRIBS = ../contrib/lib/liba52.a ../contrib/lib/libavformat.a \
++#CONTRIBS = ../contrib/lib/liba52.a ../contrib/lib/libavformat.a \
++#		   ../contrib/lib/libavcodec.a ../contrib/lib/libavutil.a \
++#		   ../contrib/lib/libdca.a ../contrib/lib/libdvdread.a  \
++#		   ../contrib/lib/libfaac.a ../contrib/lib/libmp3lame.a \
++#		   ../contrib/lib/libmpeg2.a ../contrib/lib/libmpeg2convert.a \
++#		   ../contrib/lib/libvorbis.a ../contrib/lib/libvorbisenc.a \
++#		   ../contrib/lib/libvorbisfile.a ../contrib/lib/libogg.a \
++#		   ../contrib/lib/libsamplerate.a ../contrib/lib/libx264.a \
++#		   ../contrib/lib/libxvidcore.a  ../contrib/lib/libmp4v2.a \
++#		   ../contrib/lib/libmkv.a ../contrib/lib/libswscale.a \
++#		   ../contrib/lib/libtheora.a ../contrib/lib/libfaad.a
++
++CONTRIBS = ../contrib/lib/libavformat.a \
+ 		   ../contrib/lib/libavcodec.a ../contrib/lib/libavutil.a \
+-		   ../contrib/lib/libdca.a ../contrib/lib/libdvdread.a  \
+-		   ../contrib/lib/libfaac.a ../contrib/lib/libmp3lame.a \
+-		   ../contrib/lib/libmpeg2.a ../contrib/lib/libmpeg2convert.a \
+-		   ../contrib/lib/libvorbis.a ../contrib/lib/libvorbisenc.a \
+-		   ../contrib/lib/libvorbisfile.a ../contrib/lib/libogg.a \
+-		   ../contrib/lib/libsamplerate.a ../contrib/lib/libx264.a \
+-		   ../contrib/lib/libxvidcore.a  ../contrib/lib/libmp4v2.a \
+-		   ../contrib/lib/libmkv.a ../contrib/lib/libswscale.a \
+-		   ../contrib/lib/libtheora.a ../contrib/lib/libfaad.a
+-		   
++		   ../contrib/lib/libdca.a \
++		   ../contrib/lib/libmp4v2.a \
++		   ../contrib/lib/libswscale.a
++
++SHARED = -la52 -ldvdread -lfaac -lmp3lame -lmpeg2 -lmpeg2convert -lvorbis \
++			-lvorbisenc -lvorbisfile -logg -lsamplerate -lx264 -lxvidcore \
++			-lmkv -ltheora -lfaad
++
+ ifeq ($(findstring CYGWIN_NT,$(SYSTEM)),CYGWIN_NT)
+-	CONTRIBS += ../contrib/lib/libz.a ../contrib/lib/libbz2.a
++	CONTRIBS += ../contrib/lib/libz.a ../contrib/lib/libbz2.a $(SHARED)
+ endif
+ 
+ CFLAGS += -I../contrib/include -D__LIBHB__ -DUSE_PTHREAD $(SYSDEF) -Wall -g -O3 -funroll-loops
+diff -Naur HandBrake-0.9.3-pristine/test/Makefile HandBrake-0.9.3/test/Makefile
+--- HandBrake-0.9.3-pristine/test/Makefile	2008-09-30 12:12:19.000000000 -0600
++++ HandBrake-0.9.3/test/Makefile	2009-04-09 22:05:21.000000000 -0600
+@@ -1,7 +1,10 @@
+ SYSTEM = $(shell uname -s)
+ 
+-LIBS = a52 mkv avformat avcodec avutil dca dvdread faac mp3lame mpeg2 vorbis \
+-	   vorbisenc ogg samplerate x264 xvidcore mp4v2 swscale theora faad
++#LIBS = a52 mkv avformat avcodec avutil dca dvdread faac mp3lame mpeg2 vorbis \
++#	   vorbisenc ogg samplerate x264 xvidcore mp4v2 swscale theora faad
++LIBS = avformat avcodec avutil dca mp4v2 swscale
++SLIBS = -la52 -lmkv -ldvdread -lfaac -lmp3lame -lmpeg2 -lvorbis -lvorbisenc \
++		-logg -lsamplerate -lx264 -lxvidcore -ltheora -lfaad
+ 
+ CYGLIBS = zlib bzip2
+ 
+@@ -15,7 +18,7 @@
+ 	LIBS2 += $(CYGLIBS:%=../contrib/lib/libz.a) $(CYGLIBS:%=../contrib/lib/libbz2.a)
+ endif
+ 
+-LDFLAGS += $(LIBS2) -lbz2 -ldl
++LDFLAGS += $(LIBS2) $(SLIBS) -lbz2 -ldl
+ 
+ ../HandBrakeCLI: test.c parsecsv.c $(LIBS2)
+ 	@CMD="$(CC) $(CFLAGS) -o test.o -c test.c"; $$CMD || \
+diff -Naur HandBrake-0.9.3-pristine/contrib/Jamfile HandBrake-0.9.3/contrib/Jamfile
+--- HandBrake-0.9.3-pristine/contrib/Jamfile	2009-07-27 18:03:32.000000000 +0200
++++ HandBrake-0.9.3/contrib/Jamfile	2009-07-27 18:06:20.000000000 +0200
+@@ -39,41 +39,6 @@
+     ( touch $(<) || true )
+ }
+ 
+-# liba52
+-rule LibA52
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibA52
+-{
+-
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf a52dec && (gzip -dc a52dec.tar.gz | tar xf -) && 
+-    cd a52dec && $(PATCH) -p1 < ../patch-a52dec.patch &&
+-    ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache && $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/liba52.a
+-}
+-Wget   $(SUBDIR)/a52dec.tar.gz : $(SUBDIR)/version_a52dec.txt ;
+-LibA52 $(SUBDIR)/lib/liba52.a  : $(SUBDIR)/a52dec.tar.gz ;
+-
+-# FAAD2
+-rule LibFaad2
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-
+-actions LibFaad2
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf faad2 && (gzip -dc faad2.tar.gz | tar xf -) &&
+-    cd faad2 && $(PATCH) -p1 < ../patch-faad2-libtool22.patch &&
+-    ./bootstrap && ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared && $(MAKE) && $(MAKE) install
+-}
+-Wget     $(SUBDIR)/faad2.tar.gz    : $(SUBDIR)/version_faad2.txt ;
+-LibFaad2 $(SUBDIR)/lib/libfaad.a : $(SUBDIR)/faad2.tar.gz ;
+-
+ # libavcodec
+ rule LibAvCodec
+ {
+@@ -173,90 +138,6 @@
+ Wget   $(SUBDIR)/libdca.tar.gz : $(SUBDIR)/version_libdca.txt ;
+ LibDCA $(SUBDIR)/lib/libdca.a  : $(SUBDIR)/libdca.tar.gz ;
+ 
+-# libdvdread
+-rule LibDvdRead
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-    
+-    if $(OS) = MACOSX
+-    {
+-        DVDREAD_PATCH = "$(PATCH) -p0 < ../patch-libdvdread-css-vlc-dylib.patch &&" ;
+-    }
+-	
+-    if $(OS) = CYGWIN
+-    {
+-        DVDREAD_PATCH = "$(PATCH) -p1 < ../patch-libdvdread-cygwin.patch &&" ;
+-    }
+-    
+-}
+-if $(CSS) = 1 # Include CSS support in libdvdread if requested
+-{
+-    actions LibDvdRead
+-    {
+-        cd `dirname $(>)` && CONTRIB=`pwd` &&
+-        rm -rf libdvdread && (gzip -dc libdvdread.tar.gz | tar xf - ) && 
+-        cd libdvdread &&
+-        ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared --with-libdvdcss=$CONTRIB &&
+-        $(MAKE) && $(MAKE) install &&
+-        $(STRIP) $CONTRIB/lib/libdvdread.a
+-    }
+-}
+-else {
+-    # Cygwin/Windows doesn't use CSS as of now, so don't include it on the
+-    # configure line.
+-    # MacOSX uses a dylib for CSS, so it doesn't need including there either.
+-    actions LibDvdRead
+-    {
+-        cd `dirname $(>)` && CONTRIB=`pwd` &&
+-        rm -rf libdvdread && (gzip -dc libdvdread.tar.gz | tar xf - ) &&
+-        cd libdvdread && $(DVDREAD_PATCH)
+-        ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared &&
+-        $(MAKE) && $(MAKE) install &&
+-        $(STRIP) $CONTRIB/lib/libdvdread.a
+-    }
+-}
+-Wget       $(SUBDIR)/libdvdread.tar.gz : $(SUBDIR)/version_libdvdread.txt ;
+-LibDvdRead $(SUBDIR)/lib/libdvdread.a  : $(SUBDIR)/libdvdread.tar.gz ;
+-
+-# libfaac
+-rule LibFaac
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-	if $(OS) = CYGWIN
+-    {
+-        CYGWIN_PATCH = "$(PATCH) -p1 < ../patch-faac-cygwin.patch &&" ;
+-    }
+-}
+-actions LibFaac
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf faac && (gzip -dc faac.tar.gz | tar xf - ) && cd faac && $(CYGWIN_PATCH) ./bootstrap &&
+-    ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared --enable-static --without-mp4v2 &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libfaac.a
+-}
+-Wget    $(SUBDIR)/faac.tar.gz   : $(SUBDIR)/version_faac.txt ;
+-LibFaac $(SUBDIR)/lib/libfaac.a : $(SUBDIR)/faac.tar.gz ;
+-
+-# libmp3lame
+-rule LibMp3Lame
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibMp3Lame
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf lame && (gzip -dc lame.tar.gz | tar xf - ) && cd lame &&
+-    ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libmp3lame.a
+-}
+-Wget       $(SUBDIR)/lame.tar.gz      : $(SUBDIR)/version_lame.txt ;
+-LibMp3Lame $(SUBDIR)/lib/libmp3lame.a : $(SUBDIR)/lame.tar.gz ;
+-
+ # libmp4v2
+ rule LibMp4v2
+ {
+@@ -275,182 +156,6 @@
+ Wget     $(SUBDIR)/libmp4v2.tar.gz : $(SUBDIR)/version_libmp4v2.txt ;
+ LibMp4v2 $(SUBDIR)/lib/libmp4v2.a : $(SUBDIR)/libmp4v2.tar.gz ;
+ 
+-rule LibMkv
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibMkv
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf libmkv && (gzip -dc libmkv.tar.gz | tar xf - ) && 
+-    cd libmkv &&
+-    ./configure --disable-shared --enable-static --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libmkv.a
+-}
+-Wget    $(SUBDIR)/libmkv.tar.gz : $(SUBDIR)/version_libmkv.txt ;
+-LibMkv  $(SUBDIR)/lib/libmkv.a  : $(SUBDIR)/libmkv.tar.gz ;
+-
+-# libmpeg2
+-rule LibMpeg2
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibMpeg2
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf mpeg2dec && (gzip -dc mpeg2dec.tar.gz | tar xf - ) && 
+-    cd mpeg2dec &&
+-    ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared --disable-sdl --without-x &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libmpeg2.a
+-}
+-Wget     $(SUBDIR)/mpeg2dec.tar.gz : $(SUBDIR)/version_mpeg2dec.txt ;
+-LibMpeg2 $(SUBDIR)/lib/libmpeg2.a  : $(SUBDIR)/mpeg2dec.tar.gz ;
+-
+-# libogg
+-rule LibOgg
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibOgg
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf libogg && (gzip -dc libogg.tar.gz | tar xf - ) && 
+-    cd libogg &&
+-    ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libogg.a
+-}
+-Wget   $(SUBDIR)/libogg.tar.gz : $(SUBDIR)/version_libogg.txt ;
+-LibOgg $(SUBDIR)/lib/libogg.a  : $(SUBDIR)/libogg.tar.gz ;
+-
+-# libsamplerate
+-rule LibSampleRate
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibSampleRate
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf libsamplerate && (gzip -dc libsamplerate.tar.gz | tar xf - ) && 
+-    cd libsamplerate &&
+-    ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libsamplerate.a
+-}
+-Wget          $(SUBDIR)/libsamplerate.tar.gz : $(SUBDIR)/version_libsamplerate.txt ;
+-LibSampleRate $(SUBDIR)/lib/libsamplerate.a  : $(SUBDIR)/libsamplerate.tar.gz ;
+-
+-# libvorbis
+-rule LibVorbis
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibVorbis
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf libvorbis && (gzip -dc libvorbis.tar.gz | tar xf - ) &&
+-    cd libvorbis &&
+-    ./configure --prefix=$CONTRIB --with-ogg=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libvorbis.a
+-}
+-Wget      $(SUBDIR)/libvorbis.tar.gz : $(SUBDIR)/version_libvorbis.txt ;
+-LibVorbis $(SUBDIR)/lib/libvorbis.a  : $(SUBDIR)/libvorbis.tar.gz ;
+-
+-rule LibVorbisEnc
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibVorbisEnc
+-{
+-    $(STRIP) $(<)
+-}
+-LibVorbisEnc $(SUBDIR)/lib/libvorbisenc.a : $(SUBDIR)/lib/libvorbis.a ;
+-
+-# libtheora
+-rule LibTheora
+-{
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibTheora
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` && rm -rf libtheora &&
+-    (gzip -dc libtheora.tar.gz | tar xf - ) && cd libtheora &&
+-    HAVE_PKG_CONFIG="no" && export HAVE_PKG_CONFIG &&
+-    ./configure --prefix=$CONTRIB --with-ogg=$CONTRIB --with-vorbis=$CONTRIB --cache-file=$CONTRIB/config.cache --disable-shared \
+-            --disable-oggtest --disable-vorbistest --disable-sdltest --disable-examples &&
+-    $(MAKE) && $(MAKE) install &&
+-    $(STRIP) $CONTRIB/lib/libtheora.a
+-}
+-Wget      $(SUBDIR)/libtheora.tar.gz : $(SUBDIR)/version_libtheora.txt ;
+-LibTheora $(SUBDIR)/lib/libtheora.a  : $(SUBDIR)/libtheora.tar.gz ;
+-
+-# libx264
+-rule LibX264
+-{
+-    LIBX264_PATCH = "" ;
+-    if $(OS) = CYGWIN
+-    {
+-        LIBX264_PATCH += "$(PATCH) -p1 < ../patch-x264-cygwin.patch && " ;
+-    }
+-    else if $(OS) = SOLARIS
+-    {
+-        LIBX264_PATCH += " $(PATCH) -p1 < ../patch-x264-solaris.patch && " ;
+-    }
+-    LIBX264_PATCH += "$(PATCH) -p0 < ../patch-x264-idr.patch && " ;
+-	Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibX264
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf x264 && (gzip -dc x264.tar.gz | tar xf - ) && 
+-    cd x264 && $(LIBX264_PATCH)
+-    bash ./configure --prefix=$CONTRIB --enable-pthread &&
+-    $(MAKE) libx264.a && cp libx264.a $CONTRIB/lib/ && cp x264.h $CONTRIB/include/ && $(STRIP) $CONTRIB/lib/libx264.a
+-}
+-Wget    $(SUBDIR)/x264.tar.gz   : $(SUBDIR)/version_x264.txt ;
+-LibX264 $(SUBDIR)/lib/libx264.a : $(SUBDIR)/x264.tar.gz ;
+-
+-# libxvidcore
+-rule LibXvidCore
+-{
+-    LIBXVIDCORE_PATCH = "" ;
+-    if $(OS) = MACOSX
+-    {
+-        LIBXVIDCORE_PATCH = "$(PATCH) -p1 < ../patch-xvidcore-macosx.patch && " ;
+-    }
+-    else if $(OS) = CYGWIN
+-    {
+-        LIBXVIDCORE_PATCH = "$(PATCH) -p1 < ../patch-xvidcore-cygwin.patch && " ;
+-    }
+-    LIBXVIDCORE_PATCH += "$(PATCH) -p1 < ../patch-xvidcore-nasm-2.00-configure.patch && " ;
+-    LIBXVIDCORE_PATCH += "$(PATCH) -p1 < ../patch-xvidcore-fdct.patch && " ;
+-    Depends $(<) : $(>) ;
+-    Depends lib  : $(<) ;
+-}
+-actions LibXvidCore
+-{
+-    cd `dirname $(>)` && CONTRIB=`pwd` &&
+-    rm -rf xvidcore && (gzip -dc xvidcore.tar.gz | tar xf - ) &&
+-    cd xvidcore && $(LIBXVIDCORE_PATCH)
+-    cd build/generic/ && ./configure --prefix=$CONTRIB --cache-file=$CONTRIB/config.cache && $(MAKE) libxvidcore.a &&
+-    cp ./=build/libxvidcore.a $CONTRIB/lib/ &&
+-    cp ../../src/xvid.h $CONTRIB/include/ &&
+-    $(STRIP) $CONTRIB/lib/libxvidcore.a
+-}
+-Wget        $(SUBDIR)/xvidcore.tar.gz   : $(SUBDIR)/version_xvidcore.txt ;
+-LibXvidCore $(SUBDIR)/lib/libxvidcore.a : $(SUBDIR)/xvidcore.tar.gz ;
+-
+ # zlib
+ if $(OS) = CYGWIN
+ {

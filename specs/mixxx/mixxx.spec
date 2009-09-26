@@ -12,13 +12,14 @@
 
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
-Version: 1.5.0
-Release: 2
+Version: 1.7.0
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/
 
-Source: http://dl.sf.net/mixxx/mixxx-%{version}.tar.gz
+#Source: http://dl.sf.net/mixxx/mixxx-%{version}.tar.gz
+Source: http://downloads.mixxx.org/mixxx-%{version}/mixxx-%{version}-src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
@@ -33,7 +34,8 @@ BuildRequires: libogg-devel
 BuildRequires: libsndfile-devel
 BuildRequires: libvorbis-devel
 BuildRequires: portaudio
-BuildRequires: qt-devel >= 3.0
+BuildRequires: qt4-devel >= 4.3
+BuildRequires: scons
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libXmu-devel, mesa-libGLU-devel}
 
@@ -64,17 +66,8 @@ Categories=Application;AudioVideo;
 EOF
 
 %build
-source "/etc/profile.d/qt.sh"
-# The PWD thing is an ugly hack since relative paths mess everything up...
-pushd src
-    ./configure \
-        --prefix="${PWD}%{_prefix}" \
-        --enable-alsa
-    %{__perl} -pi.orig -e "s|${PWD}||g" Makefile
-    # Ugly workaround to not have the docs installed
-    %{__perl} -pi.orig -e 's|install_readme install_licence install_copying install_manual ||g' Makefile
-    %{__make} %{?_smp_mflags}
-popd
+export QTDIR="$(pkg-config --variable=prefix QtCore)"
+scons
 
 %install
 %{__rm} -rf %{buildroot}
@@ -101,6 +94,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/applications/%{desktop_vendor}-mixxx.desktop
 
 %changelog
+* Wed Aug 12 2009 Dag Wieers <dag@wieers.com> - 1.7.0-1
+- Updated to release 1.7.0.
+
 * Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.5.0-2
 - Rebuild against portaudio-19.
 

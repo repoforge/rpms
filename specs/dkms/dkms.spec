@@ -10,13 +10,13 @@
 
 Summary: Dynamic Kernel Module Support Framework
 Name: dkms
-Version: 2.0.20.4
+Version: 2.0.22.0
 Release: 1
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux.dell.com/dkms/
 
-Source: http://linux.dell.com/dkms/dkms-%{version}.tar.gz
+Source: http://linux.dell.com/dkms/permalink/dkms-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -90,6 +90,9 @@ fi
 %{_sbindir}/dkms
 
 %changelog
+* Mon Aug 17 2009 Dag Wieers <dag@wieers.com> - 2.0.22.0-1
+- Updated to release 2.0.22.0.
+
 * Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 2.0.20.4-1
 - Updated to release 2.0.20.4.
 

@@ -4,7 +4,7 @@
 
 Summary: Quicktime for Linux
 Name: quicktime4linux
-Version: 2.0.4
+Version: 2.1
 Release: 1.2
 License: GPL
 Group: System Environment/Libraries
@@ -14,7 +14,7 @@ Source: http://dl.sf.net/heroines/quicktime4linux-%{version}-src.tar.bz2
 Patch: quicktime-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libmpeg3
+BuildRequires: libmpeg3, ffmpeg
 
 %description
 Quicktime 4 Linux was the first convenient way to read and write
@@ -30,7 +30,7 @@ for a consumer library should use OpenQuicktime or FFMPEG.
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+	CFLAGS="%{optflags} -I%{_includedir}/ffmpeg"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,8 +48,8 @@ for a consumer library should use OpenQuicktime or FFMPEG.
 %{_includedir}/quicktime/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.4-1.2
-- Rebuild for Fedora Core 5.
+* Tue Sep 13 2005 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
 
 * Fri Aug 13 2004 Dag Wieers <dag@wieers.com> - 2.0.4-1
 - Updated to release 2.0.4.

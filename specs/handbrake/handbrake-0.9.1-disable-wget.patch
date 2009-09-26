@@ -1,0 +1,16 @@
+#
+# Disable wget in the event that we made a mistake, we don't want to
+# automatically download source files
+#
+diff -Naur HandBrake-0.9.3-pristine/contrib/Jamfile HandBrake-0.9.3/contrib/Jamfile
+--- HandBrake-0.9.3-pristine/contrib/Jamfile	2008-10-27 17:29:19.000000000 -0600
++++ HandBrake-0.9.3/contrib/Jamfile	2009-03-29 10:34:37.000000000 -0600
+@@ -8,7 +8,7 @@
+ }
+ else
+ {
+-    WGET = wget -O ;
++    WGET = /bin/false ;
+ }
+ 
+ if $(OS) = UNKNOWN

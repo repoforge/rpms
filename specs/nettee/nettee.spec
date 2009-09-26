@@ -4,7 +4,7 @@
 
 Summary: Network "tee" program
 Name: nettee
-Version: 0.1.8
+Version: 0.1.9.1
 Release: 1
 License: GPL
 Group: Applications/Internet
@@ -25,7 +25,6 @@ database files.
 %build
 %{__cc} %{optflags} -D_LARGEFILE64_SOURCE -o nettee nettee.c
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -D -m0755 nettee %{buildroot}%{_bindir}/nettee
@@ -41,6 +40,9 @@ database files.
 %{_bindir}/nettee
 
 %changelog
+* Mon Jul 27 2009 Dag Wieers <dag@wieers.com> - 0.1.9.1-1
+- Updated to release 0.1.9.1.
+
 * Wed Jun 06 2007 Dag Wieers <dag@wieers.com> - 0.1.8-1
 - Updated to release 0.1.8.
 

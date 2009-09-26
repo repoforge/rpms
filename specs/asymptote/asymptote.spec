@@ -5,7 +5,7 @@
 Summary: Descriptive vector graphics language
 Name: asymptote
 Version: 1.26
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/Multimedia
 URL: http://asymptote.sourceforge.net/
@@ -42,8 +42,11 @@ StartupNotify=true
 Categories=Application;Office;
 EOF
 
+%{__perl} -pi.orig -e 's|<gc.h>|<gc/gc.h>|' configure memory.h
+
 %build
-%configure --enable-gc=system
+%configure \
+    --enable-gc="system"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,11 +60,8 @@ desktop-file-install --vendor rpmforge             \
 	%{name}.desktop
 %{__mv} %{buildroot}%{_docdir}/asymptote rpmdocs
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -78,6 +78,9 @@ desktop-file-install --vendor rpmforge             \
 %{_datadir}/applications/*-asymptote.desktop
 
 %changelog
+* Sun Jul 29 2007 Dag Wieers <dag@wieers.com> - 1.26-2
+- Build against libgc-7.0.
+
 * Fri Apr 20 2007 Dries Verachtert <dries@ulyssis.org> - 1.26-1
 - Updated to release 1.26.
 

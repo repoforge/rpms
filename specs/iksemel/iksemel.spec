@@ -12,7 +12,8 @@ URL: http://code.google.com/p/iksemel/
 Source: http://iksemel.googlecode.com/files/iksemel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gnutls-devel
+BuildRequires: gcc-c++
+BuildRequires: gnutls-devel
 
 %description
 This is an XML parser library mainly designed for Jabber applications.
@@ -34,15 +35,14 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -62,9 +62,7 @@ you will need to install %{name}-devel.
 %{_includedir}/iksemel.h
 %{_libdir}/libiksemel.so
 %{_libdir}/pkgconfig/iksemel.pc
-%exclude %{_libdir}/libiksemel.a
-%exclude %{_libdir}/*.la
-%exclude %{_infodir}/dir
+%exclude %{_libdir}/libiksemel.la
 
 %changelog
 * Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.4-1
@@ -72,9 +70,6 @@ you will need to install %{name}-devel.
 
 * Fri Jul 03 2007 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
-- Rebuild for Fedora Core 5.
 
 * Thu Dec 08 2005 Dries Verachtert <dries@ulyssis.org> - 1.2-1
 - Initial package.

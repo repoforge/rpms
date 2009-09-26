@@ -2,38 +2,54 @@
 # Authority: dag
 # Upstream: Linas Vepstas <linas$linas,org>
 
-Summary: Graphical Time Tracker
+Summary: Tracks and reports time spent
 Name: gnotime
-Version: 2.2.0
-Release: 1.2
+Version: 2.2.2
+Release: 1
 License: GPL
 Group: Applications/Productivity
 URL: http://gttr.sourceforge.net/
 
 Source: http://dl.sf.net/gttr/gnotime-%{version}.tar.gz
+Patch0: gnotime-qof-0.7.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgnome-devel >= 2.0, libgnomeui-devel >= 2.0.3, guile-devel
-#BuildRequires: gtkhtml3-devel >= 3.1.0
-# from configure output: checking for libgtkhtml-3.1 >= 3.0.0...
+BuildRequires: desktop-file-utils
+BuildRequires: gettext
 BuildRequires: gtkhtml3-devel
+BuildRequires: guile-devel
+BuildRequires: intltool
+BuildRequires: libgnome-devel >= 2.0
+BuildRequires: libgnomeui-devel >= 2.0.3
+BuildRequires: qof-devel >= 0.7.0
+BuildRequires: scrollkeeper
+BuildRequires: autoconf
+Requires: GConf2
+Requires: scrollkeeper
 
 %description
-The GNOME Time Tracker is a desktop utility for tracking the amount
-of time spent on projects, and generating configurable reports and
-invoices based on that time.
+A combination of stop-watch, diary, consultant billing system, and project
+manager.  Gnotime allows you to track the amount of time you spend on a task,
+associate a memo with it, set a billing rate, print an invoice, as well as
+track the status of other projects.
+
+Some people may remember Gnotime in its previous incarnations as GTT
+(Gnome Time Tracker) when it was part of the Gnome Utils package.  It has
+been split out, renamed, and greatly enhanced since then.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
+autoconf
 %configure \
-	--disable-schemas-install
+    --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}-2.0
 
 %clean
@@ -60,17 +76,14 @@ scrollkeeper-update -q || :
 #exclude %{_datadir}/gnome/help/gtt/
 %{_datadir}/omf/gnotime/
 %{_includedir}/gnotime/
-%exclude %{_libdir}/libqof.a
-%exclude %{_libdir}/libqof.la
-%{_libdir}/libqof.so.*
 %exclude %{_libdir}/libqofsql.a
 %exclude %{_libdir}/libqofsql.la
 %{_libdir}/libqofsql.so.*
 %exclude %{_localstatedir}/scrollkeeper/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1.2
-- Rebuild for Fedora Core 5.
+* Wed Feb 01 2006 Dag Wieers <dag@wieers.com> - 2.2.2-1
+- Updated to release 2.2.2.
 
 * Wed Apr 28 2004 Dag Wieers <dag@wieers.com> - 2.2.0-1
 - Updated to release 2.2.0.

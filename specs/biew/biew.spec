@@ -4,14 +4,14 @@
 
 Summary: Console hex viewer/editor with disassembler
 Name: biew
-%define real_version 5731
-Version: 5.7.3.1
+%define real_version 600
+Version: 6.0.0
 Release: 1
 License: GPL
 Group: Applications/Editors
 URL: http://biew.sourceforge.net/
 
-Source: http://dl.sf.net/biew/biew-%{real_version}.tar.bz2
+Source: http://dl.sf.net/biew/biew-%{real_version}-src.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExcludeArch: sparc sparc64
@@ -54,6 +54,9 @@ other features, making it invaluable for examining binary code.
 %{_datadir}/biew/
 
 %changelog
+* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 6.0.0-1
+- Updated to release 6.0.0.
+
 * Tue Feb 03 2009 Dag Wieers <dag@wieers.com> - 5.7.3.1-1
 - Updated to release 5.7.3.1-1
 

@@ -1,0 +1,29 @@
+--- libhb/muxmkv.c.orig	2009-07-27 16:45:12.000000000 +0200
++++ libhb/muxmkv.c	2009-07-27 16:44:40.000000000 +0200
+@@ -292,7 +292,7 @@
+                 *job->die = 1;
+             }
+             mk_addFrameData(m->file, mux_data->track, op->packet, op->bytes);
+-            mk_setFrameFlags(m->file, mux_data->track, timecode, 1);
++            mk_setFrameFlags(m->file, mux_data->track, timecode, 1, 0);
+             return 0;
+         }
+     }
+@@ -311,7 +311,7 @@
+                 *job->die = 1;
+             }
+             mk_addFrameData(m->file, mux_data->track, op->packet, op->bytes);
+-            mk_setFrameFlags(m->file, mux_data->track, timecode, 1);
++            mk_setFrameFlags(m->file, mux_data->track, timecode, 1, 0);
+             return 0;
+         }
+     }
+@@ -323,7 +323,7 @@
+     }
+     mk_addFrameData(m->file, mux_data->track, buf->data, buf->size);
+     mk_setFrameFlags(m->file, mux_data->track, timecode,
+-                     ((job->vcodec == HB_VCODEC_X264 && mux_data == job->mux_data) ? (buf->frametype == HB_FRAME_IDR) : ((buf->frametype & HB_FRAME_KEY) != 0)) );
++                     ((job->vcodec == HB_VCODEC_X264 && mux_data == job->mux_data) ? (buf->frametype == HB_FRAME_IDR) : ((buf->frametype & HB_FRAME_KEY) != 0)), 0 );
+     return 0;
+ }
+ 

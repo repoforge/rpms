@@ -7,7 +7,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.7.1
+Version: 4.8.0
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -128,6 +128,12 @@ fi
 %exclude %{_libdir}/libcollectdclient.la
 
 %changelog
+* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 4.8.0-1
+- Updated to release 4.8.0.
+
+* Wed Jul 29 2009 Dag Wieers <dag@wieers.com> - 4.7.2-1
+- Updated to release 4.7.2.
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 4.7.1-1
 - Updated to release 4.7.1.
 

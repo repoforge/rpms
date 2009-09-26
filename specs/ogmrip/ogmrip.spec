@@ -3,7 +3,7 @@
 
 Summary: DVD ripping and encoding graphical user interface
 Name: ogmrip
-Version: 0.11.2
+Version: 0.13.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
@@ -17,9 +17,9 @@ BuildRequires: enchant-devel
 BuildRequires: gcc-c++
 BuildRequires: GConf2-devel
 Buildrequires: gettext-devel
-BuildRequires: glib2-devel >= 2.6
+BuildRequires: glib2-devel >= 2.14
 BuildRequires: gocr-devel
-BuildRequires: gtk2-devel
+BuildRequires: gtk2-devel >= 2.14
 Buildrequires: hal-devel
 BuildRequires: intltool
 Buildrequires: libdvdread-devel
@@ -133,6 +133,12 @@ fi
 %exclude %{_libdir}/libogm*.la
 
 %changelog
+* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 0.13.1-1
+- Updated to release 0.13.1.
+
+* Fri Jul 17 2009 Dag Wieers <dag@wieers.com> - 0.13.0-1
+- Updated to release 0.13.0.
+
 * Tue Sep 30 2008 Dag Wieers <dag@wieers.com> - 0.11.2-1
 - Updated to release 0.11.2.
 

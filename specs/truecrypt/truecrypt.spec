@@ -14,7 +14,7 @@ License: TrueCrypt License 2.7
 Group: Applications/System
 URL: http://www.truecrypt.org/
 
-# http://www.truecrypt.org/download/transient/da3d62bda5/TrueCrypt 6.2a Source.tar.gz
+#http://www.truecrypt.org/download/transient/86ce1a8ea6/TrueCrypt%206.2%20Source.tar.gz
 Source0: truecrypt-%{version}-source.tar.gz
 
 # wget ftp://mirror.switch.ch/mirror/pkcs/pkcs-11/v2-20/*.h
@@ -87,7 +87,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 * Sun Jul 26 2009 Yury V. Zaytsev <yury@shurup.com> - 6.2a-1
 - Bumped to the new version and fixed missing PKCS includes
 
-* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 6.2-1 - 6477+/dag
+* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 6.2-1
 - Updated to release 6.2.
 
 * Tue Dec 02 2008 Dag Wieers <dag@wieers.com> - 6.1a-1

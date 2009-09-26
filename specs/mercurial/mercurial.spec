@@ -69,7 +69,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/hgk
 
 %changelog
-* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.1-1
+* Mon Jul 27 2009 Dag Wieers <dag@wieers.com> - 1.3.1-1
 - Updated to release 1.3.1.
 
 * Sat Jul 11 2009 Dries Verachtert <dries@ulyssis.org> - 1.3-1

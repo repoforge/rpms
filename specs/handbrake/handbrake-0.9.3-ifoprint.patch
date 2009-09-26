@@ -1,0 +1,15 @@
+diff -Naur HandBrake-0.9.3-pristine/libhb/dvd.c HandBrake-0.9.3/libhb/dvd.c
+--- HandBrake-0.9.3-pristine/libhb/dvd.c	2008-10-23 13:23:35.000000000 -0600
++++ HandBrake-0.9.3/libhb/dvd.c	2009-03-30 01:58:06.000000000 -0600
+@@ -165,11 +165,6 @@
+         goto fail;
+     }
+ 
+-    if( global_verbosity_level == 3 )
+-    {
+-        ifoPrint( d->reader, title->vts );
+-    }
+-
+     /* Position of the title in the VTS */
+     title->ttn = d->vmg->tt_srpt->title[t-1].vts_ttn;
+ 

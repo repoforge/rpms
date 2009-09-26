@@ -58,8 +58,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Regexp/Parser/Handlers.pm
 %{perl_vendorlib}/Regexp/Parser/Objects.pm
 
-
-
 %changelog
 * Mon Sep 07 2009 Christoph Maser <cmr@financial.com> - 0.20-3
 - another missing provides 

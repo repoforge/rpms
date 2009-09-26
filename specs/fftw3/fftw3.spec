@@ -5,7 +5,7 @@
 
 Summary: Fast Fourier Transform library
 Name: fftw3
-Version: 3.1.1
+Version: 3.2.2
 Release: 1
 License: GPL
 Group: System Environment/Libraries
@@ -37,21 +37,22 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-shared \
-	--enable-threads \
-	--enable-i386-hacks
+    --disable-static \
+    --enable-shared \
+    --enable-threads \
+    --enable-i386-hacks
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 ### Clean up docs
 %{__rm} -f doc/Makefile*
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la \
-		%{buildroot}%{_infodir}/dir
+        %{buildroot}%{_infodir}/dir
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -68,22 +69,29 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT NEWS README* TODO
-%{_libdir}/*.so.*
+%{_libdir}/libfftw3.so.*
+%{_libdir}/libfftw3_threads.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*.pdf doc/FAQ/fftw-faq.html/ doc/html/
-%doc %{_mandir}/man?/*
-%doc %{_infodir}/*.info*
-%{_bindir}/*
-%{_includedir}/*.h
-%{_includedir}/*.f
-%{_libdir}/*.a
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
-#exclude %{_libdir}/*.la
+%doc %{_infodir}/fftw3.info*
+%doc %{_mandir}/man1/fftw-wisdom.1*
+%doc %{_mandir}/man1/fftw-wisdom-to-conf.1*
+%{_bindir}/fftw-wisdom
+%{_bindir}/fftw-wisdom-to-conf
+%{_includedir}/fftw3.f
+%{_includedir}/fftw3.h
+%{_libdir}/libfftw3.so
+%{_libdir}/libfftw3_threads.so
+%{_libdir}/pkgconfig/fftw3.pc
+#exclude %{_libdir}/fftw3.la
+#exclude %{_libdir}/fftw3_threads.la
 
 %changelog
+* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 3.2.2-1
+- Updated to release 3.2.2.
+
 * Sun Mar 19 2006 Dag Wieers <dag@wieers.com> - 3.1.1-1
 - Updated to release 3.1.1.
 

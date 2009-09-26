@@ -32,6 +32,8 @@
 %{?el4:%define _without_glide 1}
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_modxorg 1}
+### We don't want to build a VLC without graphical interface
+#{?el4:#define _without_qt4 1}
 %{?el4:%define _without_sysfs 1}
 #{?el4:#define _without_theora 1}
 
@@ -43,6 +45,8 @@
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_modxorg 1}
+### We don't want to build a VLC without graphical interface
+#{?el3:#define _without_qt4 1}
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
 
@@ -57,7 +61,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.9.9a
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -69,7 +73,7 @@ Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch4: ffmpeg-20080225-asmreg.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: autoconf
+BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: gcc-c++
 BuildRequires: gnutls-devel
@@ -105,6 +109,7 @@ BuildRequires: libxml2-devel
 %{!?_without_esd:BuildRequires: esound-devel}
 %{!?_without_faad2:BuildRequires: faad2-devel >= 2.5}
 %{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
+%{?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 %{!?_without_flac:BuildRequires: flac-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
@@ -123,7 +128,9 @@ BuildRequires: libxml2-devel
 %{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
 %{!?_without_ncurses:BuildRequires: ncurses-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
+%{!?_without_opencv:BuildRequires: opencv-devel}
 %{!?_without_portaudio:BuildRequires: portaudio-devel}
+%{!?_without_qt4:BuildRequires: qt4-devel}
 %{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel}
 %{!?_without_shout:BuildRequires: libshout-devel >= 2.2.2}
 %{!?_without_smb:BuildRequires: samba-common}
@@ -153,7 +160,7 @@ Available rpmbuild rebuild options :
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwidgets xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
           gnomevfs vcd daap upnp pvr live portaudio avahi hal glide
-          ncurses
+          ncurses qt4 opencv
 
 Options that would need not yet existing add-on packages :
 --with loader ggi tarkin tremor
@@ -199,7 +206,6 @@ IPv4 or IPv6 on a high-bandwidth network.
 %{__perl} -pi -e 's|\bgsm.h|gsm/gsm.h|g' ffmpeg-%{ffmpeg_date}/configure ffmpeg-%{ffmpeg_date}/libavcodec/libgsm.c
 
 %build
-source /etc/profile.d/qt.sh
 export CFLAGS="%{optflags}"
 
 ### Build bundeled ffmpeg first
@@ -266,7 +272,6 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
     --disable-dependency-tracking \
     --disable-rpath \
     --disable-static \
-    --with-PIC \
     --enable-release \
 %{?_without_a52:--disable-a52} \
 %{!?_without_aa:--enable-aa} \
@@ -313,6 +318,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_opencv:--enable-opencv} \
 %{!?_without_portaudio:--enable-portaudio} \
 %{?_with_pth:--enable-pth} \
+%{?_without_qt4:--disable-qt4 --disable-skins2} \
     --enable-pulse \
 %{!?_without_pvr:--enable-pvr} \
     --enable-real \
@@ -344,7 +350,6 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 
 %install
 %{__rm} -rf %{buildroot} _docs
-source /etc/profile.d/qt.sh
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 # Include the docs below, our way
@@ -393,6 +398,9 @@ source /etc/profile.d/qt.sh
 %endif
 
 %changelog
+* Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-3
+- Rebuild with minor fixed. (David Ward)
+
 * Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-2
 - Rebuild against portaudio-19.
 

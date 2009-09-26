@@ -51,7 +51,7 @@ handle the Unicode character set but are not 8-bit safe, and when debugging.
 %{_bindir}/uni2ascii
 
 %changelog
-* Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 4.14-1
+* Wed Aug 12 2009 Dag Wieers <dag@wieers.com> - 4.14-1
 - Updated to release 4.14.
 
 * Sun Apr 26 2009 Dries Verachtert <dries@ulyssis.org> - 4.13-1

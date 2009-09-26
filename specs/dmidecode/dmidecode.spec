@@ -7,7 +7,7 @@
 
 Summary: Tool to analyse BIOS DMI data
 Name: dmidecode
-Version: 2.7
+Version: 2.10
 Release: 0.1
 License: GPLv2+
 Group: System Environment/Base
@@ -60,5 +60,8 @@ package.
 %exclude %{_sbindir}/dmidecode
 
 %changelog
+* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 1:2.10-1
+- Updated to release 2.10.
+
 * Fri Sep 19 2008 Dag Wieers <dag@wieers.com> - 1:2.7-1
 - Initial package. (using DAR)

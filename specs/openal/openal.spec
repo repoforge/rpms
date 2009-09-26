@@ -4,21 +4,20 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
 
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_arts 1}
+%define real_name openal-soft
 
 Summary: Open Audio Library
 Name: openal
-Version: 0.0.8
-Release: 2
+Version: 1.8.466
+Release: 1
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.openal.org/
 
-Source0: http://www.openal.org/openal_webstf/downloads/openal-%{version}.tar.gz
+#http://connect.creativelabs.com/openal/Downloads/openal-soft-1.8.466.bz2
+Source0: http://connect.creativelabs.com/openal/Downloads/openal-soft-%{version}.bz2
+#Source0: http://www.openal.org/openal_webstf/downloads/openal-%{version}.tar.gz
 Source1: openalrc
 Patch0: openal-0.0.8-arch.patch
 Patch1: openal-0.0.8-no-undefined.patch
@@ -26,7 +25,10 @@ Patch2: openal-0.0.8-pkgconfig.patch
 Patch3: openal-0.0.8-pause.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: SDL-devel, esound-devel, libogg-devel, libvorbis-devel
+BuildRequires: esound-devel
+BuildRequires: libogg-devel
+BuildRequires: libvorbis-devel
+BuildRequires: SDL-devel
 BuildRequires: texinfo
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
@@ -47,17 +49,16 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
-#patch1
-%patch2
-%patch3 -p1
-#./autogen.sh
-%patch0 -p1
+%setup -n %{real_name}-%{version}
+#patch2
+#patch3 -p1
+#patch0 -p1
 
 ### Fix reference to /usr/lib instead of %%{_libdir}
 %{__perl} -pi -e 's|/lib\b|/%{_lib}|g' admin/pkgconfig/Makefile.in
 
 %build
+cmake all
 %configure \
     --disable-smpeg \
 %{!?_without_alsa:--enable-alsa} \
@@ -96,6 +97,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/openal.pc
 
 %changelog
+* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 1.8.466-1
+- Updated to release 1.8.466.
+
 * Tue Feb 20 2007 Dag Wieers <dag@wieers.com> - 0.0.8-2
 - Added patches to build on x86_64.
 

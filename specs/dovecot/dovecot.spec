@@ -5,11 +5,15 @@
 
 ##ExcludeDist: fc3 el4
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%{?el2:%define _without_postgresql 1}
+
 %define logmsg logger -t %{name}/rpm
 
 Summary: Secure IMAP server
 Name: dovecot
-Version: 1.0.12
+Version: 1.0.13
 Release: 1
 License: GPL
 Group: System Environment/Daemons
@@ -19,8 +23,9 @@ Source: http://dovecot.org/releases/1.0/dovecot-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, cyrus-sasl-devel, pam-devel
-BuildRequires: openldap-devel, postgresql-devel, mysql-devel
+BuildRequires: openldap-devel, mysql-devel
 BuildRequires: gcc-c++, zlib-devel
+%{!?_without_postgresql:BuildRequires: postgresql-devel}
 Requires: /usr/sbin/useradd, /usr/sbin/usermod, /sbin/chkconfig
 
 %description
@@ -140,7 +145,7 @@ export LDFLAGS="-L%{_libdir}/mysql"
 %configure \
     --with-ldap \
     --with-mysql \
-    --with-pgsql \
+%{!?_without_postgresql:--with-pgsql} \
     --with-rawlog \
     --with-ssl="openssl" \
     --with-ssldir="%{_datadir}/ssl"
@@ -233,6 +238,9 @@ fi
 %exclude %{_libdir}/dovecot/*/*.la
 
 %changelog
+* Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 1.0.13-1
+- Updated to release 1.0.13.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.0.12-1
 - Updated to release 1.0.12.
 

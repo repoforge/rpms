@@ -4,10 +4,8 @@
 %{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: MP3 playback plugin for the Beep Media Player
 Name: bmp-mp3
@@ -21,7 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: bmp >= %{version}
 BuildRequires: bmp-devel, libglade2-devel, libvorbis-devel
 BuildRequires: id3lib-devel, gcc-c++
-%{?_with_modxorg:BuildRequires: libXt-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
 
 %description
 This package contains an MP3 playback plugin for BMP (Beep Media Player),

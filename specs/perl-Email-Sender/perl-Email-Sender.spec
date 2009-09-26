@@ -8,7 +8,7 @@
 %define real_name Email-Sender
 
 Summary: A library for sending email
-Name: perl-Email-Send
+Name: perl-Email-Sender
 Version: 0.091940
 Release: 1
 License: Artistic/GPL

@@ -8,14 +8,14 @@
 %define real_name Net-Ping-External
 
 Summary: Cross-platform interface to ICMP "ping" utilities
-Name: perl-%{real_name}
+Name: perl-Net-Ping-External
 Version: 0.13
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/%{real_name}/
+URL: http://search.cpan.org/dist/Net-Ping-External/
 
-Source: http://www.cpan.org/modules/by-module/Net/%{real_name}-%{version}.zip
+Source: http://www.cpan.org/modules/by-module/Net/Net-Ping-External-%{version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

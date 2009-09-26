@@ -50,7 +50,7 @@ should not be attempted over NFS.  getmail is written entirely in python.
 %{_bindir}/getmail_maildir
 %{_bindir}/getmail_mbox
 %{python_sitelib}/getmailcore/
-%{python_sitelib}/getmail-%{version}*.egg-info
+#%{python_sitelib}/getmail-%{version}*.egg-info
 
 %changelog
 * Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 4.10.0-1

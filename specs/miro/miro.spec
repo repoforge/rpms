@@ -4,11 +4,19 @@
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 
+%{?dtag: %{expand: %%define %dtag 1}}
+
+%define _with_mozilla 1
+
+%{?el5:%define mozilla xulrunner-devel nspr-devel}
+%{?el4:%define mozilla seamonkey-devel}
+%{?el3:%define mozilla seamonkey-devel}
+
 %define real_name Miro
 
 Summary: Free and Open Source Internet TV and video player
 Name: miro
-Version: 1.0
+Version: 1.1
 Release: 2
 License: GPL
 Group: Applications/Multimedia
@@ -18,12 +26,20 @@ Source: ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%{version}.tar.gz
 Patch: miro-0.9.9.1-svn.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: xine-lib-devel, libfame, boost-devel
-BuildRequires: python-devel, pyrex
-BuildRequires: firefox-devel
-Requires: xine-lib, libfame, gnome-python2-gtkmozembed, gnome-python2-gconf
-Requires: python >= %{python_version}, python-sqlite2, dbus-python
+BuildRequires: boost-devel
+%{?_with_mozilla:BuildRequires: %{mozilla}}
+BuildRequires: libfame
+BuildRequires: pyrex
+BuildRequires: python-devel
+BuildRequires: xine-lib-devel
+Requires: dbus-python
 Requires: firefox
+Requires: gnome-python2-gtkmozembed
+Requires: gnome-python2-gconf
+Requires: libfame
+Requires: python >= %{python_version}
+Requires: python-sqlite2
+Requires: xine-lib
 
 Obsoletes: Miro <= %{version}-%{release}
 Provides: Miro = %{version}-%{release}
@@ -71,6 +87,12 @@ update-desktop-database %{_datadir}/applications
 %ghost %{python_sitearch}/miro/*/*/*.pyo
 
 %changelog
+* Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.1-2
+- Rebuild against firefox 3.0.x.
+
+* Mon Feb 04 2008 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Fri Nov 16 2007 Dag Wieers <dag@wieers.com> - 1.0-1
 - Updated to release 1.0.
 

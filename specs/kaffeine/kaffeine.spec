@@ -8,28 +8,41 @@
 
 %{?dtag: %{expand: %%define %dtag 1}}
 
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+
+%{?el4:%define _without_gstreamer 1}
+%{?el3:%define _without_gstreamer 1}
+
 %{?el4:%define _kdelibs_without_mplayer2_desktop_file 1}
-%{?fc5:%define _kdelibs_without_mplayer2_desktop_file 1}
-%{?fc4:%define _kdelibs_without_mplayer2_desktop_file 1}
-%{?fc3:%define _kdelibs_without_mplayer2_desktop_file 1}
 %{?el3:%define _kdelibs_without_mplayer2_desktop_file 1}
 
 Summary: Media player based on xine-lib
 Name: kaffeine
-Version: 0.7.1
-Release: 2
+Version: 0.8.7
+Release: 1
 License: GPL
 Group: Applications/Multimedia
-URL: http://kaffeine.sourceforge.net
+URL: http://kaffeine.sourceforge.net/
 
 Source: http://dl.sf.net/kaffeine/kaffeine-%{version}.tar.bz2
+#Source: http://hftom.free.fr/kaffeine-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: kdelibs-devel, desktop-file-utils, gettext, gcc-c++
+BuildRequires: cdparanoia-devel cdparanoia
+BuildRequires: desktop-file-utils
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: kdelibs-devel
 %{?el4:BuildRequires: libselinux-devel}
 %{?fc3:BuildRequires: libselinux-devel}
 %{?fc2:BuildRequires: libselinux-devel}
+BuildRequires: libvorbis-devel
 BuildRequires: xine-lib-devel >= 1.0.0
+%{!?_without_modxorg:BuildRequires: libXext-devel libXinerama-devel libXtst-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_gstreamer:BuildRequires: gstreamer-devel >= 0.10}
+%{!?_without_gstreamer:BuildRequires: gstreamer-plugins-base-devel >= 0.10}
 
 %description
 Kaffeine is a simple and easy to use media player based on the xine-lib and
@@ -49,59 +62,90 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
+### Fix 0.8.6 references throughout sources
+grep -rl 'kaffeine-0.8.6' . | xargs perl -pi -e 's|kaffeine-0.8.6|kaffeine-%{version}|g'
+
 %build
 source /etc/profile.d/qt.sh
-%configure --without-gstreamer LDFLAGS="$LDFLAGS -L/usr/X11R6/%{_lib}"
+export CPPFLAGS="-I%{_includedir}/cdda"
+%configure \
+%{?_without_gstreamer:--without-gstreamer}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 source /etc/profile.d/qt.sh
-%makeinstall
-%find_lang %{name}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}-%{version}
 
 %post
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
+touch --no-create %{_datadir}/icons/hicolor || :
+gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2>/dev/null || :
+update-desktop-database &>/dev/null || :
 
 %postun
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
+touch --no-create %{_datadir}/icons/hicolor || :
+gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2>/dev/null || :
+update-desktop-database &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files -f %{name}-%{version}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING CREDITS README TODO
-%doc %{_mandir}/man?/*
-%doc %{_mandir}/de/man?/*
+%doc AUTHORS ChangeLog COPYING README TODO
+%doc %{_datadir}/doc/HTML/*/kaffeine
 %{_bindir}/kaffeine
-%{_libdir}/libkmediapart.so.*
-%{_libdir}/libkmediapart.la
-%{_libdir}/kde3/libkaffeinepart.so
-%{_libdir}/kde3/libkaffeinepart.la
-%{_datadir}/services/kaffeine_part.desktop
+%{_datadir}/applications/kde/kaffeine.desktop
+%{_datadir}/apps/gstreamerpart/gstreamer_part.rc
+%{_datadir}/apps/kaffeine/
 %{_datadir}/apps/konqueror/servicemenus/kaffeine*.desktop
 %{_datadir}/apps/profiles/kaffeine.profile.xml
-%{_datadir}/apps/kaffeine/
-%{_datadir}/mimelnk/application/*.desktop
-%{_datadir}/applications/kde/kaffeine.desktop
-%doc %{_datadir}/doc/HTML/*/kaffeine
 %{_datadir}/icons/*/*/*/*.png
+%{_datadir}/mimelnk/application/*.desktop
 %{!?_kdelibs_without_mplayer2_desktop_file:%exclude %{_datadir}/mimelnk/application/x-mplayer2.desktop}
+%{_datadir}/services/gstreamer_part.desktop
+%{_datadir}/services/kaffeinemp3lame.desktop
+%{_datadir}/services/kaffeineoggvorbis.desktop
+%{_datadir}/services/xine_part.desktop
+%{_datadir}/servicetypes/kaffeineaudioencoder.desktop
+%{_datadir}/servicetypes/kaffeinedvbplugin.desktop
+%{_datadir}/servicetypes/kaffeineepgplugin.desktop
+%{_libdir}/kde3/libgstreamerpart.la
+%{_libdir}/kde3/libgstreamerpart.so
+%{_libdir}/kde3/libkaffeinemp3lame.la
+%{_libdir}/kde3/libkaffeinemp3lame.so
+%{_libdir}/kde3/libkaffeineoggvorbis.la
+%{_libdir}/kde3/libkaffeineoggvorbis.so
+%{_libdir}/kde3/libxinepart.la
+%{_libdir}/kde3/libxinepart.so
+%{_libdir}/libkaffeineaudioencoder.la
+%{_libdir}/libkaffeineaudioencoder.so.*
+%{_libdir}/libkaffeinedvbplugin.la
+%{_libdir}/libkaffeinedvbplugin.so.*
+%{_libdir}/libkaffeinepart.la
+%{_libdir}/libkaffeinepart.so
+%{_libdir}/libkaffeineepgplugin.la
+%{_libdir}/libkaffeineepgplugin.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/kaffeine_export.h
 %{_includedir}/kaffeine/
-%{_libdir}/libkmediapart.so
-%{_libdir}/kde3/libkaffeinepart.so
+%{_libdir}/libkaffeineaudioencoder.so
+%{_libdir}/libkaffeinedvbplugin.so
+%{_libdir}/libkaffeineepgplugin.so
 
 %changelog
-* Sun Mar  2 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2
-- Added exclude for the mplayer2 desktop file for newer kdelibs versions.
+* Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 0.8.7-1
+- Updated to release 0.8.7.
 
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1.2
-- Rebuild for Fedora Core 5.
+* Sat Sep 05 2009 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Updated to release 0.8.5.
+
+* Sun Mar 02 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.1-2
+- Added exclude for the mplayer2 desktop file for newer kdelibs versions.
 
 * Fri Sep 09 2005 Dries Verachtert <dries@ulyssis.org> - 0.7.1-1
 - Updated to release 0.7.1.

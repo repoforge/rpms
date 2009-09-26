@@ -22,7 +22,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.26
+Version: 1.1.29
 Release: 1
 License: LGPL
 Group: Applications/Emulators
@@ -418,6 +418,7 @@ update-desktop-database &>/dev/null || :
 %{_datadir}/wine/wine.inf
 %{_libdir}/libwine.so.1*
 %dir %{_libdir}/wine/
+%{_libdir}/wine/fakedlls/
 
 ### exe16
 %{_libdir}/wine/gdi.exe16
@@ -427,7 +428,6 @@ update-desktop-database &>/dev/null || :
 ### exe16.so
 %{_libdir}/wine/winhelp.exe16.so
 
-
 ### cpl.so
 %{_libdir}/wine/appwiz.cpl.so
 
@@ -436,6 +436,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
+%{_libdir}/wine/dxdiag.exe.so
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
 %{_libdir}/wine/explorer.exe.so
@@ -654,6 +655,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mscat32.dll.so
 %{_libdir}/wine/mscoree.dll.so
 %{_libdir}/wine/msctf.dll.so
+%{_libdir}/wine/msdaps.dll.so
 %{_libdir}/wine/msdmo.dll.so
 %{_libdir}/wine/msftedit.dll.so
 %{_libdir}/wine/mshtml.dll.so
@@ -689,6 +691,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/oleacc.dll.so
 %{_libdir}/wine/oleaut32.dll.so
 %{_libdir}/wine/olecli32.dll.so
+%{_libdir}/wine/oledb32.dll.so
 %{_libdir}/wine/oledlg.dll.so
 %{_libdir}/wine/olepro32.dll.so
 %{_libdir}/wine/olesvr32.dll.so
@@ -819,7 +822,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/imaadp32.acm.so
 %{_libdir}/wine/msadp32.acm.so
 %{_libdir}/wine/msg711.acm.so
-%{_libdir}/wine/winemp3.acm.so
+%{_libdir}/wine/msgsm32.acm.so
 
 ### tlb.so
 %{_libdir}/wine/mshtml.tlb.so
@@ -893,7 +896,6 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/winemaker
 %{_bindir}/wmc
 %{_bindir}/wrc
-%{_datadir}/aclocal/wine.m4
 %{_includedir}/wine/
 %{_libdir}/*.so
 %dir %{_libdir}/wine/
@@ -901,6 +903,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Thu Sep 10 2009 Dag Wieers <dag@wieers.com> - 1.1.29-1
+- Updated to release 1.1.29.
+
 * Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.1.26-1
 - Updated to release 1.1.26.
 

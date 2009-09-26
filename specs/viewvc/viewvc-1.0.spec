@@ -1,10 +1,10 @@
-# $Id$
+# $Id: viewvc.spec 7414 2009-07-10 16:52:22Z dag $
 # Authority: dag
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
-Version: 1.1.2
-Release: 2
+Version: 1.0.9
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://www.viewvc.org/
@@ -69,8 +69,8 @@ EOF
 ### Fix paths in configuration
 %{__perl} -pi \
     -e 's|^#docroot = .*|docroot = /viewvc-static|;' \
-    -e 's|^#cvsgraph_conf = .*|cvsgraph_conf = %{_sysconfdir}/viewvc/cvsgraph.conf|;' \
-    -e 's|^#template_dir = .*|template_dir = %{_datadir}/viewvc/templates|;' \
+    -e 's|^cvsgraph_conf = .*|cvsgraph_conf = %{_sysconfdir}/viewvc/cvsgraph.conf|;' \
+    -e 's|^template_dir = .*|template_dir = %{_datadir}/viewvc/templates|;' \
     %{buildroot}%{_datadir}/viewvc/viewvc.conf
 
 ### Install config to sysconf directory
@@ -107,17 +107,8 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 %{_localstatedir}/www/viewvc/
 
 %changelog
-* Thu Sep 10 2009 Dag Wieers <dag@wieers.com> - 1.1.2-2
-- Fix configuration fixes.
-
-* Wed Aug 12 2009 Dag Wieers <dag@wieers.com> - 1.1.2-1
-- Updated to release 1.1.2.
-
-* Sat Jun 06 2009 Dag Wieers <dag@wieers.com> - 1.1.1-1
-- Updated to release 1.1.1.
-
-* Mon May 18 2009 Christoph Maser <cmr@financial.com> - 1.1.0-1
-- Updated to release 1.1.0.
+* Wed Aug 12 2009 Dag Wieers <dag@wieers.com> - 1.0.9-1
+- Updated to release 1.0.9.
 
 * Wed May 06 2009 Dag Wieers <dag@wieers.com> - 1.0.8-1
 - Updated to release 1.0.8.
