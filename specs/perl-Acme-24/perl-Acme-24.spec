@@ -9,7 +9,7 @@
 
 Summary: Your favourite TV-show Acme module
 Name: perl-Acme-24
-Version: 0.01
+Version: 0.03
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,5 +49,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Acme/24.pm
 
 %changelog
+* Mon Sep 28 2009 Christoph Maser <cmr@financial.com> - 0.03-1
+- Updated to version 0.03.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)
