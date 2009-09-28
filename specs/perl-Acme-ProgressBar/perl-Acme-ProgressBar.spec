@@ -9,7 +9,7 @@
 
 Summary: Simple progress bar for the patient
 Name: perl-Acme-ProgressBar
-Version: 1.124
+Version: 1.125
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Exporter)
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
@@ -51,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Acme/ProgressBar.pm
 
 %changelog
+* Mon Sep 28 2009 Christoph Maser <cmr@financial.com> - 1.125-1
+- Updated to version 1.125.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 1.124-1
 - Updated to release 1.124.
 
