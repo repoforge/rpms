@@ -9,7 +9,7 @@
 
 Summary: Pure Perl 65C02 simulator
 Name: perl-Acme-6502
-Version: 0.73
+Version: 0.75
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Class::Std)
+BuildRequires: perl(Class::Std::Slots)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Term::ReadKey)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(version)
 
 %description
 Pure Perl 65C02 simulator.
@@ -28,12 +34,12 @@ Pure Perl 65C02 simulator.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -51,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Acme/6502.pm
 
 %changelog
+* Mon Sep 28 2009 Christoph Maser <cmr@financial.com> - 0.75-1
+- Updated to version 0.75.
+
 * Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 0.73-1
 - Updated to release 0.73.
 
