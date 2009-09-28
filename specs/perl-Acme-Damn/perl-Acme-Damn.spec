@@ -9,7 +9,7 @@
 
 Summary: Perl module to 'Unbless' Perl objects
 Name: perl-Acme-Damn
-Version: 0.03
+Version: 0.04
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,6 +19,9 @@ Source: http://www.cpan.org/modules/by-module/Acme/Acme-Damn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+
 
 %description
 perl-Acme-Damn is a Perl module to 'Unbless' Perl objects.
@@ -50,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Acme/Damn/
 
 %changelog
+* Mon Sep 28 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Fri Aug 03 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Initial package. (using DAR)
