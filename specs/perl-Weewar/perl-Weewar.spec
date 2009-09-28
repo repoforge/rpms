@@ -20,8 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Test::TableDriven)
+BuildRequires: perl(DateTime::Format::RSS)
 
 Requires: perl(Class::Accessor)
+
 
 %description
 This module lets you interact with the (Weewar) API. See Weewar::User,
@@ -54,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Weewar.pm
 
 %changelog
+* Mon Sep 28 2009 Steve Huff <shuff@vecna.org> - 0.01-1
+- added additional BuildRequires that were causing errors w/build
+
 * Thu Sep 24 2009 Steve Huff <shuff@vecna.org> - 0.01-1
 - Initial package
