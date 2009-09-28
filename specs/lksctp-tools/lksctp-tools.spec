@@ -2,21 +2,14 @@
 # Authority: shuff
 # Upstream: Sridhar Samudrala <sri$us,ibm,com>
 
-%define kernel_version 2.6.16
-%define kernel_extraflags
-%define lksctp_version 1.0.6
-
-%define pack_version %{lksctp_version}
-%define file_version %{lksctp_version}
-
 Summary: User-space access to Linux Kernel SCTP
 Name: lksctp-tools
-Version: %{pack_version}
+Version: 1.0.10
 Release: 2
 License: LGPL
 Group: System Environment/Libraries
 URL: http://lksctp.sourceforge.net
-Source0: %{name}-%{file_version}.tar.gz
+Source0: http://downloads.sourceforge.net/project/lksctp/lksctp/%{name}-%{version}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: gcc
 BuildRequires: libtool, automake, autoconf
@@ -61,7 +54,7 @@ Documents pertaining to LKSCTP & SCTP in general
 - IETF RFC's & Internet Drafts
 
 %prep
-%setup -q -n %{name}-%{file_version}
+%setup -q -n %{name}-%{version}
 
 %build
 %configure --enable-shared --enable-static
@@ -101,6 +94,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.txt
 
 %changelog
+* Mon Sep 28 2009 Steve Huff <shuff@vecna.org> - 1.0.10-2
+- some fixes for RPMforge standards compliance
+- updated to latest version
+
 * Tue Sep 08 2009 Steve Huff <shuff@vecna.org> - 1.0.6-2
 - ported specfile from sf.net SRPM
 
