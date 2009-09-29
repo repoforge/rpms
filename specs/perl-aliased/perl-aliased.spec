@@ -9,7 +9,7 @@
 
 Summary: Use shorter versions of class names
 Name: perl-aliased
-Version: 0.22
+Version: 0.30
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Module::Build)
+# From yaml requires
+BuildRequires: perl(Test::More)
+
 
 %description
 Use shorter versions of class names.
@@ -28,12 +32,12 @@ Use shorter versions of class names.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -49,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/aliased.pm
 
 %changelog
+* Tue Sep 29 2009 Christoph Maser <cmr@financial.com> - 0.30-1
+- Updated to version 0.30.
+
 * Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 0.22-1
 - Updated to release 0.22.
 
