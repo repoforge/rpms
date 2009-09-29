@@ -9,7 +9,7 @@
 
 Summary: Building, finding and using wxWidgets binaries
 Name: perl-Alien-wxWidgets
-Version: 0.42
+Version: 0.44
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -17,13 +17,15 @@ URL: http://search.cpan.org/dist/Alien-wxWidgets/
 
 Source: http://www.cpan.org/modules/by-module/Alien/Alien-wxWidgets-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-#BuildArch: noarch
-BuildRequires: perl >= 0:5.006
+BuildRequires: wxGTK-devel
+# From yaml build_requires
 BuildRequires: perl(ExtUtils::CBuilder) >= 0.24
 BuildRequires: perl(Module::Build) >= 0.28
-BuildRequires: perl(Module::Pluggable)
-Requires: perl >= 0:5.006
+# From yaml requires
+BuildRequires: perl(Module::Pluggable) >= 2.6
+BuildRequires: perl >= 5.006
+Requires: perl >= 5.006
+Requires: wxGTK
 
 %description
 Building, finding and using wxWidgets binaries.
@@ -58,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/Alien/wxWidgets.pm
 
 %changelog
+* Tue Sep 29 2009 Christoph Maser <cmr@financial.com> - 0.44-1
+- Updated to version 0.44.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.42-1
 - Updated to release 0.42.
 
