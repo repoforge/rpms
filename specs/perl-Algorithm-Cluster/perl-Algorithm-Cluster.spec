@@ -9,7 +9,7 @@
 
 Summary: Perl interface to the C Clustering Library
 Name: perl-Algorithm-Cluster
-Version: 1.43
+Version: 1.47
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Algorithm/Cluster.pm
 
 %changelog
+* Tue Sep 29 2009 Christoph Maser <cmr@financial.com> - 1.47-1
+- Updated to version 1.47.
+
 * Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 1.43-1
 - Updated to release 1.43.
 
