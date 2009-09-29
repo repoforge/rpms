@@ -10,7 +10,7 @@
 
 Summary: Module for merging hierarchies using the C3 algorithm
 Name: perl-Algorithm-C3
-Version: 0.07
+Version: 0.08
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,7 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp) >= 0.01
+BuildRequires: perl(Module::Build)
 BuildRequires: perl(Test::More) >= 0.47
+
 
 %description
 C3 is the name of an algorithm which aims to provide a sane method
@@ -36,12 +39,12 @@ MRO for Parrot objects as well.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -58,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Algorithm/C3.pm
 
 %changelog
+* Tue Sep 29 2009 Christoph Maser <cmr@financial.com> - 0.08-1
+- Updated to version 0.08.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.07-1
 - Updated to release 0.07.
 
