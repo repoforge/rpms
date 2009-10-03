@@ -1,0 +1,64 @@
+diff -ru --exclude .svn tags/release-0.4/src/wiimote_classic.c trunk/src/wiimote_classic.c
+--- tags/release-0.4/src/wiimote_classic.c	2007-03-10 15:46:36.000000000 +0100
++++ trunk/src/wiimote_classic.c	2007-03-18 17:35:30.000000000 +0100
+@@ -82,7 +82,7 @@
+ 	wiimote->ext.classic.keys.b     = (keys2 & (1<<6)) == 0;
+ 
+ 	wiimote->ext.classic.keys.l     = (keys1 & (1<<5)) == 0;
+-	wiimote->ext.classic.keys.r     = (keys1 & (1<<0)) == 0;
++	wiimote->ext.classic.keys.r     = (keys1 & (1<<1)) == 0;
+ 	wiimote->ext.classic.keys.zl    = (keys2 & (1<<7)) == 0;
+ 	wiimote->ext.classic.keys.zr    = (keys2 & (1<<2)) == 0;
+ 
+diff -ru --exclude .svn tags/release-0.4/src/wiimote_event.c trunk/src/wiimote_event.c
+--- tags/release-0.4/src/wiimote_event.c	2007-03-10 15:46:36.000000000 +0100
++++ trunk/src/wiimote_event.c	2007-03-17 15:48:19.000000000 +0100
+@@ -1,4 +1,4 @@
+-/* $Id: wiimote_event.c 53 2007-03-10 14:46:36Z bja $ 
++/* $Id: wiimote_event.c 57 2007-03-17 14:48:19Z bja $ 
+  *
+  * Copyright (C) 2007, Joel Andersson <bja@kth.se>
+  * 
+@@ -254,7 +254,7 @@
+ 		memcpy(&wiimote->axis, &ev->ext1.axis, sizeof (wiimote_point3_t));
+ 		calc_tilt(wiimote);
+ 		calc_force(wiimote);
+-		nunchuk_decode(ev->ext2.data, 6);
++		nunchuk_decode(ev->ext1.data, 6);
+ 		if (wiimote->ext.id == WIIMOTE_NUNCHUK_ID) {
+ 			nunchuk_decode(ev->ext1.data, 6);
+ 			memcpy(&wiimote->ext.nunchuk, ev->ext1.data, sizeof (wiimote_nunchuk_t));
+diff -ru --exclude .svn tags/release-0.4/src/wiimote_nunchuk.c trunk/src/wiimote_nunchuk.c
+--- tags/release-0.4/src/wiimote_nunchuk.c	2007-03-10 15:46:36.000000000 +0100
++++ trunk/src/wiimote_nunchuk.c	2007-03-13 22:23:27.000000000 +0100
+@@ -1,4 +1,4 @@
+-/* $Id: wiimote_nunchuk.c 53 2007-03-10 14:46:36Z bja $ 
++/* $Id: wiimote_nunchuk.c 56 2007-03-13 21:23:27Z bja $ 
+  *
+  * Copyright (C) 2007, Joel Andersson <bja@kth.se>
+  * 
+@@ -32,7 +32,7 @@
+ #define NUNCHUK_REG_CTRL	0x04a40040
+ #define NUNCHUK_REG_CAL		0x04a40020
+ 
+-static int nunchuk_calibrate(wiimote_t *wiimote)
++int nunchuk_calibrate(wiimote_t *wiimote)
+ {
+ 	uint8_t *data = (uint8_t *)&wiimote->ext.nunchuk.cal;
+ 	if (wiimote_read(wiimote, NUNCHUK_REG_CAL, data, sizeof (nunchuk_cal_t)) < 0) {		
+diff -ru --exclude .svn tags/release-0.4/src/wiimote_nunchuk.h trunk/src/wiimote_nunchuk.h
+--- tags/release-0.4/src/wiimote_nunchuk.h	2007-03-10 15:36:44.000000000 +0100
++++ trunk/src/wiimote_nunchuk.h	2007-03-13 22:23:27.000000000 +0100
+@@ -1,4 +1,4 @@
+-/* $Id: wiimote_nunchuk.h 51 2007-03-10 14:36:44Z bja $ 
++/* $Id: wiimote_nunchuk.h 56 2007-03-13 21:23:27Z bja $ 
+  *
+  * Copyright (C) 2007, Joel Andersson <bja@kth.se>
+  * 
+@@ -30,5 +30,6 @@
+ int nunchuk_free(wiimote_t *wiimote);
+ void nunchuk_decode(uint8_t *data, uint32_t size);
+ int nunchuk_enable(wiimote_t *wiimote, uint8_t enable);
++int nunchuk_calibrate(wiimote_t *wiimote);
+ 
+ #endif /* _NUNCHUK_H_ */
