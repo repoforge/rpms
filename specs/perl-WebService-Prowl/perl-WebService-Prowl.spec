@@ -9,7 +9,7 @@
 
 Summary: a interface to Prowl Public API
 Name: perl-%{real_name}
-Version: 0.04
+Version: 0.05
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,5 +59,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/Prowl/*.pm
 
 %changelog
+* Sat Oct 03 2009 Steve Huff <shuff@vecna.org> - 0.05-1
+- Updated to version 0.05.
+
 * Thu Oct 01 2009 Steve Huff <shuff@vecna.org> - 0.04-1
 - Initial package.
