@@ -18,15 +18,12 @@ URL: http://search.cpan.org/dist/Jifty/
 Source: http://search.cpan.org/CPAN/authors/id/A/AL/ALEXMV/Jifty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# fix some bogus autoreq
-%filter_from_requires /^perl(Doxory.*/d
-%filter_from_requires /^perl(Example.*/d
-%filter_from_requires /^perl(Jifty::Plugin::Authentication::Password::Record)/d
-%filter_from_requires /^perl(Jifty::Plugin::User::Record)/d
-%filter_from_requires /^perl(MyWeblog.*/d
-%filter_from_requires /^perl(.*ExternEnt.*/d
-%filter_from_requires /^perl(Yada.*/d
+# don't scan the examples for autoreq/prov
+%filter_requires_in %{_docdir}
+%filter_provides_in %{_docdir}
+
 %filter_setup
+
 
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.3
