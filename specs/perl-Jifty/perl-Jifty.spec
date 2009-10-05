@@ -22,6 +22,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %filter_requires_in %{_docdir}
 %filter_provides_in %{_docdir}
 
+# remove some bogus autoreq
+%filter_from_requires /^perl(Jifty::Plugin::Authentication::Password::Record)/d
+%filter_from_requires /^perl(Jifty::Plugin::User::Record)/d
+%filter_from_requires /^perl(Jifty::Plugin::OpenID.*/d
+%filter_from_requires /^perl(XML.*ExternEnt.*/d
+
 %filter_setup
 
 
@@ -138,7 +144,6 @@ BuildRequires: perl(version)
 BuildRequires: perl(YAML) >= 0.35
 BuildRequires: perl(YAML::Syck) >= 0.71
 Requires: perl >= 2:5.8.3
-Requires: perl(Jifty::Plugin::OpenID)
 Requires: perl(Number::RecordLocator)
 
 %description
@@ -175,6 +180,11 @@ find contrib/ doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/jifty
 
 %changelog
+* Mon Oct 05 2009 Steve Huff <shuff@vecna.org> - 0.090701-1
+- Updated to release 0.090701.
+- Builds and installs on RHEL5!
+- Still needs more exhaustive testing.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.80408-1
 - Updated to release 0.80408.
 
