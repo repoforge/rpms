@@ -18,6 +18,16 @@ URL: http://search.cpan.org/dist/Jifty/
 Source: http://search.cpan.org/CPAN/authors/id/A/AL/ALEXMV/Jifty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+# fix some bogus autoreq
+%filter_from_requires /^perl(Doxory.*/d
+%filter_from_requires /^perl(Example.*/d
+%filter_from_requires /^perl(Jifty::Plugin::Authentication::Password::Record)/d
+%filter_from_requires /^perl(Jifty::Plugin::User::Record)/d
+%filter_from_requires /^perl(MyWeblog.*/d
+%filter_from_requires /^perl(.*ExternEnt.*/d
+%filter_from_requires /^perl(Yada.*/d
+%filter_setup
+
 BuildArch: noarch
 BuildRequires: perl >= 2:5.8.3
 BuildRequires: perl(Apache2::Const)
@@ -59,8 +69,11 @@ BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
 BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(File::MMagic)
 BuildRequires: perl(File::ShareDir) >= 1.00
-# RHEL5 has 3.12
-BuildRequires: perl(File::Spec) >= 3.14
+# RHEL5 has File::Spec 3.12
+# however, the changes between 3.12 and 3.14 appear to apply almost entirely
+# to Cygwin
+#BuildRequires: perl(File::Spec) >= 3.14
+BuildRequires: perl(File::Spec) >= 3.12
 BuildRequires: perl(File::Temp) >= 0.15
 BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(HTML::Lint)
@@ -94,18 +107,19 @@ BuildRequires: perl(Object::Declare) >= 0.13
 BuildRequires: perl(Params::Validate)
 BuildRequires: perl(Pod::Simple)
 BuildRequires: perl(Scalar::Defer) >= 0.12
-# RHEL5 has ExtUtils::Command-1.09
-BuildRequires: perl(Shell::Command)
+# RHEL5 has ExtUtils::Command-1.09 and mysteriously does not include 
+# Shell::Command;  however, Shell::Command is only called in a single test in
+# the Jifty source
+#BuildRequires: perl(Shell::Command)
+BuildRequires: perl(ExtUtils::Command)
 BuildRequires: perl(String::BufferStack) >= 1.12
 BuildRequires: perl(String::Koremutake)
 BuildRequires: perl(SQL::ReservedWords)
 BuildRequires: perl(SUPER)
 BuildRequires: perl(Template::Declare) >= 0.36
 BuildRequires: perl(Test::Base) >= 0.44
-# not in rpmforge
 BuildRequires: perl(Test::Email)
 BuildRequires: perl(Test::HTML::Lint)
-# not in rpmforge
 BuildRequires: perl(Test::HTTP::Server::Simple) >= 0.10
 BuildRequires: perl(Test::Log4perl)
 BuildRequires: perl(Test::LongString)
@@ -113,7 +127,6 @@ BuildRequires: perl(Test::MockModule) >= 0.05
 BuildRequires: perl(Test::MockObject) >= 1.07
 BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Test::Pod::Coverage)
-# not in rpmforge
 BuildRequires: perl(Test::WWW::Declare) >= 0.01
 BuildRequires: perl(Test::WWW::Mechanize) >= 1.04
 BuildRequires: perl(Test::WWW::Selenium)
@@ -128,6 +141,8 @@ BuildRequires: perl(version)
 BuildRequires: perl(YAML) >= 0.35
 BuildRequires: perl(YAML::Syck) >= 0.71
 Requires: perl >= 2:5.8.3
+Requires: perl(Jifty::Plugin::OpenID)
+Requires: perl(Number::RecordLocator)
 
 %description
 perl-Jifty is a Perl package that implements an application framework.
@@ -136,7 +151,7 @@ perl-Jifty is a Perl package that implements an application framework.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -155,14 +170,14 @@ find contrib/ doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS Changelog MANIFEST MANIFEST.SKIP META.yml README SIGNATURE contrib/ doc/ examples/
-%doc %{_mandir}/man3/Jifty.3pm*
-#%{perl_vendorlib}/Jifty/
+%doc %{_mandir}/man3/*
+%dir %{perl_vendorlib}/auto/share/dist/
+%{perl_vendorlib}/auto/share/dist/*
 %{perl_vendorlib}/Jifty.pm
+%{perl_vendorlib}/Jifty/
+%{_bindir}/jifty
 
 %changelog
-* Fri Oct 02 2009 Steve Huff <shuff@vecna.org>
-- Working on update to 0.90701.
-
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.80408-1
 - Updated to release 0.80408.
 
