@@ -10,7 +10,7 @@
 Summary: Help when paging through sets of results
 Name: perl-Data-Page
 Version: 2.01
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Page/
@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
+Requires: perl(Class::Accessor::Chained::Fast)
 
 %description
 Data-Page is a Perl module that helps when paging through sets of results.
@@ -52,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Page.pm
 
 %changelog
+* Sun Oct 04 2009 Steve Huff <shuff@vecna.org> - 2.01-2
+- Added perl(Class::Accessor::Chained::Fast) dependency.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.01-1
 - Updated to release 2.01.
 
