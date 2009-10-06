@@ -23,16 +23,13 @@ BuildRequires: perl
 BuildRequires: perl(Cache::FileCache)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Jifty)
-BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(LWPx::ParanoidAgent)
 BuildRequires: perl(Net::OpenID::Consumer)
-Requires: perl(LWP::UserAgent)
 
 # we don't want to either provide or require anything from _docdir, per policy
 %filter_provides_in %{_docdir}
 %filter_requires_in %{_docdir}
 
-# it is not strictly necessary to use LWPx::ParanoidAgent
-%filter_from_requires /^perl(LWPx.*/d
 %filter_from_requires /^perl(Jifty::Plugin::OpenID.*/d
 %filter_setup
 
