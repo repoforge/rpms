@@ -26,7 +26,7 @@ Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.4.6
 ### FC3 comes with release 1.1
-Release: 0.1
+Release: 0.2
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -43,6 +43,7 @@ Patch6: subversion-1.4.2-pie.patch
 Patch7: subversion-1.1.3-java.patch
 Patch8: subversion-1.4.4-macropen.patch
 Patch9: subversion-1.4.4-swig1333.patch
+Patch10: subversion-1.4.6-CVE-2009-2411-from-svndev.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
@@ -128,6 +129,7 @@ This package includes the Ruby bindings to the Subversion libraries.
 %{?_with_java:%patch7 -p1 -b .java}
 %patch8 -p1 -b .macropen
 %patch9 -p1 -b .swig133
+%patch10 -p2 -b .cve2411
 
 %{__rm} -rf neon apr apr-util
 
@@ -320,6 +322,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Tue Sep 29 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 1.4.6-0.2
+- Added security fix for CVE-2009-2411
+
 * Mon Dec 31 2007 Dag Wieers <dag@wieers.com> - 1.4.6-0.1
 - Updated to release 1.4.6.
 

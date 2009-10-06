@@ -26,7 +26,7 @@ Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.3.2
 ### FC3 comes with release 1.1
-Release: 0.1
+Release: 0.2
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -41,12 +41,13 @@ Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-0.31.0-rpath.patch
 Patch6: subversion-1.3.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
+Patch10: subversion-1.3.2-CVE-2009-2411-from-ubuntu.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
-BuildRequires: expat-devel, docbook-style-xsl
+BuildRequires: db4-devel >= 4.1.25, expat-devel, docbook-style-xsl, gettext
 BuildRequires: apr-devel >= 0.9.3-2, apr-util-devel >= 0.9.3-2, openssl-devel
-BuildRequires: neon-devel >= 0.24.7-1
+BuildRequires: neon >= 0.24.7-1, neon-devel >= 0.24.7-1
 #%{!?_without_swig:BuildRequires: swig >= 1.3.21-5}
 #%{!?_without_swig:BuildRequires: swig}
 
@@ -103,6 +104,7 @@ This package includes the Perl bindings to the Subversion libraries.
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
 %{!?_without_pie:%patch6 -p1 -b .pie}
+%patch10 -p1 -b .cve2411
 
 %{__rm} -rf neon apr apr-util
 
@@ -256,6 +258,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Mon Oct 05 2009 Tom G. Christensen <swpkg@statsbiblioteket.dk> - 1.3.2-0.2
+- Added security fix for CVE-2009-2411
+
 * Tue Aug 01 2006 Dag Wieers <dag@wieers.com> - 1.3.2-0.1
 - Updated to release 1.3.2
 
