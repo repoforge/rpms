@@ -1,15 +1,15 @@
 # $Id$
 # Authority: matthias
+# Upstream: <info$audicoding,com>
 
 Summary: X MultiMedia System input plugin to play AAC files
 Name: xmms-aac
-Version: 2.5
+Version: 2.6.1
 Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/
 Source: http://dl.sf.net/faac/faad2-%{version}.tar.gz
-Patch0: faad2-2.5-xmmsplugin.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Since the library version doesn't get bumped as it should, hardcode this dep
 Requires: faad2 = %{version}
@@ -24,7 +24,6 @@ AAC files are MPEG2 or MPEG4 files that can be found in MPEG4 audio files
 
 %prep
 %setup -n faad2
-%patch0 -p1 -b .xmmsplugin
 # Fix file modes (docs and sources shouldn't be executable)
 find plugins/xmms/ -type f -exec chmod 644 {} \;
 ### Required to make automake < 1.7 work
@@ -34,8 +33,8 @@ find plugins/xmms/ -type f -exec chmod 644 {} \;
 %build
 # This is what the README.linux file recommends
 autoreconf -vif
-%configure --with-xmms
-%{__make} -C plugins/xmms/ %{?_smp_mflags}
+%configure --with-xmms --disable-dependency-tracking --disable-static
+%{__make} %{?_smp_mflags}
 
 
 %install
@@ -56,6 +55,9 @@ autoreconf -vif
 
 
 %changelog
+* Tue Oct 06 2009 Steve Huff <shuff@vecna.org> - 2.6.1-1
+- Updated to version 2.6.1.
+
 * Tue Jan  9 2007 Matthias Saou <http://freshrpms.net/> 2.5-1
 - Fork off xmms-aac as a separate package since users seem to be requesting it.
   (did I already mention that you should be using audacious?)
