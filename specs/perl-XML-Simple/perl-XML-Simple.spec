@@ -19,8 +19,20 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.6
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Simple) >= 0.41
+BuildRequires: perl(XML::NamespaceSupport) >= 0.15
+BuildRequires: perl(XML::SAX) >= 0.15
+BuildRequires: perl(XML::SAX::Expat)
+
+Requires: perl >= 5.6
+Requires: perl(File::Basename)
+Requires: perl(File::Spec)
+Requires: perl(IO::Handle)
+Requires: perl(Storable)
+Requires: perl(XML::NamespaceSupport) >= 0.15
+Requires: perl(XML::SAX) >= 0.15
 
 Provides: perl-Image-Info-alternative = 1.29
 
@@ -54,7 +66,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Simple.pm
 
 %changelog
-* Thu Sep 10 2009 Steve Huff <shuff@vecna.org> - 2.18-2
+* Wed Oct 07 2009 Steve Huff <shuff@vecna.org> - 2.18-2
+- Specified some missing dependencies to fix RHEL5 building.
+
+* Thu Sep 10 2009 Steve Huff <shuff@vecna.org>
 - This provides perl-Image-Info-alternative = 1.29.
 
 * Mon Nov 19 2007 Dag Wieers <dag@wieers.com> - 2.18-1
