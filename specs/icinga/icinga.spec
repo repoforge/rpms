@@ -6,10 +6,21 @@
 
 %define logdir %{_localstatedir}/log/icinga
 
+%if "%{_vendor}" == "suse"
+%define apacheconfdir  %{_sysconfdir}/apache2/conf.d
+%define apacheuser wwwrun
+%define apachegroup www
+%endif
+%if "%{_vendor}" == "redhat"
+%define apacheconfdir  %{_sysconfdir}/httpd/conf.d
+%define apacheuser apache
+%define apachegroup apache
+%endif
+
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 0.8.4
-Release: 1
+Release: 2
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -17,6 +28,7 @@ URL: http://www.icinga.org/
 Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc
 BuildRequires: gd-devel > 1.8
 BuildRequires: zlib-devel
 BuildRequires: libpng-devel
@@ -73,8 +85,8 @@ database storage via libdbi.
     --sbindir="%{_datadir}/icinga/cgi" \
     --sysconfdir="%{_sysconfdir}/icinga" \
     --with-cgiurl="/icinga/cgi-bin" \
-    --with-command-user="apache" \
-    --with-command-group="apache" \
+    --with-command-user="%{apacheuser}" \
+    --with-command-group="%{apachegroup}" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
@@ -87,12 +99,14 @@ database storage via libdbi.
     --with-template-extinfo \
     --enable-event-broker \
     --enable-embedded-perl \
-    --enable-idoutils
+    --enable-idoutils \
+    --with-httpd-conf=%{apacheconfdir} \
+    --with-init-dir=%{_initrddir}
 %{__make} %{?_smp_mflags} all
 
 %install
 %{__rm} -rf %{buildroot}
-%{__mkdir} -p %{buildroot}/etc/httpd/conf.d
+%{__mkdir} -p %{buildroot}/%{apacheconfdir}
 %{__make} install install-init install-commandmode install-config \
     install-webconf install-idoutils \
     DESTDIR="%{buildroot}" \
@@ -120,7 +134,8 @@ cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
 
 %pre
 # Add icinga user
-/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G apache icinga 2> /dev/null || :
+/usr/sbin/groupadd icinga 2> /dev/null || :
+/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G %{apachegroup} -g icinga icinga 2> /dev/null || :
 
 
 %post
@@ -167,11 +182,11 @@ fi
 %{logdir}
 %dir %{_localstatedir}/icinga
 %dir %{_localstatedir}/icinga/checkresults
-%attr(2755,icinga,apache) %{_localstatedir}/icinga/rw/
+%attr(2755,icinga,%{apachegroup}) %{_localstatedir}/icinga/rw/
 
 %files gui
 %defattr(-,icinga,icinga,-)
-%config(noreplace) %attr(-,root,root) %{_sysconfdir}/httpd/conf.d/icinga.conf
+%config(noreplace) %attr(-,root,root) %{apacheconfdir}/icinga.conf
 %{_datadir}/icinga
 
 %files idoutils
@@ -185,6 +200,12 @@ fi
 
 
 %changelog
+* Wed Oct 07 2009 Christoph Maser <cmr@financial.com> - 0.8.4-2
+- make packages openSUSE compatible
+- add %apachecondir, %apacheuser, %apachegroup depending on vendor
+- configure add --with-httpd-conf=%{apacheconfdir} 
+- configure add --with-init-dir=%{_initrddir}
+
 * Wed Sep 16 2009 Christoph Maser <cmr@financial.com> - 0.8.4-1
 - Update to version 0.8.4.
 
