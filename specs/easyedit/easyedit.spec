@@ -8,7 +8,7 @@ Version:      1.5.0
 Release:      1
 License:      BSD
 Group:        Applications/Editors
-URL:          http://wtf.geek.nz/
+URL:          http://mahon.cwx.net/
 
 Source:      http://mahon.cwx.net/sources/ee-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
