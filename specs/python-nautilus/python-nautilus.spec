@@ -7,12 +7,12 @@
 
 %define real_name nautilus-python
 
-Summary: Simple scripting language for Web browsing
+Summary: Python bindings for Nautilus
 Name: python-nautilus
 Version: 0.5.1
 Release: 1
 License: GPL
-Group: Applications/Internet
+Group: Development/Libraries
 URL: http://git.gnome.org/cgit/nautilus-python
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/0.5/nautilus-python-%{version}.tar.gz
@@ -21,15 +21,24 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: eel2-devel >= 2.6
 BuildRequires: gnome-python2 >= 2.12
-BuildRequires: libtool
+BuildRequires: /usr/bin/libtool
 BuildRequires: nautilus-devel >= 2.6
 BuildRequires: pkgconfig >= 0.9.0
 BuildRequires: pygtk2-devel >= 2.8
 BuildRequires: python-devel >= 2.3
 
-Requires: libtool
-Requires: /bin/echo
+Requires: /bin/cat
 Requires: /sbin/ldconfig
+Requires: nautilus
+
+Provides: python-nautilus = %{version}
+Provides: nautilus-python = %{version}
+
+%package devel
+Summary: Development files for python-nautilus
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+Requires: pkgconfig
 
 # we don't want to either provide or require anything from _docdir, per policy
 %filter_provides_in %{_docdir}
@@ -42,6 +51,9 @@ Requires: /sbin/ldconfig
 These are unstable bindings for the nautilus extension library introduced in
 Gnome 2.6.
 
+%description devel
+Install this package if you want to develop software using %{name}.
+
 %prep
 %setup -n %{real_name}-%{version}
 
@@ -53,8 +65,15 @@ Gnome 2.6.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+%{__mv} %{buildroot}%{_defaultdocdir}/%{real_name} compiled_docs
+
+%{__rm} -f %{buildroot}%{_libdir}/nautilus-python/*.la
+%{__rm} -f %{buildroot}%{nautilus_extensiondir}/*.la
+
 %{__install} -d %{buildroot}%{_sysconfdir}/ld.so.conf.d/
-/bin/echo > %{buildroot}%{_sysconfdir}/ld.so.conf.d/python-nautilus.conf <<LDSOCONF
+/bin/cat > %{buildroot}%{_sysconfdir}/ld.so.conf.d/python-nautilus.conf <<LDSOCONF
+# library search paths for the python-nautilus package
+/usr/lib/nautilus/extensions-1.0
 /usr/lib/nautilus-python
 LDSOCONF
 
@@ -70,19 +89,19 @@ LDSOCONF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog INSTALL NEWS README examples/
-%dir %{_libdir}/pkgconfig/
-%{_libdir}/pkgconfig/*
+%doc AUTHORS COPYING ChangeLog INSTALL NEWS README 
 %dir %{nautilus_extensiondir}
 %{nautilus_extensiondir}/*.so
-%exclude %{nautilus_extensiondir}/*.la
 %{_libdir}/nautilus-python/*.so
-%exclude %{_libdir}/nautilus-python/*.la
-%exclude %{_libdir}/debug/
-%exclude %{_usrsrc}/debug/
-%exclude %{_defaultdocdir}/
 %dir %{_sysconfdir}/ld.so.conf.d/
 %{_sysconfdir}/ld.so.conf.d/python-nautilus.conf
+%exclude %{_libdir}/debug
+%exclude %{_usrsrc}/debug
+
+%files devel
+%doc compiled_docs/examples/ compiled_docs/documentation.py
+%dir %{_libdir}/pkgconfig/
+%{_libdir}/pkgconfig/*
 
 %changelog
 * Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 0.5.1-1
