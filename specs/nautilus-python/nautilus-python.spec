@@ -18,7 +18,6 @@ URL: http://git.gnome.org/cgit/nautilus-python
 Source: http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/0.5/nautilus-python-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: eel2-devel >= 2.6
 BuildRequires: gnome-python2 >= 2.12
 BuildRequires: /usr/bin/libtool
@@ -69,13 +68,6 @@ Install this package if you want to develop software using %{name}.
 %{__rm} -f %{buildroot}%{_libdir}/nautilus-python/*.la
 %{__rm} -f %{buildroot}%{nautilus_extensiondir}/*.la
 
-%{__install} -d %{buildroot}%{_sysconfdir}/ld.so.conf.d/
-/bin/cat > %{buildroot}%{_sysconfdir}/ld.so.conf.d/python-nautilus.conf <<LDSOCONF
-# library search paths for the python-nautilus package
-/usr/lib/nautilus/extensions-1.0
-/usr/lib/nautilus-python
-LDSOCONF
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -92,10 +84,6 @@ LDSOCONF
 %dir %{nautilus_extensiondir}
 %{nautilus_extensiondir}/*.so
 %{_libdir}/nautilus-python/*.so
-%dir %{_sysconfdir}/ld.so.conf.d/
-%{_sysconfdir}/ld.so.conf.d/python-nautilus.conf
-%exclude %{_libdir}/debug
-%exclude %{_usrsrc}/debug
 
 %files devel
 %doc compiled_docs/examples/ compiled_docs/documentation.py
