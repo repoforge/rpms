@@ -5,10 +5,8 @@
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
-%define real_name nautilus-python
-
 Summary: Python bindings for Nautilus
-Name: python-nautilus
+Name: nautilus-python
 Version: 0.5.1
 Release: 1
 License: GPL
@@ -31,11 +29,10 @@ Requires: /bin/cat
 Requires: /sbin/ldconfig
 Requires: nautilus
 
-Provides: python-nautilus = %{version}
 Provides: nautilus-python = %{version}
 
 %package devel
-Summary: Development files for python-nautilus
+Summary: Development files for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
@@ -55,7 +52,7 @@ Gnome 2.6.
 Install this package if you want to develop software using %{name}.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup
 
 %build
 %configure --disable-dependency-tracking
@@ -65,7 +62,7 @@ Install this package if you want to develop software using %{name}.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
-%{__mv} %{buildroot}%{_defaultdocdir}/%{real_name} compiled_docs
+%{__mv} %{buildroot}%{_defaultdocdir}/nautilus-python compiled_docs
 
 %{__rm} -f %{buildroot}%{_libdir}/nautilus-python/*.la
 %{__rm} -f %{buildroot}%{nautilus_extensiondir}/*.la
@@ -104,6 +101,6 @@ LDSOCONF
 %{_libdir}/pkgconfig/*
 
 %changelog
-* Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 0.5.1-1
+* Fri Oct 09 2009 Steve Huff <shuff@vecna.org> - 0.5.1-1
 - Initial package.
 
