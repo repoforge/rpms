@@ -1,5 +1,6 @@
 # $Id$
 # Authority: shuff
+# Upstream: http://groups.google.com/group/rabbitvcs-devel
 
 ## DistExclude: el3 el4
 
@@ -7,14 +8,14 @@
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
 Summary: Nautilus integration for Subversion
-Name: nautilussvn
+Name: rabbitvcs
 Version: 0.12
 Release: 1
 License: GPL
 Group: Development/Libraries
-URL: http://code.google.com/p/nautilussvn/
+URL: http://rabbitvcs.org
 
-Source: http://nautilussvn.googlecode.com/files/nautilussvn_%{version}-beta1-2.tar.gz
+Source: http://rabbitvcs.googlecode.com/files/rabbitvcs-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
@@ -33,10 +34,11 @@ Requires: python
 Requires: python-configobj
 Requires: subversion >= 1.4.6
 
-Conflicts: rabbitvcs
+Conflicts: nautilussvn
+Obsoletes: nautilussvn
 
 %description
-TortoiseSVN-like GUI integration for Subversion and Nautilus.
+TortoiseSVN-like GUI integration for Subversion (and other VCS) and Nautilus.
 
 %prep
 %setup
@@ -49,16 +51,18 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__rm} -rf %{buildroot}
 CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 
-%{__rm} -rf %{buildroot}%{_defaultdocdir}/nautilussvn
+# you do not know where to put the documents, i will handle it
+%{__rm} -rf %{buildroot}%{_defaultdocdir}/%{name}
 
-%{__chmod} 0755 %{buildroot}%{_datadir}/nautilussvn/do-nautilussvn-restart-nautilus
+# update-notifier is just for Ubuntu
+%{__rm} -rf %{buildroot}%{_datadir}/%{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING CREDITS MAINTAINERS README THANKS
+%doc AUTHORS COPYING MAINTAINERS 
 %{python_sitearch}/*
 %{_bindir}/*
 %dir %{nautilus_extensiondir}
@@ -68,15 +72,10 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %dir %{_iconsbasedir}/scalable/emblems/
 %{_iconsbasedir}/scalable/emblems/*
 %{_iconsscaldir}/*
-%{_datadir}/nautilussvn
-%dir %{_datadir}/locale/de/LC_MESSAGES/
-%{_datadir}/locale/de/LC_MESSAGES/*
-%dir %{_datadir}/locale/en_US/LC_MESSAGES/
-%{_datadir}/locale/en_US/LC_MESSAGES/*
-%dir %{_datadir}/locale/fr_FR/LC_MESSAGES/
-%{_datadir}/locale/fr_FR/LC_MESSAGES/*
+%dir %{_datadir}/locale/*/LC_MESSAGES/
+%{_datadir}/locale/*/LC_MESSAGES/*
 
 %changelog
-* Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 0.12beta1_2-1
+* Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 0.12-1
 - Initial package.
 
