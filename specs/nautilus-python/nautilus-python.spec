@@ -2,12 +2,14 @@
 # Authority: shuff
 # Upstream: Gustavo J A M Carneiro <gustavo$users,sourceforge,net>
 
+## ExcludeDist el3 el4
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
 Summary: Python bindings for Nautilus
 Name: nautilus-python
-Version: 0.5.1
+Version: 0.5.0
 Release: 1
 License: GPL
 Group: Development/Libraries
@@ -101,6 +103,6 @@ LDSOCONF
 %{_libdir}/pkgconfig/*
 
 %changelog
-* Fri Oct 09 2009 Steve Huff <shuff@vecna.org> - 0.5.1-1
+* Fri Oct 09 2009 Steve Huff <shuff@vecna.org> - 0.5.0-1
 - Initial package.
 
