@@ -25,6 +25,7 @@ BuildRequires: nautilus-devel >= 2.6
 BuildRequires: pkgconfig >= 0.9.0
 BuildRequires: pygtk2-devel >= 2.8
 BuildRequires: python-devel >= 2.3
+BuildRequires: rpm-macros-rpmforge
 
 Requires: /bin/cat
 Requires: /sbin/ldconfig
