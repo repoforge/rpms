@@ -20,6 +20,7 @@ BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.4, python-devel >= 2.4
+BuildRequires: rpm-macros-rpmforge
 Requires: coreutils
 Requires: cvs
 Requires: gdbm

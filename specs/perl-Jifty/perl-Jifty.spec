@@ -143,6 +143,7 @@ BuildRequires: perl(XML::XPath)
 BuildRequires: perl(version)
 BuildRequires: perl(YAML) >= 0.35
 BuildRequires: perl(YAML::Syck) >= 0.71
+BuildRequires: rpm-macros-rpmforge
 Requires: perl >= 2:5.8.3
 Requires: perl(Cache::Simple::TimedExpiry)
 Requires: perl(Number::RecordLocator)

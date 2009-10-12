@@ -25,6 +25,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Jifty)
 BuildRequires: perl(LWPx::ParanoidAgent)
 BuildRequires: perl(Net::OpenID::Consumer)
+BuildRequires: rpm-macros-rpmforge
 
 # we don't want to either provide or require anything from _docdir, per policy
 %filter_provides_in %{_docdir}

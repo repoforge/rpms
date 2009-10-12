@@ -23,6 +23,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(Net::DNS)
 BuildRequires: perl(Time::HiRes)
+BuildRequires: rpm-macros-rpmforge
 
 # we don't want to either provide or require anything from _docdir, per policy
 %filter_provides_in %{_docdir}

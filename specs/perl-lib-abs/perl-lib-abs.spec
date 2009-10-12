@@ -25,6 +25,7 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Cwd) >= 3.12
+BuildRequires: rpm-macros-rpmforge
 
 %filter_from_requires /^perl(module2)/d
 %filter_setup
