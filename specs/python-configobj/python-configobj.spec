@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Michael Foord & Nicola Larosa <fuzzyman$voidspace,org,uk>
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -7,13 +8,13 @@
 
 Summary: Config file reading, writing, and validation
 Name: python-configobj
-Version: 4.5.3
+Version: 4.6.0
 Release: 1
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.voidspace.org.uk/python/configobj.html
 
-Source: http://dl.sf.net/configobj/configobj-%{version}.zip
+Source: http://www.voidspace.org.uk/downloads/configobj-%{version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -50,5 +51,8 @@ straightforward programmer's interface and a simple syntax for config files.
 #%{python_sitelib}/configobj-%{version}-py*.egg-info
 
 %changelog
+* Tue Oct 13 2009 Steve Huff <shuff@vecna.org> - 4.6.0-1
+- Updated to release 4.6.0.
+
 * Thu Dec 11 2008 Dag Wieers <dag@wieers.com> - 4.5.3-1
 - Initial package. (based on fedora)
