@@ -1,8 +1,8 @@
 # $Id$
 # Authority: shuff
-# Upstream: http://groups.google.com/group/rabbitvcs-devel
+# Upstream: Bruce van der Kooij <brucevdkooij$gmail,com>
 
-## DistExclude: el3 el4
+## ExcludeDist: el3 el4
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
@@ -16,6 +16,7 @@ Group: Development/Libraries
 URL: http://rabbitvcs.org
 
 Source: http://rabbitvcs.googlecode.com/files/rabbitvcs-%{version}.tar.gz
+Patch0: rabbitvcs-0.12_nautilusold.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
@@ -26,13 +27,15 @@ BuildRequires: pysvn
 BuildRequires: neon-devel
 BuildRequires: pygtk2-devel
 BuildRequires: python-devel
-BuildRequires: subversion-devel >= 1.4.6
+BuildRequires: subversion-devel >= 1.6.5
 Requires: meld
 Requires: nautilus-python = 0.5.0
 Requires: neon 
+Requires: pygtk2 
+Requires: pysvn 
 Requires: python 
-Requires: python-configobj
-Requires: subversion >= 1.4.6
+Requires: python-configobj >= 4.6.0
+Requires: subversion >= 1.6.5
 
 Conflicts: nautilussvn
 Obsoletes: nautilussvn
@@ -42,6 +45,7 @@ TortoiseSVN-like GUI integration for Subversion (and other VCS) and Nautilus.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
