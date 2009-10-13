@@ -4,7 +4,8 @@
 
 ## ExcludeDist: el3 el4
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
 Summary: Nautilus integration for Subversion
@@ -47,6 +48,11 @@ TortoiseSVN-like GUI integration for Subversion (and other VCS) and Nautilus.
 %prep
 %setup
 %patch0 -p1
+
+# statuschecker.py cannot work with RHEL5
+%{__rm} -f rabbitvcs/statuschecker.py
+%{__rm} -rf rabbitvcs/dbus
+%{__rm} -rf rabbitvcs/data/icons/hicolor/scalable/actions/rabbitvcs-dbus.svg
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build
