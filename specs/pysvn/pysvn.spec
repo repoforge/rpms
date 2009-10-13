@@ -2,7 +2,7 @@
 # Authority: shuff
 # Upstream: Barry Scott <barryscott$tigris,org>
 
-## DistExclude: el3
+## ExcludeDist: el3 el4
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
@@ -20,10 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #BuildArch: noarch
 BuildRequires: neon-devel
 BuildRequires: python-devel
-BuildRequires: subversion-devel >= 1.4.6
+BuildRequires: subversion-devel >= 1.6.5
 Requires: neon 
 Requires: python 
-Requires: subversion >= 1.4.6
+Requires: subversion >= 1.6.5
 
 %description
 The pysvn project's goal is to enable Tools to be written in Python that use Subversion.
