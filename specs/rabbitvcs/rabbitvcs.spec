@@ -36,6 +36,7 @@ Requires: pysvn
 Requires: python 
 Requires: python-configobj >= 4.6.0
 Requires: subversion >= 1.6.5
+Requires: %{_iconsbasedir}
 
 Conflicts: nautilussvn
 Obsoletes: nautilussvn
@@ -63,6 +64,12 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%post
+/usr/bin/gtk-update-icon-cache -f /usr/share/icons/hicolor
+
+%postun
+/usr/bin/gtk-update-icon-cache -f /usr/share/icons/hicolor
 
 %files
 %defattr(-, root, root, 0755)
