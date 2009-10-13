@@ -66,10 +66,10 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %{__rm} -rf %{buildroot}
 
 %post
-/usr/bin/gtk-update-icon-cache -f /usr/share/icons/hicolor
+/usr/bin/gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null 2>&1
 
 %postun
-/usr/bin/gtk-update-icon-cache -f /usr/share/icons/hicolor
+/usr/bin/gtk-update-icon-cache -f /usr/share/icons/hicolor >/dev/null 2>&1
 
 %files
 %defattr(-, root, root, 0755)
