@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+## ExcludeDist: el3 el4
+
 %{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5: %define _with_apr1 1}
@@ -10,24 +12,24 @@
 
 Summary: Graphical front-end for the Subversion concurrent versioning system.
 Name: rapidsvn
-Version: 0.9.6
-Release: 2
+Version: 0.10.0
+Release: 1
 License: BSD
 Group: Development/Tools
 URL: http://rapidsvn.tigris.org/
 
-Source: http://www.rapidsvn.org/download/release/%{version}/rapidsvn-%{version}.tar.gz
+Source: http://www.rapidsvn.org/download/release/0.10/rapidsvn-%{version}-1.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: apr-devel, apr-util-devel, neon-devel, gcc-c++
 BuildRequires: autoconf >= 2.53, libtool >= 1.4.2
 BuildRequires: docbook-style-xsl >= 1.58.1, doxygen, libxslt >= 1.0.27
-BuildRequires: subversion-devel >= 1.0.0
+BuildRequires: subversion-devel >= 1.6.5
 BuildRequires: wxGTK-devel >= 2.4.2
 BuildRequires: desktop-file-utils
 # for /usr/bin/convert:
 BuildRequires: ImageMagick
-Requires: subversion
+Requires: subversion >= 1.6.5
 
 %description
 Subversion does the same thing CVS does (Concurrent Versioning System) but has
@@ -52,14 +54,17 @@ EOF
 %build
 export CPPFLAGS="-I/usr/include/subversion-1"
 %configure \
-    --disable-no-exceptions \
-    --with-docbook-xsl="%{_datadir}/sgml/docbook/xsl-stylesheets" \
+    --disable-dependency-tracking \
+    --with-docbook-xsl-manpages="%{_datadir}/sgml/docbook/xsl-stylesheets/manpages/docbook.xsl" \
+    --with-manpage=yes \
     --with-svn-lib="%{_libdir}" \
 %{?_with_apr1:--with-apr-config="%{_bindir}/apr-1-config"} \
 %{?_with_apu1:--with-apu-config="%{_bindir}/apu-1-config"}
 #    --with-svn-include="%{_includedir}/subversion-1" \
 #    --with-wx-config="%{_bindir}/wxgtk-2.4-config" \
 %{__make} %{?_smp_mflags}
+
+/usr/bin/libtool --finish %{buildroot}%{_libdir}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -78,9 +83,12 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %clean
 %{__rm} -rf %{buildroot}
 
+%post
+
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS ChangeLog CHANGES COPYING HACKING.txt LICENSE.txt INSTALL 
+%doc NEWS README GPL.txt FDL.txt TRANSLATIONS
 #doc %{_mandir}/man1/rapidsvn.1*
 %{_bindir}/rapidsvn
 %{_datadir}/applications/%{desktop_vendor}-rapidsvn.desktop
@@ -91,6 +99,10 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %exclude %{_libdir}/libsvncpp.la
 
 %changelog
+* Wed Oct 14 2009 Steve Huff <shuff@vecna.org> - 0.10.0-1
+- Updated to release 0.10.
+- We now require a current RPMforge subversion, not the upstream.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 0.9.6-2
 - Rebuild against wxGTK 2.8.8.
 
