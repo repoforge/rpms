@@ -4,8 +4,8 @@
 
 ## ExcludeDist: el3 el4
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-%define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(0)')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
 Summary: Nautilus integration for Subversion
@@ -20,18 +20,20 @@ Source: http://rabbitvcs.googlecode.com/files/rabbitvcs-%{version}.tar.gz
 Patch0: rabbitvcs-0.12_nautilusold.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildArch: noarch
+BuildArch: noarch
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: nautilus-python-devel = 0.5.0
-BuildRequires: pysvn
 BuildRequires: neon-devel
+BuildRequires: pygobject2-devel
 BuildRequires: pygtk2-devel
+BuildRequires: pysvn
 BuildRequires: python-devel
 BuildRequires: subversion-devel >= 1.6.5
 Requires: meld
 Requires: nautilus-python = 0.5.0
 Requires: neon 
+Requires: pygobject2
 Requires: pygtk2 
 Requires: pysvn 
 Requires: python 
@@ -81,7 +83,7 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING MAINTAINERS 
-%{python_sitearch}/*
+%{python_sitelib}/*
 %{_bindir}/*
 %dir %{nautilus_extensiondir}
 %{nautilus_extensiondir}/*
