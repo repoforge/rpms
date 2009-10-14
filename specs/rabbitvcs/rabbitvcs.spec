@@ -66,7 +66,8 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %{__rm} -rf %{buildroot}%{_defaultdocdir}/%{name}
 
 # update-notifier is just for Ubuntu
-%{__rm} -rf %{buildroot}%{_datadir}/%{name}
+%{__rm} -f %{buildroot}%{_datadir}/%{name}/*.update-notifier
+%{__rm} -f %{buildroot}%{_datadir}/%{name}/do-rabbitvcs-restart-nautilus
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -91,6 +92,7 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %{_iconsscaldir}/*
 %dir %{_datadir}/locale/*/LC_MESSAGES/
 %{_datadir}/locale/*/LC_MESSAGES/*
+%{_datadir}/rabbitvcs
 
 %changelog
 * Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 0.12-1
