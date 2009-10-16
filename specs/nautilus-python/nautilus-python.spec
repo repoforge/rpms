@@ -30,6 +30,7 @@ BuildRequires: python-devel >= 2.3
 BuildRequires: rpm-macros-rpmforge
 BuildRequires: /bin/sed
 BuildRequires: /usr/bin/find
+BuildRequires: /usr/bin/xargs
 
 Requires: /sbin/ldconfig
 Requires: /usr/bin/libtool
@@ -66,7 +67,9 @@ sed -i -e '/^libdir/ s/\/lib/&64/' nautilus-python.pc.in
 
 %build
 # autoconf sets these variable incorrectly under x86_64
-PYTHON_LIBS='-L%{_libdir} -lpython%{python_version}' PYTHON_LIB_LOC='%{_libdir}' %configure --disable-dependency-tracking
+export PYTHON_LIBS='-L%{_libdir} -lpython%{python_version}' 
+export PYTHON_LIB_LOC='%{_libdir}' 
+%configure --disable-dependency-tracking
 
 %ifarch x86_64
 find . -name Makefile | xargs sed -i -e '/^NAUTILUS_PYTHON_LIBS/ s/-L\/lib64/-L\/usr\/lib64 &/'
