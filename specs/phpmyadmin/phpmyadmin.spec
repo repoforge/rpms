@@ -5,13 +5,14 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.11.9.5
+Version: 2.11.9.6
 Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
 
-Source: http://dl.sf.net/phpmyadmin/phpMyAdmin-%{version}-all-languages.tar.bz2
+#Source: http://dl.sf.net/phpmyadmin/phpMyAdmin-%{version}-all-languages.tar.bz2
+Source: http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/%{version}/phpMyAdmin-%{version}-all-languages.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -70,6 +71,9 @@ EOF
 %config(noreplace) %{_datadir}/phpmyadmin/config.inc.php
 
 %changelog
+* Fri Oct 16 2009 David Hrbáč <david@hrbac.cz> - 2.11.9.6-1
+- new upstream release
+
 * Fri Apr 03 2009 Jim <quien-sabe@metaorg.com> - 2.11.9.5-1
 - Updated to release 2.11.9.5.
 
