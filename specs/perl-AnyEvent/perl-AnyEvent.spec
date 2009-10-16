@@ -10,8 +10,8 @@
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 5.2
-Release: 2
+Version: 5.201
+Release: 1
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent/
@@ -21,10 +21,19 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 5.8.1
-#BuildRequires: perl(Coro)
-BuildRequires: perl(Event)
-BuildRequires: perl(Glib)
-BuildRequires: perl(Tk)
+# From yaml build_requires
+BuildRequires: perl(ExtUtils::MakeMaker)
+# From yaml recommends
+#BuildRequires: perl(Async::Interrupt)
+BuildRequires: perl(EV)
+BuildRequires: perl(Guard)
+BuildRequires: perl(JSON)
+BuildRequires: perl(JSON::XS)
+BuildRequires: perl(Net::SSLeay)
+
+%filter_from_requires /^perl(EV)*/d
+%filter_setup
+
 
 %description
 AnyEvent provides a framework for multiple event loops.
@@ -33,6 +42,7 @@ AnyEvent provides a framework for multiple event loops.
 Summary: Perl AnyEvent implementation for perl-EV and libev
 Group: Applications/CPAN
 Requires: %{name} = %{version}-%{release}
+Requires: perl(EV)
 
 %description EV
 This subpackage contains the AnyEvent implementation for perl-EV and libev.
@@ -181,6 +191,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
 
 %changelog
+* Mon Oct 12 2009 Christoph Maser <cmr@financial.com> - 5.201-1
+- Updated to version 5.201.
+
 * Thu Sep 24 2009 Steve Huff <shuff@vecna.org> - 5.2-2
 - This needs Perl 5.8.1; too bad for el3.
 
