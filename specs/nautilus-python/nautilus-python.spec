@@ -4,7 +4,9 @@
 
 ## ExcludeDist el3 el4
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(0)')
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_version()')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
 Summary: Python bindings for Nautilus
@@ -26,6 +28,8 @@ BuildRequires: pkgconfig >= 0.9.0
 BuildRequires: pygtk2-devel >= 2.8
 BuildRequires: python-devel >= 2.3
 BuildRequires: rpm-macros-rpmforge
+BuildRequires: /bin/sed
+BuildRequires: /usr/bin/find
 
 Requires: /sbin/ldconfig
 Requires: /usr/bin/libtool
@@ -56,8 +60,18 @@ Install this package if you want to develop software using %{name}.
 %prep
 %setup
 
+%ifarch x86_64
+sed -i -e '/^libdir/ s/\/lib/&64/' nautilus-python.pc.in
+%endif
+
 %build
-%configure --disable-dependency-tracking
+# autoconf sets these variable incorrectly under x86_64
+PYTHON_LIBS='-L%{_libdir} -lpython%{python_version}' PYTHON_LIB_LOC='%{_libdir}' %configure --disable-dependency-tracking
+
+%ifarch x86_64
+find . -name Makefile | xargs sed -i -e '/^NAUTILUS_PYTHON_LIBS/ s/-L\/lib64/-L\/usr\/lib64 &/'
+%endif
+
 %{__make}
 
 %install
