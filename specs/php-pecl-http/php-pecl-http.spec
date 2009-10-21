@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: Michael Wallner <mike$php,net>
 
+# missing libevent-devel
+## ExcludeDist el3 el4
+
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 %define php_incdir %(php-config --include-dir 2>/dev/null || echo %{_includedir}/php4)
 
