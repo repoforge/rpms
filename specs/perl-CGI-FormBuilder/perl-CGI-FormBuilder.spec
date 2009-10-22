@@ -95,6 +95,7 @@ Plus, the native HTML generated is valid XHTML 1.0 Transitional.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+find %{buildroot} -name '*.orig' -exec %{__rm} -f {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
