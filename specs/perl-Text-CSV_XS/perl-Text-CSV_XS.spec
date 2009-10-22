@@ -9,7 +9,7 @@
 
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
-Version: 0.67
+Version: 0.69
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,16 +18,19 @@ URL: http://search.cpan.org/dist/Text-CSV_XS/
 Source: http://www.cpan.org/modules/by-module/Text/Text-CSV_XS-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Config)
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::Harness)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Tie::Scalar)
-# From yaml requires
 BuildRequires: perl(DynaLoader)
-BuildRequires: perl(IO::Handle)
-Requires: perl >= 0:5.005
+#BuildRequires: perl(IO::Handle)
+#BuildRequires: perl(Test::Harness)
+#BuildRequires: perl(Test::More)
+BuildRequires: perl(Tie::Scalar)
+BuildRequires: perl >= 5.005
+Requires: perl(DynaLoader)
+Requires: perl(IO::Handle)
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Text::CSV provides facilities for the composition and decomposition of
@@ -64,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Text/CSV_XS.pm
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.69-1
+- Updated to version 0.69.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.67-1
 - Updated to version 0.67.
 
