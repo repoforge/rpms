@@ -9,7 +9,7 @@
 
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
-Version: 0.11002
+Version: 0.11003
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,14 +19,6 @@ Source: http://www.cpan.org/modules/by-module/SQL/SQL-Translator-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker) 
-BuildRequires: perl(File::Basename)
-BuildRequires: perl(Test::Differences)
-BuildRequires: perl(Test::Exception)
-BuildRequires: perl(Test::More) >= 0.6
-BuildRequires: perl(YAML) >= 0.66
-# From yaml requires
 BuildRequires: perl(Carp::Clan)
 BuildRequires: perl(Class::Accessor::Fast)
 BuildRequires: perl(Class::Base)
@@ -34,23 +26,38 @@ BuildRequires: perl(Class::Data::Inheritable) >= 0.02
 BuildRequires: perl(Class::MakeMethods)
 BuildRequires: perl(DBI)
 BuildRequires: perl(Digest::SHA1) >= 2
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Basename)
 BuildRequires: perl(File::ShareDir) >= 1
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(IO::Dir)
 BuildRequires: perl(IO::Scalar) >= 2.11
-BuildRequires: perl(Parse::RecDescent) >= 1.096
+BuildRequires: perl(Parse::RecDescent) >= 1.962002
 BuildRequires: perl(Pod::Usage)
+BuildRequires: perl(Test::Differences)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More) >= 0.6
 BuildRequires: perl(XML::Writer) >= 0.5
+BuildRequires: perl(YAML) >= 0.66
 BuildRequires: perl >= 5.005
-# From yaml recommends
-BuildRequires: perl(GD)
-BuildRequires: perl(Graph::Directed)
-BuildRequires: perl(GraphViz)
-BuildRequires: perl(Spreadsheet::ParseExcel)
-BuildRequires: perl(Template)
-BuildRequires: perl(Text::ParseWords)
-BuildRequires: perl(Text::RecordParser)
-BuildRequires: perl(XML::LibXML)
+Requires: perl(Carp::Clan)
+Requires: perl(Class::Accessor::Fast)
+Requires: perl(Class::Base)
+Requires: perl(Class::Data::Inheritable) >= 0.02
+Requires: perl(Class::MakeMethods)
+Requires: perl(DBI)
+Requires: perl(Digest::SHA1) >= 2
+Requires: perl(File::ShareDir) >= 1
+Requires: perl(File::Spec)
+Requires: perl(IO::Dir)
+Requires: perl(IO::Scalar) >= 2.11
+Requires: perl(Parse::RecDescent) >= 1.962002
+Requires: perl(Pod::Usage)
+Requires: perl(XML::Writer) >= 0.5
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -106,6 +113,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt-graph
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.11003-1
+- Updated to version 0.11003.
+
 * Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 0.11002-1
 - Updated to version 0.11002.
 
