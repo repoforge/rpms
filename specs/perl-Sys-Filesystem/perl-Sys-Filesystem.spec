@@ -9,7 +9,7 @@
 
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
-Version: 1.23
+Version: 1.24
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,15 @@ Source: http://www.cpan.org/modules/by-module/Sys/Sys-Filesystem-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
 BuildRequires: perl(Module::Build)
+BuildRequires: perl >= 5.006
+Requires: perl(Carp)
+Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Sys::Filesystem is intended to be a portable interface to list and
@@ -30,12 +37,12 @@ query filesystem names and their properties.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -52,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sys/Filesystem/
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.23-1
 - Updated to version 1.23.
 
