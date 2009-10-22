@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a switch statement
 Name: perl-Switch
-Version: 2.14
+Version: 2.15
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,14 @@ Source: http://www.cpan.org/authors/id/R/RG/RGARCIA/Switch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Filter::Util::Call)
+BuildRequires: perl(Text::Balanced)
+Requires: perl(Filter::Util::Call)
+Requires: perl(Text::Balanced)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-Switch is a Perl module that implements a switch statement.
@@ -48,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Switch.pm
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 2.15-1
+- Updated to version 2.15.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 2.14-1
 - Updated to version 2.14.
 
