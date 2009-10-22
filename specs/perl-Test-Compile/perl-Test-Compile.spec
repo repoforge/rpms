@@ -9,7 +9,7 @@
 
 Summary: check whether Perl module files compile correctly
 Name: perl-Test-Compile
-Version: 0.08
+Version: 0.10
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,13 +19,17 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Compile-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
-BuildRequires: perl(Test::More) >= 0.70
-BuildRequires: perl(Test::Pod)
-BuildRequires: perl(Test::Pod::Coverage)
-BuildRequires: perl(UNIVERSAL::require)
 BuildRequires: perl(Devel::CheckOS) >= 1.42
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl >= 5.6.0
+Requires: perl(Devel::CheckOS) >= 1.42
+Requires: perl(UNIVERSAL::require)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 check whether Perl module files compile correctly.
@@ -34,7 +38,7 @@ check whether Perl module files compile correctly.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -56,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Compile.pm
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.10-1
+- Updated to version 0.10.
+
 * Thu Feb 21 2008 Dag Wieers <dag@wieers.com> - 0.08-1
 - Updated to release 0.08.
 
