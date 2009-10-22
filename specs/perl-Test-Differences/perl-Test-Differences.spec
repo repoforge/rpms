@@ -9,7 +9,7 @@
 
 Summary: Test strings and data structures and show differences if not ok
 Name: perl-Test-Differences
-Version: 0.4801
+Version: 0.500
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,13 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Differences-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Diff) >= 0.35
+Requires: perl(Test::More)
+Requires: perl(Text::Diff) >= 0.35
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Test strings and data structures and show differences if not ok.
@@ -39,21 +44,21 @@ Test strings and data structures and show differences if not ok.
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-### Clean up docs
-find eg/ -type f -exec %{__chmod} a-x {} \;
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP eg/
+%doc Changes MANIFEST 
 %doc %{_mandir}/man3/Test::Differences.3pm*
 %dir %{perl_vendorlib}/Test/
 #%{perl_vendorlib}/Test/Differences/
 %{perl_vendorlib}/Test/Differences.pm
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.500-1
+- Updated to version 0.500.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.4801-1
 - Updated to version 0.4801.
 
