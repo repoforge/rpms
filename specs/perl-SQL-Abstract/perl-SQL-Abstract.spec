@@ -8,7 +8,7 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.58
+Version: 1.60
 Release: 1
 License: Artistic
 Group: Applications/CPAN
@@ -17,19 +17,24 @@ URL: http://search.cpan.org/dist/SQL-Abstract/
 Source: http://www.cpan.org/modules/by-module/SQL/SQL-Abstract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# From yaml build_requires
+BuildArch: noarch
 BuildRequires: perl(Clone) >= 0.31
-BuildRequires: perl(ExtUtils::MakeMaker)
-#BuildRequires: perl(Test::Builder)
-#BuildRequires: perl(Test::Deep)
-#BuildRequires: perl(Test::Exception)
-#BuildRequires: perl(Test::More)
-#BuildRequires: perl(Test::Warn)
-# From yaml requires
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(List::Util)
 BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::Builder)
+BuildRequires: perl(Test::Deep)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+#BuildRequires: perl(Test::Warn)
 BuildRequires: perl >= 5.6.1
-BuildArch: noarch
+Requires: perl(List::Util)
+Requires: perl(Scalar::Util)
+Requires: perl >= 5.6.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module was inspired by the excellent L<DBIx::Abstract>.
@@ -73,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL/Abstract/Test.pm
 
 %changelog
+* Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 1.60-1
+- Updated to version 1.60.
+
 * Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 1.58-1
 - Updated to version 1.58.
 
