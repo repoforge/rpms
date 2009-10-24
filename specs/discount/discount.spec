@@ -50,7 +50,7 @@ Install this package if you want to develop software that uses the Discount libr
 %setup
 
 %build
-./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --mandir=%{_mandir} --enable-dl-tag --enable-pandoc-header --enable-superscript --relaxed-emphasis
+./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --libdir=%{_libdir} --mandir=%{_mandir} --enable-dl-tag --enable-pandoc-header --enable-superscript --relaxed-emphasis
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install

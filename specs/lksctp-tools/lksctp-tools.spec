@@ -1,6 +1,7 @@
 # $Id$
 # Authority: shuff
 # Upstream: Sridhar Samudrala <sri$us,ibm,com>
+## ExcludeDist: el3
 
 Summary: User-space access to Linux Kernel SCTP
 Name: lksctp-tools
