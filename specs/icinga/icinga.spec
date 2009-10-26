@@ -9,18 +9,16 @@
 %if "%{_vendor}" == "suse"
 %define apacheconfdir  %{_sysconfdir}/apache2/conf.d
 %define apacheuser wwwrun
-%define apachegroup www
 %endif
 %if "%{_vendor}" == "redhat"
 %define apacheconfdir  %{_sysconfdir}/httpd/conf.d
 %define apacheuser apache
-%define apachegroup apache
 %endif
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 0.8.4
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -85,8 +83,8 @@ database storage via libdbi.
     --sbindir="%{_datadir}/icinga/cgi" \
     --sysconfdir="%{_sysconfdir}/icinga" \
     --with-cgiurl="/icinga/cgi-bin" \
-    --with-command-user="%{apacheuser}" \
-    --with-command-group="%{apachegroup}" \
+    --with-command-user="icinga" \
+    --with-command-group="icingacmd" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
@@ -135,7 +133,8 @@ cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
 %pre
 # Add icinga user
 /usr/sbin/groupadd icinga 2> /dev/null || :
-/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G %{apachegroup} -g icinga icinga 2> /dev/null || :
+/usr/sbin/groupadd icingacmd 2> /dev/null || :
+/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G icingacmd -g icinga icinga 2> /dev/null || :
 
 
 %post
@@ -147,6 +146,14 @@ if [ $1 -eq 0 ]; then
     /sbin/chkconfig --del icinga
 fi
 
+%pre gui
+# Add apacheuser in the icingacmd group
+%if "%{_vendor}" == "suse"
+  /usr/sbin/groupmod -A %{apacheuser} icingacmd
+%endif
+%if "%{_vendor}" == "redhat"
+  /usr/sbin/usermod -a -G icingacmd %{apacheuser}
+%endif
 
 %post idoutils
 /sbin/chkconfig --add ido2db
@@ -182,7 +189,7 @@ fi
 %{logdir}
 %dir %{_localstatedir}/icinga
 %dir %{_localstatedir}/icinga/checkresults
-%attr(2755,icinga,%{apachegroup}) %{_localstatedir}/icinga/rw/
+%attr(2755,icinga,icingacmd) %{_localstatedir}/icinga/rw/
 
 %files gui
 %defattr(-,icinga,icinga,-)
@@ -200,6 +207,10 @@ fi
 
 
 %changelog
+* Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 0.8.4-3
+- Use icingacmd group and add apache user to that group instead
+  of using apachegroup as icinga command group.
+
 * Wed Oct 07 2009 Christoph Maser <cmr@financial.com> - 0.8.4-2
 - make packages openSUSE compatible
 - add %apachecondir, %apacheuser, %apachegroup depending on vendor
