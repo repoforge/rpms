@@ -5,8 +5,8 @@
 
 Summary: Console based bittorrent client
 Name: rtorrent
-Version: 0.8.4
-Release: 2
+Version: 0.8.5
+Release: 1
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
@@ -52,6 +52,9 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
+* Tue Oct 27 2009 Steve Huff <shuff@vecna.org> - 0.8.5-1
+- Updated to release 0.8.5.
+
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 0.8.4-2
 - Rebuild against libtorrent.
 
