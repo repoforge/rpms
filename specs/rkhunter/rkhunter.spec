@@ -1,6 +1,5 @@
 # $Id$
-# Authority: dag
-# Tag: test
+# Authority: shuff
 
 Summary: Host-based tool to scan for rootkits, backdoors and local exploits
 Name: rkhunter
