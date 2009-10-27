@@ -4,12 +4,12 @@
 Summary: Nagios plugin to store Nagios data in a relational database 
 Name: ndoutils
 Version: 1.4
-Release: 0.beta7.3
+Release: 0.beta8.1
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
-Source: http://dl.sf.net/sourceforge/nagios/ndoutils-%{version}b7.tar.gz
+Source: http://downloads.sourceforge.net/project/nagios/ndoutils-1.x/ndoutils-1.4b8/ndoutils-1.4b8.tar.gz
 Source1: ndoutils-init
 Source2: ndoutils-config
 Source3: ndomod-config
@@ -27,7 +27,7 @@ instances to a MySQL database. Several community addons use this as one of their
 data sources.
 
 %prep
-%setup -n ndoutils-%{version}b7
+%setup -n ndoutils-%{version}b8
 
 %build
 %configure --with-mysql-lib="%{_libdir}/mysql/"
@@ -70,6 +70,9 @@ fi
 
 
 %changelog
+* Tue Oct 27 2009 Christoph Maser <cmr@financial.com> - 1.4-0.beta8.1
+- Update to 1.4-0.beta8.1
+
 * Thu Jan 15 2009 Christoph Maser <cmr@financial.com> - 1.4-0.beta7.3
 - fix %{_datarootdir} -> %{_datadir}
 
