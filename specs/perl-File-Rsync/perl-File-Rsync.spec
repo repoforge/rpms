@@ -9,7 +9,7 @@
 
 Summary: perl module interface to rsync(1)
 Name: perl-%{real_name}
-Version: 0.42
+Version: 0.43
 Release: 1
 License: GPL
 Group: Applications/CPAN
@@ -58,5 +58,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/File/Rsync/*.pm
 
 %changelog
+* Wed Oct 28 2009 Steve Huff <shuff@vecna.org> - 0.43-1
+- Updated to version 0.43.
+
 * Fri Oct 02 2009 Steve Huff <shuff@vecna.org> - 0.42-1
 - Initial package.
