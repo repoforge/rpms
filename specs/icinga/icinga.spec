@@ -18,7 +18,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 1.0
-Release: 0.RC1.1
+Release: 0.RC1.2
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -65,6 +65,14 @@ Requires: %{name} = %{version}-%{release}
 %description idoutils
 This package contains the idoutils addon for %{name} wich provides 
 database storage via libdbi.
+
+%package api
+Summary: PHP api for %{name}
+Group: Applications/System
+Requires: php
+
+%description api
+PHP api for %{name}
 
 
 %prep
@@ -194,7 +202,24 @@ fi
 %files gui
 %defattr(-,icinga,icinga,-)
 %config(noreplace) %attr(-,root,root) %{apacheconfdir}/icinga.conf
-%{_datadir}/icinga
+%dir %{_datadir}/icinga
+%{_datadir}/icinga/cgi
+%{_datadir}/icinga/contexthelp
+%{_datadir}/icinga/docs
+%{_datadir}/icinga/getList.php
+%{_datadir}/icinga/images
+%{_datadir}/icinga/includes
+%{_datadir}/icinga/index.html
+%{_datadir}/icinga/js
+%{_datadir}/icinga/main.html
+%{_datadir}/icinga/media
+%{_datadir}/icinga/menu.html
+%{_datadir}/icinga/robots.txt
+%{_datadir}/icinga/search.html
+%{_datadir}/icinga/sidebar.html
+%{_datadir}/icinga/ssi
+%{_datadir}/icinga/stylesheets
+%{_datadir}/icinga/top.html
 
 %files idoutils
 %defattr(-,icinga,icinga,-)
@@ -205,8 +230,15 @@ fi
 %{_bindir}/ido2db
 %{_bindir}/idomod.o
 
+%files api
+%defattr(-,icinga,icinga,-)
+%{_datadir}/icinga/icinga-api
+
 
 %changelog
+* Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 1.0-0.RC1.2
+- Split out icinga-api in sub package
+
 * Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 1.0-0.RC1.1
 - Update to 1.0-RC1
 - Correct checkconfig --del in idoutils %preun
