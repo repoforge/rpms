@@ -11,7 +11,7 @@
 
 Summary: Fast and small X11 window manager
 Name: icewm
-Version: 1.2.30
+Version: 1.2.37
 Release: 1
 License: LGPL
 Group: User Interface/Desktops
@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, libtool
 BuildRequires: gcc-c++, gettext
 BuildRequires: imlib-devel, imlib2-devel, libpng-devel, kdelibs
+BuildRequires: giflib-devel, esound-devel
 %{!?_without_gnome2:BuildRequires: gnome-desktop-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-font-utils}
 %{!?_without_modxorg:BuildRequires: libX11-devel, xorg-x11-font-utils}
@@ -52,8 +53,12 @@ EOF
 
 %build
 %configure \
+   --enable-corefonts \
    --enable-gradients \
+   --enable-guievents \
+   --enable-menus-gnome2 \
    --enable-shaped-decorations \
+   --with-icesound="ESound" \
    --with-docdir="%{_docdir}" \
 %{!?_without_gnome2:--enable-menus-gnome2}
 %{__make} %{?_smp_mflags}
@@ -85,6 +90,9 @@ EOF
 %{_datadir}/icewm/
 
 %changelog
+* Wed Oct 28 2009 Steve Huff <shuff@vecna.org> - 1.2.37-1
+- Updated to release 1.2.37-1.
+
 * Sun Mar 04 2007 Dag Wieers <dag@wieers.com> - 1.2.30-1
 - Updated to release 1.2.30.
 
