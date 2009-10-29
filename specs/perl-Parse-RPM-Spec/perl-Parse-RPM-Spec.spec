@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: Dave Cross <dave$mag-sol,com>
 
+## This package needs Moose.
+## ExcludeDist: el3 el4
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
