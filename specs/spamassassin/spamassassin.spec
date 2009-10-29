@@ -15,7 +15,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.2.5
-Release: 1
+Release: 2
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -28,6 +28,7 @@ BuildRequires: perl(HTML::Parser) >= 3.24, perl(Net::DNS), perl(Time::HiRes), op
 Requires: procmail, gnupg, perl(Net::DNS), perl(Time::HiRes), perl-libwww-perl
 Requires: perl(Archive::Tar) >= 1.23, perl(IO::Zlib), perl(IO::Socket::SSL)
 Requires: perl(DB_File), perl(LWP::UserAgent), perl(HTTP::Date)
+Requires: gcc, re2c
 Requires: /sbin/chkconfig, /sbin/service
 Obsoletes: perl-Mail-SpamAssassin <= %{version}-%{release}
 Obsoletes: spamassassin-tools <= %{version}-%{release}
@@ -214,6 +215,9 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Thu Oct 29 2009 David Hrbáč <david@hrbac.cz> - 3.2.5-2
+- Updated requires to satisfy sa-compile and sa-update
+
 * Thu Jun 19 2008 Dries Verachtert <dries@ulyssis.org> - 3.2.5-1
 - Updated to release 3.2.5.
 
