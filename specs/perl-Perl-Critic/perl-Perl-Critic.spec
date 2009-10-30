@@ -10,7 +10,7 @@
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
 Version: 1.105
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Critic/
@@ -69,6 +69,7 @@ BuildRequires: perl(Readonly::XS)
 BuildRequires: perl(Regexp::Parser)
 BuildRequires: perl(Term::ANSIColor)
 BuildRequires: perl(Text::ParseWords)
+Requires: perl(Module::Pluggable) >= 3.1
 
 %description
 Critique Perl source code for best-practices.
@@ -107,6 +108,10 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/TODO.pod
 
 %changelog
+* Fri Oct 30 2009 Steve Huff <shuff@vecna.org> - 1.105-2
+- Module::Pluggable dependency captured as a BuildRequires, but
+  not a Requires; fixed.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 1.105-1
 - Updated to version 1.105.
 
