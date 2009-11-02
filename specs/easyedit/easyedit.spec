@@ -5,7 +5,7 @@
 Name:         easyedit
 Summary:      Easy Text Editor
 Version:      1.5.0
-Release:      1
+Release:      2
 License:      BSD
 Group:        Applications/Editors
 URL:          http://mahon.cwx.net/
@@ -20,7 +20,7 @@ BuildRequires: ncurses-devel
 Requires: glibc
 Requires: ncurses
 
-Provides: ee
+Provides: ee, ree
 
 %description
 EE is a an easy to use text editor. Intended to be usable with
@@ -41,6 +41,9 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_mandir}/man1
 %{__install} -m 0755 ee %{buildroot}%{_bindir}/ee
+pushd %{buildroot}%{_bindir}
+%{__ln_s} ee ree
+popd
 %{__install} -m 0644 ee.1 %{buildroot}%{_mandir}/man1/ee.1
 
 
@@ -50,11 +53,14 @@ mkdir -p %{buildroot}%{_mandir}/man1
 
 %files
 %defattr(755,root,root,-)
-%doc %{_mandir}/man1/ee.1.gz
-%{_bindir}/ee
+%doc %{_mandir}/man?/*
+%{_bindir}/*
 
 
 %changelog
+* Mon Nov 02 2009 Steve Huff <shuff@vecna.org> - 1.5.0-2
+- Added the ree symlink.
+
 * Wed Oct 07 2009 Steve Huff <shuff@vecna.org> - 1.5.0-1
 - Initial package (thanks to Spiro Harvey).
 
