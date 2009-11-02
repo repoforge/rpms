@@ -1,0 +1,28 @@
+diff -Naur SNMP-Util-1.8-orig/Makefile.PL SNMP-Util-1.8/Makefile.PL
+--- SNMP-Util-1.8-orig/Makefile.PL	2000-06-27 14:40:11.000000000 -0400
++++ SNMP-Util-1.8/Makefile.PL	2009-11-02 13:35:06.000000000 -0500
+@@ -15,14 +15,16 @@
+ $FILE = new FileHandle;
+ open($FILE,">t/snmp.data");
+ 
+-print "\nEnter the IP address of the Device: ";
+-chomp($IP = <stdin>);
+-
+-print "Enter the SNMP community string: ";
+-chomp($community = <stdin>);
+-
+-print $FILE "IP = $IP\n";
+-print $FILE "community = $community\n";
++# print "\nEnter the IP address of the Device: ";
++# chomp($IP = <stdin>);
++# 
++# print "Enter the SNMP community string: ";
++# chomp($community = <stdin>);
++# 
++# print $FILE "IP = $IP\n";
++# print $FILE "community = $community\n";
++print $FILE "IP = 127.0.0.1\n";
++print $FILE "community = public\n";
+ 
+ close $FILE;
+ 

@@ -1,0 +1,45 @@
+diff -Naur SNMP-Util-1.8-orig/examples/snmpget SNMP-Util-1.8/examples/snmpget
+--- SNMP-Util-1.8-orig/examples/snmpget	2000-06-27 07:55:32.000000000 -0400
++++ SNMP-Util-1.8/examples/snmpget	2009-11-02 13:41:08.000000000 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl 
++#!/usr/bin/perl 
+ #
+ # snmpget
+ #
+diff -Naur SNMP-Util-1.8-orig/examples/snmpnext SNMP-Util-1.8/examples/snmpnext
+--- SNMP-Util-1.8-orig/examples/snmpnext	2000-06-27 07:55:32.000000000 -0400
++++ SNMP-Util-1.8/examples/snmpnext	2009-11-02 13:41:08.000000000 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl 
++#!/usr/bin/perl 
+ #
+ # snmpget
+ #
+diff -Naur SNMP-Util-1.8-orig/examples/snmpset SNMP-Util-1.8/examples/snmpset
+--- SNMP-Util-1.8-orig/examples/snmpset	2000-06-27 07:55:32.000000000 -0400
++++ SNMP-Util-1.8/examples/snmpset	2009-11-02 13:41:08.000000000 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl 
++#!/usr/bin/perl 
+ #
+ # snmpget
+ #
+diff -Naur SNMP-Util-1.8-orig/examples/snmptest SNMP-Util-1.8/examples/snmptest
+--- SNMP-Util-1.8-orig/examples/snmptest	2000-06-27 07:55:32.000000000 -0400
++++ SNMP-Util-1.8/examples/snmptest	2009-11-02 13:41:08.000000000 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl 
++#!/usr/bin/perl 
+ 
+ ## Wayne Marquette
+ ##
+diff -Naur SNMP-Util-1.8-orig/examples/snmpwalk SNMP-Util-1.8/examples/snmpwalk
+--- SNMP-Util-1.8-orig/examples/snmpwalk	2000-06-27 07:55:32.000000000 -0400
++++ SNMP-Util-1.8/examples/snmpwalk	2009-11-02 13:41:08.000000000 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ #
+ # walk
+ #
