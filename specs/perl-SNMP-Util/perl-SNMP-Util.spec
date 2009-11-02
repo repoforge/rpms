@@ -19,6 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/W/WM/WMARQ/SNMP-Util-%{version}.t
 Patch0: %{name}_noninteractive.patch
 Patch1: %{name}_examples-hashbang.patch
 Patch2: %{name}_mibdir.patch
+Patch3: %{name}_snmpversion.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -48,6 +49,7 @@ module writted by Joe Marzot.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

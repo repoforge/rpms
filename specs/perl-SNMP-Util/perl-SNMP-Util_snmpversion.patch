@@ -1,0 +1,77 @@
+diff -Nur SNMP-Util-1.8.ori/Util.pm SNMP-Util-1.8/Util.pm
+--- SNMP-Util-1.8.ori/Util.pm	2000-06-28 02:42:54.000000000 +0800
++++ SNMP-Util-1.8/Util.pm	2005-07-19 03:46:30.821196088 +0800
+@@ -54,6 +54,7 @@
+        $timeout,
+        $udp_port,
+        $verbose,
++       $version,
+        );
+ 
+     ## Parse named args.
+@@ -98,6 +99,9 @@
+ 		$verbose = 0;
+             }
+ 	}
++	elsif (/^-version/i) {
++	    $version = $args{$_};
++	}
+ 	elsif (/^-delimiter/ || /^octet-delimit/){ # Change delimiter for octet string output
+ 	    $Delimiter = $args{$_};
+ 	}
+@@ -115,6 +119,7 @@
+     $self->{poll} = $poll;
+     $self->{poll_timeout} = $poll_timeout;
+     $self->{retry} = $retry;
++    $self->{version} = $version;
+ 
+ 
+     # Set all defaults
+@@ -155,6 +160,11 @@
+     else{
+ 	$SNMP::verbose = 0;
+     }
++
++    #default version is '2c'
++    if( !defined $self->{version} or $self->{version} eq '' ) {
++    	$self->{version} = '2c';
++    }
+     
+     $Return_type = 'array';
+     
+@@ -167,6 +177,7 @@
+ 				    Timeout => $self->{timeout},
+ 				    Retries => $self->{retry},
+ 				    RemotePort => $self->{udp_port},
++				    Version => $self->{version},
+ 				    UseEnums => 1,
+ 				    );
+ 
+@@ -216,6 +227,7 @@
+ 				    Timeout => 2000000,
+ 				    Retries => 0,
+ 				    RemotePort => $self->{udp_port},
++				    Version => $self->{version},
+ 				    UseEnums => 1,
+ 				    );
+ 
+@@ -266,6 +278,7 @@
+ 				    Timeout => 2000000,
+ 				    Retries => 0,
+ 				    RemotePort => $self->{udp_port},
++				    Version => $self->{version},
+ 				    UseEnums => 1,
+ 				    );
+ 
+diff -Nur SNMP-Util-1.8.ori/t/libtest.t SNMP-Util-1.8/t/libtest.t
+--- SNMP-Util-1.8.ori/t/libtest.t	2000-06-27 19:55:32.000000000 +0800
++++ SNMP-Util-1.8/t/libtest.t	2005-07-19 03:46:38.254066120 +0800
+@@ -61,7 +61,7 @@
+ #print STDERR "Test $test_num - get sysDescr ";
+ $sysdescr = $snmp->get('v','sysDescr.0');
+ 
+-if (!$snmp->error && $sysdescr =~ /^[a-zA-Z]+/){
++if (!$snmp->error && $sysdescr =~ /^[0-9a-zA-Z]+/){
+     print "ok $test_num\n";
+     #print STDERR "ok $test_num\n";
+     $test_results[$test_num] = 1;
