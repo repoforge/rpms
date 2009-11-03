@@ -9,8 +9,10 @@
 %define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_version()')
 %define nautilus_extensiondir %(pkg-config --variable=extensiondir libnautilus-extension)
 
+%define real_name nautilus-python
+
 Summary: Python bindings for Nautilus
-Name: nautilus-python
+Name: python-nautilus
 Version: 0.5.0
 Release: 1%{?dist}
 License: GPL
@@ -36,6 +38,8 @@ Requires: /sbin/ldconfig
 Requires: /usr/bin/libtool
 Requires: nautilus
 
+Conflicts: nautilus-python
+Obsoletes: nautilus-python
 Provides: nautilus-python = %{version}
 
 %package devel
@@ -43,6 +47,10 @@ Summary: Development files for %{name}
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
+
+Conflicts: nautilus-python-devel
+Obsoletes: nautilus-python-devel
+Provides: nautilus-python-devel = %{version}
 
 # we don't want to either provide or require anything from _docdir, per policy
 %filter_provides_in %{_docdir}
@@ -59,7 +67,7 @@ Gnome 2.6.
 Install this package if you want to develop software using %{name}.
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 
 %ifarch x86_64
 sed -i -e '/^libdir/ s/\/lib/&64/' nautilus-python.pc.in
@@ -109,6 +117,8 @@ find . -name Makefile | xargs sed -i -e '/^NAUTILUS_PYTHON_LIBS/ s/-L\/lib64/-L\
 %{_libdir}/pkgconfig/*
 
 %changelog
+* Tue Nov 03 2009 Steve Huff <shuff@vecna.org> - 0.5.0-1
+- Renamed per RPMforge naming convention.
+
 * Fri Oct 09 2009 Steve Huff <shuff@vecna.org> - 0.5.0-1
 - Initial package.
-

@@ -6,8 +6,10 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+%define real_name pysvn
+
 Summary: Alternative Python interface to Subversion
-Name: pysvn
+Name: python-svn
 Version: 1.7.1
 Release: 1%{?dist}
 License: GPL
@@ -17,13 +19,16 @@ URL: http://pysvn.tigris.org/
 Source: http://pysvn.barrys-emacs.org/source_kits/pysvn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildArch: noarch
 BuildRequires: neon-devel
 BuildRequires: python-devel
 BuildRequires: subversion-devel >= 1.6.5
 Requires: neon 
 Requires: python 
 Requires: subversion >= 1.6.5
+
+Conflicts: pysvn
+Obsoletes: pysvn
+Provides: pysvn = %{version}
 
 %description
 The pysvn project's goal is to enable Tools to be written in Python that use Subversion.
@@ -39,7 +44,7 @@ pysvn Extension Features
     * No need to understand the Subversion C API 
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 
 %build
 cd Source
@@ -63,6 +68,8 @@ CFLAGS="%{optflags}" %{__python} setup.py configure
 %{python_sitearch}/*
 
 %changelog
-* Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 6.1.1-1
-- Initial package.
+* Tue Nov 03 2009 Steve Huff <shuff@vecna.org> - 1.7.1-1
+- Renamed per RPMforge naming convention.
 
+* Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 1.7.1-1
+- Initial package.

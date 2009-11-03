@@ -11,7 +11,7 @@
 Summary: Nautilus integration for Subversion
 Name: rabbitvcs
 Version: 0.12
-Release: 1%{?dist}
+Release: 1
 License: GPL
 Group: Development/Libraries
 URL: http://rabbitvcs.org
@@ -23,21 +23,21 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: gcc
 BuildRequires: gcc-c++
-BuildRequires: nautilus-python-devel = 0.5.0
+BuildRequires: python-nautilus-devel = 0.5.0
 BuildRequires: neon-devel
 BuildRequires: pygobject2-devel
 BuildRequires: pygtk2-devel
-BuildRequires: pysvn
 BuildRequires: python-devel
+BuildRequires: python-svn
 BuildRequires: subversion-devel >= 1.6.5
 Requires: meld
-Requires: nautilus-python = 0.5.0
+Requires: python-nautilus = 0.5.0
 Requires: neon 
 Requires: pygobject2
 Requires: pygtk2 
-Requires: pysvn 
 Requires: python 
 Requires: python-configobj >= 4.6.0
+Requires: python-svn 
 Requires: subversion >= 1.6.5
 Requires: %{_iconsbasedir}
 
