@@ -21,7 +21,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: python-devel
 Requires: python
 
-Conflicts: pycxx
 Obsoletes: pycxx
 Provides: pycxx = %{version}
 

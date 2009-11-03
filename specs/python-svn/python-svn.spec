@@ -26,7 +26,6 @@ Requires: neon
 Requires: python 
 Requires: subversion >= 1.6.5
 
-Conflicts: pysvn
 Obsoletes: pysvn
 Provides: pysvn = %{version}
 

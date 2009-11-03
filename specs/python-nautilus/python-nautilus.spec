@@ -38,7 +38,6 @@ Requires: /sbin/ldconfig
 Requires: /usr/bin/libtool
 Requires: nautilus
 
-Conflicts: nautilus-python
 Obsoletes: nautilus-python
 Provides: nautilus-python = %{version}
 
@@ -48,7 +47,6 @@ Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
 
-Conflicts: nautilus-python-devel
 Obsoletes: nautilus-python-devel
 Provides: nautilus-python-devel = %{version}
 
