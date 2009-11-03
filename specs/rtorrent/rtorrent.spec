@@ -1,24 +1,37 @@
 # $Id$
-# Authority: dries
+# Authority: yury
 
-%{?el4:%define _without_curl_pc 1}
+%define curl_version 7.19.6
 
 Summary: Console based bittorrent client
 Name: rtorrent
 Version: 0.8.5
-Release: 1%{?dist}
+Release: 2
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
 
-Source: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
+Source0: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
+Source1: http://curl.haxx.se/download/curl-%{curl_version}.tar.bz2
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: curl-devel >= 7.12
 BuildRequires: gcc-c++
 BuildRequires: libsigc++20-devel
-BuildRequires: libtorrent-devel >= 0.12.0
+BuildRequires: libtorrent-devel >= 0.12.5
 BuildRequires: ncurses-devel
+
+# Curl BuildRequires from Rawhide
+BuildRequires: krb5-devel
+BuildRequires: libidn-devel
+BuildRequires: nss-devel
+BuildRequires: openldap-devel
+BuildRequires: openssh-clients
+BuildRequires: openssh-server
+BuildRequires: pkgconfig
+BuildRequires: stunnel
+BuildRequires: valgrind
+BuildRequires: zlib-devel
 
 %description
 rTorrent is a console-based BitTorrent client. It aims to be a 
@@ -28,13 +41,33 @@ management.
 
 %prep
 %setup
+%setup -T -D -a 1
 
 %build
-### FIXME: Why does curl-compilation fail without the libsigc++20 includes on EL4 ?
-%{?_without_curl_pc:export STUFF_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"}
-%{?_without_curl_pc:export STUFF_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"}
-%{?_without_curl_pc:export libcurl_CFLAGS="$(curl-config --cflags) $(pkg-config sigc++-2.0 --cflags)"}
-%{?_without_curl_pc:export libcurl_LIBS="$(curl-config --libs) $(pkg-config sigc++-2.0 --libs) -ltorrent"}
+
+# Build curl
+cd curl-%{curl_version}
+RESULT_DIR=`pwd`/result
+
+./configure \
+	--without-ssl --with-nss --enable-ipv6 \
+	--with-ca-bundle=%{_sysconfdir}/pki/tls/certs/ca-bundle.crt \
+	--with-gssapi=%{_prefix}/kerberos --with-libidn \
+	--enable-ldaps --with-libssh2 --disable-manual \
+	--without-libssh2 \
+	--enable-static \
+	--disable-shared \
+	--prefix="$RESULT_DIR" \
+	--exec-prefix="$RESULT_DIR" \
+	--libdir="$RESULT_DIR/usr/%{_lib}"
+
+%{__make} %{?_smp_mflags} install
+
+cd ..
+
+# Build rtorrent
+PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
+
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -52,6 +85,9 @@ management.
 %{_bindir}/rtorrent
 
 %changelog
+* Tue Nov 3 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.5-2
+- Static build against latest curl.
+
 * Tue Oct 27 2009 Steve Huff <shuff@vecna.org> - 0.8.5-1
 - Updated to release 0.8.5.
 
