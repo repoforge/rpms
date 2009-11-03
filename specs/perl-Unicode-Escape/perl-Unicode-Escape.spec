@@ -11,7 +11,7 @@
 Summary: Perl module that implements escape and unescape Unicode characters other than ASCII
 Name: perl-Unicode-Escape
 Version: 0.0.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Escape/

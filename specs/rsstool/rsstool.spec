@@ -5,7 +5,7 @@
 Summary: Read, parse, merge and write RSS (and Atom) feeds
 Name: rsstool
 Version: 1.0.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://rsstool.berlios.de/

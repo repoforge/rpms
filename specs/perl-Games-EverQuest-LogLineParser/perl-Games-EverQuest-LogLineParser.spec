@@ -10,7 +10,7 @@
 Summary: Perl module for parsing lines from the EverQuest log file
 Name: perl-Games-EverQuest-LogLineParser
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-EverQuest-LogLineParser/

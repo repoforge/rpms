@@ -10,7 +10,7 @@
 Summary: Compiler for Perl 6 regexes
 Name: perl-Pugs-Compiler-Rule
 Version: 0.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pugs-Compiler-Rule/

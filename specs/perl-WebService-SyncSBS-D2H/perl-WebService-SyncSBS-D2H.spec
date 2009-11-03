@@ -10,7 +10,7 @@
 Summary: Del.icio.us and hatena bookmark sync
 Name: perl-WebService-SyncSBS-D2H
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-SyncSBS-D2H/

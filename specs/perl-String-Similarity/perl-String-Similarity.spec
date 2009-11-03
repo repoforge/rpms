@@ -10,7 +10,7 @@
 Summary: Calculate the similarity of two strings
 Name: perl-String-Similarity
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Similarity/

@@ -7,7 +7,7 @@
 Summary: GNOME Applet for hardware monitoring
 Name: hardware-monitor-applet
 Version: 1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.cs.auc.dk/~olau/hardware-monitor/

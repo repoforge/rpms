@@ -10,7 +10,7 @@
 Summary: Extension for converting CGI.pm variables to/from XML
 Name: perl-CGI-XML
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-XML/

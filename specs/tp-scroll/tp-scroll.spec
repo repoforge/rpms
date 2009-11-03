@@ -6,7 +6,7 @@
 Summary: IBM Trackpoint scroll-wheel emulation
 Name: tp-scroll
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://rsim.cs.uiuc.edu/~sachs/tp-scroll/

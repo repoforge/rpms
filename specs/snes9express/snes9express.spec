@@ -12,7 +12,7 @@
 Summary: Graphical front-end to snes9x, the SNES emulator
 Name: snes9express
 Version: 1.42
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://www.linuxgames.com/snes9express/

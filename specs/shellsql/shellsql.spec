@@ -8,7 +8,7 @@
 Summary: Faciliates the use of SQL commands in shell scripts
 Name: shellsql
 Version: 0.7.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://www.edlsystems.com/shellsql/

@@ -4,7 +4,7 @@
 Summary: RRDtool-based mail graphing tool
 Name: mailgraph
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://people.ee.ethz.ch/~dws/software/mailgraph/

@@ -13,7 +13,7 @@
 Summary: Command-line WebDAV client
 Name: cadaver
 Version: 0.22.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.webdav.org/cadaver/

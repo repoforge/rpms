@@ -5,7 +5,7 @@
 Summary: Graphical UML modeling environment
 Name: gaphor
 Version: 0.3.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://gaphor.sourceforge.net/

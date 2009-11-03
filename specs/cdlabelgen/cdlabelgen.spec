@@ -5,7 +5,7 @@
 Summary: Generates frontcards and traycards for inserting in CD jewelcases
 Name: cdlabelgen
 Version: 4.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.aczoom.com/tools/cdinsert/

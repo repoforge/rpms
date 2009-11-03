@@ -8,7 +8,7 @@
 Summary: Collection of cryptographic algorithms and protocols for python
 Name: python-crypto
 Version: 2.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.amk.ca/python/code/crypto.html

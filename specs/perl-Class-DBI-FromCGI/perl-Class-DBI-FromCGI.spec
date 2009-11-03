@@ -10,7 +10,7 @@
 Summary: Perl module to update Class::DBI data using CGI::Untaint
 Name: perl-Class-DBI-FromCGI
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-FromCGI/

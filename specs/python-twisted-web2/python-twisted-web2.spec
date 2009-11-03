@@ -8,7 +8,7 @@
 Summary: Twisted web server, programmable in Python
 Name: python-twisted-web2
 Version: 0.6.1
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://twistedmatrix.com/trac/wiki/TwistedWeb

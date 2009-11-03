@@ -4,7 +4,7 @@
 Summary: Graphical user interface for the GnuPG
 Name: gpa
 Version: 0.6.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpa.html

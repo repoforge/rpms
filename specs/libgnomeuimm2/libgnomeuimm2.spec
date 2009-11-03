@@ -6,7 +6,7 @@
 Summary: C++ wrappers for libgnomeui, for use with gtkmm
 Name: libgnomeuimm2
 Version: 2.0.0
-Release: 0
+Release: 0%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

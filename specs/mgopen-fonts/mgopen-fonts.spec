@@ -9,7 +9,7 @@
 Summary: Truetype greek fonts
 Name: mgopen-fonts
 Version: 0.20050515
-Release: 1
+Release: 1%{?dist}
 License: Bitstream Vera
 Group: User Interface/X
 URL: http://www.ellak.gr/fonts/mgopen/

@@ -10,7 +10,7 @@
 Summary: Perl module to talk to a UPS via Network UPS Tools (NUT) upsd
 Name: perl-UPS-Nut
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UPS-Nut/

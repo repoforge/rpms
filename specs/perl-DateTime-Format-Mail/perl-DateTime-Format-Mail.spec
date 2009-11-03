@@ -11,7 +11,7 @@
 Summary: Perl module to convert between DateTime and RFC2822/822 formats
 Name: perl-DateTime-Format-Mail
 Version: 0.3001
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Mail/

@@ -5,7 +5,7 @@
 Summary: Graphical subversion client
 Name: qsvn
 Version: 0.7.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.anrichter.net/projects/qsvn/

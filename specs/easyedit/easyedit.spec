@@ -5,7 +5,7 @@
 Name:         easyedit
 Summary:      Easy Text Editor
 Version:      1.5.0
-Release:      2
+Release:      2%{?dist}
 License:      BSD
 Group:        Applications/Editors
 URL:          http://mahon.cwx.net/

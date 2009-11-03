@@ -44,7 +44,7 @@
 Summary: a interface to Prowl Public API
 Name: perl-%{real_name}
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Prowl/

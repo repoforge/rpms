@@ -17,7 +17,7 @@
 Summary: Complete GTK frontend for xmame
 Name: gxmame
 Version: 0.35
-Release: 0.4%{?date:.%{date}}%{?prever:.%{prever}}
+Release: 0.4%{?date:.%{date}}%{?prever:.%{prever}}%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://gxmame.sourceforge.net/

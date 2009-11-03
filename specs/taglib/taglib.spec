@@ -4,7 +4,7 @@
 Summary: Audio Meta-Data Library
 Name: taglib
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://ktown.kde.org/~wheeler/taglib/

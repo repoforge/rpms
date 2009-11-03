@@ -10,7 +10,7 @@
 Summary: Return-value object
 Name: perl-Class-ReturnValue
 Version: 0.55
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-ReturnValue/

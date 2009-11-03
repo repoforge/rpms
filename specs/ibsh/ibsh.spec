@@ -6,7 +6,7 @@
 Summary: Restricted Unix shell
 Name: ibsh
 Version: 0.3e
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: http://ibsh.sourceforge.net/

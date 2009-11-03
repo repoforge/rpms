@@ -5,7 +5,7 @@
 Summary: Graphical ThinkPad configuration utility
 Name: configure-thinkpad
 Version: 0.9
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://tpctl.sourceforge.net/configure-thinkpad.html

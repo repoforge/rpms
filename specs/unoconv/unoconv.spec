@@ -11,7 +11,7 @@
 Summary: Tool to convert between any document format supported by OpenOffice
 Name: unoconv
 Version: 0.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/unoconv/

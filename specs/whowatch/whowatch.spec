@@ -5,7 +5,7 @@
 Summary: Display information about users currently logged on users
 Name: whowatch
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://wizard.ae.krakow.pl/~mike/

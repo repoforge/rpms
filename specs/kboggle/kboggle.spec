@@ -4,7 +4,7 @@
 Summary: Boggle game
 Name: kboggle
 Version: 0.4.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.kde-apps.org/content/show.php?content=26195

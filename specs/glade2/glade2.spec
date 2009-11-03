@@ -11,7 +11,7 @@
 Summary: GTK+ GUI builder
 Name: glade2
 Version: 2.0.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://glade.gnome.org/

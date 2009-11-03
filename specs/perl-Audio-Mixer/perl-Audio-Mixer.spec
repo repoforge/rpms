@@ -10,7 +10,7 @@
 Summary: Extension for Sound Mixer control
 Name: perl-Audio-Mixer
 Version: 0.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-Mixer/

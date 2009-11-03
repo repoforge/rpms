@@ -5,7 +5,7 @@
 Summary: Text viewer similar to more or less, but with additional capabilities
 Name: most
 Version: 4.10.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: ftp://space.mit.edu/pub/davis/most/

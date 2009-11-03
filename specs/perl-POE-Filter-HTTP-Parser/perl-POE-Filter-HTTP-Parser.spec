@@ -10,7 +10,7 @@
 Summary: A HTTP POE filter for HTTP clients or servers
 Name: perl-POE-Filter-HTTP-Parser
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-HTTP-Parser/

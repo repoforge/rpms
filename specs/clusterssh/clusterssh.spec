@@ -9,7 +9,7 @@
 Summary: Secure concurrent multi-server terminal control
 Name: clusterssh
 Version: 3.19.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://clusterssh.sourceforge.net/

@@ -5,7 +5,7 @@
 Summary: GNOME version of a tetris game playable on the net
 Name: gtetrinet
 Version: 0.7.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://gtetrinet.sourceforge.net/

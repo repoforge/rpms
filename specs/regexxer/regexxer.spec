@@ -5,7 +5,7 @@
 Summary: Graphical search/replace tool featuring Perl-style regular expressions
 Name: regexxer
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://regexxer.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: GNOME binary editor
 Name: ghex
 Version: 2.8.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://pluton.ijs.si/~jaka/gnome.html#GHEX

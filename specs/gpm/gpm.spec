@@ -9,7 +9,7 @@
 Summary: Mouse server for the Linux console
 Name: gpm
 Version: 1.20.1
-Release: 35.1.2
+Release: 35.1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://linux.schottelius.org/gpm/

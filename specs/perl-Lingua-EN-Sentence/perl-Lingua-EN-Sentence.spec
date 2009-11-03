@@ -10,7 +10,7 @@
 Summary: Module for splitting text into sentences
 Name: perl-Lingua-EN-Sentence
 Version: 0.25
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Sentence/

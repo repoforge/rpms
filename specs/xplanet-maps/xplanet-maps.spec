@@ -5,7 +5,7 @@
 Summary: Additional maps for Xplanet, the planet image rendering program
 Name: xplanet-maps
 Version: 1.0
-Release: 2
+Release: 2%{?dist}
 License: Distributable
 Group: Amusements/Graphics
 URL: http://flatplanet.sourceforge.net/maps/

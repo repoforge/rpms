@@ -5,7 +5,7 @@
 Summary: AutoUpdate, a simple perl script to keep your system up2date
 Name: autoupdate
 Version: 5.3.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.mat.univie.ac.at/~gerald/ftp/autoupdate/

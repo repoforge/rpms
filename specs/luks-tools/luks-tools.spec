@@ -4,7 +4,7 @@
 Summary: Utilities for working with LUKS-protected filesystems
 Name: luks-tools
 Version: 0.0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.flyn.org/

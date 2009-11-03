@@ -6,7 +6,7 @@
 Summary: GStreamer streaming media editor and GUI tools
 Name: gstreamer-editor
 Version: 0.7.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/apps/gst-editor/

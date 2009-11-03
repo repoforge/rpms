@@ -10,7 +10,7 @@
 Summary: Extended sorting algorithm
 Name: perl-Sort-Array
 Version: 0.26
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-Array/

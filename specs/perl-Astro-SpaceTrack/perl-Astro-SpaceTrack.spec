@@ -10,7 +10,7 @@
 Summary: Download satellite orbital elements from Space Track
 Name: perl-Astro-SpaceTrack
 Version: 0.034
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Astro-SpaceTrack/

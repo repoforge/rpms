@@ -10,7 +10,7 @@
 Summary: Perl extension for interfacing with the Kolab Cyrus admin module
 Name: perl-Kolab-Cyrus
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kolab-Cyrus/

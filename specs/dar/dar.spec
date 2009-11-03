@@ -5,7 +5,7 @@
 Summary: Dag Apt Repository builder
 Name: dar
 Version: 0.6.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://dag.wieers.com/home-made/dar/

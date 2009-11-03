@@ -5,7 +5,7 @@
 Summary: Firmware for Texas Instruments ACX100 network adaptors
 Name: acx100-firmware
 Version: 1.9.8.b
-Release: 1
+Release: 1%{?dist}
 License: Unknown
 Group: System Environment/Kernel
 URL: http://acx100.sourceforge.net/wiki/Firmware

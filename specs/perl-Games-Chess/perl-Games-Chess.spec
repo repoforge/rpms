@@ -10,7 +10,7 @@
 Summary: Represent chess positions and games
 Name: perl-Games-Chess
 Version: 0.003
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Chess/

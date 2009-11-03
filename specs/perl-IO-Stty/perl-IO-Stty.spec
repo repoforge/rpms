@@ -10,7 +10,7 @@
 Summary: Setting terminal parameters
 Name: perl-IO-Stty
 Version: .02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Stty/

@@ -13,7 +13,7 @@
 Summary: Enhanced branch of the sylpheed e-mail client
 Name: sylpheed-claws
 Version: 2.0.0
-Release: 1%{?extraver:.%{extraver}}
+Release: 1%{?extraver:.%{extraver}}%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/

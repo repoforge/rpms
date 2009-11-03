@@ -6,7 +6,7 @@
 Summary: Library implementing the Jabber instant messaging system
 Name: jabberoo
 Version: 1.9.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://gabber.jabberstudio.org/

@@ -8,7 +8,7 @@
 Summary: Log analyzer and parser
 Name: epylog
 Version: 1.0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://linux.duke.edu/projects/epylog/

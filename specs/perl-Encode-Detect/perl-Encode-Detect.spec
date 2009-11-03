@@ -10,7 +10,7 @@
 Summary: Perl module that implements an Encode::Encoding subclass that detects the encoding of data
 Name: perl-Encode-Detect
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode-Detect/

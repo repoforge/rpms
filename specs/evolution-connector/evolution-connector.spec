@@ -5,7 +5,7 @@
 Summary: Evolution Connector for Microsoft(tm) Exchange server.
 Name: evolution-connector
 Version: 1.4.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://www.novell.com/products/connector/

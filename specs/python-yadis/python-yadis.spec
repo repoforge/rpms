@@ -6,7 +6,7 @@
 Summary: Relying party support for the Yadis service discovery protocol
 Name: python-yadis
 Version: 1.1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.openidenabled.com/yadis/libraries/python/

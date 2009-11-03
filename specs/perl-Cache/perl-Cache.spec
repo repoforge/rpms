@@ -10,7 +10,7 @@
 Summary: Perl module that implements a Cache interface
 Name: perl-Cache
 Version: 2.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache/

@@ -10,7 +10,7 @@
 Summary: Parse and manipulate Perl version strings
 Name: perl-Perl-Version
 Version: 1.009
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Version/

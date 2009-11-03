@@ -7,7 +7,7 @@
 Summary: Driver for reading and writing on NTFS formatted volumes
 Name: dkms-ntfs
 Version: 2.1.28
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.linux-ntfs.org/

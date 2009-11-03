@@ -10,7 +10,7 @@
 Summary: Perl module to create a CGI application by subclassing
 Name: perl-CGI-Prototype
 Version: 0.9053
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Prototype/

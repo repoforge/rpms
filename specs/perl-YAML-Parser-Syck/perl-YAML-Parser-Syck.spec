@@ -10,7 +10,7 @@
 Summary: Wrapper for the YAML Parser Extension: libsyck
 Name: perl-YAML-Parser-Syck
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Parser-Syck/

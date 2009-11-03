@@ -10,7 +10,7 @@
 Summary: Perl module bout BooK is my Bitch
 Name: perl-Acme-BooK-Is-My-Bitch
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-BooK-Is-My-Bitch/

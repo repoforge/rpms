@@ -10,7 +10,7 @@
 Summary: The authentication portal part of Lemonldap::NG Web-SSO
 Name: perl-Lemonldap-NG-Portal
 Version: 0.89
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lemonldap-NG-Portal/

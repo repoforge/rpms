@@ -10,7 +10,7 @@
 Summary: Authenticate against an SMB server
 Name: perl-Authen-Smb
 Version: 0.91
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-Smb/

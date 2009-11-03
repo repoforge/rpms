@@ -6,7 +6,7 @@
 Summary: Utilities to update from AvantGo and MobileLink web site to Palm's
 Name: malsync
 Version: 2.1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: MPL
 Group: Applications/Communications
 URL: http://www.tomw.org/malsync/

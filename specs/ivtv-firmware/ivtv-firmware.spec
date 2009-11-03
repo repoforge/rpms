@@ -5,7 +5,7 @@
 Summary: Firmware for the Hauppauge PVR 250/350/150/500/USB2 model series
 Name: ivtv-firmware
 Version: 20070217
-Release: 1
+Release: 1%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://dl.ivtvdriver.org/ivtv/firmware/

@@ -4,7 +4,7 @@
 Summary: Site Management Tool for webmasters
 Name: webcheck
 Version: 1.10.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ch.tudelft.nl/~arthur/webcheck/

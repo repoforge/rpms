@@ -8,7 +8,7 @@
 Summary: Embeddable database
 Name: metakit
 Version: 2.4.9.3
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.equi4.com/metakit/

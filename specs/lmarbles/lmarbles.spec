@@ -6,7 +6,7 @@
 Summary: Atomix clone where you create figures out of marbles
 Name: lmarbles
 Version: 1.0.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/

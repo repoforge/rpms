@@ -10,7 +10,7 @@
 Summary: Alternative interface to File::Find
 Name: perl-File-Find-Rule
 Version: 0.30
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Find-Rule/

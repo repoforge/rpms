@@ -12,7 +12,7 @@
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
 Version: 0.92
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MOP/

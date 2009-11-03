@@ -10,7 +10,7 @@
 Summary: Anything, even imaginary modules are loadable
 Name: perl-Acme-Anything
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Anything/

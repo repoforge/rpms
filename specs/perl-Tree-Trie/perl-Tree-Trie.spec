@@ -10,7 +10,7 @@
 Summary: Trie data structure
 Name: perl-Tree-Trie
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Trie/

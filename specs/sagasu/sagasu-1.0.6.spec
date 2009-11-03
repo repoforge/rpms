@@ -5,7 +5,7 @@
 Summary: GNOME tool to find strings in multiple files
 Name: sagasu
 Version: 1.0.6
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://sarrazip.com/dev/sagasu.html

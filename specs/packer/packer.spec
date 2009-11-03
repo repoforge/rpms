@@ -5,7 +5,7 @@
 Summary: Tool that helps in the creation of packages
 Name: packer
 Version: 0.1.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://packer.sourceforge.net/

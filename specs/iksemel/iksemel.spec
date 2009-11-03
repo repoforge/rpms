@@ -4,7 +4,7 @@
 Summary: XML-parsing library
 Name: iksemel
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://code.google.com/p/iksemel/

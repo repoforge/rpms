@@ -5,7 +5,7 @@
 Summary: Remote control through bluetooth or IR connection
 Name: anyremote
 Version: 4.18.1
-Release: 1
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
 Source0: http://downloads.sourceforge.net/anyremote/%{name}-%{version}.tar.gz

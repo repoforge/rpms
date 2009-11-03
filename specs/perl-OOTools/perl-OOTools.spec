@@ -10,7 +10,7 @@
 Summary: Collection of pragmas to create constructors and lvalues
 Name: perl-OOTools
 Version: 2.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OOTools/

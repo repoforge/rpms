@@ -8,7 +8,7 @@
 Summary: Graphical tool to convert media to Free formats
 Name: oggconvert
 Version: 0.3.2
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Multimedia
 License: LGPL
 URL: http://oggconvert.tristanb.net/

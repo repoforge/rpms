@@ -5,7 +5,7 @@
 Summary: Regexp matching library
 Name: tre
 Version: 0.7.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://laurikari.net/tre/

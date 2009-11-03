@@ -5,7 +5,7 @@ Summary: Send icmp error packets to receive remote system info
 Name: icmpush
 %define real_version 22
 Version: 2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.securityfocus.com/data/tools/

@@ -6,7 +6,7 @@
 Name: mksh
 Summary: MirBSD enhanced version of the Korn Shell
 Version: 38b
-Release: 1
+Release: 1%{?dist}
 License: BSD with advertising
 Group: System Environment/Shells
 URL: http://www.mirbsd.de/mksh/

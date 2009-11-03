@@ -27,7 +27,7 @@
 Summary: Mozilla Thunderbird mail/news client
 Name: thunderbird
 Version: 0.7.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: MPL/GPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/thunderbird/

@@ -10,7 +10,7 @@
 Summary: Perl module that implements a safe, simple inside-out object construction kit
 Name: perl-Class-InsideOut
 Version: 1.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-InsideOut/

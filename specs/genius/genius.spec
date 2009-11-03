@@ -4,7 +4,7 @@
 Summary: Advanced calculator
 Name: genius
 Version: 0.7.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.jirka.org/genius.html

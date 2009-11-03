@@ -6,7 +6,7 @@
 Summary: PEAR package for manipulating mime messages
 Name: php-pear-mail_mime
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pear.php.net/package/Mail_Mime/

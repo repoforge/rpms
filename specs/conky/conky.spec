@@ -14,7 +14,7 @@
 Summary: Light-weight system monitor for X
 Name: conky
 Version: 1.6.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://conky.sourceforge.net/

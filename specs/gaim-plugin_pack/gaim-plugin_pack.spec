@@ -5,7 +5,7 @@ Summary: Plugin pack for Gaim
 Name: gaim-plugin_pack
 %define real_version 1.0beta6
 Version: 1.0
-Release: 0.beta6
+Release: 0.beta6%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://plugins.guifications.org/trac/

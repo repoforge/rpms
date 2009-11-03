@@ -9,7 +9,7 @@
 Summary: Data driven testing framework for perl
 Name: perl-Test-Base
 Version: 0.59
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Base/

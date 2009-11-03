@@ -4,7 +4,7 @@
 Summary: Squid native log format (NLF) analyzer and report generator
 Name: calamaris
 Version: 2.59
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://calamaris.cord.de/

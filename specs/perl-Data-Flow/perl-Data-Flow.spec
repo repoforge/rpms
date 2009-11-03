@@ -10,7 +10,7 @@
 Summary: Simple-minded recipe-controlled build of data
 Name: perl-Data-Flow
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Flow/

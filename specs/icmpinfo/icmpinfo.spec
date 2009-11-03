@@ -5,7 +5,7 @@
 Summary: Tool for looking at the ICMP messages
 Name: icmpinfo
 Version: 1.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.demailly.com/~dl/softs.html

@@ -10,7 +10,7 @@
 Summary: Fast and simple mbox folder reader
 Name: perl-Mail-Mbox-MessageParser
 Version: 1.5002
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Mbox-MessageParser/

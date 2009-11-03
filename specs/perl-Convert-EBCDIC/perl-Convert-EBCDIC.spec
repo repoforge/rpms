@@ -10,7 +10,7 @@
 Summary: String conversion between EBCDIC and ASCII
 Name: perl-Convert-EBCDIC
 Version: 0.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-EBCDIC/

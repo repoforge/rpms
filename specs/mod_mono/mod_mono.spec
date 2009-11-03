@@ -5,7 +5,7 @@
 Summary: Run ASP.NET pages on Unix with Apache and Mono!
 Name: mod_mono
 Version: 0.7
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.apacheworld.org/modmono/

@@ -10,7 +10,7 @@
 Summary: Guru Meditation for CGIs
 Name: perl-CGI-GuruMeditation
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-GuruMeditation/

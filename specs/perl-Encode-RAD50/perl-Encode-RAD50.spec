@@ -10,7 +10,7 @@
 Summary: Convert to and from the Rad50 character set
 Name: perl-Encode-RAD50
 Version: 0.005
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode-RAD50/

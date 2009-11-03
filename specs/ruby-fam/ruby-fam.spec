@@ -8,7 +8,7 @@
 Summary: Gamin/FAM bindings for Ruby
 Name: ruby-fam
 Version: 0.2.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Languages
 URL: http://www.pablotron.org/software/fam-ruby/

@@ -10,7 +10,7 @@
 Summary: Unit testing framework for Perl
 Name: perl-Test-Unit
 Version: 0.25
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Unit/

@@ -20,7 +20,7 @@
 Summary: Distributed C/C++ compilation client program
 Name: distcc
 Version: 2.18.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://distcc.samba.org/

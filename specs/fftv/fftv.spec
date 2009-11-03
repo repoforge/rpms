@@ -8,7 +8,7 @@
 Summary: Advanced television viewing and recording program
 Name: fftv
 Version: 0.8.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fftv.sourceforge.net/

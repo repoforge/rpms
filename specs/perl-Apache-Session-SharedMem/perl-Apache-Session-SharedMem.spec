@@ -10,7 +10,7 @@
 Summary: Session management via shared memory
 Name: perl-Apache-Session-SharedMem
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Session-SharedMem/

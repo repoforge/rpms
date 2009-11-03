@@ -4,7 +4,7 @@
 Summary: List or change SCSI disk parameters
 Name: sdparm
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Base
 URL: http://www.torque.net/sg/sdparm.html

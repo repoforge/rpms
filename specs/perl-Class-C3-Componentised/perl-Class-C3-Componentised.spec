@@ -10,7 +10,7 @@
 Summary: Perl module named Class-C3-Componentised
 Name: perl-Class-C3-Componentised
 Version: 1.0005
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-C3-Componentised/

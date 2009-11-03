@@ -5,7 +5,7 @@
 Summary: X Render Extension
 Name: render
 Version: 0.8
-Release: 0.2
+Release: 0.2%{?dist}
 License: Free Software
 Group: System Environment/Libraries
 URL: http://freedesktop.org/

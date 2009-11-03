@@ -20,7 +20,7 @@
 Summary: Electronic circuit schematic drawing program
 Name: xcircuit
 Version: 3.3.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://xcircuit.ece.jhu.edu/

@@ -6,7 +6,7 @@
 Summary: XMMS plugin to use special multimedia keys in GNOME or through acme
 Name: xmms-acme
 Version: 0.4.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.devin.com/xmms-xf86audio/

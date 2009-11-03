@@ -3,7 +3,7 @@
 Summary: Disk mounter gdesklet.
 Name: gdesklets-diskmount
 Version: 0.3.1
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

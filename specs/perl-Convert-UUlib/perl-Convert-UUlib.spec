@@ -10,7 +10,7 @@
 Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
 Version: 1.1200
-Release: 1
+Release: 1%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UUlib/

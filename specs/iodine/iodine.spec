@@ -5,7 +5,7 @@
 Summary: Tunnel IPv4 data through a DNS server
 Name: iodine
 Version: 0.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://code.kryo.se/iodine/

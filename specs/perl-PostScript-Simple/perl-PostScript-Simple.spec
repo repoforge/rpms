@@ -10,7 +10,7 @@
 Summary: Perl module to produce PostScript files
 Name: perl-PostScript-Simple
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PostScript-Simple/

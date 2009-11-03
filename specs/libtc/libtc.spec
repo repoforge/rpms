@@ -5,7 +5,7 @@
 Summary: Collection of useful functions for C programming
 Name: libtc
 Version: 1.1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT/X11
 Group: System Environment/Libraries
 URL: http://libtc.sourceforge.net/

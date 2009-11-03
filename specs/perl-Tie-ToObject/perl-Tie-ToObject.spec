@@ -9,7 +9,7 @@
 Summary: Perl module named Tie-ToObject
 Name: perl-Tie-ToObject
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-ToObject/

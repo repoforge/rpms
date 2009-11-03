@@ -10,7 +10,7 @@
 Summary: Perl module named Data-Section
 Name: perl-Data-Section
 Version: 0.091820
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Section/

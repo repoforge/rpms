@@ -7,7 +7,7 @@
 Summary: Video-For-Linux frontend of transcode
 Name: gv4l
 Version: 2.2.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://gv4l.sourceforge.net/

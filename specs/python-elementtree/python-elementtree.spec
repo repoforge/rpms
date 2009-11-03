@@ -15,7 +15,7 @@ Name: python-elementtree
 %define real_version 1.2.6-20050316
 %define real_version_celementtree 1.0.2-20050302
 Version: 1.2.6
-Release: 7
+Release: 7%{?dist}
 License: PSF
 Group: Development/Libraries
 URL: http://effbot.org/zone/element-index.htm

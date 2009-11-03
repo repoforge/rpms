@@ -5,7 +5,7 @@
 Summary: Console RSS reader
 Name: rsstail
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.vanheusden.com/rsstail/

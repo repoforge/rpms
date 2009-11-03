@@ -9,7 +9,7 @@
 Summary: Crypt-SmbHash module for perl
 Name: perl-Crypt-SmbHash
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-SmbHash/

@@ -10,7 +10,7 @@
 Summary: Deal with RFC-1522 encoded words
 Name: perl-MIME-EncWords
 Version: 1.011.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-EncWords/

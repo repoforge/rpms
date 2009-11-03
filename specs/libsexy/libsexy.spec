@@ -4,7 +4,7 @@
 Summary: Collection of GTK+ widgets that extend functionality
 Name: libsexy
 Version: 0.1.11
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.chipx86.com/wiki/Libsexy

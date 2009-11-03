@@ -11,7 +11,7 @@
 Summary: Network file transfer tool
 Name: bittorrent
 Version: 4.0.4
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Applications/Internet
 URL: http://bittorrent.com/

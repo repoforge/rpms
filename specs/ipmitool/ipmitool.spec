@@ -6,7 +6,7 @@
 Summary: Utility for IPMI control
 Name: ipmitool
 Version: 1.8.8
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Kernel
 URL: http://ipmitool.sourceforge.net/

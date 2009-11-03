@@ -12,7 +12,7 @@
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
 Version: 0.5.20
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.fpx.de/fp/Software/UUDeview/

@@ -11,7 +11,7 @@
 Summary: Object-oriented implementation of Sender Policy Framework
 Name: perl-Mail-SPF
 Version: 2.006
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SPF/

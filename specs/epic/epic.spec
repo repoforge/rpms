@@ -5,7 +5,7 @@
 Summary: IrcII chat client
 Name: epic
 Version: 2.2
-Release: 1
+Release: 1%{?dist}
 Epoch: 4
 License: Distributable
 Group: Applications/Communications

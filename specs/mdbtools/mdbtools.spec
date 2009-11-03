@@ -11,7 +11,7 @@
 Summary: Access data stored in Microsoft Access databases
 Name: mdbtools
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://mdbtools.sourceforge.net/

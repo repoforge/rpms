@@ -10,7 +10,7 @@
 Summary: Systems management command volley
 Name: perl-Sys-Manage
 Version: 0.59
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Manage/

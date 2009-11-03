@@ -14,7 +14,7 @@
 Summary: Perl module to represent and manage a libvirt hypervisor connection
 Name: perl-Sys-Virt
 Version: 0.2.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Virt/

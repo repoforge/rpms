@@ -7,7 +7,7 @@
 Summary: Curses-based apt frontend
 Name: aptitude
 Version: 0.4.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://algebraicthunk.net/~dburrows/projects/aptitude/

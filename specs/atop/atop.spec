@@ -6,7 +6,7 @@
 Summary: AT Computing System and Process Monitor
 Name: atop
 Version: 1.23
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: ftp://ftp.atcomputing.nl/pub/tools/linux/

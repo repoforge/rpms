@@ -8,7 +8,7 @@
 Summary: ID3 tag library for Python
 Name: python-id3
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://id3-py.sourceforge.net/

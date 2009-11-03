@@ -44,7 +44,7 @@
 Summary: Easily generate and process stateful forms
 Name: perl-%{real_name}
 Version: 3.0501
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-FormBuilder/

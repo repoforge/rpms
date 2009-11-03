@@ -10,7 +10,7 @@
 Summary: Perl module named Class-DBI-DATA-Schema
 Name: perl-Class-DBI-DATA-Schema
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-DATA-Schema/

@@ -6,7 +6,7 @@
 Summary: Tool for analyzing firewall logs
 Name: adcfw-log
 Version: 0.10.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://adcfw-log.sourceforge.net/

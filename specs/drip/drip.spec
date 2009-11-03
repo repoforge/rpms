@@ -6,7 +6,7 @@
 Summary: Drip is a DVD-to-DIVX;-) ripping frontend for GNOME
 Name: drip
 Version: 0.9.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://drip.sourceforge.net/

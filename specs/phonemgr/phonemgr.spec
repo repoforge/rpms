@@ -9,7 +9,7 @@
 Summary: Phone manager
 Name: phonemgr
 Version: 0.2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://usefulinc.com/software/phonemgr/

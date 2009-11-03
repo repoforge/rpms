@@ -9,7 +9,7 @@
 Summary: Perl module to get the titles of things on the web in a sensible way
 Name: perl-URI-Title
 Version: 1.82
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Title/

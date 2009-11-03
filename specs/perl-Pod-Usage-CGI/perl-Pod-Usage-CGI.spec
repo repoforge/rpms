@@ -10,7 +10,7 @@
 Summary: Generates usage message for CGI scripts
 Name: perl-Pod-Usage-CGI
 Version: 1.010
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Usage-CGI/

@@ -4,7 +4,7 @@
 Summary: Console application which monitors network traffic and bandwidth usage in real time
 Name: nload
 Version: 0.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.roland-riegel.de/nload/

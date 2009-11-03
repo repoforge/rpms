@@ -5,7 +5,7 @@ Summary: Tool to become root with one's own password
 Name: calife
 %define real_version 2.8.6-p5
 Version: 2.8.6p5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://frmug.org/mutt/calife/

@@ -10,7 +10,7 @@
 Summary: Sorted array
 Name: perl-Tie-Array-Sorted
 Version: 1.41
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Array-Sorted/

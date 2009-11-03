@@ -7,7 +7,7 @@
 Summary: WYSIWYG HTML Editor for Gnome
 Name: peacock
 Version: 1.9.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://peacock.sourceforge.net/

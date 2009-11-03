@@ -4,7 +4,7 @@
 Summary: Utility for visualizing block layer IO patterns and performance
 Name: seekwatcher
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/System
 URL: http://oss.oracle.com/~mason/seekwatcher/

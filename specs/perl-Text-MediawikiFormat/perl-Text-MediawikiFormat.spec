@@ -10,7 +10,7 @@
 Summary: Translate Wiki markup into other text formats
 Name: perl-Text-MediawikiFormat
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-MediawikiFormat/

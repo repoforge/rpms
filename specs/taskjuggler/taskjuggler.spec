@@ -5,7 +5,7 @@
 Summary: Project management tool
 Name: taskjuggler
 Version: 2.4.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Utilities
 URL: http://www.taskjuggler.org/

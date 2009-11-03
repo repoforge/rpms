@@ -9,7 +9,7 @@
 Summary: Perl module to rewrite HTML links for a reverse proxy
 Name: perl-Apache2-ModProxyPerlHtml
 Version: 2.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache2-ModProxyPerlHtml/

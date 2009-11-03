@@ -5,7 +5,7 @@
 Summary: Sort files in sophisticated ways
 Name: msort
 Version: 8.52
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://billposer.org/Software/msort.html

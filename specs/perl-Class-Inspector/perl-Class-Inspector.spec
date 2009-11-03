@@ -10,7 +10,7 @@
 Summary: Get information about a class and its structure
 Name: perl-Class-Inspector
 Version: 1.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Inspector/

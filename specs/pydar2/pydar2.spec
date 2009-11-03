@@ -5,7 +5,7 @@
 Summary: rpm build system
 Name: pydar2
 Version: 0.041
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://dries.ulyssis.org/rpm/pydar2/

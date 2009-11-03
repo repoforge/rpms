@@ -16,7 +16,7 @@
 Summary: Bond an X display and a VNC session together
 Name: x2vnc
 Version: 1.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://fredrik.hubbe.net/x2vnc.html

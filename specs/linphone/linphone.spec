@@ -14,7 +14,7 @@
 Summary: Software Internet phone using SIP
 Name: linphone
 Version: 1.0.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.linphone.org/

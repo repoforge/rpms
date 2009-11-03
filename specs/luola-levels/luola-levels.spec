@@ -8,7 +8,7 @@
 Summary: Levels for Luola
 Name: luola-levels
 Version: 1.3.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.luolamies.org/software/luola/

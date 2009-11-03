@@ -10,7 +10,7 @@
 Summary: Front end for class methods in various utility modules under the Unix::Conf namespace
 Name: perl-Unix-Conf
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Conf/

@@ -4,7 +4,7 @@
 Summary: Runtime Logging for C++
 Name: rlog
 Version: 1.3.7
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.arg0.net/rlog

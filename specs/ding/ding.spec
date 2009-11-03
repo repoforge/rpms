@@ -12,7 +12,7 @@
 Summary: Dictionary lookup program
 Name: ding
 Version: 1.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www-user.tu-chemnitz.de/~fri/ding/

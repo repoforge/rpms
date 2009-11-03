@@ -4,7 +4,7 @@
 Summary: Display Linux /proc stat (/proc/pid/stat) in human-readable format
 Name: procstat
 Version: 0.0.20070919
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://brokestream.com/procstat.html

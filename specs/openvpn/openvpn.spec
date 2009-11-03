@@ -5,7 +5,7 @@
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
 Version: 2.0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/

@@ -14,7 +14,7 @@
 Name: gtoaster
 Summary: Versatile CD recording package for both sound and data
 Version: 1.0
-Release: 2.beta6.2
+Release: 2.beta6.2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://gnometoaster.rulez.org/

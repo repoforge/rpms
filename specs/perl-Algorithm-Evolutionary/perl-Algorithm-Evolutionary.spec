@@ -11,7 +11,7 @@
 Summary: Perl extension for performing paradigm-free evolutionary algorithms
 Name: perl-Algorithm-Evolutionary
 Version: 0.71
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Evolutionary/

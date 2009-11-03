@@ -10,7 +10,7 @@
 Summary: Defines RGB values for common color names
 Name: perl-Graphics-ColorNames
 Version: 2.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorNames/

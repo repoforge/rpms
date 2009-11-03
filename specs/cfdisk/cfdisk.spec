@@ -16,7 +16,7 @@
 Summary: Curses based disk partition table manipulator
 Name: cfdisk
 Version: 2.12r
-Release: 0.1
+Release: 0.1%{?dist}
 License: distributable
 Group: System Environment/Base
 URL: ftp://ftp.kernel.org/pub/linux/utils/util-linux/

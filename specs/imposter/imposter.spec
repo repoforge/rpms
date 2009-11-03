@@ -7,7 +7,7 @@
 Summary: Standalone viewer for OpenOffice presentations
 Name: imposter
 Version: 0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://imposter.sourceforge.net/

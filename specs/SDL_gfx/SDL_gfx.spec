@@ -8,7 +8,7 @@
 Summary: Graphic primitives, rotozoomer, framerate control and image filters
 Name: SDL_gfx
 Version: 2.0.19
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ferzkopp.net/mambo/index.php?option=com_content&task=view&id=14&Itemid=29

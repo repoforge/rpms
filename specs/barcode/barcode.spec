@@ -5,7 +5,7 @@
 Summary: Create printouts of barcodes
 Name: barcode
 Version: 0.98
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.gnu.org/software/barcode/barcode.html

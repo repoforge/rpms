@@ -10,7 +10,7 @@
 Summary: Sprintf-like string formatting capabilities with arbitrary format definitions
 Name: perl-String-Format
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Format/

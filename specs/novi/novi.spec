@@ -4,7 +4,7 @@
 Summary: Find the latest rpms by version in a tree
 Name: novi
 Version: 1.1.5
-Release: 2
+Release: 2%{?dist}
 License: Apache License 2.0
 Group: Applications/System
 URL: http://www.exmachinatech.net/01/novi/

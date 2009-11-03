@@ -4,7 +4,7 @@
 Summary: C++ unit testing framework
 Name: cppunit
 Version: 1.12.0
-Release: 3
+Release: 3%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://cppunit.sourceforge.net/cppunit-wiki

@@ -10,7 +10,7 @@
 Summary: Object for handling Usenet articles in mail or news form
 Name: perl-News-Article
 Version: 1.27
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/News-Article/

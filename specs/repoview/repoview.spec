@@ -4,7 +4,7 @@
 Summary: Create static HTML pages of a yum repository
 Name: repoview
 Version: 0.6.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://linux.duke.edu/projects/mini/repoview/

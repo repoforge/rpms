@@ -9,7 +9,7 @@
 Summary: Perl extension that implements PayPal IPN v1.5
 Name: perl-Business-PayPal-IPN
 Version: 1.94
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-PayPal-IPN/

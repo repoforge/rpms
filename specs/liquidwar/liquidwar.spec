@@ -6,7 +6,7 @@
 Summary: Multiplayer wargame with liquid armies
 Name: liquidwar
 Version: 5.6.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.ufoot.org/liquidwar/

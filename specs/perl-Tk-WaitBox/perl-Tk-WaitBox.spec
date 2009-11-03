@@ -10,7 +10,7 @@
 Summary: Object Oriented Wait Dialog for Perl/Tk, of the Please Wait variety
 Name: perl-Tk-WaitBox
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-WaitBox/

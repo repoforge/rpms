@@ -12,7 +12,7 @@
 Summary: Automatic clipboard buffers synchronization tool
 Name: autocutsel
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/autocutsel/

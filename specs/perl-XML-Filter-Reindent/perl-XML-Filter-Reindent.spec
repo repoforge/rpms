@@ -10,7 +10,7 @@
 Summary: Reformats whitespace for pretty printing XML
 Name: perl-XML-Filter-Reindent
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Filter-Reindent/

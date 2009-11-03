@@ -5,7 +5,7 @@
 Summary: Generic data test program
 Name: dt
 Version: 15.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://home.comcast.net/~scsiguy/SCSI_FAQ/RMiller_Tools/dt.html

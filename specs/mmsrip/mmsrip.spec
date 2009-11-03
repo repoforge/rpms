@@ -4,7 +4,7 @@
 Summary: MMS Streams Recorder
 Name: mmsrip
 Version: 0.7.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://nbenoit.tuxfamily.org/projects.php?rq=mmsrip

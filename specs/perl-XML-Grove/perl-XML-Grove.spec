@@ -10,7 +10,7 @@
 Summary: Perl module named XML-Grove
 Name: perl-XML-Grove
 Version: 0.46
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Grove/

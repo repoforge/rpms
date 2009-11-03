@@ -6,7 +6,7 @@
 Summary: Common interface to urllib2 and curl for making HTTP requests
 Name: python-urljr
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.openidenabled.com/openid/libraries/python/urljr/

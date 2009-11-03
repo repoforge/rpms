@@ -17,7 +17,7 @@
 Summary: Network exploration tool and security scanner
 Name: nmap
 Version: 5.00
-Release: 1
+Release: 1%{?dist}
 Epoch: 2
 License: GPL
 Group: Applications/System

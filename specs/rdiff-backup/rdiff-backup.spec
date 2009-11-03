@@ -9,7 +9,7 @@
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
 Version: 1.2.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/rdiff-backup/

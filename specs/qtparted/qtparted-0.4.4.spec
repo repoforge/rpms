@@ -24,7 +24,7 @@
 Summary: Graphical frontend for parted
 Name: qtparted
 Version: 0.4.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://qtparted.sourceforge.net/

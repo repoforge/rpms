@@ -5,7 +5,7 @@
 Summary: Flat file extractor
 Name: ffe
 Version: 0.2.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://ff-extractor.sourceforge.net/

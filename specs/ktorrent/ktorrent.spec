@@ -5,7 +5,7 @@
 Summary: BitTorrent client for KDE
 Name: ktorrent
 Version: 2.2.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ktorrent.pwsp.net/

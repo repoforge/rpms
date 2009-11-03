@@ -5,7 +5,7 @@
 Summary: Record a program using a video grabber card
 Name: vcr
 Version: 1.10
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.stack.nl/~brama/vcr/

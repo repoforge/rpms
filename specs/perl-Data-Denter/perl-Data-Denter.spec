@@ -10,7 +10,7 @@
 Summary: Alternative to Data::Dumper and Storable.
 Name: perl-Data-Denter
 Version: 0.15
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Denter/

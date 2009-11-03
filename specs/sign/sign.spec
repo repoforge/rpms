@@ -5,7 +5,7 @@
 Summary: File signing and signature verification utility
 Name: sign
 Version: 1.0.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://swapped.cc/sign/

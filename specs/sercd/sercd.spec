@@ -6,7 +6,7 @@
 Summary: RFC 2217-compliant serial port redirector
 Name: sercd
 Version: 2.3.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.lysator.liu.se/~astrand/projects/sercd/

@@ -10,7 +10,7 @@
 Summary: Interface to the wxWidgets cross-platform GUI toolkit
 Name: perl-Wx
 Version: 0.86
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Wx/

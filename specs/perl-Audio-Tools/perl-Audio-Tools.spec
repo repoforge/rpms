@@ -10,7 +10,7 @@
 Summary: Common Tools for Audio::Wav, Audio::Mix and Audio::CoolEdit
 Name: perl-Audio-Tools
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-Tools/

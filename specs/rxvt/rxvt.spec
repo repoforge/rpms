@@ -22,7 +22,7 @@
 Summary: Color VT102 terminal emulator for the X Window System
 Name: rxvt
 Version: 2.7.10
-Release: 2
+Release: 2%{?dist}
 Epoch: 18
 License: GPL
 Group: User Interface/X

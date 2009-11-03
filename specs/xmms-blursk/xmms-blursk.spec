@@ -7,7 +7,7 @@
 Summary: Visualization plugin for the Linux XMMS music player
 Name: xmms-blursk
 Version: 1.3
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.cs.pdx.edu/~kirkenda/blursk/

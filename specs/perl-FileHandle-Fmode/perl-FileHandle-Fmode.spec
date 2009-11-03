@@ -10,7 +10,7 @@
 Summary: Perl module to determine whether a filehandle is opened for reading, writing, or both
 Name: perl-FileHandle-Fmode
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FileHandle-Fmode/

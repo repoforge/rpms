@@ -11,7 +11,7 @@
 Summary: Perl module that implements a lightweight HTTP implementation
 Name: perl-HTTP-Lite
 Version: 2.1.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Lite/

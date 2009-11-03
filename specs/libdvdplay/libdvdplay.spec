@@ -5,7 +5,7 @@
 Summary: Library designed for DVD navigation
 Name: libdvdplay
 Version: 1.0.1
-Release: 5
+Release: 5%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvdplay/

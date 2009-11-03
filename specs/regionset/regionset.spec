@@ -4,7 +4,7 @@
 Summary: Read or set the region setting on a DVD drive
 Name: regionset
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://linvdr.org/projects/regionset/

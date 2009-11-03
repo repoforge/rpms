@@ -5,7 +5,7 @@
 Summary: Graphical dvd9 to dvd5 converter
 Name: dvd95
 Version: 1.4p0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://dvd95.sourceforge.net/

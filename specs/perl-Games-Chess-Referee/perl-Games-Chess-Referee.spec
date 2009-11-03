@@ -10,7 +10,7 @@
 Summary: Work with chess positions and games, according to the rules of chess
 Name: perl-Games-Chess-Referee
 Version: 0.003
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Chess-Referee/

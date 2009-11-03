@@ -18,7 +18,7 @@
 Summary: WAP and SMS gateway
 Name: kannel
 Version: 1.4.2
-Release: 1
+Release: 1%{?dist}
 License: Kannel
 Group: System Environment/Daemons
 URL: http://www.kannel.org/

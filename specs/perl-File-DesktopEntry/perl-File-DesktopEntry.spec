@@ -10,7 +10,7 @@
 Summary: Perl module that implements an object to handle .desktop files
 Name: perl-File-DesktopEntry
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-DesktopEntry/

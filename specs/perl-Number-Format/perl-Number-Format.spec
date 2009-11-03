@@ -11,7 +11,7 @@
 Summary: Convert numbers to strings with pretty formatting
 Name: perl-Number-Format
 Version: 1.72a
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-Format/

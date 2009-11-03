@@ -13,7 +13,7 @@
 Summary: PECL package to add HTTP request functionality
 Name: php-pecl-http
 Version: 1.6.5
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/%{real_name}

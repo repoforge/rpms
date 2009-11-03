@@ -5,7 +5,7 @@
 Summary: Profile-driven HTTP load tester
 Name: flood
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: Apache
 Group: Applications/Internet
 URL: http://httpd.apache.org/test/flood/

@@ -10,7 +10,7 @@
 Summary: Perl module to get titles from itms:// urls
 Name: perl-URI-Title-iTMS
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Title-iTMS/

@@ -10,7 +10,7 @@
 Summary: Define unique identifier objects that can be used like a kind of keyword
 Name: perl-UID
 Version: 0.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UID/

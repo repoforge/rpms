@@ -11,7 +11,7 @@
 Summary: Development and simulation of microcontrollers and electronic circuits
 Name: ktechlab
 Version: 0.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://ktechlab.org/

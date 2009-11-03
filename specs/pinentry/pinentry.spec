@@ -19,7 +19,7 @@
 Summary: PIN or passphrase entry dialog
 Name: pinentry
 Version: 0.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/aegypten/

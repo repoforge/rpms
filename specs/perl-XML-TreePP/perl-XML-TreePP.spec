@@ -10,7 +10,7 @@
 Summary: Pure Perl implementation for parsing/writing xml files
 Name: perl-XML-TreePP
 Version: 0.39
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-TreePP/

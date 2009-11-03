@@ -10,7 +10,7 @@
 Summary: Simplified unit testing framework
 Name: perl-Test-SimpleUnit
 Version: 1.21
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-SimpleUnit/

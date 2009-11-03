@@ -10,7 +10,7 @@
 Summary: Perl module implements an extremely flexible deep comparison
 Name: perl-Test-Deep
 Version: 0.106
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Deep/

@@ -26,7 +26,7 @@
 Summary: Linux Conexant HSF Softmodem drivers
 Name: kernel-module-hsfmodem
 Version: 6.03.00
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: Copyright (c) 2003 Linuxant inc. All rights reserved.
 Group: System Environment/Kernel
 URL: http://www.linuxant.com/drivers/hsf/
@@ -50,7 +50,7 @@ These drivers are built for kernel %{kversion}-%{krelease}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-hsfmodem
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 Summary: Linux Conexant HSF Softmodem drivers for SMP
 Group: System Environment/Kernel
 
@@ -66,7 +66,7 @@ They might work with newer/older kernels.
 
 %package -n hsfmodem-utils
 Summary: Linux Conexant HSF Softmodem utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Kernel
 
 Obsoletes: hsflinmodem, %{real_name}

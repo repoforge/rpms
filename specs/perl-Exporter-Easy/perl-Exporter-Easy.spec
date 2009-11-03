@@ -10,7 +10,7 @@
 Summary: Takes the drudgery out of Exporting symbols
 Name: perl-Exporter-Easy
 Version: 0.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exporter-Easy/

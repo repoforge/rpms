@@ -10,7 +10,7 @@
 Summary: Perl module for mysql database used by qmail-mysql
 Name: perl-Qmail-Mysql
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qmail-Mysql/

@@ -10,7 +10,7 @@
 Summary: Emulate sscanf() of the C library
 Name: perl-String-Scanf
 Version: 2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Scanf/

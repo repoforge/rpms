@@ -21,7 +21,7 @@
 Summary: File manager
 Name: krusader
 Version: 1.90.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://krusader.sourceforge.net/

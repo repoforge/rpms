@@ -5,7 +5,7 @@
 Summary: Reclaim disk space by finding unneeded files
 Name: kleansweep
 Version: 0.2.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Utilities
 URL: http://linux.bydg.org/~yogin/

@@ -4,7 +4,7 @@
 Summary: GNOME security camera
 Name: gspy
 Version: 0.1.7
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://gspy.sourceforge.net/

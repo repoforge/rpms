@@ -10,7 +10,7 @@
 Summary: Perl module to install subroutines into packages easily
 Name: perl-Sub-Install
 Version: 0.925
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Install/

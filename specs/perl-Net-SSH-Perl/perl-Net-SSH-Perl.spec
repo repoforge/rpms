@@ -10,7 +10,7 @@
 Summary: Perl client interface to SSH
 Name: perl-Net-SSH-Perl
 Version: 1.34
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSH-Perl/

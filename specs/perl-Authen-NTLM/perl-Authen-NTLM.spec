@@ -10,7 +10,7 @@
 Summary: Extension for NTLM related computations
 Name: perl-Authen-NTLM
 Version: 0.31
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-NTLM/

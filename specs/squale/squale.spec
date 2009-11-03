@@ -10,7 +10,7 @@
 Summary: Persistent SQL database connection library and daemon
 Name: squale
 Version: 0.1.10
-Release: 0.3
+Release: 0.3%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://sourceforge.net/projects/squale/

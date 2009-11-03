@@ -4,7 +4,7 @@
 Summary: Program to snoop on a TTY through another
 Name: ttysnoop
 Version: 0.12c
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: System Environment/Base
 URL: http://sunsite.unc.edu/pub/Linux/utils/terminal/

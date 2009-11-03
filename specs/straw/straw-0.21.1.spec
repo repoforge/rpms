@@ -10,7 +10,7 @@
 Summary: desktop news aggregator for GNOME
 Name: straw
 Version: 0.21.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gnome.org/projects/straw/

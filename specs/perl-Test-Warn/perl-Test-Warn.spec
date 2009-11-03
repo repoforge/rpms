@@ -10,7 +10,7 @@
 Summary: Perl extension to test methods for warnings
 Name: perl-Test-Warn
 Version: 0.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Warn/

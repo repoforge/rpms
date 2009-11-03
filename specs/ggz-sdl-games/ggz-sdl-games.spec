@@ -4,7 +4,7 @@
 Summary: SDL games for GGZ gamingzone
 Name: ggz-sdl-games
 Version: 0.0.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.ggzgamingzone.org/

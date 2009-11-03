@@ -13,7 +13,7 @@
 Summary: Perl module for persistence for Perl data structures
 Name: perl-Storable
 Version: 2.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Storable/

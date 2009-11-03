@@ -10,7 +10,7 @@
 Summary: Use other catalog formats in Maketext
 Name: perl-Locale-Maketext-Lexicon
 Version: 0.77
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Maketext-Lexicon/

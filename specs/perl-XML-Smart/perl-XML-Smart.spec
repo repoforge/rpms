@@ -11,7 +11,7 @@
 Summary: Smart, easy and powerful way to access/create XML files/data
 Name: perl-XML-Smart
 Version: 1.6.9
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Smart/

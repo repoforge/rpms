@@ -4,7 +4,7 @@
 Summary: Some themes for the GNU Krell Monitor
 Name: gkrellm-themes
 Version: 2.1.8
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/System
 Source: gkrellm-themes.tar.bz2

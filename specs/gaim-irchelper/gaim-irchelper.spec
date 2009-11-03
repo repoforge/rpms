@@ -4,7 +4,7 @@
 Summary: Gaim plugin to assist with IRC networks
 Name: gaim-irchelper
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-irchelper.sourceforge.net/

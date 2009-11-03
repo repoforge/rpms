@@ -10,7 +10,7 @@
 Summary: Object oriented X.509 certificate parser
 Name: perl-Crypt-X509
 Version: 0.40
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-X509/

@@ -6,7 +6,7 @@ Summary: C++ High Performance Arbitrary Precision Arithmetic Package
 Name: apfloat
 %define real_version 241
 Version: 2.41
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.apfloat.org/apfloat/

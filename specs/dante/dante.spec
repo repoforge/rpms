@@ -8,7 +8,7 @@
 Summary: Free Socks v4/v5 client implementation
 Name: dante
 Version: 1.1.19
-Release: 3
+Release: 3%{?dist}
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/

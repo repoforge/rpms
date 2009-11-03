@@ -6,7 +6,7 @@
 Summary: Games for children with plugins
 Name: childsplay
 Version: 0.81.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://childsplay.sourceforge.net/

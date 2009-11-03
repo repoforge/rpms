@@ -4,7 +4,7 @@
 Summary: C# wrapper for GtkSourceView
 Name: gtksourceview-sharp
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://go-mono.com/

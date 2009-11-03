@@ -10,7 +10,7 @@
 Summary: Computes the error of a function of statistical data
 Name: perl-Math-ErrorPropagation
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-ErrorPropagation/

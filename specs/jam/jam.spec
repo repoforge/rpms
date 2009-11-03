@@ -4,7 +4,7 @@
 Summary: Replacement for make
 Name: jam
 Version: 2.5
-Release: 1
+Release: 1%{?dist}
 License: BSD-like
 Group: Development/Tools
 URL: http://public.perforce.com/public/jam/

@@ -7,7 +7,7 @@
 Summary: PC/SC Lite smart card framework and applications
 Name: pcsc-lite
 Version: 1.3.3
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://pcsclite.alioth.debian.org/

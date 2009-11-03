@@ -8,7 +8,7 @@
 Summary: Driver for RTL8180 and SA2400 Wireless cards
 Name: dkms-r8180
 Version: 0.21
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.realtek.com.tw/

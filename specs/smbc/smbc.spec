@@ -8,7 +8,7 @@
 Summary: Text mode SMB (Samba) commander
 Name: smbc
 Version: 1.2.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://smbc.airm.net/

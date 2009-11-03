@@ -4,7 +4,7 @@
 Summary: Portable archiver
 Name: peazip
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/File
 URL: http://peazip.sourceforge.net/

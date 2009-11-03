@@ -5,7 +5,7 @@
 Summary: Generic shell script compiler
 Name: shc
 Version: 3.8.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://www.datsi.fi.upm.es/~frosal/sources/shc.html

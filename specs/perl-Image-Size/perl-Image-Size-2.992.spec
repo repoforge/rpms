@@ -13,7 +13,7 @@
 Summary: Read the dimensions of images
 Name: perl-Image-Size
 Version: 2.992
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Size/

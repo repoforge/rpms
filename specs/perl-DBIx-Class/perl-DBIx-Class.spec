@@ -12,7 +12,7 @@
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
 Version: 0.08111
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Class/

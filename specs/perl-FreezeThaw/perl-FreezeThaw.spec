@@ -10,7 +10,7 @@
 Summary: FreezeThaw module for perl
 Name: perl-FreezeThaw
 Version: 0.45
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FreezeThaw/

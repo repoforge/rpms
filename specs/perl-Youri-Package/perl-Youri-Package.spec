@@ -11,7 +11,7 @@
 Summary: Perl module that implements the abstract package class
 Name: perl-Youri-Package
 Version: 0.1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Youri-Package/

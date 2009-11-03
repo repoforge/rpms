@@ -10,7 +10,7 @@
 Summary: Multiplayer 2D arcade game
 Name: luola
 Version: 1.3.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.luolamies.org/software/luola/

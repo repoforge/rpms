@@ -7,7 +7,7 @@
 Summary: Audio file volume normalizer
 Name: normalize
 Version: 0.7.7
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.cs.columbia.edu/~cvaill/normalize/

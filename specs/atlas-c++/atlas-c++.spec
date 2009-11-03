@@ -4,7 +4,7 @@
 Summary: Implements the WorldForge Atlas protocol
 Name: atlas-c++
 Version: 0.6.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: https://sourceforge.net/projects/worldforge/

@@ -10,7 +10,7 @@
 Summary: Taint-aware, XML-ish data serialization
 Name: perl-Data-Taxi
 Version: 0.95
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Taxi/

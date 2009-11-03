@@ -17,7 +17,7 @@
 Summary: The bastard son of Blackbox, a small and fast Window Manager
 Name: hackedbox
 Version: 0.8.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://scrudgeware.org/projects/Hackedbox

@@ -5,7 +5,7 @@
 Summary: Performance analysis tool
 Name: nmon
 Version: 11f
-Release: 1
+Release: 1%{?dist}
 License: Proprietary
 Group: Applications/System
 URL: http://www-128.ibm.com/developerworks/aix/library/au-analyze_aix/

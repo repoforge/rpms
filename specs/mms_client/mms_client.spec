@@ -6,7 +6,7 @@
 Summary: MMS stream downloader
 Name: mms_client
 Version: 0.0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.geocities.com/majormms/

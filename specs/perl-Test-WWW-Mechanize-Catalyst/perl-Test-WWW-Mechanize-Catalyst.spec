@@ -10,7 +10,7 @@
 Summary: Test::WWW::Mechanize for Catalyst
 Name: perl-Test-WWW-Mechanize-Catalyst
 Version: 0.51
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Mechanize-Catalyst/

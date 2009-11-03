@@ -8,7 +8,7 @@
 Summary: Graphical password manager
 Name: revelation
 Version: 0.4.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://oss.codepoet.no/revelation/

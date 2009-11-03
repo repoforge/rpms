@@ -13,7 +13,7 @@
 Summary: Graphical address book
 Name: dlume
 Version: 0.2.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://clay.ll.pl/dlume.html

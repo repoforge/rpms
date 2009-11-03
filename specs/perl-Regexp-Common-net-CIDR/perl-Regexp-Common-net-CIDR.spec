@@ -10,7 +10,7 @@
 Summary: Provide patterns for CDIR blocks
 Name: perl-Regexp-Common-net-CIDR
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Common-net-CIDR/

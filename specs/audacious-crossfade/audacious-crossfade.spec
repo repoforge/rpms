@@ -7,7 +7,7 @@
 Summary: Crossfade output plugin for Audacious
 Name: audacious-crossfade
 Version: 0.3.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.eisenlohr.org/xmms-crossfade/

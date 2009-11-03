@@ -6,7 +6,7 @@ Summary: Ultima online server
 Name: uox
 Version: 0.97.06.9r
 %define mozilla_version 1.6
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.uox3.org/

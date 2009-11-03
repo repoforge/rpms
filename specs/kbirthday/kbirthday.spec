@@ -19,7 +19,7 @@
 Summary: Kicker-applet which reminds you of birthdays
 Name: kbirthday
 Version: 0.7.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday.html

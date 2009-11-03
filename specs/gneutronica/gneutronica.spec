@@ -5,7 +5,7 @@
 Summary: MIDI drum machine
 Name: gneutronica
 Version: 0.33
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/gneutronica/

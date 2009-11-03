@@ -18,7 +18,7 @@
 Summary: Utility for getting and setting Xv attributes
 Name: xvattr
 Version: 1.3
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://www.dtek.chalmers.se/groups/dvd/

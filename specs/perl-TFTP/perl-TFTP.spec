@@ -11,7 +11,7 @@
 Summary: Perl module that implements a TFTP Client class
 Name: perl-TFTP
 Version: 1.0
-Release: 0.b3
+Release: 0.b3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TFTP/

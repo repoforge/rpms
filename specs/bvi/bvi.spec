@@ -4,7 +4,7 @@
 Summary: Hex editor for binary files (binary vi)
 Name: bvi
 Version: 1.3.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://bvi.sourceforge.net/

@@ -9,7 +9,7 @@
 Summary: Writes a demo program from a tutorial POD
 Name: perl-Pod-ToDemo
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-ToDemo/

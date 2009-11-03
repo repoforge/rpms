@@ -10,7 +10,7 @@
 Summary: Simple shared memory interface module for perl
 Name: perl-IPC-ShareLite
 Version: 0.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-ShareLite/

@@ -5,7 +5,7 @@
 Summary: Reverse HTTP proxy, load balancer and SSL wrapper
 Name: pound
 Version: 2.4.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.apsis.ch/pound/index.html

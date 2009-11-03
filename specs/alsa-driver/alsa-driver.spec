@@ -24,7 +24,7 @@
 Summary: The Advanced Linux Sound Architecture (ALSA) base files
 Name: alsa-driver
 Version: 1.0.5a
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}1%{?dist}
 License: GPL
 Group: System Environment/Base
 Source0: ftp://ftp.alsa-project.org/pub/driver/%{name}-%{version}%{?prever}.tar.bz2
@@ -61,7 +61,7 @@ You may also recompile for a given kernel version and arch with :
 
 %package -n kernel%{?ksmp}-module-alsa
 Summary: The Advanced Linux Sound Architecture (ALSA) kernel drivers
-Release: %{release}_%{krelver}
+Release: %{release}_%{krelver}%{?dist}
 Group: System Environment/Kernel
 Requires: alsa-driver >= 0.9.0
 Requires: kernel%{?ksmp} = %{kversion}, /sbin/depmod

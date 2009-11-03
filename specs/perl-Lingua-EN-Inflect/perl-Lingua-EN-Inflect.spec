@@ -10,7 +10,7 @@
 Summary: Convert singular to plural
 Name: perl-Lingua-EN-Inflect
 Version: 1.89
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Inflect/

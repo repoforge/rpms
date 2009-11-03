@@ -10,7 +10,7 @@
 Summary: Spiffy Perl Interface Framework For You
 Name: perl-Spiffy
 Version: 0.30
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spiffy/

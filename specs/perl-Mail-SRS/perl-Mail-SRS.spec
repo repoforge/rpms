@@ -10,7 +10,7 @@
 Summary: Interface to Sender Rewriting Scheme
 Name: perl-Mail-SRS
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SRS/

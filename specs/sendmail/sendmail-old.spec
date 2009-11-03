@@ -31,7 +31,7 @@
 Summary: widely used Mail Transport Agent (MTA)
 Name: sendmail
 Version: 8.12.8
-Release: 0
+Release: 0%{?dist}
 License: BSD
 Group: System Environment/Daemons
 Provides: smtpdaemon

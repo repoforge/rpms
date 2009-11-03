@@ -20,7 +20,7 @@
 Summary: SMB network neighborhood
 Name: linneighborhood
 Version: 0.6.5
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.bnro.de/~schmidjo/

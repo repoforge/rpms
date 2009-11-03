@@ -5,7 +5,7 @@
 Summary: Parse tcpdump DHCP packets
 Name: dhcpdump
 Version: 1.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/mavetju/

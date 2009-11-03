@@ -31,7 +31,7 @@
 Summary: Driver for Philips pwc-based webcams
 Name: kernel-module-pwcx
 Version: 9.0
-Release: 0.beta2
+Release: 0.beta2%{?dist}
 License: GPL with proprietary code
 Group: System Environment/Kernel
 URL: http://www.smcc.demon.nl/webcam/

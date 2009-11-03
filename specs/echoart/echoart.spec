@@ -11,7 +11,7 @@
 Summary: Responds to or drops ICMP echo requests packets
 Name: echoart
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://mirror1.internap.com/echoart/

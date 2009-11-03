@@ -10,7 +10,7 @@
 Summary: Publish Rendezvous services
 Name: perl-Net-Rendezvous-Publish
 Version: 0.04
-Release: 2
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Rendezvous-Publish/

@@ -10,7 +10,7 @@
 Summary: Perl interface to the Internet Relay Chat protocol
 Name: perl-Net-IRC
 Version: 0.75
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IRC/

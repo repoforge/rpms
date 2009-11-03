@@ -9,7 +9,7 @@
 Summary: Perform diffs on files and record sets
 Name: perl-Text-Diff
 Version: 1.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Diff/

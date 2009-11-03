@@ -10,7 +10,7 @@
 Summary: MLDBM module for perl
 Name: perl-MLDBM
 Version: 2.01
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MLDBM/

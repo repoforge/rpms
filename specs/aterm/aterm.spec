@@ -22,7 +22,7 @@
 Summary: Graphical VT102 emulator
 Name: aterm
 Version: 0.4.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://aterm.sourceforge.net/

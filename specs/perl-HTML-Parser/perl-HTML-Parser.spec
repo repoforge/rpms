@@ -13,7 +13,7 @@
 Summary: Perl module that implements a HTML parser class
 Name: perl-HTML-Parser
 Version: 3.62
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Parser/

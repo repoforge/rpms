@@ -10,7 +10,7 @@
 Summary: HP Linux Imaging and Printing Project
 Name: hplip
 Version: 2.8.10
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://hplip.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Encrypt stuff simply
 Name: perl-Crypt-Simple
 Version: 0.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Simple/

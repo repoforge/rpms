@@ -12,7 +12,7 @@
 Summary: Web browser and mail reader
 Name: mozilla
 Version: 1.3.1
-Release: 0
+Release: 0%{?dist}
 Epoch: 34
 License: MPL/NPL/GPL/LGPL
 Group: Applications/Internet

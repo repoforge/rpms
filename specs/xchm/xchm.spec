@@ -11,7 +11,7 @@
 Summary: GUI front-end to chmlib
 Name: xchm
 Version: 1.17
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://xchm.sourceforge.net/

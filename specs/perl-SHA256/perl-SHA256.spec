@@ -10,7 +10,7 @@
 Summary: Implements the SHA-256/384/512 hash algorithm
 Name: perl-SHA256
 Version: 0.01b
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SHA256/

@@ -4,7 +4,7 @@
 Summary: GNOME IRDA applet
 Name: girda_applet
 Version: 2.0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://girda.sourceforge.net/

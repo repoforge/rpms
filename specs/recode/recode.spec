@@ -5,7 +5,7 @@
 Summary: Conversion between character sets and surfaces
 Name: recode
 Version: 3.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://recode.progiciels-bpi.ca/

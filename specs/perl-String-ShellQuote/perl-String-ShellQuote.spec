@@ -10,7 +10,7 @@
 Summary: Quote a string for passing through a shell
 Name: perl-String-ShellQuote
 Version: 1.03
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-ShellQuote/

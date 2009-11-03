@@ -10,7 +10,7 @@
 Summary: Extremely light-weight Lev-Zimpel-Free compression
 Name: perl-Compress-LZF
 Version: 3.43
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZF/

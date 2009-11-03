@@ -10,7 +10,7 @@
 Summary: Implements symbolic and ls chmod modes
 Name: perl-File-chmod
 Version: 0.32
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chmod/

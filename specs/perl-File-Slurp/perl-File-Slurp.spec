@@ -10,7 +10,7 @@
 Summary: Efficient reading and writing of complete files
 Name: perl-File-Slurp
 Version: 9999.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Slurp/

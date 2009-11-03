@@ -4,7 +4,7 @@
 Summary: Mambo Open Source (CMS)
 Name: mambo
 Version: 4.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.mamboserver.com/

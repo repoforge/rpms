@@ -6,7 +6,7 @@
 Summary: X MultiMedia System input plugin to play Windows Media Audio files
 Name: xmms-wma
 Version: 1.0.5
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/

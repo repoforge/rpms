@@ -10,7 +10,7 @@
 Summary: Convert numbers between various bases
 Name: perl-Math-BaseCalc
 Version: 1.013
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BaseCalc/

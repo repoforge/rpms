@@ -10,7 +10,7 @@
 Summary: Single Dimensional Function Minimisation
 Name: perl-Math-Brent
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Brent/

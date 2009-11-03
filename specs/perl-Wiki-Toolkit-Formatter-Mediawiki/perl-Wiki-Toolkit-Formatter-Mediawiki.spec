@@ -10,7 +10,7 @@
 Summary: Mediawiki-style formatter for Wiki::Toolkit
 Name: perl-Wiki-Toolkit-Formatter-Mediawiki
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Wiki-Toolkit-Formatter-Mediawiki/

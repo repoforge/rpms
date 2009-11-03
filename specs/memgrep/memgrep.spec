@@ -9,7 +9,7 @@
 Summary: Search/replace/dump memory from running processes and core files
 Name: memgrep
 Version: 0.8.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.hick.org/code/skape/memgrep/

@@ -10,7 +10,7 @@
 Summary: Perl module that consists of explanation of a regular expression
 Name: perl-YAPE-Regex-Explain
 Version: 3.011
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAPE-Regex-Explain/

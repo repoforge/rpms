@@ -5,7 +5,7 @@
 Summary: Nice editor
 Name: ne
 Version: 2.0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://ne.dsi.unimi.it/

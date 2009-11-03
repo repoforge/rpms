@@ -3,7 +3,7 @@
 Summary: HTMLDOC html to pdf converter
 Name: htmldoc
 Version: 1.8.27
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.htmldoc.org/

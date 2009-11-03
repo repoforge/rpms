@@ -4,7 +4,7 @@
 Summary: Kernel spinlock metering
 Name: lockstat
 Version: 1.4.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://oss.sgi.com/projects/lockmeter/

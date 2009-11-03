@@ -10,7 +10,7 @@
 Summary: Report versions of all modules in memory
 Name: perl-Module-Versions-Report
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Versions-Report/

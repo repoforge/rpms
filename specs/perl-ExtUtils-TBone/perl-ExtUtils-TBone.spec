@@ -10,7 +10,7 @@
 Summary:  Skeleton for writing "t/*.t" test files
 Name: perl-ExtUtils-TBone
 Version: 1.124
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-TBone/

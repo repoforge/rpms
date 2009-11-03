@@ -10,7 +10,7 @@
 Summary: Write lzop files/buffers
 Name: perl-IO-Compress-Lzop
 Version: 2.021
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Compress-Lzop/

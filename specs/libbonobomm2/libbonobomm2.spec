@@ -7,7 +7,7 @@
 Summary: C++ wrappers for libbonobo, for use with gtkmm
 Name: libbonobomm2
 Version: 1.3.8
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

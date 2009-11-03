@@ -10,7 +10,7 @@
 Summary: Perl implementation of N-ary search trees
 Name: perl-Tree-Nary
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Nary/

@@ -10,7 +10,7 @@
 Summary: Check International Standard Book Numbers
 Name: perl-Test-ISBN
 Version: 2.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-ISBN/

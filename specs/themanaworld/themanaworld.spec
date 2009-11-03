@@ -4,7 +4,7 @@
 Summary: Innovative free MMORPG with 2D graphics
 Name: themanaworld
 Version: 0.0.23
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://themanaworld.org/

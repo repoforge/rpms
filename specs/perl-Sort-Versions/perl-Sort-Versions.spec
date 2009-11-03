@@ -10,7 +10,7 @@
 Summary: Module for sorting of revision-like numbers
 Name: perl-Sort-Versions
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-Versions/

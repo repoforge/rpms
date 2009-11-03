@@ -10,7 +10,7 @@
 Summary: Perl module to format times in .beat notation
 Name: perl-DateTime-Format-IBeat
 Version: 0.161
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-IBeat/

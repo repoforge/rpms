@@ -9,7 +9,7 @@
 Summary: serialize data-structures between threads
 Name: perl-Thread-Serialize
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Serialize/

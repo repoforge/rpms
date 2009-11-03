@@ -10,7 +10,7 @@
 Summary: Simple interface for delta editors
 Name: perl-SVN-Simple
 Version: 0.27
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Simple/

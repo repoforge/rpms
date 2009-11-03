@@ -6,7 +6,7 @@
 Summary: Console jabber client
 Name: mcabber
 Version: 0.9.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.lilotux.net/~mikael/mcabber/

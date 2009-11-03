@@ -9,7 +9,7 @@
 Summary: Perl module for customizable Unix login prompt and validation 
 Name: perl-Unix-Login
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Login/

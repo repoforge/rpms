@@ -10,7 +10,7 @@
 Summary: Hide data (badly) in Png images
 Name: perl-Acme-Steganography-Image-Png
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Steganography-Image-Png/

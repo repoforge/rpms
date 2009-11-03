@@ -4,7 +4,7 @@
 Summary: Dynamips Configuration Generator
 Name: dynagen
 Version: 0.10.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://www.dynagen.org/

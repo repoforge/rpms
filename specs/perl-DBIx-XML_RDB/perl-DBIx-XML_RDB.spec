@@ -10,7 +10,7 @@
 Summary: Extension for creating XML from existing DBI datasources
 Name: perl-DBIx-XML_RDB
 Version: 0.05
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-XML_RDB/

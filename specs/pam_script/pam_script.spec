@@ -7,7 +7,7 @@ Summary: PAM module for executing scripts
 %define real_name pam-script
 Name: pam_script
 Version: 0.1.7
-Release: 1
+Release: 1%{?dist}
 Group: Applications/System
 License: GPL
 URL: http://www.bofs.co.za/~iburger/pam_script/

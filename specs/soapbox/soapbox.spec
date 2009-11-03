@@ -7,7 +7,7 @@
 Summary: Library to restrict processes from tampering with directories/files
 Name: soapbox
 Version: 0.3.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://dag.wieers.com/home-made/soapbox/

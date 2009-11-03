@@ -7,7 +7,7 @@
 Summary: Network switching and control applet.
 Name: netapplet
 Version: 1.0.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://primates.ximian.com/~rml/netapplet/

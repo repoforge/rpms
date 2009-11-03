@@ -4,7 +4,7 @@
 Summary: Musepack audio decoding library
 Name: libmusepack
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.musepack.net/

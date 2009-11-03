@@ -7,7 +7,7 @@
 Summary: Web single signon middleware for service providers
 Name: shibboleth-sp
 Version: 1.3
-Release: 0.f.1
+Release: 0.f.1%{?dist}
 License: Apache
 Group: Applications/Internet
 URL: http://shibboleth.internet2.edu/

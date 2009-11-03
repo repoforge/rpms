@@ -6,7 +6,7 @@
 Summary: Toolkit form SAML 1.1 and 1.0
 Name: opensaml
 Version: 1.1
-Release: 0.b.1
+Release: 0.b.1%{?dist}
 License: Apache 2.0
 Group: Development/Libraries
 URL: http://www.opensaml.org/

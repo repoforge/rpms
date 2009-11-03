@@ -10,7 +10,7 @@
 Summary: Strings as objects with lots of handy methods
 Name: perl-Set-String
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-String/

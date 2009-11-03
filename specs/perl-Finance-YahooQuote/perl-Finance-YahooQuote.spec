@@ -10,7 +10,7 @@
 Summary: Perl module to get stock quotes from Yahoo! Finance
 Name: perl-Finance-YahooQuote
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Finance-YahooQuote/

@@ -10,7 +10,7 @@
 Summary: Trace perl programs
 Name: perl-Devel-Trace
 Version: 0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: Unknown
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Trace/

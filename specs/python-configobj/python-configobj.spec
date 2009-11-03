@@ -9,7 +9,7 @@
 Summary: Config file reading, writing, and validation
 Name: python-configobj
 Version: 4.6.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.voidspace.org.uk/python/configobj.html

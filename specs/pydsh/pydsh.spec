@@ -5,7 +5,7 @@
 Summary: Simple remote administration tool, pydsh and pydcp
 Name: pydsh
 Version: 0.5.4
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://pydsh.sourceforge.net/

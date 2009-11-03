@@ -10,7 +10,7 @@
 Summary: Perl module that implements a simple API for XML
 Name: perl-XML-SAX
 Version: 0.96
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX/

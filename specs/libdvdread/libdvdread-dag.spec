@@ -4,7 +4,7 @@
 Summary: simple foundation for reading DVD video disks
 Name: libdvdread
 Version: 0.9.4
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dtek.chalmers.se/groups/dvd/

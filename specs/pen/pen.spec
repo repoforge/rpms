@@ -5,7 +5,7 @@
 Summary: Load balancer for "simple" tcp based protocols
 Name: pen
 Version: 0.17.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://siag.nu/pen/

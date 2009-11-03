@@ -10,7 +10,7 @@
 Summary: Object-oriented Perl extension for parsing Apache log files
 Name: perl-Apache-ParseLog
 Version: 1.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ParseLog/

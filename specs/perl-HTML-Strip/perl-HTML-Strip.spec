@@ -9,7 +9,7 @@
 Summary: Perl module to strip HTML-like markup from text.
 Name: perl-HTML-Strip
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Strip/

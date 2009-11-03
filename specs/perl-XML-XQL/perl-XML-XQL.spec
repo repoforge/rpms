@@ -10,7 +10,7 @@
 Summary: Query XML tree structures with XQL
 Name: perl-XML-XQL
 Version: 0.68
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XQL/

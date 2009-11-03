@@ -7,7 +7,7 @@
 Summary: Console monitor for Nagios
 Name: nsc
 Version: 0.80.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://nsc-gothix.sourceforge.net/

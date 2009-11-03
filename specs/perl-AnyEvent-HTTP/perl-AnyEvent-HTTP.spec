@@ -10,7 +10,7 @@
 Summary: a simple but non-blocking HTTP/HTTPS client
 Name: perl-%{real_name}
 Version: 1.43
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent-HTTP/

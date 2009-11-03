@@ -10,7 +10,7 @@
 Summary: Validation with simple chains of constraints
 Name: perl-FormValidator-Simple
 Version: 0.28
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FormValidator-Simple/

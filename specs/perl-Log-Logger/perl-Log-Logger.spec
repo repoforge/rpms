@@ -10,7 +10,7 @@
 Summary: OO interface to user defined logfile
 Name: perl-Log-Logger
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Logger/

@@ -5,7 +5,7 @@
 Summary: Graphical frontend for lpq and lprm working with Cups queues
 Name: gqueue
 Version: 0.99.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://web.tiscali.it/diegobazzanella/

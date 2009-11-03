@@ -17,7 +17,7 @@
 Summary: Record, distribute and replay X protocol data
 Name: xnee
 Version: 2.06
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://www.gnu.org/software/xnee/

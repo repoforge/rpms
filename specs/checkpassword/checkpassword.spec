@@ -6,7 +6,7 @@
 Summary: Provides a simple, uniform password-checking interface
 Name: checkpassword
 Version: 0.90
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://cr.yp.to/checkpwd.html

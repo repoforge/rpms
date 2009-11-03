@@ -4,7 +4,7 @@
 Summary: Utilities to limit user accounts to specific files using chroot()
 Name: jailkit
 Version: 2.5
-Release: 1
+Release: 1%{?dist}
 License: Open Source
 Group: System Environment/Base
 URL: http://olivier.sessink.nl/jailkit/

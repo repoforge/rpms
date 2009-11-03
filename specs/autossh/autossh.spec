@@ -5,7 +5,7 @@
 Summary: Automatically restart SSH sessions and tunnels
 Name: autossh
 Version: 1.4b
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.harding.motd.ca/autossh/

@@ -10,7 +10,7 @@
 Summary: Virtual base class for WWW searches
 Name: perl-WWW-Search
 Version: 2.507
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search/

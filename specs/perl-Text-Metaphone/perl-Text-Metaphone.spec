@@ -10,7 +10,7 @@
 Summary: Modern soundex, phonetic encoding of words
 Name: perl-Text-Metaphone
 Version: 20081017
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Metaphone/

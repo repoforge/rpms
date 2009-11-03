@@ -10,7 +10,7 @@
 Summary: Perl module handles submission/update of bugzilla bugs via WWW::Mechanize
 Name: perl-WWW-Bugzilla
 Version: 1.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Bugzilla/

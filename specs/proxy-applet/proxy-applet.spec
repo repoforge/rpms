@@ -5,7 +5,7 @@
 Summary: Tray applet for changing network proxy configuration
 Name: proxy-applet
 Version: 0.2.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://dag.wieers.com/home-made/gnome-applets/

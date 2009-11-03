@@ -32,7 +32,7 @@
 Summary: Some neat plugins for GKrellM
 Name: gkrellm-plugins
 Version: 2.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://web.wt.net/~billw/gkrellm/Plugins.html

@@ -5,7 +5,7 @@
 Summary: Convert music tunes from ABC format to PostScript
 Name: abcm2ps
 Version: 5.9.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://moinejf.free.fr/

@@ -14,7 +14,7 @@
 Summary: Easy to use front-end for ClamAV
 Name: clamtk
 Version: 3.09
-Release: 1
+Release: 1%{?dist}
 License: Perl
 Group: Applications/File
 URL: http://clamtk.sourceforge.net/

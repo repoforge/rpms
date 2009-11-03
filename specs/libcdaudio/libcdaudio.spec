@@ -4,7 +4,7 @@
 Summary: Control operation of a CD-ROM when playing audio CDs
 Name: libcdaudio
 Version: 0.99.12p2
-Release: 12
+Release: 12%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libcdaudio.sourceforge.net/

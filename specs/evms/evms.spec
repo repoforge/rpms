@@ -8,7 +8,7 @@
 Summary: Enterprise Volume Management System utilities
 Name: evms
 Version: 2.5.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://evms.sourceforge.net/

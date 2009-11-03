@@ -10,7 +10,7 @@
 Summary: File::Find::Rule adapted to Filesys::Virtual
 Name: perl-File-Find-Rule-Filesys-Virtual
 Version: 1.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Find-Rule-Filesys-Virtual/

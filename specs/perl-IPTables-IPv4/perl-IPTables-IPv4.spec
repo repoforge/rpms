@@ -10,7 +10,7 @@
 Summary: Perl module for manipulating iptables rules for the IPv4 protocol
 Name: perl-IPTables-IPv4
 Version: 0.98
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPTables-IPv4/

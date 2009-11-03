@@ -10,7 +10,7 @@
 Summary: RFC 2822 Address Parsing and Creation
 Name: perl-Email-Address
 Version: 1.889
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Address/

@@ -5,7 +5,7 @@
 Summary: Run a process unable to create childs
 Name: noexec
 Version: 1.1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://noexec.sourceforge.net/

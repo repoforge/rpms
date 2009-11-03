@@ -4,7 +4,7 @@
 Summary: Configuration handling library
 Name: varconf
 Version: 0.6.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/varconf

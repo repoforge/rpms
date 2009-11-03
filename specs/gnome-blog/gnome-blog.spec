@@ -7,7 +7,7 @@
 Summary: GNOME panel object for posting blog entries
 Name: gnome-blog
 Version: 0.9.1
-Release: 5
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gnome.org/~seth/gnome-blog/

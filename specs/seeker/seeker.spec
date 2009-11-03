@@ -5,7 +5,7 @@
 Summary: Tool to measure disk performance (random access time)
 Name: seeker
 Version: 2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.linuxinsight.com/how_fast_is_your_disk.html

@@ -6,7 +6,7 @@
 Summary: FUSE-based user-space encrypted filesystem
 Name: fuse-cryptofs
 Version: 0.6.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://reboot.animeirc.de/cryptofs/

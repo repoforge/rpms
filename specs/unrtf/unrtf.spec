@@ -5,7 +5,7 @@
 Summary: Converts from RTF to other formats
 Name: unrtf
 Version: 0.20.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.gnu.org/software/unrtf/unrtf.html

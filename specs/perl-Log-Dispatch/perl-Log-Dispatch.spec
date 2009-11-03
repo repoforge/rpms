@@ -10,7 +10,7 @@
 Summary: Dispatches messages to one or more outputs
 Name: perl-Log-Dispatch
 Version: 2.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch/

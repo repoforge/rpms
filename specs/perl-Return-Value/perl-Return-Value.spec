@@ -11,7 +11,7 @@
 Summary: Polymorphic return values
 Name: perl-Return-Value
 Version: 1.666.001
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Return-Value/

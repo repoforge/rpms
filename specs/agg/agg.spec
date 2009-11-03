@@ -10,7 +10,7 @@
 Summary: Anti-Grain Geometry, a rendering engine
 Name: agg
 Version: 2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.antigrain.com/

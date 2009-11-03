@@ -14,7 +14,7 @@
 Summary: RPMforge release file and RPM repository configuration
 Name: rpmforge-release
 Version: 0.4.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/

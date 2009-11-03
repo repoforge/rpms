@@ -10,7 +10,7 @@
 Summary: Wrapper for syslog
 Name: perl-Logger-Syslog
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Logger-Syslog/

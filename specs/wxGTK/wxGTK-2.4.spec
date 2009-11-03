@@ -4,7 +4,7 @@
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
 Version: 2.4.2
-Release: 5
+Release: 5%{?dist}
 License: Other
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/

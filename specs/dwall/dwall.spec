@@ -5,7 +5,7 @@
 Summary: All-purpose iptables firewall generator
 Name: dwall
 Version: 0.5.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/home-made/dwall/

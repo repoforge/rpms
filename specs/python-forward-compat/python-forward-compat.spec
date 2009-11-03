@@ -8,7 +8,7 @@ Version: 2.2
 Version: 2.3
 %endif
 
-Release: 1
+Release: 1%{?dist}
 Summary: Forward compatibility package for Python %{version}
 
 Group: Development/Languages

@@ -10,7 +10,7 @@
 Summary: Perl module to override subroutines in a module for unit testing
 Name: perl-Test-MockModule
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-MockModule/

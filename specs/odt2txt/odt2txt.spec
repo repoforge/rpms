@@ -5,7 +5,7 @@
 Summary: Extract text from OpenDocument Text files
 Name: odt2txt
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://stosberg.net/odt2txt/

@@ -6,7 +6,7 @@
 Summary: Untrusted/encrypted backup using rsync algorithm
 Name: duplicity
 Version: 0.4.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/duplicity/

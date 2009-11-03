@@ -10,7 +10,7 @@
 Summary: Extension of CGI.pm which reads/generates formated XML
 Name: perl-CGI-XMLForm
 Version: 0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-XMLForm/

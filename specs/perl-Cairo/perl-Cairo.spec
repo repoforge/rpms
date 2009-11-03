@@ -10,7 +10,7 @@
 Summary: Perl interface to the cairo library
 Name: perl-Cairo
 Version: 1.060
-Release: 3
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cairo/

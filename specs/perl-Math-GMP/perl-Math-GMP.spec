@@ -12,7 +12,7 @@
 Summary: High speed arbitrary size integer math
 Name: perl-Math-GMP
 Version: 2.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-GMP/

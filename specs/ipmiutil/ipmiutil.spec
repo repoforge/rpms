@@ -4,7 +4,7 @@
 Summary: Various IPMI server management utilities
 Name: ipmiutil
 Version: 2.0.2
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Kernel
 URL: http://ipmiutil.sourceforge.net/

@@ -5,7 +5,7 @@
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.57.2
-Release: 6
+Release: 6%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/

@@ -44,7 +44,7 @@
 Summary: check whether Perl module files compile correctly
 Name: perl-Test-Compile
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Compile/

@@ -10,7 +10,7 @@
 Summary: DBD independant class
 Name: perl-DBIx-AnyDBD
 Version: 2.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-AnyDBD/

@@ -10,7 +10,7 @@
 Summary: Perl module that implements Ron Rivests MD5 Algorithm
 Name: perl-Digest-Perl-MD5
 Version: 1.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-Perl-MD5/

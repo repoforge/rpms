@@ -5,7 +5,7 @@ Summary: Lossless MP3 volume adjustment tool
 Name: mp3gain
 %define real_version 1_4_4
 Version: 1.4.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://mp3gain.sourceforge.net

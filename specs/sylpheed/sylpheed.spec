@@ -6,7 +6,7 @@
 Summary: Full-featured GTK+ based fast e-mail client
 Name: sylpheed
 Version: 2.0.4
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sylpheed.good-day.net/

@@ -4,7 +4,7 @@
 Summary: xml2swf and swf2xml processor
 Name: swfmill
 Version: 0.2.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://swfmill.org/

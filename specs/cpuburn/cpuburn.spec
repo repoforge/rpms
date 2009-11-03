@@ -9,7 +9,7 @@
 Summary: CPU maximum load (heat) stability test
 Name: cpuburn
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://users.ev1.net/~redelm/

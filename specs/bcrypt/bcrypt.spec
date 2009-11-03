@@ -5,7 +5,7 @@
 Summary: File encryption utility
 Name: bcrypt
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://bcrypt.sourceforge.net/

@@ -7,7 +7,7 @@
 Summary: Data recovery from a damaged disk
 Name: badblock-guess
 Version: 0.0
-Release: 0.cvs20030610
+Release: 0.cvs20030610%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.jankratochvil.net/project/badblock_guess/

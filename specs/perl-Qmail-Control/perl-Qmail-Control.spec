@@ -10,7 +10,7 @@
 Summary: Perl module for interfacing with Qmail's control files
 Name: perl-Qmail-Control
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qmail-Control/

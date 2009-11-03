@@ -4,7 +4,7 @@
 Summary: Web server benchmark
 Name: httperf
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.hpl.hp.com/research/linux/httperf/

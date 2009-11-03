@@ -4,7 +4,7 @@
 Summary: Configuration file abstraction library
 Name: libmcs
 Version: 0.7.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://www.atheme.org/projects/mcs.shtml

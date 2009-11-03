@@ -10,7 +10,7 @@
 Summary: GNOME Samba Browser
 Name: gnomba
 Version: 0.6.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://gnomba.sourceforge.net/

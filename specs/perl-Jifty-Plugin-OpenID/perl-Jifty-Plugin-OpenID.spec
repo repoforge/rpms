@@ -44,7 +44,7 @@
 Summary: Provides OpenID authentication for your jifty app
 Name: perl-%{real_name}
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jifty-Plugin-OpenID/

@@ -10,7 +10,7 @@
 Summary: Detect encoding of the current terminal
 Name: perl-Term-Encoding
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-Encoding/

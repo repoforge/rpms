@@ -10,7 +10,7 @@
 Summary: Speed up perl scripts by running them persistently
 Name: perl-CGI-SpeedyCGI
 Version: 2.22
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-SpeedyCGI/

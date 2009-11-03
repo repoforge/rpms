@@ -4,7 +4,7 @@
 Summary: Simple TCP benchmarking utility
 Name: gensink
 Version: 4.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://jes.home.cern.ch/jes/gensink/

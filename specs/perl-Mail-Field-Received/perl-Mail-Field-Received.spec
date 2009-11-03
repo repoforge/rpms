@@ -10,7 +10,7 @@
 Summary: Mostly RFC822-compliant parser of Received headers
 Name: perl-Mail-Field-Received
 Version: 0.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Field-Received/

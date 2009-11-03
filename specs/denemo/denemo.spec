@@ -6,7 +6,7 @@
 Summary: Graphical music notation program
 Name: denemo
 Version: 0.7.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://denemo.sourceforge.net/

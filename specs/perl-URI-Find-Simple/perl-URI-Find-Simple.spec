@@ -10,7 +10,7 @@
 Summary: Perl module to implement a simple interface to URI::Find
 Name: perl-URI-Find-Simple
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find-Simple/

@@ -4,7 +4,7 @@
 Summary: Light download accelerator
 Name: axel
 Version: 2.4
-Release: 1
+Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
 URL: http://axel.alioth.debian.org/

@@ -9,7 +9,7 @@
 Summary: Collection of skins for aMSN
 Name: amsn-skins
 Version: 0.91
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://amsn.sourceforge.net/

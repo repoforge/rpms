@@ -4,7 +4,7 @@
 Summary: OpenAL Utility Toolkit
 Name: freealut
 Version: 1.1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://openal.org/

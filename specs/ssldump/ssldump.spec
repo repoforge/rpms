@@ -18,7 +18,7 @@
 Summary: SSLSSLv3/TLS network protocol analyzer
 Name: ssldump
 Version: 0.9
-Release: 0.beta3.2
+Release: 0.beta3.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.rtfm.com/ssldump/

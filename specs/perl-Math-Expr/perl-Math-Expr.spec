@@ -10,7 +10,7 @@
 Summary: Parses mathematical expressions
 Name: perl-Math-Expr
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Expr/

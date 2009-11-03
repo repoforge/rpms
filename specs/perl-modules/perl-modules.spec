@@ -10,7 +10,7 @@
 Summary: Perl module to load several modules with single use-command
 Name: perl-modules
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/modules/

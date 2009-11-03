@@ -6,7 +6,7 @@
 Summary: Tools for the movtar MJPEG video format
 Name: libmovtar
 Version: 0.1.3
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/

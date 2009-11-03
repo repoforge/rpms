@@ -4,7 +4,7 @@
 Summary: File archiving utility with compression
 Name: zoo
 Version: 2.10
-Release: 2.2
+Release: 2.2%{?dist}
 License: Distributable
 Group: Applications/Archiving
 URL: ftp://sunsite.unc.edu/pub/Linux/utils/compress/

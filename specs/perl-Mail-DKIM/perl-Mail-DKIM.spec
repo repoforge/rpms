@@ -10,7 +10,7 @@
 Summary: Perl module to signs/verify Internet mail with DKIM/DomainKey signatures
 Name: perl-Mail-DKIM
 Version: 0.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-DKIM/

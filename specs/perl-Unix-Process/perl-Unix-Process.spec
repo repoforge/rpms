@@ -11,7 +11,7 @@
 Summary: Perl module to get pid info from (/bin/ps)
 Name: perl-Unix-Process
 Version: 1.3101
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Process/

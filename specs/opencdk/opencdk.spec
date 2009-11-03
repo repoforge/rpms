@@ -4,7 +4,7 @@
 Summary: Provides basic parts of the OpenPGP message format.
 Name: opencdk
 Version: 0.5.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/download.html

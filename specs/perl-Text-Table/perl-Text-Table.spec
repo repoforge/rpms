@@ -10,7 +10,7 @@
 Summary: Organize Data in Tables
 Name: perl-Text-Table
 Version: 1.114
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Table/

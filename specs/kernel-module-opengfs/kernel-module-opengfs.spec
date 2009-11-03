@@ -22,7 +22,7 @@
 Summary: OpenGFS clustered filesystem
 Name: opengfs
 Version: 0.2.1
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://opengfs.sourceforge.net/

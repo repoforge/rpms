@@ -10,7 +10,7 @@
 Summary: Perl module that implements a secure copy protocol
 Name: perl-Net-SCP
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SCP/

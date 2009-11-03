@@ -10,7 +10,7 @@
 Summary: POE component that implements a RFC 863 Discard server
 Name: perl-POE-Component-Server-Discard
 Version: 1.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-Discard/

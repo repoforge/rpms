@@ -4,7 +4,7 @@
 Summary: Portable mail access library
 Name: libetpan
 Version: 0.49
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.etpan.org/

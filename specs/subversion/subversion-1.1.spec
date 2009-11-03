@@ -6,7 +6,7 @@
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.1.1
-Release: 1.1
+Release: 1.1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/

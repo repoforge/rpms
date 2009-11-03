@@ -10,7 +10,7 @@
 Summary: Apache log utility for merging, sorting, and processing web logs
 Name: perl-Apache-Logmonster
 Version: 3.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Logmonster/

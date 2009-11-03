@@ -10,7 +10,7 @@
 Summary: Perl module to interface with Heimdal Kerberos 5
 Name: perl-Heimdal-Kadm5
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/CPAN
 URL: ftp://ftp.su.se/pub/users/leifj/

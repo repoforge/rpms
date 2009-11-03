@@ -6,7 +6,7 @@
 Summary: Software watchdog
 Name: watchdog
 Version: 5.3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 #URL: http://oss.digirati.com.br/watchcatd/watchdog.html

@@ -10,7 +10,7 @@
 Summary: Match text against Boolean expression
 Name: perl-Text-Query-Advanced
 Version: 0.05
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Query-Advanced/

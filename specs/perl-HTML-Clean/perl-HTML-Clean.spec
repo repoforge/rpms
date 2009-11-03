@@ -10,7 +10,7 @@
 Summary: Cleans HTML
 Name: perl-HTML-Clean
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Clean/

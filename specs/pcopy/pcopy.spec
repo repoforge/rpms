@@ -5,7 +5,7 @@
 Summary: Peter's disk-to-disk copying tool
 Name: pcopy
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.lysator.liu.se/~pen/pcopy/

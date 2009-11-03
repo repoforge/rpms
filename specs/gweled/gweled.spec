@@ -5,7 +5,7 @@
 Summary: Clone of 'bjeweled' or 'diamond mine'
 Name: gweled
 Version: 0.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://sebdelestaing.free.fr/gweled/

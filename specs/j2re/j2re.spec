@@ -19,7 +19,7 @@
 Summary: Sun Java(tm) 2 Runtime Environment
 Name: j2re
 Version: 1.4.2
-Release: 11
+Release: 11%{?dist}
 Group: Development/Languages
 License: Redistributable, BCLA
 URL: http://java.sun.com/j2se/1.4.2/download.html

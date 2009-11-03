@@ -5,7 +5,7 @@
 Summary: Collect a system's hardware and software configuration
 Name: dconf
 Version: 0.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/dconf/

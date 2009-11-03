@@ -11,7 +11,7 @@
 Summary: Display a stack trace on the debug screen
 Name: perl-Catalyst-Plugin-StackTrace
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-StackTrace/

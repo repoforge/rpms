@@ -10,7 +10,7 @@
 Summary: Base class to treat unhandled method calls as errors
 Name: perl-Class-WhiteHole
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-WhiteHole/

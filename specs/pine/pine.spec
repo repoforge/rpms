@@ -15,7 +15,7 @@
 Summary: Commonly used, MIME compliant mail and news reader
 Name: pine
 Version: 4.64
-Release: 3
+Release: 3%{?dist}
 License: Freely Distributable
 Group: Applications/Internet
 URL: http://www.washington.edu/pine/

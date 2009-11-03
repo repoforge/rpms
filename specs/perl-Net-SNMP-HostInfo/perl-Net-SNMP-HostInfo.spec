@@ -10,7 +10,7 @@
 Summary: Access the IP statistics of a MIB-II host
 Name: perl-Net-SNMP-HostInfo
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SNMP-HostInfo/

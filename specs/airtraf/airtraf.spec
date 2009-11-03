@@ -4,7 +4,7 @@
 Summary: Wireless sniffer for 802.11 wireless networks
 Name: airtraf
 Version: 1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.elixar.com/products/airtraf.html

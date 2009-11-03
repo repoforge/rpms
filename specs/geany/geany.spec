@@ -5,7 +5,7 @@
 Summary: Small C editor
 Name: geany
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://geany.uvena.de/

@@ -4,7 +4,7 @@
 Summary: Serial connection support for Pocket PC devices
 Name: synce
 Version: 0.9.1
-Release: 11
+Release: 11%{?dist}
 License: MIT
 Group: Applications/Communications
 URL: http://synce.sourceforge.net/

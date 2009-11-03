@@ -4,7 +4,7 @@
 Summary: Provides a simple, uniform password-checking interface using PAM
 Name: checkpassword-pam
 Version: 0.99
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://checkpasswd-pam.sourceforge.net/

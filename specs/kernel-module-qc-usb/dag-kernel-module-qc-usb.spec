@@ -25,7 +25,7 @@
 Summary: Linux QuickCam USB Drivers
 Name: kernel-module-qc-usb
 Version: 0.5.1
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ee.oulu.fi/~tuukkat/quickcam/quickcam.html
@@ -53,7 +53,7 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-qc-usb
 Summary: Linux QuickCam USB Drivers for SMP kernels
 Group: System Environment/Kernel
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: qcset
@@ -71,7 +71,7 @@ They might work with newer/older kernels.
 
 %package -n qcset
 Summary: Linux QuickCam USB utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Base
 
 %description -n qcset

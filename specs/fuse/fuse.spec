@@ -11,7 +11,7 @@
 Summary: File System in Userspace (FUSE) utilities
 Name: fuse
 Version: 2.7.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/

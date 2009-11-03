@@ -7,7 +7,7 @@
 Summary: Curses-based calendar/journal/diary & todo list program
 Name: ccal
 Version: 0.6
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://www.jamiehillman.co.uk/ccal/

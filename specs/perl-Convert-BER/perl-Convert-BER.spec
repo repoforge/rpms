@@ -11,7 +11,7 @@
 Summary: ASN.1 Basic Encoding Rules perl module
 Name: perl-Convert-BER
 Version: 1.3101
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-BER/

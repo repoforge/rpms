@@ -9,7 +9,7 @@
 Summary: Perl module to deal with file archives
 Name: perl-Archive-Any
 Version: 0.0932
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Any/

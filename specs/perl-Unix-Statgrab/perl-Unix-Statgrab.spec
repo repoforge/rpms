@@ -10,7 +10,7 @@
 Summary: Perl module for collecting information about the machine
 Name: perl-Unix-Statgrab
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Statgrab/

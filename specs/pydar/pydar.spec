@@ -7,7 +7,7 @@
 Summary: far from finished attempt of a buildserver in python
 Name: pydar
 Version: 0.004
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: NoUrlYet

@@ -4,7 +4,7 @@
 Summary: IP accounting tool
 Name: ipac-ng
 Version: 1.31
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/ipac-ng/

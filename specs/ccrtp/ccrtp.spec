@@ -4,7 +4,7 @@
 Summary: Common C++ class framework for RTP/RTCP
 Name: ccrtp
 Version: 1.6.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/commoncpp/

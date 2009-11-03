@@ -10,7 +10,7 @@
 Summary: Fast accessors with data containment
 Name: perl-Class-Accessor-Fast-Contained
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor-Fast-Contained/

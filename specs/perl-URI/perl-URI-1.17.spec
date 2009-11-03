@@ -13,7 +13,7 @@
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
 Version: 1.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI/

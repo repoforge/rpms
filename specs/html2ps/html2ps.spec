@@ -7,7 +7,7 @@ Summary: HTML to PostScript converter
 Name: html2ps
 %define real_version 1.0b5
 Version: 1.0
-Release: 0.b5.2
+Release: 0.b5.2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://user.it.uu.se/~jan/html2ps.html

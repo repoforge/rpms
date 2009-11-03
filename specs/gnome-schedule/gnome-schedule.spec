@@ -5,7 +5,7 @@
 Summary: Graphical configuration tool for cron
 Name: gnome-schedule
 Version: 1.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://gnome-schedule.sourceforge.net/

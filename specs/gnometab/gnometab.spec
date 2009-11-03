@@ -8,7 +8,7 @@
 Summary: WYSIWIG guitar tablature editor
 Name: gnometab
 Version: 0.7.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://www.solutionm.com/gnometab/gnometab.html

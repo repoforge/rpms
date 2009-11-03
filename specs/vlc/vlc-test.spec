@@ -126,7 +126,7 @@ Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 %define real_version 1.0.0-rc1
 Version: 1.0.1
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/

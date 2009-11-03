@@ -5,7 +5,7 @@
 Summary: Interactive LDAP client for Unix terminals
 Name: ldapvi
 Version: 1.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.lichteblau.com/ldapvi/

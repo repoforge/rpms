@@ -7,7 +7,7 @@
 Summary: Dell laptop (Inspiron 8000 and others) SMM BIOS support tools
 Name: i8kutils
 Version: 1.25
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://people.debian.org/~dz/i8k/

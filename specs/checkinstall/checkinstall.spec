@@ -4,7 +4,7 @@
 Summary: CheckInstall installations tracker
 Name: checkinstall
 Version: 1.6.0
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://asic-linux.com.mx/~izto/checkinstall/

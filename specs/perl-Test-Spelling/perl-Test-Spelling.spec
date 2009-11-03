@@ -10,7 +10,7 @@
 Summary: Perl module to check for spelling errors in POD files
 Name: perl-Test-Spelling
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Spelling/

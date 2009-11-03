@@ -10,7 +10,7 @@
 Summary: perl module to output querylet results to an Excel file
 Name: perl-Querylet-Output-Excel-XLS
 Version: 0.132
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Querylet-Output-Excel-XLS/

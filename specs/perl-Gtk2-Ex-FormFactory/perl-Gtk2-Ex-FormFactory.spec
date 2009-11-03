@@ -10,7 +10,7 @@
 Summary: Framework for Gtk2 perl applications
 Name: perl-Gtk2-Ex-FormFactory
 Version: 0.65
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 #URL: http://search.cpan.org/dist/Gtk2-Ex-FormFactory/

@@ -6,7 +6,7 @@
 Summary: Net-SMTP Perl module
 Name: perl-Net-SMTP
 Version: 4.1.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SMTP/

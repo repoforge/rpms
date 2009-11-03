@@ -10,7 +10,7 @@
 Summary: Module for working with logical and visual hebrew
 Name: perl-Lingua-IW-Logical
 Version: 0.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-IW-Logical/

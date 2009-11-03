@@ -4,7 +4,7 @@
 Summary: Utility for formatting Phoenix NoteBIOS hibernation partitions under Linux
 Name: lphdisk
 Version: 0.9.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: Artistic License
 Group: System Environment/Base
 URL: http://www.procyon.com/~pda/lphdisk/

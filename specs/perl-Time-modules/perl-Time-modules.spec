@@ -10,7 +10,7 @@
 Summary: Date and time objects
 Name: perl-Time-modules
 Version: 2006.0814
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-modules/

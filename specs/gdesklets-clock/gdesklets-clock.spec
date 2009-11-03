@@ -6,7 +6,7 @@
 Summary: Clock sensor and display for gdesklets
 Name: gdesklets-clock
 Version: 0.40
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

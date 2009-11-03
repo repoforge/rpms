@@ -10,7 +10,7 @@
 Summary: Music Jukebox with a Curses Based GUI
 Name: pytone
 Version: 2.3.0
-Release: 0.pre1
+Release: 0.pre1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.luga.de/pytone/

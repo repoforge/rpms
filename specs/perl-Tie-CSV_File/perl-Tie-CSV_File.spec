@@ -10,7 +10,7 @@
 Summary: Ties a csv-file to an array of arrays
 Name: perl-Tie-CSV_File
 Version: 0.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-CSV_File/

@@ -8,7 +8,7 @@
 Summary: DejaVu TrueType fonts
 Name: dejavu-fonts
 Version: 2.20
-Release: 1
+Release: 1%{?dist}
 License: Redistributable, with restrictions
 Group: User Interface/X
 URL: http://dejavu.sourceforge.net/

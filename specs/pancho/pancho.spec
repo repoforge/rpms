@@ -9,7 +9,7 @@
 Summary: Archive and manage remote nodes using SNMP and TFTP
 Name: pancho
 Version: 9.3.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.pancho.org/

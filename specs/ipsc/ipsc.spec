@@ -12,7 +12,7 @@
 Summary: IP Subnet Calculator
 Name: ipsc
 Version: 0.4.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://ipsc.sourceforge.net/software.html

@@ -10,7 +10,7 @@
 Summary: Simple interface to F77 libs
 Name: perl-ExtUtils-F77
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-F77/

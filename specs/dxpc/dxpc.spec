@@ -18,7 +18,7 @@
 Summary: Differential X protocol compressor
 Name: dxpc
 Version: 3.9.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: User Interface/X
 URL: http://www.vigor.nu/dxpc/

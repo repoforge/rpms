@@ -10,7 +10,7 @@
 Summary: Extremely leight-weight Lev-Zimpel-Vogt compression
 Name: perl-Compress-LZV1
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZV1/

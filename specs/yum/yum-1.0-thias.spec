@@ -20,7 +20,7 @@
 Summary: YellowDog Updater Modified, an rpm package management utility
 Name: yum
 Version: 1.0.3
-Release: 3%{?date:.%{date}}.%{distro}
+Release: 3%{?date:.%{date}}.%{distro}%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: http://www.dulug.duke.edu/yum/download/1.0/%{name}-%{?date}%{!?date:%{version}}.tar.gz

@@ -9,7 +9,7 @@
 Summary: Verifies code hasn't left circular references
 Name: perl-Test-Memory-Cycle
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Memory-Cycle/

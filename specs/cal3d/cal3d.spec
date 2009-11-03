@@ -6,7 +6,7 @@
 Summary: Skeletal based character animation library
 Name: cal3d
 Version: 0.11.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://home.gna.org/cal3d/

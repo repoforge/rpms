@@ -10,7 +10,7 @@
 Summary: Perl extension for loading shared libraries and their functions
 Name: perl-P5NCI
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/P5NCI/

@@ -10,7 +10,7 @@
 Summary: Perl module that extends Class::DBI for MySQL 
 Name: perl-Class-DBI-mysql
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-mysql/

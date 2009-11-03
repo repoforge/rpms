@@ -7,7 +7,7 @@
 Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol
 Name: freetds
 Version: 0.64
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.freetds.org/

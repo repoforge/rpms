@@ -4,7 +4,7 @@
 Summary: Downloads album cover images semi-automatically from the Internet
 Name: albumart
 Version: 1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://kempele.fi/~skyostil/projects/albumart/

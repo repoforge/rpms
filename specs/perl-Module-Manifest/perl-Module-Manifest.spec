@@ -10,7 +10,7 @@
 Summary: Parse and examine a Perl distribution MANIFEST file
 Name: perl-Module-Manifest
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Manifest/

@@ -4,7 +4,7 @@
 Summary: Alternative to the official libmatroska library
 Name: libmkv
 Version: 0.6.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://repo.or.cz/w/libmkv.git

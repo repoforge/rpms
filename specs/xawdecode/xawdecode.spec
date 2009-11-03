@@ -20,7 +20,7 @@
 Summary: Video4Linux stream capture viewer
 Name: xawdecode
 Version: 1.9.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xawdecode.sourceforge.net/

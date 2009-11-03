@@ -10,7 +10,7 @@
 Summary: Class used to represent DBI database tables
 Name: perl-DBIx-Table
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Table/

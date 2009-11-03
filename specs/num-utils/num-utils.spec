@@ -5,7 +5,7 @@
 Summary: Programs for dealing with numbers
 Name: num-utils
 Version: 0.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://suso.suso.org/programs/num-utils/

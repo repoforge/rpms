@@ -3,7 +3,7 @@
 Summary: Command line tool to test HTTP performance of Web servers and Web applications
 Name: wbox
 Version: 4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://hping.org/wbox/

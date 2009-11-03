@@ -10,7 +10,7 @@
 Summary: Access MySpace.com from perl
 Name: perl-WWW-Myspace
 Version: 0.92
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Myspace/

@@ -11,7 +11,7 @@
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
 Version: 3.300
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-AIO/

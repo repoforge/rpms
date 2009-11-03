@@ -4,7 +4,7 @@
 Summary: Qt Cryptographic Architecture
 Name: qca
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://delta.affinix.com/qca/

@@ -10,7 +10,7 @@
 Summary: Perl module that implements a JSON converter that Does What I Want
 Name: perl-JSON-DWIW
 Version: 0.36
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-DWIW/

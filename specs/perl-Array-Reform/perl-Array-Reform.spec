@@ -10,7 +10,7 @@
 Summary: Convert an array into N-sized array of arrays
 Name: perl-Array-Reform
 Version: 1.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Reform/

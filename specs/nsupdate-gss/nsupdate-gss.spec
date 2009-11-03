@@ -6,7 +6,7 @@ Summary: Dynamic DNS update using GSSAPI TSIG
 Name: nsupdate-gss
 %define real_version 20050330
 Version: 0.0.20050330
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://rc.vintela.com/topics/ddns/

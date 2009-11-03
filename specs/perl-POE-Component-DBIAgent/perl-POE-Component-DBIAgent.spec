@@ -9,7 +9,7 @@
 Summary: Perl module for running asynchronous DBI calls
 Name: perl-POE-Component-DBIAgent
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-DBIAgent/

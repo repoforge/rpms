@@ -4,7 +4,7 @@
 Summary: Enhanced replacement for the BSD talk client
 Name: ytalk
 Version: 3.3.0
-Release: 1.0
+Release: 1.0%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.impul.se/ytalk/

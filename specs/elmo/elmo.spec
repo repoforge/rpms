@@ -7,7 +7,7 @@
 Summary: Feature rich highly configurable console mail client
 Name: elmo
 Version: 1.3.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://elmo.sourceforge.net/

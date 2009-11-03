@@ -4,7 +4,7 @@
 Summary: Text client for GGZ gamingzone
 Name: ggz-txt-client
 Version: 0.0.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.ggzgamingzone.org/

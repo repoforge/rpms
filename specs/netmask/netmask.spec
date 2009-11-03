@@ -4,7 +4,7 @@
 Summary: tool for figuring out network masks
 Name: netmask
 Version: 2.3.7
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://packages.qa.debian.org/n/netmask.html

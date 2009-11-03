@@ -12,7 +12,7 @@
 Summary: System administration tool for networks
 Name: cfengine
 Version: 2.2.10
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/

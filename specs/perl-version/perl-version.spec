@@ -11,7 +11,7 @@
 Summary: Perl module that implements for Version Objects
 Name: perl-version
 Version: 0.77.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/version/

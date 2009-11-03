@@ -7,7 +7,7 @@
 Summary: GUI for yum
 Name: guyum
 Version: 0.4.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.guyum.de/

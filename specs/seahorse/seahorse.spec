@@ -4,7 +4,7 @@
 Summary: GNOME gnupg interface
 Name: seahorse
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://seahorse.sourceforge.net/

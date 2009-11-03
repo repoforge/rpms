@@ -10,7 +10,7 @@
 Summary: Extended Parameters command line parser
 Name: perl-Getopt-ExPar
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-ExPar/

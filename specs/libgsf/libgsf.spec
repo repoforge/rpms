@@ -8,7 +8,7 @@
 Summary: The GNOME Structure file library
 Name: libgsf
 Version: 1.6.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://ftp.acc.umu.se/pub/GNOME/sources/libgsf/1.6/

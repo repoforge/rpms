@@ -13,7 +13,7 @@
 Summary: Perl module to update RPM packages automatically
 Name: perl-Youri-Package-RPM-Updater
 Version: 0.4.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Youri-Package-RPM-Updater/

@@ -6,7 +6,7 @@
 Summary: Murrine GTK2 engine
 Name: gtk-murrine-engine
 Version: 0.53.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://cimi.netsons.org/pages/murrine.php

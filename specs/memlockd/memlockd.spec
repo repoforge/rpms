@@ -7,7 +7,7 @@
 Summary: Daemon to lock files into memory
 Name: memlockd
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/
 URL: http://www.coker.com.au/memlockd/

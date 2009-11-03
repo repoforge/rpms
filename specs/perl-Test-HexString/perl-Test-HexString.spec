@@ -11,7 +11,7 @@
 Summary: test binary strings with hex dump diagnostics
 Name: perl-Test-HexString
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-HexString/

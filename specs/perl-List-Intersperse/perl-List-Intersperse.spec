@@ -10,7 +10,7 @@
 Summary: Intersperse, unsort or disperse a list
 Name: perl-List-Intersperse
 Version: 1.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Intersperse/

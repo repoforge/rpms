@@ -10,7 +10,7 @@
 Summary: Version of Egg WEB Application Framework
 Name: perl-Egg-Release
 Version: 3.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Egg-Release/

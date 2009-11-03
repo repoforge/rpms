@@ -10,7 +10,7 @@
 Summary: Versatile music player
 Name: snackamp
 Version: 2.2
-Release: 4.fdw.2
+Release: 4.fdw.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://snackamp.sourceforge.net/

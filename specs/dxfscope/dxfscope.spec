@@ -21,7 +21,7 @@
 Summary: Viewer for DXF drawings
 Name: dxfscope
 Version: 0.2
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://wildspark.com/dxfscope/

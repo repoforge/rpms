@@ -21,7 +21,7 @@
 Summary: Free easy-to-use paint program
 Name: kolourpaint
 Version: 1.2.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kolourpaint.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: File based storage model for Catalyst
 Name: perl-Catalyst-Model-File
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-File/

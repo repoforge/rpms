@@ -4,7 +4,7 @@
 
 Name: metacam
 Version: 1.2
-Release: 0.2
+Release: 0.2%{?dist}
 Summary: Utility to read Exif data from digital camera files
 Group: Applications/Multimedia
 License: GPL

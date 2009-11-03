@@ -9,7 +9,7 @@
 Summary: Viewer for DICOM compatible imaging devices
 Name: kradview
 Version: 1.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.orcero.org/irbis/kradview

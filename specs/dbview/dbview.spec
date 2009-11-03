@@ -4,7 +4,7 @@
 Summary: Display dBase III and IV (.dbf) files
 Name: dbview
 Version: 1.0.3
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/

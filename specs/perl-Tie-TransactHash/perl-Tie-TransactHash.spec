@@ -10,7 +10,7 @@
 Summary: Edit hash in transactions not changing order during trans
 Name: perl-Tie-TransactHash
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-TransactHash/

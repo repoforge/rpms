@@ -11,7 +11,7 @@
 Summary: Parse xml to simple tree
 Name: perl-XML-Parser-Style-EasyTree
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser-Style-EasyTree/

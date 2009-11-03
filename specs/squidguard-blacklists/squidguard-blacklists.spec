@@ -12,7 +12,7 @@
 Summary: Regularly updated blacklists for use with squidguard
 Name: squidguard-blacklists
 Version: 20050528
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://dag.wieers.com/home-made/squidguard/

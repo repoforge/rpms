@@ -19,7 +19,7 @@
 Summary: Gui for lvemkdvd
 Name: klvemkdvd
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/klvemkdvd.html

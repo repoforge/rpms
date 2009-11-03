@@ -10,7 +10,7 @@
 Summary: Perl module to ease testing test modules built with Test::Builder
 Name: perl-Test-Tester
 Version: 0.107
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Tester/

@@ -10,7 +10,7 @@
 Summary: Perl module for manipulating .po entries from GNU gettext
 Name: perl-Locale-PO
 Version: 0.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-PO/

@@ -5,7 +5,7 @@
 Summary: DNS error checking utility
 Name: dlint
 Version: 1.4.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.domtools.com/dns/dlint.shtml

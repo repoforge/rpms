@@ -12,7 +12,7 @@
 Summary: Sophisticated file transfer program
 Name: lftp
 Version: 4.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/

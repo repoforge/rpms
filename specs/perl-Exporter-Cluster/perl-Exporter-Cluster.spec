@@ -10,7 +10,7 @@
 Summary: Perl module for easy multiple module imports
 Name: perl-Exporter-Cluster
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exporter-Cluster/

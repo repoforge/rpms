@@ -9,7 +9,7 @@
 Summary: Transport of any data-structure between threads
 Name: perl-Thread-Conveyor
 Version: 0.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Conveyor/

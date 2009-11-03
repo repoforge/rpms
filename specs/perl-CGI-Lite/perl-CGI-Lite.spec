@@ -10,7 +10,7 @@
 Summary: Process and decode WWW forms and cookies
 Name: perl-CGI-Lite
 Version: 2.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Lite/

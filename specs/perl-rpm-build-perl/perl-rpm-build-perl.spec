@@ -11,7 +11,7 @@
 Summary: Calculate dependencies for Perl sources
 Name: perl-rpm-build-perl
 Version: 0.6.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/rpm-build-perl/

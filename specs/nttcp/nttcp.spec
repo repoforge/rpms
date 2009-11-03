@@ -7,7 +7,7 @@
 Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: nttcp
 Version: 1.47
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.leo.org/~elmar/nttcp/

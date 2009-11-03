@@ -4,7 +4,7 @@
 Summary: Library and tools for handling papersize
 Name: libpaper
 Version: 1.1.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://packages.qa.debian.org/libp/libpaper.html

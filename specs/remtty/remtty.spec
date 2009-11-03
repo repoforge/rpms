@@ -5,7 +5,7 @@
 Summary: Remote tty
 Name: remtty
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.net-track.ch/opensource/remtty/

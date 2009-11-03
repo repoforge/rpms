@@ -10,7 +10,7 @@
 Summary: Perl module to determine type information for columns
 Name: perl-Class-DBI-Plugin-Type
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Plugin-Type/

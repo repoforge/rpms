@@ -5,7 +5,7 @@
 Summary: GTK frontend for anyRemote
 Name: ganyremote
 Version: 5.9
-Release: 1
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
 Source0: http://downloads.sourceforge.net/anyremote/%{name}-%{version}.tar.gz

@@ -13,7 +13,7 @@
 Summary: Perl extension to parse RPM spec files
 Name: perl-%{real_name}
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-RPM-SPEC/

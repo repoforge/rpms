@@ -10,7 +10,7 @@
 Summary: Perl module named Acme-Apache-Werewolf
 Name: perl-Acme-Apache-Werewolf
 Version: 1.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Apache-Werewolf/

@@ -10,7 +10,7 @@
 Summary: Filter for processing IPtables logs
 Name: perl-POE-Filter-Log-IPTables
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-Log-IPTables/

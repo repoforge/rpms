@@ -10,7 +10,7 @@
 Summary: Render simple UML class diagrams, by loading the code
 Name: perl-UML-Class-Simple
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UML-Class-Simple/

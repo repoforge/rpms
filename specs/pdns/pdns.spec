@@ -14,7 +14,7 @@
 Summary: Advanced and high performance authoritative-only nameserver
 Name: pdns
 Version: 2.9.21.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://powerdns.com/

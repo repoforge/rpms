@@ -9,7 +9,7 @@
 Summary: PDF Tool Kit
 Name: pdftk
 Version: 1.41
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.pdfhacks.com/pdftk/

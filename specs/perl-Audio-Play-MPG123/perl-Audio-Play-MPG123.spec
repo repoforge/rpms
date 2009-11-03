@@ -10,7 +10,7 @@
 Summary: Frontend to mpg123
 Name: perl-Audio-Play-MPG123
 Version: 0.63
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-Play-MPG123/

@@ -4,7 +4,7 @@
 Summary: SquirrelMail webmail client
 Name: squirrelmail
 Version: 1.2.10
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.squirrelmail.org/

@@ -5,7 +5,7 @@
 Summary: Convert dynamicly-linked ELF binaries into to "pseudo-static" binaries
 Name: statifier
 Version: 1.6.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://statifier.sourceforge.net/

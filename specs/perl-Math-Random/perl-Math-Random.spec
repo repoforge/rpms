@@ -10,7 +10,7 @@
 Summary: Random number generators
 Name: perl-Math-Random
 Version: 0.71
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Random/

@@ -4,7 +4,7 @@
 Summary: Binary block editor
 Name: bbe
 Version: 0.2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://members.surfeu.fi/tjsa/bbe/

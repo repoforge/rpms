@@ -5,7 +5,7 @@
 Summary: Uploads files to FTP servers
 Name: wput
 Version: 0.6.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://wput.sourceforge.net/

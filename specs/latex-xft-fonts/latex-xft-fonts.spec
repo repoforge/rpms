@@ -5,7 +5,7 @@
 
 Name: latex-xft-fonts
 Version: 0.1
-Release: 2
+Release: 2%{?dist}
 License: distributable
 Source: http://movementarian.org/latex-xft-fonts-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

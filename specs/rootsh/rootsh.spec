@@ -5,7 +5,7 @@
 Summary: Shell wrapper to log activity
 Name: rootsh
 Version: 1.5.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://sourceforge.net/projects/rootsh/

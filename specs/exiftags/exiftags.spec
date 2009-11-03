@@ -5,7 +5,7 @@
 Summary: Shows Exif (Exchangeable Image File) image metadata
 Name: exiftags
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://johnst.org/sw/exiftags/

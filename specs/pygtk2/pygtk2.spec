@@ -11,7 +11,7 @@
 Summary: Python bindings for the GTK+ widget set.
 Name: pygtk2
 Version: 2.10.1
-Release: 8.1
+Release: 8.1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.pygtk.org/

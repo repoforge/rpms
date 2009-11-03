@@ -10,7 +10,7 @@
 Summary: Sum of variables with a numerical coefficient
 Name: perl-Math-LinearCombination
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-LinearCombination/

@@ -10,7 +10,7 @@
 Summary: Perl module to calculate geographic distance from a lat & lon pair
 Name: perl-Geo-Inverse
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Inverse/

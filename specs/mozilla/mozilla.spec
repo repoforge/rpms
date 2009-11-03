@@ -22,7 +22,7 @@
 Summary: Web browser and mail reader
 Name: mozilla
 Version: 1.7.1
-Release: 1
+Release: 1%{?dist}
 Epoch: 37
 License: MPL/NPL/GPL/LGPL
 Group: Applications/Internet

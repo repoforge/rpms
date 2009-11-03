@@ -5,7 +5,7 @@
 Summary: Multiplex all your databases to one point of origin
 Name: postgresql-relay
 Version: 1.3
-Release: 2.2
+Release: 2.2%{?dist}
 License: BSD
 Group: Applications/Databases
 URL: http://www.mavetju.org/unix/general.php

@@ -6,7 +6,7 @@
 Summary: Useful things common to building gnome packages
 Name: gnome-common
 Version: 2.12.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://developer.gnome.org/

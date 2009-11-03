@@ -4,7 +4,7 @@
 Summary: LaTeX Editor
 Name: amyedit
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://sourceforge.net/projects/amyedit/

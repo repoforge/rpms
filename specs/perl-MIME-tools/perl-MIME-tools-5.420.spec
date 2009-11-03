@@ -14,7 +14,7 @@
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
 Version: 5.420
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/

@@ -10,7 +10,7 @@
 Summary: Perl interface to the 2.x series of the Gimp Toolkit library
 Name: perl-Gtk2
 Version: 1.221
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2/

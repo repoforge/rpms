@@ -10,7 +10,7 @@
 Summary: Perl module to represent a series of changes in annotate form 
 Name: perl-Algorithm-Annotate
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Annotate/

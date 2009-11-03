@@ -10,7 +10,7 @@
 Summary: Perl module that implements srini's lost story
 Name: perl-Unamerican-Truth
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unamerican-Truth/

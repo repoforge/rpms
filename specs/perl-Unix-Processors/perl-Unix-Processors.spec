@@ -10,7 +10,7 @@
 Summary: Per-processor information
 Name: perl-Unix-Processors
 Version: 2.041
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Processors/

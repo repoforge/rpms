@@ -10,7 +10,7 @@
 Summary: XMPP Perl Library
 Name: perl-Net-XMPP
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-XMPP/

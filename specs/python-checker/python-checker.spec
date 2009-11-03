@@ -7,7 +7,7 @@
 Summary: Find common bugs in Python source code
 Name: pychecker
 Version: 0.8.17
-Release: 2.2
+Release: 2.2%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://pychecker.sourceforge.net/

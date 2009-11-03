@@ -10,7 +10,7 @@
 Summary: Easy tool to create a social map
 Name: perl-Graph-SocialMap
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-SocialMap/

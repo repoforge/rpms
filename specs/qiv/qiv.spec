@@ -5,7 +5,7 @@
 Summary: Quick Image Viewer
 Name: qiv
 Version: 2.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.klografx.net/qiv/

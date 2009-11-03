@@ -10,7 +10,7 @@
 Summary: Encapsulation of the Sablotron XSLT processor
 Name: perl-XML-Sablotron
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: MPL/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Sablotron/

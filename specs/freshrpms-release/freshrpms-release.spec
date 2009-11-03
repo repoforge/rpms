@@ -4,7 +4,7 @@
 Summary: Freshrpms.net release file and package configuration
 Name: freshrpms-release
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://freshrpms.net/

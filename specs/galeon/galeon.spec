@@ -33,7 +33,7 @@
 Summary: GNOME browser based on Gecko (Mozilla rendering engine)
 Name: galeon
 Version: 2.0.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://galeon.sourceforge.net/

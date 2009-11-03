@@ -15,7 +15,7 @@
 Summary: Enhanced system logging and kernel message trapping daemons
 Name: rsyslog
 Version: 2.0.6
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPLv2+
 Group: System Environment/Daemons
 URL: http://www.rsyslog.com/

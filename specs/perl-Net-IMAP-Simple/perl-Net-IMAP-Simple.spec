@@ -12,7 +12,7 @@
 Summary: Perl extension for simple IMAP account handling
 Name: perl-Net-IMAP-Simple
 Version: 1.1907
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IMAP-Simple/

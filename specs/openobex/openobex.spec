@@ -15,7 +15,7 @@ Summary: Library for using OBEX
 Name: openobex
 ### FC5 comes with openobex 1.1, we hope that RHEL5 will come with 1.3 so we can upgrade
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 #URL: http://openobex.sourceforge.net/

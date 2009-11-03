@@ -10,7 +10,7 @@
 Summary: Kwiki plugin to provide an action to retrieve the raw wikitext of a page
 Name: perl-Kwiki-Raw
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-Raw/

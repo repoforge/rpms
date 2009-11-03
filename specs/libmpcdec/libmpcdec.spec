@@ -4,7 +4,7 @@
 Summary: Musepack audio decoding library
 Name: libmpcdec
 Version: 1.2.6
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.musepack.net/

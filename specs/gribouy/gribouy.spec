@@ -7,7 +7,7 @@
 Summary: Graphical Type1 font editor
 Name: gribouy
 Version: 0.0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gribouy/

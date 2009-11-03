@@ -6,7 +6,7 @@
 Summary: Aids with localization of software
 Name: translate
 Version: 0.8b1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://translate.sourceforge.net/

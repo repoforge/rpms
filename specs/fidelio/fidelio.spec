@@ -6,7 +6,7 @@
 Summary: Graphical Hotline client with almost full 1.5 compatibility
 Name: fidelio
 Version: 1.0
-Release: 0.b1.2
+Release: 0.b1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://fidelio.sourceforge.net/

@@ -11,7 +11,7 @@
 Summary: User friendly TeX/LaTeX editor
 Name: kile
 Version: 2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://kile.sourceforge.net/

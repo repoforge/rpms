@@ -10,7 +10,7 @@
 Summary: Simple text template engine
 Name: perl-Text-Template-Simple
 Version: 0.81
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template-Simple/

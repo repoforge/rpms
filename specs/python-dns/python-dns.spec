@@ -8,7 +8,7 @@
 Summary: DNS toolkit for Python
 Name: python-dns
 Version: 1.5.0
-Release: 1
+Release: 1%{?dist}
 License: BSD-like
 Group: Development/Languages
 URL: http://www.dnspython.org/

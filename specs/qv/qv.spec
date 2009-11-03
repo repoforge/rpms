@@ -7,7 +7,7 @@ compiles without problems but does not work: 100% cpu usage and no window
 Summary: Image viewer
 Name: qv
 Version: 0.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://hasanen.iraqilinux.com/qv/

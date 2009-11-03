@@ -10,7 +10,7 @@
 Summary: Perlish unit testing framework
 Name: perl-Test-Extreme
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Extreme/

@@ -5,7 +5,7 @@
 Summary: Tunnels tcp/ip connections over http
 Name: httptunnel
 Version: 3.0.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nocrew.org/software/httptunnel.html

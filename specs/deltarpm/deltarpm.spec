@@ -4,7 +4,7 @@
 Summary: Create deltas between rpms
 Name: deltarpm
 Version: 3.3
-Release: 2
+Release: 2%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://www.novell.com/products/linuxpackages/professional/deltarpm.html

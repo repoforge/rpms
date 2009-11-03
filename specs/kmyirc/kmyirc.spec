@@ -9,7 +9,7 @@
 Summary: Internet Relay Chat client for KDE
 Name: kmyirc
 Version: 0.2.9
-Release: 5
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kmyirc.de/

@@ -10,7 +10,7 @@
 Summary: Perl interface to various Unix configuration files
 Name: perl-Unix-ConfigFile
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-ConfigFile/

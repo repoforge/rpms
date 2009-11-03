@@ -10,7 +10,7 @@
 Summary: Class representing a time value or interval in exact microseconds
 Name: perl-Time-HiRes-Value
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-HiRes-Value/

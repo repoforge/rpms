@@ -12,7 +12,7 @@
 Summary: Fast lightweight source control management system
 Name: mercurial
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.selenic.com/mercurial/wiki/

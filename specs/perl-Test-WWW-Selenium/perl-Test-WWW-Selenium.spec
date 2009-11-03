@@ -44,7 +44,7 @@
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
 Version: 1.19
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Selenium/

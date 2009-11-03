@@ -6,7 +6,7 @@
 Summary: Simple clipboard manager for GNOME
 Name: glipper
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://sourceforge.net/projects/glipper/

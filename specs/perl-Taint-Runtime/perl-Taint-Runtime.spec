@@ -10,7 +10,7 @@
 Summary: Perl module named Taint-Runtime
 Name: perl-Taint-Runtime
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Taint-Runtime/

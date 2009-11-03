@@ -6,7 +6,7 @@
 Summary: Blueprint GTK2 engine
 Name: gtk-blueprint-engine
 Version: 0.9.20
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://dlc.sun.com/osol/jds/downloads/extras/

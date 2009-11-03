@@ -4,7 +4,7 @@
 Summary: Multi-purpose WAVE data processing and reporting utility
 Name: shntool
 Version: 3.0.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shntool/

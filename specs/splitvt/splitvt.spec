@@ -4,7 +4,7 @@
 Summary: Splits any VT100 terminal window into two shell window
 Name: splitvt
 Version: 1.6.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Console
 URL: http://www.devolution.com/~slouken/projects/splitvt/

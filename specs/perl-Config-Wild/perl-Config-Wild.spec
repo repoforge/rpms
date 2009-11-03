@@ -10,7 +10,7 @@
 Summary: Parse an application configuration file with wildcard keywords
 Name: perl-Config-Wild
 Version: 1.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Wild/

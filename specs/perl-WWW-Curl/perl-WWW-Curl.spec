@@ -10,7 +10,7 @@
 Summary: Perl extension interface for libcurl
 Name: perl-WWW-Curl
 Version: 4.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Curl/

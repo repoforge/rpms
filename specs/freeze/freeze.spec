@@ -4,7 +4,7 @@
 Summary: Archiver and compressor
 Name: freeze
 Version: 2.5.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/Archiving
 URL: ftp://ftp.std.com/src/util/

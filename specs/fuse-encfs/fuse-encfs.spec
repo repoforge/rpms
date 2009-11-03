@@ -7,7 +7,7 @@
 Summary: Encrypted pass-thru filesystem in userspace
 Name: fuse-encfs
 Version: 1.5.0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.arg0.net/encfs

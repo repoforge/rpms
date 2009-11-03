@@ -4,7 +4,7 @@
 Summary: Network scanner for network shares
 Name: linscope
 Version: 0.3.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/linscope/

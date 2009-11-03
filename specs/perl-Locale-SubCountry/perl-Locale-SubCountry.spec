@@ -10,7 +10,7 @@
 Summary: Convert state, province, county ... names to/from ISO 3166-2 code
 Name: perl-Locale-SubCountry
 Version: 1.41
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-SubCountry/

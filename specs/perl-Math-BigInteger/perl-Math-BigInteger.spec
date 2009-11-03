@@ -10,7 +10,7 @@
 Summary: Deprecated Arbitrary length integer extension
 Name: perl-Math-BigInteger
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInteger/

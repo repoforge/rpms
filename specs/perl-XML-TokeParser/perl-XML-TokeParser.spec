@@ -10,7 +10,7 @@
 Summary: Perl module that implements a simplified interface to XML::Parser
 Name: perl-XML-TokeParser
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-TokeParser/

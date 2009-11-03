@@ -10,7 +10,7 @@
 Summary: Connect to a local Clam Anti-Virus clamd service and send commands
 Name: perl-File-Scan-ClamAV
 Version: 1.91
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Scan-ClamAV/

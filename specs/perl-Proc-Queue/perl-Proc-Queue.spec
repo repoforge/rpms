@@ -10,7 +10,7 @@
 Summary: Limit the number of forked processes that run concurrently
 Name: perl-Proc-Queue
 Version: 1.23
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Queue/

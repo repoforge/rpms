@@ -10,7 +10,7 @@
 Summary: Common rules for searching for Perl things
 Name: perl-File-Find-Rule-Perl
 Version: 1.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Find-Rule-Perl/

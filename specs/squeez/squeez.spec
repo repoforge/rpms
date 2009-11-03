@@ -4,7 +4,7 @@
 Summary: 	Squeeze
 Name: 		squeeze
 Version: 	0.2.3
-Release: 	1
+Release: 	1%{?dist}
 License: 	GPL
 Group: 		Applications/Utilities
 URL: 		http://squeeze.xfce.org

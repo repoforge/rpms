@@ -42,7 +42,7 @@
 Summary: converts CVS repository to Subversion
 Name: cvs2svn
 Version: 2.3.0
-Release: 1
+Release: 1%{?dist}
 License: Apache
 Group: Development/Tools
 URL: http://cvs2svn.tigris.org/

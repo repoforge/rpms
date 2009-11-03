@@ -12,7 +12,7 @@
 Summary: Graphical checksum verifier
 Name: awesum
 Version: 0.6.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/File
 URL: http://awesum.sourceforge.net/

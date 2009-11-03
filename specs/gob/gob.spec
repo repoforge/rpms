@@ -4,7 +4,7 @@
 Summary: GOB, The GTK+ Object Builder
 Name: gob
 Version: 1.0.12
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.5z.com/jirka/gob.html

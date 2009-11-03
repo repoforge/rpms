@@ -18,7 +18,7 @@
 Summary: Make a chroot
 Name: mach
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 Group: Applications/System
 License: GPL
 URL: http://thomas.apestaart.org/projects/mach/

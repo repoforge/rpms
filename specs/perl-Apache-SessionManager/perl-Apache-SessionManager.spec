@@ -10,7 +10,7 @@
 Summary: Mod_perl 1.0/2.0 session manager extension
 Name: perl-Apache-SessionManager
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-SessionManager/

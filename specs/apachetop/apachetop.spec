@@ -14,7 +14,7 @@
 Summary: Top-like display of Apache logs
 Name: apachetop
 Version: 0.12.6
-Release: 2
+Release: 2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.webta.org/projects/apachetop/wiki/Download

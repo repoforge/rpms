@@ -10,7 +10,7 @@
 Summary: Get Whois information for domains
 Name: perl-Net-Whois-Raw
 Version: 2.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois-Raw/

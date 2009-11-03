@@ -7,7 +7,7 @@
 Summary: Collection of skins for MPlayer
 Name: mplayer-skins
 Version: 1.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 # To get the list from the files in the PWD :

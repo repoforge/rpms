@@ -5,7 +5,7 @@
 Summary: Linux Capability Remover
 Name: lcap
 Version: 0.0.6
-Release: 6.2
+Release: 6.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://pweb.netcom.com/~spoon/lcap/

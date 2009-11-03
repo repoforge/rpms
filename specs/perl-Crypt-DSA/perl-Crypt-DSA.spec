@@ -9,7 +9,7 @@
 Summary: Crypt-DSA module for perl
 Name: perl-Crypt-DSA
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DSA/

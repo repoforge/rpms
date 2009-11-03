@@ -11,7 +11,7 @@
 Summary: Virtual keyboard for X window system
 Name: xvkbd
 Version: 2.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://homepage3.nifty.com/tsato/xvkbd/

@@ -10,7 +10,7 @@
 Summary: Kwiki New Page plugin
 Name: perl-Kwiki-NewPage
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-NewPage/

@@ -10,7 +10,7 @@
 Summary: Perl only implementaion of a RPM header reader
 Name: perl-RPM-Perlonly
 Version: 1.0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Perlonly/

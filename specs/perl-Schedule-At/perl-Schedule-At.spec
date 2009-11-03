@@ -10,7 +10,7 @@
 Summary: OS independent interface to the Unix 'at' command
 Name: perl-Schedule-At
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Schedule-At/

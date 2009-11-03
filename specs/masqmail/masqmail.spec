@@ -5,7 +5,7 @@
 Summary: Offline mail server with pop3 client support
 Name: masqmail
 Version: 0.2.20
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://innominate.org/kurth/masqmail/

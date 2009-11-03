@@ -11,7 +11,7 @@
 Summary: Free MPEG-1 and MPEG-2 video stream decoder
 Name: libmpeg2
 Version: 0.5.1
-Release: 2
+Release: 2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/

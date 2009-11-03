@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the fasttrack network
 Name: gift-fasttrack
 Version: 0.8.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://developer.berlios.de/projects/gift-fasttrack

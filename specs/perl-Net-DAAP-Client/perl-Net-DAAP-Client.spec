@@ -10,7 +10,7 @@
 Summary: Client for Apple iTunes DAAP service
 Name: perl-Net-DAAP-Client
 Version: 0.42
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DAAP-Client/

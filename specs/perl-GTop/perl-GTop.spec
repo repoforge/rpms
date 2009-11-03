@@ -9,7 +9,7 @@
 Summary: Perl module to interface with libgtop 
 Name: perl-GTop
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GTop/

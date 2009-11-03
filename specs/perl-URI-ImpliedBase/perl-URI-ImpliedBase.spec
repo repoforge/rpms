@@ -10,7 +10,7 @@
 Summary: Perl module to magically force all URIs to be absolute
 Name: perl-URI-ImpliedBase
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ImpliedBase/

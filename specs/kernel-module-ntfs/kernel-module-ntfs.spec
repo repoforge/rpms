@@ -29,7 +29,7 @@
 Summary: Linux driver for NTFS filesystem
 Name: kernel-module-ntfs
 Version: 0.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux-ntfs.sourceforge.net/info/redhat.html

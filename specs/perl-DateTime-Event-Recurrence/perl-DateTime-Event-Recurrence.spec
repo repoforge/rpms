@@ -10,7 +10,7 @@
 Summary: DateTime::Set extension for computing basic recurrences
 Name: perl-DateTime-Event-Recurrence
 Version: 0.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Recurrence/

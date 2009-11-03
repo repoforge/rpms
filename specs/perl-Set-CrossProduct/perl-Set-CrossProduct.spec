@@ -10,7 +10,7 @@
 Summary: Work with the cross product of two or more sets
 Name: perl-Set-CrossProduct
 Version: 1.93
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-CrossProduct/

@@ -28,7 +28,7 @@
 Summary: Markup-language based presentation tool
 Name: pointless
 Version: 0.5
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://pointless.dk/

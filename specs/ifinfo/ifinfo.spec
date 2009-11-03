@@ -4,7 +4,7 @@
 Summary: Commandline network inquiry/formatting tool
 Name: ifinfo
 Version: 0.90
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://scalableinformatics.com/ifinfo.html

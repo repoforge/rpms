@@ -3,7 +3,7 @@
 Summary: Additional addons for Asterisk: the Open Source Linux PBX
 Name: asterisk-addons
 Version: 1.2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.asterisk.org/

@@ -29,7 +29,7 @@
 Summary: Test of skill, part puzzle game and part action game
 Name: neverball
 Version: 1.4.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://icculus.org/neverball/

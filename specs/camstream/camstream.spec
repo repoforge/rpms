@@ -5,7 +5,7 @@
 Summary: collection of tools for webcams and other video-devices
 Name: camstream
 Version: 0.26.3
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.smcc.demon.nl/camstream/

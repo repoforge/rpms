@@ -13,7 +13,7 @@
 Summary: DJ software emulating an analog mixer with two playback devices
 Name: mixxx
 Version: 1.7.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mixxx.sourceforge.net/

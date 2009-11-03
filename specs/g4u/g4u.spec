@@ -7,7 +7,7 @@
 Summary: Harddisk image cloning tool
 Name: g4u
 Version: 2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.feyrer.de/g4u/

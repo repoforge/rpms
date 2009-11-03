@@ -9,7 +9,7 @@
 Summary: Tool for extracting files from network traffic
 Name: tcpxtract
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tcpxtract.sourceforge.net/

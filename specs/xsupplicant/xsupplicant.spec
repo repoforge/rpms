@@ -13,7 +13,7 @@
 Summary: Open source implement of IEEE 802.1x
 Name: xsupplicant
 Version: 1.2.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://open1x.sourceforge.net/

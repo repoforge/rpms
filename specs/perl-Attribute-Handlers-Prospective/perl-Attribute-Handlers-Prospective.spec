@@ -10,7 +10,7 @@
 Summary: Richer semantics for attribute handlers
 Name: perl-Attribute-Handlers-Prospective
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Attribute-Handlers-Prospective/

@@ -10,7 +10,7 @@
 Summary: Implements the Perl 6 'slurp' built-in
 Name: perl-Perl6-Slurp
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Slurp/

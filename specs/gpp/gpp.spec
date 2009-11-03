@@ -6,7 +6,7 @@
 Summary: GNOME Photo Printer
 Name: gpp
 Version: 0.6.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.fogman.de/gpp/

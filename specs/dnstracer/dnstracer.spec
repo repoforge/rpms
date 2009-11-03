@@ -5,7 +5,7 @@
 Summary: Trace a chain of DNS servers to the source
 Name: dnstracer
 Version: 1.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.mavetju.org/unix/general.php

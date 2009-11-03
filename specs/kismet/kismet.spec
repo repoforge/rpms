@@ -13,7 +13,7 @@ Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
 %define real_version 2009-06-R1
-Release: 200906r1.1
+Release: 200906r1.1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/

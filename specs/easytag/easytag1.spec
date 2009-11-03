@@ -4,7 +4,7 @@
 Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://easytag.sourceforge.net/

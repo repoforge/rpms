@@ -6,7 +6,7 @@
 Summary: Source code viewer
 Name: gtksourceview
 Version: 0.9.0
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://gtksourceview.sourceforge.net/

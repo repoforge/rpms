@@ -8,7 +8,7 @@
 Summary: Twisted web server, programmable in Python
 Name: python-twisted-web
 Version: 8.1.0
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://twistedmatrix.com/trac/wiki/TwistedWeb

@@ -10,7 +10,7 @@
 Summary: DBI driver for XBase compatible database files
 Name: perl-DBD-XBase
 Version: 0.241
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-XBase/

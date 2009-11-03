@@ -14,7 +14,7 @@
 Summary: Power Macintosh emulator
 Name: SheepShaver
 Version: 2.3
-Release: 0.3.%{date}
+Release: 0.3.%{date}%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://www.gibix.net/projects/sheepshaver/

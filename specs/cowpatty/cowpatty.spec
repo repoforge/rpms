@@ -10,7 +10,7 @@
 Summary: Brute-force dictionary attack against WPA-PSK
 Name: cowpatty
 Version: 2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://new.remote-exploit.org/index.php/Codes_main

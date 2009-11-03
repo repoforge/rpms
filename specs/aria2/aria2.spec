@@ -5,7 +5,7 @@
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
 Version: 1.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://aria2.sourceforge.net/

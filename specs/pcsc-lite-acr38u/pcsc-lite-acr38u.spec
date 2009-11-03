@@ -7,7 +7,7 @@ Summary: ACS ACR 38 USB (acr38u) Smartcard Reader driver for PCSC-lite
 Name: pcsc-lite-acr38u
 %define real_version 100709
 Version: 1.7.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.acs.com.hk/acr38_driversmanual.asp

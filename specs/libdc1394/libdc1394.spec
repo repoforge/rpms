@@ -17,7 +17,7 @@
 Summary: 1394-based digital camera control library
 Name: libdc1394
 Version: 2.0.0
-Release: 0.1.pre7
+Release: 0.1.pre7%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libdc1394/

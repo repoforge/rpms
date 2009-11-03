@@ -5,7 +5,7 @@
 Summary: Limited shell for secure file transfers
 Name: scponly
 Version: 4.6
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: http://sublimation.org/scponly/wiki/

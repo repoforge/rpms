@@ -6,7 +6,7 @@
 Summary: Image browser and viewer
 Name: gqview
 Version: 1.4.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://gqview.sourceforge.net/

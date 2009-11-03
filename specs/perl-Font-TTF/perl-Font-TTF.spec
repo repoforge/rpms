@@ -10,7 +10,7 @@
 Summary: TTF Fonts
 Name: perl-Font-TTF
 Version: 0.45
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Font-TTF/

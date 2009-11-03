@@ -10,7 +10,7 @@
 Summary: Create and manipulate PAR distributions
 Name: perl-PAR-Dist
 Version: 0.46
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PAR-Dist/

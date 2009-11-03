@@ -7,7 +7,7 @@ Summary: Group gems together
 Name: gemhunters
 %define real_version 20040529
 Version: 0.20040529
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://gemhun.sourceforge.net/

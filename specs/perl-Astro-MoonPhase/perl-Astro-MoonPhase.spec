@@ -10,7 +10,7 @@
 Summary: Information about the phase of the Moon
 Name: perl-Astro-MoonPhase
 Version: 0.60
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Astro-MoonPhase/

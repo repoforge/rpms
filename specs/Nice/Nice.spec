@@ -5,7 +5,7 @@
 Summary: Advanced object-oriented programming language
 Name: Nice
 Version: 0.9.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://nice.sourceforge.net

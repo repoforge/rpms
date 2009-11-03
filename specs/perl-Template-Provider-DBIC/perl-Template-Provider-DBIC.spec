@@ -10,7 +10,7 @@
 Summary: Load templates using DBIx::Class
 Name: perl-Template-Provider-DBIC
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Provider-DBIC/

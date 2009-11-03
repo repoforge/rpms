@@ -5,7 +5,7 @@
 Summary: Extracts attachments out of mailpack format emails
 Name: ripole
 Version: 0.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/File
 URL: http://www.pldaniels.com/ripole/

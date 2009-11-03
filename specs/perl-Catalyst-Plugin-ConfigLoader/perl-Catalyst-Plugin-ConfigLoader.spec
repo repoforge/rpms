@@ -10,7 +10,7 @@
 Summary: Load config files of various types
 Name: perl-Catalyst-Plugin-ConfigLoader
 Version: 0.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-ConfigLoader/

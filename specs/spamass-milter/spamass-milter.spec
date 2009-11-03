@@ -5,7 +5,7 @@
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
 Version: 0.3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://savannah.gnu.org/projects/spamass-milt/

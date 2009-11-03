@@ -5,7 +5,7 @@
 Summary: Secure password generator
 Name: secpwgen
 Version: 1.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.core-dump.com.hr/?q=node/28

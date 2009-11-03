@@ -5,7 +5,7 @@
 Summary: Glue, decompress and restore zsplit images
 Name: unzsplit
 Version: 1.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.device-image.de/

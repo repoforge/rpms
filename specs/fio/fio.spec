@@ -5,7 +5,7 @@
 Summary: I/O benchmark and stress/hardware verification tool
 Name: fio
 Version: 1.31
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://freshmeat.net/projects/fio/

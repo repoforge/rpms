@@ -6,7 +6,7 @@ Summary: Provide processor CPUID information
 Name: cpuid
 %define real_version 20060823
 Version: 0.0
-Release: 20060823.1
+Release: 20060823.1%{?dist}
 License: BSD
 Group: System Environment/Base
 URL: http://www.etallen.com/cpuid.html

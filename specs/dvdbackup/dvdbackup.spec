@@ -5,7 +5,7 @@
 Summary: DVD-create (dvdbackup)
 Name: dvdbackup
 Version: 0.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://dvd-create.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: Tool to create XviD configuration files
 Name: xvid4conf
 Version: 1.12
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.exit1.org/archive/dvdrip-users/2005-07/msg00007.html

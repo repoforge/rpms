@@ -10,7 +10,7 @@
 Summary: Backend for searching www.ebay.com
 Name: perl-WWW-Search-Ebay
 Version: 3.011
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Search-Ebay/

@@ -6,7 +6,7 @@
 Summary: Unusual TCP/IP testing tools
 Name: paketto
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/

@@ -10,7 +10,7 @@
 Summary: Object for handling URI templates
 Name: perl-URI-Template
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Template/

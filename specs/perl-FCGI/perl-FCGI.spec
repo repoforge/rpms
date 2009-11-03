@@ -10,7 +10,7 @@
 Summary: Fast CGI module
 Name: perl-FCGI
 Version: 0.67
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FCGI/

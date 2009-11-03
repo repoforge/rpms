@@ -10,7 +10,7 @@
 Summary: Perl module to modify qmail envelope strings
 Name: perl-Qmail-Envelope
 Version: 0.53
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qmail-Envelope/

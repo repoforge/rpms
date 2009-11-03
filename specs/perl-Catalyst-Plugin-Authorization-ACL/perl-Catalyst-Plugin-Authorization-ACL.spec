@@ -10,7 +10,7 @@
 Summary: ACL support for Catalyst applications
 Name: perl-Catalyst-Plugin-Authorization-ACL
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Authorization-ACL/

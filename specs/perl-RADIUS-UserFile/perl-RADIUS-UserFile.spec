@@ -10,7 +10,7 @@
 Summary: Extension for manipulating a RADIUS users file
 Name: perl-RADIUS-UserFile
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RADIUS-UserFile/

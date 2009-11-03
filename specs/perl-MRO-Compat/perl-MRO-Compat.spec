@@ -10,7 +10,7 @@
 Summary: mro::* interface compatibility for Perls < 5.9.5
 Name: perl-MRO-Compat
 Version: 0.11
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MRO-Compat/

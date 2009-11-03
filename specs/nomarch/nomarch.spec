@@ -6,7 +6,7 @@
 Name: nomarch
 Summary: GPLed Arc de-archiver
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://rus.members.beeb.net/nomarch.html

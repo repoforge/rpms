@@ -10,7 +10,7 @@
 Summary: Interface to the bzip2 compression library
 Name: perl-Compress-Bzip2
 Version: 2.09
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-Bzip2/

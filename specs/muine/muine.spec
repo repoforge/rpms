@@ -5,7 +5,7 @@
 Summary: Simple music player
 Name: muine
 Version: 0.6.3
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://muine.gooeylinux.org/

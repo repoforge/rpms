@@ -10,7 +10,7 @@
 Summary: Copy files recusively
 Name: perl-File-Copy-Recursive
 Version: 0.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Copy-Recursive/

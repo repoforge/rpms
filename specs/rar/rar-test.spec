@@ -17,7 +17,7 @@ Summary: RAR archiver to create and manage RAR archives
 Name: rar
 %define real_version 3.9.b3
 Version: 3.9.0
-Release: 0.1.b3
+Release: 0.1.b3%{?dist}
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/

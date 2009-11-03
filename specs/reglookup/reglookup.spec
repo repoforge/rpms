@@ -4,7 +4,7 @@
 Summary: Small utility for querying NT/2K/XP/2K3/Vista registries
 Name: reglookup
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://projects.sentinelchicken.org/reglookup/

@@ -4,7 +4,7 @@
 Summary: General-purpose tool for parameter handling in C++
 Name: xparam
 Version: 1.22
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL+Other
 Group: System Environment/Libraries
 URL: http://xparam.sourceforge.net/

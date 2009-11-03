@@ -5,7 +5,7 @@
 Summary: Command line Jabber client written in Python
 Name: imcom
 Version: 1.33
-Release: 1.2
+Release: 1.2%{?dist}
 License: Other
 Group: Applications/Internet
 URL: http://imcom.floobin.cx/

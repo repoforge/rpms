@@ -10,7 +10,7 @@
 Summary: Perl module to convert Ascii art to an HTML table
 Name: perl-Acme-AsciiArt2HtmlTable
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-AsciiArt2HtmlTable/

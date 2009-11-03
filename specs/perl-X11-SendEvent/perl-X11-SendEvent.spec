@@ -10,7 +10,7 @@
 Summary: Module for sending events to X windows
 Name: perl-X11-SendEvent
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-SendEvent/

@@ -10,7 +10,7 @@
 Summary: Classes for 2-letter, 3-letter, and numerical codes for countries
 Name: perl-Geography-Countries
 Version: 2009041301
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geography-Countries/

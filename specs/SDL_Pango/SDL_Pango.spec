@@ -4,7 +4,7 @@
 Summary: Rendering of internationalized text for SDL (Simple DirectMedia Layer)
 Name: SDL_Pango
 Version: 0.1.2
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sdlpango.sourceforge.net/

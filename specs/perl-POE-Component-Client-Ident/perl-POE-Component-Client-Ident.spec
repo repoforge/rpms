@@ -10,7 +10,7 @@
 Summary: Component that provides non-blocking ident lookups to your sessions
 Name: perl-POE-Component-Client-Ident
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-Ident/

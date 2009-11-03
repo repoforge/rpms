@@ -29,7 +29,7 @@ Summary: Vector drawing application
 Name: inkscape
 %define real_version 0.47pre0
 Version: 0.47
-Release: 0.pre0
+Release: 0.pre0%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/

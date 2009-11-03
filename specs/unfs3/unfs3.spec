@@ -6,7 +6,7 @@
 Summary: UNFS3 user-space NFSv3 server
 Name: unfs3
 Version: 0.9.22
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://unfs3.sourceforge.net/

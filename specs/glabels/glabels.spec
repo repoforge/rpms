@@ -13,7 +13,7 @@
 Summary: GUI program to create labels and business cards
 Name: glabels
 Version: 2.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://snaught.com/glabels/

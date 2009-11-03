@@ -4,7 +4,7 @@
 Summary: Tool to recover data from damaged disks
 Name: recoverdm
 Version: 0.19
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.vanheusden.com/recoverdm/

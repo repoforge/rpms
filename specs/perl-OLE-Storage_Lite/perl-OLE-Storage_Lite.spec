@@ -10,7 +10,7 @@
 Summary: Read and write OLE storage files
 Name: perl-OLE-Storage_Lite
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OLE-Storage_Lite/

@@ -10,7 +10,7 @@
 Summary: Perlish implementation of Java like inner classes
 Name: perl-Class-Inner
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Inner/

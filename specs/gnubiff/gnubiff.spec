@@ -10,7 +10,7 @@
 Summary: Mail notification program
 Name: gnubiff
 Version: 2.2.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gnubiff.sourceforge.net/

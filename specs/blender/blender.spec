@@ -14,7 +14,7 @@
 Summary: 3D modeling, animation, rendering and post-production
 Name: blender
 Version: 2.43
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.blender.org/

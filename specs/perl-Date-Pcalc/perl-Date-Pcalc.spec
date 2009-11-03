@@ -9,7 +9,7 @@
 Summary: Gregorian calendar date calculations
 Name: perl-Date-Pcalc
 Version: 1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Pcalc/

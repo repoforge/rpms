@@ -5,7 +5,7 @@
 Summary: X MultiMedia System input plugin to play AAC files
 Name: xmms-aac
 Version: 2.6.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/

@@ -10,7 +10,7 @@
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
 Version: 1.40
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Pod/

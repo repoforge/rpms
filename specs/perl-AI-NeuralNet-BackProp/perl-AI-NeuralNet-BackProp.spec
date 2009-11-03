@@ -10,7 +10,7 @@
 Summary: Simple back-prop neural net that uses Delta's and Hebbs' rule
 Name: perl-AI-NeuralNet-BackProp
 Version: 0.89
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AI-NeuralNet-BackProp/

@@ -5,7 +5,7 @@
 Summary: OpenSSH backup xinetd entry
 Name: openssh-xinetd
 Version: 0.2
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/packages/openssh-xinetd/

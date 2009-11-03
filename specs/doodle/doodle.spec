@@ -11,7 +11,7 @@
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
 Version: 0.6.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://gnunet.org/doodle/

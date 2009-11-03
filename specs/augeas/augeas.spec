@@ -4,7 +4,7 @@
 Summary: Configuration API and editing tool
 Name: augeas
 Version: 0.2.2
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Base
 URL: http://augeas.net/

@@ -11,7 +11,7 @@
 Summary: Parse and create Quicken Interchange Format files
 Name: perl-Finance-QIF
 Version: 3.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Finance-QIF/

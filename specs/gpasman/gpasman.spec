@@ -7,7 +7,7 @@
 Summary: Personal password manager
 Name: gpasman
 Version: 1.9.3
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://gpasman.sourceforge.net/

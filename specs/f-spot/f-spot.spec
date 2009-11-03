@@ -7,7 +7,7 @@
 Summary: Personal photo management application
 Name: f-spot
 Version: 0.0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.gnome.org/projects/f-spot/

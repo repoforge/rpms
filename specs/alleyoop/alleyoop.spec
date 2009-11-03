@@ -7,7 +7,7 @@
 Summary: Graphical front-end to the Valgrind memory checker for x86
 Name: alleyoop
 Version: 0.8.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://alleyoop.sourceforge.net/

@@ -28,7 +28,7 @@
 Summary: OpenGL Extension to GTK
 Name: gtkglext
 Version: 1.0.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkglext.sourceforge.net/

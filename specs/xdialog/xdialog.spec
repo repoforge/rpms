@@ -7,7 +7,7 @@
 Name: xdialog
 Summary: X11 drop in replacement for cdialog
 Version: 2.1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://xdialog.dyns.net/

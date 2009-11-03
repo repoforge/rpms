@@ -10,7 +10,7 @@
 Summary: Object-oriented wrapper around vec()
 Name: perl-Bit-Vector-Minimal
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bit-Vector-Minimal/

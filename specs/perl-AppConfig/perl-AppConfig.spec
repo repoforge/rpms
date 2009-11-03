@@ -11,7 +11,7 @@
 Summary: Module for reading configuration files and parsing command line args
 Name: perl-AppConfig
 Version: 1.66
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AppConfig/

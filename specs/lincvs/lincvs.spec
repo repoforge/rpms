@@ -5,7 +5,7 @@
 Summary: Graphical frontend to CVS.
 Name: lincvs
 Version: 1.4.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.lincvs.org/

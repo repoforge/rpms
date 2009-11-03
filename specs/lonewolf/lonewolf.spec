@@ -6,7 +6,7 @@
 Summary: Ultima Online emulator
 Name: lonewolf
 Version: 1.0
-Release: 0.%{real_version}.2
+Release: 0.%{real_version}.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://home1.tiscalinet.de/aduke/main2/news2.htm

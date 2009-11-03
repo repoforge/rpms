@@ -10,7 +10,7 @@
 Summary: File locking with flock
 Name: perl-File-BasicFlock
 Version: 98.1202
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-BasicFlock/

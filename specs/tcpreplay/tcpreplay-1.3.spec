@@ -4,7 +4,7 @@
 Summary: tool to replay captured network traffic
 Name: tcpreplay
 Version: 1.3.3
-Release: 0
+Release: 0%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://tcpreplay.sourceforge.net/

@@ -8,7 +8,7 @@
 Summary: Translates an RPM database and dependency information into HTML
 Name: rpm2html
 Version: 1.7
-Release: 0
+Release: 0%{?dist}
 Group: Applications/System
 License: MIT
 URL: http://rpmfind.net/linux/rpm2html/

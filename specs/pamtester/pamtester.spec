@@ -5,7 +5,7 @@
 Summary: Utility for testing pluggable authentication modules (PAM) facility
 Name: pamtester
 Version: 0.1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://pamtester.sourceforge.net/

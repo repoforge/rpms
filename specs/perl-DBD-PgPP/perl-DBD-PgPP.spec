@@ -10,7 +10,7 @@
 Summary: Perl module provides a pure Perl PostgreSQL driver for DBI
 Name: perl-DBD-PgPP
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-PgPP/

@@ -4,7 +4,7 @@
 Summary: C# documentation browser
 Name: monodoc
 Version: 1.0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.go-mono.com/

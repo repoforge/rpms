@@ -4,7 +4,7 @@
 Summary: Low-level event loop management library
 Name: liboop
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://liboop.org/

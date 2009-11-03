@@ -6,7 +6,7 @@
 Summary: Toolkit for developing GIS applications
 Name: mapnik
 Version: 0.6.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://mapnik.org/

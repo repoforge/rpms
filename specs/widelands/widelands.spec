@@ -8,7 +8,7 @@
 Summary: Game like Settlers II
 Name: widelands
 Version: b9
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://widelands.sourceforge.net/

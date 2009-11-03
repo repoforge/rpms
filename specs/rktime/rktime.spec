@@ -5,7 +5,7 @@
 Summary: Multi-zone time display utility
 Name: rktime
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://people.redhat.com/rkeech/

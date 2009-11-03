@@ -10,7 +10,7 @@
 Summary: Bayesian prediction of categories
 Name: perl-Algorithm-NaiveBayes
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-NaiveBayes/

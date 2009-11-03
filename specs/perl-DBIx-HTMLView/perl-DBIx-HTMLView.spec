@@ -10,7 +10,7 @@
 Summary: Create web userinterfaces to DBI databases
 Name: perl-DBIx-HTMLView
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-HTMLView/

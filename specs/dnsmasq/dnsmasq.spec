@@ -5,7 +5,7 @@
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
 Version: 2.50
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.thekelleys.org.uk/dnsmasq/

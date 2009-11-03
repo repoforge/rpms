@@ -8,7 +8,7 @@
 Summary: Sulk, the hackable Space Hulk
 Name: sulk
 Version: 0.29
-Release: 3.2
+Release: 3.2%{?dist}
 License: LGPL
 Group: Amusements/Games
 URL: http://sulk.sourceforge.net/

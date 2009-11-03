@@ -7,7 +7,7 @@
 Summary: Library of Unicode annotation data
 Name: libuninameslist
 Version: 0.20030713
-Release: 0.2
+Release: 0.2%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://libuninameslist.sourceforge.net/

@@ -8,7 +8,7 @@
 Summary: Genealogical Research and Analysis Management Programming System
 Name: gramps
 Version: 2.2.8
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://gramps.sourceforge.net/

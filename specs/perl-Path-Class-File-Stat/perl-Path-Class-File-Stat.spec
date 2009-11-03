@@ -10,7 +10,7 @@
 Summary: Cache and compare stat() calls on a Path::Class::File object
 Name: perl-Path-Class-File-Stat
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Path-Class-File-Stat/

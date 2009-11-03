@@ -5,7 +5,7 @@ Summary: HDAPS (Hard Disk Active Protection System) daemon
 Name: hdapsd
 %define real_version 20070524
 Version: 0.0
-Release: 0.20070524
+Release: 0.20070524%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.zen24593.zen.co.uk/hdaps/

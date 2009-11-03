@@ -5,7 +5,7 @@
 Summary: C language library for interprocess communications and common tasks
 Name: radlib
 Version: 2.8.3
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://www.radlib.teel.ws/

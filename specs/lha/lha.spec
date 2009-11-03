@@ -6,7 +6,7 @@
 Summary: Archiving and compression utility for LHarc format archives
 Name: lha
 Version: 1.14i
-Release: 19.2.2
+Release: 19.2.2%{?dist}
 License: freeware
 Group: Applications/Archiving
 URL: http://www2m.biglobe.ne.jp/~dolphin/lha/prog/

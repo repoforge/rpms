@@ -4,7 +4,7 @@
 Summary: Text mode IRC (Internet Relay Chat) client
 Name: BitchX
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Internet
 License: Distributable
 URL: http://www.bitchx.org/

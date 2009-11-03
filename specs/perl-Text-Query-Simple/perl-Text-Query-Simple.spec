@@ -10,7 +10,7 @@
 Summary: Match text against simple query expression and return relevance value
 Name: perl-Text-Query-Simple
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Query-Simple/

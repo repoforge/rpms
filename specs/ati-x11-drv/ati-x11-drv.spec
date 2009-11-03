@@ -17,7 +17,7 @@
 Summary: Proprietary ATI hardware accelerated OpenGL display driver
 Name: ati-x11-drv
 Version: 8.41.7
-Release: 1
+Release: 1%{?dist}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://ati.amd.com/support/drivers/linux/linux-radeon.html

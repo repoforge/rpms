@@ -4,7 +4,7 @@
 Summary: Makes output from tcpdump easier to read and parse
 Name: sniff
 Version: 2.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.thedumbterminal.co.uk/software/sniff.shtml

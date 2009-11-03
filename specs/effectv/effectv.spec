@@ -5,7 +5,7 @@
 Summary: Real-time video effector
 Name: effectv
 Version: 0.3.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://effectv.sourceforge.net/

@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the openft network
 Name: gift-openft
 Version: 0.2.1.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.giftproject.org/

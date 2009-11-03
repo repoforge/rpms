@@ -10,7 +10,7 @@
 Summary: File-finding iterator Wrapper for File::Next::files
 Name: perl-File-Next-OO
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Next-OO/

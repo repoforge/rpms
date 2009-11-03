@@ -10,7 +10,7 @@
 Summary: Perl module implements an US-ASCII transliterations of Unicode text
 Name: perl-Text-Unidecode
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Unidecode/

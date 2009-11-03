@@ -5,7 +5,7 @@
 Summary: Allows restricted root access for specified users
 Name: op
 Version: 1.32
-Release: 3
+Release: 3%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://swapoff.org/op/

@@ -6,7 +6,7 @@
 Summary: POP3 mail retriever with reliable Maildir delivery
 Name: getmail
 Version: 4.10.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://pyropus.ca/software/getmail/

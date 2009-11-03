@@ -8,7 +8,7 @@
 Summary: Full-featured SOAP library for Python
 Name: python-soap
 Version: 0.11.6
-Release: 1
+Release: 1%{?dist}
 License: Python Software Foundation License
 Group: Development/Languages
 URL: http://pywebsvcs.sourceforge.net

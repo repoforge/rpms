@@ -10,7 +10,7 @@
 Summary: Perl extension for converting TAI64 strings into standard unix timestamps
 Name: perl-Time-TAI64
 Version: 2.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-TAI64/

@@ -7,7 +7,7 @@ Summary: Generic USB CCID smart card reader driver
 %define real_name ccid
 Name: pcsc-lite-ccid
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://pcsclite.alioth.debian.org/ccid.html

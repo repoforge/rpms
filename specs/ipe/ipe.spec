@@ -7,7 +7,7 @@
 Summary: Extensible drawing editor
 Name: ipe
 Version: 6.0
-Release: 0.pre23.2
+Release: 0.pre23.2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://ipe.compgeom.org/

@@ -5,7 +5,7 @@
 Summary: Asynchronous-capable resolver library
 Name: adns
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.chiark.greenend.org.uk/~ian/adns/

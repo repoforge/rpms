@@ -4,7 +4,7 @@
 Summary: File encryptor/decryptor/wiper
 Name: ncrypt
 Version: 0.6.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://ncrypt.sourceforge.net/

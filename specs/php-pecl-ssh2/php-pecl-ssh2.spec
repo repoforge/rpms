@@ -6,7 +6,7 @@
 Summary: PECL package for SSH2
 Name: php-pecl-ssh2
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/ssh2

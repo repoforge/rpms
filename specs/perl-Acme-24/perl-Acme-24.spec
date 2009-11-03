@@ -10,7 +10,7 @@
 Summary: Your favourite TV-show Acme module
 Name: perl-Acme-24
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-24/

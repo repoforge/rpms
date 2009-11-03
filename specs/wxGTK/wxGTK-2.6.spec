@@ -4,7 +4,7 @@
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
 Version: 2.6.4
-Release: 1
+Release: 1%{?dist}
 License: wxWidgets Library Licence
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/

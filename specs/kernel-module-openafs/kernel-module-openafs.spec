@@ -32,7 +32,7 @@
 Summary: OpenAFS distributed filesystem
 Name: openafs
 Version: 1.2.10
-Release: 0
+Release: 0%{?dist}
 License: IBM Public License
 Group: System Environment/Daemons
 URL: http://www.openafs.org/

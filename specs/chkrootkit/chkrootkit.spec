@@ -12,7 +12,7 @@
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
 Version: 0.47
-Release: 1
+Release: 1%{?dist}
 License: BSD-like
 Group: Applications/System
 URL: http://www.chkrootkit.org/

@@ -8,7 +8,7 @@
 Summary: Python module for interfacing with the SDL multimedia library
 Name: python-game
 Version: 1.8.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL style
 Group: Development/Libraries
 URL: http://pygame.org/

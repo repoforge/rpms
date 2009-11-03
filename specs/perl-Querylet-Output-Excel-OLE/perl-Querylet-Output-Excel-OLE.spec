@@ -10,7 +10,7 @@
 Summary: Perl module to output query results to Excel via OLE
 Name: perl-Querylet-Output-Excel-OLE
 Version: 0.142
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Querylet-Output-Excel-OLE/

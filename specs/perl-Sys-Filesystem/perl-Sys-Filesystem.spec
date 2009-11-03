@@ -44,7 +44,7 @@
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
 Version: 1.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Filesystem/

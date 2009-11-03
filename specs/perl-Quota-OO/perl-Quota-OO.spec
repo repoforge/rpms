@@ -10,7 +10,7 @@
 Summary: Perl module for Object Oriented Quota Management and reporting
 Name: perl-Quota-OO
 Version: 0.0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Quota-OO/

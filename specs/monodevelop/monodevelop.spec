@@ -4,7 +4,7 @@
 Summary: Full-featured IDE for Mono and Gtk#
 Name: monodevelop
 Version: 0.5.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.monodevelop.com/

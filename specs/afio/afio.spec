@@ -4,7 +4,7 @@
 Summary: Archiver program which writer CPIO-format archives
 Name: afio
 Version: 2.5
-Release: 2
+Release: 2%{?dist}
 License: LGPL
 Group: Applications/Archiving
 URL: http://www.ibiblio.org/pub/Linux/system/backup/

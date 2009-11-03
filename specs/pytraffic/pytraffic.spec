@@ -5,7 +5,7 @@
 Summary: Rush Hour game
 Name: pytraffic
 Version: 2.5.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://alpha.uhasselt.be/Research/Algebra/Members/pytraffic/

@@ -7,7 +7,7 @@
 Summary: Query the Debian package database
 Name: ara
 Version: 1.1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://ara.alioth.debian.org/

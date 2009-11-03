@@ -10,7 +10,7 @@
 Summary: Perl module that implements a simpler interface to URI::Find
 Name: perl-URI-Find-Rule
 Version: 0.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find-Rule/

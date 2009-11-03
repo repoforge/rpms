@@ -20,7 +20,7 @@
 Summary: DVD video player
 Name: ogle
 Version: 0.9.2
-Release: 8
+Release: 8%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/

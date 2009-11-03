@@ -8,7 +8,7 @@
 Summary: The Gtk+ HTML viewing widget version 3
 Name: gtkhtml3
 Version: 3.0.8
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnome.org/

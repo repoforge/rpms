@@ -18,7 +18,7 @@
 Summary: Library that implements an embeddable SQL database engine
 Name: sqlite
 Version: 3.3.13
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Databases
 URL: http://www.sqlite.org/

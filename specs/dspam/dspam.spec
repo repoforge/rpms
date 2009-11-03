@@ -8,7 +8,7 @@
 Summary: Library and Mail Delivery Agent for Bayesian spam filtering
 Name: dspam
 Version: 2.10.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://dspam.nuclearelephant.com/

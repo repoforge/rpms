@@ -8,7 +8,7 @@
 Summary: Neat little maze game
 Name: arrows
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://noreason.ca/?file=software

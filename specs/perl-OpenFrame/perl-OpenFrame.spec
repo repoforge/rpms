@@ -10,7 +10,7 @@
 Summary: Perl module that implements a framework for network enabled applications
 Name: perl-OpenFrame
 Version: 3.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OpenFrame/

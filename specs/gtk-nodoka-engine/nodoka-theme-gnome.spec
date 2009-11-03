@@ -5,7 +5,7 @@
 
 Name:           nodoka-theme-gnome
 Version:        0.3.2
-Release:        4
+Release:        4%{?dist}
 Summary:        The Nodoka Theme Pack for Gnome
 
 Group:          System Environment/Libraries

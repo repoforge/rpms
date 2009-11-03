@@ -6,7 +6,7 @@
 Summary: C interface to CGI (common gateway interface)
 Name: cgilib
 Version: 0.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.infodrom.north.de/cgilib/

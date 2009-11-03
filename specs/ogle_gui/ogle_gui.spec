@@ -6,7 +6,7 @@
 Summary: Graphical user interface for the ogle DVD player
 Name: ogle_gui
 Version: 0.9.2
-Release: 5
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dtek.chalmers.se/groups/dvd/

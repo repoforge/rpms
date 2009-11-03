@@ -8,7 +8,7 @@
 Summary: SSH2 protocol for Python
 Name: python-pyrss2gen
 Version: 1.0.0
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.dalkescientific.com/Python/PyRSS2Gen.html

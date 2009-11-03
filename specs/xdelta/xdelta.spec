@@ -4,7 +4,7 @@
 Summary: Binary file delta generator and an RCS replacement library
 Name: xdelta
 Version: 1.1.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://sourceforge.net/projects/xdelta/

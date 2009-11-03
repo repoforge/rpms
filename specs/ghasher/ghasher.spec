@@ -7,7 +7,7 @@
 Summary: Grapical MD5 hash tool
 Name: ghasher
 Version: 1.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/File
 URL: http://asgaard.homelinux.org/code/ghasher/

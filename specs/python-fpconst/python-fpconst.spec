@@ -8,7 +8,7 @@
 Summary: Python module for handling IEEE 754 floating point special values
 Name: python-fpconst
 Version: 0.7.3
-Release: 1
+Release: 1%{?dist}
 License: ASL 2.0
 Group: Development/Languages
 URL: http://research.warnes.net/statcomp/projects/RStatServer/fpconst

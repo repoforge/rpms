@@ -17,7 +17,7 @@
 Summary: Packet redirection tool for interception on switched networks
 Name: 4g8
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://forgate.sourceforge.net/

@@ -9,7 +9,7 @@
 Summary: Ethernet settings python bindings
 Name: python-ethtool
 Version: 0.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://git.kernel.org/?p=linux/kernel/git/acme/python-ethtool.git

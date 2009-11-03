@@ -7,7 +7,7 @@
 Summary: set of different sensors and displays for gdesklets
 Name: gdesklets-ltvariations
 Version: 0.21
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

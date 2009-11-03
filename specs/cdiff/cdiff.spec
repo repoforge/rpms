@@ -4,7 +4,7 @@
 Summary: Diff readability enhancer for color terminals
 Name: cdiff
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
 URL: http://www.freshports.org/textproc/cdiff/

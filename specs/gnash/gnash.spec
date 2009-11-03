@@ -8,7 +8,7 @@
 Summary: Flash player
 Name: gnash
 Version: 0.8.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnu.org/software/gnash/

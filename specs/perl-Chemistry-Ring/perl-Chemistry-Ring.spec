@@ -10,7 +10,7 @@
 Summary: Perl module named Chemistry-Ring
 Name: perl-Chemistry-Ring
 Version: 0.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chemistry-Ring/

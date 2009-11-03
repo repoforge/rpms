@@ -5,7 +5,7 @@
 Summary: Captures and displays DNS messages on your network
 Name: dnsdump
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://dns.measurement-factory.com/tools/dnsdump/

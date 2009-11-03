@@ -8,7 +8,7 @@
 Summary: Python framework to participate in digital living networks
 Name: python-coherence
 Version: 0.5.8
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Languages
 URL: https://coherence.beebits.net/

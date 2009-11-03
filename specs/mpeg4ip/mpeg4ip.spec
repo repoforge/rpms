@@ -5,7 +5,7 @@
 Summary: Open MPEG-4 streaming tools
 Name: mpeg4ip
 Version: 1.5.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://mpeg4ip.net/

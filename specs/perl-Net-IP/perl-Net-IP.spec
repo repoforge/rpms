@@ -10,7 +10,7 @@
 Summary: Perl extension for manipulating IPv4/IPv6 addresses
 Name: perl-Net-IP
 Version: 1.25
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IP/

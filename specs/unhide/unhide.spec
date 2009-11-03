@@ -13,7 +13,7 @@ Summary: Tool to find hidden processes and TCP/UDP ports from rootkits
 Name: unhide
 %define real_version 20080519
 Version: 0.0.20080519
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.security-projects.com/?Unhide

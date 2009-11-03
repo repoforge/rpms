@@ -9,7 +9,7 @@
 Summary: Mouse and keyboard sharing utility
 Name: synergy
 Version: 1.3.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/

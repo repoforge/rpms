@@ -5,7 +5,7 @@
 Summary: Mixer for kde and alsa
 Name: kamix
 Version: 0.6.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kamix.sourceforge.net

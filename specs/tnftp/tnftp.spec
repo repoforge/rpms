@@ -6,7 +6,7 @@
 Summary: Enhanced NetBSD ftp client
 Name: tnftp
 Version: 0.0.20050625
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: ftp://ftp.netbsd.org/pub/NetBSD/misc/lukemftp/

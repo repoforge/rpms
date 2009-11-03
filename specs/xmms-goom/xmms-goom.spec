@@ -7,7 +7,7 @@
 Summary: Neat visual plugin for XMMS
 Name: xmms-goom
 Version: 1.99.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://goom.sourceforge.net/

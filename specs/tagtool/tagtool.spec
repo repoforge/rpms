@@ -9,7 +9,7 @@
 Summary: Manage the information fields in MP3 and Ogg Vorbis files
 Name: tagtool
 Version: 0.12.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://pwp.netcabo.pt/paol/tagtool/

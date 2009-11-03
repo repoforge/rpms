@@ -7,7 +7,7 @@ Summary: QEMU accelerator kernel module
 Name: dkms-kqemu
 %define real_version 1.4.0pre1
 Version: 1.4.0
-Release: 0.1.pre1
+Release: 0.1.pre1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://fabrice.bellard.free.fr/qemu/

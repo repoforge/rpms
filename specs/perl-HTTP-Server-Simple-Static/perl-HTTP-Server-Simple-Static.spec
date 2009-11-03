@@ -10,7 +10,7 @@
 Summary: Serve static files with HTTP::Server::Simple
 Name: perl-HTTP-Server-Simple-Static
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Server-Simple-Static/

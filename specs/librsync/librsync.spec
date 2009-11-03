@@ -6,7 +6,7 @@
 Summary: Library that implements the rsync remote-delta algorithm
 Name: librsync
 Version: 0.9.7
-Release: 2
+Release: 2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://librsync.sourceforge.net/

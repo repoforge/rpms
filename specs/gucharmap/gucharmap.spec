@@ -7,7 +7,7 @@
 Summary: Unicode/ISO10646 character map and font viewer
 Name: gucharmap
 Version: 1.2.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://gucharmap.sourceforge.net/

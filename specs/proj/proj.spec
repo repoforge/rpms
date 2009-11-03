@@ -4,7 +4,7 @@
 Summary: Cartographic projection software (PROJ.4)
 Name: proj
 Version: 4.5.0
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Applications/Engineering
 URL: http://www.remotesensing.org/proj/

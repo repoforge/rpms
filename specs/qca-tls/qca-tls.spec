@@ -9,7 +9,7 @@
 Summary: TLS plugin for the Qt Cryptographic Architecture
 Name: qca-tls
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://delta.affinix.com/qca/

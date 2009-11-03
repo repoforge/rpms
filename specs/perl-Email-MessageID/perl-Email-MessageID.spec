@@ -10,7 +10,7 @@
 Summary: Generate world unique message-ids
 Name: perl-Email-MessageID
 Version: 1.401
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MessageID/

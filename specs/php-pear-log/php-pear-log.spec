@@ -6,7 +6,7 @@
 Summary: PEAR package for logging
 Name: php-pear-log
 Version: 1.9.3
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pear.php.net/package/Log/

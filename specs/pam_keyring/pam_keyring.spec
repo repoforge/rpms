@@ -6,7 +6,7 @@
 Summary: PAM module that execute gnome-keyring-daemon and unlock the default keyring
 Name: pam_keyring
 Version: 0.0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: http://www.hekanetworks.com/opensource/pam_keyring/pam_keyring-%{version}.tar.gz

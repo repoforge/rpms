@@ -10,7 +10,7 @@
 Summary: Split files of a directory to subdirectories
 Name: perl-Dir-Split
 Version: 0.80
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Dir-Split/

@@ -5,7 +5,7 @@
 Summary: Tunneling IP over ICMP
 Name: icmptx
 Version: 0.01
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://thomer.com/icmptx/

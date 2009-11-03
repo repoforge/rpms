@@ -7,7 +7,7 @@
 Summary: Event-driven networking framework written in Python
 Name: python-twisted
 Version: 1.3.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://www.twistedmatrix.com/

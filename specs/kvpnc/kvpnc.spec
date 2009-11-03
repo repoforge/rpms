@@ -4,7 +4,7 @@
 Summary: Frontend for various VPN clients
 Name: kvpnc
 Version: 0.8.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://home.gna.org/kvpnc/

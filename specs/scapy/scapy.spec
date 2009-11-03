@@ -7,7 +7,7 @@
 Summary: Interactive packet manipulation tool and network scanner
 Name: scapy
 Version: 2.0.0.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.secdev.org/projects/scapy/

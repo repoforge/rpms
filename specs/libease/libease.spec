@@ -5,7 +5,7 @@
 Summary: Easing algorithms for graphical effects and mathematical calculations
 Name: libease
 Version: 0.0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://libease.sourceforge.net/

@@ -4,7 +4,7 @@
 Summary: Let ordinary users mount an encrypted file system
 Name: cryptmount
 Version: 3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://cryptmount.sourceforge.net/

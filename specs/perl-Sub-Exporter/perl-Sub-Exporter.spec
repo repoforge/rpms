@@ -10,7 +10,7 @@
 Summary: Perl module that implements a sophisticated exporter for custom-built routines
 Name: perl-Sub-Exporter
 Version: 0.982
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Exporter/

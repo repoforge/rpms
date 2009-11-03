@@ -4,7 +4,7 @@
 Summary: Tool for finding common mistakes in LaTeX documents
 Name: lacheck
 Version: 1.26
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.ctan.org/get/support/lacheck/

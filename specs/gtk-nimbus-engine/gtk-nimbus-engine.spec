@@ -4,7 +4,7 @@
 Summary: Nimbus GTK2 engine
 Name: gtk-nimbus-engine
 Version: 0.0.16
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://dlc.sun.com/osol/jds/downloads/extras/

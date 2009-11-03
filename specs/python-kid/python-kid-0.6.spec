@@ -9,7 +9,7 @@
 Summary: Simple and pythonic XML template language
 Name: python-kid
 Version: 0.6.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://www.lesscode.org/projects/kid/

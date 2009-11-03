@@ -10,7 +10,7 @@
 Summary: TAPx Parser
 Name: perl-TAPx-Parser
 Version: 0.41
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TAPx-Parser/

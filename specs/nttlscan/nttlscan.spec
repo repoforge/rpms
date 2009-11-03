@@ -12,7 +12,7 @@
 Summary: Quick network topology scanner
 Name: nttlscan
 Version: 0.1
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.honeyd.org/tools.php

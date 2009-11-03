@@ -7,7 +7,7 @@
 Summary: Simple multi-channel audio mixer
 Name: SDL_mixer
 Version: 1.2.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_mixer/

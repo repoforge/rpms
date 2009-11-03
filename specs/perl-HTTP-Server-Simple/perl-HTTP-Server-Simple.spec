@@ -10,7 +10,7 @@
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
 Version: 0.40
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Server-Simple/

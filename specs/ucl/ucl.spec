@@ -4,7 +4,7 @@
 Summary: UCL compression library
 Name: ucl
 Version: 1.03
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/ucl/

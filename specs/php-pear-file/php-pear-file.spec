@@ -7,7 +7,7 @@
 Summary: PEAR package to read/write files and deal with paths
 Name: php-pear-file
 Version: 1.2.2
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pear.php.net/package/File

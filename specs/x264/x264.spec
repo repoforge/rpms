@@ -15,7 +15,7 @@
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
 Version: 0.0.0
-Release: 0.4.%{date}
+Release: 0.4.%{date}%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/x264.html

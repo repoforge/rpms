@@ -5,7 +5,7 @@
 Summary: GnuPG Made Easy
 Name: gpgme03
 Version: 0.3.16
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.gz

@@ -8,7 +8,7 @@
 Summary: Python API for the BlueZ bluetooth stack 
 Name: python-bluez
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://code.google.com/p/pybluez/

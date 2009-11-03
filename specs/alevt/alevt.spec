@@ -12,7 +12,7 @@
 Summary: Teletext/videotext decoder and browser for the bttv driver and X
 Name: alevt
 Version: 1.6.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.goron.de/~froese/

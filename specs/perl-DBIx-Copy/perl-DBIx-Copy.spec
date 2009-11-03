@@ -10,7 +10,7 @@
 Summary: For copying database content from one db to another
 Name: perl-DBIx-Copy
 Version: 0.03_1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Copy/

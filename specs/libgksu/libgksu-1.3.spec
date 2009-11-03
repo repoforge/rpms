@@ -5,7 +5,7 @@
 Summary: Simple API for su and sudo
 Name: libgksu
 Version: 1.3.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.nongnu.org/gksu/

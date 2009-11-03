@@ -10,7 +10,7 @@
 Summary: Perl interface to MD5, RC4, encrypt/decrypt
 Name: perl-Crypt-CapnMidNite
 Version: 1.00
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CapnMidNite/

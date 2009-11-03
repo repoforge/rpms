@@ -13,7 +13,7 @@
 Summary: Mindmapping tool for creating texts
 Name: kdissert
 Version: 0.2.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://freehackers.org/~tnagy/kdissert/

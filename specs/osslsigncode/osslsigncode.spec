@@ -4,7 +4,7 @@
 Summary: Tool for Authenticode signing of EXE/CAB files
 Name: osslsigncode
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://sourceforge.net/projects/osslsigncode/

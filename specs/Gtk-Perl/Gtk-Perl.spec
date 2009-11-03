@@ -6,7 +6,7 @@
 Summary: Perl extensions for GTK+ (the Gimp ToolKit)
 Name: Gtk-Perl
 Version: 0.7008
-Release: 37
+Release: 37%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gtkperl.org/

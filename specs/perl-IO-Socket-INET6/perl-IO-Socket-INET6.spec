@@ -10,7 +10,7 @@
 Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
 Version: 2.56
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-INET6/

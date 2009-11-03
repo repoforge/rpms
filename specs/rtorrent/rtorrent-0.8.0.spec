@@ -6,7 +6,7 @@
 Summary: Console based bittorrent client
 Name: rtorrent
 Version: 0.8.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/

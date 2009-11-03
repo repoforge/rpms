@@ -6,7 +6,7 @@
 Summary: Generic Page Description Language parser
 Name: pkpgcounter
 Version: 3.20
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.pykota.com/software/pkpgcounter/

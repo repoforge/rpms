@@ -33,7 +33,7 @@
 Summary: Media player for X which resembles Winamp
 Name: xmms
 Version: 1.2.10
-Release: 14
+Release: 14%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia

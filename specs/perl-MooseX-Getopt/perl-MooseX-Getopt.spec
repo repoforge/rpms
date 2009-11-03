@@ -11,7 +11,7 @@
 Summary: Moose role for processing command line options
 Name: perl-MooseX-Getopt
 Version: 0.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Getopt/

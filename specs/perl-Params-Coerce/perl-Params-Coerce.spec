@@ -10,7 +10,7 @@
 Summary: Allows your classes to do coercion of parameters
 Name: perl-Params-Coerce
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Params-Coerce/

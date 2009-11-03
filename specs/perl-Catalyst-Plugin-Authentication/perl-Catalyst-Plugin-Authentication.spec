@@ -10,7 +10,7 @@
 Summary: Infrastructure plugin for the Catalyst
 Name: perl-Catalyst-Plugin-Authentication
 Version: 0.10008
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Authentication/

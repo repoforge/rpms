@@ -10,7 +10,7 @@
 Summary: Combined filter, redirector and access controller plugin for squid
 Name: squidguard
 Version: 1.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.squidguard.org/

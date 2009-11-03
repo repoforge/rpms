@@ -8,7 +8,7 @@
 Summary: Python interface to the Unix dialog utility
 Name: python-dialog
 Version: 2.7
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://pythondialog.sourceforge.net/

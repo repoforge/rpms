@@ -5,7 +5,7 @@
 Summary: C source code analyzer
 Name: ncc
 Version: 2.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Development/Languages
 URL: http://students.ceid.upatras.gr/~sxanth/ncc/index.html

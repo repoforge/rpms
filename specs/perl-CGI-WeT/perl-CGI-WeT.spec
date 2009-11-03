@@ -10,7 +10,7 @@
 Summary: Suite of modules to themeify a website
 Name: perl-CGI-WeT
 Version: 0.71
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-WeT/

@@ -9,7 +9,7 @@
 Summary: Free open-source disk encryption software
 Name: truecrypt
 Version: 6.2a
-Release: 2
+Release: 2%{?dist}
 License: TrueCrypt License 2.7
 Group: Applications/System
 URL: http://www.truecrypt.org/

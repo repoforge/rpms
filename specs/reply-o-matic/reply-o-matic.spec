@@ -5,7 +5,7 @@
 Summary: E-Mail auto-response software
 Name: reply-o-matic
 Version: 1.4.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://reply-o-matic.sourceforge.net/

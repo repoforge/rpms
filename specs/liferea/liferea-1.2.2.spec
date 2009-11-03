@@ -27,7 +27,7 @@
 Summary: RSS/RDF feed reader
 Name: liferea
 Version: 1.2.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://liferea.sourceforge.net/

@@ -8,7 +8,7 @@
 Summary: Hercules S/370, ESA/390, and z/Architecture emulator
 Name: hercules
 Version: 3.02
-Release: %{?date:0.%{date}.}1.2
+Release: %{?date:0.%{date}.}1.2%{?dist}
 License: QPL
 Group: Applications/Emulators
 URL: http://www.conmicro.cx/hercules/

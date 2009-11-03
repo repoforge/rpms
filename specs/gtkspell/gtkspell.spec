@@ -6,7 +6,7 @@
 Summary: Gtk2 spell checker interface library
 Name: gtkspell
 Version: 2.0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://gtkspell.sourceforge.net/

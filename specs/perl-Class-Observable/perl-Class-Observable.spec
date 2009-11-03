@@ -10,7 +10,7 @@
 Summary: Base class for observable classes/objects
 Name: perl-Class-Observable
 Version: 1.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Observable/

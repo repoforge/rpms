@@ -10,7 +10,7 @@
 Summary: Perl extension for creating random strings
 Name: perl-Data-Random-String
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Random-String/

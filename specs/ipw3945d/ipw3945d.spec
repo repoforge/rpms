@@ -9,7 +9,7 @@
 Summary: Regulatory Daemon for Intel® PRO/Wireless 3945 network adaptors
 Name: ipw3945d
 Version: 1.7.22
-Release: 4
+Release: 4%{?dist}
 License: Distributable
 Group: System Environment/Kernel
 URL: http://bughost.org/ipw3945/

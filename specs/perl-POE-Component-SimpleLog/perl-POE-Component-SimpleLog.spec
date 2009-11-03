@@ -10,7 +10,7 @@
 Summary: Manage a simple logging system for POE
 Name: perl-POE-Component-SimpleLog
 Version: 1.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-SimpleLog/

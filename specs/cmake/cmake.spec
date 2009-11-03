@@ -9,7 +9,7 @@
 Summary: Cross-platform make system
 Name: cmake
 Version: 2.6.4
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://www.cmake.org/

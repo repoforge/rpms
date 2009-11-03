@@ -10,7 +10,7 @@
 Summary: Tool for editing and converting DivX ;-) subtitles
 Name: gsubedit
 Version: 0.4
-Release: 0.pre1.2
+Release: 0.pre1.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://gsubedit.sourceforge.net/

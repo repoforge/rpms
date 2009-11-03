@@ -8,7 +8,7 @@
 Summary: Image and photo viewer, browser, manager and simple editor
 Name: pixieplus
 Version: 1.0
-Release: 0.a2.1
+Release: 0.a2.1%{?dist}
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.mosfet.org

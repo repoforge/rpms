@@ -10,7 +10,7 @@
 Summary: Perl module to interface with the Yahoo! Browser-Based Authentication
 Name: perl-Yahoo-BBAuth
 Version: 0.50
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Yahoo-BBAuth/

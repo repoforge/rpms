@@ -9,7 +9,7 @@
 Summary: Utilities to deal with RRD files and graphs
 Name: rrdutils
 Version: 5.2.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Databases
 URL: http://rrdutils.sourceforge.net/

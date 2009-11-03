@@ -4,7 +4,7 @@
 Summary: GNU cp (coreutils) which uses less memory with -al (for rsnapshot)
 Name: cp-rsnapshot
 Version: 0.0.0
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPLv3+
 Group: System Environment/Base
 URL: http://savannah.gnu.org/projects/coreutils

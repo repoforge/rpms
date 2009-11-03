@@ -5,7 +5,7 @@
 Summary: Sounds and graphics to give armagetronad the real 'Tron' look
 Name: armagetronad-moviepack
 Version: 1.0
-Release: 3
+Release: 3%{?dist}
 License: Proprietary
 Group: Amusements/Games
 URL: http://armagetronad.sourceforge.net/

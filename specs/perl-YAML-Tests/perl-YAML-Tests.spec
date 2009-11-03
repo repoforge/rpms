@@ -9,7 +9,7 @@
 Summary: Common Test Suite for Perl YAML Implementations
 Name: perl-YAML-Tests
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Tests/

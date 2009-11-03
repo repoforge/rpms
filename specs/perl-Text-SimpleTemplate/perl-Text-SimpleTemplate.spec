@@ -10,7 +10,7 @@
 Summary: Yet another module for template processing
 Name: perl-Text-SimpleTemplate
 Version: 0.36
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-SimpleTemplate/

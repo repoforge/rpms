@@ -10,7 +10,7 @@
 Summary: Perl module to guess File Type With XS (a la mod_mime_magic)
 Name: perl-File-MMagic-XS
 Version: 0.09003
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-MMagic-XS/

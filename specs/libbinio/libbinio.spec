@@ -4,7 +4,7 @@
 Summary: Library for binary I/O classes in C++
 Name: libbinio
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libbinio.sourceforge.net/

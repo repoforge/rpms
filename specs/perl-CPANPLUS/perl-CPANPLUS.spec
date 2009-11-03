@@ -13,7 +13,7 @@
 Summary: Command-line access to the CPAN interface
 Name: perl-CPANPLUS
 Version: 0.88
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPANPLUS/

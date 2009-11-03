@@ -5,7 +5,7 @@
 Summary: Proxy profiles applet
 Name: proxy-profiles-applet
 Version: 0.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: ftp://impre.ssive.net/pub/proxy-profiles-applet/

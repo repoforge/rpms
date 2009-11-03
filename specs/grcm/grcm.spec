@@ -6,7 +6,7 @@
 Summary: Front-end to manage machine connections
 Name: grcm
 Version: 0.1.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://grcm.sourceforge.net/

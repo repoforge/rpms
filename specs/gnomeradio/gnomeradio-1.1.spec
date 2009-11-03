@@ -5,7 +5,7 @@
 Summary: FM-Tuner program for GNOME
 Name: gnomeradio
 Version: 1.1
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mfcn.ilo.de/gnomeradio

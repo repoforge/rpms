@@ -6,7 +6,7 @@
 Summary: Windows Media Audio (WMA) playback plugin for the Beep Media Player
 Name: bmp-wma
 Version: 0.1.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-plugins.berlios.de/

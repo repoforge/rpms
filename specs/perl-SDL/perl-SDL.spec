@@ -34,7 +34,7 @@
 Summary: Simple DirectMedia Layer - Bindings for the perl language
 Name: perl-SDL
 Version: 2.1.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SDL_Perl/

@@ -10,7 +10,7 @@
 Summary: Change nature of data within a structure
 Name: perl-Data-Structure-Util
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Structure-Util/

@@ -4,7 +4,7 @@
 Summary: Shows dialogs for asking passwords
 Name: libgksuui
 Version: 1.0.7
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://savannah.nongnu.org/projects/gksu/

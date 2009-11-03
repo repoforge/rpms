@@ -12,7 +12,7 @@ Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
 %define real_version 6.10-WIP
 Version: 6.10
-Release: 0.wip20080522
+Release: 0.wip20080522%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cgsecurity.org/wiki/TestDisk

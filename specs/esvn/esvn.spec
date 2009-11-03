@@ -4,7 +4,7 @@
 Summary: Graphical frontend for subversion
 Name: esvn
 Version: 0.6.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://esvn.umputun.com/

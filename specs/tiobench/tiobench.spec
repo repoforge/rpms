@@ -5,7 +5,7 @@
 Summary: Threaded IO benchmarking utility
 Name: tiobench
 Version: 0.3.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://sf.net/projects/tiobench/

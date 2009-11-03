@@ -10,7 +10,7 @@
 Summary: Base class for implementing various dependency trees
 Name: perl-Algorithm-Dependency
 Version: 1.110
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Dependency/

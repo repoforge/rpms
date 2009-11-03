@@ -8,7 +8,7 @@
 Summary: PBX and telephony application and toolkit
 Name: asterisk
 Version: 1.2.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.asterisk.org/

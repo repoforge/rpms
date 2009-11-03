@@ -6,7 +6,7 @@
 Summary: Update dndns hosts
 Name: dyndnsupdate
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://lillesvin.linux.dk/dyndnsupdate/

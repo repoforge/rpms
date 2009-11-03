@@ -4,7 +4,7 @@
 Summary: Small and fast DNS server for serving blacklist zones.
 Name: rbldnsd
 Version: 0.995
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.corpit.ru/mjt/rbldnsd.html

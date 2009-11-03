@@ -4,7 +4,7 @@
 Summary: Change video bios resolutions on laptops with Intel graphic chipsets
 Name: 855resolution
 Version: 0.4
-Release: 4
+Release: 4%{?dist}
 License: Public Domain
 Group: Applications/System
 URL: http://perso.wanadoo.fr/apoirier/

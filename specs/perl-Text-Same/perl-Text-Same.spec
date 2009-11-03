@@ -10,7 +10,7 @@
 Summary: Look for similarities between files or arrays
 Name: perl-Text-Same
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Same/

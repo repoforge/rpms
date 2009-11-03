@@ -9,7 +9,7 @@
 Summary: Object-Oriented Vector Math Methods in Perl
 Name: perl-Math-Vec
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Vec/

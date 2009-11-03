@@ -10,7 +10,7 @@
 Summary: Dates in the Christian calendar
 Name: perl-DateTime-Calendar-Christian
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Calendar-Christian/

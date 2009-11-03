@@ -10,7 +10,7 @@
 Summary: Translate ports to services and vice versa
 Name: perl-Net-IANA-PortNumbers
 Version: 1.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IANA-PortNumbers/

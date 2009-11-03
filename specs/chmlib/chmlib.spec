@@ -5,7 +5,7 @@
 Summary: Library for dealing with Microsoft ITSS/CHM format files
 Name: chmlib
 Version: 0.40
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.jedrea.com/chmlib/

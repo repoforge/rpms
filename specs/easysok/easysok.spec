@@ -6,7 +6,7 @@
 Summary: sokoban game
 Name: easysok
 Version: 0.3.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://easysok.sourceforge.net/

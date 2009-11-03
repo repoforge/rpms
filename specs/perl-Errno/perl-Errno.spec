@@ -10,7 +10,7 @@
 Summary: System errno constants
 Name: perl-Errno
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Errno/

@@ -9,7 +9,7 @@
 Summary: Electronic strongbox
 Name: gringotts
 Version: 1.2.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://devel.pluto.linux.it/projects/Gringotts/

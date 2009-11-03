@@ -10,7 +10,7 @@
 Summary: Perl module that implements a web interface driver
 Name: perl-Uttu
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Uttu/

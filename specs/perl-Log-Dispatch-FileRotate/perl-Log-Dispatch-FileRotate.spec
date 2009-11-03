@@ -10,7 +10,7 @@
 Summary: Automatically archive and rotate logfiles
 Name: perl-Log-Dispatch-FileRotate
 Version: 1.19
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch-FileRotate/

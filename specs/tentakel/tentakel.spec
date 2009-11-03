@@ -7,7 +7,7 @@
 Summary: program that executes the same command on many hosts in parallel
 Name: tentakel
 Version: 2.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tentakel.biskalar.de/

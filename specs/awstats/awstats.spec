@@ -4,7 +4,7 @@
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
 Version: 6.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/

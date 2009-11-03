@@ -11,7 +11,7 @@
 Summary: Perl module to format a simple tree of strings into a textual tree graph
 Name: perl-Text-Tree
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Tree/

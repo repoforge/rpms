@@ -10,7 +10,7 @@
 Summary: Perl module that provides better scripts through guarded commands
 Name: perl-Commands-Guarded
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Commands-Guarded/

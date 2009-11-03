@@ -6,7 +6,7 @@
 Summary: OpenGL rollercoaster ride animation for xscreensaver
 Name: xscreensaver-rollercoaster
 Version: 1.1.0
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://plusplus.free.fr/rollercoaster/

@@ -4,7 +4,7 @@
 Summary: ELF binary-to-process comparison tool
 Name: elfcmp
 Version: 1.0.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.hick.org/code/skape/elfcmp/

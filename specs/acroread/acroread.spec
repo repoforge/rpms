@@ -18,7 +18,7 @@
 Summary: Adobe Reader for viewing PDF files
 Name: acroread
 Version: 7.0.9
-Release: 1
+Release: 1%{?dist}
 License: Commercial, Freely Distributable
 Group: Applications/Publishing
 URL: http://www.adobe.com/products/acrobat/readermain.html

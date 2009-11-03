@@ -18,7 +18,7 @@
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
 Version: 1.4.22
-Release: 2
+Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/

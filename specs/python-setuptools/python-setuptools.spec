@@ -8,7 +8,7 @@
 Summary: Download, build, install, upgrade, and uninstall Python packages
 Name: python-setuptools
 Version: 0.6c6
-Release: 1
+Release: 1%{?dist}
 License: PSFL/ZPL
 Group: Development/Languages
 URL: http://peak.telecommunity.com/DevCenter/setuptools

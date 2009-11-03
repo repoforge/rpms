@@ -6,7 +6,7 @@
 Summary: FUSE-based user-space file system for Linux with on-access anti-virus file scanning
 Name: fuse-clamfs
 Version: 0.9.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://clamfs.sourceforge.net/

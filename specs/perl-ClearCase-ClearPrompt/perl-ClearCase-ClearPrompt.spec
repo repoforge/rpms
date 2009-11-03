@@ -10,7 +10,7 @@
 Summary: Handle clearprompt in a portable, convenient way
 Name: perl-ClearCase-ClearPrompt
 Version: 1.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-ClearPrompt/

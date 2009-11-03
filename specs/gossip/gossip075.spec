@@ -7,7 +7,7 @@
 Summary: Jabber instant messaging client
 Name: gossip
 Version: 0.7.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gossip.imendio.org/

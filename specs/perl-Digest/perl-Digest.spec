@@ -10,7 +10,7 @@
 Summary: Perl module that calculate message digests
 Name: perl-Digest
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest/

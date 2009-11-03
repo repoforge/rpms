@@ -10,7 +10,7 @@
 Summary: Read and write Syntrillium CoolEdit Pro .ses files
 Name: perl-Audio-CoolEdit
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-CoolEdit/

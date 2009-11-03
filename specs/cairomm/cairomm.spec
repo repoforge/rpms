@@ -4,7 +4,7 @@
 Summary: Cairomm is the C++ API for the cairo graphics library
 Name: cairomm
 Version: 1.2.4
-Release: 2.1
+Release: 2.1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/

@@ -9,7 +9,7 @@
 Summary: Console frontend to giFT.
 Name: giftcurs
 Version: 0.6.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/giftcurs/

@@ -6,7 +6,7 @@
 Summary: Media Center
 Name: elisa
 Version: 0.5.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/

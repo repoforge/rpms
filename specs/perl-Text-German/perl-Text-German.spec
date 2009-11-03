@@ -10,7 +10,7 @@
 Summary: German grundform reduction
 Name: perl-Text-German
 Version: 0.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-German/

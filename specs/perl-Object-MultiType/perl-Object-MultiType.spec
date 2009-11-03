@@ -10,7 +10,7 @@
 Summary: Perl Objects as Hash, Array, Scalar, Code and Glob at the same time
 Name: perl-Object-MultiType
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-MultiType/

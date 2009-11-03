@@ -15,7 +15,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.95
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/

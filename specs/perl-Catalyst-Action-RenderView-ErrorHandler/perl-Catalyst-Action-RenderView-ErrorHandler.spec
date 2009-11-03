@@ -10,7 +10,7 @@
 Summary: Custom errorhandling in deployed applications
 Name: perl-Catalyst-Action-RenderView-ErrorHandler
 Version: 0.0105
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Action-RenderView-ErrorHandler/

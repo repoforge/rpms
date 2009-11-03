@@ -10,7 +10,7 @@
 Summary: Text templates functions
 Name: perl-Text-Template
 Version: 1.45
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template/

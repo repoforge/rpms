@@ -10,7 +10,7 @@
 Summary: Perl module to handle the logic in timing out calls with alarm()
 Name: perl-Sys-AlarmCall
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-AlarmCall/

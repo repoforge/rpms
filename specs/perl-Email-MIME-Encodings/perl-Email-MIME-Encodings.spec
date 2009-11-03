@@ -10,7 +10,7 @@
 Summary: Unified interface to MIME encoding and decoding
 Name: perl-Email-MIME-Encodings
 Version: 1.313
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Encodings/

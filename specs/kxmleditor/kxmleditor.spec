@@ -21,7 +21,7 @@
 Summary: XML Editor
 Name: kxmleditor
 Version: 1.1.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://kxmleditor.sourceforge.net/

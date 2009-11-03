@@ -18,7 +18,7 @@
 Summary: Wrapper for run-time loading of XvMC libraries
 Name: libXvMCW
 Version: 0.9.3
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://sourceforge.net/projects/unichrome

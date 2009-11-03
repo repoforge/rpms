@@ -6,7 +6,7 @@
 Summary: Console download accelerator
 Name: aget
 Version: 0.4
-Release: 5.2
+Release: 5.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.enderunix.org/aget/

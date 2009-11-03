@@ -10,7 +10,7 @@
 Summary: Easy file backup and rotation automation
 Name: perl-File-Backup
 Version: 0.07
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Backup/

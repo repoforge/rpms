@@ -8,7 +8,7 @@
 Summary: Python bindings to libsexy
 Name: python-sexy
 Version: 0.1.9
-Release: 3
+Release: 3%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.chipx86.com/wiki/Libsexy

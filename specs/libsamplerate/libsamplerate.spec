@@ -6,7 +6,7 @@
 Summary: Library for performing sample rate conversion on audio
 Name: libsamplerate
 Version: 0.1.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.mega-nerd.com/SRC/

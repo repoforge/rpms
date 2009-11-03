@@ -4,7 +4,7 @@
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 2.00
-Release: 2
+Release: 2%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/

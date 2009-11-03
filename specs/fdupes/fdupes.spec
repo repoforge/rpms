@@ -4,7 +4,7 @@
 Summary: Tool to find duplicate files in a given set of directories
 Name: fdupes
 Version: 1.40
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Applications/File
 URL: http://netdial.caribe.net/~adrian2/fdupes.html

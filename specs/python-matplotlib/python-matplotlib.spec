@@ -8,7 +8,7 @@
 Summary: Python plotting library
 Name: python-matplotlib
 Version: 0.91.2
-Release: 1
+Release: 1%{?dist}
 License: Python
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/matplotlib/

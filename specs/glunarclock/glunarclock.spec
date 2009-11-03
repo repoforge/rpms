@@ -7,7 +7,7 @@
 Summary: Display the current phase of the Moon as an applet for the gnome panel
 Name: glunarclock
 Version: 0.32.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://glunarclock.sourceforge.net/

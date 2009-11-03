@@ -10,7 +10,7 @@
 Summary: Track usage of objects
 Name: perl-Devel-TrackObjects
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-TrackObjects/

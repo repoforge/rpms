@@ -10,7 +10,7 @@
 Summary: PHP accelerator, optimizer, encoder and dynamic content cacher
 Name: php-mmcache
 Version: %{php_version}_%{module_version}
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://turck-mmcache.sourceforge.net/

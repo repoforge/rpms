@@ -5,7 +5,7 @@
 Summary: Frontend for mplayer
 Name: smplayer
 Version: 0.6.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://smplayer.berlios.de/

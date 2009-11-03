@@ -7,7 +7,7 @@
 Summary: Scientific software package
 Name: scilab
 Version: 4.0
-Release: 1
+Release: 1%{?dist}
 License: Other
 Group: Applications/Engineering
 URL: http://scilabsoft.inria.fr/

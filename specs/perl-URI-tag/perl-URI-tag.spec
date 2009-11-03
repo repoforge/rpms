@@ -10,7 +10,7 @@
 Summary: Perl module to tag URI Scheme (RFC 4151)
 Name: perl-URI-tag
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-tag/

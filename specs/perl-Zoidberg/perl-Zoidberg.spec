@@ -10,7 +10,7 @@
 Summary: Perl module implementing a modular perl shell
 Name: perl-Zoidberg
 Version: 0.96
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Zoidberg/

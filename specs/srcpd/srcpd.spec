@@ -4,7 +4,7 @@
 Summary: SRCP server for model railways
 Name: srcpd
 Version: 2.0.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://srcpd.sourceforge.net/

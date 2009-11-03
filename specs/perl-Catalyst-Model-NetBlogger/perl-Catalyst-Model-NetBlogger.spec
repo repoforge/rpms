@@ -10,7 +10,7 @@
 Summary: Catalyst Model to post and retrieve blog entries using Net::Blogger
 Name: perl-Catalyst-Model-NetBlogger
 Version: 0.04001
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-NetBlogger/

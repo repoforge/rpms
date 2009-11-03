@@ -10,7 +10,7 @@
 Summary: Perl module that implements an SSI parser for CGI
 Name: perl-ZM-SSI
 Version: 0.0.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ZM-SSI/

@@ -10,7 +10,7 @@
 Summary: Simple Good-Turing (SGT) smoothing implementation
 Name: perl-Statistics-Smoothing-SGT
 Version: 2.1.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Smoothing-SGT/

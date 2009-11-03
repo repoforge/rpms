@@ -10,7 +10,7 @@
 Summary: Map states and provinces to their codes and vica versa
 Name: perl-Geography-States
 Version: 2009040901
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geography-States/

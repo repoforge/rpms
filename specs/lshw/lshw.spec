@@ -15,7 +15,7 @@ Summary: Hardware lister
 Name: lshw
 %define real_version B.02.14
 Version: 2.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ezix.org/software/lshw.html

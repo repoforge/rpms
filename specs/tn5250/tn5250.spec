@@ -14,7 +14,7 @@
 Summary: 5250 Telnet protocol and terminal program
 Name: tn5250
 Version: 0.17.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://tn5250.sourceforge.net/

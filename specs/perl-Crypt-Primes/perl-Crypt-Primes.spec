@@ -9,7 +9,7 @@
 Summary: Crypt-Primes module for perl
 Name: perl-Crypt-Primes
 Version: 0.50
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Primes/

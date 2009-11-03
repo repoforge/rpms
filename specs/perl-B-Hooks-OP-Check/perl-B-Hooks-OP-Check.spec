@@ -10,7 +10,7 @@
 Summary: Wrap OP check callbacks
 Name: perl-B-Hooks-OP-Check
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Hooks-OP-Check/

@@ -10,7 +10,7 @@
 Summary: Extension for easy creation of multi screen CGI scripts
 Name: perl-CGI-Screen
 Version: 0.122
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Screen/

@@ -5,7 +5,7 @@
 Summary: Descriptive vector graphics language
 Name: asymptote
 Version: 1.26
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://asymptote.sourceforge.net/

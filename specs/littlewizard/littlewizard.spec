@@ -5,7 +5,7 @@
 Summary: Development environment for children
 Name: littlewizard
 Version: 1.2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Education
 URL: http://littlewizard.sourceforge.net/

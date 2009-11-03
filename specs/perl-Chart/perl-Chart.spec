@@ -10,7 +10,7 @@
 Summary: Produce many types of charts
 Name: perl-Chart
 Version: 2.4.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chart/

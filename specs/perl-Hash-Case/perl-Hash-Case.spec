@@ -10,7 +10,7 @@
 Summary: Perl module that implements a base class for hashes with key-casing requirements
 Name: perl-Hash-Case
 Version: 1.006
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hash-Case/

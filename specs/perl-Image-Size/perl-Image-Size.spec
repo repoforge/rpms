@@ -10,7 +10,7 @@
 Summary: Library to extract height/width from images
 Name: perl-Image-Size
 Version: 3.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Size/

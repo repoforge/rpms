@@ -10,7 +10,7 @@
 Summary: Perl module to conditionally prevent execution of a script
 Name: perl-Util-SelfDestruct
 Version: 1.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Util-SelfDestruct/

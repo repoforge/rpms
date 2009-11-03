@@ -6,7 +6,7 @@
 Summary: DVD subtitle ripper
 Name: subtitleripper
 Version: 0.3.4
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://subtitleripper.sourceforge.net/

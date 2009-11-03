@@ -11,7 +11,7 @@
 Summary: Parse, manipulate and lookup IP network blocks
 Name: perl-Net-Netmask
 Version: 1.9015
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Netmask/

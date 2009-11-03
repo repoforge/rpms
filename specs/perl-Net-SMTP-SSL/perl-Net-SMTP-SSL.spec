@@ -10,7 +10,7 @@
 Summary: SSL support for Net::SMTP
 Name: perl-Net-SMTP-SSL
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SMTP-SSL/

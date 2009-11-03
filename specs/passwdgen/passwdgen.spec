@@ -6,7 +6,7 @@
 Summary: Random Password Generator
 Name: passwdgen
 Version: 2.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://directory.fsf.org/security/auth/pwdgen.html

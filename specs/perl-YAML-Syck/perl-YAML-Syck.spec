@@ -10,7 +10,7 @@
 Summary: Fast, lightweight YAML loader and dumper
 Name: perl-YAML-Syck
 Version: 1.07
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Syck/

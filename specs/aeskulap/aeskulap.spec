@@ -7,7 +7,7 @@
 Summary: Medial image viewer for DICOM images
 Name: aeskulap
 Version: 0.2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://aeskulap.nongnu.org

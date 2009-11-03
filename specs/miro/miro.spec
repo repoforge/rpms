@@ -17,7 +17,7 @@
 Summary: Free and Open Source Internet TV and video player
 Name: miro
 Version: 1.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.getmiro.com/

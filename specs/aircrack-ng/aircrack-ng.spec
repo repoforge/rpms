@@ -4,7 +4,7 @@
 Summary: Reliable 802.11 (wireless) sniffer and WEP/WPA-PSK key cracker
 Name: aircrack-ng
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.aircrack-ng.org/

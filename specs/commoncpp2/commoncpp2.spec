@@ -4,7 +4,7 @@
 Summary: GNU Common C++ class framework
 Name: commoncpp2
 Version: 1.6.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/commoncpp/

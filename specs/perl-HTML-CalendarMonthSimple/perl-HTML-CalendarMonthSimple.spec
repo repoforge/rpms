@@ -10,7 +10,7 @@
 Summary: Perl module for Generating HTML Calendars
 Name: perl-HTML-CalendarMonthSimple
 Version: 1.25
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-CalendarMonthSimple/

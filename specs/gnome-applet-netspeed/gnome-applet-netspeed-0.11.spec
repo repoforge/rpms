@@ -12,7 +12,7 @@
 Summary: GNOME applet that shows traffic on a network device
 Name: gnome-applet-netspeed
 Version: 0.11
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://mfcn.ilo.de/netspeed_applet/

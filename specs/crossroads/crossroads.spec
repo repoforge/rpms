@@ -5,7 +5,7 @@
 Summary: Load balance and fail over utility for TCP based services
 Name: crossroads
 Version: 2.41
-Release: 1
+Release: 1%{?dist}
 License: GPLv3
 Group: Applications/Utilities
 URL: http://crossroads.e-tunity.com/

@@ -10,7 +10,7 @@
 Summary: Rabin-Karp streaming hash
 Name: perl-Algorithm-RabinKarp
 Version: 0.41
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-RabinKarp/

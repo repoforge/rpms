@@ -10,7 +10,7 @@
 Summary: Automated accessor generation
 Name: perl-Class-Accessor
 Version: 0.33
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor/

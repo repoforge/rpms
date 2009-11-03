@@ -25,7 +25,7 @@
 Summary: The X Multi Arcade Machine Emulator
 Name: xmame
 Version: 0.106
-Release: 1%{?rcver:.%{rcver}}
+Release: 1%{?rcver:.%{rcver}}%{?dist}
 Source0: http://x.mame.net/download/xmame-%{version}.tar.bz2
 # http://cheat.retrogames.com/ 0.106 - 14/05/2006
 Source20: http://cheat.retrogames.com/cheat.zip

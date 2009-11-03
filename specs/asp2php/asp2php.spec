@@ -13,7 +13,7 @@
 Summary: Converts WWW Active Server Pages to PHP pages
 Name: asp2php
 Version: 0.76.23
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://asp2php.naken.cc/

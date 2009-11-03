@@ -10,7 +10,7 @@
 Summary: Simple platform independent mailer
 Name: perl-Mail-Sendmail
 Version: 0.79
-Release: 1.2
+Release: 1.2%{?dist}
 License: Unknown
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch/

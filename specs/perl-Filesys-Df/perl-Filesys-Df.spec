@@ -10,7 +10,7 @@
 Summary: Perl module for filesystem disk space information
 Name: perl-Filesys-Df
 Version: 0.92
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-Df/

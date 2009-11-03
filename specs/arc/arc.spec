@@ -4,7 +4,7 @@
 Summary: Arc archiver
 Name: arc
 Version: 5.21o
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://arc.sourceforge.net/

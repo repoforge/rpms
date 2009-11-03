@@ -10,7 +10,7 @@
 Summary: Calculate simple moving averages
 Name: perl-Math-Business-SMA
 Version: 0.99
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-SMA/

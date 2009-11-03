@@ -6,7 +6,7 @@
 Summary: SysInfo sensor and display for gdesklets
 Name: gdesklets-sysinfo
 Version: 0.26
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

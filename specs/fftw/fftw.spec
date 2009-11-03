@@ -4,7 +4,7 @@
 Summary: Fastest Fourier Transform in the West library
 Name: fftw
 Version: 2.1.5
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.fftw.org/

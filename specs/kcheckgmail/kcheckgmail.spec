@@ -4,7 +4,7 @@
 Summary: System tray application with information about your gmail account
 Name: kcheckgmail
 Version: 0.5.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://kcheckgmail.sf.net/

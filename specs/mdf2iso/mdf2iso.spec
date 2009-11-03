@@ -4,7 +4,7 @@
 Summary: Utility to convert an Alcohol 120% image to the standard ISO-9660 format
 Name: mdf2iso
 Version: 0.3.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://mdf2iso.berlios.de/

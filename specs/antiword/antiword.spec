@@ -5,7 +5,7 @@
 Summary: Converts MS-Word documents to ASCII and Postscript
 Name: antiword
 Version: 0.37
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.winfield.demon.nl/

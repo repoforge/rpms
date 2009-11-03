@@ -10,7 +10,7 @@
 Summary: Perl module for dumping Perl objects from/to XML
 Name: perl-XML-Dumper
 Version: 0.81
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Dumper/

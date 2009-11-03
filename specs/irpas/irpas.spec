@@ -11,7 +11,7 @@
 Summary: Inter-network routing protocol attack suite
 Name: irpas
 Version: 0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/Internet
 URL: http://www.phenoelit.de/irpas/

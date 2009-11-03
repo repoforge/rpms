@@ -10,7 +10,7 @@
 Summary: Easy API to XML files
 Name: perl-XML-Simple
 Version: 2.18
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Simple/

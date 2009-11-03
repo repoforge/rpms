@@ -10,7 +10,7 @@
 Summary: Evaluate Perl command line parameters
 Name: perl-Getopt-EvaP
 Version: 2.3.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-EvaP/

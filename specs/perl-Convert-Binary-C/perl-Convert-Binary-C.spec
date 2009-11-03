@@ -10,7 +10,7 @@
 Summary: Binary Data Conversion using C Types
 Name: perl-Convert-Binary-C
 Version: 0.74
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-Binary-C/

@@ -11,7 +11,7 @@
 Summary: Perl module that implements a Distributed Version Control System
 Name: perl-SVK-Util
 Version: 2.0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVK-Util/

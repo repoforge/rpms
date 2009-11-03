@@ -21,7 +21,7 @@
 Summary: C++ X11 widget set providing win95 look and feel
 Name: libxclass
 Version: 0.9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://xclass.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: GNOME mixer interface for the Advanced Linux Sound Architecture
 Name: gnome-alsamixer
 Version: 0.9.6
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 Source: ftp://ftp.paw.co.za/pub/PAW/sources/%{name}-%{version}.tar.gz

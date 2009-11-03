@@ -11,7 +11,7 @@
 Summary: Struct/member template builder
 Name: perl-Class-Template
 Version: 0.0.19960603
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Eroot/

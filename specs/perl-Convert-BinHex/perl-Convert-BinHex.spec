@@ -9,7 +9,7 @@
 Summary: Extract data from Macintosh BinHex files
 Name: perl-Convert-BinHex
 Version: 1.119
-Release: 2.2
+Release: 2.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-BinHex/

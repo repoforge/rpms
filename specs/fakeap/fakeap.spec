@@ -4,7 +4,7 @@
 Summary: Generate thousands of counterfeit 802.11b access points
 Name: fakeap
 Version: 0.3.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.blackalchemy.to/project/fakeap/

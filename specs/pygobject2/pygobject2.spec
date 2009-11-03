@@ -13,7 +13,7 @@
 Summary: Python bindings for GObject
 Name: pygobject2
 Version: 2.12.2
-Release: 0.1
+Release: 0.1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.pygtk.org/

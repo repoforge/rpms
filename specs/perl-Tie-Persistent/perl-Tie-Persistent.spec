@@ -10,7 +10,7 @@
 Summary: Persistent data structures via tie made easy
 Name: perl-Tie-Persistent
 Version: 1.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Persistent/

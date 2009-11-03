@@ -4,7 +4,7 @@
 Summary: DVD backup tool
 Name: lxdvdrip
 Version: 1.74
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://lxdvdrip.berlios.de/

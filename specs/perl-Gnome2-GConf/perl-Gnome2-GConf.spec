@@ -10,7 +10,7 @@
 Summary: Perl wrapper for the GConf configuration engine
 Name: perl-Gnome2-GConf
 Version: 1.044
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2-GConf/

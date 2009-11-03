@@ -9,7 +9,7 @@
 Summary: Perl module that implements editable-text format for HTML output
 Name: perl-Text-EtText
 Version: 2.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-EtText/

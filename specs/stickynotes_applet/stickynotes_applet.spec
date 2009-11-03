@@ -6,7 +6,7 @@
 Summary: Simple sticky notes applet for the GNOME desktop
 Name: stickynotes_applet
 Version: 1.2.3
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://loban.caltech.edu/stickynotes/

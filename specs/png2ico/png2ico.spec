@@ -6,7 +6,7 @@
 Summary: PNG to icon converter
 Name: png2ico
 Version: 0.0.20021218
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.winterdrache.de/freeware/png2ico/index.html

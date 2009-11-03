@@ -10,7 +10,7 @@
 Summary: Perl module named XML-Edifact
 Name: perl-XML-Edifact
 Version: 0.47
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Edifact/

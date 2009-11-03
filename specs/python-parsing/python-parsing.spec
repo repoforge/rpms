@@ -8,7 +8,7 @@
 Summary: Object-oriented approach to text processing
 Name: python-parsing
 Version: 1.4.11
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://pyparsing.wikispaces.com/

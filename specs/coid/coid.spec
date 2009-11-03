@@ -5,7 +5,7 @@
 Summary: Object-oriented networking library
 Name: coid
 Version: 0.8.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL/LGPL/MPL
 Group: Development/Libraries
 URL: http://coid.sourceforge.net/

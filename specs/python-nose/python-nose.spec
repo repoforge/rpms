@@ -6,7 +6,7 @@
 Summary: Discovery-based unittest extension for Python
 Name: python-nose
 Version: 0.10.4
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://somethingaboutorange.com/mrl/projects/nose/

@@ -9,7 +9,7 @@
 Summary: Perl module named common-sense
 Name: perl-common-sense
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/common-sense/

@@ -47,7 +47,7 @@
 Summary: Interface to Gnome libxml2 xml parsing and DOM library
 Name: perl-XML-LibXML
 Version: 1.70
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML/

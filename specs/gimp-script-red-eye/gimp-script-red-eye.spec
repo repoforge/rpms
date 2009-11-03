@@ -12,7 +12,7 @@
 Summary: gimp script to implement Red-Eye removal technique
 Name: gimp-script-red-eye
 Version: 0.95
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.linuxjournal.com/article.php?sid=6567

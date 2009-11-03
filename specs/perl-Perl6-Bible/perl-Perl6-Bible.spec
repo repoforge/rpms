@@ -10,7 +10,7 @@
 Summary: Perl 6 Design Documentations
 Name: perl-Perl6-Bible
 Version: 0.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Bible/

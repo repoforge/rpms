@@ -8,7 +8,7 @@
 Summary: Python toolkit for generation of output for the web
 Name: python-genshi
 Version: 0.5.1
-Release: 2
+Release: 2%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://genshi.edgewall.org/wiki/

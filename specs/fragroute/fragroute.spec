@@ -12,7 +12,7 @@
 Summary: Intercepts, modifies, and rewrites egress traffic
 Name: fragroute
 Version: 1.2
-Release: 4
+Release: 4%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragroute/

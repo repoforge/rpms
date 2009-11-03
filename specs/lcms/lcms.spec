@@ -12,7 +12,7 @@
 Summary: Open Source color management engine
 Name: lcms
 Version: 1.15
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.littlecms.com/

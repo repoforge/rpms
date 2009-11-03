@@ -5,7 +5,7 @@
 Summary: Search for emails in a mailbox using regular expressions
 Name: grepmail
 Version: 5.3033
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://grepmail.sourceforge.net/

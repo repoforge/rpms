@@ -44,7 +44,7 @@
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
 Version: 0.11003
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Translator/

@@ -10,7 +10,7 @@
 Summary: Visitor style traversal of Perl data structures
 Name: perl-Data-Visitor
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Visitor/

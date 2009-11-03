@@ -8,7 +8,7 @@
 Summary: Monitor and archive AOL Instant Messenger messages
 Name: aimsniff
 Version: 0.9
-Release: 0.d.2
+Release: 0.d.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.aimsniff.com/

@@ -5,7 +5,7 @@
 Summary: Flickr uploader
 Name: kflickr
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://kflickr.sourceforge.net/

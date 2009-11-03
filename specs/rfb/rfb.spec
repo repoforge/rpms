@@ -11,7 +11,7 @@
 Summary: heXoNet RFB (remote control for the X Window System)
 Name: rfb
 Version: 0.6.1
-Release: 7
+Release: 7%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hexonet.de/software/rfb/

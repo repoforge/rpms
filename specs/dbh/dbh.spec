@@ -4,7 +4,7 @@
 Summary: Create multidimensional binary trees on disk
 Name: dbh
 Version: 4.5.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL/QPL
 Group: Development/Libraries
 URL: http://dbh.sourceforge.net/

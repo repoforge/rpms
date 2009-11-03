@@ -10,7 +10,7 @@
 Summary: Extendion for searching and replacing entries in complex structures
 Name: perl-Data-SearchReplace
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-SearchReplace/

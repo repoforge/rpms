@@ -11,7 +11,7 @@ Summary: Efficiently compute time from local and GMT time
 Summary: Perl module named Time-Local
 Name: perl-Time-Local
 Version: 1.1901
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Local/

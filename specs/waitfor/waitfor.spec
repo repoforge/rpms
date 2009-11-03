@@ -4,7 +4,7 @@
 Summary: waits until specified network resource is available or event has occured
 Name: waitfor
 Version: 0.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.hennessynet.com/waitfor/

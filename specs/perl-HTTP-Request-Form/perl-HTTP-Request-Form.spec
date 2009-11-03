@@ -10,7 +10,7 @@
 Summary: Construct HTTP::Request objects for form processing
 Name: perl-HTTP-Request-Form
 Version: 0.952
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Request-Form/

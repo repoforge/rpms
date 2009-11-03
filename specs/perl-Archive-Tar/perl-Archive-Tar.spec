@@ -9,7 +9,7 @@
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
 Version: 1.40
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar/

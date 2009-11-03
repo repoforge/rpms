@@ -10,7 +10,7 @@
 Summary: Generate 'static' content with TT
 Name: perl-Catalyst-Plugin-Static-TT
 Version: 0.002
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Static-TT/

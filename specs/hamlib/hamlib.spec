@@ -4,7 +4,7 @@
 Summary: HAM radio equipment control libraries
 Name: hamlib
 Version: 1.2.7.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://hamlib.org

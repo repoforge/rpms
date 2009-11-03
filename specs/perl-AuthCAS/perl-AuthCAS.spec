@@ -10,7 +10,7 @@
 Summary: Client library for CAS 2.0 authentication server
 Name: perl-AuthCAS
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AuthCAS/

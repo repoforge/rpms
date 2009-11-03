@@ -5,7 +5,7 @@
 Summary: Forensic browser for use with Sleuth Kit
 Name: autopsy
 Version: 2.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.sleuthkit.org/autopsy/

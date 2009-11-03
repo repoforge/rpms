@@ -6,7 +6,7 @@
 Summary: FUSE based filesystem using ObexFTP
 Name: fuse-obexfs
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://dev.zuckschwerdt.org/openobex/wiki/ObexFs/

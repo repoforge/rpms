@@ -6,7 +6,7 @@
 Summary: C++ wrappers for GConf
 Name: gconfmm2
 Version: 2.0.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

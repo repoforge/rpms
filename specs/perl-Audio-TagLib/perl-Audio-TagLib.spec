@@ -10,7 +10,7 @@
 Summary: Perl library for reading and editing audio meta data, commonly known as tags. 
 Name: perl-Audio-TagLib
 Version: 1.43
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-TagLib/

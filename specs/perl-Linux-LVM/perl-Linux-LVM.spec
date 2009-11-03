@@ -9,7 +9,7 @@
 Summary: Perl module for accessing Logical Volume Manager(LVM) data structures
 Name: perl-Linux-LVM
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Linux-LVM/

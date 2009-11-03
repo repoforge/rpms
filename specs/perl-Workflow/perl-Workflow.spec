@@ -11,7 +11,7 @@
 Summary: Simple, flexible system to implement workflows
 Name: perl-Workflow
 Version: 1.32
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Workflow/

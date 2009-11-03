@@ -3,7 +3,7 @@
 
 Name:           mugshot
 Version:        1.1.58
-Release:        1
+Release:        1%{?dist}
 Summary:        Companion software for mugshot.org
 
 Group:          Applications/Internet

@@ -8,7 +8,7 @@
 Summary: Plugin Pack for Pidgin
 Name: pidgin-plugin_pack
 Version: 2.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://plugins.guifications.org/trac/

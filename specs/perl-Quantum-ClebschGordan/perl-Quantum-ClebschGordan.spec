@@ -10,7 +10,7 @@
 Summary: Perl module to calculate/list Clebsch-Gordan Coefficients
 Name: perl-Quantum-ClebschGordan
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Quantum-ClebschGordan/

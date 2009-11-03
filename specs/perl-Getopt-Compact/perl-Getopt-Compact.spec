@@ -9,7 +9,7 @@
 Summary: getopt processing in a compact statement with both long and short options, and usage functionality
 Name: perl-Getopt-Compact
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Compact/

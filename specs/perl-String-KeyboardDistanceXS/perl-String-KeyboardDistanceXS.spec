@@ -10,7 +10,7 @@
 Summary: Rdpfp Approximate String Comparison
 Name: perl-String-KeyboardDistanceXS
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-KeyboardDistanceXS/

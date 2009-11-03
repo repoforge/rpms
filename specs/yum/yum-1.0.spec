@@ -7,7 +7,7 @@ Summary: RPM installer/updater
 Name: yum
 Version: 1.0.3
 ### Do not update release > 1 as we do not want to replace CentOS yum
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.dulug.duke.edu/yum/

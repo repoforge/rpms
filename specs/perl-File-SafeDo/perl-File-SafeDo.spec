@@ -10,7 +10,7 @@
 Summary: Safer do file for perl
 Name: perl-File-SafeDo
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-SafeDo/

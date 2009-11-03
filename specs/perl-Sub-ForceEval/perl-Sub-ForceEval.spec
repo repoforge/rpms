@@ -11,7 +11,7 @@
 Summary: Checks for subs which die by using eval
 Name: perl-Sub-ForceEval
 Version: 2.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-ForceEval/

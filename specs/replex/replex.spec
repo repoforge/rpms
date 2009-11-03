@@ -5,7 +5,7 @@
 Summary: Remultiplex transport stream (TS) data taken from a DVB source
 Name: replex
 Version: 0.1.6.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.metzlerbros.org/dvb/

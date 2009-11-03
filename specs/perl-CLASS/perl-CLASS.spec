@@ -10,7 +10,7 @@
 Summary: Alias for __PACKAGE__
 Name: perl-CLASS
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CLASS/

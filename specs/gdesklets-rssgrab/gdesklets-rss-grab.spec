@@ -3,7 +3,7 @@
 Summary: RSS feeds gdesklet.
 Name: gdesklets-rss-grab
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

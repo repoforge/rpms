@@ -4,7 +4,7 @@
 Summary: Console interface bandwidth usage monitor
 Name: bmon
 Version: 2.1.0
-Release: 5
+Release: 5%{?dist}
 License: Artistic
 Group: Applications/Internet
 URL: http://people.suug.ch/~tgr/bmon/

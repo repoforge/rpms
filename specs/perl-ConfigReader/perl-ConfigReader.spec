@@ -10,7 +10,7 @@
 Summary: Read directives from a configuration file
 Name: perl-ConfigReader
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ConfigReader/

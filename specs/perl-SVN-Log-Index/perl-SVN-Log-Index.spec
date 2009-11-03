@@ -11,7 +11,7 @@
 Summary: Index and search over Subversion commit logs
 Name: perl-SVN-Log-Index
 Version: 0.51
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Log-Index/

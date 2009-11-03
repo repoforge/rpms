@@ -10,7 +10,7 @@
 Summary: Keyboard support functions for X11
 Name: perl-X11-Keyboard
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-Keyboard/

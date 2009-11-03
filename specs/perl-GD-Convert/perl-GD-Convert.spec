@@ -10,7 +10,7 @@
 Summary: Additional output formats for GD
 Name: perl-GD-Convert
 Version: 2.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Convert/

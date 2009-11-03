@@ -10,7 +10,7 @@
 Summary: Perl module that implements a parser that builds a tree of XML::Element objects
 Name: perl-XML-TreeBuilder
 Version: 3.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-TreeBuilder/

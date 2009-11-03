@@ -6,7 +6,7 @@
 Summary: Utility to collect Linux performance data
 Name: collectl
 Version: 3.1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/System
 URL: http://collectl.sourceforge.net/

@@ -5,7 +5,7 @@ Summary: Library for the Expert Witness Compression Format (EWF)
 Name: libewf
 %define real_version 20080501
 Version: 0.0.20080501
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.uitwisselplatform.nl/projects/libewf/

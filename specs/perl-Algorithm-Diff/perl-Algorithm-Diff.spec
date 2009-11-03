@@ -9,7 +9,7 @@
 Summary: Compute intelligent differences between two files or lists
 Name: perl-Algorithm-Diff
 Version: 1.1902
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Diff/

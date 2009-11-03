@@ -10,7 +10,7 @@
 Summary: Perl module to add contextual fetches to DBI
 Name: perl-DBIx-ContextualFetch
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-ContextualFetch/

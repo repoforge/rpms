@@ -10,7 +10,7 @@
 Summary: Multiplatform routines to convert paths and URLs
 Name: perl-File-PathConvert
 Version: 0.9
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-PathConvert/

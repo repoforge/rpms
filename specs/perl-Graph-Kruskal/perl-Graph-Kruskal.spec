@@ -10,7 +10,7 @@
 Summary: Kruskal's Algorithm for Minimal Spanning Trees in Graphs
 Name: perl-Graph-Kruskal
 Version: 2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Kruskal/

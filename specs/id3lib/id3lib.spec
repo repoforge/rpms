@@ -4,7 +4,7 @@
 Summary: Library for manipulating ID3v1 and ID3v2 tags
 Name: id3lib
 Version: 3.8.3
-Release: 7
+Release: 7%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/id3lib/id3lib-%{version}.tar.gz

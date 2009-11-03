@@ -10,7 +10,7 @@
 Summary: Perl module to get number of occupied columns of a string on terminal
 Name: perl-Text-CharWidth
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CharWidth/

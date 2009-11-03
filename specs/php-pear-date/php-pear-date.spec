@@ -7,7 +7,7 @@
 Summary: PEAR package containing date and time zone classes
 Name: php-pear-date
 Version: 1.4.6
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Languages
 URL: http://pear.php.net/package/Date

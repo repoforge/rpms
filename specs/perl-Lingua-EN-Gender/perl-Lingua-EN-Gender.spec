@@ -10,7 +10,7 @@
 Summary: Guesses author's gender by analyzing text
 Name: perl-Lingua-EN-Gender
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Gender/

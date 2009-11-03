@@ -10,7 +10,7 @@
 Summary: OO interface to Rational's cleartool/multitool command interpreters
 Name: perl-ClearCase-Tools
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-Tools/

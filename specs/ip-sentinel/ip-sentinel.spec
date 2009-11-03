@@ -5,7 +5,7 @@
 Summary: tool to prevent unauthorized usage of IPs
 Name: ip-sentinel
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.nongnu.org/ip-sentinel/

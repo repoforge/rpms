@@ -6,7 +6,7 @@
 Summary: Web application to manage MySQL
 Name: phpmyadmin
 Version: 2.11.9.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/

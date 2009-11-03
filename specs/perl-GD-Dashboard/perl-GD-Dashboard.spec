@@ -10,7 +10,7 @@
 Summary: Create JPEG graphics of meters and dials
 Name: perl-GD-Dashboard
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD-Dashboard/

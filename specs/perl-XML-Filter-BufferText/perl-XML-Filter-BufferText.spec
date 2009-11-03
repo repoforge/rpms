@@ -10,7 +10,7 @@
 Summary: Simple filter which puts all characters into a single event
 Name: perl-XML-Filter-BufferText
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Filter-BufferText/

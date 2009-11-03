@@ -10,7 +10,7 @@
 Summary: Accesses Aviation Weather Information
 Name: perl-Geo-METAR
 Version: 1.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-METAR/

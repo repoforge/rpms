@@ -7,7 +7,7 @@
 Summary: Create a virtual ethernet using host-to-host tunnels
 Name: gvpe
 Version: 2.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: https://savannah.gnu.org/projects/gvpe/

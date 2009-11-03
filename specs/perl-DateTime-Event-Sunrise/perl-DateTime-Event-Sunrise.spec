@@ -10,7 +10,7 @@
 Summary: DateTime extension for computing the sunrise/sunset on a given day
 Name: perl-DateTime-Event-Sunrise
 Version: 0.0501
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Sunrise/

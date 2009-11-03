@@ -10,7 +10,7 @@
 Summary: Information about software packages on a system
 Name: perl-App-Info
 Version: 0.55
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/App-Info/

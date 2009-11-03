@@ -5,7 +5,7 @@
 Summary: Bootstraps rpm-based systems
 Name: rpmstrap
 Version: 0.5.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://hackers.progeny.com/~sam/rpmstrap/

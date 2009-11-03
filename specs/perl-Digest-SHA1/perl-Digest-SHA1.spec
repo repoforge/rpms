@@ -11,7 +11,7 @@
 Summary: Digest-SHA1 Perl module
 Name: perl-Digest-SHA1
 Version: 2.12
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA1/

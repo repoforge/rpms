@@ -10,7 +10,7 @@
 Summary: Expand crontab(5)-style integer lists
 Name: perl-Set-Crontab
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Crontab/

@@ -14,7 +14,7 @@
 Summary: Versatile music player
 Name: snackamp
 Version: 3.1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://snackamp.sourceforge.net/

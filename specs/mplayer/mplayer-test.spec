@@ -25,7 +25,7 @@ Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
 %define real_version 2009-07-11
-Release: 0.40.svn20090711
+Release: 0.40.svn20090711%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/

@@ -4,7 +4,7 @@
 Summary: Video4Linux Digital Video Recorder
 Name: dvr
 Version: 3.2
-Release: 1.2
+Release: 1.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://dvr.sourceforge.net/

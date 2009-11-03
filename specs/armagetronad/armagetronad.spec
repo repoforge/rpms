@@ -32,7 +32,7 @@
 Summary: Multiplayer 'Tron' 3D racing game
 Name: armagetronad
 Version: 0.2.8.2.1
-Release: 1%{?prever:.%{prever}}
+Release: 1%{?prever:.%{prever}}%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.armagetronad.net/

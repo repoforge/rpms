@@ -4,7 +4,7 @@
 Summary: Fantasy MMORPG server suing AI/A-Life techniques
 Name: cyphesis
 Version: 0.5.16
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.worldforge.org/wf/dev/eng/servers/cyphesis

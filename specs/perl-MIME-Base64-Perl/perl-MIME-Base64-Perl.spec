@@ -10,7 +10,7 @@
 Summary: Perl module for encoding and decoding of base64 strings
 Name: perl-MIME-Base64-Perl
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Base64-Perl/

@@ -10,7 +10,7 @@
 Summary: Perl module that implements the fantastic new URI::FromHash
 Name: perl-URI-FromHash
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-FromHash/

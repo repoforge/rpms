@@ -10,7 +10,7 @@
 Summary: Read configuration files in YAML format
 Name: perl-YAML-ConfigFile
 Version: 0.10
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-ConfigFile/

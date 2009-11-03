@@ -9,7 +9,7 @@
 Summary: 3D chess interface
 Name: glchess
 Version: 1.0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://glchess.sourceforge.net/

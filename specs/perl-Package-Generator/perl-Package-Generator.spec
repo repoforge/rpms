@@ -10,7 +10,7 @@
 Summary: Perl module to generate new packages quickly and easily
 Name: perl-Package-Generator
 Version: 0.103
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Package-Generator/

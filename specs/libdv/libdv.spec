@@ -7,7 +7,7 @@
 Summary: Codec for DV video, used by most digital camcorders
 Name: libdv
 Version: 0.102
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdv.sourceforge.net/

@@ -9,7 +9,7 @@
 Summary: RAR archiver to create and manage RAR archives
 Name: rar
 Version: 3.5.1
-Release: 1
+Release: 1%{?dist}
 License: Shareware
 Group: Applications/Archiving
 URL: http://www.rarlabs.com/

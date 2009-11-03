@@ -7,7 +7,7 @@
 Summary: FUSE-based user-space file system for accessing subversion repositories
 Name: fuse-svnfs
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.jmadden.eu/index.php/svnfs/

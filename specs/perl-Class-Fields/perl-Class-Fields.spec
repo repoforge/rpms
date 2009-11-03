@@ -10,7 +10,7 @@
 Summary: Inspect the fields of a class
 Name: perl-Class-Fields
 Version: 0.203
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Fields/

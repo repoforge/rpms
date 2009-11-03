@@ -19,7 +19,7 @@
 Summary: Media Center Toolkit
 Name: pigment
 Version: 0.3.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: https://code.fluendo.com/pigment/trac

@@ -10,7 +10,7 @@
 Summary: Efficiently match IP addresses against IP ranges with C
 Name: perl-Net-IP-CMatch
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IP-CMatch/

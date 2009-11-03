@@ -9,7 +9,7 @@
 Summary: Python bindings for sqlite
 Name: python-sqlite
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pysqlite.org/

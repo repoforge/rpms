@@ -6,7 +6,7 @@
 Summary: FUSE based filesystem to access the Hidden Protected Area (HPA) on disk
 Name: fuse-hpafs
 Version: 0.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://home.tiscali.nl/pebolle/code/hpafs/

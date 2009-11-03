@@ -9,7 +9,7 @@
 Summary: Scan for wireless access points and save captured traffic
 Name: ssidsniff
 Version: 0.36
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.bastard.net/~kos/wifi/

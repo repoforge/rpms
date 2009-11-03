@@ -16,7 +16,7 @@
 Summary: Image viewing utility
 Name: gliv
 Version: 1.9.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://guichaz.free.fr/gliv/

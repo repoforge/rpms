@@ -5,7 +5,7 @@
 Summary: Font selection widget
 Name: fontsel
 Version: 0.5.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: ???

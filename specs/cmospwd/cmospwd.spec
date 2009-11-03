@@ -5,7 +5,7 @@
 Summary: Decrypts password stored in cmos used to access BIOS SETUP
 Name: cmospwd
 Version: 5.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.cgsecurity.org/wiki/CmosPwd

@@ -4,7 +4,7 @@
 Summary: Tool for generating C-based recognizers from regular expressions
 Name: re2c
 Version: 0.12.3
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Tools
 URL: http://re2c.sourceforge.net/

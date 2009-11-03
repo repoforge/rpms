@@ -10,7 +10,7 @@
 Summary: perform tests on all modules of a distribution
 Name: perl-Test-Distribution
 Version: 2.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Distribution/

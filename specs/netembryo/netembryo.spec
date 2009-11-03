@@ -5,7 +5,7 @@
 Summary: Netembryo network abstraction library
 Name: netembryo
 Version: 0.1.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://lscube.org/projects/netembryo

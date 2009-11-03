@@ -10,7 +10,7 @@
 Summary: Perl module for getting PID info
 Name: perl-Unix-PID
 Version: 0.0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-PID/

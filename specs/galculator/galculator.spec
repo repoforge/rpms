@@ -5,7 +5,7 @@
 Summary: Graphical scientific calculator
 Name: galculator
 Version: 1.3.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://galculator.sourceforge.net/

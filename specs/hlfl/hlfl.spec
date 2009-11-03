@@ -7,7 +7,7 @@
 Summary: High-Level Firewall Language
 Name: hlfl
 Version: 0.60.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.hlfl.org/

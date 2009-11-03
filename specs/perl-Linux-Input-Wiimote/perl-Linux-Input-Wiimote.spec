@@ -10,7 +10,7 @@
 Summary: Perl interface to the libcwiimote library
 Name: perl-Linux-Input-Wiimote
 Version: 0.04002
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Linux-Input-Wiimote/

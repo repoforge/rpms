@@ -10,7 +10,7 @@
 Summary: Interface to Google Checkout
 Name: perl-Google-Checkout
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Google-Checkout/

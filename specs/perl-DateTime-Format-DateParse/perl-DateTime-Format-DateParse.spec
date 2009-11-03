@@ -10,7 +10,7 @@
 Summary: Parses Date::Parse compatible formats
 Name: perl-DateTime-Format-DateParse
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-DateParse/

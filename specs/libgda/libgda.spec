@@ -12,7 +12,7 @@
 Summary: Library for writing gnome database programs
 Name: libgda
 Version: 1.2.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/

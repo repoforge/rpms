@@ -10,7 +10,7 @@
 Summary: A co-operative multithreaded server using Coro
 Name: perl-Net-Server-Coro
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server-Coro/

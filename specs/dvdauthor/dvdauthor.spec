@@ -5,7 +5,7 @@
 Summary: Set of tools to author a DVD
 Name: dvdauthor
 Version: 0.6.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://dvdauthor.sourceforge.net/

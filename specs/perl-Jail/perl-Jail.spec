@@ -10,7 +10,7 @@
 Summary: Perl module for grabbing video, modifying images and display images
 Name: perl-Jail
 Version: 0.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jail/

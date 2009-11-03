@@ -10,7 +10,7 @@
 Summary: Facility for creating read-only scalars, arrays, hashes
 Name: perl-Readonly
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Readonly/

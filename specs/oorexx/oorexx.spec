@@ -7,7 +7,7 @@
 Summary: Open Object Rexx
 Name: oorexx
 Version: 3.1.1
-Release: 1
+Release: 1%{?dist}
 License: CPL
 Group: Development/Languages
 URL: http://www.oorexx.org/

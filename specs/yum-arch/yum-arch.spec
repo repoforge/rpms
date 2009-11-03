@@ -4,7 +4,7 @@
 Summary: Extract headers from rpm in a old yum repository
 Name: yum-arch
 Version: 2.2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL:  http://linux.duke.edu/yum/

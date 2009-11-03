@@ -12,7 +12,7 @@
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
 Version: 1.007
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE/

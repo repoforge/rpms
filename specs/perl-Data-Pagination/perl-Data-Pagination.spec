@@ -10,7 +10,7 @@
 Summary: Paginal navigation on some data
 Name: perl-Data-Pagination
 Version: 0.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Pagination/

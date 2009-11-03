@@ -10,7 +10,7 @@
 Summary: Fast lookup of country codes from IP addresses
 Name: perl-IP-Country
 Version: 2.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IP-Country/

@@ -4,7 +4,7 @@
 Summary: Rewrite in C++ of the hardlink utility
 Name: hardlink++
 Version: 0.02
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: http://www.sodarock.com/hardlink/hardlink++-%{version}.tgz

@@ -4,7 +4,7 @@
 Summary: Implementation of security standards for XML
 Name: xml-security-c
 Version: 1.3.0
-Release: 1
+Release: 1%{?dist}
 License: Apache
 Group: Development/Libraries
 URL: http://xml.apache.org/security/

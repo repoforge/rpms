@@ -10,7 +10,7 @@
 Summary: interact with sites that implement Google style AuthSub
 Name: perl-Net-Google-AuthSub
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Google-AuthSub/

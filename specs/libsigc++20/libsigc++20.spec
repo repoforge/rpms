@@ -5,7 +5,7 @@
 Summary: Typesafe callback system for standard C++
 Name: libsigc++20
 Version: 2.0.17
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://libsigc.sourceforge.net/

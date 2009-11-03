@@ -6,7 +6,7 @@
 Summary: A module for PHP applications that use SQuaLe
 Name: php-squale
 Version: 0.1.10
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://squale.sourceforge.net/

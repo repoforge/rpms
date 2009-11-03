@@ -10,7 +10,7 @@
 Summary: Perl module for conversion among Unicode Transformation Formats
 Name: perl-Unicode-Transform
 Version: 0.34
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Transform/

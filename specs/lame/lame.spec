@@ -15,7 +15,7 @@
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
 Version: 3.98.2
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/

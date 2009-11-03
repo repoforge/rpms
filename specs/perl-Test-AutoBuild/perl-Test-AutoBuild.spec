@@ -11,7 +11,7 @@
 Summary: Framework for performing continuous, unattended, automated software builds
 Name: perl-Test-AutoBuild
 Version: 1.2.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-AutoBuild/

@@ -6,7 +6,7 @@
 Summary: Library for writing pagers and taskslists
 Name: libwnck
 Version: 0.18
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: ftp://ftp.gnome.org/

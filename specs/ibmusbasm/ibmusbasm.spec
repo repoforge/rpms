@@ -10,7 +10,7 @@
 Summary: IBM USB Advanced System Management (ASM II) Device Drivers
 Name: ibmusbasm
 Version: 1.10.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.pc.ibm.com/support/

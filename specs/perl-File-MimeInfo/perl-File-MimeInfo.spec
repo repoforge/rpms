@@ -10,7 +10,7 @@
 Summary: Determine file type
 Name: perl-File-MimeInfo
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-MimeInfo/

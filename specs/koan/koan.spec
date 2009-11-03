@@ -6,7 +6,7 @@
 Summary: Network provisioning tool for Xen and Bare Metal Machines 
 Name: koan
 Version: 0.5.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://cobbler.et.redhat.com/

@@ -10,7 +10,7 @@
 Summary: Simple interface to create and store data in RRD files
 Name: perl-RRD-Simple
 Version: 1.44
-Release: 1
+Release: 1%{?dist}
 License: Apache 2.0
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RRD-Simple/

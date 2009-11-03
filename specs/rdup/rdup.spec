@@ -5,7 +5,7 @@
 Summary: Prints filenames for backup
 Name: rdup
 Version: 0.9.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.miek.nl/projects/rdup/

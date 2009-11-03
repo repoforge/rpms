@@ -10,7 +10,7 @@
 Summary: Multiplex output to multiple output handles
 Name: perl-IO-Tee
 Version: 0.64
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Tee/

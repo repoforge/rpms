@@ -6,7 +6,7 @@
 Summary: C++ interface for GTK (a GUI library for X)
 Name: gtkmm2
 Version: 2.2.8
-Release: 0
+Release: 0%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

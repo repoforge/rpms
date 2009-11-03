@@ -4,7 +4,7 @@
 Summary: Tool to migrate across IMAP servers
 Name: imapsync
 Version: 1.286
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.linux-france.org/prj/imapsync/

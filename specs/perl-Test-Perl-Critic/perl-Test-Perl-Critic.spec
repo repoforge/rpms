@@ -10,7 +10,7 @@
 Summary: Use Perl::Critic in test scripts
 Name: perl-Test-Perl-Critic
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Perl-Critic/

@@ -10,7 +10,7 @@
 Summary: Perl module to manage a staging directory
 Name: perl-Apache-Stage
 Version: 1.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Stage/

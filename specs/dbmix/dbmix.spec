@@ -9,7 +9,7 @@
 Summary: Digital Audio Mixing System
 Name: dbmix
 Version: 0.9.8
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://dbmix.sourceforge.net/

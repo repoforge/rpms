@@ -10,7 +10,7 @@
 Summary: Cryptographically Secure, True Random Number Generator
 Name: perl-Crypt-Random
 Version: 1.25
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Random/

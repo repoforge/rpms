@@ -10,7 +10,7 @@
 Summary: Cute little penguins that walk along the tops of your windows
 Name: xpenguins
 Version: 2.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://xpenguins.seul.org/

@@ -10,7 +10,7 @@
 Summary: Convert cubic and quadratic bezier each other
 Name: perl-Math-Bezier-Convert
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Bezier-Convert/

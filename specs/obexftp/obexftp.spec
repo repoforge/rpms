@@ -10,7 +10,7 @@
 Summary: Tool to access devices via the OBEX protocol
 Name: obexftp
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://openobex.triq.net/

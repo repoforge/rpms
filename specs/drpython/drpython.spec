@@ -6,7 +6,7 @@
 Summary: Editor and environment for developing programs in python
 Name: drpython
 Version: 3.1.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://drpython.sourceforge.net/

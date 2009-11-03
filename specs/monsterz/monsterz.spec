@@ -13,7 +13,7 @@
 Summary: Little arcade puzzle game, similar to the famous Bejeweled
 Name: monsterz
 Version: 0.7.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://sam.zoy.org/monsterz/

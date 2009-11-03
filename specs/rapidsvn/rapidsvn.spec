@@ -13,7 +13,7 @@
 Summary: Graphical front-end for the Subversion concurrent versioning system.
 Name: rapidsvn
 Version: 0.10.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://rapidsvn.tigris.org/

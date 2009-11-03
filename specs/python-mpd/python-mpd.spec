@@ -8,7 +8,7 @@
 Summary: Python MPD client library
 Name: python-mpd
 Version: 0.2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pypi.python.org/pypi/python-mpd/

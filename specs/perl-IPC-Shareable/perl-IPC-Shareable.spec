@@ -11,7 +11,7 @@
 Summary: Share Perl variables between processes
 Name: perl-IPC-Shareable
 Version: 0.60
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Shareable/

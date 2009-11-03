@@ -7,7 +7,7 @@
 Summary: Send ICMP nasty garbage
 Name: sing
 Version: 1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sf.net/projects/sing/

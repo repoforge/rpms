@@ -11,7 +11,7 @@
 Summary: Python bindings for libao
 Name: python-ao
 Version: 0.82
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.andrewchatham.com/pyogg/

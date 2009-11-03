@@ -8,7 +8,7 @@
 Summary: Asynchronous networking framework written in Python
 Name: python-twisted-core
 Version: 8.1.0
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://twistedmatrix.com/trac/wiki/TwistedCore

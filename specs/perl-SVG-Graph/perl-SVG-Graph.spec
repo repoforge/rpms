@@ -10,7 +10,7 @@
 Summary: Perl module to visualize your data in Scalable Vector Graphics (SVG) format
 Name: perl-SVG-Graph
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG-Graph/

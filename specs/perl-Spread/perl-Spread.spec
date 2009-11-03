@@ -11,7 +11,7 @@
 Summary: Perl extension for the Spread group communication system
 Name: perl-Spread
 Version: 3.17.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spread/

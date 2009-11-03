@@ -13,7 +13,7 @@
 Summary: Graphical Tool for Managing a Certification Authority
 Name: tinyca
 Version: 0.7.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tinyca.sm-zone.net/

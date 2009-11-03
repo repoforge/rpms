@@ -10,7 +10,7 @@
 Summary: subclass of Net::LDAP which uses POE to speak via sockets in async mode.
 Name: perl-POE-Component-Client-LDAP
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-LDAP/

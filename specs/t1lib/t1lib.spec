@@ -4,7 +4,7 @@
 Summary: PostScript Type 1 font rasterizer
 Name: t1lib
 Version: 5.1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Publishing
 URL: ftp://sunsite.unc.edu/pub/Linux/libs/graphics/

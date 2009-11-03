@@ -10,7 +10,7 @@
 Summary: Perl module that implements PRN - Object ID conversions
 Name: perl-GPS-PRN
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GPS-PRN/

@@ -9,7 +9,7 @@
 Summary: Multiply and invert Matrices
 Name: perl-Math-Matrix
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Matrix/

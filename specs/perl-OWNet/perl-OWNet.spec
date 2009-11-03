@@ -10,7 +10,7 @@
 Summary: Light weight access to owserver
 Name: perl-OWNet
 Version: 1.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OWNet/

@@ -4,7 +4,7 @@
 Summary: Video-surveilance system
 Name: motion
 Version: 3.2.7
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.lavrsen.dk/twiki/bin/view/Motion/WebHome

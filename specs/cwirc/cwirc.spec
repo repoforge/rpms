@@ -7,7 +7,7 @@
 Summary: Plugin for x-chat for transmitting raw morse code
 Name: cwirc
 Version: 2.0.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://users.skynet.be/ppc/cwirc/

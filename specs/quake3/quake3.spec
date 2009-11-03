@@ -12,7 +12,7 @@
 Summary: Quake 3 Arena tournament 3D shooter game
 Name: quake3
 Version: 1.34
-Release: 0.1.rc2%{?svn:.svn%{svn}}
+Release: 0.1.rc2%{?svn:.svn%{svn}}%{?dist}
 Group: Amusements/Games
 License: GPL
 URL: http://www.icculus.org/quake3/

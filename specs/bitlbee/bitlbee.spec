@@ -5,7 +5,7 @@
 Summary: IRC to other chat networks gateway
 Name: bitlbee
 Version: 1.2.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/

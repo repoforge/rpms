@@ -7,7 +7,7 @@
 Summary: API document browser
 Name: devhelp
 Version: 0.9.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.imendio.com/projects/devhelp/

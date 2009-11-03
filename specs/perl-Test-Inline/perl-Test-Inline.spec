@@ -14,7 +14,7 @@
 Summary: Embed your tests in your code, next to what is being tested
 Name: perl-Test-Inline
 Version: 2.211
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Inline/

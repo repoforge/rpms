@@ -10,7 +10,7 @@
 Summary: Perform text substitutions on an HTML template
 Name: perl-HTML-Subtext
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Subtext/

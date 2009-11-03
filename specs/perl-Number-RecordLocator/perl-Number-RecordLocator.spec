@@ -10,7 +10,7 @@
 Summary: Encodes integers into a short and easy to read and pronounce "locator string"
 Name: perl-%{real_name}
 Version: 0.005
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-RecordLocator/

@@ -10,7 +10,7 @@
 Summary: Perl interface to the UNIX syslog(3) calls
 Name: perl-Sys-Syslog
 Version: 0.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Syslog/

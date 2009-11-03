@@ -4,7 +4,7 @@
 Summary: AMR WideBand speech codec
 Name: amrwb
 Version: 7.0.0.3
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.penguin.cz/~utx/amr

@@ -18,7 +18,7 @@
 Summary: Powerful image loading and rendering library
 Name: imlib2
 Version: 1.4.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html

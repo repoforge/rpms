@@ -8,7 +8,7 @@
 Summary: World Timezone Definitions for Python
 Name: python-tz
 Version: 2006p
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://pytz.sourceforge.net/

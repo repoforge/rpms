@@ -9,7 +9,7 @@
 Summary: library to allow transparent SOCKS proxying
 Name: tsocks
 Version: 1.8
-Release: 6.beta5.2
+Release: 6.beta5.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tsocks.sourceforge.net/

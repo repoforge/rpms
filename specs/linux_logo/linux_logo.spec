@@ -4,7 +4,7 @@
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
 Version: 5.03
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.deater.net/weave/vmwprod/linux_logo/

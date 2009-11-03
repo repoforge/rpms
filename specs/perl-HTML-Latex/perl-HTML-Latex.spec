@@ -10,7 +10,7 @@
 Summary: Creates a Latex file from an HTML file
 Name: perl-HTML-Latex
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Latex/

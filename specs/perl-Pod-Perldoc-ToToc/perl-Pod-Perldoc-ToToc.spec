@@ -10,7 +10,7 @@
 Summary: Turn one or more Pod files into a table of contents
 Name: perl-Pod-Perldoc-ToToc
 Version: 1.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Perldoc-ToToc/

@@ -10,7 +10,7 @@
 Summary: Perl module named Tk-TableMatrix
 Name: perl-Tk-TableMatrix
 Version: 1.23
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-TableMatrix/

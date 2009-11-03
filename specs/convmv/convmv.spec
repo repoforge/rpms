@@ -5,7 +5,7 @@
 Summary: Convert filenames to a different encoding
 Name: convmv
 Version: 1.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://j3e.de/linux/convmv/

@@ -4,7 +4,7 @@
 Summary: Diagram drawing program
 Name: dia
 Version: 0.97
-Release: 1
+Release: 1%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia

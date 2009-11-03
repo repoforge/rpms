@@ -4,7 +4,7 @@
 Summary: Film collection manager application
 Name: griffith
 Version: 0.9.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://griffith.vasconunes.net/

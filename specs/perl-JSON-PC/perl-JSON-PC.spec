@@ -10,7 +10,7 @@
 Summary: Perl module that implements a fast JSON Parser and Converter
 Name: perl-JSON-PC
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-PC/

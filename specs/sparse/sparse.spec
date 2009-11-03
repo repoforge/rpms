@@ -5,7 +5,7 @@
 Summary: Semantic parser
 Name: sparse
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://kernel.org/pub/linux/kernel/people/josh/sparse/

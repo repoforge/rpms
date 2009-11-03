@@ -10,7 +10,7 @@
 Summary: Convert encoding of Japanese text
 Name: perl-Unicode-Japanese
 Version: 0.46
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Japanese/

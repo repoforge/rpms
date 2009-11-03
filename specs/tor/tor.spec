@@ -9,7 +9,7 @@
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
 Version: 0.2.1.19
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://tor.eff.org/

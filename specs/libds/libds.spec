@@ -5,7 +5,7 @@
 Summary: Shared Library for Data Structures
 Name: libds
 Version: 1.5.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/libds/

@@ -10,7 +10,7 @@
 Summary: weighted linear regression package (line+plane fitting)
 Name: perl-Statistics-Regression
 Version: 0.53
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Regression/

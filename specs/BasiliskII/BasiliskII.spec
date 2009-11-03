@@ -24,7 +24,7 @@
 Summary: 68k Macintosh emulator
 Name: BasiliskII
 Version: 1.0
-Release: 0.%{date}.2
+Release: 0.%{date}.2%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://gwenole.beauchesne.info/projects/basilisk2/

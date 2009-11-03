@@ -5,7 +5,7 @@
 Summary: Recover DNS zonefiles using the DNS protocol
 Name: walker
 Version: 3.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://josefsson.org/walker/

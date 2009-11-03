@@ -5,7 +5,7 @@
 Summary: Programs and libs needed for manipulating reiserfs partitions
 Name: progsreiserfs
 Version: 0.3.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.namesys.com

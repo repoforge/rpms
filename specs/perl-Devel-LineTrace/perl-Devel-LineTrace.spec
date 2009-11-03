@@ -10,7 +10,7 @@
 Summary: Apply traces to individual lines
 Name: perl-Devel-LineTrace
 Version: 0.1.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-LineTrace/

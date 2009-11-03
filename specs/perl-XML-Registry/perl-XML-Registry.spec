@@ -10,7 +10,7 @@
 Summary: Perl module for loading and saving an XML registry
 Name: perl-XML-Registry
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Registry/

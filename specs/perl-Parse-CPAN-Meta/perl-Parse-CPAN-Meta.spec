@@ -10,7 +10,7 @@
 Summary: Parse META.yml and other similar CPAN metadata files
 Name: perl-Parse-CPAN-Meta
 Version: 1.40
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-CPAN-Meta/

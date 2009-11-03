@@ -10,7 +10,7 @@
 Summary: Perl module to calculate digests while reading or writing
 Name: perl-IO-Digest
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Digest/

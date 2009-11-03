@@ -8,7 +8,7 @@
 Summary: GStreamer streaming media framework runtime
 Name: gstreamer07
 Version: %{majmin}.%{micro}
-Release: 0.1
+Release: 0.1%{?dist}
 Group: Applications/Multimedia
 License: LGPL
 URL: http://gstreamer.net/

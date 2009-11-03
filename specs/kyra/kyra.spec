@@ -6,7 +6,7 @@
 Summary: Sprite Engine
 Name: kyra
 Version: 2.0.7
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://grinninglizard.com/kyra/

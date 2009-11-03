@@ -16,7 +16,7 @@ Summary: Set of (improved) artwiz fonts
 %define real_name artwiz-aleczapka-en-sources
 Name: artwiz-aleczapka-fonts
 Version: 1.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://artwizaleczapka.sourceforge.net/

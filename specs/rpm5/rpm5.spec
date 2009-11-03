@@ -29,7 +29,7 @@
 Summary: The RPM package management system.
 Name: rpm5
 Version: %{rpm_version}
-Release: 0.3
+Release: 0.3%{?dist}
 Group: System Environment/Base
 URL: http://wraptastic.org
 Source: http://rpm5.org/files/rpm/rpm-4.5/rpm-%{version}.tar.gz

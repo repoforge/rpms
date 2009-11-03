@@ -10,7 +10,7 @@
 Summary: Low-Level Interface to zlib compression library
 Name: perl-Compress-Raw-Zlib
 Version: 2.021
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-Raw-Zlib/

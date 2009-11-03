@@ -6,7 +6,7 @@
 Summary: Frantic shooting game where viruses invade your computer
 Name: viruskiller
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/virusKiller.php

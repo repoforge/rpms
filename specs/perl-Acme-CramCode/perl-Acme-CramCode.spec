@@ -10,7 +10,7 @@
 Summary: Perl module to compress your code
 Name: perl-Acme-CramCode
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-CramCode/

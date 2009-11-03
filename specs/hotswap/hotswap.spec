@@ -5,7 +5,7 @@
 Summary: Hotswap peripherals in portable computers
 Name: hotswap
 Version: 0.4.0
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://users.ox.ac.uk/~univ1377/c600.html

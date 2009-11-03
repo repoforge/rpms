@@ -5,7 +5,7 @@
 Summary: Text-mode player for CDs and MP3 files
 Name: orpheus
 Version: 1.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://konst.org.ua/orpheus/

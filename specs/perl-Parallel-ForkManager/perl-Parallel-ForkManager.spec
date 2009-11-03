@@ -9,7 +9,7 @@
 Summary: Simple parallel processing fork manager
 Name: perl-Parallel-ForkManager
 Version: 0.7.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parallel-ForkManager/

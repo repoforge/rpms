@@ -10,7 +10,7 @@
 Summary: Perl module that implements date conversion routines.
 Name: perl-DateTime-Format-HTTP
 Version: 0.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-HTTP/

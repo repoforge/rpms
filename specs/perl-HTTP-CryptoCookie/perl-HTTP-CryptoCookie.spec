@@ -10,7 +10,7 @@
 Summary: Encrypted cookies
 Name: perl-HTTP-CryptoCookie
 Version: 1.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-CryptoCookie/

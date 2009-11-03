@@ -6,7 +6,7 @@
 Summary: Red Hat compilers for distccd
 Name: distcc-compilers-redhat
 Version: 0.7.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://dag.wieers.com/home-made/distcc/

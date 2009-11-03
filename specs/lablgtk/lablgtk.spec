@@ -5,7 +5,7 @@
 Summary: Objective Caml interface to gtk+
 Name: lablgtk
 Version: 2.4.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://wwwfun.kurims.kyoto-u.ac.jp/soft/olabl/lablgtk.html

@@ -5,7 +5,7 @@
 Summary: Image Blending with Multiresolution Splines
 Name: enblend
 Version: 3.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://enblend.sourceforge.net/

@@ -4,7 +4,7 @@
 Summary: I/O generator
 Name: iogen
 Version: 3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.peereboom.us/iogen/

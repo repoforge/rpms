@@ -6,7 +6,7 @@
 Summary: FUSE-Filesystem to fast and easy access remote resources via SMB
 Name: fuse-smb
 Version: 0.8.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ricardis.tudelft.nl/~vincent/fusesmb/

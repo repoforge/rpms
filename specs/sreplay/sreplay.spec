@@ -5,7 +5,7 @@
 Summary: Tool that performs system call replay of strace logs
 Name: sreplay
 Version: 0.2.8
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Debuggers
 URL: http://weather.ou.edu/~apw/projects/sreplay/

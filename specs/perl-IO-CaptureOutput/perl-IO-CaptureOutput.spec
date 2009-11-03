@@ -10,7 +10,7 @@
 Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
 Version: 1.1101
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-CaptureOutput/

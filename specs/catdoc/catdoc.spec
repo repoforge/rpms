@@ -5,7 +5,7 @@
 Summary: Decodes MS Word files into plain text or TeX format
 Name: catdoc
 Version: 0.94.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.45.free.net/~vitus/software/catdoc/

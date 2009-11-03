@@ -7,7 +7,7 @@
 Summary: Thorough, stand alone memory test
 Name: memtest86
 Version: 3.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest86.com/

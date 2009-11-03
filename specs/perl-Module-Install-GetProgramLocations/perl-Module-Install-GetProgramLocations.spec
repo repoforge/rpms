@@ -10,7 +10,7 @@
 Summary: Module::Install extension for specifying the location of other programs
 Name: perl-Module-Install-GetProgramLocations
 Version: 0.3003
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install-GetProgramLocations/

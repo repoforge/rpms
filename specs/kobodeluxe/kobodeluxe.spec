@@ -11,7 +11,7 @@
 Summary: SDL port of Akira Higuchi's game XKobo 
 Name: kobodeluxe
 Version: 0.4
-Release: 0.pre10
+Release: 0.pre10%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.olofson.net/kobodl/

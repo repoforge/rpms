@@ -9,7 +9,7 @@
 Summary: Store files and backup data securely to Amazon.com's S3 Storage Service
 Name: jungledisk
 Version: 1.46
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://jungledisk.com/

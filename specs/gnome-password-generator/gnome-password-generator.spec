@@ -5,7 +5,7 @@
 Summary: Graphical secure password generator
 Name: gnome-password-generator
 Version: 1.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://gnome-password.sourceforge.net/

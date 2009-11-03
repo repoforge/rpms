@@ -4,7 +4,7 @@
 Summary: Create connections through HTTP-proxy's and SOCKS-servers
 Name: connect
 Version: 1.95
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://zippo.taiyo.co.jp/~gotoh/ssh/connect.html

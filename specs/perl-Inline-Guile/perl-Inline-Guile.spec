@@ -10,7 +10,7 @@
 Summary: Inline module for the GNU Guile Scheme interpreter
 Name: perl-Inline-Guile
 Version: 0.001
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Guile/

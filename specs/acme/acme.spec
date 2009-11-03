@@ -5,7 +5,7 @@
 Summary: Multimedia keyboard button tool for GNOME
 Name: acme
 Version: 2.4.3
-Release: 1
+Release: 1%{?dist}
 Group: System Environment/Daemons
 License: GPL
 URL: http://devin.com/acme/

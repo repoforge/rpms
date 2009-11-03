@@ -4,7 +4,7 @@
 Summary: Tool for recovering deleted files on an ext2 or ext3 filesystem
 Name: e2undel
 Version: 0.82
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://e2undel.sf.net/

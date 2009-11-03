@@ -10,7 +10,7 @@
 Summary: Perl module that implemens RIPE Whois
 Name: perl-Net-Whois-RIPE
 Version: 1.30
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois-RIPE/

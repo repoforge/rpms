@@ -10,7 +10,7 @@
 Summary: Perl wrapper for the original cal UNIX command line tool
 Name: perl-UNIX-Cal
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIX-Cal/

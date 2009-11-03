@@ -3,7 +3,7 @@
 Summary: Smooth theme engine and basic themes
 Name: gtk2-engine-smooth
 Version: 0.5.8
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/smooth-engine/

@@ -5,7 +5,7 @@
 Summary: Curses based bandwidth monitor
 Name: bwm-ng
 Version: 0.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gropp.org/

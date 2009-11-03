@@ -43,7 +43,7 @@
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
 Version: 1.60
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/

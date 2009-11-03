@@ -10,7 +10,7 @@
 Summary: Capture STDOUT and STDERR from Perl, XS or external programs
 Name: perl-Capture-Tiny
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Capture-Tiny/

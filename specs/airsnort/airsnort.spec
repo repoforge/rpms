@@ -19,7 +19,7 @@
 Summary: Wireless LAN (WLAN) tool which recovers encryption keys
 Name: airsnort
 Version: 0.2.7
-Release: 0.e.2
+Release: 0.e.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://airsnort.shmoo.com/

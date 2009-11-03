@@ -12,7 +12,7 @@ AutoReq: no
 Summary: Authentication and Authorization via cookie
 Name: perl-Apache-AuthCookie
 Version: 3.12
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-AuthCookie/

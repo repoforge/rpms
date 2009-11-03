@@ -10,7 +10,7 @@
 Summary: Disassemble and investigate Python bytecode
 Name: perl-Python-Bytecode
 Version: 2.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Python-Bytecode/

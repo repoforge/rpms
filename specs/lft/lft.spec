@@ -11,7 +11,7 @@
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
 Version: 3.0
-Release: 1
+Release: 1%{?dist}
 License: MainNerve Public License
 Group: Applications/Internet
 URL: http://oppleman.com/lft/

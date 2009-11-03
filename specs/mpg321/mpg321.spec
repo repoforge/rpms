@@ -4,7 +4,7 @@
 Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
-Release: 8
+Release: 8%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/

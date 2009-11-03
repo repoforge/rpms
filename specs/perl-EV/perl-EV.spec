@@ -9,7 +9,7 @@
 Summary: Perl module named EV
 Name: perl-EV
 Version: 3.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/EV/

@@ -46,7 +46,7 @@
 Summary: The same as C<lib>, but makes relative path absolute
 Name: perl-lib-abs
 Version: 0.90
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/lib-abs/

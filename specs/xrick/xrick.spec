@@ -12,7 +12,7 @@
 Summary: Clone of the Rick Dangerous classic game
 Name: xrick
 Version: 0.0.%{real_version}
-Release: 2
+Release: 2%{?dist}
 License: GPL/Proprietary
 Group: Amusements/Games
 URL: http://www.bigorno.net/xrick/

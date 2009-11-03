@@ -6,7 +6,7 @@
 Summary: CSS stylesheets editor
 Name: cssed
 Version: 0.4.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://cssed.sourceforge.net/

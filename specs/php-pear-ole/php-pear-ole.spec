@@ -6,7 +6,7 @@
 Summary: PEAR package for reading and writing OLE containers
 Name: php-pear-ole
 Version: 0.5
-Release: 2
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pear.php.net/package/OLE/

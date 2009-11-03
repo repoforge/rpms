@@ -7,7 +7,7 @@
 Summary: Skeletal based character animation library
 Name: cal3d091
 Version: 0.9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://cal3d.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: A client class for the ClamAV C<clamd> virus scanner daemon
 Name: perl-ClamAV-Client
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClamAV-Client/

@@ -4,7 +4,7 @@
 Summary: Gaim plugin to block messages from certain contacts in a protocol-independent way
 Name: gaim-blocky
 Version: 0.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.desire.ch/tools/gaim-blocky.php/

@@ -29,7 +29,7 @@
 Summary: Driver for Intel® PRO/Wireless 2100 network adaptors
 Name: kernel-module-ipw2100
 Version: 0.54
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/

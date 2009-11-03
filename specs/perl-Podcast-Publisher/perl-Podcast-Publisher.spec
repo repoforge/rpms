@@ -10,7 +10,7 @@
 Summary: Manages RSS files and podcasts
 Name: perl-Podcast-Publisher
 Version: 0.51
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Podcast-Publisher/

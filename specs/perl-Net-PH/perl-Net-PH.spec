@@ -10,7 +10,7 @@
 Summary: Perl module that implements a CCSO Nameserver Client class
 Name: perl-Net-PH
 Version: 2.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-PH/

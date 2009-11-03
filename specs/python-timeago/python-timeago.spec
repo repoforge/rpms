@@ -8,7 +8,7 @@
 Summary: Human-oriented representation of time deltas
 Name: python-timeago
 Version: 0.0
-Release: 1.r11
+Release: 1.r11%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://adomas.org/pytimeago/

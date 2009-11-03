@@ -5,7 +5,7 @@
 Summary: Search with approximate matching capabilities
 Name: agrep
 Version: 2.04
-Release: 1.2
+Release: 1.2%{?dist}
 Group: Applications/Text
 License: Redistributable for non-profit use
 URL: http://www.tgries.de/agrep/

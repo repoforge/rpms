@@ -10,7 +10,7 @@
 Summary: an object for all network related stuff
 Name: perl-Net-Packet-Target
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Packet-Target/

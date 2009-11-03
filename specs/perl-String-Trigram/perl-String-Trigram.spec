@@ -10,7 +10,7 @@
 Summary: Find similar strings by trigram (or 1, 2, 4, etc.-gram) method
 Name: perl-String-Trigram
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Trigram/

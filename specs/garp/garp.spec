@@ -5,7 +5,7 @@
 Summary: Check unused IP addresses and automagically assign them
 Name: garp
 Version: 0.7.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://garp.3va.net/

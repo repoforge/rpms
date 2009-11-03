@@ -9,7 +9,7 @@ Summary: Multiband Atheros Driver for Wireless Fidelity
 Name: madwifi
 Version: 0.9.4
 %define real_version r2598-20070725
-Release: 0.1.r2598
+Release: 0.1.r2598%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://madwifi.org/

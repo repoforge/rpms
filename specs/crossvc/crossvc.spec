@@ -5,7 +5,7 @@
 Summary: Graphical frontend to CVS.
 Name: crossvc
 Version: 1.5.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.lincvs.org/

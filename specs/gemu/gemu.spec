@@ -13,7 +13,7 @@
 Summary: GNOME EMU10K1 configuration tool
 Name: gemu
 Version: 0.8
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.roadfeldt.com/

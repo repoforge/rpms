@@ -23,7 +23,7 @@
 Summary: OpenGL Jump&Run game where you have to flee an exploding nuclear bomb
 Name: atomorun
 Version: 1.1
-Release: %{?prever:0.%{prever}.}2.2
+Release: %{?prever:0.%{prever}.}2.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://atomorun.whosme.de/index.php

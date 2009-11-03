@@ -44,7 +44,7 @@
 Summary: Get information from Excel file
 Name: perl-Spreadsheet-ParseExcel
 Version: 0.55
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spreadsheet-ParseExcel/

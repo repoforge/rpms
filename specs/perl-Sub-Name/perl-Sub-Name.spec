@@ -10,7 +10,7 @@
 Summary: Perl module to (re)name a sub
 Name: perl-Sub-Name
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Name/

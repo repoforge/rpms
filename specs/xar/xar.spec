@@ -4,7 +4,7 @@
 Summary: eXtensible ARchiver
 Name: xar
 Version: 1.5.2
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Archiving
 URL: http://code.google.com/p/xar/

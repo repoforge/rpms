@@ -10,7 +10,7 @@
 Summary: Parse and evaluate XPath statements
 Name: perl-XML-XPath
 Version: 1.13
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XPath/

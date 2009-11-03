@@ -10,7 +10,7 @@
 Summary: Simple file locking
 Name: perl-LockFile-Simple
 Version: 0.207
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LockFile-Simple/

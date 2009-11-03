@@ -4,7 +4,7 @@
 Summary: C++ wrapper for sockets
 Name: csockets
 Version: 2.3.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.alhem.net/Sockets/index.html

@@ -5,7 +5,7 @@
 Summary: Foreign function call libraries
 Name: ffcall
 Version: 1.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.haible.de/bruno/packages-ffcall.html

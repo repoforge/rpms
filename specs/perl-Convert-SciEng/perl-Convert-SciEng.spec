@@ -10,7 +10,7 @@
 Summary: Convert numbers with scientific postfixes
 Name: perl-Convert-SciEng
 Version: 0.91
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-SciEng/

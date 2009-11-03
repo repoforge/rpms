@@ -7,7 +7,7 @@
 Summary: Tool to recover lost files
 Name: recover
 Version: 1.3c
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://recover.sourceforge.net/linux/recover/

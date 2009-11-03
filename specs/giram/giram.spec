@@ -7,7 +7,7 @@
 Summary: POV-Ray oriented modeller
 Name: giram
 Version: 0.3.5
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.giram.org/

@@ -4,7 +4,7 @@
 Summary: Busybox version suited for Mindi
 Name: mindi-busybox
 Version: 1.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.mondorescue.org/

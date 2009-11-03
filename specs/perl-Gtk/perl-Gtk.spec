@@ -11,7 +11,7 @@
 Summary: Perl module providing GTK bindings
 Name: perl-Gtk
 Version: 0.7009
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk/

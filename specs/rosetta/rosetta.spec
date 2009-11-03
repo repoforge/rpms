@@ -6,7 +6,7 @@
 Summary: Interactive tool to help translate documents in the DocBook format
 Name: rosetta
 Version: 0.01
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.irule.be/bvh/c++/rosetta/

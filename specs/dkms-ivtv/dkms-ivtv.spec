@@ -7,7 +7,7 @@
 Summary: iTVC15/16 and CX23415/16 driver
 Name: dkms-ivtv
 Version: 0.10.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ivtvdriver.org/

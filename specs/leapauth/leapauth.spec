@@ -7,7 +7,7 @@
 Summary: Utility for doing LEAP authentication on WLAN
 Name: leapauth
 Version: 0.0
-Release: 0.20050322.2
+Release: 0.20050322.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.noomore.org/leap/

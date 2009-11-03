@@ -10,7 +10,7 @@
 Summary: Current tree visualisation add-on for Bash and Zsh and also shows glob patterns.
 Name: viewglob
 Version: 2.0.1
-Release: 2
+Release: 2%{?dist}
 License: GPL and http://www.basepath.com/aup/copyright.htm
 Group: Applications/System
 URL: http://viewglob.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: ISO 9660 Rock Ridge Filesystem Manipulator
 Name: xorriso
 Version: 0.2.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://scdbackup.sourceforge.net/xorriso_eng.html

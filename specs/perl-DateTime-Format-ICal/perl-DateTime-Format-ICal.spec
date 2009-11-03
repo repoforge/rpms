@@ -11,7 +11,7 @@
 Summary: Parse and format iCal datetime and duration strings
 Name: perl-DateTime-Format-ICal
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-ICal/

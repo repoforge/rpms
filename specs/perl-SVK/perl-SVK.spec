@@ -11,7 +11,7 @@
 Summary: Perl module that implements a distributed version control system (VCS)
 Name: perl-SVK
 Version: 2.0.2
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVK/

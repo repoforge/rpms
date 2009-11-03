@@ -10,7 +10,7 @@
 Summary: Extract the structure of a quoted mail message
 Name: perl-Text-Quoted
 Version: 2.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Quoted/

@@ -10,7 +10,7 @@
 Summary: Push Repository to Remote Subversion Repository
 Name: perl-SVN-Push
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Push/

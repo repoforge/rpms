@@ -13,7 +13,7 @@
 Summary: Interactive educational geometry software
 Name: drgeo
 Version: 1.1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://ofset.sourceforge.net/drgeo/

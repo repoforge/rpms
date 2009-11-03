@@ -22,7 +22,7 @@
 Summary: Track invocations of system calls across your Linux system
 Name: syscalltrack
 Version: 0.82
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://syscalltrack.sourceforge.net/
@@ -47,7 +47,7 @@ process, if you were feeling particularly sadistic.
 %package -n kernel-module-%{name}
 Summary: Kernel modules for %{name}
 Group: System Environment/Kernel
-Release: %{release}_%{kversion}_%{krelease}
+Release: %{release}_%{kversion}_%{krelease}%{?dist}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 

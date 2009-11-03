@@ -10,7 +10,7 @@
 Summary: Perl module that implements Log4j
 Name: perl-Log-Dispatch-Config
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch-Config/

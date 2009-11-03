@@ -10,7 +10,7 @@
 Summary: Subversion repository mirroring tool
 Name: perl-SVN-Mirror
 Version: 0.75
-Release: 2
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Mirror/

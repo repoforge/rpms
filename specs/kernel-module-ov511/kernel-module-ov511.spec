@@ -25,7 +25,7 @@
 Summary: Linux OVCam Drivers
 Name: kernel-module-ov511
 Version: 2.27
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://alpha.dyndns.org/ov511/

@@ -10,7 +10,7 @@
 Summary: Regina Rexx interpreter
 Name: regina-rexx
 Version: 3.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://regina-rexx.sourceforge.net/

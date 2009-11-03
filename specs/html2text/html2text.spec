@@ -4,7 +4,7 @@
 Summary: Utility to convert HTML document to plain text
 Name: html2text
 Version: 1.3.2a
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.mbayer.de/html2text/

@@ -10,7 +10,7 @@
 Summary: Setup a CGI enviroment from a HTTP::Request
 Name: perl-HTTP-Request-AsCGI
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Request-AsCGI/

@@ -12,7 +12,7 @@
 Summary: Sound module player and composer
 Name: soundtracker
 Version: 0.6.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.soundtracker.org/

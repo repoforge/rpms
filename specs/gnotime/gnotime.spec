@@ -5,7 +5,7 @@
 Summary: Tracks and reports time spent
 Name: gnotime
 Version: 2.2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://gttr.sourceforge.net/

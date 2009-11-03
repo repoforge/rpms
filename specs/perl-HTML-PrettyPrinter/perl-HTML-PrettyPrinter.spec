@@ -10,7 +10,7 @@
 Summary: Generate nice HTML files from HTML syntax trees
 Name: perl-HTML-PrettyPrinter
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-PrettyPrinter/

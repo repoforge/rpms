@@ -10,7 +10,7 @@
 Summary: Framework for SIP and Voice Over IP
 Name: perl-Net-SIP
 Version: 0.54
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SIP/

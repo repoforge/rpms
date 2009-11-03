@@ -11,7 +11,7 @@
 Summary: Shoot'em up arcade game
 Name: dd2
 Version: 0.2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.usebox.net/jjm/dd2/

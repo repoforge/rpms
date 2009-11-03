@@ -4,7 +4,7 @@
 Summary: Tool for fitting and analyzing data
 Name: fityk
 Version: 0.8.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.unipress.waw.pl/fityk/

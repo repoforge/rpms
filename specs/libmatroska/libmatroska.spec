@@ -4,7 +4,7 @@
 Summary: Multimedia container format library
 Name: libmatroska
 Version: 0.8.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.matroska.org/

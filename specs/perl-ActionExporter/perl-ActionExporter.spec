@@ -10,7 +10,7 @@
 Summary: Perl module to extend Exporter with export_action()
 Name: perl-ActionExporter
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ActionExporter/

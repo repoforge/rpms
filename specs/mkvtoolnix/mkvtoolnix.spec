@@ -6,7 +6,7 @@
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
 Version: 2.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/mkvtoolnix/

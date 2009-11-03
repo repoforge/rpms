@@ -4,7 +4,7 @@
 Summary: NRG to ISO 9660 CD image file converter
 Name: nrg2iso
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://gregory.kokanosky.free.fr/v4/linux/nrg2iso.en.html

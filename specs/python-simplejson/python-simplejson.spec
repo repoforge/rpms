@@ -6,7 +6,7 @@
 Summary: Simple, fast, extensible JSON encoder/decoder for Python
 Name: python-simplejson
 Version: 2.0.5
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://code.google.com/p/simplejson/

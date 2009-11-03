@@ -7,7 +7,7 @@
 Summary: Light-weight GNOME web browser
 Name: atlantis
 Version: 0.1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Proprietary/Binary Only
 Group: Applications/Internet
 URL: http://www.akcaagac.com/index_atlantis.html

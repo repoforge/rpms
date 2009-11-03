@@ -10,7 +10,7 @@
 Summary: Sort a file or merge sort multiple files
 Name: perl-File-Sort
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Sort/

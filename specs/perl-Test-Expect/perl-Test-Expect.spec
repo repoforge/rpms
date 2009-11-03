@@ -10,7 +10,7 @@
 Summary: Automated driving and testing of terminal-based programs
 Name: perl-Test-Expect
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Expect/

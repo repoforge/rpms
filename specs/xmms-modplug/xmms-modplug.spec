@@ -8,7 +8,7 @@
 Summary: MOD music file plugin for XMMS
 Name: xmms-modplug
 Version: 2.05
-Release: 1.2
+Release: 1.2%{?dist}
 License: Public Domain
 Group: Applications/Multimedia
 URL: http://modplug-xmms.sourceforge.net/

@@ -4,7 +4,7 @@
 Summary: SIFT Feature Detection implementation
 Name: autopano-sift
 Version: 2.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://user.cs.tu-berlin.de/~nowozin/autopano-sift/

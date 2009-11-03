@@ -10,7 +10,7 @@
 Summary: FileHandle which supports multi-byte unget
 Name: perl-FileHandle-Unget
 Version: 0.16.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FileHandle-Unget/

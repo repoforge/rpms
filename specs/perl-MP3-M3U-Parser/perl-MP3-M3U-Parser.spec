@@ -10,7 +10,7 @@
 Summary: MP3 playlist parser
 Name: perl-MP3-M3U-Parser
 Version: 2.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP3-M3U-Parser/

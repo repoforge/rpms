@@ -5,7 +5,7 @@
 Summary: Console AIM, ICQ, IRC, and Lily client
 Name: naim
 Version: 0.11.8.3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://naim.n.ml.org/

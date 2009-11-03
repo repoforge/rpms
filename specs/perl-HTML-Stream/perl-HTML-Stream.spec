@@ -10,7 +10,7 @@
 Summary: HTML output stream class, and some markup utilities
 Name: perl-HTML-Stream
 Version: 1.60
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Stream/

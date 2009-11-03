@@ -9,7 +9,7 @@
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
 Version: 2.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/

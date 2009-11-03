@@ -10,7 +10,7 @@
 Summary: Module for creating generic methods
 Name: perl-Class-MethodMaker
 Version: 2.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MethodMaker/

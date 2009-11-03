@@ -13,7 +13,7 @@
 Summary: Reliably tunnel TCP connections over ICMP packets
 Name: ptunnel
 Version: 0.70
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.cs.uit.no/~daniels/PingTunnel/index.html

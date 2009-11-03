@@ -33,7 +33,7 @@
 Summary: Graphical version of the traceroute program
 Name: xtraceroute
 Version: 0.9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.dtek.chalmers.se/~d3august/xt/index.html

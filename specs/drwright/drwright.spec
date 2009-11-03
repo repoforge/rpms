@@ -5,7 +5,7 @@
 Summary: Tool to remind you to take wrist breaks
 Name: drwright
 Version: 0.18
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.imendio.com/projects/drwright/

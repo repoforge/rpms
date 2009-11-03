@@ -10,7 +10,7 @@
 Summary: Perl module that implements a POE interface to Net::SNMP
 Name: perl-POE-Component-SNMP
 Version: 1.10.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-SNMP/

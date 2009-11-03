@@ -10,7 +10,7 @@
 Summary: Registry of string functions, including backslash escapes
 Name: perl-String-Escape
 Version: 2002.001
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Escape/

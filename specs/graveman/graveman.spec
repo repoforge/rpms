@@ -6,7 +6,7 @@
 Summary: Graphical front-end for cdrtools
 Name: graveman
 Version: 0.3.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://graveman.tuxfamily.org/

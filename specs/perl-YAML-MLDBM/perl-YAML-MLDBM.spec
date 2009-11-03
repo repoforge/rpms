@@ -10,7 +10,7 @@
 Summary: Use tied hash databases with Python and Ruby
 Name: perl-YAML-MLDBM
 Version: 0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-MLDBM/

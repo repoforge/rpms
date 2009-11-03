@@ -10,7 +10,7 @@
 Summary: Perl module to display text in formatted table output
 Name: perl-Text-TabularDisplay
 Version: 1.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-TabularDisplay/

@@ -5,7 +5,7 @@
 Summary: Partial/differential file transfer client over HTTP
 Name: zsync
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic License v2
 Group: Applications/Internet
 URL: http://zsync.moria.org.uk/

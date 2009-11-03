@@ -4,7 +4,7 @@
 Summary: Utility for switching the LCD and external VGA displays on and off
 Name: i810switch
 Version: 0.6.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X Hardware Support
 URL: http://www16.plala.or.jp/mano-a-mano/i810switch.html

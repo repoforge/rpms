@@ -10,7 +10,7 @@
 Summary: Compare elements of two or more lists
 Name: perl-List-Compare
 Version: 0.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Compare/

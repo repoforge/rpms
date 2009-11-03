@@ -12,7 +12,7 @@
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
 Version: 6.11.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cgsecurity.org/wiki/TestDisk

@@ -7,7 +7,7 @@
 Summary: Programmer's text editor written in Java
 Name: jedit
 Version: 4.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.jedit.org/

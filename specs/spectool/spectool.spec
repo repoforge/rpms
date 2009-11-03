@@ -5,7 +5,7 @@
 Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool
 Version: 1.0.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://people.redhat.com/nphilipp/spectool/

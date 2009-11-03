@@ -7,7 +7,7 @@ Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT ADHERE TO THEIR OWN NAMING CONVENTION
 Epoch: 1
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.gnu.org/software/ddrescue/ddrescue.html

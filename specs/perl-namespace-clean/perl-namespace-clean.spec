@@ -10,7 +10,7 @@
 Summary: Keep imports and functions out of your namespace
 Name: perl-namespace-clean
 Version: 0.11
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/namespace-clean/

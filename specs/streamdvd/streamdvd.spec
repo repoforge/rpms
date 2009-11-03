@@ -6,7 +6,7 @@
 Summary: Tool to backup DVDs
 Name: streamdvd
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.badabum.de/streamdvd.html

@@ -5,7 +5,7 @@
 Summary: IP subnet calculator
 Name: ipcalc
 Version: 0.41
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://jodies.de/ipcalc/

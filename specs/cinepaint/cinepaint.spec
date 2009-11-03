@@ -8,7 +8,7 @@
 Summary: Motion picture frame-by-frame retouching and dust-busting
 Name: cinepaint
 Version: 0.21.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cinepaint.org/

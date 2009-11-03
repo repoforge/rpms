@@ -10,7 +10,7 @@
 Summary: Diffie-Hellman key exchange system
 Name: perl-Crypt-DH
 Version: 0.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DH/

@@ -12,7 +12,7 @@
 Summary: Computer DJing system
 Name: beatforce
 Version: 0.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beatforce.org/

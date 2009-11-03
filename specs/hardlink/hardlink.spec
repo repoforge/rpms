@@ -4,7 +4,7 @@
 Summary: Tool to hardlink duplicate files in a directory tree
 Name: hardlink
 Version: 1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: ftp://ftp.redhat.com/pub/redhat/mirror-tools/

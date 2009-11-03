@@ -11,7 +11,7 @@
 Summary: Perl module that implements URIC (analyse and transform URIs)
 Name: perl-URIC
 Version: 2.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URIC/

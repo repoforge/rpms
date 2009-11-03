@@ -10,7 +10,7 @@
 Summary: Crypt a file and mask it behind another file
 Name: perl-Crypt-Mimetic
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Mimetic/

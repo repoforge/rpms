@@ -10,7 +10,7 @@
 Summary: Support for XPG4 message catalog functions
 Name: perl-Msgcat
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Msgcat/

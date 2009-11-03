@@ -10,7 +10,7 @@
 Summary: Open Ticket Request System
 Name: otrs
 Version: 2.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://otrs.org/

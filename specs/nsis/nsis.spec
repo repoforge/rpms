@@ -4,7 +4,7 @@
 Summary: Open Source installer build tool for Windows applications
 Name: nsis
 Version: 2.34
-Release: 1
+Release: 1%{?dist}
 License: zlib/libpng
 Group: Development/Tools
 URL: http://nsis.sourceforge.net/

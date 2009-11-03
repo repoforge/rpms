@@ -10,7 +10,7 @@
 Summary: Pure perl multi-level hash/array DBM that supports transactions
 Name: perl-DBM-Deep
 Version: 1.0014
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBM-Deep/

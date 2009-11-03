@@ -7,7 +7,7 @@
 Summary: Graphical client for PostgreSQL
 Name: pgadmin3
 Version: 1.8.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/Databases
 URL: http://www.pgadmin.org/

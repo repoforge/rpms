@@ -10,7 +10,7 @@
 Summary: Pure Perl 65C02 simulator
 Name: perl-Acme-6502
 Version: 0.75
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-6502/

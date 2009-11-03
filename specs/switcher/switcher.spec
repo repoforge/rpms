@@ -17,7 +17,7 @@
 Summary: Tray applet for dynamically changing the XFree86 display mode
 Name: switcher
 Version: 1.0
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.atoker.com/switcher/

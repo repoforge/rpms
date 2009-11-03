@@ -4,7 +4,7 @@
 Summary: Low-level fullscreen SVGA graphics library
 Name: svgalib
 Version: 1.9.25
-Release: 1
+Release: 1%{?dist}
 Group: System Environment/Libraries
 License: Public Domain
 URL: http://www.svgalib.org/

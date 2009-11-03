@@ -7,7 +7,7 @@ Summary: Shared libraries for GSM speech compressor
 Name: gsm
 %define real_version 1.0-pl13
 Version: 1.0.13
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html

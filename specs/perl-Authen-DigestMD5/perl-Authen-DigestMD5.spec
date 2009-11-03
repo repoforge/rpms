@@ -10,7 +10,7 @@
 Summary: SASL DIGEST-MD5 authentication (RFC2831) perl module
 Name: perl-Authen-DigestMD5
 Version: 0.04
-Release: 2
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-DigestMD5/

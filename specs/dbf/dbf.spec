@@ -7,7 +7,7 @@
 Summary: Fast convert for dBase, Clipper, FoxBase and Visual FoxPro databases
 Name: dbf
 Version: 0.8.3.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Applications/Databases
 URL: http://dbf.berlios.de/

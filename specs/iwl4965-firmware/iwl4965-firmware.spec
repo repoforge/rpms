@@ -7,7 +7,7 @@
 Summary: Firmware for Intel Wireless WiFi Link 4965AGN network adapter
 Name: iwl4965-firmware
 Version: 228.57.2.23
-Release: 1
+Release: 1%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/

@@ -10,7 +10,7 @@
 Summary: Linux/UNIX tool suite for various mobile phones
 Name: gnokii
 Version: 0.6.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://gnokii.org/

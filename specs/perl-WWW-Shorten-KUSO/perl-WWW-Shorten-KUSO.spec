@@ -10,7 +10,7 @@
 Summary: Shorten urls with KUSO
 Name: perl-WWW-Shorten-KUSO
 Version: 0.3
-Release: 1.3
+Release: 1.3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Shorten-KUSO/

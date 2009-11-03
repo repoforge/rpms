@@ -10,7 +10,7 @@
 Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
 Version: 6.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-IRC/

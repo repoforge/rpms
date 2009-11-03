@@ -9,7 +9,7 @@
 Summary: TimeDate module for perl
 Name: perl-TimeDate
 Version: 1.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TimeDate/

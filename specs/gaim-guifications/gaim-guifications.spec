@@ -5,7 +5,7 @@ Summary: Guifications Plugin for Gaim
 Name: gaim-guifications
 %define real_version 2.13beta6
 Version: 2.13
-Release: 0.beta6
+Release: 0.beta6%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim.guifications.org/

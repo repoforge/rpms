@@ -10,7 +10,7 @@
 Summary: IP validation methods
 Name: perl-Data-Validate-IP
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Validate-IP/

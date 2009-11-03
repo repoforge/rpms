@@ -9,7 +9,7 @@
 Summary: Utilities to read and manipulate patches and CVS
 Name: perl-PatchReader
 Version: 0.9.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: MPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PatchReader/

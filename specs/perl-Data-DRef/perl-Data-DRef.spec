@@ -10,7 +10,7 @@
 Summary: Delimited-key access to complex data structures
 Name: perl-Data-DRef
 Version: 1999.0206
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-DRef/

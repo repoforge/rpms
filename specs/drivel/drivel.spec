@@ -5,7 +5,7 @@
 Summary: LiveJournal client for GNOME
 Name: drivel
 Version: 1.2.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.dropline.net/drivel/

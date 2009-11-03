@@ -4,7 +4,7 @@
 Summary: Tool to find copies of the same file within directory tree(s)
 Name: fastdup
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://dev.dereferenced.net/fastdup/

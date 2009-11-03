@@ -10,7 +10,7 @@
 Summary: Argument-dependent handlers for overloaded operators
 Name: perl-Attribute-Overload-Match
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Attribute-Overload-Match/

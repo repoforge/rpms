@@ -9,7 +9,7 @@
 Summary: Log file analysis program
 Name: logwatch
 Version: 5.2.2
-Release: 0.1.2
+Release: 0.1.2%{?dist}
 License: MIT
 Group: Applications/System
 URL: http://www.logwatch.org/

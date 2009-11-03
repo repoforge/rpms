@@ -5,7 +5,7 @@
 Summary: converts ordinary English text into text that mimics a certain dialect
 Name: talkfilters
 Version: 2.3.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.hyperrealm.com/main.php?s=talkfilters

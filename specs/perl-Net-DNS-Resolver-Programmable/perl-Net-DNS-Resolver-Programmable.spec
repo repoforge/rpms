@@ -10,7 +10,7 @@
 Summary: Perl module that implements a programmable DNS resolver class for offline emulation of DNS
 Name: perl-Net-DNS-Resolver-Programmable
 Version: 0.003
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-Resolver-Programmable/

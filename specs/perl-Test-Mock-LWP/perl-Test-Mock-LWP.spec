@@ -10,7 +10,7 @@
 Summary: Perl module named Test-Mock-LWP
 Name: perl-Test-Mock-LWP
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Mock-LWP/

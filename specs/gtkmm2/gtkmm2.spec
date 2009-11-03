@@ -4,7 +4,7 @@
 Summary: The C++ interface for the GIMP ToolKit (GTK+) GUI library
 Name: gtkmm2
 Version: 2.10.7
-Release: 1
+Release: 1%{?dist}
 Group: System Environment/Libraries
 License: LGPL
 URL: http://www.gtkmm.org/

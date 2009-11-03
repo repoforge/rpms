@@ -10,7 +10,7 @@
 Summary: Creates a html form for selecting HEX color numbers
 Name: perl-Graphics-ColorPicker
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorPicker/

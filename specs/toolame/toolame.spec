@@ -6,7 +6,7 @@
 Summary: MPEG Audio Layer II VBR encoder
 Name: toolame
 Version: 0.0.%{real_version}
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://toolame.sourceforge.net/

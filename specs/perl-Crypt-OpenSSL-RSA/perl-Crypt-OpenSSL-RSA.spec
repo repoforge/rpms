@@ -10,7 +10,7 @@
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
 Version: 0.25
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-RSA/

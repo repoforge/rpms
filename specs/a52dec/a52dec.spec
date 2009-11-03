@@ -4,7 +4,7 @@
 Summary: Library for decoding ATSC A/52 (aka AC-3) audio streams
 Name: a52dec
 Version: 0.7.4
-Release: 8
+Release: 8%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/

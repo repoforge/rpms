@@ -4,7 +4,7 @@
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: glibmm24
 Version: 2.12.8
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

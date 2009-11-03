@@ -4,7 +4,7 @@
 Summary: Port scan detection and active defense
 Name: portsentry
 Version: 1.1
-Release: 11
+Release: 11%{?dist}
 License: Freely Distributable
 Group: Applications/System
 URL: http://www.psionic.com/products/portsentry.html

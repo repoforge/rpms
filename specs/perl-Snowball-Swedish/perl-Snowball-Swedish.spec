@@ -10,7 +10,7 @@
 Summary: Porters stemming algorithm for swedish
 Name: perl-Snowball-Swedish
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Snowball-Swedish/

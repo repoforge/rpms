@@ -5,7 +5,7 @@
 Summary: Simple interactive debugging utility
 Name: scanmem
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Debuggers
 URL: http://taviso.decsystem.org/scanmem.html

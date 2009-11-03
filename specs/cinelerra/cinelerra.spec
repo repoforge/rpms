@@ -12,7 +12,7 @@
 Summary: Advanced audio and video capturing, compositing, and editing
 Name: cinelerra
 Version: 2.1
-Release: 0.14%{?prever:.%{prever}}
+Release: 0.14%{?prever:.%{prever}}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://cvs.cinelerra.org/

@@ -5,7 +5,7 @@
 Summary: Virtual console hex editor
 Name: vche
 Version: 1.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.grigna.com/diego/linux/vche/

@@ -5,7 +5,7 @@
 Summary: Compute MD5, SHA-1, SHA-256, Tiger or Whirlpool message digests
 Name: md5deep
 Version: 1.13
-Release: 1
+Release: 1%{?dist}
 Group: System Environment/Base
 License: Public Domain
 URL: http://md5deep.sourceforge.net/

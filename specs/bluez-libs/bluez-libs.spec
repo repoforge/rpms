@@ -7,7 +7,7 @@
 Summary: Bluetooth libraries
 Name: bluez-libs
 Version: 2.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.bluez.org/

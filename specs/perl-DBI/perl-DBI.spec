@@ -11,7 +11,7 @@
 Summary: Database independent interface for Perl
 Name: perl-DBI
 Version: 1.609
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBI/

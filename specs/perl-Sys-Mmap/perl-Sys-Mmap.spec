@@ -10,7 +10,7 @@
 Summary: Perl module to use mmap to map in a file as a Perl variable
 Name: perl-Sys-Mmap
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Mmap/

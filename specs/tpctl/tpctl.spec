@@ -4,7 +4,7 @@
 Summary: IBM ThinkPad configuration tools
 Name: tpctl
 Version: 4.17
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://tpctl.sourceforge.net/

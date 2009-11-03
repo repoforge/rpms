@@ -10,7 +10,7 @@
 Summary: Wrapper around the Expect module
 Name: perl-Expect-Simple
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Expect-Simple/

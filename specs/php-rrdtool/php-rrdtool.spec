@@ -7,7 +7,7 @@ Summary: RRDtool module for PHP
 Name: php-rrdtool
 %define real_version 20051205
 Version: 0.0.20051205
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://oss.oetiker.ch/rrdtool/

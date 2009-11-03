@@ -10,7 +10,7 @@
 Summary: Lightweight, "relaxed" RSS (and XML-ish) parser
 Name: perl-XML-RSSLite
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSSLite/

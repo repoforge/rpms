@@ -7,7 +7,7 @@
 Summary: Content filtering web proxy
 Name: dansguardian
 Version: 2.8.0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.dansguardian.org/

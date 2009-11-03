@@ -6,7 +6,7 @@
 Summary: C++ wrappers for libbonoboui, for use with gtkmm
 Name: libbonobouimm2
 Version: 1.3.5
-Release: 0.dag
+Release: 0.dag%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

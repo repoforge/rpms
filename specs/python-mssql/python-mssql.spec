@@ -5,7 +5,7 @@
 Summary: Basic MS SQL module for Python
 Name: python-mssql
 Version: 0.8.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://pymssql.sourceforge.net/

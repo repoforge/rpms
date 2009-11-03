@@ -5,7 +5,7 @@
 Summary: Extract, test and view RAR archives
 Name: unrar
 Version: 3.9.4
-Release: 1
+Release: 1%{?dist}
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.rarlab.com/

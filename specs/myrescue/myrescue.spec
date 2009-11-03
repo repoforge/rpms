@@ -4,7 +4,7 @@
 Summary: Rescue the still-readable data from a damaged harddisk
 Name: myrescue
 Version: 0.9.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://myrescue.sourceforge.net/

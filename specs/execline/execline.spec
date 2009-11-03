@@ -6,7 +6,7 @@
 Summary: Light non-interactive scripting language
 Name: execline
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Shells
 URL: http://www.skarnet.org/software/execline/

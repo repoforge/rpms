@@ -27,7 +27,7 @@
 Summary: View and manipulate 3D geometric objects
 Name: geomview
 Version: 1.9.4
-Release: 1
+Release: 1%{?dist}
 License: Distributable
 Group: Applications/Multimedia
 URL: http://www.geomview.org/

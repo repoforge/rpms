@@ -10,7 +10,7 @@
 Summary: Show excel-files on the web
 Name: perl-Spreadsheet-SimpleExcel
 Version: 1.9
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spreadsheet-SimpleExcel/

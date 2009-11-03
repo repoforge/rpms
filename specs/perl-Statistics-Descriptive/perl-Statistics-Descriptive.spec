@@ -11,7 +11,7 @@
 Summary: Module of basic descriptive statistical functions
 Name: perl-Statistics-Descriptive
 Version: 3.0.100
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Descriptive/

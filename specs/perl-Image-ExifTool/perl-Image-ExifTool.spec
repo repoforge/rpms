@@ -10,7 +10,7 @@
 Summary: Read and write meta information
 Name: perl-Image-ExifTool
 Version: 7.89
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-ExifTool/

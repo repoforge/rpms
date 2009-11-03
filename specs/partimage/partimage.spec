@@ -5,7 +5,7 @@
 Summary: partition imaging utility, much like Ghost
 Name: partimage
 Version: 0.6.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.partimage.org/

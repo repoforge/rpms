@@ -14,7 +14,7 @@
 Summary: Lightweight multi-tabbed X terminal
 Name: mrxvt
 Version: 0.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://materm.sourceforge.net/

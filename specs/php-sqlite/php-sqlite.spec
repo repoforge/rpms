@@ -8,7 +8,7 @@
 Summary: PHP module for using SQLite databases
 Name: php-sqlite
 Version: 1.0.2
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://pecl.php.net/package/SQLite/

@@ -6,7 +6,7 @@
 Summary: Open-source, patent-free speech codec
 Name: speex
 Version: 1.0.5
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.speex.org/

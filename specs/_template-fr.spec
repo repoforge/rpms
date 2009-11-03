@@ -6,7 +6,7 @@
 Summary: 
 Name: 
 Version: 
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: 
 URL: 

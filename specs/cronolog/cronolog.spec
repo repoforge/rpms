@@ -4,7 +4,7 @@
 Summary: Log file rotator
 Name: cronolog
 Version: 1.6.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://cronolog.org/

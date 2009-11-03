@@ -4,7 +4,7 @@
 Summary: Commodore 64 music player and SID chip emulator library
 Name: libsidplay
 Version: 1.36.59
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.geocities.com/SiliconValley/Lakes/5147/

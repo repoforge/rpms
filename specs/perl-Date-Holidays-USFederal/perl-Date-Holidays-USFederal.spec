@@ -10,7 +10,7 @@
 Summary: Determine US Federal Public Holidays
 Name: perl-Date-Holidays-USFederal
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Holidays-USFederal/

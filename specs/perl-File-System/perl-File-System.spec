@@ -10,7 +10,7 @@
 Summary: Provides a general framework for access to a hierarchical data structure
 Name: perl-File-System
 Version: 1.16
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-System/

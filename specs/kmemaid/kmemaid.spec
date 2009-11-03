@@ -9,7 +9,7 @@
 Summary: Helps you to memorise question/answer pairs
 Name: kmemaid
 Version: 0.4.7.0
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://memaid.sourceforge.net/

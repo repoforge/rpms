@@ -5,7 +5,7 @@
 Summary: Library for loading and manipulating 3D objects
 Name: libg3d
 Version: 0.0.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://automagically.de/index.shtml?g3dviewer

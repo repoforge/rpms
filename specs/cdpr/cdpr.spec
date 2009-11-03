@@ -10,7 +10,7 @@
 Summary: Cisco Discovery Protocol reporter
 Name: cdpr
 Version: 2.3
-Release: 1
+Release: 1%{?dist}
 License: GPLv2+ 
 Group: Applications/System
 URL: http://sourceforge.net/projects/cdpr/

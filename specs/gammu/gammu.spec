@@ -7,7 +7,7 @@
 Summary: Mobile phone tools
 Name: gammu
 Version: 1.11.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.gammu.net/

@@ -44,7 +44,7 @@
 Summary: subclass of LWP::UserAgent that protects you from harm
 Name: perl-%{real_name}
 Version: 1.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/LWPx-ParanoidAgent/

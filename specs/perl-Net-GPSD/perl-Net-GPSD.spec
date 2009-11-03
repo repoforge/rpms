@@ -10,7 +10,7 @@
 Summary: Perl module that provides an object client interface to the gpsd server daemon
 Name: perl-Net-GPSD
 Version: 0.37
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-GPSD/

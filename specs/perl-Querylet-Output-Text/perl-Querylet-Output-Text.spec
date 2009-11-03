@@ -10,7 +10,7 @@
 Summary: Perl module to output querylet results to text tables
 Name: perl-Querylet-Output-Text
 Version: 0.112
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Querylet-Output-Text/

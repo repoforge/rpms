@@ -5,7 +5,7 @@
 Summary: Tool to convert from bin/cue CD image format to iso/cdr
 Name: bchunk
 Version: 1.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://he.fi/bchunk/

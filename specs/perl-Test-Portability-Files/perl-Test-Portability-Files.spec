@@ -10,7 +10,7 @@
 Summary: Perl module to check file names portability
 Name: perl-Test-Portability-Files
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Portability-Files/

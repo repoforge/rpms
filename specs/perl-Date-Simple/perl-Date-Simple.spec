@@ -10,7 +10,7 @@
 Summary: Simple date object
 Name: perl-Date-Simple
 Version: 3.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Simple/

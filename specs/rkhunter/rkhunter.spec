@@ -4,7 +4,7 @@
 Summary: Host-based tool to scan for rootkits, backdoors and local exploits
 Name: rkhunter
 Version: 1.3.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.rootkit.nl/

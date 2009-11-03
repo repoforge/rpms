@@ -4,7 +4,7 @@
 Summary: Manipulation tool for Macromedia Flash Video (FLV) files
 Name: flvtool2
 Version: 1.0.6
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.inlet-media.de/flvtool2

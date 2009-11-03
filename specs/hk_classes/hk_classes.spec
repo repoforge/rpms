@@ -5,7 +5,7 @@
 Summary: C++ library for rapid development of database applications
 Name: hk_classes
 Version: 0.8.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://hk-classes.sourceforge.net/

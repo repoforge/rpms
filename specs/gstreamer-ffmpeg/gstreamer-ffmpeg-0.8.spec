@@ -10,7 +10,7 @@
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: %{gstreamer}-ffmpeg
 Version: 0.8.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/

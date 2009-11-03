@@ -10,7 +10,7 @@
 Summary: Log perl warnings to the Catalyst log
 Name: perl-Catalyst-Plugin-LogWarnings
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-LogWarnings/

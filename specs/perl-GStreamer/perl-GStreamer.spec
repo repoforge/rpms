@@ -10,7 +10,7 @@
 Summary: Perl module with bindings to the GStreamer library
 Name: perl-GStreamer
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GStreamer/

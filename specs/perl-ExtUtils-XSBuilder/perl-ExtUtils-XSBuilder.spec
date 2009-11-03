@@ -10,7 +10,7 @@
 Summary: Perl module that implements an automatic Perl XS glue code generator
 Name: perl-ExtUtils-XSBuilder
 Version: 0.28
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-XSBuilder/

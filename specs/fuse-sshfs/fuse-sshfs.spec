@@ -6,7 +6,7 @@
 Summary: FUSE-Filesystem to access remote filesystems via SSH
 Name: fuse-sshfs
 Version: 2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/sshfs.html

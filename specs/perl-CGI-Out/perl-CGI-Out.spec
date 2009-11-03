@@ -10,7 +10,7 @@
 Summary: Buffer output when building CGI programs
 Name: perl-CGI-Out
 Version: 2006.0215
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Out/

@@ -10,7 +10,7 @@
 Summary: Multipart HTML Email builder
 Name: perl-Email-MIME-CreateHTML
 Version: 1.026
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-CreateHTML/

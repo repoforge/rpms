@@ -5,7 +5,7 @@
 Summary: Fault tolerant "dd" utility for rescueing data from bad media
 Name: dd_rescue
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.garloff.de/kurt/linux/ddrescue/

@@ -6,7 +6,7 @@
 Summary: Analysis Console for Intrusion Databases
 Name: php-acid
 Version: 0.9.6b22
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://acidlab.sourceforge.net/

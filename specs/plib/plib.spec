@@ -9,7 +9,7 @@
 Summary: Set of portable libraries especially useful for games
 Name: plib
 Version: 1.8.4
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/

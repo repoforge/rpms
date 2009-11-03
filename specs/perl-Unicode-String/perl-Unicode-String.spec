@@ -10,7 +10,7 @@
 Summary: Unicode-String (String of Unicode characters (UCS2/UTF16)) module for perl
 Name: perl-Unicode-String
 Version: 2.09
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-String/

@@ -29,7 +29,7 @@
 Summary: The Open Racing Car Simulator
 Name: torcs
 Version: 1.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://torcs.org/

@@ -4,7 +4,7 @@
 Summary: Tasks to-do list
 Name: tasks
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://pimlico-project.org/tasks.html

@@ -7,7 +7,7 @@
 Summary: Small efficient C++ GUI library
 Name: guichan
 Version: 0.8.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://guichan.sourceforge.net/

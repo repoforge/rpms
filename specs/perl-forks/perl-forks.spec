@@ -10,7 +10,7 @@
 Summary: forks - emulate threads with fork
 Name: perl-forks
 Version: 0.33
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/forks/

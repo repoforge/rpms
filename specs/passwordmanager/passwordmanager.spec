@@ -30,7 +30,7 @@
 Summary: Personal password manager
 Name: passwordmanager
 Version: 1.2.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://passwordmanager.sourceforge.net/

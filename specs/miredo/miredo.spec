@@ -5,7 +5,7 @@
 Summary: Tunneling of Ipv6 over UDP through NATs
 Name: miredo
 Version: 1.1.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.simphalempin.com/dev/miredo/

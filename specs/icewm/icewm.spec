@@ -12,7 +12,7 @@
 Summary: Fast and small X11 window manager
 Name: icewm
 Version: 1.2.37
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: User Interface/Desktops
 URL: http://www.icewm.org/

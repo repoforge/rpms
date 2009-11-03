@@ -6,7 +6,7 @@
 Summary: Powerful extensions to the standard datetime module
 Name: python-dateutil
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: Python Software Foundation License
 Group: Development/Libraries
 URL: http://labix.org/python-dateutil

@@ -10,7 +10,7 @@
 Summary: Dates in the Julian calendar
 Name: perl-DateTime-Calendar-Julian
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Calendar-Julian/

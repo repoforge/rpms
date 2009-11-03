@@ -10,7 +10,7 @@
 Summary: Generic Session plugin - ties together server side storage and client side state required to maintain session data.  
 Name: perl-Catalyst-Plugin-Session
 Version: 0.19
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Session/

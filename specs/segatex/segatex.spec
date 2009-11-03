@@ -5,7 +5,7 @@
 Summary: Create SELinux policies
 Name: segatex
 Version: 6.60
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://sourceforge.net/projects/segatex/

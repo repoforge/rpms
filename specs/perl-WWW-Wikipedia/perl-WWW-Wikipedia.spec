@@ -10,7 +10,7 @@
 Summary: Automated interface to the Wikipedia
 Name: perl-WWW-Wikipedia
 Version: 1.96
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Wikipedia/

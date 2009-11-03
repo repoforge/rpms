@@ -27,7 +27,7 @@
 Summary: Linux Smartlink Linmodem drivers
 Name: kernel-module-slmodem
 Version: 2.9.6
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: Proprietary
 Group: System Environment/Kernel
 URL: http://linmodems.technion.ac.il/packages/smartlink/
@@ -76,7 +76,7 @@ They might work with newer/older kernels.
 
 %package -n slmodem-utils
 Summary: Linux Smartlink Linmodem utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Base
 
 Obsoletes: %{real_name}, slmdm, slmdm-utils

@@ -19,7 +19,7 @@
 Summary: Cross stitch patterns editor
 Name: kxstitch
 Version: 0.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://kxstitch.sourceforge.net/index.shtml

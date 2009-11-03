@@ -9,7 +9,7 @@
 Name: python-mad
 Summary: Python Wrapper for the MPEG Audio Decoder Library
 Version: 0.5.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://spacepants.org/src/pymad/

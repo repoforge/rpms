@@ -10,7 +10,7 @@
 Summary: IO:: interface to Compress::Zlib
 Name: perl-IO-Zlib
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Zlib/

@@ -10,7 +10,7 @@
 Summary: Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl
 Name: perl-Unicode-Map8
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Map8/

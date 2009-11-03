@@ -12,7 +12,7 @@
 Summary: Countdown timer applet for GNOME
 Name: gnome-applet-timer
 Version: 2.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://timerapplet.sourceforge.net/

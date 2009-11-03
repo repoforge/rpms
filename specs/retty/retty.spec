@@ -5,7 +5,7 @@
 Summary: Attach processes running on other terminals
 Name: retty
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://pasky.or.cz/~pasky/dev/retty/

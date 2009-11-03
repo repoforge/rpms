@@ -10,7 +10,7 @@
 Summary: Lookup the whois information for ipaddresses
 Name: perl-Net-Whois-IP
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois-IP/

@@ -10,7 +10,7 @@
 Summary: Perl module to implement utilities for handling Byte Order Marks
 Name: perl-File-BOM
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-BOM/

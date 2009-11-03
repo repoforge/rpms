@@ -10,7 +10,7 @@
 Summary: Purely Perl-based mail filter framework for the Courier MTA
 Name: perl-Courier-Filter
 Version: 0.200
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Courier-Filter/

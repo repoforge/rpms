@@ -9,7 +9,7 @@
 Summary: Merge of libpixregion and libic
 Name: libpixman
 Version: 0.1.6
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/

@@ -5,7 +5,7 @@
 Summary: Benchmark suite for hard drive and file system performance
 Name: bonnie++
 Version: 1.03e
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.coker.com.au/bonnie++/

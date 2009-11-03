@@ -10,7 +10,7 @@
 Summary: Convert and generate geek code sequences
 Name: perl-Convert-GeekCode
 Version: 0.51
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-GeekCode/

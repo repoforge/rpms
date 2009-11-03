@@ -4,7 +4,7 @@
 Summary: Authenticated RSS alerts for nagios
 Name: rss4nagios
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://altinity.blogs.com/dotorg/2006/07/lessons_in_rss.html

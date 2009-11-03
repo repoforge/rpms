@@ -9,7 +9,7 @@
 Summary: Clean and lean CD ripper
 Name: sound-juicer
 Version: 0.5.15
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.burtonini.com/blog/computers/sound-juicer/

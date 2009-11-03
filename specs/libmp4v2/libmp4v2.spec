@@ -4,7 +4,7 @@
 Summary: Library for working with files using the mp4 container format
 Name: libmp4v2
 Version: 1.5.0.1
-Release: 3
+Release: 3%{?dist}
 License: MPL
 Group: System Environment/Libraries
 URL: http://resare.com/libmp4v2/

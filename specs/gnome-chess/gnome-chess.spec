@@ -10,7 +10,7 @@
 Summary: GNOME Chess game
 Name: gnome-chess
 Version: 0.3.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.gnome.org/

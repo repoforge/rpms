@@ -4,7 +4,7 @@
 Summary: Dvorak typing tutor
 Name: dvorak7min
 Version: 1.6.1
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.linalco.com/comunidad.html

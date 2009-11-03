@@ -11,7 +11,7 @@
 Summary: Perl module named Yahoo-Search
 Name: perl-Yahoo-Search
 Version: 1.10.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Yahoo-Search/

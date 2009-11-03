@@ -10,7 +10,7 @@
 Summary: Uses an mmap'ed file to act as a shared memory interprocess cache
 Name: perl-Cache-FastMmap
 Version: 1.28
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-FastMmap/

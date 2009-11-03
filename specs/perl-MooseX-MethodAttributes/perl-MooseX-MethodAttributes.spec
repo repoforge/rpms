@@ -13,7 +13,7 @@
 Summary: code attribute introspection
 Name: perl-MooseX-MethodAttributes
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-MethodAttributes/

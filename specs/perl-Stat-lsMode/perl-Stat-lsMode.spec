@@ -10,7 +10,7 @@
 Summary: Format file modes like the ls -l command does
 Name: perl-Stat-lsMode
 Version: 0.50
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Stat-lsMode/

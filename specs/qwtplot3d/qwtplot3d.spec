@@ -15,7 +15,7 @@
 Summary: 3D plotting widget for scientific data and mathematical expressions
 Name: qwtplot3d
 Version: 0.2.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://qwtplot3d.sourceforge.net/

@@ -5,7 +5,7 @@
 Summary: Cute multiplayer network game with bunnies
 Name: jumpnbump
 Version: 1.50
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.jumpbump.mine.nu/

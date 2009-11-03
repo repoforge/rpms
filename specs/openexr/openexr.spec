@@ -19,7 +19,7 @@ Summary: High dynamic range image file format
 Name: openexr
 %define real_version 1.4.0
 Version: 1.4.0a
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://www.openexr.com/

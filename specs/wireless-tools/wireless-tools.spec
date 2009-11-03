@@ -10,7 +10,7 @@
 Summary: Wireless ethernet configuration tools
 Name: wireless-tools
 Version: 26
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html

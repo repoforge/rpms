@@ -10,7 +10,7 @@
 Summary: Tie hashes to DBI relational databases
 Name: perl-Tie-DBI
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-DBI/

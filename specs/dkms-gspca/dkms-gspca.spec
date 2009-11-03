@@ -7,7 +7,7 @@
 Summary: Generic Softwares Package for Camera Adapters kernel module
 Name: dkms-gspca
 Version: 1.0.18
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://mxhaard.free.fr/

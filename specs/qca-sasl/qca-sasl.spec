@@ -4,7 +4,7 @@
 Summary: SASL plugin for the Qt Cryptographic Architecture
 Name: qca-sasl
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://delta.affinix.com/qca/

@@ -11,7 +11,7 @@
 Summary: Collection of Linux tools to interface with the Nintendo Wiimote
 Name: cwiid
 Version: 0.6.00
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://abstrakraft.org/cwiid/

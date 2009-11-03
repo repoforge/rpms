@@ -4,7 +4,7 @@
 Summary: John the Ripper password cracker
 Name: john
 Version: 1.7.0.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.openwall.com/john/

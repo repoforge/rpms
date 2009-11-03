@@ -10,7 +10,7 @@
 Summary: Factorise numbers and calculate matching multiplications
 Name: perl-Math-Factor-XS
 Version: 0.35
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Factor-XS/

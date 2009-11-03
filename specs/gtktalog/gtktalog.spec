@@ -17,7 +17,7 @@
 Summary: The GNOME disk catalog
 Name: gtktalog
 Version: 1.0.4
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/gtktalog/

@@ -10,7 +10,7 @@
 Summary: Simple standalone module for generating MIME messages
 Name: perl-MIME-Lite
 Version: 3.025
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Lite/

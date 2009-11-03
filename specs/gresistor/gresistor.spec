@@ -7,7 +7,7 @@
 Summary: Identify resistors
 Name: gresistor
 Version: 0.0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.minipop.org/index.php?file=progs/gresistor/gresistor.tpl

@@ -7,7 +7,7 @@
 Summary: docklet for XMMS
 Name: xmms-status-plugin
 Version: 1.0
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.hellion.org.uk/xmms-status-plugin/

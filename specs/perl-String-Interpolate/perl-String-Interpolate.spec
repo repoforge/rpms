@@ -10,7 +10,7 @@
 Summary: Wrapper for builtin the Perl interpolation engine
 Name: perl-String-Interpolate
 Version: 0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Interpolate/

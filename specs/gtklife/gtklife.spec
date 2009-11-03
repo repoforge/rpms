@@ -13,7 +13,7 @@
 Summary: Conway's game of life.
 Name: gtklife
 Version: 5.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://ironphoenix.org/tril/gtklife/

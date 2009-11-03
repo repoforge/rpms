@@ -13,7 +13,7 @@
 Summary: High-performance, dynamic web site authoring system
 Name: perl-HTML-Mason
 Version: 1.42
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Mason/

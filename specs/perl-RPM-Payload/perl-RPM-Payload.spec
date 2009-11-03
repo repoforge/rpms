@@ -10,7 +10,7 @@
 Summary: Perl module for in-memory access to an RPM cpio archive
 Name: perl-RPM-Payload
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Payload/

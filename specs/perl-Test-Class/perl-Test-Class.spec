@@ -10,7 +10,7 @@
 Summary: Easily create test classes in an xUnit/JUnit style
 Name: perl-Test-Class
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Class/

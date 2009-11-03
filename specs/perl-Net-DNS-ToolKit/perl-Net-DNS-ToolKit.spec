@@ -10,7 +10,7 @@
 Summary: Routines to pick apart, examine and put together DNS packets
 Name: perl-Net-DNS-ToolKit
 Version: 0.42
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-ToolKit/

@@ -5,7 +5,7 @@
 Summary: Mozilla plugin for using bonobo components
 Name: mozilla-bonobo
 Version: 0.4.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/moz-bonobo/

@@ -6,7 +6,7 @@
 Summary: Utility to generate CD covers with cdlabelgen
 Name: gtkcdlabel
 Version: 1.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://gtkcdlabel.sourceforge.net/

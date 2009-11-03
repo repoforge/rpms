@@ -10,7 +10,7 @@
 Summary: A POE Component providing TCP server services for test cases
 Name: perl-Test-POE-Server-TCP
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-POE-Server-TCP/

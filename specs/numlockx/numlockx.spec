@@ -13,7 +13,7 @@
 Summary: Turns on NumLock when X starts
 Name: numlockx
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Applications/System
 URL: http://ktown.kde.org/~seli/numlockx/

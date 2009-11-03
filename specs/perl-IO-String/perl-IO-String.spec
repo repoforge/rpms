@@ -10,7 +10,7 @@
 Summary: Emulate file interface for in-core strings
 Name: perl-IO-String
 Version: 1.08
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-String/

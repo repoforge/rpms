@@ -4,7 +4,7 @@
 Summary: Command line tool to monitor NFS traffic
 Name: nfswatch
 Version: 4.99.9
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://nfswatch.sourceforge.net/

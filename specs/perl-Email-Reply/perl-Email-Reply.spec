@@ -10,7 +10,7 @@
 Summary: Reply to mails
 Name: perl-Email-Reply
 Version: 1.202
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Reply/

@@ -4,7 +4,7 @@
 Summary: DVD ripping and encoding graphical user interface
 Name: ogmrip
 Version: 0.13.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ogmrip.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Perl Preprocessor
 Name: perl-ExtUtils-PerlPP
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-PerlPP/

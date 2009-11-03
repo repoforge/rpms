@@ -7,7 +7,7 @@
 Summary: Program for editing image files
 Name: yoltia
 Version: 0.21.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://people.freenet.de/yoltia

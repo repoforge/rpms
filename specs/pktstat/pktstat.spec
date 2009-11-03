@@ -4,7 +4,7 @@
 Summary: Displays a live list of active connections and what files are being transferred
 Name: pktstat
 Version: 1.8.4
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.adaptive-enterprises.com.au/~d/software/pktstat/

@@ -10,7 +10,7 @@
 Summary: Module::Install extension that allows the user to interactively specify custom installation directories
 Name: perl-Module-Install-CustomInstallationPath
 Version: 0.1040
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install-CustomInstallationPath/

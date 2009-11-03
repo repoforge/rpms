@@ -10,7 +10,7 @@
 Summary: Perl module to make powerful application writing fun and easy
 Name: perl-CGI-Ex
 Version: 2.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Ex/

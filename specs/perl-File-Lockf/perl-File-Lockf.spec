@@ -10,7 +10,7 @@
 Summary: Interface to the lockf system call
 Name: perl-File-Lockf
 Version: 0.20
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Lockf/

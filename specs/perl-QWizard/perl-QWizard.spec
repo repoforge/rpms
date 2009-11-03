@@ -10,7 +10,7 @@
 Summary: Perl module to display questions and act on the answers
 Name: perl-QWizard
 Version: 3.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/QWizard/

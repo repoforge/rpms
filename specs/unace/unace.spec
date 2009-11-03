@@ -4,7 +4,7 @@
 Summary: Linux program for uncompressing *.ace archives
 Name: unace
 Version: 2.50
-Release: 1
+Release: 1%{?dist}
 License: Freeware
 Group: Applications/Archiving
 URL: http://www.winace.com/

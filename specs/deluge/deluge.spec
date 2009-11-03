@@ -9,7 +9,7 @@
 Summary: Graphical BitTorrent client with support for DHT, UPnP, and PEX
 Name: deluge
 Version: 0.5.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://deluge-torrent.org/

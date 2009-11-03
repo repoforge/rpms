@@ -19,7 +19,7 @@
 Summary: Bluetooth utilities
 Name: bluez-utils
 Version: 2.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://bluez.sourceforge.net/

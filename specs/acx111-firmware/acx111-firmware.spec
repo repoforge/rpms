@@ -5,7 +5,7 @@
 Summary: Firmware for Texas Instruments ACX111 network adaptors
 Name: acx111-firmware
 Version: 1.2.1.34
-Release: 1
+Release: 1%{?dist}
 License: Unknown
 Group: System Environment/Kernel
 URL: http://acx100.sourceforge.net/wiki/Firmware

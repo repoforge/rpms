@@ -11,7 +11,7 @@
 Summary: TCP stream sniffer and connection tracker
 Name: tcpick
 Version: 0.2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tcpick.sourceforge.net/

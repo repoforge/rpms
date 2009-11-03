@@ -7,7 +7,7 @@
 Summary: Complete X11R6 client-side implementation
 Name: python-xlib
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/python-xlib

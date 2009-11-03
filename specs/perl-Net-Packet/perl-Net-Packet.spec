@@ -10,7 +10,7 @@
 Summary: Framework to easily send and receive frames from layer 2 to layer 7
 Name: perl-Net-Packet
 Version: 3.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Packet/

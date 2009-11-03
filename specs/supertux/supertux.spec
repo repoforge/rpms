@@ -4,7 +4,7 @@
 Summary: Jump-and-run scrolling game starring Tux the Penguin
 Name: supertux
 Version: 0.1.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://supertux.berlios.de/

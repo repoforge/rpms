@@ -6,7 +6,7 @@
 Summary: Python binding for the wireless (wifi) extensions
 Name: python-wifi
 Version: 0.3
-Release: 2
+Release: 2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.romanofski.de/downloads/pywifi

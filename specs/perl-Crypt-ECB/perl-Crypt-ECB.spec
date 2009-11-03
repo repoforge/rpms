@@ -10,7 +10,7 @@
 Summary: Encrypt Data using ECB Mode
 Name: perl-Crypt-ECB
 Version: 1.45
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-ECB/

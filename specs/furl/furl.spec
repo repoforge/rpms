@@ -5,7 +5,7 @@
 Summary: Display the HTTP headers returned by webservers
 Name: furl
 Version: 2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gumbynet.org.uk/software/furl.html

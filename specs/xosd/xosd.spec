@@ -13,7 +13,7 @@
 Summary: Displays transparent text on your screen like the OSD of TVs
 Name: xosd
 Version: 2.2.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libxosd.sourceforge.net/

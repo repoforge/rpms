@@ -4,7 +4,7 @@
 Summary: DNS resolver library for both synchronous and asynchronous DNS queries
 Name: udns
 Version: 0.0.9
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.corpit.ru/mjt/udns.html

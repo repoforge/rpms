@@ -16,7 +16,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: nvidia-x11-drv-97xx
 Version: %{majmin}.%{relver}
-Release: 4%{?beta}
+Release: 4%{?beta}%{?dist}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html

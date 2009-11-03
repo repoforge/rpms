@@ -10,7 +10,7 @@
 Summary: The data of the game Mother of all Gravity Games
 Name: moagg-data
 Version: 0.16
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://moagg.sourceforge.net/

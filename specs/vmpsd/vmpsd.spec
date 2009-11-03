@@ -5,7 +5,7 @@
 Summary: VLAN Management Policy Server
 Name: vmpsd
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://vmps.sourceforge.net/

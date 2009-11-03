@@ -8,7 +8,7 @@
 Summary: utility to find and clean "lint" on a filesystem
 Name: fslint
 Version: 1.22
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.pixelbeat.org/fslint/

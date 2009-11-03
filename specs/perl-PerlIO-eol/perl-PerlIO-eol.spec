@@ -10,7 +10,7 @@
 Summary: PerlIO layer for normalizing line endings
 Name: perl-PerlIO-eol
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PerlIO-eol/

@@ -5,7 +5,7 @@
 Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08
-Release: 4.rf
+Release: 4.rf%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/

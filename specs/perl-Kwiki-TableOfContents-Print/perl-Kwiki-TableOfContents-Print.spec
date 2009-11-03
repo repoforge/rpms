@@ -10,7 +10,7 @@
 Summary: Print kwiki sections
 Name: perl-Kwiki-TableOfContents-Print
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-TableOfContents-Print/

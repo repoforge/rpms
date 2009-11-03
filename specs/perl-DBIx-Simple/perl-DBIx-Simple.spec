@@ -10,7 +10,7 @@
 Summary: Perl module named DBIx-Simple
 Name: perl-DBIx-Simple
 Version: 1.32
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Simple/

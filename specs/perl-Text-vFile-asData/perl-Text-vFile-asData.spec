@@ -10,7 +10,7 @@
 Summary: Parse vFile formatted files into data structures
 Name: perl-Text-vFile-asData
 Version: 0.05
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-vFile-asData/

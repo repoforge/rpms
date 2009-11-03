@@ -14,7 +14,7 @@
 Summary: GNU/Linux Audio MEchanics, the GIMP of audio processing
 Name: glame
 Version: 2.0.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 Source0: http://dl.sf.net/glame/glame-%{version}.tar.gz

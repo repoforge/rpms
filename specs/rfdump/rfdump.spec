@@ -4,7 +4,7 @@
 Summary: Edit RFID tags
 Name: rfdump
 Version: 1.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.rfdump.org

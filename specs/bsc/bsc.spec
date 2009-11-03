@@ -7,7 +7,7 @@
 Summary: Beesoft Commander file manager
 Name: bsc
 Version: 2.27
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.beesoft.org/index.html

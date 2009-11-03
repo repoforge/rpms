@@ -6,7 +6,7 @@
 Summary: C++ wrapper for Gnome libs
 Name: libgnomemm26
 Version: 2.8.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

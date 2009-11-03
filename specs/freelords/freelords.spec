@@ -5,7 +5,7 @@
 Summary: Turn-based strategy game
 Name: freelords
 Version: 0.3.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://freelords.sourceforge.net/

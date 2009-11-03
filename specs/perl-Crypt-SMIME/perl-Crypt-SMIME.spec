@@ -10,7 +10,7 @@
 Summary: S/MIME message signing, verification, encryption and decryption
 Name: perl-Crypt-SMIME
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-SMIME/

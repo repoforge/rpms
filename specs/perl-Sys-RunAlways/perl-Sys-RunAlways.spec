@@ -10,7 +10,7 @@
 Summary: Make sure always one invocation of a script is active
 Name: perl-Sys-RunAlways
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-RunAlways/

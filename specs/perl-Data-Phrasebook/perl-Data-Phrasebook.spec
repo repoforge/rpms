@@ -10,7 +10,7 @@
 Summary: Base class for Phrasebook Models
 Name: perl-Data-Phrasebook
 Version: 0.29
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Phrasebook/

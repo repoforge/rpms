@@ -10,7 +10,7 @@
 Summary: Perl module to make a hole to the original main compartment in the Safe compartment
 Name: perl-Safe-Hole
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Safe-Hole/

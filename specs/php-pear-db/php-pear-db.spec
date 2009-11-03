@@ -7,7 +7,7 @@
 Summary: PEAR: Database Abstraction Layer
 Name: php-pear-db
 Version: 1.7.13
-Release: 2
+Release: 2%{?dist}
 License: PHP
 Group: Development/Libraries
 URL: http://pear.php.net/package/DB

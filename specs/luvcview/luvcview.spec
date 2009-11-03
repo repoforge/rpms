@@ -7,7 +7,7 @@ Summary: Tool to test uvcview devices
 Name: luvcview
 %define real_version 20070512
 Version: 0.0.20070512
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://openfacts.berlios.de/index-en.phtml?title=Linux+UVC

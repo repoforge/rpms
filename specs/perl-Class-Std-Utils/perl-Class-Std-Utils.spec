@@ -11,7 +11,7 @@
 Summary: Utility subroutines for building "inside-out" objects
 Name: perl-Class-Std-Utils
 Version: 0.0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Std-Utils/

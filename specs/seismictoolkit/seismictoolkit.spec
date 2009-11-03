@@ -7,7 +7,7 @@
 Summary: Tool for processing and displaying seismic signal data
 Name: seismictoolkit
 Version: 0.67
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://chez.mana.pf/dominique.reymond/

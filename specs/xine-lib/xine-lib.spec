@@ -21,7 +21,7 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: 1.1.16.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/

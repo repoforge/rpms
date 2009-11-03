@@ -35,7 +35,7 @@
 Summary: Interactive tool for scientific grade Celestial Mechanics computations
 Name: orsa
 Version: 0.6.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://orsa.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Parser for RSS formats
 Name: perl-XML-RSS-Parser
 Version: 4.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-Parser/

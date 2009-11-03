@@ -10,7 +10,7 @@
 Summary: Perl module to capture metadata info about an SVG file
 Name: perl-SVG-Metadata
 Version: 0.28
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG-Metadata/

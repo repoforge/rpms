@@ -15,7 +15,7 @@
 Summary: Visualize and manipulate multidimensional surfaces
 Name: k3dsurf
 Version: 0.6.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://k3dsurf.sourceforge.net/

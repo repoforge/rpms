@@ -26,7 +26,7 @@
 Summary: CableCrypt Decoder for Linux
 Name: cabletv
 Version: 1.3.9
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: Freeware
 URL: http://sector17.tvand.net/cabletv/

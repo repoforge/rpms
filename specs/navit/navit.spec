@@ -4,7 +4,7 @@
 Name: navit
 Summary: Open Source car navigation system
 Version: 0.0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://navit.sourceforge.net/

@@ -6,7 +6,7 @@ Summary: Library for converting unicode strings to numbers
 Name: libuninum
 %define real_version 2.7
 Version: 2.7
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://billposer.org/Software/libuninum.html

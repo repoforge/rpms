@@ -10,7 +10,7 @@
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
 Version: 0.89
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/

@@ -9,7 +9,7 @@
 Summary: Perl module providing GUI testing/interaction facilities
 Name: perl-X11-GUITest
 Version: 0.21
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-GUITest/

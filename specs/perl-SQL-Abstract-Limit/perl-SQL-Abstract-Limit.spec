@@ -10,7 +10,7 @@
 Summary: Portable LIMIT emulation
 Name: perl-SQL-Abstract-Limit
 Version: 0.141
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract-Limit/

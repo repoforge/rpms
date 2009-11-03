@@ -7,7 +7,7 @@
 Summary: Library of Optimized Inner Loops, CPU optimized functions
 Name: liboil
 Version: 0.3.16
-Release: 0.1
+Release: 0.1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://liboil.freedesktop.org/

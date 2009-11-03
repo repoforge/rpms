@@ -10,7 +10,7 @@
 Summary: Calculate precision, recall, F1, accuracy, etc
 Name: perl-Statistics-Contingency
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Contingency/

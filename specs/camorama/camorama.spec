@@ -4,7 +4,7 @@
 Summary: Graphical webcam application featuring various image filters
 Name: camorama
 Version: 0.17
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://camorama.fixedgear.org/

@@ -10,7 +10,7 @@
 Summary: DBI SQL abstraction
 Name: perl-DBIx-Abstract
 Version: 1.006
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Abstract/

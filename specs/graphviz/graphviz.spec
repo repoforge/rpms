@@ -144,7 +144,7 @@
 Summary: Graph Visualization Tools
 Name: graphviz
 Version: 2.22.0
-Release: 4
+Release: 4%{?dist}
 License: CPL
 Group: Applications/Multimedia
 URL: http://www.graphviz.org/

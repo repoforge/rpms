@@ -4,7 +4,7 @@
 Summary: Charset and encoding analyser
 Name: enca
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://gitorious.org/enca

@@ -4,7 +4,7 @@
 Summary: Graphical User Interface based on SDL
 Name: paragui
 Version: 1.1.8
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.bms-austria.com/projects/paragui/

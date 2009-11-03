@@ -10,7 +10,7 @@
 Summary: Let us ignore unwanted parts, while parsing text
 Name: perl-Regexp-Ignore
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Ignore/

@@ -9,7 +9,7 @@
 Summary: UNO card game
 Name: gnono
 Version: 0.0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.paw.co.za/projects/gnono/

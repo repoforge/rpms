@@ -11,7 +11,7 @@
 Name: rhythmbox
 Summary: Music Management Application
 Version: 0.6.10
-Release: 0.1%{?_with_xine:xine}
+Release: 0.1%{?_with_xine:xine}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/

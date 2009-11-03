@@ -5,7 +5,7 @@
 Summary: Frontend for ding, a dictionary lookup program
 Name: kding
 Version: 0.5.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.rexi.org/software/kding/

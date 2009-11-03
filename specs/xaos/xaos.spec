@@ -22,7 +22,7 @@
 Summary: Fast, portable, real-time, and interactive fractal zoomer
 Name: xaos
 Version: 3.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://wmi.math.u-szeged.hu/xaos/doku.php

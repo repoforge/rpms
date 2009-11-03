@@ -6,7 +6,7 @@
 Summary: Drupal CMS
 Name: drupal6
 Version: 6.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://drupal.org/

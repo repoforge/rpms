@@ -10,7 +10,7 @@
 Summary: Samba client
 Name: perl-Filesys-SmbClientParser
 Version: 2.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-SmbClientParser/

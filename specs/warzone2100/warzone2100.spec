@@ -4,7 +4,7 @@
 Summary: 3D real time strategy game
 Name: warzone2100
 Version: 2.0.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://wz2100.net/

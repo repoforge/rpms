@@ -4,7 +4,7 @@
 Summary: Small application for displaying the contents of a DVD
 Name: lsdvd
 Version: 0.16
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://untrepid.com/lsdvd/

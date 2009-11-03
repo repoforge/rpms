@@ -10,7 +10,7 @@
 Summary: Shorten URL using 0rz.tw
 Name: perl-WWW-Shorten-0rz
 Version: 0.07
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Shorten-0rz/

@@ -4,7 +4,7 @@
 Summary: Suite of simple, portable benchmarks
 Name: lmbench
 Version: 2.0.4
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.bitmover.com/lmbench/

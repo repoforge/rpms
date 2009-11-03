@@ -18,7 +18,7 @@
 Summary: Multiprotocol instant messaging client
 Name: gaim
 Version: 1.5.0
-Release: 0.2
+Release: 0.2%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Internet

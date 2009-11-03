@@ -5,7 +5,7 @@
 Summary: Perl script that downloads MP3s off MySpace.com
 Name: getmsmp3 
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: WTFPL 
 Group: Applications/Internet
 URL: http://psydev.sourceforge.net/new/misc/getmsmp3

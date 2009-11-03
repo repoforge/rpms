@@ -10,7 +10,7 @@
 Summary: Elapsed and estimated finish time reporting
 Name: perl-Time-Progress
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Progress/

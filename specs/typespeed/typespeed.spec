@@ -4,7 +4,7 @@
 Summary: Test your typing speed and get your fingers' CPS
 Name: typespeed
 Version: 0.6.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://tobias.eyedacor.org/typespeed/

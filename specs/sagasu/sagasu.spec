@@ -5,7 +5,7 @@
 Summary: Tool to find strings in a set of files
 Name: sagasu
 Version: 2.0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://sarrazip.com/dev/sagasu.html

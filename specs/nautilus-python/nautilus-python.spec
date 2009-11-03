@@ -46,7 +46,7 @@
 Summary: Python bindings for Nautilus
 Name: nautilus-python
 Version: 0.5.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://git.gnome.org/cgit/nautilus-python

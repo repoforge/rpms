@@ -10,7 +10,7 @@
 Summary: Modular text-mode IRC client
 Name: irssi
 Version: 0.8.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://irssi.org/

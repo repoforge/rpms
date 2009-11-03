@@ -8,7 +8,7 @@
 Summary: PostgreSQL database adapter for Python
 Name: python-psycopg2
 Version: 2.0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL/ZPL
 Group: Development/Libraries
 URL: http://initd.org/tracker/psycopg

@@ -14,7 +14,7 @@
 Summary: Macromedia Flash Player
 Name: flash-plugin
 Version: 10.0.1.218
-Release: 1
+Release: 1%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/

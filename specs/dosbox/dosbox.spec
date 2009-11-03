@@ -13,7 +13,7 @@
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
 Version: 0.73
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://dosbox.sourceforge.net/

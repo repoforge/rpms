@@ -15,7 +15,7 @@
 Summary: Advanced IRC bouncer
 Name: znc
 Version: 0.062
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://znc.sourceforge.net/

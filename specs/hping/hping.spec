@@ -6,7 +6,7 @@
 Summary: Command-line oriented TCP/IP packet assembler/analyzer
 Name: hping
 Version: 2.0.0
-Release: 1.rc3.2
+Release: 1.rc3.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.hping.org/

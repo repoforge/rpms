@@ -10,7 +10,7 @@
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.ucarp.org/

@@ -10,7 +10,7 @@
 Summary: Perl module for validating email addresses according to RFC822
 Name: perl-Mail-RFC822-Address
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-RFC822-Address/

@@ -7,7 +7,7 @@
 Summary: Graphical media player similar to xmms
 Name: audacious
 Version: 1.4.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/

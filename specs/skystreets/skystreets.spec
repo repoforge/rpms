@@ -15,7 +15,7 @@
 Summary: Clone of skyroads, jump and speed along platforms to reach the goal
 Name: skystreets
 Version: 0.2.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://skystreets.kaosfusion.com/

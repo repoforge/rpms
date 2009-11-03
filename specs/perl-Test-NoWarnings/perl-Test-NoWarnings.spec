@@ -10,7 +10,7 @@
 Summary: Perl module to make sure you didn't emit any warnings while testing
 Name: perl-Test-NoWarnings
 Version: 0.084
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-NoWarnings/

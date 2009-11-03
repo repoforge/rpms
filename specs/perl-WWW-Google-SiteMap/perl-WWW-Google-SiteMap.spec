@@ -10,7 +10,7 @@
 Summary: Perl module to create sitemaps
 Name: perl-WWW-Google-SiteMap
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Google-SiteMap/

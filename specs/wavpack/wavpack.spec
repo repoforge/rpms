@@ -4,7 +4,7 @@
 Summary: Completely open audiocodec
 Name: wavpack
 Version: 4.50.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.wavpack.com/

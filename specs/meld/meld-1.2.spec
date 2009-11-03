@@ -7,7 +7,7 @@
 Summary: Graphical visual diff and merge tool
 Name: meld
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/

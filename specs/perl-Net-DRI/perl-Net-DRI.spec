@@ -10,7 +10,7 @@
 Summary: Interface to Domain Name Registries/Registrars/Resellers
 Name: perl-Net-DRI
 Version: 0.95
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DRI/

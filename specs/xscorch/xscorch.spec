@@ -13,7 +13,7 @@
 Summary: Clone of the classic DOS game, "Scorched Earth"
 Name: xscorch
 Version: 0.2.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://xscorch.org/

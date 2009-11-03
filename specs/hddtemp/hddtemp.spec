@@ -7,7 +7,7 @@
 Summary: Display the temperature of harddisks
 Name: hddtemp
 Version: 0.3
-Release: 0.beta15.1
+Release: 0.beta15.1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://coredump.free.fr/linux/hddtemp.php

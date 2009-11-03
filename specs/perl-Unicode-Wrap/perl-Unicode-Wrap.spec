@@ -10,7 +10,7 @@
 Summary: Perl module that implements Unicode Line Breaking
 Name: perl-Unicode-Wrap
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Wrap/

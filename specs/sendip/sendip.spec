@@ -5,7 +5,7 @@
 Summary: Command line tool to allow sending arbitrary IP packets
 Name: sendip
 Version: 2.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.earth.li/projectpurple/progs/sendip.html

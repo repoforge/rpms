@@ -5,7 +5,7 @@
 Summary: Log output of arbitrarily many devices
 Name: ttywatch
 Version: 0.14
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.danlj.org/mkj/ttywatch/

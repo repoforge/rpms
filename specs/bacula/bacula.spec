@@ -35,7 +35,7 @@
 Summary: Network backup solution
 Name: bacula
 Version: 1.32
-Release: 1.f
+Release: 1.f%{?dist}
 License: GPL v2
 Group: System Environment/Daemons
 URL: http://www.bacula.org/

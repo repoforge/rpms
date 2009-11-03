@@ -4,7 +4,7 @@
 Summary: Client library for TiVo vserver stream support
 Name: vstream-client
 Version: 1.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://armory.nicewarrior.org/projects/vstream-client/

@@ -4,7 +4,7 @@
 Summary: Collection of metathemes for the Gnome desktop environment
 Name: gnome-themes-extras
 Version: 0.9.0
-Release: 6
+Release: 6%{?dist}
 License: LGPL
 Group: User Interface/Desktops
 URL: http://librsvg.sourceforge.net/theme.php

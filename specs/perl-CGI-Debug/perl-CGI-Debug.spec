@@ -10,7 +10,7 @@
 Summary: Module for CGI programs debugging
 Name: perl-CGI-Debug
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Debug/

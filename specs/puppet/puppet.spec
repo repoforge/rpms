@@ -6,7 +6,7 @@
 Summary: Network tool for managing many disparate systems
 Name: puppet
 Version: 0.22.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://reductivelabs.com/projects/puppet/

@@ -9,7 +9,7 @@
 Summary: Mission and Objective based 2D Platform Game
 Name: blobwars
 Version: 1.07
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/blobWars.php

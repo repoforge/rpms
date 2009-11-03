@@ -33,7 +33,7 @@
 Summary: Network statistics collection tool
 Name: %{name}
 Version: %{version}
-Release: %{release}
+Release: %{release}%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://cricket.sourceforge.net

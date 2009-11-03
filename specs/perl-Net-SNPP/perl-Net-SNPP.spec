@@ -9,7 +9,7 @@
 Summary: Perl Simple Network Pager Protocol Client
 Name: perl-Net-SNPP
 Version: 1.17
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SNPP/

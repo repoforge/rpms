@@ -5,7 +5,7 @@
 Summary: DVD menu navigation library
 Name: libdvdnav
 Version: 0.1.10
-Release: 3
+Release: 3%{?dist}
 Group: System Environment/Libraries
 License: GPL
 URL: http://dvd.sourceforge.net/

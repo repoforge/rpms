@@ -13,7 +13,7 @@
 Summary: Mozilla Firefox web browser
 Name: firefox
 Version: 0.10.1
-Release: 0.1.2
+Release: 0.1.2%{?dist}
 License: MPL/LGPL
 Group: Applications/Internet
 URL: http://www.mozilla.org/projects/firefox/

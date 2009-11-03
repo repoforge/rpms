@@ -5,7 +5,7 @@
 Summary: Command line-based RSS enclosure downloader
 Name: castget
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/castget/

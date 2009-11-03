@@ -5,7 +5,7 @@
 Summary: DHCP daemon ping program
 Name: dhcping
 Version: 1.2
-Release: 2.2
+Release: 2.2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/mavetju/

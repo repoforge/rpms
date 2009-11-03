@@ -9,7 +9,7 @@ Summary: RPM installer/updater
 Name: yum
 Version: 2.4.2
 ### Do not update release > 1 as we do not want to replace CentOS yum
-Release: 0.4
+Release: 0.4%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: http://linux.duke.edu/projects/yum/download/2.4/yum-%{version}.tar.gz

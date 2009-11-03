@@ -10,7 +10,7 @@
 Summary: Manage a cache in SysV IPC shared memory
 Name: perl-IPC-SharedCache
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-SharedCache/

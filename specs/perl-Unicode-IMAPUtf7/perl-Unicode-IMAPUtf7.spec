@@ -9,7 +9,7 @@
 Summary: Perl module to deal with IMAP UTF7
 Name: perl-Unicode-IMAPUtf7
 Version: 2.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-IMAPUtf7/

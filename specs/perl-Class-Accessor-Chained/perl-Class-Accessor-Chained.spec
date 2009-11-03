@@ -10,7 +10,7 @@
 Summary: Perl module to make chained accessors
 Name: perl-Class-Accessor-Chained
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor-Chained/

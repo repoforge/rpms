@@ -5,7 +5,7 @@
 Summary: Real-time Game Server Status for Quake servers
 Name: qstat
 Version: 2.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/Internet
 URL: http://www.qstat.org/

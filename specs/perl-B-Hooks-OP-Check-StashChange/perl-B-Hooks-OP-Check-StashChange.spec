@@ -10,7 +10,7 @@
 Summary: Invoke callbacks when the stash code is being compiled in changes
 Name: perl-B-Hooks-OP-Check-StashChange
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Hooks-OP-Check-StashChange/

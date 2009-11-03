@@ -7,7 +7,7 @@
 Summary: Software simulator for Microchip PIC microcontrollers
 Name: gpsim
 Version: 0.21.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.dattalo.com/gnupic/gpsim.html

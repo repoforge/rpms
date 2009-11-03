@@ -10,7 +10,7 @@
 Summary: HTML-Tree module for perl
 Name: perl-HTML-Tree
 Version: 3.23
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Tree/

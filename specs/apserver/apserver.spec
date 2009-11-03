@@ -8,7 +8,7 @@
 Summary: NTLM authorization proxy server
 Name: apserver
 Version: 0.9.8
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://apserver.sourceforge.net/

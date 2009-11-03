@@ -30,7 +30,7 @@
 Summary: Attractive astronomical ephemeris program for X Windows
 Name: xephem
 Version: 3.7.2
-Release: 2
+Release: 2%{?dist}
 License: Distributable, see Copyright file for details.  NOT GPL!
 Group: Applications/Scientific
 URL: http://www.clearskyinstitute.com/xephem/xephem.html

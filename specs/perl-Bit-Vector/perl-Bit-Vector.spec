@@ -12,7 +12,7 @@
 Summary: Efficient bit vector, set of integers and "big int" math library
 Name: perl-Bit-Vector
 Version: 6.4
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL/LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bit-Vector/

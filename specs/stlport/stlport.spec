@@ -8,7 +8,7 @@
 Summary: C++ STL library compatible with the latest ANSI/ISO C++ specification
 Name: stlport
 Version: 5.0.0125
-Release: 1.2
+Release: 1.2%{?dist}
 License: Freeware
 Group: System Environment/Libraries
 URL: http://www.stlport.org

@@ -10,7 +10,7 @@
 Summary: Perl extension to model fractions
 Name: perl-Number-Fraction
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-Fraction/

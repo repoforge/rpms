@@ -10,7 +10,7 @@
 Summary: Perl module to cache the result of http get-requests persistently
 Name: perl-HTTP-Cache-Transparent
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Cache-Transparent/

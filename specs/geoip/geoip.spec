@@ -6,7 +6,7 @@
 Summary: C library for country/city/organization to IP address or hostname mapping
 Name: geoip
 Version: 1.4.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.maxmind.com/app/c

@@ -10,7 +10,7 @@
 Summary: Event-driven networkable IRC server daemon
 Name: perl-POE-Component-Server-IRC
 Version: 1.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-IRC/

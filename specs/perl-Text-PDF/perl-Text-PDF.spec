@@ -11,7 +11,7 @@
 Summary: PDF Functions
 Name: perl-Text-PDF
 Version: 0.29a
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-PDF/

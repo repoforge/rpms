@@ -10,7 +10,7 @@
 Summary: Synchronize a tree of files with a tree of elements
 Name: perl-ClearCase-SyncTree
 Version: 0.47
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-SyncTree/

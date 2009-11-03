@@ -11,7 +11,7 @@
 Summary: Parse record-oriented data in a text file
 Name: perl-Text-RecordParser
 Version: 1.3.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-RecordParser/

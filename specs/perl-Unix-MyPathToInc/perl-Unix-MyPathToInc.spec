@@ -10,7 +10,7 @@
 Summary: Perl module to add the location of the current program to @INC
 Name: perl-Unix-MyPathToInc
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-MyPathToInc/

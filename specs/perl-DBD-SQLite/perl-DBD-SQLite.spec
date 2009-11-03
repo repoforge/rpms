@@ -10,7 +10,7 @@
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
 Version: 1.25
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-SQLite/

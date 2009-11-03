@@ -17,7 +17,7 @@
 Summary: Control a 1394 digital camera interactively
 Name: coriander
 Version: 2.0.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://damien.douxchamps.net/ieee1394/coriander/

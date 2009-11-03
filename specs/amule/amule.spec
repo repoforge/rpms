@@ -6,7 +6,7 @@
 Summary: Client for ED2K Peer-to-Peer Networks based on eMule
 Name: amule
 Version: 2.2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.amule.org/

@@ -11,7 +11,7 @@
 Summary: Performs analysis of tcp flows from packet dumps
 Name: tcptrace
 Version: 6.6.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tcptrace.org/

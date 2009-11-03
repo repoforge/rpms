@@ -8,7 +8,7 @@
 Summary: Synthetic Audio Library software development kit
 Name: libseal
 Version: 1.07
-Release: 0.2
+Release: 0.2%{?dist}
 Group: System Environment/Libraries
 License: LGPL
 URL: http://linux.tlk.fr/

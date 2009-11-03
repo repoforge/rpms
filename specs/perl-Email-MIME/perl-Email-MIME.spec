@@ -10,7 +10,7 @@
 Summary: Easy MIME message parsing
 Name: perl-Email-MIME
 Version: 1.863
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME/

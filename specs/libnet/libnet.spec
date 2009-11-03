@@ -5,7 +5,7 @@
 Summary: Routines to help with network packet contruction and handling
 Name: libnet
 Version: 1.1.2.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.packetfactory.net/projects/libnet/

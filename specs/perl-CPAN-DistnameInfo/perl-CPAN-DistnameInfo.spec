@@ -10,7 +10,7 @@
 Summary: Extract distribution name and version from a distribution filename
 Name: perl-CPAN-DistnameInfo
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPAN-DistnameInfo/

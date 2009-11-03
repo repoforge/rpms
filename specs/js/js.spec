@@ -14,7 +14,7 @@
 Summary: JavaScript interpreter
 Name: js
 Version: 1.60
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://www.mozilla.org/js/

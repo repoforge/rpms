@@ -8,7 +8,7 @@
 Summary: View one or multiple files like tail but with multiple windows
 Name: multitail
 Version: 5.2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.vanheusden.com/multitail/

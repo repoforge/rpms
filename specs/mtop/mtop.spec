@@ -7,7 +7,7 @@
 Summary: Tool to monitor a MySQL database
 Name: mtop
 Version: 0.6.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://mtop.sourceforge.net/

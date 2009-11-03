@@ -7,7 +7,7 @@
 Summary: Object oriented wrapper for PostgreSQL
 Name: bonddb
 Version: 2.2.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.treshna.com/bonddb/

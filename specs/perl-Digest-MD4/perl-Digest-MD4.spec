@@ -10,7 +10,7 @@
 Summary: Perl interface to the MD4 Algorithm
 Name: perl-Digest-MD4
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD4/

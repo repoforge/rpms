@@ -10,7 +10,7 @@
 Summary: Generic input parsing/checking mechanism
 Name: perl-Params-Check
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Params-Check/

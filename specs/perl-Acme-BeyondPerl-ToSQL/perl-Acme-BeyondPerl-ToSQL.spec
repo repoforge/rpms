@@ -10,7 +10,7 @@
 Summary: Perl module to have RDBMS calculate instead of Perl
 Name: perl-Acme-BeyondPerl-ToSQL
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-BeyondPerl-ToSQL/

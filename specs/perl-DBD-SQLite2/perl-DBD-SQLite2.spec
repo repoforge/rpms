@@ -10,7 +10,7 @@
 Summary: Perl module that implements a self contained RDBMS in a DBI Driver (sqlite 2.x)
 Name: perl-DBD-SQLite2
 Version: 0.33
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-SQLite2/

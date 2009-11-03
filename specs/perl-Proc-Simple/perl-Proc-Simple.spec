@@ -10,7 +10,7 @@
 Summary: Launch and control background processes
 Name: perl-Proc-Simple
 Version: 1.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Simple/

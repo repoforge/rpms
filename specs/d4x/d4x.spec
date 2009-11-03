@@ -8,7 +8,7 @@
 Summary: Downloader for X that supports resuming and many other features
 Name: d4x
 Version: 2.5.0
-Release: %{?pre:0.%{pre}.}1
+Release: %{?pre:0.%{pre}.}1%{?dist}
 Group: Applications/Internet
 License: Artistic
 URL: http://www.krasu.ru/soft/chuchelo/

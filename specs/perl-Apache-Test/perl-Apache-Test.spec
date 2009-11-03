@@ -10,7 +10,7 @@
 Summary: Perl module contains a Test.pm wrapper with helpers for testing Apache
 Name: perl-Apache-Test
 Version: 1.30
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Test/

@@ -6,7 +6,7 @@
 Summary: Tool to extract boot image from an ISO file
 Name: geteltorito
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.uni-koblenz.de/~krienke/ftp/noarch/geteltorito/

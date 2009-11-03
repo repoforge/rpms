@@ -8,7 +8,7 @@
 Summary: Simple scripting language for Web browsing
 Name: python-twill
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Applications/Internet
 URL: http://twill.idyll.org/

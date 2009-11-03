@@ -5,7 +5,7 @@
 Summary: Ethernet/PPP IP Packet Monitor
 Name: netwatch
 Version: 1.0c
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.slctech.org/~mackay/netwatch.html

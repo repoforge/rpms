@@ -10,7 +10,7 @@
 Summary: Generates Globally/Universally Unique Identifiers
 Name: perl-Data-UUID
 Version: 1.202
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-UUID/

@@ -4,7 +4,7 @@
 Summary: Terminal multiplexer program
 Name: tmux
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://tmux.sourceforge.net/

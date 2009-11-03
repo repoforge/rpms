@@ -10,7 +10,7 @@
 Summary: Interface to parse the output of an IMAP4 MIME-parser
 Name: perl-IMAP-BodyStructure
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IMAP-BodyStructure/

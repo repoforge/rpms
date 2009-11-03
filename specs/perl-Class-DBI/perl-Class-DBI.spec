@@ -11,7 +11,7 @@
 Summary: Perl module that implements a simple database abstraction  
 Name: perl-Class-DBI
 Version: 3.0.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI/

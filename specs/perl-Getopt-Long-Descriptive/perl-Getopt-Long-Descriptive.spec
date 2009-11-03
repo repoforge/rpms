@@ -10,7 +10,7 @@
 Summary: Getopt::Long with usage text
 Name: perl-Getopt-Long-Descriptive
 Version: 0.077
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Long-Descriptive/

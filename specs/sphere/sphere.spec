@@ -7,7 +7,7 @@
 Summary: NIST SPeech HEader REsources (SPHERE) Package
 Name: sphere
 Version: 2.6
-Release: 1.a.2
+Release: 1.a.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: ftp://jaguar.ncsl.nist.gov/pub/sphere_2.6a.README

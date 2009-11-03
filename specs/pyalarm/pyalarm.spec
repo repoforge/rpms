@@ -8,7 +8,7 @@
 Summary: Alarm clock
 Name: pyalarm
 Version: 0.1.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://pyalarm.sourceforge.net/

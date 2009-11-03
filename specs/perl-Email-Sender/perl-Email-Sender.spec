@@ -10,7 +10,7 @@
 Summary: A library for sending email
 Name: perl-Email-Sender
 Version: 0.091940
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Sender/

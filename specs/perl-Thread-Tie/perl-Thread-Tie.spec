@@ -9,7 +9,7 @@
 Summary: Tie variables into a thread of their own
 Name: perl-Thread-Tie
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Tie/

@@ -14,7 +14,7 @@
 Summary: Web-based administration interface
 Name: webmin
 Version: 1.310
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Base
 URL: http://www.webmin.com/

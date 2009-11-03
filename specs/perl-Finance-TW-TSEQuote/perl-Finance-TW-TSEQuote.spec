@@ -10,7 +10,7 @@
 Summary: Check stock quotes from Taiwan Security Exchange
 Name: perl-Finance-TW-TSEQuote
 Version: 0.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Finance-TW-TSEQuote/

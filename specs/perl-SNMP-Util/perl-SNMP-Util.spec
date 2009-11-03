@@ -10,7 +10,7 @@
 Summary: Perform SNMP set,get,walk,next,walk_hash,...
 Name: perl-%{real_name}
 Version: 1.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SNMP-Util/

@@ -7,7 +7,7 @@
 Summary: libGringotts, a strongbox library
 Name: libgringotts
 Version: 1.2.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://devel.pluto.linux.it/projects/Gringotts/

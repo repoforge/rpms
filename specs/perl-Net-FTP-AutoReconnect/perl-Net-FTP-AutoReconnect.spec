@@ -10,7 +10,7 @@
 Summary: FTP client class with automatic reconnect on failure
 Name: perl-Net-FTP-AutoReconnect
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-FTP-AutoReconnect/

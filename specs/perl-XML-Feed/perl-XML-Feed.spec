@@ -10,7 +10,7 @@
 Summary: XML Syndication Feed Support
 Name: perl-XML-Feed
 Version: 0.43
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Feed/

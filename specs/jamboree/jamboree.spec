@@ -5,7 +5,7 @@
 Summary: Music player
 Name: jamboree
 Version: 0.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.imendio.com/projects/jamboree/

@@ -10,7 +10,7 @@
 Summary: A Quickie Wiki that's not too Tricky
 Name: perl-CGI-Kwiki
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Kwiki/

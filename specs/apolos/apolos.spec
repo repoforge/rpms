@@ -13,7 +13,7 @@
 Summary: Small cd player for GNOME
 Name: apolos
 Version: 0.1.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.nongnu.org/apolos/

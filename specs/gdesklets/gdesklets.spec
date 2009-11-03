@@ -6,7 +6,7 @@
 Summary: Advanced architecture for desktop applets
 Name: gdesklets
 Version: 0.35.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.gdesklets.org/

@@ -23,7 +23,7 @@
 Summary: GUI for the peer2peer tool gift
 Name: giftoxic
 Version: 0.0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://giftoxic.sourceforge.net/

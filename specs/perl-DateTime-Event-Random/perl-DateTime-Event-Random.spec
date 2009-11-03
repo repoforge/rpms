@@ -10,7 +10,7 @@
 Summary: DateTime extension for creating random datetimes
 Name: perl-DateTime-Event-Random
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-Random/

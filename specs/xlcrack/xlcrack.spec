@@ -5,7 +5,7 @@
 Summary: Recover lost and forgotten passwords from XLS files
 Name: xlcrack
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://devel.tlrmx.org/misc/

@@ -6,7 +6,7 @@
 Summary: C++ wrapper for Gnome libs (a GUI library for X)
 Name: libgnomeuimm26
 Version: 2.8.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

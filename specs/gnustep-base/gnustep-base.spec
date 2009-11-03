@@ -4,7 +4,7 @@
 Summary: GNUstep base library package
 Name: gnustep-base
 Version: 1.11.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.gnustep.org/

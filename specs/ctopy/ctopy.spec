@@ -5,7 +5,7 @@
 Summary: C to Python translator
 Name: ctopy
 Version: 1.0
-Release: 2
+Release: 2%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://www.catb.org/~esr/ctopy/

@@ -7,7 +7,7 @@
 Summary: Breakout and Arkanoid style arcade game
 Name: lbreakout2
 Version: 2.6
-Release: 0.8%{?prever:.%{prever}}
+Release: 0.8%{?prever:.%{prever}}%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/

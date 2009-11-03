@@ -10,7 +10,7 @@
 Summary: Check that a library is available
 Name: perl-Devel-CheckLib
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-CheckLib/

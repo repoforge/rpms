@@ -10,7 +10,7 @@
 Summary: Attributed Text data type
 Name: perl-Convert-Context
 Version: 0.501
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-Context/

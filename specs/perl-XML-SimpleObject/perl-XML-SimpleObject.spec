@@ -10,7 +10,7 @@
 Summary: Simple object representation of a parsed XML::Parser tree
 Name: perl-XML-SimpleObject
 Version: 0.53
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SimpleObject/

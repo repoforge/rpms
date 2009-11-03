@@ -10,7 +10,7 @@
 Summary: Perl module to read all the messages from a folder as Email::Simple objects
 Name: perl-Email-Folder
 Version: 0.855
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Folder/

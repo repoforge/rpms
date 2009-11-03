@@ -9,7 +9,7 @@
 Summary: Module for reading .ini-style configuration files
 Name: perl-Config-IniFiles
 Version: 2.52
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-IniFiles/

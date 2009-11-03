@@ -9,7 +9,7 @@
 Summary: High-level python wrapper for Kerberos (GSSAPI) operations
 Name: python-kerberos
 Version: 0.0
-Release: 0.svn1735.1
+Release: 0.svn1735.1%{?dist}
 License: Apache License
 Group: System Environment/Libraries
 URL: http://trac.calendarserver.org/projects/calendarserver/browser/PyKerberos/

@@ -5,7 +5,7 @@
 Summary: Dynamic process renicer and killer
 Name: verynice
 Version: 1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.tam.cornell.edu/~sdh4/verynice/

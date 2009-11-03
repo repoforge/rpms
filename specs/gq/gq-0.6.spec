@@ -12,7 +12,7 @@
 Summary: graphical LDAP directory browser and editor
 Name: gq
 Version: 0.6.0
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://biot.com/gq/

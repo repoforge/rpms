@@ -10,7 +10,7 @@
 Summary: Perl module to do simplified queries for the non-programmer
 Name: perl-Querylet
 Version: 0.324
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Querylet/

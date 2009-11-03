@@ -11,7 +11,7 @@
 Summary: Perl module with bindings for the DBus message system
 Name: perl-Net-DBus
 Version: 0.33.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DBus/

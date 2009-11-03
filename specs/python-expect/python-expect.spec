@@ -10,7 +10,7 @@
 Summary: Expect module for Python
 Name: python-expect
 Version: 0.99999b
-Release: 2.2
+Release: 2.2%{?dist}
 License: PSFL
 Group: Development/Languages
 URL: http://pexpect.sourceforge.net/

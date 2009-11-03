@@ -8,7 +8,7 @@
 Summary: Real Time software audio/video Encoder library
 Name: librte
 Version: 0.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://zapping.sourceforge.net/

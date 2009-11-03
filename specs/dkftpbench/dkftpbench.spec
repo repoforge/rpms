@@ -4,7 +4,7 @@
 Summary: FTP server benchmarking tool
 Name: dkftpbench
 Version: 0.45
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kegel.com/dkftpbench/

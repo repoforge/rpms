@@ -9,7 +9,7 @@
 Summary: KDE front-end to ssh
 Name: kssh
 Version: 0.7
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://kssh.sourceforge.net/

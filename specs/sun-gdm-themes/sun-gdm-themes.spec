@@ -4,7 +4,7 @@
 Summary: Sun branded GNOME login manager theme
 Name: sun-gdm-themes
 Version: 0.25
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: User Interface/X
 URL: http://sun.com/

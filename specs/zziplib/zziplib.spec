@@ -4,7 +4,7 @@
 Summary: Lightweight library to easily extract data from zip files
 Name: zziplib
 Version: 0.13.45
-Release: 1
+Release: 1%{?dist}
 License: LGPL/MPL
 Group: Applications/Archiving
 URL: http://zziplib.sourceforge.net/

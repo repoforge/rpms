@@ -9,7 +9,7 @@
 Summary: Gtk-HandyCList module for perl
 Name: perl-Gtk-HandyCList
 Version: 0.031
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk-HandyCList/

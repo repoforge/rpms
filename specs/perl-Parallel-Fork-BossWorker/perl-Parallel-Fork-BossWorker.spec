@@ -10,7 +10,7 @@
 Summary: Extension for easily creating forking queue processing application
 Name: perl-Parallel-Fork-BossWorker
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parallel-Fork-BossWorker/

@@ -4,7 +4,7 @@
 Summary: Morse Classic morse trainer program
 Name: morse
 Version: 2.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Communications
 URL: http://catb.org/~esr/morse/

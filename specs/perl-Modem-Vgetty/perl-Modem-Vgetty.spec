@@ -10,7 +10,7 @@
 Summary: Interface to vgetty
 Name: perl-Modem-Vgetty
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Modem-Vgetty/

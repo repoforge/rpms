@@ -10,7 +10,7 @@
 Summary: Perl module that parses and beautifies perl source
 Name: perl-Tidy
 Version: 20071205
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Tidy/

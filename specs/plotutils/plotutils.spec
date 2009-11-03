@@ -12,7 +12,7 @@
 Summary: GNU vector and raster graphics utilities and libraries
 Name: plotutils
 Version: 2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://www.gnu.org/software/plotutils/

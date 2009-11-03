@@ -10,7 +10,7 @@
 Summary: Read and write CSS files
 Name: perl-CSS-Tiny
 Version: 1.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CSS-Tiny/

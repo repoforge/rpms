@@ -10,7 +10,7 @@
 Summary: Interface to pseudo Tty
 Name: perl-IO-Tty
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Tty/

@@ -4,7 +4,7 @@
 Summary: Off-The-Record Messaging plugin for GAIM
 Name: pidgin-otr
 Version: 3.2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.cypherpunks.ca/otr/

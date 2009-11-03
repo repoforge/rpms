@@ -10,7 +10,7 @@
 Summary: Perl module to the GNU Aspell library
 Name: perl-Text-Aspell
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Aspell/

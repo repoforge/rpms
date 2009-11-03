@@ -10,7 +10,7 @@
 Summary: Email::Simple constructor for starting anew
 Name: perl-Email-Simple-Creator
 Version: 1.424
-Release: 3
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Simple-Creator/

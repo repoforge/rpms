@@ -10,7 +10,7 @@
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
 Version: 0.98.10
-Release: 1
+Release: 1%{?dist}
 License: GPL+ or Artistic
 Group: Applications/Multimedia
 URL: http://www.exit1.org/dvdrip/

@@ -10,7 +10,7 @@
 Summary: Getopt processing with both long and short options
 Name: perl-Getopt-Mixed
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Mixed/

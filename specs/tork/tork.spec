@@ -5,7 +5,7 @@
 Summary: Tor controller
 Name: tork
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Utilities
 URL: http://tork.sf.net

@@ -11,7 +11,7 @@
 Summary: MUD (multi user dungeon) client
 Name: kmuddy
 Version: 0.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.kmuddy.org/

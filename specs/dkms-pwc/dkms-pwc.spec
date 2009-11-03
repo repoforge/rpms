@@ -8,7 +8,7 @@
 Summary: Driver for Philips USB webcams
 Name: dkms-pwc
 Version: 10.0.11
-Release: 1.%{date}
+Release: 1.%{date}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://saillard.org/linux/pwc/

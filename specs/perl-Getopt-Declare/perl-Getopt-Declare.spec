@@ -10,7 +10,7 @@
 Summary: Declaratively Expressed Command-Line Arguments via Regular Expressions
 Name: perl-Getopt-Declare
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Declare/

@@ -10,7 +10,7 @@
 Summary: Perl module to find URIs in arbitrary text
 Name: perl-URI-Find
 Version: 20090319
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find/

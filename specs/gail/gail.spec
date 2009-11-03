@@ -6,7 +6,7 @@
 Summary: Accessibility implementation for GTK+ and GNOME libraries
 Name: gail
 Version: 1.8.11
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.gnome.org/projects/gap/

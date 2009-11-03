@@ -10,7 +10,7 @@
 Summary: Front end for a suite of classes for manipulating a Bind8 conf and associated zone record files
 Name: perl-Unix-Conf-Bind8
 Version: 0.3
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Conf-Bind8/

@@ -10,7 +10,7 @@
 Summary: Run command-line sessions to network appliances
 Name: perl-Net-Appliance-Session
 Version: 1.36
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Appliance-Session/

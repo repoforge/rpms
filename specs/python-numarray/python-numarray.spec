@@ -8,7 +8,7 @@
 Summary: Numerical Extension to Python
 Name: python-numarray
 Version: 1.3.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/numpy

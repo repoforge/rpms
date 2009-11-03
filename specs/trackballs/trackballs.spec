@@ -15,7 +15,7 @@
 Summary: Steer a marble ball through a labyrinth
 Name: trackballs
 Version: 1.1.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://trackballs.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Parses "folksonomy" space-separated tags (stub module)
 Name: perl-Text-Tags
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Tags/

@@ -11,7 +11,7 @@
 Summary: Sound wave editor
 Name: sweep
 Version: 0.9.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://sweep.sourceforge.net/

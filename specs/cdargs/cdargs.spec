@@ -4,7 +4,7 @@
 Summary: Navigate cd
 Name: cdargs
 Version: 1.35
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.skamphausen.de/software/cdargs/

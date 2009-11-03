@@ -6,7 +6,7 @@
 Summary: IPSec VPN client compatible with Cisco equipment
 Name: vpnc
 Version: 0.5.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.unix-ag.uni-kl.de/~massar/vpnc/

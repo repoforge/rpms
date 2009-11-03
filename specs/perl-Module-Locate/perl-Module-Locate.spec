@@ -10,7 +10,7 @@
 Summary: Perl module to locate modules in the same fashion as require and use
 Name: perl-Module-Locate
 Version: 1.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Locate/

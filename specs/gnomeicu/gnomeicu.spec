@@ -11,7 +11,7 @@
 Summary: Clone of Mirabilis' popular ICQ
 Name: gnomeicu
 Version: 0.99.10
-Release: 1
+Release: 1%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Communications

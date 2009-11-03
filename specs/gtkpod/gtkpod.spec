@@ -6,7 +6,7 @@
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
 Version: 0.99.8
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gtkpod.org/

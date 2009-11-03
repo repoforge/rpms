@@ -10,7 +10,7 @@
 Summary: Error/exception handling in an OO-ish way
 Name: perl-Error
 Version: 0.17015
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Error/

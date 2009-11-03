@@ -5,7 +5,7 @@
 Summary: Graphical .lircrc configuration program
 Name: lircrc_config
 Version: 0.1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.lirc.org/

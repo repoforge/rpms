@@ -10,7 +10,7 @@
 Summary: Find memory cycles in objects
 Name: perl-Devel-Cycle
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Cycle/

@@ -10,7 +10,7 @@
 Summary: Perl module to parse nmap scan data
 Name: perl-Nmap-Parser
 Version: 1.19
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nmap-Parser/

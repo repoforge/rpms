@@ -11,7 +11,7 @@
 Summary: Perl module to parse and construct OpenURL's (NISO Z39.88-2004)
 Name: perl-URI-OpenURL
 Version: 0.4.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-OpenURL/

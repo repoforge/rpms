@@ -4,7 +4,7 @@
 Summary: 	Ristretto
 Name: 		ristretto
 Version: 	0.0.19
-Release: 	1
+Release: 	1%{?dist}
 License: 	GPL
 Group: 		Applications/Graphics
 URL: 		http://goodies.xfce.org/projects/applications/ristretto

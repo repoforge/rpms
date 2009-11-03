@@ -8,7 +8,7 @@
 Summary: Imprisons processes to a jail
 Name: imprison
 Version: 0.2
-Release: 0.2
+Release: 0.2%{?dist}
 Group: System Environment/Base
 License: GPL
 URL: http://js.hu/package/imprison.html

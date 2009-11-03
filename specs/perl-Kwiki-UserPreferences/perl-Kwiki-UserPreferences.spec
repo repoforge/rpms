@@ -10,7 +10,7 @@
 Summary: Kwiki User Preferences plugin
 Name: perl-Kwiki-UserPreferences
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-UserPreferences/

@@ -8,7 +8,7 @@
 Summary: Linux Video Editor
 Name: lve
 Version: 0.%{real_version}
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/

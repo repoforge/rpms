@@ -7,7 +7,7 @@
 Summary: Vector drawing application
 Name: sodipodi
 Version: 0.34
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://sodipodi.sourceforge.net/

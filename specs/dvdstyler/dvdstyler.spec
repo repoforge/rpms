@@ -6,7 +6,7 @@
 Summary: DVD authoring tool
 Name: dvdstyler
 Version: 1.5
-Release: 0.1.%{prever}
+Release: 0.1.%{prever}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.dvdstyler.de/

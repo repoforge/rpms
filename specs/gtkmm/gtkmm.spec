@@ -4,7 +4,7 @@
 Summary: C++ interface for GTK++ (a GUI library for X)
 Name: gtkmm
 Version: 1.3.26
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: Realtime Video4Linux recording software
 Name: v4lgrab
 Version: 0.2.2
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://v4lgrab.sourceforge.net/

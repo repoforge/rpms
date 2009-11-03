@@ -10,7 +10,7 @@
 Summary: Collection of C library DNS codes
 Name: perl-Net-DNS-Codes
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-Codes/

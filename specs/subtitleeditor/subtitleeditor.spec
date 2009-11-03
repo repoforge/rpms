@@ -5,7 +5,7 @@
 Summary: Subtitle editor
 Name: subtitleeditor
 Version: 0.12.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kitone.free.fr/subtitleeditor/

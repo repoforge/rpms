@@ -6,7 +6,7 @@
 Summary: Lint-like tool for Python
 Name: pyflakes
 Version: 0.2.1
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Languages
 URL: http://divmod.org/trac/wiki/DivmodPyflakes

@@ -10,7 +10,7 @@
 Summary: Reusable XPath engine for DOM-like trees
 Name: perl-XML-XPathEngine
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-XPathEngine/

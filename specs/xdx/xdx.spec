@@ -5,7 +5,7 @@
 Summary: Client to connect to a DX-cluster for amateur radio
 Name: xdx
 Version: 2.4.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.qsl.net/pg4i/linux/xdx.html

@@ -10,7 +10,7 @@
 Summary: Convert or render graphs (as ASCII, HTML, SVG or via Graphviz)
 Name: perl-Graph-Easy
 Version: 0.64
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Easy/

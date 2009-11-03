@@ -5,7 +5,7 @@
 Summary: Perl script which generates statistics from IRC logfiles
 Name: pisg
 Version: 0.68
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://pisg.sourceforge.net/

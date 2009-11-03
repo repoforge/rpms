@@ -6,7 +6,7 @@
 Summary: Graphical user interface for the yum package manager
 Name: yumi
 Version: 2.0.7
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.cobind.com/yumgui.html

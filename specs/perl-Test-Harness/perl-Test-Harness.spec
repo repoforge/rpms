@@ -10,7 +10,7 @@
 Summary: Run Perl standard test scripts with statistics
 Name: perl-Test-Harness
 Version: 3.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Harness/

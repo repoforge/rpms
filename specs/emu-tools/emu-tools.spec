@@ -6,7 +6,7 @@
 Summary: Tools for configuring and controlling emu10k1 based soundcards
 Name: emu-tools
 Version: 0.9.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://opensource.creative.com/

@@ -10,7 +10,7 @@
 Summary: Count number of "1" bits in strings
 Name: perl-String-BitCount
 Version: 1.13
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-BitCount/

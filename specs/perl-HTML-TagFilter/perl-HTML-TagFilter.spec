@@ -10,7 +10,7 @@
 Summary: Fine-grained html-filter, xss-blocker and mailto-obfuscator
 Name: perl-HTML-TagFilter
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TagFilter/

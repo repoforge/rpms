@@ -6,7 +6,7 @@
 Summary: I/O subsystem measurement and characterization tool
 Name: iometer
 Version: 0.0.20040730
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.iometer.org/

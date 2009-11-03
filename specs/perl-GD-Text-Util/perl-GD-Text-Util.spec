@@ -9,7 +9,7 @@
 Summary: Text utilities for use with GD
 Name: perl-GD-Text-Util
 Version: 0.86
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GDTextUtil/

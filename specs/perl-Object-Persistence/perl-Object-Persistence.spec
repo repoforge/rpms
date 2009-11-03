@@ -10,7 +10,7 @@
 Summary: Object Persistence with Data::Dumper
 Name: perl-Object-Persistence
 Version: 0.92
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Persistence/

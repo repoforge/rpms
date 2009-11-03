@@ -4,7 +4,7 @@
 Summary: Print source code in a variety of languages to postscript
 Name: trueprint
 Version: 5.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.gnu.org/software/trueprint/trueprint.html

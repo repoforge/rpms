@@ -10,7 +10,7 @@
 Summary: serialize / deserialize AMF data
 Name: perl-Data-AMF
 Version: 0.02004
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-AMF/

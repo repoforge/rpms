@@ -16,7 +16,7 @@
 Summary: Sniff the network for images and movies and displays them
 Name: driftnet
 Version: 0.1.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.ex-parrot.com/~chris/driftnet/

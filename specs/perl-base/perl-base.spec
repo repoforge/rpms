@@ -10,7 +10,7 @@
 Summary: Perl module to establish an ISA relationship with base classes at compile time
 Name: perl-base
 Version: 2.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/base/

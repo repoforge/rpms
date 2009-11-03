@@ -5,7 +5,7 @@
 Summary: Enlightenment database access library.
 Name: edb
 Version: 1.0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/edb.html

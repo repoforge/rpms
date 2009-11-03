@@ -5,7 +5,7 @@
 Summary: Script for submitting project updates to freshmeat.net using XML-RPC
 Name: fm-submit
 Version: 0.0.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.ivarch.com/programs/fm-submit.shtml

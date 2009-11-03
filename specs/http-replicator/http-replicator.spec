@@ -5,7 +5,7 @@
 Summary: Replicating HTTP proxy server
 Name: http-replicator
 Version: 3.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/http-replicator/

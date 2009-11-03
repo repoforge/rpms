@@ -6,7 +6,7 @@
 Summary: Deepmagic Information Gathering Tool
 Name: dmitry
 Version: 1.3a
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.mor-pah.net/

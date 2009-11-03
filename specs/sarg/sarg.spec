@@ -6,7 +6,7 @@
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 2.2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sarg.sourceforge.net/sarg.php

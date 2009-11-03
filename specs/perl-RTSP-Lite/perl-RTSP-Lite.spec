@@ -10,7 +10,7 @@
 Summary: Lightweight RTSP implementation
 Name: perl-RTSP-Lite
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RTSP-Lite/

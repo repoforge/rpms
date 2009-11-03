@@ -8,7 +8,7 @@
 Summary: International Components for Unicode
 Name: icu
 Version: 2.6.2
-Release: 1
+Release: 1%{?dist}
 License: X License
 Group: System Environment/Libraries
 URL: http://oss.software.ibm.com/icu/

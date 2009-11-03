@@ -7,7 +7,7 @@
 Summary: Console-based disk editor
 Name: lde
 Version: 2.6.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://lde.sourceforge.net/

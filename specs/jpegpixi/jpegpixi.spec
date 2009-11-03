@@ -5,7 +5,7 @@
 Summary: JPEG pixel interpolator
 Name: jpegpixi
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.zero-based.org/software/jpegpixi/

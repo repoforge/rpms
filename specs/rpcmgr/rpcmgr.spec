@@ -6,7 +6,7 @@
 Summary: DVD RPC (Region Playback Control) tool
 Name: rpcmgr
 Version: 1.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://perso.club-internet.fr/farzeno/dvds/rpcmgr11.c

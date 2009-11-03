@@ -11,7 +11,7 @@
 Summary: 5250 terminal emulator for the AS/400 written in Java
 Name: tn5250j
 Version: 0.6.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tn5250j.sourceforge.net/

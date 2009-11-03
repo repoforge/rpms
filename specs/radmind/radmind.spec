@@ -4,7 +4,7 @@
 Summary: Remotely administer the file systems of multiple unix machines
 Name: radmind
 Version: 1.11.1
-Release: 1
+Release: 1%{?dist}
 License: BSD-like
 Group: System Environment/Base
 URL: http://rsug.itd.umich.edu/software/radmind/

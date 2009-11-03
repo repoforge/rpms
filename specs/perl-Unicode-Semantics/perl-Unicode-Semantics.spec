@@ -10,7 +10,7 @@
 Summary: Perl module to work around *the* Perl 5 Unicode bug
 Name: perl-Unicode-Semantics
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Semantics/

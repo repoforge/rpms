@@ -10,7 +10,7 @@
 Summary: Perl module that provides date manipulation routines
 Name: perl-Date-Manip
 Version: 5.54
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Manip/

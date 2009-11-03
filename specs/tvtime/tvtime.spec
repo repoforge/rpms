@@ -24,7 +24,7 @@
 Summary: High quality TV viewer
 Name: tvtime
 Version: 1.0.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://tvtime.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Easy access to data in many formats
 Name: perl-AnyData
 Version: 0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyData/

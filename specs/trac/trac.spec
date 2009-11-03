@@ -9,7 +9,7 @@
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.11.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/

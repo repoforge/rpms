@@ -29,7 +29,7 @@
 Summary: Next generation package handling tool
 Name: smart
 Version: 1.2
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.smartpm.org/

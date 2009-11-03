@@ -10,7 +10,7 @@
 Summary: Utilities to test STDOUT and STDERR messages
 Name: perl-Test-Output
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Output/

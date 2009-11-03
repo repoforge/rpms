@@ -19,7 +19,7 @@
 Summary: Multi-user network version of the classic "Risk"
 Name: xfrisk
 Version: 1.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://tuxick.net/xfrisk/

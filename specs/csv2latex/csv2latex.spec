@@ -5,7 +5,7 @@
 Summary: Convert CSV files to LaTeX documents
 Name: csv2latex
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://brouits.free.fr/csv2latex/

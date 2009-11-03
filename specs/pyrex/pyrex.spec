@@ -8,7 +8,7 @@
 Summary: Compiler/language for writing Python extension modules.
 Name: pyrex
 Version: 0.9.6.2
-Release: 1
+Release: 1%{?dist}
 License: Public Domain
 Group: Development/Languages
 URL: http://www.cosc.canterbury.ac.nz/~greg/python/Pyrex/

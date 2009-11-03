@@ -7,7 +7,7 @@
 Summary: Create hibernation file for phoenix notebios laptops
 Name: tphdisk
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://samba.org/junkcode/#tphdisk

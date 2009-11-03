@@ -11,7 +11,7 @@
 Summary: Analyzing WEP encryption security on wireless networks
 Name: weplab
 Version: 0.1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://weplab.sourceforge.net/

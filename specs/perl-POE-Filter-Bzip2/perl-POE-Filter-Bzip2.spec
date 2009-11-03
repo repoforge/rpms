@@ -10,7 +10,7 @@
 Summary: POE filter wrapped around Compress::Bzip2
 Name: perl-POE-Filter-Bzip2
 Version: 1.58
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-Bzip2/

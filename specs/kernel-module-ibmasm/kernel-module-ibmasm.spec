@@ -32,7 +32,7 @@
 Summary: IBM Advanced System Management drivers
 Name: kernel-module-ibmasm
 Version: 2.05
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.pc.ibm.com/support/

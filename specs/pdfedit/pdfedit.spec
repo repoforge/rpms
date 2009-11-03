@@ -27,7 +27,7 @@
 Summary: PDF document editing solution
 Name: pdfedit
 Version: 0.4.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://sourceforge.net/projects/pdfedit/

@@ -6,7 +6,7 @@
 Summary: Superkaramba theme which displays your kotnet stats
 Name: kotnet-limiet
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://cernunos.studentenweb.org/kotnet-limiet.html

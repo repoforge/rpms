@@ -10,7 +10,7 @@
 Summary: HTML to text conversion with links as footnotes
 Name: perl-HTML-FormatText-WithLinks
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-FormatText-WithLinks/

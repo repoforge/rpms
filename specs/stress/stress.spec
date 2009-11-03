@@ -7,7 +7,7 @@
 Summary: Tool to impose stress on a POSIX-compliant operating system
 Name: stress
 Version: 1.0.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://weather.ou.edu/~apw/projects/stress/

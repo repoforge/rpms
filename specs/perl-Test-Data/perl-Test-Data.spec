@@ -10,7 +10,7 @@
 Summary: Test functions for particular variable types
 Name: perl-Test-Data
 Version: 1.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Data/

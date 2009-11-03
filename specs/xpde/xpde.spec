@@ -10,7 +10,7 @@
 Summary: Integrated desktop environment (xpde) and window manager (xpwm)
 Name: xpde
 Version: 0.4.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.xpde.com/

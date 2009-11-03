@@ -10,7 +10,7 @@
 Summary: Member function of Prolog
 Name: perl-List-Member
 Version: 0.043
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Member/

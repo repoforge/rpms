@@ -32,7 +32,7 @@
 Summary: Browser plugin for MPlayer
 Name: mplayerplug-in
 Version: 3.55
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerplug-in.sourceforge.net/

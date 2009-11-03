@@ -10,7 +10,7 @@
 Summary: Clone of PHP's phpinfo function for Perl
 Name: perl-PHP-Perlinfo
 Version: 0.08
-Release: 3
+Release: 3%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PHP-Perlinfo/

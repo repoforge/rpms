@@ -10,7 +10,7 @@
 Summary: Simple Hexadecial Dumper
 Name: perl-Data-HexDump
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-HexDump/

@@ -13,7 +13,7 @@ Summary: Collection of Perl modules which provide Internet protocols
 Name: perl-libnet
 Version: 1.22
 Epoch: 2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libnet/

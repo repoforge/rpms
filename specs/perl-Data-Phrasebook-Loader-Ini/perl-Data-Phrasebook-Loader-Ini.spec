@@ -10,7 +10,7 @@
 Summary: Absract your phrases with ini files
 Name: perl-Data-Phrasebook-Loader-Ini
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Phrasebook-Loader-Ini/

@@ -21,7 +21,7 @@
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.6.%{prever}
+Release: 0.6.%{prever}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/

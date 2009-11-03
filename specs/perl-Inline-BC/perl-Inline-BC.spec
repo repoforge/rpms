@@ -10,7 +10,7 @@
 Summary: Inline ILSM for bc the arbitrary precision math Language
 Name: perl-Inline-BC
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-BC/

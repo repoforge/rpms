@@ -11,7 +11,7 @@
 Summary: Access to the WoW Armory
 Name: perl-Games-WoW-Armory
 Version: 0.0.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-WoW-Armory/

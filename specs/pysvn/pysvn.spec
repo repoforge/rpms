@@ -9,7 +9,7 @@
 Summary: Alternative Python interface to Subversion
 Name: pysvn
 Version: 1.7.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pysvn.tigris.org/

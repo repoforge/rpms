@@ -17,7 +17,7 @@
 Summary: Control input to X Windows from the command line
 Name: xautomation
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group:  User Interface/X
 URL: http://www.hoopajoo.net/projects/xautomation.html

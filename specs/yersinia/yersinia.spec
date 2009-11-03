@@ -10,7 +10,7 @@
 Summary: Tests and attacks for network protocols
 Name: yersinia
 Version: 0.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.yersinia.net/

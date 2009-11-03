@@ -10,7 +10,7 @@
 Summary: Interface to graphing hosts in BIND zone files
 Name: perl-GraphViz-Zone
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz-Zone/

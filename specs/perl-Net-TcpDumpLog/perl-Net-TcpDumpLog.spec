@@ -10,7 +10,7 @@
 Summary: Perl module to read tcpdump/libpcap network packet logs
 Name: perl-Net-TcpDumpLog
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-TcpDumpLog/

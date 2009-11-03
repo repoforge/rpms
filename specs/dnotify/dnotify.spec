@@ -5,7 +5,7 @@
 Summary: Execute a command when the content of a directory changes
 Name: dnotify
 Version: 0.18.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.student.lu.se/~nbi98oli/dnotify.html

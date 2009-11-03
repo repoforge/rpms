@@ -7,7 +7,7 @@
 Summary: Small frontend for screen
 Name: screenie
 Version: 1.30.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://pubwww.fhzh.ch/~mgloor/screenie.html

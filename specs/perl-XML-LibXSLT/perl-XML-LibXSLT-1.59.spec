@@ -10,7 +10,7 @@
 Summary: Interface to the gnome libxslt library
 Name: perl-XML-LibXSLT
 Version: 1.59
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXSLT/

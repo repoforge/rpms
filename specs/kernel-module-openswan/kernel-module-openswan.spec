@@ -32,7 +32,7 @@
 Summary: Linux drivers for OpenS/WAN IPsec support
 Name: kernel-module-openswan
 Version: 2.3.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.openswan.org/

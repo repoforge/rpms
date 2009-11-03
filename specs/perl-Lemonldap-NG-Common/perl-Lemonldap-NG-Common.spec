@@ -10,7 +10,7 @@
 Summary: Common files for Lemonldap::NG infrastructure
 Name: perl-Lemonldap-NG-Common
 Version: 0.94
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lemonldap-NG-Common/

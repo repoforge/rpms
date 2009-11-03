@@ -7,7 +7,7 @@
 Summary: Open Carpet server generation tool
 Name: open-carpet
 Version: 0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://open-carpet.org/

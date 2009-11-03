@@ -10,7 +10,7 @@
 Summary: Extracts the text contained in tables within an HTML document
 Name: perl-HTML-TableExtract
 Version: 2.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TableExtract/

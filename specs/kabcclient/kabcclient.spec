@@ -5,7 +5,7 @@
 Summary: Command line access to the KDE address book
 Name: kabcclient
 Version: 0.8.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://www.sbox.tugraz.at/home/v/voyager/kabcclient/index.html

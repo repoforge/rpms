@@ -10,7 +10,7 @@
 Summary: Perl module to get information from ACPI
 Name: perl-Acpi
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acpi/

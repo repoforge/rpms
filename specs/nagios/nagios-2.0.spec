@@ -12,7 +12,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 2.0
-Release: 0.b1.2
+Release: 0.b1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/

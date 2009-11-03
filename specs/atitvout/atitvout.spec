@@ -5,7 +5,7 @@
 Summary: tool to use ATI TV-OUT
 Name: atitvout
 Version: 0.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.stud.uni-hamburg.de/users/lennart/projects/atitvout/

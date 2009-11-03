@@ -10,7 +10,7 @@
 Summary: Convert PHP's serialize() output into Perl memory structure, and back.
 Name: perl-PHP-Serialization
 Version: 0.33
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PHP-Serialization/

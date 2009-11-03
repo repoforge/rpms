@@ -10,7 +10,7 @@
 Summary: Is a particular year a leap year
 Name: perl-Date-Leapyear
 Version: 1.72
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Leapyear/

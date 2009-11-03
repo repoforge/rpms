@@ -5,7 +5,7 @@
 Summary: Information authoring, management, and transformation system
 Name: conglomerate
 Version: 0.9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.conglomerate.org/

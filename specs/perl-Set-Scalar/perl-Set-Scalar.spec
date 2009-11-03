@@ -10,7 +10,7 @@
 Summary: Basic set operations
 Name: perl-Set-Scalar
 Version: 1.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Scalar/

@@ -30,7 +30,7 @@
 Summary: Linux driver for the Multiband Atheros Wifi
 Name: kernel-module-madwifi
 Version: 0.0.%{real_version}
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.mattfoster.clara.co.uk/madwifi-faq.htm
@@ -70,7 +70,7 @@ They might work with newer/older kernels.
 
 %package -n madwifi-utils
 Summary: Madwifi utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Base
 
 Obsoletes: %{real_name}, kernel-%{real_name}

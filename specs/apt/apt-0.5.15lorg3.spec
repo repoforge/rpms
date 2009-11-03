@@ -25,7 +25,7 @@
 Summary: Debian's Advanced Packaging Tool with RPM support
 Name: apt
 Version: 0.5.15lorg3.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://apt-rpm.org/

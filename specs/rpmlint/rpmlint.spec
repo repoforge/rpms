@@ -4,7 +4,7 @@
 Summary: RPM correctness checker
 Name: rpmlint
 Version: 0.61
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://people.mandrakesoft.com/~flepied/projects/rpmlint/

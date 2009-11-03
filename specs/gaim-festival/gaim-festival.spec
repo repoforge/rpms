@@ -8,7 +8,7 @@
 Summary: Voice plugin for gaim
 Name: gaim-festival
 Version: 1.00
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://festival-gaim.sourceforge.net/

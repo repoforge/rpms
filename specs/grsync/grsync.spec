@@ -4,7 +4,7 @@
 Summary: GUI for rsync
 Name: grsync
 Version: 0.6.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.opbyte.it/grsync/

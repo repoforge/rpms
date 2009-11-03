@@ -11,7 +11,7 @@
 Summary: Perl module to create a module as recommended in "Perl Best Practices"
 Name: perl-Module-Starter-PBP
 Version: 0.0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Starter-PBP/

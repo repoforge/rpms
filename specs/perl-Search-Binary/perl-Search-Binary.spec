@@ -10,7 +10,7 @@
 Summary: Generic binary search
 Name: perl-Search-Binary
 Version: 0.95
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Search-Binary/

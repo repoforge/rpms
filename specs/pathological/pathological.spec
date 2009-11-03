@@ -7,7 +7,7 @@
 Summary: an enriched clone of the game "Logical" by Rainbow Arts
 Name: pathological
 Version: 1.1.3
-Release: 4.2
+Release: 4.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://pathological.sourceforge.net/

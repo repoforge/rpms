@@ -9,7 +9,7 @@
 Summary: Perl extension for reading from continuosly updated files
 Name: perl-File-Tail
 Version: 0.99.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Tail/

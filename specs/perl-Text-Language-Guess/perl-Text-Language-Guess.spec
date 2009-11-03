@@ -10,7 +10,7 @@
 Summary: Perl trained module to guess a document's language
 Name: perl-Text-Language-Guess
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Language-Guess/

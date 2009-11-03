@@ -4,7 +4,7 @@
 Summary: Universal Plug and Play (UPnP) SDK
 Name: libupnp
 Version: 1.4.2
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://pupnp.sourceforge.net/

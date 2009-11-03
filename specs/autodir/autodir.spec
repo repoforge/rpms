@@ -4,7 +4,7 @@
 Summary: Creates user directories on demand
 Name: autodir
 Version: 0.99.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.intraperson.com/autodir/

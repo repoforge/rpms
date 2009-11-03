@@ -19,7 +19,7 @@
 Summary: Stellarium renders 3D photo-realistic skies in real time
 Name: stellarium
 Version: 0.10.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://stellarium.free.fr/

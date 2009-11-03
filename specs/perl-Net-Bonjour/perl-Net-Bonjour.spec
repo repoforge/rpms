@@ -10,7 +10,7 @@
 Summary: mDNS or Bonjour support for service discovery
 Name: perl-Net-Bonjour
 Version: 0.96
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Bonjour/

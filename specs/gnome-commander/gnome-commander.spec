@@ -4,7 +4,7 @@
 Summary: File manager for the GNOME desktop
 Name: gnome-commander
 Version: 1.2.7
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.nongnu.org/gcmd/

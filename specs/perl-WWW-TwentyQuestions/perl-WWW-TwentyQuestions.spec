@@ -10,7 +10,7 @@
 Summary: Interface to the classic 20 Questions game as provided by 20Q.net
 Name: perl-WWW-TwentyQuestions
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-TwentyQuestions/

@@ -6,7 +6,7 @@
 Summary: HTTP library implementation
 Name: libsoup
 Version: 1.99.26
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: ftp://ftp.gnome.org/pub/gnome/sources/libsoup/

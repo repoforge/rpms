@@ -10,7 +10,7 @@
 Summary: Perl module for laundering tainted data
 Name: perl-Untaint
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Untaint/

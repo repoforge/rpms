@@ -10,7 +10,7 @@
 Summary: Retrieves UTV internet account information
 Name: perl-Business-UTV
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-UTV/

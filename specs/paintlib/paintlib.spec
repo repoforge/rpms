@@ -17,7 +17,7 @@
 Summary: Portable C++ class library for image loading, saving and manipulation
 Name: paintlib
 Version: 2.6.1
-Release: 1
+Release: 1%{?dist}
 License: OSI certified
 Group: System Environment/Libraries
 URL: http://www.paintlib.de/paintlib/

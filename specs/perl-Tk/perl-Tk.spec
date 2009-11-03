@@ -21,7 +21,7 @@
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
 Version: 804.028
-Release: 2
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk/

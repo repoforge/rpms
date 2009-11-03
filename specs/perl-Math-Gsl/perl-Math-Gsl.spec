@@ -10,7 +10,7 @@
 Summary: Interface to The GNU Scientific Library
 Name: perl-Math-Gsl
 Version: 0.08
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Gsl/

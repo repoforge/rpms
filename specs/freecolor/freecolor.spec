@@ -5,7 +5,7 @@
 Summary: Disk free stats with colors
 Name: freecolor
 Version: 0.8.7
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.rkeene.org/oss/freecolor/

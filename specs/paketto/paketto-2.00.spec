@@ -13,7 +13,7 @@ Summary: Unusual TCP/IP testing tools
 Name: paketto
 %define real_version 2.00pre5
 Version: 2.00
-Release: 1.pre5.2
+Release: 1.pre5.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.doxpara.com/

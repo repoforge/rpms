@@ -4,7 +4,7 @@
 Summary: Small web server that hosts ASP.NET
 Name: xsp
 Version: 1.0.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.go-mono.com/

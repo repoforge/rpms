@@ -5,7 +5,7 @@
 Summary: Replacement for tee program
 Name: memtee
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.vanheusden.com/memtee/

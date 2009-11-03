@@ -4,7 +4,7 @@
 Summary: Lightweight image viewer
 Name: pho
 Version: 0.9.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.shallowsky.com/software/pho/

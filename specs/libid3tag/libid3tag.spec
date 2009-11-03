@@ -4,7 +4,7 @@
 Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag
 Version: 0.15.1b
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.underbit.com/products/mad/

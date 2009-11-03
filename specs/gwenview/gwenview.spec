@@ -11,7 +11,7 @@
 Summary: Image viewer for KDE
 Name: gwenview
 Version: 1.4.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://gwenview.sourceforge.net/

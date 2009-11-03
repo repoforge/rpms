@@ -5,7 +5,7 @@
 Summary: Distributed shell. Allows running of a single command on multiple hosts
 Name: dsh
 Version: 0.23.7
-Release: 0.2
+Release: 0.2%{?dist}
 Group: System Environment/Shells
 License: GPL
 URL: http://www.netfort.gr.jp/~dancer/software/dsh.html

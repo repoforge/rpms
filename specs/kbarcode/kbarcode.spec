@@ -5,7 +5,7 @@
 Summary: Barcode and label printing application
 Name: kbarcode
 Version: 2.0.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.kbarcode.net/

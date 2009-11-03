@@ -15,7 +15,7 @@
 Summary: Viewer for comic book archives
 Name: qcomicbook
 Version: 0.4.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://linux.bydg.org/~yogin/

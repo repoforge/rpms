@@ -10,7 +10,7 @@
 Summary: Read Database Large Object Binaries from file handles
 Name: perl-DBIx-BLOB-Handle
 Version: 0.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-BLOB-Handle/

@@ -13,7 +13,7 @@
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 1.2.4
-Release: 2.1
+Release: 2.1%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://cairo.freedesktop.org/

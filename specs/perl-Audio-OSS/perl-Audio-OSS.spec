@@ -10,7 +10,7 @@
 Summary: Interface to OSS (open sound system) audio devices
 Name: perl-Audio-OSS
 Version: 0.0501
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-OSS/

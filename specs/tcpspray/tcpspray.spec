@@ -6,7 +6,7 @@ Summary: Print average throughput for a tcp connection
 Name: tcpspray
 %define real_version 1.1a
 Version: 1.1
-Release: 0.a.2
+Release: 0.a.2%{?dist}
 License: Unknown
 Group: Applications/Internet
 URL: http://ftp.linux.org.uk/pub/linux/Networking/attic/Other/tcpspray/

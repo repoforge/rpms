@@ -4,7 +4,7 @@
 Summary: Tools to assist in recovering deleted files from ext2 filesystems.
 Name: e2recover
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 Group: Applications/File
 License: GPL
 URL: http://pobox.com/~aaronc/tech/e2-undel/

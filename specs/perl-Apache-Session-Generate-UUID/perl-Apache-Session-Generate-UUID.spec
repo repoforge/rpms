@@ -10,7 +10,7 @@
 Summary: Perl module to generate UUID for session ID
 Name: perl-Apache-Session-Generate-UUID
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Session-Generate-UUID/

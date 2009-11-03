@@ -13,7 +13,7 @@
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
 Version: 2.6.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/

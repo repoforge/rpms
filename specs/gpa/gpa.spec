@@ -8,7 +8,7 @@
 Summary: Graphical user interface for the GnuPG
 Name: gpa
 Version: 0.7.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpa.html

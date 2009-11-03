@@ -11,7 +11,7 @@
 Summary: Handling of GnuPG encrypted / signed mails
 Name: perl-Mail-GPG
 Version: 1.0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-GPG/

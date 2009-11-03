@@ -10,7 +10,7 @@
 Summary: High-level interface to cddb protocol servers (freedb and CDDB)
 Name: perl-CDDB
 Version: 1.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CDDB/

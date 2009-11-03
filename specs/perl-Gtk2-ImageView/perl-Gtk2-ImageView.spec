@@ -10,7 +10,7 @@
 Summary: Perl bindings for the GtkImageView widget
 Name: perl-Gtk2-ImageView
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-ImageView/

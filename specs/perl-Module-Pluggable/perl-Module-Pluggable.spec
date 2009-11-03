@@ -10,7 +10,7 @@
 Summary: Automatically give your module the ability to have plugins
 Name: perl-Module-Pluggable
 Version: 3.9
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable/

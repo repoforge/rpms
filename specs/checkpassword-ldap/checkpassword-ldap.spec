@@ -5,7 +5,7 @@
 Summary: Provides a simple, uniform password-checking interface using an LDAP database.
 Name: checkpassword-ldap
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://chkpasswd-ldap.sourceforge.net/

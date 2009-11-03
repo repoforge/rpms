@@ -10,7 +10,7 @@
 Summary: Interface to the Boost-Graph C++ libraries
 Name: perl-Boost-Graph
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Boost-Graph/

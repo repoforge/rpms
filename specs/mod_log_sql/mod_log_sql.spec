@@ -4,7 +4,7 @@
 Summary: Database logging module for Apache
 Name: mod_log_sql
 Version: 1.100
-Release: 1.2
+Release: 1.2%{?dist}
 License: Other
 Group: System Environment/Daemons
 URL: http://www.outoforder.cc/projects/apache/mod_log_sql/

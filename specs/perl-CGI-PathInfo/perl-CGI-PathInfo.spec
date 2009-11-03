@@ -10,7 +10,7 @@
 Summary: Lightweight CGI processing package for using PATH_INFO like GET method form parameters
 Name: perl-CGI-PathInfo
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-PathInfo/

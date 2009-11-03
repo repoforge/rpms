@@ -7,7 +7,7 @@
 Summary: Web browser based on the mozilla rendering engine
 Name: epiphany
 Version: 1.2.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gnome.org/projects/epiphany/

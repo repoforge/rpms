@@ -6,7 +6,7 @@
 Summary: free vector drawing application
 Name: gestalter
 Version: 0.7.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.linotux.ch/gestalter/

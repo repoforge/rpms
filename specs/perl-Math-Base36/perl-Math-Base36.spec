@@ -10,7 +10,7 @@
 Summary: Encoding and decoding of base36 strings
 Name: perl-Math-Base36
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Base36/

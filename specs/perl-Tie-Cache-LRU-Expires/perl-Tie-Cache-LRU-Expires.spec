@@ -10,7 +10,7 @@
 Summary: Perl implementation of a least-recently used cache with expiration
 Name: perl-Tie-Cache-LRU-Expires
 Version: 0.54
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Cache-LRU-Expires/

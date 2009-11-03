@@ -11,7 +11,7 @@
 Summary: Perl module named Acme-Bleach
 Name: perl-Acme-Bleach
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Bleach/

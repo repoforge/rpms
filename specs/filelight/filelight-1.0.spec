@@ -5,7 +5,7 @@
 Summary: Graphical disk usage statistics
 Name: filelight
 Version: 1.0
-Release: 0.rc1
+Release: 0.rc1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.methylblue.com/filelight/

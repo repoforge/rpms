@@ -22,7 +22,7 @@
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/

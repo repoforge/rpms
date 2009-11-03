@@ -5,7 +5,7 @@
 Summary: Relay for bidirectional data transfer between 2 channels
 Name: socat
 Version: 1.7.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.dest-unreach.org/socat/

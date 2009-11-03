@@ -10,7 +10,7 @@
 Summary: Find a minimum required version of perl for Perl code
 Name: perl-Perl-MinimumVersion
 Version: 1.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-MinimumVersion/

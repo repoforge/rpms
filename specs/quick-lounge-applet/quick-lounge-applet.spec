@@ -5,7 +5,7 @@
 Summary: Organize your preferred applications on the GNOME Panel
 Name: quick-lounge-applet
 Version: 2.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://quick-lounge.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Perl interface to the 2.x series of the GNOME Canvas library
 Name: perl-Gnome2-Canvas
 Version: 1.002
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 #URL: http://search.cpan.org/dist/Gnome2-Canvas/

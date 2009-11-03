@@ -4,7 +4,7 @@
 Summary: Server for Red Hat's up2date tools
 Name: current
 Version: 1.6.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://current.tigris.org/

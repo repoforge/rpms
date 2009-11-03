@@ -8,7 +8,7 @@
 Summary: GStreamer Streaming media framework player
 Name: gstreamer-player
 Version: 0.8.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/apps/gst-player/

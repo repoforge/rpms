@@ -11,7 +11,7 @@
 Summary: The World-Wide Web library for Perl
 Name: perl-libwww-perl
 Version: 5.826
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libwww-perl/

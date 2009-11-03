@@ -7,7 +7,7 @@ Summary: Portable Database Library for PHP
 Name: php-adodb
 %define real_version 481
 Version: 4.81
-Release: 1
+Release: 1%{?dist}
 License: BSD or LGPL
 Group: Development/Languages
 URL: http://adodb.sourceforge.net/

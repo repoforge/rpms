@@ -5,7 +5,7 @@
 Summary: File manager with an ncurses interface
 Name: clex
 Version: 4.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: http://www.clex.sk/

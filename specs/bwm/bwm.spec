@@ -5,7 +5,7 @@
 Summary: Bandwidth Monitor
 Name: bwm
 Version: 1.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://packages.debian.org/unstable/net/bwm.html

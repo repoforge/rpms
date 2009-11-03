@@ -11,7 +11,7 @@
 Summary: musical score reading trainer
 Name: scorereadingtrainer
 Version: 0.1.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://scret.sourceforge.net/

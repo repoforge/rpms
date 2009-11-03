@@ -10,7 +10,7 @@
 Summary: Powerful audio editor
 Name: audacity
 Version: 1.2.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/

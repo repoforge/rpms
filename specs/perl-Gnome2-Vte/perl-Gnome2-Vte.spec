@@ -10,7 +10,7 @@
 Summary: Interface to the Virtual Terminal Emulation library
 Name: perl-Gnome2-Vte
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2-Vte/

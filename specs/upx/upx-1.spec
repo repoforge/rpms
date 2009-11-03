@@ -4,7 +4,7 @@
 Summary: The Ultimate Packer for eXecutables
 Name: upx
 Version: 1.25
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://upx.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Thoroughly testing objects via registered handlers
 Name: perl-Test-Object
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Object/

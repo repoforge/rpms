@@ -7,7 +7,7 @@
 Summary: Data encryption library
 Name: libmcrypt
 Version: 2.5.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://mcrypt.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Perl module to permit use of regular expressions as hash keys
 Name: perl-Tie-RegexpHash
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-RegexpHash/

@@ -19,7 +19,7 @@
 Summary: MPEG audio player
 Name: mpg123
 Version: 1.8.1
-Release: 2
+Release: 2%{?dist}
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/

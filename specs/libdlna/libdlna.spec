@@ -9,7 +9,7 @@
 Summary: Implementation of Digital Living Network Alliance (DLNA) standards
 Name: libdlna
 Version: 0.2.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdlna.geexbox.org/

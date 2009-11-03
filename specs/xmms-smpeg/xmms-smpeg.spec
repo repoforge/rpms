@@ -8,7 +8,7 @@
 Summary: XMMS SMPEG Plugin
 Name: xmms-smpeg
 Version: 0.3.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.xmms.org/

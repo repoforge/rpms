@@ -15,7 +15,7 @@
 Summary: On-screen analog clock
 Name: xonclock
 Version: 0.0.9.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xonclock.sourceforge.net/

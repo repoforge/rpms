@@ -4,7 +4,7 @@
 Summary: Edward Loper's Python API documentation generation tool
 Name: epydoc
 Version: 2.1
-Release: 3
+Release: 3%{?dist}
 Group: Development/Tools
 License: MIT
 URL: http://epydoc.sourceforge.net/

@@ -4,7 +4,7 @@
 Summary: Change the dynamic library load path (rpath) of binaries
 Name: chrpath
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: ftp://ftp.hungry.com/pub/hungry/chrpath/

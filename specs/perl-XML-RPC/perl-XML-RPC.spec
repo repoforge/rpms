@@ -10,7 +10,7 @@
 Summary: Pure Perl implementation for an XML-RPC client and server
 Name: perl-XML-RPC
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RPC/

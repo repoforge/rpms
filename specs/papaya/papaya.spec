@@ -4,7 +4,7 @@
 Summary: MUD client with plugins
 Name: papaya
 Version: 0.96
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.gtk-papaya.org/

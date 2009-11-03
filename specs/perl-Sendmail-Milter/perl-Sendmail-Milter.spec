@@ -10,7 +10,7 @@
 Summary: Perl module to interface with sendmail's Mail Filter API
 Name: perl-Sendmail-Milter
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sendmail-Milter/

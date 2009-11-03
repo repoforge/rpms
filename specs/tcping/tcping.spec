@@ -5,7 +5,7 @@
 Summary: Check TCP connection to a given ip/port
 Name: tcping
 Version: 1.3.5
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://www.linuxco.de/tcping/tcping.html

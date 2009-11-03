@@ -10,7 +10,7 @@
 Summary: Strip the attachments from a mail
 Name: perl-Email-MIME-Attachment-Stripper
 Version: 1.316
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME-Attachment-Stripper/

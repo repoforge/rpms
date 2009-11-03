@@ -21,7 +21,7 @@
 Summary: GUI interface for CVS
 Name: gcvs
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://cvsgui.sourceforge.net/

@@ -12,7 +12,7 @@
 Summary: Displays information about your hardware and operating system
 Name: hardinfo
 Version: 0.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://hardinfo.org/

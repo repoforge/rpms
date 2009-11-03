@@ -10,7 +10,7 @@
 Summary: Perl module to interface to zlib compression library
 Name: perl-Compress-Zlib
 Version: 2.015
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-Zlib/

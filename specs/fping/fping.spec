@@ -7,7 +7,7 @@
 Summary: Utility to ping multiple hosts at once
 Name: fping
 Version: 2.4
-Release: 1.b2.2
+Release: 1.b2.2%{?dist}
 License: distributable
 Group: Applications/Internet
 URL: http://www.fping.com/

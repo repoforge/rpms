@@ -10,7 +10,7 @@
 Summary: Tools for building ACH (Automated Clearing House) files
 Name: perl-ACH-Builder
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ACH-Builder/

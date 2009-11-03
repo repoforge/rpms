@@ -4,7 +4,7 @@
 Summary: Guifications Plugin for Pidgin
 Name: pidgin-guifications
 Version: 2.16
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim.guifications.org/

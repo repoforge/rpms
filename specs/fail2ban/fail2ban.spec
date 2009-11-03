@@ -7,7 +7,7 @@
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
 Version: 0.8.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://fail2ban.sourceforge.net/

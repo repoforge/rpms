@@ -10,7 +10,7 @@
 Summary: Perform common time and date operations with additional GPS operations
 Name: perl-DateTime-Precise
 Version: 1.05
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Precise/

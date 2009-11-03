@@ -5,7 +5,7 @@
 Summary: Userspace utility for testing the memory subsystem for faults
 Name: memtester
 Version: 4.1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://pyropus.ca/software/memtester/

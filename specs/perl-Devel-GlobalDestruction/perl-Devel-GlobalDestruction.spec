@@ -9,7 +9,7 @@
 Summary: Expose PL_dirty, the flag which marks global destruction
 Name: perl-Devel-GlobalDestruction
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-GlobalDestruction/

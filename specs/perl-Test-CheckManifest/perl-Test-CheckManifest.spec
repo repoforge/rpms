@@ -10,7 +10,7 @@
 Summary: Checks manifest files
 Name: perl-Test-CheckManifest
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-CheckManifest/

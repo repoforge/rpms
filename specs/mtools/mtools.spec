@@ -7,7 +7,7 @@
 Summary: Read/write/list/format DOS disks
 Name: mtools
 Version: 3.9.10
-Release: 1
+Release: 1%{?dist}
 License: GPL/Lilux
 Group: System Environment/Base
 URL: http://mtools.linux.lu/

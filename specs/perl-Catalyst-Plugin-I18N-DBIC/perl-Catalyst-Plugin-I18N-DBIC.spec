@@ -10,7 +10,7 @@
 Summary: Internationalization for Catalyst data loaded from a database
 Name: perl-Catalyst-Plugin-I18N-DBIC
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-I18N-DBIC/

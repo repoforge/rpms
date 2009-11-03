@@ -10,7 +10,7 @@
 Summary: Fast metadata parser for yum
 Name: yum-metadata-parser
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://linux.duke.edu/projects/yum/

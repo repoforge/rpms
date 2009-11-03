@@ -19,7 +19,7 @@
 Summary: Displays a given file anywhere on your X root window
 Name: root-tail
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://root-tail.plan9.de/

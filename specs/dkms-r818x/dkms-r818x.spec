@@ -9,7 +9,7 @@
 Summary: Driver for RTL8180, SA2400/GRF5101/MAX2820, RTL8185/RTL8187 and RTL8225 Wireless cards
 Name: dkms-r818x
 Version: 1.0.1b
-Release: 0.cvs20080525
+Release: 0.cvs20080525%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.realtek.com.tw/

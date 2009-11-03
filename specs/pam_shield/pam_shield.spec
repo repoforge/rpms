@@ -7,7 +7,7 @@
 Summary: PAM module that uses failed login count to lock system
 Name: pam_shield
 Version: 0.9.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ka.sara.nl/home/walter/pam_shield/

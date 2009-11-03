@@ -10,7 +10,7 @@
 Summary: Manipulate DATR .dtr, XML, HTML, XML
 Name: perl-Language-DATR-DATR2XML
 Version: 0.901
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-DATR-DATR2XML/

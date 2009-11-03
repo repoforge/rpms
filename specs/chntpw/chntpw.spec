@@ -7,7 +7,7 @@
 Summary: Offline NT password and registry editor
 Name: chntpw
 Version: 0.0.20080526
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://home.eunet.no/~pnordahl/ntpasswd/

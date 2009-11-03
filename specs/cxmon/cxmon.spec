@@ -4,7 +4,7 @@
 Summary: Command-line file manipulation tool and disassembler
 Name: cxmon
 Version: 3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.uni-mainz.de/~bauec002/CXMain.html

@@ -29,7 +29,7 @@
 Summary: The Glasgow Haskell Compiler
 Name: ghc
 Version: 6.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: Other
 Group: Development/Languages
 URL: http://www.haskell.org/ghc/

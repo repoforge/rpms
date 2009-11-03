@@ -10,7 +10,7 @@
 Summary: Perl interface to a variant of the MD5 algorithm
 Name: perl-Digest-MD5-M4p
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD5-M4p/

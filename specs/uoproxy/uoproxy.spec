@@ -5,7 +5,7 @@
 Summary: Proxy server for ultima online
 Name: uoproxy
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://max.kellermann.name/projects/uoproxy/

@@ -9,7 +9,7 @@
 Summary: Extended attributes for python
 Name: python-xattr
 Version: 0.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pyxattr.sourceforge.net/

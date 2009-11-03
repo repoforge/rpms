@@ -10,7 +10,7 @@
 Summary: Execute code after a scope finished compilation
 Name: perl-B-Hooks-EndOfScope
 Version: 0.08
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Hooks-EndOfScope/

@@ -10,7 +10,7 @@
 Summary: Lookup the username on the remote end of a TCP/IP connection
 Name: perl-Net-Ident
 Version: 1.20
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Ident/

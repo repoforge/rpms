@@ -6,7 +6,7 @@
 Summary: Utility for internationalizing various kinds of data files
 Name: intltool
 Version: 0.28
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.gnome.org/

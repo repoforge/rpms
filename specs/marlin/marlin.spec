@@ -6,7 +6,7 @@
 Summary: GNOME sample editor
 Name: marlin
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://marlin.sourceforge.net/

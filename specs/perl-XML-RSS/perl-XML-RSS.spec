@@ -44,7 +44,7 @@
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
 Version: 1.46
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS/

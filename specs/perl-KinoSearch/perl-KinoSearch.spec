@@ -10,7 +10,7 @@
 Summary: Search engine library
 Name: perl-KinoSearch
 Version: 0.165
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/KinoSearch/

@@ -10,7 +10,7 @@
 Summary: Unicode-Map (Maps charsets from and to UTF16 unicode) module for perl
 Name: perl-Unicode-Map
 Version: 0.112
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Map/

@@ -7,7 +7,7 @@
 Summary: Log colorizer that makes log checking easier
 Name: colortail
 Version: 0.3.0
-Release: 2.2
+Release: 2.2%{?dist}
 Group: Applications/File
 License: GPL
 URL: http://www.student.hk-r.se/~pt98jan/colortail.html

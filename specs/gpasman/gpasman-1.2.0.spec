@@ -7,7 +7,7 @@
 Summary: personal password manager for GNOME
 Name: gpasman
 Version: 1.2.0
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://gpasman.sourceforge.net/

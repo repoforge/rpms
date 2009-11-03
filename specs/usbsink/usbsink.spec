@@ -4,7 +4,7 @@
 Summary: Program for automatic file synchronization over USB
 Name: usbsink
 Version: 0.3.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://usbsink.sourceforge.net/

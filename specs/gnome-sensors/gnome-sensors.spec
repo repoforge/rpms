@@ -4,7 +4,7 @@
 Summary: Monitors hardware sensors
 Name: gnome-sensors
 Version: 0.9a
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://vkcorp.org/

@@ -10,7 +10,7 @@
 Summary: Change directory temporarily
 Name: perl-Sys-Pushd
 Version: 0.001
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Pushd/

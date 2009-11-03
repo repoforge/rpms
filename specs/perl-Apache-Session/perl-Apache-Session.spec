@@ -10,7 +10,7 @@
 Summary: Persistence framework for session data
 Name: perl-Apache-Session
 Version: 1.87
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Session/

@@ -4,7 +4,7 @@
 Summary: Security and Privacy plugin for Pidgin
 Name: pidgin-privacy-please
 Version: 0.5.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://code.google.com/p/pidgin-privacy-please/

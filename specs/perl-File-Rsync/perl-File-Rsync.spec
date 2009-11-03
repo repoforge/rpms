@@ -10,7 +10,7 @@
 Summary: perl module interface to rsync(1)
 Name: perl-%{real_name}
 Version: 0.43
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Rsync/

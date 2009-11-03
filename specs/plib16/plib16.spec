@@ -4,7 +4,7 @@
 Summary: Set of portable libraries especially useful for games
 Name: plib16
 Version: 1.6.0
-Release: 0
+Release: 0%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://plib.sourceforge.net/

@@ -8,7 +8,7 @@
 Summary: Library providing XML and HTML support
 Name: libxml2
 Version: 2.6.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://xmlsoft.org/

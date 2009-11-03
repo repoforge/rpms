@@ -4,7 +4,7 @@
 Summary: Real-time visual space simulation
 Name: celestia
 Version: 1.3.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.shatters.net/celestia/

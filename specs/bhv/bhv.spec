@@ -5,7 +5,7 @@
 Summary: Examine the contents of a web browser history
 Name: bhv
 Version: 0.0.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://people.mmgsecurity.com/~lorenb/bhv/

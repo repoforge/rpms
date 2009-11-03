@@ -4,7 +4,7 @@
 Summary: Tool to investigate deleted content on ext3 filesystem for recovery
 Name: ext3grep
 Version: 0.10.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://code.google.com/p/ext3grep/

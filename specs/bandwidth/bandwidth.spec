@@ -5,7 +5,7 @@
 Summary: Artificial benchmark for measuring memory bandwidth
 Name: bandwidth
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://home.comcast.net/~fbui/bandwidth.html

@@ -5,7 +5,7 @@
 Summary: Unix command pipeline plumbing tool
 Name: tpipe
 Version: 1.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.eurogaran.com/downloads/tpipe/

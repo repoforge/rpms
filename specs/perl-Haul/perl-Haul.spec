@@ -10,7 +10,7 @@
 Summary: Haul packages off CPAN
 Name: perl-Haul
 Version: 2.24
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Haul/

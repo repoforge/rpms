@@ -10,7 +10,7 @@
 Summary: Hyphenate words using TeX's patterns
 Name: perl-TeX-Hyphen
 Version: 0.140
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TeX-Hyphen/

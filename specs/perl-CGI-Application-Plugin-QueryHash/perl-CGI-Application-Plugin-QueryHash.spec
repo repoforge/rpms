@@ -10,7 +10,7 @@
 Summary: Get back query params as hash(ref)
 Name: perl-CGI-Application-Plugin-QueryHash
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Application-Plugin-QueryHash/

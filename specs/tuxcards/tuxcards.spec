@@ -5,7 +5,7 @@
 Summary: Manage notes and ideas in tree structures
 Name: tuxcards
 Version: 1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://www.tuxcards.de/

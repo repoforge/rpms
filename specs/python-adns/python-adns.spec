@@ -9,7 +9,7 @@
 Summary: Python bindings for GNU adns library
 Name: python-adns
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://dustman.net/andy/python/adns-python/

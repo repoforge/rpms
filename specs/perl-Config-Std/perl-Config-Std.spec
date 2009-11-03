@@ -10,7 +10,7 @@
 Summary: Generic config module
 Name: perl-Config-Std
 Version: 0.0.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Std/

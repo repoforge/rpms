@@ -10,7 +10,7 @@
 Summary: Get the pathname of the current working directory
 Name: perl-Cwd
 Version: 2.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cwd/

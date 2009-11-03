@@ -7,7 +7,7 @@
 Summary: iTouch keyboard control plugin for the Beep Media Player
 Name: bmp-itouch
 Version: 1.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-itouch.sourceforge.net/

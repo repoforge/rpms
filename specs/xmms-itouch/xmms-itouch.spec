@@ -7,7 +7,7 @@
 Summary: XMMS plugin to use special keyboard multimedia keys
 Name: xmms-itouch
 Version: 0.1.2
-Release: 5
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.saunalahti.fi/~syrjala/xmms-itouch/

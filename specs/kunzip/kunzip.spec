@@ -8,7 +8,7 @@
 Summary: Library for decompressing ZIP archives
 Name: kunzip
 Version: 0
-Release: 0.20061114
+Release: 0.20061114%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.mikekohn.net/kunzip.php

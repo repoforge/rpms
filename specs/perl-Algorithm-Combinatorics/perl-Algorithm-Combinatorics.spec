@@ -10,7 +10,7 @@
 Summary: Efficient generation of combinatorial sequences
 Name: perl-Algorithm-Combinatorics
 Version: 0.25
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Combinatorics/

@@ -11,7 +11,7 @@
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
 Version: 1.3.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.rhythm.cx/~steve/devel/tcptrack/

@@ -6,7 +6,7 @@
 Summary: Xbase dBase database file library
 Name: xbase
 Version: 2.0.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://linux.techass.com/projects/xdb/

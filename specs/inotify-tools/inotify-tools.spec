@@ -4,7 +4,7 @@
 Summary: Command line utilities for inotify
 Name: inotify-tools
 Version: 3.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://inotify-tools.sourceforge.net/

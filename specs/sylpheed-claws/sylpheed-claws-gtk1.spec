@@ -7,7 +7,7 @@
 Summary: DEVELOPMENT branch of the sylpheed e-mail client
 Name: sylpheed-claws
 Version: 1.0.5
-Release: 1%{?extraver:.%{extraver}}
+Release: 1%{?extraver:.%{extraver}}%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://claws.sylpheed.org/

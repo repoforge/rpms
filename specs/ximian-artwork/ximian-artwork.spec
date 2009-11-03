@@ -4,7 +4,7 @@
 Summary: Default Style for Ximian Desktop
 Name: ximian-artwork
 Version: 0.2.32
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.ximian.com/

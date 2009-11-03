@@ -10,7 +10,7 @@
 Summary: Shell-like regular expressions
 Name: perl-Regexp-Shellish
 Version: 0.93
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Shellish/

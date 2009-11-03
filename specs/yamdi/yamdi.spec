@@ -4,7 +4,7 @@
 Summary: Yet Another MetaData Injector for FLV
 Name: yamdi
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://yamdi.sourceforge.net/

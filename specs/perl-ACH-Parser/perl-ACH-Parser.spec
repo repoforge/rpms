@@ -10,7 +10,7 @@
 Summary: Perl module to parse an ACH formatted file to ACH perl object
 Name: perl-ACH-Parser
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ACH-Parser/

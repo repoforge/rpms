@@ -10,7 +10,7 @@
 Summary: Parses an X.509 certificate revocation list
 Name: perl-Crypt-X509-CRL
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-X509-CRL/

@@ -6,7 +6,7 @@
 Summary: Convert docbook into man and Texinfo
 Name: docbook2x
 Version: 0.8.8
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
 URL: http://docbook2x.sourceforge.net/

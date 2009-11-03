@@ -10,7 +10,7 @@
 Summary: Object that dies whenever examined
 Name: perl-Object-Deadly
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Deadly/

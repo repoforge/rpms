@@ -5,7 +5,7 @@
 Summary: C++ wrapper for working with XML files
 Name: libxml++
 Version: 2.19.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libxmlplusplus.sourceforge.net/

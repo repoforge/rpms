@@ -13,7 +13,7 @@
 Summary: Perl module to access and manipulate RPM files
 Name: perl-RPM4
 Version: 0.23
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM4/

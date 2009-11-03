@@ -10,7 +10,7 @@
 Summary: Perl DateTime extension to work with namedays from various countries
 Name: perl-DateTime-Event-NameDay
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-NameDay/

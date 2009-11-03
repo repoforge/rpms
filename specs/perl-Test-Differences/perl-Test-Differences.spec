@@ -44,7 +44,7 @@
 Summary: Test strings and data structures and show differences if not ok
 Name: perl-Test-Differences
 Version: 0.500
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Differences/

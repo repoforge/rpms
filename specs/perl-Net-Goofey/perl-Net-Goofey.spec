@@ -10,7 +10,7 @@
 Summary: Communicate with a Goofey server
 Name: perl-Net-Goofey
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Goofey/

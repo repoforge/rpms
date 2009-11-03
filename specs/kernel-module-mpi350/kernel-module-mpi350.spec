@@ -24,7 +24,7 @@
 Summary: Linux MPI350 (Aironet 350) mini PCI drivers
 Name: kernel-module-mpi350
 Version: 2.0
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: MPL
 Group: System Environment/Kernel
 URL: http://www.cisco.com/warp/public/102/wlan/linux.html
@@ -46,7 +46,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-mpi350
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 Summary: Linux MPI350 (Aironet 350) mini PCI drivers
 License: MPL
 Group: System Environment/Kernel
@@ -65,7 +65,7 @@ They might work with newer/older kernels.
 
 %package -n aironet-utils
 Summary: Aironet Cisco utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 License: Proprietary
 Group: System Environment/Base
 

@@ -10,7 +10,7 @@
 Summary: Perl module for conversions to/from UTF8 from/to charactersets
 Name: perl-Unicode-UTF8simple
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-UTF8simple/

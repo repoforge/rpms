@@ -4,7 +4,7 @@
 Summary: Xorp is an Open Router Platform
 Name: xorp
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.xorp.org/

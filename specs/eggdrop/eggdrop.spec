@@ -12,7 +12,7 @@
 Summary: IRC bot
 Name: eggdrop
 Version: 1.6.19
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.eggheads.org/

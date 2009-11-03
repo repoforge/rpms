@@ -10,7 +10,7 @@
 Summary: QM-like superpositions in Perl
 Name: perl-Quantum-Superpositions
 Version: 2.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Quantum-Superpositions/

@@ -7,7 +7,7 @@
 Summary: Zmodem SSH
 Name: zssh
 Version: 1.5
-Release: 0.c.2
+Release: 0.c.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://zssh.sourceforge.net/

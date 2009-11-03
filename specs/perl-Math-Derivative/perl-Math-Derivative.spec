@@ -10,7 +10,7 @@
 Summary: Numeric 1st and 2nd order differentiation
 Name: perl-Math-Derivative
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Derivative/

@@ -13,7 +13,7 @@
 Summary: IDE based on a basic interpreter with object extensions
 Name: gambas
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://gambas.sourceforge.net/

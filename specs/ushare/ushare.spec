@@ -6,7 +6,7 @@
 Summary: Universal Plug'nPlay (uPNP) Media Server
 Name: ushare
 Version: 1.1a
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ushare.geexbox.org/

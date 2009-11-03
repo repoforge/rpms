@@ -5,7 +5,7 @@
 Summary: Execute programs chrooted, with dropped privileges and as another user/group
 Name: dreamland
 Version: 0.1
-Release: 0.2
+Release: 0.2%{?dist}
 Group: System Environment/Daemons
 License: GPL
 URL: http://www.7ka.mipt.ru/~szh/dreamland/

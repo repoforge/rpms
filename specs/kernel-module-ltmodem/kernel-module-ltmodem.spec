@@ -25,7 +25,7 @@
 Summary: Linux Linmodem drivers
 Name: kernel-module-ltmodem
 Version: 8.26
-Release: %{real_release}.a9_%{kversion}_%{krelease}
+Release: %{real_release}.a9_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ltmodem.heby.de/

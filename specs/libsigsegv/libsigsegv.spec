@@ -5,7 +5,7 @@
 Summary: Library which handles page faults
 Name: libsigsegv
 Version: 2.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/libsigsegv/

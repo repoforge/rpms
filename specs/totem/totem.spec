@@ -4,7 +4,7 @@
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
 Version: 0.100
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.hadess.net/totem.php3

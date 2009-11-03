@@ -11,7 +11,7 @@
 Summary: Perl module that implements a Parser for NCBI Entrez Gene
 Name: perl-Bio-ASN1-EntrezGene
 Version: 1.091
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bio-ASN1-EntrezGene/

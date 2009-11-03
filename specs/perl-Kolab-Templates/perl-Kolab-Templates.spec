@@ -10,7 +10,7 @@
 Summary: Perl extension for Kolab template generation
 Name: perl-Kolab-Templates
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kolab-Templates/

@@ -4,7 +4,7 @@
 Summary: Fast Assembly MPEG Encoding library
 Name: libfame
 Version: 0.9.1
-Release: 12
+Release: 12%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://fame.sourceforge.net/

@@ -1,4 +1,4 @@
-# $Id: tightvnc-1.3.spec 5264 2007-04-01 15:14:36Z dag $
+# $Id$
 # Authority: dag
 # Upstream: <vnc-tight-list$lists,sf,net>
 
@@ -25,7 +25,7 @@
 Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.3.9
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/

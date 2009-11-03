@@ -11,7 +11,7 @@ Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
 %define real_version 3.83-pre5
 Version: 3.83
-Release: 0.pre10
+Release: 0.pre10%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/

@@ -6,7 +6,7 @@
 Summary: Portable network library
 Name: hawknl
 Version: 1.68
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.hawksoft.com/

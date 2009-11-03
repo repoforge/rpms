@@ -10,7 +10,7 @@
 Summary: Compare perl data structures
 Name: perl-Data-Compare
 Version: 1.2101
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Compare/

@@ -17,7 +17,7 @@
 Summary: Tool to recover from or prevent Repetitive Strain Injury
 Name: workrave
 Version: 1.8.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://workrave.sourceforge.net/

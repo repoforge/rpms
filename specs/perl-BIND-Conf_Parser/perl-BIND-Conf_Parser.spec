@@ -10,7 +10,7 @@
 Summary: Perl module that implements a parser class for BIND configuration files
 Name: perl-BIND-Conf_Parser
 Version: 0.95
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BIND-Conf_Parser/

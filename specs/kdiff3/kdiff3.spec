@@ -5,7 +5,7 @@
 Summary: Compares files or directories
 Name: kdiff3
 Version: 0.9.92
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://kdiff3.sourceforge.net/

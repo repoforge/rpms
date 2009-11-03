@@ -10,7 +10,7 @@
 Name:         aeasyedit
 Summary:      Another Easy Text Editor
 Version:      2.2.15b
-Release:      1
+Release:      1%{?dist}
 License:      Artistic
 Group:        Applications/Editors
 URL:          http://mahon.cwx.net/

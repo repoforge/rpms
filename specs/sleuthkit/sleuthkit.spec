@@ -5,7 +5,7 @@
 Summary: Open Source forensic toolkit
 Name: sleuthkit
 Version: 1.69
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL/IBM
 Group: Applications/Internet
 URL: http://www.sleuthkit.org/sleuthkit/

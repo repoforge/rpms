@@ -7,7 +7,7 @@
 Summary: User control management tool for LDAP directories
 Name: diradmin
 Version: 1.7.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://diradmin.open-it.org/

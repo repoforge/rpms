@@ -5,7 +5,7 @@
 Summary: Modular Log Analyzer
 Name: modlogan
 Version: 0.8.13
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://jan.kneschke.de/projects/modlogan/

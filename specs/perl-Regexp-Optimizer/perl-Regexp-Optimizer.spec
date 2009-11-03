@@ -10,7 +10,7 @@
 Summary: Perl module to build regular expressions out of a list of words
 Name: perl-Regexp-Optimizer
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Optimizer/

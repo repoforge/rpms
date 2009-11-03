@@ -18,7 +18,7 @@
 Summary: IRC client
 Name: kvirc
 Version: 3.2.0
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kvirc.net/

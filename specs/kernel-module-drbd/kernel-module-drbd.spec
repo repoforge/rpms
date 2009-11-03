@@ -30,7 +30,7 @@
 Summary: Distributed Redundant Block Device driver
 Name: kernel-module-drbd
 Version: 0.6.11
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.drbd.org/
@@ -59,7 +59,7 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-drbd
 Summary: Distributed Redundant Block Device driver for SMP
 Group: System Environment/Kernel
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: drbd-utils
@@ -78,7 +78,7 @@ They might work with newer/older kernels.
 
 %package -n drbd-utils
 Summary: Utilities for Distributed Redundant Block Device (DRBD) driver
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Base
 
 Obsoletes: %{real_name}

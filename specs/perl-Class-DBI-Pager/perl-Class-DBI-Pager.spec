@@ -10,7 +10,7 @@
 Summary: Perl module that implements a pager utility for Class::DBI 
 Name: perl-Class-DBI-Pager
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Pager/

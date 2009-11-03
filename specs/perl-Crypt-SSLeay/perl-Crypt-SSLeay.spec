@@ -10,7 +10,7 @@
 Summary: OpenSSL support for LWP
 Name: perl-Crypt-SSLeay
 Version: 0.57
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-SSLeay/

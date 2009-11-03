@@ -10,7 +10,7 @@
 Summary: IANA Character Set Registry names and Unicode::MapUTF8
 Name: perl-I18N-Charset
 Version: 1.394
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/I18N-Charset/

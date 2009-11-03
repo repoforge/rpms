@@ -10,7 +10,7 @@
 Summary: Log module with some fun
 Name: perl-Log-Funlog
 Version: 0.87
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Funlog/

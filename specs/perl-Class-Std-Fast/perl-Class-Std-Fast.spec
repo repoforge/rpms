@@ -11,7 +11,7 @@
 Summary: Faster but less secure than Class::Std
 Name: perl-Class-Std-Fast
 Version: 0.0.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Std-Fast/

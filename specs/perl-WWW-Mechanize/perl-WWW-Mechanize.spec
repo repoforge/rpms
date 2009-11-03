@@ -10,7 +10,7 @@
 Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
 Version: 1.60
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize/

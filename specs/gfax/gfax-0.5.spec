@@ -4,7 +4,7 @@
 Summary: The GNOME Fax Application
 Name: gfax
 Version: 0.5
-Release: 0
+Release: 0%{?dist}
 License: GPL
 URL: http://www.cowlug.org/gfax/
 Group: Applications/Communications

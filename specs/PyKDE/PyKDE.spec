@@ -5,7 +5,7 @@
 Summary: Python bindings for the KDE desktop environment
 Name: PyKDE
 Version: 3.11rc1
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: Development/Languages
 URL: http://www.riverbankcomputing.co.uk/pykde/

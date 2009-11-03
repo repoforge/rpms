@@ -8,7 +8,7 @@
 Summary: DAAP client implemented in Python
 Name: python-daap
 Version: 0.7.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://jerakeen.org/code/PythonDaap/

@@ -10,7 +10,7 @@
 Summary: Perl module to run the interactive Perl debugger under mod_perl
 Name: perl-Apache-DB
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-DB/

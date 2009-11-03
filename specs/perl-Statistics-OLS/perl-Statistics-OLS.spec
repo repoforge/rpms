@@ -10,7 +10,7 @@
 Summary: Perform ordinary least squares and associated statistics
 Name: perl-Statistics-OLS
 Version: 0.07
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-OLS/

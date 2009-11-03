@@ -9,7 +9,7 @@
 Summary: GUI for making IP address based calculations
 Name: gip
 Version: 1.6.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.debain.org/software/gip/

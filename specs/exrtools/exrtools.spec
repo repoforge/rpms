@@ -5,7 +5,7 @@
 Summary: Command line utilities for manipulating high dynamic range images
 Name: exrtools
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: MIT/X Consortium License
 Group: Applications/Multimedia
 URL: http://scanline.ca/exrtools/

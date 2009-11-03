@@ -10,7 +10,7 @@
 Summary: Kwiki plugin for page archival using RCS
 Name: perl-Kwiki-Archive-Rcs
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-Archive-Rcs/

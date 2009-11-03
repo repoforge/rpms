@@ -5,7 +5,7 @@
 Summary: General-purpose video codec
 Name: dirac
 Version: 1.0.2
-Release: 1
+Release: 1%{?dist}
 License: MPL 1.1
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/dirac

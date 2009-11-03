@@ -4,7 +4,7 @@
 Summary: NeMeSi - RTSP/RSP client library
 Name: libnemesi
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://lscube.org/projects/libnemesi

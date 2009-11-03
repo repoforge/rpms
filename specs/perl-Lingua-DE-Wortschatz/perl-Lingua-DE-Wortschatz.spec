@@ -10,7 +10,7 @@
 Summary: Wortschatz.uni-leipzig.de webservice client
 Name: perl-Lingua-DE-Wortschatz
 Version: 1.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-DE-Wortschatz/

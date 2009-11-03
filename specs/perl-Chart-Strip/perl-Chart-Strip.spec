@@ -10,7 +10,7 @@
 Summary: Draw strip chart type graphs
 Name: perl-Chart-Strip
 Version: 1.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chart-Strip/

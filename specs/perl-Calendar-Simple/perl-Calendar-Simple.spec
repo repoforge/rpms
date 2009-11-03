@@ -10,7 +10,7 @@
 Summary: Perl extension to create simple calendars
 Name: perl-Calendar-Simple
 Version: 1.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Calendar-Simple/

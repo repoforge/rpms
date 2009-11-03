@@ -10,7 +10,7 @@
 Summary: Parses command line options in a simple but capable way
 Name: perl-Getopt-Easy
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Easy/

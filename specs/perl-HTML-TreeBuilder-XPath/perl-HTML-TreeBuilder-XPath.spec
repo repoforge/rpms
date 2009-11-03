@@ -10,7 +10,7 @@
 Summary: Add XPath support for HTML::TreeBuilder
 Name: perl-HTML-TreeBuilder-XPath
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TreeBuilder-XPath/

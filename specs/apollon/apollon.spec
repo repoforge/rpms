@@ -13,7 +13,7 @@
 Summary: KDE filesharing client which uses gift
 Name: apollon
 Version: 1.0.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://apollon.sourceforge.net/

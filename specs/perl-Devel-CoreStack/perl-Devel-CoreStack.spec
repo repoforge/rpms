@@ -10,7 +10,7 @@
 Summary: Try to generate a stack dump from a core file
 Name: perl-Devel-CoreStack
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-CoreStack/

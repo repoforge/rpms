@@ -19,7 +19,7 @@
 Summary: Language for data analysis and graphics
 Name: R
 Version: 2.5.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.r-project.org/

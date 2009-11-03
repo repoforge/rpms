@@ -5,7 +5,7 @@
 Summary: Library for parsing, writing and creating XML
 Name: libnxml
 Version: 0.17.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://autistici.org/bakunin/codes.php

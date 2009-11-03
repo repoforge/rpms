@@ -5,7 +5,7 @@
 Summary: Tool designed to inject a mailpack back into a MTA
 Name: mailfeeder
 Version: 0.2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://pldaniels.com/mailfeeder/

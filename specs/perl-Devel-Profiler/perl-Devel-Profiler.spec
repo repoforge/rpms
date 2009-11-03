@@ -10,7 +10,7 @@
 Summary: Perl profiler compatible with dprofpp
 Name: perl-Devel-Profiler
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Profiler/

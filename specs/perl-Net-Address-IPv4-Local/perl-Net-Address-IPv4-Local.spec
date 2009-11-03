@@ -10,7 +10,7 @@
 Summary: A class for discovering the local system's IP address
 Name: perl-Net-Address-IPv4-Local
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Address-IPv4-Local/

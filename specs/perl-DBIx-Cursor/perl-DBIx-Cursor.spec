@@ -10,7 +10,7 @@
 Summary: Easy DBI-access to a single table
 Name: perl-DBIx-Cursor
 Version: 0.14
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Cursor/

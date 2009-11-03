@@ -4,7 +4,7 @@
 Summary: The C++ interface for the libglade user interface library
 Name: libglademm2
 Version: 2.0.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 Source: http://dl.sf.net/gtkmm/libglademm-%{version}.tar.gz

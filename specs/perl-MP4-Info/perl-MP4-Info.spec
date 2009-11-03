@@ -10,7 +10,7 @@
 Summary: Fetch info from MPEG-4 files
 Name: perl-MP4-Info
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP4-Info/

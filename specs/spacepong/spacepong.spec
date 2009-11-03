@@ -13,7 +13,7 @@
 Summary: An innovative Python SDL game that is controlled with the mouse
 Name: spacepong
 Version: 0.0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://spacepong.sourceforge.net/

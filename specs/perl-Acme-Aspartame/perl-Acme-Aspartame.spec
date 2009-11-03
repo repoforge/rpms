@@ -10,7 +10,7 @@
 Summary: raise the alarum if a source filter was used
 Name: perl-Acme-Aspartame
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Aspartame/

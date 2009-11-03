@@ -10,7 +10,7 @@
 Summary: Module to convert between standard time and Swatch ".beat" time
 Name: perl-Time-Beat
 Version: 1.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Beat/

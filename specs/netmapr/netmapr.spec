@@ -6,7 +6,7 @@
 Summary: Shows network diagrams
 Name: netmapr
 Version: 1.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nethack.net/software/netmapr/

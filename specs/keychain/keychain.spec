@@ -5,7 +5,7 @@
 Summary: Agent manager for OpenSSH, ssh.com, Sun SSH, and GnuPG
 Name: keychain
 Version: 2.6.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gentoo.org/proj/en/keychain/

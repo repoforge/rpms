@@ -8,7 +8,7 @@
 Summary: DB-API 2.0 interface for SQLite 3.x
 Name: python-sqlite2
 Version: 2.3.3
-Release: 1
+Release: 1%{?dist}
 License: zlib/libpng
 Group: Development/Languages
 URL: http://pysqlite.org/

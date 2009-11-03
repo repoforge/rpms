@@ -10,7 +10,7 @@
 Summary: WWW color names and equivalent RGB values
 Name: perl-Graphics-ColorNames-WWW
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graphics-ColorNames-WWW/

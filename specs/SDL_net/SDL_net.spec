@@ -4,7 +4,7 @@
 Summary: Cross-platform network API
 Name: SDL_net
 Version: 1.2.7
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_net/

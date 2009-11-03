@@ -5,7 +5,7 @@
 Summary: Go board, SGF editor and client for the Internet Go Server
 Name: qgo
 Version: 1.5.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://qgo.sourceforge.net/

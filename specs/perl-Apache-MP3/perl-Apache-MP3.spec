@@ -10,7 +10,7 @@
 Summary: Perl module to generate streamable directories of MP3 and Ogg Vorbis files
 Name: perl-Apache-MP3
 Version: 4.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-MP3/

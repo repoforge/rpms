@@ -10,7 +10,7 @@
 Summary: Constructors and constants for IPv4 and IPv6 multicast socket operations
 Name: perl-Socket-Multicast6
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Socket-Multicast6/

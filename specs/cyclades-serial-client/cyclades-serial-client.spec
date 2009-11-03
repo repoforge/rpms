@@ -6,7 +6,7 @@
 Summary: Serial Port Interface for Cyclades Terminal Servers
 Name: cyclades-serial-client
 Version: 0.93
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.lysator.liu.se/~astrand/projects/cyclades-serial-client/

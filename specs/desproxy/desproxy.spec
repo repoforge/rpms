@@ -7,7 +7,7 @@
 Summary: TCP tunnel for HTTP proxies
 Name: desproxy
 Version: 0.1.0
-Release: 0.pre2.2
+Release: 0.pre2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://desproxy.sourceforge.net/

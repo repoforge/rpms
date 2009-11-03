@@ -5,7 +5,7 @@
 Summary: Composite User Interface terminal
 Name: cuiterm
 Version: 0.9.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://linux.pte.hu/~pipas/CUI/

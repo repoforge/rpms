@@ -10,7 +10,7 @@
 Summary: Perl module that implements a sample Perl Bloom filter
 Name: perl-Bloom-Filter
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bloom-Filter/

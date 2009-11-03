@@ -5,7 +5,7 @@ Summary: Fast, powerful, easy to use sound system
 Name: fmod
 Version: 3.75
 %define real_version 375
-Release: 1
+Release: 1%{?dist}
 License: FMOD Licence (free for non-commercial use)
 Group: Development/Libraries
 URL: http://www.fmod.org/

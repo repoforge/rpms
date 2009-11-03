@@ -10,7 +10,7 @@
 Summary: Emulate Class::Accessor::Fast behavior using Moose attributes
 Name: perl-MooseX-Emulate-Class-Accessor-Fast
 Version: 0.00903
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Emulate-Class-Accessor-Fast/

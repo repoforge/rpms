@@ -10,7 +10,7 @@
 Summary: Routine for estimating syllable count in words
 Name: perl-Lingua-EN-Syllable
 Version: 0.251
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Syllable/

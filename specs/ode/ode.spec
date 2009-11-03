@@ -17,7 +17,7 @@
 Summary: OpenDE Library
 Name: ode
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://ode.org

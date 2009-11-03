@@ -5,7 +5,7 @@
 Summary: Video recorder
 Name: kalva
 Version: 0.8.75
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://developer.berlios.de/projects/kalva

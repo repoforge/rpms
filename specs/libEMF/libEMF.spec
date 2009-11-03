@@ -4,7 +4,7 @@
 Summary: Library for generating Enhanced Metafiles
 Name: libEMF
 Version: 1.0.3
-Release: 1
+Release: 1%{?dist}
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://libemf.sourceforge.net/

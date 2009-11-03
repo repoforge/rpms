@@ -10,7 +10,7 @@
 Summary: Simple XML file reading based on their DTDs
 Name: perl-XML-Simple-DTDReader
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Simple-DTDReader/

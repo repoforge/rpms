@@ -9,7 +9,7 @@
 summary: no capitalization on method names
 Name: perl-capitalization
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/capitalization/

@@ -5,7 +5,7 @@
 Summary: Access X11 clipboard from the command line
 Name: xclip
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/X11
 URL: http://xclip.sourceforge.net/

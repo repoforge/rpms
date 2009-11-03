@@ -22,7 +22,7 @@ Version: 0.6.6
 #%%if %{kmodule}
 #Release: fr1_%{krelver}
 #%%else
-Release: 4
+Release: 4%{?dist}
 #%%endif
 License: GPL
 Group: System Environment/Daemons

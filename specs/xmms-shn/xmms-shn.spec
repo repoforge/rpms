@@ -6,7 +6,7 @@
 Summary: XMMS input plugin to play shorten (.shn) files
 Name: xmms-shn
 Version: 2.4.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Distributable
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/xmms-shn/

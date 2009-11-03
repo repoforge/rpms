@@ -21,7 +21,7 @@
 Summary: Windows 16/32/64 bit emulator
 Name: wine
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Emulators
 URL: http://www.winehq.org/

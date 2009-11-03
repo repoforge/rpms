@@ -4,7 +4,7 @@
 Summary: InterMezzo synchronization client
 Name: intersync
 Version: 0.9.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.inter-mezzo.org/

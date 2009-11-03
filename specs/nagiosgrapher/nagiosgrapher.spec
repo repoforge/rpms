@@ -9,7 +9,7 @@
 Summary: Collects the output of Nagios Plugins and generates graphs
 Name: nagiosgrapher
 Version: 1.6.1
-Release: 0.8.rc5
+Release: 0.8.rc5%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.netways.de/Nagios_Grapher.44.0.html

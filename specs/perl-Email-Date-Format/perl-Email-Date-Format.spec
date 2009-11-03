@@ -10,7 +10,7 @@
 Summary: Produce RFC 8822 date strings
 Name: perl-Email-Date-Format
 Version: 1.002
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Date-Format/

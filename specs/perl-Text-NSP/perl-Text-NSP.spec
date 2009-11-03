@@ -10,7 +10,7 @@
 Summary: Extract collocations and Ngrams from text
 Name: perl-Text-NSP
 Version: 1.09
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-NSP/

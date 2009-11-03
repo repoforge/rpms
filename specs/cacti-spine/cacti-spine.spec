@@ -10,7 +10,7 @@
 Summary: Fast c-based poller for the cacti graphing solution
 Name: cacti-spine
 Version: 0.8.7a
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/System
 URL: http://www.cacti.net/

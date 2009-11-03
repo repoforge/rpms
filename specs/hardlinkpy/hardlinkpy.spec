@@ -4,7 +4,7 @@
 Summary: Rewrite in python of the hardlink utility
 Name: hardlinkpy
 Version: 0.0.20071114
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://hardlinkpy.googlecode.com/

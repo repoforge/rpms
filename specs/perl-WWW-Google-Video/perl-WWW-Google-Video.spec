@@ -10,7 +10,7 @@
 Summary: Fetch Google video information
 Name: perl-WWW-Google-Video
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Google-Video/

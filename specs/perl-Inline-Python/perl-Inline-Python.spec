@@ -10,7 +10,7 @@
 Summary: Write Perl subs and classes in Python
 Name: perl-Inline-Python
 Version: 0.28
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Python/

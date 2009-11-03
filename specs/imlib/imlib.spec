@@ -6,7 +6,7 @@
 Summary: Image loading and rendering library for X11R6
 Name: imlib
 Version: 1.9.13
-Release: 1
+Release: 1%{?dist}
 Epoch: 1
 License: LGPL
 Group: System Environment/Libraries

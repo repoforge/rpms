@@ -9,7 +9,7 @@
 Summary: Gzip compression module for apache
 Name: mod_gzip
 Version: 1.3.26
-Release: 0.1a.2
+Release: 0.1a.2%{?dist}
 License: Apache License
 Group: System Environment/Daemons
 URL: http://www.schroepl.net/projekte/mod_gzip/

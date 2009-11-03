@@ -9,7 +9,7 @@
 Summary: Intelligent Multimedia Management System plugin for XMMS.
 Name: xmms-imms
 Version: 1.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.luminal.org/phpwiki/index.php/IMMS

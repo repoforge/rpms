@@ -6,7 +6,7 @@
 Summary: MathML-based graph calculator
 Name: kalgebra
 Version: 0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://kalgebra.berlios.de

@@ -10,7 +10,7 @@
 Summary: Estimate file space usage (similar to `du`)
 Name: perl-Filesys-DiskUsage
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-DiskUsage/

@@ -7,7 +7,7 @@
 Summary: portable lossless data compression library written in ANSI C
 Name: lzo
 Version: 1.04
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/

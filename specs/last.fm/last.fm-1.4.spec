@@ -6,7 +6,7 @@
 Summary: Last.fm track scrobbler
 Name: last.fm
 Version: 1.4.0.56102
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://www.last.fm/download/

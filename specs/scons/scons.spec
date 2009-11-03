@@ -9,7 +9,7 @@
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Tools
 URL: http://www.scons.org/

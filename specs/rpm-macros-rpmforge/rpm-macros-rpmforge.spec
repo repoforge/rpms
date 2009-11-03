@@ -6,7 +6,7 @@
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0
-Release: 1.3
+Release: 1.3%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://rpmforge.net/

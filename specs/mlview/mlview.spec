@@ -7,7 +7,7 @@
 Summary: Graphical XML Editor
 Name: mlview
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.mlview.org/

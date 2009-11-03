@@ -10,7 +10,7 @@
 Summary: Mapping of XML entities to Unicode
 Name: perl-XML-Entities
 Version: 0.0307
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Entities/

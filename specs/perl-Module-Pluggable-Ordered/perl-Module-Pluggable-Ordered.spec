@@ -10,7 +10,7 @@
 Summary: Call module plugins in a specified order
 Name: perl-Module-Pluggable-Ordered
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Pluggable-Ordered/

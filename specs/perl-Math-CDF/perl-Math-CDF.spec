@@ -10,7 +10,7 @@
 Summary: Generate probabilities and quantiles from probability functions
 Name: perl-Math-CDF
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-CDF/

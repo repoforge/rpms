@@ -9,7 +9,7 @@
 Summary: GStreamer streaming media framework DLL loader plugin
 Name: %{gstreamer}-pitfdll
 Version: 0.9.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ronald.bitfreak.net/pitfdll

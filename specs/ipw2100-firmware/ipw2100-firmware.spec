@@ -7,7 +7,7 @@
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
 Version: 1.3
-Release: 3
+Release: 3%{?dist}
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/firmware.php

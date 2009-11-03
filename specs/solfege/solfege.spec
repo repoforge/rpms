@@ -4,7 +4,7 @@
 Summary: Eartaining program for GNOME
 Name: solfege
 Version: 2.2.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://solfege.sourceforge.net/

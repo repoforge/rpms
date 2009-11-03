@@ -10,7 +10,7 @@
 Summary: MKDoc XML Toolkit
 Name: perl-MKDoc-XML
 Version: 0.75
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MKDoc-XML/

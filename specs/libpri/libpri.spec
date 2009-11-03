@@ -4,7 +4,7 @@
 Summary: Implementation of the Primary Rate ISDN specification
 Name: libpri
 Version: 1.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/

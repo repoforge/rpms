@@ -4,7 +4,7 @@
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: gtkmm24
 Version: 2.10.9
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

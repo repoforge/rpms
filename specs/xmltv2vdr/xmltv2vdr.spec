@@ -5,7 +5,7 @@
 Summary: Read EPG information the xmltv site
 Name: xmltv2vdr
 Version: 1.0.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: ftp://ftp.cadsoft.de/vdr/Tools/

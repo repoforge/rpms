@@ -10,7 +10,7 @@
 Summary: Visitor for Tree::Simple objects
 Name: perl-Tree-Simple-VisitorFactory
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-Simple-VisitorFactory/

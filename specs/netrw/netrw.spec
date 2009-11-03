@@ -5,7 +5,7 @@
 Summary: Tool for transporting data over the internet
 Name: netrw
 Version: 1.3.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.fi.muni.cz/~xdenemar/netrw/

@@ -10,7 +10,7 @@
 Summary: Module inlining and other Perl source manipulations
 Name: perl-Devel-PreProcessor
 Version: 2003.1128
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-PreProcessor/

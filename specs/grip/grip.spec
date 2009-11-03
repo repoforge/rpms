@@ -5,7 +5,7 @@
 Summary: Graphical CD player, CD ripper and encoder frontend
 Name: grip
 Version: 3.2.0
-Release: 2
+Release: 2%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia

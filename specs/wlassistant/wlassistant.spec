@@ -6,7 +6,7 @@
 Summary: Wireless network sssistant
 Name: wlassistant
 Version: 0.5.4a
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://wlassistant.sourceforge.net/

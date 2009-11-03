@@ -7,7 +7,7 @@
 Summary: RSA encryption support for Gaim
 Name: gaim-encryption
 Version: 3.0
-Release: 0.2.%{prever}
+Release: 0.2.%{prever}%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-encryption.sourceforge.net/

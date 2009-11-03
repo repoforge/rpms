@@ -10,7 +10,7 @@
 Summary: Lightweight exporting of variables
 Name: perl-Exporter-Lite
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Exporter-Lite/

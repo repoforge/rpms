@@ -33,7 +33,7 @@
 Summary: Linux drivers for FreeS/WAN IPsec support
 Name: kernel-module-freeswan
 Version: %{real_version}
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.freeswan.org/
@@ -63,7 +63,7 @@ They might work with newer/older kernels.
 
 %package -n kernel-smp-module-freeswan
 Summary: Linux SMP drivers for FreeS/WAN IPsec support
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 Group: System Environment/Kernel
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
@@ -82,7 +82,7 @@ They might work with newer/older kernels.
 
 %package -n freeswan-utils
 Summary: FreeS/WAN programs and libraries
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Base
 
 Provides: freeswan = %{version}-%{release}, freeswan-programs = %{version}-%{release}

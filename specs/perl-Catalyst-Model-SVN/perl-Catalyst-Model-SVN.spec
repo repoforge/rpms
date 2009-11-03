@@ -11,7 +11,7 @@
 Summary: Catalyst Model to browse Subversion repositories
 Name: perl-Catalyst-Model-SVN
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Model-SVN/

@@ -5,7 +5,7 @@
 Summary: Console MUD client
 Name: tintin
 Version: 1.99.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tintin.sourceforge.net/

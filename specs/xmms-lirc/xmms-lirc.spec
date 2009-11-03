@@ -7,7 +7,7 @@
 Summary: Plugin to use LIRC supported infrared devices in XMMS
 Name: xmms-lirc
 Version: 1.4
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.lirc.org/

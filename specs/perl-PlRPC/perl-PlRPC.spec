@@ -10,7 +10,7 @@
 Summary: Perl extension for writing PlRPC servers and clients
 Name: perl-PlRPC
 Version: 0.2020
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PlRPC/

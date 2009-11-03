@@ -10,7 +10,7 @@
 Summary: Verilog extension for the EP3 preprocessor
 Name: perl-Text-EP3-Verilog
 Version: 1.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-EP3-Verilog/

@@ -10,7 +10,7 @@
 Summary: Affine Transformation to map 2D coordinates to other 2D coordinates
 Name: perl-Geometry-AffineTransform
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geometry-AffineTransform/

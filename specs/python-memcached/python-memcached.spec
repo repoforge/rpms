@@ -4,7 +4,7 @@
 Summary: Python interface to the memcached memory cache daemon
 Name: python-memcached
 Version: 1.31
-Release: 1
+Release: 1%{?dist}
 License: Unknown
 Group: Development/Libraries
 URL: ftp://ftp.tummy.com/pub/python-memcached/

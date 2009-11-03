@@ -10,7 +10,7 @@
 Summary: An object for mapping a URI to an on-disk storage directory
 Name: perl-URI-ToDisk
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ToDisk/

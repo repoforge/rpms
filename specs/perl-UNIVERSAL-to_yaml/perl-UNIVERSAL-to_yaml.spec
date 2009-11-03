@@ -10,7 +10,7 @@
 Summary: Perl module that implements a to_yaml() method for all objects
 Name: perl-UNIVERSAL-to_yaml
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-to_yaml/

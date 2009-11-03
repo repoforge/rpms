@@ -4,7 +4,7 @@
 Summary: Nagios plugin to store Nagios data in a relational database 
 Name: ndoutils
 Version: 1.4
-Release: 0.beta8.1
+Release: 0.beta8.1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/

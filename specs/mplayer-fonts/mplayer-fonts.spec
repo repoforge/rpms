@@ -11,7 +11,7 @@
 Summary: Font files for MPlayer
 Name: mplayer-fonts
 Version: 1.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/

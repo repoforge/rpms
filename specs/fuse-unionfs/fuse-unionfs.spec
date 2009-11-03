@@ -8,7 +8,7 @@
 Summary: Fuse-based user-space union filesystem
 Name: fuse-unionfs
 Version: 0.23
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://podgorny.cz/moin/UnionFsFuse

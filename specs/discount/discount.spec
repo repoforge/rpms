@@ -5,7 +5,7 @@
 Summary: C compiler for Markdown
 Name: discount
 Version: 1.5.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/

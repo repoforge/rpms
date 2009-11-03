@@ -10,7 +10,7 @@
 Summary: Merge IPv4 or IPv6 CIDR addresses
 Name: perl-Net-CIDR-Lite
 Version: 0.20
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-CIDR-Lite/

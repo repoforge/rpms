@@ -10,7 +10,7 @@
 Summary: Perl module to record interaction with websites
 Name: perl-HTTP-Recorder
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Recorder/

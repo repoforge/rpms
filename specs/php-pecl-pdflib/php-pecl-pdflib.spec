@@ -6,7 +6,7 @@
 Summary: PECL package for generating PDF files
 Name: php-pecl-pdflib
 Version: 2.0.4
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/pdflib

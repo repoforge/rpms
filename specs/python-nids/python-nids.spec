@@ -15,7 +15,7 @@
 Summary: Python wrapper for libnids (Network Intrusion Detection System)
 Name: python-nids
 Version: 0.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pilcrow.madison.wi.us/pynids/

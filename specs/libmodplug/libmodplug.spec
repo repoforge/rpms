@@ -4,7 +4,7 @@
 Summary: MOD music file playing library
 Name: libmodplug
 Version: 0.8.7
-Release: 1
+Release: 1%{?dist}
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://modplug-xmms.sourceforge.net/

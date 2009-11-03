@@ -13,7 +13,7 @@
 Summary: Tools for network auditing and penetration testing
 Name: dsniff
 Version: 2.4
-Release: 0.1.b1
+Release: 0.1.b1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/dsniff/

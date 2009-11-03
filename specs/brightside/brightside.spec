@@ -6,7 +6,7 @@
 Summary: Add reactivity to the corners and edges of your GNOME desktop.
 Name: brightside
 Version: 1.4.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://catmur.co.uk/~ed/main/brightside/

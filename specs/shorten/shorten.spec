@@ -4,7 +4,7 @@
 Summary: Low complexity and fast waveform coder
 Name: shorten
 Version: 3.6.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Distributable
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shorten/

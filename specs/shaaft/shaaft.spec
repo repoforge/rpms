@@ -8,7 +8,7 @@
 Summary: OpenGL 3D falling block game
 Name: shaaft
 Version: 0.5.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://criticalmass.sourceforge.net/shaaft.php

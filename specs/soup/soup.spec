@@ -4,7 +4,7 @@
 Summary: SOAP (Simple Object Access Protocol) implementation
 Name: soup
 Version: 0.7.11
-Release: 1
+Release: 1%{?dist}
 License: GPL/LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome.org/

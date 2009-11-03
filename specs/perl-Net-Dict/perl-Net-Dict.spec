@@ -10,7 +10,7 @@
 Summary: Perl module named Net-Dict
 Name: perl-Net-Dict
 Version: 2.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Dict/

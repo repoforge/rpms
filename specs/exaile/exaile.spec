@@ -6,7 +6,7 @@
 Summary: Music player
 Name: exaile
 Version: 0.2.14
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.exaile.org/

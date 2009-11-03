@@ -10,7 +10,7 @@
 Summary: Write RSS files
 Name: perl-XML-RSS-SimpleGen
 Version: 11.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-SimpleGen/

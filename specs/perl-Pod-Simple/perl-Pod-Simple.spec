@@ -10,7 +10,7 @@
 Summary: Framework for parsing Pod
 Name: perl-Pod-Simple
 Version: 3.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Simple/

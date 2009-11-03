@@ -14,7 +14,7 @@
 Summary: Python SDL game where you have to collect energy cubes
 Name: solarwolf
 Version: 1.5
-Release: 2.2
+Release: 2.2%{?dist}
 License: LGPL
 Group: Amusements/Games
 URL: http://www.pygame.org/shredwheat/solarwolf/

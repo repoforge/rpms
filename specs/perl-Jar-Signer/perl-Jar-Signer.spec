@@ -10,7 +10,7 @@
 Summary: Perl module to ease the process of creating a signed Jar file
 Name: perl-Jar-Signer
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jar-Signer/

@@ -10,7 +10,7 @@
 Summary: Perl module named Regexp-Parser
 Name: perl-Regexp-Parser
 Version: 0.20
-Release: 3
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Parser/

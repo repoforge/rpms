@@ -10,7 +10,7 @@
 Summary: Perl module that implements a sessions manager for CGI
 Name: perl-ZM-Session
 Version: 0.2.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ZM-Session/

@@ -10,7 +10,7 @@
 Summary: Perl module to provide rounded or exact English expression of durations
 Name: perl-Time-Duration
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Duration/

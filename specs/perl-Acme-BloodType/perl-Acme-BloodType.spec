@@ -10,7 +10,7 @@
 Summary: Perl module for those obsessed with celebrities' blood types
 Name: perl-Acme-BloodType
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-BloodType/

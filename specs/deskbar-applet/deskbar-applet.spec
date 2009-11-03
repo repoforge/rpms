@@ -6,7 +6,7 @@
 
 Name:           deskbar-applet
 Version:        2.17.2
-Release:        3
+Release:        3%{?dist}
 
 Summary:        A Gnome applet to allow easy access to various search engines
 Group:          Applications/Internet

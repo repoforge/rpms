@@ -9,7 +9,7 @@
 Summary: Perl module to merge arbitrarily deep hashes into a single hash
 Name: perl-Hash-Merge
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hash-Merge/

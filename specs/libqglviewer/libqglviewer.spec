@@ -17,7 +17,7 @@
 Summary: Library for quick creation of OpenGL 3D viewers
 Name: libqglviewer
 Version: 2.2.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://artis.imag.fr/Members/Gilles.Debunne/QGLViewer

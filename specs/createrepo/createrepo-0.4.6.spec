@@ -6,7 +6,7 @@
 Summary: Creates a common metadata repository
 Name: createrepo
 Version: 0.4.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://linux.duke.edu/projects/metadata/

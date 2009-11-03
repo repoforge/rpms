@@ -13,7 +13,7 @@
 Summary: Portable, freeware Super Nintendo Entertainment System (TM) emulator
 Name: snes9x
 Version: 1.51
-Release: 1
+Release: 1%{?dist}
 License: Other
 Group: Applications/Emulators
 URL: http://www.snes9x.com/

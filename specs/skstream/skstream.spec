@@ -4,7 +4,7 @@
 Summary: Network transport library
 Name: skstream
 Version: 0.3.6
-Release: 1
+Release: 1%{?dist}
 License: GPL/LGPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/skstream

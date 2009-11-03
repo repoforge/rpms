@@ -5,7 +5,7 @@
 Summary: TCP load-balancing proxy server
 Name: balance
 Version: 3.42
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://balance.sourceforge.net/

@@ -8,7 +8,7 @@
 Summary: LiCe IRC scripts for epic
 Name: epic-lice
 Version: 4.2.0
-Release: 0.pre7.2
+Release: 0.pre7.2%{?dist}
 Group: Applications/Communications
 License: GPL
 URL: http://lice.codehack.com/

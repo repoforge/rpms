@@ -10,7 +10,7 @@
 Summary: Perl module with bindings for GNU Libidn
 Name: perl-Net-LibIDN
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-LibIDN/

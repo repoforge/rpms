@@ -1,7 +1,7 @@
 Name:           gtk2-engines-aurora
 Version:        1.4
 Packager:       Christopher Bratusek <nano-master@gmx.de>
-Release:        2
+Release:        2%{?dist}
 License:        GPL-2
 Source0:        aurora-%{version}.tar.gz
 Source10:       gtkrc_themes.tar.bz2

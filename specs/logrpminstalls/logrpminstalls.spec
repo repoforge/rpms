@@ -5,7 +5,7 @@
 Summary: Creates a log with timestamps of every install of an rpm
 Name: logrpminstalls
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://dries.ulyssis.org/projects/logrpminstalls/

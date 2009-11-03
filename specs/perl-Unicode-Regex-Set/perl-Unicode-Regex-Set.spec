@@ -10,7 +10,7 @@
 Summary: Perl module that implements Subtraction and Intersection of Character Sets in Unicode Regular Expressions
 Name: perl-Unicode-Regex-Set
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Regex-Set/

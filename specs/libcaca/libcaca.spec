@@ -16,7 +16,7 @@
 Summary: Library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.99
-Release: 0.1.beta11
+Release: 0.1.beta11%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sam.zoy.org/projects/libcaca/

@@ -10,7 +10,7 @@
 Summary: Direct manipulation of email alias files
 Name: perl-Mail-Alias
 Version: 1.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Alias/

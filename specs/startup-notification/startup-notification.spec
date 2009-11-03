@@ -6,7 +6,7 @@
 Summary: Library for tracking application startup
 Name: startup-notification
 Version: 0.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.freedesktop.org/software/startup-notification/

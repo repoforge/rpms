@@ -5,7 +5,7 @@
 Summary: Utility for accessing the output pins of a parallel port
 Name: pport
 Version: 0.6.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://sourceforge.net/projects/pport/

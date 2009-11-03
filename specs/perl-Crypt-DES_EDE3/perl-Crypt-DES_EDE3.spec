@@ -10,7 +10,7 @@
 Summary: Triple-DES EDE encryption/decryption
 Name: perl-Crypt-DES_EDE3
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DES_EDE3/

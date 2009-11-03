@@ -10,7 +10,7 @@
 Summary: Perl module to check a remote host for reachability
 Name: perl-Net-Ping
 Version: 2.36
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Ping/

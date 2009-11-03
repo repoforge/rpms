@@ -5,7 +5,7 @@
 Summary: Basic IDS/IPS tool to help you investigate and manage your network
 Name: flowgrep
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.monkey.org/~jose/software/flowgrep/

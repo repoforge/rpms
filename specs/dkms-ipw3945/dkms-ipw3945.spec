@@ -5,7 +5,7 @@
 Summary: Driver for Intel® PRO/Wirelss 3945 network adaptors
 Name: dkms-ipw3945
 Version: 1.2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ipw3945.sourceforge.net/

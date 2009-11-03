@@ -30,7 +30,7 @@
 Summary: Linux driver for compressed loop devices
 Name: kernel-module-cloop
 Version: 2.00
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://developer.linuxtag.net/knoppix/sources/

@@ -10,7 +10,7 @@
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
 Version: 2.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-vCard/

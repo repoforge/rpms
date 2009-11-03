@@ -5,7 +5,7 @@
 Summary: Take screenshots using the framebuffer device
 Name: fbdump
 Version: 0.4.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.rcdrummond.net/fbdump/

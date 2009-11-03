@@ -10,7 +10,7 @@
 Summary: Perl-only implementation of the crypt(3) function
 Name: perl-Crypt-UnixCrypt
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-UnixCrypt/

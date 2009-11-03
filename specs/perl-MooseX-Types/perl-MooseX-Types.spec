@@ -13,7 +13,7 @@
 Summary: Organise your Moose types in libraries
 Name: perl-MooseX-Types
 Version: 0.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Types/

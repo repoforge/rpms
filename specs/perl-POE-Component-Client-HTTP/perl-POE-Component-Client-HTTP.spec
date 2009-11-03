@@ -10,7 +10,7 @@
 Summary: Non-blocking/concurrent HTTP queries with POE
 Name: perl-POE-Component-Client-HTTP
 Version: 0.890
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-HTTP/

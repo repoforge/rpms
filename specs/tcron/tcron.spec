@@ -5,7 +5,7 @@
 Summary: Another cron daemon
 Name: tcron
 Version: 0.4.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://tcron.sourceforge.net/

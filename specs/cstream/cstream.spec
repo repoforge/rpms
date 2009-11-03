@@ -4,7 +4,7 @@
 Summary: General-purpose stream-handling tool
 Name: cstream
 Version: 2.7.4
-Release: 3
+Release: 3%{?dist}
 License: MIT
 Group: Applications/System
 URL: http://www.cons.org/cracauer/cstream.html

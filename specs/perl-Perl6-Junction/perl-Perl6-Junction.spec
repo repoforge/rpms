@@ -10,7 +10,7 @@
 Summary: Perl6 style Junction operators in Perl5
 Name: perl-Perl6-Junction
 Version: 1.40000
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl6-Junction/

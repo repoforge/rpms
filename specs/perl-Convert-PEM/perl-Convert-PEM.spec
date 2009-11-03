@@ -10,7 +10,7 @@
 Summary: Read/write encrypted ASN.1 PEM files
 Name: perl-Convert-PEM
 Version: 0.07
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-PEM/

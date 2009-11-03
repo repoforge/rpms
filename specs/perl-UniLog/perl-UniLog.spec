@@ -10,7 +10,7 @@
 Summary: Perl module for unified logging on Unix and Win32
 Name: perl-UniLog
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UniLog/

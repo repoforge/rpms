@@ -11,7 +11,7 @@
 Summary: Python logging module similar to log4j
 Name: python-log4py
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://www.its4you.at/english/log4py.html

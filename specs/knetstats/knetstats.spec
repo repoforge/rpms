@@ -4,7 +4,7 @@
 Summary: Network monitor
 Name: knetstats
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://knetstats.sourceforge.net/

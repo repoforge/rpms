@@ -12,7 +12,7 @@ Summary: Displays various tables of DNS traffic on your network
 Name: dnstop
 %define real_version 20080502
 Version: 0.0.20080502
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://dns.measurement-factory.com/tools/dnstop/

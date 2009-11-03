@@ -4,7 +4,7 @@
 Summary: Easy to use client for ED2K Peer-to-Peer Network based on eMule
 Name: xmule
 Version: 1.13.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.xmule.ws/

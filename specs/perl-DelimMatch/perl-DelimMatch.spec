@@ -11,7 +11,7 @@
 Summary: Find regexp delimited strings with proper nesting
 Name: perl-DelimMatch
 Version: 1.06a
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DelimMatch/

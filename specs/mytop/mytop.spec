@@ -7,7 +7,7 @@
 Summary: Top clone for MySQL
 Name: mytop
 Version: 1.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://jeremy.zawodny.com/mysql/mytop/

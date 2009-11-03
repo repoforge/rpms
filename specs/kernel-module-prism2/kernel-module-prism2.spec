@@ -25,7 +25,7 @@
 Summary: Linux Prism II Wireless 802.11b drivers
 Name: kernel-module-prism2
 Version: 0.2.1
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: Dual MPL/GPL
 Group: System Environment/Kernel
 URL: http://www.linux-wlan.com/
@@ -46,7 +46,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-prism2
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 Summary: Linux Prism II Wireless 802.11b drivers
 License: Dual MPL/GPL
 Group: System Environment/Kernel
@@ -65,7 +65,7 @@ They might work with newer/older kernels.
 
 %package -n prism2-utils
 Summary: Prism II Wireless 802.11b utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 License: Dual MPL/GPL
 Group: System Environment/Base
 Provides: wlan-ng-utils

@@ -10,7 +10,7 @@
 Summary: Simple graphical text editor
 Name: leafpad
 Version: 0.8.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://tarot.freeshell.org/leafpad/

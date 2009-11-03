@@ -10,7 +10,7 @@
 Summary: Handle large numbers of tasks with finite numbers of workers.
 Name: perl-POE-Component-JobQueue
 Version: 0.570
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-JobQueue/

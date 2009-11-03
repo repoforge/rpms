@@ -10,7 +10,7 @@
 Summary: Perl module that implements a source filter for the Beatnik language
 Name: perl-Acme-Beatnik
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Beatnik/

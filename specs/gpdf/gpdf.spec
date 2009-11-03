@@ -6,7 +6,7 @@
 Summary: Grpahical PDF viewer
 Name: gpdf
 Version: 0.103
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Publishing
 License: GPL
 URL: http://www.inf.tu-dresden.de/~mk793652/gpdf/

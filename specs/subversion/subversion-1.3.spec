@@ -26,7 +26,7 @@ Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.3.2
 ### FC3 comes with release 1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/

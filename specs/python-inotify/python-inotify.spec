@@ -7,7 +7,7 @@
 Summary: Python module implementing Linux inotify support
 Name: python-inotify
 Version: 0.1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://rudd-o.com/projects/python-inotify/

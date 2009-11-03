@@ -5,7 +5,7 @@
 
 Name:           gossip
 Version:        0.26
-Release:        1
+Release:        1%{?dist}
 Summary:        Gnome Jabber Client
 
 Group:          Applications/Communications

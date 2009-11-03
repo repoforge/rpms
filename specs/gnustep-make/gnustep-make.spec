@@ -4,7 +4,7 @@
 Summary: GNUstep make
 Name: gnustep-make
 Version: 1.11.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.gnustep.org

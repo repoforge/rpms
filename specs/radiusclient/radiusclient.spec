@@ -4,7 +4,7 @@
 Summary: framework and library for writing RADIUS clients
 Name: radiusclient
 Version: 0.3.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: Free
 Group: Applications/Internet
 URL: http://www.cityline.net/~lf/radius/

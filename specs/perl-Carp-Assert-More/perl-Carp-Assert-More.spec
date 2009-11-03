@@ -9,7 +9,7 @@
 Summary: Convenience wrappers around Carp::Assert 
 Name: perl-Carp-Assert-More
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Carp-Assert-More/

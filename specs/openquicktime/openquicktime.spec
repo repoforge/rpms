@@ -4,7 +4,7 @@
 Summary: Portable library for handling Apples QuickTime(tm) format
 Name: openquicktime
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.openquicktime.org/

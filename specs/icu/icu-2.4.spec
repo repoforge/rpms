@@ -6,7 +6,7 @@
 Summary: International Components for Unicode.
 Name: icu24
 Version: 2.4
-Release: 0
+Release: 0%{?dist}
 License: X License
 Group: System Environment/Libraries
 URL: http://oss.software.ibm.com/icu/

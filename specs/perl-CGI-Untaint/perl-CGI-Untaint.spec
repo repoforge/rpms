@@ -10,7 +10,7 @@
 Summary: Process CGI input parameters
 Name: perl-CGI-Untaint
 Version: 1.26
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Untaint/

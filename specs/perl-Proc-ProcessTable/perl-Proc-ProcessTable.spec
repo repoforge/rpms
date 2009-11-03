@@ -9,7 +9,7 @@
 Summary: Perl interface to the UNIX process table
 Name: perl-Proc-ProcessTable
 Version: 0.45
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-ProcessTable/

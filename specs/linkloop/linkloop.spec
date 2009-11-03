@@ -5,7 +5,7 @@
 Summary: Tool to test connectivity at the link layer (layer 2)
 Name: linkloop
 Version: 1.0.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sourceforge.net/projects/linkloop/

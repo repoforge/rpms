@@ -3,7 +3,7 @@
 Summary: Resizable border sensor, designed to replace LTVBorder.
 Name: gdesklets-rdgborder
 Version: 0.2
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

@@ -6,7 +6,7 @@
 Summary: Virtual private network daemon
 Name: tinc
 Version: 1.0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://tinc.nl.linux.org/

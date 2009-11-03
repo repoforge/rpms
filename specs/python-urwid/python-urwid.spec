@@ -8,7 +8,7 @@
 Summary: Console UI Library for Python
 Name: python-urwid
 Version: 0.9.8.3
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://excess.org/urwid/

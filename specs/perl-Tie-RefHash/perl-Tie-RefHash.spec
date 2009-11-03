@@ -10,7 +10,7 @@
 Summary: Use references as hash keys
 Name: perl-Tie-RefHash
 Version: 1.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-RefHash/

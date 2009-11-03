@@ -10,7 +10,7 @@
 Summary: Multi node unordered tree objects
 Name: perl-Tree-MultiNode
 Version: 1.0.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-MultiNode/

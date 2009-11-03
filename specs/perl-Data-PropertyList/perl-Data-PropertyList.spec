@@ -10,7 +10,7 @@
 Summary: Convert arbitrary objects to/from strings
 Name: perl-Data-PropertyList
 Version: 1998.1217
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-PropertyList/

@@ -10,7 +10,7 @@
 Summary: RC4 encryption algorithm
 Name: perl-Crypt-RC4
 Version: 2.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RC4/

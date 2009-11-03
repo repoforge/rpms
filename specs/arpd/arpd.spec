@@ -11,7 +11,7 @@
 Summary: ARP reply daemon
 Name: arpd
 Version: 0.2
-Release: 5
+Release: 5%{?dist}
 License: OpenSource
 Group: Applications/Internet
 URL: http://www.honeyd.org/tools.php

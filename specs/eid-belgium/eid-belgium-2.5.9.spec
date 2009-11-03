@@ -7,7 +7,7 @@ Summary: Application to read out information from the Belgian electronic ID card
 %define real_name Belgian_Identity_Card_Run-time
 Name: eid-belgium
 Version: 2.5.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://eid.belgium.be/

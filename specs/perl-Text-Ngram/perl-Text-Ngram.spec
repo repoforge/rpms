@@ -12,7 +12,7 @@
 Summary: Ngram analysis of text
 Name: perl-Text-Ngram
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Ngram/

@@ -10,7 +10,7 @@
 Summary: Create and send ARP packets
 Name: perl-Net-ARP
 Version: 1.0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-ARP/

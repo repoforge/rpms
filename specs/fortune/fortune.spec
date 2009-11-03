@@ -6,7 +6,7 @@
 Summary: program which will display a fortune
 Name: fortune
 Version: 1.0
-Release: 37.2
+Release: 37.2%{?dist}
 License: BSD
 Group: Amusements/Games
 # no URL found

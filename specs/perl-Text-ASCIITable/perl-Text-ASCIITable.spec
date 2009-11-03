@@ -10,7 +10,7 @@
 Summary: Perl module to create a nice formatted table using ASCII characters
 Name: perl-Text-ASCIITable
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-ASCIITable/

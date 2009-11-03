@@ -12,7 +12,7 @@
 Summary: Easily generate well-formed, namespace-aware XML
 Name: perl-XML-Writer
 Version: 0.606
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Writer/

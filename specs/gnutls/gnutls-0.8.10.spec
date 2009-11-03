@@ -4,7 +4,7 @@
 Summary: The GNU Transport Layer Security library
 Name: gnutls
 Version: 0.8.10
-Release: 2
+Release: 2%{?dist}
 License: LGPL/GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/gnutls/

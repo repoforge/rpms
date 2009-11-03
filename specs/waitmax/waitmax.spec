@@ -4,7 +4,7 @@
 Summary: Allow program to run at most a specified amount of time
 Name: waitmax
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://mathias-kettner.de/waitmax.html

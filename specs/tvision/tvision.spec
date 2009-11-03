@@ -5,7 +5,7 @@
 Summary: Unix port of Borland TurboVision library
 Name: tvision
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD-like
 Group: Development/Libraries
 URL: http://tvision.sourceforge.net/

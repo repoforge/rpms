@@ -9,7 +9,7 @@
 Summary: Generate ASCII bar graphs
 Name: perl-Text-BarGraph
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://www.robobunny.com/projects/bargraph

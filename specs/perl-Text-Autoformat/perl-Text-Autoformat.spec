@@ -10,7 +10,7 @@
 Summary: Automatic text wrapping and reformatting
 Name: perl-Text-Autoformat
 Version: 1.666.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Autoformat/

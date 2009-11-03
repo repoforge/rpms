@@ -12,7 +12,7 @@
 Summary: Adventures on Planet Zephulor
 Name: zephulor
 Version: 0.9b
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Amusements/Games
 URL: http://games.hollowworks.com/index.php

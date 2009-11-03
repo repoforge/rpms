@@ -9,7 +9,7 @@
 Summary: ExtUtils-Depends module for perl
 Name: perl-ExtUtils-Depends
 Version: 0.302
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-Depends/

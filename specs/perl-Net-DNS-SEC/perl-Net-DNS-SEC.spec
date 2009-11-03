@@ -10,7 +10,7 @@
 Summary: Support for DNS Resource Record
 Name: perl-Net-DNS-SEC
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-SEC/

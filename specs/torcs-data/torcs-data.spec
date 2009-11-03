@@ -5,7 +5,7 @@
 Summary: The Open Racing Car Simulator data files
 Name: torcs-data
 Version: 1.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL and Free Art License
 Group: Amusements/Games
 URL: http://torcs.org/

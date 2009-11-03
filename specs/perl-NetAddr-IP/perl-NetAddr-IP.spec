@@ -10,7 +10,7 @@
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
 Version: 4.027
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/

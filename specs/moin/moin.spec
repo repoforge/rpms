@@ -6,7 +6,7 @@
 Summary: Advanced, easy to use and extensible WikiEngine
 Name: moin
 Version: 1.5.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://moinmoin.wikiwikiweb.de/

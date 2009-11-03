@@ -9,7 +9,7 @@
 Summary: Displays the LED states of the keyboard
 Name: kkeyled
 Version: 0.8.11
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.truesoft.ch/dieter/kkeyled.html

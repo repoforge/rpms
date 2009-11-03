@@ -10,7 +10,7 @@
 Summary: Utility methods for factory classes
 Name: perl-Class-Factory-Util
 Version: 1.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Factory-Util/

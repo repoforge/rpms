@@ -4,7 +4,7 @@
 Summary: Reports certain network interface statistics
 Name: tcpstat
 Version: 1.5
-Release: 2
+Release: 2%{?dist}
 License: NSD
 Group: Applications/Internet
 URL: http://www.frenchfries.net/paul/tcpstat/

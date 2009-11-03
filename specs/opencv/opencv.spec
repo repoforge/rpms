@@ -9,7 +9,7 @@
 Summary: Collection of algorithms for computer vision
 Name: opencv
 Version: 1.0.0
-Release: 1
+Release: 1%{?dist}
 Group: Development/Libraries
 License: Intel Open Source License
 URL: http://www.intel.com/technology/computing/opencv/index.htm

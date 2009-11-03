@@ -10,7 +10,7 @@
 Summary: Highly configurable File Dialog widget for Perl/Tk
 Name: perl-Tk-FileDialog
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-FileDialog/

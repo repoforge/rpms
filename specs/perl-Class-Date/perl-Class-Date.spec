@@ -10,7 +10,7 @@
 Summary: Class for easy date and time manipulation
 Name: perl-Class-Date
 Version: 1.1.9
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Date/

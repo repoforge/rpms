@@ -5,7 +5,7 @@
 Summary: Gnet, a network library
 Name: gnet
 Version: 1.1.9
-Release: 0
+Release: 0%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnetlibrary.org/

@@ -8,7 +8,7 @@
 Summary: Write Python extensions in C++
 Name: pycxx
 Version: 6.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://CXX.sourceforge.net/

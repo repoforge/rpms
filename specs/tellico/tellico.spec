@@ -10,7 +10,7 @@
 Summary: collection manager
 Name: tellico
 Version: 1.3.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.periapsis.org/tellico/

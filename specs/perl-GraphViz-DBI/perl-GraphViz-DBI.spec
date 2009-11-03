@@ -10,7 +10,7 @@
 Summary: Graph database tables and relations
 Name: perl-GraphViz-DBI
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GraphViz-DBI/

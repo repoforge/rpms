@@ -25,7 +25,7 @@
 Summary: Linux IBM PCI ServeRAID drivers
 Name: kernel-module-ips
 Version: 6.11
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www-3.ibm.com/pc/support/site.wss/MIGR-39729.html
@@ -48,7 +48,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-ips
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 Summary: Linux IBM PCI ServeRAID drivers for SMP
 License: GPL
 Group: System Environment/Kernel

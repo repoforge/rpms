@@ -17,7 +17,7 @@
 Summary: Free and portable TrueType font rendering engine.
 Name: freetype
 Version: 2.1.9
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD/GPL dual license
 Group: System Environment/Libraries
 URL: http://www.freetype.org

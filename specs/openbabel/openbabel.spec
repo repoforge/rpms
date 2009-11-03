@@ -5,7 +5,7 @@
 Summary: Convert between file formats used in molecular modeling chemistry
 Name: openbabel
 Version: 2.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://openbabel.sourceforge.net/

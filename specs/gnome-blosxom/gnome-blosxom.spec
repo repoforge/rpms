@@ -5,7 +5,7 @@
 Summary: Post entries to a Blosxom based weblog
 Name: gnome-blosxom
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gnome-blosxom.sourceforge.net/

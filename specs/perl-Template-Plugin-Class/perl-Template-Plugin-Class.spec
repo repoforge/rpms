@@ -10,7 +10,7 @@
 Summary: Allow calling of class methods on arbitrary classes
 Name: perl-Template-Plugin-Class
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-Class/

@@ -9,7 +9,7 @@
 Summary: Perform SNMP operations on multiple hosts simultaneously
 Name: perl-SNMP-Multi
 Version: 2.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SNMP-Multi/

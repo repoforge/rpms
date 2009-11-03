@@ -9,7 +9,7 @@
 Summary: Perl module to build an HTML page from a YAML-based document
 Name: perl-YAML-Yaml2Html
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Yaml2Html/

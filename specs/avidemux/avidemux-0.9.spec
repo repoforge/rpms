@@ -13,7 +13,7 @@
 Summary: Graphical multiplex/demultiplex tool using GTK
 Name: avidemux
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/

@@ -4,7 +4,7 @@
 Summary: Graphical front-end for ndiswrapper
 Name: ndisgtk
 Version: 0.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: https://launchpad.net/ndisgtk/

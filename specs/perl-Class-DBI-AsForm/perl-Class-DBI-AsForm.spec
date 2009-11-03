@@ -10,7 +10,7 @@
 Summary: Perl module to produce HTML form elements for database columns
 Name: perl-Class-DBI-AsForm
 Version: 2.42
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-AsForm/

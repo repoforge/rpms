@@ -10,7 +10,7 @@
 Summary: Perl module for getting the current system load and uptime
 Name: perl-Sys-Load
 Version: 0.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Load/

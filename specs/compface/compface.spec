@@ -4,7 +4,7 @@
 Summary: Programs for 48x48x1 image compression and decompression
 Name: compface
 Version: 1.5.2
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Applications/System
 URL: 		http://www.ibiblio.org/pub/Linux/apps/graphics/convert/

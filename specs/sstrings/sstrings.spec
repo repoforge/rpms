@@ -5,7 +5,7 @@
 Summary: Handle C strings in a safe way
 Name: sstrings
 Version: 2.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://klingsor.informatik.uni-freiburg.de/projects/sstrings/

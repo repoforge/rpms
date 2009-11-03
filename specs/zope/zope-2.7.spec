@@ -23,7 +23,7 @@
 Summary: Web application server for flexible content management applications
 Name: zope
 Version: 2.7.2
-Release: 0.1
+Release: 0.1%{?dist}
 License: ZPL
 Group: System Environment/Daemons
 URL: http://www.zope.org/

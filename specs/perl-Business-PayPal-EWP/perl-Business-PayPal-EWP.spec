@@ -10,7 +10,7 @@
 Summary: Perl extension for PayPal's Encrypted Website Payments
 Name: perl-Business-PayPal-EWP
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-PayPal-EWP/

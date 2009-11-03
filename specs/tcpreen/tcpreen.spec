@@ -6,7 +6,7 @@
 Summary: TCP/IP re-engineering and monitoring program
 Name: tcpreen
 Version: 1.4.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.remlab.net/tcpreen/

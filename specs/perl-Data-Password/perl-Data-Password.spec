@@ -9,7 +9,7 @@
 Summary: Perl module for assesing password quality. 
 Name: perl-Data-Password
 Version: 1.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Password/

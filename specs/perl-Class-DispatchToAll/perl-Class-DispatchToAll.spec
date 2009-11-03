@@ -10,7 +10,7 @@
 Summary: Dispatch a method call to all inherited methods
 Name: perl-Class-DispatchToAll
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DispatchToAll/

@@ -5,7 +5,7 @@
 Summary: Libraries for the Unidata network Common Data Form (NetCDF)
 Name: netcdf
 Version: 3.6.3
-Release: 1
+Release: 1%{?dist}
 License: BSD like
 Group: Development/Libraries
 URL: http://www.unidata.ucar.edu/software/netcdf/

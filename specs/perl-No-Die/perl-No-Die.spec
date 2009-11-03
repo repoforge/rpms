@@ -10,7 +10,7 @@
 Summary: Don't let modules die
 Name: perl-No-Die
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/No-Die/

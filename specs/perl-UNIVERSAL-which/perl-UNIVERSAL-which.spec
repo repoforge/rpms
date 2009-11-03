@@ -10,7 +10,7 @@
 Summary: Perl module to tell fully qualified name of the method
 Name: perl-UNIVERSAL-which
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-which/

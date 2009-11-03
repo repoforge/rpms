@@ -10,7 +10,7 @@
 Summary: Data, client and server classes for XML-RPC
 Name: perl-RPC-XML
 Version: 0.67
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPC-XML/

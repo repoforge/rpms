@@ -4,7 +4,7 @@
 Summary: Create system image for bare-metal disaster recovery from CD, DVD or tape
 Name: mondo
 Version: 2.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.mondorescue.org/

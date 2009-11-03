@@ -10,7 +10,7 @@
 Summary: Get official weather information from NOAA
 Name: perl-Geo-WeatherNOAA
 Version: 4.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-WeatherNOAA/

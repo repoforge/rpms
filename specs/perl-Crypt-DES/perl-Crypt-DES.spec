@@ -9,7 +9,7 @@
 Summary: Crypt-DES module for perl
 Name: perl-Crypt-DES
 Version: 2.05
-Release: 3.2
+Release: 3.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DES/

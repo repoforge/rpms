@@ -10,7 +10,7 @@
 Summary: Exact Currency Math with Formatting and Rounding
 Name: perl-Math-Currency
 Version: 0.46
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Currency/

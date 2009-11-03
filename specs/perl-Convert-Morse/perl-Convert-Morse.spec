@@ -10,7 +10,7 @@
 Summary: Convert between ASCII and MORSE code
 Name: perl-Convert-Morse
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-Morse/

@@ -9,7 +9,7 @@
 Summary: Customizable screen ruler
 Name: gruler
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://linuxadvocate.org/projects/gruler/

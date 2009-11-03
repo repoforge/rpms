@@ -10,7 +10,7 @@
 Summary: Perl module that implements an object-relational persistence framework
 Name: perl-Jifty-DBI
 Version: 0.58
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jifty-DBI/

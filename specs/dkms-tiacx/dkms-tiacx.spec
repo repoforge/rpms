@@ -5,7 +5,7 @@
 Summary: Driver for Texas Instruments' ACX100/ACX111 wireless network chips
 Name: dkms-tiacx
 Version: 0.4.7
-Release: 5.20070101
+Release: 5.20070101%{?dist}
 License: GPLv2 or MPLv1.1
 Group: System Environment/Kernel
 URL: http://www.kernel.org/pub/linux/kernel/people/akpm/

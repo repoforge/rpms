@@ -10,7 +10,7 @@
 Summary: Perl module that implements the Perl Data Language
 Name: perl-PDL
 Version: 2.4.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PDL/

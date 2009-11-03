@@ -11,7 +11,7 @@
 Summary: Patched dd with Computer Forensics Features
 Name: dc3dd
 Version: 6.12.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://dc3dd.sourceforge.net/

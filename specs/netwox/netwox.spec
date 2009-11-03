@@ -11,7 +11,7 @@
 Summary: Toolbox for solving network problems
 Name: netwox
 Version: 5.35.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.laurentconstantin.com/en/netw/netwox/

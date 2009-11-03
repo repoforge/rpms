@@ -5,7 +5,7 @@
 Summary: Automated Password Generator for random password generation
 Name: apg
 Version: 2.2.3
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.adel.nursat.kz/apg/

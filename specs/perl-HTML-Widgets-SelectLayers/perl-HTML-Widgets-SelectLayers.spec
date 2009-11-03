@@ -10,7 +10,7 @@
 Summary: Perl extension for selectable HTML layers
 Name: perl-HTML-Widgets-SelectLayers
 Version: 0.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Widgets-SelectLayers/

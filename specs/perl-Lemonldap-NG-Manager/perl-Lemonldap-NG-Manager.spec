@@ -10,7 +10,7 @@
 Summary: Perl extension for managing Lemonldap::NG Web-SSO system
 Name: perl-Lemonldap-NG-Manager
 Version: 0.90
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lemonldap-NG-Manager/

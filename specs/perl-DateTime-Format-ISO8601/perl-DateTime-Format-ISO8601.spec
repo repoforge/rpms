@@ -10,7 +10,7 @@
 Summary: Parses ISO8601 formats
 Name: perl-DateTime-Format-ISO8601
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-ISO8601/

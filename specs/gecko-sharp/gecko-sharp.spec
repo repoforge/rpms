@@ -4,7 +4,7 @@
 Summary: C# bindings for the Gecko engine
 Name: gecko-sharp
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: MPL/LGPL
 Group: Development/Tools
 URL: http://monodevelop.com/

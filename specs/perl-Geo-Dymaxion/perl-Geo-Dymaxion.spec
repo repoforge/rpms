@@ -10,7 +10,7 @@
 Summary: Plot latitude/longitude on a Fuller Dymaxion(tm) map
 Name: perl-Geo-Dymaxion
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Dymaxion/

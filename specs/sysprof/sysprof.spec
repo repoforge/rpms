@@ -4,7 +4,7 @@
 Summary: System sampling profiler
 Name: sysprof
 Version: 0.91
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Debuggers
 URL: http://cvs.gnome.org/viewcvs/sysprof/

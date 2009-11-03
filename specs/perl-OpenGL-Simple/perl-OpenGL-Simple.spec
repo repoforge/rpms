@@ -15,7 +15,7 @@
 Summary: Interface to OpenGL
 Name: perl-OpenGL-Simple
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OpenGL-Simple/

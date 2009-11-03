@@ -10,7 +10,7 @@
 Summary: Adds xpath matching to object trees
 Name: perl-Class-XPath
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-XPath/

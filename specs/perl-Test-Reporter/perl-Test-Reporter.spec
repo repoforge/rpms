@@ -10,7 +10,7 @@
 Summary: Report test results of a package retrieved from CPAN
 Name: perl-Test-Reporter
 Version: 1.54
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Reporter/

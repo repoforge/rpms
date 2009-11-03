@@ -10,7 +10,7 @@
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver
 Version: 1.0
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/

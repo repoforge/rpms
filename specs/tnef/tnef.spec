@@ -4,7 +4,7 @@
 Summary: Unpack Microsoft MS-TNEF MIME attachements
 Name: tnef
 Version: 1.4.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://sourceforge.net/projects/tnef/

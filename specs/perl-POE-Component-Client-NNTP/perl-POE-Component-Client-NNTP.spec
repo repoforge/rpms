@@ -10,7 +10,7 @@
 Summary: POE component that implements an RFC 977 NNTP client
 Name: perl-POE-Component-Client-NNTP
 Version: 2.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-NNTP/

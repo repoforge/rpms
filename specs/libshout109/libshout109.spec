@@ -6,7 +6,7 @@
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout109
 Version: 1.0.9
-Release: 3.2
+Release: 3.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://developer.icecast.org/libshout/

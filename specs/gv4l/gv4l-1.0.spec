@@ -13,7 +13,7 @@
 Summary: GNOME frontend for the v4l (Video For Linux) functions of transcode
 Name: gv4l
 Version: 1.0.0
-Release: 0
+Release: 0%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://warderx.ath.cx:81/projects/

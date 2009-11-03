@@ -10,7 +10,7 @@
 Summary: Perl extension for interfacing to attcmd on Win32
 Name: perl-ClearCase-Attache
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-Attache/

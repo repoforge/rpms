@@ -10,7 +10,7 @@
 Summary: Presentation software
 Name: magicpoint
 Version: 1.11b
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Productivity
 URL: http://member.wide.ad.jp/wg/mgp/

@@ -10,7 +10,7 @@
 Summary: Non-blocking POE wrapper around WWW::Shorten
 Name: perl-POE-Component-WWW-Shorten
 Version: 1.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-WWW-Shorten/

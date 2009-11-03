@@ -10,7 +10,7 @@
 Summary: Return name and handle of a temporary file safely
 Name: perl-File-Temp
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Temp/

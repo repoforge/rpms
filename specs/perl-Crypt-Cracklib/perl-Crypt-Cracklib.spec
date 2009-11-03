@@ -10,7 +10,7 @@
 Summary: Perl interface to Alec Muffett's Cracklib
 Name: perl-Crypt-Cracklib
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Cracklib/

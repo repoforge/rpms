@@ -33,7 +33,7 @@
 Summary: Wireless LAN (WLAN) accesspoint discovery tool
 Name: prismstumbler
 Version: 0.7.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://prismstumbler.sourceforge.net/

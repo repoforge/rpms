@@ -5,7 +5,7 @@
 Summary: High quality, generic capture core
 Name: nvrec
 Version: 20030316
-Release: 2.2
+Release: 2.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://nvrec.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: Fluendo Streaming Server
 Name: flumotion
 Version: 0.1.10
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Internet
 License: GPL
 URL: http://www.fluendo.com/

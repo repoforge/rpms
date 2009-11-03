@@ -11,7 +11,7 @@
 Summary: Keep a mirrored working copy of a repository path
 Name: perl-SVN-Notify-Mirror
 Version: 0.03800
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Notify-Mirror/

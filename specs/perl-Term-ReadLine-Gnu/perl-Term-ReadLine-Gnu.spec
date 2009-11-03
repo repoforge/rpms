@@ -12,7 +12,7 @@
 Summary: Extension for the GNU Readline/History library
 Name: perl-Term-ReadLine-Gnu
 Version: 1.19
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-ReadLine-Gnu/

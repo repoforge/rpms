@@ -10,7 +10,7 @@
 Summary: Simple blog code for valid XHTML and HTML
 Name: perl-HTML-SBC
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-SBC/

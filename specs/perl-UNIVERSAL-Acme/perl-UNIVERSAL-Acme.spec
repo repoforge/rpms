@@ -10,7 +10,7 @@
 Summary: Whatever "it" is, it's a METHOD.  Hoser
 Name: perl-UNIVERSAL-Acme
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-Acme/

@@ -5,7 +5,7 @@
 Summary: Library for accessing ARX archives
 Name: libarxx
 Version: 0.7.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://libarxx.sourceforge.net

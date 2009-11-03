@@ -5,7 +5,7 @@
 Summary: CPU benchmark and information tool
 Name: procbench
 Version: 0.7.3a
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://procbench.sourceforge.net/

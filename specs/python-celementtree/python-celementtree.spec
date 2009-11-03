@@ -10,7 +10,7 @@ Summary: Fast XML parser and writer (written in C)
 Name: python-celementtree
 %define real_version 1.0.5-20051216
 Version: 1.0.5
-Release: 2
+Release: 2%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://effbot.org/zone/celementtree.htm

@@ -25,7 +25,7 @@
 Summary: Unicode version of rxvt
 Name: rxvt-unicode
 Version: 9.06
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://software.schmorp.de/

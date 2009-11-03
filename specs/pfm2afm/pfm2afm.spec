@@ -4,7 +4,7 @@
 Summary: Utility for converting windows pfm font metric files into afm metrics
 Name: pfm2afm
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/File
 URL: http://pegasus.rutgers.edu/~elflord/font_howto/pfm2afm.tgz

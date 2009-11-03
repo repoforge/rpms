@@ -10,7 +10,7 @@
 Summary: Find and format date headers
 Name: perl-Email-Date
 Version: 1.103
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Date/

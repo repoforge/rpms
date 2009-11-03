@@ -10,7 +10,7 @@
 Summary: General purpose text/data merging methods
 Name: perl-Text-Merge
 Version: 0.36
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Merge/

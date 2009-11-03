@@ -12,7 +12,7 @@
 Summary: Proprietary NVIDIA hardware accelerated OpenGL display driver
 Name: dkms-nvidia-x11-drv
 Version: 185.18.14
-Release: 1
+Release: 1%{?dist}
 License: Proprietary
 Group: User Interface/X Hardware Support
 URL: http://www.nvidia.com/object/unix.html

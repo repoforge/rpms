@@ -10,7 +10,7 @@
 Summary: POE component that provides non-blocking ident services to your sessions
 Name: perl-POE-Component-Server-Ident
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-Ident/

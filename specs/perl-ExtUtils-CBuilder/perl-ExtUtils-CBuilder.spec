@@ -11,7 +11,7 @@
 Summary: Compile and link C code for Perl modules
 Name: perl-ExtUtils-CBuilder
 Version: 0.2603.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-CBuilder/

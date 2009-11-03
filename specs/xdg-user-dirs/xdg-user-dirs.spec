@@ -4,7 +4,7 @@
 Summary: Handles user special directories
 Name: xdg-user-dirs
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: GPL and MIT
 Group: User Interface/Desktops
 URL: http://freedesktop.org/wiki/Software/xdg-user-dirs

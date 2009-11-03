@@ -16,7 +16,7 @@
 Summary: International Components for Unicode
 Name: icu
 Version: 3.6
-Release: 1
+Release: 1%{?dist}
 License: X License
 Group: System Environment/Libraries
 URL: http://www.ibm.com/software/globalization/icu/

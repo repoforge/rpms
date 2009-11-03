@@ -10,7 +10,7 @@
 Summary: Assemble and dissassemble network packets
 Name: perl-NetPacket
 Version: 0.41.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetPacket/

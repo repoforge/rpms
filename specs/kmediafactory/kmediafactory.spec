@@ -5,7 +5,7 @@
 Summary: Template-based DVD authoring tool
 Name: kmediafactory
 Version: 0.6.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.iki.fi/damu/software/kmediafactory/index.html

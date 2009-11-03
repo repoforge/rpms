@@ -5,7 +5,7 @@
 Summary: Library for decoding and generating MPEG 2 and DVB PSI sections
 Name: libdvbpsi
 Version: 0.1.2
-Release: 0
+Release: 0%{?dist}
 License: GPL
 URL: http://www.videolan.org/libdvbpsi/
 Group: System Environment/Libraries

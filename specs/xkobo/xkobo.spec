@@ -26,7 +26,7 @@
 Summary: Space arcade game
 Name: xkobo
 Version: 1.11
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://seki.math.hokudai.ac.jp:20080/xkobo-current.html

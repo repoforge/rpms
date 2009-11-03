@@ -10,7 +10,7 @@
 Summary: TrackBack element mappings for XML::RAI
 Name: perl-XML-RAI-TrackBack
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RAI-TrackBack/

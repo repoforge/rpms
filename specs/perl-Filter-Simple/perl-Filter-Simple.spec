@@ -10,7 +10,7 @@
 Summary: Simplified source filtering
 Name: perl-Filter-Simple
 Version: 0.84
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filter-Simple/

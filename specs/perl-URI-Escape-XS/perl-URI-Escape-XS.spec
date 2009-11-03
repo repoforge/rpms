@@ -10,7 +10,7 @@
 Summary: Perl module that is a drop-in replacement for URI::Escape
 Name: perl-URI-Escape-XS
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Escape-XS/

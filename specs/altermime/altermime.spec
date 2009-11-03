@@ -4,7 +4,7 @@
 Summary: Alter MIME-encoded mailpacks
 Name: altermime
 Version: 0.3.9
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.pldaniels.com/altermime/

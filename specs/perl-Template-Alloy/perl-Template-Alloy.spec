@@ -10,7 +10,7 @@
 Summary: TT2/3, HT, HTE, Tmpl, and Velocity Engine
 Name: perl-Template-Alloy
 Version: 1.013
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Alloy/

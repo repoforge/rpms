@@ -4,7 +4,7 @@
 Summary: Packet watcher, dumper and logger.
 Name: exdump
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://packetstormsecurity.org/sniffers/exdump/

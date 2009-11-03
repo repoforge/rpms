@@ -10,7 +10,7 @@
 Summary: Perl module that implements a more complex retrieve_all() for Class::DBI
 Name: perl-Class-DBI-Plugin-RetrieveAll
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Plugin-RetrieveAll/

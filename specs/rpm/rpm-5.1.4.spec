@@ -32,7 +32,7 @@
 Summary: The RPM package management system.
 Name: rpm
 Version: 5.1.4
-Release: 0.1
+Release: 0.1%{?dist}
 Group: System Environment/Base
 URL: http://rpm5.org
 Source0: http://rpm5.org/files/rpm/rpm-5.0/rpm-%{version}.tar.gz

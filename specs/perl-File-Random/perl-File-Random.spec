@@ -10,7 +10,7 @@
 Summary: Module for random selecting of a file
 Name: perl-File-Random
 Version: 0.17
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Random/

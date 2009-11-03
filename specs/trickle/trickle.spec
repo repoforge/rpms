@@ -7,7 +7,7 @@
 Summary: portable lightweight userspace bandwidth shaper
 Name: trickle
 Version: 1.06
-Release: 3
+Release: 3%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~marius/trickle/

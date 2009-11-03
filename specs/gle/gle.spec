@@ -17,7 +17,7 @@
 Summary: Graphics Layout Engine
 Name: gle
 Version: 4.2.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.gle-graphics.org/

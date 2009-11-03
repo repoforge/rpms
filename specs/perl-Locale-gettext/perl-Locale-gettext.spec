@@ -9,7 +9,7 @@
 Summary: Internationalization for Perl
 Name: perl-Locale-gettext
 Version: 1.05
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/gettext/

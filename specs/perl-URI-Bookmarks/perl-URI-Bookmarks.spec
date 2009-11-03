@@ -10,7 +10,7 @@
 Summary: Perl module class encapsulating an entry in a typical bookmark file
 Name: perl-URI-Bookmarks
 Version: 0.92
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Bookmarks/

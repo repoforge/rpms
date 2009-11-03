@@ -10,7 +10,7 @@
 Summary: Easy things made really easy with Crypt::CBC
 Name: perl-Crypt-CBCeasy
 Version: 0.24
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-CBCeasy/

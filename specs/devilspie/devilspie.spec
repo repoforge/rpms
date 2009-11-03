@@ -5,7 +5,7 @@
 Summary: Window matching tool inspired by the Matched Window options in Sawfish
 Name: devilspie
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.burtonini.com/blog/computers/devilspie/

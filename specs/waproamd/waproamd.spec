@@ -6,7 +6,7 @@
 Summary: Roaming daemon for wireless NICs supporting the Linux wireless extensions
 Name: waproamd
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://0pointer.de/lennart/projects/waproamd/

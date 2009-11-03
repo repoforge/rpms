@@ -10,7 +10,7 @@
 Summary: Versatile text pre-processor
 Name: perl-Text-Vpp
 Version: 1.17
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Vpp/

@@ -5,7 +5,7 @@
 Summary: Library to access GSM mobile phones through GSM modems
 Name: gsmlib
 Version: 1.10
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.pxh.de/fs/gsmlib/

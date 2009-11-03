@@ -5,7 +5,7 @@
 Summary: Optimizer for PNG (Portable Network Graphics) files
 Name: pngcrush
 Version: 1.7.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://pmt.sourceforge.net/pngcrush/

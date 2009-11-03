@@ -10,7 +10,7 @@
 Summary: Perl module for bidirectional Hebrew support
 Name: perl-Locale-Hebrew
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Locale-Hebrew/

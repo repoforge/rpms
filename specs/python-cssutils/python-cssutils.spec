@@ -8,7 +8,7 @@
 Summary: CSS Cascading Style Sheets library for Python
 Name: python-cssutils
 Version: 0.9.5.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://cthedot.de/cssutils/

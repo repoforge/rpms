@@ -17,7 +17,7 @@
 Summary: Ratpoison window manager
 Name: ratpoison
 Version: 1.4.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.nongnu.org/ratpoison/

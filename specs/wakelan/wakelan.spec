@@ -4,7 +4,7 @@
 Summary: Send a wake-on-lan (WOL) packet
 Name: wakelan
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 

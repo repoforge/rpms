@@ -10,7 +10,7 @@
 Summary: Prints PerlSAX events (for debugging)
 Name: perl-XML-Handler-PrintEvents
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Handler-PrintEvents/

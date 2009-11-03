@@ -10,7 +10,7 @@
 Summary: RC5 encryption algorithm
 Name: perl-Crypt-RC5
 Version: 2.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RC5/

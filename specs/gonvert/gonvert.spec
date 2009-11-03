@@ -10,7 +10,7 @@
 Summary: Units conversion utility
 Name: gonvert
 Version: 0.2.19
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://unihedron.com/projects/gonvert/gonvert.php

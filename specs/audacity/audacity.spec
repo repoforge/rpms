@@ -12,7 +12,7 @@
 Summary: Multitrack audio editor
 Name: audacity
 Version: 1.3.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacity.sourceforge.net/

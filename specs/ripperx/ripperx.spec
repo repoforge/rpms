@@ -7,7 +7,7 @@
 Summary: GTK program to rip CD audio and encode to mp3, ogg, or flac
 Name: ripperx
 Version: 2.6.7
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://ripperx.sourceforge.net/

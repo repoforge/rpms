@@ -7,7 +7,7 @@
 Summary: GNOME Clipboard Manager
 Name: gcm
 Version: 2.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://gcm.sourceforge.net/

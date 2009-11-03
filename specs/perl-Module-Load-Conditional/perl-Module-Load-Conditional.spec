@@ -10,7 +10,7 @@
 Summary: Looking up module information / loading at runtime
 Name: perl-Module-Load-Conditional
 Version: 0.30
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Load-Conditional/

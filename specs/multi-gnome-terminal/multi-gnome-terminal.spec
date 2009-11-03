@@ -5,7 +5,7 @@
 Summary: Extended version of the GNOME terminal
 Name: multi-gnome-terminal
 Version: 1.6.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://multignometerm.sourceforge.net/

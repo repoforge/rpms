@@ -6,7 +6,7 @@
 Summary: PECL package for accessing SQLite databases
 Name: php-pecl-sqlite
 Version: 1.0.3
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/SQLite

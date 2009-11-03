@@ -6,7 +6,7 @@
 Summary: The client for the Trivial File Transfer Protocol (TFTP)
 Name: tftp
 Version: 0.34
-Release: 0.2
+Release: 0.2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.kernel.org/pub/software/network/tftp/

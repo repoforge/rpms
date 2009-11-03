@@ -10,7 +10,7 @@
 Summary: Read and write property files
 Name: perl-Config-Properties
 Version: 1.70
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Properties/

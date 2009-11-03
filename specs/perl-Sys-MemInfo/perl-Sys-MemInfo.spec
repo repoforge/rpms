@@ -10,7 +10,7 @@
 Summary: Get information about memory usage
 Name: perl-Sys-MemInfo
 Version: 0.91
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-MemInfo/

@@ -7,7 +7,7 @@
 Summary: Change settings of a Nvidia card
 Name: nvclock
 Version: 0.8
-Release: 0.b.2
+Release: 0.b.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.linuxhardware.org/nvclock/

@@ -6,7 +6,7 @@
 Summary: Utilities based on Openobex
 Name: openobex-utils
 Version: 1.0.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Base
 URL: http://openobex.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Perl module to guess file type
 Name: perl-File-MMagic
 Version: 1.27
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-MMagic/

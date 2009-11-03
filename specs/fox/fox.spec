@@ -21,7 +21,7 @@
 Summary: Toolkit for GUI development
 Name: fox
 Version: 1.6.33
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.fox-toolkit.com

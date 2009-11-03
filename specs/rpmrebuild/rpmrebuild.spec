@@ -4,7 +4,7 @@
 Summary: Build new RPM packages from an old installed package
 Name: rpmrebuild
 Version: 1.4.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://rpmrebuild.sourceforge.net/

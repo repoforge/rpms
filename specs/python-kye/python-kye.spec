@@ -10,7 +10,7 @@
 Summary: Puzzle game
 Name: python-kye
 Version: 0.9.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://games.moria.org.uk/kye/pygtk

@@ -4,7 +4,7 @@
 Summary: Extract data compressed with PKWARE Data Compression Library
 Name: dynamite
 Version: 0.1
-Release: 2
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Archiving
 URL: http://www.synce.org/index.php/Dynamite

@@ -5,7 +5,7 @@
 Summary: Shows process information and statistics
 Name: psinfo
 Version: 0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/
 URL: http://www.ward.nu/computer/psinfo/

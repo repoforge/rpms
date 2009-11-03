@@ -9,7 +9,7 @@
 Summary: test log4perl
 Name: perl-Test-Log4perl
 Version: 0.1001
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Log4perl/

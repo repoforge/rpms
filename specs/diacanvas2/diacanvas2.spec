@@ -7,7 +7,7 @@
 Summary: Full featured diagramming canvas for GNOME
 Name: diacanvas2
 Version: 0.9.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://diacanvas.sourceforge.net/

@@ -4,7 +4,7 @@
 Summary: Prints dump files created by tcpdump
 Name: tcpshow
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: distributable; see tcpshow.c for details
 Group: Applications/Internet
 URL: http://www.cs.berkeley.edu/~daw/mike/

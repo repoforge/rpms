@@ -4,7 +4,7 @@
 Summary: Driver for the UPEK/SGS Thomson Microelectronics fingerprint reader
 Name: thinkfinger
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://thinkfinger.sourceforge.net/

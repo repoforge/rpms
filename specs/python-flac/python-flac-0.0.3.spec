@@ -8,7 +8,7 @@
 Summary: Flac support for Python
 Name: python-flac
 Version: 0.0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://www.sacredchao.net/quodlibet/browser/trunk/pyflac/

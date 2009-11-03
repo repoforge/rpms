@@ -10,7 +10,7 @@
 Summary: Used to justify strings to various alignment styles
 Name: perl-Text-Aligner
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Aligner/

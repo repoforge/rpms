@@ -44,7 +44,7 @@
 Summary: Perl module that implements a switch statement
 Name: perl-Switch
 Version: 2.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Switch/

@@ -10,7 +10,7 @@
 Summary: Replicates SAX events to several SAX event handlers
 Name: perl-XML-Filter-SAXT
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Filter-SAXT/

@@ -10,7 +10,7 @@
 Summary: Validates user input (usually from an HTML form) based on input profile
 Name: perl-Data-FormValidator
 Version: 4.63
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-FormValidator/

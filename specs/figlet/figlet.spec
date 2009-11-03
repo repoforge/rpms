@@ -7,7 +7,7 @@
 Summary: program for making large letters out of ordinary text
 Name: figlet
 Version: 2.2.2
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Text
 License: GPL
 URL: http://www.figlet.org/

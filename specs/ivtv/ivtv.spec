@@ -4,7 +4,7 @@
 Summary: iTVC15/16 and CX23415/16 driver utilities
 Name: ivtv
 Version: 0.10.6
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/Multimedia
 URL: http://ivtvdriver.org/

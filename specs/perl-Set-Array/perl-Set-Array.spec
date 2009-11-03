@@ -10,7 +10,7 @@
 Summary: Arrays as objects with lots of handy methods
 Name: perl-Set-Array
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Array/

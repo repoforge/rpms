@@ -7,7 +7,7 @@
 Summary: Restores ESD volume, song time, and playing/paused status
 Name: xmms-morestate
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xmms-morestate.sourceforge.net/

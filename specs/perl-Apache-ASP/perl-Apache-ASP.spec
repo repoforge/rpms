@@ -10,7 +10,7 @@
 Summary: Active Server Pages for Apache with mod_perl
 Name: perl-Apache-ASP
 Version: 2.61
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-ASP/

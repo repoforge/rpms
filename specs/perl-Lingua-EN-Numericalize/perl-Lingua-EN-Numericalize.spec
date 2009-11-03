@@ -10,7 +10,7 @@
 Summary: Replaces English descriptions of numbers with numerals
 Name: perl-Lingua-EN-Numericalize
 Version: 1.52
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Numericalize/

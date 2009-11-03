@@ -10,7 +10,7 @@
 Summary: Perl interface to the 2.x series of the GNOME VFS library
 Name: perl-Gnome2-VFS
 Version: 1.081
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 #URL: http://gtk2-perl.sourceforge.net/

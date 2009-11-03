@@ -5,7 +5,7 @@
 Summary: Automatically detect and configure network settings
 Name: columbus
 Version: 0.1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://columbus.sourceforge.net/

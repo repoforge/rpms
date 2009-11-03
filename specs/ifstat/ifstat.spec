@@ -11,7 +11,7 @@
 Summary: Interface statistics
 Name: ifstat
 Version: 1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://gael.roualland.free.fr/ifstat/

@@ -10,7 +10,7 @@
 Summary: Some basic numeric stats on vectors
 Name: perl-Math-VecStat
 Version: 0.08
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-VecStat/

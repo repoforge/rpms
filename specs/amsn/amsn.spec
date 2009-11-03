@@ -29,7 +29,7 @@
 Summary: Full featured MSN Messenger clone
 Name: amsn
 Version: 0.96
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.amsn-project.net/

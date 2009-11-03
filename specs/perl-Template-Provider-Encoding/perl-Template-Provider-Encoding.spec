@@ -11,7 +11,7 @@
 Summary: Template plugin to specify encoding
 Name: perl-Template-Provider-Encoding
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Provider-Encoding/

@@ -10,7 +10,7 @@
 Summary: Perl module to add dump methods to all classes and objects
 Name: perl-UNIVERSAL-dump
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-dump/

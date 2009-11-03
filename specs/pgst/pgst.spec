@@ -6,7 +6,7 @@
 Summary: Intuitive GUI for PostgreSQL management
 Name: pgst
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/Databases
 URL: http://sourceforge.net/projects/pgst/

@@ -10,7 +10,7 @@
 Summary: Perl module that implements an OO interface to charnames and others
 Name: perl-Unicode-Char
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Char/

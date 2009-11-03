@@ -10,7 +10,7 @@
 Summary: Help when paging through sets of results
 Name: perl-Data-Page
 Version: 2.01
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Page/

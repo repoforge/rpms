@@ -10,7 +10,7 @@
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
 Version: 0.710.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/

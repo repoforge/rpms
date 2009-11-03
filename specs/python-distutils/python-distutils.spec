@@ -12,7 +12,7 @@
 Summary: System for processing plaintext documentation
 Name: python-distutils
 Version: 1.0.2
-Release: 1
+Release: 1%{?dist}
 Group: Development/Libraries
 License: Public Domain, BSD, Python License, GPL - see COPYING.txt
 URL: http://www.python.org/community/sigs/current/distutils-sig/

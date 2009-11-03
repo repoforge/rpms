@@ -4,7 +4,7 @@
 Summary: Create identical zip files over multiple systems
 Name: torrentzip
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://sourceforge.net/projects/trrntzip

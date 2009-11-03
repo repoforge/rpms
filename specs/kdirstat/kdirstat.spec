@@ -9,7 +9,7 @@
 Summary: Graphical disk usage utility
 Name: kdirstat
 Version: 2.5.2
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://kdirstat.sourceforge.net/

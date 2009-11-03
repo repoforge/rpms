@@ -8,7 +8,7 @@
 Summary: Object oriented pathname and filesystem access
 Name: python-unipath
 Version: 0.2.1
-Release: 1
+Release: 1%{?dist}
 License: Python Software Foundation License
 Group: Development/Libraries
 URL: http://sluggo.scrapping.cc/python/unipath/

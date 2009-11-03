@@ -10,7 +10,7 @@
 Summary: Easy creation of test scripts
 Name: perl-Test-Helper
 Version: 0.002
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Helper/

@@ -5,7 +5,7 @@
 Summary: Linux UDF Filesystem userspace utilities
 Name: udftools
 Version: 1.0.0b3
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://sourceforge.net/projects/linux-udf/

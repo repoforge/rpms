@@ -5,7 +5,7 @@
 Summary: Recover the passphrase of a PGP or GPG key
 Name: nasty
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.vanheusden.com/nasty/

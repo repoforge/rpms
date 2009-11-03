@@ -10,7 +10,7 @@
 Summary: Extension for DBI recordsets
 Name: perl-DBIx-Recordset
 Version: 0.26
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Recordset/

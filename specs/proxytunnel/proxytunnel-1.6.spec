@@ -8,7 +8,7 @@ Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
 %define real_version 1.6.0-rc1
 Version: 1.6.0
-Release: 0.rc1
+Release: 0.rc1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/

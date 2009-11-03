@@ -5,7 +5,7 @@
 Summary: Portable abstraction library for DVD decryption
 Name: libdvdcss
 Version: 1.2.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://developers.videolan.org/libdvdcss/

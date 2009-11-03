@@ -13,7 +13,7 @@ Summary: Traceroute implementation using TCP packets
 Name: tcptraceroute
 Version: 1.5
 %define real_version 1.5beta7
-Release: 0.beta7
+Release: 0.beta7%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://michael.toren.net/code/tcptraceroute/

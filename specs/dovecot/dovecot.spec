@@ -14,7 +14,7 @@
 Summary: Secure IMAP server
 Name: dovecot
 Version: 1.0.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://dovecot.org/

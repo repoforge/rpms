@@ -4,7 +4,7 @@
 Summary: Cross-platform abstract layer to spellchecking
 Name: enchant
 Version: 1.3.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.abisource.com/projects/enchant/

@@ -5,7 +5,7 @@
 Summary: Command line interface to online dictionaries
 Name: edictionary
 Version: 2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://edictionary.sf.net/

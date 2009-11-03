@@ -10,7 +10,7 @@
 Summary: SMTP Multipart messages
 Name: perl-Net-SMTP-Multipart
 Version: 1.5.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SMTP-Multipart/

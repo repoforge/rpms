@@ -28,7 +28,7 @@
 Summary: Driver for Intersil Prism2/2.5/3 802.11b wireless cards
 Name: kernel-module-hostap
 Version: 0.1.3
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://hostap.epitest.fi/

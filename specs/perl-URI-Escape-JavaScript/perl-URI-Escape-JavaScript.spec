@@ -10,7 +10,7 @@
 Summary: Perl implementation of JavaScript's escape() and unescape() functions
 Name: perl-URI-Escape-JavaScript
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Escape-JavaScript/

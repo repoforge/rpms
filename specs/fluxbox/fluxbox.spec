@@ -9,7 +9,7 @@
 Summary: Window Manager based on Blackbox
 Name: fluxbox
 Version: 1.0.0
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: User Interface/Desktops
 URL: http://fluxbox.sourceforge.net/

@@ -7,7 +7,7 @@
 Summary: Typing tutor
 Name: klavaro
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://klavaro.sourceforge.net/en/

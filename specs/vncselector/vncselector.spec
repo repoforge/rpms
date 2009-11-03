@@ -22,7 +22,7 @@
 Summary: Manage a list of currently active VNC server sessions
 Name: vncselector
 Version: 1.6.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.dooglio.net/VncSelector/

@@ -10,7 +10,7 @@
 Summary: Peer-to-peer framework
 Name: gnunet
 Version: 0.8.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gnunet.org/

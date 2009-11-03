@@ -13,7 +13,7 @@
 Summary: Perl module that implements a simple generic namespace support class
 Name: perl-XML-NamespaceSupport
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-NamespaceSupport/

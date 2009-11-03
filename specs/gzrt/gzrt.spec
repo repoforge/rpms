@@ -4,7 +4,7 @@
 Summary: Gzip recovery toolkit
 Name: gzrt
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.urbanophile.com/arenn/hacking/gzrt/gzrt.html

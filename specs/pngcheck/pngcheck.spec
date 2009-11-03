@@ -5,7 +5,7 @@
 Summary: PNG tester and debugger
 Name: pngcheck
 Version: 2.3.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.libpng.org/pub/png/apps/pngcheck.html

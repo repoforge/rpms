@@ -10,7 +10,7 @@
 Summary: Perl module to make your classes pluggable
 Name: perl-MooseX-Object-Pluggable
 Version: 0.0011
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Object-Pluggable/

@@ -10,7 +10,7 @@
 Summary: DateTime Extension to Calculate Solar Terms
 Name: perl-DateTime-Event-SolarTerm
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Event-SolarTerm/

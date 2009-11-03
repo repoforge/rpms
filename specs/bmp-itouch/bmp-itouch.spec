@@ -8,7 +8,7 @@
 Summary: iTouch keyboard control plugin for bmp
 Name: bmp-itouch
 Version: 1.0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-itouch.sourceforge.net/

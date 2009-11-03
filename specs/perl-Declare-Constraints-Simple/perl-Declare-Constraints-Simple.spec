@@ -10,7 +10,7 @@
 Summary: Declarative Validation of Data Structures
 Name: perl-Declare-Constraints-Simple
 Version: 0.03
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Declare-Constraints-Simple/

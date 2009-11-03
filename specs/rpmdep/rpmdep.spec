@@ -6,7 +6,7 @@
 Summary: Check the dependencies of source and binary rpms
 Name: rpmdep
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: none

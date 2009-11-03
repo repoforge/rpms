@@ -9,7 +9,7 @@
 Summary: Friendly interactive shell
 Name: fish
 Version: 1.23.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: http://fishshell.org

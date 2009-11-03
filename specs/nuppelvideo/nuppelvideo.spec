@@ -22,7 +22,7 @@
 Summary: NuppelVideo recording tool
 Name: nuppelvideo
 Version: 0.51.81
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://frost.htu.tuwien.ac.at/~roman/nuppelvideo/

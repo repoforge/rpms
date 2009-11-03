@@ -4,7 +4,7 @@
 Summary: Integrate libfprint with existing applications
 Name: pam_fprint
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.reactivated.net/fprint/wiki/Main_Page

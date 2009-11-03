@@ -10,7 +10,7 @@
 Summary: Perl module named Net-Server-Mail
 Name: perl-Net-Server-Mail
 Version: 0.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server-Mail/

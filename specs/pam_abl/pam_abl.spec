@@ -6,7 +6,7 @@
 Summary: PAM module for auto blacklisting
 Name: pam_abl
 Version: 0.2.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.hexten.net/sw/pam_abl/

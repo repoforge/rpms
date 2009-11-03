@@ -12,7 +12,7 @@
 Summary: Perl DBD module for interfacing with ODBC databases
 Name: perl-DBD-ODBC
 Version: 1.23
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-ODBC/

@@ -5,7 +5,7 @@
 Summary: Madman Administrates Digital Music Archives Neatly
 Name: madman
 Version: 0.93
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://madman.sourceforge.net/

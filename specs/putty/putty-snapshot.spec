@@ -16,7 +16,7 @@ Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
 Version: 0.58
 %define real_version 0.58-2006-11-21
-Release: 0.20061121
+Release: 0.20061121%{?dist}
 License: MIT
 Group: Applications/Internet
 URL: http://www.chiark.greenend.org.uk/~sgtatham/putty/

@@ -5,7 +5,7 @@
 Summary: Decoder of various derivatives of MPEG standards
 Name: libmpeg3
 Version: 1.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/libmpeg3.php3

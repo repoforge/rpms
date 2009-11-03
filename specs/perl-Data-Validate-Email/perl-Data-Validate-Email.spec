@@ -10,7 +10,7 @@
 Summary: Common email validation methods
 Name: perl-Data-Validate-Email
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Validate-Email/

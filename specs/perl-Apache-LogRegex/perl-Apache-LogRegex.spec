@@ -10,7 +10,7 @@
 Summary: Perl module to parse a line from an Apache logfile into a hash
 Name: perl-Apache-LogRegex
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-LogRegex/

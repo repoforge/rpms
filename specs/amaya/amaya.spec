@@ -6,7 +6,7 @@
 Summary: The W3C Web browser and editor
 Name: amaya
 Version: 9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: W3C
 Group: Applications/Internet
 URL: http://www.w3.org/Amaya/

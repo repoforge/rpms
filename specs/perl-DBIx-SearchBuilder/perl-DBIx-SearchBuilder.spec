@@ -10,7 +10,7 @@
 Summary: Encapsulate SQL queries and rows in simple perl objects
 Name: perl-DBIx-SearchBuilder
 Version: 1.56
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-SearchBuilder/

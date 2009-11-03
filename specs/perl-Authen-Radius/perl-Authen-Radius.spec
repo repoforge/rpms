@@ -10,7 +10,7 @@
 Summary: Perl module that provides simple Radius client facilities
 Name: perl-Authen-Radius
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-Radius/

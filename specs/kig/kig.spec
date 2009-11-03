@@ -12,7 +12,7 @@
 Summary: Explore mathematical concepts with interactive geometry
 Name: kig
 Version: 0.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://edu.kde.org/kig

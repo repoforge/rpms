@@ -7,7 +7,7 @@
 Summary: User level sandbox designed for grid technologies
 Name: s4g
 Version: 0.8.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.lri.fr/~tmorlier/S4G/

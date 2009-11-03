@@ -10,7 +10,7 @@
 Summary: Parse system logs
 Name: perl-SyslogScan
 Version: 0.32
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SyslogScan/

@@ -11,7 +11,7 @@
 Summary: Snort log analyzer
 Name: snortalog
 Version: 2.4.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://jeremy.chartier.free.fr/snortalog/

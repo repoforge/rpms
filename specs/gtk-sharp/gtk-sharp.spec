@@ -15,7 +15,7 @@
 Summary: .Net language bindings for Gtk+ and GNOME
 Name: gtk-sharp
 Version: 1.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://gtk-sharp.sourceforge.net/

@@ -10,7 +10,7 @@
 Summary: Eases the use of debug print with level, indentation and color
 Name: perl-Debug
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Debug/

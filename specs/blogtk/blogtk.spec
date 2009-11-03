@@ -14,7 +14,7 @@
 Summary: Graphical weblogging client
 Name: blogtk
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://blogtk.sourceforge.net/

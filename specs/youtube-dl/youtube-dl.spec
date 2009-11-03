@@ -7,7 +7,7 @@
 Summary: Download videos from YouTube.com
 Name: youtube-dl
 Version: 0
-Release: 0.%{real_version}
+Release: 0.%{real_version}%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://bitbucket.org/rg3/youtube-dl/wiki/Home

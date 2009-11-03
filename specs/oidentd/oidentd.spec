@@ -5,7 +5,7 @@
 Summary: Implementation of the RFC1413 identification server
 Name: oidentd
 Version: 2.0.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://ojnk.sourceforge.net/

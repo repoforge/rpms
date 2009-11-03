@@ -5,7 +5,7 @@
 Summary: Tools to spin down hard disks automatically for power savings
 Name: laptop-mode-tools
 Version: 1.33
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.samwel.tk/laptop_mode/

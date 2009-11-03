@@ -7,7 +7,7 @@
 Summary: HTTP client library written in C using apr
 Name: libserf
 Version: 0.3.0
-Release: 1
+Release: 1%{?dist}
 License: Apache License 2.0
 Group: Development/Libraries
 URL: http://code.google.com/p/serf/

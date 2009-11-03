@@ -5,7 +5,7 @@
 Summary: Stock market, commodity and technical analysis charting application
 Name: qtstalker
 Version: 0.32
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://qtstalker.sourceforge.net/

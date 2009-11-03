@@ -6,7 +6,7 @@
 Summary: Additional error protection for CD/DVD media
 Name: dvdisaster
 Version: 0.70.4
-Release: 1
+Release: 1%{?dist}
 License: GPL 
 Group: Applications/Archiving
 URL: http://www.dvdisaster.com/

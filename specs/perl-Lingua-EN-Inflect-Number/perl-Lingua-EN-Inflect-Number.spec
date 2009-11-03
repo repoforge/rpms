@@ -10,7 +10,7 @@
 Summary: Perl module to force number of words to singular or plural
 Name: perl-Lingua-EN-Inflect-Number
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Inflect-Number/

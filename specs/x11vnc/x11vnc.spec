@@ -19,7 +19,7 @@
 Summary: VNC server for the current X11 session
 Name: x11vnc
 Version: 0.9.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/

@@ -10,7 +10,7 @@
 Summary: Gather and report Usenet newsgroup statistics
 Name: perl-News-Scan
 Version: 0.53
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/News-Scan/

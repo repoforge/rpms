@@ -10,7 +10,7 @@
 Summary: Subversion activity notification
 Name: perl-SVN-Notify
 Version: 2.79
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVN-Notify/

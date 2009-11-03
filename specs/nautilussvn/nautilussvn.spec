@@ -9,7 +9,7 @@
 Summary: Nautilus integration for Subversion
 Name: nautilussvn
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://code.google.com/p/nautilussvn/

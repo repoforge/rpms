@@ -5,7 +5,7 @@
 Summary: Very nasty tetris game
 Name: bastet
 Version: 0.43
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://fph.altervista.org/prog/bastet.shtml

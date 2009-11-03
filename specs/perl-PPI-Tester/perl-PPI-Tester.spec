@@ -10,7 +10,7 @@
 Summary: wxPerl-based interactive PPI debugger/tester
 Name: perl-PPI-Tester
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PPI-Tester/

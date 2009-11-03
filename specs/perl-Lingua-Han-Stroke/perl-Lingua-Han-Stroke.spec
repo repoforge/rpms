@@ -10,7 +10,7 @@
 Summary: Retrieve the stroke count of Chinese character
 Name: perl-Lingua-Han-Stroke
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-Stroke/

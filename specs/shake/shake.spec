@@ -4,7 +4,7 @@
 Summary: Userspace filesystem defragmenter
 Name: shake
 Version: 0.99
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://vleu.net/shake/

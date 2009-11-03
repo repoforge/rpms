@@ -5,7 +5,7 @@
 Summary: Trivial database
 Name: tdb
 Version: 1.0.6
-Release: 4.2
+Release: 4.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://sf.net/projects/tdb/

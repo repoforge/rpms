@@ -10,7 +10,7 @@
 Summary: Adds support for XFORWARD to Net::Server::Mail::ESMTP
 Name: perl-Net-Server-Mail-ESMTP-XFORWARD
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server-Mail-ESMTP-XFORWARD/

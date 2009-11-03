@@ -10,7 +10,7 @@
 Summary: Perl module for validating XML
 Name: perl-XML-Checker
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Checker/

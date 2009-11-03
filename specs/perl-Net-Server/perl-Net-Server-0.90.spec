@@ -10,7 +10,7 @@
 Summary: Perl module that implements an extensible, general Perl server engine
 Name: perl-Net-Server
 Version: 0.90
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server/

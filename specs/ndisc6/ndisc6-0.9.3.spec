@@ -5,7 +5,7 @@
 Summary: Tools for ICMPv6 Neighbor&Router Discovery and TCP/IPv6 traceroute
 Name: ndisc6
 Version: 0.9.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.remlab.net/files/ndisc6/

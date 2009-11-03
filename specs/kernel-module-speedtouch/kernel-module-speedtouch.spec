@@ -26,7 +26,7 @@
 Summary: Linux SpeedTouch USB ADSL Modem drivers
 Name: kernel-module-speedtouch
 Version: 1.7
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://linux-usb.sourceforge.net/SpeedTouch/

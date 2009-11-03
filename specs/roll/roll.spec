@@ -5,7 +5,7 @@
 Summary: Rolls dices
 Name: roll
 Version: 1.1.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://matteocorti.ch/software/roll.html

@@ -6,7 +6,7 @@
 Summary: Simple sound converter application
 Name: soundconverter
 Version: 0.8.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://soundconverter.berlios.de/

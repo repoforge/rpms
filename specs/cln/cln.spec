@@ -4,7 +4,7 @@
 Summary: C++ Class Library for Numbers
 Name: cln
 Version: 1.1.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ginac.de/CLN/

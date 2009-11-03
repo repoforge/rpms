@@ -4,7 +4,7 @@
 Summary: The Netscape Communicator suite of tools.
 Name: netscape4
 Version: 4.8
-Release: 3.2
+Release: 3.2%{?dist}
 Epoch: 4
 License: Proprietary
 Group: Applications/Internet

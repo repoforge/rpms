@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.3
-Release: 8
+Release: 8%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/

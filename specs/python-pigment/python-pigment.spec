@@ -9,7 +9,7 @@
 Summary: Python bindings to the Pigment Media Center Toolkit
 Name: python-pigment
 Version: 0.3.9
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/

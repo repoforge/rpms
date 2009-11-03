@@ -8,7 +8,7 @@ ExcludeArch: x86_64
 Summary: IDE for developing like the old known Borland 3.1 IDE
 Name: rhide
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Debuggers
 URL: http://www.rhide.com/

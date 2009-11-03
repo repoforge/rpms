@@ -16,7 +16,7 @@
 Summary: Interface to pcap(3) LBL packet capture library
 Name: perl-Net-Pcap
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Pcap/

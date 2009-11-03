@@ -6,7 +6,7 @@
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
 Version: 1.32
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://postgrey.schweikert.ch/

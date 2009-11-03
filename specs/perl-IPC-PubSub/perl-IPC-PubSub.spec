@@ -10,7 +10,7 @@
 Summary: Interprocess Publish/Subscribe channels
 Name: perl-IPC-PubSub
 Version: 0.29
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-PubSub/

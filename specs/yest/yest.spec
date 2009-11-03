@@ -5,7 +5,7 @@
 Summary: Date/time manipulation and formatting tool
 Name: yest
 Version: 2.7.0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://sourceforge.net/projects/yest/

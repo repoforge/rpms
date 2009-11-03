@@ -10,7 +10,7 @@
 Summary: Parse BIND zone files
 Name: perl-Net-DNS-ZoneFile-Fast
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS-ZoneFile-Fast/

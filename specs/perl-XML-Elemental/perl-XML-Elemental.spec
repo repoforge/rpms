@@ -10,7 +10,7 @@
 Summary: Perl module implements simplistic and perlish handling of XML data
 Name: perl-XML-Elemental
 Version: 2.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Elemental/

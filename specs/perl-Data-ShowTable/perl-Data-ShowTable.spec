@@ -10,7 +10,7 @@
 Summary: Format data in columns
 Name: perl-Data-ShowTable
 Version: 3.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-ShowTable/

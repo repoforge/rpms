@@ -10,7 +10,7 @@
 Summary: Email::Valid which allows dot before at mark
 Name: perl-Email-Valid-Loose
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Valid-Loose/

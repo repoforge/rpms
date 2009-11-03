@@ -11,7 +11,7 @@
 Summary: SpamAssassin plugin that validates OpenPGP signed email
 Name: perl-Mail-SpamAssassin-Plugin-OpenPGP
 Version: 1.0.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SpamAssassin-Plugin-OpenPGP/

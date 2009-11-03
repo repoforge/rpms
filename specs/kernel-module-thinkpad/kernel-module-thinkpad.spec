@@ -24,7 +24,7 @@
 Summary: IBM ThinkPad kernel modules
 Name: kernel-module-thinkpad
 Version: 5.0
-Release: 0_%{kversion}_%{krelease}
+Release: 0_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://tpctl.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: Facebook chat plugin for Pidgin Instant Messenger
 Name: pidgin-facebook
 Version: 1.50
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://code.google.com/p/pidgin-facebookchat

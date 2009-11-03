@@ -15,7 +15,7 @@
 Summary: Interface to Gd Graphics Library
 Name: perl-GD
 Version: 2.44
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GD/

@@ -5,7 +5,7 @@
 Summary: Beep Media Player
 Name: bmpx
 Version: 0.36.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/

@@ -4,7 +4,7 @@
 Summary: Library for connection to iTunes music shares
 Name: libopendaap
 Version: 0.4.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://crazney.net/programs/itunes/libopendaap.html

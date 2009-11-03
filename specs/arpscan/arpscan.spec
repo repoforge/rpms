@@ -11,7 +11,7 @@
 Summary: Very simple ARP scanner
 Name: arpscan
 Version: 0.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ish.cx/~jason/arpscan/

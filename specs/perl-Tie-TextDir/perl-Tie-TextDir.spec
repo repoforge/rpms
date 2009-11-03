@@ -10,7 +10,7 @@
 Summary: Interface to directory of files
 Name: perl-Tie-TextDir
 Version: 0.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-TextDir/

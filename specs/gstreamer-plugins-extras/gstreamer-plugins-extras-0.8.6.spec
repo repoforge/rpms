@@ -25,7 +25,7 @@
 Summary: GStreamer streaming media framework extra plugins
 Name: gstreamer-plugins-extra
 Version: 0.8.6
-Release: 3
+Release: 3%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.net/

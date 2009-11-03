@@ -8,7 +8,7 @@
 Summary: Activates network interfaces on cable plug
 Name: ifplugd
 Version: 0.28
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://0pointer.de/lennart/projects/ifplugd/

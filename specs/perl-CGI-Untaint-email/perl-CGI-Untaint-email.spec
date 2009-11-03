@@ -10,7 +10,7 @@
 Summary: Perl module to validate an email address.
 Name: perl-CGI-Untaint-email
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Untaint-email/

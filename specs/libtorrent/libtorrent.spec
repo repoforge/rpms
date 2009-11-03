@@ -4,7 +4,7 @@
 Summary: BitTorrent library
 Name: libtorrent
 Version: 0.12.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://libtorrent.rakshasa.no/

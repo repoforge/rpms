@@ -9,7 +9,7 @@
 Summary: Python Module for ID3 Tag Manipulation
 Name: python-eyed3
 Version: 0.6.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://eyed3.nicfit.net/

@@ -10,7 +10,7 @@
 Summary: Perl module to provide an OO interface to lastlog files
 Name: perl-Sys-Lastlog
 Version: 1.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Lastlog/

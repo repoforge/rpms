@@ -10,7 +10,7 @@
 Summary: Cache with simple timed expiry
 Name: perl-Cache-Simple-TimedExpiry
 Version: 0.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Simple-TimedExpiry/

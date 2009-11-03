@@ -8,7 +8,7 @@
 Summary: Driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
 Name: dkms-r8168
 Version: 8.004.00
-Release: 1
+Release: 1%{?dist}
 License: GPL+
 Group: System Environment/Kernel
 URL: http://www.realtek.com.tw/

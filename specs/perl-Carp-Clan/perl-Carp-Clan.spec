@@ -12,7 +12,7 @@
 Summary: Report errors from perspective of caller of a "clan" of modules
 Name: perl-Carp-Clan
 Version: 6.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Carp-Clan/

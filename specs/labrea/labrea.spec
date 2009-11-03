@@ -13,7 +13,7 @@
 Summary: "Sticky" Honeypot and IDS
 Name: labrea
 Version: 2.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://labrea.sourceforge.net/

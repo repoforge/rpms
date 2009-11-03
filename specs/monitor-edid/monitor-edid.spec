@@ -6,7 +6,7 @@
 Summary: Tool for probing and parsing monitor EDID
 Name: monitor-edid
 Version: 2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://wiki.mandriva.com/en/Tools/monitor-edid

@@ -5,7 +5,7 @@
 Summary: GNU Portable Threads.
 Name: pth
 Version: 2.0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.ossp.org/pkg/lib/pth/

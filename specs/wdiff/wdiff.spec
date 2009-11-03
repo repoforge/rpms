@@ -4,7 +4,7 @@
 Summary: Word-based diff front end
 Name: wdiff
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.gnu.org/software/wdiff/wdiff.html

@@ -10,7 +10,7 @@
 Summary: Perl wrapper for Alan Murta's gpc library
 Name: perl-Math-Geometry-GPC
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Geometry-GPC/

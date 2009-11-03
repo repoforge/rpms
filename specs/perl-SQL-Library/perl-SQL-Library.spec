@@ -11,7 +11,7 @@
 Summary: Perl module for managing simple SQL libraries stored in INI-like files
 Name: perl-SQL-Library
 Version: 0.0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Library/

@@ -10,7 +10,7 @@
 Summary: File locking with flock
 Name: perl-File-Flock
 Version: 2008.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Flock/

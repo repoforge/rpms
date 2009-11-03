@@ -4,7 +4,7 @@
 Summary: Additional Clearlooks color schemes
 Name: gnome-theme-clearlooks-bigpack
 Version: 0.6
-Release: 6
+Release: 6%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gnomethemes.org/?p=43

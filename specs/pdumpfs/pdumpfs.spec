@@ -5,7 +5,7 @@
 Summary: Daily backup system similar to Plan9's dumpfs
 Name: pdumpfs
 Version: 1.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://namazu.org/~satoru/pdumpfs/

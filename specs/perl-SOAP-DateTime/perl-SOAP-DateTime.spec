@@ -10,7 +10,7 @@
 Summary: Support for converting dates to xsd:dateTime format
 Name: perl-SOAP-DateTime
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-DateTime/

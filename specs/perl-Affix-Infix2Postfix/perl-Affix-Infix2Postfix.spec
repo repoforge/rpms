@@ -10,7 +10,7 @@
 Summary: Perl module for converting from infix notation to postfix notation
 Name: perl-Affix-Infix2Postfix
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Affix-Infix2Postfix/

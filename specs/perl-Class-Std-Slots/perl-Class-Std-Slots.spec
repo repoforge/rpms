@@ -10,7 +10,7 @@
 Summary: Provide signals and slots for standard classes
 Name: perl-Class-Std-Slots
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Std-Slots/

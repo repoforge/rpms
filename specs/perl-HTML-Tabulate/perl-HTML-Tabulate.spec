@@ -10,7 +10,7 @@
 Summary: HTML table rendering class
 Name: perl-HTML-Tabulate
 Version: 0.32
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Tabulate/

@@ -4,8 +4,8 @@
 Summary: Free AC-3 stream decoder
 Name: ac3dec
 Version: 0.6.1
-Release: 1.2
-License: GPL
+Release: 1.2%{?dist}%{?dist}
+%{?dist}License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/downloads.html
 

@@ -8,7 +8,7 @@
 Summary: Zope 3 Interface Infrastructure
 Name: python-zope-interface
 Version: 3.0.1
-Release: 1
+Release: 1%{?dist}
 License: ZPL
 Group: Development/Libraries
 URL: http://pypi.python.org/pypi/zope.interface

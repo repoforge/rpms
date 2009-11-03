@@ -7,7 +7,7 @@
 Summary: Remedial AVI player
 Name: remedial
 Version: 0.2.22
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://leapster.org/remedial/

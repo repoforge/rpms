@@ -4,7 +4,7 @@
 Summary: Updates dynamic DNS entries
 Name: ddclient
 Version: 3.7.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ddclient.sourceforge.net/

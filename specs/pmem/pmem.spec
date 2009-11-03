@@ -6,7 +6,7 @@
 Summary: Process Memory Information
 Name: pmem
 Version: 1.1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.pmem.net/

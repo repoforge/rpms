@@ -6,7 +6,7 @@ Summary: C++ library to create, manipulate and render SVG files
 Name: wxsvg
 Version: 1.0
 %define real_version 1.0b7
-Release: 0.2.b7
+Release: 0.2.b7%{?dist}
 License: wxWidgets Library Licence
 Group: System Environment/Libraries
 URL: http://wxsvg.sourceforge.net/

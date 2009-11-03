@@ -4,7 +4,7 @@
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
 Version: 1.0.9
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://www.viewvc.org/

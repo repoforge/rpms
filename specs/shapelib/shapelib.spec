@@ -4,7 +4,7 @@
 Summary: Read and write ESRI shapefiles and their related DBF files
 Name: shapelib
 Version: 1.2.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT/X
 Group: Development/Libraries
 URL: http://shapelib.maptools.org/

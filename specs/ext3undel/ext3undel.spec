@@ -5,7 +5,7 @@
 Summary: Tools to help you recover files from ext2/ext3 filesystems
 Name: ext3undel
 Version: 0.1.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.izzysoft.de/

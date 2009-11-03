@@ -10,7 +10,7 @@
 Summary: Perl module to store and query RDF graphs
 Name: perl-RDFStore
 Version: 0.51
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RDFStore/

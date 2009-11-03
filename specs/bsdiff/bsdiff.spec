@@ -4,7 +4,7 @@
 Summary: Binary diff/patch utility
 Name: bsdiff
 Version: 4.3
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://www.daemonology.net/bsdiff/

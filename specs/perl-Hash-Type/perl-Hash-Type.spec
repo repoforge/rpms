@@ -10,7 +10,7 @@
 Summary: pseudo-hashes as arrays tied to a "type" (list of fields)
 Name: perl-Hash-Type
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hash-Type/

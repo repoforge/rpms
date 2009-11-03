@@ -10,7 +10,7 @@
 Summary: Module for Recursing directories
 Name: perl-File-Recurse
 Version: 0.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Recurse/

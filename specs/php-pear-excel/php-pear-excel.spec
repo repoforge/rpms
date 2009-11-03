@@ -6,7 +6,7 @@
 Summary: PEAR package for generating Excel spreadsheets
 Name: php-pear-excel
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://pear.php.net/package/Spreadsheet_Excel_Writer/

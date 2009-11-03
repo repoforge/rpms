@@ -9,7 +9,7 @@
 Summary: Unicode-MapUTF8 (Conversions to and from arbitrary character sets and UTF8) module for perl
 Name: perl-Unicode-MapUTF8
 Version: 1.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-MapUTF8/

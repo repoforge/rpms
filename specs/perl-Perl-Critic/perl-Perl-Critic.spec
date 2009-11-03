@@ -10,7 +10,7 @@
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
 Version: 1.105
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Critic/

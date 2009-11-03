@@ -7,7 +7,7 @@
 Summary: Library with GPG related error codes and descriptions
 Name: libgpg-error
 Version: 0.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.gnupg.org/gpgme.html

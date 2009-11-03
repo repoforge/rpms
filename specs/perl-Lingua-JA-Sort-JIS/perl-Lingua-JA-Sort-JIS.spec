@@ -10,7 +10,7 @@
 Summary: Compares and sorts strings encoded in UTF-8
 Name: perl-Lingua-JA-Sort-JIS
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-JA-Sort-JIS/

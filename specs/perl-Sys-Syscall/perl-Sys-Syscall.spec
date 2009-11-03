@@ -10,7 +10,7 @@
 Summary: Perl module to access system calls that Perl doesn't normally provide access to
 Name: perl-Sys-Syscall
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Syscall/

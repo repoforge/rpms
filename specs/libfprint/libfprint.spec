@@ -4,7 +4,7 @@
 Summary: Tool kit for fingerprint scanner
 Name: libfprint
 Version: 0.0.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.reactivated.net/fprint/wiki/Main_Page

@@ -8,7 +8,7 @@
 Summary: Enhanced implementation of the mailx command
 Name: nail
 Version: 12.3
-Release: 4
+Release: 4%{?dist}
 Group: Applications/Internet
 License: BSD
 URL: http://nail.sourceforge.net/

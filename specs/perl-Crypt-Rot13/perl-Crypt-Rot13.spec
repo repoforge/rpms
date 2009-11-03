@@ -10,7 +10,7 @@
 Summary: Simple, reversible encryption
 Name: perl-Crypt-Rot13
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Rot13/

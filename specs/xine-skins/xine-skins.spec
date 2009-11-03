@@ -7,7 +7,7 @@
 Summary: Collection of skins for the Xine multimedia player
 Name: xine-skins
 Version: 1.10
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/

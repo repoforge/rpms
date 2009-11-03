@@ -10,7 +10,7 @@
 Summary: Perl module implements a testing-specific WWW::Mechanize subclass
 Name: perl-Test-WWW-Mechanize
 Version: 1.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Mechanize/

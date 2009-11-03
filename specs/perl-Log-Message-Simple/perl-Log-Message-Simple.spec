@@ -9,7 +9,7 @@
 Summary: Standardized logging facilities using Log::Message perl module
 Name: perl-Log-Message-Simple
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Message-Simple/

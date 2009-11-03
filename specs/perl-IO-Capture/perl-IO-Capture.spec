@@ -10,7 +10,7 @@
 Summary: Perl module implements an abstract Base Class to build modules to capture output
 Name: perl-IO-Capture
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Capture/

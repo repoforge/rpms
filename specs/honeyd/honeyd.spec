@@ -12,7 +12,7 @@
 Summary: Honeypot daemon
 Name: honeyd
 Version: 1.5c
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.honeyd.org/

@@ -8,7 +8,7 @@
 Summary: Network tool to build and send TCP/IP packets
 Name: gspoof
 Version: 3.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gspoof.sourceforge.net/

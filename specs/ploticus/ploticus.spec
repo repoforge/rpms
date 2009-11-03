@@ -17,7 +17,7 @@
 Summary: Command line utility for creating charts and plots
 Name: ploticus
 Version: 2.41
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://ploticus.sourceforge.net/

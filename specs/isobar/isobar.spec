@@ -5,7 +5,7 @@
 Summary: Tool to extract a boot image from an ISO file
 Name: isobar
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://colimit.googlepages.com/

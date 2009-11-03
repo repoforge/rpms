@@ -6,7 +6,7 @@
 Summary: Linux Audio Developer's Simple Plugin API
 Name: ladspa
 Version: 1.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.ladspa.org/

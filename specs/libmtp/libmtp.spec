@@ -4,7 +4,7 @@
 Summary: Library for MTP media players
 Name: libmtp
 Version: 0.3.7
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmtp.sourceforge.net/

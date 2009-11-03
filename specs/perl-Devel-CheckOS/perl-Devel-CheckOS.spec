@@ -10,7 +10,7 @@
 Summary: Check what OS we are running on
 Name: perl-Devel-CheckOS
 Version: 1.61
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-CheckOS/

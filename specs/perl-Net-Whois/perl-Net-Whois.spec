@@ -10,7 +10,7 @@
 Summary: Get and parse whois domain data from InterNIC
 Name: perl-Net-Whois
 Version: 1.9
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois/

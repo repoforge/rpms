@@ -10,7 +10,7 @@
 Summary: Flexible multiprotocol traceroute
 Name: traceproto
 Version: 1.1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://traceproto.sourceforge.net/

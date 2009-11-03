@@ -11,7 +11,7 @@
 Summary: Mechanism for AJAX or DHTML based web applications
 Name: perl-CGI-Ajax
 Version: 0.707
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Ajax/

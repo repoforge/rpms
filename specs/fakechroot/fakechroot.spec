@@ -4,7 +4,7 @@
 Summary: Fake chroot environment
 Name: fakechroot
 Version: 2.9
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Tools
 URL: http://packages.debian.org/unstable/utils/fakechroot.html

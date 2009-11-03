@@ -5,7 +5,7 @@
 Summary: I/O performance measurement and load generation tool
 Name: spew
 Version: 1.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://spew.berlios.de/

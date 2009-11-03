@@ -7,7 +7,7 @@
 Summary: Program that allows to transform input and output of a terminal
 Name: mapchan
 Version: 2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.iceb.vc.ukrtel.net/

@@ -12,7 +12,7 @@
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
 Version: 5.80010
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Runtime/

@@ -8,7 +8,7 @@
 Summary: Syntax highlighting engine written in Python
 Name: python-pygments
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://pygments.org/

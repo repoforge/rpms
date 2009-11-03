@@ -10,7 +10,7 @@
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
 Version: 1.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Curses/

@@ -5,7 +5,7 @@
 Summary: Convert between UTF-8 Unicode and 7-bit ASCII equivalents
 Name: uni2ascii
 Version: 4.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.billposer.org/Software/uni2ascii.html

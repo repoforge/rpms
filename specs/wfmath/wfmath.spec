@@ -4,7 +4,7 @@
 Summary: Geometric objects and math objects
 Name: wfmath
 Version: 0.3.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/wfmath

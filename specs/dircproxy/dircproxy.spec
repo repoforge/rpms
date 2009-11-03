@@ -5,7 +5,7 @@
 Summary: IRC proxy server
 Name: dircproxy
 Version: 1.0.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.dircproxy.net/

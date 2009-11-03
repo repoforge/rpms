@@ -5,7 +5,7 @@
 Summary: Performance testing tool for TCP/UDP
 Name: netperf
 Version: 2.4.2
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.netperf.org/netperf/NetperfPage.html 

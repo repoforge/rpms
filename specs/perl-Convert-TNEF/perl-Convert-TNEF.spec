@@ -9,7 +9,7 @@
 Summary: Convert-TNEF module for perl
 Name: perl-Convert-TNEF
 Version: 0.17
-Release: 3.2
+Release: 3.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-TNEF/

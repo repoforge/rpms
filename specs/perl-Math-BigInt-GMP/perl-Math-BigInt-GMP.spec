@@ -10,7 +10,7 @@
 Summary: Use the GMP library for Math::BigInt routines
 Name: perl-Math-BigInt-GMP
 Version: 1.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInt-GMP/

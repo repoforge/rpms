@@ -10,7 +10,7 @@
 Summary: Simple HTTP server class with SSL support
 Name: perl-HTTP-Daemon-SSL
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Daemon-SSL/

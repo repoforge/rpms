@@ -10,7 +10,7 @@
 Summary: Makes Perl slightly more functional like Haskell
 Name: perl-Language-Functional
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-Functional/

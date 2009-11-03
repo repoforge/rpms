@@ -11,7 +11,7 @@
 Summary: Classic sopwith game
 Name: sopwith
 Version: 1.7.1
-Release: 1.2
+Release: 1.2%{?dist}
 Group: Amusements/Games
 License: GPL
 URL: http://sdl-sopwith.sourceforge.net/

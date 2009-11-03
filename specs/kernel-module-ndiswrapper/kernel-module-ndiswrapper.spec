@@ -26,7 +26,7 @@
 Summary: Linux NDIS wrapper drivers
 Name: kernel-module-ndiswrapper
 Version: 0.7
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://ndiswrapper.sourceforge.net/
@@ -48,7 +48,7 @@ They might work with newer/older kernels.
 
 %package -n ndiswrapper-utils
 Summary: NDIS wrapper utilities
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 License: GPL
 Group: System Environment/Base
 

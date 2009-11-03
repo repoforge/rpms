@@ -10,7 +10,7 @@
 Summary: Perl extension for translation via babelfish
 Name: perl-WWW-Babelfish
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Babelfish/

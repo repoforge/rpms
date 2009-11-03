@@ -6,7 +6,7 @@
 Summary: Flash movie recording tool for VNC
 Name: pyvnc2swf
 Version: 0.9.3
-Release: 1
+Release: 1%{?dist}
 Summary: A VNC session recorder to Flash movie
 License: GPL
 Group: User Interface/Desktops

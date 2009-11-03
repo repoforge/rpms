@@ -10,7 +10,7 @@
 Summary: Parse an XML message into a user-defined class structure
 Name: perl-Class-XML-Parser
 Version: 0.901
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-XML-Parser/

@@ -10,7 +10,7 @@
 Summary: Perl module to defer coding to later
 Name: perl-Yada-Yada-Yada
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Yada-Yada-Yada/

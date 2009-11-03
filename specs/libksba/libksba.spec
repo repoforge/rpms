@@ -8,7 +8,7 @@
 Summary: X.509 library
 Name: libksba
 Version: 0.4.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnupg.org/

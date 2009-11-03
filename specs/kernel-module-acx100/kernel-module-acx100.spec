@@ -32,7 +32,7 @@
 Summary: Linux driver for the ACX100-based wireless cards
 Name: kernel-module-acx100
 Version: 0.2.0
-Release: 1.pre8
+Release: 1.pre8%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://acx100.sourceforge.net/

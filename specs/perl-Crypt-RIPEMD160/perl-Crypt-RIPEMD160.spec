@@ -10,7 +10,7 @@
 Summary: RIPEMD-160 HASH and MAC function
 Name: perl-Crypt-RIPEMD160
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RIPEMD160/

@@ -6,7 +6,7 @@
 Summary: Graphical tool acquiring and tracking Kerberos V tickets
 Name: gktools
 Version: 0.10.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://asgaard.homelinux.org/code/gktools/

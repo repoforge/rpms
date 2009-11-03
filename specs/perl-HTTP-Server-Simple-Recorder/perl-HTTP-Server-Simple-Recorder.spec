@@ -10,7 +10,7 @@
 Summary: Mixin to record HTTP::Server::Simple's sockets
 Name: perl-HTTP-Server-Simple-Recorder
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Server-Simple-Recorder/

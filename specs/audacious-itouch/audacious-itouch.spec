@@ -6,7 +6,7 @@
 Summary: iTouch keyboard control plugin for the Audacious media player
 Name: audacious-itouch
 Version: 0.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://sourceforge.net/projects/itouch-control

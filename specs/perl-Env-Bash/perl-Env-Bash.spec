@@ -10,7 +10,7 @@
 Summary: Perl extension for accessing all bash environment variables
 Name: perl-Env-Bash
 Version: 0.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Env-Bash/

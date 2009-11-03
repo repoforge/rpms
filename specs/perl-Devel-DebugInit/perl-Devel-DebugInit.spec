@@ -10,7 +10,7 @@
 Summary: Create debugger initialization files from C header file macros
 Name: perl-Devel-DebugInit
 Version: 0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-DebugInit/

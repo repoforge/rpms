@@ -10,7 +10,7 @@
 Summary: Perl module that implements Unicode Collation Algorithm
 Name: perl-Unicode-Collate
 Version: 0.52
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Collate/

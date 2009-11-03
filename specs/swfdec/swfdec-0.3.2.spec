@@ -12,7 +12,7 @@
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.2
-Release: 3
+Release: 3%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.sourceforge.net/

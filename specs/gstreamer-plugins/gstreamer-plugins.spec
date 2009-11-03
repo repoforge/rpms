@@ -6,7 +6,7 @@ Name: gstreamer-plugins
 Version: 0.8.5
 %define majmin 0.8
 %define po_package gst-plugins-%{majmin}
-Release: 0
+Release: 0%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 Source: gst-plugins-%{version}.tar.bz2

@@ -10,7 +10,7 @@
 Summary: Perl module that authenticates using Kerberos 5
 Name: perl-Authen-Krb5
 Version: 1.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-Krb5/

@@ -12,7 +12,7 @@
 Summary: SDL port of the Multi Arcade Machine Emulator (MAME)
 Name: sdlmame
 Version: 0.%{mamever}
-Release: 1
+Release: 1%{?dist}
 License: MAME
 Group: Applications/Emulators
 URL: http://rbelmont.mameworld.info/?page_id=163

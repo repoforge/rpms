@@ -12,7 +12,7 @@
 Summary: System for building perl modules
 Name: perl-Module-Build
 Version: 0.35
-Release: 1
+Release: 1%{?dist}
 Epoch: 1
 License: Artistic or GPL
 Group: Applications/CPAN

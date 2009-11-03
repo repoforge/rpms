@@ -5,7 +5,7 @@
 Summary: Distributed memory object caching system
 Name: memcached
 Version: 1.2.6
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.danga.com/memcached/

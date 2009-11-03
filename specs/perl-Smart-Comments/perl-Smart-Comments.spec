@@ -11,7 +11,7 @@
 Summary: Perl module implements comments that do more than just sit there
 Name: perl-Smart-Comments
 Version: 1.0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Smart-Comments/

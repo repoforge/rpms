@@ -10,7 +10,7 @@
 Summary: Perl extension for formatting text with Trac Wiki Style
 Name: perl-Text-Trac
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Trac/

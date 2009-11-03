@@ -10,7 +10,7 @@
 Summary: One way hash chaining encryption using MD5
 Name: perl-Crypt-HCE_MD5
 Version: 0.70
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-HCE_MD5/

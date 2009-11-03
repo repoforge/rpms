@@ -4,7 +4,7 @@
 Summary: Geographic Information Systems Extensions to PostgreSQL
 Name: postgis
 Version: 1.3.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://postgis.refractions.net/

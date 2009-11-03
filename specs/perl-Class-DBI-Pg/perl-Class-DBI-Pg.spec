@@ -10,7 +10,7 @@
 Summary: Perl module that extends Class::DBI for Postgres 
 Name: perl-Class-DBI-Pg
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Pg/

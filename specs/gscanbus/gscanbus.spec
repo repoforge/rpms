@@ -6,7 +6,7 @@
 Summary: Scan the firewire IEEE-1394 bus
 Name: gscanbus
 Version: 0.7.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://gscanbus.berlios.de/

@@ -10,7 +10,7 @@
 Summary: Module to handle 3D Vector Mathematics
 Name: perl-Math-VectorReal
 Version: 1.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-VectorReal/

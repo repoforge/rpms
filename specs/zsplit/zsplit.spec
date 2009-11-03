@@ -5,7 +5,7 @@
 Summary: Split, compress and backup devices and files to zsplit images
 Name: zsplit
 Version: 1.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.device-image.de/

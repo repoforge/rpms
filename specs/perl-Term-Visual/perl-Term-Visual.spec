@@ -10,7 +10,7 @@
 Summary: Curses split-terminal interface for applications
 Name: perl-Term-Visual
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-Visual/

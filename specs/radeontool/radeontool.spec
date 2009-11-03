@@ -5,7 +5,7 @@
 Summary: Turn backlight and external video output on and off on ATI Radeon Mobility
 Name: radeontool
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://fdd.com/software/radeon/

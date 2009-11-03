@@ -10,7 +10,7 @@
 Summary: Convert MIDI pitches, notes and frequencies
 Name: perl-MIDI-Pitch
 Version: 0.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIDI-Pitch/

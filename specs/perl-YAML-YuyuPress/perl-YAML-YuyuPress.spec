@@ -11,7 +11,7 @@
 Summary: Perl module that implements a tool for making presentations out of YAML files
 Name: perl-YAML-YuyuPress
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-YuyuPress/

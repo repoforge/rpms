@@ -7,7 +7,7 @@
 Summary: Perl module for creating rpm packages of other perl modules
 Name: perl-RPM-Specfile
 Version: 1.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPM-Specfile/

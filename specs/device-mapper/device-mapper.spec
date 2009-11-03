@@ -9,7 +9,7 @@
 Summary: Device mapper library
 Name: device-mapper
 Version: 1.00.07
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.sistina.com/

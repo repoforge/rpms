@@ -11,7 +11,7 @@
 Summary: Functions for network programs
 Name: netwib
 Version: 5.35.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.laurentconstantin.com/en/netw/netwib/

@@ -10,7 +10,7 @@
 Summary: Datetime sets and set math
 Name: perl-DateTime-Set
 Version: 0.28
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Set/

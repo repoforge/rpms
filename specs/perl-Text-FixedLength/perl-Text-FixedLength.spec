@@ -10,7 +10,7 @@
 Summary: Parse and create fixed length field records
 Name: perl-Text-FixedLength
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-FixedLength/

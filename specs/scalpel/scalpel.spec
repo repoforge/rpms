@@ -4,7 +4,7 @@
 Summary: Frugal, high-performance file carver
 Name: scalpel
 Version: 1.60
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.digitalforensicssolutions.com/Scalpel/

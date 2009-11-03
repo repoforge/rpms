@@ -5,7 +5,7 @@
 Summary: Email filtering application using sendmail's milter interface
 Name: mimedefang
 Version: 2.67
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.mimedefang.org/

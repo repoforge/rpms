@@ -10,7 +10,7 @@
 Summary: Perl interface to Snowball stemmers
 Name: perl-Lingua-Stem-Snowball
 Version: 0.952
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-Snowball/

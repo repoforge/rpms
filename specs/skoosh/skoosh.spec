@@ -9,7 +9,7 @@
 Summary: Simple, friendly, sliding tile puzzle
 Name: skoosh
 Version: 2.5.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://homepages.ihug.co.nz/~trmusson/programs.html#skoosh

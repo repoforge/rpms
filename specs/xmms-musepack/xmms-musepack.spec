@@ -6,7 +6,7 @@
 Summary: X MultiMedia System input plugin to play musepack (mpc) files
 Name: xmms-musepack
 Version: 1.2
-Release: 3
+Release: 3%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/

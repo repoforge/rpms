@@ -10,7 +10,7 @@
 Summary: Common source code filters for Inline Modules
 Name: perl-Inline-Filters
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Filters/

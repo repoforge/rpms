@@ -4,7 +4,7 @@
 Summary: GGZ gamingzone documentation
 Name: ggz-docs
 Version: 0.0.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.ggzgamingzone.org/

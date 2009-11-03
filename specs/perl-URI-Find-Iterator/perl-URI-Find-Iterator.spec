@@ -10,7 +10,7 @@
 Summary: Perl module to provide an iterator interface to URI::Find
 Name: perl-URI-Find-Iterator
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find-Iterator/

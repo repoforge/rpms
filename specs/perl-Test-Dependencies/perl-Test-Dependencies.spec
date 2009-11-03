@@ -10,7 +10,7 @@
 Summary: Ensure that your Makefile.PL specifies all module dependencies
 Name: perl-Test-Dependencies
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Dependencies/

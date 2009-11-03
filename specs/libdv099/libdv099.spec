@@ -7,7 +7,7 @@
 Summary: Software codec for DV video, used by most digital camcorders
 Name: libdv099
 Version: 0.99
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdv.sourceforge.net/

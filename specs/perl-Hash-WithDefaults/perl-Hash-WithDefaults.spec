@@ -10,7 +10,7 @@
 Summary: Perl module that implements a class for hashes with key-casing requirements supporting defaults
 Name: perl-Hash-WithDefaults
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hash-WithDefaults/

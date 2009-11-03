@@ -10,7 +10,7 @@
 Summary: GStreamer streaming media framework Monkey's Audio plugin
 Name: %{gstreamer}-monkeysaudio
 Version: 0.8.2
-Release: 1
+Release: 1%{?dist}
 License: Freeware
 Group: Applications/Multimedia
 URL: http://gstreamer.net/

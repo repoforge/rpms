@@ -5,7 +5,7 @@
 Summary: Network "tee" program
 Name: nettee
 Version: 0.1.9.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://saf.bio.caltech.edu/nettee.html

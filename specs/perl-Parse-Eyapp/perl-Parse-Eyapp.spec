@@ -10,7 +10,7 @@
 Summary: Extensions for Parse::Yapp
 Name: perl-Parse-Eyapp
 Version: 1.147
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-Eyapp/

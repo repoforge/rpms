@@ -5,7 +5,7 @@
 Summary: Web Site CReating and Editing EnvironMent for GNOME
 Name: screem
 Version: 0.12.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.screem.org/

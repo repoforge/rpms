@@ -7,7 +7,7 @@
 Summary: Tiny, turbo, throttleable lightweight http server
 Name: thttpd
 Version: 2.25b
-Release: %{?prever:0.%{prever}.}4
+Release: %{?prever:0.%{prever}.}4%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.acme.com/software/thttpd/

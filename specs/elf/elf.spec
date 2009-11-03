@@ -6,7 +6,7 @@
 Summary: Simple ELF header analyzer
 Name: elf
 Version: 0.5.4
-Release: 0.p1.2
+Release: 0.p1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.kerneled.com/projects/elf/

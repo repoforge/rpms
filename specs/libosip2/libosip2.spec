@@ -6,7 +6,7 @@
 Summary: SIP implementation
 Name: libosip2
 Version: 2.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/osip/osip.html

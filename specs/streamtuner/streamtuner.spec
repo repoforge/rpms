@@ -7,7 +7,7 @@
 Summary: Stream directory browser
 Name: streamtuner
 Version: 0.99.99
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/streamtuner/

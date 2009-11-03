@@ -8,7 +8,7 @@
 Summary: Excellent LDAP browser and editor
 Name: lbe
 Version: 2.8.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: Free to use
 Group: Applications/System
 URL: http://www-unix.mcs.anl.gov/~gawor/ldap/

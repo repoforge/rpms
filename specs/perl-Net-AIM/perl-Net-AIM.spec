@@ -10,7 +10,7 @@
 Summary: Perl module for AOL Instant Messenger TOC protocol
 Name: perl-Net-AIM
 Version: 1.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-AIM/

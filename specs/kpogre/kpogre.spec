@@ -12,7 +12,7 @@
 Summary: PostgreSQL graphical frontend
 Name: kpogre
 Version: 1.3.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://kpogre.sourceforge.net/

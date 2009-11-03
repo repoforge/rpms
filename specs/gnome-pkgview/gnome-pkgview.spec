@@ -5,7 +5,7 @@
 Summary: Tool for determining versions of installed GNOME packages
 Name: gnome-pkgview
 Version: 1.0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.greatnorthern.demon.co.uk/gnome-pkgview.html

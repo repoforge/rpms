@@ -5,7 +5,7 @@
 Summary: Reliable 802.11 (wireless) sniffer and WEP key cracker
 Name: aircrack
 Version: 2.41
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.cr0.net:8040/code/network/

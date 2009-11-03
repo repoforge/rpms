@@ -10,7 +10,7 @@
 Summary: Interface to telnet
 Name: perl-Net-Telnet
 Version: 3.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Telnet/

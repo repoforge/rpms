@@ -4,7 +4,7 @@
 Summary: Program for converting DAA files to ISO
 Name: daa2iso
 Version: 0.1.7c
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://aluigi.altervista.org/mytoolz.htm

@@ -11,7 +11,7 @@
 Summary: Realtime network grep tool
 Name: ngrep
 Version: 1.45
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ngrep.sourceforge.net/

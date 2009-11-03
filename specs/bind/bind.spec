@@ -7,7 +7,7 @@ BuildRequires: bind < 9.1.3
 Summary: DNS (Domain Name System) server
 Name: bind
 Version: 9.1.3
-Release: 2.2
+Release: 2.2%{?dist}
 License: BSD-like
 Group: System Environment/Daemons
 URL: http://www.isc.org/products/BIND/

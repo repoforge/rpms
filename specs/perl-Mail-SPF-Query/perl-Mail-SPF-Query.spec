@@ -11,7 +11,7 @@
 Summary: Query a Sender Policy Framework
 Name: perl-Mail-SPF-Query
 Version: 1.999.1
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SPF-Query/

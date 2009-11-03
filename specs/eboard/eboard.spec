@@ -12,7 +12,7 @@
 Summary: Chess board interface for ICS and engines
 Name: eboard
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://eboard.sourceforge.net/

@@ -5,7 +5,7 @@
 Name: lbdb
 Summary: Address database for mutt
 Version: 0.29
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.spinnaker.de/lbdb/

@@ -9,7 +9,7 @@
 Summary: Perl module named Devel-FindRef
 Name: perl-Devel-FindRef
 Version: 1.422
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-FindRef/

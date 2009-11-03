@@ -80,9 +80,9 @@ Name: openssh
 Version: 3.5p1
 %define rel 11
 %if %{rescue}
-Release: %{rel}rescue
+Release: %{rel}rescue%{?dist}
 %else
-Release: %{rel}
+Release: %{rel}%{?dist}
 %endif
 URL: http://www.openssh.com/portable.html
 Source0: ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-%{version}.tar.gz

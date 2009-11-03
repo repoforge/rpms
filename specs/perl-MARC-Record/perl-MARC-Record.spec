@@ -11,7 +11,7 @@
 Summary: Perl module for handling MARC fields
 Name: perl-MARC-Record
 Version: 2.0.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MARC-Record/

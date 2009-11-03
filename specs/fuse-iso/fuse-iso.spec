@@ -7,7 +7,7 @@
 Summary: FUSE module to mount ISO filesystem images
 Name: fuse-iso
 Version: 0.0.20070708
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://fuse.sourceforge.net/wiki/index.php/FuseIso

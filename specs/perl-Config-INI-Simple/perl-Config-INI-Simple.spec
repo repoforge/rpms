@@ -9,7 +9,7 @@
 Summary: Simple reading and writing from an INI file
 Name: perl-Config-INI-Simple
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-INI-Simple/

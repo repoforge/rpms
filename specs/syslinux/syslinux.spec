@@ -9,7 +9,7 @@
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
 Version: 3.82
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/

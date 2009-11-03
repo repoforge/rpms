@@ -5,7 +5,7 @@
 Summary: Punching holes in HTTP(S) proxy's
 Name: proxytunnel
 Version: 1.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://proxytunnel.sourceforge.net/

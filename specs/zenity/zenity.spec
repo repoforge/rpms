@@ -7,7 +7,7 @@
 Summary: Display GNOME dialogs from the command line
 Name: zenity
 Version: 1.7
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://archive.progeny.com/GNOME/sources/zenity/

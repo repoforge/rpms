@@ -10,7 +10,7 @@
 Summary: Encode/decode RPC2 format XML
 Name: perl-Frontier-RPC
 Version: 0.07b4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Frontier-RPC/

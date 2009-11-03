@@ -10,7 +10,7 @@
 Summary: Check if Makefile.PL has the right pre-requisites
 Name: perl-Test-Prereq
 Version: 1.037
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Prereq/

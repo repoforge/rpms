@@ -6,7 +6,7 @@
 Summary: Tool to secretly embed text in an audio file
 Name: publimark
 Version: 0.1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://perso.wanadoo.fr/gleguelv/soft/

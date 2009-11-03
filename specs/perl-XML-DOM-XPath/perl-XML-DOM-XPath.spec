@@ -10,7 +10,7 @@
 Summary: Perl extension to add XPath support to XML::DOM, using XML::XPath engine
 Name: perl-XML-DOM-XPath
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM-XPath/

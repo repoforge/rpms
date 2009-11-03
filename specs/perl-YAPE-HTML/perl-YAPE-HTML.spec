@@ -10,7 +10,7 @@
 Summary: Perl module that implements Yet Another Parser/Extractor for HTML
 Name: perl-YAPE-HTML
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAPE-HTML/

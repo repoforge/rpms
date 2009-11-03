@@ -10,7 +10,7 @@
 Summary: Perl module to extract information from the URLs of Search-Engines
 Name: perl-URI-Sequin
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Sequin/

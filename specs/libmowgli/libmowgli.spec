@@ -4,7 +4,7 @@
 Summary: Development framework for C with high performance and flexible algorithms
 Name: libmowgli
 Version: 0.7.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://www.atheme.org/projects/mowgli.shtml

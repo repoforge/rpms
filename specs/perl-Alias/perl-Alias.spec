@@ -10,7 +10,7 @@
 Summary: Performs aliasing services
 Name: perl-Alias
 Version: 2.32
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Alias/

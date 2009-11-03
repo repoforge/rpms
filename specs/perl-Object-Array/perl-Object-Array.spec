@@ -10,7 +10,7 @@
 Summary: array references with accessors
 Name: perl-Object-Array
 Version: 0.060
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Array/

@@ -17,7 +17,7 @@
 Summary: TV record sheduling program
 Name: shalvideo
 Version: 1.4.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://shalvideo.sourceforge.net/

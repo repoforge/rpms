@@ -23,7 +23,7 @@
 Summary: IA-32 (x86) PC emulator
 Name: bochs
 Version: 2.2.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Emulators
 URL: http://bochs.sf.net/

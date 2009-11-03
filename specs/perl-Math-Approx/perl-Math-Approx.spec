@@ -10,7 +10,7 @@
 Summary: Interpolation with plain polynomials
 Name: perl-Math-Approx
 Version: 0.220
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Approx/

@@ -10,7 +10,7 @@
 Summary: Ensure that a platform has weaken support
 Name: perl-Task-Weaken
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Task-Weaken/

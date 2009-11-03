@@ -13,7 +13,7 @@
 Summary: Extension for reading and writing YAML
 Name: syck
 Version: 0.55
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.whytheluckystiff.net/syck/

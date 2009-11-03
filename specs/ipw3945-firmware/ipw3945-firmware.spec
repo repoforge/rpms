@@ -7,7 +7,7 @@
 Summary: Firmware for Intel® PRO/Wireless 3945 network adaptors
 Name: ipw3945-firmware
 Version: 1.14.2
-Release: 2
+Release: 2%{?dist}
 License: Distributable
 Group: System Environment/Kernel
 URL: http://bughost.org/ipw3945/

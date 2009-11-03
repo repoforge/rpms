@@ -11,7 +11,7 @@
 Summary: Perl Palm classes
 Name: perl-Palm
 Version: 1.3.0
-Release: 2.2
+Release: 2.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/p5-Palm/

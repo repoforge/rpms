@@ -10,7 +10,7 @@
 Summary: Specifications of paper stock, labels and other print media
 Name: perl-Paper-Specs
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Paper-Specs/

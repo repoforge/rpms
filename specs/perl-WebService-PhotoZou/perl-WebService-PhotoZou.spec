@@ -10,7 +10,7 @@
 Summary: Easy-to-use Interface for PhotoZou Web Services
 Name: perl-WebService-PhotoZou
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-PhotoZou/

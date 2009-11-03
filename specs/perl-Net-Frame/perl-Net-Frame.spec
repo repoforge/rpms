@@ -10,7 +10,7 @@
 Summary: the base framework for frame crafting
 Name: perl-Net-Frame
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Frame/

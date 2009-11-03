@@ -9,7 +9,7 @@
 Summary: Mon module for perl
 Name: perl-Mon
 Version: 0.11
-Release: 2.2
+Release: 2.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mon/

@@ -10,7 +10,7 @@
 Summary: Plugin interface to YAML
 Name: perl-Template-Plugin-YAML
 Version: 1.23
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-YAML/

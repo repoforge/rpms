@@ -7,7 +7,7 @@
 Summary: Multilingual web based tool to manage SQLite database
 Name: sqlitemanager
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://sqlitemanager.sourceforge.net/

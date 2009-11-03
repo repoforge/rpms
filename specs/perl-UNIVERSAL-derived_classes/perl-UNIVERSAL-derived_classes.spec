@@ -10,7 +10,7 @@
 Summary: Perl module to return derived classes of a class
 Name: perl-UNIVERSAL-derived_classes
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-derived_classes/

@@ -17,7 +17,7 @@
 Summary: Completely configurable key-combo grabber for blackbox
 Name: bbkeys
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://bbkeys.sourceforge.net/

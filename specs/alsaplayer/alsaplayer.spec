@@ -6,7 +6,7 @@
 Summary: Audio player for systems using the Advanced Linux Sound Architecture
 Name: alsaplayer
 Version: 0.99.76
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.alsaplayer.org/

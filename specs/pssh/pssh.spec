@@ -7,7 +7,7 @@
 Summary: Parallel SSH tools
 Name: pssh
 Version: 1.2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.theether.org/pssh/

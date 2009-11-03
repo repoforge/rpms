@@ -10,7 +10,7 @@
 Summary: Perl module for portable testing of commands and scripts
 Name: perl-Test-Cmd
 Version: 1.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Cmd/

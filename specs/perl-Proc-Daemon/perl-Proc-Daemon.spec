@@ -10,7 +10,7 @@
 Summary: Run a perl program as a daemon process
 Name: perl-Proc-Daemon
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Daemon/

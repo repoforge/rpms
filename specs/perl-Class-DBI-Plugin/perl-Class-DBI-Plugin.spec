@@ -10,7 +10,7 @@
 Summary: Perl module that implements abstract base class for Class::DBI plugins
 Name: perl-Class-DBI-Plugin
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Plugin/

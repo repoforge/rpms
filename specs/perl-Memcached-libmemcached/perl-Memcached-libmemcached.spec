@@ -10,7 +10,7 @@
 Summary: Thin fast full interface to the libmemcached client API
 Name: perl-Memcached-libmemcached
 Version: 0.3102
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Memcached-libmemcached/

@@ -10,7 +10,7 @@
 Summary: Wrapper for libapreq2's module/handle API
 Name: perl-libapreq2
 Version: 2.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libapreq2/

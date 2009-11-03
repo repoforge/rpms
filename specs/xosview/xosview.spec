@@ -20,7 +20,7 @@
 Summary: X Window System utility for monitoring system resources
 Name: xosview
 Version: 1.8.3
-Release: 1
+Release: 1%{?dist}
 License: GPL/BSD
 Group: Applications/System
 URL: http://xosview.sourceforge.net/

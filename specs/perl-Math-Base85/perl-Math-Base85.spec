@@ -10,7 +10,7 @@
 Summary: Base 85 numbers, as referenced by RFC 1924
 Name: perl-Math-Base85
 Version: 0.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Base85/

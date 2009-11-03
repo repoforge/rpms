@@ -8,7 +8,7 @@
 Summary: Driver for Attansic L1 Gigabit Ethernet controllers
 Name: dkms-atl1
 Version: 1.2.40.2
-Release: 1
+Release: 1%{?dist}
 License: GPLv2+
 Group: System Environment/Kernel
 URL: http://atl1.sourceforge.net/

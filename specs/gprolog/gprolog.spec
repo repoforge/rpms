@@ -4,7 +4,7 @@
 Summary: Free implementation of the logic programming language PROLOG
 Name: gprolog
 Version: 1.2.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://gnu-prolog.inria.fr/

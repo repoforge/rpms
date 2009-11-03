@@ -14,7 +14,7 @@
 Summary: Mother of all Gravity Games
 Name: moagg
 Version: 0.16
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://moagg.sourceforge.net/

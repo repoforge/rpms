@@ -17,7 +17,7 @@
 Summary: Ruby bindings for shadow password access
 Name: ruby-shadow
 Version: 1.4.1
-Release: 1
+Release: 1%{?dist}
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://ttsky.net/

@@ -5,7 +5,7 @@
 Summary: Universal backup system
 Name: synbak
 Version: 1.2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.initzero.it/products/opensource/synbak/

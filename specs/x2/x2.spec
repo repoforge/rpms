@@ -19,7 +19,7 @@
 Summary: The X2 text editor
 Name: x2
 Version: 2.08.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://www.tangbu.com/

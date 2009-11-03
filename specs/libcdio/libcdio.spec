@@ -4,7 +4,7 @@
 Summary: CD-ROM input and control library
 Name: libcdio
 Version: 0.77
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnu.org/software/libcdio/

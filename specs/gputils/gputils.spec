@@ -5,7 +5,7 @@
 Summary: GNU PIC Utilities
 Name: gputils
 Version: 0.13.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://gputils.sourceforge.net/

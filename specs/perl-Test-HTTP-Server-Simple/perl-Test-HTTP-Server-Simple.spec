@@ -10,7 +10,7 @@
 Summary: Test::More functions for HTTP::Server::Simple
 Name: perl-%{real_name}
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-HTTP-Server-Simple/

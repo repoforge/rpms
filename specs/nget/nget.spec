@@ -11,7 +11,7 @@
 Summary: Command line NNTP file grabber
 Name: nget
 Version: 0.27.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://nget.sourceforge.net/

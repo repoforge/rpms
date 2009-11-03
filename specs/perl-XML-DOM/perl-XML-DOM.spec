@@ -10,7 +10,7 @@
 Summary: Perl module for building DOM Level 1 compliant document structures
 Name: perl-XML-DOM
 Version: 1.44
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM/

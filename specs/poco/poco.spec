@@ -4,7 +4,7 @@
 Summary: Next generation C++ class libraries for network-centric applications
 Name: poco
 Version: 1.3.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.appinf.com/poco/

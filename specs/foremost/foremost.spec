@@ -5,7 +5,7 @@
 Summary: Recover files based on their headers and footers
 Name: foremost
 Version: 1.5.4
-Release: 1
+Release: 1%{?dist}
 License: freeware
 Group: Applications/Archiving
 URL: http://foremost.sourceforge.net/

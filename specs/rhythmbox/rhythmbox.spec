@@ -8,7 +8,7 @@
 Name: rhythmbox
 Summary: Music Management Application
 Version: %{majmin}.8
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/

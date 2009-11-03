@@ -5,7 +5,7 @@
 Summary: X/Motif based schedule planner
 Name: plan
 Version: 1.8.6
-Release: 0.2
+Release: 0.2%{?dist}
 License: Freely distributable with attribution
 Group: Applications/Productivity
 URL: http://www.bitrot.de/plan.html

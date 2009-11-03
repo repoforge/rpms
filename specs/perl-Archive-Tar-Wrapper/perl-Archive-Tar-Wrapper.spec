@@ -10,7 +10,7 @@
 Summary: API wrapper around the 'tar' utility
 Name: perl-Archive-Tar-Wrapper
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar-Wrapper/

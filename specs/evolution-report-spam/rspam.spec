@@ -13,7 +13,7 @@
 Summary:	Rspam Evolution Plugin
 Name:		%{name}
 Version: 	%{version}
-Release: 	%{release}
+Release: 	%{release}%{?dist}
 License:        GPL
 Group:          Applications/Internet
 Source: 	http://mips.edu.ms/%{name}-%{version}.tar.gz

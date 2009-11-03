@@ -10,7 +10,7 @@
 Summary: Object Orientated interface to FITS HDUs
 Name: perl-Astro-FITS-Header
 Version: 3.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Astro-FITS-Header/

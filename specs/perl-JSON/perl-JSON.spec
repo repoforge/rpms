@@ -11,7 +11,7 @@
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
 Version: 2.15
-Release: 3
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON/

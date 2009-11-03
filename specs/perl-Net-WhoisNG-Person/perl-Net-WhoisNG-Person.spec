@@ -10,7 +10,7 @@
 Summary: Perl extension for Net::WhoisNG::Person
 Name: perl-Net-WhoisNG-Person
 Version: 0.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-WhoisNG-Person/

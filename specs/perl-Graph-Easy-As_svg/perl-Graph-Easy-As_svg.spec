@@ -10,7 +10,7 @@
 Summary: Output a Graph::Easy as Scalable Vector Graphics (SVG)
 Name: perl-Graph-Easy-As_svg
 Version: 0.23
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Graph-Easy-As_svg/

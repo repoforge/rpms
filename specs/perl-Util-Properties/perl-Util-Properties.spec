@@ -10,7 +10,7 @@
 Summary: Java.util.properties like class
 Name: perl-Util-Properties
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Util-Properties/

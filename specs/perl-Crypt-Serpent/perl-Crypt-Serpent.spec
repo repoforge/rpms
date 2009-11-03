@@ -10,7 +10,7 @@
 Summary: Crypt::CBC compliant Serpent block cipher encryption module
 Name: perl-Crypt-Serpent
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Serpent/

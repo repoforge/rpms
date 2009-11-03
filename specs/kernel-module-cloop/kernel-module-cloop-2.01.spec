@@ -29,7 +29,7 @@
 Summary: Linux driver for compressed loop devices
 Name: kernel-module-cloop
 Version: 2.01
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://developer.linuxtag.net/knoppix/sources/
@@ -57,7 +57,7 @@ They might work with newer/older kernels.
 %package -n kernel-smp-module-cloop
 Summary: Compressed loop device driver for SMP
 Group: System Environment/Kernel
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 
 Requires: /boot/vmlinuz-%{kversion}-%{krelease}smp
 Requires: cloop-utils
@@ -76,7 +76,7 @@ They might work with newer/older kernels.
 
 %package -n cloop-utils
 Summary: Utilities for compressed loop device driver
-Release: %{real_release}
+Release: %{real_release}%{?dist}
 Group: System Environment/Base
 
 %description -n cloop-utils

@@ -4,7 +4,7 @@
 Summary: Library for reading and converting WordPerfect(tm) documents
 Name: libwpd
 Version: 0.8.14
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libwpd.sourceforge.net/

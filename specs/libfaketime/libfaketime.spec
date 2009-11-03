@@ -4,7 +4,7 @@
 Summary: Pre-loadable library for faking the system date
 Name: libfaketime
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.code-wizards.com/projects/libfaketime/

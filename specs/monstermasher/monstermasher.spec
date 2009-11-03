@@ -8,7 +8,7 @@
 Summary: Mash the monsters with stone blocks
 Name: monstermasher
 Version: 1.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.cs.aau.dk/~olau/monster-masher/

@@ -10,7 +10,7 @@
 Summary: Object Oriented time objects
 Name: perl-Time-Piece
 Version: 1.15
-Release: 1
+Release: 1%{?dist}
 Epoch: 1
 License: Artistic/GPL
 Group: Applications/CPAN

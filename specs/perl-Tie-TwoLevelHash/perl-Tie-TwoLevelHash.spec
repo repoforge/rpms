@@ -10,7 +10,7 @@
 Summary: Tied interface to multi-dimensional (Two-Level) hash files
 Name: perl-Tie-TwoLevelHash
 Version: 1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-TwoLevelHash/

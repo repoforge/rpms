@@ -5,7 +5,7 @@
 Summary: Utility for searching and alternatively displaying RFC's
 Name: rfc
 Version: 3.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/Internet
 URL: http://www.dewn.com/rfc/

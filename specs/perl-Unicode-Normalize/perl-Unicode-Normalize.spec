@@ -10,7 +10,7 @@
 Summary: Perl module that implements Unicode Normalization Forms
 Name: perl-Unicode-Normalize
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Normalize/

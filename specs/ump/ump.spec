@@ -19,7 +19,7 @@
 Summary: Advanced calculator with support for matrices and graphs
 Name: ump
 Version: 0.8.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://u-m-p.sourceforge.net

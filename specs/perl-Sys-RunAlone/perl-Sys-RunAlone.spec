@@ -10,7 +10,7 @@
 Summary: Run only one invocation
 Name: perl-Sys-RunAlone
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-RunAlone/

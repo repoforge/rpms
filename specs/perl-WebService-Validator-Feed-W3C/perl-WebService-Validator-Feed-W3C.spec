@@ -10,7 +10,7 @@
 Summary: Find errors in feeds
 Name: perl-WebService-Validator-Feed-W3C
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Validator-Feed-W3C/

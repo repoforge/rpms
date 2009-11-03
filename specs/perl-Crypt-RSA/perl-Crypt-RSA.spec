@@ -10,7 +10,7 @@
 Summary: RSA public-key cryptosystem
 Name: perl-Crypt-RSA
 Version: 1.99
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RSA/

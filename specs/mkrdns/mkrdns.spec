@@ -7,7 +7,7 @@
 Summary: Automate changes to DNS zone files
 Name: mkrdns
 Version: 3.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Utilities
 URL: http://www.mkrdns.org/

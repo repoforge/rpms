@@ -9,7 +9,7 @@
 Summary: Command line tool to interact with an X Window Manager
 Name: wmctrl
 Version: 1.07
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://sweb.cz/tripie/utils/wmctrl

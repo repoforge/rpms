@@ -10,7 +10,7 @@
 Summary: (super)class for representing nodes in a tree
 Name: perl-Tree-DAG_Node
 Version: 1.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tree-DAG_Node/

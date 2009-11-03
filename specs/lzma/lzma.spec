@@ -4,7 +4,7 @@
 Summary: Tools related to LZMA compression
 Name: lzma
 Version: 4.32.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://tukaani.org/lzma/

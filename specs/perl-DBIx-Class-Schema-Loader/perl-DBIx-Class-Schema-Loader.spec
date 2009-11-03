@@ -10,7 +10,7 @@
 Summary: Dynamic definition of a DBIx::Class::Schema
 Name: perl-DBIx-Class-Schema-Loader
 Version: 0.04006
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Class-Schema-Loader/

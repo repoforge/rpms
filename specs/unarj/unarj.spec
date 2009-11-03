@@ -6,7 +6,7 @@
 Summary: Uncompressor for .arj format archive files
 Name: unarj
 Version: 2.63
-Release: 0.a.2
+Release: 0.a.2%{?dist}
 Group: Applications/Archiving
 License: distributable
 

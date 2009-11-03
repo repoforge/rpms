@@ -5,7 +5,7 @@
 Summary: Pretty printing of mails with Mutt
 Name: muttprint
 Version: 0.72d
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://muttprint.sourceforge.net/

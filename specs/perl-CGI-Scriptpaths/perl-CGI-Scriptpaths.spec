@@ -10,7 +10,7 @@
 Summary: Find web relevant paths even without ENV set
 Name: perl-CGI-Scriptpaths
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Scriptpaths/

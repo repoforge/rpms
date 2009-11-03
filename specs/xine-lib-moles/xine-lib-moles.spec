@@ -6,7 +6,7 @@
 Summary: Extra libraries for the Xine library
 Name: xine-lib-moles
 Version: 1.1.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://xinehq.de/

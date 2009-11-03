@@ -4,7 +4,7 @@
 Summary: Pack a file in MIME format for mailing and news
 Name: mpack
 Version: 1.6
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://ftp.andrew.cmu.edu/pub/mpack/

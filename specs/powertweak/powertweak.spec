@@ -5,7 +5,7 @@
 Summary: Tune system to optimal performance
 Name: powertweak
 Version: 0.99.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://powertweak.sourceforge.net/

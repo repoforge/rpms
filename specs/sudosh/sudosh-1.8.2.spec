@@ -5,7 +5,7 @@
 Summary: Logged root shell that can be used for auditing
 Name: sudosh
 Version: 1.8.2
-Release: 2
+Release: 2%{?dist}
 License: Open Software License
 Group: Applications/System
 URL: http://sourceforge.net/projects/sudosh/

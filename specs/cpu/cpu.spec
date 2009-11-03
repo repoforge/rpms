@@ -6,7 +6,7 @@
 Summary: Change Password Utility
 Name: cpu
 Version: 1.4.3
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://cpu.sourceforge.net/

@@ -5,7 +5,7 @@
 Summary: Dynamic makefiles
 Name: ccbuild
 Version: 1.5.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://ccbuild.sourceforge.net/

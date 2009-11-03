@@ -5,7 +5,7 @@
 Summary: Confine services in a limited environment
 Name: compartment
 Version: 1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.suse.de/~marc/

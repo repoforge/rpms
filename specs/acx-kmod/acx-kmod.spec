@@ -27,7 +27,7 @@ Source10: kmodtool
 Summary: Kernel module for Texas Instruments ACX100/ACX111 based network adapters
 Name: %{kmod_name}-kmod
 Version: 0.0.0.%{snapshot}
-Release: 1.%(echo %{kverrel} | tr - _)
+Release: 1.%(echo %{kverrel} | tr - _)%{?dist}
 Group: System Environment/Kernel
 License: GPL
 URL: http://acx100.sourceforge.net/

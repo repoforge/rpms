@@ -10,7 +10,7 @@
 Summary: Parse string that represents time duration
 Name: perl-Time-Duration-Parse
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Duration-Parse/

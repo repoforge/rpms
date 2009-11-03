@@ -6,7 +6,7 @@
 Summary: Small, portable symbolic math program
 Name: mathomatic
 Version: 14.5.4
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Engineering
 URL: http://www.mathomatic.org/

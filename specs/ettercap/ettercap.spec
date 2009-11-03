@@ -20,7 +20,7 @@
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
 Version: 0.7.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ettercap.sourceforge.net/

@@ -8,7 +8,7 @@
 Summary: Numerical Extension to Python
 Name: python-numeric
 Version: 23.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: UNKNOWN
 Group: Development/Libraries
 URL: http://www.pfdubois.com/numpy/

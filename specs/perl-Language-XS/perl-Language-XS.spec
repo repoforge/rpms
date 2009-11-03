@@ -10,7 +10,7 @@
 Summary: Write XS code on the fly and load it dynamically
 Name: perl-Language-XS
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Language-XS/

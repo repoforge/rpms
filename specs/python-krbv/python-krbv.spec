@@ -8,7 +8,7 @@
 Summary: Python extension module for Kerberos 5
 Name: python-krbv
 Version: 1.0.13
-Release: 2
+Release: 2%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://people.redhat.com/mikeb/python-krbV/

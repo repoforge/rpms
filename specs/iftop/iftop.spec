@@ -12,7 +12,7 @@
 Summary: Display bandwidth usage on an interface
 Name: iftop
 Version: 0.17
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ex-parrot.com/~pdw/iftop/

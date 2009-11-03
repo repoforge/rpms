@@ -6,7 +6,7 @@
 Summary: Graphical link validity checker
 Name: gurlchecker
 Version: 0.6.6
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nongnu.org/gurlchecker/

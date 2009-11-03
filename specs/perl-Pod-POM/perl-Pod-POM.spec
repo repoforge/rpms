@@ -10,7 +10,7 @@
 Summary: POD Object Model
 Name: perl-Pod-POM
 Version: 0.25
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-POM/

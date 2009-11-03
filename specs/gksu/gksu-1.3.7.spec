@@ -7,7 +7,7 @@
 Summary: Graphical frontend to su
 Name: gksu
 Version: 1.3.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/gksu/

@@ -4,7 +4,7 @@
 Summary: High-speed clustered L2TP LNS
 Name: l2tpns
 Version: 2.1.20
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://sourceforge.net/projects/l2tpns/

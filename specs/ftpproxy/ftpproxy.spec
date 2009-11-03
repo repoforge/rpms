@@ -4,7 +4,7 @@
 Summary: FTP proxy server
 Name: ftpproxy
 Version: 1.2.3
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ftpproxy.org/

@@ -10,7 +10,7 @@
 Summary: Store pure objects in standard relational databases
 Name: perl-Tangram
 Version: 2.10
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tangram/

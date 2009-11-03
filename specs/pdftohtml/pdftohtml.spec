@@ -6,7 +6,7 @@
 Summary: Converts PDF files into HTML and XML formats
 Name: pdftohtml
 Version: 0.36
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://pdftohtml.sourceforge.net/

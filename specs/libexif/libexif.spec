@@ -10,7 +10,7 @@
 Name: libexif
 Summary: EXIF image tag library
 Version: 0.6.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 URL: http://libexif.sourceforge.net/
 Source: http://dl.sf.net/libexif/libexif-%{version}.tar.gz

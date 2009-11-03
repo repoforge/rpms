@@ -4,7 +4,7 @@
 Summary: DTS Coherent Acoustics decoder library
 Name: libdca
 Version: 0.0.5
-Release: 1
+Release: 1%{?dist}
 License: GPLv2+
 Group: System Environment/Libraries
 URL: http://www.videolan.org/libdca.html

@@ -4,7 +4,7 @@
 Summary: Abstraction layer for touchscreen panel event
 Name: tslib
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://tslib.berlios.de/

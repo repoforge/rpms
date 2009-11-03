@@ -10,7 +10,7 @@
 Summary: Active operating system fingerprinting tool
 Name: xprobe2
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sys-security.com/blog/xprobe2/

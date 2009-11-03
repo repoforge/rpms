@@ -10,7 +10,7 @@
 Summary: Object Oriented Persistent Store
 Name: perl-OOPS
 Version: 0.2004
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/OOPS/

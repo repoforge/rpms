@@ -4,7 +4,7 @@
 Summary: Monkey's Audio Codec (MAC) utility and library
 Name: mac
 Version: 3.99
-Release: 2.u4b5
+Release: 2.u4b5%{?dist}
 License: See License.htm
 Group: System Environment/Libraries
 URL: http://supermmx.org/linux/mac/

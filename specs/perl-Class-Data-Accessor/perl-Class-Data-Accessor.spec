@@ -10,7 +10,7 @@
 Summary: Inheritable, overridable class and instance data accessor creation
 Name: perl-Class-Data-Accessor
 Version: 0.04004
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Data-Accessor/

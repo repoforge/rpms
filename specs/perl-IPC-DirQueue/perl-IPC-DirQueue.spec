@@ -10,7 +10,7 @@
 Summary: Disk-based many-to-many task queue
 Name: perl-IPC-DirQueue
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-DirQueue/

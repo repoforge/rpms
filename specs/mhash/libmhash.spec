@@ -7,7 +7,7 @@
 Summary: Thread-safe hash library
 Name: libmhash
 Version: 0.9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://mhash.sourceforge.net/

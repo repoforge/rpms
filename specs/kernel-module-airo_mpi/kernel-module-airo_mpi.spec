@@ -30,7 +30,7 @@
 Summary: Linux driver for Aironet 4500/4800 and Cisco 340/350. (ISA/PCI/MPI)
 Name: kernel-module-airo_mpi
 Version: 1.6
-Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}
+Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://bellet.info/~bellet/laptop/

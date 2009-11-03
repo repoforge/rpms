@@ -5,7 +5,7 @@
 Summary: Graphical whois client
 Name: greenwich
 Version: 0.8.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://jodrell.net/projects/greenwich/

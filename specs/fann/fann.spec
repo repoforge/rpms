@@ -4,7 +4,7 @@
 Summary: Fast artificial neural network library
 Name: fann
 Version: 2.0.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://fann.sourceforge.net/

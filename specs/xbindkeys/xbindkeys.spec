@@ -9,7 +9,7 @@
 Summary: Binds keys or mouse buttons to shell commands under X
 Name: xbindkeys
 Version: 1.8.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://hocwp.free.fr/xbindkeys/xbindkeys.html

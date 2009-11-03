@@ -7,7 +7,7 @@
 Summary: Open Source desktop publishing application
 Name: passepartout
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.stacken.kth.se/project/pptout/

@@ -5,7 +5,7 @@
 Summary: Snort reporting tool
 Name: snort-rep
 Version: 1.10
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://people.ee.ethz.ch/~dws/software/snort-rep/

@@ -6,7 +6,7 @@
 Summary: Standard netcat enhanced with twofish encryption.
 Name: cryptcat
 Version: 0.0.20031202
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://farm9.org/Cryptcat/

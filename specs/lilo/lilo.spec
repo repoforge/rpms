@@ -8,7 +8,7 @@
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
 Version: 22.8
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: System Environment/Base
 URL: http://home.san.rr.com/johninsd/

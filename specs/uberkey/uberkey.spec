@@ -7,7 +7,7 @@
 Summary: Keylogger
 Name: uberkey
 Version: 1.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.linuks.mine.nu/uberkey/

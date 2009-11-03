@@ -4,7 +4,7 @@
 Summary: Library (C API) for accessing CDDB servers
 Name: libcddb
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libcddb.sourceforge.net/

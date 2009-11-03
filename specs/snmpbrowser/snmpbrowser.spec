@@ -16,7 +16,7 @@
 Summary: SNMP browser
 Name: snmpbrowser
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://snmpbrowser.sourceforge.net/

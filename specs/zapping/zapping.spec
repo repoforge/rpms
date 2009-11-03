@@ -13,7 +13,7 @@
 Summary: TV viewer for GNOME
 Name: zapping
 Version: 0.10
-Release: 0.4%{?prever:.%{prever}}
+Release: 0.4%{?prever:.%{prever}}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/

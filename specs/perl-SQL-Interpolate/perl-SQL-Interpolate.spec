@@ -10,7 +10,7 @@
 Summary: Interpolate Perl variables into SQL statements
 Name: perl-SQL-Interpolate
 Version: 0.41
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Interpolate/

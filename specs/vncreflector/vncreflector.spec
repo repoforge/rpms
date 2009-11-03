@@ -6,7 +6,7 @@
 Summary: VNC server which acts as a proxy for a number of VNC clients
 Name: vncreflector
 Version: 1.2.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://sf.net/projects/vnc-reflector/

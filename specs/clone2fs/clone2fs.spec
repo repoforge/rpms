@@ -6,7 +6,7 @@
 Summary: Tool to clone ext2/ext3 filesystems
 Name: clone2fs
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.mr511.de/software/

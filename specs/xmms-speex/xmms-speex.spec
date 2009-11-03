@@ -6,7 +6,7 @@
 Summary: X MultiMedia System input plugin to play speex files
 Name: xmms-speex
 Version: 0.9.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://jzb.rapanden.dk/projects/speex-xmms

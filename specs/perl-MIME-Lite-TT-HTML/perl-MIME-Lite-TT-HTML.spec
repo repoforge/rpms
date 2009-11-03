@@ -10,7 +10,7 @@
 Summary: Create html mail with MIME::Lite and TT
 Name: perl-MIME-Lite-TT-HTML
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Lite-TT-HTML/

@@ -12,7 +12,7 @@
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
 Version: 1.5.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/

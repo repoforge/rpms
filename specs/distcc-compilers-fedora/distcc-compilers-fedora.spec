@@ -6,7 +6,7 @@
 Summary: Red Hat Fedora compilers for distccd
 Name: distcc-compilers-fedora
 Version: 0.7.2
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://dag.wieers.com/home-made/distcc/

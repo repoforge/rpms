@@ -10,7 +10,7 @@
 Summary: Adds encoding() to HTTP::Response
 Name: perl-HTTP-Response-Encoding
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Response-Encoding/

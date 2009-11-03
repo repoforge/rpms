@@ -10,7 +10,7 @@
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
 Version: 1.3.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.proftpd.org/

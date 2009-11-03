@@ -10,7 +10,7 @@
 Summary: Peek into the internals of a running POE environment
 Name: perl-POE-API-Peek
 Version: 1.34
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-API-Peek/

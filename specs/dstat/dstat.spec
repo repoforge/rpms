@@ -10,7 +10,7 @@
 Summary: Pluggable real-time performance monitoring tool
 Name: dstat
 Version: 0.6.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/dstat/

@@ -9,7 +9,7 @@
 Summary: Graphical video editing tool
 Name: avidemux
 Version: 2.4.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/

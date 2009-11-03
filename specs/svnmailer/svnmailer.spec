@@ -7,7 +7,7 @@
 Summary: Notification script which can be used as subversion hook
 Name: svnmailer
 Version: 1.0.8
-Release: 2
+Release: 2%{?dist}
 License: Apache License 2.0
 Group: Development/Tools
 URL: http://opensource.perlig.de/svnmailer/

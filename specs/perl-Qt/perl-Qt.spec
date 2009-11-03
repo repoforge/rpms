@@ -10,7 +10,7 @@
 Summary: Perl module for creating PerlQt applications
 Name: perl-Qt
 Version: 3.008
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PerlQt/

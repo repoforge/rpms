@@ -10,7 +10,7 @@
 Summary: Perl module that implements a Gtk2 widget for displaying Plain old Documentation (POD)
 Name: perl-Gtk2-Ex-PodViewer
 Version: 0.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Ex-PodViewer/

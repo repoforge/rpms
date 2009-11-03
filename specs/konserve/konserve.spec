@@ -11,7 +11,7 @@
 Summary: Small backup application
 Name: konserve
 Version: 0.10.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://konserve.sourceforge.net/

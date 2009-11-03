@@ -4,7 +4,7 @@
 Summary: Disk and disk image format analyzer
 Name: disktype
 Version: 9
-Release: 1
+Release: 1%{?dist}
 License: MIT/X
 Group: Applications/System
 URL: http://disktype.sourceforge.net/

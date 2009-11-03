@@ -10,7 +10,7 @@
 Summary: Base class for classes that need to do error handling
 Name: perl-Class-ErrorHandler
 Version: 0.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-ErrorHandler/

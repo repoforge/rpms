@@ -15,7 +15,7 @@
 Summary: Library used to play AVI streams
 Name: avifile
 Version: 0.7.38
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://avifile.sourceforge.net/

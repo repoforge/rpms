@@ -10,7 +10,7 @@ Summary: Perl interface to the Video4linux tuner frequencies.
 Summary: Active Server Pages for Apache with mod_perl
 Name: perl-Video-Frequencies
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://ivtv.sourceforge.net/

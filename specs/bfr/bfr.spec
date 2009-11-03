@@ -4,7 +4,7 @@
 Summary: General-purpose command-line pipe buffer
 Name: bfr
 Version: 1.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.glines.org/wiki/bfr

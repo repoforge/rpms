@@ -10,7 +10,7 @@
 Summary: Reliable job queue
 Name: perl-TheSchwartz
 Version: 1.07
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TheSchwartz/

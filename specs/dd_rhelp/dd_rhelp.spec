@@ -4,7 +4,7 @@
 Summary: Helper script for ddrescue
 Name: dd_rhelp
 Version: 0.0.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.kalysto.org/utilities/dd_rhelp/index.en.html

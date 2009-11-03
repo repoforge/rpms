@@ -19,7 +19,7 @@
 Summary: Tool to magnify parts of your screen
 Name: peeper
 Version: 0.3
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://peeper.sourceforge.net/

@@ -19,7 +19,7 @@
 Summary: Game library
 Name: allegro
 Version: 4.2.1
-Release: 1
+Release: 1%{?dist}
 License: Distributable
 Group: Development/Libraries
 URL: http://alleg.sourceforge.net/

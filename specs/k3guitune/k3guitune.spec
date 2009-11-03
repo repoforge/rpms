@@ -5,7 +5,7 @@
 Summary: Guitar and other instruments tuner
 Name: k3guitune
 Version: 0.5.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://home.planet.nl/~lamer024/k3guitune.html

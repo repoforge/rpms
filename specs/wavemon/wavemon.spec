@@ -7,7 +7,7 @@
 Summary: Ncurses-based monitoring application for wireless network devices
 Name: wavemon
 Version: 0.4.0
-Release: 0.b.2
+Release: 0.b.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.janmorgenstern.de/projects-software.html

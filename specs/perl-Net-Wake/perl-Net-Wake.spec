@@ -10,7 +10,7 @@
 Summary: Send packets to power on computers
 Name: perl-Net-Wake
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Wake/

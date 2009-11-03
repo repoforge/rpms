@@ -20,7 +20,7 @@
 Summary: Graphical picture indexing tool
 Name: spit
 Version: 0.3.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://spit.sourceforge.net/

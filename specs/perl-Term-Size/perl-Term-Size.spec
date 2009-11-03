@@ -10,7 +10,7 @@
 Summary: Perl extension for retrieving terminal size
 Name: perl-Term-Size
 Version: 0.207
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-Size/

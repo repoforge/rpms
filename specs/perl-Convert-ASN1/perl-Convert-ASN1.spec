@@ -12,7 +12,7 @@
 Summary: Convert between perl data structures and ASN.1 encoded packets
 Name: perl-Convert-ASN1
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-ASN1/

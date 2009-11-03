@@ -15,7 +15,7 @@
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
 Version: 0.18.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://home.arcor.de/ahuggel/exiv2/index.html

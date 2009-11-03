@@ -10,7 +10,7 @@
 Summary: Hashes (and objects based on hashes) with encrypting fields
 Name: perl-Tie-EncryptedHash
 Version: 1.24
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-EncryptedHash/

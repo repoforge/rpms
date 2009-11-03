@@ -10,7 +10,7 @@
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
 Version: 2.18
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-CoreList/

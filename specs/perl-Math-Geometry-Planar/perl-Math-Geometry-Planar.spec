@@ -10,7 +10,7 @@
 Summary: Collection of planar geometry functions
 Name: perl-Math-Geometry-Planar
 Version: 1.17
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Geometry-Planar/

@@ -5,7 +5,7 @@
 Summary: GNOME Transfer Manager
 Name: gtm
 Version: 0.4.12
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gtm.sourceforge.net/

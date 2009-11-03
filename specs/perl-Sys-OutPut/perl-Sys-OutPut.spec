@@ -10,7 +10,7 @@
 Summary: Perl module to help make output easier
 Name: perl-Sys-OutPut
 Version: 2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-OutPut/

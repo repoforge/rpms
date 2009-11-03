@@ -7,7 +7,7 @@
 Summary: Process monitor and restart utility
 Name: monit
 Version: 5.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.tildeslash.com/monit/

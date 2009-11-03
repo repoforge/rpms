@@ -10,7 +10,7 @@
 Summary: Perl module for unixODBC
 Name: perl-UnixODBC
 Version: 0.34
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UnixODBC/

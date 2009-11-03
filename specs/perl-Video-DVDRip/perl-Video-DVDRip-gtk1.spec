@@ -17,7 +17,7 @@
 Summary: Graphical DVD ripping tool based on transcode
 Name: perl-Video-DVDRip
 Version: 0.52.6
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://www.exit1.org/dvdrip/

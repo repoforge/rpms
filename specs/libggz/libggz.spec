@@ -4,7 +4,7 @@
 Summary: Library for client-server games
 Name: libggz
 Version: 0.0.14
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.ggzgamingzone.org/

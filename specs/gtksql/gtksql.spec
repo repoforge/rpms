@@ -7,7 +7,7 @@
 Summary: Graphical database query tool for MySQL and PostgreSQL
 Name: gtksql
 Version: 0.4.2
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://gtksql.sourceforge.net/

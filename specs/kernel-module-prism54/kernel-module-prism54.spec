@@ -27,7 +27,7 @@
 Summary: Linux driver for the 802.11g Prism GT / Prism Duette / Prism Indigo Chipsets
 Name: kernel-module-prism54
 Version: 1.1
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://prism54.org/

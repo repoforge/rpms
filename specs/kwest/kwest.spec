@@ -5,7 +5,7 @@
 Summary: Interpreter for Infocom and other Z-machine interactive fiction games
 Name: kwest
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://kwest.sourceforge.net/

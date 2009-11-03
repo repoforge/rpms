@@ -8,7 +8,7 @@
 Summary: Protocol independent performance tool
 Name: netpipe
 Version: 3.6.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.scl.ameslab.gov/netpipe/

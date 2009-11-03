@@ -6,7 +6,7 @@
 Summary: Gimp plugin that combines values of the RGB channels
 Name: gimp-plugin-channel-mixer
 Version: 1.1
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://registry.gimp.org/plugin?id=1918

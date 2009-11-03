@@ -10,7 +10,7 @@
 Summary: Open Audio Library
 Name: openal
 Version: 1.8.466
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.openal.org/

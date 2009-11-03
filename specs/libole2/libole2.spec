@@ -4,7 +4,7 @@
 Summary: Structured Storage OLE2 library
 Name: libole2
 Version: 0.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: ftp://ftp.gnome.org/pub/GNOME/sources/libole2/

@@ -5,7 +5,7 @@
 Summary: Lotus Sametime Community Client plugin for Gaim for Persona support
 Name: gaim-meanwhile-ibm
 Version: 1.0.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://w3.opensource.ibm.com/~meanwhile/

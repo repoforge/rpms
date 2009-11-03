@@ -6,7 +6,7 @@
 Summary: Hymn allows you to free your iTunes purchases
 Name: hymn
 Version: 0.9.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://hymn-project.org/

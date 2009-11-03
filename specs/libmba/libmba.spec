@@ -6,7 +6,7 @@
 Summary: Library of generic C modules
 Name: libmba
 Version: 0.8.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.ioplex.com/~miallen/libmba/

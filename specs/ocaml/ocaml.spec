@@ -25,7 +25,7 @@
 Summary: Objective Caml
 Name: ocaml
 Version: %{major}.0
-Release: 1
+Release: 1%{?dist}
 License: QPL/LGPL
 Group: Development/Languages
 URL: http://caml.inria.fr/

@@ -4,7 +4,7 @@
 Summary: The Plastic File System
 Name: plasticfs
 Version: 1.9
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://plasticfs.sourceforge.net/

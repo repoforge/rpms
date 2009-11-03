@@ -6,7 +6,7 @@
 Summary: Dump the memory of a running process.
 Name: memfetch
 Version: 0.05
-Release: 0.b.2
+Release: 0.b.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://lcamtuf.coredump.cx/

@@ -5,7 +5,7 @@
 Summary: Library which provides fully dynamic arrays
 Name: judy
 Version: 1.0.5
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://judy.sourceforge.net/

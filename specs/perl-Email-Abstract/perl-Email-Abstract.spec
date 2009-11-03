@@ -10,7 +10,7 @@
 Summary: Unified interface to mail representations
 Name: perl-Email-Abstract
 Version: 3.001
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Abstract/

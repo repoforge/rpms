@@ -10,7 +10,7 @@
 Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
 Version: 3.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-IMAPClient/

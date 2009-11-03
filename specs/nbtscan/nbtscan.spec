@@ -6,7 +6,7 @@
 Summary: NetBIOS name network scanner
 Name: nbtscan
 Version: 1.5.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.inetcat.org/software/nbtscan.html

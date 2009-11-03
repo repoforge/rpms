@@ -23,7 +23,7 @@ Source10: kmodtool
 Summary: Kernel module for Intel® PRO/Wirelss 3945 network adaptors
 Name: %{kmod_name}-kmod
 Version: 0.0.73
-Release: 1.%(echo %{kverrel} | tr - _)
+Release: 1.%(echo %{kverrel} | tr - _)%{?dist}
 Group: System Environment/Kernel
 License: GPL
 URL: http://ipw3945.sourceforge.net/

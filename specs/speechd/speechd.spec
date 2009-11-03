@@ -5,7 +5,7 @@
 Summary: Implementation of /dev/speech
 Name: speechd
 Version: 0.56
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.speechio.org/

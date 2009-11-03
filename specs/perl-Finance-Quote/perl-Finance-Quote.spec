@@ -10,7 +10,7 @@
 Summary: Perl module to get stock and mutual fund quotes from various exchanges
 Name: perl-Finance-Quote
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Finance-Quote/

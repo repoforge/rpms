@@ -10,7 +10,7 @@
 Summary: Pretty print data
 Name: perl-Data-Dump
 Version: 1.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Dump/

@@ -10,7 +10,7 @@
 Summary: Perl extension for kolab for a slurpd backend
 Name: perl-Kolab-LDAP-Backend-slurpd
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kolab-LDAP-Backend-slurpd/

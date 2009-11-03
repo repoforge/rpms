@@ -10,7 +10,7 @@
 Summary: Perl module that implements dynamic PerlIO layers
 Name: perl-PerlIO-via-dynamic
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PerlIO-via-dynamic/

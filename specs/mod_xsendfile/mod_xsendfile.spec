@@ -4,7 +4,7 @@
 Summary: Apache2 module that processes X-SENDFILE headers
 Name: mod_xsendfile
 Version: 0.9
-Release: 1
+Release: 1%{?dist}
 License: Apache License, Version 2.0
 Group: System Environment/Daemons
 URL: http://tn123.ath.cx/mod_xsendfile/

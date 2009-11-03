@@ -8,7 +8,7 @@
 Summary: Graphical FTP client for the K Desktop Environment.
 Name: kftpgrabber
 Version: 0.8.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kftp.org/

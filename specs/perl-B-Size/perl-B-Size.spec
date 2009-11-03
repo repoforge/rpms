@@ -10,7 +10,7 @@
 Summary: Measure size of Perl OPs and SVs
 Name: perl-B-Size
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/B-Size/

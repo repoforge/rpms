@@ -5,7 +5,7 @@
 Summary: Interactivity benchmark tool
 Name: interbench
 Version: 0.30
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://users.on.net/~ckolivas/interbench/

@@ -10,7 +10,7 @@
 Summary: Extension for generating ElfHash values
 Name: perl-Digest-Elf
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-Elf/

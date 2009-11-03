@@ -7,7 +7,7 @@
 Summary: Detect Unintended Memory Access
 Name: duma
 Version: 2.5.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://duma.sourceforge.net/

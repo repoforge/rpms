@@ -10,7 +10,7 @@
 Summary: Generate wsdl file automagically
 Name: perl-WSDL-Generator
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WSDL-Generator/

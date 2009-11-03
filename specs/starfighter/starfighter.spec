@@ -11,7 +11,7 @@
 Summary: Project: Starfighter, a space arcade game
 Name: starfighter
 Version: 1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/starfighter.php

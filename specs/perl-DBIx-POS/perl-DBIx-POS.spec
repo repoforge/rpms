@@ -10,7 +10,7 @@
 Summary: Perl module to define a dictionary of SQL statements in a POD dialect (POS)
 Name: perl-DBIx-POS
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-POS/

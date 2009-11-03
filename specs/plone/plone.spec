@@ -11,7 +11,7 @@
 Summary: Content management system built over Zope's framework
 Name: plone
 Version: 2.0.4
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 Source: http://dl.sf.net/plone/%{real_name}-%{real_version}.tar.gz

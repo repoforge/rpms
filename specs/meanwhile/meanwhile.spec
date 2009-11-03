@@ -5,7 +5,7 @@
 Summary: Lotus Sametime Community Client library
 Name: meanwhile
 Version: 1.0.2
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://meanwhile.sourceforge.net/

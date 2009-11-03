@@ -10,7 +10,7 @@
 Summary: Layout Manager for cgi-based web applications
 Name: perl-HTML-TableLayout
 Version: 1.001008
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TableLayout/

@@ -10,7 +10,7 @@
 Summary: Provides Perl object representation of a University of Western Ontario student
 Name: perl-UWO-Student
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UWO-Student/

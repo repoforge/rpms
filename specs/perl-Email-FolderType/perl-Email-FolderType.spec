@@ -10,7 +10,7 @@
 Summary: Determine the type of a mail folder
 Name: perl-Email-FolderType
 Version: 0.813
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-FolderType/

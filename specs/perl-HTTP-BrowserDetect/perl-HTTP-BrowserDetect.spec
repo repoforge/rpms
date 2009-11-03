@@ -10,7 +10,7 @@
 Summary: Determine the Web browser, version, and platform
 Name: perl-HTTP-BrowserDetect
 Version: 0.99
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-BrowserDetect/

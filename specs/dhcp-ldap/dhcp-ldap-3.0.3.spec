@@ -6,7 +6,7 @@
 Summary: DHCP server (with LDAP as backend) and relay agent
 Name: dhcp-ldap
 Version: 3.0.3
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: System Environment/Daemons
 URL: http://isc.org/products/DHCP/

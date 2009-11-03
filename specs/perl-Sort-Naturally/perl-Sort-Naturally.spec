@@ -10,7 +10,7 @@
 Summary: Sort lexically, but sort numeral parts numerically
 Name: perl-Sort-Naturally
 Version: 1.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-Naturally/

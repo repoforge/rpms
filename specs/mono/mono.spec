@@ -4,7 +4,7 @@
 Summary: The Mono CIL runtime, suitable for running .NET code
 Name: mono
 Version: 1.0.6
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Tools
 URL: http://www.go-mono.com/

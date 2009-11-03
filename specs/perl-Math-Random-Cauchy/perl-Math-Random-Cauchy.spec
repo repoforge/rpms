@@ -10,7 +10,7 @@
 Summary: Random numbers following a Cauchy PDF
 Name: perl-Math-Random-Cauchy
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Random-Cauchy/

@@ -10,7 +10,7 @@
 Summary: Perl module to find RFC 822 email addresses in plain text
 Name: perl-Email-Find
 Version: 0.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Find/

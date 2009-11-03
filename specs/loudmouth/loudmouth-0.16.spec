@@ -12,7 +12,7 @@
 Summary: Jabber programming library written in C
 Name: loudmouth
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.loudmouth-project.org/

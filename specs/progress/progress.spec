@@ -4,7 +4,7 @@
 Summary: File I/O Progress Monitor Utility
 Name: progress
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://progress.unixdev.net/

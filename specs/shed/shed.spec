@@ -4,7 +4,7 @@
 Summary: Console hex editor
 Name: shed
 Version: 1.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://shed.sourceforge.net/

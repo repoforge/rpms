@@ -7,7 +7,7 @@
 Summary: Dutch online dictionary
 Name: gnuvd
 Version: 1.0.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.djcbsoftware.nl/projecten/gnuvd/

@@ -10,7 +10,7 @@
 Summary: Wrapper for fork
 Name: perl-Proc-Forkfunc
 Version: 96.042201
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-Forkfunc/

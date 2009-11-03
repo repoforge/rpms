@@ -11,7 +11,7 @@ Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
 %define real_version 1.22
 Version: 1.2200
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-StackTrace/

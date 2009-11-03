@@ -17,7 +17,7 @@
 Summary: Double-entry accounting software package
 Name: kmymoney
 Version: 0.8.8
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://kmymoney2.sourceforge.net/

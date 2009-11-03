@@ -10,7 +10,7 @@
 Summary: Simple progress bar for the patient
 Name: perl-Acme-ProgressBar
 Version: 1.125
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-ProgressBar/

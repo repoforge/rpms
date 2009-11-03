@@ -9,7 +9,7 @@
 Summary: Python interface for BerkeleyDB 3.x and 4.x
 Name: python-bsddb3
 Version: 4.6.2
-Release: 1
+Release: 1%{?dist}
 License: Unknown
 Group: Development/Libraries
 URL: http://www.argo.es/~jcea/programacion/pybsddb.htm

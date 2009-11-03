@@ -5,7 +5,7 @@
 Summary: Tool for measuring TCP and UDP bandwidth performance
 Name: iperf
 Version: 2.0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 #URL: http://dast.nlanr.net/Projects/Iperf/

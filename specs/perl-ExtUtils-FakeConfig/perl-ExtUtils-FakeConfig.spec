@@ -10,7 +10,7 @@
 Summary: Allows overriding some config values
 Name: perl-ExtUtils-FakeConfig
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-FakeConfig/

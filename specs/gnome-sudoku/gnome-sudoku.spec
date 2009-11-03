@@ -8,7 +8,7 @@
 Summary: Sudoku, a logic puzzle game
 Name: gnome-sudoku
 Version: 0.7.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://gnome-sudoku.sourceforge.net/

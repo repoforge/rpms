@@ -10,7 +10,7 @@
 Summary: Log messages in the httpd access and error log styles
 Name: perl-Log-Common
 Version: 1.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Common/

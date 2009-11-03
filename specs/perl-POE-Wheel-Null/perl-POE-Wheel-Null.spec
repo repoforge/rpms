@@ -9,7 +9,7 @@
 Summary: Perl module that implements a POE Wheel that does put()s data nowhere, and sends nothing
 Name: perl-POE-Wheel-Null
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Wheel-Null/

@@ -5,7 +5,7 @@
 Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: ttcp
 Version: 3.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://it-div-cs.web.cern.ch/it-div-cs/public/projects/atm/ttcp.html

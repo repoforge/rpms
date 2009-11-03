@@ -10,7 +10,7 @@
 Summary: Linear Threshold Units
 Name: perl-Statistics-LTU
 Version: 2.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-LTU/

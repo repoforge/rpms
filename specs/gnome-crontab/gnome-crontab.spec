@@ -13,7 +13,7 @@
 Summary: graphical interface to the crontab program
 Name: gnome-crontab
 Version: 0.0.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://jodrell.net/projects/gnome-crontab/

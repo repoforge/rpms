@@ -10,7 +10,7 @@
 Summary: Perl module to go from cardinal number (3) to ordinal ("3rd")
 Name: perl-Lingua-EN-Numbers-Ordinate
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Numbers-Ordinate/

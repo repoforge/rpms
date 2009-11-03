@@ -10,7 +10,7 @@
 Summary: Perl module that implements a simple user sessions management
 Name: perl-User-Simple
 Version: 1.43
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/User-Simple/

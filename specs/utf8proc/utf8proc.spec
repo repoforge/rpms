@@ -5,7 +5,7 @@
 Summary: Library for processing UTF-8 encoded unicode strings
 Name: utf8proc
 Version: 1.1.4
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://www.flexiguided.de/publications.utf8proc.en.html

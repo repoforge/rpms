@@ -10,7 +10,7 @@
 Summary: Perl module that respects AUTOLOAD subs
 Name: perl-UNIVERSAL-canAUTOLOAD
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-canAUTOLOAD/

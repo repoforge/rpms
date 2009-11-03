@@ -16,7 +16,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.1.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/

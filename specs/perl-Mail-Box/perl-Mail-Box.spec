@@ -10,7 +10,7 @@
 Summary: E-mail handling
 Name: perl-Mail-Box
 Version: 2.091
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Box/

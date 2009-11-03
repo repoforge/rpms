@@ -11,7 +11,7 @@
 Summary: Implementation of the Vigenere cipher
 Name: perl-Crypt-Vigenere
 Version: 0.07
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Vigenere/

@@ -12,7 +12,7 @@
 Summary: Routines and Constants common for XML::LibXML and XML::GDOME
 Name: perl-XML-LibXML-Common
 Version: 0.13
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXML-Common/

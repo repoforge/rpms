@@ -33,7 +33,7 @@
 Summary: OpenRM Scene Graph
 Name: openrm
 Version: 1.5.2.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.openrm.org/

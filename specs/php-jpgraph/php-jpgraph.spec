@@ -6,7 +6,7 @@
 Summary: OO Graph Library for PHP
 Name: php-jpgraph
 Version: 1.19
-Release: 1.2
+Release: 1.2%{?dist}
 License: QPL
 Group: Development/Languages
 URL: http://www.aditus.nu/jpgraph/

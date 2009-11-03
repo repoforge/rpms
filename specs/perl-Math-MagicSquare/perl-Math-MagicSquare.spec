@@ -10,7 +10,7 @@
 Summary: Magic Square Checker and Designer
 Name: perl-Math-MagicSquare
 Version: 2.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-MagicSquare/

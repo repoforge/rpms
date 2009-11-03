@@ -7,7 +7,7 @@
 Summary: Plugins for the Audacious media player
 Name: audacious-plugins
 Version: 1.4.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/

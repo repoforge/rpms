@@ -20,7 +20,7 @@
 Summary: Media player based on xine-lib
 Name: kaffeine
 Version: 0.8.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kaffeine.sourceforge.net/

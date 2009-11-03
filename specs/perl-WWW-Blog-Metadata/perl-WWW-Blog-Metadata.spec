@@ -10,7 +10,7 @@
 Summary: Extract common metadata from a weblog
 Name: perl-WWW-Blog-Metadata
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Blog-Metadata/

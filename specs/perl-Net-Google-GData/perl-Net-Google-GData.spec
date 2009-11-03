@@ -10,7 +10,7 @@
 Summary: Handle basic communication with Google services
 Name: perl-Net-Google-GData
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Google-GData/

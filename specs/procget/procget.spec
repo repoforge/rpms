@@ -5,7 +5,7 @@
 Summary: Save proc filesystem content for forensic analysis
 Name: procget
 Version: 0.1.0
-Release: 2.2
+Release: 2.2%{?dist}
 License: distributable
 Group: Applications/System
 URL: http://www.rndsoftware.com/products.shtml

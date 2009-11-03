@@ -44,7 +44,7 @@
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
 Version: 0.69
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CSV_XS/

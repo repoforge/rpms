@@ -10,7 +10,7 @@
 Summary: The Command-Line User Interface
 Name: perl-Term-Clui
 Version: 1.43
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-Clui/

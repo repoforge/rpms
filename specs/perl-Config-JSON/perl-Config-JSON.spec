@@ -11,7 +11,7 @@
 Summary: JSON based config file system
 Name: perl-Config-JSON
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-JSON/

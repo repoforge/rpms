@@ -10,7 +10,7 @@
 Summary: Provides interoperable MD5-based crypt() functions
 Name: perl-Crypt-PasswdMD5
 Version: 1.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-PasswdMD5/

@@ -10,7 +10,7 @@
 Summary: Perl module for parsing folders for MailBox with C routines
 Name: perl-Mail-Box-Parser-C
 Version: 3.006
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Box-Parser-C/

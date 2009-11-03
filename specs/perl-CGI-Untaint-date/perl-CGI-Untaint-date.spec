@@ -10,7 +10,7 @@
 Summary: Perl module to validate a date
 Name: perl-CGI-Untaint-date
 Version: 1.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Untaint-date/

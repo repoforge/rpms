@@ -19,7 +19,7 @@
 Summary: GUI SNMP MIB browser
 Name: mbrowse
 Version: 0.3.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kill-9.org/mbrowse/

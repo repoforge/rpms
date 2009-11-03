@@ -10,7 +10,7 @@
 Summary: More sensible way to change directories
 Name: perl-File-chdir
 Version: 0.1002
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-chdir/

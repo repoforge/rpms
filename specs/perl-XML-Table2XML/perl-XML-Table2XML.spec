@@ -10,7 +10,7 @@
 Summary: Generic conversion of tabular data to XML
 Name: perl-XML-Table2XML
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Table2XML/

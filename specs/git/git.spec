@@ -9,7 +9,7 @@
 Summary: Git core and tools
 Name: git
 Version: 1.5.2.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git.or.cz/

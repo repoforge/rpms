@@ -10,7 +10,7 @@
 Summary: Perl extension for doing maths with strings
 Name: perl-Silly-StringMaths
 Version: 0.13
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Silly-StringMaths/

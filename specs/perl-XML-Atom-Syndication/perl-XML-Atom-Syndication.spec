@@ -10,7 +10,7 @@
 Summary: Portable client for consuming RFC 4287 Atom Syndication Feeds
 Name: perl-XML-Atom-Syndication
 Version: 0.942
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Atom-Syndication/

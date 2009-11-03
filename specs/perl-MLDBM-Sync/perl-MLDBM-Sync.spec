@@ -9,7 +9,7 @@
 Summary: Safe concurrent access to MLDBM databases
 Name: perl-MLDBM-Sync
 Version: 0.30
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MLDBM-Sync/

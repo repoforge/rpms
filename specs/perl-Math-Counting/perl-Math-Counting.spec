@@ -10,7 +10,7 @@
 Summary: Combinatorial counting operations
 Name: perl-Math-Counting
 Version: 0.0801
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Counting/

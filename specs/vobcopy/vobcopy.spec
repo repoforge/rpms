@@ -4,7 +4,7 @@
 Summary: Utility to copy DVD .vob files to disk
 Name: vobcopy
 Version: 1.1.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://vobcopy.org/projects/c/c.shtml

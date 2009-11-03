@@ -10,7 +10,7 @@
 Summary: Perl interface to GnuPG
 Name: perl-GnuPG-Interface
 Version: 0.36
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG-Interface/

@@ -7,7 +7,7 @@
 Summary: C++ wrapper for fam, the file alteration monitor
 Name: fampp
 Version: 3.5.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://fampp.sourceforge.net/

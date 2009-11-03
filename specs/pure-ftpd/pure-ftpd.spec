@@ -15,7 +15,7 @@
 Summary: Lightweight, fast and secure FTP server
 Name: pure-ftpd
 Version: 1.0.21
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.pureftpd.org/

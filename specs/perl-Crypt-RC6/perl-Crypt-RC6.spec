@@ -11,7 +11,7 @@
 Summary: Crypt::CBC compliant RC6 block cipher encryption module
 Name: perl-Crypt-RC6
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-RC6/

@@ -10,7 +10,7 @@
 Summary: Checks for POD Coverage in your distribution
 Name: perl-Test-Pod-Coverage
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Pod-Coverage/

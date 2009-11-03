@@ -6,7 +6,7 @@
 Summary: Python OpenID libraries
 Name: python-openid
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.openidenabled.com/openid/libraries/python/

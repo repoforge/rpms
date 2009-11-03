@@ -10,7 +10,7 @@
 Summary: Object interface for function callbacks
 Name: perl-Callback
 Version: 1.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Callback/

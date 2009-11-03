@@ -5,7 +5,7 @@
 Summary: C library for manipulating POSIX tar files.
 Name: libtar
 Version: 1.2.11
-Release: 2.2
+Release: 2.2%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.feep.net/libtar/

@@ -10,7 +10,7 @@
 Summary: DateTime Localized Day of Week
 Name: perl-DateTime-Util-DayOfWeek-Locale
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Util-DayOfWeek-Locale/

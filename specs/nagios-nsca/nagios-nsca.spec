@@ -10,7 +10,7 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.7.2
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/

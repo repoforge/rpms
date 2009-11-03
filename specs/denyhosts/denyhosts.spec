@@ -9,7 +9,7 @@
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
 Version: 2.6
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://denyhosts.sourceforge.net/

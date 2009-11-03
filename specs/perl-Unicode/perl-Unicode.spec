@@ -9,7 +9,7 @@
 Summary: Perl module named Unicode-Transliterate
 Name: perl-Unicode-Transliterate
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Transliterate/

@@ -20,7 +20,7 @@
 Summary: Fast, feature rich Window manager
 Name: windowmaker
 Version: 0.92.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.windowmaker.info/

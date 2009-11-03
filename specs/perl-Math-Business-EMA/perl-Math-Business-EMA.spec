@@ -10,7 +10,7 @@
 Summary: Calculate EMAs
 Name: perl-Math-Business-EMA
 Version: 1.08
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-EMA/

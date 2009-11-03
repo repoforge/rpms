@@ -10,7 +10,7 @@
 Summary: Check stock quotes from Taiwan Emerging Stock
 Name: perl-Finance-TW-EmergingQuote
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Finance-TW-EmergingQuote/

@@ -10,7 +10,7 @@
 Summary: Jabber protocol interface
 Name: perl-Net-Jabber
 Version: 2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Jabber/

@@ -10,7 +10,7 @@
 Summary: Perl module to publish POE event handlers via XMLRPC over HTTP
 Name: perl-POE-Component-Server-XMLRPC
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-XMLRPC/

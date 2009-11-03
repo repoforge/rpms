@@ -10,7 +10,7 @@
 Summary: Perl module to wrap scp to allow passwords via Expect
 Name: perl-Net-SCP-Expect
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SCP-Expect/

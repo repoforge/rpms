@@ -4,7 +4,7 @@
 Summary: Tool for debugging of embedded Linux applications
 Name: coretrace
 Version: 0.71
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.arbetsmyra.dyndns.org/coretrace/

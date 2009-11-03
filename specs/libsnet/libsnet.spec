@@ -5,7 +5,7 @@ Summary: Simple, secure, TCP communications library
 Name: libsnet
 Version: 0.0
 %define real_version 20060320
-Release: 20060320.1
+Release: 20060320.1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libsnet/

@@ -12,7 +12,7 @@
 Summary: 3D Space Flight Simulator
 Name: stardust
 Version: 0.1.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://startracker.free.fr/stardust/stardust_en.html

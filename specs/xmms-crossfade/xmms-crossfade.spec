@@ -7,7 +7,7 @@
 Summary: Crossfade output plugin for XMMS
 Name: xmms-crossfade
 Version: 0.3.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.eisenlohr.org/xmms-crossfade/

@@ -6,7 +6,7 @@
 Summary: PEAR package of a regression testing framework for unit tests
 Name: php-pear-phpunit
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pear.php.net/package/PHPUnit

@@ -10,7 +10,7 @@
 Summary: Authenticates and authorizes via a DBI connection
 Name: perl-Apache-DBILogin
 Version: 2.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-DBILogin/

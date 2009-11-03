@@ -10,7 +10,7 @@
 Summary: Calculate MACDs
 Name: perl-Math-Business-MACD
 Version: 1.10
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Business-MACD/

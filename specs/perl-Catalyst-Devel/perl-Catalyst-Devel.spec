@@ -10,7 +10,7 @@
 Summary: Catalyst Development Tools
 Name: perl-Catalyst-Devel
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Devel/

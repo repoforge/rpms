@@ -10,7 +10,7 @@
 Summary: modification of UTF-7 encoding for IMAP
 Name: perl-Encode-IMAPUTF7
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode-IMAPUTF7/

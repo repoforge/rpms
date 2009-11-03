@@ -13,7 +13,7 @@
 Summary: Addictive game based on "The Settlers of Catan"
 Name: gnocatan
 Version: 0.8.1.43
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://gnocatan.sourceforge.net/

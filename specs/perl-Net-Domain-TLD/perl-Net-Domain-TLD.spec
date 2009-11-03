@@ -10,7 +10,7 @@
 Summary: Retrieve currently available tld names and descriptions
 Name: perl-Net-Domain-TLD
 Version: 1.68
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Domain-TLD/

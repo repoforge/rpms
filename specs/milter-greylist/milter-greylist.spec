@@ -5,7 +5,7 @@
 Summary: Stand-alone milter written in C that implements greylist filtering
 Name: milter-greylist
 Version: 3.0
-Release: 2
+Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://hcpnet.free.fr/milter-greylist/

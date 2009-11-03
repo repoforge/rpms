@@ -10,7 +10,7 @@
 Summary: Parse an ascii string containing fixed length fields into component parts
 Name: perl-Parse-FixedLength
 Version: 5.37
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-FixedLength/

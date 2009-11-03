@@ -10,7 +10,7 @@
 Summary: Resolves Pod E sequences
 Name: perl-Pod-Escapes
 Version: 1.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Escapes/

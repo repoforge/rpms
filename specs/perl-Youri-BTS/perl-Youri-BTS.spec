@@ -11,7 +11,7 @@
 Summary: Perl module that implements Youri Bugzilla interface
 Name: perl-Youri-BTS
 Version: 0.1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Youri-BTS/

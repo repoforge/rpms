@@ -6,7 +6,7 @@
 Summary: Per process I/O bandwidth monitor
 Name: iotop
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://guichaz.free.fr/iotop/

@@ -10,7 +10,7 @@
 Summary: Interface to the Guile Scheme interpreter
 Name: perl-Guile
 Version: 0.002
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Guile/

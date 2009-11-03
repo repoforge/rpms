@@ -10,7 +10,7 @@
 Summary: Text::Iconv perl module
 Name: perl-Text-Iconv
 Version: 1.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Iconv/

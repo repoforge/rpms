@@ -12,7 +12,7 @@
 Summary: Discover wireless clients and access points
 Name: wifiscanner
 Version: 1.0.2a
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://wifiscanner.sourceforge.net/

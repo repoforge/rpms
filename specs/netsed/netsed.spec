@@ -5,7 +5,7 @@
 Summary: Realtime packet payload mangling
 Name: netsed
 Version: 0.0.1
-Release: 0.b.2
+Release: 0.b.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://freshmeat.net/projects/netsed/

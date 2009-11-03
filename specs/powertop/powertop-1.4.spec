@@ -5,7 +5,7 @@
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.linuxpowertop.org/

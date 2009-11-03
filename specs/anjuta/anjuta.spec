@@ -5,7 +5,7 @@
 Summary: Versatile Integrated Development Environment (IDE) for C and C++
 Name: anjuta
 Version: 1.2.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://anjuta.sourceforge.net/

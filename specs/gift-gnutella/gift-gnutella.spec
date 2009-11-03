@@ -4,7 +4,7 @@
 Summary: Gift plugin to access the Gnutella network
 Name: gift-gnutella
 Version: 0.0.10.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.giftproject.org/

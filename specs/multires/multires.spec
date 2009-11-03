@@ -5,7 +5,7 @@
 Summary: Allows changing of desktop resolution and refresh rate
 Name: multires
 Version: 0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://multires.sourceforge.net/

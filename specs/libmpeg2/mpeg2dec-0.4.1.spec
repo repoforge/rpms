@@ -13,7 +13,7 @@
 Summary: MPEG-2 and MPEG-1 decoding library and test program
 Name: mpeg2dec
 Version: 0.4.1
-Release: 2%{?date:.%{date}}
+Release: 2%{?date:.%{date}}%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libmpeg2.sourceforge.net/

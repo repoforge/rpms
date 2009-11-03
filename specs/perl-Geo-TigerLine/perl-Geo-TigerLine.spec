@@ -10,7 +10,7 @@
 Summary: TIGER/Line geographic data
 Name: perl-Geo-TigerLine
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-TigerLine/

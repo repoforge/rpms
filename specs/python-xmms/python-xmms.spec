@@ -11,7 +11,7 @@
 Name: python-xmms
 Summary: Python Interface to XMMS
 Version: 2.04
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.via.ecp.fr/~flo/

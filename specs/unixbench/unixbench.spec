@@ -5,7 +5,7 @@
 Summary: BYTE's UNIX Benchmarks
 Name: unixbench
 Version: 5.1.2
-Release: 1
+Release: 1%{?dist}
 License: Distributable
 Group: Applications/System
 URL: http://www.hermit.org/Linux/Benchmarking/

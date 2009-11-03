@@ -6,7 +6,7 @@
 Summary: Validating XML Parser
 Name: xerces-c
 Version: 2.7.0
-Release: 1
+Release: 1%{?dist}
 License: Apache
 Group: Development/Libraries
 URL: http://xml.apache.org/xerces-c/

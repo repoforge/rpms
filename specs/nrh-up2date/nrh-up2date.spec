@@ -7,7 +7,7 @@
 Summary: Open Source server for Redhat's up2date suite
 Name: nrh-up2date
 Version: 1.3
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nrh-up2date.org/

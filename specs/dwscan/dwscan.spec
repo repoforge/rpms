@@ -5,7 +5,7 @@
 Summary: Displays access point information in a useful manner
 Name: dwscan
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://dag.wieers.com/home-made/dwscan/

@@ -8,7 +8,7 @@
 Summary: Tool to analyse BIOS DMI data
 Name: dmidecode
 Version: 2.10
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPLv2+
 Group: System Environment/Base
 URL: http://www.nongnu.org/dmidecode/

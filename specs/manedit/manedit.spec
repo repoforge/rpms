@@ -6,7 +6,7 @@
 Summary: Graphical editor for creating man pages.
 Name: manedit
 Version: 0.6.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://wolfpack.twu.net/ManEdit/

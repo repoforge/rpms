@@ -4,7 +4,7 @@
 Summary: JavaScript interpreter
 Name: js
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: MPL
 Group: Development/Languages
 URL: http://www.mozilla.org/js/

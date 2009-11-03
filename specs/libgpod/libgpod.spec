@@ -7,7 +7,7 @@
 Summary: Library to access the contents of an iPod
 Name: libgpod
 Version: 0.4.0
-Release: 0
+Release: 0%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gtkpod.org/libgpod.html

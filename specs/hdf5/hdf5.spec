@@ -4,7 +4,7 @@
 Summary: Manages extremely large and complex data collections
 Name: hdf5
 Version: 1.8.0
-Release: 1
+Release: 1%{?dist}
 License: Distributable
 Group: Development/Libraries
 URL: http://hdfgroup.org/HDF5/

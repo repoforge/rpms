@@ -10,7 +10,7 @@
 Summary: Generate RDF/XML SAX2 events for RFC822 messages
 Name: perl-XML-Generator-RFC822-RDF
 Version: 1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Generator-RFC822-RDF/

@@ -10,7 +10,7 @@
 Summary: Transparent state persistence for CGI applications
 Name: perl-CGI-Persistent
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Persistent/

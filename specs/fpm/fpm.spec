@@ -5,7 +5,7 @@
 Summary: Figaro's password manager
 Name: fpm
 Version: 0.59
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://fpm.sourceforge.net/

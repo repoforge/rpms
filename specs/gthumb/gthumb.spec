@@ -6,7 +6,7 @@
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb
 Version: 2.4.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://gthumb.sourceforge.net/

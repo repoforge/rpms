@@ -7,7 +7,7 @@
 Summary: Database administration tool
 Name: mergeant
 Version: 0.62
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://www.gnome-db.org/

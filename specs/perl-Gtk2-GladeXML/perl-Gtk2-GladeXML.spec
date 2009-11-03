@@ -10,7 +10,7 @@
 Summary: Create user interfaces directly from Glade XML files
 Name: perl-Gtk2-GladeXML
 Version: 1.007
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-GladeXML/

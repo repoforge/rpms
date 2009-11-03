@@ -4,7 +4,7 @@
 Summary: The skarnet.org development library
 Name: skalibs
 Version: 0.45
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Other
 URL: http://www.skarnet.org/software/skalibs/

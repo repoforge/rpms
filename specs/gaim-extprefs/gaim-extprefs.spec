@@ -4,7 +4,7 @@
 Summary: Gaim Extended Preferences Plugin
 Name: gaim-extprefs
 Version: 0.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-extprefs.sourceforge.net/

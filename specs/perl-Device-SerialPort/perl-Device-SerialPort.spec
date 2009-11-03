@@ -10,7 +10,7 @@
 Summary: Linux/POSIX emulation of Win32::SerialPort functions
 Name: perl-Device-SerialPort
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Device-SerialPort/

@@ -10,7 +10,7 @@
 Summary: Basic challenge/response authentication scheme
 Name: perl-Authen-Challenge-Basic
 Version: 0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-Challenge-Basic/

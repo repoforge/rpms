@@ -15,7 +15,7 @@
 Summary: Graphical file management program in GTK+ for Linux
 Name: gentoo
 Version: 0.11.55
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.obsession.se/gentoo/

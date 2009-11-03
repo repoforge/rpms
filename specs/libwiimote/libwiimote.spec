@@ -4,7 +4,7 @@
 Summary: Simple Wiimote Library for Linux
 Name: libwiimote
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libwiimote.sourceforge.net/

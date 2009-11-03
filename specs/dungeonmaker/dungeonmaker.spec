@@ -5,7 +5,7 @@
 Summary: Library which grows dungeons
 Name: dungeonmaker
 Version: 2.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://dungeonmaker.sourceforge.net/

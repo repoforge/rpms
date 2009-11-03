@@ -5,7 +5,7 @@
 Summary: Test performances of a remote host by sending it TCP "echo" packets
 Name: echoping
 Version: 5.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://echoping.sourceforge.net/

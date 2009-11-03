@@ -12,7 +12,7 @@
 Summary: Zinf Audio Player
 Name: zinf
 Version: 2.2.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.zinf.org/

@@ -10,7 +10,7 @@
 Summary: Perl module with standard Geo:: ellipsoid a, b, f and 1/f values
 Name: perl-Geo-Ellipsoids
 Version: 0.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Ellipsoids/

@@ -18,7 +18,7 @@
 Summary: Utility to enable the IBM ThinkPad(tm) special keys
 Name: tpb
 Version: 0.6.3
-Release: 3.2
+Release: 3.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/tpb/

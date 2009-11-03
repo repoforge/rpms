@@ -8,7 +8,7 @@
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
 Version: 2009.4.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/

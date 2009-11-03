@@ -10,7 +10,7 @@
 Summary: POE filter wrapped around Compress::LZF
 Name: perl-POE-Filter-LZF
 Version: 1.70
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-LZF/

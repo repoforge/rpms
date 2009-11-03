@@ -5,7 +5,7 @@
 Summary: Painting program for creating icons and pixel-based artwork
 Name: mtpaint
 Version: 3.21
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mtpaint.sourceforge.net/

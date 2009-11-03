@@ -4,7 +4,7 @@
 Summary: Serial line Sniffer
 Name: slsnif
 Version: 0.4.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://slsnif.sourceforge.net/

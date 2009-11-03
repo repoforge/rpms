@@ -10,7 +10,7 @@
 Summary: Perl module to find URIs which may be wrapped in enclosing delimiters
 Name: perl-URI-Find-Delimited
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find-Delimited/

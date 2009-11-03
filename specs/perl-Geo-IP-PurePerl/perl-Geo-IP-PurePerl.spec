@@ -10,7 +10,7 @@
 Summary: Look up country by IP Address
 Name: perl-Geo-IP-PurePerl
 Version: 1.23
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IP-PurePerl/

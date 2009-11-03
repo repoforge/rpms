@@ -6,7 +6,7 @@
 Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code
 Name: gob2
 Version: 2.0.14
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.5z.com/jirka/gob.html

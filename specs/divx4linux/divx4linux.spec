@@ -7,7 +7,7 @@
 Summary: DivX for Linux codec binaries
 Name: divx4linux
 Version: 5.0.5
-Release: 0
+Release: 0%{?dist}
 License: Distributable
 Group: System Environment/Libraries
 URL: http://www.divx.com/divx/linux/

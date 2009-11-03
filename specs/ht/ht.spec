@@ -8,7 +8,7 @@
 Summary: File editor, viewer and analyzer for text, binary and executables
 Name: ht
 Version: 0.8.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://hte.sourceforge.net/

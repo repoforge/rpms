@@ -10,7 +10,7 @@
 Summary: Very simple tool for writing very simple log files
 Name: perl-Log-Trivial
 Version: 0.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Trivial/

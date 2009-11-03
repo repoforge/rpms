@@ -40,7 +40,7 @@
 Summary: Debugging and profiling system for x86-GNU/Linux platforms
 Name: valgrind
 Version: 2.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Debuggers
 URL: http://valgrind.kde.org/

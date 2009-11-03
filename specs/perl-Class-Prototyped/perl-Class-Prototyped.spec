@@ -10,7 +10,7 @@
 Summary: Fast prototype-based OO programming in Perl
 Name: perl-Class-Prototyped
 Version: 1.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Prototyped/

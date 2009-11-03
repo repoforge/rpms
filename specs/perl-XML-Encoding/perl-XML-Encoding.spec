@@ -11,7 +11,7 @@
 Summary: Perl module for parsing XML encoding maps
 Name: perl-XML-Encoding
 Version: 2.07
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Encoding/

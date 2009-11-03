@@ -5,7 +5,7 @@
 Summary: NMB/SMB network scanner
 Name: nmbscan
 Version: 1.2.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://nmbscan.gbarbier.org/

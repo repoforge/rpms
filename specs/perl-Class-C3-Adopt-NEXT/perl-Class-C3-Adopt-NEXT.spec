@@ -10,7 +10,7 @@
 Summary: make NEXT suck less
 Name: perl-Class-C3-Adopt-NEXT
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-C3-Adopt-NEXT/

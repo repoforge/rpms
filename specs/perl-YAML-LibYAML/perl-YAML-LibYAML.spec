@@ -9,7 +9,7 @@
 Summary: Perl module that implements YAML using XS and libyaml
 Name: perl-YAML-LibYAML
 Version: 0.32
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-LibYAML/

@@ -5,7 +5,7 @@
 Summary: Simple network library
 Name: gnet2
 Version: 2.0.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnetlibrary.org/

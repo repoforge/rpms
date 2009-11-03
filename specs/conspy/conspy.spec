@@ -5,7 +5,7 @@
 Summary: Remote control for text mode virtual consoles
 Name: conspy
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: Eclipse Public License v1.0
 Group: Applications/System
 URL: http://ace-host.stuart.id.au/russell/files/conspy/

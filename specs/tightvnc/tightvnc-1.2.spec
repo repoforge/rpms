@@ -34,7 +34,7 @@
 Summary: Graphical remote administration system
 Name: tightvnc
 Version: 1.2.9
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/

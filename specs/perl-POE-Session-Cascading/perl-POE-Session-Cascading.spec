@@ -10,7 +10,7 @@
 Summary: Stack-like POE sessions
 Name: perl-POE-Session-Cascading
 Version: 1.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Session-Cascading/

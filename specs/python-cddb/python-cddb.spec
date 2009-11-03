@@ -9,7 +9,7 @@
 Summary: Fetch information about audio cd's
 Name: python-cddb
 Version: 1.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://cddb-py.sourceforge.net/

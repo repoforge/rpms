@@ -8,7 +8,7 @@
 Summary: C++ High Performance Arbitrary Precision Arithmetic Package
 Name: aptest
 Version: 0.0.1
-Release: 3
+Release: 3%{?dist}
 License: Redistributable, non-commercial use only
 Group: Applications/Engineering
 URL: http://www.apfloat.org/apfloat/

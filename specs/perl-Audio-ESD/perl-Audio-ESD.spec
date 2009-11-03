@@ -10,7 +10,7 @@
 Summary: Extension for talking to the Enlightened Sound Daemon
 Name: perl-Audio-ESD
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Audio-ESD/

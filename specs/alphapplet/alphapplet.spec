@@ -7,7 +7,7 @@
 Summary: Tray applet for displaying phonetic alphabets
 Name: alphapplet
 Version: 0.2
-Release: 0.2
+Release: 0.2%{?dist}
 Group: Applications/System
 License: GPL
 URL: http://dag.wieers.com/home-made/gnome-applets/#alphapplet

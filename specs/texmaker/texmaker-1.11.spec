@@ -13,7 +13,7 @@
 Summary: LaTeX editor
 Name: texmaker
 Version: 1.11
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.xm1math.net/texmaker/

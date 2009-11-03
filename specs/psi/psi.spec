@@ -15,7 +15,7 @@
 Summary: Client application for the Jabber network
 Name: psi
 Version: 0.10
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://psi-im.org/

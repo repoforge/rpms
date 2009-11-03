@@ -10,7 +10,7 @@
 Summary: get data from the weewar.com XML API
 Name: perl-%{real_name}
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Weewar/

@@ -5,7 +5,7 @@
 Summary: Measures bandwidth between two point-to-point connections
 Name: bing
 Version: 1.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://web.cnam.fr/reseau/bing.html

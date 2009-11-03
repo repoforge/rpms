@@ -4,7 +4,7 @@
 Summary: Tool for editing and converting subtitles for DivX films
 Name: GTKsubtitler
 Version: 0.2.4
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gtksubtitler.prv.pl/

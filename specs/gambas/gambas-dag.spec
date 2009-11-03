@@ -4,7 +4,7 @@
 Summary: BASIC compiler, IDE and GUI builder
 Name: gambas
 Version: 0.55
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://gambas.sourceforge.net/

@@ -12,7 +12,7 @@
 Summary: network protocol analyzer
 Name: sniffit
 Version: 0.3.7
-Release: 0.beta.2
+Release: 0.beta.2%{?dist}
 License: Freely distributable
 Group: Applications/Internet
 URL: http://reptile.rug.ac.be/~coder/sniffit/sniffit.html

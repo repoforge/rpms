@@ -4,7 +4,7 @@
 Summary: MPEG ToolboX
 Name: mpgtx
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://mpgtx.sourceforge.net/

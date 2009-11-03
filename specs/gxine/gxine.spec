@@ -19,7 +19,7 @@
 Summary: Frontend for the xine multimedia library
 Name: gxine
 Version: 0.5.904
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/

@@ -10,7 +10,7 @@
 Summary: Ordered associative arrays for Perl
 Name: perl-Tie-IxHash
 Version: 1.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-IxHash/

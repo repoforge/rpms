@@ -5,7 +5,7 @@
 Summary: Versatile desktop calculator library
 Name: libqalculate
 Version: 0.9.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://qalculate.sourceforge.net/

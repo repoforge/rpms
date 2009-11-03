@@ -10,7 +10,7 @@
 Summary: Perl extension for representing and manipulating MAC addresses
 Name: perl-Net-MAC
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: GPL/LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-MAC/

@@ -6,7 +6,7 @@
 Summary: Console ncurses based ICQ2000, Yahoo!, MSN, AIM, IRC client
 Name: centericq
 Version: 4.21.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://konst.org.ua/centericq/

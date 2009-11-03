@@ -7,7 +7,7 @@
 Summary: Portable lossless data compression library
 Name: lzo2
 Version: 2.02
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/

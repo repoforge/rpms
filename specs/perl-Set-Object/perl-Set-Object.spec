@@ -10,7 +10,7 @@
 Summary: Set of objects and strings
 Name: perl-Set-Object
 Version: 1.27
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Object/

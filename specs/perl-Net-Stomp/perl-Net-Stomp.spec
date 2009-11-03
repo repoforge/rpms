@@ -10,7 +10,7 @@
 Summary: A Streaming Text Orientated Messaging Protocol Client
 Name: perl-Net-Stomp
 Version: 0.34
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Stomp/

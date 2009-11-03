@@ -10,7 +10,7 @@
 Summary: Site policy for file I/O functions
 Name: perl-File-Policy
 Version: 1.005
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Policy/

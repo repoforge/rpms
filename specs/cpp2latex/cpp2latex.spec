@@ -4,7 +4,7 @@
 Summary: Convert C++ code to latex
 Name: cpp2latex
 Version: 2.3
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.arnoldarts.de/cpp2latex.html

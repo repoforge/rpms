@@ -17,7 +17,7 @@
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
 Version: 4.00
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.memtest.org/

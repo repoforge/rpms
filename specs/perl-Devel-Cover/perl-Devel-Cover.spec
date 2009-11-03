@@ -10,7 +10,7 @@
 Summary: Code coverage metrics for Perl
 Name: perl-Devel-Cover
 Version: 0.65
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Cover/

@@ -11,7 +11,7 @@
 Summary: Base class for writing DBI drivers for plain files
 Name: perl-DBD-File
 Version: 0.22
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-File/

@@ -6,7 +6,7 @@
 Summary: Graphical web development application for experienced users
 Name: bluefish
 Version: 0.13
-Release: 1.dag
+Release: 1.dag%{?dist}
 Group: Development/Tools
 License: GPL
 URL: http://bluefish.openoffice.nl/

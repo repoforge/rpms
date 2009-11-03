@@ -5,7 +5,7 @@
 Summary: Gettext po file editor
 Name: gtranslator
 Version: 1.1.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://gtranslator.sourceforge.net/

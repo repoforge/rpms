@@ -26,7 +26,7 @@
 Summary: City simulation game
 Name: lincity
 Version: 1.13.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lincity.sourceforge.net/

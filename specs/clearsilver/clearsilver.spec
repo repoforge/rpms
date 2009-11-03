@@ -10,7 +10,7 @@
 Summary: ClearSilver HTML template system
 Name: clearsilver
 Version: 0.10.4
-Release: 2
+Release: 2%{?dist}
 License: Apache License style
 Group: Development/Libraries
 URL: http://www.clearsilver.net/

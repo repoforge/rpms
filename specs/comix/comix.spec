@@ -5,7 +5,7 @@
 Summary: Comic book viewer
 Name: comix
 Version: 4.0.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://comix.sourceforge.net/

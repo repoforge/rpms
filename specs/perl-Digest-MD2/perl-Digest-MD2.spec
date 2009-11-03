@@ -10,7 +10,7 @@
 Summary: Interface to the MD2 algorithm
 Name: perl-Digest-MD2
 Version: 2.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD2/

@@ -6,7 +6,7 @@
 Summary: C++ wrapper for gnome-vfs
 Name: gnome-vfsmm26
 Version: 2.18.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

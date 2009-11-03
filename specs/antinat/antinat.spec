@@ -9,7 +9,7 @@
 Summary: SOCKS4 and SOCKS5 compliant SOCKS server
 Name: antinat
 Version: 0.90
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://yallara.cs.rmit.edu.au/~malsmith/products/antinat/

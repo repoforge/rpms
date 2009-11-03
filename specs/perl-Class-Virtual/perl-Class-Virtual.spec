@@ -10,7 +10,7 @@
 Summary: Base class for virtual base classes
 Name: perl-Class-Virtual
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Virtual/

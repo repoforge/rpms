@@ -10,7 +10,7 @@
 Summary: Bringing the power of POE to CPAN smoke testing
 Name: perl-POE-Component-CPAN-YACSmoke
 Version: 1.36
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-CPAN-YACSmoke/

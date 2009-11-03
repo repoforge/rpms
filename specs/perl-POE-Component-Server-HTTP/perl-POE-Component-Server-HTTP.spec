@@ -10,7 +10,7 @@
 Summary: Foundation of a POE HTTP Daemon
 Name: perl-POE-Component-Server-HTTP
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-HTTP/

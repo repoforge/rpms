@@ -11,7 +11,7 @@
 Summary: Perl module to create context-senstive return values
 Name: perl-Contextual-Return
 Version: 0.2.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Contextual-Return/

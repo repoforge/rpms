@@ -5,7 +5,7 @@
 Summary: Display the status of a Big Brother page in the system tray
 Name: kbbtray
 Version: 0.07
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://coldstonelabs.org/index.jsp?projectIndex=4

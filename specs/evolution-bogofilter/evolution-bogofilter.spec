@@ -8,7 +8,7 @@
 Summary: Evolution plugin for bogofilter support
 Name: evolution-bogofilter
 Version: 0.2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://people.altlinux.ru/~mhz/software/projects/bf-eplugin/

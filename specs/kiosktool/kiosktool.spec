@@ -21,7 +21,7 @@
 Summary: KIOSK administration admin tool
 Name: kiosktool
 Version: 0.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://extragear.kde.org/apps/kiosktool.php

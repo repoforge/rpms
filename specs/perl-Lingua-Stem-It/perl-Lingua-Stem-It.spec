@@ -10,7 +10,7 @@
 Summary: Porter's stemming algorithm for Italian
 Name: perl-Lingua-Stem-It
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-It/

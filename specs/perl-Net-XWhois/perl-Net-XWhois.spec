@@ -10,7 +10,7 @@
 Summary: Whois Client Interface
 Name: perl-Net-XWhois
 Version: 0.90
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-XWhois/

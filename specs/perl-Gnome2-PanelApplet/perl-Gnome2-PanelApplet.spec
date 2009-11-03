@@ -10,7 +10,7 @@
 Summary: Perl interface to GNOME's applet library
 Name: perl-Gnome2-PanelApplet
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2-PanelApplet/

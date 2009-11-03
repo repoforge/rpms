@@ -11,7 +11,7 @@
 Summary: Perl module to manage Yahoo Photos
 Name: perl-Yahoo-Photos
 Version: 0.0.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Yahoo-Photos/

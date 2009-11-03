@@ -12,7 +12,7 @@
 Summary: Program for editing subtitles in the SRT format
 Name: ksubtile
 Version: 1.0.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ksubtile.sourceforge.net/

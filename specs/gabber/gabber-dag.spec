@@ -6,7 +6,7 @@
 Summary: Client for the Jabber instant messaging system.
 Name: gabber
 Version: 1.9.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://gabber.jabberstudio.org/

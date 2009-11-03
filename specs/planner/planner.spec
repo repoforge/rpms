@@ -12,7 +12,7 @@
 Summary: Graphical project management tool
 Name: planner
 Version: 0.12.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://planner.imendio.org/

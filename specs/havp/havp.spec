@@ -6,7 +6,7 @@
 Summary: HTTP anti-virus proxy filter
 Name: havp
 Version: 0.90
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.server-side.de/

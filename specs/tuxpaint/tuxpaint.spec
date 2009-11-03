@@ -10,7 +10,7 @@
 Summary: Drawing program designed for young children
 Name: tuxpaint
 Version: 0.9.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.newbreedsoftware.com/tuxpaint/

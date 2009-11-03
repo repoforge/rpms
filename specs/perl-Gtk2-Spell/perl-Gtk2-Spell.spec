@@ -10,7 +10,7 @@
 Summary: Perl module with bindings for GtkSpell with Gtk2
 Name: perl-Gtk2-Spell
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Spell/

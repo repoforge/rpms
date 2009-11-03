@@ -9,7 +9,7 @@
 Summary: Perl module named Statistics-Basic
 Name: perl-Statistics-Basic
 Version: 1.6601
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Basic/

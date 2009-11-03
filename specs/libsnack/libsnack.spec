@@ -15,7 +15,7 @@
 Summary: Snack Sound Toolkit
 Name: libsnack
 Version: 2.2.9
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.speech.kth.se/snack/

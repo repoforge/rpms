@@ -10,7 +10,7 @@
 Summary: Perl module that reimplements mod_digest in Perl
 Name: perl-Apache-AuthDigest
 Version: 0.022
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-AuthDigest/

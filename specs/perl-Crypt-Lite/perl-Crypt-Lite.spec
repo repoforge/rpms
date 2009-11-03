@@ -9,7 +9,7 @@
 Summary: Easy to use symmetric data encryption and decryption
 Name: perl-Crypt-Lite
 Version: 0.82.11
-Release: 1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Lite/

@@ -12,7 +12,7 @@
 Summary: Tool which presents you a list of internet streaming radio stations
 Name: kderadiostation
 Version: 0.6
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kderadiostation.coolprojects.org/

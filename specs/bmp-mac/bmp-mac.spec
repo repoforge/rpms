@@ -6,7 +6,7 @@
 Summary: Monkey's Audio Codec (MAC/APE) playback plugin for the Beep Media Player
 Name: bmp-mac
 Version: 0.1.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://supermmx.org/linux/mac/

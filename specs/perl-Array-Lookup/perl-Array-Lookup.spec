@@ -10,7 +10,7 @@
 Summary: Lookup strings in arrays or hash tables with abbreviation
 Name: perl-Array-Lookup
 Version: 2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Lookup/

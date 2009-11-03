@@ -11,7 +11,7 @@
 Summary: Framework for building reusable web-applications
 Name: perl-CGI-Application
 Version: 4.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Application/

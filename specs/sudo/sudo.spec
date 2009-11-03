@@ -11,7 +11,7 @@
 Summary: Allows restricted root access for specified users.
 Name: sudo
 Version: 1.6.8p12
-Release: 0.12
+Release: 0.12%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://www.courtesan.com/sudo/

@@ -5,7 +5,7 @@
 Summary: Ncurses PGN editor and front end to chess engines
 Name: cboard
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://bjk.sourceforge.net/cboard/

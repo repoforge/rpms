@@ -16,7 +16,7 @@
 Summary: Planet image rendering into the X root window
 Name: xplanet
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://xplanet.sourceforge.net/

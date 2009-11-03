@@ -4,7 +4,7 @@
 Summary: Real Time software audio/video Encoder library
 Name: rte
 Version: 0.5.6
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/

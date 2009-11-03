@@ -12,7 +12,7 @@
 Summary: Layer2 Ethernet pinger
 Name: arping2
 Version: 2.06
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.habets.pp.se/synscan/programs.php

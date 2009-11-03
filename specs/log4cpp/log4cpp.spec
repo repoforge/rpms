@@ -5,7 +5,7 @@
 Summary: Logging library for c++
 Name: log4cpp
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://sourceforge.net/projects/log4cpp/

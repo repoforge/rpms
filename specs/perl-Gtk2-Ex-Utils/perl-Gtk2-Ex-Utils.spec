@@ -10,7 +10,7 @@
 Summary: Perl module that implements extra Gtk2 Utilities for working with Gnome2/Gtk2
 Name: perl-Gtk2-Ex-Utils
 Version: 0.09
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Ex-Utils/

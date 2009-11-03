@@ -9,7 +9,7 @@
 Summary: Common files for the ACX kernel module
 Name: %{kmod_name}-kmod-common
 Version: 0.0.0.%{snapshot}
-Release: 1
+Release: 1%{?dist}
 Group: System Environment/Kernel
 License: GPL
 URL: http://acx100.sourceforge.net/

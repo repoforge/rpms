@@ -5,7 +5,7 @@
 Summary: Address book application
 Name: rubrica
 Version: 1.1.60
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://rubrica.berlios.de/

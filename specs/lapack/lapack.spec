@@ -4,7 +4,7 @@
 Summary: LAPACK libraries for numerical linear algebra.
 Name: lapack
 Version: 3.1.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://www.netlib.org/lapack/

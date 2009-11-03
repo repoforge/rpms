@@ -10,7 +10,7 @@
 Summary: Centralized logging of debug, error, status and success messages
 Name: perl-CGI-Log
 Version: 1.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Log/

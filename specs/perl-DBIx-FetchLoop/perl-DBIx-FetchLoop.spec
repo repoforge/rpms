@@ -10,7 +10,7 @@
 Summary: Fetch with change detection and aggregates
 Name: perl-DBIx-FetchLoop
 Version: 0.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-FetchLoop/

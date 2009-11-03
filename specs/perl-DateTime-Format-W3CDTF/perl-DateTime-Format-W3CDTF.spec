@@ -10,7 +10,7 @@
 Summary: Perl module to parse and format W3CDTF datetime strings
 Name: perl-DateTime-Format-W3CDTF
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-W3CDTF/

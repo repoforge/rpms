@@ -10,7 +10,7 @@
 Summary: Useful tools for Gnome2/Gtk2 Perl GUI design
 Name: perl-%{real_name}
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Ex-Dialogs/

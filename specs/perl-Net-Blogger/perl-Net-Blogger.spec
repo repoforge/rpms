@@ -10,7 +10,7 @@
 Summary: OOP-ish interface for accessing a weblog via the Blogger XML-RPC API
 Name: perl-Net-Blogger
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Blogger/

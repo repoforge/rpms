@@ -8,7 +8,7 @@
 Summary: Graphical Download manager using wget
 Name: gwget
 Version: 0.14
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gwget.sourceforge.net/

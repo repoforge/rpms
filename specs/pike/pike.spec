@@ -31,7 +31,7 @@
 Summary: General purpose programming language
 Name: pike
 Version: 7.6.24
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL/LGPL/MPL
 Group: Development/Languages
 URL: http://pike.ida.liu.se/

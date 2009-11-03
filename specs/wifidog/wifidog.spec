@@ -4,7 +4,7 @@
 Summary: Captive portal solution for wireless hotspots
 Name: wifidog
 Version: 1.1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 Source: http://dl.sf.net/wifidog/wifidog-%{version}.tar.gz

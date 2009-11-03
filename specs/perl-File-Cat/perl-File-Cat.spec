@@ -10,7 +10,7 @@
 Summary: Perl implementation of cat
 Name: perl-File-Cat
 Version: 1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Cat/

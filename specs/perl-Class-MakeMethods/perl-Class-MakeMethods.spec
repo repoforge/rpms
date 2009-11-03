@@ -10,7 +10,7 @@
 Summary: Generate common types of methods
 Name: perl-Class-MakeMethods
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MakeMethods/

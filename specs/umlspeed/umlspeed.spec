@@ -4,7 +4,7 @@
 Summary: Compiler for C-style language of UML notation
 Name: umlspeed
 Version: 0.19
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://umlspeed.sourceforge.net/

@@ -9,7 +9,7 @@
 Summary: Perl module to check whether a self process is already running
 Name: perl-Proc-PID_File
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-PID_File/

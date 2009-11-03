@@ -9,7 +9,7 @@
 Summary: Bluetooth firmware loader
 Name: bluez-bluefw
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://bluez.sourceforge.net/

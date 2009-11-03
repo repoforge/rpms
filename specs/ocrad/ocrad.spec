@@ -5,7 +5,7 @@
 Summary: GNU OCR (Optical Character Recognition) program
 Name: ocrad
 Version: 0.17
-Release: 1
+Release: 1%{?dist}
 License: GPLv3
 Group: Applications/Publishing
 URL: http://www.gnu.org/software/ocrad/ocrad.html

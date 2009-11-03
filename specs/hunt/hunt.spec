@@ -5,7 +5,7 @@
 Summary: TCP hijacking tool
 Name: hunt
 Version: 1.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://lin.fsid.cvut.cz/~kra/#HUNT

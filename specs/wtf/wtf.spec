@@ -5,7 +5,7 @@
 Summary: Finds acronyms and filename suffixes information
 Name: wtf
 Version: 0.0.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://cronus.comp.utas.edu.au/~thsutton/computing/wtf.html

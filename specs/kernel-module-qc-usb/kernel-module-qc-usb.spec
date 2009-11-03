@@ -32,7 +32,7 @@
 Summary: Driver for Logitech QuickCam webcams using qc-usb
 Name: kernel-module-qc-usb
 Version: 0.6.1
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://qce-ga.sourceforge.net/

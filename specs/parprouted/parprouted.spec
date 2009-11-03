@@ -7,7 +7,7 @@
 Summary: Proxy ARP IP bridging daemon
 Name: parprouted
 Version: 0.70
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.hazard.maks.net/

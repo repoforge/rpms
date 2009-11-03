@@ -10,7 +10,7 @@
 Summary: Perl module named MQSeries-Message
 Name: perl-MQSeries-Message
 Version: 1.25
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MQSeries-Message/

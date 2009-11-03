@@ -6,7 +6,7 @@
 Summary: Berkeley VI Editor
 Name: nvi
 Version: 1.81.6
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Editors
 URL: http://www.bostic.com/vi/

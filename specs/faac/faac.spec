@@ -4,7 +4,7 @@
 Summary: Reference encoder and encoding library for MPEG2/4 AAC
 Name: faac
 Version: 1.26
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://www.audiocoding.com/

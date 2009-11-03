@@ -4,7 +4,7 @@
 Summary: C++  web services client library
 Name: wsdlpull
 Version: 1.20
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://wsdlpull.sourceforge.net/

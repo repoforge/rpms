@@ -10,7 +10,7 @@
 Summary: Base Class for IO::Compress modules
 Name: perl-IO-Compress-Base
 Version: 2.015
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Compress-Base/

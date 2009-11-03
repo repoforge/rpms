@@ -10,7 +10,7 @@
 Summary: "lazy" (defered/on-demand) variables
 Name: perl-Data-Lazy
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Lazy/

@@ -10,7 +10,7 @@
 Summary: Easy to use C<HTML::TokeParser> interface
 Name: perl-HTML-TokeParser-Simple
 Version: 3.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-TokeParser-Simple/

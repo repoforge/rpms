@@ -13,7 +13,7 @@
 Summary: Read EPG information for Premiere TV channels
 Name: premiereepg2vdr
 Version: 0.0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/
 URL: http://www.vdr-wiki.de/wiki/index.php/Premiereepg2vdr

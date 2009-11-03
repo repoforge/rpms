@@ -6,7 +6,7 @@
 Summary: FUSE filesystem for accessing FTP hosts using libcurl
 Name: fuse-curlftpfs
 Version: 0.9.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://curlftpfs.sourceforge.net/

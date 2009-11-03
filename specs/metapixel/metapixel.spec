@@ -13,7 +13,7 @@
 Summary: Photo mosaic generator
 Name: metapixel
 Version: 1.0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.complang.tuwien.ac.at/~schani/metapixel/

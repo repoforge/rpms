@@ -4,7 +4,7 @@
 Summary: HTTP regression testing and benchmarking utility
 Name: siege
 Version: 2.66
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.joedog.org/JoeDog/Siege/

@@ -5,7 +5,7 @@
 Summary: Library for parsing, writing and creating RSS files or streams
 Name: libmrss
 Version: 0.17.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www2.autistici.org/bakunin/libmrss/

@@ -10,7 +10,7 @@
 Summary: Caching capabilities for YAML::LoadFile
 Name: perl-YAML-LoadFileCached
 Version: 0.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-LoadFileCached/

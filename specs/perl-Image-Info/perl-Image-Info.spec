@@ -44,7 +44,7 @@
 Summary: Extract meta information from image files
 Name: perl-Image-Info
 Version: 1.29
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Info/

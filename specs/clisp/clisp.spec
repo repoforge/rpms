@@ -7,7 +7,7 @@
 Summary: ANSI Common Lisp implementation
 Name: clisp
 Version: 2.46
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://clisp.cons.org

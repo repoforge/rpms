@@ -10,7 +10,7 @@
 Summary: Plugin for localizing/delocalizing paths and parameters
 Name: perl-Catalyst-Plugin-I18N-Request
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-I18N-Request/

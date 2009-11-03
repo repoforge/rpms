@@ -10,7 +10,7 @@
 Summary: Add hooks on methods from other classes
 Name: perl-Class-Hook
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Hook/

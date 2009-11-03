@@ -12,7 +12,7 @@
 Summary: Passive OS fingerprinting tool
 Name: p0f
 Version: 2.0.8
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://lcamtuf.coredump.cx/p0f.shtml

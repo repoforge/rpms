@@ -7,7 +7,7 @@
 Summary: Tool for actively monitoring log files.
 Name: swatch
 Version: 3.1.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://swatch.sourceforge.net/

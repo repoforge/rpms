@@ -5,7 +5,7 @@
 Summary: OpenGL 3D modeller and renderer
 Name: moonlight
 Version: 0.5.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.moonlight3d.org/

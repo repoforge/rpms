@@ -9,7 +9,7 @@
 Summary: Glues object frameworks together transparently
 Name: perl-Class-Container
 Version: 0.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Container/

@@ -13,7 +13,7 @@
 Summary: SDL/OpenGL space shoot'em up game
 Name: critter
 Version: 1.0.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://criticalmass.sourceforge.net/critter.php

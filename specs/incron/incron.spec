@@ -4,7 +4,7 @@
 Summary: Inotify cron system
 Name: incron
 Version: 0.5.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://inotify.aiken.cz/

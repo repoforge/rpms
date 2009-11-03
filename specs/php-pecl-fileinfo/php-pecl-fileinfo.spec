@@ -6,7 +6,7 @@
 Summary: PECL package to get file information through libmagic
 Name: php-pecl-fileinfo
 Version: 1.0.4
-Release: 1
+Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/Fileinfo

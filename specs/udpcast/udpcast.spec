@@ -6,7 +6,7 @@ Summary: UDP broadcast file distribution and installation
 Name: udpcast
 %define real_version 20081116
 Version: 0.0.20081116
-Release: 1
+Release: 1%{?dist}
 License: GPL or BSD
 Group: Applications/System
 URL: http://udpcast.linux.lu/

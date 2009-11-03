@@ -10,7 +10,7 @@
 Summary: Recursive map, apply a block to a data structure
 Name: perl-Data-Rmap
 Version: 0.62
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Rmap/

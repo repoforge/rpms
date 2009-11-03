@@ -10,7 +10,7 @@
 Summary: C style enumerated types and bitmask flags
 Name: perl-enum
 Version: 1.016
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/enum/

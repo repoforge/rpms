@@ -12,7 +12,7 @@
 Summary: Geography learning tool
 Name: kgeography
 Version: 0.4
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://kgeography.berlios.de/

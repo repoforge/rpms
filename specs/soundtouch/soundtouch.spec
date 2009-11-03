@@ -4,7 +4,7 @@
 Summary: Audio Processing library for changing Tempo, Pitch and Playback Rates
 Name: soundtouch
 Version: 1.3.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://sky.prohosting.com/oparviai/soundtouch/

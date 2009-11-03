@@ -4,7 +4,7 @@
 Summary: Packet generator
 Name: ipsorc
 Version: 1.7.5
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.informony.com/ipsorcery.html

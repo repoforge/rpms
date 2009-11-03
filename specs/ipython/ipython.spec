@@ -6,7 +6,7 @@
 Summary: Enhanced interactive Python shell
 Name: ipython
 Version: 0.7.1.fix1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://ipython.scipy.org/

@@ -42,7 +42,7 @@
 Summary: Television application for video4linux compliant devices
 Name: xawtv
 Version: 3.95
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://bytesex.org/xawtv/

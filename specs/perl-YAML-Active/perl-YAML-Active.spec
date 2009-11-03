@@ -10,7 +10,7 @@
 Summary: Combine data and logic in YAML
 Name: perl-YAML-Active
 Version: 1.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Active/

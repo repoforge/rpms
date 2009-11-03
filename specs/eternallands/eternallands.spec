@@ -8,7 +8,7 @@
 Summary: Free MMORPG in beta stage
 Name: eternallands
 Version: 1.0.1
-Release: 2
+Release: 2%{?dist}
 License: Other
 Group: Amusements/Games
 URL: http://www.eternal-lands.com/

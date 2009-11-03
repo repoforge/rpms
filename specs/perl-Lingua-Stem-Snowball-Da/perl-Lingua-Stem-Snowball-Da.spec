@@ -10,7 +10,7 @@
 Summary: Porters stemming algorithm for Denmark
 Name: perl-Lingua-Stem-Snowball-Da
 Version: 1.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Stem-Snowball-Da/

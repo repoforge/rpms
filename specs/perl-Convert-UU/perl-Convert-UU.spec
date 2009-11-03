@@ -10,7 +10,7 @@
 Summary: Module for uuencode and uudecode
 Name: perl-Convert-UU
 Version: 0.5201
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UU/

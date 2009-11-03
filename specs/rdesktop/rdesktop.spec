@@ -13,7 +13,7 @@
 Summary: X client for remote desktop into Windows Terminal Server
 Name: rdesktop
 Version: 1.6.0
-Release: 0.1
+Release: 0.1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.rdesktop.org/

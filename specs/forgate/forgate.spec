@@ -6,7 +6,7 @@
 Summary: Packet redirection tool for interception on switched networks
 Name: forgate
 Version: 0.9
-Release: 0.b.2
+Release: 0.b.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://forgate.sourceforge.net/

@@ -6,7 +6,7 @@
 Summary: Python SMB Password Hash Generator Module
 Name: python-smbpasswd
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://barryp.org/software/py-smbpasswd/

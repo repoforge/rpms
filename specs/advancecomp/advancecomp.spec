@@ -5,7 +5,7 @@
 Summary: Recompression utilities for .PNG, .MNG and .ZIP files
 Name: advancecomp
 Version: 1.15
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://advancemame.sourceforge.net/

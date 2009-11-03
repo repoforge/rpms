@@ -30,7 +30,7 @@
 Summary: Libvisual port of the G-Force visualisation plugin
 Name: libvisual-gforce
 Version: 0.1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://libvisual.sourceforge.net/v2/

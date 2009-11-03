@@ -11,7 +11,7 @@
 Summary: Perl interface to the MD5 algorithm
 Name: perl-Digest-MD5
 Version: 2.39
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-MD5/

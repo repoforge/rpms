@@ -10,7 +10,7 @@
 Summary: Perl standalone library for communicating with Jabber servers
 Name: perl-Jabber-Lite
 Version: 0.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Jabber-Lite/

@@ -10,7 +10,7 @@
 Summary: Share data between processes via filesystem
 Name: perl-File-Cache
 Version: 0.16
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Cache/

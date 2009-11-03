@@ -6,7 +6,7 @@
 Summary:  LDAP Account Manager
 Name: ldap-account-manager
 Version: 0.4.6
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://lam.sourceforge.net/

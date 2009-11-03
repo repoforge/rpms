@@ -11,7 +11,7 @@
 Summary: Recover weak LEAP and PPTP passwords
 Name: asleap
 Version: 1.4
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://asleap.sourceforge.net/

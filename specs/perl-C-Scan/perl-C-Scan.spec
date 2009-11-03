@@ -10,7 +10,7 @@
 Summary: Scan C language files for easily recognized constructs
 Name: perl-C-Scan
 Version: 0.74
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/C-Scan/

@@ -10,7 +10,7 @@
 Summary: Database which maps IP blocks on countries
 Name: perl-Geo-IP
 Version: 1.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IP/

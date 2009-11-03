@@ -10,7 +10,7 @@
 Summary: Access the W3Cs online HTML validator
 Name: perl-WebService-Validator-HTML-W3C
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Validator-HTML-W3C/

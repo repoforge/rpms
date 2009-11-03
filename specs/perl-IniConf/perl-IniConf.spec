@@ -10,7 +10,7 @@
 Summary: Perl module named IniConf
 Name: perl-IniConf
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IniConf/

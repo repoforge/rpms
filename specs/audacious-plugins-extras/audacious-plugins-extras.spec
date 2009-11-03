@@ -7,7 +7,7 @@
 Summary: Extra playback plugins (AAC, MP3 and WMA) for Audacious
 Name: audacious-plugins-extras
 Version: 1.3.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://audacious-media-player.org/

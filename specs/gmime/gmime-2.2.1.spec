@@ -4,7 +4,7 @@
 Summary: Library for creating and parsing MIME messages
 Name: gmime
 Version: 2.2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://spruce.sourceforge.net/gmime/

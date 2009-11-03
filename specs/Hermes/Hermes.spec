@@ -4,7 +4,7 @@
 Summary: Pixel format conversion library
 Name: Hermes
 Version: 1.3.3
-Release: 4
+Release: 4%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://clanlib.org/hermes/

@@ -10,7 +10,7 @@
 Summary: Look up the country of an ipaddress.
 Name: perl-Geo-IPfree
 Version: 0.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IPfree/

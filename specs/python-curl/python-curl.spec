@@ -9,7 +9,7 @@
 Summary: Python interface to libcurl
 Name: python-curl
 Version: %{curl_version}
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pycurl.sourceforge.net/

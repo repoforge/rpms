@@ -10,7 +10,7 @@
 Summary: Common Scalar and List utility subroutines
 Name: perl-Scalar-List-Utils
 Version: 1.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Scalar-List-Utils/

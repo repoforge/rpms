@@ -10,7 +10,7 @@
 Summary: NULL Encryption Algorithm
 Name: perl-Crypt-NULL
 Version: 1.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-NULL/

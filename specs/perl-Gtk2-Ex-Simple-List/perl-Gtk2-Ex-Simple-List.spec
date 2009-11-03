@@ -10,7 +10,7 @@
 Summary: Perl module with bindings to Gtk2's complex MVC list widget
 Name: perl-Gtk2-Ex-Simple-List
 Version: 0.50
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Ex-Simple-List/

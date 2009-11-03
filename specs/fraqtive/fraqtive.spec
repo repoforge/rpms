@@ -5,7 +5,7 @@
 Summary: Draws Mandelbrot and Julia fractals
 Name: fraqtive
 Version: 0.3.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zeus.polsl.gliwice.pl/~mimec/index.php?id=fraqtive

@@ -7,7 +7,7 @@
 Summary: Generates fuzzy clock output
 Name: fuzzyclock
 Version: 0.3
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://home.gna.org/fuzzyclock/

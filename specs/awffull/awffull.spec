@@ -5,7 +5,7 @@
 Summary: Web server log analysis program
 Name: awffull
 Version: 3.10.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.stedee.id.au/awffull

@@ -6,7 +6,7 @@
 Summary: Config file tracker
 Name: cft
 Version: 0.2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://cft.et.redhat.com/

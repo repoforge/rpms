@@ -7,7 +7,7 @@
 Summary: Mpegplus (mpc) playback plugin for the Beep Media Player
 Name: bmp-musepack
 Version: 1.2
-Release: 3%{?prever:.%{prever}}
+Release: 3%{?prever:.%{prever}}%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.musepack.net/

@@ -9,7 +9,7 @@
 Summary: Tool for managing notes
 Name: knowit
 Version: 0.10
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://knowit.sourceforge.net/

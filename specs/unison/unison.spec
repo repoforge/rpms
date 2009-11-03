@@ -12,7 +12,7 @@
 Summary: File-synchronization tool
 Name: unison
 Version: 2.27.57
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.cis.upenn.edu/~bcpierce/unison/

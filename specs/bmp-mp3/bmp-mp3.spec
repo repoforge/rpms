@@ -10,7 +10,7 @@
 Summary: MP3 playback plugin for the Beep Media Player
 Name: bmp-mp3
 Version: 0.9.7.1
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beep-media-player.org/

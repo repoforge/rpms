@@ -9,7 +9,7 @@
 Summary: Control when subroutines will be loaded
 Name: perl-load
 Version: 0.19
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/load/

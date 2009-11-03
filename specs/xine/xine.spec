@@ -17,7 +17,7 @@
 Summary: Free multimedia player
 Name: xine
 Version: 0.99.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/

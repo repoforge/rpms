@@ -24,7 +24,7 @@
 Summary: GUI toolkit based on Xlib
 Name: xforms
 Version: 1.0.91
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://world.std.com/~xforms/

@@ -6,7 +6,7 @@
 Summary: Gnome panel applet for hardware sensors
 Name: gnome-applet-sensors
 Version: 1.5.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://sensors-applet.sourceforge.net/

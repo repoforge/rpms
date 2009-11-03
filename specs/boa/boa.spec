@@ -10,7 +10,7 @@
 Summary: The boa web server
 Name: boa
 Version: 0.94.14
-Release: %{?rcver:0.%{rcver}.}1
+Release: %{?rcver:0.%{rcver}.}1%{?dist}
 Group: System Environment/Daemons
 License: GPL
 URL: http://www.boa.org/

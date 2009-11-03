@@ -9,7 +9,7 @@
 Summary: Calculate critical values and upper probabilities of statistics
 Name: perl-Statistics-Distributions
 Version: 1.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Distributions/

@@ -10,7 +10,7 @@
 Summary: POE component implementing a RFC 865 Daytime server
 Name: perl-POE-Component-Server-Daytime
 Version: 1.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-Daytime/

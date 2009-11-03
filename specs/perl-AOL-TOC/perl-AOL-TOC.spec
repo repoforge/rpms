@@ -11,7 +11,7 @@
 Summary: AOL-TOC module for perl
 Name: perl-AOL-TOC
 Version: 0.340
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AOL-TOC/

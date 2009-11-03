@@ -4,7 +4,7 @@
 Summary: Lua scripting language
 Name: lua
 Version: 5.1.4
-Release: 1
+Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://www.lua.org/

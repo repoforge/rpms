@@ -7,7 +7,7 @@
 Summary: The GNU Krell Monitor, stacked system monitors in one process
 Name: gkrellm
 Version: 2.2.7
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.gkrellm.net/

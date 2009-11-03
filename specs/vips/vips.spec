@@ -7,7 +7,7 @@
 Summary: Image processing suite for extremely large images and colorimetry
 Name: vips
 Version: 7.12.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vips.ecs.soton.ac.uk/

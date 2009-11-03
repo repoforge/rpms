@@ -10,7 +10,7 @@
 Summary: Dump symbol names or the symbol table
 Name: perl-Devel-Symdump
 Version: 2.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Symdump/

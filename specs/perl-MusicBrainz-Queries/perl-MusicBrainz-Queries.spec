@@ -10,7 +10,7 @@
 Summary: Perl module that implements MusicBrainz RDF Query Constants
 Name: perl-MusicBrainz-Queries
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MusicBrainz-Queries/

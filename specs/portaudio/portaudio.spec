@@ -12,7 +12,7 @@ Summary: Free, cross platform, open-source, audio I/O library
 Name: portaudio
 %define real_version v19_20071207
 Version: 19
-Release: 1.20071207
+Release: 1.20071207%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://www.portaudio.com/

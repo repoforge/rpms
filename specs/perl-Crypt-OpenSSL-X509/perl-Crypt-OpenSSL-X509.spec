@@ -10,7 +10,7 @@
 Summary: Crypt::OpenSSL::X509 module
 Name: perl-Crypt-OpenSSL-X509
 Version: 0.7
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-X509/

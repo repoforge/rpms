@@ -4,7 +4,7 @@
 Name:           gtk-nodoka-engine
 Version:        0.7.1
 Packager:       Heiko Adams <info-2007@fedora-blog.de>
-Release:        1
+Release:        1%{?dist}
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
 Source:         %{name}-%{version}.tar.gz

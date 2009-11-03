@@ -10,7 +10,7 @@
 Summary: Validate XML against a subset of W3C XML Schema
 Name: perl-XML-Validator-Schema
 Version: 1.10
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Validator-Schema/

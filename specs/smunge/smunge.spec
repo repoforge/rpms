@@ -5,7 +5,7 @@
 Summary: Funneling POP proxy
 Name: smunge
 Version: 1.3.7
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.i2pi.com/smunge/

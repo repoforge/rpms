@@ -12,7 +12,7 @@
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
 Version: 0.7.2
-Release: 1
+Release: 1%{?dist}
 License: BSD and (Artistic or GPLv2+ or LGPLv2+) and LGPLv2
 Group: Development/Languages
 URL: http://www.tortall.net/projects/yasm/

@@ -10,7 +10,7 @@
 Summary: Read-only access to UNIX-mailboxes
 Name: perl-Mail-MboxParser
 Version: 0.55
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-MboxParser/

@@ -4,7 +4,7 @@
 Summary: MSWord 6/7/8/9 binary file format to HTML converter
 Name: wv
 Version: 1.0.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://wvware.sourceforge.net/

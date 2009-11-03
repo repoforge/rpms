@@ -33,7 +33,7 @@
 Summary: Integrated environment for managing data.
 Name: kexi
 Version: 0.9
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://www.koffice.org/kexi/

@@ -10,7 +10,7 @@
 Summary: Provide simple Radius client facilities
 Name: perl-RadiusPerl
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RadiusPerl/

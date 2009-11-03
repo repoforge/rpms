@@ -4,7 +4,7 @@
 Summary: Command line MP3 editor
 Name: cutmp3
 Version: 1.8.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.puchalla-online.de/cutmp3.html

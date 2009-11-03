@@ -6,7 +6,7 @@
 Summary: Reports XMMS status via named pipe
 Name: xmms-infopipe
 Version: 1.3
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.beastwithin.org/users/wwwwolf/code/xmms/infopipe.html

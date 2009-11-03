@@ -8,7 +8,7 @@
 Summary: Python module to handle audio metadata
 Name: python-mutagen
 Version: 1.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.sacredchao.net/quodlibet/wiki/Development/Mutagen

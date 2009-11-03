@@ -5,7 +5,7 @@
 Summary: C library for the Flickr API and utility programs
 Name: flickcurl
 Version: 1.3
-Release: 1
+Release: 1%{?dist}
 License: LGPL 2.1 / GPL 2 / Apache 2.0
 Group: Development/Libraries
 URL: http://librdf.org/flickcurl/

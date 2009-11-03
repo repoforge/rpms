@@ -6,7 +6,7 @@
 Summary: Ugly Plugins for the Elisa Media Center
 Name: elisa-plugins-ugly
 Version: 0.5.22
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/

@@ -10,7 +10,7 @@
 Summary: Bindings for LZO
 Name: perl-Compress-LZO
 Version: 1.08
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Compress-LZO/

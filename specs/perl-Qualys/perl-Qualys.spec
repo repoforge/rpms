@@ -10,7 +10,7 @@
 Summary: Perl module to connect to the Qualys scanner API
 Name: perl-Qualys
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qualys/

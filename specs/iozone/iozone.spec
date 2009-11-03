@@ -7,7 +7,7 @@ Summary: IOzone Filesystem Benchmark
 Name: iozone
 %define real_version 3_326
 Version: 3.326
-Release: 1
+Release: 1%{?dist}
 License: Freeware
 Group: Applications/System
 URL: http://www.iozone.org/

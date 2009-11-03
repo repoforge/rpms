@@ -10,7 +10,7 @@
 Summary: Simple lightweight parser for a subset of XML
 Name: perl-XML-Tiny
 Version: 2.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Tiny/

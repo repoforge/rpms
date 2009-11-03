@@ -8,7 +8,7 @@
 Summary: SIL Gentium fonts
 Name: gentium-fonts
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: SIL Open Font License
 Group: User Interface/X
 #URL: http://scripts.sil.org/Gentium

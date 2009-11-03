@@ -10,7 +10,7 @@
 Summary: declarative testing for your web app
 Name: perl-%{real_name}
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Declare/

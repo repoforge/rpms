@@ -10,7 +10,7 @@
 Summary: Display a lot of Perl information in HTML format
 Name: perl-HTML-Perlinfo
 Version: 1.61
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Perlinfo/

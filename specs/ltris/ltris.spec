@@ -6,7 +6,7 @@
 Summary: Game of skill with falling blocks
 Name: ltris
 Version: 1.0.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://lgames.sourceforge.net/

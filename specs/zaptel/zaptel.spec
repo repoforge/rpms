@@ -14,7 +14,7 @@
 Summary: Telephony interface support
 Name: zaptel
 Version: 1.2.13
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/

@@ -9,7 +9,7 @@
 Summary: Shows the status of the keyboard indicator LEDs in the KDE panel
 Name: kleds
 Version: 0.8.0
-Release: 3
+Release: 3%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.hansmatzen.de/english/kleds.html

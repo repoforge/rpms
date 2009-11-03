@@ -5,7 +5,7 @@
 Summary: Sound editor
 Name: kwave
 Version: 0.7.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kwave.sourceforge.net/

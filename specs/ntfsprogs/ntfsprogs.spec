@@ -17,7 +17,7 @@
 Summary: NTFS filesystem libraries and utilities
 Name: ntfsprogs
 Version: 1.13.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://linux-ntfs.sourceforge.net/

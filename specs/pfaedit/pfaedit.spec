@@ -12,7 +12,7 @@
 Summary: PostScript font editor
 Name: pfaedit
 Version: 0.0.20040301
-Release: 0.2
+Release: 0.2%{?dist}
 License: BSD
 Group: Applications/Publishing
 URL: http://pfaedit.sourceforge.net/

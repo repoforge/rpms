@@ -6,7 +6,7 @@
 Summary: Real-time strategy game
 Name: boson
 Version: 0.11
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://boson.eu.org/

@@ -10,7 +10,7 @@
 Summary: Make serving static pages painless
 Name: perl-Catalyst-Plugin-Static-Simple
 Version: 0.20
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Static-Simple/

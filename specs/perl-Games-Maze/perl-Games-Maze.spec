@@ -10,7 +10,7 @@
 Summary: Create Mazes as Objects
 Name: perl-Games-Maze
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Maze/

@@ -7,7 +7,7 @@
 Summary: MPD (Music Player Daemon) client
 Name: sonata
 Version: 1.6.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 # GPLv3, but it includes mmkeys which is GPLv2
 Group: Applications/Multimedia

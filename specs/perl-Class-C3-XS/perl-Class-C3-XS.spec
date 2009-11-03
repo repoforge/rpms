@@ -10,7 +10,7 @@
 Summary: XS speedups for Class::C3
 Name: perl-Class-C3-XS
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-C3-XS/

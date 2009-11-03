@@ -18,7 +18,7 @@ Summary: Outline and bitmap font editor
 Name: fontforge
 %define real_version 20061025
 Version: 0.0.20061025
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Publishing
 URL: http://fontforge.sourceforge.net/

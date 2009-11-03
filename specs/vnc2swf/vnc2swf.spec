@@ -10,7 +10,7 @@
 Summary: Recording tool for VNC
 Name: vnc2swf
 Version: 0.5.0
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.unixuser.org/~euske/vnc2swf/

@@ -6,7 +6,7 @@
 Summary: Interpreter for several adventure games
 Name: scummvm
 Version: 0.9.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://scummvm.sourceforge.net/

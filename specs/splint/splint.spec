@@ -7,7 +7,7 @@
 Summary: Secure programming lint
 Name: splint
 Version: 3.1.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.splint.org/

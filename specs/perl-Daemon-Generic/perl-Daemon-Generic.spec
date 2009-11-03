@@ -10,7 +10,7 @@
 Summary: Framework to provide start/stop/reload for a daemon
 Name: perl-Daemon-Generic
 Version: 0.61
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Daemon-Generic/

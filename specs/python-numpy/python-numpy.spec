@@ -8,7 +8,7 @@
 Summary: Fast multidimensional array facility for Python
 Name: python-numpy
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
 URL: http://numeric.scipy.org/

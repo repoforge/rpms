@@ -10,7 +10,7 @@
 Summary: Write Perl subroutines and classes in C++
 Name: perl-Inline-CPP
 Version: 0.25
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-CPP/

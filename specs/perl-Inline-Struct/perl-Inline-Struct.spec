@@ -10,7 +10,7 @@
 Summary: Manipulate C structs directly from Perl
 Name: perl-Inline-Struct
 Version: 0.06
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Inline-Struct/

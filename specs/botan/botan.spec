@@ -4,7 +4,7 @@
 Summary: Library implementing a variety of cryptographic algorithms and formats
 Name: botan
 Version: 1.6.4
-Release: 1
+Release: 1%{?dist}
 License: Other
 Group: System Environment/Libraries
 URL: http://botan.randombit.net/

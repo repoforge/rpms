@@ -16,7 +16,7 @@
 Summary: Very small and fast Window Manager
 Name: blackbox
 Version: 0.70.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://blackboxwm.sourceforge.net/

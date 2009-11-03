@@ -4,7 +4,7 @@
 Summary: Lossless volume-adjusting utility for Ogg Vorbis files
 Name: vorbisgain
 Version: 0.36
-Release: 2.2
+Release: 2.2%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://sjeng.org/vorbisgain.html

@@ -7,7 +7,7 @@
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
 Version: 2.84
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/

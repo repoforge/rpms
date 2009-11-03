@@ -10,7 +10,7 @@
 Summary: Flexible, object-oriented interface to a WWII Enigma machine
 Name: perl-Crypt-OOEnigma
 Version: 0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OOEnigma/

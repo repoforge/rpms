@@ -10,7 +10,7 @@
 Summary: Generate cryptographic signatures for objects
 Name: perl-Object-Signature
 Version: 1.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Signature/

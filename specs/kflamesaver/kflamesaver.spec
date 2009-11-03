@@ -7,7 +7,7 @@
 Summary: Screensaver with flames
 Name: kflamesaver
 Version: 0.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://kde-apps.org/content/show.php?content=4485

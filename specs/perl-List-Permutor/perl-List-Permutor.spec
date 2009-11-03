@@ -10,7 +10,7 @@
 Summary: Process all of the possible permutations of a list of items
 Name: perl-List-Permutor
 Version: 0.022
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Permutor/

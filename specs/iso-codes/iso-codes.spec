@@ -4,7 +4,7 @@
 Summary: ISO code lists and translations
 Name: iso-codes
 Version: 1.0a
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Base
 URL: http://alioth.debian.org/projects/pkg-isocodes/

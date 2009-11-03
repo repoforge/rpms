@@ -10,7 +10,7 @@
 Summary: XML Stream connection support
 Name: perl-XML-Stream
 Version: 1.22
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Stream/

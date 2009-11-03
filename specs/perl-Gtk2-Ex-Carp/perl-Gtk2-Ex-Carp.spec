@@ -10,7 +10,7 @@
 Summary: Perl module implements GTK+ friendly die() and warn() functions
 Name: perl-Gtk2-Ex-Carp
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gtk2-Ex-Carp/

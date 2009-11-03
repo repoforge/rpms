@@ -18,7 +18,7 @@
 Summary: Vector-based drawing tool
 Name: tgif
 Version: 4.1.45
-Release: 1
+Release: 1%{?dist}
 License: QPL
 Group: Applications/Multimedia
 URL: http://bourbon.usc.edu:8001/tgif/

@@ -10,7 +10,7 @@
 Summary: Perl extension for generating reports from logfiles
 Name: perl-Logfile
 Version: 0.302
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Logfile/

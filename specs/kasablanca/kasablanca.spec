@@ -10,7 +10,7 @@
 Summary: Ftp/fxp client
 Name: kasablanca
 Version: 0.4.0.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://kasablanca.berlios.de/

@@ -10,7 +10,7 @@
 Summary: Simply deploy SOAP clients and servers
 Name: perl-SOAP-Clean
 Version: 0.02
-Release: 2.2
+Release: 2.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Clean/

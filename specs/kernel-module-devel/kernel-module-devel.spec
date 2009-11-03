@@ -12,7 +12,7 @@
 Summary: Build files for all kernel arch/types for %{krel}
 Name: kernel-module-devel-%{krel}
 Version: 0.5
-Release: 1
+Release: 1%{?dist}
 Group: System Environment/Kernel
 License: GPL
 URL: http://thomas.apestaart.org/

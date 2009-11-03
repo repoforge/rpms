@@ -10,7 +10,7 @@
 Summary: Perl module that implements a logging agent
 Name: perl-Log-Agent
 Version: 0.307
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Agent/

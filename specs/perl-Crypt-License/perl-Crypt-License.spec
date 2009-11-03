@@ -11,7 +11,7 @@
 Summary: Crypt License module
 Name: perl-Crypt-License
 Version: 2.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-License/

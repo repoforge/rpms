@@ -44,7 +44,7 @@
 Summary: Associate user-defined magic to variables from Perl
 Name: perl-Variable-Magic
 Version: 0.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Variable-Magic/

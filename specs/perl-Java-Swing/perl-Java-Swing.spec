@@ -10,7 +10,7 @@
 Summary: Perl module providing direct access to the Java Swing API
 Name: perl-Java-Swing
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Java-Swing/

@@ -6,7 +6,7 @@
 Summary: Small POSIX-compliant shell
 Name: dash
 Version: 0.5.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: http://gondor.apana.org.au/~herbert/dash/

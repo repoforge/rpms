@@ -10,7 +10,7 @@
 Summary: Interface to the Google SOAP API
 Name: perl-Net-Google
 Version: 1.0.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Google/

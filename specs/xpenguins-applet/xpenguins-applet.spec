@@ -17,7 +17,7 @@
 Summary: Cute little penguins that walk along the top of your windows
 Name: xpenguins-applet
 Version: 2.0.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Amusements/Graphics
 URL: http://xpenguins.seul.org/

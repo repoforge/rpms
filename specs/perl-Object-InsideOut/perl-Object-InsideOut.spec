@@ -10,7 +10,7 @@
 Summary: Comprehensive inside-out object support module
 Name: perl-Object-InsideOut
 Version: 3.56
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-InsideOut/

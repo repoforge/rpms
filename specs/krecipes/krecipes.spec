@@ -4,7 +4,7 @@
 Summary: Recipe manager
 Name: krecipes
 Version: 0.9.1
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://krecipes.sourceforge.net

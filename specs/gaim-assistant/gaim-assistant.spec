@@ -4,7 +4,7 @@
 Summary: Gaim plugin to forward messages.
 Name: gaim-assistant
 Version: 0.1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-assistant.tulg.org/

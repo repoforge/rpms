@@ -5,7 +5,7 @@
 Summary: Tool for handling EXIF metadata in JPEG image files
 Name: jhead
 Version: 2.8
-Release: 1
+Release: 1%{?dist}
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://www.sentex.net/~mwandel/jhead/

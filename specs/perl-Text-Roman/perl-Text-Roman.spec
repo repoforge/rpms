@@ -10,7 +10,7 @@
 Summary: Converts roman algarism in integer numbers and the contrary, recognize algarisms
 Name: perl-Text-Roman
 Version: 3.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Roman/

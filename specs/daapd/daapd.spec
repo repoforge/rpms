@@ -10,7 +10,7 @@
 Summary: Server for DAAP, the digital audio access protocol
 Name: daapd
 Version: 0.2.4
-Release: 0.a.2
+Release: 0.a.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.deleet.de/projekte/daap/daapd/

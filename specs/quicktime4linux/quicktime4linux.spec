@@ -5,7 +5,7 @@
 Summary: Quicktime for Linux
 Name: quicktime4linux
 Version: 2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://heroinewarrior.com/quicktime.php3

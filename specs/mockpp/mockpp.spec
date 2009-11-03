@@ -4,7 +4,7 @@
 Summary: Platform independent generic unit testing framework for C++
 Name: mockpp
 Version: 1.16.4
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://mockpp.sourceforge.net/

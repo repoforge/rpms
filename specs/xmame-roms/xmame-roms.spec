@@ -6,7 +6,7 @@ Summary: Freely available ROMs to use with xmame
 Name: xmame-roms
 Group: Applications/Emulators
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Freeware
 URL: http://www.mame.net/downmisc.html
 Source0: http://www.mame.net/roms/polyplay.zip

@@ -17,7 +17,7 @@
 Summary: Launches a program when your X session has been idle for some time
 Name: xautolock
 Version: 2.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.ibiblio.org/pub/Linux/X11/screensavers/

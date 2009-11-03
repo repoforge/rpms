@@ -10,7 +10,7 @@
 Summary: Simple, transparent data interface, with caching
 Name: perl-Data-ObjectDriver
 Version: 0.06
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-ObjectDriver/

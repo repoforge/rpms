@@ -10,7 +10,7 @@
 Summary: Retrieve the Cantonese(GuangDongHua) of Chinese character(HanZi)
 Name: perl-Lingua-Han-Cantonese
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Han-Cantonese/

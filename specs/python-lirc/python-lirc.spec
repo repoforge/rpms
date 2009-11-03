@@ -8,7 +8,7 @@
 Summary: Linux Infrared Remote Control python module
 Name: python-lirc
 Version: 0.0.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://pylirc.mccabe.nu/

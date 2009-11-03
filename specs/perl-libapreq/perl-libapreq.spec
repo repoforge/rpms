@@ -13,7 +13,7 @@
 Summary: Apache Request C Library
 Name: perl-libapreq
 Version: 2.04
-Release: 0.03.1.2
+Release: 0.03.1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libapreq/

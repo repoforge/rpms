@@ -9,7 +9,7 @@
 Summary: Perl module named String-RewritePrefix
 Name: perl-String-RewritePrefix
 Version: 0.004
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-RewritePrefix/

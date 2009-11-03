@@ -10,7 +10,7 @@
 Summary: Load, create, manipulate and save xpm image files
 Name: perl-Image-Xpm
 Version: 1.09
-Release: 2.2
+Release: 2.2%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Xpm/

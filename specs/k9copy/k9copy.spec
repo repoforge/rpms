@@ -4,7 +4,7 @@
 Summary: Video DVD backup tool
 Name: k9copy
 Version: 2.3.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://k9copy.sf.net/

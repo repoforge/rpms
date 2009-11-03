@@ -10,7 +10,7 @@
 Summary: Perl module for statvfs() and fstatvfs()
 Name: perl-Filesys-Statvfs
 Version: 0.82
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Filesys-Statvfs/

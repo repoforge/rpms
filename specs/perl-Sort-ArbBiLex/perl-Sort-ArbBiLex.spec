@@ -10,7 +10,7 @@
 Summary: Arbitrary bi-level lexicographic sorting
 Name: perl-Sort-ArbBiLex
 Version: 4.01
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sort-ArbBiLex/

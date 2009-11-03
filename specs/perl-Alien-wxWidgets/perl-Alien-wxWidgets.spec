@@ -10,7 +10,7 @@
 Summary: Building, finding and using wxWidgets binaries
 Name: perl-Alien-wxWidgets
 Version: 0.44
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Alien-wxWidgets/

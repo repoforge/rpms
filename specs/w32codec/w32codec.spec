@@ -8,7 +8,7 @@
 Summary: W32 Codec package for MPlayer on x86 UNIX systems
 Name: w32codec
 Version: 1.0
-Release: 0.%{real_version}.2
+Release: 0.%{real_version}.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/homepage/design7/dload.html

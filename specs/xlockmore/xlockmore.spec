@@ -39,7 +39,7 @@
 Summary: Screen lock and screen saver.
 Name: xlockmore
 Version: 5.28
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Amusements/Graphics
 URL: http://www.tux.org/~bagleyd/xlockmore.html

@@ -4,7 +4,7 @@
 Summary: Checks DNS files for errors
 Name: nslint
 Version: 2.1a3
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 

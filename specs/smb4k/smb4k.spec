@@ -10,7 +10,7 @@
 Summary: SMB (samba) share browser for KDE
 Name: smb4k
 Version: 0.9.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://smb4k.berlios.de/

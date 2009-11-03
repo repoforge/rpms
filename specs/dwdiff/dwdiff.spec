@@ -8,7 +8,7 @@
 Summary: Front end to diff for comparing files on a word per word basis
 Name: dwdiff
 Version: 1.5
-Release: 1
+Release: 1%{?dist}
 License: OSL 2.0
 Group: Applications/Text
 URL: http://os.ghalkes.nl/dwdiff.html

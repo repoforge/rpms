@@ -10,7 +10,7 @@
 Summary: Kwiki plugin to display differences between the current wiki page and older revisions
 Name: perl-Kwiki-Diff
 Version: 0.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-Diff/

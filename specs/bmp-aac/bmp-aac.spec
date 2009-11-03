@@ -7,7 +7,7 @@
 Summary: AAC/MP4 playback plugin for the Beep Media Player
 Name: bmp-aac
 Version: 0
-Release: 2.%{date}
+Release: 2.%{date}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fondriest.frederic.free.fr/realisations/

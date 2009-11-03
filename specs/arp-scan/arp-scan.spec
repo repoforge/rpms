@@ -11,7 +11,7 @@
 Summary: ARP scanning and fingerprinting tool
 Name: arp-scan
 Version: 1.7
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nta-monitor.com/tools/arp-scan/

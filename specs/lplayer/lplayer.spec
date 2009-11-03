@@ -7,7 +7,7 @@
 Summary: Playlist manager for XMMS with voting support
 Name: lplayer
 Version: 1.01
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://lplayer.sourceforge.net/

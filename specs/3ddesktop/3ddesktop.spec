@@ -14,7 +14,7 @@
 Summary: OpenGL program for switching virtual desktops in 3D
 Name: 3ddesktop
 Version: 0.2.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://desk3d.sourceforge.net/

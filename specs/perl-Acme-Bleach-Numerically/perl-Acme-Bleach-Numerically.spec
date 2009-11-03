@@ -10,7 +10,7 @@
 Summary: Perl module to fit the whole world between 0 and 1
 Name: perl-Acme-Bleach-Numerically
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Bleach-Numerically/

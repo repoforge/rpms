@@ -11,7 +11,7 @@
 Summary: Module for sending mails with attachments
 Name: perl-Mail-Sender
 Version: 0.8.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Sender/

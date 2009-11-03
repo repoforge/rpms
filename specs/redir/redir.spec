@@ -5,7 +5,7 @@
 Summary:  TCP port redirector
 Name: redir
 Version: 2.2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sammy.net/~sammy/hacks/

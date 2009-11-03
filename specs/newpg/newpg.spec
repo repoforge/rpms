@@ -5,7 +5,7 @@
 Summary: Temporary project to work on GnuPG extensions
 Name: newpg
 Version: 0.9.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnupg.org/

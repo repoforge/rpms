@@ -5,7 +5,7 @@
 Summary: Portable abstraction library for DVD menus support
 Name: libdvdplay
 Version: 1.0.1
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.videolan.org/libdvdplay/

@@ -8,7 +8,7 @@
 Summary: Multi Router Traffic Grapher
 Name: mrtg
 Version: 2.14.5
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ee-staff.ethz.ch/~oetiker/webtools/mrtg/mrtg.html

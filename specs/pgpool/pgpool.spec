@@ -4,7 +4,7 @@
 Summary: Single master,query based,synchronous replication server
 Name: pgpool
 Version: 2.0.1
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Databases
 URL: http://www2b.biglobe.ne.jp/~caco/pgpool/

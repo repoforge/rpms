@@ -7,7 +7,7 @@
 Summary: Firmware for IntelÂ® Wireless WiFi Link 5000AGN series network adapters
 Name: iwl5000-firmware
 Version: 8.24.2.12
-Release: 1
+Release: 1%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/

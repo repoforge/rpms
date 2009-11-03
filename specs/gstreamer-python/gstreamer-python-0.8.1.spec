@@ -6,7 +6,7 @@
 Summary: Python bindings for GStreamer
 Name: gstreamer-python
 Version: 0.8.1
-Release: 1
+Release: 1%{?dist}
 Group: Development/Languages
 License: LGPL
 URL: http://gstreamer.net/

@@ -10,7 +10,7 @@
 Summary: Absract your phrases with XML
 Name: perl-Data-Phrasebook-Loader-XML
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Phrasebook-Loader-XML/

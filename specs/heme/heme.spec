@@ -4,7 +4,7 @@
 Summary: Console hex editor
 Name: heme
 Version: 0.4.2
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
 URL: http://heme.sourceforge.net/

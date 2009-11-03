@@ -5,7 +5,7 @@
 Summary: Terrain generation and management library
 Name: mercator
 Version: 0.2.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/mercator

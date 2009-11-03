@@ -10,7 +10,7 @@
 Summary: Base class for building PNG buttons using GD
 Name: perl-Image-Button
 Version: 0.53
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Button/

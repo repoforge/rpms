@@ -8,7 +8,7 @@
 Summary: Network-wide graphing framework (grapher/gatherer)
 Name: munin
 Version: 1.2.6
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://munin.projects.linpro.no/

@@ -4,7 +4,7 @@
 Summary: buffer program to speed up writing to tapes
 Name: buffer
 Version: 1.19
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://hello-penguin.com/software.htm

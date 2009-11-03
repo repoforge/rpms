@@ -4,7 +4,7 @@
 Summary: Hierarchical notebook
 Name: hnb
 Version: 1.9.18
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://hnb.sourceforge.net/

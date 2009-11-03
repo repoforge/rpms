@@ -10,7 +10,7 @@
 Summary: Perform lookups using the University of Western Ontario's student directory
 Name: perl-UWO-Directory-Student
 Version: 0.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UWO-Directory-Student/

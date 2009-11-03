@@ -10,7 +10,7 @@
 Summary: Perl module to turn a querylet into a web application
 Name: perl-Querylet-CGI
 Version: 0.142
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Querylet-CGI/

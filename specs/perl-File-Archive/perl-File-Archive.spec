@@ -10,7 +10,7 @@
 Summary: Figure out what is in an archive file
 Name: perl-File-Archive
 Version: 0.53
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Archive/

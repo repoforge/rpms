@@ -11,7 +11,7 @@
 Summary: Variable-length one-way hash function
 Name: perl-Digest-SHA2
 Version: 1.1.1
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA2/

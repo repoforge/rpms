@@ -5,7 +5,7 @@ Summary: Improved dd, useful for forensics and security
 Name: dcfldd
 %define real_version 1.3.4-1
 Version: 1.3.4.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://dcfldd.sourceforge.net/

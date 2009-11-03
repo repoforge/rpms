@@ -10,7 +10,7 @@
 Summary: Check validity of IPv6 addresses
 Name: perl-Net-IPv6Addr
 Version: 0.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IPv6Addr/

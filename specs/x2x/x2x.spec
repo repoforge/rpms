@@ -15,7 +15,7 @@
 Summary: Link two X displays together, simulating a multiheaded display
 Name: x2x
 Version: 1.27
-Release: 0.2
+Release: 0.2%{?dist}
 License: BSD
 Group: User Interface/Desktops
 URL: http://ftp.digital.com/pub/Digital/SRC/x2x/

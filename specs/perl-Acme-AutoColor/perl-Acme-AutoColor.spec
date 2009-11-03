@@ -10,7 +10,7 @@
 Summary: Perl module that implements automatic color names
 Name: perl-Acme-AutoColor
 Version: 0.01
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-AutoColor/

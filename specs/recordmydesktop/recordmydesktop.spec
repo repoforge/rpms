@@ -9,7 +9,7 @@
 Summary: Desktop session recorder with audio and video
 Name: recordmydesktop
 Version: 0.3.8.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://recordmydesktop.iovar.org/

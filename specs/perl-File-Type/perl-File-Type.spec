@@ -10,7 +10,7 @@
 Summary: Perl module to determine file type using magic
 Name: perl-File-Type
 Version: 0.22
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Type/

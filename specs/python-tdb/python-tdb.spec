@@ -6,7 +6,7 @@
 Summary: Python binding for the Samba Trivial Database
 Name: python-tdb
 Version: 0.0.6
-Release: 2
+Release: 2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://clarens.sourceforge.net/

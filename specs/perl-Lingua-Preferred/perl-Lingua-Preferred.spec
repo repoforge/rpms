@@ -11,7 +11,7 @@
 Summary: Perl module named Lingua-Preferred
 Name: perl-Lingua-Preferred
 Version: 0.2.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-Preferred/

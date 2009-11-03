@@ -5,7 +5,7 @@
 Summary: Batch file renamer
 Name: krename
 Version: 3.0.14
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.krename.net/

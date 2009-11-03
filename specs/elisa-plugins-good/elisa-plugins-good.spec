@@ -6,7 +6,7 @@
 Summary: Good Plugins for the Elisa Media Center
 Name: elisa-plugins-good
 Version: 0.5.22
-Release: 1
+Release: 1%{?dist}
 License: GPL and MIT
 Group: Applications/Multimedia
 URL: http://elisa.fluendo.com/

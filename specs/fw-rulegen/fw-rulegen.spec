@@ -6,7 +6,7 @@
 Summary: Generates an iptables-restoreable config
 Name: fw-rulegen
 Version: 1.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.b0rken.net/fw-rulegen/

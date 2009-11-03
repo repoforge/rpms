@@ -10,7 +10,7 @@
 Summary: DBI driver abstraction for Rendering Charts and Graphs
 Name: perl-DBD-Chart
 Version: 0.82
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-Chart/

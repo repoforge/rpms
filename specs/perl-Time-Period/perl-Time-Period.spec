@@ -9,7 +9,7 @@
 Summary: Perl module to deal with time periods.
 Name: perl-Time-Period
 Version: 1.20
-Release: 2
+Release: 2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Period/

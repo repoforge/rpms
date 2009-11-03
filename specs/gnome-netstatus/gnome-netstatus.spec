@@ -7,7 +7,7 @@
 Summary: Network interface status applet
 Name: gnome-netstatus
 Version: 2.6.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ftp.gnome.org/pub/GNOME/sources/gnome-netstatus/

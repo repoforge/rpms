@@ -5,7 +5,7 @@
 Summary: GEOS (Geometry Engine, Open Source) topology library
 Name: geos
 Version: 3.1.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://geos.refractions.net/

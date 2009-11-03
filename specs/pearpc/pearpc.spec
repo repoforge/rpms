@@ -20,7 +20,7 @@
 Summary: PowerPC Architecture Emulator
 Name: pearpc
 Version: 0.3.1
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Emulators
 License: GPL
 URL: http://pearpc.sourceforge.net/

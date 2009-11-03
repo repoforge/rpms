@@ -10,7 +10,7 @@
 Summary: Scalar variables that time out
 Name: perl-Tie-Scalar-Timeout
 Version: 1.33
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-Scalar-Timeout/

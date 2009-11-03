@@ -5,7 +5,7 @@
 Summary: Deamon for communicating with filesharing protocols
 Name: gift
 Version: 0.11.8.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.giftproject.org/

@@ -10,7 +10,7 @@
 Summary: Convert Pod data to DocBook SGML
 Name: perl-Pod-DocBook
 Version: 1.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-DocBook/

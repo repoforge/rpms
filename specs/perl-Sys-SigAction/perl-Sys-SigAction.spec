@@ -10,7 +10,7 @@
 Summary: Perl module for consistent signal handling
 Name: perl-Sys-SigAction
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-SigAction/

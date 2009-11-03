@@ -5,7 +5,7 @@
 Summary: Configure and monitor Wireless Access Points
 Name: ap-utils
 Version: 1.5
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ap-utils.polesye.net/

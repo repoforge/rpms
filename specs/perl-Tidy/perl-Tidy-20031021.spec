@@ -10,7 +10,7 @@
 Summary: Parses and beautifies perl source
 Name: perl-Tidy
 Version: 20070424
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Tidy/

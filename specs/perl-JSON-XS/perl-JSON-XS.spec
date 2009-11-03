@@ -10,7 +10,7 @@
 Summary: Perl module that implements JSON serialising/deserialising
 Name: perl-JSON-XS
 Version: 2.25
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-XS/

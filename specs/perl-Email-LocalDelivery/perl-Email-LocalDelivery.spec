@@ -10,7 +10,7 @@
 Summary: Perl module to deliver a piece of email
 Name: perl-Email-LocalDelivery
 Version: 0.217
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-LocalDelivery/

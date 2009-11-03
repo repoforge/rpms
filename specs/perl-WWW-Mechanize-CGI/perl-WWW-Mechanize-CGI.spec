@@ -10,7 +10,7 @@
 Summary: Use WWW::Mechanize with CGI applications
 Name: perl-WWW-Mechanize-CGI
 Version: 0.3
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize-CGI/

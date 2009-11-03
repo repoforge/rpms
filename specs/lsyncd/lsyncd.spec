@@ -5,7 +5,7 @@
 Summary: Live syncing (mirroring) daemon
 Name: lsyncd
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.pri.univie.ac.at/lsyncd/

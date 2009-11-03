@@ -13,7 +13,7 @@
 Summary: Simple non-linear video editor
 Name: kino
 Version: 1.3.3
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.kinodv.org/

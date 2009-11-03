@@ -10,7 +10,7 @@
 Summary: Resolve relative links in (X)HTML into an absolute URI
 Name: perl-HTML-ResolveLink
 Version: 0.05
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-ResolveLink/

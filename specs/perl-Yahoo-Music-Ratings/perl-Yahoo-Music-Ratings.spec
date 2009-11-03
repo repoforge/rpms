@@ -10,7 +10,7 @@
 Summary: Perl module that implements a method for retrieving a Yahoo! Music members song ratings
 Name: perl-Yahoo-Music-Ratings
 Version: 2.00
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Yahoo-Music-Ratings/

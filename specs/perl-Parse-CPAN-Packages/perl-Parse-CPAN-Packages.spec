@@ -10,7 +10,7 @@
 Summary: Parse 02packages.details.txt.gz
 Name: perl-Parse-CPAN-Packages
 Version: 2.31
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-CPAN-Packages/

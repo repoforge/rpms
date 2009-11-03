@@ -9,7 +9,7 @@
 Summary: Inheritable, overridable class data
 Name: perl-Class-Data-Inheritable
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Data-Inheritable/

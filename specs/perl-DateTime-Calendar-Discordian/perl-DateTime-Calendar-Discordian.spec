@@ -11,7 +11,7 @@
 Summary: Perl extension for the Discordian Calendar
 Name: perl-DateTime-Calendar-Discordian
 Version: 0.9.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Calendar-Discordian/

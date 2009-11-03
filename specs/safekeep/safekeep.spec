@@ -6,7 +6,7 @@
 Summary: Client/server backup system
 Name: safekeep
 Version: 1.0.5
-Release: 2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://safekeep.sourceforge.net/

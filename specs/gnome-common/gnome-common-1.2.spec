@@ -6,7 +6,7 @@
 Summary: Useful things common to building gnome packages
 Name: gnome-common
 Version: 1.2.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://ftp.gnome.org/pub/GNOME/sources/gnome-common/

@@ -10,7 +10,7 @@
 Summary: Perl module to create GUI software for disabled people
 Name: perl-AAC-Pvoice
 Version: 0.91
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AAC-Pvoice/

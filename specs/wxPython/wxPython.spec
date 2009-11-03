@@ -13,7 +13,7 @@
 Summary: GUI toolkit for the Python programming language
 Name: wxPython
 Version: 2.8.9.1
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.wxpython.org/

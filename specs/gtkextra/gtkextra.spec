@@ -7,7 +7,7 @@
 Summary: Useful set of widgets for GTK+
 Name: gtkextra
 Version: 0.99.17
-Release: 1.2
+Release: 1.2%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://gtkextra.sourceforge.net/

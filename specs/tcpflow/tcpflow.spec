@@ -11,7 +11,7 @@
 Summary: Network traffic recorder
 Name: tcpflow
 Version: 0.21
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.circlemud.org/~jelson/software/tcpflow/

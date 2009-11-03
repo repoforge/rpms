@@ -10,7 +10,7 @@
 Summary: Connect to iPhoto shares (DPAP)
 Name: perl-Net-DPAP-Client
 Version: 0.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DPAP-Client/

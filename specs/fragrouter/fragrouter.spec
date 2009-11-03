@@ -11,7 +11,7 @@
 Summary: Fragrouter is a network intrusion detection evasion toolkit
 Name: fragrouter
 Version: 1.6
-Release: 0.2
+Release: 0.2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.monkey.org/~dugsong/fragrouter/

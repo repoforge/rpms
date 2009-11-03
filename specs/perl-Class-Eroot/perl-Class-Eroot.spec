@@ -10,7 +10,7 @@
 Summary: Eternal root to handle persistent objects
 Name: perl-Class-Eroot
 Version: 2.1
-Release: 2
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Eroot/

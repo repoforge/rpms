@@ -7,7 +7,7 @@
 Summary: The virtual ring buffer library
 Name: vrb
 Version: 0.4.0
-Release: 0.2
+Release: 0.2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://vrb.slashusr.org/

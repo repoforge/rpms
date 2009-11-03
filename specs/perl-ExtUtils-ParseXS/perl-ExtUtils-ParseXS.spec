@@ -11,7 +11,7 @@
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
 Version: 2.20.02
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-ParseXS/

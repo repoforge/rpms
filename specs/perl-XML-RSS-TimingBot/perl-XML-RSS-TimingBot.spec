@@ -10,7 +10,7 @@
 Summary: Efficiently fetching RSS feeds
 Name: perl-XML-RSS-TimingBot
 Version: 2.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-TimingBot/

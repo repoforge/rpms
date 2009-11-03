@@ -9,7 +9,7 @@
 Summary: secure tunneling daemon
 Name: openvpn
 Version: 1.4.3
-Release: 0
+Release: 0%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.sourceforge.net/

@@ -5,7 +5,7 @@
 Summary: Enhanced files copying tool
 Name: vcp
 Version: 1.7.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/File
 URL: http://members.optusnet.com.au/~dbbryan/vcp/

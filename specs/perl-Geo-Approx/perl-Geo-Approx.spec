@@ -10,7 +10,7 @@
 Summary: Represents an approximate global position by a signle number
 Name: perl-Geo-Approx
 Version: 0.8
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Approx/

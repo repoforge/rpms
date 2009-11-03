@@ -4,7 +4,7 @@
 Summary: AES-based encryption tool for tar/cpio and loop-aes images
 Name: aespipe
 Version: 2.3d
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://loop-aes.sourceforge.net/

@@ -6,7 +6,7 @@ Summary: Download, upload, decode and/or encode "Bommanews"-encoded files
 Name: bnews-utils
 %define real_version 20020930
 Version: 0.0.20020930
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.iguana.be/~stef/

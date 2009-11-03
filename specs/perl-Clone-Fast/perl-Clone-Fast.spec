@@ -10,7 +10,7 @@
 Summary: Perl module named Clone-Fast
 Name: perl-Clone-Fast
 Version: 0.93
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Clone-Fast/

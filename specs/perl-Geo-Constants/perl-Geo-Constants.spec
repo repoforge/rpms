@@ -10,7 +10,7 @@
 Summary: Perl module with standard Geo:: constants
 Name: perl-Geo-Constants
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Constants/

@@ -10,7 +10,7 @@
 Summary: Use references as elements in hashes and arrays
 Name: perl-Array-RefElem
 Version: 1.00
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-RefElem/

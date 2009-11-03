@@ -4,7 +4,7 @@
 Summary: Python bindings for wxWindows
 Name: wxpython
 Version: 2.8.8.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://www.wxpython.org/

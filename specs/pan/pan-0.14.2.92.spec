@@ -12,7 +12,7 @@
 Summary: The Pan Newsreader
 Name: pan
 Version: 0.14.2.91
-Release: 2
+Release: 2%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Internet

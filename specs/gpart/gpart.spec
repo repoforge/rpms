@@ -8,7 +8,7 @@
 Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart
 Version: 0.1h
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://home.pages.de/~michab/gpart/

@@ -9,7 +9,7 @@
 Summary: POSIX.1e ACLs for python
 Name: python-libacl
 Version: 0.2.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pylibacl.sourceforge.net/

@@ -17,7 +17,7 @@
 Summary: X resource monitor
 Name: xrestop
 Version: 0.4
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.freedesktop.org/wiki/Software/xrestop

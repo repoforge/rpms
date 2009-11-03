@@ -10,7 +10,7 @@
 Summary: Perl module that implements an easier relationship specification in CDBI::Loader
 Name: perl-Class-DBI-Loader-Relationship
 Version: 1.2
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-Loader-Relationship/

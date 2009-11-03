@@ -27,7 +27,7 @@
 Summary: Cross-platform C++ GUI toolkit
 Name: fltk
 Version: 1.1.7
-Release: 2
+Release: 2%{?dist}
 License: FLTK
 Group: System Environment/Libraries
 URL: http://www.fltk.org/

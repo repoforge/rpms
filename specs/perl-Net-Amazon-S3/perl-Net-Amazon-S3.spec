@@ -50,7 +50,7 @@
 Summary: Use the Amazon S3 - Simple Storage Service
 Name: perl-%{real_name}
 Version: 0.52
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Amazon-S3/

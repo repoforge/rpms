@@ -5,7 +5,7 @@
 Summary: Advanced intrusion detection environment
 Name: aide
 Version: 0.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cs.tut.fi/~rammer/aide.html

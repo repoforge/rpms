@@ -10,7 +10,7 @@
 Summary: Perl module that drastically simplifies the fetching of files
 Name: perl-URL-Grab
 Version: 1.4
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URL-Grab/

@@ -10,7 +10,7 @@
 Summary: Perl module that extends Class::DBI for sqlite 
 Name: perl-Class-DBI-SQLite
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-SQLite/

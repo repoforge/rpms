@@ -9,7 +9,7 @@
 Summary: XML-SAX-PurePerl Perl module
 Name: perl-XML-SAX-PurePerl
 Version: 0.80
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-PurePerl/

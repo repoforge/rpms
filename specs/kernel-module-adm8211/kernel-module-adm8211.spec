@@ -31,7 +31,7 @@
 Summary: Driver for ADMTek 8211 network adaptors
 Name: kernel-module-adm8211
 Version: 0.0
-Release: 0.%{date}
+Release: 0.%{date}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://aluminum.sourmilk.net/adm8211/

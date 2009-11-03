@@ -9,7 +9,7 @@
 Summary: The Perl DB Abstract Search
 Name: perl-Class-DBI-AbstractSearch
 Version: 0.07
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-DBI-AbstractSearch/

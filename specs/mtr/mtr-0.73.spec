@@ -14,7 +14,7 @@
 Summary: Network diagnostic tool
 Name: mtr
 Version: 0.73
-Release: 1
+Release: 1%{?dist}
 Epoch: 2
 License: GPL
 Group: Applications/Internet

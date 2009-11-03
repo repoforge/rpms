@@ -10,7 +10,7 @@
 Summary: Library for generic Version Control System access in Perl
 Name: perl-VCS
 Version: 0.14
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/VCS/

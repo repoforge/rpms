@@ -5,7 +5,7 @@
 Summary: Control the speed and power consumption of your computer
 Name: cpudyn
 Version: 1.0.1
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://mnm.uib.es/~gallir/cpudyn/

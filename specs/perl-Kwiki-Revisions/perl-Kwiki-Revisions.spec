@@ -10,7 +10,7 @@
 Summary: Kwiki Revisions plugin
 Name: perl-Kwiki-Revisions
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Kwiki-Revisions/

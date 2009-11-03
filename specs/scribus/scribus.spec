@@ -12,7 +12,7 @@
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
 Version: 1.3.3.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://web2.altmuehlnet.de/fschmid/

@@ -5,7 +5,7 @@
 Summary: Graphical regular expression explorer
 Name: gregexp
 Version: 0.3
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://dentrassi.de/download/gregexp

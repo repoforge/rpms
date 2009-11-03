@@ -10,7 +10,7 @@
 Summary: Covert text in a simple Wiki markut language to other tag languages
 Name: perl-Text-WikiFormat
 Version: 0.79
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-WikiFormat/

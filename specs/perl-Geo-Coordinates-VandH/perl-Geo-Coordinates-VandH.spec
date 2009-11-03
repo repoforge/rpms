@@ -10,7 +10,7 @@
 Summary: Convert and Manipulate telco V and H coordinates.
 Name: perl-Geo-Coordinates-VandH
 Version: 1.11
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-Coordinates-VandH/

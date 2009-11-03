@@ -6,7 +6,7 @@
 Summary: Secure file deletion utility
 Name: wipe
 Version: 2.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://wipe.sourceforge.net/

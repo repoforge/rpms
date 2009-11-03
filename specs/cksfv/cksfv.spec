@@ -4,7 +4,7 @@
 Summary: Tool to create and check SFV files
 Name: cksfv
 Version: 1.3.12
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://zakalwe.fi/~shd/foss/cksfv/

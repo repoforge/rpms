@@ -4,7 +4,7 @@
 Summary: C++ bindings for the ORBit Corba ORB
 Name: orbitcpp
 Version: 1.3.9
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://orbitcpp.sourceforge.net/

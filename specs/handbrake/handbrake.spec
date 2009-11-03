@@ -15,7 +15,7 @@
 Summary: Multithreaded DVD to MPEG-4 converter
 Name: HandBrake
 Version: 0.9.3
-Release: 1
+Release: 1%{?dist}
 Group: Applications/Multimedia
 License: GPL
 URL: http://handbrake.fr/

@@ -10,7 +10,7 @@
 Summary: Perl extension for approximate matching (fuzzy matching)
 Name: perl-String-Approx
 Version: 3.26
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Approx/

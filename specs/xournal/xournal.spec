@@ -4,7 +4,7 @@
 Summary: Stylus oriented notetaking
 Name: xournal
 Version: 0.4.2.1
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://xournal.sourceforge.net/

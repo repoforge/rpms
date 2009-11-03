@@ -6,7 +6,7 @@
 Summary: C++ interface for Gnome libs (a GUI library for X)
 Name: libgnomecanvasmm26
 Version: 2.8.0
-Release: 1
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://gtkmm.sourceforge.net/

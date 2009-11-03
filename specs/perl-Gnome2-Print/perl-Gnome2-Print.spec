@@ -10,7 +10,7 @@
 Summary: Perl wrapper for the Gnome Print utilities
 Name: perl-Gnome2-Print
 Version: 1.000
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Gnome2-Print/

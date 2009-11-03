@@ -10,7 +10,7 @@
 Summary: Extension for UPnP
 Name: perl-Net-UPnP
 Version: 1.41
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-UPnP/

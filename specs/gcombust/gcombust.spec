@@ -4,7 +4,7 @@
 Summary: Powerful GTK+ front-end for mkisofs and cdrecord
 Name: gcombust
 Version: 0.1.55
-Release: 2
+Release: 2%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Archiving

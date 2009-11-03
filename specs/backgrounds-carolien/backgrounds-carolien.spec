@@ -5,7 +5,7 @@
 Summary: carolien-backgrounds-v1.0.zip
 Name: backgrounds-carolien
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: creative commons (by-nc-nd/2.0/be)
 Group: Applications/Multimedia
 URL: http://carolien.ulyssis.org/

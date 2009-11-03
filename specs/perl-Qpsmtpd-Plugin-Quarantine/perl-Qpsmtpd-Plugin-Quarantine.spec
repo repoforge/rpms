@@ -10,7 +10,7 @@
 Summary: Perl module to filter outbound email to prevent blacklisting
 Name: perl-Qpsmtpd-Plugin-Quarantine
 Version: 1.02
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Qpsmtpd-Plugin-Quarantine/

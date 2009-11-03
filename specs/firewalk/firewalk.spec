@@ -11,7 +11,7 @@
 Summary: Active reconnaissance network security tool
 Name: firewalk
 Version: 5.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.packetfactory.net/projects/firewalk/

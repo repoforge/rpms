@@ -10,7 +10,7 @@
 Summary: Font dialog widget for perl/Tk
 Name: perl-Tk-FontDialog
 Version: 0.15
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk-FontDialog/

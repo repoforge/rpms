@@ -13,7 +13,7 @@
 Summary: Additional codec plugins for the k3b CD/DVD burning application
 Name: k3b-extras
 Version: 0.12.17
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.k3b.org/

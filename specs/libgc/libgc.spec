@@ -6,7 +6,7 @@
 Summary: Conservative garbage collector for C
 Name: libgc
 Version: 7.0
-Release: 1
+Release: 1%{?dist}
 Epoch: 1
 License: BSD
 Group: System Environment/Libraries

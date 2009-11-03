@@ -4,7 +4,7 @@
 Summary: Collection of command line tools for SMIL manipulation
 Name: smilutils
 Version: 0.3.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://users.pandora.be/acp/kino/smilutils.html

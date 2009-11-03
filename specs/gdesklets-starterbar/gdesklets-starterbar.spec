@@ -6,7 +6,7 @@
 Summary: Starterbar sensor and display for gdesklets
 Name: gdesklets-starterbar
 Version: 0.31.2
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://gdesklets.gnomedesktop.org/

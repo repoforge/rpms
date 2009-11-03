@@ -29,7 +29,7 @@
 Summary: Linux driver for the Atmel Wireless devices
 Name: kernel-module-atmel-wlan
 Version: 3.2.4.4
-Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}
+Release: %{real_release}.%{real_version}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://atmelwlandriver.sourceforge.net/

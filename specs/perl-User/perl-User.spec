@@ -10,7 +10,7 @@
 Summary: Perl module for locating user information regardless of OS
 Name: perl-User
 Version: 1.8
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/User/

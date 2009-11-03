@@ -18,7 +18,7 @@
 Summary: Network traffic probe that shows the network usage
 Name: ntop
 Version: 3.3.10
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/

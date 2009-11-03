@@ -5,7 +5,7 @@
 Summary: CPU frequency scaling daemon
 Name: cpufreqd
 Version: 1.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://cpufreqd.sourceforge.net/

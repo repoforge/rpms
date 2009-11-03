@@ -5,7 +5,7 @@
 Summary: Advanced GNOME configuration editor
 Name: cog
 Version: 0.7.1
-Release: 2.2
+Release: 2.2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.krakoa.dk/linux-software.html#COG

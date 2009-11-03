@@ -25,7 +25,7 @@
 Summary: Linux saa7130/7134 (TV/capture card) drivers
 Name: kernel-module-saa7134
 Version: 0.2.9
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://bytesex.org/saa7134/
@@ -46,7 +46,7 @@ and architecture %{_target_cpu}.
 They might work with newer/older kernels.
 
 %package -n kernel-smp-module-saa7134
-Release: %{real_release}_%{kversion}_%{krelease}
+Release: %{real_release}_%{kversion}_%{krelease}%{?dist}
 Summary: Linux saa7130/7134 (TV/capture card) drivers
 License: GPL
 Group: System Environment/Kernel

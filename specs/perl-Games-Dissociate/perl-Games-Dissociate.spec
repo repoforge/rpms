@@ -10,7 +10,7 @@
 Summary: Dissociated Press algorithm and filter
 Name: perl-Games-Dissociate
 Version: 0.19
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Games-Dissociate/

@@ -4,7 +4,7 @@
 Summary: Libnotify Pidgin plugin 
 Name: pidgin-libnotify
 Version: 0.14
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://gaim-libnotify.sourceforge.net/

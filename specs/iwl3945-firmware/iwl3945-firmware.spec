@@ -7,7 +7,7 @@
 Summary: Firmware for Intel Wireless 3945 network adapter
 Name: iwl3945-firmware
 Version: 15.28.1.8
-Release: 2
+Release: 2%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/

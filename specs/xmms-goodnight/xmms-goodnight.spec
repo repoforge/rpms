@@ -6,7 +6,7 @@
 Summary: XMMS plugin to stop playing/quit XMMS/suspend/shutdown at a given time
 Name: xmms-goodnight
 Version: 0.3.2
-Release: 0.2
+Release: 0.2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fiktiv.szgtikol.kando.hu/~folti/src/

@@ -10,7 +10,7 @@
 Summary: String conversion among numerous character sets
 Name: perl-Convert-Translit
 Version: 1.03
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-Translit/

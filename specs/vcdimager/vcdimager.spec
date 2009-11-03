@@ -4,7 +4,7 @@
 Summary: VideoCD (pre-)mastering and ripping tool
 Name: vcdimager
 Version: 0.7.23
-Release: 5
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.vcdimager.org/

@@ -10,7 +10,7 @@
 Summary: Apparently run a function in a higher stack frame
 Name: perl-Sub-Uplevel
 Version: 0.2002
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Uplevel/

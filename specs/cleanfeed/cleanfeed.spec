@@ -4,7 +4,7 @@
 Summary: Spam filter for Usenet news servers
 Name: cleanfeed
 Version: 0.95.7b
-Release: 21.1.1
+Release: 21.1.1%{?dist}
 License: distributable
 Group: System Environment/Daemons
 

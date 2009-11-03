@@ -10,7 +10,7 @@
 Summary: MDL molfile reader and writer
 Name: perl-Chemistry-File-MDLMol
 Version: 0.21
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Chemistry-File-MDLMol/

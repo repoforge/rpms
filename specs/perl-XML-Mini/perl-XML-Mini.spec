@@ -10,7 +10,7 @@
 Summary: MiniXML XML generator and parser interface
 Name: perl-XML-Mini
 Version: 1.38
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Mini/

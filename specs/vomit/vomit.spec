@@ -12,7 +12,7 @@
 Summary: Decodes VoIP audio from tcpdump captures
 Name: vomit
 Version: 0.2c
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://vomit.xtdnet.nl/

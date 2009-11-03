@@ -10,7 +10,7 @@
 Summary: Platform independent mailing list module
 Name: perl-Mail-Bulkmail
 Version: 3.12
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Bulkmail/

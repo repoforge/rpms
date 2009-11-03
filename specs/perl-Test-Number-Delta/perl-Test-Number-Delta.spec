@@ -10,7 +10,7 @@
 Summary: Compare the difference between numbers against a given tolerance
 Name: perl-Test-Number-Delta
 Version: 1.03
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Number-Delta/

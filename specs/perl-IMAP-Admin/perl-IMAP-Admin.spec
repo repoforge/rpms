@@ -10,7 +10,7 @@
 Summary: Basic IMAP server administration
 Name: perl-IMAP-Admin
 Version: 1.6.6
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IMAP-Admin/

@@ -9,7 +9,7 @@
 Summary: DHCP (Dynamic Host Configuration Protocol) server and relay agent.
 Name: dhcp-ldap
 Version: 3.0.5
-Release: 1
+Release: 1%{?dist}
 Epoch: 12
 License: distributable
 Group: System Environment/Daemons

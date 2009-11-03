@@ -9,7 +9,7 @@
 Summary: Net-SNMP Perl module
 Name: perl-Net-SNMP
 Version: 5.2.0
-Release: 1.2
+Release: 1.2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SNMP/

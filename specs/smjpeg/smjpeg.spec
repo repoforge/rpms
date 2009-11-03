@@ -3,7 +3,7 @@
 
 Name: smjpeg
 Version: 0.2.1
-Release: 0.2
+Release: 0.2%{?dist}
 Summary: SMJPEG library for SDL
 License: LGPL
 Group: System Environment/Libraries

@@ -10,7 +10,7 @@
 Summary: List that manipulates objects by their priority
 Name: perl-List-Priority
 Version: 0.02
-Release: 1.2
+Release: 1.2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/List-Priority/

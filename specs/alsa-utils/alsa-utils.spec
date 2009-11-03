@@ -7,7 +7,7 @@
 Summary: The Advanced Linux Sound Architecture (ALSA) utilities
 Name: alsa-utils
 Version: 1.0.4
-Release: %{?prever:0.%{prever}.}1
+Release: %{?prever:0.%{prever}.}1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 Source0: ftp://ftp.alsa-project.org/pub/utils/%{name}-%{version}%{?prever}.tar.bz2

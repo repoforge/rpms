@@ -6,7 +6,7 @@
 Summary: 3D tabletennis game
 Name: csmash
 Version: 0.6.6
-Release: 4
+Release: 4%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://cannonsmash.sourceforge.net/

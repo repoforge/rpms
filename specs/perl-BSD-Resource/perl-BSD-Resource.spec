@@ -10,7 +10,7 @@
 Summary: BSD process resource limit and priority functions
 Name: perl-BSD-Resource
 Version: 1.2901
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BSD-Resource/

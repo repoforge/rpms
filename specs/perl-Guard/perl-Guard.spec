@@ -9,7 +9,7 @@
 Summary: Perl module named Guard
 Name: perl-Guard
 Version: 1.021
-Release: 1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Guard/
