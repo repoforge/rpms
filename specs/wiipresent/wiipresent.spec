@@ -15,7 +15,10 @@ URL: http://dag.wieers.com/home-made/wiipresent/
 Source: http://dag.wieers.com/home-made/wiipresent/wiipresent-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: bluez-libs-devel
 BuildRequires: libwiimote-devel
+BuildRequires: libX11-devel
+BuildRequires: xorg-x11-proto-devel
 
 %description
 wiipresent is a program to control applications using your wiimote. It was

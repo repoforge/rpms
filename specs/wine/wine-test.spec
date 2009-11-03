@@ -21,7 +21,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.29
+Version: 1.1.30
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Emulators
@@ -578,6 +578,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx9_39.dll.so
 %{_libdir}/wine/d3dx9_40.dll.so
 %{_libdir}/wine/d3dx9_41.dll.so
+%{_libdir}/wine/d3dx9_42.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -902,6 +903,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Sep 27 2009 Dag Wieers <dag@wieers.com> - 1.1.30-1
+- Updated to release 1.1.30.
+
 * Thu Sep 10 2009 Dag Wieers <dag@wieers.com> - 1.1.29-1
 - Updated to release 1.1.29.
 

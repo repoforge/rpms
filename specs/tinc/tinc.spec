@@ -5,7 +5,7 @@
 
 Summary: Virtual private network daemon
 Name: tinc
-Version: 1.0.9
+Version: 1.0.11
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -14,7 +14,9 @@ URL: http://tinc.nl.linux.org/
 Source: http://tinc.nl.linux.org/packages/tinc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: openssl >= 0.9.7, openssl-devel, lzo-devel
+BuildRequires: openssl >= 0.9.7
+BuildRequires: openssl-devel
+BuildRequires: lzo-devel
 
 %description
 tinc is a Virtual Private Network (VPN) daemon that uses tunnelling
@@ -50,6 +52,12 @@ information to others.
 %{_sbindir}/tincd
 
 %changelog
+* Tue Nov 03 2009 Dag Wieers <dag@wieers.com> - 1.0.11-1
+- Updated to release 1.0.11.
+
+* Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 1.0.10-1
+- Updated to release 1.0.10.
+
 * Mon Dec 29 2008 Dag Wieers <dag@wieers.com> - 1.0.9-1
 - Updated to release 1.0.9.
 

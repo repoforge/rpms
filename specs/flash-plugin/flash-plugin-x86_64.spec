@@ -10,8 +10,8 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 10.0.22.87
-Release: 1%{?dist}
+Version: 10.0.32.18
+Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
@@ -68,7 +68,10 @@ fi
 %{_libdir}/flash-plugin/
 
 %changelog
-* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 10.0.22.87.
+* Sat Aug 01 2009 Dag Wieers <dag@wieers.com> - 10.0.32.18.0.1
+- Updated to release 10.0.32.18.
+
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 10.0.22.87-1
 - Updated to release 10.0.22.87.
 
 * Fri Dec 19 2008 Dag Wieers <dag@wieers.com> - 10.0.d21.1-1

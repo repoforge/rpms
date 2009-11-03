@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal6
-Version: 6.13
+Version: 6.14
 Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
@@ -57,6 +57,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Sun Sep 27 2009 Dag Wieers <dag@wieers.com> - 6.14-1
+- Updated to release 6.14.
+
 * Thu Jul 02 2009 Dag Wieers <dag@wieers.com> - 6.13-1
 - Updated to release 6.13.
 

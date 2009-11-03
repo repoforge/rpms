@@ -7,7 +7,7 @@
 
 Summary: Graphic primitives, rotozoomer, framerate control and image filters
 Name: SDL_gfx
-Version: 2.0.19
+Version: 2.0.20
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
@@ -73,6 +73,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libSDL_gfx.la
 
 %changelog
+* Mon Sep 28 2009 Dag Wieers <dag@wieers.com> - 2.0.20-1
+- Updated to release 2.0.20.
+
 * Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 2.0.19-1
 - Updated to release 2.0.19.
 

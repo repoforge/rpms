@@ -4,8 +4,8 @@
 
 Summary: Interactivity benchmark tool
 Name: interbench
-Version: 0.30
-Release: 1.2%{?dist}
+Version: 0.31
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://users.on.net/~ckolivas/interbench/
@@ -40,6 +40,9 @@ hardware can be compared.
 %{_bindir}/interbench
 
 %changelog
+* Tue Nov 03 2009 Dag Wieers <dag@wieers.com> - 0.31-1
+- Updated to release 0.31.
+
 * Fri Aug 12 2005 Dag Wieers <dag@wieers.com> - 0.30-1
 - Updated to release 0.30.
 

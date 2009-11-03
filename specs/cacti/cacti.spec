@@ -126,7 +126,7 @@ fi
 %doc docs/*
 
 %changelog
-* Fri Jul 31 2009 Dag Wieers <dag@wieers.com> - 0.8.7e-1
+* Mon Jul 27 2009 Dag Wieers <dag@wieers.com> - 0.8.7e-1
 - Updated to release 0.8.7e.
 
 * Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 0.8.7d-1

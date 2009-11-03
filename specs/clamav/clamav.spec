@@ -6,7 +6,6 @@
 ### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
 ### REMINDER: Look and sync with Petr Kristof's work
 
-
 %{?el3:%define _without_milter 1}
 %{?rh9:%define _without_milter 1}
 %{?rh7:%define _without_milter 1}
@@ -386,9 +385,15 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+<<<<<<< .mine
+* Thu Oct 29 2009 Dag Wieers <dag@wieers.com> - 0.95.3-1
+- Updated to release 0.95.3.
+
+=======
 * Thu Oct 29 2009 David Hrbáč <david@hrbac.cz> - 0.95.3-1
 - New upstream release
 
+>>>>>>> .r7981
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.95.2-1
 - Updated to release 0.95.2.
 

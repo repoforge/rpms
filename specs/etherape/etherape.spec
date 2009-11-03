@@ -2,24 +2,16 @@
 # Authority: dag
 
 
-%{!?dtag:%define _with_libpcapdevel 1}
-%{?el5:%define _with_libpcapdevel 1}
-%{?fc6:%define _with_libpcapdevel 1}
+%{?el4:%define _without_libpcapdevel 1}
 
-%{?fc1:%define _without_pcapbpf_h 1}
+%{?el3:%define _without_libpcapdevel 1}
 %{?el3:%define _without_pcapbpf_h 1}
-%{?rh9:%define _without_pcapbpf_h 1}
-%{?rh7:%define _without_pcapbpf_h 1}
-%{?el2:%define _without_pcapbpf_h 1}
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
-Version: 0.9.6
+Version: 0.9.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -28,10 +20,15 @@ URL: http://etherape.sourceforge.net/
 Source: http://dl.sf.net/etherape/etherape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpcap, gcc-c++, pkgconfig, libglade2-devel, libgnomeui-devel
-BuildRequires: gettext, scrollkeeper
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+BuildRequires: desktop-file-utils
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: libglade2-devel
+BuildRequires: libgnomeui-devel
+BuildRequires: libpcap
+BuildRequires: pkgconfig
+BuildRequires: scrollkeeper
+%{!?_without_libpcapdevel:BuildRequires: libpcap-devel}
 
 %description
 Etherape is a graphical network monitor for Unix modeled after
@@ -56,13 +53,13 @@ EOF
 
 %{__cat} <<EOF >etherape.pam
 #%PAM-1.0
-auth       sufficient   /lib/security/pam_rootok.so
-auth       sufficient   /lib/security/pam_timestamp.so
-auth       required     /lib/security/pam_stack.so service=system-auth
-session    required     /lib/security/pam_permit.so
-session    optional     /lib/security/pam_timestamp.so
-session    optional     /lib/security/pam_xauth.so
-account    required     /lib/security/pam_permit.so
+auth       sufficient   pam_rootok.so
+auth       sufficient   pam_timestamp.so
+auth       required     pam_stack.so service=system-auth
+session    required     pam_permit.so
+session    optional     pam_timestamp.so
+session    optional     pam_xauth.so
+account    required     pam_permit.so
 EOF
 
 %build
@@ -72,7 +69,7 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
@@ -82,16 +79,14 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 %{__install} -Dp -m0644 etherape.console %{buildroot}%{_sysconfdir}/security/console.apps/etherape
 %{__install} -Dp -m0644 etherape.pam %{buildroot}%{_sysconfdir}/pam.d/etherape
 
-%if %{!?_without_freedesktop:1}0
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-        desktop-file-install --vendor %{desktop_vendor}   \
-		--delete-original                         \
-                --add-category X-Red-Hat-Base              \
-                --add-category Application                 \
-                --add-category Network                     \
-                --dir %{buildroot}%{_datadir}/applications \
-		%{buildroot}%{_datadir}/applications/etherape.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor}   \
+    --delete-original                         \
+    --add-category X-Red-Hat-Base              \
+    --add-category Application                 \
+    --add-category Network                     \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/applications/etherape.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -103,17 +98,21 @@ export LDFLAGS="-L%{_libdir} -L/%{_lib}"
 #doc %{_datadir}/gnome/help/etherape/
 %doc %{_datadir}/omf/etherape/
 %config %{_sysconfdir}/etherape/
-%{_sysconfdir}/security/console.apps/etherape
-%{_sysconfdir}/pam.d/etherape
+%config %{_sysconfdir}/security/console.apps/etherape
+%config %{_sysconfdir}/pam.d/etherape
 %{_bindir}/etherape
-%{_sbindir}/etherape
+%{_datadir}/applications/%{desktop_vendor}-etherape.desktop
 %{_datadir}/etherape/
 %{_datadir}/pixmaps/etherape.png
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/etherape.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-etherape.desktop}
-%exclude %{_localstatedir}/scrollkeeper/
+%{_sbindir}/etherape
 
 %changelog
+* Mon Sep 28 2009 Dag Wieers <dag@wieers.com> - 0.9.8-1
+- Updated to release 0.9.8.
+
+* Mon Sep 28 2009 Dag Wieers <dag@wieers.com> - 0.9.7-1
+- Updated to release 0.9.7.
+
 * Wed May 17 2006 Dag Wieers <dag@wieers.com> - 0.9.6-1
 - Updated to release 0.9.6.
 

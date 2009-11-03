@@ -3,15 +3,12 @@
 # Upstream: <dan$machlin,net>
 
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 %define desktop_vendor rpmforge
 
 Summary: IP Subnet Calculator
 Name: ipsc
 Version: 0.4.3
-Release: 1.2%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://ipsc.sourceforge.net/software.html
@@ -44,23 +41,19 @@ Categories=GNOME;Application;Utility;
 EOF
 
 %build
-%{__make} %{?_smp_mflags} -C src \
-	CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} -C ../prips CFLAGS="%{optflags}" clean prips.o
+%{__make} %{?_smp_mflags} -C src CFLAGS="%{optflags}" clean all
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 src/ipsc %{buildroot}%{_bindir}/ipsc
 %{__install} -Dp -m0755 src/gipsc %{buildroot}%{_bindir}/gipsc
 
-%if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 ipsc.desktop %{buildroot}%{_datadir}/gnome/apps/Network/ipsc.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		ipsc.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor %{desktop_vendor} \
+    --add-category X-Red-Hat-Base               \
+    --dir %{buildroot}%{_datadir}/applications  \
+    ipsc.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -68,13 +61,13 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CONTRIBUTORS COPYING README TODO
-%{_bindir}/*
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-ipsc.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Network/ipsc.desktop}
+%{_bindir}/gipsc
+%{_bindir}/ipsc
+%{_datadir}/applications/%{desktop_vendor}-ipsc.desktop
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4.3-1.2
-- Rebuild for Fedora Core 5.
+* Tue Oct 06 2009 Dag Wieers <dag@wieers.com> - 0.4.3-2
+- Rebuild for RHEL4 and RHEL4.
 
 * Mon Aug 25 2003 Dag Wieers <dag@wieers.com> - 0.4.3-1
 - Patch to build with gcc-3.3.

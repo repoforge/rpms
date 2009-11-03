@@ -1,11 +1,10 @@
 # $Id$
 # Authority: dag
 
-
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0
-Release: 1.3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://rpmforge.net/
@@ -23,97 +22,40 @@ RPM macros used by the RPMForge project.
 ###
 ### Add to /etc/rpmrc: "macrofiles: /etc/rpm/macros.rpmforge"
 
-%%packager RPMForge authority <%%{name}@package.rpmforge.net>
-%%vendor RPMForge project (http://rpmforge.net/)
-
+#%%packager RPMForge authority <%%{name}@package.rpmforge.net>
+#%%vendor RPMForge project (http://rpmforge.net/)
 
 %if %{?dtag:1}0
 %%dtag %dtag
-%%%dtag 1
 %else
 ### Current distribution undefined in original buildsystem
-#%%dtag ???
-#%%??? 1
+%%dtag unknown
 %endif
-
-%if "%dtag" == "fc2"
-### Fedora Core 2
-%%distribution RPMForge repository for Fedora Core 2
-%%errata 120
+%%%dtag 1
+%%dist .%dtag
+%if "%dtag" == "el5"
+%%distribution RPMForge repository for Red Hat Enterprise Linux 5
+%%errata 105
 %endif
-%if "%dtag" == "fc1"
-### Fedora Core 1
-%%distribution RPMForge repository for Fedora Core 1
-%%errata 110
-%%_without_alsa 1
-%%_without_theora 1
+%if "%dtag" == "el4"
+%%distribution RPMForge repository for Red Hat Enterprise Linux 4
+%%errata 104
 %endif
 %if "%dtag" == "el3"
-### Red Hat Enterprise Linux 3
 %%distribution RPMForge repository for Red Hat Enterprise Linux 3
-%%errata 91
-%%_without_alsa 1
-%%_without_fribidi 1
-%%_without_theora 1
+%%errata 103
 %endif
 %if "%dtag" == "rh9"
-### Red Hat Linux 9
 %%distribution RPMForge repository for Red Hat Linux 9
 %%errata 90
-%%_without_alsa 1
-%%_without_fribidi 1
-%%_without_theora 1
-%endif
-%if "%dtag" == "rh8"
-### Red Hat Linux 8.0
-%%distribution RPMForge repository for Red Hat Linux 8.0
-%%errata 80
-%%_without_alsa 1
-%%_without_fribidi 1
-%%_without_theora 1
 %endif
 %if "%dtag" == "rh7"
-### Red Hat Linux 7.3
 %%distribution RPMForge repository for Red Hat Linux 7.X
 %%errata 73
-%%_without_alsa 1
-%%_without_autoconf213 1
-%%_without_freedesktop 1
-%%_without_fribidi 1
-%%_without_gnomevfs2 1
-%%_without_gtk2 1
-%%_without_theora 1
 %endif
 %if "%dtag" == "el2"
-### Red hat Enterprise Linux 2.1
 %%distribution RPMForge repository for Red Hat Enterprise Linux 2.1
 %%errata 72
-%%_without_alsa 1
-%%_without_autoconf213 1
-%%_without_freedesktop 1
-%%_without_fribidi 1
-%%_without_gnomevfs2 1
-%%_without_gtk2 1
-%%_without_theora 1
-%endif
-%if "%dtag" == "rh6"
-### Red Hat Linux 6.2
-%%distribution RPMForge repository for Red Hat Linux 6.2
-%%errata 62
-%%_without_alsa 1
-%%_without_autoconf213 1
-%%_without_freedesktop 1
-%%_without_fribidi 1
-%%_without_gnomevfs2 1
-%%_without_gtk2 1
-%%_without_theora 1
-%endif
-
-%ifarch x86_64
-### Architecture: x86_64
-%%_without_mjpeg 1
-%%_without_nasm 1
-%%_without_quicktime 1
 %endif
 
 #==============================================================================
@@ -148,8 +90,6 @@ RPM macros used by the RPMForge project.
 %%global __find_provides /bin/sh -c "%%{?__filter_prov_cmd} %%{__deploop P} %%{?__filter_from_prov}" \\
 %%global __find_requires /bin/sh -c "%%{?__filter_req_cmd}  %%{__deploop R} %%{?__filter_from_req}" \\
 }
-
-
 EOF
 
 %build
@@ -166,8 +106,12 @@ EOF
 %config %{_sysconfdir}/rpm/macros.rpmforge
 
 %changelog
-* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0-1.3
-- Add __find_provides/__find_requires filter macros from fedora
+* Tue Nov 03 2009 Dag Wieers <dag@wieers.com> - 0-4
+- Added default %%dist when unset.
+- Added %%distribution and %%errata for RHEL4 and RHEL5.
+
+* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0-3
+- Add __find_provides/__find_requires filter macros from fedora.
 
 * Tue Jun 08 2004 Dag Wieers <dag@wieers.com> - 0-1
 - Initial package. (using DAR)

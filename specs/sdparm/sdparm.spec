@@ -3,13 +3,13 @@
 
 Summary: List or change SCSI disk parameters
 Name: sdparm
-Version: 1.03
+Version: 1.04
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Base
 URL: http://www.torque.net/sg/sdparm.html
 
-Source: http://www.torque.net/sg/p/%{name}-%{version}.tgz
+Source: http://sg.danny.cz/sg/p/sdparm-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -46,6 +46,9 @@ such that the disk stops operating or is slowed down. Use with care.
 %{_bindir}/sdparm
 
 %changelog
+* Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 1.04-1
+- Updated to release 1.04.
+
 * Mon Jun 30 2008 Dag Wieers <dag@wieers.com> - 1.03-1
 - Updated to release 1.03.
 

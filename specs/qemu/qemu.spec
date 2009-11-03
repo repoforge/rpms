@@ -11,14 +11,10 @@
 %{?el3:%define _without_bluez 1}
 %{?rh9:%define audio_drv_list esd,oss,sdl}
 %{?rh9:%define _without_bluez 1}
-%{?rh7:%define audio_drv_list esd,oss,sdl}
-%{?rh7:%define _without_bluez 1}
-%{?el2:%define audio_drv_list esd,oss,sdl}
-%{?el2:%define _without_bluez 1}
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.10.5
+Version: 0.10.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
@@ -204,6 +200,9 @@ fi
 %{_datadir}/qemu/
 
 %changelog
+* Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 0.10.6-1
+- Updated to release 0.10.6.
+
 * Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 0.10.5-1
 - Updated to release 0.10.5.
 

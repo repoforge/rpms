@@ -8,7 +8,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.82
+Version: 3.83
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -18,7 +18,9 @@ Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
-BuildRequires: nasm, perl, netpbm-progs
+BuildRequires: nasm
+BuildRequires: netpbm-progs
+BuildRequires: perl
 Requires: mtools
 
 Obsoletes: syslinux-devel <= %{version}-%{release}
@@ -72,6 +74,7 @@ MEMDISK, which loads legacy operating systems from these media.
 %{_bindir}/md5pass
 %{_bindir}/mkdiskimage
 %{_bindir}/ppmtolss16
+%{_bindir}/pxelinux-options
 %{_bindir}/sha1pass
 %{_bindir}/syslinux
 %{_bindir}/syslinux2ansi
@@ -80,6 +83,9 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Fri Oct 09 2009 Dag Wieers <dag@wieers.com> - 3.83-1
+- Updated to release 3.83.
+
 * Tue Jun 09 2009 Dag Wieers <dag@wieers.com> - 3.82-1
 - Updated to release 3.82.
 
