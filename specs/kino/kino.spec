@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4: %define _without_libiec61883 1}
 %{?el4:%define _without_modxorg 1}

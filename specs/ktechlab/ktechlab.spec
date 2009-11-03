@@ -6,7 +6,6 @@
 
 # ExcludeDist: el3
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Development and simulation of microcontrollers and electronic circuits
 Name: ktechlab

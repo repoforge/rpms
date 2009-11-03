@@ -6,7 +6,6 @@
 
 # ExcludeDist: el3 fc1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Small backup application
 Name: konserve

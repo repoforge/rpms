@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Gaël Roualland <gael,roualland$iname,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_net_snmp 1}
 %{?el2:%define _without_net_snmp 1}

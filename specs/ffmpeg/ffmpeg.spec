@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
 

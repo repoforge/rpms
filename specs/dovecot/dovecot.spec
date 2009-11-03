@@ -5,7 +5,6 @@
 
 ##ExcludeDist: fc3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el2:%define _without_postgresql 1}
 

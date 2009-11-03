@@ -4,7 +4,6 @@
 # Screenshot: http://giftoxic.sourceforge.net/data/images/screenie-transfer.png
 # ScreenshotURL: http://giftoxic.sourceforge.net/index.php?screenshots
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

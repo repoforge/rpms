@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Random Password Generator
 Name: passwdgen

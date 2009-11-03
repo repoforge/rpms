@@ -4,7 +4,6 @@
 ### RHEL5 already ships with icu 3.6
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh9:%define _without_doxygen13 1}
 %{?rh7:%define _without_doxygen13 1}

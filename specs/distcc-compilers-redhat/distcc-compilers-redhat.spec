@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Red Hat compilers for distccd
 Name: distcc-compilers-redhat

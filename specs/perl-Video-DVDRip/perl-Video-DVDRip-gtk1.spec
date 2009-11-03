@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Jörn Reder <joern$zyn,de>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

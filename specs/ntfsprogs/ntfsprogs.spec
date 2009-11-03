@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### EL4 and older has too old gnutls :-/
 %{?el4:%define _without_crypto 1}

@@ -4,7 +4,6 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Git core and tools
 Name: git

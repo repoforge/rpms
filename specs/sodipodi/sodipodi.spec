@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Lauris Kaplinski <lauris$kaplinski,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Vector drawing application
 Name: sodipodi

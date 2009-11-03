@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define real_version 1.4rc5
 

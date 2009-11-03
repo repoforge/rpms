@@ -6,7 +6,6 @@
 
 %define real_name ScoreReadingTrainer
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: musical score reading trainer
 Name: scorereadingtrainer

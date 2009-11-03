@@ -1,7 +1,6 @@
 # $Id: loudmouth.spec 4303 2006-04-18 22:05:03Z dries $
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_gnutls 1}
 %{?el2:%define _without_gnutls 1}

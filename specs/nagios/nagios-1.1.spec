@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### FIXME: TODO: Add sysv script based on own template.
 

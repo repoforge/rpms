@@ -3,7 +3,6 @@
 
 # ExclusiveDist: el5
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 

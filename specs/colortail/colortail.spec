@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Joakim Andersson <ja$morrdusk,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Log colorizer that makes log checking easier
 Name: colortail

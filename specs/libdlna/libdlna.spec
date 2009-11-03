@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Benjamin Zores <ben$geexbox,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_ffmpeg05 1}
 

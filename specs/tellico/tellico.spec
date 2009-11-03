@@ -5,7 +5,6 @@
 # Screenshot: http://www.periapsis.org/tellico/sshots/main_screen-0.9.png
 # ScreenshotURL: http://www.periapsis.org/tellico/sshots.php
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: collection manager
 Name: tellico

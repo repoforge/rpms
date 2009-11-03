@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Niels Provos <provos$citi,umich,edu>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?fc7:%define _with_libpcapdevel 1}

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define desktop_vendor rpmforge
 %define real_name TrueCrypt

@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <cacti-user$lists,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?rh7:%define _without_net_snmp 1}
 %{?el2:%define _without_net_snmp 1}
 %{?rh6:%define _without_net_snmp 1}

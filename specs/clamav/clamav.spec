@@ -6,7 +6,6 @@
 ### FIXME: amavisd-new requires clamd to run as user vscan, solution needed
 ### REMINDER: Look and sync with Petr Kristof's work
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_milter 1}
 %{?rh9:%define _without_milter 1}

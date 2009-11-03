@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <transcode-users$exit1.org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{?el4:%define _without_magick 1}

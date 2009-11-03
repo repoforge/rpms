@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout

@@ -1,7 +1,6 @@
 # $Id: acroread.spec 2525 2004-11-20 17:41:43Z dag $
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

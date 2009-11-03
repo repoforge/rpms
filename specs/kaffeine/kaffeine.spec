@@ -6,7 +6,6 @@
 
 ##ExcludeDist: el3 fc1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

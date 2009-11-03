@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Provides a simple, uniform password-checking interface
 Name: checkpassword

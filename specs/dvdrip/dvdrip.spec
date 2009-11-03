@@ -1,8 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
-
 %define perl_sitelib %(eval "`perl -V:installsitelib`"; echo $installsitelib)
 
 %define desktop_vendor rpmforge

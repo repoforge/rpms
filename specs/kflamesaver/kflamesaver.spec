@@ -2,7 +2,6 @@
 # Authority: dries
 # Screenshot: http://kde-apps.org/content/pics/4485-1.png
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Screensaver with flames
 Name: kflamesaver

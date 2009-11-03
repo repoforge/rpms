@@ -4,7 +4,6 @@
 
 %define real_version 2.0.0-pre7
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

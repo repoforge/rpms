@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Joergen Scheibengruber <mfcn@gmx.de>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_gnome_panel_devel 1}
 %{?rh9:%define _without_gnome_panel_devel 1}

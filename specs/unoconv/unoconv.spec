@@ -4,7 +4,6 @@
 
 # ExcludeDist: rh9 el3
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _with_openoffice2 1}
 

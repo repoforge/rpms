@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define audio_drv_list alsa,esd,oss,sdl
 

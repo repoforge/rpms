@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: Darren Bounds <dbounds$intrusense,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
-
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}

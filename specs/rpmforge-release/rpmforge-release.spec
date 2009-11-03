@@ -5,7 +5,6 @@
 ### Tag as test until we have tested the new package
 # Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_rpmpubkey 1}
 %{?el2:%define _without_rpmpubkey 1}

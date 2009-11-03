@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Pádraig Brady <P$draigBrady,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define desktop_vendor rpmforge
 

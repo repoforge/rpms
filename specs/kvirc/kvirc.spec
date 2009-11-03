@@ -4,7 +4,6 @@
 # Screenshot: http://www.kvirc.net/img/awake_spec_windows.jpg
 # ScreenshotURL: http://www.kvirc.net/?id=screen
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}

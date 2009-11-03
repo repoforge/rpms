@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Interactive tool to help translate documents in the DocBook format
 Name: rosetta

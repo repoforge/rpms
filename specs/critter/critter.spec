@@ -6,7 +6,6 @@
 
 %define real_name CriticalMass
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define desktop_vendor rpmforge
 

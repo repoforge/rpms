@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Creates a common metadata repository
 Name: createrepo

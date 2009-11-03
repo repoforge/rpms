@@ -4,7 +4,6 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh8:%define _without_elfutils 1}
 

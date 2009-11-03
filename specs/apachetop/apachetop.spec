@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Chris Elsworth <chris$shagged,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_gamin 1}
 %{?fc4:%define _with_gamin 1}

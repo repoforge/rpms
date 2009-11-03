@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <irssi-dev$dragoncat,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)

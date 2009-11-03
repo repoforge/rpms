@@ -3,7 +3,6 @@
 
 # ExclusiveDist: rh8 rh9
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: The GNOME Structure file library
 Name: libgsf

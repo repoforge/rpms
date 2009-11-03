@@ -1,7 +1,6 @@
 # $Id: $
 # Authority: dries
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh9:%define _without_php 1}
 

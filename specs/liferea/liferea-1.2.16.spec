@@ -3,7 +3,6 @@
 # Upstream: Lars Lindner <llando$gmx,de>
 # Upstream: Nathan J. Conrad <t98502$users,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag: %define _without_mozilla 1}
 %{?fc6: %define _without_mozilla 1}

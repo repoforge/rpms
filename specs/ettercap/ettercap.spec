@@ -3,7 +3,6 @@
 # Upstream: Marco Valleri <crwm$freemail,it>
 # Upstream: Alberto Ornaghi <alor$users,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{!?dtag:%define _with_libtoolltdl 1}

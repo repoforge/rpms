@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dries
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}

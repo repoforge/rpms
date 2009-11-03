@@ -4,7 +4,6 @@
 
 ### FIXME: Building icewm adds build env. stuff inside /usr/share/icewm/menu (Jonathan Underwood)
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

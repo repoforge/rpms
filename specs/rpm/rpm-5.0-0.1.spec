@@ -3,7 +3,6 @@
 
 # Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define with_python_version 2.5%{nil}}
 %{?el5:%define with_python_version 2.4%{nil}}

@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Eric S. Raymond <esr$thyrsus,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define _requires_exceptions perl
 

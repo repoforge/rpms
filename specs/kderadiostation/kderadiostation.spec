@@ -7,7 +7,6 @@
 
 # ExcludeDist: fc1 el3
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Tool which presents you a list of internet streaming radio stations
 Name: kderadiostation

@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Christian Grothoff <libextractor$cs,purdue,edu>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _with_libtoolltdl 1}
 %{?fc6:%define _with_libtoolltdl 1}

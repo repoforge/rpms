@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)
 %define real_version 1.5

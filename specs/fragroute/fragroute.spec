@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Dug Song <dugsong$monkey,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?fc7:%define _with_libpcapdevel 1}

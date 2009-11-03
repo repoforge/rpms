@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Axel Katzur <software@katzur.de>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_kernelheaders 1}
 %{?el3:%define _without_kernelheaders 1}

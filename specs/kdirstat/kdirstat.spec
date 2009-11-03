@@ -4,7 +4,6 @@
 # Screenshot: http://kdirstat.sourceforge.net/thumbnails/kdirstat-main.jpg
 # ScreenshotURL: http://kdirstat.sourceforge.net/kdirstat.html#screen_shots
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Graphical disk usage utility
 Name: kdirstat

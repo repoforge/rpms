@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: James Yonan <jim$yonan,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### FIXME: Add sysv script based on own template.
 

@@ -4,7 +4,6 @@
 # Screenshot: http://libvisual.sourceforge.net/v2/images/jess1.png
 # ScreenshotURL: http://libvisual.sourceforge.net/v2/index.php?page=screenshots
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

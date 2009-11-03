@@ -4,7 +4,6 @@
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_stackprotector 1}
 %{?el3:%define _without_stackprotector 1}

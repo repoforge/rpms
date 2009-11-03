@@ -2,7 +2,6 @@
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
 

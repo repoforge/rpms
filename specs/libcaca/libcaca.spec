@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Sam Hocevar <sam$zoy,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_modxorg 1}
 %{?fc7:  %define _with_modxorg 1}

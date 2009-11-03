@@ -3,7 +3,6 @@
 
 %{!?audio:%define audio alsa esd oss}
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _without_jack 1}
 %{?el5:%define _without_nas 1}

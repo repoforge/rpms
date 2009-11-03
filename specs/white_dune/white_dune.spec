@@ -3,7 +3,6 @@
 # Screenshot: http://www.csv.ica.uni-stuttgart.de/vrml/dune/_gfx/screen02.jpg
 # ScreenshotURL: http://www.csv.ica.uni-stuttgart.de/vrml/dune/screen.html
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

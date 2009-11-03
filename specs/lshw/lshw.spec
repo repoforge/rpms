@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Lyonel Vincent <lyonel$ezix,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_gtk24 1}
 %{?el3:%define _without_gtk24 1}

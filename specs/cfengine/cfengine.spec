@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Mark Burgess <Mark,Burgess$iu,hio,no>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_db4 1}
 %{?el2:%define _without_db4 1}

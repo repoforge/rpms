@@ -1,7 +1,6 @@
 # $Id: _template.spec.freshrpms,v 1.2 2004/02/27 00:34:01 thias Exp $
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: 
 Name: 

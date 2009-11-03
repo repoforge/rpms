@@ -5,7 +5,6 @@
 # Screenshot: http://moagg.sourceforge.net/screenshots/blackhole.png
 # ScreenshotURL: http://moagg.sourceforge.net/screenshots.php
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

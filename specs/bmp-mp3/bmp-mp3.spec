@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{?el4:%define _without_modxorg 1}

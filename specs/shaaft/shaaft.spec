@@ -3,7 +3,6 @@
 
 # Screenshot: http://criticalmass.sourceforge.net/images-shaaft/shaaft02.jpg
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: OpenGL 3D falling block game
 Name: shaaft

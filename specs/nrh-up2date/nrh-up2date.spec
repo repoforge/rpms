@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <nrh-up2date-users$lists,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Open Source server for Redhat's up2date suite
 Name: nrh-up2date

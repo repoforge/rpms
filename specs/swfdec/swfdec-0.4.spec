@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define mozilla xulrunner}
 %{!?dtag:%define _without_gstreamer 1}

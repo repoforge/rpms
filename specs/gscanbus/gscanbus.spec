@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dries
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Scan the firewire IEEE-1394 bus
 Name: gscanbus

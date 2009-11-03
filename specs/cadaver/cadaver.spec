@@ -4,7 +4,6 @@
 
 # ExcludeDist: fc1 fc2 fc3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh9:%define _without_pie 1}
 %{?rh7:%define _without_pie 1}

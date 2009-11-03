@@ -3,7 +3,6 @@
 
 #ExclusiveDist: el2 rh7 rh9 el3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### undefined reference to `usb_get_string_simple' in obexftp linking
 %{?el3:%define _without_libusb018 1}

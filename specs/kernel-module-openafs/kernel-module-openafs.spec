@@ -6,7 +6,6 @@
 # Distcc: 0
 # BuildAsRoot: 1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### FIXME: IBM openafs-1.2.9-rh9.0.5 and openafs-kernel-1.2.9-rh9.0.5 conflict with these packages.
 

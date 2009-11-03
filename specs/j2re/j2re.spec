@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc2:%define _without_compat_xorg 1}
 %{?fc1:%define _without_compat_xorg 1}

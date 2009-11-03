@@ -5,7 +5,6 @@
 # Screenshot: http://lincity.sf.net/screenshots/power.png
 # ScreenshotURL: http://lincity.sf.net/screenshots/index.html
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <inkscape-devel$lists,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

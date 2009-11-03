@@ -4,7 +4,6 @@
 ##ExcludeDist: fc1 fc2 fc3
 #ExclusiveDist: el2 rh7 rh9 el3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Library for using OBEX
 Name: openobex

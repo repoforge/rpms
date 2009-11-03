@@ -2,7 +2,6 @@
 # Authority: matthias
 # Upstream: <libquicktime-devel$lists,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### Problems when compiling against EL4 alsa-lib
 %{?el4:%define _without_alsa 1}

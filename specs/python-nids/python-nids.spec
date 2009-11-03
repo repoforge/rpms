@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <mjp$pilcrow,madison,wi,us>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}

@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Gerd Knorr <kraxel$bytesex,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define _without_libv4l 1
 

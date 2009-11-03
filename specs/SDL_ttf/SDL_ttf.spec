@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag: %define _freetype_fix 1}
 %{?fc3: %define _freetype_fix 1}

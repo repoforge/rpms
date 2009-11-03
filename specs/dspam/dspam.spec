@@ -3,7 +3,6 @@
 # Upstream: <dspam-users$nuclearelephant,com>
 # Upstream: Jonathan A. Zdziarski <jonathan$nuclearelephant,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Library and Mail Delivery Agent for Bayesian spam filtering
 Name: dspam

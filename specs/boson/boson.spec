@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dries
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Real-time strategy game
 Name: boson

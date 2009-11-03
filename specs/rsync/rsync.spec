@@ -4,7 +4,6 @@
 
 # Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_acl 1}
 %{?rh7:%define _without_xattr 1}

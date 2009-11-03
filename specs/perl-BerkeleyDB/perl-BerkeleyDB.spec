@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Paul Marquess <pmqs$cpan,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

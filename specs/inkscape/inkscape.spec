@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <inkscape-devel$lists,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

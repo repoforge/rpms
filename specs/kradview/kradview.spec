@@ -4,7 +4,6 @@
 
 # Screenshot: http://www.orcero.org/irbis/kradview/imagen1.png
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Viewer for DICOM compatible imaging devices
 Name: kradview

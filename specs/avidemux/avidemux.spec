@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <fixounet$free,fr>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define desktop_vendor rpmforge
 

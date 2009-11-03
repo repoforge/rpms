@@ -2,7 +2,6 @@
 # Authority: rudolf
 # Upstream: <gnomeicu-support$lists,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_applet 1}
 %{?fc3:%define _without_applet 1}

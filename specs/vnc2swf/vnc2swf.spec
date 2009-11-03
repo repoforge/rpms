@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <vnc2swf-users$lists,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

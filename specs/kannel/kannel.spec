@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### Kannel can use sqlite 2 or sqlite 3
 ### el5, fc7, fc6, fc5, fc4 contain 3.x as 'sqlite'

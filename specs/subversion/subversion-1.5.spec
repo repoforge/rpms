@@ -4,7 +4,6 @@
 ##ExcludeDist: fc3
 ##Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define _without_ruby 1
 

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_gamin 1}
 %{?fc4:%define _with_gamin 1}

@@ -6,7 +6,6 @@
 %define cxmon_version 3.2
 %define desktop_vendor rpmforge
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dtag:%define _with_banks 1}

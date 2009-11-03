@@ -6,7 +6,6 @@
 # ScreenshotURL: http://www.pygame.org/shredwheat/solarwolf/
 
 %define desktop_vendor rpmforge
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}

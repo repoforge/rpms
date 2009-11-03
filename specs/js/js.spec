@@ -3,7 +3,6 @@
 
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?el5:%define _with_nspr 1}
 %{?el4:%define _with_seamonkey_nspr 1}
 %{?el3:%define _with_seamonkey_nspr 1}

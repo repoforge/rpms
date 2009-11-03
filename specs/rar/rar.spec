@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?el3:%define _with_static_rar 1}
 
 # The source contains only binaries...

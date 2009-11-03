@@ -3,7 +3,6 @@
 # Upstream: Giuseppe Martino <denever$users,sourceforge,net>
 # Upstream: <aldo-main$nongnu,org>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Morse tutor
 Name: aldo

@@ -1,7 +1,6 @@
 # $Id: suphp.spec 3469 2005-08-11 22:23:52Z dag $
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?el4:%define _without_apr1 1}
 %{?el3:%define _without_apr1 1}
 %{?rh9:%define _without_apr1 1}

@@ -4,7 +4,6 @@
 
 # Screenshot: http://www.dtek.chalmers.se/~d3august/xt/bigshot.jpg
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}

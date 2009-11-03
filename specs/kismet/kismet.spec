@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <wireless$kismetwireless,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define _without_gpsmap 1
 

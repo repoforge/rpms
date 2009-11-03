@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Alp Toker <alp$atoker,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define desktop_vendor rpmforge
 

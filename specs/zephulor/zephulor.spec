@@ -4,7 +4,6 @@
 # ScreenshotURL: http://games.hollowworks.com/screens.php
 
 #%define desktop_vendor freshrpms
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el2:%define _without_freedesktop 1}
 %{?rh7:%define _without_freedesktop 1}

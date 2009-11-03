@@ -3,7 +3,6 @@
 
 # ExclusiveDist: fc1 fc2 fc3 fc4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

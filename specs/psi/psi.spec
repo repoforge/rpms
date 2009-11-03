@@ -4,7 +4,6 @@
 # Screenshot: http://psi-im.org/gfx/screenshots//0.9.3/lin_0-9-3_roster.png
 # ScreenshotURL: http://psi-im.org/screenshots
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

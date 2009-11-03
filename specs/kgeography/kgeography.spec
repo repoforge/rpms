@@ -7,7 +7,6 @@
 
 # ExcludeDist: el3 fc2 fc1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Geography learning tool
 Name: kgeography

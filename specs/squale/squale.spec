@@ -4,7 +4,6 @@
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?rh7:  %define _without_python 1}
 
 Summary: Persistent SQL database connection library and daemon

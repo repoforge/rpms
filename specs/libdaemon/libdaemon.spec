@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Lennart Poettering <mzqnrzba$0pointer,de>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 #{?el4:%define _without_lynx 1}
 #{?el3:%define _without_lynx 1}

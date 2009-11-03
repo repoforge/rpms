@@ -7,7 +7,6 @@
 
 %define real_version 1.3.5
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: PostgreSQL graphical frontend
 Name: kpogre

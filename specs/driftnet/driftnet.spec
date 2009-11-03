@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Chris Lightfoot <chris$ex-parrot,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 

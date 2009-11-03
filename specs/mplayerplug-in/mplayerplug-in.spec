@@ -5,7 +5,6 @@
 
 #%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define mozilla seamonkey-devel
 

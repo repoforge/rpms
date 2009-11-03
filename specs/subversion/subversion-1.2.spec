@@ -4,7 +4,6 @@
 ##ExcludeDist: fc3
 ##Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_swig 1}
 %{?rh9:%define _without_pie 1}

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?el5:%define _with_sysfs 1}
 
 %{?fc4:%define _without_modxorg 1}

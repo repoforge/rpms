@@ -7,7 +7,6 @@
 
 # ExcludeDist: fc1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}

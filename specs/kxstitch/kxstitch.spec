@@ -5,7 +5,6 @@
 # Screenshot: http://kxstitch.sourceforge.net/image/mainview.png
 # ScreenshotURL: http://kxstitch.sourceforge.net/screenshots.shtml
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}

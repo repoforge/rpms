@@ -7,7 +7,6 @@
 # Archs: i686 i586 i386 athlon
 # BuildAsRoot: 1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}

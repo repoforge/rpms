@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Rafal Wojtczuk <nergal$icm,edu,pl>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}

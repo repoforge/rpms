@@ -4,7 +4,6 @@
 
 # ExcludeDist: fc3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Clean and lean CD ripper
 Name: sound-juicer

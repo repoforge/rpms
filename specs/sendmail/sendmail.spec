@@ -4,7 +4,6 @@
 # ExclusiveDist: rh7 rh6
 # SourceDists: rh7
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 #BuildRequires: sendmail < 8.12
 

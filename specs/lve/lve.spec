@@ -3,7 +3,6 @@
 
 %define real_version 040322
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Linux Video Editor
 Name: lve

@@ -2,7 +2,6 @@
 # Authority: dries
 # Upstream: fefcas$gmail,com
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Typing tutor
 Name: klavaro

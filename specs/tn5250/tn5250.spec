@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <linux5250$midrange,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5:%define _without_slang 1}
 

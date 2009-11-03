@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Amos Waterland <apw$us,ibm,com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Tool to impose stress on a POSIX-compliant operating system
 Name: stress

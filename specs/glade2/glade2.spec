@@ -4,7 +4,6 @@
 
 # ExcludeDist: el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define real_name glade
 

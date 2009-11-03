@@ -5,7 +5,6 @@
 # Screenshot: http://desk3d.sourceforge.net/images/seq1-thumb.gif
 # ScreenshotURL: http://desk3d.sourceforge.net/screenshots.php
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

@@ -3,7 +3,6 @@
 # Upstream: Gernot Ziegler <gz$lysator,liu,se>
 # Upstream: <mjpeg-developer$lists,sourceforge,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{?el4:%define _without_modxorg 1}

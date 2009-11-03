@@ -4,7 +4,6 @@
 # Screenshot: http://www.texmacs.org/Samples/texmacs-1.png
 # ScreenshotURL: http://www.texmacs.org/tmweb/home/screenshots.en.html
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

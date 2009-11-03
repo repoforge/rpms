@@ -5,7 +5,6 @@
 # Screenshot: http://shalvideo.sourceforge.net/screenshot1.png
 # ScreenshotURL: http://shalvideo.sourceforge.net/
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

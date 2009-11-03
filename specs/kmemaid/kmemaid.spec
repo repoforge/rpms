@@ -4,7 +4,6 @@
 # Screenshot: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/thumbs/edit_elements_correct.png
 # ScreenshotURL: http://memaid.sourceforge.net/screenshoots/kmemaid_screenshots/
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Helps you to memorise question/answer pairs
 Name: kmemaid

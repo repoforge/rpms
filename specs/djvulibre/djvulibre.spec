@@ -1,7 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 #{?el5:#undefine _with_mozilla}
 %{?el5:%define mozilla xulrunner-devel nspr-devel}

@@ -1,7 +1,6 @@
 # $Id: subtitleripper.spec 700 2004-05-18 21:48:21Z dag $
 # Authority: matthias
 
-%{?dtag: %{expand: %%define %dtag 1}}
 %define real_version 0.3-2
 
 Summary: DVD subtitle ripper

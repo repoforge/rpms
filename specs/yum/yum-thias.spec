@@ -3,7 +3,6 @@
 ### Skip this package for dag's repo
 # Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 # Which distro to make the default configuration for
 %{?!dist:%{expand: %%define distro fd}}

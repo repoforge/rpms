@@ -2,7 +2,6 @@
 # Authority: dries
 # Upstream: <qdvdauthor$users,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define real_version 1.1.0
 

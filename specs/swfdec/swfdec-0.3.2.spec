@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{!?dtag: %define gimp_plugin 1}
 %{?el4:   %define gimp_plugin 1}

@@ -4,7 +4,6 @@
 
 # Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_milter 1}
 

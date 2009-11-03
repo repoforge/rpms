@@ -7,7 +7,6 @@
 
 %define real_version 1.0-1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Program for editing subtitles in the SRT format
 Name: ksubtile

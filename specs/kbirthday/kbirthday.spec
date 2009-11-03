@@ -5,7 +5,6 @@
 # Screenshot: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday-0.5-2.png
 # ScreenshotURL: http://www.gfai.de/~jaham/projects/kbirthday/kbirthday.html
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}

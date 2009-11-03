@@ -5,7 +5,6 @@
 # Screenshot: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/screenshot1.jpg
 # ScreenshotURL: http://www.esat.kuleuven.ac.be/~kmuylken/tuxsaver/
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: KDE screensaver showing the adventures of Tux, living at the SouthPole
 Name: tuxsaver

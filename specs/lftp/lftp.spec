@@ -5,7 +5,6 @@
 
 # Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_modules 1}
 

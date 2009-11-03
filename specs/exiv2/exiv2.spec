@@ -2,7 +2,6 @@
 # Authority: dries
 # Upstream: Andreas Huggel <ahuggel$gmx,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 ### pkgconfig < 0.16.0 doesn't like 'URL:'
 %{?el4:%define _without_pkgconfig16 1}

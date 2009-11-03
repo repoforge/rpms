@@ -5,7 +5,6 @@
 
 # ExcludeDist: fc1 el3
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Mail notification program
 Name: gnubiff

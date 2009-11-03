@@ -3,7 +3,6 @@
 
 ## ExcludeDist: el3 el4
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el5: %define _with_apr1 1}
 %{?el5: %define _with_apu1 1}

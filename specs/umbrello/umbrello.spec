@@ -5,7 +5,6 @@
 
 # ExcludeDist: el3 fc1
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: unified modelling language (UML) diagrams modeller
 Name: umbrello

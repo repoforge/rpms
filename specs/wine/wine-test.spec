@@ -3,7 +3,6 @@
 
 # Tag: test
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define _without_freeglut 0
 %define _without_glut 1

@@ -3,7 +3,6 @@
 
 %define real_version 1.0a2
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 Summary: Image and photo viewer, browser, manager and simple editor
 Name: pixieplus

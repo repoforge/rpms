@@ -4,7 +4,6 @@
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define _with_mozilla 1
 

@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _with_python15 1}
 %{?el2:%define _with_python15 1}

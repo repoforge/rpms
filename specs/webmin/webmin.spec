@@ -6,7 +6,6 @@
 
 ### FIXME: The official webmin RPM package is broken. Please back up all configuration files before upgrading.
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %define logmsg logger -t %{name}/rpm
 #define __spec_install_post #{nil}

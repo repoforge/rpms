@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <nagiosplug-devel$lists,sf,net>
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?el3:%define _without_gettextdevel 1}
 %{?rh9:%define _without_gettextdevel 1}

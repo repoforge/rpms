@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-%{?dtag: %{expand: %%define %dtag 1}}
 
 %{?rh7:%define _without_gcj3 1}
 %{?el2:%define _without_gcj3 1}
