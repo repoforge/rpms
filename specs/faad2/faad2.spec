@@ -12,7 +12,7 @@
 
 Summary: Library and frontend for decoding MPEG2/4 AAC
 Name: faad2
-Version: 2.6.1
+Version: 2.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -42,7 +42,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}
+%setup
 #patch0 -p1 -b .buildfix
 #patch1 -p1 -b .faacDec
 
@@ -69,17 +69,24 @@ autoreconf -vif
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README* TODO
+%{_mandir}/manm/faad.man.gz
 %{_bindir}/faad
 %{_libdir}/libfaad.so.*
+%{_libdir}/libfaad.la
+%{_libdir}/libmp4ff.a
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/faad.h
+%{_includedir}/mp4ff.h
+%{_includedir}/mp4ffint.h
 %{_includedir}/neaacdec.h
 %{_libdir}/libfaad.so
-%exclude %{_libdir}/libfaad.la
 
 %changelog
+* Tue Oct 06 2009 Steve Huff <shuff@vecna.org> - 2.7-1
+- Updated to release 2.7.
+
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 2.6.1-1
 - Updated to release 2.6.1.
 

@@ -14,15 +14,8 @@ Source: http://dl.sf.net/comix/comix-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-BuildRequires: gtk2-devel >= 2.12.0
-BuildRequires: pygtk2-devel >= 2.12.0
-BuildRequires: python
-BuildRequires: python-imaging
-Requires: gtk2 >= 2.12.0
-Requires: pygtk2 >= 2.12.0
-Requires: python
-Requires: python-imaging
-Requires: rar
+BuildRequires: python, python-imaging, pygtk2-devel >= 2.12.0, gtk2-devel >= 2.12.0
+Requires: python, python-imaging, rar, pygtk2 >= 2.12.0, gtk2 >= 2.12.0
 
 %description
 Comix is a comic book viewer. It reads zip, rar, tar, tar.gz, and tar.bz2
@@ -54,7 +47,9 @@ archives (often called .cbz, .cbr and .cbt) as well as normal image files.
 
 %changelog
 * Wed Jul  1 2009 Steve Huff <hakamadare@users.sourceforge.net> - 4.0.4-2
-- Added version to pygtk2 related BuildRequires.
+- This version has minimum required versions of some libraries that
+  prevent it from running on stock RHEL5; captured them (this enforces
+  the FIXME noted above).
 
 * Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 4.0.4-1
 - Updated to release 4.0.4.

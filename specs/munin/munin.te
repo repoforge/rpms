@@ -1,0 +1,9 @@
+module munin 1.0;
+
+# munin doesn't close a TCP socket when pinging
+require {
+        type ifconfig_t;
+        type initrc_t;
+
+        class tcp_socket { read write };
+}
