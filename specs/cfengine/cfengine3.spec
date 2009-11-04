@@ -12,7 +12,7 @@
 Summary: System administration tool for networks
 Name: cfengine
 Version: 3.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
@@ -54,23 +54,23 @@ Full documentation for cfengine
 #OPTIONS=""
 EOF
 
-%{__cat} <<'EOF' >cfenvd.sysv
+%{__cat} <<'EOF' >cf-monitord.sysv
 #!/bin/bash
 #
-# Init file for the cfengine anomaly detection service
+# Init file for the cfengine passive monitoring agent service
 #
 # chkconfig: 2345 98 20
-# description: cfenvd is an optional anomaly detection service for cfengine.
+# description: cf-monitord is responsible for collecting information about the status of your system.
 #
-# processname: cfenvd
+# processname: cf-monitord
 # pidfile: %{_localstatedir}/run/cfengine
 
 # Source function library.
 source %{_initrddir}/functions
 
 RETVAL=0
-prog="cfenvd"
-desc="cfengine anomaly detection service"
+prog="cf-monitord"
+desc="cfengine passive monitoring service"
 
 if [ -r /etc/sysconfig/$prog ]; then
     source %{_sysconfdir}/sysconfig/$prog
@@ -141,7 +141,7 @@ EOF
 source %{_initrddir}/functions
 
 RETVAL=0
-prog="cfexecd"
+prog="cf-execd"
 desc="cfengine client daemon"
 
 if [ -r /etc/sysconfig/$prog ]; then
@@ -224,7 +224,7 @@ fi
 start() {
     echo -n $"Starting $desc ($prog): "
     if [ ! -f %{_localstatedir}/cfengine/ppkeys/localhost.priv ]; then
-        %{_sbindir}/cfkey
+        %{_sbindir}/cf-key
     fi
     daemon $prog $OPTIONS
     RETVAL=$?
@@ -285,24 +285,25 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_datadir}/cfengine/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/cfengine/{bin,inputs}/
 %{__make} install DESTDIR="%{buildroot}" 
-%{__install} -Dp -m0755 cfenvd.sysv %{buildroot}%{_initrddir}/cfenvd
+%{__install} -Dp -m0755 cf-monitord.sysv %{buildroot}%{_initrddir}/cf-monitord
 %{__install} -Dp -m0755 cfexecd.sysv %{buildroot}%{_initrddir}/cfexecd
 %{__install} -Dp -m0755 cfservd.sysv %{buildroot}%{_initrddir}/cfservd
-%{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfenvd
+%{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cf-monitord
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfexecd
 %{__install} -Dp -m0644 default.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/cfservd
-%{__ln_s} -f %{_sbindir}/cfagent %{buildroot}%{_localstatedir}/cfengine/bin/
+%{__ln_s} -f %{_sbindir}/cf-agent %{buildroot}%{_localstatedir}/cfengine/bin/
+%{__ln_s} -f %{_sbindir}/cf-promises %{buildroot}%{_localstatedir}/cfengine/bin/
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
-%{_sbindir}/cfkey &>/dev/null || :
+%{_sbindir}/cf-key &>/dev/null || :
 /sbin/install-info %{_infodir}/cfengine-Reference.info.gz %{_infodir}/dir
 /sbin/install-info %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
 
 if [ $1 -eq 1 ]; then
-    chkconfig --add cfenvd
+    chkconfig --add cf-monitord
     chkconfig --add cfexecd
     chkconfig --add cfservd
 fi
@@ -312,7 +313,7 @@ fi
 /sbin/install-info --delete %{_infodir}/cfengine-Tutorial.info.gz %{_infodir}/dir
 
 if [ $1 -eq 0 ]; then
-    chkconfig --del cfenvd
+    chkconfig --del cf-monitord
     chkconfig --del cfexecd
     chkconfig --del cfservd
 fi
@@ -337,9 +338,9 @@ fi
 %doc %{_mandir}/man8/cf-runagent.8*
 %doc %{_mandir}/man8/cf-serverd.8*
 %config(noreplace) %{_sysconfdir}/sysconfig/cfexecd
-%config(noreplace) %{_sysconfdir}/sysconfig/cfenvd
+%config(noreplace) %{_sysconfdir}/sysconfig/cf-monitord
 %config(noreplace) %{_sysconfdir}/sysconfig/cfservd
-%config %{_initrddir}/cfenvd
+%config %{_initrddir}/cf-monitord
 %config %{_initrddir}/cfexecd
 %config %{_initrddir}/cfservd
 %{_sbindir}/cf-agent
@@ -357,7 +358,12 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
-* Mon Aug 24 2009 Chritsoph Maser <cmr@financial.com> - 3.0.2
+* Mon Nov 02 2009 Bjarne Saltbaek <arnebjarne72@hotmail.com> - 3.0.2-2
+- Fixed cf-agent and cf-promises symlink.
+- Fixed cfexecd initscript.
+- Changed cfenvd initscript to cf-monitord initscript.
+
+* Mon Aug 24 2009 Chritsoph Maser <cmr@financial.com> - 3.0.2 - 7663/cmr
 - Update to version 3.0.2.
 
 * Tue May 12 2009 Chritsoph Maser <cmr@financial.com> - 3.0.1
