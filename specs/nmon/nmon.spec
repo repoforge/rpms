@@ -4,19 +4,14 @@
 
 Summary: Performance analysis tool
 Name: nmon
-Version: 11f
+Version: 12d
 Release: 1%{?dist}
 License: Proprietary
 Group: Applications/System
 URL: http://www-128.ibm.com/developerworks/aix/library/au-analyze_aix/
 #URL: http://www-941.haw.ibm.com/collaboration/wiki/display/WikiPtype/nmon
 
-#Source0: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_x86_%{version}.zip?version=1
-Source0: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon_x86_%{version}.zip?version=1
-#Source1: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_power_%{version}.zip?version=2
-Source1: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon_power_rhel4.zip?version=1
-#Source2: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon4linux_x86_64_b.zip?version=1
-Source2: http://www-941.haw.ibm.com/collaboration/wiki/download/attachments/437/nmon_x86_64_rhel4.zip?version=1
+Source: http://dl.sf.net/project/nmon/lmon12d.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64 ppc ppc64
@@ -26,7 +21,7 @@ nmon is designed for performance specialists to use for monitoring and
 analyzing performance data.
 
 %prep
-%setup -c -a1 -a2
+%setup -c
 
 %{__cat} <<EOF >nmon-script.sysconfig
 ### The directory to store the nmon data files
@@ -56,11 +51,11 @@ KEEPDAYS="31"
 ### Kill the old process(es)
 /usr/bin/pkill -x -f "/usr/bin/nmon $OPTIONS -m $NMONDIR"
 
-### Start the new process
-/usr/bin/nmon $OPTIONS -m $NMONDIR
-
 ### Remove old log files
-/usr/bin/find $NMONDIR  -ctime +$KEEPDAYS -daystart -type f | xargs rm -f
+/usr/bin/find $NMONDIR -ctime +$KEEPDAYS -daystart -type f | xargs rm -f
+
+### Start the new process
+exec /usr/bin/nmon $OPTIONS -m $NMONDIR
 EOF
 
 %{__cat} <<EOF >nmon-script.cron
@@ -68,29 +63,15 @@ EOF
 EOF
 
 %build
+%ifarch ppc ppc64
+%{__cc} %{optflags} -D GETUSER -D JFS -D LARGEMEM -D POWER -lncurses lmon%{version}.c -o nmon
+%else
+%{__cc} %{optflags} -D GETUSER -D JFS -D LARGEMEM -lncurses lmon%{version}.c -o nmon
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
-%ifarch i386
-%{?el5:%{__install} -Dp -m0755 nmon_x86_rhel4 %{buildroot}%{_bindir}/nmon}
-%{?fc6:%{__install} -Dp -m0755 nmon_x86_fedora5 %{buildroot}%{_bindir}/nmon}
-%{?fc5:%{__install} -Dp -m0755 nmon_x86_fedora5 %{buildroot}%{_bindir}/nmon}
-%{?el4:%{__install} -Dp -m0755 nmon_x86_rhel4 %{buildroot}%{_bindir}/nmon}
-%{?el3:%{__install} -Dp -m0755 nmon_x86_rhel3 %{buildroot}%{_bindir}/nmon}
-%{?rh9:%{__install} -Dp -m0755 nmon_x86_rhel3 %{buildroot}%{_bindir}/nmon}
-%{?rh7:%{__install} -Dp -m0755 nmon_x86_rhel2 %{buildroot}%{_bindir}/nmon}
-%{?el2:%{__install} -Dp -m0755 nmon_x86_rhel2 %{buildroot}%{_bindir}/nmon}
-%endif
-%ifarch x86_64
-%{?el5:%{__install} -Dp -m0755 nmon_x86_64_rhel4 %{buildroot}%{_bindir}/nmon}
-%{?fc6:%{__install} -Dp -m0755 nmon_x86_64_fedora6 %{buildroot}%{_bindir}/nmon}
-%{?el4:%{__install} -Dp -m0755 nmon_x86_64_rhel4 %{buildroot}%{_bindir}/nmon}
-%endif
-%ifarch ppc ppc64
-%{?el5:%{__install} -Dp -m0755 nmon_power_rhel4 %{buildroot}%{_bindir}/nmon}
-%{?el4:%{__install} -Dp -m0755 nmon_power_rhel4 %{buildroot}%{_bindir}/nmon}
-%{?el3:%{__install} -Dp -m0755 nmon_power_rhel3 %{buildroot}%{_bindir}/nmon}
-%endif
+%{__install} -Dp -m0755 nmon %{buildroot}%{_bindir}/nmon
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/nmon/
 %{__install} -Dp -m0755 nmon-script.sh %{buildroot}%{_bindir}/nmon-script
@@ -102,6 +83,7 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
+%doc Documentation.txt
 %config(noreplace) %{_sysconfdir}/sysconfig/nmon-script
 %config %{_sysconfdir}/cron.d/nmon-script
 %{_bindir}/nmon
@@ -111,6 +93,9 @@ EOF
 %{_localstatedir}/log/nmon/
 
 %changelog
+* Thu Nov 05 2009 Dag Wieers <dag@wieers.com> - 12d-1
+- Updated to release 12d.
+
 * Sat Aug 18 2007 Dag Wieers <dag@wieers.com> - 11f-1
 - Updated to release 11f.
 
