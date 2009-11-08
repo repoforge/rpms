@@ -4,7 +4,7 @@
 
 Summary: X MultiMedia System input plugin to play AAC files
 Name: xmms-aac
-Version: 2.6.1
+Version: 2.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -23,7 +23,7 @@ AAC files are MPEG2 or MPEG4 files that can be found in MPEG4 audio files
 
 
 %prep
-%setup -n faad2
+%setup -n faad2-%{version}
 # Fix file modes (docs and sources shouldn't be executable)
 find plugins/xmms/ -type f -exec chmod 644 {} \;
 ### Required to make automake < 1.7 work
@@ -55,6 +55,9 @@ autoreconf -vif
 
 
 %changelog
+* Sun Nov 08 2009 Steve Huff <shuff@vecna.org> - 2.7-1
+- Updated to version 2.7, lockstep with faad2 package.
+
 * Tue Oct 06 2009 Steve Huff <shuff@vecna.org> - 2.6.1-1
 - Updated to version 2.6.1.
 
