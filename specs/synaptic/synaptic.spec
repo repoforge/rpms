@@ -5,7 +5,7 @@
 Summary: Graphical package management program using apt
 Name: synaptic
 Version: 0.57.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nongnu.org/synaptic/
@@ -53,13 +53,13 @@ EOF
 
 %{__cat} <<EOF >synaptic.pam
 #%PAM-1.0
-auth    sufficient      /lib/security/pam_rootok.so
-auth    sufficient      /lib/security/pam_timestamp.so
-auth    required        /lib/security/pam_stack.so service=system-auth
-session required        /lib/security/pam_permit.so
-session optional        /lib/security/pam_xauth.so
-session optional        /lib/security/pam_timestamp.so
-account required        /lib/security/pam_permit.so
+auth    sufficient      /%{_lib}/security/pam_rootok.so
+auth    sufficient      /%{_lib}/security/pam_timestamp.so
+auth    required        /%{_lib}/security/pam_stack.so service=system-auth
+session required        /%{_lib}/security/pam_permit.so
+session optional        /%{_lib}/security/pam_xauth.so
+session optional        /%{_lib}/security/pam_timestamp.so
+account required        /%{_lib}/security/pam_permit.so
 EOF
 
 %{__cat} <<EOF >data/synaptic.desktop.in
@@ -120,6 +120,10 @@ EOF
 %{_sbindir}/synaptic
 
 %changelog
+* Mon Nov 09 2009 Yury V. Zaytsev <yury@shurup.com> - 0.57.2-7
+- Changed module paths in pam file to fix x86_64 issue 
+  (thanks to Nicolas Thierry-Mieg)
+
 * Thu Nov 06 2008 Dag Wieers <dag@wieers.com> - 0.57.2-6
 - Rebuild with missing patches from panu. (Nicolas Thierry-Mieg)
 
