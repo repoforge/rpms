@@ -1,12 +1,13 @@
 # $Id$
 # Authority: yury
+# Upstream: Jari "Rakshasa" Sundell <sundell.software$gmail,com>
 
 %define curl_version 7.19.6
 
 Summary: Console based bittorrent client
 Name: rtorrent
 Version: 0.8.5
-Release: 2
+Release: 3
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
@@ -46,7 +47,7 @@ management.
 %build
 
 # Build curl
-cd curl-%{curl_version}
+pushd curl-%{curl_version}
 RESULT_DIR=`pwd`/result
 
 ./configure \
@@ -61,15 +62,14 @@ RESULT_DIR=`pwd`/result
 	--exec-prefix="$RESULT_DIR" \
 	--libdir="$RESULT_DIR/usr/%{_lib}"
 
-%{__make} %{?_smp_mflags} install
-
-cd ..
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}" install
+popd
 
 # Build rtorrent
 PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
 
 %configure
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -85,6 +85,9 @@ PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PK
 %{_bindir}/rtorrent
 
 %changelog
+* Wed Nov 11 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.5-3
+- Minor refinements by Steve Huff (thanks)!
+
 * Tue Nov 3 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.5-2
 - Static build against latest curl.
 
