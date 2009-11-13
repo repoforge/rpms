@@ -2,17 +2,12 @@
 # Authority: dag
 # Upstream: Pascal Brachet <pbrachet$xm1math,net>
 
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
-
 %define desktop_vendor rpmforge
 
 Summary: LaTeX editor
 Name: texmaker
-Version: 1.6
-Release: 1%{?dist}
+Version: 1.9
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.xm1math.net/texmaker/
@@ -20,8 +15,8 @@ URL: http://www.xm1math.net/texmaker/
 Source: http://www.xm1math.net/texmaker/texmaker-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: qt-devel >= 4.0, kdelibs-devel, gcc-c++
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: qt4-devel, gcc-c++
+BuildRequires: desktop-file-utils
 
 %description
 Texmaker is a program, that integrates many tools needed
@@ -68,16 +63,17 @@ Categories=Application;Office;WordProcessor;
 EOF
 
 %build
-source "%{_sysconfdir}/profile.d/qt.sh"
-$QTDIR/bin/qmake -makefile -unix texmaker.pro
+export PATH="%{_libdir}/qt4/bin:$PATH"
 
-%{__make} %{?_smp_mflags} \
-	CXXFLAGS="%{optflags}"
+qmake -unix texmaker.pro
+
+%{__make} %{?_smp_mflags}
 
 %install
+
+#%{__make} install DESTDIR="%{buildroot}"
+
 %{__rm} -rf %{buildroot}
-#%{__make} install \
-#	DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 texmaker %{buildroot}%{_bindir}/texmaker
 %{__install} -Dp -m0644 utilities/texmaker16x16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/texmaker.png
 %{__install} -Dp -m0644 utilities/texmaker32x32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/texmaker.png
@@ -87,15 +83,11 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %{__install} -d -m0755 %{buildroot}%{_datadir}/texmaker/
 %{__install} -p -m0644 utilities/*.{css,gif,html,png} %{buildroot}%{_datadir}/texmaker/
 
-%if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 texmaker.desktop %{buildroot}%{_datadir}/applications/texmaker.desktop
-%else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		texmaker.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        texmaker.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -104,13 +96,22 @@ $QTDIR/bin/qmake -makefile -unix texmaker.pro
 %defattr(-, root, root, 0755)
 %doc INSTALL utilities/AUTHORS utilities/COPYING
 %{_bindir}/texmaker
-%{?_without_freedesktop:%{_datadir}/applications/texmaker.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-texmaker.desktop}
+%{_datadir}/applications/%{desktop_vendor}-texmaker.desktop
 %{_datadir}/icons/hicolor/*/apps/texmaker.png
 %{_datadir}/pixmaps/texmaker.png
 %{_datadir}/texmaker/
 
 %changelog
+* Fri Nov 13 2009 Yury V. Zaytsev - 1.9-2
+- Salvaged uncommitted SPEC from build logs.
+- Updated SPEC file with small fixes here and there.
+
+* Thu May 21 2009 Dag Wieers <dag@wieers.com> - 1.9-1 - 5993+/dag
+- Updated to release 1.9.
+
+* Sun Apr 27 2008 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
+
 * Thu Jun 21 2007 Dag Wieers <dag@weers.com> - 1.6-1
 - Updated to release 1.6.
 
