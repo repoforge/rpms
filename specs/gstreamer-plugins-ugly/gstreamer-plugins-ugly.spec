@@ -2,6 +2,8 @@
 # Authority: matthias
 # ExclusiveDist: fc5 fc6 el5 fc7
 
+# Test
+
 %define desktop_vendor rpmforge
 
 %define majorminor   0.10
@@ -12,7 +14,7 @@
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
-Version: 0.10.9
+Version: 0.10.11
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
@@ -26,6 +28,8 @@ BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 BuildRequires: gcc-c++
 BuildRequires: gettext-devel
 
+BuildRequires: twolame-devel
+BuildRequires: libcdio-devel
 BuildRequires: libsidplay-devel >= 1.36.0
 BuildRequires: a52dec-devel >= 0.7.3
 #BuildRequires: libdvdnav-devel >= 0.1.3
@@ -33,7 +37,7 @@ BuildRequires: libdvdread-devel >= 0.9.0
 BuildRequires: lame-devel >= 3.89
 BuildRequires: libid3tag-devel >= 0.15.0
 BuildRequires: libmad-devel >= 0.15.0
-BuildRequires: mpeg2dec-devel >= 0.4.0
+BuildRequires: libmpeg2-devel >= 0.4.0
 BuildRequires: amrnb-devel >= 7.0.0.2
 BuildRequires: liboil-devel
 BuildRequires: PyXML
@@ -69,10 +73,13 @@ gstreamer-plugins-good because:
     --disable-static
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
+
+# make output told me to do this
+libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
+
 %find_lang gst-plugins-ugly-%{majorminor}
 
 # Clean out files that should not be part of the rpm.
@@ -103,8 +110,13 @@ gstreamer-plugins-good because:
 %{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
 %{_libdir}/gstreamer-%{majorminor}/libgstrmdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsid.so
+%{_libdir}/gstreamer-%{majorminor}/libgsttwolame.so
 
 %changelog
+* Thu Nov 12 2009 Steve Huff <shuff@vecna.org> - 0.10.13-1
+- Updated to release 0.10.13.
+- No further updates possible without gstreamer update.
+
 * Thu Apr 02 2009 Dag Wieers <dag@wieers.com> - 0.10.9-1
 - Updated to release 0.10.9.
 

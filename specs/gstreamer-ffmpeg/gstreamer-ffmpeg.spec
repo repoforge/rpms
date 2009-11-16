@@ -1,5 +1,8 @@
 # $Id$
 # Authority: dag
+# ExclusiveDist: fc5 fc6 el5 fc7
+
+# Test
 
 %define desktop_vendor rpmforge
 
@@ -9,7 +12,7 @@
 
 Summary: GStreamer streaming media framework FFmpeg-based plugin
 Name: gstreamer-ffmpeg
-Version: 0.10.5
+Version: 0.10.6
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
@@ -64,11 +67,17 @@ This package provides FFmpeg-based GStreamer plug-ins.
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README TODO
 %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.so
+%{_libdir}/gstreamer-%{majorminor}/libgstffmpegscale.so
 %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.so
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpeg.la
+%exclude %{_libdir}/gstreamer-%{majorminor}/libgstffmpegscale.la
 %exclude %{_libdir}/gstreamer-%{majorminor}/libgstpostproc.la
 
 %changelog
+* Mon Nov 16 2009 Steve Huff <shuff@vecna.org> - 0.10.6-1
+- Updated to release 0.10.6.
+- No further updates possible without gstreamer update.
+
 * Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.10.5-1
 - Updated to release 0.10.5.
 
