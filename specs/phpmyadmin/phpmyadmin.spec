@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: php-mysql >= 4.1.0
+Requires: php-mcrypt
 Requires: webserver
 Obsoletes: phpMyAdmin <= %{version}-%{release}
 Provides: phpMyAdmin = %{version}-%{release}
