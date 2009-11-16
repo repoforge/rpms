@@ -19,8 +19,8 @@ URL: http://rabbitvcs.org
 Source: http://rabbitvcs.googlecode.com/files/rabbitvcs-%{version}.tar.gz
 Patch0: rabbitvcs-0.12_nautilusold.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+# BuildArch: noarch
 
-BuildArch: noarch
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: python-nautilus-devel = 0.5.0
