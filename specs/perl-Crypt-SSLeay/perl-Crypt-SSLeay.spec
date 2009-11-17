@@ -10,7 +10,7 @@
 Summary: OpenSSL support for LWP
 Name: perl-Crypt-SSLeay
 Version: 0.57
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-SSLeay/
@@ -22,6 +22,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+Provides: perl-Business-OnlinePayment-alternative = 3.00
 
 %description
 OpenSSL support for LWP.
@@ -65,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Crypt/SSLeay/
 
 %changelog
+* Tue Nov 17 2009 Steve Huff <shuff@vecna.org> - 0.57-2
+- Satisfies an alternative dependency for perl-Business-OnlinePayment.
+
 * Thu Nov 08 2007 Dag Wieers <dag@wieers.com> - 0.57-1
 - Updated to release 0.57.
 

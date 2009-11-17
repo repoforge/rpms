@@ -10,7 +10,7 @@
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
 Version: 1.35
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSLeay/
@@ -27,6 +27,8 @@ BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::Warn)
 BuildRequires: perl(Tree::DAG_Node)
 Requires: perl >= 0:5.00503
+
+Provides: perl-Business-OnlinePayment-alternative = 3.00
 
 %description
 Net-SSLeay module for perl.
@@ -65,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/SSLeay.pm
 
 %changelog
+* Tue Nov 17 2009 Steve Huff <shuff@vecna.org> - 1.35-2
+- Satisfies an alternative dependency for perl-Business-OnlinePayment.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.35-1
 - Updated to version 1.35.
 
