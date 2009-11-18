@@ -1,0 +1,21 @@
+Fix stack smashing... triggered by the stack overflow test (doh!)
+
+Lubomir Rintel <lkundrak@v3.sk>
+
+diff -urp jsl-0.3.0/src/jsl.c jsl-0.3.0.smash/src/jsl.c
+--- jsl-0.3.0/src/jsl.c	2006-11-03 20:20:24.000000000 +0100
++++ jsl-0.3.0.smash/src/jsl.c	2009-04-14 23:03:37.528221874 +0200
+@@ -91,7 +91,12 @@
+ #define EXITCODE_FILE_ERROR 4
+ 
+ /* file constants */
+-#define MAXPATHLEN 1024
++#ifdef PATH_MAX
++#define MAXPATHLEN PATH_MAX
++#else
++#warning "MAXPATHLEN can overflow if PATH_MAX is too big"
++#define MAXPATHLEN 65536
++#endif
+ 
+ #ifdef WIN32
+ #define DEFAULT_DIRECTORY_SEPARATOR '\\'

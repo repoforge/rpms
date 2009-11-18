@@ -1,0 +1,12 @@
+Fail if tests fail.
+
+Lubomir Rintel <lkundrak@v3.sk>
+
+diff -up jsl-0.3.0/tests/run_tests.pl.tests jsl-0.3.0/tests/run_tests.pl
+--- jsl-0.3.0/tests/run_tests.pl.tests	2009-04-14 23:05:50.287206494 +0200
++++ jsl-0.3.0/tests/run_tests.pl	2009-04-14 23:06:13.605209095 +0200
+@@ -69,3 +69,4 @@ print "Searching $FindBin::Bin...\n";
+ find( sub{TestFile}, '.');
+ 
+ print "Passed $num_passed of $num_tests tests\n";
++die "FAIL" unless $num_passed == $num_tests;
