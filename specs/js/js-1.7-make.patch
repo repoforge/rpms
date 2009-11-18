@@ -1,0 +1,11 @@
+--- src/Makefile.ref.orig	2009-11-18 14:09:02.000000000 -0500
++++ src/Makefile.ref	2009-11-18 14:09:39.000000000 -0500
+@@ -336,7 +336,7 @@
+ 	link.exe -out:"$@" $(EXE_LINK_FLAGS) $^
+ else
+ $(PROGRAM): $(PROG_OBJS) $(LIBRARY)
+-	$(CC) -o $@ $(CFLAGS) $(PROG_OBJS) $(LIBRARY) $(LDFLAGS) $(OTHER_LIBS) \
++	$(CC) -o $@ $(CFLAGS) $(PROG_OBJS) $(LIBRARY) -ljs $(LDFLAGS) $(OTHER_LIBS) \
+ 	    $(PROG_LIBS)
+ endif
+ 

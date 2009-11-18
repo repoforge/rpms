@@ -1,0 +1,16 @@
+--- src/Makefile.ref.orig	2009-11-18 14:09:02.000000000 -0500
++++ src/Makefile.ref	2009-11-18 14:12:49.000000000 -0500
+@@ -63,11 +63,11 @@
+ 
+ ifdef JS_THREADSAFE
+ DEFINES += -DJS_THREADSAFE
+-INCLUDES += -I$(DIST)/include/nspr
++INCLUDES += $(shell nspr-config --cflags)
+ ifdef USE_MSVC
+ OTHER_LIBS += $(DIST)/lib/libnspr$(NSPR_LIBSUFFIX).lib
+ else
+-OTHER_LIBS += -L$(DIST)/lib -lnspr$(NSPR_LIBSUFFIX)
++OTHER_LIBS += $(shell nspr-config --libs)
+ endif
+ endif
+ 
