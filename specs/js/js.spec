@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dag
 
-# Test
-
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
 %{?el5:%define _with_nspr 1}
@@ -14,7 +12,7 @@
 
 Summary: JavaScript interpreter
 Name: js
-Version: 1.7.0
+Version: 1.60
 Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
@@ -34,7 +32,6 @@ Buildrequires: pkgconfig
 %{?_with_seamonkey_nspr:BuildRequires: seamonkey-nspr}
 %{?_with_mozilla_nspr:BuildRequires: mozilla-nspr}
 Provides: libjs = %{version}-%{release}
-Provides: spidermonkey = %{version}
 
 %description
 JavaScript is the Netscape-developed object scripting languages.
@@ -58,7 +55,7 @@ you will need to install %{name}-devel.
 %patch1 -p0 -b .shlib
 %patch2 -p1 -b .vacopy
 %patch3 -p0 -b .ldflags
-%patch4 -p0 -b .threadsafe
+%patch4 -p1 -b .threadsafe
 %patch5 -p1 -b .ncurses
 
 %{__cat} <<'EOF' >libjs.pc
@@ -135,9 +132,6 @@ find %{buildroot}%{perl_vendorarch} -type f -exec %{__chmod} u+w {} \;
 %{_includedir}/js*.h
 
 %changelog
-* Wed Nov 18 2009 Steve Huff <shuff@vecna.org> - 1.7.0-1
-- Updated to release 1.7.0.
-
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.60-1
 - Updated to release 1.60.
 
