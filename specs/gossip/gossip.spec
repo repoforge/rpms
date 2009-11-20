@@ -1,21 +1,24 @@
-# $Id:$
-# Authority: hadams
+# $Id$
+# Authority: shuff
+# ExcludeDist el3 el4
 
 %define with_dbus 1
 
 Name:           gossip
 Version:        0.26
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Gnome Jabber Client
 
 Group:          Applications/Communications
 License:        GPL
 URL:		http://www.imendio.com/projects/gossip/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{version}/%{name}-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:	loudmouth-devel >= 1.0
+BuildRequires:	glib2-devel >= 2.12.0
+BuildRequires:	loudmouth-devel >= 1.4.1
 BuildRequires:	libgnomeui-devel
+BuildRequires:	libxml2-devel >= 2.6.16
 BuildRequires:	libxslt-devel
 BuildRequires:	libXScrnSaver-devel
 BuildRequires:	libXt-devel
@@ -28,6 +31,7 @@ BuildRequires:  scrollkeeper
 BuildRequires:	iso-codes-devel
 BuildRequires:	gnome-doc-utils
 BuildRequires:	perl(XML::Parser)
+BuildRequires:	pkgconfig >= 0.16
 
 
 %if %{with_dbus}
@@ -46,8 +50,7 @@ real user friendly way of chatting with their friends.
 
 
 %prep
-%setup -q
-
+%setup
 
 %build
 %configure --disable-scrollkeeper	\
@@ -128,9 +131,16 @@ fi
 %{_datadir}/sounds/%{name}/
 %{_datadir}/omf/%{name}/
 %{_datadir}/gnome/help/%{name}/
+%if %{with_dbus} 
+%{_libexecdir}/*
+%{_libdir}/bonobo/servers/*
+%endif
 
 
 %changelog
+* Fri Nov 20 2009 Steve Huff <shuff@vecna.org> - 0.26-2
+- Caught a few more missing dependencies, now it builds on el5.
+
 * Wed Nov 21 2007 Heiko Adams <info@fedora-blog.de> - 0.26-1
 - Update to 0.26
 - rebuild for rpmforge

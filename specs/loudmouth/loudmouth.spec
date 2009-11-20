@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dag
+# Authority: shuff
 
 
 %{?el4:%define _without_gnutls 1}
@@ -13,14 +13,13 @@
 
 Summary: Jabber programming library written in C
 Name: loudmouth
-Version: 1.2.2
+Version: 1.4.3
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.loudmouth-project.org/
 
 Source: http://ftp.imendio.com/pub/imendio/loudmouth/src/loudmouth-%{version}.tar.bz2
-Patch0: loudmouth-1.2.2-stream-error.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gtk-doc >= 0.10
@@ -49,7 +48,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0 -p1 -b .stream-error
 
 %build
 %configure \
@@ -83,6 +81,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libloudmouth-1.la
 
 %changelog
+* Fri Nov 20 2009 Steve Huff <shuff@vecna.org> - 1.4.3-1
+- Updated to release 1.4.3.
+
 * Wed May 23 2007 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
