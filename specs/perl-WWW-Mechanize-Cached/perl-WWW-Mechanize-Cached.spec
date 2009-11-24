@@ -9,8 +9,8 @@
 
 Summary: Cache response to be polite
 Name: perl-WWW-Mechanize-Cached
-Version: 1.33
-Release: 1%{?dist}
+Version: 1.35
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize-Cached/
@@ -19,20 +19,25 @@ Source: http://www.cpan.org/modules/by-module/WWW/WWW-Mechanize-Cached-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Cache::Cache) >= 1.02
 BuildRequires: perl(Carp)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(HTTP::Headers) >= 5.827
 BuildRequires: perl(Storable) >= 2.08
 BuildRequires: perl(Test::More) >= 0.47
-BuildRequires: perl(Test::Warn) >= 0.11
+#BuildRequires: perl(Test::Warn) >= 0.11  
 BuildRequires: perl(WWW::Mechanize) >= 1.00
-Requires: perl
 Requires: perl(Cache::Cache) >= 1.02
 Requires: perl(Carp)
+Requires: perl(HTTP::Headers) >= 5.827
 Requires: perl(Storable) >= 2.08
 Requires: perl(Test::More) >= 0.47
 Requires: perl(Test::Warn) >= 0.11
 Requires: perl(WWW::Mechanize) >= 1.00
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 
 %description
@@ -57,7 +62,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS Artistic COPYING CREDITS Changes INSTALL LICENCE MANIFEST MANIFEST.SKIP META.yml README
+%doc AUTHORS Changes INSTALL MANIFEST MANIFEST.SKIP META.yml README
 %doc %{_mandir}/man3/WWW::Mechanize::Cached.3pm*
 %dir %{perl_vendorlib}/WWW/
 %dir %{perl_vendorlib}/WWW/Mechanize/
@@ -65,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize/Cached.pm
 
 %changelog
+* Tue Nov 24 2009 Christoph Maser <cmr@financial.com> - 1.35-1
+- Updated to version 1.35.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.33-1
 - Updated to version 1.33.
 
