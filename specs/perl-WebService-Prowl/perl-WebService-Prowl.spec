@@ -9,8 +9,8 @@
 
 Summary: a interface to Prowl Public API
 Name: perl-%{real_name}
-Version: 0.05
-Release: 1%{?dist}
+Version: 0.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Prowl/
@@ -18,11 +18,19 @@ URL: http://search.cpan.org/dist/WebService-Prowl/
 Source: http://search.cpan.org/CPAN/authors/id/S/SE/SEKIMURA/WebService-Prowl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: rpm-macros-rpmforge
-
+BuildRequires: perl(Carp)
+BuildRequires: perl(Crypt::SSLeay)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI::Escape)
+BuildRequires: perl(XML::Simple)
+BuildRequires: perl >= 5.8.1
+Requires: perl(Carp)
+Requires: perl(Crypt::SSLeay)
+Requires: perl(LWP::UserAgent)
+Requires: perl(URI::Escape)
 Requires: perl(XML::Simple)
+Requires: perl >= 5.8.1
 
 ### AnyEvent::HTTP is optional, not required
 %filter_from_requires /^perl(AnyEvent.*/d
@@ -60,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/Prowl/*.pm
 
 %changelog
+* Tue Nov 24 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Sat Oct 03 2009 Steve Huff <shuff@vecna.org> - 0.05-1
 - Updated to version 0.05.
 
