@@ -5,10 +5,10 @@
 Summary: A command line SMTP client that's simple
 Name: email
 Version: 3.1.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Text
-URL: http://www.pell.portland.or.us/~orc/Code/discount/
+URL: http://www.cleancode.org/projects/email/
 
 Source: http://www.cleancode.org/downloads/email/email-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -69,5 +69,8 @@ export LDFLAGS="-L../dlib"
 %config(noreplace) %{_sysconfdir}/email/*
 
 %changelog
+* Fri Nov 27 2009 Steve Huff <shuff@vecna.org> - 3.1.2-2
+- Entered the correct project URL.
+
 * Thu Nov 19 2009 Steve Huff <shuff@vecna.org> - 3.1.2-1
 - Initial package.
