@@ -12,7 +12,7 @@
 
 Summary: Organise your Moose types in libraries
 Name: perl-MooseX-Types
-Version: 0.17
+Version: 0.20
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,6 +28,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Moose) >= 0.61
 BuildRequires: perl(Sub::Install) >= 0.924
+BuildRequires: perl(Sub::Name)
 BuildRequires: perl(Test::More) >= 0.8
 BuildRequires: perl(namespace::clean) >= 0.08
 Requires: perl >= 2:5.8.0
