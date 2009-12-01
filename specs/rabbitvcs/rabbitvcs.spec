@@ -10,14 +10,13 @@
 
 Summary: Nautilus integration for Subversion
 Name: rabbitvcs
-Version: 0.12
+Version: 0.12.1
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://rabbitvcs.org
 
-Source: http://rabbitvcs.googlecode.com/files/rabbitvcs-%{version}.tar.gz
-Patch0: rabbitvcs-0.12_nautilusold.patch
+Source: http://rabbitvcs.googlecode.com/files/rabbitvcs_%{version}-1_old-distros.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # BuildArch: noarch
 
@@ -48,8 +47,7 @@ Obsoletes: nautilussvn
 TortoiseSVN-like GUI integration for Subversion (and other VCS) and Nautilus.
 
 %prep
-%setup
-%patch0 -p1
+%setup -n rabbitvcs_%{version}-1_old-distros
 
 # statuschecker.py cannot work with RHEL5
 %{__rm} -f rabbitvcs/statuschecker.py
@@ -97,6 +95,10 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %{_datadir}/rabbitvcs
 
 %changelog
+* Tue Dec 01 2009 Steve Huff <shuff@vecna.org> - 0.12.1-1
+- Updated to version 0.12.1.
+- Now source directly from the old-distros tarball, no more patching.
+
 * Thu Oct 08 2009 Steve Huff <shuff@vecna.org> - 0.12-1
 - Initial package.
 
