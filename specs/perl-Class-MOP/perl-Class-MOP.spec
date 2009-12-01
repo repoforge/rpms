@@ -11,7 +11,7 @@
 
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
-Version: 0.92
+Version: 0.95
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -32,7 +32,9 @@ BuildRequires: perl(MRO::Compat) >= 0.05
 BuildRequires: perl(Scalar::Util) >= 1.18
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Task::Weaken)
-BuildRequires: perl >= 5.8.1
+BuildRequires: perl(Try::Tiny) >= 0.02
+BuildRequires: perl >= 2:5.8.1
+Requires: perl >= 2:5.8.1
 
 %description
 Class-MOP is a Perl module that implements a Meta Object Protocol.
@@ -71,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Tue Dec 01 2009 Steve Huff <shuff@vecna.org> - 0.95-1
+- Updated to version 0.95.
+
 * Mon Sep  7 2009 Christoph Maser <cmr@financial.com> - 0.92-1
 - Updated to version 0.92.
 
