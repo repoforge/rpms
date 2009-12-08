@@ -108,7 +108,7 @@ fi
 
 * Wed May 17 2006 Dag Wieers <dag@wieers.com> - 4.8.1-1
 - Updated to release 4.8.1.
-- Added {_sysconfdir}/monit.d/ and {_localstatedir}/lib/monit/. (Michael C. Hoffman)
+- Added %%{_sysconfdir}/monit.d/ and %%{_localstatedir}/lib/monit/. (Michael C. Hoffman)
 - Creation/removal of user monit. (Michael C. Hoffman)
 
 * Mon May 08 2006 Dag Wieers <dag@wieers.com> - 4.8-1
