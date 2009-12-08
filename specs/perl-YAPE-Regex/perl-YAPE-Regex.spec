@@ -9,8 +9,8 @@
 
 Summary: Perl module that implements Yet Another Parser/Extractor for Regular Expressions
 Name: perl-YAPE-Regex
-Version: 3.03
-Release: 1%{?dist}
+Version: 3.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAPE-Regex/
@@ -19,7 +19,11 @@ Source: http://www.cpan.org/authors/id/P/PI/PINYAN/YAPE-Regex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Text::Balanced)
+Requires: perl(Text::Balanced)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-YAPE-Regex is a Perl module that implements Yet Another Parser/Extractor
@@ -56,5 +60,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAPE/Regex.pm
 
 %changelog
+* Tue Dec  8 2009 Christoph Maser <cmr@financial.com> - 3.04-1
+- Updated to version 3.04.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 3.03-1
 - Initial package. (using DAR)
