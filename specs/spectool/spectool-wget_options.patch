@@ -1,0 +1,14 @@
+diff -Naur spectool-1.0.11-orig/spectool spectool-1.0.11/spectool
+--- spectool-1.0.11-orig/spectool	2008-09-23 11:47:54.000000000 -0400
++++ spectool-1.0.11/spectool	2009-12-08 10:09:36.000000000 -0500
+@@ -192,7 +192,9 @@
+ 		print "Getting $url to $where\n" if ($verbose);
+         my $filename = $url;
+         $filename =~ s/([^\/?]*\/)*([^\?]*)(\?.*)?/$2/;
+-        my @cmd = (qw (wget -N --retr-symlinks -P), $where, qw (-O), $filename, $url);
++        my $destination = File::Spec->catfile( $where, $filename );
++        debug( "download destination: $destination\n" );
++        my @cmd = (qw (wget -nc --retr-symlinks -O), $destination, $url);
+ 		unshift(@cmd, 'env', "WGETRC=$WGETRC") if (-e $WGETRC);
+ 		print "--> @cmd\n" if ($verbose > 1);
+ 		if (! $dryrun) {

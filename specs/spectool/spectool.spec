@@ -5,23 +5,26 @@
 Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool
 Version: 1.0.11
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://people.redhat.com/nphilipp/spectool/
 
 Source: http://people.redhat.com/nphilipp/spectool/spectool-%{version}.tar.bz2
+Patch0: %{name}-wget_options.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 Requires: perl, rpm-build
+Requires: wget
 
 %description
 spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 
@@ -38,6 +41,11 @@ spectool is a tool to display expanded Source/Patch macros from a SPEC file.
 %{_bindir}/spectool
 
 %changelog
+* Tue Dec 08 2009 Steve Huff <shuff@vecna.org> - 1.0.11-2
+- Added dependency on wget.
+- Modified wget options to fix -R option and eliminate warning about
+  timestamping.
+
 * Tue Oct 14 2008 Dag Wieers <dag@wieers.com> - 1.0.11-1
 - Updated to release 1.0.11.
 
