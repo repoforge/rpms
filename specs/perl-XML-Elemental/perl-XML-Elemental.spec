@@ -9,8 +9,8 @@
 
 Summary: Perl module implements simplistic and perlish handling of XML data
 Name: perl-XML-Elemental
-Version: 2.1
-Release: 1%{?dist}
+Version: 2.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Elemental/
@@ -19,8 +19,18 @@ Source: http://www.cpan.org/modules/by-module/XML/XML-Elemental-%{version}.tar.g
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Task::Weaken) >= 1.02
+BuildRequires: perl(Test::More)
+BuildRequires: perl(XML::SAX)
+Requires: perl(Scalar::Util)
+Requires: perl(Task::Weaken) >= 1.02
+Requires: perl(Test::More)
+Requires: perl(XML::SAX)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-XML-Elemental is a Perl module implements simplistic
@@ -58,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Parser/Style/Elemental.pm
 
 %changelog
+* Tue Dec  8 2009 Christoph Maser <cmr@financial.com> - 2.11-1
+- Updated to version 2.11.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 2.1-1
 - Updated to version 2.1.
 
