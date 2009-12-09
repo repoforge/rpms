@@ -9,8 +9,8 @@
 
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
-Version: 1.24
-Release: 1%{?dist}
+Version: 1.25
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Filesystem/
@@ -20,10 +20,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(Carp)
+BuildRequires: perl(IO)
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Params::Util) >= 1.00
 BuildRequires: perl >= 5.006
 Requires: perl(Carp)
+Requires: perl(IO)
+Requires: perl(Params::Util) >= 1.00
 Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -59,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sys/Filesystem/
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.25-1
+- Updated to version 1.25.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 1.24-1
 - Updated to version 1.24.
 
