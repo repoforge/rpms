@@ -10,7 +10,7 @@
 Summary: Perl extension to test methods for warnings
 Name: perl-Test-Warn
 Version: 0.21
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Warn/
@@ -26,6 +26,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 #BuildRequires: perl(Sub::Uplevel) >= 0.12
 #BuildRequires: perl(Test::Builder) >= 0.13
 #BuildRequires: perl(Test::Builder::Tester) >= 1.02
+BuildRequires: perl(Test::Builder::Tester)
 #BuildRequires: perl(Test::More)
 BuildRequires: perl(Tree::DAG_Node)
 BuildRequires: perl >= 5.006
@@ -33,7 +34,8 @@ BuildRequires: perl >= 5.006
 # From yaml requires ( the ones wich are not found automatically )
 Requires: perl(File::Spec)
 Requires: perl(Test::Builder) >= 0.13
-Requires: perl(Test::Builder::Tester) >= 1.02
+#Requires: perl(Test::Builder::Tester) >= 1.02
+Requires: perl(Test::Builder::Tester)
 Requires: perl(Test::More)
 Requires: perl(Tree::DAG_Node)
 
@@ -68,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Warn.pm
 
 %changelog
+* Thu Dec 09 2009 Christoph Maser <cmr@financial.com> - 0.21-2
+- remove version on dependency perl(Test::Builder::Tester)
+
 * Tue Sep  1 2009 Christoph Maser <cmr@financial.com> - 0.21-1
 - Updated to version 0.21.
 
