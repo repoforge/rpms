@@ -43,7 +43,8 @@ Requires: perl(IO::Tty) >= 1.08
 Requires: perl(POE::Test::Loops) >= 1.030
 Requires: perl(POSIX) >= 1.02
 Requires: perl(Socket) >= 1.7
-Requires: perl(Storable) >= 2.16
+#Requires: perl(Storable) >= 2.16
+Requires: perl(Storable)
 Requires: perl(Test::Harness) >= 2.26
 
 %filter_from_requires /^perl*/d
