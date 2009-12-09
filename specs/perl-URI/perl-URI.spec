@@ -12,8 +12,8 @@
 
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
-Version: 1.40
-Release: 1%{?dist}
+Version: 1.51
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI/
@@ -49,13 +49,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README rfc2396.txt
+%doc Changes MANIFEST META.yml README 
 %doc %{_mandir}/man3/URI.3pm*
 %doc %{_mandir}/man3/URI::*.3pm*
 %{perl_vendorlib}/URI/
 %{perl_vendorlib}/URI.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.51-1
+- Updated to version 1.51.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 1.40-1
 - Updated to version 1.40.
 
