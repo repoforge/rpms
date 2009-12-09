@@ -9,8 +9,8 @@
 
 Summary: Use Perl::Critic in test scripts
 Name: perl-Test-Perl-Critic
-Version: 1.01
-Release: 1%{?dist}
+Version: 1.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Perl-Critic/
@@ -19,8 +19,27 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Perl-Critic-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(English)
+BuildRequires: perl(Perl::Critic) >= 1.105
+BuildRequires: perl(Perl::Critic::Utils) >= 1.105
+BuildRequires: perl(Perl::Critic::Violation) >= 1.105
+BuildRequires: perl(Test::Builder)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(strict)
+BuildRequires: perl(warnings)
+Requires: perl(Carp)
+Requires: perl(English)
+Requires: perl(Perl::Critic) >= 1.105
+Requires: perl(Perl::Critic::Utils) >= 1.105
+Requires: perl(Perl::Critic::Violation) >= 1.105
+Requires: perl(Test::Builder)
+Requires: perl(strict)
+Requires: perl(warnings)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Use Perl::Critic in test scripts.
@@ -52,5 +71,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Perl/Critic.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.02-1
+- Updated to version 1.02.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Initial package. (using DAR)
