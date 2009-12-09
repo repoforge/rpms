@@ -9,8 +9,8 @@
 
 Summary: Checks manifest files
 Name: perl-Test-CheckManifest
-Version: 1.01
-Release: 1%{?dist}
+Version: 1.1
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-CheckManifest/
@@ -19,8 +19,21 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-CheckManifest-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Cwd)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Test::Builder)
+Requires: perl(Carp)
+Requires: perl(Cwd)
+Requires: perl(File::Basename)
+Requires: perl(File::Find)
+Requires: perl(File::Spec)
+Requires: perl(Test::Builder)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Checks manifest files.
@@ -51,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/CheckManifest.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.1-1
+- Updated to version 1.1.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 1.01-1
 - Updated to release 1.01.
 
