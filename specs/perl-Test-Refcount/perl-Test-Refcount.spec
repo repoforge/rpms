@@ -9,8 +9,8 @@
 
 Summary: assert reference counts on objects
 Name: perl-Test-Refcount
-Version: 0.05
-Release: 1%{?dist}
+Version: 0.06
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Refcount/
@@ -19,9 +19,17 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Refcount-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-#BuildRequires: perl(Test::Builder::Tester)
+BuildRequires: perl(Devel::Refcount)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::Builder)
+BuildRequires: perl(Test::Builder::Tester)
 BuildRequires: perl(Test::More)
+Requires: perl(Devel::Refcount)
+Requires: perl(Scalar::Util)
+Requires: perl(Test::Builder)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 assert reference counts on objects.
@@ -52,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Refcount.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.06-1
+- Updated to version 0.06.
+
 * Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 0.05-1
 - Updated to version 0.05.
 
