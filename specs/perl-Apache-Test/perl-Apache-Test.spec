@@ -10,7 +10,7 @@
 Summary: Perl module contains a Test.pm wrapper with helpers for testing Apache
 Name: perl-Apache-Test
 Version: 1.30
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-Test/
@@ -19,7 +19,27 @@ Source: http://www.cpan.org/modules/by-module/Apache/Apache-Test-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(English)
+BuildRequires: perl(Perl::Critic) >= 1.105
+BuildRequires: perl(Perl::Critic::Utils) >= 1.105
+BuildRequires: perl(Perl::Critic::Violation) >= 1.105
+BuildRequires: perl(Test::Builder)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(strict)
+BuildRequires: perl(warnings)
+Requires: perl(Carp)
+Requires: perl(English)
+Requires: perl(Perl::Critic) >= 1.105
+Requires: perl(Perl::Critic::Utils) >= 1.105
+Requires: perl(Perl::Critic::Violation) >= 1.105
+Requires: perl(Test::Builder)
+Requires: perl(strict)
+Requires: perl(warnings)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-Apache-Test is a Perl module contains a Test.pm wrapper with helpers
@@ -52,6 +72,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Bundle/ApacheTest.pm
 
 %changelog
+* Wed Dec 09 2009 Christoph Maser <cmr@financial.com> - 1.30-2
+- Turn off auto-dependencies
+
 * Tue Dec 04 2007 Dag Wieers <dag@wieers.com> - 1.30-1
 - Updated to release 1.30.
 
