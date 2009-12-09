@@ -9,13 +9,13 @@
 
 Summary: check whether Perl module files compile correctly
 Name: perl-Test-Compile
-Version: 0.10
-Release: 1%{?dist}
+Version: 0.11
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Compile/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Compile-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/Test-Compile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Compile.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.10-1
 - Updated to version 0.10.
 
