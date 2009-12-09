@@ -9,8 +9,8 @@
 
 Summary: Perl module that implements a switch statement
 Name: perl-Switch
-Version: 2.15
-Release: 1%{?dist}
+Version: 2.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Switch/
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Switch.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 2.16-1
+- Updated to version 2.16.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 2.15-1
 - Updated to version 2.15.
 
