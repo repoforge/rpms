@@ -9,8 +9,8 @@
 
 Summary: Perl interface to Careerjet's public search API
 Name: perl-WebService-Careerjet
-Version: 0.11
-Release: 1%{?dist}
+Version: 0.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Careerjet/
@@ -19,8 +19,30 @@ Source: http://www.cpan.org/modules/by-module/WebService/WebService-Careerjet-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp) >= 1.03
+BuildRequires: perl(Class::AutoAccess) >= 0.02
+BuildRequires: perl(Encode) >= 2.08
+BuildRequires: perl(Getopt::Std) >= 1.05
+BuildRequires: perl(HTTP::Request) >= 1.4
+BuildRequires: perl(JSON) >= 2.07
+BuildRequires: perl(LWP::UserAgent) >= 2.033
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Wrap) >= 2001.09292
+BuildRequires: perl(URI::Escape) >= 3.28
+Requires: perl(Carp) >= 1.03
+Requires: perl(Class::AutoAccess) >= 0.02
+Requires: perl(Encode) >= 2.08
+Requires: perl(Getopt::Std) >= 1.05
+Requires: perl(HTTP::Request) >= 1.4
+Requires: perl(JSON) >= 2.07
+Requires: perl(LWP::UserAgent) >= 2.033
+Requires: perl(Test::More)
+Requires: perl(Text::Wrap) >= 2001.09292
+Requires: perl(URI::Escape) >= 3.28
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Perl interface to Careerjet's public search API.
@@ -52,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/Careerjet.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 
