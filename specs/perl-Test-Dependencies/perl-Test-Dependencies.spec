@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Zev Benjamin <zev@cpan.com>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +10,8 @@
 
 Summary: Ensure that your Makefile.PL specifies all module dependencies
 Name: perl-Test-Dependencies
-Version: 0.11
-Release: 1%{?dist}
+Version: 0.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Dependencies/
@@ -19,7 +20,6 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Dependencies-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(B::PerlReq)
 BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(IPC::Cmd)
@@ -27,8 +27,20 @@ BuildRequires: perl(Module::CoreList)
 BuildRequires: perl(PerlReq::Utils)
 BuildRequires: perl(Pod::Strip)
 BuildRequires: perl(Test::Builder::Module)
-BuildRequires: perl(Test::Builder::Tester) >= 0.64
+#BuildRequires: perl(Test::Builder::Tester) >= 0.64
+BuildRequires: perl(Test::Builder::Tester)
 BuildRequires: perl(YAML)
+Requires: perl(B::PerlReq)
+Requires: perl(File::Find::Rule)
+Requires: perl(IPC::Cmd)
+Requires: perl(Module::CoreList)
+Requires: perl(PerlReq::Utils)
+Requires: perl(Pod::Strip)
+Requires: perl(Test::Builder::Module)
+Requires: perl(YAML)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Ensure that your Makefile.PL specifies all module dependencies.
@@ -37,7 +49,7 @@ Ensure that your Makefile.PL specifies all module dependencies.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -60,6 +72,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Dependencies.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Fri Jan 04 2008 Dag Wieers <dag@wieers.com> - 0.11-1
 - Updated to release 0.11.
 
