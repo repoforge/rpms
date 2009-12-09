@@ -9,8 +9,8 @@
 
 Summary: Cross-platform basic tests for scripts
 Name: perl-Test-Script
-Version: 1.06
-Release: 1%{?dist}
+Version: 1.07
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Script/
@@ -19,19 +19,26 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-Script-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker) 
 #BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(File::Spec)
 BuildRequires: perl(IPC::Run3) >= 0.034
 BuildRequires: perl(Probe::Perl) >= 0.01
 #BuildRequires: perl(Test::Builder) >= 0.32
+BuildRequires: perl(Test::Builder)
 #BuildRequires: perl(Test::Builder::Tester) >= 1.02
+BuildRequires: perl(Test::Builder::Tester)
 #BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
 BuildRequires: perl(blib)
 BuildRequires: perl >= 5.005
 #Requires: perl(File::Spec) >= 0.80
+Requires: perl(File::Spec)
 Requires: perl(IPC::Run3) >= 0.034
 Requires: perl(Probe::Perl) >= 0.01
 #Requires: perl(Test::More) >= 0.62
+Requires: perl(Test::More)
 Requires: perl(blib)
 Requires: perl >= 5.005
 
@@ -66,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Script.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.07-1
+- Updated to version 1.07.
+
 * Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 1.06-1
 - Updated to version 1.06.
 
