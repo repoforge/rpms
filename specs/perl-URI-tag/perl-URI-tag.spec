@@ -9,8 +9,8 @@
 
 Summary: Perl module to tag URI Scheme (RFC 4151)
 Name: perl-URI-tag
-Version: 0.01
-Release: 1%{?dist}
+Version: 0.02
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-tag/
@@ -19,8 +19,16 @@ Source: http://www.cpan.org/modules/by-module/URI/URI-tag-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Filter::Util::Call)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(URI)
+Requires: perl(Filter::Util::Call)
+Requires: perl(URI)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-URI-tag is a Perl module to tag URI Scheme (RFC 4151).
@@ -55,5 +63,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/tag.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.02-1
+- Updated to version 0.02.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.01-1
 - Initial package. (using DAR)
