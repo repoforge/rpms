@@ -9,8 +9,8 @@
 
 Summary: Perl module to extract search strings from more referrers
 Name: perl-URI-ParseSearchString-More
-Version: 0.12
-Release: 1%{?dist}
+Version: 0.13
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ParseSearchString-More/
@@ -19,22 +19,38 @@ Source: http://www.cpan.org/modules/by-module/URI/URI-ParseSearchString-More-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Config::General)
 BuildRequires: perl(Data::Dump)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(List::Compare)
 BuildRequires: perl(Params::Validate)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Test::Pod::Coverage)
-BuildRequires: perl(Test::Simple) >= 0.44          
+BuildRequires: perl(Test::Simple) >= 0.44
 BuildRequires: perl(Test::WWW::Mechanize)
 BuildRequires: perl(URI::Heuristic)
 BuildRequires: perl(URI::ParseSearchString)
 BuildRequires: perl(WWW::Mechanize)
 BuildRequires: perl(WWW::Mechanize::Cached) >= 1.33
+Requires: perl(Config::General)
+Requires: perl(Data::Dump)
+Requires: perl(File::Spec)
+Requires: perl(List::Compare)
+Requires: perl(Params::Validate)
+Requires: perl(Test::More)
+Requires: perl(Test::Pod)
+Requires: perl(Test::Pod::Coverage)
+Requires: perl(Test::Simple) >= 0.44
+Requires: perl(Test::WWW::Mechanize)
+Requires: perl(URI::Heuristic)
+Requires: perl(URI::ParseSearchString)
+Requires: perl(WWW::Mechanize)
+Requires: perl(WWW::Mechanize::Cached) >= 1.33
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-URI-ParseSearchString-More is a Perl module to extract search strings
@@ -67,6 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/ParseSearchString/More.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Wed Jul 29 2009 Christoph Maser <cmr@financial.com> - 0.12-1
 - Updated to version 0.12.
 
