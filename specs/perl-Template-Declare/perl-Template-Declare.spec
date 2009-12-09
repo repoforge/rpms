@@ -9,8 +9,8 @@
 
 Summary: Perlish declarative templates
 Name: perl-Template-Declare
-Version: 0.40
-Release: 1%{?dist}
+Version: 0.43
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Declare/
@@ -19,15 +19,25 @@ Source: http://www.cpan.org/modules/by-module/Template/Template-Declare-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Class::Accessor::Fast)
 BuildRequires: perl(Class::Data::Inheritable)
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Class::ISA)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(HTML::Lint)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(String::BufferStack) >= 1.1
 BuildRequires: perl(Test::More)
-BuildRequires: perl(Test::Warn)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(Test::Warn) >= 0.11
+BuildRequires: perl >= 5.8.2
+Requires: perl(Class::Accessor::Fast)
+Requires: perl(Class::Data::Inheritable)
+Requires: perl(Class::ISA)
+Requires: perl(HTML::Lint)
+Requires: perl(String::BufferStack) >= 1.1
+Requires: perl >= 5.8.2
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Perlish declarative templates.
@@ -36,7 +46,7 @@ Perlish declarative templates.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -59,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Declare.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.43-1
+- Updated to version 0.43.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.40-1
 - Updated to version 0.40.
 
