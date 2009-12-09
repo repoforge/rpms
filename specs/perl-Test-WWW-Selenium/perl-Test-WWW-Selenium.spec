@@ -9,8 +9,8 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.19
-Release: 1%{?dist}
+Version: 1.20
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Selenium/
@@ -19,11 +19,13 @@ Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Selenium-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::Mock::LWP)
-#BuildRequires: perl(Test::More) >= 0.42 
+#BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Pod)
 BuildRequires: perl(URI::Escape) >= 1.31
 Requires: perl(LWP::UserAgent)
@@ -67,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/mypod2html.pl
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.20-1
+- Updated to version 1.20.
+
 * Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 1.19-1
 - Updated to version 1.19.
 
