@@ -9,13 +9,13 @@
 
 Summary: comma-separated values manipulator (using XS or PurePerl)
 Name: perl-Text-CSV
-Version: 1.15
-Release: 1%{?dist}
+Version: 1.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CSV/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-CSV-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAKAMAKA/Text-CSV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/CSV_PP.pm
 
 %changelog
+* Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 1.15-1
 - Updated to version 1.15.
 
