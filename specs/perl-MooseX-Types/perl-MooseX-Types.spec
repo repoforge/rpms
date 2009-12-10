@@ -13,7 +13,7 @@
 Summary: Organise your Moose types in libraries
 Name: perl-MooseX-Types
 Version: 0.20
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Types/
@@ -22,16 +22,31 @@ Source: http://search.cpan.org/CPAN/authors/id/R/RK/RKITOVER/MooseX-Types-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(Carp)
 BuildRequires: perl(Carp::Clan) >= 6.00
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Moose) >= 0.61
+BuildRequires: perl(Scalar::Util) >= 1.19
 BuildRequires: perl(Sub::Install) >= 0.924
 BuildRequires: perl(Sub::Name)
-BuildRequires: perl(Test::More) >= 0.8
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::Moose)
+BuildRequires: perl(Test::More) >= 0.80
 BuildRequires: perl(namespace::clean) >= 0.08
-Requires: perl >= 2:5.8.0
+BuildRequires: perl >= 5.8.0
+Requires: perl(Carp)
+Requires: perl(Carp::Clan) >= 6.00
+Requires: perl(Moose) >= 0.61
+Requires: perl(Scalar::Util) >= 1.19
+Requires: perl(Sub::Install) >= 0.924
+Requires: perl(Sub::Name)
+Requires: perl(namespace::clean) >= 0.08
+Requires: perl >= 5.8.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Organise your Moose types in libraries.
@@ -63,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Types.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.20-2
+- Updated to version 0.20.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.17-1
 - Updated to version 0.17.
 
