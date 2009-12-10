@@ -9,8 +9,8 @@
 
 Summary: Interface to create per object accessors
 Name: perl-Object-Accessor
-Version: 0.34
-Release: 1%{?dist}
+Version: 0.36
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-Accessor/
@@ -19,8 +19,16 @@ Source: http://www.cpan.org/modules/by-module/Object/Object-Accessor-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Params::Check) >= 0.23
+BuildRequires: perl(Test::More)
+Requires: perl(Carp)
+Requires: perl(Params::Check) >= 0.23
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Object::Accessor provides an interface to create per object
@@ -52,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Object/Accessor.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.36-1
+- Updated to version 0.36.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.34-1
 - Updated to version 0.34.
 
