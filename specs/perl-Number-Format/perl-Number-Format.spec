@@ -6,12 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Number-Format
-%define real_version 1.72
 
 Summary: Convert numbers to strings with pretty formatting
 Name: perl-Number-Format
-Version: 1.72a
-Release: 1%{?dist}
+Version: 1.73
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Number-Format/
@@ -22,6 +21,16 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(POSIX)
+BuildRequires: perl(Test::More)
+Requires: perl(Carp)
+Requires: perl(POSIX)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Number::Format is a library for formatting numbers.  Functions are
@@ -34,7 +43,7 @@ separator come from the locale information or can be specified by the
 user.
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -57,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Number/Format.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.73-1
+- Updated to version 1.73.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.72a-1
 - Updated to version 1.72a.
 
