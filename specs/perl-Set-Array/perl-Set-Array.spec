@@ -9,8 +9,8 @@
 
 Summary: Arrays as objects with lots of handy methods
 Name: perl-Set-Array
-Version: 0.18
-Release: 1%{?dist}
+Version: 0.19
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Array/
@@ -19,8 +19,17 @@ Source: http://www.cpan.org/modules/by-module/Set/Set-Array-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Test::Deep)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Want)
+Requires: perl(Carp)
+Requires: perl(Want)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Set::Array allows you to create arrays as objects and use OO-style
@@ -60,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Set/Array.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.19-1
+- Updated to version 0.19.
+
 * Fri Jun 19 2009 Christoph Maser <cmr@financial.com> - 0.18-1
 - Updated to version 0.18.
 
