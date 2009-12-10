@@ -9,18 +9,50 @@
 
 Summary: Framework for parsing Pod
 Name: perl-Pod-Simple
-Version: 3.08
-Release: 1%{?dist}
+Version: 3.11
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Simple/
 
-Source: http://www.cpan.org/modules/by-module/Pod/Pod-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/Pod-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Config)
+BuildRequires: perl(Cwd)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Pod::Escapes) >= 1.04
+BuildRequires: perl(Symbol)
+BuildRequires: perl(Test) >= 1.25
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Wrap) >= 98.112902
+BuildRequires: perl(constant)
+BuildRequires: perl(integer)
+BuildRequires: perl(overload)
+BuildRequires: perl(strict)
+Requires: perl(Carp)
+Requires: perl(Config)
+Requires: perl(Cwd)
+Requires: perl(File::Basename)
+Requires: perl(File::Find)
+Requires: perl(File::Spec)
+Requires: perl(Pod::Escapes) >= 1.04
+Requires: perl(Symbol)
+Requires: perl(Test) >= 1.25
+Requires: perl(Test::More)
+Requires: perl(Text::Wrap) >= 98.112902
+Requires: perl(constant)
+Requires: perl(integer)
+Requires: perl(overload)
+Requires: perl(strict)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module contains a framework for parsing Pod.
@@ -50,6 +82,9 @@ This module contains a framework for parsing Pod.
 %{perl_vendorlib}/Pod/Simple/*
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 3.11-1
+- Updated to version 3.11.
+
 * Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 3.08-1
 - Updated to version 3.08.
 
