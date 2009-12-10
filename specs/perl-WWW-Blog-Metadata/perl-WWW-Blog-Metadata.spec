@@ -9,23 +9,36 @@
 
 Summary: Extract common metadata from a weblog
 Name: perl-WWW-Blog-Metadata
-Version: 0.02
-Release: 1%{?dist}
+Version: 0.03
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Blog-Metadata/
 
-Source: http://www.cpan.org/modules/by-module/WWW/WWW-Blog-Metadata-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BT/BTROTT/WWW-Blog-Metadata-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Class::Accessor)
 BuildRequires: perl(Class::ErrorHandler)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Feed::Find)
 BuildRequires: perl(HTML::Parser)
 BuildRequires: perl(Module::Pluggable::Ordered)
+BuildRequires: perl(Test::More)
 BuildRequires: perl(URI::Fetch)
+BuildRequires: perl >= 5.8.1
+Requires: perl(Class::Accessor)
+Requires: perl(Class::ErrorHandler)
+Requires: perl(Feed::Find)
+Requires: perl(HTML::Parser)
+Requires: perl(Module::Pluggable::Ordered)
+Requires: perl(URI::Fetch)
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Extract common metadata from a weblog.
@@ -57,5 +70,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Blog/Metadata.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.03-1
+- Updated to version 0.03.
+
 * Tue Aug 19 2008 Dag Wieers <dag@wieers.com> - 0.02-1
 - Initial package. (using DAR)
