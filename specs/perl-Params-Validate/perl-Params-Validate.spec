@@ -9,8 +9,8 @@
 
 Summary: Validate method/function parameters
 Name: perl-Params-Validate
-Version: 0.91
-Release: 1%{?dist}
+Version: 0.94
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Params-Validate/
@@ -19,7 +19,20 @@ Source: http://www.cpan.org/modules/by-module/Params/Params-Validate-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(Attribute::Handlers) >= 0.79
+BuildRequires: perl(Attribute::Handlers)
+BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Pod::Man) >= 1.14
+BuildRequires: perl(Scalar::Util) >= 1.10
+BuildRequires: perl(Test::More)
+#Requires: perl(Attribute::Handlers) >= 0.79
+Requires: perl(Attribute::Handlers)
+Requires: perl(Scalar::Util) >= 1.10
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 The Params::Validate module provides a flexible system for validation
@@ -39,12 +52,12 @@ implementation that it can fall back on.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -70,6 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Params/ValidateXS.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.94-1
+- Updated to version 0.94.
+
 * Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.91-1
 - Updated to release 0.91.
 
