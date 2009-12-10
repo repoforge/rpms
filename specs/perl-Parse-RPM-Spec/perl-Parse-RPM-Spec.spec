@@ -12,8 +12,8 @@
 
 Summary: Perl extension to parse RPM spec files
 Name: perl-%{real_name}
-Version: 0.03
-Release: 1%{?dist}
+Version: 0.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-RPM-SPEC/
@@ -22,8 +22,15 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAVECROSS/Parse-RPM-Spec-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Moose)
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.6.0
+Requires: perl(Moose)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 RPM is the package management system used on Linux distributions based on Red
@@ -40,12 +47,12 @@ you simple access to various pieces of information from the spec file.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -61,5 +68,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Parse/RPM/Spec.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Fri Oct 02 2009 Steve Huff <shuff@vecna.org> - 0.03-1
 - Initial package.
