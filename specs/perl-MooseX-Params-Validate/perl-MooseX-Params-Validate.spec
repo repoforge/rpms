@@ -9,8 +9,8 @@
 
 Summary: an extension of Params::Validate for using Moose's types
 Name: perl-MooseX-Params-Validate
-Version: 0.12
-Release: 1%{?dist}
+Version: 0.13
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Params-Validate/
@@ -19,9 +19,26 @@ Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-Params-Validate-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Devel::Caller)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Moose) >= 0.58
+BuildRequires: perl(Params::Validate) >= 0.88
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Sub::Exporter)
 BuildRequires: perl(Test::Exception) >= 0.21
 #BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
+Requires: perl(Carp)
+Requires: perl(Devel::Caller)
+Requires: perl(Moose) >= 0.58
+Requires: perl(Params::Validate) >= 0.88
+Requires: perl(Scalar::Util)
+Requires: perl(Sub::Exporter)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 an extension of Params::Validate for using Moose's types.
@@ -52,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Params/Validate.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.12-1
 - Updated to version 0.12.
 
