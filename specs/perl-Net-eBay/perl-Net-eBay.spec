@@ -9,8 +9,8 @@
 
 Summary: Perl Interface to XML based eBay API
 Name: perl-Net-eBay
-Version: 0.53
-Release: 1%{?dist}
+Version: 0.54
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-eBay/
@@ -19,7 +19,39 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-eBay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Crypt::SSLeay)
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(DateTime::Precise)
+BuildRequires: perl(HTML::FormatText)
+BuildRequires: perl(HTML::PrettyPrinter)
+BuildRequires: perl(HTML::TreeBuilder)
+BuildRequires: perl(HTTP::Date)
+BuildRequires: perl(HTTP::Request::Common)
+BuildRequires: perl(HTTP::Status)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Net::SSLeay)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Format)
+BuildRequires: perl(XML::Dumper)
+BuildRequires: perl(XML::Simple)
+Requires: perl(Crypt::SSLeay)
+Requires: perl(Data::Dumper)
+Requires: perl(DateTime::Precise)
+Requires: perl(HTML::FormatText)
+Requires: perl(HTML::PrettyPrinter)
+Requires: perl(HTML::TreeBuilder)
+Requires: perl(HTTP::Date)
+Requires: perl(HTTP::Request::Common)
+Requires: perl(HTTP::Status)
+Requires: perl(LWP::UserAgent)
+Requires: perl(Net::SSLeay)
+Requires: perl(Test::More)
+Requires: perl(Text::Format)
+Requires: perl(XML::Dumper)
+Requires: perl(XML::Simple)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Perl Interface to XML based eBay API.
@@ -70,6 +102,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/eBay.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.54-1
+- Updated to version 0.54.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.53-1
 - Updated to version 0.53.
 
