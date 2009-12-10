@@ -17,12 +17,12 @@
 Summary: Network traffic probe that shows the network usage
 Name: ntop
 Version: 3.3.8
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
 
-Source: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/ntop/ntop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel, gdbm-devel, libpcap, rrdtool-devel, zlib-devel, glib-devel
@@ -41,12 +41,12 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
+%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure.in
 
 %{__perl} -pi.orig -e '
         s|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;
         s|(\$\(CFG_DBFILE_DIR\))|\$(DESTDIR)$1|;
-    ' Makefile.in
+    ' Makefile.am
 
 %{__perl} -pi.orig -e '
         s|user = "nobody"|user = "ntop"|;
@@ -60,6 +60,11 @@ extracted from the web server in formats suitable for manipulation in perl or ph
         /sbin/service ntop condrestart >/dev/null 2>&1
     endscript
 }
+EOF
+
+%{__cat} <<'EOF' >ntop.options
+# ntop initialization options
+NTOP_OPTIONS='-d'
 EOF
 
 %{__cat} <<'EOF' >ntop.sysv
@@ -81,6 +86,9 @@ EOF
 # Source networking configuration.
 . %{_sysconfdir}/sysconfig/network
 
+# Source ntop initialization configuration.
+. %{_sysconfdir}/sysconfig/ntop
+
 # Check that networking is up.
 [ "${NETWORKING}" == "no" ] && exit 0
 [ -x "%{_bindir}/ntop" ] || exit 1
@@ -92,7 +100,7 @@ prog="ntop"
 
 start () {
     echo -n $"Starting $prog: "
-    daemon $prog -d -L @%{_sysconfdir}/ntop.conf
+    daemon $prog @%{_sysconfdir}/ntop.conf "${NTOP_OPTIONS}"
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
@@ -175,7 +183,7 @@ EOF
 ### Logging messages to syslog (instead of the console):
 ###  NOTE: To log to a specific facility, use --use-syslog=local3
 ###  NOTE: The = is REQUIRED and no spaces are permitted.
---use-syslog
+--use-syslog=daemon
 
 ### Tells ntop to track only local hosts as specified by the --local-subnets option
 #--track-local-hosts
@@ -225,6 +233,7 @@ EOF
 
 %{__install} -Dp -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
 %{__install} -Dp -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
+%{__install} -Dp -m0644 ntop.options %{buildroot}%{_sysconfdir}/sysconfig/ntop
 %{__install} -Dp -m0600 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
 
 %pre
@@ -234,6 +243,10 @@ if ! /usr/bin/id ntop &>/dev/null; then
 fi
 
 %post
+if [ $1 -eq 1 ]; then
+    touch %{_localstatedir}/ntop/ntop_pw.db
+fi
+
 /sbin/chkconfig --add ntop
 /sbin/ldconfig
 
@@ -246,6 +259,7 @@ fi
 %preun
 if [ $1 -eq 0 ]; then
     /sbin/service ntop stop &>/dev/null || :
+    %{__rm} -f %{_localstatedir}/ntop/ntop_pw.db
     /sbin/chkconfig --del ntop
 fi
 
@@ -270,6 +284,7 @@ fi
 %doc %{_mandir}/man8/ntop.8*
 %config(noreplace) %{_sysconfdir}/ntop.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/ntop
+%config(noreplace) %{_sysconfdir}/sysconfig/ntop
 %config %{_sysconfdir}/ntop/
 %config %{_initrddir}/ntop
 %{_bindir}/ntop
@@ -283,6 +298,12 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Thu Dec 10 2009 Steve Huff <shuff@vecna.org> - 3.3.8-3
+- Patched init script per Matt Ausmus' bug report on CentOS list.
+- Init options moved to %{_sysconfdir}/sysconfig/ntop.
+- Fixed perl oneliners that were attempting to patch nonexistent files.
+- Modified %post to create file that prevented ntop init script from running.
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 3.3.8-2
 - Rebuild against rrdtool-1.3.7.
 

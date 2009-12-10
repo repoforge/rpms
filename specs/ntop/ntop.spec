@@ -17,12 +17,12 @@
 Summary: Network traffic probe that shows the network usage
 Name: ntop
 Version: 3.3.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
 
-Source0: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
+Source0: http://downloads.sourceforge.net/ntop/ntop-%{version}.tar.gz
 Source1: http://www.lua.org/ftp/lua-5.1.4.tar.gz
 Source2: http://www.maxmind.com/download/geoip/api/c/GeoIP.tar.gz
 Source3: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
@@ -39,6 +39,7 @@ BuildRequires: glib-devel
 BuildRequires: libtool
 BuildRequires: libpcap
 BuildRequires: lua-devel
+BuildRequires: net-snmp-devel
 BuildRequires: openssl-devel
 BuildRequires: rrdtool-devel
 BuildRequires: zlib-devel
@@ -60,12 +61,12 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 zcat %{SOURCE3} >GeoLiteCity.dat
 zcat %{SOURCE4} >GeoIPASNum.dat
 
-%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure configure.in
+%{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure.in
 
 %{__perl} -pi.orig -e '
         s|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;
         s|(\$\(CFG_DBFILE_DIR\))|\$(DESTDIR)$1|;
-    ' Makefile.in
+    ' Makefile.am
 
 %{__perl} -pi.orig -e '
         s|user = "nobody"|user = "ntop"|;
@@ -79,6 +80,11 @@ zcat %{SOURCE4} >GeoIPASNum.dat
         /sbin/service ntop condrestart >/dev/null 2>&1
     endscript
 }
+EOF
+
+%{__cat} <<'EOF' >ntop.options
+# ntop initialization options
+NTOP_OPTIONS='-d'
 EOF
 
 %{__cat} <<'EOF' >ntop.sysv
@@ -100,6 +106,9 @@ EOF
 # Source networking configuration.
 . %{_sysconfdir}/sysconfig/network
 
+# Source ntop-specific configuration.
+. %{_sysconfdir}/sysconfig/ntop
+
 # Check that networking is up.
 [ "${NETWORKING}" == "no" ] && exit 0
 [ -x "%{_bindir}/ntop" ] || exit 1
@@ -111,7 +120,7 @@ prog="ntop"
 
 start () {
     echo -n $"Starting $prog: "
-    daemon $prog -d -L @%{_sysconfdir}/ntop.conf
+    daemon $prog @%{_sysconfdir}/ntop.conf "${NTOP_OPTIONS}"
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
@@ -253,6 +262,7 @@ EOF
 %{__install} -Dp -m0755 ntop.sysv %{buildroot}%{_initrddir}/ntop
 %{__install} -Dp -m0644 ntop.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/ntop
 %{__install} -Dp -m0600 ntop.conf.sample %{buildroot}%{_sysconfdir}/ntop.conf
+%{__install} -Dp -m0644 ntop.options %{buildroot}%{_sysconfdir}/sysconfig/ntop
 
 %pre
 if ! /usr/bin/id ntop &>/dev/null; then
@@ -298,6 +308,7 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/ntop
 %config(noreplace) %{_sysconfdir}/ntop/
 %config(noreplace) %{_sysconfdir}/ntop.conf
+%config(noreplace) %{_sysconfdir}/sysconfig/ntop
 %config %{_initrddir}/ntop
 %{_bindir}/ntop
 %{_datadir}/ntop/
@@ -318,6 +329,11 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Thu Dec 10 2009 Steve Huff <shuff@vecna.org> - 3.3.10-2
+- Patched init script per Matt Ausmus' bug report on CentOS list.
+- Init options moved to %{_sysconfdir}/sysconfig/ntop.
+- Fixed perl oneliners that were patching nonexistent files.
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 3.3.10-1
 - Updated to release 3.3.10.
 
