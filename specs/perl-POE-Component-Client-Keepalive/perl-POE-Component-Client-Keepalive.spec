@@ -9,8 +9,8 @@
 
 Summary: Manages and keeps alive client connections
 Name: perl-POE-Component-Client-Keepalive
-Version: 0.260
-Release: 1%{?dist}
+Version: 0.262
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-Keepalive/
@@ -19,12 +19,16 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-Keepalive
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(Net::IP) >= 1.25
-BuildRequires: perl(POE) >= 1.007
-BuildRequires: perl(POE::Component::Client::DNS) >= 1.04
+BuildRequires: perl(POE) >= 1.28
+BuildRequires: perl(POE::Component::Client::DNS) >= 1.051
+Requires: perl(Net::IP) >= 1.25
+Requires: perl(POE) >= 1.28
+Requires: perl(POE::Component::Client::DNS) >= 1.051
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 POE::Component::Client::Keepalive creates and manages connections for
@@ -53,8 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES MANIFEST META.yml README
-%doc %{_mandir}/man3/POE::Component::Client::Client-Keepalive.3pm*
-%doc %{_mandir}/man3/POE::Component::Client::Conn-Keepalive.3pm*
+%doc %{_mandir}/man3/POE::Component::Client::Keepalive.3pm*
+%doc %{_mandir}/man3/POE::Component::Connection::Keepalive.3pm*
 %dir %{perl_vendorlib}/POE/
 %dir %{perl_vendorlib}/POE/Component/
 %dir %{perl_vendorlib}/POE/Component/Client/
@@ -64,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/POE/Component/Connection/Keepalive.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.262-1
+- Updated to version 0.262.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.260-1
 - Updated to version 0.260.
 
