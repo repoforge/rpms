@@ -10,30 +10,47 @@
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
 Version: 0.93
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://www.cpan.org/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::MOP) >= 0.94
 BuildRequires: perl(Data::OptList)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(List::MoreUtils) >= 0.12
-#BuildRequires: perl(Scalar::Util) >= 1.19
-BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Scalar::Util) >= 1.19
 BuildRequires: perl(Sub::Exporter) >= 0.980
 BuildRequires: perl(Sub::Name)
 BuildRequires: perl(Task::Weaken)
 BuildRequires: perl(Test::Exception) >= 0.27
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Try::Tiny) >= 0.02
-#BuildRequires: perl(Test::More) >= 0.77
-Requires: perl >= 2:5.8.1
+BuildRequires: perl >= 5.8.1
+Requires: perl(Carp)
+Requires: perl(Class::MOP) >= 0.94
+Requires: perl(Data::OptList)
+Requires: perl(List::MoreUtils) >= 0.12
+Requires: perl(Scalar::Util) >= 1.19
+Requires: perl(Sub::Exporter) >= 0.980
+Requires: perl(Sub::Name)
+Requires: perl(Task::Weaken)
+Requires: perl(Try::Tiny) >= 0.02
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Moose is a Perl module that implements a complete modern object system.
@@ -69,6 +86,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.93-2
+- Change Source: Tag
+- dependencies from yaml
+
 * Tue Dec 01 2009 Steve Huff <shuff@vecna.org> - 0.93-1
 - Updated to version 0.93.
 
