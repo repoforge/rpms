@@ -9,8 +9,8 @@
 
 Summary: Perl interface to the Internet Relay Chat protocol
 Name: perl-Net-IRC
-Version: 0.75
-Release: 2.2%{?dist}
+Version: 0.76
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IRC/
@@ -19,8 +19,22 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-IRC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(IO::Select)
+BuildRequires: perl(IO::Socket)
+BuildRequires: perl(Socket)
+BuildRequires: perl(Sys::Hostname)
+Requires: perl(Carp)
+Requires: perl(IO::File)
+Requires: perl(IO::Select)
+Requires: perl(IO::Socket)
+Requires: perl(Socket)
+Requires: perl(Sys::Hostname)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 First intended to be a quick tool for writing an IRC script in Perl,
@@ -53,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/IRC
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.76-1
+- Updated to version 0.76.
+
 * Tue Jul 26 2005 Jima <jima@devel.mintygreen.net> - 0.75-2
 - IO::Socket::INET calls changed to IO::Socket::INET6 so IPV6 can be used.
 
