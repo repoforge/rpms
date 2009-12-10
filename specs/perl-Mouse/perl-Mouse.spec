@@ -9,21 +9,31 @@
 
 Summary: Moose minus the antlers
 Name: perl-Mouse
-Version: 0.28
-Release: 1%{?dist}
+Version: 0.44
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mouse/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUNNAVY/Mouse-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GF/GFUJI/Mouse-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::Exception)
+BuildRequires: perl(ExtUtils::ParseXS) >= 2.21
+BuildRequires: perl(Scalar::Util) >= 1.14
+BuildRequires: perl(Test::Exception) >= 0.27
+#BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(XSLoader) >= 0.1
+BuildRequires: perl >= 5.6.2
+Requires: perl(Scalar::Util) >= 1.14
+Requires: perl(XSLoader) >= 0.1
+Requires: perl >= 5.6.2
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Moose minus the antlers.
@@ -48,15 +58,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/Mouse.3pm*
 %doc %{_mandir}/man3/ouse.3pm*
+%doc %{_mandir}/man3/Mouse.3pm*
 %doc %{_mandir}/man3/Mouse::*.3pm*
 %doc %{_mandir}/man3/Squirrel.3pm*
+%doc %{_mandir}/man3/Squirrel::Role.3pm*
+%doc %{_mandir}/man3/Test::Mouse.3pm.gz
 %{perl_vendorlib}/Mouse/
 %{perl_vendorlib}/Mouse.pm
 %{perl_vendorlib}/ouse.pm
 %{perl_vendorlib}/Squirrel/
 %{perl_vendorlib}/Squirrel.pm
+%{perl_vendorlib}/Test/Mouse.pm
+
 
 %changelog
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.28-1
