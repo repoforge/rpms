@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dries
 # Upstream: Casey West <casey$geeknest,com>
-# eclude el4, needs new perl-Storable wich conflicts with perl-core
-# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,8 +9,8 @@
 
 Summary: Perl extension for simple IMAP account handling
 Name: perl-Net-IMAP-Simple
-Version: 1.1907
-Release: 1%{?dist}
+Version: 1.1910
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-IMAP-Simple/
@@ -21,27 +19,16 @@ Source: http://search.cpan.org/CPAN/authors/id/J/JE/JETTERO/Net-IMAP-Simple-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Class::Accessor)
-BuildRequires: perl(Coro)
-BuildRequires: perl(DateTime)
-BuildRequires: perl(DateTime::Format::Mail)
-BuildRequires: perl(DateTime::Format::Strptime)
-BuildRequires: perl(Email::Address)
-BuildRequires: perl(Email::MIME) >= 1.862 
-BuildRequires: perl(Email::MIME::ContentType)
-BuildRequires: perl(Email::Simple) >= 1.999
-BuildRequires: perl(Encode::IMAPUTF7)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::Select)
 BuildRequires: perl(IO::Socket)
-BuildRequires: perl(MIME::Base64)
-BuildRequires: perl(Net::SSLeay)
-BuildRequires: perl(Net::Server::Coro) >= 0.3
-BuildRequires: perl(Regexp::Common)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl >= 5.008
+Requires: perl(IO::Select)
+Requires: perl(IO::Socket)
+Requires: perl >= 5.008
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module is a simple way to access IMAP accounts.
@@ -71,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/IMAP/Simple.pod
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.1910-1
+- Updated to version 1.1910.
+
 * Thu Jul 30 2009 Christoph Maser <cmr@financial.com> - 1.1907-1
 - Updated to version 1.1907.
 
