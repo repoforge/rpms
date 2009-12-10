@@ -9,18 +9,17 @@
 
 Summary: Get Whois information for domains
 Name: perl-Net-Whois-Raw
-Version: 2.04
-Release: 1%{?dist}
+Version: 2.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois-Raw/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-Whois-Raw-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DE/DESPAIR/Net-Whois-Raw-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Encode)
 BuildRequires: perl(Getopt::Long) >= 2
 BuildRequires: perl(HTTP::Headers)
 BuildRequires: perl(HTTP::Request)
@@ -28,7 +27,18 @@ BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(URI::URL)
+BuildRequires: perl >= 5.008001
+Requires: perl(Encode)
+Requires: perl(Getopt::Long) >= 2
+Requires: perl(HTTP::Headers)
+Requires: perl(HTTP::Request)
+Requires: perl(LWP::UserAgent)
+Requires: perl(Test::More)
+Requires: perl(URI::URL)
+Requires: perl >= 5.008001
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Get Whois information for domains.
@@ -37,13 +47,12 @@ Get Whois information for domains.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Build.PL
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -63,6 +72,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Whois/Raw.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 2.12-1
+- Updated to version 2.12.
+
 * Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 2.04-1
 - Updated to version 2.04.
 
