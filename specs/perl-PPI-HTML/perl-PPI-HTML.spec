@@ -9,8 +9,8 @@
 
 Summary: PPI-HTML module for perl
 Name: perl-PPI-HTML
-Version: 1.07
-Release: 1%{?dist}
+Version: 1.08
+Release: 1
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PPI-HTML/
@@ -19,9 +19,21 @@ Source: http://www.cpan.org/modules/by-module/PPI/PPI-HTML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(CSS::Tiny) >= 1.10
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(PPI) >= 0.990
+BuildRequires: perl(Params::Util) >= 0.05
+BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl >= 5.005
+Requires: perl(CSS::Tiny) >= 1.10
+Requires: perl(PPI) >= 0.990
+Requires: perl(Params::Util) >= 0.05
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 PPI-HTML module for perl.
@@ -53,5 +65,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PPI/HTML.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Tue May 01 2007 Dag Wieers <dag@wieers.com> - 1.07-1
 - Initial package. (using DAR)
