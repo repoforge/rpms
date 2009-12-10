@@ -12,29 +12,37 @@
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
 Version: 0.95
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MOP/
 
 Source: http://www.cpan.org/modules/by-module/Class/Class-MOP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(File::Spec)
-BuildRequires: perl(Test::Exception)
-BuildRequires: perl(Test::More)
-# From yaml requires
 BuildRequires: perl(Carp)
 BuildRequires: perl(Devel::GlobalDestruction)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
 BuildRequires: perl(MRO::Compat) >= 0.05
 BuildRequires: perl(Scalar::Util) >= 1.18
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Task::Weaken)
+BuildRequires: perl(Test::Exception) >= 0.27
+BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Try::Tiny) >= 0.02
-BuildRequires: perl >= 2:5.8.1
-Requires: perl >= 2:5.8.1
+BuildRequires: perl >= 5.8.1
+Requires: perl(Carp)
+Requires: perl(Devel::GlobalDestruction)
+Requires: perl(MRO::Compat) >= 0.05
+Requires: perl(Scalar::Util) >= 1.18
+Requires: perl(Sub::Name) >= 0.04
+Requires: perl(Task::Weaken)
+Requires: perl(Try::Tiny) >= 0.02
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Class-MOP is a Perl module that implements a Meta Object Protocol.
@@ -73,6 +81,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.95-2
+- dependencies from yaml
+
 * Tue Dec 01 2009 Steve Huff <shuff@vecna.org> - 0.95-1
 - Updated to version 0.95.
 
