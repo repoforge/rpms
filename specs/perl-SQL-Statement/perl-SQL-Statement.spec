@@ -9,8 +9,8 @@
 
 Summary: SQL parsing and processing engine
 Name: perl-SQL-Statement
-Version: 1.22
-Release: 1%{?dist}
+Version: 1.23
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Statement/
@@ -26,13 +26,16 @@ BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Params::Util) >= 1.00
 BuildRequires: perl(Scalar::Util) >= 1.0
-BuildRequires: perl(Test::Simple)
+#BuildRequires: perl(Test::Simple) >= 0.86
+BuildRequires: perl(Test::Simple) 
 Requires: perl(Carp)
 Requires: perl(Clone) >= 0.30
 Requires: perl(DBD::File) >= 0.37
 Requires: perl(Data::Dumper)
 Requires: perl(Params::Util) >= 1.00
 Requires: perl(Scalar::Util) >= 1.0
+#dRequires: perl(Test::Simple) >= 0.86
+Requires: perl(Test::Simple)
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -68,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.23-1
+- Updated to version 1.23.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 1.22-1
 - Updated to version 1.22.
 
