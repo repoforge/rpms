@@ -9,8 +9,8 @@
 
 Summary: Sets of Integers
 Name: perl-Set-IntRange
-Version: 5.1
-Release: 1.2%{?dist}
+Version: 5.2
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-IntRange/
@@ -19,8 +19,13 @@ Source: http://www.cpan.org/modules/by-module/Set/Set-IntRange-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Bit::Vector) >= 7.1
+Requires: perl(Bit::Vector) >= 7.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module allows you to work with sets of integers.
@@ -49,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Set/IntRange.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 5.2-1
+- Updated to version 5.2.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 5.1-1.2
 - Rebuild for Fedora Core 5.
 
