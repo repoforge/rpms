@@ -9,8 +9,8 @@
 
 Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
-Version: 6.12
-Release: 1%{?dist}
+Version: 6.16
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-IRC/
@@ -19,14 +19,12 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-IRC-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More) >= 0.47
-# From yaml requires
 BuildRequires: perl(Encode)
 BuildRequires: perl(Encode::Guess)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(POE) >= 0.3202
-BuildRequires: perl(POE::Component::Pluggable) >= 1.12
+BuildRequires: perl(POE::Component::Pluggable) >= 1.24
 BuildRequires: perl(POE::Driver::SysRW)
 BuildRequires: perl(POE::Filter::IRCD) >= 1.7
 BuildRequires: perl(POE::Filter::Line)
@@ -34,13 +32,23 @@ BuildRequires: perl(POE::Filter::Stackable)
 BuildRequires: perl(POE::Filter::Stream)
 BuildRequires: perl(POE::Wheel::ReadWrite)
 BuildRequires: perl(POE::Wheel::SocketFactory)
+BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl >= 5.6.0
-# These are not found automatically
-Requires: perl(POE::Component::Pluggable) >= 1.12
+Requires: perl(Encode)
+Requires: perl(Encode::Guess)
+Requires: perl(POE) >= 0.3202
+Requires: perl(POE::Component::Pluggable) >= 1.24
 Requires: perl(POE::Driver::SysRW)
+Requires: perl(POE::Filter::IRCD) >= 1.7
+Requires: perl(POE::Filter::Line)
+Requires: perl(POE::Filter::Stackable)
 Requires: perl(POE::Filter::Stream)
 Requires: perl(POE::Wheel::ReadWrite)
 Requires: perl(POE::Wheel::SocketFactory)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 POE::Component::IRC is a POE (Perl Object Environment) component
@@ -82,6 +90,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 6.16-1
+- Updated to version 6.16.
+
 * Thu Sep 10 2009 Christoph Maser <cmr@financial.com> - 6.12-1
 - Updated to version 6.12.
 
