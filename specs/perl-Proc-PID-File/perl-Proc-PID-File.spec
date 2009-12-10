@@ -9,8 +9,8 @@
 
 Summary: Perl module to manage process id files
 Name: perl-Proc-PID-File
-Version: 1.24
-Release: 1%{?dist}
+Version: 1.27
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Proc-PID-File/
@@ -50,5 +50,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Proc/PID/File.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.27-1
+- Updated to version 1.27.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.24-1
 - Initial package. (using DAR)
