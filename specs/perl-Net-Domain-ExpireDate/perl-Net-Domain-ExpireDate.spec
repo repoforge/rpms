@@ -9,8 +9,8 @@
 
 Summary: Obtain expiration date of domain names
 Name: perl-Net-Domain-ExpireDate
-Version: 0.96
-Release: 1%{?dist}
+Version: 0.97
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Domain-ExpireDate/
@@ -19,13 +19,16 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Domain-ExpireDate-%{versio
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-#BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Getopt::Long) >= 2
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Net::Whois::Raw) >= 1
-BuildRequires: perl(Time::Piece) 
+BuildRequires: perl(Time::Piece)
+Requires: perl(Getopt::Long) >= 2
+Requires: perl(Net::Whois::Raw) >= 1
+Requires: perl(Time::Piece)
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Obtain expiration date of domain names.
@@ -57,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Domain/ExpireDate.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.97-1
+- Updated to version 0.97.
+
 * Thu Jul 30 2009 Christoph Maser <cmr@financial.com> - 0.96-1
 - Updated to version 0.96.
 
