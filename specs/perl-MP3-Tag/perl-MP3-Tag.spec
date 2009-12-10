@@ -9,8 +9,8 @@
 
 Summary: Module for reading tags of MP3 audio files
 Name: perl-MP3-Tag
-Version: 1.11
-Release: 2%{?dist}
+Version: 1.12
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP3-Tag/
@@ -19,7 +19,7 @@ Source: http://www.cpan.org/modules/by-module/MP3/MP3-Tag-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 Provides: perl(Normalize::Text::Normalize_Fields)
 
@@ -72,6 +72,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MP3/Tag.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.12-1
+- Updated to version 1.12.
+
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 1.11-2
 - Remove examples/mod to not pull incorrect requires.
 
