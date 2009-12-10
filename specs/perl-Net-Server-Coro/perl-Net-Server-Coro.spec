@@ -9,8 +9,8 @@
 
 Summary: A co-operative multithreaded server using Coro
 Name: perl-Net-Server-Coro
-Version: 0.4
-Release: 1%{?dist}
+Version: 0.6
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server-Coro/
@@ -19,7 +19,19 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Server-Coro-%{version}.tar
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Coro)
+BuildRequires: perl(EV)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Net::SSLeay)
+BuildRequires: perl(Net::Server)
+Requires: perl(Coro)
+Requires: perl(EV)
+Requires: perl(Net::SSLeay)
+Requires: perl(Net::Server)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A co-operative multithreaded server using Coro.
@@ -51,5 +63,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Server/Coro.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.6-1
+- Updated to version 0.6.
+
 * Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 0.4-1
 - Initial package. (using DAR)
