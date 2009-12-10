@@ -9,8 +9,8 @@
 
 Summary: Non-blocking/concurrent HTTP queries with POE
 Name: perl-POE-Component-Client-HTTP
-Version: 0.890
-Release: 1%{?dist}
+Version: 0.893
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-HTTP/
@@ -19,18 +19,24 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-HTTP-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(HTTP::Request) >= 1.3
 BuildRequires: perl(HTTP::Response) >= 1.37
 BuildRequires: perl(Net::HTTP::Methods) >= 0.02
-BuildRequires: perl(POE) >= 1.007
-BuildRequires: perl(POE::Component::Client::Keepalive) >= 0.26
+BuildRequires: perl(POE) >= 1.28
+BuildRequires: perl(POE::Component::Client::Keepalive) >= 0.261
 BuildRequires: perl(Test::POE::Server::TCP)
 BuildRequires: perl(URI) >= 1.24
+Requires: perl(HTTP::Request) >= 1.3
+Requires: perl(HTTP::Response) >= 1.37
+Requires: perl(Net::HTTP::Methods) >= 0.02
+Requires: perl(POE) >= 1.28
+Requires: perl(POE::Component::Client::Keepalive) >= 0.261
+Requires: perl(Test::POE::Server::TCP)
+Requires: perl(URI) >= 1.24
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A HTTP user-agent component.
@@ -69,6 +75,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.893-1
+- Updated to version 0.893.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.890-1
 - Updated to version 0.890.
 
