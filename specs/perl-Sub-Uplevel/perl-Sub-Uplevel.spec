@@ -9,8 +9,8 @@
 
 Summary: Apparently run a function in a higher stack frame
 Name: perl-Sub-Uplevel
-Version: 0.2002
-Release: 1%{?dist}
+Version: 0.22
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sub-Uplevel/
@@ -23,6 +23,10 @@ BuildRequires: perl
 BuildRequires: perl(Carp)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Apparently run a function in a higher stack frame.
@@ -57,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Sub/Uplevel.pod
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Wed Jun 17 2009 Christoph Maser <cmr@financial.com> - 0.2002-1
 - Updated to version 0.2002.
 
