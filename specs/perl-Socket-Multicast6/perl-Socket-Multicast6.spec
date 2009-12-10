@@ -9,8 +9,8 @@
 
 Summary: Constructors and constants for IPv4 and IPv6 multicast socket operations
 Name: perl-Socket-Multicast6
-Version: 0.02
-Release: 1%{?dist}
+Version: 0.04
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Socket-Multicast6/
@@ -18,8 +18,21 @@ URL: http://search.cpan.org/dist/Socket-Multicast6/
 Source: http://www.cpan.org/modules/by-module/Socket/Socket-Multicast6-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Devel::PPPort)
+BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(ExtUtils::Constant)
+BuildRequires: perl(Module::Build) >= 0.20
+BuildRequires: perl(Socket)
+BuildRequires: perl(Socket6) >= 0.19
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.6.1
+Requires: perl(Socket)
+Requires: perl(Socket6) >= 0.19
+Requires: perl(Test::More)
+Requires: perl >= 5.6.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Constructors and constants for IPv4 and IPv6 multicast socket operations.
@@ -28,12 +41,12 @@ Constructors and constants for IPv4 and IPv6 multicast socket operations.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -51,5 +64,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Socket/Multicast6/
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Sun Nov 19 2006 Dries Verachtert <dries@ulyssis.org> - 0.02-1
 - Initial package.
