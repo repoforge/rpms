@@ -10,7 +10,7 @@
 Summary: Portable interface to open and send raw data to network
 Name: perl-Net-Write
 Version: 1.05
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Write/
@@ -19,7 +19,15 @@ Source: http://www.cpan.org/modules/by-module/Net/Net-Write-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Class::Gomor)
+BuildRequires: perl(Net::Pcap) >= 0.12
+BuildRequires: perl(Socket6)
+Requires: perl(Class::Gomor)
+Requires: perl(Net::Pcap) >= 0.12
+Requires: perl(Socket6)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A portable interface to open and send raw data to network.
@@ -54,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/Write.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.05-2
+- Disable automatic perl-dependencies
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.05-1
 - Updated to version 1.05.
 
