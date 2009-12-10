@@ -12,8 +12,8 @@
 
 Summary: code attribute introspection
 Name: perl-MooseX-MethodAttributes
-Version: 0.16
-Release: 1%{?dist}
+Version: 0.18
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-MethodAttributes/
@@ -22,14 +22,22 @@ Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-MethodAttributes-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-# From yaml requires
-BuildRequires: perl(MRO::Compat)
-BuildRequires: perl(Moose) >= 0.79
-BuildRequires: perl(MooseX::Types) >= 0.06
+BuildRequires: perl(Moose) >= 0.90
+BuildRequires: perl(MooseX::Types) >= 0.20
 BuildRequires: perl(Test::Exception)
+#BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
-BuildRequires: perl(namespace::clean)
+BuildRequires: perl(namespace::autoclean)
+BuildRequires: perl(namespace::clean) >= 0.10
+Requires: perl(Moose) >= 0.90
+Requires: perl(MooseX::Types) >= 0.20
+Requires: perl(Test::Exception)
+Requires: perl(Test::More) >= 0.88
+Requires: perl(namespace::autoclean)
+Requires: perl(namespace::clean) >= 0.10
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -57,6 +65,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README TODO
 %doc %{_mandir}/man3/MooseX::MethodAttributes.3pm*
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Inheritable.3pm.gz
+%doc %{_mandir}/man3/MooseX::MethodAttributes::Role.3pm.gz
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role::AttrContainer.3pm.gz
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role::AttrContainer::Inheritable.3pm.gz
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role::Meta::Class.3pm.gz
@@ -65,9 +74,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role::Meta::Method::MaybeWrapped.3pm.gz
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role::Meta::Method::Wrapped.3pm.gz
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role::Meta::Role.3pm.gz
+%doc %{_mandir}/man3/MooseX::MethodAttributes::Role::Meta::Role::Application.3pm.gz
+%doc %{_mandir}/man3/MooseX::MethodAttributes::Role::Meta::Role::Application::Summation.3pm.gz
 %dir %{perl_vendorlib}/MooseX/
 %{perl_vendorlib}/MooseX/MethodAttributes.pm
 %{perl_vendorlib}/MooseX/MethodAttributes/Inheritable.pm
+%{perl_vendorlib}/MooseX/MethodAttributes/Role.pm
 %{perl_vendorlib}/MooseX/MethodAttributes/Role/AttrContainer.pm
 %{perl_vendorlib}/MooseX/MethodAttributes/Role/AttrContainer/Inheritable.pm
 %{perl_vendorlib}/MooseX/MethodAttributes/Role/Meta/Class.pm
@@ -76,9 +88,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/MethodAttributes/Role/Meta/Method/MaybeWrapped.pm
 %{perl_vendorlib}/MooseX/MethodAttributes/Role/Meta/Method/Wrapped.pm
 %{perl_vendorlib}/MooseX/MethodAttributes/Role/Meta/Role.pm
+%{perl_vendorlib}/MooseX/MethodAttributes/Role/Meta/Role/Application.pm
+%{perl_vendorlib}/MooseX/MethodAttributes/Role/Meta/Role/Application/Summation.pm
 
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.18-1
+- Updated to version 0.18.
+
 * Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 0.16-1
 - Updated to version 0.16.
 
