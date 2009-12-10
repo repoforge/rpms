@@ -9,8 +9,8 @@
 
 Summary: Create and manipulate PAR distributions
 Name: perl-PAR-Dist
-Version: 0.46
-Release: 1%{?dist}
+Version: 0.47
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/PAR-Dist/
@@ -19,14 +19,18 @@ Source: http://www.cpan.org/modules/by-module/PAR/PAR-Dist-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(File::Find)
 BuildRequires: perl(File::Path)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(File::Temp)
+Requires: perl(File::Find)
+Requires: perl(File::Path)
+Requires: perl(File::Spec)
+Requires: perl(File::Temp)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 With this module, you can create and manipulate PAR distributions.
@@ -57,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/PAR/Dist.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.47-1
+- Updated to version 0.47.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 0.46-1
 - Updated to version 0.46.
 
