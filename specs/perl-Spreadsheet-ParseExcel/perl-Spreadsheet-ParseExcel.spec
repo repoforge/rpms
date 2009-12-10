@@ -9,24 +9,24 @@
 
 Summary: Get information from Excel file
 Name: perl-Spreadsheet-ParseExcel
-Version: 0.55
-Release: 1%{?dist}
+Version: 0.56
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spreadsheet-ParseExcel/
 
-Source: http://www.cpan.org/modules/by-module/Spreadsheet/Spreadsheet-ParseExcel-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMCNAMARA/Spreadsheet-ParseExcel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::File)
 BuildRequires: perl(IO::Scalar)
-BuildRequires: perl(OLE::Storage_Lite)
+BuildRequires: perl(OLE::Storage_Lite) >= 0.19
 BuildRequires: perl(Scalar::Util)
 Requires: perl(IO::File)
 Requires: perl(IO::Scalar)
-Requires: perl(OLE::Storage_Lite)
+Requires: perl(OLE::Storage_Lite) >= 0.19
 Requires: perl(Scalar::Util)
 
 %filter_from_requires /^perl*/d
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Spreadsheet/ParseExcel.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.56-1
+- Updated to version 0.56.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.55-1
 - Updated to version 0.55.
 
