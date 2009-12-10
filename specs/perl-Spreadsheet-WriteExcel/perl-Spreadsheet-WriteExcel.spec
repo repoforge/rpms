@@ -9,8 +9,8 @@
 
 Summary: Write to a cross platform Excel binary file
 Name: perl-Spreadsheet-WriteExcel
-Version: 2.25
-Release: 1%{?dist}
+Version: 2.30
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spreadsheet-WriteExcel/
@@ -19,8 +19,17 @@ Source: http://www.cpan.org/modules/by-module/Spreadsheet/Spreadsheet-WriteExcel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(OLE::Storage_Lite) >= 0.19
+BuildRequires: perl(Parse::RecDescent)
+Requires: perl(File::Temp)
+Requires: perl(OLE::Storage_Lite) >= 0.19
+Requires: perl(Parse::RecDescent)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 The Spreadsheet::WriteExcel module can be used to create a cross-
@@ -46,14 +55,14 @@ TThe Excel file produced by this module is compatible with 97,
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 ### Clean up docs
-find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
+find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL MANIFEST META.yml README doc/ examples/
+%doc Changes INSTALL MANIFEST META.yml README examples/
 %doc %{_mandir}/man1/chartex.1*
 %doc %{_mandir}/man3/Spreadsheet::WriteExcel.3pm*
 %doc %{_mandir}/man3/Spreadsheet::WriteExcel::*.3pm*
@@ -63,6 +72,9 @@ find doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Spreadsheet/WriteExcel.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 2.30-1
+- Updated to version 2.30.
+
 * Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 2.25-1
 - Updated to version 2.25.
 
