@@ -9,8 +9,8 @@
 
 Summary: Event-driven networkable IRC server daemon
 Name: perl-POE-Component-Server-IRC
-Version: 1.38
-Release: 1%{?dist}
+Version: 1.40
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Server-IRC/
@@ -19,10 +19,47 @@ Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Server-IRC-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Algorithm::Diff) >= 1.19
+BuildRequires: perl(Carp)
+BuildRequires: perl(Crypt::PasswdMD5) >= 1.3
+BuildRequires: perl(Date::Format)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Net::Netmask) >= 1.9012
+BuildRequires: perl(POE) >= 0.9999
+BuildRequires: perl(POE::Component::Client::DNS) >= 1
+BuildRequires: perl(POE::Component::Client::Ident) >= 1
+BuildRequires: perl(POE::Component::IRC) >= 5.7
+BuildRequires: perl(POE::Component::Pluggable) >= 1.14
+BuildRequires: perl(POE::Filter::IRCD) >= 2.2
+BuildRequires: perl(POE::Filter::Line)
+BuildRequires: perl(POE::Filter::Stackable)
+BuildRequires: perl(POE::Wheel::ReadWrite)
+BuildRequires: perl(POE::Wheel::SocketFactory)
+BuildRequires: perl(Socket)
 BuildRequires: perl(Test::More) >= 0.47
-Requires: perl >= 0:5.6.0
+BuildRequires: perl >= 5.6.0
+Requires: perl(Algorithm::Diff) >= 1.19
+Requires: perl(Carp)
+Requires: perl(Crypt::PasswdMD5) >= 1.3
+Requires: perl(Date::Format)
+Requires: perl(Net::Netmask) >= 1.9012
+Requires: perl(POE) >= 0.9999
+Requires: perl(POE::Component::Client::DNS) >= 1
+Requires: perl(POE::Component::Client::Ident) >= 1
+Requires: perl(POE::Component::IRC) >= 5.7
+Requires: perl(POE::Component::Pluggable) >= 1.14
+Requires: perl(POE::Filter::IRCD) >= 2.2
+Requires: perl(POE::Filter::Line)
+Requires: perl(POE::Filter::Stackable)
+Requires: perl(POE::Wheel::ReadWrite)
+Requires: perl(POE::Wheel::SocketFactory)
+Requires: perl(Socket)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 A fully event-driven networkable IRC server daemon module.
@@ -61,6 +98,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Server/IRC.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.40-1
+- Updated to version 1.40.
+
 * Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 1.38-1
 - Updated to version 1.38.
 
