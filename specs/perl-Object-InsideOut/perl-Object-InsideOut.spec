@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Jerry D. Hedden <jdhedden$cpan,org>
+# ExcludeDist: el4 [ because Requires: perl(Scalar::Util) >= 1.21 ]
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,8 +10,8 @@
 
 Summary: Comprehensive inside-out object support module
 Name: perl-Object-InsideOut
-Version: 3.56
-Release: 1%{?dist}
+Version: 3.57
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-InsideOut/
@@ -19,21 +20,30 @@ Source: http://www.cpan.org/modules/by-module/Object/Object-InsideOut-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(B)
 BuildRequires: perl(Config)
 BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(Exception::Class) >= 1.29
-#BuildRequires: perl(Scalar::Util) >= 1.21
-BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Scalar::Util) >= 1.21
 BuildRequires: perl(Test::More) >= 0.5
 BuildRequires: perl(attributes)
 BuildRequires: perl(overload)
 BuildRequires: perl(strict)
 BuildRequires: perl(warnings)
+Requires: perl(B)
+Requires: perl(Config)
+Requires: perl(Data::Dumper)
+Requires: perl(Exception::Class) >= 1.29
+Requires: perl(Scalar::Util) >= 1.21
+Requires: perl(Test::More) >= 0.5
+Requires: perl(attributes)
+Requires: perl(overload)
+Requires: perl(strict)
+Requires: perl(warnings)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-Object-InsideOut is a Perl module with comprehensive inside-out
@@ -74,6 +84,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Object/InsideOut.pod
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 3.57-1
+- Updated to version 3.57.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 3.56-1
 - Updated to version 3.56.
 
