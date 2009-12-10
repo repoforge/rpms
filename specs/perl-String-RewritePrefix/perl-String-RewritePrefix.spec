@@ -8,8 +8,8 @@
 
 Summary: Perl module named String-RewritePrefix
 Name: perl-String-RewritePrefix
-Version: 0.004
-Release: 1%{?dist}
+Version: 0.005
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-RewritePrefix/
@@ -18,7 +18,15 @@ Source: http://www.cpan.org/modules/by-module/String/String-RewritePrefix-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Sub::Exporter)
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl(Sub::Exporter)
+Requires: perl(Test::More) >= 0.47
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-String-RewritePrefix is a Perl module.
@@ -49,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/String/RewritePrefix.pm
 
 %changelog
+* Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.005-1
+- Updated to version 0.005.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.004-1
 - Initial package. (using DAR)
