@@ -9,7 +9,7 @@
 
 Summary: Encoding and decoding of base36 strings
 Name: perl-Math-Base36
-Version: 0.06
+Version: 0.07
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,10 +19,16 @@ Source: http://www.cpan.org/modules/by-module/Math/Math-Base36-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Math::BigInt) >= 1.60
 BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl >= 5.6.0
+Requires: perl(Math::BigInt) >= 1.60
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Encoding and decoding of base36 strings.
@@ -53,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Math/Base36.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.06-1
 - Updated to version 0.06.
 
