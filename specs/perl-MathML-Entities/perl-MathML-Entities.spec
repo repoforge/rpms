@@ -9,8 +9,8 @@
 
 Summary: Convert XHTML+MathML Named Entities to Numeric Character References
 Name: perl-MathML-Entities
-Version: 0.13
-Release: 1.2%{?dist}
+Version: 0.17
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MathML-Entities/
@@ -27,7 +27,7 @@ MathML::Entities a content conversion filter for named XHTML+MathML
 entities.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MathML/Entities.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to version 0.17.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.13-1.2
 - Rebuild for Fedora Core 5.
 
