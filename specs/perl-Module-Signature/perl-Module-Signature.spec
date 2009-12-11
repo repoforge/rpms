@@ -9,8 +9,8 @@
 
 Summary: Check and create SIGNATURE files for CPAN distributions
 Name: perl-Module-Signature
-Version: 0.55
-Release: 1%{?dist}
+Version: 0.61
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Signature/
@@ -19,11 +19,21 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Signature-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: gnupg
-BuildRequires: perl-PAR-Dist
-BuildRequires: perl-Digest-SHA
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Digest::SHA)
+BuildRequires: perl(IO::Socket::INET)
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.005
+Requires: gnupg
+BuildRequires: perl(Digest::SHA)
+Requires: perl(IO::Socket::INET)
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 A module to check and create SIGNATURE files for CPAN distributions.
@@ -32,7 +42,7 @@ A module to check and create SIGNATURE files for CPAN distributions.
 %setup -n %{real_name}-%{version}
 
 %build
-echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -54,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Signature.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.61-1
+- Updated to version 0.61.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.55-1
 - Updated to release 0.55.
 
