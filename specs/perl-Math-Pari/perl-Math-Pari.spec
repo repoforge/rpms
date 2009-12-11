@@ -10,13 +10,13 @@
 
 Summary: Perl interface to PARI
 Name: perl-Math-Pari
-Version: 2.010801
+Version: 2.01080603
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Pari/
 
-Source: http://www.cpan.org/modules/by-module/Math/Math-Pari-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IL/ILYAZ/modules/Math-Pari-%{version}.tar.gz
 Source1: http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -63,7 +63,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Math/libPARI.pod
 
 %changelog
-* Sat Jul 04 2009 Chritoph Maser <cmr@financial.com> 2.010801-
+* Sat Dec 11 2009 Chritoph Maser <cmr@financial.com> 2.01080603-1
+- Updated to release 2.01080603
+
+* Sat Jul 04 2009 Chritoph Maser <cmr@financial.com> 2.010801-1
 - Updated to release 2.010801.
 
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.010800-1
