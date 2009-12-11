@@ -9,7 +9,7 @@
 
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
-Version: 2.18
+Version: 2.23
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-CoreList-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module gets the list of modules shipped with versions of perl.
@@ -53,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/CoreList.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 2.23-1
+- Updated to version 2.23.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 2.18-1
 - Updated to version 2.18.
 
