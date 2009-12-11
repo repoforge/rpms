@@ -9,7 +9,7 @@
 
 Summary: Simple standalone module for generating MIME messages
 Name: perl-MIME-Lite
-Version: 3.025
+Version: 3.027
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,14 +19,14 @@ Source: http://www.cpan.org/modules/by-module/MIME/MIME-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Email::Date::Format) >= 1.000
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(File::Basename)
-BuildRequires: perl(MIME::Base64)
-BuildRequires: perl(MIME::Types)
-BuildRequires: perl(MIME::QuotedPrint)
-BuildRequires: perl(Mail::Address)
-Requires: perl(Email::Date::Format)
+BuildRequires: perl(File::Spec)
+Requires: perl(Email::Date::Format) >= 1.000
+Requires: perl(File::Spec)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 MIME-Lite is a simple standalone module for generating MIME messages.
@@ -62,6 +62,9 @@ find contrib/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/changes.pod
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 3.027-1
+- Updated to version 3.027.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 3.025-1
 - Updated to version 3.025.
 
