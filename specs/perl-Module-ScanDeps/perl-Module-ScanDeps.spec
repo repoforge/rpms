@@ -9,8 +9,8 @@
 
 Summary: Recursively scan Perl code for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.95
-Release: 1%{?dist}
+Version: 0.96
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-ScanDeps/
@@ -19,13 +19,22 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-ScanDeps-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-#BuildRequires: perl(File::Spec)   conflicts with perl
-#BuildRequires: perl(File::Temp    conflicts with perl 
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Temp)
 BuildRequires: perl(Module::Build::ModuleInfo)
-#BuildRequires: perl(Test::More)   conflicts with perl
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.6.0
+BuildRequires: perl(version)
+Requires: perl(File::Spec)
+Requires: perl(File::Temp)
+Requires: perl(Module::Build::ModuleInfo)
+Requires: perl >= 5.6.0
+Requires: perl(version)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Module::ScanDeps, a module to recursively
@@ -65,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/ScanDeps.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.96-1
+- Updated to version 0.96.
+
 * Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 0.95-1
 - Updated to version 0.95.
 
