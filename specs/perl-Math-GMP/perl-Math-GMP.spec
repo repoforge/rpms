@@ -11,7 +11,7 @@
 
 Summary: High speed arbitrary size integer math
 Name: perl-Math-GMP
-Version: 2.05
+Version: 2.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Math/GMP.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 2.06-1
+- Updated to version 2.06.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.05-1
 - Updated to release 2.05.
 
