@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Andy Lester <andy$petdance,com>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,24 +10,32 @@
 
 Summary: Simple starterkit for any module
 Name: perl-Module-Starter
-Version: 1.52
-Release: 1%{?dist}
+Version: 1.54
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Starter/
 
-Source: http://www.cpan.org/modules/by-module/Module/Module-Starter-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/Module-Starter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(ExtUtils::Command)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(Getopt::Long)
-BuildRequires: perl(Pod::Usage)
+BuildRequires: perl(Pod::Usage) >= 1.21
+BuildRequires: perl(Test::Harness) >= 0.21
 BuildRequires: perl(Test::More)
+Requires: perl(ExtUtils::Command)
+Requires: perl(File::Spec)
+Requires: perl(Getopt::Long)
+Requires: perl(Pod::Usage) >= 1.21
+Requires: perl(Test::Harness) >= 0.21
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A simple starterkit for any module.
@@ -60,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Starter.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 1.54-1
+- Updated to version 1.54.
+
 * Wed Aug  5 2009 Christoph Maser <cmr@financial.com> - 1.52-1
 - Updated to version 1.52.
 
