@@ -9,7 +9,7 @@
 
 Summary: Looking up module information / loading at runtime
 Name: perl-Module-Load-Conditional
-Version: 0.30
+Version: 0.34
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,22 @@ Source: http://www.cpan.org/modules/by-module/Module/Module-Load-Conditional-%{v
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Locale::Maketext::Simple)
+BuildRequires: perl(Module::CoreList) >= 2.22
+BuildRequires: perl(Module::Load) >= 0.11
+BuildRequires: perl(Params::Check)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(version) >= 0.69
+Requires: perl(Locale::Maketext::Simple)
+Requires: perl(Module::CoreList) >= 2.22
+Requires: perl(Module::Load) >= 0.11
+Requires: perl(Params::Check)
+Requires: perl(Test::More)
+Requires: perl(version) >= 0.69
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Allows you to query the state of modules on your system. It can
@@ -55,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Load/Conditional.pm
 
 %changelog
+* Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.34-1
+- Updated to version 0.34.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.30-1
 - Updated to version 0.30.
 
