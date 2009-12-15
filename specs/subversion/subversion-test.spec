@@ -1,4 +1,4 @@
-# $Id: subversion.spec 4608 2006-08-02 15:32:29Z dag $
+# $Id$
 # Authority: dag
 # Upstream: CollabNet <dev$subversion,apache,org>
 
