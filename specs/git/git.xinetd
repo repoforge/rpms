@@ -1,0 +1,17 @@
+# default: off
+# description: The git daemon allows git repositories to be exported using \
+#	the git:// protocol.
+
+service git
+{
+        disable		= yes
+        socket_type     = stream
+        wait            = no
+        user            = nobody
+        server          = /usr/bin/git
+        server_args     = daemon --base-path=/var/lib/git --export-all --user-path=public_git --syslog --inetd --verbose
+        log_on_failure  += USERID
+
+        # xinetd doesn't do this by default. bug #195265
+        flags		= IPv6
+}

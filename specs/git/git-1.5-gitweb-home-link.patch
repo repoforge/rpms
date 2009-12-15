@@ -1,0 +1,11 @@
+--- git-1.5.0.6/gitweb/gitweb.perl~	2007-03-30 01:37:05.000000000 +0100
++++ git-1.5.0.6/gitweb/gitweb.perl	2007-05-07 08:31:37.000000000 +0100
+@@ -39,7 +39,7 @@ our $projectroot = "++GITWEB_PROJECTROOT
+ our $home_link = $my_uri || "/";
+ 
+ # string of the home link on top of all pages
+-our $home_link_str = "++GITWEB_HOME_LINK_STR++";
++our $home_link_str = $ENV{'SERVER_NAME'} ? "git://" . $ENV{'SERVER_NAME'} : "projects";
+ 
+ # name of your site or organization to appear in page titles
+ # replace this with something more descriptive for clearer bookmarks

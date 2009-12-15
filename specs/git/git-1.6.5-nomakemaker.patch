@@ -1,0 +1,16 @@
+--- git-1.6.5/perl/Makefile.perllib	2009-10-13 10:35:53.000000000 +0200
++++ git-1.6.5/perl/Makefile	2009-10-13 11:01:02.000000000 +0200
+@@ -20,7 +20,12 @@
+ 	$(RM) $(makfile).old
+ 
+ ifdef NO_PERL_MAKEMAKER
+-instdir_SQ = $(subst ','\'',$(prefix)/lib)
++perllib = site
++ifdef INSTALLDIRS
++	perllib = $(INSTALLDIRS)
++endif
++perlinstdir := $(shell sh -c "$(PERL_PATH_SQ) -V:install$(perllib)lib | cut -d\' -f2")
++instdir_SQ = $(subst ','\'',$(perlinstdir))
+ $(makfile): ../GIT-CFLAGS Makefile
+ 	echo all: private-Error.pm Git.pm > $@
+ 	echo '	mkdir -p blib/lib' >> $@
