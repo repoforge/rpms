@@ -10,22 +10,34 @@
 
 Summary: Object-oriented implementation of Sender Policy Framework
 Name: perl-Mail-SPF
-Version: 2.006
+Version: 2.007
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SPF/
 
-Source: http://www.cpan.org/modules/by-module/Mail/Mail-SPF-v%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMEHNLE/mail-spf/Mail-SPF-v%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Error)
 BuildRequires: perl(Module::Build) >= 0.2805
-BuildRequires: perl(Net::DNS::Resolver::Programmable) >= 0.002.1
+BuildRequires: perl(Net::DNS) >= 0.58
+BuildRequires: perl(Net::DNS::Resolver::Programmable)
+BuildRequires: perl(NetAddr::IP) >= 4
 BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.6
+BuildRequires: perl(URI) >= 1.13
+BuildRequires: perl >= v5.6
+BuildRequires: perl(version)
+Requires: perl(Error)
+Requires: perl(Net::DNS) >= 0.58
+Requires: perl(NetAddr::IP) >= 4
+Requires: perl(URI) >= 1.13
+Requires: perl >= v5.6
+Requires: perl(version)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 An object-oriented implementation of Sender Policy Framework.
@@ -59,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Mail/SPF.pm
 
 %changelog
+* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 2.007-1
+- Updated to version 2.007.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.006-1
 - Updated to release 2.006.
 
