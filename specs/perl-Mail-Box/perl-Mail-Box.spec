@@ -9,22 +9,20 @@
 
 Summary: E-mail handling
 Name: perl-Mail-Box
-Version: 2.091
+Version: 2.092
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-Box/
 
-Source: http://www.cpan.org/modules/by-module/Mail/Mail-Box-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/Mail-Box-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
 BuildRequires: perl
-# From yaml requires
 BuildRequires: perl(Date::Format)
 BuildRequires: perl(Date::Parse)
 BuildRequires: perl(Digest::HMAC_MD5)
-%{?el5:BuildRequires: perl(Encode) >= 2.26}
+BuildRequires: perl(Encode) >= 2.26
 BuildRequires: perl(Errno)
 BuildRequires: perl(File::Remove) >= 0.20
 BuildRequires: perl(File::Spec) >= 0.7
@@ -35,12 +33,35 @@ BuildRequires: perl(Mail::Address)
 BuildRequires: perl(Object::Realize::Later) >= 0.14
 BuildRequires: perl(Scalar::Util) >= 1.13
 BuildRequires: perl(Sys::Hostname)
-#BuildRequires: perl(TAP::Harness) >= 3.00
+#BuildRequires: perl(TAP::Harness) >= 3.00  only used in test
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(Test::Pod) >= 1.00
 BuildRequires: perl(Time::Zone)
 BuildRequires: perl(URI) >= 1.23
 BuildRequires: perl(User::Identity) >= 0.90
+Requires: perl(Date::Format)
+Requires: perl(Date::Parse)
+Requires: perl(Digest::HMAC_MD5)
+Requires: perl(Encode) >= 2.26
+Requires: perl(Errno)
+Requires: perl(File::Remove) >= 0.20
+Requires: perl(File::Spec) >= 0.7
+Requires: perl(IO::Scalar)
+Requires: perl(MIME::Base64)
+Requires: perl(MIME::Types) >= 1.004
+Requires: perl(Mail::Address)
+Requires: perl(Object::Realize::Later) >= 0.14
+Requires: perl(Scalar::Util) >= 1.13
+Requires: perl(Sys::Hostname)
+#Requires: perl(TAP::Harness) >= 3.00 only used in test
+Requires: perl(Test::More) >= 0.47
+Requires: perl(Test::Pod) >= 1.00
+Requires: perl(Time::Zone)
+Requires: perl(URI) >= 1.23
+Requires: perl(User::Identity) >= 0.90
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 ### Missing provides from autoprov
 Provides: perl(Mail::Message::Body::Construct) = %{version}
@@ -83,6 +104,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 2.092-1
+- Updated to version 2.092.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 2.091-1
 - Updated to version 2.091.
 
