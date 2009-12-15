@@ -9,19 +9,16 @@
 
 Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
-Version: 3.20
+Version: 3.21
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-IMAPClient/
 
-Source: http://www.cpan.org/modules/by-module/Mail/Mail-IMAPClient-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PL/PLOBBES/Mail-IMAPClient-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(Carp)
 BuildRequires: perl(Errno)
 BuildRequires: perl(Fcntl)
@@ -34,6 +31,21 @@ BuildRequires: perl(List::Util)
 BuildRequires: perl(MIME::Base64)
 BuildRequires: perl(Parse::RecDescent) >= 1.94
 BuildRequires: perl(Test::More)
+Requires: perl(Carp)
+Requires: perl(Errno)
+Requires: perl(Fcntl)
+Requires: perl(File::Temp)
+Requires: perl(IO::File)
+Requires: perl(IO::Select)
+Requires: perl(IO::Socket)
+Requires: perl(IO::Socket::INET) >= 1.26
+Requires: perl(List::Util)
+Requires: perl(MIME::Base64)
+Requires: perl(Parse::RecDescent) >= 1.94
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -71,6 +83,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/IMAPClient.pod
 
 %changelog
+* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 3.21-1
+- Updated to version 3.21.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 3.20-1
 - Updated to version 3.20.
 
