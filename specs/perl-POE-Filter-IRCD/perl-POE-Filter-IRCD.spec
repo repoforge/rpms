@@ -9,19 +9,29 @@
 
 Summary: POE filter for the IRC protocol
 Name: perl-POE-Filter-IRCD
-Version: 2.40
+Version: 2.42
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Filter-IRCD/
 
-Source: http://www.cpan.org/modules/by-module/POE/POE-Filter-IRCD-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/POE-Filter-IRCD-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(POE) >= 0.3202
+BuildRequires: perl(POE::Filter)
 BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl >= 5.6.0
+Requires: perl(POE) >= 0.3202
+Requires: perl(POE::Filter)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module implements a POE filter for the IRC protocol.
@@ -56,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/IRCD.pm
 
 %changelog
+* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 2.42-1
+- Updated to version 2.42.
+
 * Fri Jul  3 2009 Christoph Maser <cmr@financial.com> - 2.40-1
 - Updated to version 2.40.
 
