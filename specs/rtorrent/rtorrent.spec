@@ -1,13 +1,13 @@
 # $Id$
 # Authority: yury
-# Upstream: Jari "Rakshasa" Sundell <sundell.software$gmail,com>
+# Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
 %define curl_version 7.19.6
 
-Summary: Console based bittorrent client
+Summary: Console-based BitTorrent client
 Name: rtorrent
-Version: 0.8.5
-Release: 3
+Version: 0.8.6
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
@@ -35,7 +35,7 @@ BuildRequires: valgrind
 BuildRequires: zlib-devel
 
 %description
-rTorrent is a console-based BitTorrent client. It aims to be a 
+rTorrent is a console-based BitTorrent client. It aims to be a
 fully-featured and efficient client with the ability to run in the 
 background using screen. It supports fast-resume and session
 management.
@@ -85,6 +85,9 @@ PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PK
 %{_bindir}/rtorrent
 
 %changelog
+* Tue Dec 15 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.6-1
+- Updated to release 0.8.6.
+
 * Wed Nov 11 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.5-3
 - Minor refinements by Steve Huff (thanks)!
 

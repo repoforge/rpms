@@ -1,9 +1,10 @@
 # $Id$
-# Authority: dries
+# Authority: yury
+# Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
 Summary: BitTorrent library
 Name: libtorrent
-Version: 0.12.5
+Version: 0.12.6
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -61,6 +62,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libtorrent.pc
 
 %changelog
+* Tue Dec 15 2009 Yury V. Zaytsev <yury@shurup.com> - 0.12.6-1
+- Updated to release 0.12.6.
+
 * Tue Oct 27 2009 Steve Huff <shuff@vecna.org> - 0.12.5-1
 - Updated to release 0.12.5.
 
