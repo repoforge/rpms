@@ -19,7 +19,7 @@ Buildarch: noarch
 Requires: python >= 2.4
 
 %description
-youtube-dl is a small command-line program for downloading videos from 
+youtube-dl is a small command-line program for downloading videos from
 YouTube.com.
 
 %prep
@@ -39,9 +39,12 @@ YouTube.com.
 %{_bindir}/youtube-dl
 
 %changelog
-* Mon Jul 13 2009 Dries Verachtert <dries@ulyssis.org> - 2009.09.13-1
+* Tue Dec 15 2009 Yury V. Zaytsev <yury@shurup.com> - 2009.09.13-2
+- Fixed the changelog entry.
+
+* Mon Sep 14 2009 Dries Verachtert <dries@ulyssis.org> - 2009.09.13-1
 - Updated to release 2009.09.13.
-- Source url now points to versioned tar ball from revision system => 
+- Source url now points to versioned tar ball from revision system =>
   a unique name for each version.
 
 * Mon Jul 13 2009 Dries Verachtert <dries@ulyssis.org> - 2009.05.30-1
