@@ -11,9 +11,9 @@
 #   bzrrc: release candidate version, if any, line starts with % for rc, # for stable releas (no %).
 #   release: rpm subrelease (0.N for rc candidates, N for stable releases)
 %define bzrmajor 2.0
-%define bzrminor .1
+%define bzrminor .3
 #define bzrrc rc2
-%define release 2
+%define release 1
 
 # Magics to get the dots in Release string correct per the above
 %define subrelease %{?bzrrc:.}%{?bzrrc}
@@ -37,7 +37,7 @@ BuildRequires:  python-devel zlib-devel
 #BuildRequires: Pyrex
 Requires:   python-paramiko
 # Workaround Bug #230223 otherwise this would be a soft dependency
-Requires:   python-pycurl
+Requires:   python-curl
 
 # ElementTree is part of python2.5 on FC7+
 # This is also needed for EL-5
@@ -89,6 +89,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/bash_completion.d/
 
 %changelog
+* Thu Dec 17 2009 Steve Huff <shuff@vecna.org> - 2.0.3-1
+- Updated to 2.0.3 release.
+- RPMforge provides python-curl, not python-pycurl.
+
 * Wed Nov 11 2009 Yury V. Zaytsev <yury@shurup.com> - 2.0.1-2
 - Ported to RPMForge.
 
