@@ -2,16 +2,12 @@
 # Authority: dag
 # Upstream: <cacti-user$lists,sf,net>
 
-%{?rh7:%define _without_net_snmp 1}
-%{?el2:%define _without_net_snmp 1}
-%{?rh6:%define _without_net_snmp 1}
-
 %define logmsg logger -t %{name}/rpm
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.7e
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -134,6 +130,9 @@ fi
 %doc docs/*
 
 %changelog
+* Thu Dec 17 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.7e-3
+- Removed obsolete rh6/7/el2 defines.
+
 * Thu Dec 17 2009 Christoph Maser <cmr@financial.com> - 0.8.7e-2
 - Add patches from http://www.cacti.net/download_patches.php
 
