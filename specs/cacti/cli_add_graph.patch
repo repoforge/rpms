@@ -1,0 +1,11 @@
+--- cacti-0.8.7e/cli/add_graphs.php	2009-06-28 12:34:31.000000000 -0400
++++ cacti-0.8.7e/cli/add_graphs.php	2009-08-18 20:04:44.000000000 -0400
+@@ -570,7 +570,7 @@
+ 	echo "                    3|Fields = Verify all Fields\n";
+ 	echo "List Options:\n";
+ 	echo "    --list-hosts\n";
+-	echo "    --list-graph-templates [--host_template=[ID]]\n";
++	echo "    --list-graph-templates [--host-template-id=[ID]]\n";
+ 	echo "    --list-input-fields --graph-template-id=[ID]\n";
+ 	echo "    --list-snmp-queries\n";
+ 	echo "    --list-query-types  --snmp-query-id [ID]\n";

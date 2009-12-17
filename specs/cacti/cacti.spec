@@ -11,7 +11,7 @@
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.7e
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -19,6 +19,10 @@ URL: http://www.cacti.net/
 Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
+Patch1: http://www.cacti.net/downloads/patches/0.8.7e/cli_add_graph.patch
+Patch2: http://www.cacti.net/downloads/patches/0.8.7e/snmp_invalid_response.patch
+Patch3: http://www.cacti.net/downloads/patches/0.8.7e/template_duplication.patch
+Patch4: http://www.cacti.net/downloads/patches/0.8.7e/cross_site_fix.patch
 
 BuildRequires: mysql-devel, openssl-devel
 
@@ -55,6 +59,10 @@ This package includes the documentation for %{name}.
 
 %prep
 %setup
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
@@ -126,6 +134,9 @@ fi
 %doc docs/*
 
 %changelog
+* Thu Dec 17 2009 Christoph Maser <cmr@financial.com> - 0.8.7e-2
+- Add patches from http://www.cacti.net/download_patches.php
+
 * Mon Jul 27 2009 Dag Wieers <dag@wieers.com> - 0.8.7e-1
 - Updated to release 0.8.7e.
 

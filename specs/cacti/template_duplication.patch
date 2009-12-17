@@ -1,0 +1,234 @@
+diff -ruBbd 0.8.7e/cli/repair_templates.php 0.8.7/cli/repair_templates.php
+--- 0.8.7e/cli/repair_templates.php	2009-08-18 22:03:22.000000000 -0400
++++ 0.8.7/cli/repair_templates.php	2009-08-20 07:43:54.000000000 -0400
+@@ -0,0 +1,135 @@
++<?php
++/*
++ +-------------------------------------------------------------------------+
++ | Copyright (C) 2004-2009 The Cacti Group                                 |
++ |                                                                         |
++ | This program is free software; you can redistribute it and/or           |
++ | modify it under the terms of the GNU General Public License             |
++ | as published by the Free Software Foundation; either version 2          |
++ | of the License, or (at your option) any later version.                  |
++ |                                                                         |
++ | This program is distributed in the hope that it will be useful,         |
++ | but WITHOUT ANY WARRANTY; without even the implied warranty of          |
++ | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           |
++ | GNU General Public License for more details.                            |
++ +-------------------------------------------------------------------------+
++ | Cacti: The Complete RRDTool-based Graphing Solution                     |
++ +-------------------------------------------------------------------------+
++ | This code is designed, written, and maintained by the Cacti Group. See  |
++ | about.php and/or the AUTHORS file for specific developer information.   |
++ +-------------------------------------------------------------------------+
++ | http://www.cacti.net/                                                   |
++ +-------------------------------------------------------------------------+
++*/
++
++/* do NOT run this script through a web browser */
++if (!isset($_SERVER["argv"][0]) || isset($_SERVER['REQUEST_METHOD'])  || isset($_SERVER['REMOTE_ADDR'])) {
++	die("<br><strong>This script is only meant to run at the command line.</strong>");
++}
++
++$no_http_headers = true;
++
++include(dirname(__FILE__) . "/../include/global.php");
++include_once("../lib/utility.php");
++include_once("../lib/template.php");
++
++/* process calling arguments */
++$parms = $_SERVER["argv"];
++array_shift($parms);
++
++$execute = FALSE;
++
++foreach($parms as $parameter) {
++	@list($arg, $value) = @explode("=", $parameter);
++
++	switch ($arg) {
++	case "--execute":
++		$execute = TRUE;
++		break;
++	case "-h":
++	case "-v":
++	case "-V":
++	case "--version":
++	case "--help":
++		display_help();
++		exit;
++	default:
++		print "ERROR: Invalid Parameter " . $parameter . "\n\n";
++		display_help();
++		exit;
++	}
++}
++
++if ($execute) {
++	echo "NOTE: Repairing All Duplicated Templates\n";
++} else {
++	echo "NOTE: Performing Check of Templates\n";
++}
++
++/* repair data templates first */
++if ($execute) {
++	echo "NOTE: Repairing Data Templates\n";
++} else {
++	echo "NOTE: Performing Check of Data Templates\n";
++}
++
++$damaged_template_ids = db_fetch_assoc("SELECT DISTINCT data_template_id FROM data_template_rrd WHERE hash='' AND local_data_id=0");
++if (sizeof($damaged_template_ids)) {
++	foreach($damaged_template_ids as $id) {		$template_name = db_fetch_cell("SELECT name FROM data_template WHERE id=" . $id["data_template_id"]);
++		echo "NOTE: Data Template '$template_name' is Damaged and can be repaired\n";
++	}
++
++	$damaged_templates = db_fetch_assoc("SELECT * FROM data_template_rrd WHERE hash='' AND local_data_id=0");
++	if (sizeof($damaged_templates)) {
++		echo "NOTE: -- Damaged Data Templates Objects Found is '" . sizeof($damaged_templates) . "'\n";
++		if ($execute) {
++			foreach($damaged_templates as $template) {
++				$hash = get_hash_data_template($template["local_data_template_rrd_id"], "data_template_item");
++				db_execute("UPDATE data_template_rrd SET hash='$hash' WHERE id=" . $template["id"]);
++			}
++		}
++	}
++} else {
++	echo "NOTE: No Damaged Data Templates Found\n";
++}
++
++/* reset the array */
++$damaged_templates = array();
++
++/* repair graph templates */
++if ($execute) {
++	echo "NOTE: Repairing Graph Templates\n";
++} else {
++	echo "NOTE: Performing Check of Graph Templates\n";
++}
++
++$damaged_template_ids = db_fetch_assoc("SELECT DISTINCT graph_template_id FROM graph_template_input WHERE hash=''");
++if (sizeof($damaged_template_ids)) {
++	foreach($damaged_template_ids as $id) {
++		$template_name = db_fetch_cell("SELECT name FROM graph_templates WHERE id=" . $id["graph_template_id"]);
++		echo "NOTE: Graph Template '$template_name' is Damaged and can be repaired\n";
++	}
++
++	$damaged_templates = db_fetch_assoc("SELECT * FROM graph_template_input WHERE hash=''");
++	if (sizeof($damaged_templates)) {
++		echo "NOTE: -- Damaged Graph Templates Objects Found is '" . sizeof($damaged_templates) . "'\n";
++		if ($execute) {
++			foreach($damaged_templates as $template) {
++				$hash = get_hash_graph_template(0, "graph_template_input");
++				db_execute("UPDATE graph_template_input SET hash='$hash' WHERE id=" . $template["id"]);
++			}
++		}
++	}
++} else {
++	echo "NOTE: No Damaged Graph Templates Found\n";
++}
++
++
++/* display_help - displays the usage of the function */
++function display_help () {
++	print "Cacti Database Template Repair Tool v1.0, Copyright 2004-2009 - The Cacti Group\n\n";
++	print "usage: repair_templates.php --execute [--help]\n\n";
++	print "--execute        - Perform the repair\n";
++	print "--help           - display this help message\n";
++}
++?>
+diff -ruBbd 0.8.7e/docs/README 0.8.7/docs/README
+--- 0.8.7e/docs/README	2009-08-18 21:57:30.000000000 -0400
++++ 0.8.7/docs/README	2009-08-18 21:58:09.000000000 -0400
+@@ -90,6 +90,9 @@
+                             table
+   poller_reindex_hosts.php - Cause data query reindex on hosts
+   rebuild_poller_cache.php - Rebuilds the poller cache
++  repair_templates.php     - Certain templates, when created using the "duplicate"
++      function in Cacti, do not import/export well.  This utility repairs 
++      those templates.
+ 
+ 
+ 
+diff -ruBbd 0.8.7e/lib/export.php 0.8.7/lib/export.php
+--- 0.8.7e/lib/export.php	2009-08-18 21:56:47.000000000 -0400
++++ 0.8.7/lib/export.php	2009-08-18 21:57:50.000000000 -0400
+@@ -811,7 +811,9 @@
+ }
+ 
+ function xml_character_encode($text) {
+-
++	if (function_exists("htmlspecialchars")) {
++		return htmlspecialchars($text, ENT_QUOTES, "UTF-8");
++	} else {
+ 	$text = str_replace("&", "&amp;", $text);
+ 	$text = str_replace(">", "&gt;", $text);
+ 	$text = str_replace("<", "&lt;", $text);
+@@ -819,6 +821,7 @@
+ 	$text = str_replace("\'", "&apos;", $text);
+ 
+ 	return $text;
++	}
+ }
+ 
+ ?>
+diff -ruBbd 0.8.7e/lib/import.php 0.8.7/lib/import.php
+--- 0.8.7e/lib/import.php	2009-08-18 21:56:59.000000000 -0400
++++ 0.8.7/lib/import.php	2009-08-18 21:57:55.000000000 -0400
+@@ -36,10 +36,6 @@
+ 		return $info_array;
+ 	}
+ 
+-	if (isset($xml_array["name"])) {
+-		$xml_array["name"] = htmlspecialchars($xml_array["name"]);
+-	}
+-
+ 	while (list($hash, $hash_array) = each($xml_array)) {
+ 		/* parse information from the hash */
+ 		$parsed_hash = parse_xml_hash($hash);
+@@ -115,7 +111,7 @@
+ 	$_graph_template_id = db_fetch_cell("select id from graph_templates where hash='$hash'");
+ 	$save["id"] = (empty($_graph_template_id) ? "0" : $_graph_template_id);
+ 	$save["hash"] = $hash;
+-	$save["name"] = htmlspecialchars($xml_array["name"]);
++	$save["name"] = $xml_array["name"];
+ 	$graph_template_id = sql_save($save, "graph_templates");
+ 
+ 	$hash_cache["graph_template"][$hash] = $graph_template_id;
+@@ -914,9 +910,13 @@
+ }
+ 
+ function xml_character_decode($text) {
++	if (function_exists("html_entity_decode")) {
++		return html_entity_decode($text, ENT_QUOTES, "UTF-8");
++	} else {
+ 	$trans_tbl = get_html_translation_table(HTML_ENTITIES);
+ 	$trans_tbl = array_flip($trans_tbl);
+ 	return strtr($text, $trans_tbl);
++	}
+ }
+ 
+ ?>
+diff -ruBbd 0.8.7e/lib/utility.php 0.8.7/lib/utility.php
+--- 0.8.7e/lib/utility.php	2009-08-18 21:57:08.000000000 -0400
++++ 0.8.7/lib/utility.php	2009-08-18 21:58:00.000000000 -0400
+@@ -346,6 +346,7 @@
+ 			$save["name"] = $graph_template_input["name"];
+ 			$save["description"] = $graph_template_input["description"];
+ 			$save["column_name"] = $graph_template_input["column_name"];
++			$save["hash"]              = get_hash_graph_template(0, "graph_template_input");
+ 
+ 			$graph_template_input_id = sql_save($save, "graph_template_input");
+ 
+@@ -436,6 +437,11 @@
+ 		$save["local_data_id"] = (isset($local_data_id) ? $local_data_id : 0);
+ 		$save["local_data_template_rrd_id"] = (isset($data_template_rrd["local_data_template_rrd_id"]) ? $data_template_rrd["local_data_template_rrd_id"] : 0);
+ 		$save["data_template_id"] = (!empty($_local_data_id) ? $data_template_rrd["data_template_id"] : $data_template_id);
++		if ($save["local_data_id"] == 0) {
++			$save["hash"]                   = get_hash_data_template($data_template_rrd["local_data_template_rrd_id"], "data_template_item");
++		} else {
++			$save["hash"] = '';
++		}
+ 
+ 		while (list($field, $array) = each($struct_data_source_item)) {
+ 			$save{$field} = $data_template_rrd{$field};
