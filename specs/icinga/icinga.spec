@@ -18,12 +18,12 @@
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 1.0
-Release: 0.RC1.2%{?dist}
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
 
-Source0: http://dl.sf.net/icinga/icinga-%{version}-RC1.tar.gz
+Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc
@@ -76,7 +76,7 @@ PHP api for %{name}
 
 
 %prep
-%setup -n %{name}-%{version}-RC1
+%setup -n %{name}-%{version}
 
 # /usr/local/nagios is hardcoded in many places
 %{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' contrib/eventhandlers/submit_check_result
@@ -236,6 +236,9 @@ fi
 
 
 %changelog
+* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 1.0-1
+- Update to 1.0-1
+
 * Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 1.0-0.RC1.2
 - Split out icinga-api in sub package
 
