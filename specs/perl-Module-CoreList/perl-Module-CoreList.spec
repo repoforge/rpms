@@ -9,13 +9,13 @@
 
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
-Version: 2.23
+Version: 2.24
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-CoreList/
 
-Source: http://www.cpan.org/modules/by-module/Module/Module-CoreList-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/Module-CoreList-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/CoreList.pm
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 2.24-1
+- Updated to version 2.24.
+
 * Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 2.23-1
 - Updated to version 2.23.
 
