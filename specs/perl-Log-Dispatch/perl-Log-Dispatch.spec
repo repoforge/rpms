@@ -9,23 +9,25 @@
 
 Summary: Dispatches messages to one or more outputs
 Name: perl-Log-Dispatch
-Version: 2.24
+Version: 2.26
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Dispatch/
 
-Source: http://www.cpan.org/modules/by-module/Log/Log-Dispatch-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Log-Dispatch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
 BuildRequires: perl(File::Temp)
-BuildRequires: perl(Test::More)
-# From yaml requires
 BuildRequires: perl(Params::Validate) >= 0.15
 #BuildRequires: perl(Sys::Syslog) >= 0.16   # el4/el5 ship an old version in perl-core
-BuildRequires: perl(Sys::Syslog)
+BuildRequires: perl(Test::More)
+Requires: perl(Params::Validate) >= 0.15
+#Requires: perl(Sys::Syslog) # el4/el5 ship an old version in perl-core
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Log::Dispatch is a suite of OO modules for logging messages to
@@ -67,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Log/Dispatch.pm
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 2.26-1
+- Updated to version 2.26.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 2.24-1
 - Updated to version 2.24.
 
