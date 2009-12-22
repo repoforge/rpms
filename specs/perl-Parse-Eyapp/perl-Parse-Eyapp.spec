@@ -9,7 +9,7 @@
 
 Summary: Extensions for Parse::Yapp
 Name: perl-Parse-Eyapp
-Version: 1.149
+Version: 1.151
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,6 +69,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Parse/Eyapp.pod
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 1.151-1
+- Updated to version 1.151.
+
 * Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 1.149-1
 - Updated to version 1.149.
 
