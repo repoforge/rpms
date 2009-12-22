@@ -9,21 +9,26 @@
 
 Summary: Perl port of log4j
 Name: perl-Log-Log4perl
-Version: 1.24
+Version: 1.26
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Log-Log4perl/
 #URL: http://log4perl.sourceforge.net/
 
-Source: http://www.cpan.org/modules/by-module/Log/Log-Log4perl-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHILLI/Log-Log4perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Time::HiRes)
-Requires: perl(IPC::Shareable), perl(Log::Dispatch), perl(Log::Dispatch::FileRotate), perl(Time::HiRes)
+BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(Test::More) >= 0.45
+Requires: perl(File::Spec) >= 0.82
+Requires: perl(Test::More) >= 0.45
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Log::Log4perl is a Perl port of the widely popular log4j logging package. It
@@ -76,7 +81,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %doc Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README eg/
 %doc %{_mandir}/man3/Log::Log4perl.3pm*
 %doc %{_mandir}/man3/Log::Log4perl::*.3pm*
+%doc %{_mandir}/man1/l4p-tmpl.1*
 %dir %{perl_vendorlib}/Log/
+%{_bindir}/l4p-tmpl
 %{perl_vendorlib}/Log/Log4perl/
 %{perl_vendorlib}/Log/Log4perl.pm
 %exclude %{_mandir}/man3/Log::Log4perl::Appender::RRDs.3pm*
@@ -88,6 +95,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Log/Log4perl/Appender/RRDs.pm
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 1.26-1
+- Updated to version 1.26.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 1.24-1
 - Updated to version 1.24.
 
