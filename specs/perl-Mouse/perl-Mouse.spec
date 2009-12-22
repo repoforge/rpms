@@ -9,8 +9,8 @@
 
 Summary: Moose minus the antlers
 Name: perl-Mouse
-Version: 0.44
-Release: 1
+Version: 0.4501
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mouse/
@@ -22,12 +22,14 @@ BuildArch: noarch
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(ExtUtils::ParseXS) >= 2.21
+BuildRequires: perl(MouseX::AttributeHelpers) >= 0.06
 BuildRequires: perl(Scalar::Util) >= 1.14
 BuildRequires: perl(Test::Exception) >= 0.27
 #BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
 BuildRequires: perl(XSLoader) >= 0.1
 BuildRequires: perl >= 5.6.2
+Requires: perl(MouseX::AttributeHelpers) >= 0.06
 Requires: perl(Scalar::Util) >= 1.14
 Requires: perl(XSLoader) >= 0.1
 Requires: perl >= 5.6.2
@@ -73,6 +75,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.4501-1
+- Updated to version 0.4501.
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.28-1
 - Updated to version 0.28.
 
