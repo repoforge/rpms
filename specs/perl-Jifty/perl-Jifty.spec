@@ -9,7 +9,7 @@
 
 Summary: Perl package that implements an application framework
 Name: perl-Jifty
-Version: 0.90701
+Version: 0.91117
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,7 @@ BuildRequires: perl(Crypt::Rijndael)
 BuildRequires: perl(Compress::Zlib)
 BuildRequires: perl(CSS::Squish) >= 0.07
 BuildRequires: perl(DBD::SQLite) >= 1.11
+BuildRequires: perl(DBI)
 BuildRequires: perl(Data::Dump::Streamer)
 BuildRequires: perl(Data::Page)
 BuildRequires: perl(Data::UUID)
@@ -59,13 +60,13 @@ BuildRequires: perl(Email::Folder)
 BuildRequires: perl(Email::LocalDelivery) >= 0.217
 BuildRequires: perl(Email::Abstract)
 BuildRequires: perl(Email::MIME) >= 1.861
-BuildRequires: perl(Email::MIME::Creator) >= 1.450
+BuildRequires: perl(Email::MIME::Creator) >= 1.45
 BuildRequires: perl(Email::MIME::ContentType) >= 1.012
 BuildRequires: perl(Email::MIME::CreateHTML)
-BuildRequires: perl(Email::MIME::Modifier) >= 1.443
+BuildRequires: perl(Email::MIME::Modifier) >= 1.442
 BuildRequires: perl(Email::Send) >= 2.10
 BuildRequires: perl(Email::Simple) >= 2.003
-BuildRequires: perl(Email::Simple::Creator) >= 1.400
+BuildRequires: perl(Email::Simple::Creator) >= 1.4
 BuildRequires: perl(Exception::Class)
 BuildRequires: perl(Exporter::Lite)
 BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
@@ -130,6 +131,7 @@ BuildRequires: perl(Test::MockModule) >= 0.05
 BuildRequires: perl(Test::MockObject) >= 1.07
 BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Test::Pod::Coverage)
+BuildRequires: perl(Test::Script::Run) >= 0.03
 BuildRequires: perl(Test::WWW::Declare) >= 0.01
 BuildRequires: perl(Test::WWW::Mechanize) >= 1.04
 BuildRequires: perl(Test::WWW::Selenium)
@@ -146,6 +148,8 @@ BuildRequires: perl(YAML::Syck) >= 0.71
 BuildRequires: rpm-macros-rpmforge
 Requires: perl >= 2:5.8.3
 Requires: perl(Cache::Simple::TimedExpiry)
+Requires: perl(Class::Accessor::Named)
+Requires: perl(Devel::Cover)
 Requires: perl(Number::RecordLocator)
 
 %description
