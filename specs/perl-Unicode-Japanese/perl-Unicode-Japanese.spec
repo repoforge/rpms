@@ -9,18 +9,20 @@
 
 Summary: Convert encoding of Japanese text
 Name: perl-Unicode-Japanese
-Version: 0.46
+Version: 0.47
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Japanese/
 
-Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-Japanese-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/H/HI/HIO/Unicode-Japanese-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
 BuildRequires: perl(Test)
 BuildRequires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Convert encoding of Japanese text.
@@ -59,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Unicode/Japanese/
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.47-1
+- Updated to version 0.47.
+
 * Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 0.46-1
 - Updated to version 0.46.
 
