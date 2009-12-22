@@ -9,18 +9,23 @@
 
 Summary: Convert singular to plural
 Name: perl-Lingua-EN-Inflect
-Version: 1.89
-Release: 1.2%{?dist}
+Version: 1.891
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Lingua-EN-Inflect/
 
-Source: http://www.cpan.org/modules/by-module/Lingua/Lingua-EN-Inflect-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Lingua-EN-Inflect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(version)
+Requires: perl(Test::More)
+Requires: perl(version)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 The exportable subroutines of Lingua::EN::Inflect provide plural
@@ -65,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Lingua/EN/*.pl
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 1.891-1
+- Updated to version 1.891.
+
 * Sat Nov  5 2005 Dries Verachtert <dries@ulyssis.org> - 1.89-1
 - Updated to release 1.89.
 
