@@ -9,13 +9,13 @@
 
 Summary: A co-operative multithreaded server using Coro
 Name: perl-Net-Server-Coro
-Version: 0.6
-Release: 1
+Version: 0.7
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server-Coro/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-Server-Coro-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AL/ALEXMV/Net-Server-Coro-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Server/Coro.pm
 
 %changelog
+* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.7-1
+- Updated to version 0.7.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.6-1
 - Updated to version 0.6.
 
