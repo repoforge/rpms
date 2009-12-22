@@ -9,17 +9,32 @@
 
 Summary: Mailing list message detector
 Name: perl-Mail-ListDetector
-Version: 1.01
+Version: 1.02
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-ListDetector/
 
-Source: http://www.cpan.org/modules/by-module/Mail/Mail-ListDetector-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSTEVENS/Mail-ListDetector-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Email::Abstract) >= 3.001
+BuildRequires: perl(Email::Valid) >= 0.182
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Mail::Internet) >= 2.04
+BuildRequires: perl(Test::More) >= 0.08
+BuildRequires: perl(URI) >= 1.1
+Requires: perl(Carp)
+Requires: perl(Email::Abstract) >= 3.001
+Requires: perl(Email::Valid) >= 0.182
+Requires: perl(Mail::Internet) >= 2.04
+Requires: perl(Test::More) >= 0.08
+Requires: perl(URI) >= 1.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Mailing list message detector.
@@ -54,5 +69,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}//auto/Mail/ListDetector/autosplit.ix
 
 %changelog
+* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 1.02-1
+- Updated to version 1.02.
+
 * Thu Jun 11 2009 Unknown - 1.01-1
 - Initial package. (using DAR)
