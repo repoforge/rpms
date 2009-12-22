@@ -186,6 +186,9 @@ find contrib/ doc/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/jifty
 
 %changelog
+* Tue Dec 22 2009 Steve Huff <shuff@vecna.org> - 0.91117-1
+- Updated to release 0.91117.
+
 * Mon Oct 05 2009 Steve Huff <shuff@vecna.org> - 0.090701-1
 - Updated to release 0.090701.
 - Builds and installs on RHEL5!
