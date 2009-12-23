@@ -11,8 +11,8 @@
 
 Summary: System administration tool for networks
 Name: cfengine
-Version: 3.0.2
-Release: 2%{?dist}
+Version: 3.0.3
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://www.cfengine.org/
@@ -358,6 +358,9 @@ fi
 %exclude %{_datadir}/cfengine/
 
 %changelog
+* Wed Dec 23 2009 Chritsoph Maser <cmr@financial.com> - 3.0.3-1
+- Update to version 3.0.3.
+
 * Mon Nov 02 2009 Bjarne Saltbaek <arnebjarne72@hotmail.com> - 3.0.2-2
 - Fixed cf-agent and cf-promises symlink.
 - Fixed cfexecd initscript.
