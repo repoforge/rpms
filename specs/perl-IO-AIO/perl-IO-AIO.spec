@@ -6,23 +6,27 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name IO-AIO
-%define real_version 3.3
+%define real_version 3.31
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 3.300
+Version: 3.310
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-AIO/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-AIO-%{real_version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/IO-AIO-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### Provided by either perl or perl-devel
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(common::sense)
+Requires: perl(common::sense)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -59,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/treescan
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 3.310-1
+- Updated to version 3.310.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 3.300-1
 - Updated to version 3.300.
 
