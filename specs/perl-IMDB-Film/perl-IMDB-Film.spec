@@ -9,7 +9,7 @@
 
 Summary: Interface to IMDB
 Name: perl-IMDB-Film
-Version: 0.41
+Version: 0.43
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,25 +19,30 @@ Source: http://www.cpan.org/authors/id/S/ST/STEPANOV/IMDB-Film-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Cache::FileCache)
 BuildRequires: perl(Carp)
 BuildRequires: perl(Digest::SHA1)
 BuildRequires: perl(Error)
-BuildRequires: perl(HTML::TokeParser) >= 2.28      
+BuildRequires: perl(HTML::Entities)
+BuildRequires: perl(HTML::TokeParser) >= 2.28
+#BuildRequires: perl(LWP::Simple) >= 1.41
 BuildRequires: perl(LWP::Simple)
 BuildRequires: perl(Pod::Checker)
-Requires:perl
-Requires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Text::Unidecode)
 Requires: perl(Cache::FileCache)
 Requires: perl(Carp)
 Requires: perl(Digest::SHA1)
 Requires: perl(Error)
+Requires: perl(HTML::Entities)
 Requires: perl(HTML::TokeParser) >= 2.28
+#Requires: perl(LWP::Simple) >= 1.41
 Requires: perl(LWP::Simple)
 Requires: perl(Pod::Checker)
-AutoReq: no
+Requires: perl(Text::Unidecode)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 IMDB::Film is OO Perl interface to the database of films
@@ -71,6 +76,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IMDB/
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 0.43-1
+- Updated to version 0.43.
+
 * Fri Aug  7 2009 Christoph Maser <cmr@financial.com> - 0.41-1
 - Updated to version 0.41.
 
