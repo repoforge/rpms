@@ -9,7 +9,7 @@
 
 Summary: Perl module to use the lchown(2) system call
 Name: perl-Lchown
-Version: 1.00
+Version: 1.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,7 +18,12 @@ URL: http://search.cpan.org/dist/Lchown/
 Source: http://www.cpan.org/authors/id/N/NC/NCLEATON/Lchown-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-Lchown is a Perl module to use the lchown(2) system call.
@@ -48,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Lchown/
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.01-1
+- Updated to version 1.01.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 1.00-1
 - Initial package. (using DAR)
