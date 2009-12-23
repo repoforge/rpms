@@ -9,21 +9,31 @@
 
 Summary: Run commands simply, with detailed diagnostics
 Name: perl-IPC-System-Simple
-Version: 1.18
+Version: 1.19
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-System-Simple/
 
-Source: http://www.cpan.org/modules/by-module/IPC/IPC-System-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PJ/PJF/IPC-System-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
+BuildRequires: perl(Config)
 BuildRequires: perl(File::Basename)
+BuildRequires: perl(List::Util)
+BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test)
 BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl >= 5.6.0
+Requires: perl(Config)
+Requires: perl(List::Util)
+Requires: perl(Scalar::Util)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Run commands simply, with detailed diagnostics.
@@ -58,5 +68,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IPC/System/Simple.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.19-1
+- Updated to version 1.19.
+
 * Wed Jul 08 2009 Christoph Maser <cmr@financial.com> - 1.18-1
 - Initial package. (using DAR)
