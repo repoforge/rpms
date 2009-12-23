@@ -96,13 +96,13 @@ unzip -d nad %{SOURCE1}
 %{_datadir}/proj/
 
 %changelog
-* Wed Dec 23 2009 Yury V. Zaytsev <yury@shurup.com>
+* Wed Dec 23 2009 Yury V. Zaytsev <yury@shurup.com> - 4.7.0-1
 - Minor updates.
 
-* Tue Dec 22 2009 Nico Kadel-Garcia <nkadel@gmail.com>
-- Updated proj to 4.7.0
-- Updated source URLs
-- Updated proj-datumgrid to 1.5
+* Tue Dec 22 2009 Nico Kadel-Garcia <nkadel@gmail.com> - 4.7.0-0
+- Updated proj to 4.7.0.
+- Updated source URLs.
+- Updated proj-datumgrid to 1.5.
 
 * Sun Aug 19 2007 Dag Wieers <dag@wieers.com> - 4.5.0-1 - +/
 - Initial package. (using DAR)
