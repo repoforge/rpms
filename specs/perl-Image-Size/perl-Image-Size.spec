@@ -9,21 +9,26 @@
 
 Summary: Library to extract height/width from images
 Name: perl-Image-Size
-Version: 3.2
+Version: 3.220
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Size/
 
-Source: http://www.cpan.org/modules/by-module/Image/Image-Size-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJRAY/Image-Size-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(File::Spec) >= 0.8
+BuildRequires: perl(Module::Build) >= 0.28
+#BuildRequires: perl(Test::More) >= 0.80
 BuildRequires: perl(Test::More)
-Requires: perl >= 1:5.6
+BuildRequires: perl >= 5.006
+Requires: perl(File::Spec) >= 0.8
+Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A library to extract height/width from images.
@@ -49,13 +54,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST MANIFEST.SKIP META.yml README SIGNATURE
 %doc %{_mandir}/man3/Image::Size.3pm*
+%doc %{_mandir}/man1/imgsize.1*
 %dir %{perl_vendorlib}/Image/
 #%{perl_vendorlib}/Image/Size/
 %{perl_vendorlib}/Image/Size.pm
 %dir %{perl_vendorlib}/auto/Image/
 %{perl_vendorlib}/auto/Image/Size/
+%{_bindir}/imgsize
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 3.220-1
+- Updated to version 3.220.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 3.2-1
 - Updated to version 3.2.
 
