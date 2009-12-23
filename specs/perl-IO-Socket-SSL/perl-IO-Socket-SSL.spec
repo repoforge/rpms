@@ -9,22 +9,24 @@
 
 Summary: Nearly transparent SSL encapsulation for IO::Socket::INET
 Name: perl-IO-Socket-SSL
-Version: 1.30
+Version: 1.31
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-SSL/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-Socket-SSL-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SU/SULLR/IO-Socket-SSL-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(Net::SSLeay) >= 1.21
 BuildRequires: perl(Scalar::Util)
-Requires: perl >= 2:5.8.0
+Requires: perl(Net::SSLeay) >= 1.21
+Requires: perl(Scalar::Util)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Nearly transparent SSL encapsulation for IO::Socket::INET.
@@ -58,6 +60,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.31-1
+- Updated to version 1.31.
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 1.30-1
 - Updated to version 1.30.
 
