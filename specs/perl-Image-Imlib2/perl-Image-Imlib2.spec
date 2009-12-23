@@ -20,18 +20,18 @@
 
 Summary: Interface to the Imlib2 image library
 Name: perl-Image-Imlib2
-Version: 2.02
+Version: 2.03
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Imlib2/
 
-Source: http://www.cpan.org/modules/by-module/Image/Image-Imlib2-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/L/LB/LBROCARD/Image-Imlib2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
 BuildRequires: imlib2-devel
-BuildRequires: perl(Module::Build), perl(ExtUtils::CBuilder)
+BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(Module::Build)
 BuildRequires: zlib-devel
 %{!?_without_modxorg:BuildRequires: freetype-devel, libXext-devel}
 
@@ -72,6 +72,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Image/Imlib2.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.03-1
+- Updated to version 2.03.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 2.02-1
 - Updated to version 2.02.
 
