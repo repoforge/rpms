@@ -9,18 +9,23 @@
 
 Summary: Load, create, manipulate and save xpm image files
 Name: perl-Image-Xpm
-Version: 1.09
-Release: 2.2%{?dist}
+Version: 1.11
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Xpm/
 
-Source: http://www.cpan.org/modules/by-module/Image/Image-Xpm-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SR/SREZIC/Image-Xpm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Image::Base) >= 1.06
+Requires: perl(Image::Base) >= 1.06
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 With this module, you can load, create, manipulate and save xpm image files.
@@ -51,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/Xpm.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.11-1
+- Updated to version 1.11.
+
 * Sat Jan 01 2005 Dries Verachtert <dries@ulyssis.org> - 1.09-2
 - Fixed the license (Thanks to David Necas !)
 
