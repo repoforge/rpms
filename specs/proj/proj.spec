@@ -5,20 +5,20 @@
 %define datumgrid_version 1.5
 
 Summary: Cartographic projection software (PROJ.4)
-Name: proj
+Name:    proj
 Version: 4.7.0
 Release: 1%{?dist}
 License: MIT
-Group: Applications/Engineering
-URL: http://trac.osgeo.org/proj/
+Group:   Applications/Engineering
+URL:     http://trac.osgeo.org/proj/
 Source0: http://download.osgeo.org/proj/proj-%{version}.tar.gz
-Source1: ftp://ftp.remotesensing.org/pub/proj/proj-datumgrid-%{datumgrid_version}.zip
+Source1: http://download.osgeo.org/proj/proj-datumgrid-%{datumgrid_version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Proj and invproj perform respective forward and inverse transformation of
 cartographic data to or from cartesian data with a wide range of selectable
-projection functions. Proj docs: http://www.remotesensing.org/dl/new_docs/
+projection functions.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
