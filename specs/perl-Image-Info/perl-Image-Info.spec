@@ -9,22 +9,22 @@
 
 Summary: Extract meta information from image files
 Name: perl-Image-Info
-Version: 1.29
-Release: 2%{?dist}
+Version: 1.30
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-Info/
 
-Source: http://www.cpan.org/modules/by-module/Image/Image-Info-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SR/SREZIC/Image-Info-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 1:5.6.2
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: rpm-macros-rpmforge
-#BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
+# don't install without at least one of our XML modules
+BuildRequires: perl-Image-Info-alternative = %{version}
 Requires: perl >= 1:5.6.2
-
 # don't install without at least one of our XML modules
 Requires: perl-Image-Info-alternative = %{version}
 
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/TIFF.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.30-1
+- Updated to version 1.30.
+
 * Thu Sep 10 2009 Christoph Maser <cmr@financial.com> - 1.29-3
 - filter perl(XML* dependencies with %filter_from_requires
 
