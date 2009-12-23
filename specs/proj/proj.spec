@@ -1,16 +1,18 @@
 # $Id$
 # Authority: dag
+# Upstream: PROJ.4 <proj$lists,maptools,org>
+
+%define datumgrid_version 1.5
 
 Summary: Cartographic projection software (PROJ.4)
 Name: proj
-Version: 4.5.0
-Release: 1%{?dist}
+Version: 4.7.0
+Release: 0%{?dist}
 License: MIT
 Group: Applications/Engineering
-URL: http://www.remotesensing.org/proj/
-
-Source0: ftp://ftp.remotesensing.org/pub/proj/proj-%{version}.tar.gz
-Source1: ftp://ftp.remotesensing.org/pub/proj/proj-datumgrid-1.3.zip
+URL: http://trac.osgeo.org/proj/
+Source0: http://download.osgeo.org/proj/proj-%{version}.tar.gz
+Source1: ftp://ftp.remotesensing.org/pub/proj/proj-datumgrid-%{datumgrid_version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -94,5 +96,13 @@ unzip -d nad %{SOURCE1}
 %{_datadir}/proj/
 
 %changelog
-* Sun Aug 19 2007 Dag Wieers <dag@wieers.com> - 4.5.0-1
+* Wed Dec 23 2009 Yury V. Zaytsev <yury@shurup.com>
+- Minor updates.
+
+* Tue Dec 22 2009 Nico Kadel-Garcia <nkadel@gmail.com>
+- Updated proj to 4.7.0
+- Updated source URLs
+- Updated proj-datumgrid to 1.5
+
+* Sun Aug 19 2007 Dag Wieers <dag@wieers.com> - 4.5.0-1 - +/
 - Initial package. (using DAR)
