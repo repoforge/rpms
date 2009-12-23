@@ -10,7 +10,7 @@
 Summary: Easy API to XML files
 Name: perl-XML-Simple
 Version: 2.18
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Simple/
@@ -34,7 +34,7 @@ Requires: perl(Storable)
 Requires: perl(XML::NamespaceSupport) >= 0.15
 Requires: perl(XML::SAX) >= 0.15
 
-Provides: perl-Image-Info-alternative = 1.29
+Provides: perl-Image-Info-alternative = 1.30
 
 %description
 This module contains an easy API to XML files.
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Simple.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.18-3
+- Update perl-Image-Info-alternative provides
+
 * Wed Oct 07 2009 Steve Huff <shuff@vecna.org> - 2.18-2
 - Specified some missing dependencies to fix RHEL5 building.
 
