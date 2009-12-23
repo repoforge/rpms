@@ -9,22 +9,32 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.50
+Version: 0.54
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Cmd/
 
-Source: http://www.cpan.org/modules/by-module/IPC/IPC-Cmd-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/IPC-Cmd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
 BuildRequires: perl(Locale::Maketext::Simple)
 BuildRequires: perl(Module::Load::Conditional)
 BuildRequires: perl(Params::Check) >= 0.20
 BuildRequires: perl(Test::More)
+Requires: perl(ExtUtils::MakeMaker)
+Requires: perl(File::Spec)
+Requires: perl(Locale::Maketext::Simple)
+Requires: perl(Module::Load::Conditional)
+Requires: perl(Params::Check) >= 0.20
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Allows for the searching and execution of any binary on your system.
@@ -56,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 0.54-1
+- Updated to version 0.54.
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.50-1
 - Updated to version 0.50.
 
