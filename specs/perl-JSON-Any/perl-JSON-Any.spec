@@ -9,26 +9,27 @@
 
 Summary: Wrapper Class for the various JSON classes
 Name: perl-JSON-Any
-Version: 1.21
+Version: 1.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-Any/
 
-Source: http://www.cpan.org/modules/by-module/JSON/JSON-Any-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN/JSON-Any-1.22.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Carp)
-BuildRequires: perl(JSON)
-BuildRequires: perl(JSON::DWIW)
-BuildRequires: perl(JSON::Syck)
-BuildRequires: perl(JSON::XS)
-BuildRequires: perl(Test::More)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl-JSON-Any-alternative = %{version}
+Requires: perl(Carp)
 
 # don't install without at least one JSON module
 Requires: perl-JSON-Any-alternative = %{version}
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Wrapper Class for the various JSON classes.
@@ -59,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/JSON/Any.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.22-1
+- Updated to version 1.22.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.21-1
 - Updated to version 1.21.
 
