@@ -9,13 +9,13 @@
 
 Summary: Read and write meta information
 Name: perl-Image-ExifTool
-Version: 7.89
+Version: 8.00
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Image-ExifTool/
 
-Source: http://www.cpan.org/modules/by-module/Image/Image-ExifTool-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EX/EXIFTOOL/Image-ExifTool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/ExifTool.pod
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 8.00-1
+- Updated to version 8.00.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 7.89-1
 - Updated to version 7.89.
 
