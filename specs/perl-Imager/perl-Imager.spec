@@ -9,13 +9,13 @@
 
 Summary: Perl extension for Generating 24 bit Images
 Name: perl-Imager
-Version: 0.69
+Version: 0.72
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Imager/
 
-Source: http://www.cpan.org/modules/by-module/Imager/Imager-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TO/TONYC/Imager-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -27,8 +27,6 @@ BuildRequires: libtiff-devel
 BuildRequires: libjpeg-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
-BuildRequires: perl(Parse::RecDescent)
-
 
 %description
 Perl extension for Generating 24 bit Images.
@@ -63,6 +61,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Imager.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 0.72-1
+- Updated to version 0.72.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.69-1
 - Updated to version 0.69.
 
