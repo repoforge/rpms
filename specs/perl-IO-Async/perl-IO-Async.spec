@@ -9,27 +9,35 @@
 
 Summary: a collection of modules that implement asynchronous filehandle IO
 Name: perl-IO-Async
-Version: 0.23
+Version: 0.26
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Async/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-Async-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PEVANS/IO-Async-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Async::MergePoint)
+BuildRequires: perl(File::Temp)
 BuildRequires: perl(Heap) >= 0.8
 BuildRequires: perl(IO::Poll)
 BuildRequires: perl(Socket::GetAddrInfo) >= 0.08
 BuildRequires: perl(Storable)
-BuildRequires: perl(Time::HiRes)
-BuildRequires: perl(File::Temp)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Refcount)
+BuildRequires: perl(Time::HiRes)
+Requires: perl(Async::MergePoint)
+Requires: perl(Heap) >= 0.8
+Requires: perl(IO::Poll)
+Requires: perl(Socket::GetAddrInfo) >= 0.08
+Requires: perl(Storable)
+Requires: perl(Time::HiRes)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -65,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Async.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 0.26-1
+- Updated to version 0.26.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.23-1
 - Updated to version 0.23.
 
