@@ -9,22 +9,26 @@
 
 Summary: Write lzop files/buffers
 Name: perl-IO-Compress-Lzop
-Version: 2.021
+Version: 2.023
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Compress-Lzop/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-Compress-Lzop-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PM/PMQS/IO-Compress-Lzop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Compress::LZO)
-BuildRequires: perl(IO::Compress::Base) >= 2.021
-BuildRequires: perl(IO::Uncompress::Base) >= 2.021
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(IO::Compress::Base) >= 2.023
+BuildRequires: perl(IO::Uncompress::Base) >= 2.023
+Requires: perl(Compress::LZO)
+Requires: perl(IO::Compress::Base) >= 2.023
+Requires: perl(IO::Uncompress::Base) >= 2.023
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Write and read Lzop files of buffers.
@@ -56,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.023-1
+- Updated to version 2.023.
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 2.021-1
 - Updated to version 2.021.
 
