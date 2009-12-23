@@ -55,6 +55,7 @@ BuildRequires: perl(Data::Page)
 BuildRequires: perl(Data::UUID)
 BuildRequires: perl(DateTime)
 BuildRequires: perl(DateTime::Locale)
+BuildRequires: perl(DateTime::TimeZone) >= 0.59
 BuildRequires: perl(Date::Manip)
 BuildRequires: perl(Email::Folder)
 BuildRequires: perl(Email::LocalDelivery) >= 0.217
@@ -149,8 +150,14 @@ BuildRequires: rpm-macros-rpmforge
 Requires: perl >= 2:5.8.3
 Requires: perl(Cache::Simple::TimedExpiry)
 Requires: perl(Class::Accessor::Named)
+Requires: perl(DateTime::TimeZone) >= 0.59
+Requires: perl(DBD::SQLite) >= 1.11
+Requires: perl(DBI) >= 1.11
 Requires: perl(Devel::Cover)
+Requires: perl(Exporter::Lite)
+Requires: perl(Module::Refresh) >= 0.09
 Requires: perl(Number::RecordLocator)
+Requires: perl(UNIVERSAL::require)
 
 %description
 perl-Jifty is a Perl package that implements an application framework.
