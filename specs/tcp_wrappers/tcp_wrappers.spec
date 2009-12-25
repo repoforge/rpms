@@ -1,6 +1,7 @@
 # $Id$
 # Authority: yury
 # Upstream: Wietse Venema <wietse$wzv,win,tue,nl>
+# Tag: test
 
 Summary: A security tool which acts as a wrapper for TCP daemons
 Name: tcp_wrappers
