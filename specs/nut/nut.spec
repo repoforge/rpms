@@ -124,7 +124,7 @@ necessary to develop NUT client applications.
 autoreconf -i
 %configure \
     --with-user=%{name} \
-    --with-group=dialout \
+    --with-group=uucp \
     --with-statepath=%{piddir} \
     --with-pidpath=%{piddir} \
     --with-altpidpath=%{piddir} \
@@ -201,17 +201,17 @@ done
 %pre
 /usr/sbin/useradd -c "Network UPS Tools" -u %{nut_uid}  \
         -s /bin/false -r -d %{_localstatedir}/lib/ups %{name} 2> /dev/null || :
-/usr/sbin/usermod -G dialout %{name}
+/usr/sbin/usermod -G uucp %{name}
 
 %pre client
 /usr/sbin/useradd -c "Network UPS Tools" -u %{nut_uid} \
         -s /bin/false -r -d %{_localstatedir}/lib/ups %{name} 2> /dev/null || :
-/usr/sbin/usermod -G dialout %{name}
+/usr/sbin/usermod -G uucp %{name}
 
 %pre cgi
 /usr/sbin/useradd -c "Network UPS Tools" -u %{nut_uid} \
         -s /bin/false -r -d %{_localstatedir}/lib/ups %{name} 2> /dev/null || :
-/usr/sbin/usermod -G dialout %{name}
+/usr/sbin/usermod -G uucp %{name}
 
 %post client
 /sbin/chkconfig --add ups
@@ -358,6 +358,7 @@ exit 0
 * Fri Dec 25 2009 Yury V. Zaytsev <yury@shurup.com> - 2.4.1-10
 - Ported over RPMForge with minor changes.
 - Updated HAL patch for EL.
+- Back to uucp group.
 
 * Thu Nov 05 2009 Michal Hlavinka <mhlavink@redhat.com> - 2.4.1-9
 - spec cleanup
