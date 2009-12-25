@@ -1,0 +1,8 @@
+# If the UPS is locally attached set it to "yes"
+SERVER=yes
+# Any options to pass to upsd
+UPSD_OPTIONS=
+# This *must* be the same as in /etc/ups/upsmon.conf
+POWERDOWNFLAG=/etc/killpower
+#
+# [End]

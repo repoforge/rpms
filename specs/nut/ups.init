@@ -1,0 +1,141 @@
+#! /bin/bash
+#
+# ups: Starts the Network UPS Tools
+#
+# chkconfig: - 26 74
+# description: Network UPS Tools is a collection of programs which provide a common \
+#		interface for monitoring and administering UPS hardware.
+# processname: upsd
+# config: /etc/ups/
+# config: /etc/sysconfig/ups
+#
+### BEGIN INIT INFO
+# Provides: ups
+# Required-Start: $syslog $network $named
+# Required-Stop: $local_fs
+# Default-Stop: 0 1 6
+# Short-Description: Starts the Network UPS tools
+# Description: Network UPS Tools is a collection of programs which provide a common \
+#		interface for monitoring and administering UPS hardware. 
+### END INIT INFO
+
+# Source function library.
+if [ -f /etc/init.d/functions ]; then
+	. /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ]; then
+	. /etc/rc.d/init.d/functions
+else
+	exit 0
+fi
+
+# Get config.
+if [ -f /etc/sysconfig/ups ]; then
+	. /etc/sysconfig/ups
+else
+	SERVER="no"
+fi
+
+start() {
+	if [ "$SERVER" = "yes" ]; then
+		echo -n $"Starting UPS driver controller: "
+		daemon /sbin/upsdrvctl start > /dev/null 2>&1 && success || failure
+		RETVAL=$?
+		echo
+
+		prog="upsd"
+		echo -n $"Starting $prog: "
+		daemon /usr/sbin/upsd $UPSD_OPTIONS > /dev/null 2>&1 && success || failure
+		if [ "$RETVAL" = 0 ]; then
+			RETVAL=$?
+		fi
+		echo
+
+		echo -n $"Starting UPS monitor (master): "
+		daemon /usr/sbin/upsmon > /dev/null 2>&1 && success || failure
+		if [ "$RETVAL" = 0 ]; then
+			RETVAL=$?
+		fi
+		echo
+	else
+		echo -n $"Starting UPS monitor (slave): "
+		daemon /usr/sbin/upsmon > /dev/null 2>&1 && success || failure
+		echo
+	fi
+
+	[ "$RETVAL" = 0 ] && touch /var/lock/subsys/ups
+}
+
+stop() {
+	echo -n $"Stopping UPS monitor: "
+	killproc upsmon
+	echo
+
+	if [ "$SERVER" = "yes" ]; then
+		prog="upsd"
+		echo -n $"Stopping $prog: "
+		killproc upsd > /dev/null 2>&1 && success || failure
+		RETVAL=$?
+		echo
+
+		echo -n $"Shutting down upsdrvctl: "
+		/sbin/upsdrvctl stop > /dev/null 2>&1 && success || failure
+		if [ "$RETVAL" = 0 ]; then
+			RETVAL=$?
+		fi
+		echo
+	fi
+	[ "$RETVAL" = 0 ] && rm -f /var/lock/subsys/ups
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+	# FIXME: upsd and upsmon always return 0
+	# => can't tell if reload was successful
+	if [ "$SERVER" = "yes" ]; then
+		action "Reloading upsd:" /usr/sbin/upsd -c reload
+		RETVAL=$?
+	fi
+	action "Reloading upsmon:" /usr/sbin/upsmon -c reload
+	if [ "$RETVAL" = 0 ]; then
+		RETVAL=$?
+	fi
+}
+
+# See how we are called.
+case "$1" in
+	start)
+		start ;;
+
+	stop)
+		stop ;;
+
+	restart)
+		restart ;;
+
+	try-restart)
+		[ -f /var/lock/subsys/ups ] && restart || :
+		;;
+
+	reload)
+		reload ;;
+
+	force-reload)
+		restart ;;
+
+	status)
+		if [ "$SERVER" = "yes" ]; then
+			status upsd
+		fi
+		status upsmon
+		;;
+
+	*)
+		echo $"Usage: $0 {start|stop|restart|try-restart|reload|force-reload|status}"
+		RETVAL=3
+esac
+
+exit $RETVAL
