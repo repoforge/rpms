@@ -1,0 +1,37 @@
+diff -up tcp_wrappers_7.6/rfc931.c.patch18 tcp_wrappers_7.6/rfc931.c
+--- tcp_wrappers_7.6/rfc931.c.patch18	2008-08-29 09:45:12.000000000 +0200
++++ tcp_wrappers_7.6/rfc931.c	2008-08-29 09:45:12.000000000 +0200
+@@ -92,6 +92,8 @@ char   *dest;
+     char   *cp;
+     char   *result = unknown;
+     FILE   *fp;
++    unsigned saved_timeout;
++    struct sigaction nact, oact;
+ 
+ #ifdef INET6
+     /* address family must be the same */
+@@ -134,7 +136,12 @@ char   *dest;
+ 	 */
+ 
+ 	if (setjmp(timebuf) == 0) {
+-	    signal(SIGALRM, timeout);
++	    /* Save SIGALRM timer and handler. Sudheer Abdul-Salam, SUN. */
++	    saved_timeout = alarm(0);
++	    nact.sa_handler = timeout;
++	    nact.sa_flags = 0;
++	    (void) sigemptyset(&nact.sa_mask);
++	    (void) sigaction(SIGALRM, &nact, &oact);
+ 	    alarm(rfc931_timeout);
+ 
+ 	    /*
+@@ -223,6 +230,10 @@ char   *dest;
+ 	    }
+ 	    alarm(0);
+ 	}
++	/* Restore SIGALRM timer and handler. Sudheer Abdul-Salam, SUN. */
++	(void) sigaction(SIGALRM, &oact, NULL);
++	if (saved_timeout > 0)
++	    alarm(saved_timeout);
+ 	fclose(fp);
+     }
+     STRN_CPY(dest, result, STRING_LENGTH);

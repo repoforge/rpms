@@ -1,0 +1,28 @@
+diff -up tcp_wrappers_7.6/percent_m.c.patch13 tcp_wrappers_7.6/percent_m.c
+--- tcp_wrappers_7.6/percent_m.c.patch13	1994-12-28 17:42:37.000000000 +0100
++++ tcp_wrappers_7.6/percent_m.c	2008-08-29 09:45:12.000000000 +0200
+@@ -13,7 +13,7 @@ static char sccsid[] = "@(#) percent_m.c
+ #include <string.h>
+ 
+ extern int errno;
+-#ifndef SYS_ERRLIST_DEFINED
++#if !defined(SYS_ERRLIST_DEFINED) && !defined(HAVE_STRERROR)
+ extern char *sys_errlist[];
+ extern int sys_nerr;
+ #endif
+@@ -29,11 +29,15 @@ char   *ibuf;
+ 
+     while (*bp = *cp)
+ 	if (*cp == '%' && cp[1] == 'm') {
++#ifdef HAVE_STRERROR
++            strcpy(bp, strerror(errno));
++#else
+ 	    if (errno < sys_nerr && errno > 0) {
+ 		strcpy(bp, sys_errlist[errno]);
+ 	    } else {
+ 		sprintf(bp, "Unknown error %d", errno);
+ 	    }
++#endif
+ 	    bp += strlen(bp);
+ 	    cp += 2;
+ 	} else {
