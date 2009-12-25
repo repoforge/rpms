@@ -1,0 +1,22 @@
+diff -crB powerman-2.3.5/man/libpowerman.3.in powerman-2.3.5-fedora/man/libpowerman.3.in
+*** powerman-2.3.5/man/libpowerman.3.in	2008-12-21 18:34:07.000000000 -0500
+--- powerman-2.3.5-fedora/man/libpowerman.3.in	2009-10-10 20:26:04.000000000 -0400
+***************
+*** 185,191 ****
+  .fi
+  
+  .SH "FILES"
+! @X_LIBDIR@/libpowerman.*
+  .br
+  @X_INCLUDEDIR@/libpowerman.h
+  
+--- 185,193 ----
+  .fi
+  
+  .SH "FILES"
+! /usr/lib/libpowerman.*
+! .br
+! /usr/lib64/libpowerman.*
+  .br
+  @X_INCLUDEDIR@/libpowerman.h
+  

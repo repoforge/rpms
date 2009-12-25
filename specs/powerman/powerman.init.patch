@@ -1,0 +1,25 @@
+diff -up powerman-2.3.4/scripts/powerman.init.in.initfix powerman-2.3.4/scripts/powerman.init.in
+--- powerman-2.3.4/scripts/powerman.init.in.initfix	2009-01-20 20:52:15.000000000 +0100
++++ powerman-2.3.4/scripts/powerman.init.in	2009-02-11 14:32:19.006732642 +0100
+@@ -7,17 +7,18 @@
+ # Copyright (C) 2001-2007 The Regents of the University of California.
+ # UCRL-CODE-2002-009.
+ ###############################################################################
+-# chkconfig:          2345 95 5
++# chkconfig:          - 95 5
+ # Description:        Start/Stop the PowerMan (remote power manager) daemon.
+ ###############################################################################
+ ### BEGIN INIT INFO
+ # Provides:           powerman
++# Description:        Start/Stop the PowerMan (remote power manager) daemon.
+ # Required-Start:     $local_fs $named $network
+ # Required-Stop:      $local_fs $named $network
+ # Should-Start:       $remote_fs $syslog $time
+ # Should-Stop:        $remote_fs $syslog $time
+-# Default-Start:      2 3 4 5
+-# Default-Stop:       0 1 6
++# Default-Start:
++# Default-Stop:       0 1 2 3 4 5 6
+ # Short-Description:  Start/Stop the PowerMan (remote power manager) daemon.
+ ### END INIT INFO
+ ###############################################################################
