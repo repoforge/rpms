@@ -1,0 +1,11 @@
+--- a/sphinx-0.9.9/api/libsphinxclient/sphinxclient.c	2009-11-14 00:23:06.000000000 +0100
++++ b/sphinx-0.9.9/api/libsphinxclient/sphinxclient.c	2009-12-27 21:46:21.000000000 +0100
+@@ -277,7 +277,7 @@
+ }
+ 
+ 
+-void sock_close ( int sock );
++static void sock_close ( int sock );
+ 
+ void sphinx_destroy ( sphinx_client * client )
+ {
