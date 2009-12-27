@@ -1,0 +1,105 @@
+diff -Naur reference/libmemcache-1.4.0.rc2/src/memcache.c patched/libmemcache-1.4.0.rc2/src/memcache.c
+--- reference/libmemcache-1.4.0.rc2/src/memcache.c	2006-07-05 23:16:59.000000000 +0000
++++ patched/libmemcache-1.4.0.rc2/src/memcache.c	2006-07-06 14:38:49.000000000 +0000
+@@ -978,17 +978,17 @@
+ 
+ int
+ mcm_err_filter_add(struct memcache_ctxt *ctxt, const u_int32_t err_mask) {
+-  if ((ctxt->MCM_ERR_MASK & err_mask) == ctxt->MCM_ERR_MASK)
++  if ((ctxt->MCM_ERR_MASK & err_mask) == err_mask)
+     return 0;
+ 
+-  ctxt->MCM_ERR_MASK &= err_mask;
++  ctxt->MCM_ERR_MASK |= err_mask;
+   return 1;
+ }
+ 
+ 
+ int
+ mcm_err_filter_del(struct memcache_ctxt *ctxt, const u_int32_t err_mask) {
+-  if ((ctxt->MCM_ERR_MASK & err_mask) == ctxt->MCM_ERR_MASK)
++  if ((ctxt->MCM_ERR_MASK & err_mask) == 0)
+     return 0;
+ 
+   ctxt->MCM_ERR_MASK &= ~err_mask;
+@@ -1131,6 +1131,8 @@
+     /* Even though we haven't sent the request, mark the response as
+      * having been attempted. */
+     res->_flags |= MCM_RES_ATTEMPTED;
++    /* This res might have been used before, so reset found flag */
++    res->_flags &= ~MCM_RES_FOUND;
+ 
+     /* While we're looping, might as well see if we should be auto
+      * deleting any of these keys. */
+diff -Naur reference/libmemcache-1.4.0.rc2/test/benchmark/benchmark.c patched/libmemcache-1.4.0.rc2/test/benchmark/benchmark.c
+--- reference/libmemcache-1.4.0.rc2/test/benchmark/benchmark.c	2006-02-21 07:58:55.000000000 +0000
++++ patched/libmemcache-1.4.0.rc2/test/benchmark/benchmark.c	2006-07-06 14:33:45.000000000 +0000
+@@ -70,7 +70,7 @@
+     tests = strdup(argv[3]);
+ 
+   if (tests == NULL)
+-    tests = strdup("adgs");
++    tests = strdup("adgGs");
+ 
+   if (valsize == 0)
+     valsize = 50;
+@@ -138,6 +138,30 @@
+     printf(fmt, "get", num_tests / tt(&t1, &t2), tt(&t1, &t2), tt(&t1, &t2) / num_tests);
+   }
+ 
++  /* same get benchmark, but with overhead for each request. */
++  if (strchr(tests, (int)'G') != NULL) {
++    /* BEGIN get request */
++    if (gettimeofday(&t1, NULL) != 0)
++      err(EX_OSERR, "gettimeofday(2)");
++
++    for (i = 0; i < num_tests; i++) {
++      req = mc_req_new();
++      res = mc_req_add(req, key, keylen);
++      res->size = valsize;
++      res->val = malloc(res->size);
++      mc_res_free_on_delete(res, 1);
++
++      mc_get(mc, req);
++      mc_req_free(req);
++    }
++
++    if (gettimeofday(&t2, NULL) != 0)
++      err(EX_OSERR, "gettimeofday(2)");
++
++    /* END get test */
++    printf(fmt, "fget", num_tests / tt(&t1, &t2), tt(&t1, &t2), tt(&t1, &t2) / num_tests);
++  }
++
+ 
+ 
+   if (strchr(tests, 'a') != NULL || strchr(tests, 'd') != NULL) {
+diff -Naur reference/libmemcache-1.4.0.rc2/test/regress/regress.c patched/libmemcache-1.4.0.rc2/test/regress/regress.c
+--- reference/libmemcache-1.4.0.rc2/test/regress/regress.c	2006-02-21 07:58:56.000000000 +0000
++++ patched/libmemcache-1.4.0.rc2/test/regress/regress.c	2006-07-06 14:41:26.000000000 +0000
+@@ -33,6 +33,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
++#include <assert.h>
+ 
+ #include <memcache.h>
+ 
+@@ -70,9 +71,14 @@
+     num_tests = 10;
+ 
+   mc = mc_new();
+-  mc_err_filter_del(MCM_ERR_LVL_INFO);
+-  mc_err_filter_del(MCM_ERR_LVL_NOTICE);
+-
++  /* test filter add/del and make sure info and level are NOT filtered out */
++  assert(mc_err_filter_del(MCM_ERR_LVL_INFO) == 0);
++  assert(mc_err_filter_del(MCM_ERR_LVL_NOTICE) == 0);
++  assert(mc_err_filter_add(MCM_ERR_LVL_NOTICE) == 1);
++  assert(mc_err_filter_add(MCM_ERR_LVL_NOTICE) == 0);
++  assert(mc_err_filter_del(MCM_ERR_LVL_NOTICE) == 1);
++  assert(mc_err_filter_get() == 0);
++  
+   if (mc == NULL)
+     err(EX_OSERR, "Unable to allocate a new memcache object");
+ 

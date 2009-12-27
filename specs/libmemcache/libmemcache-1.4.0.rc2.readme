@@ -1,0 +1,14 @@
+This is a patch for libmemcache-1.4.0.rc2.tar.bz2 to fix the mc_err_filter_* api.
+
+The mc_err_filter_* are used in cmemcache to filter out notice messages for add/replace
+that do not result in a store.
+
+The patch also adds a full create result, get result, destroy result benchmark (run by
+specifying G in the options to test/benchmark/benchmark).
+
+Author
+------
+
+Gijsbert de Haan <gijsbert.de.haan@gmail.com>
+
+http://gijsbert.org/cmemcache/index.html
