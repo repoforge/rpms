@@ -10,13 +10,13 @@
 
 Summary: Comprehensive inside-out object support module
 Name: perl-Object-InsideOut
-Version: 3.57
-Release: 1
+Version: 3.58
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Object-InsideOut/
 
-Source: http://www.cpan.org/modules/by-module/Object/Object-InsideOut-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JD/JDHEDDEN/Object-InsideOut-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -84,6 +84,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Object/InsideOut.pod
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 3.58-1
+- Updated to version 3.58.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 3.57-1
 - Updated to version 3.57.
 
