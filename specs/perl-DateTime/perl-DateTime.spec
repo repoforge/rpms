@@ -9,18 +9,33 @@
 
 Summary: Date and time objects
 Name: perl-DateTime
-Version: 0.50
+Version: 0.53
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-Provides: perl(DateTimePPExtra)
+BuildRequires: perl(DateTime::Locale) >= 0.41
+BuildRequires: perl(DateTime::TimeZone) >= 0.59
+BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Params::Validate) >= 0.76
+BuildRequires: perl(Pod::Man) >= 1.14
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More) >= 0.34
+BuildRequires: perl(Time::Local) >= 1.04
+Requires: perl(DateTime::Locale) >= 0.41
+Requires: perl(DateTime::TimeZone) >= 0.59
+Requires: perl(Params::Validate) >= 0.76
+Requires: perl(Scalar::Util)
+Requires: perl(Time::Local) >= 1.04
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 The DateTime.pm module aims to provide a complete, correct, and easy
@@ -38,12 +53,12 @@ module.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -53,7 +68,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CREDITS Changes LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO leaptab.txt
+%doc CREDITS Changes LICENSE MANIFEST META.yml README SIGNATURE TODO leaptab.txt
 %doc %{_mandir}/man3/DateTime.3pm*
 %doc %{_mandir}/man3/DateTime::*.3pm*
 %{perl_vendorarch}/DateTime.pm
@@ -63,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DateTime/
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 0.53-1
+- Updated to version 0.53.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 0.50-1
 - Updated to version 0.50.
 
