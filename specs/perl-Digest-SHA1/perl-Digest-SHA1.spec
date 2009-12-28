@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
-
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -11,12 +9,12 @@
 Summary: Digest-SHA1 Perl module
 Name: perl-Digest-SHA1
 Version: 2.12
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA1/
 
-Source: http://www.cpan.org/modules/by-module/Digest/Digest-SHA1-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-SHA1-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
@@ -63,6 +61,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Digest/SHA1/
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 2.12-2
+- Change Source:
+- Remove el4-exclude
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.12-1
 - Updated to version 2.12.
 
