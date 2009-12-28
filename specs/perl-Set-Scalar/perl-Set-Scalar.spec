@@ -9,13 +9,13 @@
 
 Summary: Basic set operations
 Name: perl-Set-Scalar
-Version: 1.24
+Version: 1.25
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Set-Scalar/
 
-Source: http://www.cpan.org/modules/by-module/Set/Set-Scalar-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JH/JHI/Set-Scalar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Set/Scalar.pm
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 1.25-1
+- Updated to version 1.25.
+
 * Thu Jun 18 2009 Christoph Maser <cmr@financial.com> - 1.24-1
 - Updated to version 1.24.
 
