@@ -9,13 +9,13 @@
 
 Summary: Common Scalar and List utility subroutines
 Name: perl-Scalar-List-Utils
-Version: 1.21
+Version: 1.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Scalar-List-Utils/
 
-Source: http://www.cpan.org/modules/by-module/Scalar/Scalar-List-Utils-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Scalar-List-Utils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.004
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Scalar/Util/PP.pm
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 1.22-1
+- Updated to version 1.22.
+
 * Mon Aug  3 2009 Christoph Maser <cmr@financial.com> - 1.21-1
 - Updated to version 1.21.
 
