@@ -1,6 +1,7 @@
 # $Id$
 # Authority: shuff
 # Upstream: Paul Driver <frodwith$cpan,org>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@
 Summary: Attributes with aliases for constructor arguments
 Name: perl-%{real_name}
 Version: 0.01
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-MultiInitArg/
@@ -65,5 +66,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/*
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 0.01-2
+- exclude el4 because of List::Utils >= 1.19 needded by perl-Moose
+
 * Wed Dec 23 2009 Steve Huff <shuff@vecna.org> - 0.01-1
 - Initial package.
