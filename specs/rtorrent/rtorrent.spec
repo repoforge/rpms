@@ -7,7 +7,7 @@
 Summary: Console-based BitTorrent client
 Name: rtorrent
 Version: 0.8.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
@@ -22,7 +22,7 @@ BuildRequires: libsigc++20-devel
 BuildRequires: libtorrent-devel >= 0.12.5
 BuildRequires: ncurses-devel
 
-# Curl BuildRequires from Rawhide
+# Curl BuildRequires from Rawhide (no stunnel!)
 BuildRequires: krb5-devel
 BuildRequires: libidn-devel
 BuildRequires: nss-devel
@@ -30,7 +30,6 @@ BuildRequires: openldap-devel
 BuildRequires: openssh-clients
 BuildRequires: openssh-server
 BuildRequires: pkgconfig
-BuildRequires: stunnel
 BuildRequires: valgrind
 BuildRequires: zlib-devel
 
@@ -85,6 +84,11 @@ PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PK
 %{_bindir}/rtorrent
 
 %changelog
+* Mon Dec 28 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.6-2
+- Removed stunnel build requirement that somehow got in from rawhide
+  (and is not really needed), that was causing build failures as
+  stunnel for RHEL is only available from EPEL. Sorry!
+
 * Tue Dec 15 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.6-1
 - Updated to release 0.8.6.
 
