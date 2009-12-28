@@ -9,18 +9,24 @@
 
 Summary: Maintains info about a physical person
 Name: perl-User-Identity
-Version: 0.92
+Version: 0.93
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/User-Identity/
 
-Source: http://www.cpan.org/modules/by-module/User/User-Identity-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/User-Identity-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Pod) >= 1
+Requires: perl(Test::Pod) >= 1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Maintains info about a physical person.
@@ -57,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/User/Identity.pod
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 0.93-1
+- Updated to version 0.93.
+
 * Tue Nov 13 2007 Dag Wieers <dag@wieers.com> - 0.92-1
 - Updated to release 0.92.
 
