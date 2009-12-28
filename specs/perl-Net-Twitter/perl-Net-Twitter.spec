@@ -11,7 +11,7 @@
 
 Summary: A perl interface to the Twitter API
 Name: perl-%{real_name}
-Version: 3.05002
+Version: 3.10003
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,51 +21,62 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MM/MMIMS/Net-Twitter-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: perl >= 5.8.1
 BuildRequires: perl(Carp)
 BuildRequires: perl(Data::Visitor::Callback)
-BuildRequires: perl(DateTime)
-BuildRequires: perl(DateTime::Format::Strptime)
+BuildRequires: perl(DateTime) >= 0.51
+BuildRequires: perl(DateTime::Format::Strptime) >= 1.09
 BuildRequires: perl(Digest::SHA)
+BuildRequires: perl(Encode)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(HTTP::Request::Common)
 BuildRequires: perl(JSON::Any) >= 1.21
+BuildRequires: perl(JSON::XS)
 BuildRequires: perl(LWP::UserAgent) >= 2.032
+BuildRequires: perl(List::Util)
 BuildRequires: perl(Moose) >= 0.85
 BuildRequires: perl(Moose::Exporter)
 BuildRequires: perl(Moose::Role)
 BuildRequires: perl(MooseX::AttributeHelpers)
 BuildRequires: perl(MooseX::MultiInitArg)
 BuildRequires: perl(Net::Netrc)
-BuildRequires: perl(Net::OAuth) >= 0.16
-BuildRequires: perl(Scalar::Util) >= 0.16
-BuildRequires: perl(URI)
+BuildRequires: perl(Net::OAuth) >= 0.2
+BuildRequires: perl(Scalar::Util)
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Try::Tiny)
+BuildRequires: perl(URI) >= 1.4
 BuildRequires: perl(URI::Escape)
-BuildRequires: perl(namespace::autoclean)
-Requires: perl >= 5.8.1
+BuildRequires: perl(namespace::autoclean) >= 0.09
+BuildRequires: perl >= 5.8.1
+Requires: perl(Carp)
 Requires: perl(Data::Visitor::Callback)
-Requires: perl(DateTime)
-Requires: perl(DateTime::Format::Strptime)
+Requires: perl(DateTime) >= 0.51
+Requires: perl(DateTime::Format::Strptime) >= 1.09
 Requires: perl(Digest::SHA)
+Requires: perl(Encode)
 Requires: perl(HTML::Entities)
 Requires: perl(HTTP::Request::Common)
 Requires: perl(JSON::Any) >= 1.21
+Requires: perl(JSON::XS)
 Requires: perl(LWP::UserAgent) >= 2.032
+Requires: perl(List::Util)
 Requires: perl(Moose) >= 0.85
 Requires: perl(Moose::Exporter)
 Requires: perl(Moose::Role)
 Requires: perl(MooseX::AttributeHelpers)
 Requires: perl(MooseX::MultiInitArg)
 Requires: perl(Net::Netrc)
-Requires: perl(Net::OAuth) >= 0.16
-Requires: perl(Scalar::Util) >= 0.16
-Requires: perl(URI)
+Requires: perl(Net::OAuth) >= 0.2
+Requires: perl(Scalar::Util)
+Requires: perl(Try::Tiny)
+Requires: perl(URI) >= 1.4
 Requires: perl(URI::Escape)
-Requires: perl(namespace::autoclean)
+Requires: perl(namespace::autoclean) >= 0.09
+Requires: perl >= 5.8.1
 
-# manage perl dependencies manually
-%filter_from_requires /^perl.*/d
+%filter_from_requires /^perl*/d
 %filter_setup
 
 %description
@@ -90,7 +101,7 @@ or Moose for installation.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -113,5 +124,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Twitter.pod
 
 %changelog
+* Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 3.10003-1
+- Updated to version 3.10003.
+
 * Wed Dec 23 2009 Steve Huff <shuff@vecna.org> - 3.05002-1
 - Initial package.
