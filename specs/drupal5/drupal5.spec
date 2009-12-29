@@ -5,7 +5,7 @@
 
 Summary: Drupal CMS
 Name: drupal5
-Version: 5.20
+Version: 5.21
 Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
@@ -57,6 +57,9 @@ EOF
 %{_localstatedir}/www/drupal-%{version}/
 
 %changelog
+* Tue Dec 29 2009 Christoph Maser <cmr@financial.com> - 5.21-1
+- Updated to version 5.21.
+
 * Sun Sep 27 2009 Dag Wieers <dag@wieers.com> - 5.20-1
 - Updated to release 5.20.
 
