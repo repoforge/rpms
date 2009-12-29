@@ -11,7 +11,7 @@
 
 Summary: A perl interface to the Twitter API
 Name: perl-%{real_name}
-Version: 0.08000
+Version: 0.08006
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,28 +21,26 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MM/MMIMS/Net-Twitter-Lite-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: perl >= 5.005
 BuildRequires: perl(Carp)
-BuildRequires: perl(Digest::SHA)
 BuildRequires: perl(Encode)
-BuildRequires: perl(inc::Module::Install)
-BuildRequires: perl(Net::OAuth) >= 0.16
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(JSON::Any) >= 1.21
 BuildRequires: perl(LWP::UserAgent) >= 2.032
-BuildRequires: perl(URI) >= 1.35
+BuildRequires: perl(Net::OAuth) >= 0.16
+BuildRequires: perl(URI) >= 1.4
 BuildRequires: perl(URI::Escape)
-Requires: perl >= 5.005
+BuildRequires: perl >= 5.005
 Requires: perl(Carp)
-Requires: perl(Digest::SHA)
 Requires: perl(Encode)
-Requires: perl(Net::OAuth) >= 0.16
 Requires: perl(JSON::Any) >= 1.21
 Requires: perl(LWP::UserAgent) >= 2.032
-Requires: perl(URI) >= 1.35
+Requires: perl(Net::OAuth) >= 0.16
+Requires: perl(URI) >= 1.4
 Requires: perl(URI::Escape)
+Requires: perl >= 5.005
 
-# manage perl dependencies manually
-%filter_from_requires /^perl.*/d
+%filter_from_requires /^perl*/d
 %filter_setup
 
 %description
@@ -63,7 +61,7 @@ versions of Net::Twitter, and additional error handling options.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -85,5 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Twitter/Lite
 
 %changelog
+* Tue Dec 29 2009 Christoph Maser <cmr@financial.com> - 0.08006-1
+- Updated to version 0.08006.
+- use --skipdeps since Net::OAuth is not seen
+
 * Wed Dec 09 2009 Steve Huff <shuff@vecna.org> - 0.08005-1
 - Initial package.
