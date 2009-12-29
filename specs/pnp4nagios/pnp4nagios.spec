@@ -2,7 +2,7 @@
 # Upstream:     pnp4nagios-devel@lists.sourceforge.net
 Name:		pnp4nagios
 Version: 	0.6.2
-Release:	1
+Release:	2
 Summary: 	PNP is not PerfParse. A Nagios perfdata graphing solution	
 
 Group:	 	Applications/System	
@@ -28,6 +28,8 @@ sed -i -e 's/INIT_OPTS=-o root -g root/INIT_OPTS=/' scripts/Makefile.in
 %configure --with-perfdata-logfile=%{_localstatedir}/log/perfdata.log \
 	--sysconfdir=%{_sysconfdir}/nagios/%{name} \
 	--datarootdir=%{_datadir}/nagios/%{name} \
+	--with-perfdata-dir=%{_datadir}/%{name}/perfdata \
+	--with-perfdata-spool-dir=%{_localstatedir}/nagios/spool \
 	--libdir=%{_libdir}/%{name}  # only kohana is installed there and maybe we have a system wide kohana already
 make %{?_smp_mflags} all
 
@@ -61,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/nagios/%{name}/pages/web_traffic.cfg
 %config(noreplace) %{_sysconfdir}/nagios/%{name}/process_perfdata.cfg
 %config(noreplace) %{_sysconfdir}/nagios/%{name}/rra.cfg
-%{_sysconfdir}/httpd/conf.d/%{name}.conf
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/%{name}.conf
 %{_sysconfdir}/nagios/%{name}/background.pdf
 %{_sysconfdir}/nagios/%{name}/config.php
 %{_sysconfdir}/nagios/%{name}/misccommands.cfg-sample
@@ -78,6 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -  0.6.2 - 2
+- add --with-perfdata-spool-dir and --with-perfdata--dir
+- mark httpd-config snippet as config file
+
 * Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -  0.6.2 - 1
 - Update to version 0.6.2
 - Rename to pnp4nagios
