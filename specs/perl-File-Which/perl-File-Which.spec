@@ -9,23 +9,32 @@
 
 Summary: Portable implementation of the 'which' utility
 Name: perl-File-Which
-Version: 1.07
+Version: 1.09
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Which/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Which-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/File-Which-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(Exporter)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec) >= 0.60
 BuildRequires: perl(Getopt::Std)
-#BuildRequires: perl(Test::More) >= 0.80  <- kills el4 build
+#BuildRequires: perl(Test::More) >= 0.80
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Script) >= 1.05
+Requires: perl(Exporter)
+Requires: perl(File::Spec) >= 0.60
+Requires: perl(Getopt::Std)
+#Requires: perl(Test::More) >= 0.80
+Requires: perl(Test::More)
+Requires: perl(Test::Script) >= 1.05
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Portable implementation of the `which' utility.
@@ -57,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Which.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.09-1
+- Updated to version 1.09.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.07-1
 - Updated to version 1.07.
 
