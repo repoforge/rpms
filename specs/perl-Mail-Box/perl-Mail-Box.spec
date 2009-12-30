@@ -9,7 +9,7 @@
 
 Summary: E-mail handling
 Name: perl-Mail-Box
-Version: 2.092
+Version: 2.093
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,7 +38,7 @@ BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(Test::Pod) >= 1.00
 BuildRequires: perl(Time::Zone)
 BuildRequires: perl(URI) >= 1.23
-BuildRequires: perl(User::Identity) >= 0.90
+BuildRequires: perl(User::Identity) >= 0.93
 Requires: perl(Date::Format)
 Requires: perl(Date::Parse)
 Requires: perl(Digest::HMAC_MD5)
@@ -58,7 +58,7 @@ Requires: perl(Test::More) >= 0.47
 Requires: perl(Test::Pod) >= 1.00
 Requires: perl(Time::Zone)
 Requires: perl(URI) >= 1.23
-Requires: perl(User::Identity) >= 0.90
+Requires: perl(User::Identity) >= 0.93
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -104,6 +104,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Tue Dec 29 2009 Christoph Maser <cmr@financial.com> - 2.093-1
+- Updated to version 2.093.
+
 * Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 2.092-1
 - Updated to version 2.092.
 
