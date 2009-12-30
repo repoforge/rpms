@@ -10,7 +10,7 @@
 
 Summary: Atom API and Feed Support
 Name: perl-XML-Atom
-Version: 0.36
+Version: 0.37
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -75,6 +75,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Atom.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.37-1
+- Updated to version 0.37.
+
 * Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.36-1
 - Updated to version 0.36.
 
