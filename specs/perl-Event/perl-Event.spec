@@ -9,18 +9,22 @@
 
 Summary: Generic Perl Event Loop
 Name: perl-Event
-Version: 1.12
+Version: 1.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Event/
 
-Source: http://www.cpan.org/modules/by-module/Event/Event-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JP/JPRIT/Event-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test) >= 1
+Requires: perl(Test) >= 1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -55,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Event.pod
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.13-1
+- Updated to version 1.13.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 1.12-1
 - Updated to version 1.12.
 
