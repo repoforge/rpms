@@ -9,7 +9,7 @@
 
 Summary: Perl module to get stock and mutual fund quotes from various exchanges
 Name: perl-Finance-Quote
-Version: 1.16
+Version: 1.17
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -19,9 +19,25 @@ Source: http://search.cpan.org/CPAN/authors/id/E/EC/ECOCODE/Finance-Quote-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Crypt::SSLeay)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(HTML::TableExtract)
+BuildRequires: perl(HTML::TreeBuilder)
+BuildRequires: perl(HTTP::Request::Common)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.005
+Requires: perl(Crypt::SSLeay)
+Requires: perl(HTML::TableExtract)
+Requires: perl(HTML::TreeBuilder)
+Requires: perl(HTTP::Request::Common)
+Requires: perl(LWP::UserAgent)
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Finance-Quote is a Perl module to get stock and mutual fund quotes
@@ -53,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Finance/Quote.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.17-1
+- Updated to version 1.17.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.16-1
 - Updated to version 1.16.
 
