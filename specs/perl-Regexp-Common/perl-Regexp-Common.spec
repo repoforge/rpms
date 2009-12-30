@@ -9,13 +9,13 @@
 
 Summary: Provide commonly requested regular expressions
 Name: perl-Regexp-Common
-Version: 2.122
+Version: 2009123001
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Common/
 
-Source: http://www.cpan.org/modules/by-module/Regexp/Regexp-Common-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABIGAIL/Regexp-Common-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Regexp/Common.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2009123001-1
+- Updated to version 2009123001.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 2.122-1
 - Updated to release 2.122.
 
