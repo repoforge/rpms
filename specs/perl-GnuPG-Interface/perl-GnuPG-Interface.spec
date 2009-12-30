@@ -9,20 +9,25 @@
 
 Summary: Perl interface to GnuPG
 Name: perl-GnuPG-Interface
-Version: 0.36
+Version: 0.42
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG-Interface/
 
-Source: http://www.cpan.org/modules/by-module/GnuPG/GnuPG-Interface-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/GnuPG-Interface-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: gnupg
 BuildRequires: perl
+BuildRequires: which
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(Class::MethodMaker)
+Requires: gnupg
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 GnuPG::Interface and its associated modules are designed to provide an
@@ -52,10 +57,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc COPYING ChangeLog MANIFEST META.yml NEWS README SIGNATURE THANKS
 %doc %{_mandir}/man3/GnuPG::*.3pm*
 %{perl_vendorlib}/GnuPG/
-%dir %{perl_vendorlib}/auto/GnuPG/
-%{perl_vendorlib}/auto/GnuPG/Interface/
+#%dir %{perl_vendorlib}/auto/GnuPG/
+#%{perl_vendorlib}/auto/GnuPG/Interface/
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.42-1
+- Updated to version 0.42.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 0.36-1
 - Updated to release 0.36.
 
