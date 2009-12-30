@@ -9,41 +9,28 @@
 
 Summary: DBI PostgreSQL interface
 Name: perl-DBD-Pg
-Version: 2.15.1
+Version: 2.16.0
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-Pg/
 
-Source: http://www.cpan.org/modules/by-module/DBD/DBD-Pg-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TU/TURNSTEP/DBD-Pg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# From yaml build_requires
 BuildRequires: perl(DBI) >= 1.52
-#BuildRequires: perl(Test::More) >= 0.61   <- kills el4 build
+#BuildRequires: perl(Test::More) >= 0.61
 BuildRequires: perl(Test::More)
-BuildRequires: perl(version)
-# From yaml requires
-BuildRequires: perl(DBI) >= 1.52
 BuildRequires: perl >= 5.006001
 BuildRequires: perl(version)
-# From yaml recommends
-BuildRequires: perl(Cwd)
-BuildRequires: perl(Encode)
-#BuildRequires: perl(File::Comments)             <- missing
-#BuildRequires: perl(File::Comments::Plugin::C)  <- missing
-BuildRequires: perl(File::Temp)
-BuildRequires: perl(Module::Signature)
-BuildRequires: perl(Perl::Critic)
-BuildRequires: perl(Pod::Spell)
-BuildRequires: perl(Test::Pod)
-BuildRequires: perl(Test::Pod::Coverage)
-#BuildRequires: perl(Test::Warn)		<- kills el4 build
-#BuildRequires: perl(Test::YAML::Meta)		<- missing
-#BuildRequires: perl(Text::SpellChecker)	<- missing
-BuildRequires: perl(Time::HiRes)
 BuildRequires: postgresql-devel
 Requires: postgresql
+Requires: perl(DBI) >= 1.52
+Requires: perl >= 5.006001
+Requires: perl(version)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 DBI PostgreSQL interface.
@@ -79,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2.16.0-1
+- Updated to version 2.16.0.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 2.15.1-1
 - Updated to version 2.15.1.
 
