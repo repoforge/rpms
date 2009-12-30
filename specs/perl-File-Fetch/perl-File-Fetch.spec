@@ -9,18 +9,38 @@
 
 Summary: Generic file fetching mechanism
 Name: perl-File-Fetch
-Version: 0.20
+Version: 0.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Fetch/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Fetch-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/File-Fetch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Copy)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(IPC::Cmd) >= 0.42
+BuildRequires: perl(Locale::Maketext::Simple)
+BuildRequires: perl(Module::Load::Conditional) >= 0.04
+BuildRequires: perl(Params::Check) >= 0.07
+BuildRequires: perl(Test::More)
+Requires: perl(File::Basename)
+Requires: perl(File::Copy)
+Requires: perl(File::Path)
+Requires: perl(File::Spec) >= 0.82
+Requires: perl(IPC::Cmd) >= 0.42
+Requires: perl(Locale::Maketext::Simple)
+Requires: perl(Module::Load::Conditional) >= 0.04
+Requires: perl(Params::Check) >= 0.07
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A generic file fetching mechanism.
@@ -50,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Fetch.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.20-1
 - Updated to version 0.20.
 
