@@ -9,18 +9,24 @@
 
 Summary: Look up the country of an ipaddress.
 Name: perl-Geo-IPfree
-Version: 0.6
+Version: 0.8
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IPfree/
 
-Source: http://www.cpan.org/modules/by-module/Geo/Geo-IPfree-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRICAS/Geo-IPfree-0.8.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Memoize)
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl(Memoize)
+Requires: perl(Test::More) >= 0.47
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 With this module, you can lookup the country of an ipaddress.
@@ -50,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Geo/ipscountry.dat
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.8-1
+- Updated to version 0.8.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.6-1
 - Updated to version 0.6.
 
