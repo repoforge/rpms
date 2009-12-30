@@ -1,6 +1,7 @@
 # $Id$
 # Authority: shuff
 # Upstream: Florian Ragwitz <rafl$debian,org>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
