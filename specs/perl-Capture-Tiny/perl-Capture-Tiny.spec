@@ -10,7 +10,7 @@
 Summary: Capture STDOUT and STDERR from Perl, XS or external programs
 Name: perl-Capture-Tiny
 Version: 0.06
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Capture-Tiny/
@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.006
-BuildRequires: perl(Test::More) >= 0.62
+#BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
 Requires: perl >= 0:5.006
 
 %description
@@ -57,5 +58,8 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Capture/Tiny.pod
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.06-2
+- Remove version number for Test::More requirement
+
 * Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 0.06-1
 - Initial package. (using DAR)
