@@ -9,19 +9,25 @@
 
 Summary: Error/exception handling in an OO-ish way
 Name: perl-Error
-Version: 0.17015
+Version: 0.17016
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Error/
 
-Source: http://www.cpan.org/modules/by-module/Error/Error-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHLOMIF/Error-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl >= v5.6.0
+BuildRequires: perl(warnings)
+Requires: perl(Scalar::Util)
+Requires: perl >= v5.6.0
+Requires: perl(warnings)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 The Error package provides two interfaces. Firstly Error provides a procedural
@@ -58,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Error.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.17016-1
+- Updated to version 0.17016.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.17015-1
 - Updated to release 0.17015.
 
