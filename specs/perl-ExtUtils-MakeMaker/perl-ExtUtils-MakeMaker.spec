@@ -11,17 +11,31 @@
 
 Summary: Create a module Makefile
 Name: perl-ExtUtils-MakeMaker
-Version: 6.54
+Version: 6.56
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ExtUtils-MakeMaker/
 
-Source: http://www.cpan.org/modules/by-module/ExtUtils/ExtUtils-MakeMaker-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/ExtUtils-MakeMaker-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(DirHandle)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Spec) >= 0.8
+BuildRequires: perl(Pod::Man)
+BuildRequires: perl >= 5.006
+Requires: perl(DirHandle)
+Requires: perl(File::Basename)
+Requires: perl(File::Spec) >= 0.8
+Requires: perl(Pod::Man)
+Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This is a CPAN distribution of the venerable MakeMaker module.
@@ -31,7 +45,7 @@ This is a CPAN distribution of the venerable MakeMaker module.
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} 
 
 %install
 %{__rm} -rf %{buildroot}
@@ -45,13 +59,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml NOTES README SIGNATURE TODO
+%doc Changes MANIFEST MANIFEST.SKIP META.yml NOTES README TODO
 %doc %{_mandir}/man1/instmodsh.1*
 %doc %{_mandir}/man3/ExtUtils::*.3pm*
 %{_bindir}/instmodsh
 %{perl_vendorlib}/ExtUtils/
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 6.56-1
+- Updated to version 6.56.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 6.54-1
 - Updated to version 6.54.
 
