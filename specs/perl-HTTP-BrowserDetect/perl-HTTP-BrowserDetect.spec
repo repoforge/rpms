@@ -9,18 +9,26 @@
 
 Summary: Determine the Web browser, version, and platform
 Name: perl-HTTP-BrowserDetect
-Version: 0.99
+Version: 1.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-BrowserDetect/
 
-Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-BrowserDetect-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/HTTP-BrowserDetect-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Data::Dump)
+BuildRequires: perl(Exporter)
+BuildRequires: perl(FindBin)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(YAML::Tiny)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 The HTTP::BrowserDetect object does a number of tests on an HTTP user
@@ -51,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/BrowserDetect.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.99-1
 - Updated to release 0.99.
 
