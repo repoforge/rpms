@@ -9,19 +9,25 @@
 
 Summary: SQL/Perl DBI interface to Ldap databases
 Name: perl-DBD-LDAP
-Version: 0.09
+Version: 0.20
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-LDAP/
 
-Source: http://www.cpan.org/modules/by-module/DBD/DBD-LDAP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TU/TURNERJW/DBD-LDAP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl-DBI
+BuildRequires: perl(DBI)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Net::LDAP) >= 0.01
+Requires: perl(DBI)
+Requires: perl(Net::LDAP) >= 0.01
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 DBD::LDAP - A DBI driver for LDAP databases.  LDAP stands for the
@@ -54,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/JLdap.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.20-1
+- Updated to version 0.20.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.09-1
 - Updated to release 0.09.
 
