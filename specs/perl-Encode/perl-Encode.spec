@@ -9,13 +9,13 @@
 
 Summary: Perl module that implements character encodings
 Name: perl-Encode
-Version: 2.37
+Version: 2.39
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode/
 
-Source: http://www.cpan.org/modules/by-module/Encode/Encode-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANKOGAI/Encode-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 1:5.7.3
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/encoding.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2.39-1
+- Updated to version 2.39.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 2.37-1
 - Updated to version 2.37.
 
