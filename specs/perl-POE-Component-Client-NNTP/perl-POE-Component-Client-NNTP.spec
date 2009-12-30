@@ -9,19 +9,39 @@
 
 Summary: POE component that implements an RFC 977 NNTP client
 Name: perl-POE-Component-Client-NNTP
-Version: 2.12
+Version: 2.14
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-NNTP/
 
-Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-NNTP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/POE-Component-Client-NNTP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(POE) >= 0.9999
+BuildRequires: perl(POE::Component::Pluggable) >= 0.03
+BuildRequires: perl(POE::Component::Pluggable::Constants)
+BuildRequires: perl(POE::Driver::SysRW)
+BuildRequires: perl(POE::Filter::Line)
+BuildRequires: perl(POE::Wheel::ReadWrite)
+BuildRequires: perl(POE::Wheel::SocketFactory)
 BuildRequires: perl(Test::More) >= 0.47
+BuildRequires: perl(Test::POE::Server::TCP)
+BuildRequires: perl >= 5.6.0
+Requires: perl(POE) >= 0.9999
+Requires: perl(POE::Component::Pluggable) >= 0.03
+Requires: perl(POE::Component::Pluggable::Constants)
+Requires: perl(POE::Driver::SysRW)
+Requires: perl(POE::Filter::Line)
+Requires: perl(POE::Wheel::ReadWrite)
+Requires: perl(POE::Wheel::SocketFactory)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 A component that provides access to NNTP.
@@ -58,6 +78,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Component/Client/NNTP.pm
 
 %changelog
+* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.14-1
+- Updated to version 2.14.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 2.12-1
 - Updated to version 2.12.
 
