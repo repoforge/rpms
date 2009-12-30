@@ -9,16 +9,25 @@
 
 Summary: Perl module that implements a MySQL driver for DBI
 Name: perl-DBD-mysql
-Version: 4.012
+Version: 4.013
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-mysql/
 
-Source: http://www.cpan.org/modules/by-module/DBD/DBD-mysql-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CA/CAPTTOFU/DBD-mysql-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, mysql-devel
+BuildRequires: mysql-devel
+BuildRequires: perl(DBI) >= 1.08
+BuildRequires: perl(Data::Dumper)
+Requires: mysql
+Requires: perl(DBI) >= 1.08
+Requires: perl(Data::Dumper)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 # rhel/centos contains the perl module DBD-mysql in a package named perl-DBD-MySQL
 Obsoletes: perl-DBD-MySQL <= %{version}-%{release}
@@ -61,6 +70,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Bundle/DBD/mysql.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 4.013-1
+- Updated to version 4.013.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 4.012-1
 - Updated to version 4.012.
 
