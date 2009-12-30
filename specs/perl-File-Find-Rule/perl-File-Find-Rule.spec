@@ -9,18 +9,30 @@
 
 Summary: Alternative interface to File::Find
 Name: perl-File-Find-Rule
-Version: 0.30
+Version: 0.32
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Find-Rule/
 
-Source: http://www.cpan.org/modules/by-module/File/File-Find-Rule-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/File-Find-Rule-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Number::Compare)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Text::Glob) >= 0.07
+Requires: perl(File::Find)
+Requires: perl(File::Spec)
+Requires: perl(Number::Compare)
+Requires: perl(Test::More)
+Requires: perl(Text::Glob) >= 0.07
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module contains an alternative interface to File::Find.
@@ -55,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Find/Rule.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.32-1
+- Updated to version 0.32.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 0.30-1
 - Updated to release 0.30.
 
