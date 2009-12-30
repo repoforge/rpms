@@ -9,18 +9,34 @@
 
 Summary: Setup a CGI enviroment from a HTTP::Request
 Name: perl-HTTP-Request-AsCGI
-Version: 0.9
+Version: 1.0
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Request-AsCGI/
 
-Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Request-AsCGI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MR/MRAMBERG/HTTP-Request-AsCGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::Accessor)
+BuildRequires: perl(HTTP::Request)
+BuildRequires: perl(HTTP::Response) >= 1.53
+BuildRequires: perl(IO::File)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI::Escape)
+Requires: perl(Carp)
+Requires: perl(Class::Accessor)
+Requires: perl(HTTP::Request)
+Requires: perl(HTTP::Response) >= 1.53
+Requires: perl(IO::File)
+Requires: perl(Test::More)
+Requires: perl(URI::Escape)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Provides a convinient way of setting up an CGI enviroment from a HTTP::Request.
@@ -49,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Request/AsCGI.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.0-1
+- Updated to version 1.0.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.9-1
 - Updated to version 0.9.
 
