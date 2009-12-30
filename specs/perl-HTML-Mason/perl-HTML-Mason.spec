@@ -12,21 +12,38 @@
 
 Summary: High-performance, dynamic web site authoring system
 Name: perl-HTML-Mason
-Version: 1.42
+Version: 1.43
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Mason/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Mason-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/HTML-Mason-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(CGI) >= 2.46
+BuildRequires: perl(Cache::Cache) >= 1
+BuildRequires: perl(Class::Container) >= 0.07
+BuildRequires: perl(Exception::Class) >= 1.15
+BuildRequires: perl(File::Spec) >= 0.8
 BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(Module::Build) >= 0.26
+BuildRequires: perl(Params::Validate) >= 0.7
+BuildRequires: perl(Scalar::Util) >= 1.01
 BuildRequires: perl(Test)
 BuildRequires: perl(Test::Builder)
+Requires: perl(CGI) >= 2.46
+Requires: perl(Cache::Cache) >= 1
+Requires: perl(Class::Container) >= 0.07
+Requires: perl(Exception::Class) >= 1.15
+Requires: perl(File::Spec) >= 0.8
+Requires: perl(HTML::Entities)
+Requires: perl(Params::Validate) >= 0.7
+Requires: perl(Scalar::Util) >= 1.01
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Mason is a Perl-based web site development and delivery
@@ -76,6 +93,9 @@ find eg/ htdocs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTML/Mason.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.43-1
+- Updated to version 1.43.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.42-1
 - Updated to version 1.42.
 
