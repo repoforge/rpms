@@ -9,25 +9,30 @@
 
 Summary: Getopt::Long with usage text
 Name: perl-Getopt-Long-Descriptive
-Version: 0.077
+Version: 0.083
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Long-Descriptive/
 
-Source: http://www.cpan.org/modules/by-module/Getopt/Getopt-Long-Descriptive-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Getopt-Long-Descriptive-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
-BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(Getopt::Long) >= 2.33
 BuildRequires: perl(List::Util)
 BuildRequires: perl(Params::Validate) >= 0.74
 BuildRequires: perl(Sub::Exporter)
 BuildRequires: perl(Test::More)
+Requires: perl(Getopt::Long) >= 2.33
+Requires: perl(List::Util)
+Requires: perl(Params::Validate) >= 0.74
+Requires: perl(Sub::Exporter)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -54,13 +59,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Getopt::Long::Descriptive.3pm*
+%doc %{_mandir}/man3/Getopt::Long::Descriptive::Opts.3pm*
 %doc %{_mandir}/man3/Getopt::Long::Descriptive::Usage.3pm*
 %dir %{perl_vendorlib}/Getopt/
 %dir %{perl_vendorlib}/Getopt/Long/
+%{perl_vendorlib}/Getopt/Long/Descriptive/Opts.pm
 %{perl_vendorlib}/Getopt/Long/Descriptive/Usage.pm
 %{perl_vendorlib}/Getopt/Long/Descriptive.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.083-1
+- Updated to version 0.083.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.077-1
 - Updated to version 0.077.
 
