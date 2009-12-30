@@ -8,21 +8,26 @@
 
 Summary: WebDAV client library for Perl
 Name: perl-HTTP-DAV
-Version: 0.38
+Version: 0.39
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-DAV/
 
-Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-DAV-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/O/OP/OPERA/HTTP-DAV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl-libwww-perl
-#BuildRequires: perl-libxml-enno
-Requires: perl
-Requires: perl-libwww-perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(LWP) >= 5.48
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(XML::DOM)
+Requires: perl(LWP) >= 5.48
+Requires: perl(Scalar::Util)
+Requires: perl(XML::DOM)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 HTTP::DAV is a Perl API for interacting with and modifying content
@@ -61,6 +66,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTTP/DAV.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.39-1
+- Updated to version 0.39.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.38-1
 - Updated to version 0.38.
 
