@@ -9,19 +9,37 @@
 
 Summary: Easy MIME message parsing
 Name: perl-Email-MIME
-Version: 1.863
+Version: 1.903
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-MIME/
 
-Source: http://www.cpan.org/modules/by-module/Email/Email-MIME-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-MIME-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Email::MIME::ContentType) >= 1.011
+BuildRequires: perl(Email::MIME::Encodings) >= 1.313
+BuildRequires: perl(Email::MessageID)
+BuildRequires: perl(Email::Simple) >= 2.004
+BuildRequires: perl(Email::Simple::Creator)
+BuildRequires: perl(Encode) >= 1.9801
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl(Email::Simple)
+BuildRequires: perl(MIME::Types) >= 1.13
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl(Email::MIME::ContentType) >= 1.011
+Requires: perl(Email::MIME::Encodings) >= 1.313
+Requires: perl(Email::MessageID)
+Requires: perl(Email::Simple) >= 2.004
+Requires: perl(Email::Simple::Creator)
+Requires: perl(Encode) >= 1.9801
+Requires: perl(MIME::Types) >= 1.13
+Requires: perl(Test::More) >= 0.47
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This is an extension of the Email::Simple module, to handle MIME encoded
@@ -54,12 +72,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Email::MIME.3pm*
+%doc %{_mandir}/man3/Email::MIME::Creator.3pm*
 %doc %{_mandir}/man3/Email::MIME::Header.3pm*
+%doc %{_mandir}/man3/Email::MIME::Modifier.3pm*
 %dir %{perl_vendorlib}/Email/
+%{perl_vendorlib}/Email/MIME/Creator.pm
 %{perl_vendorlib}/Email/MIME/Header.pm
+%{perl_vendorlib}/Email/MIME/Modifier.pm
 %{perl_vendorlib}/Email/MIME.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.903-1
+- Updated to version 1.903.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.863-1
 - Updated to version 1.863.
 
