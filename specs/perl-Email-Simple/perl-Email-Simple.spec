@@ -9,18 +9,25 @@
 
 Summary: Simple parsing of RFC2822 message format and headers
 Name: perl-Email-Simple
-Version: 2.005
+Version: 2.100
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Simple/
 
-Source: http://www.cpan.org/modules/by-module/Email/Email-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Email::Date::Format)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.47
+Requires: perl(Email::Date::Format)
+Requires: perl(Test::More) >= 0.47
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 With this module you can parse RFC2822 message format and headers.
@@ -47,11 +54,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Email::Simple.3pm*
 %doc %{_mandir}/man3/Email::Simple::Header.3pm*
+%doc %{_mandir}/man3/Email::Simple::Creator.3pm*
 %dir %{perl_vendorlib}/Email/
 %{perl_vendorlib}/Email/Simple/
 %{perl_vendorlib}/Email/Simple.pm
 
 %changelog
+* Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2.100-1
+- Updated to version 2.100.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 2.005-1
 - Updated to version 2.005.
 
