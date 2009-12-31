@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Shlomi Fish <shlomif@iglu.org.il>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,20 +9,31 @@
 
 Summary: Module for reading .ini-style configuration files
 Name: perl-Config-IniFiles
-Version: 2.52
+Version: 2.56
 Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-IniFiles/
 
-Source: http://www.cpan.org/modules/by-module/Config/Config-IniFiles-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHLOMIF/Config-IniFiles-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
-BuildRequires: perl(Module::Build)
-Requires: perl >= 0:5.00503
+BuildRequires: perl(Carp)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Symbol)
+BuildRequires: perl(strict)
+BuildRequires: perl(warnings)
+Requires: perl(Carp)
+Requires: perl(Symbol)
+Requires: perl(strict)
+Requires: perl(warnings)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Module for reading .ini-style configuration files.
@@ -51,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/IniFiles.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 2.56-1
+- Updated to version 2.56.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 2.52-1
 - Updated to version 2.52.
 
