@@ -10,13 +10,13 @@
 
 Summary: Implementation of the Vigenere cipher
 Name: perl-Crypt-Vigenere
-Version: 0.07
-Release: 1.2%{?dist}
+Version: 0.08
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Vigenere/
 
-Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Vigenere-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FR/FRIFFIN/Crypt-Vigenere-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -56,6 +56,9 @@ characters will be stripped out of the resulting encrption/decryption.
 %{perl_vendorlib}/Crypt/Vigenere.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.08-1
+- Updated to version 0.08.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.07-1.2
 - Rebuild for Fedora Core 5.
 
