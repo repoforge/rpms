@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Sean M. Burke <sburke$cpan,org>
+# Upstream: Steffen Mueller <smueller@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +9,22 @@
 
 Summary: Perl module to report the search path for a class's ISA tree
 Name: perl-Class-ISA
-Version: 0.33
+Version: 0.36
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-ISA/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-ISA-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMUELLER/Class-ISA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(if)
+Requires: perl(if)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-Class-ISA is a Perl module to report the search path for
@@ -50,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/ISA.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.36-1
+- Updated to version 0.36.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.33-1
 - Initial package. (using DAR)
