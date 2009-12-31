@@ -10,17 +10,24 @@
 
 Summary: Crypt::CBC compliant Rijndael encryption module
 Name: perl-Crypt-Rijndael
-Version: 1.07
+Version: 1.08
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-Rijndael/
 
-Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-Rijndael-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BD/BDFOY/Crypt-Rijndael-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Manifest) >= 1.14
+BuildRequires: perl(Test::More)
+Requires: perl(Test::Manifest) >= 1.14
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This is Crypt::Rijndael, an XS-based implementation of the newly-selected
@@ -57,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Crypt/Rijndael.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 
