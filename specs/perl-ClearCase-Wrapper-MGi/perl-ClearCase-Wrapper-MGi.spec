@@ -9,18 +9,22 @@
 
 Summary: Marc Girod's contributed cleartool wrapper functions
 Name: perl-ClearCase-Wrapper-MGi
-Version: 0.11
+Version: 0.16
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/ClearCase-Wrapper-MGi/
 
-Source: http://www.cpan.org/modules/by-module/ClearCase/ClearCase-Wrapper-MGi-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MG/MGI/ClearCase-Wrapper-MGi-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ClearCase::Wrapper) >= 1
+BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(ClearCase::Wrapper) >= 1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Marc Girod's contributed cleartool wrapper functions.
@@ -54,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ClearCase/Wrapper/MGi.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 
