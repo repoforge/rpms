@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dries
 # Upstream: Joshua ben Jore <jjore$cpan,org>
-# el4 ships /usr/share/man/man3/Carp::Clan.3pm.gz inside perl-Date-Calc!
 # ExcludeDist: el4
+# el4 ships /usr/share/man/man3/Carp::Clan.3pm.gz inside perl-Date-Calc!
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,13 +11,13 @@
 
 Summary: Report errors from perspective of caller of a "clan" of modules
 Name: perl-Carp-Clan
-Version: 6.00
+Version: 6.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Carp-Clan/
 
-Source: http://www.cpan.org/modules/by-module/Carp/Carp-Clan-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STBEY/Carp-Clan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -50,12 +50,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic.txt Changes GNU_GPL.txt README
+%doc Changes README
 %{_mandir}/man3/*
 %{perl_vendorlib}/Carp/Clan.pm
 %{perl_vendorlib}/Carp/Clan.pod
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 6.04-1
+- Updated to version 6.04.
+
 * Fri Feb 22 2008 Dag Wieers <dag@wieers.com> - 6.00-2
 - add ExcludeDist el4
 
