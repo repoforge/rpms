@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Adam Kennedy <adamk@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,23 +9,38 @@
 
 Summary: Crypt-DSA module for perl
 Name: perl-Crypt-DSA
-Version: 0.14
+Version: 1.16
 Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-DSA/
 
-Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-DSA-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/Crypt-DSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(Math::BigInt) >= 1.60
-BuildRequires: perl(Digest::SHA1) >= 2.02
-BuildRequires: perl(Convert::PEM) >= 0.07
 BuildRequires: perl(Data::Buffer) >= 0.01
+BuildRequires: perl(Digest::SHA1)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.00503
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Which) >= 0.05
+BuildRequires: perl(IPC::Open3)
+BuildRequires: perl(MIME::Base64)
+BuildRequires: perl(Math::BigInt) >= 1.78
+BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl >= 5.005
+Requires: perl(Data::Buffer) >= 0.01
+Requires: perl(Digest::SHA1)
+Requires: perl(File::Spec)
+Requires: perl(File::Which) >= 0.05
+Requires: perl(IPC::Open3)
+Requires: perl(MIME::Base64)
+Requires: perl(Math::BigInt) >= 1.78
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Crypt-DSA module for perl
@@ -55,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Crypt/DSA/
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 
