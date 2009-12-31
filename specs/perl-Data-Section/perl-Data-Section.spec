@@ -9,17 +9,24 @@
 
 Summary: Perl module named Data-Section
 Name: perl-Data-Section
-Version: 0.091820
+Version: 0.093410
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Section/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-Section-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Data-Section-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Class::ISA)
+BuildRequires: perl(Sub::Exporter) >= 0.979
+Requires: perl(Class::ISA)
+Requires: perl(Sub::Exporter) >= 0.979
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-Data-Section is a Perl module.
@@ -50,5 +57,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Section.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.093410-1
+- Updated to version 0.093410.
+
 * Sun Aug 02 2009 Christoph Maser <cmr@financial.com> - 0.091820-1
 - Initial package. (using DAR)
