@@ -9,16 +9,21 @@
 
 Summary: Perl module that implements stringified perl data structures
 Name: perl-Data-Dumper
-Version: 2.124
+Version: 2.125
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Dumper/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-Dumper-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SM/SMUELLER/Data-Dumper-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-Data-Dumper is a Perl module that implements stringified perl data
@@ -50,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Data/Dumper/
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 2.125-1
+- Updated to version 2.125.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 2.124-1
 - Updated to version 2.124.
 
