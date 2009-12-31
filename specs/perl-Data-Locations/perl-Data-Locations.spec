@@ -9,13 +9,13 @@
 
 Summary: Magic insertion points in your data
 Name: perl-Data-Locations
-Version: 5.4
-Release: 1.2%{?dist}
+Version: 5.5
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Locations/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-Locations-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STBEY/Data-Locations-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Data/Locations/
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 5.5-1
+- Updated to version 5.5.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 5.4-1
 - Initial package.
