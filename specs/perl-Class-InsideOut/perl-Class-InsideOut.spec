@@ -9,19 +9,33 @@
 
 Summary: Perl module that implements a safe, simple inside-out object construction kit
 Name: perl-Class-InsideOut
-Version: 1.09
+Version: 1.10
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-InsideOut/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-InsideOut-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/Class-InsideOut-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.005
+BuildRequires: perl(Class::ISA)
+BuildRequires: perl(Config)
+BuildRequires: perl(Exporter)
+BuildRequires: perl(Scalar::Util) >= 1.09
+BuildRequires: perl(Test::More) >= 0.45
+BuildRequires: perl(base)
+BuildRequires: perl >= 5.005
+Requires: perl(Class::ISA)
+Requires: perl(Config)
+Requires: perl(Exporter)
+Requires: perl(Scalar::Util) >= 1.09
+Requires: perl(Test::More) >= 0.45
+Requires: perl(base)
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Class-InsideOut is a Perl module that implements a safe, simple inside-out
@@ -58,6 +72,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Class/InsideOut.pod
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.10-1
+- Updated to version 1.10.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 1.09-1
 - Updated to release 1.09.
 
