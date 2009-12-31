@@ -9,17 +9,21 @@
 
 Summary: Generates Globally/Universally Unique Identifiers
 Name: perl-Data-UUID
-Version: 1.202
+Version: 1.203
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-UUID/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-UUID-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Data-UUID-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(Digest::MD5)
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Digest::MD5)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module provides a framework for generating UUIDs (Universally Unique
@@ -60,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Data/UUID.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.203-1
+- Updated to version 1.203.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.202-1
 - Updated to version 1.202.
 
