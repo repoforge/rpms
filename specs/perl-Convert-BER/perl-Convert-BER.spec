@@ -6,17 +6,16 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Convert-BER
-%define real_version 1.31
 
 Summary: ASN.1 Basic Encoding Rules perl module
 Name: perl-Convert-BER
-Version: 1.3101
+Version: 1.32
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-BER/
 
-Source: http://www.cpan.org/modules/by-module/Convert/Convert-BER-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Convert-BER-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Convert/BER.pod
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.32-1
+- Updated to version 1.32.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 1.3101-1
 - Switch to upstream version.
 
