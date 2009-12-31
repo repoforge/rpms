@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: Olaf Kolkman <olaf$net-dns,org>
 
-##ExcludeDist: el4
-
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -12,23 +10,14 @@
 
 Summary: Perl DNS resolver module
 Name: perl-Net-DNS
-Version: 0.65
+Version: 0.66
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-DNS-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/O/OL/OLAF/Net-DNS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(Digest::HMAC)
-BuildRequires: perl(ExtUtils::MakeMaker)
-%{!?el2:BuildRequires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
-%{?el2:BuildRequires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
-Requires: perl >= 0:5.00503, perl(Digest::HMAC)
-%{!?el2:Requires: perl(Digest::MD5) >= 2.12, perl(MIME::Base64) >= 2.11}
-%{?el2:Requires: perl-Digest-MD5 >= 2.12, perl-MIME-Base64 >= 2.11}
 
 %description
 Net::DNS is a DNS resolver implemented in Perl.  It allows the
@@ -70,6 +59,9 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %exclude %{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.66-1
+- Updated to version 0.66.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.65-1
 - Updated to version 0.65.
 
