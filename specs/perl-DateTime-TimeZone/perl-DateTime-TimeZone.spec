@@ -10,7 +10,7 @@
 
 Summary: Time zone object base class and factory
 Name: perl-DateTime-TimeZone
-Version: 0.98
+Version: 1.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,14 +20,19 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-TimeZone-%{
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(Module::Build)
-# From yaml requires
 BuildRequires: perl(Class::Singleton) >= 1.03
 BuildRequires: perl(Cwd) >= 3
+BuildRequires: perl(Module::Build)
 BuildRequires: perl(Params::Validate) >= 0.72
 BuildRequires: perl(Pod::Man) >= 1.14
-Provides: perl(DateTime::TimeZoneCatalog)
+Requires: perl(Class::Singleton) >= 1.03
+Requires: perl(Cwd) >= 3
+Requires: perl(Params::Validate) >= 0.72
+Requires: perl(Pod::Man) >= 1.14
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 The DateTime::TimeZone modules provide a Perl interface to the Olson
@@ -68,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DateTime/TimeZone/Local/Win32.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.98-1
 - Updated to version 0.98.
 
