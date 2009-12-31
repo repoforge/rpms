@@ -9,18 +9,29 @@
 
 Summary: Mixin to add / call inheritable triggers
 Name: perl-Class-Trigger
-Version: 0.13
+Version: 0.14
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Trigger/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-Trigger-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/Class-Trigger-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Filter::Util::Call)
+BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(IO::WrapTie)
+BuildRequires: perl(Test::More) >= 0.32
+BuildRequires: perl >= 5.8.1
+Requires: perl(Filter::Util::Call)
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Class::Trigger is a mixin class to add / call triggers (or hooks) that
@@ -55,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Trigger.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.14-1
+- Updated to version 0.14.
+
 * Tue Mar 11 2008 Dag Wieers <dag@wieers.com> - 0.13-1
 - Updated to release 0.13.
 
