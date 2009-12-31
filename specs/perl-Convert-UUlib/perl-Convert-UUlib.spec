@@ -1,21 +1,21 @@
 # $Id$
 # Authority: dag
+# Upstream: Marc Lehmann <schmorp@schmorp.de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Convert-UUlib
-%define real_version 1.12
 
 Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
-Version: 1.1200
+Version: 1.33
 Release: 1%{?dist}
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UUlib/
 
-Source: http://www.cpan.org/modules/by-module/Convert/Convert-UUlib-%{real_version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/Convert-UUlib-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -26,7 +26,7 @@ Requires: perl >= 2:5.8.0
 A perl interface to the uulib library (a.k.a. uudeview/uuenview).
 
 %prep
-%setup -n %{real_name}-%{real_version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Convert/
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.33-1
+- Updated to version 1.33.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.1200-1
 - Updated to version 1.1200.
 
