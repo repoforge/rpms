@@ -9,7 +9,7 @@
 
 Summary: Perl module named Class-C3-Componentised
 Name: perl-Class-C3-Componentised
-Version: 1.0005
+Version: 1.0006
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,23 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AS/ASH/Class-C3-Componentised-%
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::C3) >= 0.20
+BuildRequires: perl(Class::Inspector)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(FindBin)
+BuildRequires: perl(MRO::Compat)
+BuildRequires: perl(Test::Exception)
+Requires: perl(Carp)
+Requires: perl(Class::C3) >= 0.20
+Requires: perl(Class::Inspector)
+Requires: perl(MRO::Compat)
+Requires: perl(Test::Exception)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-Class-C3-Componentised is a Perl module.
@@ -52,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/C3/Componentised.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.0006-1
+- Updated to version 1.0006.
+
 * Fri Apr 24 2009 Christoph Maser <cmr@financial.com> - 1.0005-1
 - Updated to release 1.0005.
 
