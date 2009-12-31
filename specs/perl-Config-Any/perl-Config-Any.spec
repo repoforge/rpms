@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Joel Bernstein <rataxis$cpan,org>
+# Upstream: Brian Cassidy <bricas@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,20 +9,25 @@
 
 Summary: Load configuration from different file formats, transparently
 Name: perl-Config-Any
-Version: 0.17
+Version: 0.18
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Any/
 
-Source: http://www.cpan.org/modules/by-module/Config/Config-Any-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRICAS/Config-Any-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
-BuildRequires: perl(Module::Pluggable)
-#BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Pluggable) >= 3.01
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.6.0
+Requires: perl(Module::Pluggable) >= 3.01
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Load configuration from different file formats, transparently.
@@ -54,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/Any.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.18-1
+- Updated to version 0.18.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 0.17-1
 - Updated to version 0.17.
 
