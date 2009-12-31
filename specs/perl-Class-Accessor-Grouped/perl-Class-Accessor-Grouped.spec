@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Matt S. Trout <mst$shadowcatsystems,co,uk>
+# Upstream: Rafael Kitover <rkitover@io.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,24 +9,34 @@
 
 Summary: Lets you build groups of accessors
 Name: perl-Class-Accessor-Grouped
-Version: 0.09000
+Version: 0.09002
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor-Grouped/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-Accessor-Grouped-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RK/RKITOVER/Class-Accessor-Grouped-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::Inspector)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(MRO::Compat)
 BuildRequires: perl(Scalar::Util)
-BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Sub::Identify)
-Requires: perl >= 1:5.6.1
+BuildRequires: perl(Sub::Name) >= 0.04
+BuildRequires: perl >= 5.6.1
+Requires: perl(Carp)
+Requires: perl(Class::Inspector)
+Requires: perl(MRO::Compat)
+Requires: perl(Scalar::Util)
+Requires: perl(Sub::Name) >= 0.04
+Requires: perl >= 5.6.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Lets you build groups of accessors.
@@ -58,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Grouped.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.09002-1
+- Updated to version 0.09002.
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.09000-1
 - Updated to version 0.09000.
 
