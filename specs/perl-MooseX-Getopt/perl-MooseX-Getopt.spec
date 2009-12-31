@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Stevan Little E<lt>stevan$iinteractive,comE<gt>
-# Upstream: Brandon L, Black, E<lt>blblack$gmail,comE<gt>
+# Upstream: Tomas Doran <bobtfish@bobtfish.net>
+
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,19 +10,34 @@
 
 Summary: Moose role for processing command line options
 Name: perl-MooseX-Getopt
-Version: 0.20
+Version: 0.26
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Getopt/
 
-Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-Getopt-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/MooseX-Getopt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(Getopt::Long) >= 2.37
+BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(Getopt::Long::Descriptive) >= 0.077
+BuildRequires: perl(Moose) >= 0.56
 BuildRequires: perl(Test::Exception) >= 0.21
+BuildRequires: perl(Test::Moose)
 #BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
+#Requires: perl(Getopt::Long) >= 2.37
+Requires: perl(Getopt::Long)
+Requires: perl(Getopt::Long::Descriptive) >= 0.077
+Requires: perl(Moose) >= 0.56
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 A Moose role for processing command line options.
@@ -54,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Getopt.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.26-1
+- Updated to version 0.26.
+
 * Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 0.20-1
 - Updated to version 0.20.
 
