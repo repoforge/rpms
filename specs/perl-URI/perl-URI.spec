@@ -12,19 +12,24 @@
 
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
-Version: 1.51
-Release: 1
+Version: 1.52
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/URI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(MIME::Base64) >= 2
+BuildRequires: perl >= 5.004
+Requires: perl(MIME::Base64) >= 2
+Requires: perl >= 5.004
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-URI is a Perl module that implements Uniform Resource Identifiers.
@@ -56,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.52-1
+- Updated to version 1.52.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.51-1
 - Updated to version 1.51.
 
