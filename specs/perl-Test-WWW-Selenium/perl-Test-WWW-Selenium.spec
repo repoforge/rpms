@@ -9,13 +9,13 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.20
-Release: 1
+Version: 1.21
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Selenium/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Selenium-%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/L/LU/LUKEC/Test-WWW-Selenium-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/mypod2html.pl
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.21-1
+- Updated to version 1.21.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.20-1
 - Updated to version 1.20.
 
