@@ -9,7 +9,7 @@
 
 Summary: Provide commonly requested regular expressions
 Name: perl-Regexp-Common
-Version: 2009123001
+Version: 2009123002
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,17 @@ Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABIGAIL/Regexp-Common-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 5.00473
+BuildRequires: perl(strict)
+BuildRequires: perl(vars)
+Requires: perl >= 5.00473
+Requires: perl(strict)
+Requires: perl(vars)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Provide commonly requested regular expressions.
@@ -52,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Regexp/Common.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 2009123002-1
+- Updated to version 2009123002.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2009123001-1
 - Updated to version 2009123001.
 
