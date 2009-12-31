@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sherzod Ruzmetov <sherzodr$cpan,org>
+# Upstream: Mark Stosberg <mark@summersault.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,25 +9,29 @@
 
 Summary: Persistent session data in CGI applications
 Name: perl-CGI-Session
-Version: 4.41
+Version: 4.42
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Session/
 
-Source: http://www.cpan.org/modules/by-module/CGI/CGI-Session-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARKSTOS/CGI-Session-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(CGI) >= 3.26
 BuildRequires: perl(Data::Dumper)
 BuildRequires: perl(Digest::MD5)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::More)
+Requires: perl(CGI) >= 3.26
+Requires: perl(Data::Dumper)
+Requires: perl(Digest::MD5)
+Requires: perl(Scalar::Util)
+Requires: perl(Test::More)
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 CGI-Session is a Perl5 library that provides an easy, reliable and
@@ -67,6 +71,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/CGI/Session.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 4.42-1
+- Updated to version 4.42.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 4.41-1
 - Updated to version 4.41.
 
