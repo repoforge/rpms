@@ -9,18 +9,23 @@
 
 Summary: Automated accessor generation
 Name: perl-Class-Accessor
-Version: 0.33
+Version: 0.34
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-Accessor-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/K/KA/KASEI/Class-Accessor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(base) >= 1.01
+Requires: perl(base) >= 1.01
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module automagically generates accessor/mutators for your class.
@@ -50,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.34-1
+- Updated to version 0.34.
+
 * Fri May 29 2009 Christoph Maser <cmr$financial,com>  - 0.33-1
 - Updated to release 0.33.
 
