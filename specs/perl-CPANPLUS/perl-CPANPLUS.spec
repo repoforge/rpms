@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos Boumans <gro,miwd$enak>
+# Upstream: Chris Williams <chris@bingosnet.co.uk>
 
 ### This package is dangerous, we don't want it to be available as-is
 # Tag: test
@@ -12,13 +12,13 @@
 
 Summary: Command-line access to the CPAN interface
 Name: perl-CPANPLUS
-Version: 0.88
+Version: 0.9001
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPANPLUS/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KA/KANE/CPANPLUS-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/CPANPLUS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -67,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CPANPLUS.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.9001-1
+- Updated to version 0.9001.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.88-1
 - Updated to version 0.88.
 
