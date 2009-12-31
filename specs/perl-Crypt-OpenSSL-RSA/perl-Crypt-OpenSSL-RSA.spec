@@ -9,20 +9,25 @@
 
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
-Version: 0.25
+Version: 0.26
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-RSA/
 
-Source: http://www.cpan.org/modules/by-module/Crypt/Crypt-OpenSSL-RSA-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-RSA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: openssl-devel
 BuildRequires: krb5-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Crypt::OpenSSL::Random)
+Requires: perl(Crypt::OpenSSL::Random)
 Requires: openssl
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Crypt::OpenSSL::RSA is an XS perl module designed to provide basic RSA
@@ -57,6 +62,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.26-1
+- Updated to version 0.26.
+
 * Mon Jun 18 2007 Dries Verachtert <dries@ulyssis.org> - 0.25-1
 - Updated to release 0.25.
 
