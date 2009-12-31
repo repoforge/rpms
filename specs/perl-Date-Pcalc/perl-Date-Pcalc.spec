@@ -8,19 +8,22 @@
 
 Summary: Gregorian calendar date calculations
 Name: perl-Date-Pcalc
-Version: 1.2
-Release: 1.2%{?dist}
+Version: 6.1
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Pcalc/
 
-Source: http://www.cpan.org/modules/by-module/Date/Date-Pcalc-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STBEY/Date-Pcalc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(Bit::Vector) >= 7.1
+BuildRequires: perl(Carp::Clan) >= 5.3
+Requires: perl(Bit::Vector) >= 7.1
+Requires: perl(Carp::Clan) >= 5.3
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Gregorian calendar date calculations
@@ -44,11 +47,30 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc *.html *.txt
+%doc *.txt
 %doc %{_mandir}/man3/Date::Pcalc.3pm*
-%{perl_vendorlib}/Date/Pcalc.pm
+%doc %{_mandir}/man3/Date::Pcalc::Object.3pm.gz
+%doc %{_mandir}/man3/Date::Pcalendar.3pm.gz
+%doc %{_mandir}/man3/Date::Pcalendar::Profiles.3pm.gz
+%doc %{_mandir}/man3/Date::Pcalendar::Year.3pm.gz
+%{perl_vendorarch}/
+%{perl_vendorarch}/Date/Pcalc.pm
+%{perl_vendorarch}/Date/Pcalc.pod
+%{perl_vendorarch}/Date/Pcalc/Object.pm
+%{perl_vendorarch}/Date/Pcalc/Object.pod
+%{perl_vendorarch}/Date/Pcalendar.pm
+%{perl_vendorarch}/Date/Pcalendar.pod
+%{perl_vendorarch}/Date/Pcalendar/Profiles.pm
+%{perl_vendorarch}/Date/Pcalendar/Profiles.pod
+%{perl_vendorarch}/Date/Pcalendar/Year.pm
+%{perl_vendorarch}/Date/Pcalendar/Year.pod
+%{perl_vendorarch}/auto/Date/Pcalc/Pcalc.bs
+%{perl_vendorarch}/auto/Date/Pcalc/Pcalc.bs
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 6.1-1
+- Updated to version 6.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2-1.2
 - Rebuild for Fedora Core 5.
 
