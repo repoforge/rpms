@@ -9,7 +9,7 @@
 
 Summary: Create machine readable date/time with natural parsing logic
 Name: perl-%{real_name}
-Version: 0.81
+Version: 0.82
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,23 +19,31 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCHUBIGER/DateTime-Format-Na
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Carp)
 BuildRequires: perl(DateTime)
 BuildRequires: perl(Exporter)
-BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(List::MoreUtils)
 BuildRequires: perl(Params::Validate)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Storable)
-BuildRequires: perl(Test::MockTime)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Test::Pod) >= 1.14
-BuildRequires: perl(Test::Pod::Coverage) >= 1.04
 BuildRequires: perl(Term::ReadLine)
+# BuildRequires: perl(Test::MockTime) 
+BuildRequires: perl(Test::More)
 BuildRequires: perl(boolean)
+Requires: perl(Carp)
+Requires: perl(DateTime)
+Requires: perl(Exporter)
+Requires: perl(List::MoreUtils)
+Requires: perl(Params::Validate)
+Requires: perl(Scalar::Util)
+Requires: perl(Storable)
+Requires: perl(Term::ReadLine)
+Requires: perl(boolean)
 
 Provides: %{_bindir}/dateparse
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 DateTime::Format::Natural takes a string with a human readable date/time and
@@ -69,5 +77,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/*
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.82-1
+- Updated to version 0.82.
+
 * Mon Dec 07 2009 Steve Huff <shuff@vecna.org> - 0.81-1
 - Initial package.
