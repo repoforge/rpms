@@ -9,25 +9,27 @@
 
 Summary: Generic config module
 Name: perl-Config-General
-Version: 2.43
+Version: 2.44
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-General/
 
-Source: http://www.cpan.org/modules/by-module/Config/Config-General-%{version}.tar.gz
-#Patch: carp-heavy.patch
+Source: http://search.cpan.org/CPAN/authors/id/T/TL/TLINDEN/Config-General-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(File::Glob)
 BuildRequires: perl(File::Spec::Functions)
 BuildRequires: perl(FileHandle)
 BuildRequires: perl(IO::File)
+Requires: perl(File::Glob)
+Requires: perl(File::Spec::Functions)
+Requires: perl(FileHandle)
+Requires: perl(IO::File)
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module opens a config file and parses it's contents
@@ -78,6 +80,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Config/General.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 2.44-1
+- Updated to version 2.44.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 2.43-1
 - Updated to version 2.43.
 
