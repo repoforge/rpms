@@ -11,13 +11,13 @@
 
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
-Version: 0.95
-Release: 2%{?dist}
+Version: 0.97
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MOP/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-MOP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Class-MOP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Carp)
 BuildRequires: perl(Devel::GlobalDestruction)
@@ -29,7 +29,8 @@ BuildRequires: perl(Scalar::Util) >= 1.18
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Task::Weaken)
 BuildRequires: perl(Test::Exception) >= 0.27
-BuildRequires: perl(Test::More) >= 0.88
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Try::Tiny) >= 0.02
 BuildRequires: perl >= 5.8.1
 Requires: perl(Carp)
@@ -81,6 +82,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.97-1
+- Updated to version 0.97.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.95-2
 - dependencies from yaml
 
