@@ -9,19 +9,22 @@
 
 Summary: Extract distribution name and version from a distribution filename
 Name: perl-CPAN-DistnameInfo
-Version: 0.08
+Version: 0.09
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CPAN-DistnameInfo/
 
-Source: http://www.cpan.org/modules/by-module/CPAN/CPAN-DistnameInfo-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/CPAN-DistnameInfo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.004
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.004
+BuildRequires: perl(Test::More)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Many online services that are centered around CPAN attempt to associate
@@ -57,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/CPAN/DistnameInfo.pm
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.09-1
+- Updated to version 0.09.
+
 * Fri Jul 10 2009 Christoph Maser <cmr@financial.com> - 0.08-1
 - Updated to version 0.08.
 
