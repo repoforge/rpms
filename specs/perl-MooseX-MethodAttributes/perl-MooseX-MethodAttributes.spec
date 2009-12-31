@@ -13,7 +13,7 @@
 Summary: code attribute introspection
 Name: perl-MooseX-MethodAttributes
 Version: 0.18
-Release: 1
+Release: 2
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-MethodAttributes/
@@ -32,7 +32,8 @@ BuildRequires: perl(namespace::clean) >= 0.10
 Requires: perl(Moose) >= 0.90
 Requires: perl(MooseX::Types) >= 0.20
 Requires: perl(Test::Exception)
-Requires: perl(Test::More) >= 0.88
+#Requires: perl(Test::More) >= 0.88
+Requires: perl(Test::More)
 Requires: perl(namespace::autoclean)
 Requires: perl(namespace::clean) >= 0.10
 
@@ -93,6 +94,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.18-2
+- remove version from Test::More requirement
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.18-1
 - Updated to version 0.18.
 
