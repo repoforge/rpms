@@ -9,19 +9,25 @@
 
 Summary: Machine parseable data serialization format
 Name: perl-YAML
-Version: 0.70
+Version: 0.71
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML/
 
-Source: http://www.cpan.org/modules/by-module/YAML/YAML-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/YAML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 1:5.6.1
+BuildRequires: perl(Filter::Util::Call)
+BuildRequires: perl >= 5.8.1
+Requires: perl(Filter::Util::Call)
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 YAML is an abbreviation of YAML Ain't Markup Language. It's a straightforward
@@ -56,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAML.pm
 
 %changelog
+* Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 0.71-1
+- Updated to version 0.71.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.70-1
 - Updated to version 0.70.
 
