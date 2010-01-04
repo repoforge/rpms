@@ -9,7 +9,7 @@
 
 Summary: Provide commonly requested regular expressions
 Name: perl-Regexp-Common
-Version: 2009123002
+Version: 2010010201
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Regexp/Common.pm
 
 %changelog
+* Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 2010010201-1
+- Updated to version 2010010201.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 2009123002-1
 - Updated to version 2009123002.
 
