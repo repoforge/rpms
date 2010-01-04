@@ -6,7 +6,7 @@
 Summary: Web application to manage MySQL
 Name: phpmyadmin
 Version: 2.11.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
@@ -17,7 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: php-mysql >= 4.1.0
-Requires: php-mcrypt
+%{?el5: Requires: php-mcrypt}
 Requires: webserver
 Obsoletes: phpMyAdmin <= %{version}-%{release}
 Provides: phpMyAdmin = %{version}-%{release}
@@ -72,6 +72,9 @@ EOF
 %config(noreplace) %{_datadir}/phpmyadmin/config.inc.php
 
 %changelog
+* Mon Jan 4 2010 Fabian Arrotin <fabian.arrotin@arrfab.net>- 2.11.10-2
+- Fixed a conditional Requires: php-mcrypt only for EL5
+
 * Tue Dec 29 2009 Christoph Maser <cmr@financial.com> - 2.11.10-1
 - Updated to version 2.11.10.
 
