@@ -47,30 +47,35 @@ GPG keys used to sign them.
 %{?fc2:name='Fedora Core'; version='2'; path="fedora/"; builder='dag'}
 %{?fc1:name='Fedora Core'; version='1'; path="fedora/"; builder='dag'}
 
+### #rpm http://rpmforge.sw.be $path\$(VERSION)/en/\$(ARCH) $builder
+### repomd http://rpmforge.sw.be $path\$(VERSION)/en/\$(ARCH)/rpmforge
 %{__cat} <<EOF >rpmforge.apt
 ### Name: RPMforge RPM Repository for $name $version - $builder
 ### URL: http://rpmforge.net/
-#rpm http://rpmforge.sw.be $path\$(VERSION)/en/\$(ARCH) $builder
-repomd http://rpmforge.sw.be $path\$(VERSION)/en/\$(ARCH)/rpmforge
+#rpm http://apt.sw.be $path\$(VERSION)/en/\$(ARCH) $builder
+repomd http://apt.sw.be $path\$(VERSION)/en/\$(ARCH)/rpmforge
 EOF
 
+### baseurl = http://rpmforge.sw.be/$path$version/en/%{_arch}/rpmforge
 %{__cat} <<EOF >rpmforge.smart
 ### Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
 ### URL: http://rpmforge.net/
 [rpmforge]
 name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
-baseurl = http://rpmforge.sw.be/$path$version/en/%{_arch}/rpmforge
+baseurl = http://apt.sw.be/$path$version/en/%{_arch}/rpmforge
 type = rpm-md
 EOF
 
+### baseurl = http://rpmforge.sw.be/$path$version/en/\$basearch/rpmforge
+### #mirrorlist = http://mirrorlist.sw.be/mirrors-rpmforge-$dtag-\$basearch
 ### Yum needs hardcoded version as on RHEL4AS releasever translates to 4AS :(
 %{__cat} <<EOF >rpmforge.yum
 ### Name: RPMforge RPM Repository for $name $version - $builder
 ### URL: http://rpmforge.net/
 [rpmforge]
 name = $name \$releasever - RPMforge.net - $builder
-baseurl = http://rpmforge.sw.be/$path$version/en/\$basearch/rpmforge
-mirrorlist = http://mirrorlist.sw.be/mirrors-rpmforge-$dtag-\$basearch
+baseurl = http://apt.sw.be/$path$version/en/\$basearch/rpmforge
+mirrorlist = http://apt.sw.be/$path$version/en/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
 protect = 0
