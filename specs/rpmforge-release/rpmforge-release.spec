@@ -2,17 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-### Tag as test until we have tested the new package
-# Tag: test
-
-
-%{?rh7:%define _without_rpmpubkey 1}
-%{?el2:%define _without_rpmpubkey 1}
-%{?rh6:%define _without_rpmpubkey 1}
-
 Summary: RPMforge release file and RPM repository configuration
 Name: rpmforge-release
-Version: 0.4.0
+Version: 0.5.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -33,17 +25,18 @@ GPG keys used to sign them.
 %prep
 %setup -c
 
-%ifarch ppc
+%ifarch ppc ppc64
 %{?el5:name='Red Hat Enterprise'; version='5'; path="redhat/el"; builder='fabian'}
 %{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='fabian'}
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='fabian'}
-%{?el2:name='Red Hat Enterprise'; version='2.1'; path="redhat/el"; builder='fabian'}
 %else
 %{?el5:name='Red Hat Enterprise'; version='5'; path="redhat/el"; builder='dag'}
 %{?el4:name='Red Hat Enterprise'; version='4'; path="redhat/el"; builder='dag'}
 %{?el3:name='Red Hat Enterprise'; version='3'; path="redhat/el"; builder='dag'}
-%{?el2:name='Red Hat Enterprise'; version='2.1'; path="redhat/el"; builder='dag'}
 %endif
+%{?fc12:name='Fedora Core'; version='12'; path="fedora/"; builder='dries'}
+%{?fc11:name='Fedora Core'; version='11'; path="fedora/"; builder='dries'}
+%{?fc10:name='Fedora Core'; version='10'; path="fedora/"; builder='dries'}
 %{?fc9:name='Fedora Core'; version='9'; path="fedora/"; builder='dries'}
 %{?fc8:name='Fedora Core'; version='8'; path="fedora/"; builder='dries'}
 %{?fc7:name='Fedora Core'; version='7'; path="fedora/"; builder='dries'}
@@ -53,10 +46,6 @@ GPG keys used to sign them.
 %{?fc3:name='Fedora Core'; version='3'; path="fedora/"; builder='dag'}
 %{?fc2:name='Fedora Core'; version='2'; path="fedora/"; builder='dag'}
 %{?fc1:name='Fedora Core'; version='1'; path="fedora/"; builder='dag'}
-%{?rh9:name='Red Hat'; version='9';   path="redhat/"; builder='dag'}
-%{?rh8:name='Red Hat'; version='8.0'; path="redhat/"; builder='dag'}
-%{?rh7:name='Red Hat'; version='7.3'; path="redhat/"; builder='dag'}
-%{?rh6:name='Red Hat'; version='6.2'; path="redhat/"; builder='dag'}
 
 %{__cat} <<EOF >rpmforge.apt
 ### Name: RPMforge RPM Repository for $name $version - $builder
@@ -123,12 +112,25 @@ done >mirrors-rpmforge.yum
 %{__rm} -rf %{buildroot}
 
 %post
-%if %{!?_without_rpmpubkey:1}0
-rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :
-rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :
-rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian || :
-#rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias || :
+%ifarch ppc ppc64
+%{?el5:rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian || :}
+%{?el4:rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian || :}
+%{?el3:rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian || :}
+%else
+%{?el5:rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :}
+%{?el4:rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :}
+%{?el3:rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :}
 %endif
+%{?fc12:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc11:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc10:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc9:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc8:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc7:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc6:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc5:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+%{?fc4:rpm -q gpg-pubkey-1aa78495-3eb24301 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries || :}
+#rpm -q gpg-pubkey-e42d547b-3960bdf1 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias || :
 
 %files
 %defattr(-, root, root, 0755)
@@ -153,6 +155,9 @@ rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/p
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Mon Jan 04 2010 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Install the GPG keys only for a specific distribution/architecture.
+
 * Thu Mar 27 2008 Dag Wieers <dag@wieers.com> - 0.4.0-1
 - Added fabian's ppc repositories and GPG key.
 - Removed a lot of cruft.
