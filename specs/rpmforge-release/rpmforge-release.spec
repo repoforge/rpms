@@ -4,7 +4,7 @@
 
 Summary: RPMforge release file and RPM repository configuration
 Name: rpmforge-release
-Version: 0.5.0
+Version: 0.5.1
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -56,6 +56,13 @@ GPG keys used to sign them.
 repomd http://apt.sw.be $path\$(VERSION)/en/\$(ARCH)/rpmforge
 EOF
 
+%{__cat} <<EOF >rpmforge-testing.apt
+### Name: RPMforge RPM Repository for $name $version - test
+### URL: http://rpmforge.net/
+#rpm http://apt.sw.be $path\$(VERSION)/en/\$(ARCH) test
+#repomd http://apt.sw.be $path\$(VERSION)/en/\$(ARCH)/test
+EOF
+
 ### baseurl = http://rpmforge.sw.be/$path$version/en/%{_arch}/rpmforge
 %{__cat} <<EOF >rpmforge.smart
 ### Name: RPMforge RPM Repository for $name $version - %{_arch} - $builder
@@ -64,6 +71,15 @@ EOF
 name = Extra packages from RPMforge.net for $name $version - %{_arch} - $builder
 baseurl = http://apt.sw.be/$path$version/en/%{_arch}/rpmforge
 type = rpm-md
+EOF
+
+%{__cat} <<EOF >rpmforge-testing.smart
+### Name: RPMforge RPM Repository for $name $version - %{_arch} - test
+### URL: http://rpmforge.net/
+#[rpmforge]
+#name = Test packages from RPMforge.net for $name $version - %{_arch} - test
+#baseurl = http://apt.sw.be/$path$version/en/%{_arch}/test
+#type = rpm-md
 EOF
 
 ### baseurl = http://rpmforge.sw.be/$path$version/en/\$basearch/rpmforge
@@ -81,6 +97,18 @@ enabled = 1
 protect = 0
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
 gpgcheck = 1
+EOF
+
+%{__cat} <<EOF >rpmforge-testing.yum
+### Name: RPMforge RPM Repository for $name $version - $builder
+### URL: http://rpmforge.net/
+[rpmforge-testing]
+name = $name \$releasever - RPMforge.net - test
+baseurl = http://apt.sw.be/$path$version/en/\$basearch/test
+enabled = 0
+protect = 0
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
+gpgcheck = 0
 EOF
 
 %{__cat} <<EOF >rpmforge.up2date
@@ -103,14 +131,20 @@ done >mirrors-rpmforge.yum
 %install
 %{__rm} -rf %{buildroot}
 %{__cp} -a %{SOURCE1} %{SOURCE2} %{SOURCE3} .
+
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dries
 %{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian
 #%{__install} -Dp -m0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
+
 %{__install} -Dp -m0644 rpmforge.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge.list
+%{__install} -Dp -m0644 rpmforge-testing.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge-testing.list
 %{__install} -Dp -m0644 rpmforge.smart %{buildroot}%{_sysconfdir}/smart/channels/rpmforge.channel
-%{__install} -Dp -m0644 rpmforge.up2date %{buildroot}%{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
+%{__install} -Dp -m0644 rpmforge-testing.smart %{buildroot}%{_sysconfdir}/smart/channels/rpmforge-testing.channel
 %{__install} -Dp -m0644 rpmforge.yum %{buildroot}%{_sysconfdir}/yum.repos.d/rpmforge.repo
+%{__install} -Dp -m0644 rpmforge-testing.yum %{buildroot}%{_sysconfdir}/yum.repos.d/rpmforge-testing.repo
+%{__install} -Dp -m0644 rpmforge.up2date %{buildroot}%{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
+
 %{__install} -Dp -m0644 mirrors-rpmforge.yum %{buildroot}%{_sysconfdir}/yum.repos.d/mirrors-rpmforge
 
 %clean
@@ -140,26 +174,30 @@ done >mirrors-rpmforge.yum
 %files
 %defattr(-, root, root, 0755)
 %doc mirrors-rpmforge.yum RPM-GPG-KEY-rpmforge-* rpmforge.*
-%if %{!?_without_rpmpubkey:1}0
 %pubkey RPM-GPG-KEY-rpmforge-dag
 %pubkey RPM-GPG-KEY-rpmforge-dries
 %pubkey RPM-GPG-KEY-rpmforge-fabian
-%endif
 %dir %{_sysconfdir}/apt/
 %dir %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge.list
+%config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge-testing.list
 %dir %{_sysconfdir}/smart/
 %dir %{_sysconfdir}/smart/channels/
 %config(noreplace) %{_sysconfdir}/smart/channels/rpmforge.channel
+%config(noreplace) %{_sysconfdir}/smart/channels/rpmforge-testing.channel
 %dir %{_sysconfdir}/sysconfig/rhn/
 %config %{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
 %dir %{_sysconfdir}/yum.repos.d/
 %config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge.repo
+%config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge-testing.repo
 %config %{_sysconfdir}/yum.repos.d/mirrors-rpmforge
 %dir %{_sysconfdir}/pki/rpm-gpg/
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Mon Jan 04 2010 Dag Wieers <dag@wieers.com> - 0.5.1-1
+- Added entries for test repositories.
+
 * Mon Jan 04 2010 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Install the GPG keys only for a specific distribution/architecture.
 
