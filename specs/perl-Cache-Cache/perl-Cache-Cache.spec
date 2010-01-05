@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: DeWitt Clinton <dewitt$unto,net>
+# Upstream: Jonathan Swartz <swartz@pobox.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,20 +9,29 @@
 
 Summary: Cache-Cache module for perl
 Name: perl-Cache-Cache
-Version: 1.05
+Version: 1.06
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Cache/
 
-Source: http://www.cpan.org/modules/by-module/Cache/Cache-Cache-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JS/JSWARTZ/Cache-Cache-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker) >= 2:5.8.0
-Requires: perl >= 2:5.8.0
-Requires: perl(Error), perl(Storable), perl(IPC::ShareLite)
+BuildRequires: perl(Digest::SHA1) >= 2.02
+BuildRequires: perl(Error) >= 0.15
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(Storable) >= 1.014
+Requires: perl(Digest::SHA1) >= 2.02
+Requires: perl(Error) >= 0.15
+Requires: perl(File::Spec) >= 0.82
+Requires: perl(Storable) >= 1.014
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 The Cache modules are designed to assist a developer in persisting data for a
@@ -57,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Cache/
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Mon Sep 18 2006 Dries Verachtert <dries@ulyssis.org> - 1.05-1
 - Updated to release 1.05.
 
