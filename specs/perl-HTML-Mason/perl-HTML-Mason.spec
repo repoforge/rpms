@@ -12,7 +12,7 @@
 
 Summary: High-performance, dynamic web site authoring system
 Name: perl-HTML-Mason
-Version: 1.43
+Version: 1.44
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -93,6 +93,9 @@ find eg/ htdocs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTML/Mason.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.44-1
+- Updated to version 1.44.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.43-1
 - Updated to version 1.43.
 
