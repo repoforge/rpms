@@ -9,17 +9,18 @@
 
 Summary: Perl module to validate/generate credit card checksums/names
 Name: perl-Business-CreditCard
-Version: 0.30
+Version: 0.31
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-CreditCard/
 
-Source: http://www.cpan.org/modules/by-module/Business/Business-CreditCard-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IV/IVAN/Business-CreditCard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+
 
 %description
 perl-Business-CreditCard is a Perl module to validate/generate
@@ -50,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Business/CreditCard.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 0.31-1
+- Updated to version 0.31.
+
 * Sun Oct 07 2007 Dag Wieers <dag@wieers.com> - 0.30-1
 - Initial package. (using DAR)
