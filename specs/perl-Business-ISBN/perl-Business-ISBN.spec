@@ -9,18 +9,26 @@
 
 Summary: Work with International Standard Book Numbers
 Name: perl-Business-ISBN
-Version: 2.04
+Version: 2.05
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-ISBN/
 
-Source: http://www.cpan.org/modules/by-module/Business/Business-ISBN-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BD/BDFOY/Business-ISBN-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Business::ISBN::Data) >= 20081208
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI)
+Requires: perl(Business::ISBN::Data) >= 20081208
+Requires: perl(Test::More)
+Requires: perl(URI)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 With this module you can work with ISBN numbers.
@@ -58,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Business/ISBN13.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 2.05-1
+- Updated to version 2.05.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 2.04-1
 - Updated to release 2.04.
 
