@@ -9,8 +9,8 @@
 
 Summary: Perl module named POE-Test-Loops
 Name: perl-POE-Test-Loops
-Version: 1.030
-Release: 1
+Version: 1.031
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Test-Loops/
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/poe-gen-tests
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.031-1
+- Updated to version 1.031.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.030-1
 - Updated to version 1.030.
 
