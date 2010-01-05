@@ -8,7 +8,7 @@
 
 Summary: MooseX roles which support overloading
 Name: perl-MooseX-Role-WithOverloading
-Version: 0.03
+Version: 0.04
 Release: 1%{?dist}
 License: perl
 Group: Applications/CPAN
@@ -19,12 +19,16 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Moose) >= 0.90
 BuildRequires: perl(MooseX::Types)
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
 BuildRequires: perl(XSLoader)
 BuildRequires: perl(aliased)
 BuildRequires: perl(namespace::autoclean) >= 0.09
 BuildRequires: perl(namespace::clean)
 Requires: perl(Moose) >= 0.90
 Requires: perl(MooseX::Types)
+#Requires: perl(Test::More) >= 0.88
+Requires: perl(Test::More)
 Requires: perl(XSLoader)
 Requires: perl(aliased)
 Requires: perl(namespace::autoclean) >= 0.09
@@ -63,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/MooseX/Role/WithOverloading/WithOverloading.so
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.001000-1
 - Initial package (using mcsfb)
 
