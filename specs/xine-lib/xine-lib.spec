@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: <xine-user$lists,sf,net>
 
-%{?dtag:%{expand: %%define %dtag 1}}
-
 %{?el4:%define _with_speex104 1}
 %{?el4:%define _without_modxorg 1}
 
@@ -20,7 +18,7 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.16.3
+Version: 1.1.17
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -32,6 +30,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: a52dec-devel
 BuildRequires: bzip2-devel
+BuildRequires: faad2-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 BuildRequires: gtk2-devel
@@ -181,6 +180,12 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 1.1.17-1
+- Updated to release 1.1.17.
+
+* Sat Nov 07 2009 Dag Wieers <dag@wieers.com> - 1.1.16.4-1
+- Rebuild against newer faad2 2.7.
+
 * Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 1.1.16.3-1
 - Updated to release 1.1.16.3.
 

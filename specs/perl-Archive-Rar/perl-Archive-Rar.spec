@@ -22,6 +22,7 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Simple)
+BuildRequires: rar
 
 %description
 perl-Archive-Rar is a Perl module to interface with the 'rar' command.

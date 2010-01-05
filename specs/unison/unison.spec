@@ -4,13 +4,9 @@
 
 %define desktop_vendor rpmforge
 
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 Summary: File-synchronization tool
 Name: unison
-Version: 2.27.57
+Version: 2.32.52
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -20,10 +16,13 @@ Source: http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/uniso
 Source1: unison.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-# emacs is needed for etags
-BuildRequires: ocaml, emacs
-#BuildRequires: tetex-latex, lablgtk >= 2.4.0, gtk2-devel
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: desktop-file-utils
+### emacs is needed for etags
+BuildRequires: emacs
+BuildRequires: ocaml
+#BuildRequires: gtk2-devel
+#BuildRequires: lablgtk >= 2.4.0
+#BuildRequires: tetex-latex
 
 %description
 Unison is a file-synchronization tool. It allows two replicas of a collection
@@ -55,16 +54,12 @@ EOF
 %{__install} -Dp -m0755 unison %{buildroot}%{_bindir}/unison
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/unison.png
 
-%if %{?_without_freedesktop:1}0
-    %{__install} -Dp -m0644 unison.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/unison.desktop
-%else
-    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-    desktop-file-install \
-        --vendor %{desktop_vendor}                 \
-        --add-category X-Red-Hat-Base              \
-        --dir %{buildroot}%{_datadir}/applications \
-        unison.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install \
+    --vendor %{desktop_vendor}                 \
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    unison.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -73,11 +68,13 @@ EOF
 %defattr(-, root, root, 0755)
 %doc CONTRIB COPYING NEWS README *.txt
 %{_bindir}/unison
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-unison.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/unison.desktop}
+%{_datadir}/applications/%{desktop_vendor}-unison.desktop
 %{_datadir}/pixmaps/unison.png
 
 %changelog
+* Tue Jan 05 2010 Dag Wieers <dag@wieers.com> - 2.32.52-1
+- Updated to release 2.32.52.
+
 * Sun Feb 03 2008 Dag Wieers <dag@wieers.com> - 2.27.57-1
 - Updated to release 2.27.57.
 

@@ -2,13 +2,12 @@
 # Authority: dag
 # Upstream: <fixounet$free,fr>
 
-
 %define desktop_vendor rpmforge
 
 Summary: Graphical video editing tool
 Name: avidemux
 Version: 2.4.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
@@ -102,6 +101,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/applications/%{desktop_vendor}-avidemux.desktop
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 2.4.4-2
+- Rebuild against faad2 2.7.
+
 * Sat Feb 21 2009 Dag Wieers <dag@wieers.com> - 2.4.4-1
 - Updated to release 2.4.4.
 

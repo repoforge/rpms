@@ -1,29 +1,14 @@
 # $Id$
 # Authority: dag
 
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-
-%{?rh7:%define _without_fontconfig 1}
-%{?el2:%define _without_fontconfig 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Unicode version of rxvt
 Name: rxvt-unicode
-Version: 9.06
+Version: 9.07
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
@@ -32,14 +17,14 @@ URL: http://software.schmorp.de/
 Source: http://dist.schmorp.de/rxvt-unicode/Attic/rxvt-unicode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libX11-devel, libXt-devel, libXft-devel, libXpm-devel, libXrender-devel}
-%{!?_without_fontconfig:BuildRequires: fontconfig-devel}
+BuildRequires: desktop-file-utils
+BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel
 BuildRequires: glib2-devel
 BuildRequires: perl
 BuildRequires: /usr/bin/tic
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libX11-devel, libXt-devel, libXft-devel, libXpm-devel, libXrender-devel}
 
 %description
 rxvt-unicode is a clone of the well known terminal emulator rxvt, modified to
@@ -125,6 +110,9 @@ desktop-file-install --vendor=%{desktop_vendor} \
 %{_libdir}/urxvt/
 
 %changelog
+* Thu Dec 31 2009 Dag Wieers <dag@wieers.com> - 9.07-1
+- Updated to release 9.07.
+
 * Sun Nov 09 2008 Dag Wieers <dag@wieers.com> - 9.06-1
 - Updated to release 9.06.
 

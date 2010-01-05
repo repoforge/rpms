@@ -4,7 +4,7 @@
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://rpmforge.net/
@@ -26,13 +26,10 @@ RPM macros used by the RPMForge project.
 #%%vendor RPMForge project (http://rpmforge.net/)
 
 %if %{?dtag:1}0
-%%dtag %dtag
-%else
-### Current distribution undefined in original buildsystem
-%%dtag unknown
+%%{!?dtag:%%dtag %dtag}
+%%{!?%%dtag:%%%dtag 1}
+%%{!?dist:%%dist .%dtag}
 %endif
-%%%dtag 1
-%%dist .%dtag
 %if "%dtag" == "el5"
 %%distribution RPMForge repository for Red Hat Enterprise Linux 5
 %%errata 105

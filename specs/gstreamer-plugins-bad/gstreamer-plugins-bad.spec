@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.4
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -133,6 +133,9 @@ well enough, or the code is not of good enough quality.
 %{_libdir}/gstreamer-%{majorminor}/libgsty4menc.so
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.10.4-4
+- Rebuild against newer faad2 2.7.
+
 * Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.10.4-3
 - Rebuild against x264-0.4.20090708.
 

@@ -8,14 +8,14 @@
 %define real_name Weewar
 
 Summary: get data from the weewar.com XML API
-Name: perl-%{real_name}
+Name: perl-Weewar
 Version: 0.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Weewar/
 
-Source: http://search.cpan.org/CPAN/authors/id/J/JR/JROCKWAY/%{real_name}-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JR/JROCKWAY/Weewar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,8 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc MANIFEST
 %doc %{_mandir}/man3/Weewar*.3pm*
 %dir %{perl_vendorlib}/Weewar/
-%{perl_vendorlib}/Weewar/*.pm
 %{perl_vendorlib}/Weewar.pm
+%{perl_vendorlib}/Weewar/
 
 %changelog
 * Mon Sep 28 2009 Steve Huff <shuff@vecna.org> - 0.01-1

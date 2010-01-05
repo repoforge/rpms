@@ -2,13 +2,9 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-
-%{?rh7:%define _with_python15 1}
-%{?el2:%define _with_python15 1}
-
 Summary: Pluggable real-time performance monitoring tool
 Name: dstat
-Version: 0.6.9
+Version: 0.7.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -45,8 +41,6 @@ confusion, less mistakes.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{?_with_python15:%{__install} -Dp -m0755 dstat15 %{buildroot}%{_bindir}/dstat}
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -58,6 +52,10 @@ confusion, less mistakes.
 %{_datadir}/dstat/
 
 %changelog
+* Wed Nov 25 2009 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+- Reduce the number of paths used for importing modules. {CVE-2009-3894}
+
 * Tue Dec 02 2008 Dag Wieers <dag@wieers.com> - 0.6.9-1
 - Updated to release 0.6.9.
 

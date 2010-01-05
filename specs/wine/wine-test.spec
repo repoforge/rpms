@@ -3,7 +3,6 @@
 
 # Tag: test
 
-
 %define _without_freeglut 0
 %define _without_glut 1
 
@@ -21,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.30
+Version: 1.1.33
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Emulators
@@ -439,10 +438,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
 %{_libdir}/wine/explorer.exe.so
+%{_libdir}/wine/extrac32.exe.so
 %{_libdir}/wine/hh.exe.so
 %{_libdir}/wine/icinfo.exe.so
 %{_libdir}/wine/iexplore.exe.so
 %{_libdir}/wine/lodctr.exe.so
+%{_libdir}/wine/mshta.exe.so
 %{_libdir}/wine/msiexec.exe.so
 %{_libdir}/wine/net.exe.so
 %{_libdir}/wine/notepad.exe.so
@@ -481,17 +482,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/xcopy.exe.so
 
 ### dll16
-%{_libdir}/wine/commdlg.dll16
-%{_libdir}/wine/mmsystem.dll16
-%{_libdir}/wine/setupx.dll16
-%{_libdir}/wine/toolhelp.dll16
-%{_libdir}/wine/ver.dll16
-%{_libdir}/wine/wing.dll16
-%{_libdir}/wine/winsock.dll16
 %{_libdir}/wine/wprocs.dll16
 
 ### dll16.so
 %{_libdir}/wine/avifile.dll16.so
+%{_libdir}/wine/commdlg.dll16.so
 %{_libdir}/wine/compobj.dll16.so
 %{_libdir}/wine/ctl3d.dll16.so
 %{_libdir}/wine/ctl3dv2.dll16.so
@@ -499,6 +494,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dispdib.dll16.so
 %{_libdir}/wine/imm.dll16.so
 %{_libdir}/wine/lzexpand.dll16.so
+%{_libdir}/wine/mmsystem.dll16.so
 %{_libdir}/wine/msacm.dll16.so
 %{_libdir}/wine/msvideo.dll16.so
 %{_libdir}/wine/ole2.dll16.so
@@ -510,16 +506,21 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/olecli.dll16.so
 %{_libdir}/wine/olesvr.dll16.so
 %{_libdir}/wine/rasapi16.dll16.so
+%{_libdir}/wine/setupx.dll16.so
 %{_libdir}/wine/shell.dll16.so
 %{_libdir}/wine/storage.dll16.so
 %{_libdir}/wine/stress.dll16.so
+%{_libdir}/wine/toolhelp.dll16.so
 %{_libdir}/wine/typelib.dll16.so
+%{_libdir}/wine/ver.dll16.so
 %{_libdir}/wine/w32sys.dll16.so
 %{_libdir}/wine/win32s16.dll16.so
 %{_libdir}/wine/win87em.dll16.so
 %{_libdir}/wine/winaspi.dll16.so
 %{_libdir}/wine/windebug.dll16.so
+%{_libdir}/wine/wing.dll16.so
 %{_libdir}/wine/winnls.dll16.so
+%{_libdir}/wine/winsock.dll16.so
 %{_libdir}/wine/wintab.dll16.so
 
 ### dll.so
@@ -534,6 +535,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/authz.dll.so
 %{_libdir}/wine/avicap32.dll.so
 %{_libdir}/wine/avifil32.dll.so
+%{_libdir}/wine/avrt.dll.so
 %{_libdir}/wine/bcrypt.dll.so
 %{_libdir}/wine/browseui.dll.so
 %{_libdir}/wine/cabinet.dll.so
@@ -612,6 +614,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/dxgi.dll.so
 %{_libdir}/wine/faultrep.dll.so
+%{_libdir}/wine/fltlib.dll.so
 %{_libdir}/wine/fusion.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
@@ -756,6 +759,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/version.dll.so
 %{_libdir}/wine/w32skrnl.dll.so
 %{_libdir}/wine/wbemprox.dll.so
+%{_libdir}/wine/wiaservc.dll.so
 %{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
 %{_libdir}/wine/windowscodecs.dll.so
 %{_libdir}/wine/winedos.dll.so
@@ -775,6 +779,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
 %{_libdir}/wine/wuapi.dll.so
+%{_libdir}/wine/wuaueng.dll.so
 %{_libdir}/wine/xinput1_1.dll.so
 %{_libdir}/wine/xinput1_2.dll.so
 %{_libdir}/wine/xinput1_3.dll.so
@@ -785,16 +790,14 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/gphoto2.ds.so
 %{_libdir}/wine/sane.ds.so
 
-### drv16
-%{_libdir}/wine/system.drv16
-%{_libdir}/wine/wineps16.drv16
-
 ### drv16.so
 %{_libdir}/wine/comm.drv16.so
 %{_libdir}/wine/display.drv16.so
 %{_libdir}/wine/keyboard.drv16.so
 %{_libdir}/wine/mouse.drv16.so
 %{_libdir}/wine/sound.drv16.so
+%{_libdir}/wine/system.drv16.so
+%{_libdir}/wine/wineps16.drv16.so
 
 ### drv.so
 %{_libdir}/wine/msacm32.drv.so
@@ -903,6 +906,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Wed Nov 18 2009 Dag Wieers <dag@wieers.com> - 1.1.33-1
+- Updated to release 1.1.33.
+
 * Sun Sep 27 2009 Dag Wieers <dag@wieers.com> - 1.1.30-1
 - Updated to release 1.1.30.
 

@@ -3,18 +3,24 @@
 
 Summary: Create static HTML pages of a yum repository
 Name: repoview
-Version: 0.6.1
+Version: 0.6.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
-URL: http://linux.duke.edu/projects/mini/repoview/
+URL: https://fedorahosted.org/repoview/
 
+Source: http://icon.fedorapeople.org/repoview/repoview-%{version}.tar.gz
 Source: http://www.mricon.com/downloads/repoview/repoview-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python-devel >= 2.2, yum >= 2.5
-Requires: python >= 2.2, python-kid >= 0.6.3, python-elementtree, yum >= 2.5
+BuildRequires: python-devel >= 2.2
+BuildRequires: yum >= 3.0
+Requires: python >= 2.2
+Requires: python-elementtree
+Requires: python-kid >= 0.6.3
+Requires: python-sqlite
+Requires: yum >= 3.0
 
 %description
 repoview allows to easily create a set of static HTML pages in a YUM
@@ -26,9 +32,9 @@ customizeable.
 %setup
 
 %{__perl} -pi.orig \
-	-e 's|^(VERSION) = .*$|$1 = "%{version}"|g;' \
-	-e 's|^(DEFAULT_TEMPLATEDIR) =.*$|$1 = "%{_datadir}/repoview/templates"|g;' \
-	repoview.py
+    -e 's|^(VERSION) = .*$|$1 = "%{version}"|g;' \
+    -e 's|^(DEFAULT_TEMPLATEDIR) =.*$|$1 = "%{_datadir}/repoview/templates"|g;' \
+    repoview.py
 
 %install
 %{__rm} -rf %{buildroot}
@@ -49,6 +55,9 @@ customizeable.
 %{_datadir}/repoview/
 
 %changelog
+* Wed Dec 17 2008 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

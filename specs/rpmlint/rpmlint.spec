@@ -3,17 +3,20 @@
 
 Summary: RPM correctness checker
 Name: rpmlint
-Version: 0.61
-Release: 0%{?dist}
+Version: 0.92
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
-URL: http://people.mandrakesoft.com/~flepied/projects/rpmlint/
-Source: http://people.mandrakesoft.com/~flepied/projects/rpmlint/dist/rpmlint-%{version}.tar.bz2
-Source1: config.fedora
+URL: http://rpmlint.zarb.org/
+
+Source: http://rpmlint.zarb.org/download/rpmlint-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: python >= 1.5.2, rpm-python
-BuildRequires: python >= 1.5.2, rpm-python
+
 BuildArch: noarch
+BuildRequires: python >= 2.4
+BuildRequires: rpm-python
+Requires: python >= 2.4
+Requires: rpm-python
 
 %description
 Rpmlint is a tool to check common errors on rpm packages.
@@ -21,14 +24,13 @@ Binary and source packages can be checked.
 
 %prep
 %setup
-%{__cp} -p %{SOURCE1} config
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} COMPILE_PYC=1
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall DESTDIR="%{buildroot}"
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -36,12 +38,19 @@ Binary and source packages can be checked.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README*
+%doc %{_mandir}/man1/rpmlint.1*
 %dir %{_sysconfdir}/rpmlint/
+%config(noreplace) %{_sysconfdir}/bash_completion.d/rpmlint
 %config(noreplace) %{_sysconfdir}/rpmlint/config
 %{_bindir}/*
 %{_datadir}/rpmlint/
 
 %changelog
+* Mon Jan 04 2010 Bjarne Saltbaek <arnebjarne72@hotmail.com> - 0.92-1
+- Updated to release 0.92.
+- Added COMPILE_PYC=1 for *.pyc compilation.
+- Python >= 2.4 now required.
+
 * Wed Sep  1 2004 Matthias Saou <http://freshrpms.net/> 0.61-0
 - Update to 0.61.
 - Include an updated default configuration suitable for Red Hat Linux and

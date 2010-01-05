@@ -3,7 +3,6 @@
 
 %{!?audio:%define audio alsa esd oss}
 
-
 %{?el5:%define _without_jack 1}
 %{?el5:%define _without_nas 1}
 
@@ -17,8 +16,8 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 1.8.1
-Release: 2%{?dist}
+Version: 1.10.0
+Release: 1%{?dist}
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/
@@ -88,6 +87,12 @@ export SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 1.10.0-1
+- Updated to release 1.10.0.
+
+* Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 1.9.1-1
+- Updated to release 1.9.1.
+
 * Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.8.1-2
 - Rebuild against portaudio-19.
 

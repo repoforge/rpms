@@ -1,13 +1,12 @@
 # $Id$
 # Authority: dag
 
-
 %define _libdir /lib
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.1.19
-Release: 3%{?dist}
+Version: 1.2.0
+Release: 1%{?dist}
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
@@ -16,9 +15,8 @@ Source: ftp://ftp.inet.no/pub/socks/dante-%{version}.tar.gz
 Patch0: dante-1.1.19-private.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, bison
-%{!?rh62:BuildRequires: pam-devel}
-%{?rh62:BuildRequires: pam}
+BuildRequires: bison
+BuildRequires: flex
 
 %description
 Dante is a free implementation of the proxy protocols socks version 4,
@@ -307,6 +305,9 @@ fi
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Thu Oct 29 2009 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.19-3
 - Applied a fix by Thomas M Steenholdt for the dsocksify sysv init script.
 

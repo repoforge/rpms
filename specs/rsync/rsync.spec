@@ -4,16 +4,9 @@
 
 # Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
 
-
-%{?rh7:%define _without_acl 1}
-%{?rh7:%define _without_xattr 1}
-
-%{?el2:%define _without_acl 1}
-%{?el2:%define _without_xattr 1}
-
 Summary: Program for synchronizing files over a network
 Name: rsync
-Version: 3.0.6
+Version: 3.0.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -22,8 +15,8 @@ URL: http://rsync.samba.org/
 Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_without_acl:BuildRequires: libacl-devel}
-%{!?_without_xattr:BuildRequires: libattr-devel}
+BuildRequires: libacl-devel
+BuildRequires: libattr-devel
 
 %description
 Rsync uses a reliable algorithm to bring remote and host files into
@@ -54,9 +47,7 @@ service rsync
 EOF
 
 %build
-%configure \
-%{?_without_acl:--disable-acl-support} \
-%{?_without_xattr:--disable-xattr-support}
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -76,6 +67,9 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Fri Jan 01 2010 Dag Wieers <dag@wieers.com> - 3.0.7-1
+- Updated to release 3.0.7.
+
 * Sun May 10 2009 Dag Wieers <dag@wieers.com> - 3.0.6-1
 - Updated to release 3.0.6.
 

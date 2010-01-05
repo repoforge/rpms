@@ -48,7 +48,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE MANIFEST META.yml README examples/
-%doc %{_mandir}/man3/Business::ISSN.3pm*
+%doc %{_mandir}/man3/Business-ISSN.3*
 %dir %{perl_vendorlib}/Business/
 #%{perl_vendorlib}/Business/ISSN/
 %{perl_vendorlib}/Business/ISSN.pm

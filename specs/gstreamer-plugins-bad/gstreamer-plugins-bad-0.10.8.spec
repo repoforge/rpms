@@ -13,7 +13,7 @@
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.8
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -42,6 +42,7 @@ BuildRequires: libmpcdec-devel
 BuildRequires: libmusicbrainz-devel
 BuildRequires: liboil-devel
 BuildRequires: mesa-libGLU-devel
+BuildRequires: mjpegtools
 BuildRequires: neon-devel
 BuildRequires: SDL-devel
 BuildRequires: soundtouch-devel
@@ -186,6 +187,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgstapp-0.10.la
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.10.8-4
+- Rebuild against newer faad2 2.7.
+
 * Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.10.8-3
 - Rebuild against x264-0.4.20090708.
 

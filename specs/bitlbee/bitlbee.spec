@@ -4,8 +4,8 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 1.2.3
-Release: 2%{?dist}
+Version: 1.2.4
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
@@ -98,6 +98,9 @@ CFLAGS="%{optflags}" ./configure \
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Tue Dec 02 2008 Dag Wieers <dag@wieers.com> - 1.2.3-2
 - Added patch from Fedora.
 

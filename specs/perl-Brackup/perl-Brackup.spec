@@ -11,7 +11,7 @@
 %define real_name Brackup
 
 Summary: Flexible backup tool
-Name: perl-%{real_name}
+Name: perl-Brackup
 Version: 1.09
 Release: 1%{?dist}
 License: Artistic/GPL

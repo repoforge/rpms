@@ -6,7 +6,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.8.0
+Version: 4.9.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -100,6 +100,7 @@ fi
 %doc %{_mandir}/man5/collectd-exec.5*
 %doc %{_mandir}/man5/collectd-java.5*
 %doc %{_mandir}/man5/collectd-perl.5*
+%doc %{_mandir}/man5/collectd-python.5*
 %doc %{_mandir}/man5/collectd-snmp.5*
 %doc %{_mandir}/man5/collectd-unixsock.5*
 %doc %{_mandir}/man5/types.db.5*
@@ -127,6 +128,9 @@ fi
 %exclude %{_libdir}/libcollectdclient.la
 
 %changelog
+* Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 4.9.0-1
+- Updated to release 4.9.0.
+
 * Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 4.8.0-1
 - Updated to release 4.8.0.
 

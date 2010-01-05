@@ -7,7 +7,7 @@
 
 Summary: Multi Router Traffic Grapher
 Name: mrtg
-Version: 2.14.5
+Version: 2.16.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -140,6 +140,9 @@ done
 %{_libdir}/mrtg2/
 
 %changelog
+* Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 2.16.1-1
+- Updated to release 2.16.1.
+
 * Wed Jul 19 2006 Dag Wieers <dag@wieers.com> - 2.14.5-1
 - Updated to release 2.14.5.
 

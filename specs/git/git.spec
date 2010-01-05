@@ -4,7 +4,6 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-
 Summary: Git core and tools
 Name: git
 Version: 1.5.2.1

@@ -5,7 +5,7 @@
 
 Summary: Tool to impose stress on a POSIX-compliant operating system
 Name: stress
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -65,6 +65,9 @@ specific components thereof.
 #exclude %{_infodir}/dir
 
 %changelog
+* Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Thu Oct 29 2009 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 

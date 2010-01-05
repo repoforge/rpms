@@ -5,15 +5,11 @@
 
 ### pkgconfig < 0.16.0 doesn't like 'URL:'
 %{?el4:%define _without_pkgconfig16 1}
-%{?fc3:%define _without_pkgconfig16 1}
-%{?fc2:%define _without_pkgconfig16 1}
-%{?fc1:%define _without_pkgconfig16 1}
 %{?el3:%define _without_pkgconfig16 1}
-%{?el2:%define _without_pkgconfig16 1}
 
 Summary: Exif and Iptc metadata manipulation library and tools
 Name: exiv2
-Version: 0.18.2
+Version: 0.19
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -22,7 +18,12 @@ URL: http://home.arcor.de/ahuggel/exiv2/index.html
 Source: http://home.arcor.de/ahuggel/exiv2/exiv2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libtool, doxygen, libxslt, graphviz, python
+BuildRequires: doxygen
+BuildRequires: gcc-c++
+BuildRequires: graphviz
+BuildRequires: libtool
+BuildRequires: libxslt
+BuildRequires: python
 
 %description
 Exiv2 comprises of a C++ library and a command line utility to access image
@@ -84,6 +85,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libexiv2.la
 
 %changelog
+* Thu Dec 31 2009 Dag Wieers <dag@wieers.com> - 0.19-1
+- Updated to release 0.19.
+
 * Sat Jul 04 2009 Dag Wieers <dag@wieers.com> - 0.18.2-1
 - Updated to release 0.18.2.
 

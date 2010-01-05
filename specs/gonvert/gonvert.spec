@@ -3,12 +3,9 @@
 # Upstream: Anthony Tekatch <anthony$unihedron,com>
 
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 Summary: Units conversion utility
 Name: gonvert
-Version: 0.2.19
+Version: 0.2.23
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -66,6 +63,9 @@ your own units.
 %exclude %{_docdir}/gonvert/
 
 %changelog
+* Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 0.2.23-1
+- Updated to release 0.2.23.
+
 * Thu Sep 04 2008 Dag Wieers <dag@wieers.com> - 0.2.19-1
 - Updated to release 0.2.19.
 

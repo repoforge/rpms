@@ -2,7 +2,6 @@
 # Authority: matthias
 # Upstream: <libquicktime-devel$lists,sourceforge,net>
 
-
 ### Problems when compiling against EL4 alsa-lib
 %{?el4:%define _without_alsa 1}
 %{?el4:%define _without_modxorg 1}
@@ -15,7 +14,7 @@
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
 Version: 1.1.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libquicktime.sourceforge.net/
@@ -123,6 +122,9 @@ programs that need to access quicktime files using libquicktime.
 %exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 1.1.3-2
+- Rebuild against newer faad2 2.7.
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.1.3-1
 - Updated to release 1.1.3.
 

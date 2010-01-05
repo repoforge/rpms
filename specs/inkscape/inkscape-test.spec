@@ -4,65 +4,71 @@
 
 # Tag: test
 
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh8:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Vector drawing application
 Name: inkscape
-%define real_version 0.47pre0
 Version: 0.47
-Release: 0.pre0%{?dist}
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
 
-Source: http://dl.sf.net/inkscape/inkscape-%{real_version}.tar.bz2
+Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
+Patch0: inkscape-20090410svn-uniconv.patch
+# Patch1: inkscape-20090410svn-formats.patch
+Patch1: inkscape-20091229ay-el5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildRequires: libsigc++2-devel, gtkmm24-devel, glibmm-devel
-BuildRequires: gtkmm2, lcms-devel
-# >= 2.4
-BuildRequires: libgc-devel,  perl(XML::Parser)
-BuildRequires: gcc-c++, pkgconfig
-BuildRequires: gettext, libpng-devel, freetype-devel, zlib-devel
-BuildRequires: gtk2-devel >= 2.8, libxml2-devel, libxslt-devel
-BuildRequires: python-devel, lcms-devel >= 1.13
+BuildRequires: cairomm-devel
+BuildRequires: freetype-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: gnome-vfs2-devel >= 2.0
+BuildRequires: gsl
+BuildRequires: gsl-devel
+BuildRequires: gtk2-devel >= 2.8
+BuildRequires: gtkmm2
+BuildRequires: gtkmm24-devel
+BuildRequires: glibmm24-devel
+BuildRequires: intltool
+BuildRequires: lcms-devel >= 1.13
+BuildRequires: libgc-devel
+BuildRequires: libpng-devel
+BuildRequires: libsigc++-devel
+BuildRequires: libsigc++20-devel
+BuildRequires: libwpg-devel
+BuildRequires: libxml2-devel
+BuildRequires: libxslt-devel
 BuildRequires: loudmouth-devel >= 1.0
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: perl(XML::Parser)
+BuildRequires: pkgconfig
+BuildRequires: poppler-devel
+BuildRequires: python-devel
+BuildRequires: zlib-devel
 #%{?_without_modxorg:BuildRequires: XFree86-devel, XFree86-Mesa-libGLU}
 %{?_without_modxorg:BuildRequires: XFree86-devel, xorg-x11-Mesa-libGLU}
 %{!?_without_modxorg:BuildRequires: mesa-libGL-devel, mesa-libGLU-devel}
-
-Requires: pstoedit
+Requires: gsl
 Requires: perl(Image::Magick)
+Requires: pstoedit
 
 %description
-Inkscape is a SVG based generic vector-drawing program.
+Inkscape is an SVG based generic vector-drawing program.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure \
     --enable-inkboard \
     --enable-lcms \
+    --enable-poppler-cairo \
     --enable-static="no" \
     --with-gnome-vfs \
     --with-inkjar \
@@ -76,14 +82,6 @@ Inkscape is a SVG based generic vector-drawing program.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%if %{!?_without_freedesktop:1}0
-    desktop-file-install --delete-original         \
-        --vendor %{desktop_vendor}                 \
-        --add-category X-Red-Hat-Base              \
-        --dir %{buildroot}%{_datadir}/applications \
-        %{buildroot}%{_datadir}/applications/inkscape.desktop
-%endif
-
 %post
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
@@ -96,27 +94,29 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* HACKING*txt NEWS README TRANSLATORS
-%doc %{_mandir}/man1/ink*.1*
-%doc %{_mandir}/*/man1/ink*.1*
-%{_bindir}/ink*
-#%{_libdir}/inkscape
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-inkscape.desktop}
-%{?_without_freedesktop:%{_datadir}/applications/inkscape.desktop}
+%doc %{_mandir}/man1/inkscape.1*
+%doc %{_mandir}/man1/inkview.1*
+%doc %{_mandir}/*/man1/inkscape.1*
+#%doc %{_mandir}/*/man1/inkview.1*
+%{_bindir}/inkscape
+%{_bindir}/inkview
+%{_datadir}/applications/inkscape.desktop
 %{_datadir}/inkscape/
 %{_datadir}/pixmaps/inkscape.png
 
 %changelog
-* Thu Jul 02 2009 Dag Wieers <dag@wieers.com> - 0.47-0.pre0
-- Updated to release 0.47pre0.
+* Tue Dec 29 2009 Akemi Yagi <amyagi@gmail.com> - 0.47-1
+- Updated to release 0.47.
+- Applied el5 patch.
 
-* Tue Feb 12 2008 Dag Wieers <dag@wieers.com> - 0.45.1+0.46pre1-1
-- Updated to release 0.45.1+0.46pre1.
+* Wed Mar 26 2008 Dag Wieers <dag@wieers.com> - 0.46-1
+- Updated to release 0.46.
 
-* Sun Jul 29 2007 Dag Wieers <dag@wieers.com> - 0.45.1-2
+* Sun Jul 29 2007 Dag Wieers <dag@wieers.com> - 0.45-2
 - Rebuild against libgc-7.0.
 
-* Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 0.45.1-1
-- Updated to release 0.45.1.
+* Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 0.45-1
+- Updated to release 0.45.
 
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.44.1-1
 - Updated to release 0.44.1.

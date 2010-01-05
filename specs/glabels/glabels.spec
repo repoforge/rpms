@@ -2,6 +2,7 @@
 # Authority: dag
 # Upstream: Jim Evins <evins$snaught,com>
 
+%define desktop_vendor rpmforge
 
 #%{?el4:#define _without_shared_mime 1}
 #%{?fc3:#define _without_shared_mime 1}
@@ -11,7 +12,7 @@
 
 Summary: GUI program to create labels and business cards
 Name: glabels
-Version: 2.2.4
+Version: 2.2.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
@@ -66,12 +67,12 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall \
+%{__make} install DESTDIR="%{buildroot}" \
     UPDATE_DESKTOP_DATABASE="echo" \
     UPDATE_MIME_DATABASE="echo"
 %find_lang %{name}
 
-desktop-file-install --vendor gnome --delete-original \
+desktop-file-install --vendor %{desktop_vendor} --delete-original \
     --add-category X-Red-Hat-Base                 \
     --dir %{buildroot}%{_datadir}/applications    \
     %{buildroot}%{_datadir}/applications/glabels.desktop
@@ -95,7 +96,7 @@ scrollkeeper-update -q || :
 %{_bindir}/glabels*
 %{_libdir}/libglabels.so.*
 %{_datadir}/application-registry/glabels.applications
-%{_datadir}/applications/gnome-glabels.desktop
+%{_datadir}/applications/%{desktop_vendor}-glabels.desktop
 %{_datadir}/glabels/
 #%{_datadir}/mime/application/x-glabels.xml
 #%exclude %{_datadir}/mime/XMLnamespaces
@@ -111,7 +112,7 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/glabels.png
 %{_datadir}/pixmaps/glabels-application-x-glabels.png
 %{_datadir}/omf/glabels/
-%exclude %{_localstatedir}/scrollkeeper
+%exclude %{_localstatedir}/lib/scrollkeeper
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -123,6 +124,9 @@ scrollkeeper-update -q || :
 %exclude %{_libdir}/libglabels.la
 
 %changelog
+* Fri Nov 13 2009 Dag Wieers <dag@wieers.com> - 2.2.6-1
+- Updated to release 2.2.6.
+
 * Tue Dec 23 2008 Dag Wieers <dag@wieers.com> - 2.2.4-1
 - Updated to release 2.2.4.
 
