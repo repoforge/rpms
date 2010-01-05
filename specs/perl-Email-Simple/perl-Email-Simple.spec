@@ -10,7 +10,7 @@
 Summary: Simple parsing of RFC2822 message format and headers
 Name: perl-Email-Simple
 Version: 2.100
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Simple/
@@ -24,6 +24,9 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.47
 Requires: perl(Email::Date::Format)
 Requires: perl(Test::More) >= 0.47
+
+# as of version 2.100, this includes Email::Simple::Creator
+Obsoletes: perl-Email-Simple-Creator
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -60,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Simple.pm
 
 %changelog
+* Tue Jan 05 2010 Steve Huff <shuff@vecna.org> - 2.100-2
+- Obsoletes perl-Email-Simple-Creator.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2.100-1
 - Updated to version 2.100.
 
