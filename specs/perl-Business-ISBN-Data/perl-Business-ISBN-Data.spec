@@ -9,18 +9,24 @@
 
 Summary: Data pack for Business::ISBN
 Name: perl-Business-ISBN-Data
-Version: 20081020
+Version: 20081208
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Business-ISBN-Data/
 
-Source: http://www.cpan.org/modules/by-module/Business/Business-ISBN-Data-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BD/BDFOY/Business-ISBN-Data-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This is a data pack for Business::ISBN.  You can update
@@ -57,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Business/ISBN/Data.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 20081208-1
+- Updated to version 20081208.
+
 * Mon Dec 22 2008 Dag Wieers <dag@wieers.com> - 20081020-1.
 - Updated to release 20081020.
 
