@@ -5,17 +5,17 @@
 # A fairly new intltool is needed
 # ExclusiveDist: el5
 
-%define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
-%define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_version %(%{__python} -c 'import string, sys; print string.split(sys.version, " ")[0]')
-%define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
-%define ruby_archdir %(ruby -rrbconfig -e "puts Config::CONFIG['archdir']")
+%define ruby_sitearch %(/usr/bin/ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
+%define ruby_archdir %(/usr/bin/ruby -rrbconfig -e "puts Config::CONFIG['archdir']")
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.3.8
-Release: 2%{?dist}
+Version: 1.3.9
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -224,6 +224,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{ruby_sitearch}/RRD.so
 
 %changelog
+* Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 1.3.9-1
+- Updated to version 1.3.9.
+
 * Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 1.3.8-2
 - Fixed the Typo in the xorg-x11-fonts-Typo1 requirement :) (Ben)
 
