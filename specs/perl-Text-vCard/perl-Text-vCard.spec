@@ -9,18 +9,29 @@
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
-Version: 2.03
+Version: 2.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-vCard/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-vCard-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/L/LL/LLAP/Text-vCard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Slurp) >= 9999.04
+BuildRequires: perl(MIME::QuotedPrint) >= 3.07
+BuildRequires: perl(Test::More) >= 0.1
+BuildRequires: perl(Text::vFile::asData) >= 0.05
+Requires: perl(File::Slurp) >= 9999.04
+Requires: perl(MIME::QuotedPrint) >= 3.07
+Requires: perl(Test::More) >= 0.1
+Requires: perl(Text::vFile::asData) >= 0.05
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 With this module you can create and edit a single vCard (RFC 2426).
@@ -52,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/vCard.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 2.04-1
+- Updated to version 2.04.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 2.03-1
 - Updated to release 2.03.
 
