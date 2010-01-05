@@ -9,17 +9,22 @@
 
 Summary: Uses an mmap'ed file to act as a shared memory interprocess cache
 Name: perl-Cache-FastMmap
-Version: 1.28
+Version: 1.34
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-FastMmap/
 
-Source: http://www.cpan.org/modules/by-module/Cache/Cache-FastMmap-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROBM/Cache-FastMmap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Storable)
+Requires: perl(Storable)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Uses an mmap'ed file to act as a shared memory interprocess cache.
@@ -53,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Cache/FastMmap.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.34-1
+- Updated to version 1.34.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.28-1
 - Updated to release 1.28.
 
