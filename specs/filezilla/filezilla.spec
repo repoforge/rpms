@@ -6,7 +6,7 @@
 
 Summary: GUI SFTP/FTP client
 Name: filezilla
-Version: 3.3.0.1
+Version: 3.3.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Net
@@ -22,12 +22,14 @@ BuildRequires: gettext
 BuildRequires: libidn-devel
 BuildRequires: ncurses-devel
 BuildRequires: pkgconfig >= 0.9.0
+BuildRequires: xdg-utils
 
 # For gnutls
 BuildRequires: libgpg-error-devel, libgcrypt-devel, zlib-devel
 
 Requires: filesystem
 Requires: gnome-icon-theme
+Requires: xdg-utils
 
 %description
 FileZilla Client is a fast and reliable cross-platform FTP, FTPS and SFTP
@@ -85,6 +87,9 @@ export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
 %{_libdir}/*
 
 %changelog
+* Tue Jan 05 2010 Steve Huff <shuff@vecna.org> - 3.3.1-1
+- Updated to version 3.3.1.
+
 * Tue Nov 17 2009 Steve Huff <shuff@vecna.org> - 3.3.0.1-1
 - Updated to version 3.3.0.1.
 
