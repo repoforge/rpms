@@ -8,7 +8,7 @@
 
 Summary: A set of commonly-used type constraints that do not ship with Moose by default.
 Name: perl-MooseX-Types-Common
-Version: 0.001000
+Version: 0.001001
 Release: 1%{?dist}
 License: perl
 Group: Applications/CPAN
@@ -18,6 +18,8 @@ Source: http://search.cpan.org/CPAN/authors/id/G/GR/GRODITI/MooseX-Types-Common-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Moose) >= 0.39
 BuildRequires: perl(MooseX::Types) >= 0.04
 #BuildRequires: perl(Test::More) >= 0.62
@@ -60,5 +62,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Types/Common/String.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 0.001001-1
+- Updated to version 0.001001.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.001000-1
 - Initial package (using mcsfb)
