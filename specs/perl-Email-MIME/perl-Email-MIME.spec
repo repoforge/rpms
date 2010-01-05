@@ -37,8 +37,10 @@ Requires: perl(Encode) >= 1.9801
 Requires: perl(MIME::Types) >= 1.13
 Requires: perl(Test::More) >= 0.47
 
-# as of version 1.903, this includes Email::MIME::Creator
+# as of version 1.903, this includes Email::MIME::Creator and 
+# Email::MIME::Modifier
 Obsoletes: perl-Email-MIME-Creator
+Obsoletes: perl-Email-MIME-Modifier
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -86,8 +88,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %changelog
 * Tue Jan 05 2010 Steve Huff <shuff@vecna.org> - 1.903-2
-- This package obsoletes our perl-Email-MIME-Creator package, 
-  which is in the vault as of 2009-12-30.
+- This package obsoletes our perl-Email-MIME-Creator and 
+  perl-Email-MIME-Modifier packages.
 
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.903-1
 - Updated to version 1.903.
