@@ -1,5 +1,6 @@
-# $Id$
+# $Id:$
 # Authority: cmr
+# Upstream: Marc Lehmann <schmorp@schmorp.de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 
 Summary: Perl module named EV
 Name: perl-EV
-Version: 3.8
+Version: 3.9
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -17,8 +18,12 @@ URL: http://search.cpan.org/dist/EV/
 Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/EV-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(common::sense)
+Requires: perl(common::sense)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 perl-EV is a Perl module.
@@ -49,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/EV
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 3.9-1
+- Updated to version 3.9.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 3.8-1
 - Updated to version 3.8.
 
