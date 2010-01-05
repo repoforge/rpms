@@ -9,7 +9,7 @@
 
 Summary: Perl extension for executing embedded JavaScript
 Name: perl-%{real_name}
-Version: 1.14
+Version: 1.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -84,6 +84,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/JavaScript/
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.15-1
+- Updated to version 1.15.
+
 * Wed Dec 23 2009 Steve Huff <shuff@vecna.org> - 1.14-1
 - Updated to version 1.14.
 
