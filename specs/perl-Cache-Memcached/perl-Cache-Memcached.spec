@@ -9,17 +9,28 @@
 
 Summary: Perl module implements a client library for memcached
 Name: perl-Cache-Memcached
-Version: 1.24
+Version: 1.28
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Memcached/
 
-Source: http://www.cpan.org/modules/by-module/Cache/Cache-Memcached-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRADFITZ/Cache-Memcached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Encode)
+BuildRequires: perl(Storable)
+BuildRequires: perl(String::CRC32)
+BuildRequires: perl(Time::HiRes)
+Requires: perl(Encode)
+Requires: perl(Storable)
+Requires: perl(String::CRC32)
+Requires: perl(Time::HiRes)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-Cache-Memcached is a Perl module implements a client library
@@ -55,5 +66,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Cache/Memcached.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.28-1
+- Updated to version 1.28.
+
 * Wed Oct 10 2007 Dag Wieers <dag@wieers.com> - 1.24-1
 - Initial package. (using DAR)
