@@ -9,13 +9,13 @@
 
 Summary: Perl extension for SHA-1/224/256/384/512
 Name: perl-Digest-SHA
-Version: 5.47
+Version: 5.48
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-SHA/
 
-Source: http://www.cpan.org/modules/by-module/Digest/Digest-SHA-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSHELOR/Digest-SHA-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.003
@@ -57,6 +57,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Digest/SHA.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 5.48-1
+- Updated to version 5.48.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 5.47-1
 - Updated to release 5.47.
 
