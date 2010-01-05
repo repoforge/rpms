@@ -9,22 +9,28 @@
 
 Summary: Extend your attribute interfaces
 Name: perl-MooseX-AttributeHelpers
-Version: 0.22
+Version: 0.23
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-AttributeHelpers/
 
-Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-AttributeHelpers-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/MooseX-AttributeHelpers-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::Exception) >= 0.21
-BuildRequires: perl(Test::Moose) 
-#BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Moose) >= 0.56
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::Moose)
+#BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More) 
+Requires: perl(Moose) >= 0.56
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Extend your attribute interfaces.
@@ -56,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/AttributeHelpers.pm
 
 %changelog
+* Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 0.23-1
+- Updated to version 0.23.
+
 * Thu Sep 17 2009 Christoph Maser <cmr@financial.com> - 0.22-1
 - Updated to version 0.22.
 
