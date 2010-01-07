@@ -9,19 +9,25 @@
 
 Summary: High level API for event-based execution flow control
 Name: perl-Event-ExecFlow
-Version: 0.63
-Release: 2%{?dist}
+Version: 0.64
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://www.exit1.org/Event-ExecFlow/
 
-Source: http://www.cpan.org/modules/by-module/Event/Event-ExecFlow-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JR/JRED/Event-ExecFlow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(AnyEvent)
-# Provided by either perl or perl-devel
+BuildRequires: perl(AnyEvent) >= 0.4
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildArch: noarch
+BuildRequires: perl(Locale::TextDomain)
+BuildRequires: perl(Test::More)
+Requires: perl(AnyEvent) >= 0.4
+Requires: perl(Locale::TextDomain)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Event::ExecFlow offers a high level API to declare jobs, which mainly execute
@@ -55,6 +61,9 @@ which consist of many jobs.
 %{_mandir}/man3/*
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.64-1
+- Updated to version 0.64.
+
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.63-2
 - Build require perl(ExtUtils::MakeMaker) for F7.
 
