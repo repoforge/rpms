@@ -9,13 +9,13 @@
 
 Summary: Provide simple Radius client facilities
 Name: perl-RadiusPerl
-Version: 0.13
+Version: 0.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RadiusPerl/
 
-Source: http://www.cpan.org/modules/by-module/Authen/RadiusPerl-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MANOWAR/RadiusPerl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Authen/Radius.pm
 
 %changelog
+* Thu Jan 07 2010 Christoph Maser <cmr@financial.com> - 0.15-1
+- Upgrade to version 0.15.
+
 * Mon Nov 26 2007 Dag Wieers <dag@wieers.com> - 0.13-1
 - Initial package. (using DAR)
