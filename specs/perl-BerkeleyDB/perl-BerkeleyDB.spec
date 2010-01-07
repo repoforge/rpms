@@ -10,13 +10,13 @@
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
-Version: 0.36
+Version: 0.39
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/BerkeleyDB/
 
-Source: http://www.cpan.org/modules/by-module/BerkeleyDB/BerkeleyDB-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PM/PMQS/BerkeleyDB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/BerkeleyDB.pod
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.39-1
+- Updated to version 0.39.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 0.36-1
 - Updated to release 0.36.
 
