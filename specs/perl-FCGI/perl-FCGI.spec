@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sven Verdoolaege <skimo$kotnet,org>
+# Upstream: Matt S Trout <perl-stuff@trout.me.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: Fast CGI module
 Name: perl-FCGI
-Version: 0.67
-Release: 1.2%{?dist}
+Version: 0.68
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/FCGI/
 
-Source: http://www.cpan.org/modules/by-module/FCGI/FCGI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSTROUT/FCGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -50,5 +50,8 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/FCGI/
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.68-1
+- Updated to version 0.68.
+
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 0.67-1
 - Initial package.
