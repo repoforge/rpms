@@ -9,7 +9,7 @@
 
 Summary: Fallbackable module loader
 Name: perl-Best
-Version: 0.11
+Version: 0.12
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Best.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.11-1
 - Initial package. (using DAR)
