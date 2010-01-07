@@ -10,12 +10,12 @@
 Summary: Class which deals with simultaneous asynchronous calls
 Name: perl-Async-Group
 Version: 0.3
-Release: 1.2%{?dist}
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Async-Group/
 
-Source: http://www.cpan.org/modules/by-module/Async/Async-Group-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DD/DDUMONT/Async-Group-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Async/Group.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.3-1
+- Updated to version 0.3.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 0.3-1
 - Initial package.
