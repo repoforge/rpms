@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements JSON serialising/deserialising
 Name: perl-JSON-XS
-Version: 2.26
+Version: 2.27
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/JSON/XS.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 2.27-1
+- Updated to version 2.27.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.26-1
 - Updated to version 2.26.
 
