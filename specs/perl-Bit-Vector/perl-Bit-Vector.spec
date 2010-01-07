@@ -11,17 +11,27 @@
 
 Summary: Efficient bit vector, set of integers and "big int" math library
 Name: perl-Bit-Vector
-Version: 6.4
-Release: 2%{?dist}
+Version: 7.1
+Release: 1%{?dist}
 License: Artistic/GPL/LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Bit-Vector/
 
-Source: http://www.cpan.org/modules/by-module/Bit/Bit-Vector-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STBEY/Bit-Vector-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp::Clan) >= 5.3
+#BuildRequires: perl(Storable) >= 2.21
+BuildRequires: perl(Storable)
+Requires: perl(Carp::Clan) >= 5.3
+#Requires: perl(Storable) >= 2.21
+Requires: perl(Storable)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Efficient bit vector, set of integers and "big int" math library.
@@ -58,6 +68,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Bit/Vector/
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 7.1-1
+- Updated to version 7.1.
+
 * Sun Jun 04 2006 Dag Wieers <dag@wieers.com> - 6.4-2
 - Fixed a problem on FC2 and FC3.
 
