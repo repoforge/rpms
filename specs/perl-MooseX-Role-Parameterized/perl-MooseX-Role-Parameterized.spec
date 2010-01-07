@@ -9,7 +9,7 @@
 
 Summary: Roles with composition parameters
 Name: perl-%{real_name}
-Version: 0.14
+Version: 0.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildArch: noarch
 
 BuildRequires: perl >= 5.8.1
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Moose) >= 0.78
 BuildRequires: perl(Test::Exception) >= 0.27
 BuildRequires: perl(Test::Moose)
 #BuildRequires: perl(Test::More) >= 0.88
@@ -78,5 +79,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Role/*
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.15-1
+- Updated to version 0.15.
+
 * Fri Dec 18 2009 Steve Huff <shuff@vecna.org> - 0.14-1
 - Initial package.
