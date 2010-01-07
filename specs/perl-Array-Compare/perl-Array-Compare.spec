@@ -9,19 +9,26 @@
 
 Summary: Perl extension for comparing arrays
 Name: perl-Array-Compare
-Version: 1.16
+Version: 2.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Array-Compare/
 
-Source: http://www.cpan.org/modules/by-module/Array/Array-Compare-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAVECROSS/Array-Compare-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl(Carp)
+BuildRequires: perl(Moose)
 BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Module::Build)
+Requires: perl(Carp)
+Requires: perl(Moose)
 Requires: perl >= 0:5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Array::Compare is a Perl module which allows you to compare two arrays.
@@ -40,12 +47,12 @@ differing columns.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -61,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Array/Compare.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 2.01-1
+- Updated to version 2.01.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.16-1
 - Updated to release 1.16.
 
