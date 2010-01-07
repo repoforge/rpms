@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos Boumans <gro,miwd$enak>
+# Upstream: Chris Williams <chris@bingosnet.co.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Generic file fetching mechanism
 Name: perl-File-Fetch
-Version: 0.22
+Version: 0.24
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -70,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Fetch.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.24-1
+- Updated to version 0.24.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.22-1
 - Updated to version 0.22.
 
