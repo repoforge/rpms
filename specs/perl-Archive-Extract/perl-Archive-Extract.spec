@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos Boumans <kane$cpan,org>
+# Upstream: Chris Williams <chris@bingosnet.co.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,38 @@
 
 Summary: Generic archive extracting mechanism
 Name: perl-Archive-Extract
-Version: 0.28
+Version: 0.38
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Extract/
 
-Source: http://www.cpan.org/modules/by-module/Archive/Archive-Extract-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/Archive-Extract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(IPC::Cmd) >= 0.42
+BuildRequires: perl(Locale::Maketext::Simple)
+BuildRequires: perl(Module::Load::Conditional) >= 0.04
+BuildRequires: perl(Params::Check) >= 0.07
+BuildRequires: perl(Test::More)
+Requires: perl(File::Basename)
+Requires: perl(File::Path)
+Requires: perl(File::Spec) >= 0.82
+Requires: perl(IPC::Cmd) >= 0.42
+Requires: perl(Locale::Maketext::Simple)
+Requires: perl(Module::Load::Conditional) >= 0.04
+Requires: perl(Params::Check) >= 0.07
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 A generic archive extracting mechanism.
@@ -50,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Extract.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.38-1
+- Updated to version 0.38.
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 0.28-1
 - Updated to release 0.28.
 
