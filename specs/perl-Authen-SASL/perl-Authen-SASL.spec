@@ -14,21 +14,29 @@
 
 Summary: SASL Authentication framework
 Name: perl-Authen-SASL
-Version: 2.12
+Version: 2.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Authen-SASL/
 
-Source: http://www.cpan.org/modules/by-module/Authen/Authen-SASL-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GB/GBARR/Authen-SASL-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
 BuildRequires: perl(Digest::HMAC_MD5)
+BuildRequires: perl(Digest::MD5)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-%{!?_without_gssapi:BuildRequires: perl(GSSAPI)}
-Requires: perl >= 0:5.005
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.005
+Requires: perl(Digest::HMAC_MD5)
+Requires: perl(Digest::MD5)
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 SASL Authentication framework.
@@ -61,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Authen/SASL.pod
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 2.13-1
+- Updated to version 2.13.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 2.12-1
 - Updated to release 2.12.
 
