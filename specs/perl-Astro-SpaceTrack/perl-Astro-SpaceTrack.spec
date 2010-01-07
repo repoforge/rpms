@@ -9,18 +9,36 @@
 
 Summary: Download satellite orbital elements from Space Track
 Name: perl-Astro-SpaceTrack
-Version: 0.034
+Version: 0.044
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Astro-SpaceTrack/
 
-Source: http://www.cpan.org/modules/by-module/Astro/Astro-SpaceTrack-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/W/WY/WYANT/Astro-SpaceTrack-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Tk)
+BuildRequires: perl(Compress::Zlib)
+BuildRequires: perl(HTML::Parser)
+BuildRequires: perl(HTTP::Response)
+BuildRequires: perl(HTTP::Status)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Params::Util) >= 0.12
+BuildRequires: perl >= 5.006
+Requires: perl(Compress::Zlib)
+Requires: perl(HTML::Parser)
+Requires: perl(HTTP::Response)
+Requires: perl(HTTP::Status)
+Requires: perl(LWP::UserAgent)
+Requires: perl(Params::Util) >= 0.12
+Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This library logs in to the Space Track web site and downloads orbital
@@ -66,6 +84,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Astro/SpaceTrack.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.044-1
+- Updated to version 0.044.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 0.034-1
 - Updated to release 0.034.
 
