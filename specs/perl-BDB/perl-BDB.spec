@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Marc Lehmann <pcg$goof,com>
+# Upstream: Marc Lehmann <schmorp@schmorp.de>
 # db4 is too old on el4
 # ExcludeDist: el4 el3
 
@@ -11,7 +11,7 @@
 
 Summary: Asynchronous Berkeley DB access
 Name: perl-BDB
-Version: 1.84
+Version: 1.87
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -21,10 +21,13 @@ Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/BDB-%{version}.tar.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: db4-devel >= 4.3
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(common::sense)
+Requires: perl(common::sense)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 
 %description
@@ -58,6 +61,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/BDB.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 1.87-1
+- Updated to version 1.87.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.84-1
 - Updated to version 1.84.
 
