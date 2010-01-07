@@ -9,13 +9,13 @@
 
 Summary: Associate user-defined magic to variables from Perl
 Name: perl-Variable-Magic
-Version: 0.39
-Release: 1
+Version: 0.40
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Variable-Magic/
 
-Source: http://www.cpan.org/modules/by-module/Variable/Variable-Magic-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/V/VP/VPIT/Variable-Magic-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Carp)
@@ -68,6 +68,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Variable/Magic.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.39-1
 - Updated to version 0.39.
 
