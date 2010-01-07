@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ned Konz <perl$bike-nomad,com>
+# Upstream: Adam Kennedy <adamk@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,19 +9,47 @@
 
 Summary: Provide an interface to ZIP archive files
 Name: perl-Archive-Zip
-Version: 1.26
+Version: 1.30
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Zip/
 
-Source: http://www.cpan.org/modules/by-module/Archive/Archive-Zip-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/Archive-Zip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(Compress::Zlib) >= 1.08
-Requires: perl >= 0:5.00503
+BuildRequires: perl(Compress::Raw::Zlib) >= 2.017
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Copy)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(File::Spec) >= 0.80
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(IO::Handle)
+BuildRequires: perl(IO::Seekable)
+BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Time::Local)
+BuildRequires: perl >= 5.00396
+Requires: perl(Compress::Raw::Zlib) >= 2.017
+Requires: perl(File::Basename)
+Requires: perl(File::Copy)
+Requires: perl(File::Find)
+Requires: perl(File::Path)
+Requires: perl(File::Spec) >= 0.80
+Requires: perl(File::Temp)
+Requires: perl(IO::File)
+Requires: perl(IO::Handle)
+Requires: perl(IO::Seekable)
+Requires: perl(Test::More) >= 0.42
+Requires: perl(Time::Local)
+Requires: perl >= 5.00396
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 The Archive::Zip module allows a Perl program to create, manipulate,
@@ -64,6 +92,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Archive/Zip.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 1.30-1
+- Updated to version 1.30.
+
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 1.26-1
 - Updated to release 1.26.
 
