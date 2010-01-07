@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Chris Williams <chris@bingosnet.co.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,18 +9,41 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.40
+Version: 1.54
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar/
 
-Source: http://www.cpan.org/modules/by-module/Archive/Archive-Tar-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/Archive-Tar-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.00503
+BuildRequires: perl(Compress::Zlib) >= 2.015
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec) >= 0.82
+BuildRequires: perl(IO::Compress::Base) >= 2.015
+BuildRequires: perl(IO::Compress::Bzip2) >= 2.015
+BuildRequires: perl(IO::Compress::Gzip) >= 2.015
+BuildRequires: perl(IO::Zlib) >= 1.01
+BuildRequires: perl(Package::Constants)
+BuildRequires: perl(Test::Harness) >= 2.26
+BuildRequires: perl(Test::More)
+Requires: perl(Compress::Zlib) >= 2.015
+Requires: perl(File::Spec) >= 0.82
+Requires: perl(IO::Compress::Base) >= 2.015
+Requires: perl(IO::Compress::Bzip2) >= 2.015
+Requires: perl(IO::Compress::Gzip) >= 2.015
+Requires: perl(IO::Zlib) >= 1.01
+Requires: perl(Package::Constants)
+Requires: perl(Test::Harness) >= 2.26
+Requires: perl(Test::More)
 Requires: perl >= 0:5.00503
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Module for manipulations of tar archives.
@@ -55,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Tar.pm
 
 %changelog
+* Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 1.54-1
+- Updated to version 1.54.
+
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 1.40-1
 - Updated to release 1.40.
 
