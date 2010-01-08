@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ryan Eatmon <reatmon$mail,com>
+# Upstream: Darian Anthony Patrick <dapatrick@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,43 @@
 
 Summary: XML Stream connection support
 Name: perl-XML-Stream
-Version: 1.22
-Release: 1.2%{?dist}
+Version: 1.23
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Stream/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-Stream-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAPATRICK/XML-Stream-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Authen::SASL)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Encode)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(FileHandle)
+BuildRequires: perl(IO::Select)
+BuildRequires: perl(IO::Socket)
+BuildRequires: perl(MIME::Base64)
+BuildRequires: perl(POSIX)
+BuildRequires: perl(Sys::Hostname)
+BuildRequires: perl >= 5.008
+BuildRequires: perl(utf8)
+Requires: perl(Authen::SASL)
+Requires: perl(Carp)
+Requires: perl(Encode)
+Requires: perl(FileHandle)
+Requires: perl(IO::Select)
+Requires: perl(IO::Socket)
+Requires: perl(MIME::Base64)
+Requires: perl(POSIX)
+Requires: perl(Sys::Hostname)
+Requires: perl >= 5.008
+Requires: perl(utf8)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module contains support for XML stream connections.
@@ -49,6 +74,9 @@ This module contains support for XML stream connections.
 %{perl_vendorlib}/XML/Stream/*
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 1.23-1
+- Updated to version 1.23.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.22-1.2
 - Rebuild for Fedora Core 5.
 
