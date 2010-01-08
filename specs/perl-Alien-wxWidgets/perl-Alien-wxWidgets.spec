@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Mattia Barbon <mbarbon$cpan,org>
+# Upstream: Mattia Barbon <mbarbon@users.sourceforge.net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,23 +9,27 @@
 
 Summary: Building, finding and using wxWidgets binaries
 Name: perl-Alien-wxWidgets
-Version: 0.44
+Version: 0.48
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Alien-wxWidgets/
 
-Source: http://www.cpan.org/modules/by-module/Alien/Alien-wxWidgets-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MB/MBARBON/Alien-wxWidgets-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: wxGTK-devel
-# From yaml build_requires
+BuildRequires: gtk2-devel
 BuildRequires: perl(ExtUtils::CBuilder) >= 0.24
+BuildRequires: perl(File::Fetch)
 BuildRequires: perl(Module::Build) >= 0.28
-# From yaml requires
 BuildRequires: perl(Module::Pluggable) >= 2.6
 BuildRequires: perl >= 5.006
+BuildRequires: wget
+Requires: gtk2
+Requires: perl(Module::Pluggable) >= 2.6
 Requires: perl >= 5.006
-Requires: wxGTK
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Building, finding and using wxWidgets binaries.
@@ -34,12 +38,12 @@ Building, finding and using wxWidgets binaries.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" </dev/null
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -60,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/Alien/wxWidgets.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 0.48-1
+- Updated to version 0.48.
+
 * Tue Sep 29 2009 Christoph Maser <cmr@financial.com> - 0.44-1
 - Updated to version 0.44.
 
