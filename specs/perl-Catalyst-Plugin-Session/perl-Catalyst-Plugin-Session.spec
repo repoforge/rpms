@@ -46,7 +46,8 @@ Requires: perl(Moose) >= 0.76
 Requires: perl(MooseX::Emulate::Class::Accessor::Fast) >= 0.00801
 Requires: perl(Object::Signature)
 Requires: perl(Test::More)
-Requires: perl(Tie::RefHash) >= 1.34
+#Requires: perl(Tie::RefHash) >= 1.34
+Requires: perl(Tie::RefHash)
 Requires: perl(namespace::clean) >= 0.10
 Requires: perl >= 5.8.0
 
