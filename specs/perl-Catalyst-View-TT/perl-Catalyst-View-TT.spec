@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Marcus Ramberg <mramberg$cpan,org>
+# Upstream: Tomas Doran <bobtfish@bobtfish.net>
+# ExcludeDist: el4  <- inherited by Catalyst::Runtime
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,22 +10,37 @@
 
 Summary: Template View Class
 Name: perl-Catalyst-View-TT
-Version: 0.27
+Version: 0.31
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-View-TT/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-View-TT-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/Catalyst-View-TT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Catalyst) >= 5.7
 BuildRequires: perl(Class::Accessor)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(MRO::Compat)
 BuildRequires: perl(Path::Class)
 BuildRequires: perl(Template)
 BuildRequires: perl(Template::Timer)
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.8.1
+Requires: perl(Catalyst) >= 5.7
+Requires: perl(Class::Accessor)
+Requires: perl(MRO::Compat)
+Requires: perl(Path::Class)
+Requires: perl(Template)
+Requires: perl(Template::Timer)
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Template View Class.
@@ -33,7 +49,7 @@ Template View Class.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -62,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Helper/View/TTSite.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 0.31-1
+- Updated to version 0.31.
+
 * Mon May 05 2008 Dag Wieers <dag@wieers.com> - 0.27-1
 - Updated to release 0.27.
 
