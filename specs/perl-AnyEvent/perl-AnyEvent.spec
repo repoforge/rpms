@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Marc Lehmann <pcg$goof,com>
+# Upstream: Marc Lehmann <schmorp@schmorp.de>
 # ExcludeDist: el3
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,13 +10,13 @@
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 5.201
+Version: 5.24
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent/
 
-Source: http://www.cpan.org/authors/id/M/ML/MLEHMANN/AnyEvent-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/AnyEvent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -25,12 +25,19 @@ BuildRequires: perl >= 5.8.1
 BuildRequires: perl(ExtUtils::MakeMaker)
 # From yaml recommends
 #BuildRequires: perl(Async::Interrupt)
-BuildRequires: perl(EV)
-BuildRequires: perl(Guard)
-BuildRequires: perl(JSON)
-BuildRequires: perl(JSON::XS)
-BuildRequires: perl(Net::SSLeay)
+BuildRequires: perl(EV) >= 3.05
+BuildRequires: perl(Guard) >= 1.02
+BuildRequires: perl(JSON) >= 2.09
+BuildRequires: perl(JSON::XS) >= 2.2
+BuildRequires: perl(Net::SSLeay) >= 1.33
+#Requires: perl(Async::Interrupt)
+Requires: perl(EV) >= 3.05
+Requires: perl(Guard) >= 1.02
+Requires: perl(JSON) >= 2.09
+Requires: perl(JSON::XS) >= 2.2
+Requires: perl(Net::SSLeay) >= 1.33
 
+Provides: %{name} = %{version}0-%{release}
 %filter_from_requires /^perl(EV)*/d
 %filter_setup
 
@@ -139,11 +146,13 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man3/AE.3pm*
 %doc %{_mandir}/man3/AnyEvent::*.3pm*
 %dir %{perl_vendorlib}/AnyEvent/
-%{perl_vendorlib}/AnyEvent/*.pm
-%{perl_vendorlib}/AnyEvent/Intro.pod
-%{perl_vendorlib}/AnyEvent/Impl/Perl.pm
-%{perl_vendorlib}/AnyEvent.pm
 %{perl_vendorlib}/AE.pm
+%{perl_vendorlib}/AnyEvent.pm
+%{perl_vendorlib}/AnyEvent/*.pm
+%{perl_vendorlib}/AnyEvent/Impl/Perl.pm
+%{perl_vendorlib}/AnyEvent/Intro.pod
+%{perl_vendorlib}/AnyEvent/Util/idna.pl
+%{perl_vendorlib}/AnyEvent/Util/uts46data.pl
 %exclude %{perl_vendorlib}/AnyEvent/Impl/EV.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/Event.pm
 %exclude %{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
@@ -191,6 +200,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 5.24-1
+- Updated to version 5.24.
+
 * Mon Oct 12 2009 Christoph Maser <cmr@financial.com> - 5.201-1
 - Updated to version 5.201.
 
