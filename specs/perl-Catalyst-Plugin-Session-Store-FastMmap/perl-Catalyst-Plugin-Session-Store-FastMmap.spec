@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Peter Karman <perl$peknet,com>
+# Upstream: Matt S Trout <perl-stuff@trout.me.uk>
+# ExcludeDist: el4  <- inherited by Catalyst::Runtime
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +10,33 @@
 
 Summary: FastMmap session storage backend
 Name: perl-Catalyst-Plugin-Session-Store-FastMmap
-Version: 0.05
+Version: 0.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Session-Store-FastMmap/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-Session-Store-FastMmap-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSTROUT/Catalyst-Plugin-Session-Store-FastMmap-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
+BuildRequires: perl(Cache::FastMmap) >= 1.29
+BuildRequires: perl(Catalyst::Plugin::Session) >= 0.27
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(MRO::Compat)
+BuildRequires: perl(Path::Class)
+Requires: perl(Cache::FastMmap) >= 1.29
+Requires: perl(Catalyst::Plugin::Session) >= 0.27
+Requires: perl(File::Spec)
+Requires: perl(File::Temp)
+Requires: perl(MRO::Compat)
+Requires: perl(Path::Class)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 FastMmap session storage backend.
@@ -54,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Session/Store/FastMmap.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Wed Jan 23 2008 Dag Wieers <dag@wieers.com> - 0.05-1
 - Updated to release 0.05.
 
