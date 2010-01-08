@@ -7,16 +7,17 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name AnyEvent
+%define real_version 5.24
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 5.24
+Version: 5.240
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/AnyEvent-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/AnyEvent-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -37,7 +38,6 @@ Requires: perl(JSON) >= 2.09
 Requires: perl(JSON::XS) >= 2.2
 Requires: perl(Net::SSLeay) >= 1.33
 
-Provides: %{name} = %{version}0-%{release}
 %filter_from_requires /^perl(EV)*/d
 %filter_setup
 
@@ -120,7 +120,7 @@ This subpackage contains the AnyEvent implementation for perl-Tk.
 
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
