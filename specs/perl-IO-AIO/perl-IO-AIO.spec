@@ -1,6 +1,6 @@
 # $Id$
 # Authority: matthias
-# Upstream: Marc Lehmann <pcg$goof,com>
+# Upstream: Marc Lehmann <schmorp@schmorp.de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 3.4
+Version: 3.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/treescan
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 3.5-1
+- Updated to version 3.5.
+
 * Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 3.4-1
 - Updated to version 3.4.
 
