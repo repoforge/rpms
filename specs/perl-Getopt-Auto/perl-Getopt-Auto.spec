@@ -5,22 +5,30 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name Getopt-Auto
+%define real_name Getopt_Auto
 
 Summary: Framework for command-line applications
 Name: perl-Getopt-Auto
-Version: 1.00
-Release: 1.2%{?dist}
+Version: 1.9.0
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Getopt-Auto/
 
-Source: http://www.cpan.org/modules/by-module/Getopt/Getopt-Auto-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GL/GLEACH/Getopt_Auto-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(File::Spec::Functions)
+BuildRequires: perl(Pod::Usage)
+BuildRequires: perl(Readonly)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Output)
+
 
 %description
 Framework for command-line applications.
@@ -49,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Getopt/Auto.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 1.9.0-1
+- Updated to version 1.9.0.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.00-1.2
 - Rebuild for Fedora Core 5.
 
