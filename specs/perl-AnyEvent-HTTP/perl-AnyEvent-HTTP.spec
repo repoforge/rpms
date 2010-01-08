@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: Marc Lehmann <pcg$goof,com>
+# Upstream: Marc Lehmann <schmorp@schmorp.de>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: a simple but non-blocking HTTP/HTTPS client
 Name: perl-%{real_name}
-Version: 1.43
+Version: 1.44
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -21,7 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(AnyEvent) >= 5.0
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(AnyEvent) >= 5.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 AnyEvent provides a framework for multiple event loops.
@@ -51,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/AnyEvent/HTTP.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 1.44-1
+- Updated to version 1.44.
+
 * Thu Sep 17 2009 Steve Huff <shuff@vecna.org> - 1.43-1
 - Initial package.
