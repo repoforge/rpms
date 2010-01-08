@@ -11,20 +11,25 @@
 
 Summary: Gregorian calendar date calculations
 Name: perl-Date-Calc
-Version: 6.0
+Version: 6.3
 Release: 1%{?dist}
 License: Artistic/GPL/LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Date-Calc/
 
-Source: http://www.cpan.org/modules/by-module/Date/Date-Calc-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STBEY/Date-Calc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
-BuildRequires: perl(Bit::Vector) >= 7
-BuildRequires: perl(Carp::Clan) >= 5.3
+BuildRequires: perl(Bit::Vector) >= 7.1
+BuildRequires: perl(Carp::Clan) >= 6.04
+Requires: perl(Bit::Vector) >= 7.1
+Requires: perl(Carp::Clan) >= 6.04
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 
 %description
@@ -58,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Date/
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 6.3-1
+- Updated to version 6.3.
+
 * Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 6.0-1
 - Updated to version 6.0.
 
