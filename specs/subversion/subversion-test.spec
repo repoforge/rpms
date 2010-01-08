@@ -121,7 +121,7 @@ This package includes the Ruby bindings to the Subversion libraries.
 %{!?_without_ruby:%patch8 -p0 -b .ruby-rpath}
 
 %{__rm} -rf neon apr apr-util
-%{__mv} sqlite-3.6.13 sqlite-amalgamation
+%{__mv} sqlite-%{sqlite_version} sqlite-amalgamation
 
 echo _without_swig: %_without_swig
 echo _without_pie: %_without_pie
