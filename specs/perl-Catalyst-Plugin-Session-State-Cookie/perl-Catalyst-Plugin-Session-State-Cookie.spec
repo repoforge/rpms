@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Yuval Kogman <nothingmuch$woobling,org>
+# Upstream: Matt S Trout <perl-stuff@trout.me.uk>
+# ExcludeDist: el4  <- inherited by Catalyst::Runtime
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +10,33 @@
 
 Summary: Maintain session IDs using cookies
 Name: perl-Catalyst-Plugin-Session-State-Cookie
-Version: 0.09
+Version: 0.17
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Session-State-Cookie/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-Session-State-Cookie-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSTROUT/Catalyst-Plugin-Session-State-Cookie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime), perl(Catalyst::Plugin::Session), perl(Test::MockObject)
+BuildRequires: perl(Catalyst) >= 5.80005
+BuildRequires: perl(Catalyst::Plugin::Session) >= 0.27
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(MRO::Compat)
+BuildRequires: perl(Moose)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(namespace::autoclean)
+Requires: perl(Catalyst) >= 5.80005
+Requires: perl(Catalyst::Plugin::Session) >= 0.27
+Requires: perl(MRO::Compat)
+Requires: perl(Moose)
+Requires: perl(namespace::autoclean)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Maintain session IDs using cookies.
@@ -29,7 +45,7 @@ Maintain session IDs using cookies.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -54,5 +70,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Session/State/Cookie.pm
 
 %changelog
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 0.17-1
+- Updated to version 0.17.
+
 * Sun Dec 30 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)
