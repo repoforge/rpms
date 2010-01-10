@@ -58,10 +58,14 @@ of all, Xdg-utils is provided as open source and free of charge.
 %files
 %defattr(-,root,root,-)
 %doc ChangeLog LICENSE README RELEASE_NOTES TODO
-%{_bindir}/xdg-*
-%{_mandir}/man1/xdg-*
+%doc %{_mandir}/man?/*
+%{_bindir}/*
 
 %changelog
+* Sun Jan 10 2010 Steve Huff <shuff@vecna.org>
+- man pages should be %doc
+- why mess with regexps that work?
+
 * Sun Jan 10 2010 Yury V. Zaytsev <yury@shurup.com> - 1.0.2-2
 - Synced the SPEC with CentOS Extras.
 
