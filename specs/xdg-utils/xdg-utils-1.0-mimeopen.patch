@@ -1,0 +1,18 @@
+--- xdg-utils-1.0/scripts/xdg-open.mimeopen	2006-10-17 22:55:02.000000000 +0200
++++ xdg-utils-1.0/scripts/xdg-open	2006-10-17 22:55:15.000000000 +0200
+@@ -360,6 +360,15 @@
+ 
+ open_generic()
+ {
++    if mimeopen -v 2>/dev/null 1>&2; then
++        mimeopen -n "$1"
++        if [ $? -eq 0 ]; then
++            exit_success
++        else
++            exit_failure_operation_failed
++        fi
++    fi
++
+     IFS=":"
+     for browser in $BROWSER; do
+         if [ x"$browser" != x"" ]; then

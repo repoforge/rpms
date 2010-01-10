@@ -1,0 +1,11 @@
+--- xdg-utils-1.0.1/scripts/xdg-open.htmlview	2007-04-23 08:46:17.000000000 -0500
++++ xdg-utils-1.0.1/scripts/xdg-open	2007-04-23 08:47:28.000000000 -0500
+@@ -417,7 +417,7 @@
+ if [ x"$DE" = x"" ]; then
+     # if BROWSER variable is not set, check some well known browsers instead
+     if [ x"$BROWSER" = x"" ]; then
+-        BROWSER=firefox:mozilla:netscape
++        BROWSER=htmlview:firefox:mozilla:netscape:links:lynx
+     fi
+     DE=generic
+ fi

@@ -2,28 +2,27 @@
 # Authority: shuff
 # Upstream: Portland (http://portland.freedesktop.org/)
 
-Summary: Freedesktop.org desktop integration tools
-Name: xdg-utils
-Version: 1.0.2
-Release: 1%{?dist}
-License: MIT
-Group: Applications/System
-URL: http://portland.freedesktop.org/wiki/XdgUtils
+Summary:   Freedesktop.org desktop integration tools
+Name:      xdg-utils
+Version:   1.0.2
+Release:   2%{?dist}
+License:   MIT
+Group:     System Environment/Base
+URL:       http://portland.freedesktop.org/wiki/XdgUtils
 
-Source: http://portland.freedesktop.org/download/xdg-utils-%{version}.tgz
+Source:    http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: coreutils, gawk, make
-Requires: /bin/sh
+Patch1: xdg-utils-1.0-mimeopen.patch
+Patch2: xdg-utils-1.0.1-typo.patch
+Patch3: xdg-utils-1.0.1-htmlview.patch
 
-Provides: /usr/bin/xdg-desktop-icon
-Provides: /usr/bin/xdg-desktop-menu
-Provides: /usr/bin/xdg-email
-Provides: /usr/bin/xdg-icon-resource
-Provides: /usr/bin/xdg-mime
-Provides: /usr/bin/xdg-open
-Provides: /usr/bin/xdg-screensaver
+BuildRequires: coreutils, gawk, make
+
+Requires: coreutils
+Requires: desktop-file-utils
+Requires: which
 
 %description
 Xdg-utils is a set of command line tools that assist applications with a
@@ -37,10 +36,17 @@ improving the integration of these components in the user's environment. Best
 of all, Xdg-utils is provided as open source and free of charge. 
 
 %prep
-%setup
+
+%setup -q -n %{name}-%{version}%{?beta}
+
+%patch1 -p1 -b .mimeopen
+%patch2 -p1 -b .typo
+%patch3 -p1 -b .htmlview
 
 %build
+
 %configure
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,11 +56,14 @@ of all, Xdg-utils is provided as open source and free of charge.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc ChangeLog LICENSE README RELEASE_NOTES TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%{_bindir}/xdg-*
+%{_mandir}/man1/xdg-*
 
 %changelog
+* Sun Jan 10 2010 Yury V. Zaytsev <yury@shurup.com> - 1.0.2-2
+- Synced the SPEC with CentOS Extras.
+
 * Tue Jan 05 2010 Steve Huff <shuff@vecna.org> - 1.0.2-1
 - Initial package.
