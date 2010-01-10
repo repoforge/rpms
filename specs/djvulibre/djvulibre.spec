@@ -1,8 +1,7 @@
 # $Id$
-# Authority: matthias
+# Authority: yury
+# Upstream: http://djvu.sourceforge.net
 
-
-#{?el5:#undefine _with_mozilla}
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 
 %{?el4:%define mozilla seamonkey-devel}
@@ -11,15 +10,9 @@
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_modxorg 1}
 
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-
-%{?el2:%define mozilla seamonkey-devel}
-%{?el2:%define _without_modxorg 1}
-
 Summary: DjVu viewers, encoders and utilities
 Name: djvulibre
-Version: 3.5.20
+Version: 3.5.22
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
@@ -37,6 +30,9 @@ BuildRequires: qt-devel
 %{!?_without_modxorg:BuildRequires: libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_mozilla:BuildRequires: %{mozilla}}
+
+Requires: xdg-utils
+
 ### Provide these here, they're so small, it's not worth splitting them out
 Provides: djvulibre-libs = %{version}-%{release}
 Obsoletes: djvulibre-libs <= %{version}-%{release}
@@ -121,6 +117,9 @@ fi
 %exclude %{_libdir}/libdjvulibre.la
 
 %changelog
+* Sun Jan 10 2010 Yury V. Zaytsev - 3.5.22-1
+- Updated to release 3.5.22.
+
 * Tue Dec 09 2008 Dag Wieers <dag@wieers.com> - 3.5.20-1
 - Updated to release 3.5.20.
 
