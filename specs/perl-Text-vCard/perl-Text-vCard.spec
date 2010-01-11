@@ -9,7 +9,7 @@
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
-Version: 2.04
+Version: 2.05
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/vCard.pm
 
 %changelog
+* Mon Jan 11 2010 Christoph Maser <cmr@financial.com> - 2.05-1
+- Updated to version 2.05.
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 2.04-1
 - Updated to version 2.04.
 
