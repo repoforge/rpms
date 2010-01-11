@@ -1,5 +1,5 @@
 # $Id$
-# Upstream: Florian Ragwitz <rafl@debian.org>
+# Upstream: Tomas Doran <bobtfish@bobtfish.net>
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -8,13 +8,13 @@
 
 Summary: MooseX roles which support overloading
 Name: perl-MooseX-Role-WithOverloading
-Version: 0.04
+Version: 0.05
 Release: 1%{?dist}
 License: perl
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Role-WithOverloading
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/MooseX-Role-WithOverloading-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/MooseX-Role-WithOverloading-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Moose) >= 0.90
@@ -67,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/MooseX/Role/WithOverloading/WithOverloading.so
 
 %changelog
+* Mon Jan 11 2010 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 0.04-1
 - Updated to version 0.04.
 
