@@ -12,13 +12,13 @@
 
 Summary: code attribute introspection
 Name: perl-MooseX-MethodAttributes
-Version: 0.18
-Release: 2
+Version: 0.19
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-MethodAttributes/
 
-Source: http://www.cpan.org/modules/by-module/MooseX/MooseX-MethodAttributes-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/MooseX-MethodAttributes-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -63,7 +63,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README TODO
+%doc Changes LICENSE MANIFEST META.yml README 
 %doc %{_mandir}/man3/MooseX::MethodAttributes.3pm*
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Inheritable.3pm.gz
 %doc %{_mandir}/man3/MooseX::MethodAttributes::Role.3pm.gz
@@ -94,6 +94,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Mon Jan 11 2010 Christoph Maser <cmr@financial.com> - 0.19-1
+- Updated to version 0.19.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.18-2
 - remove version from Test::More requirement
 
