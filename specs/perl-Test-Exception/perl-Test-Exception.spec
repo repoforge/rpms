@@ -9,19 +9,35 @@
 
 Summary: Test exception based code
 Name: perl-Test-Exception
-Version: 0.27
+Version: 0.29
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Exception/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Exception-%{version}.tar.gz
+
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADIE/Test-Exception-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 1:5.6.1
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 1:5.6.1
+BuildRequires: perl(Sub::Uplevel) >= 0.18
+BuildRequires: perl(Test::Builder) >= 0.7
+#BuildRequires: perl(Test::Builder::Tester) >= 1.07
+BuildRequires: perl(Test::Builder::Tester)
+BuildRequires: perl(Test::Harness) >= 2.03
+BuildRequires: perl(Test::More) >= 0.7
+BuildRequires: perl(Test::Simple) >= 0.7
+Requires: perl(Sub::Uplevel) >= 0.18
+Requires: perl(Test::Builder) >= 0.7
+#Requires: perl(Test::Builder::Tester) >= 1.07
+Requires: perl(Test::Builder::Tester)
+Requires: perl(Test::Harness) >= 2.03
+Requires: perl(Test::More) >= 0.7
+Requires: perl(Test::Simple) >= 0.7
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module provides a few convenience methods for testing exception
@@ -54,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Exception.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 0.29-1
+- Updated to version 0.29.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 0.27-1
 - Updated to release 0.27.
 
