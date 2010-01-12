@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-
+# Upstream: Gisle Aas <gisle@ActiveState.com>
 # ExclusiveDist: rh6 el2 rh7 rh8
 
 
@@ -11,13 +11,13 @@
 
 Summary: Digest-HMAC Perl module
 Name: perl-Digest-HMAC
-Version: 1.01
-Release: 2.2%{?dist}
+Version: 1.02
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Digest-HMAC/
 
-Source: http://www.cpan.org/modules/by-module/Digest/Digest-HMAC-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-HMAC-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -59,13 +59,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README rfc2104.txt
+%doc Changes README 
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Digest/
 %{perl_vendorlib}/Digest/HMAC.pm
 %{perl_vendorlib}/Digest/HMAC_*.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.02-1
+- Updated to version 1.02.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.01-2.2
 - Rebuild for Fedora Core 5.
 
