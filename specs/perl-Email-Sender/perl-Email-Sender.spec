@@ -9,7 +9,7 @@
 
 Summary: A library for sending email
 Name: perl-Email-Sender
-Version: 0.093380
+Version: 0.100110
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,8 @@ BuildRequires: perl(Cwd)
 BuildRequires: perl(Email::Abstract) >= 3
 BuildRequires: perl(Email::Address)
 BuildRequires: perl(Email::Simple) >= 1.998
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Fcntl)
 BuildRequires: perl(File::Basename)
 BuildRequires: perl(File::Find)
@@ -37,12 +39,15 @@ BuildRequires: perl(Moose) >= 0.70
 BuildRequires: perl(Net::SMTP)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Sys::Hostname::Long)
+BuildRequires: perl(Throwable::Error) >= 0.100090
+BuildRequires: perl(Try::Tiny)
 Requires: perl(Capture::Tiny)
 Requires: perl(Carp)
 Requires: perl(Cwd)
 Requires: perl(Email::Abstract) >= 3
 Requires: perl(Email::Address)
 Requires: perl(Email::Simple) >= 1.998
+Requires: perl(ExtUtils::MakeMaker) >= 6.11
 Requires: perl(Fcntl)
 Requires: perl(File::Basename)
 Requires: perl(File::Find)
@@ -55,6 +60,9 @@ Requires: perl(Moose) >= 0.70
 Requires: perl(Net::SMTP)
 Requires: perl(Scalar::Util)
 Requires: perl(Sys::Hostname::Long)
+Requires: perl(Throwable::Error) >= 0.100090
+Requires: perl(Try::Tiny)
+
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -92,6 +100,9 @@ find xt/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Email/Sender.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 0.100110-1
+- Updated to version 0.100110.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.093380-1
 - Updated to version 0.093380.
 
