@@ -1,6 +1,6 @@
 # $Id$
 # Authority: cmr
-# Upstream: Paul Fenwick <pjf$cpan,org>
+# Upstream: Paul Jamieson Fenwick <pjf@perltraining.com.au>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Run commands simply, with detailed diagnostics
 Name: perl-IPC-System-Simple
-Version: 1.19
+Version: 1.20
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IPC/System/Simple.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.20-1
+- Updated to version 1.20.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.19-1
 - Updated to version 1.19.
 
