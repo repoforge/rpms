@@ -9,7 +9,7 @@
 
 Summary: Write lzop files/buffers
 Name: perl-IO-Compress-Lzop
-Version: 2.023
+Version: 2.024
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,11 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(Compress::LZO)
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(IO::Compress::Base) >= 2.023
-BuildRequires: perl(IO::Uncompress::Base) >= 2.023
+BuildRequires: perl(IO::Compress::Base) >= 2.024
+BuildRequires: perl(IO::Uncompress::Base) >= 2.024
 Requires: perl(Compress::LZO)
-Requires: perl(IO::Compress::Base) >= 2.023
-Requires: perl(IO::Uncompress::Base) >= 2.023
+Requires: perl(IO::Compress::Base) >= 2.024
+Requires: perl(IO::Uncompress::Base) >= 2.024
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 2.024-1
+- Updated to version 2.024.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.023-1
 - Updated to version 2.023.
 
