@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Tomas Doran <bobtfish@bobtfish.net>
+# Upstream: Florian Ragwitz <rafl@debian.org>
 # Needs new MooseX::*
 # ExcludeDist: el4
 
@@ -11,13 +12,13 @@
 
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
-Version: 5.80016
+Version: 5.80017
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Runtime/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/Catalyst-Runtime-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Catalyst-Runtime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -43,8 +44,8 @@ BuildRequires: perl(Module::Pluggable) >= 3.9
 BuildRequires: perl(Moose) >= 0.93
 BuildRequires: perl(MooseX::Emulate::Class::Accessor::Fast) >= 0.00903
 BuildRequires: perl(MooseX::Getopt) >= 0.25
-BuildRequires: perl(MooseX::MethodAttributes::Inheritable) >= 0.17
-BuildRequires: perl(MooseX::Role::WithOverloading) >= 0.03
+BuildRequires: perl(MooseX::MethodAttributes::Inheritable) >= 0.19
+BuildRequires: perl(MooseX::Role::WithOverloading) >= 0.05
 BuildRequires: perl(MooseX::Types)
 BuildRequires: perl(MooseX::Types::Common::Numeric)
 BuildRequires: perl(Path::Class) >= 0.09
@@ -61,7 +62,7 @@ BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(Tree::Simple) >= 1.15
 BuildRequires: perl(Tree::Simple::Visitor::FindByPath)
 BuildRequires: perl(URI) >= 1.35
-BuildRequires: perl(namespace::autoclean)
+BuildRequires: perl(namespace::autoclean) >= 0.09
 BuildRequires: perl(namespace::clean)
 BuildRequires: perl >= 5.8.4
 Requires: perl(B::Hooks::EndOfScope) >= 0.08
@@ -83,8 +84,8 @@ Requires: perl(Module::Pluggable) >= 3.9
 Requires: perl(Moose) >= 0.93
 Requires: perl(MooseX::Emulate::Class::Accessor::Fast) >= 0.00903
 Requires: perl(MooseX::Getopt) >= 0.25
-Requires: perl(MooseX::MethodAttributes::Inheritable) >= 0.17
-Requires: perl(MooseX::Role::WithOverloading) >= 0.03
+Requires: perl(MooseX::MethodAttributes::Inheritable) >= 0.19
+Requires: perl(MooseX::Role::WithOverloading) >= 0.05
 Requires: perl(MooseX::Types)
 Requires: perl(MooseX::Types::Common::Numeric)
 Requires: perl(Path::Class) >= 0.09
@@ -98,7 +99,7 @@ Requires: perl(Time::HiRes)
 Requires: perl(Tree::Simple) >= 1.15
 Requires: perl(Tree::Simple::Visitor::FindByPath)
 Requires: perl(URI) >= 1.35
-Requires: perl(namespace::autoclean)
+Requires: perl(namespace::autoclean) >= 0.09
 Requires: perl(namespace::clean)
 Requires: perl >= 5.8.4
 
@@ -138,6 +139,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 5.80017-1
+- Updated to version 5.80017.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 5.80016-1
 - Updated to version 5.80016.
 
