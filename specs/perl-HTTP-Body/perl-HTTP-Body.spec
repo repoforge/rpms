@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Andy Grundman <andy$hybridized,org>
+# Upstream: Marcus Ramberg <mramberg@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,32 @@
 
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
-Version: 1.05
+Version: 1.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Body/
 
-Source: http://www.cpan.org/modules/by-module/HTTP/HTTP-Body-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MR/MRAMBERG/HTTP-Body-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Temp) >= 0.14
+BuildRequires: perl(HTTP::Headers)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(Test::Deep)
+#BuildRequires: perl(Test::More) >= 0.86
+BuildRequires: perl(Test::More)
+Requires: perl(Carp)
+Requires: perl(File::Temp) >= 0.14
+Requires: perl(HTTP::Headers)
+Requires: perl(IO::File)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module contains a HTTP body parser.
@@ -52,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Body.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.06-1
+- Updated to version 1.06.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.05-1
 - Updated to version 1.05.
 
