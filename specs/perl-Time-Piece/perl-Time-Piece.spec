@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Matt Sergeant <msergeant$cpan,org>
+# Upstream: MSERGEANT <msergeant@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,14 +9,14 @@
 
 Summary: Object Oriented time objects
 Name: perl-Time-Piece
-Version: 1.15
+Version: 1.16
 Release: 1%{?dist}
 Epoch: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Piece/
 
-Source: http://www.cpan.org/modules/by-module/Time/Time-Piece-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSERGEANT/Time-Piece-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Time/Seconds.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Mon Jun 29 2009 Christoph Maser <cmr@financial.com> - 1.15-1
 - Updated to version 1.15.
 
