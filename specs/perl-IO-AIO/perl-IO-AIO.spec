@@ -9,7 +9,7 @@
 
 Summary: Asynchronous Input/Output
 Name: perl-IO-AIO
-Version: 3.5
+Version: 3.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/treescan
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 3.6-1
+- Updated to version 3.6.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 3.5-1
 - Updated to version 3.5.
 
