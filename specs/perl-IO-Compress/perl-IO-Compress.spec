@@ -9,7 +9,7 @@
 
 Summary: IO Interface to compressed data files/buffers
 Name: perl-IO-Compress
-Version: 2.023
+Version: 2.024
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,11 +19,12 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PM/PMQS/IO-Compress-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Compress::Raw::Bzip2) = 2.023
-BuildRequires: perl(Compress::Raw::Zlib) = 2.023
+BuildRequires: perl(Compress::Raw::Bzip2) = 2.024
+BuildRequires: perl(Compress::Raw::Zlib) = 2.024
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl(Compress::Raw::Bzip2) = 2.023
-Requires: perl(Compress::Raw::Zlib) = 2.023
+Requires: perl(Compress::Raw::Bzip2) = 2.024
+Requires: perl(Compress::Raw::Zlib) = 2.024
+Requires: perl(Scalar::Util)
  
 Obsoletes: perl-Compress-Zlib
 Obsoletes: perl-IO-Compress-Bzip2
@@ -71,6 +72,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 2.024-1
+- Updated to version 2.024.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.023-1
 - Updated to version 2.023.
 
