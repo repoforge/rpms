@@ -9,18 +9,26 @@
 
 Summary: Tests strings for equality, with more helpful failures
 Name: perl-Test-LongString
-Version: 0.11
+Version: 0.12
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-LongString/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-LongString-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RG/RGARCIA/Test-LongString-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::Builder) >= 0.12
+#BuildRequires: perl(Test::Builder::Tester) >= 1.04
+BuildRequires: perl(Test::Builder::Tester)
+Requires: perl(Test::Builder) >= 0.12
+#Requires: perl(Test::Builder::Tester) >= 1.04
+Requires: perl(Test::Builder::Tester)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 Requires: perl
 
@@ -60,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/LongString.pm
 
 %changelog
+* Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Tue Nov 14 2006 Dries Verachtert <dries@ulyssis.org> - 0.11-1
 - Updated to release 0.11.
 
