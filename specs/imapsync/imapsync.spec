@@ -3,8 +3,8 @@
 
 Summary: Tool to migrate across IMAP servers
 Name: imapsync
-Version: 1.286
-Release: 2%{?dist}
+Version: 1.293
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.linux-france.org/prj/imapsync/
@@ -52,13 +52,16 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog CREDITS FAQ GPL INSTALL README TODO
-%doc %{_mandir}/man1/imapsync.1*
+%doc %{_mandir}/man?/*
 %{_bindir}/imapsync
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Jan 13 2010 Steve Huff <shuff@vecna.org> - 1.293-1
+- Updated to version 1.293.
+
 * Sun Dec 20 2009 Steve Huff <shuff@vecna.org> - 1.286-2
 - Added missing Perl dependencies (reported by John Thomas).
 
