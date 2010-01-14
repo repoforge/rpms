@@ -9,7 +9,7 @@
 Summary: Perl module named first
 Name: perl-first
 Version: 0.0.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/first/
@@ -19,6 +19,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+
+%filter_from_provides /^perl(UNIVERSAL*/d
+%filter_setup
+
 
 %description
 perl-first is a Perl module.
@@ -48,5 +52,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/first.pm
 
 %changelog
+* Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 0.0.1-2
+- Remove perl(UNIVERSAL::require) from the provides list, there is a real module wich provides this
+
 * Wed Jul 08 2009 Christoph Maser <cmr@financial.com> - 0.0.1-1
 - Initial package. (using DAR)
