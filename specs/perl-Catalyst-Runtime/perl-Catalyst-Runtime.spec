@@ -12,7 +12,7 @@
 
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
-Version: 5.80017
+Version: 5.80018
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -139,6 +139,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst.pm
 
 %changelog
+* Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 5.80018-1
+- Updated to version 5.80018.
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 5.80017-1
 - Updated to version 5.80017.
 
