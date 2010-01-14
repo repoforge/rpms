@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
-# Upstream: Adam Paynter <adapay$cpan,org>
+# Upstream: Brian Cassidy <bricas@cpan.org>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,20 +10,33 @@
 
 Summary: Plugin for localizing/delocalizing paths and parameters
 Name: perl-Catalyst-Plugin-I18N-Request
-Version: 0.03
+Version: 0.05
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-I18N-Request/
 
-Source: http://www.cpan.org/modules/by-module/Catalyst/Catalyst-Plugin-I18N-Request-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRICAS/Catalyst-Plugin-I18N-Request-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Catalyst::Runtime)
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Catalyst::Plugin::I18N)
+BuildRequires: perl(Catalyst::Runtime) >= 5.7000
+BuildRequires: perl(MRO::Compat)
+BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(URI)
+BuildRequires: perl >= 5.8.0
+Requires: perl(Catalyst::Plugin::I18N)
+Requires: perl(Catalyst::Runtime) >= 5.7000
+Requires: perl(MRO::Compat)
+Requires: perl(Scalar::Util)
+Requires: perl(URI)
+Requires: perl >= 5.8.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Plugin for localizing/delocalizing paths and parameters.
@@ -55,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/I18N/Request.pm
 
 %changelog
+* Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 0.05-1
+- Updated to version 0.05.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 0.03-1
 - Updated to release 0.03.
 
