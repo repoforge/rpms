@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Robert Sedlacek <rs$474,at>
+# Upstream: Florian Ragwitz <rafl@debian.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,22 +9,33 @@
 
 Summary: Keep imports and functions out of your namespace
 Name: perl-namespace-clean
-Version: 0.11
-Release: 2%{?dist}
+Version: 0.12
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/namespace-clean/
 
-Source: http://www.cpan.org/modules/by-module/namespace/namespace-clean-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/namespace-clean-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(FindBin)
-BuildRequires: perl(Test::More)
-# From yaml requires
 BuildRequires: perl(B::Hooks::EndOfScope) >= 0.07
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(FindBin)
+BuildRequires: perl(Sub::Identify) >= 0.04
+BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Symbol)
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
+Requires: perl(B::Hooks::EndOfScope) >= 0.07
+Requires: perl(Sub::Identify) >= 0.04
+Requires: perl(Sub::Name) >= 0.04
+Requires: perl(Symbol)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Keep imports and functions out of your namespace.
@@ -55,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/namespace/clean.pm
 
 %changelog
+* Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 0.12-1
+- Updated to version 0.12.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.11-2
 - Fix dependencies
 
