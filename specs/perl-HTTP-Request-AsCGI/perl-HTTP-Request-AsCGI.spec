@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
-# Upstream: Marcus Ramberg <mramberg$cpan,org>
+# Upstream: Florian Ragwitz <rafl@debian.org>
+
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +10,13 @@
 
 Summary: Setup a CGI enviroment from a HTTP::Request
 Name: perl-HTTP-Request-AsCGI
-Version: 1.0
+Version: 1.2
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Request-AsCGI/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MR/MRAMBERG/HTTP-Request-AsCGI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/HTTP-Request-AsCGI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -65,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Request/AsCGI.pm
 
 %changelog
+* Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 1.2-1
+- Updated to version 1.2.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 1.0-1
 - Updated to version 1.0.
 
