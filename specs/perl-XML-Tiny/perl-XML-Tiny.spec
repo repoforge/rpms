@@ -9,15 +9,15 @@
 
 Summary: Simple lightweight parser for a subset of XML
 Name: perl-XML-Tiny
-Version: 2.02
+Version: 2.03
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Tiny/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-Tiny-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCANTRELL/XML-Tiny-%{version}.tar.gz
 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Tiny.pm
 
 %changelog
+* Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 2.03-1
+- Updated to version 2.03.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 2.02-1
 - Updated to version 2.02.
 
