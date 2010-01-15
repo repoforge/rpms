@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
-# Upstream: Andy Lester <andy$petdance,com>
+# Upstream: David E. Wheeler <david@justatheory.com>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,22 +10,29 @@
 
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
-Version: 1.40
+Version: 1.41
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Pod/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Pod-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DW/DWHEELER/Test-Pod-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(Pod::Simple) >= 3.07
-#BuildRequires: perl(Test::Builder::Tester) >= 1.02
-#BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::Builder::Tester) >= 1.02
+BuildRequires: perl(Test::More) >= 0.62
+Requires: perl(File::Spec)
+Requires: perl(Pod::Simple) >= 3.07
+Requires: perl(Test::Builder::Tester) >= 1.02
+Requires: perl(Test::More) >= 0.62
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module allows you to check for POD errors in files.
@@ -32,13 +40,15 @@ This module allows you to check for POD errors in files.
 %prep
 %setup -n %{real_name}-%{version}
 
+
+
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -54,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Pod.pm
 
 %changelog
+* Fri Jan 15 2010 Christoph Maser <cmr@financial.com> - 1.41-1
+- Updated to version 1.41.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.40-1
 - Updated to version 1.40.
 
