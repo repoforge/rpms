@@ -1,0 +1,15 @@
+diff -Naur fsvs-1.2.1-orig/src/Makefile.in fsvs-1.2.1/src/Makefile.in
+--- fsvs-1.2.1-orig/src/Makefile.in	2009-10-12 15:05:54.000000000 -0400
++++ fsvs-1.2.1/src/Makefile.in	2010-01-25 11:19:05.000000000 -0500
+@@ -90,7 +90,10 @@
+ install:
+ 	mkdir -p $(DESTDIR)/etc/fsvs $(DESTDIR)/var/spool/fsvs $(DESTDIR)$(bindir) $(DESTDIR)/etc/fsvs/auth/svn.simple $(DESTDIR)/etc/fsvs/auth/svn.ssl.server
+ 	install -m 0755 $(DEST) $(DESTDIR)/$(bindir)
+-#	install -m 0644 ../doc/fsvs.1 $(DESTDIR)/(mandir)
++	install -m 0755 -d $(DESTDIR)/$(mandir)/man1
++	install -m 0755 -d $(DESTDIR)/$(mandir)/man5
++	install -m 0644 ../doc/fsvs.1 $(DESTDIR)/$(mandir)/man1
++	install -m 0644 ../doc/fsvs-*.5 $(DESTDIR)/$(mandir)/man5
+ 
+ # No automatic rebuild (?)
+ #../doc/USAGE: $(C_FILES) $(H_FILES)
