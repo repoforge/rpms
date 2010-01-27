@@ -38,7 +38,7 @@ may think of it as some kind of tar or rsync with versioned storage.
 %patch1 -p1
 
 %build
-%configure
+%configure --enable-release
 %{__make} %{?_smp_mflags}
 
 %install
