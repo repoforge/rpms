@@ -53,7 +53,7 @@ may think of it as some kind of tar or rsync with versioned storage.
 %doc CHANGES LICENSE README doc/ example/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%attr(0753, root, root) %dir %{_localstatedir}/spool/fsvs
+%attr(0755, root, root) %dir %{_localstatedir}/spool/fsvs
 %attr(0777, root, root) %dir %{_sysconfdir}/fsvs
 %config(noreplace) %{_sysconfdir}/fsvs/*
 
