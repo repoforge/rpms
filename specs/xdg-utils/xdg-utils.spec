@@ -64,7 +64,7 @@ of all, Xdg-utils is provided as open source and free of charge.
 %changelog
 * Sun Jan 10 2010 Steve Huff <shuff@vecna.org>
 - man pages should be %doc
-- why mess with regexps that work?
+- why mess with globs that work?
 
 * Sun Jan 10 2010 Yury V. Zaytsev <yury@shurup.com> - 1.0.2-2
 - Synced the SPEC with CentOS Extras.
