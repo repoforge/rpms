@@ -3,7 +3,7 @@
 # Upstream: Petr Pajas <pajas$matfyz,cz>
 
 ### EL4 and EL5 ship with perl-XML-LibXML 1.58
-# ExcludeDist: el4 el5
+# but we should still provide this as an option for perl-Image-Info
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -30,6 +30,8 @@ Requires: perl(XML::NamespaceSupport) >= 1.07
 Requires: perl(XML::SAX) >= 0.11
 Requires: perl >= 2:5.8.0
 Provides: perl-Image-Info-alternative = 1.30
+
+Obsoletes: perl-XML-LibXML-Common
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -71,6 +73,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/LibXML.pod
 
 %changelog
+* Mon Feb 01 2010 Steve Huff <shuff@vecna.org> - 
+- This version obsoletes the upstream perl-XML-LibXML-Common package.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.70-2
 - Update perl-Image-Info-alternative provides
 
@@ -101,7 +106,6 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 * Thu Nov 20 2003 Dag Wieers <dag@wieers.com> - 1.56-0
 - Updated to release 1.56.
 
-* Sun Aug 24 2003 Dag Wieers <dag@wieers.com> - 1.55-0
 - Fixed site -> vendor. (Matthew Mastracci)
 - Updated to release 1.55.
 
