@@ -1,0 +1,32 @@
+diff -Naur optipng-0.6.3-orig/src/scripts/gcc.mak optipng-0.6.3/src/scripts/gcc.mak
+--- optipng-0.6.3-orig/src/scripts/gcc.mak	2009-05-17 20:14:00.000000000 -0400
++++ optipng-0.6.3/src/scripts/gcc.mak	2010-02-02 10:49:50.000000000 -0500
+@@ -4,10 +4,10 @@
+ # Usage: make -f scripts/gcc.mak
+ 
+ 
+-prefix=/usr/local
++prefix=$(PREFIX)
+ exec_prefix=$(prefix)
+ bindir=$(exec_prefix)/bin
+-mandir=$(prefix)/man
++mandir=$(MANDIR)
+ man1dir=$(mandir)/man1
+ 
+ CC = gcc
+diff -Naur optipng-0.6.3-orig/src/scripts/gcc.mak.in optipng-0.6.3/src/scripts/gcc.mak.in
+--- optipng-0.6.3-orig/src/scripts/gcc.mak.in	2009-05-17 20:14:00.000000000 -0400
++++ optipng-0.6.3/src/scripts/gcc.mak.in	2010-02-02 10:50:13.000000000 -0500
+@@ -4,10 +4,10 @@
+ # Usage: make -f scripts/gcc.mak
+ 
+ 
+-prefix=/usr/local
++prefix=$(PREFIX)
+ exec_prefix=$(prefix)
+ bindir=$(exec_prefix)/bin
+-mandir=$(prefix)/man
++mandir=$(MANDIR)
+ man1dir=$(mandir)/man1
+ 
+ CC = gcc
