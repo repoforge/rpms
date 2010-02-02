@@ -5,7 +5,7 @@
 
 Summary: C library for country/city/organization to IP address or hostname mapping
 Name: geoip
-Version: 1.4.5
+Version: 1.4.6
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -21,9 +21,9 @@ Provides: GeoIP = %{version}-%{release}
 %description
 GeoIP is a C library that enables the user to find the country that any IP
 address or hostname originates from. It uses a file based database that is
-accurate as of March 2003. This database simply contains IP blocks as keys, and
-countries as values. This database should be more complete and accurate than
-using reverse DNS lookups.
+accurate as of February 2009. This database simply contains IP blocks as keys,
+and countries as values. This database should be more complete and accurate
+than using reverse DNS lookups.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -57,8 +57,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL README TODO
-%doc %{_mandir}/man1/geoiplookup.1*
-%doc %{_mandir}/man1/geoipupdate.1*
+%doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/GeoIP.conf.default
 %config(noreplace) %{_sysconfdir}/GeoIP.conf
 %{_bindir}/geoiplookup
@@ -79,6 +78,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libGeoIPUpdate.la
 
 %changelog
+* Tue Feb 02 2010 Steve Huff <shuff@vecna.org> - 1.4.6-1
+- Updated to release 1.4.6.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.4.5-1
 - Updated to release 1.4.5.
 

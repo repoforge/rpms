@@ -7,7 +7,7 @@
 
 Summary: Python bindings for the GeoIP geographical lookup libraries
 Name: python-geoip
-Version: 1.2.1
+Version: 1.2.4
 Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
@@ -45,5 +45,8 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/GeoIP.so
 
 %changelog
+* Tue Feb 02 2010 Steve Huff <shuff@vecna.org> - 1.2.4-1
+- Updated to release 1.2.4.
+
 * Sun Aug 06 2006 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Initial package. (using DAR)

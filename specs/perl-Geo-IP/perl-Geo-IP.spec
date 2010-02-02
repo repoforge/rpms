@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Geo-IP/
 
-Source: http://www.cpan.org/modules/by-module/Geo/Geo-IP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BO/BORISZ/Geo-IP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: geoip-devel
@@ -51,9 +51,7 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes INSTALL MANIFEST META.yml README example/
-%doc %{_mandir}/man3/Geo::IP.3pm*
-%doc %{_mandir}/man3/Geo::IP::Record.3pm*
-%doc %{_mandir}/man3/Geo::Mirror.3pm*
+%doc %{_mandir}/man?/*
 %dir %{perl_vendorarch}/auto/Geo/
 %{perl_vendorarch}/auto/Geo/IP/
 %dir %{perl_vendorarch}/Geo/
@@ -62,6 +60,10 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Geo/Mirror.pm
 
 %changelog
+* Tue Feb 02 2010 Steve Huff <shuff@vecna.org> - 
+- Previous CPAN source URL didn't work for me.
+- Clean up manpage specification in %files.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.38-1
 - Updated to version 1.38.
 
