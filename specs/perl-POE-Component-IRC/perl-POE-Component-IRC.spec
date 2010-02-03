@@ -9,7 +9,7 @@
 
 Summary: Fully event-driven IRC client module
 Name: perl-POE-Component-IRC
-Version: 6.18
+Version: 6.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -23,7 +23,7 @@ BuildRequires: perl(Encode)
 BuildRequires: perl(Encode::Guess)
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(POE) >= 0.3202
+BuildRequires: perl(POE) >= 1.284
 BuildRequires: perl(POE::Component::Pluggable) >= 1.24
 BuildRequires: perl(POE::Driver::SysRW)
 BuildRequires: perl(POE::Filter::IRCD) >= 2.42
@@ -36,7 +36,7 @@ BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl >= 5.8.0
 Requires: perl(Encode)
 Requires: perl(Encode::Guess)
-Requires: perl(POE) >= 0.3202
+Requires: perl(POE) >= 1.284
 Requires: perl(POE::Component::Pluggable) >= 1.24
 Requires: perl(POE::Driver::SysRW)
 Requires: perl(POE::Filter::IRCD) >= 2.42
@@ -63,6 +63,7 @@ and over until it makes some sense.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -90,6 +91,9 @@ find docs/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 6.22-1
+- Updated to version 6.22.
+
 * Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 6.18-1
 - Updated to version 6.18.
 
