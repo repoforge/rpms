@@ -9,13 +9,13 @@
 
 Summary: Per-processor information
 Name: perl-Unix-Processors
-Version: 2.041
+Version: 2.042
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unix-Processors/
 
-Source: http://www.cpan.org/modules/by-module/Unix/Unix-Processors-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/W/WS/WSNYDER/Unix-Processors-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Unix/Processors/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 2.042-1
+- Updated to version 2.042.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 2.041-1
 - Updated to version 2.041.
 
