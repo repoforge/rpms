@@ -9,16 +9,17 @@
 
 Summary: Perl module for encoding and decoding of base64 strings
 Name: perl-MIME-Base64
-Version: 3.08
+Version: 3.09
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Base64/
 
-Source: http://www.cpan.org/modules/by-module/MIME/MIME-Base64-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/MIME-Base64-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-MIME-Base64 is a Perl module for encoding and decoding of base64 strings.
@@ -29,6 +30,7 @@ perl-MIME-Base64 is a Perl module for encoding and decoding of base64 strings.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/MIME/Base64/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 3.09-1
+- Updated to version 3.09.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 3.08-1
 - Updated to version 3.08.
 
