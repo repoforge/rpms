@@ -9,18 +9,22 @@
 
 Summary: Registry of string functions, including backslash escapes
 Name: perl-String-Escape
-Version: 2002.001
-Release: 1.2%{?dist}
+Version: 2010.002
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-Escape/
 
-Source: http://www.cpan.org/modules/by-module/String/String-Escape-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EV/EVO/String-Escape-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module provides a flexible calling interface to some
@@ -43,6 +47,7 @@ functions here for later general use.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/String/Escape.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 2010.002-1
+- Updated to version 2010.002.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 2002.001-1.2
 - Rebuild for Fedora Core 5.
 
