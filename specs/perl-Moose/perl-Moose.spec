@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: Florian Ragwitz <rafl$debian,org>
+# Upstream: Dave Rolsky <autarch@urth.org>
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,18 +10,18 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 0.93
-Release: 2%{?dist}
+Version: 0.94
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(Carp)
-BuildRequires: perl(Class::MOP) >= 0.94
+BuildRequires: perl(Class::MOP) >= 0.98
 BuildRequires: perl(Data::OptList)
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
@@ -36,7 +36,7 @@ BuildRequires: perl(Test::More)
 BuildRequires: perl(Try::Tiny) >= 0.02
 BuildRequires: perl >= 5.8.1
 Requires: perl(Carp)
-Requires: perl(Class::MOP) >= 0.94
+Requires: perl(Class::MOP) >= 0.98
 Requires: perl(Data::OptList)
 Requires: perl(List::MoreUtils) >= 0.12
 Requires: perl(Scalar::Util) >= 1.19
@@ -62,6 +62,7 @@ Moose is a Perl module that implements a complete modern object system.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -87,6 +88,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Moose.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.94-1
+- Updated to version 0.94.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.93-2
 - Change Source: Tag
 - dependencies from yaml
