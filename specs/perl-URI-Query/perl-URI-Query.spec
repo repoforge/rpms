@@ -9,13 +9,13 @@
 
 Summary: Perl module that provides URI query string manipulation
 Name: perl-URI-Query
-Version: 0.06
+Version: 0.07
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Query/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-Query-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAVINC/URI-Query-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/Query.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.06-1
 - Initial package. (using DAR)
