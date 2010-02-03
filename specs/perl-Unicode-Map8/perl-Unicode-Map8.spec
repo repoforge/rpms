@@ -9,18 +9,21 @@
 
 Summary: Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl
 Name: perl-Unicode-Map8
-Version: 0.12
+Version: 0.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-Map8/
 
-Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-Map8-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Unicode-Map8-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl
+BuildRequires: perl(Unicode::String) >= 2
+Requires: perl(Unicode::String) >= 2
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Unicode-Map8 (Mapping table between 8-bit chars and Unicode) module for perl.
@@ -55,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Unicode/Map8/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Sun Aug 05 2007 Dag Wieers <dag@wieers.com> - 0.12-1
 - Cosmetic cleanup.
 
