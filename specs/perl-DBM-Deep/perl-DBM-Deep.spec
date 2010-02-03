@@ -9,27 +9,36 @@
 
 Summary: Pure perl multi-level hash/array DBM that supports transactions
 Name: perl-DBM-Deep
-Version: 1.0014
+Version: 1.0015
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBM-Deep/
 
-Source: http://www.cpan.org/modules/by-module/DBM/DBM-Deep-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SP/SPROUT/DBM-Deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.006
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Digest::MD5) >= 1.00
+BuildRequires: perl(Fcntl) >= 0.01
 BuildRequires: perl(File::Path) >= 0.01
 BuildRequires: perl(File::Temp) >= 0.01
 BuildRequires: perl(IO::Scalar) >= 0.01
 BuildRequires: perl(Pod::Usage) >= 1.3
+BuildRequires: perl(Scalar::Util) >= 1.14
 BuildRequires: perl(Test::Deep) >= 0.095
 BuildRequires: perl(Test::Exception) >= 0.21
-BuildRequires: perl(Test::More) >= 0.47
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Warn) >= 0.08
-Requires: perl >= 0:5.006
+BuildRequires: perl >= 5.006_000
+Requires: perl(Digest::MD5) >= 1.00
+Requires: perl(Fcntl) >= 0.01
+Requires: perl(Scalar::Util) >= 1.14
+Requires: perl >= 5.006_000
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 DBM-Deep is a Perl module that implements a pure perl multi-level
@@ -63,6 +72,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBM/Deep.pod
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.0015-1
+- Updated to version 1.0015.
+
 * Mon Jul  6 2009 Christoph Maser <cmr@financial.com> - 1.0014-1
 - Updated to version 1.0014.
 
