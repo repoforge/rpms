@@ -9,13 +9,13 @@
 
 Summary: Run Perl standard test scripts with statistics
 Name: perl-Test-Harness
-Version: 3.17
+Version: 3.21
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Harness/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Harness-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AN/ANDYA/Test-Harness-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -31,6 +31,7 @@ Run Perl standard test scripts with statistics.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -65,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/TAP/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 3.21-1
+- Updated to version 3.21.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 3.17-1
 - Updated to version 3.17.
 
