@@ -11,7 +11,7 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.3601
+Version: 0.3603
 Release: 1%{?dist}
 Epoch: 1
 License: Artistic or GPL
@@ -83,6 +83,7 @@ pure-perl and written in a very cross-platform way.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -106,6 +107,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/inc/latest/private.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.3603-1
+- Updated to version 0.3603.
+
 * Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.3601-1
 - Updated to version 0.3601.
 
