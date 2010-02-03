@@ -9,13 +9,13 @@
 
 Summary: Parse Apache referer logs and extract search engine query strings
 Name: perl-URI-ParseSearchString
-Version: 3.2
+Version: 3.3
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ParseSearchString/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-ParseSearchString-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SD/SDEN/URI-ParseSearchString-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -63,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/URI/ParseSearchString.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 3.3-1
+- Updated to version 3.3.
+
 * Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 3.2-1
 - Updated to version 3.2.
 
