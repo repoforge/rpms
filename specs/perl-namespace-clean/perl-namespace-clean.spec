@@ -9,7 +9,7 @@
 
 Summary: Keep imports and functions out of your namespace
 Name: perl-namespace-clean
-Version: 0.12
+Version: 0.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/namespace/clean.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 0.12-1
 - Updated to version 0.12.
 
