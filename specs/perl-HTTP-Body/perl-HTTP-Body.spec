@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dries
 # Upstream: Marcus Ramberg <mramberg@cpan.org>
+# File::IO is too old on el4!
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +11,7 @@
 
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
-Version: 1.06
+Version: 1.07
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,14 +26,18 @@ BuildRequires: perl(Carp)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Temp) >= 0.14
 BuildRequires: perl(HTTP::Headers)
+#BuildRequires: perl(IO::File) >= 1.14
 BuildRequires: perl(IO::File)
 BuildRequires: perl(Test::Deep)
 #BuildRequires: perl(Test::More) >= 0.86
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod)
+BuildRequires: perl(Test::Pod::Coverage)
 Requires: perl(Carp)
 Requires: perl(File::Temp) >= 0.14
 Requires: perl(HTTP::Headers)
-Requires: perl(IO::File)
+#Requires: perl(IO::File)
+Requires: perl(IO::File) >= 1.14
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -45,6 +51,7 @@ This module contains a HTTP body parser.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test TEST_POD=1
 
 %install
 %{__rm} -rf %{buildroot}
@@ -66,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Body.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.07-1
+- Updated to version 1.07.
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.06-1
 - Updated to version 1.06.
 
