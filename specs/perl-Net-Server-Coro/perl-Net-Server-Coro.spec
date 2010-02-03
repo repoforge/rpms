@@ -9,7 +9,7 @@
 
 Summary: A co-operative multithreaded server using Coro
 Name: perl-Net-Server-Coro
-Version: 0.7
+Version: 0.8
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -42,6 +42,7 @@ A co-operative multithreaded server using Coro.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Server/Coro.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.8-1
+- Updated to version 0.8.
+
 * Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.7-1
 - Updated to version 0.7.
 
