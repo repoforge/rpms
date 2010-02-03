@@ -9,7 +9,7 @@
 
 Summary: Mix-in inheritance, an alternative to multiple inheritance
 Name: perl-mixin
-Version: 0.06
+Version: 0.07
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -19,7 +19,14 @@ Source: http://www.cpan.org/authors/id/M/MS/MSCHWERN/mixin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Module::Build)
+BuildRequires: perl(Test::More) >= 0.4
+BuildRequires: perl(Test::NoWarnings)
+BuildRequires: perl(base)
+Requires: perl(base)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module allows mix-in inheritance, an alternative to multiple
@@ -29,12 +36,13 @@ inheritance.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
+./Build test
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -50,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/mixin/with.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.06-1
 - Updated to release 0.06.
 
