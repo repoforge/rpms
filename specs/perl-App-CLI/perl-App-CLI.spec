@@ -11,7 +11,7 @@
 Summary: Dispatcher module for command line interface programs
 Name: perl-App-CLI
 Version: 0.08
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/App-CLI/
@@ -32,8 +32,9 @@ Dispatcher module for command line interface programs.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/App/CLI.pm
 
 %changelog
+* Wed Feb 03 2010 Christoph Maser <cmr@financial.com> - 0.08-2
+- add skipdeps to Makefile.PL call
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.08-1
 - Updated to version 0.08.
 
