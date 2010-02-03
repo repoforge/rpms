@@ -6,20 +6,54 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Workflow
-%define real_version 1.32
 
 Summary: Simple, flexible system to implement workflows
 Name: perl-Workflow
-Version: 1.32
+Version: 1.33
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Workflow/
 
-Source: http://www.cpan.org/modules/by-module/Workflow/Workflow-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JO/JONASBN/Workflow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::Accessor) >= 0.18
+BuildRequires: perl(Class::Factory) >= 1
+BuildRequires: perl(Class::Observable) >= 1.04
+BuildRequires: perl(DBD::Mock) >= 0.1
+BuildRequires: perl(DBI)
+BuildRequires: perl(Data::Dumper)
+BuildRequires: perl(DateTime) >= 0.15
+BuildRequires: perl(DateTime::Format::Strptime) >= 1
+BuildRequires: perl(Exception::Class) >= 1.1
+BuildRequires: perl(File::Slurp)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(Log::Dispatch) >= 2
+BuildRequires: perl(Log::Log4perl) >= 0.34
+BuildRequires: perl(Safe)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More) >= 0.41
+BuildRequires: perl(XML::Simple) >= 2
+Requires: perl(Carp)
+Requires: perl(Class::Accessor) >= 0.18
+Requires: perl(Class::Factory) >= 1
+Requires: perl(Class::Observable) >= 1.04
+Requires: perl(DBI)
+Requires: perl(Data::Dumper)
+Requires: perl(DateTime) >= 0.15
+Requires: perl(DateTime::Format::Strptime) >= 1
+Requires: perl(Exception::Class) >= 1.1
+Requires: perl(File::Slurp)
+Requires: perl(Log::Dispatch) >= 2
+Requires: perl(Log::Log4perl) >= 0.34
+Requires: perl(Safe)
+Requires: perl(XML::Simple) >= 2
+
+%filter_from_requires /^perl*/d
+%filter_setup
 BuildRequires: perl
 
 %description
@@ -53,6 +87,9 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Workflow.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.33-1
+- Updated to version 1.33.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.32-1
 - Updated to version 1.32.
 
