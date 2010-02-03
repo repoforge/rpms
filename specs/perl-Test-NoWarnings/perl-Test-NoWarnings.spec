@@ -9,7 +9,7 @@
 
 Summary: Perl module to make sure you didn't emit any warnings while testing
 Name: perl-Test-NoWarnings
-Version: 1.00
+Version: 1.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -50,6 +50,7 @@ any warnings while testing.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -70,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/NoWarnings.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.01-1
+- Updated to version 1.01.
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.00-1
 - Updated to version 1.00.
 
