@@ -9,13 +9,13 @@
 
 Summary: Non-blocking/concurrent HTTP queries with POE
 Name: perl-POE-Component-Client-HTTP
-Version: 0.893
-Release: 1
+Version: 0.894
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/POE-Component-Client-HTTP/
 
-Source: http://www.cpan.org/modules/by-module/POE/POE-Component-Client-HTTP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/POE-Component-Client-HTTP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -75,6 +75,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE/Filter/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.894-1
+- Updated to version 0.894.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 0.893-1
 - Updated to version 0.893.
 
