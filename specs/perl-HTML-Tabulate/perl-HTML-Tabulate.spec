@@ -9,17 +9,28 @@
 
 Summary: HTML table rendering class
 Name: perl-HTML-Tabulate
-Version: 0.32
+Version: 0.35
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Tabulate/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Tabulate-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GA/GAVINC/HTML-Tabulate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(Carp)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI::Escape)
+BuildRequires: perl >= 5.005
+Requires: perl(Carp)
+Requires: perl(URI::Escape)
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 HTML table rendering class.
@@ -50,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTML/Tabulate.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.35-1
+- Updated to version 0.35.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.32-1
 - Updated to version 0.32.
 
