@@ -10,19 +10,19 @@
 
 Summary: Find a minimum required version of perl for Perl code
 Name: perl-Perl-MinimumVersion
-Version: 1.22
-Release: 1
+Version: 1.24
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-MinimumVersion/
 
-Source: http://www.cpan.org/modules/by-module/Perl/Perl-MinimumVersion-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/Perl-MinimumVersion-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(File::Find::Rule) >= 0.30
+BuildRequires: perl(File::Find::Rule) >= 0.32
 BuildRequires: perl(File::Find::Rule::Perl) >= 1.04
 BuildRequires: perl(File::Spec) >= 0.80
 BuildRequires: perl(List::Util) >= 1.18
@@ -33,7 +33,7 @@ BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(Test::Script) >= 1.03
 BuildRequires: perl >= 5.005
 BuildRequires: perl(version) >= 0.76
-Requires: perl(File::Find::Rule) >= 0.30
+Requires: perl(File::Find::Rule) >= 0.32
 Requires: perl(File::Find::Rule::Perl) >= 1.04
 Requires: perl(List::Util) >= 1.18
 Requires: perl(PPI) >= 1.205
@@ -72,10 +72,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Perl::MinimumVersion.3pm*
 %{_bindir}/perlver
 %dir %{perl_vendorlib}/Perl/
-#%{perl_vendorlib}/Perl/MinimumVersion/
+%{perl_vendorlib}/Perl/MinimumVersion/Reason.pm
 %{perl_vendorlib}/Perl/MinimumVersion.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.24-1
+- Updated to version 1.24.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.22-1
 - Updated to version 1.22.
 
