@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dries
 # Upstream: Adam Kennedy <adamk$cpan,org>
-
 ##Tag: test
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -11,32 +10,60 @@
 
 Summary: Standalone, extensible Perl module installer
 Name: perl-Module-Install
-Version: 0.91
+Version: 0.92
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Install/
 
-Source: http://www.cpan.org/modules/by-module/Module/Module-Install-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/Module-Install-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.005
-BuildRequires: perl(Archive::Tar)
-BuildRequires: perl(ExtUtils::Install) >= 0.3
-BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
-BuildRequires: perl(ExtUtils::ParseXS)
-BuildRequires: perl(File::Remove) >= 1.4
-BuildRequires: perl(File::Spec) >= 0.87
-BuildRequires: perl(Module::Build)
-BuildRequires: perl(Module::CoreList)
-BuildRequires: perl(Module::ScanDeps) >= 0.28
-BuildRequires: perl(PAR::Dist) >= 0.03
-BuildRequires: perl(Test::Harness) >= 2.03
-BuildRequires: perl(Test::More) >= 0.42
-# needed for certain older versions of perl-Module-Build
-BuildRequires: perl(YAML::Syck)
-Requires: perl >= 0:5.005
+BuildRequires: perl(Archive::Tar) >= 1.44
+#BuildRequires: perl(Devel::PPPort) >= 3.16
+BuildRequires: perl(Devel::PPPort)
+#BuildRequires: perl(ExtUtils::Install) >= 1.52
+BuildRequires: perl(ExtUtils::Install)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::ParseXS) >= 2.19
+BuildRequires: perl(File::Remove) >= 1.42
+#BuildRequires: perl(File::Spec) >= 3.2701
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(JSON) >= 2.14
+BuildRequires: perl(Module::Build) >= 0.2804
+BuildRequires: perl(Module::CoreList) >= 2.17
+BuildRequires: perl(Module::ScanDeps) >= 0.89
+BuildRequires: perl(PAR::Dist) >= 0.29
+BuildRequires: perl(Parse::CPAN::Meta) >= 1.39
+#BuildRequires: perl(Test::Harness) >= 3.13
+BuildRequires: perl(Test::Harness)
+#BuildRequires: perl(Test::More) >= 0.86
+BuildRequires: perl(Test::More)
+BuildRequires: perl(YAML::Tiny) >= 1.38
+BuildRequires: perl >= 5.005
+Requires: perl(Archive::Tar) >= 1.44
+#Requires: perl(Devel::PPPort) >= 3.16
+Requires: perl(Devel::PPPort)
+#Requires: perl(ExtUtils::Install) >= 1.52
+Requires: perl(ExtUtils::Install)
+Requires: perl(ExtUtils::ParseXS) >= 2.19
+Requires: perl(File::Remove) >= 1.42
+#Requires: perl(File::Spec) >= 3.2701
+Requires: perl(File::Spec)
+Requires: perl(JSON) >= 2.14
+Requires: perl(Module::Build) >= 0.2804
+Requires: perl(Module::CoreList) >= 2.17
+Requires: perl(Module::ScanDeps) >= 0.89
+Requires: perl(PAR::Dist) >= 0.29
+Requires: perl(Parse::CPAN::Meta) >= 1.39
+Requires: perl(YAML::Tiny) >= 1.38
+Requires: perl >= 5.005
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Module::Install is a standalone, extensible installer for Perl modules.  It is
@@ -49,6 +76,7 @@ descendent of CPAN::MakeMaker.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -80,6 +108,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/auto/share/
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.92-1
+- Updated to version 0.92.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.91-1
 - Updated to version 0.91.
 
