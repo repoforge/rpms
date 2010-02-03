@@ -9,7 +9,7 @@
 
 Summary: Tests strings for equality, with more helpful failures
 Name: perl-Test-LongString
-Version: 0.12
+Version: 0.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,7 @@ This package contains the following Perl module:
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/LongString.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.13-1
+- Updated to version 0.13.
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 0.12-1
 - Updated to version 0.12.
 
