@@ -9,18 +9,25 @@
 
 Summary: Interface to database schemas
 Name: perl-DBIx-DBSchema
-Version: 0.36
+Version: 0.38
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-DBSchema/
 
-Source: http://www.cpan.org/modules/by-module/DBIx/DBIx-DBSchema-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IV/IVAN/DBIx-DBSchema-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(DBI)
+BuildRequires: perl(FreezeThaw)
+BuildRequires: perl(Storable)
+Requires: perl(DBI)
+Requires: perl(FreezeThaw)
+Requires: perl(Storable)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 This module implements an OO-interface to database schemas.  Using this module,
@@ -35,6 +42,7 @@ CREATE statements for different databases from a single source.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/DBSchema.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.38-1
+- Updated to version 0.38.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 0.36-1
 - Updated to release 0.36.
 
