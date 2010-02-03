@@ -9,13 +9,13 @@
 
 Summary: obtain the REFCNT value of a referent
 Name: perl-Devel-Refcount
-Version: 0.06
+Version: 0.07
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-Refcount/
 
-Source: http://www.cpan.org/modules/by-module/Devel/Devel-Refcount-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PEVANS/Devel-Refcount-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -23,6 +23,11 @@ BuildRequires: perl(ExtUtils::CBuilder)
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(XSLoader)
+Requires: perl(XSLoader)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 obtain the REFCNT value of a referent.
@@ -33,6 +38,7 @@ obtain the REFCNT value of a referent.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -54,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Devel/Refcount.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 0.06-1
 - Updated to version 0.06.
 
