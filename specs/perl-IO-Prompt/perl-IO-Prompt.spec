@@ -9,7 +9,7 @@
 
 Summary: Perl module to interactively prompt for user input.
 Name: perl-IO-Prompt
-Version: 0.996
+Version: 0.997
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,6 +24,8 @@ BuildRequires: perl(IO::Handle)
 BuildRequires: perl(POSIX)
 BuildRequires: perl(Term::ReadKey)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod::Coverage)
+BuildRequires: perl(Test::Pod)
 BuildRequires: perl(Want)
 BuildRequires: perl(version)
 Requires: perl(IO::Handle)
@@ -45,6 +47,7 @@ IO-Prompt is a Perl module to interactively prompt for user input.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -66,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Prompt.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.997-1
+- Updated to version 0.997.
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 0.996-1
 - Updated to version 0.996.
 
