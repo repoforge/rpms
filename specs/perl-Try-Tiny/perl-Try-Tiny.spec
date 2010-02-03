@@ -9,7 +9,7 @@
 
 Summary: minimal try/catch with proper localization of $@
 Name: perl-%{real_name}
-Version: 0.02
+Version: 0.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Try/*
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Tue Dec 01 2009 Steve Huff <shuff@vecna.org> - 0.02-1
 - Initial package.
 
