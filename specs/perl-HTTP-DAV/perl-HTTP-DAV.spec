@@ -8,7 +8,7 @@
 
 Summary: WebDAV client library for Perl
 Name: perl-HTTP-DAV
-Version: 0.39
+Version: 0.40
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,6 +22,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(LWP) >= 5.48
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(XML::DOM)
+BuildRequires: perl(XML::Parser)
 Requires: perl(LWP) >= 5.48
 Requires: perl(Scalar::Util)
 Requires: perl(XML::DOM)
@@ -40,6 +41,7 @@ and PUT files and much more on a DAV-enabled webserver.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -66,6 +68,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTTP/DAV.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.40-1
+- Updated to version 0.40.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.39-1
 - Updated to version 0.39.
 
