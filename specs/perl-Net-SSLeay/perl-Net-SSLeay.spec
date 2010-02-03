@@ -9,23 +9,18 @@
 
 Summary: Net-SSLeay module for perl
 Name: perl-Net-SSLeay
-Version: 1.35
-Release: 2%{?dist}
+Version: 1.36
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-SSLeay/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-SSLeay-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Net-SSLeay-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
 BuildRequires: perl >= 0:5.00503
-BuildRequires: perl(Array::Compare)
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Sub::Uplevel)
-BuildRequires: perl(Test::Exception)
-BuildRequires: perl(Test::Warn)
-BuildRequires: perl(Tree::DAG_Node)
 Requires: perl >= 0:5.00503
 
 Provides: perl-Business-OnlinePayment-alternative = 3.00
@@ -41,6 +36,7 @@ Net-SSLeay module for perl.
 %build
 echo "n" | CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -67,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/SSLeay.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.36-1
+- Updated to version 1.36.
+
 * Tue Nov 17 2009 Steve Huff <shuff@vecna.org> - 1.35-2
 - Satisfies an alternative dependency for perl-Business-OnlinePayment.
 
