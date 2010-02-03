@@ -9,13 +9,13 @@
 
 Summary: Interface for Yahoo! Search Marketing's Web Services
 Name: perl-Yahoo-Marketing
-Version: 6.03
-Release: 1
+Version: 6.11
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Yahoo-Marketing/
 
-Source: http://www.cpan.org/modules/by-module/Yahoo/Yahoo-Marketing-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHENJ/Yahoo-Marketing-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -27,7 +27,7 @@ BuildRequires: perl(DateTime::Format::W3CDTF)
 BuildRequires: perl(Error) >= 0.15
 BuildRequires: perl(Module::Build) >= 0.26
 BuildRequires: perl(SOAP::Lite) >= 0.66
-# BuildRequires: perl(Scalar::Util) >= 1.01 conflicts with perl package
+#BuildRequires: perl(Scalar::Util) >= 1.01 conflicts with perl package
 BuildRequires: perl(Test::Class) >= 0.10
 #BuildRequires: perl(Test::More) conflicts with perl package
 #BuildRequires: perl(Test::Simple) >= 0.60  conflicts with perl package
@@ -83,6 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Yahoo/Marketing.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 6.11-1
+- Updated to version 6.11.
+
 * Mon Nov 16 2009 Christoph Maser <cmr@financial.com> - 6.03-1
 - Updated to version 6.03.
 
