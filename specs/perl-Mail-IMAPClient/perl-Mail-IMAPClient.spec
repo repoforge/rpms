@@ -9,7 +9,7 @@
 
 Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
-Version: 3.21
+Version: 3.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,6 +58,7 @@ to and an IMAP conversation with an IMAP server.
 %build
 echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -83,6 +84,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/IMAPClient.pod
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 3.22-1
+- Updated to version 3.22.
+
 * Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 3.21-1
 - Updated to version 3.21.
 
