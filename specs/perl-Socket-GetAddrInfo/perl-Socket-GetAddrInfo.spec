@@ -1,6 +1,6 @@
 # $Id$
 # Authority: cmr
-# Upstream: Paul Evans E<lt>leonerd$leonerd,org,ukE<gt>
+# Upstream: Paul Evans <leonerd@leonerd.org.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: RFC 2553's C<getaddrinfo> and C<getnameinfo> functions
 Name: perl-Socket-GetAddrInfo
-Version: 0.14
+Version: 0.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,12 +18,14 @@ URL: http://search.cpan.org/dist/Socket-GetAddrInfo/
 Source: http://search.cpan.org/CPAN/authors/id/P/PE/PEVANS/Socket-GetAddrInfo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(ExtUtils::CBuilder)
+BuildRequires: perl(ExtUtils::CChecker)
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Module::Build::Compat)
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Warn)
+Requires: perl(XSLoader)
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -37,6 +39,7 @@ RFC 2553's C<getaddrinfo> and C<getnameinfo> functions.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Socket/GetAddrInfo.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.15-1
+- Updated to version 0.15.
+
 * Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 0.14-1
 - Updated to version 0.14.
 
