@@ -9,19 +9,29 @@
 
 Summary: Hack around people calling UNIVERSAL::can() as a function
 Name: perl-UNIVERSAL-can
-Version: 1.15
+Version: 1.16
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/UNIVERSAL-can/
 
-Source: http://www.cpan.org/modules/by-module/UNIVERSAL/UNIVERSAL-can-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHROMATIC/UNIVERSAL-can-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(Module::Build) 
 BuildRequires: perl(Scalar::Util)
+#BuildRequires: perl(Test::Simple) >= 0.60
+BuildRequires: perl(Test::Simple)
+BuildRequires: perl >= v5.6.2
+Requires: perl(Scalar::Util)
+#Requires: perl(Test::Simple) >= 0.60
+Requires: perl(Test::Simple)
+Requires: perl >= v5.6.2
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Hack around people calling UNIVERSAL::can() as a function.
@@ -50,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/UNIVERSAL/can.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.16-1
+- Updated to version 1.16.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.15-1
 - Updated to version 1.15.
 
