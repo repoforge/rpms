@@ -9,7 +9,7 @@
 
 Summary: Framework for command-line applications
 Name: perl-Getopt-Auto
-Version: 1.9.0
+Version: 1.9.1
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,6 +39,7 @@ Framework for command-line applications.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Getopt/Auto.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.9.1-1
+- Updated to version 1.9.1.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 1.9.0-1
 - Updated to version 1.9.0.
 
