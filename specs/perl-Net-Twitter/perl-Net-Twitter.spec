@@ -11,7 +11,7 @@
 
 Summary: A perl interface to the Twitter API
 Name: perl-%{real_name}
-Version: 3.10003
+Version: 3.11003
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -35,10 +35,9 @@ BuildRequires: perl(JSON::Any) >= 1.21
 BuildRequires: perl(JSON::XS)
 BuildRequires: perl(LWP::UserAgent) >= 2.032
 BuildRequires: perl(List::Util)
-BuildRequires: perl(Moose) >= 0.85
+BuildRequires: perl(Moose) >= 0.9
 BuildRequires: perl(Moose::Exporter)
 BuildRequires: perl(Moose::Role)
-BuildRequires: perl(MooseX::AttributeHelpers)
 BuildRequires: perl(MooseX::MultiInitArg)
 BuildRequires: perl(Net::Netrc)
 BuildRequires: perl(Net::OAuth) >= 0.2
@@ -62,10 +61,9 @@ Requires: perl(JSON::Any) >= 1.21
 Requires: perl(JSON::XS)
 Requires: perl(LWP::UserAgent) >= 2.032
 Requires: perl(List::Util)
-Requires: perl(Moose) >= 0.85
+Requires: perl(Moose) >= 0.9
 Requires: perl(Moose::Exporter)
 Requires: perl(Moose::Role)
-Requires: perl(MooseX::AttributeHelpers)
 Requires: perl(MooseX::MultiInitArg)
 Requires: perl(Net::Netrc)
 Requires: perl(Net::OAuth) >= 0.2
@@ -124,6 +122,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Twitter.pod
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 3.11003-1
+- Updated to version 3.11003.
+
 * Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 3.10003-1
 - Updated to version 3.10003.
 
