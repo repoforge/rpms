@@ -9,18 +9,27 @@
 
 Summary: Perl module that implemens RIPE Whois
 Name: perl-Net-Whois-RIPE
-Version: 1.30
+Version: 2.00002
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Whois-RIPE/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-Whois-RIPE-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/L/LM/LMC/Net-Whois-RIPE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(Iterator)
+BuildRequires: perl(Iterator::Util)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.006
+Requires: perl(Iterator)
+Requires: perl(Iterator::Util)
+Requires: perl(Test::Exception)
+Requires: perl(Test::More)
+Requires: perl >= 5.006
+
 
 %description
 perl-Net-Whois-RIPE is a Perl module that implemens RIPE Whois.
@@ -29,12 +38,13 @@ perl-Net-Whois-RIPE is a Perl module that implemens RIPE Whois.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
-./Build
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
-./Build pure_install
+%{__make} pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -44,18 +54,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Net::Whois::RIPE.3pm*
-%doc %{_mandir}/man3/Net::Whois::RIPE::Iterator.3pm*
-%doc %{_mandir}/man3/Net::Whois::RIPE::Object.3pm*
 #%doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorlib}/Net/
 %dir %{perl_vendorlib}/Net/Whois/
-%{perl_vendorlib}/Net/Whois/RIPE/
 %{perl_vendorlib}/Net/Whois/RIPE.pm
-%{perl_vendorlib}/Net/Whois/RIPE.pod
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 2.00002-1
+- Updated to version 2.00002.
+
 * Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 1.30-1
 - Updated to version 1.30.
 
