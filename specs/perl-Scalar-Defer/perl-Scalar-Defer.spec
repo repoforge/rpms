@@ -9,21 +9,26 @@
 
 Summary: Lazy evaluation in Perl
 Name: perl-Scalar-Defer
-Version: 0.20
+Version: 0.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Scalar-Defer/
 
-Source: http://www.cpan.org/modules/by-module/Scalar/Scalar-Defer-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/Scalar-Defer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
 BuildRequires: perl(Class::InsideOut)
 BuildRequires: perl(Exporter::Lite)
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl >= 5.6.0
+Requires: perl(Class::InsideOut)
+Requires: perl(Exporter::Lite)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Lazy evaluation in Perl.
@@ -32,8 +37,9 @@ Lazy evaluation in Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -54,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Scalar/Defer.pm
 
 %changelog
+* Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 0.20-1
 - Updated to version 0.20.
 
