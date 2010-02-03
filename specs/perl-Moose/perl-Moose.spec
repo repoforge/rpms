@@ -19,7 +19,6 @@ URL: http://search.cpan.org/dist/Moose/
 Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::MOP) >= 0.98
 BuildRequires: perl(Data::OptList)
@@ -62,7 +61,6 @@ Moose is a Perl module that implements a complete modern object system.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -81,11 +79,13 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/Moose::*.3pm*
 %doc %{_mandir}/man3/oose.3pm*
 %doc %{_mandir}/man3/Test::Moose.3pm*
-%{perl_vendorlib}/Moose/
-%{perl_vendorlib}/Moose.pm
-%{perl_vendorlib}/oose.pm
-%dir %{perl_vendorlib}/Test/
-%{perl_vendorlib}/Test/Moose.pm
+%{perl_vendorarch}/Moose/
+%{perl_vendorarch}/Moose.pm
+%{perl_vendorarch}/oose.pm
+%dir %{perl_vendorarch}/Test/
+%{perl_vendorarch}/Test/Moose.pm
+%{perl_vendorarch}/auto/Moose/Moose.bs
+%{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.94-1
