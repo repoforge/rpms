@@ -1,59 +1,59 @@
 # $Id$
-# Authority: dag
-# Upstream: Brent Chun <bnc$theether,org>
+# Authority: shuff
+# Upstream: Andrew McNabb <amcnabb$mcnabbs,org>
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(0)')
 
-Summary: Parallel SSH tools
+Summary: Parallel version of OpenSSH and related tools
 Name: pssh
-Version: 1.2.2
+Version: 2.0
 Release: 1%{?dist}
-License: GPL
+License: BSD
 Group: Applications/Internet
-URL: http://www.theether.org/pssh/
+URL: http://code.google.com/p/parallel-ssh/
 
-Source: http://www.theether.org/pssh/pssh-%{version}.tar.gz
+Source: http://parallel-ssh.googlecode.com/files/pssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python
+BuildRequires: python >= 2.0
+BuildRequires: python-setuptools
 Requires: openssh, python >= 2.0
 
+Provides: %{_bindir}/pssh
+Provides: %{_bindir}/pscp
+Provides: %{_bindir}/pnuke
+Provides: %{_bindir}/prsync
+Provides: %{_bindir}/pslurp
+Provides: psshlib = %{version}
+
 %description
-This package provides various parallel tools based on ssh and scp.
+PSSH (Parallel SSH) provides parallel versions of OpenSSH and related tools,
+including pssh, pscp, prsync, pnuke, and pslurp.  The project includes psshlib
+which can be used within custom applications.
 
 %prep
 %setup
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
-%{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 bin/pssh %{buildroot}%{_bindir}/pssh
-%{__install} -Dp -m0755 bin/pscp %{buildroot}%{_bindir}/pscp
-%{__install} -Dp -m0755 bin/pnuke %{buildroot}%{_bindir}/pnuke
-%{__install} -Dp -m0755 bin/prsync %{buildroot}%{_bindir}/prsync
-%{__install} -Dp -m0755 bin/pslurp %{buildroot}%{_bindir}/pslurp
-%{__install} -Dp -m0644 lib/python/psshutil.py %{buildroot}%{python_sitearch}/psshutil.py
-%{__install} -Dp -m0644 lib/python/basethread.py %{buildroot}%{python_sitearch}/basethread.py
+%{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_bindir}/pssh
-%{_bindir}/pscp
-%{_bindir}/pnuke
-%{_bindir}/prsync
-%{_bindir}/pslurp
-%{python_sitearch}/psshutil.py
-%{python_sitearch}/basethread.py
+%doc AUTHORS ChangeLog COPYING INSTALL
+%{_bindir}/*
+%{python_sitelib}/*
 
 %changelog
+* Thu Feb 04 2010 Steve Huff <shuff@vecna.org> - 2.0-1
+- Updated to release 2.0.
+
 * Mon Jun 19 2006 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
