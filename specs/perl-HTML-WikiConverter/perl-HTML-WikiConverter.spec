@@ -37,6 +37,7 @@ BuildRequires: perl(URI::Escape)
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
 Requires: perl(Carp)
+Requires: perl(CGI::Application)
 Requires: perl(Class::Data::Inheritable) >= 0.02
 Requires: perl(CSS) >= 1.07
 Requires: perl(Exporter)
@@ -96,9 +97,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes LICENSE INSTALL README cgi/ webapp-install
 %doc %{_mandir}/man?/*
-%{perl_vendorlib}/HTML/WikiConverter/
+%dir %{perl_vendorlib}/HTML/WikiConverter/
 %{perl_vendorlib}/HTML/WikiConverter/*
 %{perl_vendorlib}/HTML/WikiConverter.pm
 %{_bindir}/*
