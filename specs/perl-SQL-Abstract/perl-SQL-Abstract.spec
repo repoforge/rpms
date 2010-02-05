@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Nate Wiger <nate$wiger,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,13 +9,13 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.60
+Version: 1.61
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
 
-Source: http://www.cpan.org/modules/by-module/SQL/SQL-Abstract-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Abstract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -78,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL/Abstract/Test.pm
 
 %changelog
+* Fri Feb 05 2010 Steve Huff <shuff@vecna.org> - 1.61-1
+- Updated to version 1.61.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 1.60-1
 - Updated to version 1.60.
 

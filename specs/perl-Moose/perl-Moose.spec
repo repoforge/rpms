@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: Dave Rolsky <autarch@urth.org>
+# Upstream: Florian Ragwitz <rafl$debian,org>
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,13 +10,13 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 0.94
+Version: 0.95
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Carp)
@@ -88,6 +88,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
+* Fri Feb 05 2010 Steve Huff <shuff@vecna.org> - 0.95-1
+- Updated to version 0.95.
+- Upstream is now Florian Ragwitz.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.94-1
 - Updated to version 0.94.
 
