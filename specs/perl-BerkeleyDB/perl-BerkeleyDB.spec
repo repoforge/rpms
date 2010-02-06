@@ -10,7 +10,7 @@
 
 Summary: Perl extension for Berkeley DB version 2, 3 or 4
 Name: perl-BerkeleyDB
-Version: 0.40
+Version: 0.41
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -40,6 +40,7 @@ Perl extension for Berkeley DB version 2, 3 or 4.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/BerkeleyDB.pod
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.41-1
+- Updated to version 0.41.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 0.40-1
 - Updated to version 0.40.
 
