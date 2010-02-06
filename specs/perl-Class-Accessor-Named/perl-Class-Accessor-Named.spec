@@ -9,7 +9,7 @@
 
 Summary: Better profiling output for Class::Accessor
 Name: perl-%{real_name}
-Version: 0.008
+Version: 0.009
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,20 +21,17 @@ BuildArch: noarch
 
 BuildRequires: perl
 BuildRequires: perl(Class::Accessor)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Hook::LexWrap)
-BuildRequires: perl(Module::Install)
 BuildRequires: perl(Sub::Name)
 BuildRequires: perl(UNIVERSAL::require)
-BuildRequires: rpm-macros-rpmforge
-Requires: perl
 Requires: perl(Class::Accessor)
 Requires: perl(Hook::LexWrap)
 Requires: perl(Sub::Name)
 Requires: perl(UNIVERSAL::require)
 
-
-### remove autoreq Perl dependencies
-%filter_from_requires /^perl.*/d
+%filter_from_requires /^perl*/d
 %filter_setup
 
 %description
@@ -52,8 +49,9 @@ functions), it has not been designed for production deployment.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -73,5 +71,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/*
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.009-1
+- Updated to version 0.009.
+
 * Tue Dec 22 2009 Steve Huff <shuff@vecna.org> - 0.008-1
 - Initial package.
