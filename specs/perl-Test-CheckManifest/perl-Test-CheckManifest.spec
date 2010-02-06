@@ -9,13 +9,13 @@
 
 Summary: Checks manifest files
 Name: perl-Test-CheckManifest
-Version: 1.1
-Release: 1
+Version: 1.2
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-CheckManifest/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-CheckManifest-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RE/RENEEB/Test-CheckManifest-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/CheckManifest.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.2-1
+- Updated to version 1.2.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.1-1
 - Updated to version 1.1.
 
