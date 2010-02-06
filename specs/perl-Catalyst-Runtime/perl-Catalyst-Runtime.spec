@@ -12,7 +12,7 @@
 
 Summary: Catalyst  Runtime version
 Name: perl-Catalyst-Runtime
-Version: 5.80018
+Version: 5.80020
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,7 +63,7 @@ BuildRequires: perl(Tree::Simple) >= 1.15
 BuildRequires: perl(Tree::Simple::Visitor::FindByPath)
 BuildRequires: perl(URI) >= 1.35
 BuildRequires: perl(namespace::autoclean) >= 0.09
-BuildRequires: perl(namespace::clean)
+BuildRequires: perl(namespace::clean) >= 0.13
 BuildRequires: perl >= 5.8.4
 Requires: perl(B::Hooks::EndOfScope) >= 0.08
 Requires: perl(CGI::Simple::Cookie)
@@ -100,7 +100,7 @@ Requires: perl(Tree::Simple) >= 1.15
 Requires: perl(Tree::Simple::Visitor::FindByPath)
 Requires: perl(URI) >= 1.35
 Requires: perl(namespace::autoclean) >= 0.09
-Requires: perl(namespace::clean)
+Requires: perl(namespace::clean) >= 0.13
 Requires: perl >= 5.8.4
 
 %filter_from_requires /^perl*/d
@@ -117,6 +117,7 @@ Catalyst Runtime version.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -139,6 +140,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 5.80020-1
+- Updated to version 5.80020.
+
 * Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 5.80018-1
 - Updated to version 5.80018.
 
