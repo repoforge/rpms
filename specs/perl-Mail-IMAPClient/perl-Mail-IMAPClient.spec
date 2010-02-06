@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Mark Overmeer <mark$overmeer,net>
+# Upstream: Phil Pearl (Lobbes) <phil @ perkpartners.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: IMAP4 client library
 Name: perl-Mail-IMAPClient
-Version: 3.22
+Version: 3.23
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -58,7 +58,7 @@ to and an IMAP conversation with an IMAP server.
 %build
 echo "n" | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} test
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -84,6 +84,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/IMAPClient.pod
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 3.23-1
+- Updated to version 3.23.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 3.22-1
 - Updated to version 3.22.
 
