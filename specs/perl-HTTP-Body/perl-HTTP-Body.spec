@@ -12,7 +12,7 @@
 Summary: HTTP Body parser
 Name: perl-HTTP-Body
 Version: 1.07
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTTP-Body/
@@ -37,7 +37,8 @@ Requires: perl(Carp)
 Requires: perl(File::Temp) >= 0.14
 Requires: perl(HTTP::Headers)
 #Requires: perl(IO::File)
-Requires: perl(IO::File) >= 1.14
+#Requires: perl(IO::File) >= 1.14
+Requires: perl(IO::File)
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -73,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Body.pm
 
 %changelog
+* Sat Feb 06 2010 Christoph Maser <cmr@financial.com> - 1.07-2
+- Remove version for dependency IO::File
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.07-1
 - Updated to version 1.07.
 
