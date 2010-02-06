@@ -9,8 +9,8 @@
 
 Summary: Capture STDOUT and STDERR from Perl, XS or external programs
 Name: perl-Capture-Tiny
-Version: 0.06
-Release: 2%{?dist}
+Version: 0.07
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Capture-Tiny/
@@ -20,10 +20,24 @@ Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/Capture-Tiny-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.006
+BuildRequires: perl(Exporter)
+BuildRequires: perl(File::Spec)
+#BuildRequires: perl(File::Temp) >= 0.14
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(IO::Handle)
 #BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: perl(Test::More)
-Requires: perl >= 0:5.006
+BuildRequires: perl >= 5.006
+Requires: perl(Exporter)
+Requires: perl(File::Spec)
+#Requires: perl(File::Temp) >= 0.14
+Requires: perl(File::Temp)
+Requires: perl(IO::Handle)
+Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Capture STDOUT and STDERR from Perl, XS or external programs.
@@ -34,6 +48,7 @@ Capture STDOUT and STDERR from Perl, XS or external programs.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Capture/Tiny.pod
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.07-1
+- Updated to version 0.07.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.06-2
 - Remove version number for Test::More requirement
 
