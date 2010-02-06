@@ -9,19 +9,29 @@
 
 Summary: Perl module to parse and validate simple name/value option pairs
 Name: perl-Data-OptList
-Version: 0.104
+Version: 0.105
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-OptList/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-OptList-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Data-OptList-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(List::Util)
+BuildRequires: perl(Params::Util) >= 0.14
+BuildRequires: perl(Sub::Install) >= 0.92
 Requires: perl
+Requires: perl(List::Util)
+Requires: perl(Params::Util) >= 0.14
+Requires: perl(Sub::Install) >= 0.92
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Data-OptList is a Perl module to parse and validate simple
@@ -33,6 +43,7 @@ name/value option pairs.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/OptList.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.105-1
+- Updated to version 0.105.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 0.104-1
 - Updated to version 0.104.
 
