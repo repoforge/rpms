@@ -9,7 +9,7 @@
 
 Summary: Perl extension for PayPal's Encrypted Website Payments
 Name: perl-Business-PayPal-EWP
-Version: 1.01
+Version: 1.02
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -18,8 +18,9 @@ URL: http://search.cpan.org/dist/Business-PayPal-EWP/
 Source: http://search.cpan.org/CPAN/authors/id/T/TB/TBUSCH/Business-PayPal-EWP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc
 BuildRequires: openssl-devel
-BuildRequires: perl(Net::SSLeay)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
 Requires: openssl
 
@@ -55,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Business/PayPal/EWP.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.02-1
+- Updated to version 1.02.
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.01-1
 - Updated to version 1.01.
 
