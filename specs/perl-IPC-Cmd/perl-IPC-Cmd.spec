@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos Boumans <gro,miwd$enak>
+# Upstream: Chris Williams <chris@bingosnet.co.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Finding and running system commands made easy
 Name: perl-IPC-Cmd
-Version: 0.54
+Version: 0.56
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,7 @@ also has an option to capture output/error buffers.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -66,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IPC/Cmd.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.56-1
+- Updated to version 0.56.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 0.54-1
 - Updated to version 0.54.
 
