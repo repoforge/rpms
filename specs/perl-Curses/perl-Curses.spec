@@ -9,13 +9,13 @@
 
 Summary: Perl module for terminal screen handling and optimization
 Name: perl-Curses
-Version: 1.27
+Version: 1.28
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Curses/
 
-Source: http://www.cpan.org/modules/by-module/Curses/Curses-%{version}.tgz
+Source: http://search.cpan.org/CPAN/authors/id/G/GI/GIRAFFED/Curses-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -33,6 +33,7 @@ Perl module for terminal screen handling and optimization
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +53,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Curses.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.28-1
+- Updated to version 1.28.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.27-1
 - Updated to version 1.27.
 
