@@ -9,7 +9,7 @@
 
 Summary: Parse ABIF files
 Name: perl-Bio-Trace-ABIF
-Version: 1.02
+Version: 1.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,9 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl
 Requires: perl(Test::More)
 
+%filter_from_requires /^perl*/d
+%filter_setup
+
 %description
 Perl extension for reading and parsing ABIF (Applied Biosystems, 
 Inc. Format) files.
@@ -35,6 +38,7 @@ Inc. Format) files.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Bio/Trace/ABIF.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.04-1
+- Updated to version 1.04.
+
 * Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 1.02-1
 - Updated to version 1.02.
 
