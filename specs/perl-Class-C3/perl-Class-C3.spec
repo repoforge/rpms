@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Brandon L Black <blblack$gmail,com>
+# Upstream: Florian Ragwitz <rafl@debian.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,23 +9,26 @@
 
 Summary: Pragma for the C3 method resolution order algorithm
 Name: perl-Class-C3
-Version: 0.21
+Version: 0.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-C3/
 
-Source: http://www.cpan.org/modules/by-module/Class/Class-C3-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Class-C3-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(Algorithm::C3) >= 0.06
-BuildRequires: perl(Class::C3::XS) >= 0.07
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Scalar::Util) >= 1.10
 BuildRequires: perl(Test::More) >= 0.47
 Requires: perl(Algorithm::C3) >= 0.06
+Requires: perl(Scalar::Util) >= 1.10
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Pragma for the C3 method resolution order algorithm.
@@ -36,6 +39,7 @@ Pragma for the C3 method resolution order algorithm.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/C3.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.22-1
+- Updated to version 0.22.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 0.21-1
 - Updated to version 0.21.
 
