@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tomas Doran <bobtfish@bobtfish.net>
+# Upstream: Florian Ragwitz <rafl@debian.org>
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,13 +10,13 @@
 
 Summary: Infrastructure plugin for the Catalyst
 Name: perl-Catalyst-Plugin-Authentication
-Version: 0.10015
+Version: 0.10016
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Authentication/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/Catalyst-Plugin-Authentication-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Catalyst-Plugin-Authentication-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -74,6 +74,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Authentication.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.10016-1
+- Updated to version 0.10016.
+
 * Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 0.10015-1
 - Updated to version 0.10015.
 
