@@ -9,17 +9,25 @@
 
 Summary: Compare perl data structures
 Name: perl-Data-Compare
-Version: 1.2101
+Version: 1.2102
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Compare/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-Compare-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCANTRELL/Data-Compare-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(File::Find::Rule) >= 0.1
+BuildRequires: perl(Scalar::Util)
+Requires: perl(File::Find::Rule) >= 0.1
+Requires: perl(Scalar::Util)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module compares arbitrary data structures to see if they are copies
@@ -31,6 +39,7 @@ of each other.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Compare.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.2102-1
+- Updated to version 1.2102.
+
 * Thu Jul  9 2009 Christoph Maser <cmr@financial.com> - 1.2101-1
 - Updated to version 1.2101.
 
