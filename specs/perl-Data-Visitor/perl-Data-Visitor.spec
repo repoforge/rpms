@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: יובל קוג'מן (Yuval Kogman) <nothingmuch$woobling,org>
+# Upstream: Florian Ragwitz <rafl@debian.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,27 +9,32 @@
 
 Summary: Visitor style traversal of Perl data structures
 Name: perl-Data-Visitor
-Version: 0.26
+Version: 0.27
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Data-Visitor/
 
-Source: http://www.cpan.org/modules/by-module/Data/Data-Visitor-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Data-Visitor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
 BuildRequires: perl(Moose) >= 0.89
 BuildRequires: perl(Task::Weaken)
-BuildRequires: perl(Test::MockObject) >= 1.04
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::use::ok)
 BuildRequires: perl(Tie::ToObject) >= 0.01
 BuildRequires: perl(namespace::clean) >= 0.08
+Requires: perl(Moose) >= 0.89
+Requires: perl(Task::Weaken)
+Requires: perl(Test::More)
+Requires: perl(Test::use::ok)
+Requires: perl(Tie::ToObject) >= 0.01
+Requires: perl(namespace::clean) >= 0.08
 
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Visitor style traversal of Perl data structures.
@@ -61,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Data/Visitor.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.27-1
+- Updated to version 0.27.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.26-1
 - Updated to version 0.26.
 
