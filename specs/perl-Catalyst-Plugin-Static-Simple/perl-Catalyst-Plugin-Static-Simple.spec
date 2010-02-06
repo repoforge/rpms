@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tomas Doran <bobtfish@bobtfish.net>
+# Upstream: Matt S Trout <perl-stuff@trout.me.uk>
 # ExcludeDist: el4  <- inherited by Catalyst::Runtime
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,13 +10,13 @@
 
 Summary: Make serving static pages painless
 Name: perl-Catalyst-Plugin-Static-Simple
-Version: 0.28
+Version: 0.29
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Catalyst-Plugin-Static-Simple/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/Catalyst-Plugin-Static-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSTROUT/Catalyst-Plugin-Static-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -47,6 +47,7 @@ Make serving static pages painless.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -69,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Catalyst/Plugin/Static/Simple.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.29-1
+- Updated to version 0.29.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 0.28-1
 - Updated to version 0.28.
 
