@@ -9,7 +9,7 @@
 
 Summary: Roles with composition parameters
 Name: perl-%{real_name}
-Version: 0.15
+Version: 0.16
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,9 +26,8 @@ BuildRequires: perl(Test::Exception) >= 0.27
 BuildRequires: perl(Test::Moose)
 #BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
-BuildRequires: rpm-macros-rpmforge
-Requires: perl >= 5.8.1
 Requires: perl(Moose) >= 0.78
+Requires: perl >= 5.8.1
 
 
 ### remove autoreq Perl dependencies
@@ -79,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Role/*
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.16-1
+- Updated to version 0.16.
+
 * Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 0.15-1
 - Updated to version 0.15.
 
