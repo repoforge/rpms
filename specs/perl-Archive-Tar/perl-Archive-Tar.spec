@@ -9,7 +9,7 @@
 
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
-Version: 1.54
+Version: 1.56
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,7 @@ Module for manipulations of tar archives.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -79,6 +80,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Tar.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.56-1
+- Updated to version 1.56.
+
 * Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 1.54-1
 - Updated to version 1.54.
 
