@@ -10,22 +10,21 @@
 
 Summary: Perl extension for performing paradigm-free evolutionary algorithms
 Name: perl-Algorithm-Evolutionary
-Version: 0.71
+Version: 0.72
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Algorithm-Evolutionary/
 
-Source: http://www.cpan.org/modules/by-module/Algorithm/Algorithm-Evolutionary-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JM/JMERELO/Algorithm-Evolutionary-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-# From yaml requires
 BuildRequires: perl(Algorithm::Permute) >= 0.01
 BuildRequires: perl(B::Deparse) >= 0.56
 BuildRequires: perl(Bit::Vector)
 BuildRequires: perl(Clone::Fast)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(GD) >= 2.17
 BuildRequires: perl(Math::Random) >= 0.63
 BuildRequires: perl(Memoize)
@@ -44,6 +43,31 @@ BuildRequires: perl(XML::Parser::Style::EasyTree) >= 0.01
 BuildRequires: perl(YAML)
 BuildRequires: perl(constant)
 BuildRequires: perl(version)
+Requires: perl(Algorithm::Permute) >= 0.01
+Requires: perl(B::Deparse) >= 0.56
+Requires: perl(Bit::Vector)
+Requires: perl(Clone::Fast)
+Requires: perl(GD) >= 2.17
+Requires: perl(Math::Random) >= 0.63
+Requires: perl(Memoize)
+Requires: perl(Object::Array)
+Requires: perl(Pod::Escapes)
+Requires: perl(Statistics::Basic) >= 1.6
+Requires: perl(String::Random)
+Requires: perl(Test::More)
+Requires: perl(Test::Pod)
+Requires: perl(Test::Simple) >= 0.44
+Requires: perl(Time::HiRes)
+Requires: perl(Tree::DAG_Node) >= 1.04
+Requires: perl(XML::LibXML) >= 1.5
+Requires: perl(XML::Parser)
+Requires: perl(XML::Parser::Style::EasyTree) >= 0.01
+Requires: perl(YAML)
+Requires: perl(constant)
+Requires: perl(version)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 
 %description
@@ -55,6 +79,7 @@ Perl extension for performing paradigm-free evolutionary algorithms.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -91,6 +116,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.72-1
+- Updated to version 0.72.
+
 * Tue Sep 29 2009 Christoph Maser <cmr@financial.com> - 0.71-1
 - Updated to version 0.71.
 
