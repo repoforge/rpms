@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Philip M. Gollucci <pgollucci$p6m7g8,com>
+# Upstream: Ask Bjoern Hansen <ask@perl.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,29 @@
 
 Summary: Persistent database connections and basic authentication support
 Name: perl-Apache-DBI
-Version: 1.07
+Version: 1.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Apache-DBI/
 
-Source: http://www.cpan.org/modules/by-module/Apache/Apache-DBI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AB/ABH/Apache-DBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(DBI) >= 1
+BuildRequires: perl(Digest::MD5) >= 2.2
+BuildRequires: perl(Digest::SHA1) >= 2.01
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl(DBI) >= 1
+Requires: perl(Digest::MD5) >= 2.2
+Requires: perl(Digest::SHA1) >= 2.01
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module is supposed to be used with the Apache server together with
@@ -34,6 +45,7 @@ connections via Perl's Database Independent Interface (DBI).
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -59,6 +71,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.08-1
+- Updated to version 1.08.
+
 * Sun Jun 22 2008 Dag Wieers <dag@wieers.com> - 1.07-1
 - Updated to release 1.07.
 
