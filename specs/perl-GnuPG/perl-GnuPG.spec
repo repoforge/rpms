@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Francis J. Lacoste <frajulac$contre,com>
+# Upstream: Mark Frost <mfrost@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,16 +9,17 @@
 
 Summary: Interface to the GNU Privacy Guard
 Name: perl-GnuPG
-Version: 0.10
+Version: 0.11
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG/
 
-Source: http://www.cpan.org/modules/by-module/GnuPG/GnuPG-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MF/MFROST/GnuPG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: gnupg
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 
@@ -53,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/GnuPG
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.11-1
+- Updated to version 0.11.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.10-1
 - Updated to version 0.10.
 
