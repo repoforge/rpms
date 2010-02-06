@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Matt S. Trout <mst$shadowcatsystems,co,uk>
+# Upstream: Peter Rabbitson <devel@rabbit.us>
 # perl-Carp-Clan >= 6 not available on el4
 # ExcludeDist: el4
 
@@ -11,13 +11,13 @@
 
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
-Version: 0.08115
+Version: 0.08117
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBIx-Class/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/DBIx-Class-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/DBIx-Class-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -26,11 +26,12 @@ BuildRequires: perl(Class::Accessor::Grouped) >= 0.09000
 BuildRequires: perl(Class::C3::Componentised) >= 1.0005
 BuildRequires: perl(Class::Inspector) >= 1.24
 BuildRequires: perl(DBD::SQLite) >= 1.25
-BuildRequires: perl(DBI) >= 1.605
+BuildRequires: perl(DBI) >= 1.609
 BuildRequires: perl(Data::Dumper::Concise) >= 1.000
 BuildRequires: perl(Data::Page) >= 2.00
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+#BuildRequires: perl(File::Temp) >= 0.22
 BuildRequires: perl(File::Temp)
 BuildRequires: perl(JSON::Any) >= 1.18
 BuildRequires: perl(List::Util)
@@ -54,7 +55,7 @@ Requires: perl(Class::Accessor::Grouped) >= 0.09000
 Requires: perl(Class::C3::Componentised) >= 1.0005
 Requires: perl(Class::Inspector) >= 1.24
 Requires: perl(DBD::SQLite) >= 1.25
-Requires: perl(DBI) >= 1.605
+Requires: perl(DBI) >= 1.609
 Requires: perl(Data::Dumper::Concise) >= 1.000
 Requires: perl(Data::Page) >= 2.00
 Requires: perl(JSON::Any) >= 1.18
@@ -108,6 +109,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DBIx/Class.pm
 
 %changelog
+* Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.08117-1
+- Updated to version 0.08117.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.08115-1
 - Updated to version 0.08115.
 
