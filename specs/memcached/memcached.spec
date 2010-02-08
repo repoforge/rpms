@@ -4,15 +4,16 @@
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.2.6
+Version: 1.4.4
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
-URL: http://www.danga.com/memcached/
+URL: http://memcached.org/
 
-Source: http://www.danga.com/memcached/dist/memcached-%{version}.tar.gz
+Source: http://memcached.googlecode.com/files/memcached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: cyrus-sasl-devel
 BuildRequires: libevent-devel
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/chkconfig, /sbin/service
@@ -22,6 +23,14 @@ Requires(postun): /sbin/service
 memcached is a high-performance, distributed memory object caching system,
 generic in nature, but intended for use in speeding up dynamic web
 applications by alleviating database load.
+
+%package devel
+Group: Development/Tools
+Summary: Header files for memcached
+
+%description devel
+Install this package if you want to develop programs that link against
+memcached.
 
 %prep
 %setup
@@ -129,7 +138,8 @@ EOF
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
-	--enable-shared \
+	--disable-dependency-tracking \
+	--enable-sasl \
 	--enable-threads
 %{__make} %{?_smp_mflags}
 
@@ -140,6 +150,8 @@ EOF
 
 %{__install} -Dp -m0755 memcached.sysv %{buildroot}%{_sysconfdir}/rc.d/init.d/memcached
 %{__install} -Dp -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
+
+%{__install} -Dp -m0755 scripts/memcached-tool %{buildroot}%{_bindir}
 
 %post
 /sbin/chkconfig --add memcached
@@ -158,14 +170,22 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/*.txt NEWS README TODO
+%doc AUTHORS ChangeLog COPYING doc/*.txt scripts/*damemtop* NEWS README
 %doc %{_mandir}/man1/memcached.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
 %config %{_initrddir}/memcached
 %{_bindir}/memcached
-%{_bindir}/memcached-debug
+%{_bindir}/memcached-tool
+
+%files devel
+%{_includedir}/memcached
 
 %changelog
+* Mon Feb 08 2010 Steve Huff <shuff@vecna.org> - 1.4.4-1
+- Updated to 1.4.4.
+- Split off include files into memcached-devel.
+- Install memcached-tool in %{_bindir}, install damemtop in %{_docdir}.
+
 * Wed Aug 20 2008 Michael Best <mbest@pendragon.org> 1.2.6
 - Update to 1.2.6.
 
