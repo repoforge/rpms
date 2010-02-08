@@ -11,7 +11,7 @@
 
 Summary: Extensible and flexible object <-> relational mapper
 Name: perl-DBIx-Class
-Version: 0.08117
+Version: 0.08118
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,7 +22,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(Carp::Clan) >= 6.0
-BuildRequires: perl(Class::Accessor::Grouped) >= 0.09000
+BuildRequires: perl(Class::Accessor::Grouped) >= 0.09002
 BuildRequires: perl(Class::C3::Componentised) >= 1.0005
 BuildRequires: perl(Class::Inspector) >= 1.24
 BuildRequires: perl(DBD::SQLite) >= 1.25
@@ -38,7 +38,7 @@ BuildRequires: perl(List::Util)
 BuildRequires: perl(MRO::Compat) >= 0.09
 BuildRequires: perl(Module::Find) >= 0.06
 BuildRequires: perl(Path::Class) >= 0.16
-BuildRequires: perl(SQL::Abstract) >= 1.60
+BuildRequires: perl(SQL::Abstract) >= 1.61
 BuildRequires: perl(SQL::Abstract::Limit) >= 0.13
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Scope::Guard) >= 0.03
@@ -49,9 +49,9 @@ BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Test::Exception)
 #BuildRequires: perl(Test::More) >= 0.92
 BuildRequires: perl(Test::Warn) >= 0.21
-BuildRequires: perl >= 5.6.1
+BuildRequires: perl >= 5.8.1
 Requires: perl(Carp::Clan) >= 6.0
-Requires: perl(Class::Accessor::Grouped) >= 0.09000
+Requires: perl(Class::Accessor::Grouped) >= 0.09002
 Requires: perl(Class::C3::Componentised) >= 1.0005
 Requires: perl(Class::Inspector) >= 1.24
 Requires: perl(DBD::SQLite) >= 1.25
@@ -63,13 +63,13 @@ Requires: perl(List::Util)
 Requires: perl(MRO::Compat) >= 0.09
 Requires: perl(Module::Find) >= 0.06
 Requires: perl(Path::Class) >= 0.16
-Requires: perl(SQL::Abstract) >= 1.60
+Requires: perl(SQL::Abstract) >= 1.61
 Requires: perl(SQL::Abstract::Limit) >= 0.13
 Requires: perl(Scalar::Util)
 Requires: perl(Scope::Guard) >= 0.03
 Requires: perl(Storable)
 Requires: perl(Sub::Name) >= 0.04
-Requires: perl >= 5.6.1
+Requires: perl >= 5.8.1
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -103,12 +103,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man1/dbicadmin.1*
 %{_bindir}/dbicadmin
 %dir %{perl_vendorlib}/DBIx/
-%dir %{perl_vendorlib}/SQL/Translator/Parser/DBIx/Class.pm
-%dir %{perl_vendorlib}/SQL/Translator/Producer/DBIx/Class/File.pm
+%{perl_vendorlib}/SQL/Translator/Parser/DBIx/Class.pm
+%{perl_vendorlib}/SQL/Translator/Producer/DBIx/Class/File.pm
 %{perl_vendorlib}/DBIx/Class/
 %{perl_vendorlib}/DBIx/Class.pm
 
 %changelog
+* Mon Feb 08 2010 Steve Huff <shuff@vecna.org> - 0.08118-1
+- Updated to version 0.08118.
+
 * Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.08117-1
 - Updated to version 0.08117.
 
