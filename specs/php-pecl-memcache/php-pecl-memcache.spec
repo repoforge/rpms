@@ -1,11 +1,12 @@
 # $Id$
 # Authority: matthias
+# Upstream: Antony Dovgal <tony$daylessday,org>
 
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: PECL package to use the memcached distributed caching system
 Name: php-pecl-memcache
-Version: 2.2.3
+Version: 2.2.5
 Release: 1%{?dist}
 License: PHP
 Group: Development/Languages
@@ -60,6 +61,9 @@ EOF
 
 
 %changelog
+* Tue Feb 09 2010 Steve Huff <shuff@vecna.org> - 2.2.5-1
+- Update to 2.2.5.
+
 * Mon Sep  1 2008 Dries Verachtert <dries@ulyssis.org> 2.2.3-1
 - Update to 2.2.3.
 
