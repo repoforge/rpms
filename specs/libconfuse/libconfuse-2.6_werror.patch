@@ -1,0 +1,72 @@
+diff -Naur confuse-2.6-orig/doc/Makefile.am confuse-2.6/doc/Makefile.am
+--- confuse-2.6-orig/doc/Makefile.am	2007-10-13 08:05:33.000000000 -0400
++++ confuse-2.6/doc/Makefile.am	2010-02-18 11:30:59.000000000 -0500
+@@ -10,7 +10,7 @@
+ LIBS = $(LTLIBINTL)
+ 
+ if cc_is_gcc
+-AM_CFLAGS=-Wall -Werror
++AM_CFLAGS=-Wall
+ endif
+ 
+ TUTORIAL_CSOURCES = listing1.c listing2.c listing3.c listing4.c \
+diff -Naur confuse-2.6-orig/doc/Makefile.in confuse-2.6/doc/Makefile.in
+--- confuse-2.6-orig/doc/Makefile.in	2007-12-29 05:56:12.000000000 -0500
++++ confuse-2.6/doc/Makefile.in	2010-02-18 11:31:11.000000000 -0500
+@@ -173,7 +173,7 @@
+ LDADD = ../src/libconfuse.la
+ INCLUDES = -I$(top_srcdir)/src
+ AM_LDFLAGS = -L../src/
+-@cc_is_gcc_TRUE@AM_CFLAGS = -Wall -Werror
++@cc_is_gcc_TRUE@AM_CFLAGS = -Wall
+ TUTORIAL_CSOURCES = listing1.c listing2.c listing3.c listing4.c \
+ 		    listing5.c listing6.c listing7.c listing8.c
+ 
+diff -Naur confuse-2.6-orig/src/Makefile.am confuse-2.6/src/Makefile.am
+--- confuse-2.6-orig/src/Makefile.am	2007-10-13 07:18:28.000000000 -0400
++++ confuse-2.6/src/Makefile.am	2010-02-18 11:28:42.000000000 -0500
+@@ -10,7 +10,7 @@
+ DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+ 
+ if cc_is_gcc
+-AM_CFLAGS=-Wall -Werror
++AM_CFLAGS=-Wall
+ endif
+ 
+ LIBS = @LIBS@
+diff -Naur confuse-2.6-orig/src/Makefile.in confuse-2.6/src/Makefile.in
+--- confuse-2.6-orig/src/Makefile.in	2007-12-29 05:56:12.000000000 -0500
++++ confuse-2.6/src/Makefile.in	2010-02-18 11:30:44.000000000 -0500
+@@ -196,7 +196,7 @@
+ libconfuse_la_SOURCES = confuse.c lexer.l
+ libconfuse_la_LIBADD = $(LTLIBINTL)
+ include_HEADERS = confuse.h
+-@cc_is_gcc_TRUE@AM_CFLAGS = -Wall -Werror
++@cc_is_gcc_TRUE@AM_CFLAGS = -Wall
+ CLEANFILES = *~ \#*\#
+ AM_LFLAGS = -Pcfg_yy -olex.yy.c
+ all: all-am
+diff -Naur confuse-2.6-orig/tests/Makefile.am confuse-2.6/tests/Makefile.am
+--- confuse-2.6-orig/tests/Makefile.am	2007-10-13 09:29:34.000000000 -0400
++++ confuse-2.6/tests/Makefile.am	2010-02-18 11:31:38.000000000 -0500
+@@ -9,7 +9,7 @@
+ CLEANFILES=*~
+ 
+ if cc_is_gcc
+-AM_CFLAGS=-Wall -Werror
++AM_CFLAGS=-Wall
+ endif
+ 
+ celan: clean
+diff -Naur confuse-2.6-orig/tests/Makefile.in confuse-2.6/tests/Makefile.in
+--- confuse-2.6-orig/tests/Makefile.in	2007-12-29 05:56:13.000000000 -0500
++++ confuse-2.6/tests/Makefile.in	2010-02-18 11:31:28.000000000 -0500
+@@ -244,7 +244,7 @@
+ LDADD = -L../src ../src/libconfuse.la $(LTLIBINTL)
+ EXTRA_DIST = a.conf b.conf check_confuse.h
+ CLEANFILES = *~
+-@cc_is_gcc_TRUE@AM_CFLAGS = -Wall -Werror
++@cc_is_gcc_TRUE@AM_CFLAGS = -Wall
+ all: all-am
+ 
+ .SUFFIXES:
