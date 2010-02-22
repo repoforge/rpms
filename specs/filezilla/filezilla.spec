@@ -6,7 +6,7 @@
 
 Summary: GUI SFTP/FTP client
 Name: filezilla
-Version: 3.3.1
+Version: 3.3.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Net
@@ -87,6 +87,9 @@ export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
 %{_libdir}/*
 
 %changelog
+* Sun Feb 21 2010 Steve Huff <shuff@vecna.org> - 3.3.2-1
+- Updated to version 3.3.2.
+
 * Tue Jan 05 2010 Steve Huff <shuff@vecna.org> - 3.3.1-1
 - Updated to version 3.3.1.
 
