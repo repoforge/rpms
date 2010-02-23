@@ -1,0 +1,38 @@
+diff -Naur bibus-1.4.3-orig/bibus.config bibus-1.4.3/bibus.config
+--- bibus-1.4.3-orig/bibus.config	2009-01-08 18:00:26.000000000 -0500
++++ bibus-1.4.3/bibus.config	2010-02-22 13:45:07.000000000 -0500
+@@ -23,7 +23,7 @@
+ # ------------------------------------------------------------------------------
+ 
+ import BIBbase
+-# from wxPython.wx import *
++from wxPython.wx import *
+ 
+ # BIBbase.FILES = u''	            # path to the directory containing the full text files (pdf)
+ 
+@@ -44,18 +44,18 @@
+ # BIBbase.NAME_TYPE['CUSTOM5'] = u'CUSTOM5'
+ 
+ ## Openoffice.org constants
+-# BIBbase.OO_CREATE_BIBbase = True	# True if we must create a bibliographic index if it does not exist
+-# BIBbase.OO_AUTO_UPDATE = True	    # True if index update on Insert
+-# BIBbase.OO_HILIGHT = False		# True if citations are hilighted with a yellow background
+-# BIBbase.OO_CON_TYPE = 0 		    # connection type. 0=TCP/IP ; 1=pipe
++BIBbase.OO_CREATE_BIBbase = True	# True if we must create a bibliographic index if it does not exist
++BIBbase.OO_AUTO_UPDATE = True	    # True if index update on Insert
++BIBbase.OO_HILIGHT = True   		# True if citations are hilighted with a yellow background
++BIBbase.OO_CON_TYPE = 1 		    # connection type. 0=TCP/IP ; 1=pipe
+ # BIBbase.OO_HOST = 'localhost'	    # host on which OOo is running (TCP/IP)
+ # BIBbase.OO_PORT = 8100			# connection port
+-# BIBbase.OO_PIPE = "OOo_pipe"   	# pipe name for connection
++BIBbase.OO_PIPE = "OOo_pipe"   	    # pipe name for connection
+ 
+ ## db related constants
+ # BIBbase.STORE_PASSWD = False	    # True if password saved in config file. Unsecure !
+-# BIBbase.DB_STARTUP = 0		    # 0 = last used db used at startup. 1 = default db
+-# BIBbase.DB_TYPE ='SQLite'         # type of database used 'MySQL','SQlite', etc... => modules dbBibMySQL,dbBibSQLite, etc...
++BIBbase.DB_STARTUP = 0		        # 0 = last used db used at startup. 1 = default db
++BIBbase.DB_TYPE ='SQLite'           # type of database used 'MySQL','SQlite', etc... => modules dbBibMySQL,dbBibSQLite, etc...
+ 
+ ## mysql constants
+ # BIBbase.DB_NAME = 'Biblio'	            # Default MySQL database name

@@ -1,0 +1,55 @@
+diff -Naur bibus-1.4.3-orig/Setup/Makefile bibus-1.4.3/Setup/Makefile
+--- bibus-1.4.3-orig/Setup/Makefile	2009-01-08 18:00:26.000000000 -0500
++++ bibus-1.4.3/Setup/Makefile	2010-02-23 15:34:06.000000000 -0500
+@@ -1,16 +1,18 @@
+ # you presumably will only have to change the three first lines below
+-DESTDIR = /usr/local
+-python = /usr/bin/python
+-oopath = /usr/lib/openoffice/program
+-ooure = /usr/lib/openoffice.org/basis-link/ure-link/lib
+-oobasis = /usr/lib/openoffice/basis-link/program
++#DESTDIR = /usr/local
++#python = /usr/bin/python
++#oopath = /usr/lib/openoffice/program
++#ooure = /usr/lib/openoffice.org/basis-link/ure-link/lib
++#oobasis = /usr/lib/openoffice/basis-link/program
+ #
+ prefix = $(DESTDIR)
+ exec_prefix = $(prefix)
+-bindir = $(exec_prefix)/bin
+-datadir = $(prefix)/share
+-sysconfdir = /etc
+-mandir = $(prefix)/share/man
++bindir = $(exec_prefix)/usr/bin
++pure_datadir = /usr/share
++datadir = $(prefix)$(pure_datadir)
++pure_sysconfdir = /etc
++sysconfdir = $(prefix)$(pure_sysconfdir)
++mandir = $(prefix)/usr/share/man
+ man1dir = $(mandir)/man1
+ 
+ define install-files
+@@ -41,8 +43,6 @@
+ 
+ 	# bibus command
+ 	install -d $(bindir)
+-	ln -sf $(datadir)/bibus/bibusStart.py $(bindir)/bibus
+-	chmod 755 $(datadir)/bibus/bibusStart.py
+ 
+ 	# basic doc files
+ 	install -m755 -d $(datadir)/doc/bibus
+@@ -54,10 +54,10 @@
+ 	echo 'oopath = $(oopath)' >> $(datadir)/bibus/bibus.cfg
+ 	echo 'ooure = $(ooure)' >> $(datadir)/bibus/bibus.cfg
+ 	echo 'oobasis = $(oobasis)' >> $(datadir)/bibus/bibus.cfg
+-	echo 'docdir = $(datadir)/doc/bibus/html' >> $(datadir)/bibus/bibus.cfg
+-	echo 'licence = $(datadir)/doc/bibus/copying' >> $(datadir)/bibus/bibus.cfg
+-	echo 'localedir = $(datadir)/locale' >> $(datadir)/bibus/bibus.cfg
+-	echo 'systemconf = $(sysconfdir)/bibus.config' >> $(datadir)/bibus/bibus.cfg
++	echo 'docdir = $(pure_datadir)/doc/bibus/html' >> $(datadir)/bibus/bibus.cfg
++	echo 'licence = $(pure_datadir)/doc/bibus/copying' >> $(datadir)/bibus/bibus.cfg
++	echo 'localedir = $(pure_datadir)/locale' >> $(datadir)/bibus/bibus.cfg
++	echo 'systemconf = $(pure_sysconfdir)/bibus.config' >> $(datadir)/bibus/bibus.cfg
+ endef
+ 
+ define install-doc-en
