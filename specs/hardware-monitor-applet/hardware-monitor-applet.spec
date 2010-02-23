@@ -11,7 +11,7 @@ Version: 1.4.2
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
-URL: http://www.cs.auc.dk/~olau/hardware-monitor/
+URL: http://people.iola.dk/olau/hardware-monitor/
 
 Source: http://people.iola.dk/olau/hardware-monitor/source/hardware-monitor-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
