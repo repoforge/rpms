@@ -4,7 +4,7 @@
 
 Name: powerman
 Version: 2.3.5
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: PowerMan - Power to the Cluster
 
 Group: Applications/System
@@ -16,7 +16,7 @@ Patch1: powerman-multilib.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex bison readline-devel
-BuildRequires: tcp_wrappers-devel
+BuildRequires: tcp_wrappers
 BuildRequires: curl-devel
 BuildRequires: ncurses-devel
 
@@ -106,6 +106,9 @@ fi
 %{_libdir}/stonith/plugins/external/powerman
 
 %changelog
+* Wed Feb 24 2010 Yury V. Zaytsev <yury@shurup.com> - 2.3.5-4
+- Fixed tcp_wrappers dependency issue, causing build failure.
+
 * Fri Dec 25 2009 Yury V. Zaytsev <yury@shurup.com> - 2.3.5-3
 - Ported over RPMForge with minor changes.
 
