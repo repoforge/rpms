@@ -92,13 +92,25 @@ popd
 %{__install} -m0755 profile/bibus.sh %{buildroot}%{_sysconfdir}/profile.d
 %{__install} -m0755 profile/bibus.csh %{buildroot}%{_sysconfdir}/profile.d
 
+%post
+# HTML documentation is installed screwy
+pushd %{_docdir} >/dev/null
+%{__ln_s} bibus-%{version} bibus
+popd >/dev/null
+
+%postun
+# HTML documentation is installed screwy
+pushd %{_docdir} >/dev/null
+%{__rm} -f bibus
+popd >/dev/null
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc Docs/*
-%doc %{_docdir}/bibus
+%exclude %{_docdir}/bibus
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/bibus.config
 %{_datadir}/locale/*/LC_MESSAGES/*
