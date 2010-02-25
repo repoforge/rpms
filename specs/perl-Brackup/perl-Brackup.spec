@@ -2,9 +2,6 @@
 # Authority: shuff
 # Upstream: Brad Fitzpatrick <brad$danga,com>
 
-## needs Net::Mosso::CloudFiles before it's ready for release
-## Test
-
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -35,7 +32,7 @@ BuildRequires: perl(IO::File)
 BuildRequires: perl(MP3::Info)
 BuildRequires: perl(Net::Amazon::S3)
 BuildRequires: perl(Net::FTP)
-# BuildRequires: perl(Net::Mosso::CloudFiles)
+BuildRequires: perl(Net::Mosso::CloudFiles)
 BuildRequires: perl(Net::SFTP::Foreign)
 BuildRequires: perl(POSIX)
 BuildRequires: perl(Test::More)
@@ -52,9 +49,13 @@ Requires: perl(IO::File)
 Requires: perl(MP3::Info)
 Requires: perl(Net::Amazon::S3)
 Requires: perl(Net::FTP)
-# Requires: perl(Net::Mosso::CloudFiles)
+Requires: perl(Net::Mosso::CloudFiles)
 Requires: perl(Net::SFTP::Foreign)
 Requires: perl(POSIX)
+
+Provides: %{_bindir}/brackup
+Provides: %{_bindir}/brackup-restore
+Provides: %{_bindir}/brackup-target
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
