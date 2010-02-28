@@ -4,16 +4,17 @@
 
 Summary: Small C editor
 Name: geany
-Version: 0.14
+Version: 0.18.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
-URL: http://geany.uvena.de/
+URL: http://geany.org
 
-Source: http://dl.sf.net/geany/geany-%{version}.tar.gz
+Source: http://download.geany.org/geany-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gettext, gtk2-devel >= 2.6, perl(XML::Parser), intltool
+BuildRequires: vte-devel
 
 %description
 Geany is a small C editor using GTK2 with basic features of an integrated 
@@ -49,13 +50,14 @@ you will need to install %{name}-devel.
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc INSTALL THANKS rpmdocs/*
-%doc %{_mandir}/man1/geany*
+%doc AUTHORS COPYING ChangeLog ChangeLog.pre-0-17 HACKING INSTALL NEWS 
+%doc README.* rpmdocs/* 
+%doc %{_mandir}/man?/*
 %{_bindir}/geany
 %{_libdir}/geany/
 %{_datadir}/geany/
-%{_datadir}/icons/*/*/apps/classviewer*.png
-%{_datadir}/pixmaps/geany.*
+%{_datadir}/icons/*/*/apps/*
+%{_datadir}/locale/*/LC_MESSAGES/*
 %{_datadir}/applications/geany.desktop
 
 %files devel
@@ -64,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/geany.pc
 
 %changelog
+* Sun Feb 28 2010 Steve Huff <shuff@vecna.org> - 0.18-1
+- Updated to release 0.18.1.
+
 * Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 0.14-1
 - Updated to release 0.14.
 
