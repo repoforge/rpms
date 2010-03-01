@@ -1,0 +1,21 @@
+--- rtm-orig	2010-03-01 11:38:23.000000000 -0500
++++ rtm	2010-03-01 11:39:26.000000000 -0500
+@@ -24,7 +24,8 @@
+ 
+ =head1 SYNOPSIS
+ 
+- rtm [--filter <filter>]
++ rtm [--authorise|authorize]
++     [--filter <filter>]
+      [--verbose|-v]
+       --show [list|task]
+       --list <listnum>
+@@ -80,7 +81,7 @@
+     $param_show, $param_add, $param_undo,
+     $help, $verbose);
+ GetOptions(
+-    'authorise'         => \$param_getauth,
++    'authorise|authorize'   => \$param_getauth,
+ 
+     'add=s'             => \$param_add,
+ 
