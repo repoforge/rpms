@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.2.1.22
+Version: 0.2.1.24
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -102,6 +102,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Mon Mar 01 2010 Steve Huff <shuff@vecna.org> - 0.2.1.24-1
+- Updated to release 0.2.1.24.
+
 * Thu Jan 21 2010 Steve Huff <shuff@vecna.org> - 0.2.1.22-1
 - Updated to release 0.2.1.22.
 
