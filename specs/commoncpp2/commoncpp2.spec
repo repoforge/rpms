@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
+# Upstream: GNU Common C++ Developers <bug-gnucomm$gnu,org>
 
 Summary: GNU Common C++ class framework
 Name: commoncpp2
-Version: 1.6.2
+Version: 1.8.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
@@ -69,8 +70,8 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* INSTALL NEWS README THANKS TODO
-%{_libdir}/libccext2-1.6.so.*
-%{_libdir}/libccgnu2-1.6.so.*
+%{_libdir}/libccext2-1.8.so.*
+%{_libdir}/libccgnu2-1.8.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -87,6 +88,9 @@ fi
 %exclude %{_libdir}/libccgnu2.la
 
 %changelog
+* Tue Mar 02 2010 Steve Huff <shuff@vecna.org> - 1.8.0-1
+- Updated to release 1.8.0.
+
 * Fri May 30 2008 Dag Wieers <dag@wieers.com> - 1.6.2-1
 - Updated to release 1.6.2.
 
