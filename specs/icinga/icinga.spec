@@ -17,7 +17,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.0
+Version: 1.0.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -97,7 +97,7 @@ PHP api for %{name}
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
     --with-init-dir="%{_initrddir}" \
-    --with-lockfile="%{_localstatedir}/run/icinga.pid" \
+    --with-lockfile="%{_localstatedir}/icinga/icinga.pid" \
     --with-mail="/bin/mail" \
     --with-icinga-user="icinga" \
     --with-icinga-group="icinga" \
@@ -236,6 +236,9 @@ fi
 
 
 %changelog
+* Wed Mar 03 2010 Christoph Maser <cmr@financial.com> - 1.0.1-1
+- Update to 1.0.1-1
+
 * Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 1.0-1
 - Update to 1.0-1
 
