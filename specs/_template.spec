@@ -15,6 +15,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 BuildRequires: 
+BuildRequires: rpm-macros-rpmforge
 Requires:
 
 %description
@@ -52,6 +53,7 @@ EOF
 %{__autoconf}
 autoreconf --force --install --symlink
 %configure \
+    --disable-dependency-tracking \
     --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
