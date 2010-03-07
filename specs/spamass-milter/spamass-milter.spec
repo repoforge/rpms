@@ -5,12 +5,15 @@
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
 Version: 0.3.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://savannah.gnu.org/projects/spamass-milt/
 
 Source: http://savannah.nongnu.org/download/spamass-milt/spamass-milter-%{version}.tar.gz
+
+Patch0: spamass-milter-smtp-auth.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: spamassassin, sendmail-devel, gcc-c++
@@ -22,7 +25,8 @@ A Sendmail milter (Mail Filter) library that pipes all incoming mail
 a highly customizable SpamFilter.
 
 %prep
-%setup
+%setup -q
+%patch0 -p0 -b .smtpauth
 
 %{__cat} <<EOF >spamass-milter.sysconfig
 ### Override for your different local config
@@ -150,6 +154,9 @@ fi
 %{_sbindir}/spamass-milter
 
 %changelog
+* Sun Mar 07 2010 Yury V. Zaytsev <yury@shurup.com> - 0.3.1-2
+- Added SMTP AUTH patch by Steven Haigh.
+
 * Tue Feb 08 2005 Dag Wieers <dag@wieers.com> - 0.3.1-1
 - Updated to release 0.3.1.
 
