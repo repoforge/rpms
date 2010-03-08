@@ -9,20 +9,29 @@
 
 Summary: Perl module to find URIs in arbitrary text
 Name: perl-URI-Find
-Version: 20090319
+Version: 20100211
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-Find-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/URI-Find-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
-BuildRequires: perl(URI)
-BuildRequires: perl(URI::URL)
+BuildRequires: perl(Module::Build) >= 0.30
+#BuildRequires: perl(Test::More) >= 0.82
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI) >= 1.00
+BuildRequires: perl(URI::URL) >= 5.00
+BuildRequires: perl >= v5.6.0
+Requires: perl(URI) >= 1.00
+Requires: perl(URI::URL) >= 5.00
+Requires: perl >= v5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This module does one thing: Finds URIs and URLs in plain text. It finds them
@@ -55,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/Find/
 
 %changelog
+* Mon Mar  8 2010 Christoph Maser <cmr@financial.com> - 20100211-1
+- Updated to version 20100211.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 20090319-1
 - Updated to version 20090319.
 
