@@ -9,19 +9,27 @@
 
 Summary: Perl implementation of JavaScript's escape() and unescape() functions
 Name: perl-URI-Escape-JavaScript
-Version: 0.03
+Version: 0.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Escape-JavaScript/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-Escape-JavaScript-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TA/TANIGUCHI/URI-Escape-JavaScript-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.1
+BuildRequires: perl(Encode) >= 2.12
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
-Requires: perl >= 2:5.8.1
+BuildRequires: perl >= 5.8.1
+Requires: perl(Encode) >= 2.12
+Requires: perl >= 5.8.1
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-URI-Escape-JavaScript is a Perl implementation of JavaScript's
@@ -54,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/Escape/JavaScript.pm
 
 %changelog
+* Mon Mar  8 2010 Christoph Maser <cmr@financial.com> - 0.04-1
+- Updated to version 0.04.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 0.03-1
 - Updated to version 0.03.
 
