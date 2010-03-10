@@ -1,0 +1,26 @@
+diff -Naur Text-Markdown-1.000030-orig/Makefile.PL Text-Markdown-1.000030/Makefile.PL
+--- Text-Markdown-1.000030-orig/Makefile.PL	2010-01-18 07:19:12.000000000 -0500
++++ Text-Markdown-1.000030/Makefile.PL	2010-03-10 10:02:45.000000000 -0500
+@@ -24,14 +24,15 @@
+ if ($Module::Install::AUTHOR) {
+     system("pod2text lib/Text/Markdown.pm > README")
+         and die $!;
+-    require Module::Install::CheckConflicts;
++    # require Module::Install::CheckConflicts;
+ }
+-
+-check_conflicts(
+-    'Text::MultiMarkdown' => '1.0.27',
+-);
+-
++ 
++# we'll handle this stuff in the RPM, thanks
++# check_conflicts(
++#     'Text::MultiMarkdown' => '1.0.27',
++# );
++# 
+ # Scripts I install
+-prompt_script('script/Markdown.pl');
++# prompt_script('script/Markdown.pl');
+ 
+ WriteAll;
