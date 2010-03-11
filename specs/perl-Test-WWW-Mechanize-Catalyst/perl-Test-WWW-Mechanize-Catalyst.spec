@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
-# Upstream: Leon Brocard <acme$astray,com>
+# Upstream: Tomas Doran <bobtfish@bobtfish.net>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +10,42 @@
 
 Summary: Test::WWW::Mechanize for Catalyst
 Name: perl-Test-WWW-Mechanize-Catalyst
-Version: 0.51
+Version: 0.52
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-WWW-Mechanize-Catalyst/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-WWW-Mechanize-Catalyst-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BO/BOBTFISH/Test-WWW-Mechanize-Catalyst-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Catalyst) >= 5.00
+BuildRequires: perl(Catalyst::Plugin::Session::State::Cookie)
+BuildRequires: perl(Catalyst::Plugin::Session::Store::Dummy)
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+#BuildRequires: perl(LWP) >= 5.816
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(LWP)
+BuildRequires: perl(Moose) >= 0.67
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::WWW::Mechanize) >= 1.14
+BuildRequires: perl(WWW::Mechanize) >= 1.54
+BuildRequires: perl(namespace::clean) >= 0.09
+Requires: perl(Catalyst) >= 5.00
+#Requires: perl(LWP) >= 5.816
+Requires: perl(LWP)
+Requires: perl(Moose) >= 0.67
+Requires: perl(Test::WWW::Mechanize) >= 1.14
+Requires: perl(WWW::Mechanize) >= 1.54
+Requires: perl(namespace::clean) >= 0.09
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Test::WWW::Mechanize for Catalyst.
@@ -53,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/Mechanize/Catalyst.pm
 
 %changelog
+* Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 0.52-1
+- Updated to version 0.52.
+
 * Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 0.51-1
 - Updated to version 0.51.
 
