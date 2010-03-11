@@ -10,7 +10,7 @@
 
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
-Version: 1.41
+Version: 1.42
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -25,11 +25,11 @@ BuildRequires: perl(Module::Build)
 BuildRequires: perl(File::Spec)
 BuildRequires: perl(Pod::Simple) >= 3.07
 BuildRequires: perl(Test::Builder::Tester) >= 1.02
-BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
 Requires: perl(File::Spec)
 Requires: perl(Pod::Simple) >= 3.07
 Requires: perl(Test::Builder::Tester) >= 1.02
-Requires: perl(Test::More) >= 0.62
+Requires: perl(Test::More)
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Pod.pm
 
 %changelog
+* Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.42-1
+- Updated to version 1.42.
+
 * Fri Jan 15 2010 Christoph Maser <cmr@financial.com> - 1.41-1
 - Updated to version 1.41.
 
