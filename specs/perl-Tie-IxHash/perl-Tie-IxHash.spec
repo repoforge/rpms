@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Gurusamy Sarathy <gsar$ActiveState,com>
+# Upstream: Alexandr Ciornii <alexchorny@gmail.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,19 @@
 
 Summary: Ordered associative arrays for Perl
 Name: perl-Tie-IxHash
-Version: 1.21
-Release: 1.2%{?dist}
+Version: 1.22
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-IxHash/
 
-Source: http://www.cpan.org/modules/by-module/Tie/Tie-IxHash-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/Tie-IxHash-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Module::Build)
 
 %description
 If you have been led to believe that associative arrays in perl
@@ -39,12 +40,12 @@ index of one of the numerous books on perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
+./Build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+./Build pure_install
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/auto/*/*/.packlist
 
@@ -58,6 +59,9 @@ index of one of the numerous books on perl.
 %{perl_vendorlib}/Tie/IxHash.pm
 
 %changelog
+* Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.22-1
+- Updated to version 1.22.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-1.2
 - Rebuild for Fedora Core 5.
 
