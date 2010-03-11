@@ -9,13 +9,13 @@
 
 Summary: Extract collocations and Ngrams from text
 Name: perl-Text-NSP
-Version: 1.11
-Release: 1
+Version: 1.13
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-NSP/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-NSP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TP/TPEDERSE/Text-NSP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,12 +53,11 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %doc CHANGES FDL.txt GPL.txt INSTALL MANIFEST META.yml README TODO doc/
 %doc %{_mandir}/man1/combig.pl.1*
 %doc %{_mandir}/man1/count.pl.1*
-%doc %{_mandir}/man1/huge-combine.pl.1*
 %doc %{_mandir}/man1/huge-count.pl.1*
+%doc %{_mandir}/man1/huge-merge.pl.1*
+%doc %{_mandir}/man1/huge-sort.pl.1*
 %doc %{_mandir}/man1/kocos.pl.1*
 %doc %{_mandir}/man1/rank.pl.1*
-%doc %{_mandir}/man1/sort-bigrams.pl.1*
-%doc %{_mandir}/man1/split-data.pl.1*
 %doc %{_mandir}/man1/statistic.pl.1*
 %doc %{_mandir}/man3/Text::NSP.3pm*
 %doc %{_mandir}/man3/Text::NSP::*.3pm*
@@ -67,19 +66,21 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/combig-script.sh
 %{_bindir}/combig.pl
 %{_bindir}/count.pl
-%{_bindir}/huge-combine.pl
 %{_bindir}/huge-count.pl
+%{_bindir}/huge-merge.pl
+%{_bindir}/huge-sort.pl
 %{_bindir}/kocos-script.sh
 %{_bindir}/kocos.pl
 %{_bindir}/rank-script.sh
 %{_bindir}/rank.pl
-%{_bindir}/sort-bigrams.pl
-%{_bindir}/split-data.pl
 %{_bindir}/statistic.pl
 %{perl_vendorlib}/Text/NSP/
 %{perl_vendorlib}/Text/NSP.pm
 
 %changelog
+* Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.13-1
+- Updated to version 1.13.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.11-1
 - Updated to version 1.11.
 
