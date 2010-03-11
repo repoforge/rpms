@@ -6,22 +6,39 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Text-RecordParser
-%define real_version 1.002001
 
 Summary: Parse record-oriented data in a text file
 Name: perl-Text-RecordParser
-Version: 1.3.0
+Version: 1.4.0
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-RecordParser/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-RecordParser-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/K/KC/KCLARK/Text-RecordParser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Module::Build)
+BuildRequires: perl(Class::Accessor)
+BuildRequires: perl(IO::Scalar)
+BuildRequires: perl(List::MoreUtils)
+BuildRequires: perl(List::Util)
+BuildRequires: perl(Readonly)
+BuildRequires: perl(Test::Exception)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(version)
+Requires: perl(Class::Accessor)
+Requires: perl(IO::Scalar)
+Requires: perl(List::MoreUtils)
+Requires: perl(List::Util)
+Requires: perl(Readonly)
+Requires: perl(version)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Parse record-oriented data in a text file.
@@ -61,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.4.0-1
+- Updated to version 1.4.0.
+
 * Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 1.3.0-1
 - Updated to version 1.3.0.
 
