@@ -1,0 +1,39 @@
+diff -Naur crm114-20100106-BlameMichelson.src-orig/Makefile crm114-20100106-BlameMichelson.src/Makefile
+--- crm114-20100106-BlameMichelson.src-orig/Makefile	2010-01-06 13:38:46.000000000 -0500
++++ crm114-20100106-BlameMichelson.src/Makefile	2010-03-13 20:29:55.000000000 -0500
+@@ -9,7 +9,7 @@
+ #     if you prefer that sort of thing.
+ #
+ prefix?=/usr
+-BINDIR=${prefix}/bin
++BINDIR=$(DESTDIR)${prefix}/bin
+ 
+ # VER_SUFFIX defines a version suffix for our installed executables,
+ # handy when you want many versions of CRM114 coexisting.
+@@ -367,7 +367,7 @@
+ 	install $(INSTALLFLAGS) osbf-util $(BINDIR)/osbf-util$(VER_SUFFIX)
+ 	#   if you don't have EMACS installed in the default place, you
+ 	#   won't get the crm114-mode.el automatically.
+-	-install $(INSTALLFLAGS) crm114-mode.el $(prefix)/share/emacs/site-lisp/crm114-mode.el$(VER_SUFFIX)
++	-install $(INSTALLFLAGS) crm114-mode.el $(DESTDIR)$(prefix)/share/emacs/site-lisp/crm114-mode.el$(VER_SUFFIX)
+ 
+ 
+ # use different name so we can keep it around along with default one
+@@ -384,7 +384,7 @@
+ 	install $(INSTALLFLAGS) cssmerge $(BINDIR)/cssmerge$(VER_SUFFIX)
+ 	install $(INSTALLFLAGS) cssutil $(BINDIR)/cssutil$(VER_SUFFIX)
+ 	install $(INSTALLFLAGS) osbf-util $(BINDIR)/osbf-util$(VER_SUFFIX)
+-	-install $(INSTALLFLAGS) crm114-mode.el $(prefix)/share/emacs/site-lisp/crm114-mode.el$(VER_SUFFIX)
++	-install $(INSTALLFLAGS) crm114-mode.el $(DESTDIR)$(prefix)/share/emacs/site-lisp/crm114-mode.el$(VER_SUFFIX)
+ 
+ uninstall: FORCE
+ 	-rm -rf $(BINDIR)/crm$(VER_SUFFIX)
+@@ -394,7 +394,7 @@
+ 	-rm -rf $(BINDIR)/cssmerge$(VER_SUFFIX)
+ 	-rm -rf $(BINDIR)/cssutil$(VER_SUFFIX)
+ 	-rm -rf $(BINDIR)/osbf-util$(VER_SUFFIX)
+-	-rm -rf $(prefix)/share/emacs/site-lisp/crm114-mode.el$(VER_SUFFIX)
++	-rm -rf $(DESTDIR)$(prefix)/share/emacs/site-lisp/crm114-mode.el$(VER_SUFFIX)
+ 
+ 
+ megatest: FORCE
