@@ -1,20 +1,22 @@
 # $Id$
 # Authority: dag
+# Upstream: http://savannah.cern.ch/projects/clhep/
 
 %define real_name CLHEP
+%define superdir %{_usr}/%{real_name}
 
 Summary: Class library for High Energy Physics
 Name: clhep
-Version: 1.8.2.1
-Release: 1.2%{?dist}
+Version: 2.0.4.5
+Release: 1%{?dist}
 License: distributable
 Group: Development/Libraries
 URL: http://proj-clhep.web.cern.ch/proj-clhep/
 
-Source: http://proj-clhep.web.cern.ch/proj-clhep/export/share/CLHEP/1.8.2.1/clhep-%{version}.tgz
+Source: http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: gcc-c++
+Buildrequires: binutils, gcc-c++, autoconf, automake, make
 Obsoletes: CLHEP <= %{version}
 Provides: CLHEP = %{version}-%{release}
 
@@ -23,23 +25,38 @@ The CLHEP project was proposed by Leif Lönnblad at CHEP 92. It is intended
 to be a set of HEP-specific foundation and utility classes such as random
 generators, physics vectors, geometry and linear algebra.
 
+%package devel
+
+Summary: Development files for CLHEP
+Group: Development/Libraries
+Requires: %{name} = %{version}
+
+%description devel
+Install this package to develop software based on CLHEP.
+
 %prep
-%setup -n %{real_name}
+%setup -n %{version}/%{real_name}
 
 %build
-%configure
-%{__make} %{?_smp_mflags}
+%configure \
+    --includedir=%{_includedir}/CLHEP \
+    --disable-dependency-tracking \
+    --enable-exceptions
+# if you parallelize the make, badness happens
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR=%{buildroot}
 
-%{__ln_s} -f libCLHEP-g++.%{version}.a %{buildroot}%{_libdir}/libCLHEP.a
+pushd %{buildroot}%{_libdir}
+%{__ln_s} -f libCLHEP-g++.%{version}.a libCLHEP.a
+popd
 
 ### Clean up docs
 mkdir doc/
 for dir in */doc; do
-	%{__rm} -rf $dir/CSV
+	%{__rm} -rf $dir/CVS
 	%{__mv} -f $dir doc/$(dirname $dir)
 done
 
@@ -48,11 +65,22 @@ done
 
 %files
 %defattr(-, root, root, 0755)
+%doc ChangeLog README
+%{_bindir}/*
+%{_libdir}/*
+# yes, really, regardless of 32- or 64-bitness
+%exclude %{_usr}/lib/debug
+
+%files devel
 %doc ChangeLog README doc/*
-%{_includedir}/CLHEP/
-%{_libdir}/*.a
+%{_includedir}/*
 
 %changelog
+* Fri Mar 05 2010 Steve Huff <shuff@vecna.org> - 2.0.4.5-1
+- Updated to release 2.0.4.5.
+- Fixed typo in doc cleanup script.
+- Split off clhep-devel.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.8.2.1-1.2
 - Rebuild for Fedora Core 5.
 
