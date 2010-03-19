@@ -3,6 +3,8 @@
 # Upstream: Dimitar Zhekov <jimmy$is-vn,bg>
 # ExclusiveArch: el4 el5
 
+%define terminus_fontdir %{_datadir}/fonts/terminus
+
 Summary: A clean fixed-width font
 Name: terminus-fonts
 Version: 4.30
@@ -17,9 +19,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: xorg-x11-font-utils
-Requires: bitmap-fonts
+Requires: chkfontpath
 Requires: fontconfig
-Requires: xorg-x11-font-utils
+Requires: initscripts
 Requires: xorg-x11-xfs
 
 %description
@@ -39,30 +41,35 @@ Note: this package contains only the PCF fonts for X11, not the console fonts.
 %setup -n terminus-font-%{version}
 
 %build
-%configure --x11dir=%{_datadir}/fonts/bitmap-fonts
+%configure --x11dir=%{terminus_fontdir}
 %{__make} pcf
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install-pcf DESTDIR=%{buildroot}
 
-%{_bindir}/gunzip %{buildroot}%{_datadir}/fonts/bitmap-fonts/*
+%{_bindir}/gunzip %{buildroot}%{terminus_fontdir}/*
+
+%{_bindir}/mkfontdir %{buildroot}%{terminus_fontdir}
+%{_bindir}/mkfontscale %{buildroot}%{terminus_fontdir}
 
 %post
-%{_bindir}/mkfontdir %{_datadir}/fonts/bitmap-fonts
-%{_bindir}/mkfontscale %{_datadir}/fonts/bitmap-fonts
+%{_sbindir}/chkfontpath -q --remove=''
+%{_sbindir}/chkfontpath -q --add='%{terminus_fontdir}'
+/sbin/service xfs reload 2>&1 >/dev/null
 %{_bindir}/fc-cache %{_datadir}/fonts/ 2>/dev/null || :
 
 %postun
 if [ $1 -eq 0 ]; then
+    %{_sbindir}/chkfontpath -q --remove='%{terminus_fontdir}'
+    /sbin/service xfs reload
 	%{_bindir}/fc-cache %{_datadir}/fonts/ 2>/dev/null || :
 fi
 
 %files
 %defattr(-, root, root, 0755)
 %doc README README-BG
-%dir %{_datadir}/fonts/bitmap-fonts/
-%{_datadir}/fonts/bitmap-fonts/ter*
+%{terminus_fontdir}
 
 %changelog
 * Thu Mar 18 2010 Steve Huff <shuff@vecna.org> - 4.30-1
