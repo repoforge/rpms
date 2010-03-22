@@ -52,6 +52,7 @@ Requires: /sbin/chkconfig
 Requires: /sbin/service
 Obsoletes: perl-Mail-SpamAssassin <= %{version}-%{release}
 Obsoletes: spamassassin-tools <= %{version}-%{release}
+Conflicts: amavisd-new < 2.6.2
 
 %define __find_requires %{SOURCE99}
 
@@ -235,6 +236,10 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Mon Mar 22 2010 Steve Huff <shuff@vecna.org> - 
+- Don't install concurrently with amavisd-new < 2.6.2
+  (https://issues.apache.org/SpamAssassin/show_bug.cgi?id=6257)
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.3.1-1
 - Updated to release 3.3.1.
 
