@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dries
 # Upstream: Makamaka Hannyaharamitu <makamaka$cpan,org>
-# Tag: test
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -16,6 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON/
 
+#Source: http://www.cpan.org/modules/by-module/JSON/JSON-%{version}.tar.gz
 Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAKAMAKA/JSON-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -26,7 +26,6 @@ Requires: perl(Test::More)
 
 %filter_from_requires /^perl*/d
 %filter_setup
-
 
 # this module satisfies the requirements for JSON::Any
 Provides: perl-JSON-Any-alternative = 1.22

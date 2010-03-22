@@ -7,8 +7,8 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 2009.4.4
-Release: 2%{?dist}
+Version: 2009.11.14
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/
@@ -81,12 +81,16 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man8/mount.ntfs-3g.8*
 %doc %{_mandir}/man8/ntfs-3g.8*
 %doc %{_mandir}/man8/ntfs-3g.probe.8*
-%{_sbindir}/mount.ntfs
-%{_sbindir}/mount.ntfs-3g
+%doc %{_mandir}/man8/ntfs-3g.secaudit.8*
+%doc %{_mandir}/man8/ntfs-3g.usermap.8*
 %{_bindir}/ntfs-3g
 %{_bindir}/ntfs-3g.probe
+%{_bindir}/ntfs-3g.secaudit
+%{_bindir}/ntfs-3g.usermap
 %{_bindir}/ntfsmount
 %{_libdir}/libntfs-3g.so.*
+%{_sbindir}/mount.ntfs
+%{_sbindir}/mount.ntfs-3g
 %exclude %{_docdir}/ntfs-3g/
 
 %files devel
@@ -97,6 +101,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 2009.11.14-1
+- Updated to release 2009.11.14.
+
 * Thu May 21 2009 Dag Wieers <dag@wieers.com> - 2009.4.4-2
 - Added symlink for mount.ntfs so Gnome's Disk Mounter applet doesn't crash.
 

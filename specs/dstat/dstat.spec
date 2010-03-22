@@ -4,7 +4,7 @@
 
 Summary: Pluggable real-time performance monitoring tool
 Name: dstat
-Version: 0.7.0
+Version: 0.7.1
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -52,6 +52,9 @@ confusion, less mistakes.
 %{_datadir}/dstat/
 
 %changelog
+* Mon Feb 22 2010 Dag Wieers <dag@wieers.com> - 0.7.1-1
+- Updated to release 0.7.1.
+
 * Wed Nov 25 2009 Dag Wieers <dag@wieers.com> - 0.7.0-1
 - Updated to release 0.7.0.
 - Reduce the number of paths used for importing modules. {CVE-2009-3894}

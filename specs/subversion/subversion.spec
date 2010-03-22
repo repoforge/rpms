@@ -27,7 +27,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.6
+Version: 1.6.9
 ### FC3 comes with release 1.1
 Release: 0.1%{?dist}
 License: BSD
@@ -320,6 +320,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Mon Mar 22 2010 Dag Wieers <dag@wieers.com> - 1.6.9-0.1
+- Updated to release 1.6.9.
+
 * Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 1.6.6-0.1
 - Updated to release 1.6.6.
 

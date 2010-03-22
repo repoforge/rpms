@@ -3,25 +3,23 @@
 
 # Tag: test
 
-
-%define _libdir /lib
+%define _libdir /%{_lib}
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-%define real_version 1.2.0-pre1
+%define real_version 1.2.0-pre3
 Version: 1.2.0
-Release: 0.pre1%{?dist}
+Release: 0.pre3%{?dist}
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
 
-Source: ftp://ftp.inet.no/pub/socks/dante-%{real_version}.tar.gz
+Source: ftp://ftp.inet.no/pub/socks/old/dante-%{real_version}.tar.gz
 Patch0: dante-1.1.19-private.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, bison
-%{!?rh62:BuildRequires: pam-devel}
-%{?rh62:BuildRequires: pam}
+BuildRequires: bison
+BuildRequires: flex
 
 %description
 Dante is a free implementation of the proxy protocols socks version 4,
@@ -238,7 +236,7 @@ exit $RETVAL
 EOF
 
 %build
-%configure --disable-static
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
@@ -253,6 +251,8 @@ EOF
 %{__install} -Dp -m0755 dsocksify.sysv %{buildroot}%{_initrddir}/dsocksify
 %{__install} -Dp -m0755 dsocksify %{buildroot}%{_bindir}/dsocksify
 %{__ln_s} -f dsocksify %{buildroot}%{_bindir}/socksify
+
+%{__mv} -f %{buildroot}%{_includedir}/socks.h.in %{buildroot}%{_includedir}/socks.h
 
 ### FIXME: Set library as executable - prevent ldd from complaining
 %{__chmod} +x %{buildroot}%{_libdir}/*.so*
@@ -277,8 +277,10 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CREDITS INSTALL LICENSE NEWS README SUPPORT TODO doc/README* doc/faq.*
+%doc BUGS CREDITS INSTALL LICENSE NEWS README* SUPPORT TODO
+%doc doc/*.txt doc/README*
 %doc example/socks*.conf
+%doc %{_mandir}/man1/socksify.1*
 %doc %{_mandir}/man5/socks.conf.5*
 %config %{_sysconfdir}/socks.conf
 %config %{_initrddir}/dsocksify
@@ -303,10 +305,16 @@ fi
 %doc doc/rfc* doc/SOCKS4.protocol INSTALL
 %{_libdir}/libsocks.so
 %{_includedir}/socks.h
+%{_includedir}/socks_glibc.h
+#%{_libdir}/libdsocks.a
+%exclude %{_libdir}/libsocks.a
 %exclude %{_libdir}/libdsocks.la
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Sat Jan 09 2010 Dag Wieers <dag@wieers.com> - 1.2.0-0.pre3
+- Updated to release 1.2.0-pre3.
+
 * Tue Apr  7 2009 Dries Verachtert <dries@ulyssis.org> - 1.2.0-0.pre1
 - Applied a fix by Thomas M Steenholdt for the dsocksify sysv init script.
 

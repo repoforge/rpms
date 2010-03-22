@@ -11,7 +11,7 @@
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
-Version: 0.9.8
+Version: 0.9.9
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -107,6 +107,9 @@ desktop-file-install --vendor %{desktop_vendor}   \
 %{_sbindir}/etherape
 
 %changelog
+* Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
+
 * Mon Sep 28 2009 Dag Wieers <dag@wieers.com> - 0.9.8-1
 - Updated to release 0.9.8.
 

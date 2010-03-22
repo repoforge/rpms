@@ -3,7 +3,7 @@
 
 Summary: Terminal multiplexer program
 Name: tmux
-Version: 1.1
+Version: 1.2
 Release: 1%{?dist}
 License: BSD
 Group: Applications/System
@@ -40,6 +40,9 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 %{_bindir}/tmux
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Fri Nov 13 2009 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

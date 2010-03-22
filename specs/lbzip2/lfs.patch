@@ -1,0 +1,15 @@
+diff -ur lbzip2.orig/lfs.sh lbzip2/lfs.sh
+--- lbzip2.orig/lfs.sh	2009-10-13 21:11:01.000000000 +0200
++++ lbzip2/lfs.sh	2010-01-06 01:59:28.000000000 +0100
+@@ -25,9 +25,8 @@
+ # XBS5_LP64_OFF64   |    32 |    64 |    64 |    64
+ 
+ for SPEC in \
+-    XBS5_ILP32_OFFBIG \
+-    XBS5_LPBIG_OFFBIG \
+-    XBS5_LP64_OFF64
++    XBS5_LP64_OFF64 \
++    XBS5_ILP32_OFFBIG
+ do
+   SUPP="$(getconf _$SPEC)"
+   if [ x"$SUPP" != x-1 ] && [ x"$SUPP" != xundefined ]

@@ -4,7 +4,6 @@
 ### RHEL 5.4 ships with fuse 2.7.4-8.el5
 # ExclusiveDist: el3 el4
 
-
 %{?el3:%define _without_udev 1}
 
 Summary: File System in Userspace (FUSE) utilities

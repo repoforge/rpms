@@ -1,18 +1,18 @@
 # $Id$
 # Authority: dag
 
-%define _libdir /lib
+%define _libdir /%{_lib}
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
 Version: 1.2.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
 
 Source: ftp://ftp.inet.no/pub/socks/dante-%{version}.tar.gz
-Patch0: dante-1.1.19-private.patch
+Patch0: dante-1.2.0-private.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
@@ -176,14 +176,14 @@ disable() {
 }
 
 [ -r %{_sysconfdir}/socks.conf ] || disable
-[ -x %{_libdir}/libdsocks.so.0 ] || disable
+[ -x %{_libdir}/libdsocks.so ] || disable
 
 start() {
     echo -n $"Socksifying system: "
     grep "%{_libdir}/libdsocks.so" /etc/ld.so.preload &>/dev/null
     ret=$?
     if [ ! -f /etc/ld.so.preload -o $ret -ne 0 ]; then
-        echo $"%{_libdir}/libdsocks.so.0" >>/etc/ld.so.preload
+        echo $"%{_libdir}/libdsocks.so" >>/etc/ld.so.preload
         success $"dsocksify startup"
     elif [ $ret -eq 0 ]; then
         passed $"dsocksify startup"
@@ -197,7 +197,7 @@ stop() {
     echo -n $"Unsocksifying system: "
     grep "%{_libdir}/libdsocks.so" /etc/ld.so.preload &>/dev/null
     if [ $? -eq 0 ]; then
-        cat /etc/ld.so.preload | grep -v "%{_libdir}/libdsocks.so.0" >/etc/ld.so.preload.cache
+        cat /etc/ld.so.preload | grep -v "%{_libdir}/libdsocks.so" >/etc/ld.so.preload.cache
         mv -f /etc/ld.so.preload.cache /etc/ld.so.preload
         success $"dsocksify shutdown"
     else
@@ -249,6 +249,8 @@ EOF
 %{__install} -Dp -m0755 dsocksify %{buildroot}%{_bindir}/dsocksify
 %{__ln_s} -f dsocksify %{buildroot}%{_bindir}/socksify
 
+%{__mv} -f %{buildroot}%{_includedir}/socks.h.in %{buildroot}%{_includedir}/socks.h
+
 ### FIXME: Set library as executable - prevent ldd from complaining
 %{__chmod} +x %{buildroot}%{_libdir}/*.so*
 
@@ -272,14 +274,15 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CREDITS INSTALL LICENSE NEWS README SUPPORT TODO doc/README* doc/faq.*
+%doc BUGS CREDITS INSTALL LICENSE NEWS README* SUPPORT TODO
+%doc doc/*.txt doc/README*
 %doc example/socks*.conf
+%doc %{_mandir}/man1/socksify.1*
 %doc %{_mandir}/man5/socks.conf.5*
 %config %{_sysconfdir}/socks.conf
 %config %{_initrddir}/dsocksify
 ### Required for dsocksify script
 %{_libdir}/libdsocks.so
-%{_libdir}/libdsocks.so.*
 %{_libdir}/libsocks.so.*
 %{_bindir}/dsocksify
 %{_bindir}/socksify
@@ -299,12 +302,16 @@ fi
 %doc doc/rfc* doc/SOCKS4.protocol INSTALL
 %{_libdir}/libsocks.so
 %{_includedir}/socks.h
+%{_includedir}/socks_glibc.h
 #%{_libdir}/libdsocks.a
 %exclude %{_libdir}/libsocks.a
 %exclude %{_libdir}/libdsocks.la
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 1.2.0-2
+- Backported GLIBC_PRIVATE related patch.
+
 * Thu Oct 29 2009 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

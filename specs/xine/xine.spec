@@ -4,9 +4,9 @@
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
 %{!?dtag:%define _with_moles 1}
-%{?fc7:  %define _with_moles 1}
-%{?fc6:  %define _with_moles 1}
-%{?fc5:  %define _with_moles 1}
+%{?fc7: %define _with_moles 1}
+%{?fc6: %define _with_moles 1}
+%{?fc5: %define _with_moles 1}
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
@@ -73,7 +73,7 @@ Available rpmbuild rebuild options :
 Name=Xine
 Comment=Versatile Multimedia Player
 Exec=xine %U
-MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;audio/x-mpegurl;
+MimeType=video/mpeg;video/quicktime;video/x-msvideo;audio/x-mp3;audio/x-mp2;audio/x-mpegurl
 Icon=xine.png
 Terminal=false
 Type=Application

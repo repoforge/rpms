@@ -3,7 +3,7 @@
 
 Summary: Lossless LZMA-based data compression
 Name: lzip
-Version: 1.8
+Version: 1.9
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -54,6 +54,9 @@ these tasks.
 %{_bindir}/lziprecover
 
 %changelog
+* Wed Jan 20 2010 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Thu Sep 10 2009 Dag Wieers <dag@wieers.com> - 1.8-1
 - Updated to release 1.8.
 

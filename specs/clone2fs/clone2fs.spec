@@ -5,7 +5,7 @@
 
 Summary: Tool to clone ext2/ext3 filesystems
 Name: clone2fs
-Version: 1.2.0
+Version: 1.3.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -53,5 +53,8 @@ read-only mode.
 %{_sbindir}/clone2fs
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Initial package. (using DAR)

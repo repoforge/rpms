@@ -9,9 +9,9 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-%define real_version 3.83-pre5
-Version: 3.83
-Release: 0.pre11%{?dist}
+Version: 3.85
+%define real_version 3.85-pre13
+Release: 0.pre13%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -76,6 +76,7 @@ MEMDISK, which loads legacy operating systems from these media.
 %{_bindir}/md5pass
 %{_bindir}/mkdiskimage
 %{_bindir}/ppmtolss16
+%{_bindir}/pxelinux-options
 %{_bindir}/sha1pass
 %{_bindir}/syslinux
 %{_bindir}/syslinux2ansi
@@ -84,6 +85,12 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Thu Feb 18 2010 Dag Wieers <dag@wieers.com> - 3.85-0.pre13
+- Updated to release 3.85-0.pre13.
+
+* Thu Feb 04 2010 Dag Wieers <dag@wieers.com> - 3.85-0.pre5
+- Updated to release 3.85-pre5.
+
 * Mon Sep 28 2009 Dag Wieers <dag@wieers.com> - 3.83-0.pre11
 - Updated to release 3.83-pre11.
 

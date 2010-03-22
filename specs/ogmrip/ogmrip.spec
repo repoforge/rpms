@@ -3,7 +3,7 @@
 
 Summary: DVD ripping and encoding graphical user interface
 Name: ogmrip
-Version: 0.13.3
+Version: 0.13.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -133,6 +133,9 @@ fi
 %exclude %{_libdir}/libogm*.la
 
 %changelog
+* Mon Mar 22 2010 Dag Wieers <dag@wieers.com> - 0.13.4-1
+- Updated to release 0.13.4.
+
 * Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 0.13.3-1
 - Updated to release 0.13.3.
 

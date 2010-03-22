@@ -4,14 +4,14 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 1.2.4
+Version: 1.2.5
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bitlbee.org/
 
 Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
-Patch0: bitlbee-1.2.2-libresolv.patch
+Patch0: bitlbee-1.2.5-libresolv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel
@@ -37,11 +37,14 @@ networks like MSN/ICQ/Jabber.
         s|\$\(DATADIR\)|\$(datadir)/bitlbee|g;
         s|\$\(ETCDIR\)|\$(sysconfdir)/bitlbee|g;
         s|\$\(MANDIR\)|\$(mandir)|g;
+        s|\$\(INCLUDEDIR\)|\$(includedir)/bitlbee|g;
+        s|\$\(PCDIR\)|\$(libdir)/pkgconfig|g;
+        s|install -m|install -p -m|g;
     ' Makefile */Makefile
 
 %{__cat} <<EOF >bitlbee.xinet
 # default: off
-# description: Bitlbee is an IRC gateway to other networks.
+# description: Bitlbee is an IRC gateway to other IM networks.
 
 service ircd
 {
@@ -51,6 +54,7 @@ service ircd
     wait        = no
     user        = daemon
     server      = %{_sbindir}/bitlbee
+    type        = UNLISTED
     port        = 6667
     log_on_failure  += USERID
 }
@@ -63,7 +67,16 @@ CFLAGS="%{optflags}" ./configure \
     --etcdir="%{_sysconfdir}/bitlbee" \
     --mandir="%{_mandir}" \
     --datadir="%{_datadir}/bitlbee" \
-    --config="%{_localstatedir}/lib/bitlbee"
+    --config="%{_localstatedir}/lib/bitlbee" \
+    --pcdir=%{_libdir}/pkgconfig \
+    --plugindir=%{_libdir}/%{name} \
+    --strip="0" \
+    --plugins="1" \
+%if 0%{?fedora}%{?rhel}
+    --ssl="gnutls"
+%else
+    --ssl="openssl"
+%endif
 %{__make} %{?_smp_mflags}
 ### FIXME: Documentation needs old sgmltools tool, deprecated.
 #%{__make} -C doc
@@ -91,13 +104,16 @@ CFLAGS="%{optflags}" ./configure \
 %doc %{_mandir}/man5/bitlbee.conf.5*
 %doc %{_mandir}/man8/bitlbee.8*
 %config %{_sysconfdir}/xinetd.d/bitlbee
-%{_sbindir}/bitlbee
 %{_datadir}/bitlbee/
+%{_sbindir}/bitlbee
 
 %defattr(-, daemon, root, 0700)
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.2.5-1
+- Updated to release 1.2.5.
+
 * Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Updated to release 1.2.4.
 

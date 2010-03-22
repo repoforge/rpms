@@ -3,8 +3,8 @@
 
 Summary: Fast, multi-threaded bzip2 utility
 Name: lbzip2
-Version: 0.20
-Release: 2%{?dist}
+Version: 0.23
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://lacos.hu/
@@ -61,6 +61,9 @@ compression to overlap with disk usage to a greater extent than bzip2 does.
 %{_datadir}/lbzip2/malloc_trace.pl
 
 %changelog
+* Thu Mar 04 2010 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Wed Feb 10 2010 Dag Wieers <dag@wieers.com> - 0.20-2
 - Improvements to package metadata.
 - Get rid of oldgcc patch.

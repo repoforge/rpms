@@ -4,7 +4,7 @@
 
 Summary: Prints filenames for backup
 Name: rdup
-Version: 0.9.9
+Version: 1.1.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -13,8 +13,11 @@ URL: http://www.miek.nl/projects/rdup/
 Source: http://www.miek.nl/projects/rdup/rdup-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel, libattr-devel
-#BuildRequires: openssh-client, perl-File-Copy-Recursive
+BuildRequires: glib2-devel
+BuildRequires: libattr-devel
+BuildRequires: nettle-devel
+#BuildRequires: openssh-client
+#BuildRequires: perl-File-Copy-Recursive
 
 %description
 rdup is a utility inspired by rsync and the plan9 way of doing backups.
@@ -31,7 +34,6 @@ this list and implement the backup strategy.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
 %{__make} install DESTDIR="%{buildroot}"
 
 %clean
@@ -39,7 +41,7 @@ this list and implement the backup strategy.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog DEPENDENCIES DESIGN LICENSE README todo
+%doc AUTHORS ChangeLog DEPENDENCIES LICENSE RELEASE-NOTES* README todo rdup.cron
 %doc %{_mandir}/man1/rdup.1*
 #%doc %{_mandir}/man1/rdup-cp.1*
 #%doc %{_mandir}/man1/rdup-crypt.1*
@@ -71,11 +73,19 @@ this list and implement the backup strategy.
 #%{_bindir}/rdup-snap
 #%{_bindir}/rdup-snap-link
 #%{_bindir}/rdup-snapshot
+%{_bindir}/rdup-simple
 %{_bindir}/rdup-up
-%{_datadir}/rdup/
-%{_libdir}/rdup/
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
+
+* Wed Jan 20 2010 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
+* Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Wed May 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9-1
 - Updated to release 0.9.9.
 

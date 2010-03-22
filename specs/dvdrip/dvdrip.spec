@@ -7,7 +7,7 @@
 
 Summary: Graphical DVD ripping and encoding tool based on transcode
 Name: dvdrip
-Version: 0.98.10
+Version: 0.98.11
 Release: 1%{?dist}
 License: GPL+ or Artistic
 Group: Applications/Multimedia
@@ -108,6 +108,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/applications/%{desktop_vendor}-dvdrip.desktop
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 0.98.11-1
+- Updated to release 0.98.11.
+
 * Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 0.98.10-1
 - Updated to release 0.98.10.
 

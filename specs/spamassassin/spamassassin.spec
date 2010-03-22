@@ -13,8 +13,8 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.2.5
-Release: 2%{?dist}
+Version: 3.3.1
+Release: 1%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -23,12 +23,33 @@ Source: http://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-%{versi
 Source99: filter-requires-spamassassin.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl(HTML::Parser) >= 3.24, perl(Net::DNS), perl(Time::HiRes), openssl-devel
-Requires: procmail, gnupg, perl(Net::DNS), perl(Time::HiRes), perl-libwww-perl
-Requires: perl(Archive::Tar) >= 1.23, perl(IO::Zlib), perl(IO::Socket::SSL)
-Requires: perl(DB_File), perl(LWP::UserAgent), perl(HTTP::Date)
-Requires: gcc, re2c
-Requires: /sbin/chkconfig, /sbin/service
+BuildRequires: openssl-devel
+BuildRequires: perl(HTML::Parser) >= 3.24
+BuildRequires: perl(Net::DNS)
+BuildRequires: perl(NetAddr::IP) >= 4.000
+BuildRequires: perl(Time::HiRes)
+Requires: gcc
+Requires: gnupg
+Requires: perl(Archive::Tar) >= 1.23
+Requires: perl(DB_File)
+Requires: perl(Encode::Detect)
+Requires: perl(HTTP::Date)
+Requires: perl(IO::Zlib)
+Requires: perl(IO::Socket::SSL)
+Requires: perl(IP::Country)
+Requires: perl(LWP::UserAgent)
+Requires: perl(Mail::SPF)
+Requires: perl(Mail::DKIM) >= 0.37
+Requires: perl(Net::DNS)
+Requires: perl(Net::Ident)
+Requires: perl(NetAddr::IP) >= 4.000
+Requires: perl(Razor2) >= 2.61
+Requires: perl(Time::HiRes)
+Requires: perl-libwww-perl
+Requires: procmail
+Requires: re2c
+Requires: /sbin/chkconfig
+Requires: /sbin/service
 Obsoletes: perl-Mail-SpamAssassin <= %{version}-%{release}
 Obsoletes: spamassassin-tools <= %{version}-%{release}
 
@@ -54,7 +75,7 @@ To filter spam for all users, add that line to /etc/procmailrc
 %prep
 %setup -n %{real_name}-%{version}
 
-%{__cat} <<EOF >local.cf		### SOURCE2
+%{__cat} <<EOF >local.cf        ### SOURCE2
 # These values can be overridden by editing ~/.spamassassin/user_prefs.cf
 # (see spamassassin(1) for details)
 
@@ -66,24 +87,24 @@ report_safe 0
 rewrite_header Subject [SPAM]
 EOF
 
-%{__cat} <<EOF >spamassassin-default.rc	### SOURCE3
+%{__cat} <<EOF >spamassassin-default.rc ### SOURCE3
 ### send mail through spamassassin
 :0fw
 | /usr/bin/spamassassin
 EOF
 
-%{__cat} <<EOF >spamassassin-spamc.rc	### SOURCE4
+%{__cat} <<EOF >spamassassin-spamc.rc   ### SOURCE4
 # send mail through spamassassin
 :0fw
 | /usr/bin/spamc
 EOF
 
-%{__cat} <<EOF >spamassassin.sysconfig		### SOURCE5
+%{__cat} <<EOF >spamassassin.sysconfig      ### SOURCE5
 # Options to spamd
 SPAMDOPTIONS="-d -c -m5 -H"
 EOF
 
-%{__cat} <<EOF >sa-update.logrotate		### SOURCE 6
+%{__cat} <<EOF >sa-update.logrotate     ### SOURCE 6
 /var/log/sa-update.log {
     monthly
     notifempty
@@ -91,7 +112,7 @@ EOF
 }
 EOF
 
-%{__cat} <<EOF >sa-update.crontab		### SOURCE 7
+%{__cat} <<EOF >sa-update.crontab       ### SOURCE 7
 ### OPTIONAL: Spamassassin Rules Updates ###
 #
 # http://wiki.apache.org/spamassassin/RuleUpdates
@@ -103,7 +124,7 @@ EOF
 #10 4 * * * root /usr/share/spamassassin/sa-update.cron 2>&1 | tee -a /var/log/sa-update.log
 EOF
 
-%{__cat} <<'EOF' >sa-update.cronscript		### SOURCE 8
+%{__cat} <<'EOF' >sa-update.cronscript      ### SOURCE 8
 #!/bin/bash
 
 sleep $(expr $RANDOM % 7200)
@@ -111,7 +132,7 @@ sleep $(expr $RANDOM % 7200)
 /usr/bin/sa-update && /etc/init.d/spamassassin condrestart > /dev/null
 EOF
 
-%{__cat} <<EOF >spamassassin-helper.sh		### SOURCE10
+%{__cat} <<EOF >spamassassin-helper.sh      ### SOURCE10
 #!/bin/sh
 /usr/bin/spamassassin -e
 EOF
@@ -120,19 +141,19 @@ EOF
 export CFLAGS="%{optflags} -I/usr/kerberos/include"
 %{__perl} Makefile.PL \
 %{!?_with_perl_5_6:DESTDIR="%{buildroot}"} \
-		SYSCONFDIR="%{_sysconfdir}" \
-		INSTALLDIRS="vendor" \
-		ENABLE_SSL="yes" </dev/null
+        SYSCONFDIR="%{_sysconfdir}" \
+        INSTALLDIRS="vendor" \
+        ENABLE_SSL="yes" </dev/null
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 %{__make} %{?_smp_mflags} spamc/libspamc.so LIBS="-ldl %{optflags} -fPIC"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	PREFIX="%{buildroot}%{_prefix}" \
-	INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
-	INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3" \
-	LOCAL_RULES_DIR="%{buildroot}%{_sysconfdir}/mail/spamassassin"
+    PREFIX="%{buildroot}%{_prefix}" \
+    INSTALLMAN1DIR="%{buildroot}%{_mandir}/man1" \
+    INSTALLMAN3DIR="%{buildroot}%{_mandir}/man3" \
+    LOCAL_RULES_DIR="%{buildroot}%{_sysconfdir}/mail/spamassassin"
 
 %{__install} -Dp -m0755 spamd/redhat-rc-script.sh %{buildroot}%{_initrddir}/spamassassin
 %{__install} -Dp -m0644 spamc/libspamc.so %{buildroot}%{_libdir}/libspamc.so
@@ -171,11 +192,11 @@ cmp /etc/sysconfig/spamassassin $TMPFILE || cp $TMPFILE /etc/sysconfig/spamassas
 rm $TMPFILE
 
 if [ -f %{_sysconfdir}/spamassassin.cf ]; then
-	%{__mv} -f %{_sysconfdir}/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
+    %{__mv} -f %{_sysconfdir}/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
 fi
 
 if [ -f %{_sysconfdir}/mail/spamassassin.cf ]; then
-	%{__mv} -f %{_sysconfdir}/mail/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
+    %{__mv} -f %{_sysconfdir}/mail/spamassassin.cf %{_sysconfdir}/mail/spamassassin/migrated.cf
 fi
 
 %preun
@@ -186,7 +207,7 @@ fi
 
 %postun
 if [ $1 -ne 0 ]; then
-	/sbin/service spamassassin condrestart &>/dev/null || :
+    /sbin/service spamassassin condrestart &>/dev/null || :
 fi
 
 %clean
@@ -214,6 +235,9 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.3.1-1
+- Updated to release 3.3.1.
+
 * Thu Oct 29 2009 David Hrbáč <david@hrbac.cz> - 3.2.5-2
 - Updated requires to satisfy sa-compile and sa-update
 

@@ -20,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.33
+Version: 1.1.35
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Emulators
@@ -419,11 +419,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/fakedlls/
 
 ### exe16
-%{_libdir}/wine/gdi.exe16
 %{_libdir}/wine/krnl386.exe16
 %{_libdir}/wine/user.exe16
 
 ### exe16.so
+%{_libdir}/wine/gdi.exe16.so
 %{_libdir}/wine/winhelp.exe16.so
 
 ### cpl.so
@@ -616,6 +616,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/faultrep.dll.so
 %{_libdir}/wine/fltlib.dll.so
 %{_libdir}/wine/fusion.dll.so
+%{_libdir}/wine/fwpuclnt.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
 %{!?_without_opengl:%{_libdir}/wine/glu32.dll.so}
@@ -652,6 +653,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mciwave.dll.so
 %{_libdir}/wine/midimap.dll.so
 %{_libdir}/wine/mlang.dll.so
+%{_libdir}/wine/mmdevapi.dll.so
 %{_libdir}/wine/mpr.dll.so
 %{_libdir}/wine/mprapi.dll.so
 %{_libdir}/wine/msacm32.dll.so
@@ -760,9 +762,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/w32skrnl.dll.so
 %{_libdir}/wine/wbemprox.dll.so
 %{_libdir}/wine/wiaservc.dll.so
-%{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
 %{_libdir}/wine/windowscodecs.dll.so
+%{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
 %{_libdir}/wine/winedos.dll.so
+%{_libdir}/wine/winemapi.dll.so
 %{_libdir}/wine/wing32.dll.so
 %{_libdir}/wine/winhttp.dll.so
 %{_libdir}/wine/wininet.dll.so
@@ -906,6 +909,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 1.1.35-1
+- Updated to release 1.1.35.
+
 * Wed Nov 18 2009 Dag Wieers <dag@wieers.com> - 1.1.33-1
 - Updated to release 1.1.33.
 

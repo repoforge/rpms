@@ -1,11 +1,11 @@
-# $Id$
+# $Id: mkvtoolnix.spec 7981 2009-11-03 03:05:34Z dag $
 # Authority: dag
 
 %define desktop_vendor rpmforge
 
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
-Version: 3.2.0
+Version: 3.0.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -16,7 +16,7 @@ Source1: mkvmerge-gui.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ImageMagick
-BuildRequires: boost-devel >= 0.34
+BuildRequires: boost-devel >= 0.32
 BuildRequires: bzip2-devel
 BuildRequires: desktop-file-utils
 BuildRequires: expat-devel
@@ -103,9 +103,11 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %doc %{_mandir}/man1/mkvextract.1*
 %doc %{_mandir}/man1/mkvinfo.1*
 %doc %{_mandir}/man1/mkvmerge.1*
+%doc %{_mandir}/man1/mkvpropedit.1*
 %{_bindir}/mkvextract
 %{_bindir}/mkvinfo
 %{_bindir}/mkvmerge
+%{_bindir}/mkvpropedit
 
 %files gui
 %defattr(-, root, root, 0755)
@@ -117,8 +119,8 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/mkvtoolnix/
 
 %changelog
-* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.2.0-1
-- Updated to release 3.2.0.
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.0.0-1
+- Updated to release 3.0.0.
 
 * Sun May 24 2009 Dag Wieers <dag@wieers.com> - 2.9.0-1
 - Updated to release 2.9.0.

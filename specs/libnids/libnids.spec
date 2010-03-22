@@ -9,7 +9,7 @@
 
 Summary: Implementation of an E-component of Network Intrusion Detection System
 Name: libnids
-Version: 1.21
+Version: 1.24
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
@@ -53,6 +53,9 @@ TCP stream, no matter how artfully obscured by an attacker.
 %{_includedir}/nids.h
 
 %changelog
+* Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.24-1
+- Updated to release 1.24.
+
 * Thu May 11 2006 Dag Wieers <dag@wieers.com> - 1.21-1
 - Updated to release 1.21.
 
