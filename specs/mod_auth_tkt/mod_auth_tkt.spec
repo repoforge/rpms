@@ -6,7 +6,7 @@
 Summary: Single-sign-on authentication module for Apache
 Name: mod_auth_tkt
 Version: 2.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.openfusion.com.au/labs/mod_auth_tkt/
@@ -82,7 +82,7 @@ popd
 %defattr(-, root, root)
 %doc README* INSTALL LICENSE ChangeLog CREDITS contrib/
 %doc %{_mandir}/man?/*
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/*
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/02_auth_tkt.conf
 %{_libdir}/httpd/modules/*
 
 %files cgi
@@ -93,5 +93,8 @@ popd
 /var/www/auth/*.cgi
 
 %changelog
+* Tue Mar 23 2010 Steve Huff <shuff@vecna.org> - 2.1.0-2
+- The CGI Apache config file goes in the cgi package.
+
 * Wed Feb 10 2010 Steve Huff <shuff@vecna.org> - 2.1.0-1
 - Initial package.
