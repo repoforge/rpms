@@ -5,7 +5,7 @@
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout
 Version: 2.2.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.icecast.org/
@@ -14,6 +14,7 @@ Source: http://svn.xiph.org/releases/libshout/libshout-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libvorbis-devel, pkgconfig
+Requires: speex
 
 %description
 Libshout is a library for communicating with and sending data to an
@@ -23,7 +24,7 @@ data, and prevents bad data from getting to the icecast server.
 %package devel
 Summary: Development files for the libshout icecast library
 Group: Development/Libraries
-Requires: %{name} = %{version}, libvorbis-devel, pkgconfig
+Requires: %{name} = %{version}, libvorbis-devel, speex-devel, pkgconfig
 
 %description devel
 This package contains the header files needed for developing applications
@@ -65,6 +66,9 @@ test -d %{buildroot}%{_datadir}/doc && %{__rm} -rf %{buildroot}%{_datadir}/doc
 %exclude %{_libdir}/libshout.la
 
 %changelog
+* Tue Mar 23 2010 Steve Huff <shuff@vecna.org> - 2.2.2-2
+- Captured missing speex dependency.
+
 * Fri Jul 04 2008 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Updated to release 2.2.2.
 
