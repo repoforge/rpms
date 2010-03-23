@@ -1,25 +1,51 @@
 # $Id$
-# Authority: matthias
+# Authority: shuff
+# Upstream: Max Kellermann <max$duempel,org>
 
 
 %{?el5:%define _without_pulseaudio 1}
 %{?el4:%define _without_pulseaudio 1}
 %{?el3:%define _without_pulseaudio 1}
-%{?el2:%define _without_pulseaudio 1}
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.13.0
-Release: 2%{?dist}
+Version: 0.15.9
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.musicpd.org/
-Source: http://www.musicpd.org/uploads/files/mpd-%{version}.tar.bz2
+Source: http://downloads.sourceforge.net/project/musicpd/mpd/%{version}/mpd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: zlib-devel
-BuildRequires: alsa-lib-devel, libshout-devel, mikmod-devel
-BuildRequires: libid3tag-devel, libmad-devel, libogg-devel, libvorbis-devel
-BuildRequires: flac-devel >= 1.1.2, audiofile-devel, faad2-devel, libmpcdec-devel
+BuildRequires: alsa-lib-devel >= 1.0.16
+BuildRequires: audiofile-devel 
+BuildRequires: avahi-glib-devel
+BuildRequires: bzip2-devel
+BuildRequires: curl-devel
+BuildRequires: faad2-devel
+BuildRequires: ffmpeg-devel
+BuildRequires: flac-devel >= 1.1.2
+BuildRequires: glib2-devel
+# BuildRequires: jack-devel
+BuildRequires: lame-devel
+BuildRequires: libao-devel
+# BuildRequires: libcue-devel
+BuildRequires: libid3tag-devel
+BuildRequires: libmad-devel
+# BuildRequires: libmms-devel >= 0.4
+BuildRequires: libmodplug-devel
+BuildRequires: libmpcdec-devel
+BuildRequires: libogg-devel
+BuildRequires: libsamplerate-devel
+BuildRequires: libshout-devel
+# BuildRequires: libsidplay2-devel
+BuildRequires: libvorbis-devel
+# BuildRequires: libwildmidi-devel
+BuildRequires: mikmod-devel
+BuildRequires: pkgconfig
+# remove the speex-devel dependency once libshout >= 2.2.2-2 is in the repo
+BuildRequires: speex-devel
+# BuildRequires: sqlite-devel
+BuildRequires: zziplib-devel
 %{!?_without_pulseaudio:BuildRequires: pulseaudio-devel}
 
 %description
@@ -35,7 +61,29 @@ frontend options, or restart X often.
 
 
 %build
-%configure
+# packages without pkg-config files need to be configured manually
+export FLAC_CFLAGS='-I%{_includedir}'
+export FLAC_LIBS='-L%{_libdir}'
+%configure --disable-dependency-tracking \
+    --disable-cue \
+    --enable-lastfm \
+    --disable-sqlite \
+    --disable-mms \
+    --enable-bzip2 \
+    --enable-zip \
+    --enable-iso9660 \
+    --enable-ffmpeg \
+    --enable-mad \
+    --enable-mikmod \
+    --enable-modplug \
+    --disable-sidplay \
+    --enable-lsr \
+    --enable-vorbis-encoder \
+    --enable-lame-encoder \
+    --enable-alsa \
+    --enable-pipe-output \
+    --enable-httpd-output \
+    --enable-shout
 %{__make} %{?_smp_mflags}
 
 
@@ -51,14 +99,16 @@ frontend options, or restart X often.
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS ChangeLog COPYING README TODO UPGRADING
-%doc doc/COMMANDS doc/mpdconf.example
-%{_bindir}/mpd
-%{_mandir}/man1/mpd.1*
-%{_mandir}/man5/mpd.conf.5*
+%doc AUTHORS COPYING INSTALL NEWS README UPGRADING
+%doc doc/mpdconf.example
+%{_bindir}/*
+%{_mandir}/man?/*
 
 
 %changelog
+* Tue Mar 23 2010 Steve Huff <shuff@vecna.org> - 0.15.9-1
+- Update to 0.15.9.
+
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.13.0-2
 - Rebuild against libmpcdec 1.2.6.
 
