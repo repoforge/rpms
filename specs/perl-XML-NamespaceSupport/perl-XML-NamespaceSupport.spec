@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Robin Berjon <robin,berjon$gmail,com>
+# Upstream: Chris Prather <chris@prather.org>
 
 ### perl-XML-NamespaceSupport ships with EL4 and EL5
 ##ExcludeDist: el4
@@ -12,13 +12,13 @@
 
 Summary: Perl module that implements a simple generic namespace support class
 Name: perl-XML-NamespaceSupport
-Version: 1.10
+Version: 1.11
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-NamespaceSupport/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-NamespaceSupport-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN/XML-NamespaceSupport-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -55,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/NamespaceSupport.pm
 
 %changelog
+* Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 1.11-1
+- Updated to version 1.11.
+
 * Wed Jun 17 2009 Christoph Maser <cmr@financial.com> - 1.10-1
 - Updated to version 1.10.
 
