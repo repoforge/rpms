@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: Florian Ragwitz <rafl$debian,org>
+# Upstream: Stevan Little <stevan.little$iinteractive,com>
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,21 +10,22 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 0.95
+Version: 1.00
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::MOP) >= 0.98
 BuildRequires: perl(Data::OptList)
-#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
-BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(List::MoreUtils) >= 0.12
+BuildRequires: perl(Module::Install) >= 0.91
+# BuildRequires: perl(Module::Install::ExtraTests)
+# BuildRequires: perl(Module::Install::AuthorRequires)
 BuildRequires: perl(Scalar::Util) >= 1.19
 BuildRequires: perl(Sub::Exporter) >= 0.980
 BuildRequires: perl(Sub::Name)
@@ -37,6 +38,7 @@ BuildRequires: perl >= 5.8.1
 Requires: perl(Carp)
 Requires: perl(Class::MOP) >= 0.98
 Requires: perl(Data::OptList)
+Requires: perl(Filter::Simple)
 Requires: perl(List::MoreUtils) >= 0.12
 Requires: perl(Scalar::Util) >= 1.19
 Requires: perl(Sub::Exporter) >= 0.980
@@ -45,8 +47,22 @@ Requires: perl(Task::Weaken)
 Requires: perl(Try::Tiny) >= 0.02
 Requires: perl >= 5.8.1
 
-%filter_from_requires /^perl*/d
-%filter_setup
+Conflicts: perl(Catalyst) <= 5.80017
+Conflicts: perl(Devel::REPL) <= 1.003008
+Conflicts: perl(Fey::ORM) <= 0.23
+Conflicts: perl(MooseX::Aliases) <= 0.07
+Conflicts: perl(MooseX::AttributeHelpers) <= 0.22
+Conflicts: perl(MooseX::Attribute::Prototype) <= 0.10
+Conflicts: perl(MooseX::ClassAttribute) <= 0.09
+Conflicts: perl(MooseX::MethodAttributes) <= 0.18
+Conflicts: perl(MooseX::NonMoose) <= 0.05
+Conflicts: perl(MooseX::Params::Validate) <= 0.05
+Conflicts: perl(MooseX::Role::Cmd) <= 0.06
+Conflicts: perl(MooseX::Role::WithOverloading) <= 0.04
+Conflicts: perl(MooseX::Singleton) <= 0.19
+Conflicts: perl(MooseX::StringConstructor) <= 0.07
+Conflicts: perl(MooseX::Types) <= 0.19
+Conflicts: perl(namespace::autoclean) <= 0.08
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -75,10 +91,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST MANIFEST.SKIP META.yml README
-%doc %{_mandir}/man3/Moose.3pm*
-%doc %{_mandir}/man3/Moose::*.3pm*
-%doc %{_mandir}/man3/oose.3pm*
-%doc %{_mandir}/man3/Test::Moose.3pm*
+%doc %{_mandir}/man?/*
 %{perl_vendorarch}/Moose/
 %{perl_vendorarch}/Moose.pm
 %{perl_vendorarch}/oose.pm
@@ -88,6 +101,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
+* Fri Mar 26 2010 Steve Huff <shuff@vecna.org> - 1.00-1
+- Updated to version 1.00!
+- Upstream is back to Stevan Little.
+- oose.pm requires Filter::Simple.
+- Captured conflicts defined in Makefile.PL.
+
 * Fri Feb 05 2010 Steve Huff <shuff@vecna.org> - 0.95-1
 - Updated to version 0.95.
 - Upstream is now Florian Ragwitz.
