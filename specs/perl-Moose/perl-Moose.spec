@@ -17,6 +17,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
 Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+Patch0: %{name}_checkconflicts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Carp)
@@ -73,6 +74,7 @@ Moose is a Perl module that implements a complete modern object system.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -106,6 +108,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 - Upstream is back to Stevan Little.
 - oose.pm requires Filter::Simple.
 - Captured conflicts defined in Makefile.PL.
+- Patched out check_conflicts() call.
 
 * Fri Feb 05 2010 Steve Huff <shuff@vecna.org> - 0.95-1
 - Updated to version 0.95.
