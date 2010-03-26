@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dries
-# Upstream: Marcel Grünauer <marcel$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,22 +8,42 @@
 
 Summary: Combine data and logic in YAML
 Name: perl-YAML-Active
-Version: 1.08
+Version: 1.100810
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-Active/
 
-Source: http://www.cpan.org/modules/by-module/YAML/YAML-Active-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/YAML-Active-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0 
-BuildRequires: perl(Module::Build)
-BuildRequires: perl(Test::Compile)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::Accessor::Complex)
+BuildRequires: perl(English)
+BuildRequires: perl(Exporter)
+BuildRequires: perl(File::Find)
+BuildRequires: perl(File::Temp)
+BuildRequires: perl(Scalar::Util)
+#BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
-BuildRequires: perl(UNIVERSAL::require)
-Requires: perl >= 0:5.6.0 
+BuildRequires: perl(YAML::XS)
+BuildRequires: perl(constant)
+BuildRequires: perl >= 5.008
+Requires: perl(Carp)
+Requires: perl(Class::Accessor::Complex)
+Requires: perl(English)
+Requires: perl(Exporter)
+Requires: perl(File::Find)
+Requires: perl(File::Temp)
+Requires: perl(Scalar::Util)
+#Requires: perl(Test::More) >= 0.88
+Requires: perl(Test::More)
+Requires: perl(YAML::XS)
+Requires: perl(constant)
+Requires: perl >= 5.008
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 YAML is an intuitive way to describe nested data structures. This module
@@ -63,6 +82,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAML/Active.pm
 
 %changelog
+* Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 1.100810-1
+- Updated to version 1.100810.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 1.08-1
 - Updated to version 1.08.
 
