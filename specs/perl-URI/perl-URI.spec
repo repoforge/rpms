@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
-Version: 1.52
+Version: 1.53
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,9 +24,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(MIME::Base64) >= 2
-BuildRequires: perl >= 5.004
+BuildRequires: perl >= 5.006001
 Requires: perl(MIME::Base64) >= 2
-Requires: perl >= 5.004
+Requires: perl >= 5.006001
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI.pm
 
 %changelog
+* Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 1.53-1
+- Updated to version 1.53.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.52-1
 - Updated to version 1.52.
 
