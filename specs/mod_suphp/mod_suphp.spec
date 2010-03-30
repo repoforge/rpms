@@ -3,15 +3,12 @@
 
 %{?el4:%define _without_apr1 1}
 %{?el3:%define _without_apr1 1}
-%{?rh9:%define _without_apr1 1}
-%{?rh7:%define _without_apr1 1}
-%{?el2:%define _without_apr1 1}
 
 %define real_name suphp
 
 Summary: Apache module that enables running PHP scripts under different users
 Name: mod_suphp
-Version: 0.7.0
+Version: 0.7.1
 Release: 1%{?dist}
 License: GPL/Apache License
 Group: System Environment/Daemons
@@ -151,7 +148,10 @@ EOF
 %{_sbindir}/suphp
 
 %changelog
-* Tue Jan 20 2009 Dag Wieers <dag@wieers.com> - 0.7.0-1
+* Tue Mar 30 2010 Yury V. Zaytsev <yury@shurup.com> - 0.7.1
+- Updated to release 0.7.1 (thanks to Alessandro Iurlano).
+
+* Tue Jan 20 2009 Dag Wieers <dag@wieers.com> - 0.7.0-1 - 6446+/dries
 - Updated to release 0.7.0.
 
 * Mon Aug 18 2008 Dries Verachtert <dries@ulyssis.org> - 0.6.3-1
