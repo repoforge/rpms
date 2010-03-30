@@ -1,0 +1,250 @@
+diff -Naur squidGuard-1.3.orig/Makefile.in squidGuard-1.3/Makefile.in
+--- squidGuard-1.3.orig/Makefile.in	2007-07-01 17:37:14.000000000 +0200
++++ squidGuard-1.3/Makefile.in	2010-03-30 13:55:51.000000000 +0200
+@@ -46,7 +46,7 @@
+ install:	install-build install-conf
+ 
+ install-conf:
+-	@echo Installing configuration file  ;
++	@echo Installing configuration file 
+ 	@if [ ! -d $(prefix)/squidGuard ]; then \
+ 		$(MKINSTALLDIRS) $(prefix)/squidGuard ; \
+ 		echo Created directory $(prefix)/squidGuard ; \
+diff -Naur squidGuard-1.3.orig/src/sgDb.c squidGuard-1.3/src/sgDb.c
+--- squidGuard-1.3.orig/src/sgDb.c	2007-11-03 14:59:49.000000000 +0100
++++ squidGuard-1.3/src/sgDb.c	2008-07-14 20:42:06.000000000 +0200
+@@ -1,10 +1,12 @@
+ /*
+   By accepting this notice, you agree to be bound by the following
+   agreements:
+- 
+-  This software product, squidGuard, is copyrighted (C) 1998-2007
+-  by Christine Kronberg, Shalla Secure Services. All rights reserved.
+-
++  
++  This software product, squidGuard, is copyrighted (C) 1998 by
++  ElTele Øst AS, Oslo, Norway, with all rights reserved.
++  With December 27th 2006 all rights moved to Christine Kronberg,
++  Shalla Secure Services.
++  
+   This program is free software; you can redistribute it and/or modify it
+   under the terms of the GNU General Public License (version 2) as
+   published by the Free Software Foundation.  It is distributed in the
+@@ -287,29 +289,75 @@
+   return result;
+ }
+ 
++static int stdoutisatty;
++
++#if __STDC__
++void startProgressBar()
++#else
++void startProgressBar()
++#endif
++{
++  stdoutisatty = isatty(STDOUT_FILENO);
++
++  if(1 == stdoutisatty)
++  {
++    /* do nothing */
++  }
++  else
++  {
++    printf("    [");
++    fflush(stderr);
++  }
++  return;
++}
++
+ #if __STDC__
+-void drawProgressBar(float prog)
++void finishProgressBar()
+ #else
+-void drawProgressBar(prog)
++void finishProgressBar()
++#endif
++{
++  if(1 == stdoutisatty)
++  {
++    printf("\n");
++  }
++  else
++  {
++    printf("] 100 %% done\n");
++  }
++  fflush(stderr);
++  return;
++}
++
++#if __STDC__
++void updateProgressBar(float prog)
++#else
++void updateProgressBar(prog)
+ 	float prog;
+ #endif
+ {
+-  int j,k=0;
+-  k = (int)(prog * 50.0);
+-  printf("    [");
+-  for(j=0; j<50; j++)
++  if(1 == stdoutisatty)
+   {
+-    if(j <= k)
++    int j,k=0;
++    k = (int)(prog * 50.0);
++    printf("\r");fflush(stderr);
++    printf("    [");
++    for(j=0; j<50; j++)
++    {
++      if(j <= k)
+         printf("=");
+-    else
++      else
+         printf(" ");
++    }
++    printf("] %d %% done", (int)(prog*100.0));fflush(stderr);
+   }
+-  printf("] %d %% done", (int)(prog*100.0));fflush(stdout);
+-  for(j=0; j<1000000; j++) {/*slow down to make progress bar more obvious*/}
+-  printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");fflush(stdout);
+-  printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");fflush(stdout);
+-  printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");fflush(stdout);
+-  printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");fflush(stdout);
++  else
++  {
++    if(((int)(prog*100.0) % 100) == 0)
++      printf(".");fflush(stderr);
++  }
++
++  return;
+ }
+ 
+ #if __STDC__
+@@ -340,13 +388,14 @@
+ 
+   fstat(fileno(fp), &fpst);
+   fpsz = fpst.st_size;
++  startProgressBar();
+   
+   memset(&Db->key, 0, sizeof(DBT));
+   memset(&Db->data, 0, sizeof(DBT));
+   while(fgets(line, sizeof(line), fp) != NULL){
+ 
+     lnsz += strlen(line);
+-    drawProgressBar((float)lnsz/(float)fpsz);
++    updateProgressBar((float)lnsz/(float)fpsz);
+     
+     if(*line == '#')
+       continue;
+@@ -418,7 +467,7 @@
+   if(update){
+     sgLogError("update: added %d entries, deleted %d entries",entries,deleted);
+   }
+-  printf("\n");
++  finishProgressBar();
+   Db->entries = entries;
+   fclose(fp);
+ }
+diff -Naur squidGuard-1.3.orig/src/sgDiv.c.in squidGuard-1.3/src/sgDiv.c.in
+--- squidGuard-1.3.orig/src/sgDiv.c.in	2007-11-03 14:59:49.000000000 +0100
++++ squidGuard-1.3/src/sgDiv.c.in	2009-10-19 22:52:20.000000000 +0200
+@@ -94,6 +94,7 @@
+   int i = 0;
+   char c;
+   int report_once = 1;
++  int trailingdot = 1;
+   size_t strsz;
+   int ndx = 0;
+   
+@@ -132,7 +133,7 @@
+     {
+         /* in case this is a '://' skip over it, but try to not read past EOS */
+         if(3 <= strsz-ndx) {
+-          if(':' == p[ndx] && '/' == p[ndx+1] && '/' == p[ndx+2]) {
++          if(':' == p[ndx] && '/' == p[ndx+1] && '/' == p[ndx+2] && '\0' != p[ndx+3]) {
+            ndx+=3; /* 3 == strlen("://"); */
+           }
+         }
+@@ -148,6 +149,16 @@
+             report_once--;
+           }
+       }
++      else if ('.' == p[ndx] && '/' == p[ndx+1] && trailingdot == 0) {
++      /* If the domain has trailing dot, remove (problem found with squid 3.0 stable1-5) */
++      /* if this char is a dot and the next char is a slash, then shift the rest of the string left one char */
++      /* We do this only the first time it is encountered. */
++         trailingdot++;
++         size_t sz = strlen(p+ndx+1);
++         strncpy(p+ndx,p+ndx+1, sz);
++         p[ndx+sz] = '\0';
++         @NOLOG1@ sgLogError("Warning: Possible bypass attempt. Found a trailing dot in the domain name: %s", s->orig); @NOLOG2@
++      }
+       else
+       {
+         /* increment the string indexer */
+@@ -734,7 +745,7 @@
+       p++;
+       break;
+     case 'u': /* Requested URL */
+-      strcat(buf, req->orig);
++      strncat(buf, req->orig, 2048);
+       p++;
+       break;
+     default:
+diff -Naur squidGuard-1.3.orig/src/sg.h.in squidGuard-1.3/src/sg.h.in
+--- squidGuard-1.3.orig/src/sg.h.in	2007-11-03 14:59:49.000000000 +0100
++++ squidGuard-1.3/src/sg.h.in	2009-10-19 22:52:26.000000000 +0200
+@@ -73,7 +73,7 @@
+ #define REQUEST_TYPE_REDIRECT   2
+ #define REQUEST_TYPE_PASS       3
+ 
+-#define MAX_BUF 4096
++#define MAX_BUF 12288
+ 
+ #define DEFAULT_LOGFILE "squidGuard.log"
+ #define WARNING_LOGFILE "squidGuard.log"
+diff -Naur squidGuard-1.3.orig/src/sgLog.c squidGuard-1.3/src/sgLog.c
+--- squidGuard-1.3.orig/src/sgLog.c	2007-11-03 14:59:49.000000000 +0100
++++ squidGuard-1.3/src/sgLog.c	2009-10-15 21:25:14.000000000 +0200
+@@ -2,7 +2,7 @@
+   By accepting this notice, you agree to be bound by the following
+   agreements:
+   
+-  This software product, squidGuard, is copyrighted (C) 1998-2007
++  This software product, squidGuard, is copyrighted (C) 1998-2009
+   by Christine Kronberg, Shalla Secure Services. All rights reserved.
+  
+   This program is free software; you can redistribute it and/or modify it
+@@ -55,8 +55,8 @@
+   char msg[MAX_BUF];
+   va_list ap;
+   VA_START(ap, format);
+-  if(vsprintf(msg, format, ap) > (MAX_BUF - 1)) 
+-    fprintf(stderr,"overflow in vsprintf (sgLog): %s",strerror(errno));
++  if(vsnprintf(msg, MAX_BUF, format, ap) > (MAX_BUF - 1)) 
++    fprintf(stderr,"overflow in vsnprintf (sgLog): %s",strerror(errno));
+   va_end(ap);
+   date = niso(0);
+   if(globalDebug || log == NULL) {
+@@ -87,8 +87,8 @@
+   char msg[MAX_BUF];
+   va_list ap;
+   VA_START(ap, format);
+-  if(vsprintf(msg, format, ap) > (MAX_BUF - 1)) 
+-    sgLogFatalError("overflow in vsprintf (sgLogError): %s",strerror(errno));
++  if(vsnprintf(msg, MAX_BUF, format, ap) > (MAX_BUF - 1)) 
++    sgLog(globalErrorLog, "overflow in vsnprintf (sgLogError): %s",strerror(errno));
+   va_end(ap);
+   sgLog(globalErrorLog,"%s",msg);
+ }
+@@ -104,8 +104,8 @@
+   char msg[MAX_BUF];
+   va_list ap;
+   VA_START(ap, format);
+-  if(vsprintf(msg, format, ap) > (MAX_BUF - 1)) 
+-    return;
++  if(vsnprintf(msg, MAX_BUF, format, ap) > (MAX_BUF - 1)) 
++    sgLog(globalErrorLog, "overflow in vsnprintf (sgLogError): %s",strerror(errno));
+   va_end(ap);
+   sgLog(globalErrorLog,"%s",msg);
+   sgEmergency();

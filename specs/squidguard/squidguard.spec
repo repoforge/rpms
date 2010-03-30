@@ -15,6 +15,8 @@ Group:   System Environment/Daemons
 URL:     http://www.squidguard.org
 
 Source:  http://www.squidguard.org/Downloads/squidGuard-%{version}.tar.gz
+Patch0:  squidguard-1.3.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, perl
@@ -30,6 +32,7 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1 -b .security
 
 %{__perl} -pi.orig -e '
 		s|^(dbhome) .+$|$1 \@sg_dbhome\@|;
