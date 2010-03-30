@@ -10,32 +10,33 @@
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
 Summary: Regularly updated blacklists for use with squidguard
-Name: squidguard-blacklists
-Version: 20050528
-Release: 1.2%{?dist}
+Name:    squidguard-blacklists
+Version: 1.3
+Release: 1%{?dist}
+Epoch:   1
 License: GPL
-Group: System Environment/Libraries
-URL: http://dag.wieers.com/home-made/squidguard/
+Group:   System Environment/Libraries
+URL:     http://www.squidguard.org
 
-Source: ftp://ftp.teledanmark.no/pub/www/proxy/squidGuard/contrib/blacklists-%{version}.tar.gz
-Source1: ftp://ftp.univ-tlse1.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz
-Source2: http://www.ingrid.org/~harada/filtering/dmozlists/dmozlists-ages-adult-20020930.tar.gz
-Source3: http://www.bn-paf.de/filter/de-blacklists.tar.gz
+Source0: ftp://ftp.univ-tlse1.fr/pub/reseau/cache/squidguard_contrib/blacklists.tar.gz
+Source1: http://www.ingrid.org/~harada/filtering/dmozlists/dmozlists-ages-adult-20020930.tar.gz
+Source2: http://squidguard.mesd.k12.or.us/blacklists.tgz
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: squidguard = 1.2.0
-Requires: squidguard = 1.2.0
+BuildRequires: squidguard = 1.3
+Requires: squidguard = 1.3
 
 %description
 Regularly updated blacklists for use with squidguard.
 
 %prep
 %{__rm} -rf %{_builddir}/%{name}-%{version}/
-%setup -n %{name}-%{version}/squidguard -T -D -c -b0
-%setup -n %{name}-%{version}/univtlse -T -D -c -b1
-%setup -n %{name}-%{version}/dmoz -T -D -c -b2
-%setup -n %{name}-%{version}/debnpaf -T -D -c -b3
+
+%setup -n %{name}-%{version}/univtlse -T -D -c -b0
+%setup -n %{name}-%{version}/dmoz -T -D -c -b1
+%setup -n %{name}-%{version}/k12 -T -D -c -b2
 
 cd %{_builddir}/%{name}-%{version}/
 
@@ -48,23 +49,18 @@ cd %{_builddir}/%{name}-%{version}/
 }
 EOF
 
-### Clean up squidguard blacklists
-%{__mv} -f squidguard/blacklists/* squidguard/
-%{__rm} -f squidguard/*/*.diff
-%{__rm} -rf squidguard/blacklists/
-
 ### Clean up univtlse blacklists
 %{__mv} -f univtlse/blacklists/* univtlse/
-%{__rm} -f univtlse/ads univtlse/porn univtlse/proxy
+%{__rm} -f univtlse/ads univtlse/aggressive univtlse/drugs univtlse/mail univtlse/porn univtlse/proxy univtlse/violence
 %{__rm} -rf univtlse/blacklists/
 
 ### Clean up dmoz blacklists
 %{__mv} -f dmoz/dmozlists/* dmoz/
 %{__rm} -rf dmoz/dmozlists/
 
-### Clean up debnpaf blacklists
-%{__mv} -f debnpaf/de-blacklists/* debnpaf/
-%{__rm} -rf debnpaf/de-blacklists/ debnpaf/*/.mappedfiles/ debnpaf/*/*.exclude
+### Clean up k12 blacklists
+%{__mv} -f k12/blacklists/* k12/
+%{__rm} -rf k12/blacklists/
 
 ### Clean up empty blacklists and remove symlinks
 find . -size 0 -exec %{__rm} -f {} \;
@@ -130,13 +126,15 @@ echo '\.(mpe?g?|wmv|mov|movie|qt|avi|dvd?|divx)($|\?)' >>%{buildroot}%{_sysconfd
 %config %{_sysconfdir}/logrotate.d/*
 
 %defattr(600, squid, squid, 0700)
-#%config(noreplace) %{_sysconfdir}/squid/local/
 %config(noreplace) %{_sysconfdir}/squid/local/
 %{dbhomedir}/
 %dir %{_localstatedir}/log/squidguard/
 %ghost %{_localstatedir}/log/squidguard/*.log
 
 %changelog
+* Tue Mar 30 2010 Yury V. Zaytsev <yury@shurup.com> - 1.3-1
+- Updated blacklists and hopefully fixed deps loop.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 20050528-1.2
 - Rebuild for Fedora Core 5.
 

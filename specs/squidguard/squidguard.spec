@@ -7,30 +7,21 @@
 %define dbhomedir %{_localstatedir}/lib/squidguard
 
 Summary: Combined filter, redirector and access controller plugin for squid
-Name: squidguard
+Name:    squidguard
 Version: 1.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
-Group: System Environment/Daemons
-URL: http://www.squidguard.org/
+Group:   System Environment/Daemons
+URL:     http://www.squidguard.org
 
-Source: http://www.squidguard.org/Downloads/squidGuard-%{version}.tar.gz
-#Patch0: squidguard-1.2.0-db4.patch
+Source:  http://www.squidguard.org/Downloads/squidGuard-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, perl
-%{?fc4:BuildRequires: db4-devel}
-%{?fc3:BuildRequires: db4-devel}
-%{?fc2:BuildRequires: db4-devel}
-%{?fc1:BuildRequires: db4-devel}
-%{?el3:BuildRequires: db4-devel}
-%{?rh9:BuildRequires: db4-devel}
-%{?rh8:BuildRequires: db4-devel}
-%{?rh7:BuildRequires: db3-devel}
-%{?el2:BuildRequires: db3-devel}
-Requires: squid
+BuildRequires: db4-devel
+Requires:  squid
 Obsoletes: squidGuard
-Provides: squidGuard
+Provides:  squidGuard
 
 %description
 squidGuard is a combined filter, redirector and access controller
@@ -39,11 +30,6 @@ users to a list of webservers, based on keywords.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch0
-#{?fc3:%patch0}
-#{?fc2:%patch0}
-#{?fc1:%patch0}
-#{?el3:%patch0}
 
 %{__perl} -pi.orig -e '
 		s|^(dbhome) .+$|$1 \@sg_dbhome\@|;
@@ -74,8 +60,6 @@ EOF
 	--with-sg-dbhome="%{dbhomedir}"
 %{__make} %{?_smp_mflags} \
 	LIBS="-ldb -lpthread"
-
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -109,6 +93,9 @@ EOF
 #%{_localstatedir}/log/squidguard/
 
 %changelog
+* Tue Mar 30 2010 Yury V. Zaytsev <yury@shurup.com> - 1.3-2
+- Cleanups.
+
 * Sun Apr 20 2008 Dries Verachtert <dries@ulyssis.org> - 1.3-1
 - Updated to release 1.3.
 
