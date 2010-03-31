@@ -100,6 +100,7 @@ fi
 %changelog
 * Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 0.2.1.25-1
 - Updated to release 0.2.1.25.
+- Also could benefit from a rebuild against libevent-1.4.13.
 
 * Mon Mar 01 2010 Steve Huff <shuff@vecna.org> - 0.2.1.24-1
 - Updated to release 0.2.1.24.
