@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Tobi Oetiker <tobi$oetiker,ch>
 
 # Tag: test
 
@@ -7,21 +8,20 @@
 
 Summary: Multi Router Traffic Grapher
 Name: mrtg
-Version: 2.16.1
+Version: 2.16.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
-URL: http://ee-staff.ethz.ch/~oetiker/webtools/mrtg/mrtg.html
+URL: http://oss.oetiker.ch/mrtg/
 
-Source: http://www.ee.ethz.ch/~oetiker/webtools/mrtg/pub/mrtg-%{version}.tar.gz
+Source: http://oss.oetiker.ch/mrtg/pub/mrtg-%{version}.tar.gz
 Source4: README-14allcgi
 Source5: 14all.cgi
 Source6: filter-requires-mrtg.sh
-Patch: mrtg-2.9.17-lib64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel, gd-devel, libjpeg-devel, libpng-devel
-Requires: perl >= 0:5.004, gd
+Requires: perl >= 5.8, gd
 Requires: vixie-cron, /sbin/service
 
 %define __find_requires %{SOURCE6}
@@ -33,7 +33,6 @@ images which provide a LIVE visual representation of this traffic.
 
 %prep
 %setup
-%patch -p0 -b .lib64
 
 %{__cat} <<EOF >mrtg.cfg
 ######################################################################
@@ -98,7 +97,7 @@ find contrib -name "*.pl" -exec %{__perl} -e 's|\015||gi' -p -i \{\} \;
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/mrtg/
 %{__install} -Dp -m0644 images/*   %{buildroot}%{_localstatedir}/www/mrtg/
-%{__install} -Dp -m0644 doc/*.html %{buildroot}%{_localstatedir}/www/mrtg/
+# %{__install} -Dp -m0644 doc/*.html %{buildroot}%{_localstatedir}/www/mrtg/
 
 %{__install} -Dp -m0644 %{SOURCE4} contrib/14all/README
 %{__install} -Dp -m0755 %{SOURCE5} contrib/14all/14all.cgi
@@ -130,8 +129,8 @@ done
 
 %files
 %defattr(-, root, root, 0755)
-%doc ANNOUNCE CHANGES COPYING COPYRIGHT MANIFEST README THANKS contrib/
-%doc %{_mandir}/man1/*
+%doc CHANGES COPYING COPYRIGHT MANIFEST README THANKS contrib/
+%doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/mrtg.conf
 %config(noreplace) %{_sysconfdir}/mrtg/
 %config %{_sysconfdir}/cron.d/mrtg
@@ -140,6 +139,9 @@ done
 %{_libdir}/mrtg2/
 
 %changelog
+* Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 2.16.3-1
+- Updated to release 2.16.3.
+
 * Sun Feb 17 2008 Dag Wieers <dag@wieers.com> - 2.16.1-1
 - Updated to release 2.16.1.
 
