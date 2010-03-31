@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dries
+# Authority: shuff
 # Upstream: EFF
 
 # added so it also works with the upstream el4 tor package
@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.2.1.24
+Version: 0.2.1.25
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -76,14 +76,10 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL LICENSE README
-%doc %{_mandir}/man1/tor*
+%doc %{_mandir}/man?/*
 %config %{_initrddir}/tor
 %config(noreplace) %{_sysconfdir}/logrotate.d/tor
-%{_bindir}/tor-resolve
-%{_bindir}/tor
-%{_bindir}/torctl
-%{_bindir}/torify
-%{_bindir}/tor-gencert
+%{_bindir}/*
 %dir %{_datadir}/tor/
 %{_datadir}/tor/geoip
 
@@ -102,6 +98,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 0.2.1.25-1
+- Updated to release 0.2.1.25.
+
 * Mon Mar 01 2010 Steve Huff <shuff@vecna.org> - 0.2.1.24-1
 - Updated to release 0.2.1.24.
 
