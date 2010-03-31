@@ -9,7 +9,7 @@
 
 Summary: Interface for Yahoo! Search Marketing's Web Services
 Name: perl-Yahoo-Marketing
-Version: 6.11
+Version: 7.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -83,6 +83,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Yahoo/Marketing.pm
 
 %changelog
+* Wed Mar 31 2010 Christoph Maser <cmr@financial.com> - 7.01-1
+- Updated to version 7.01.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 6.11-1
 - Updated to version 6.11.
 
