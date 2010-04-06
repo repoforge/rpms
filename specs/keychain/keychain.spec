@@ -1,19 +1,21 @@
 # $Id$
 # Authority: dag
-# Upstream: Aron Griffis <agriffis$gentoo,org>
+# Upstream: Daniel Robbins <drobbins$funtoo,org>
 
 Summary: Agent manager for OpenSSH, ssh.com, Sun SSH, and GnuPG
 Name: keychain
-Version: 2.6.8
+Version: 2.7.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
-URL: http://www.gentoo.org/proj/en/keychain/
+URL: http://www.funtoo.org/en/security/keychain/intro/
 
-Source: http://agriffis.n01se.net/keychain/keychain-%{version}.tar.bz2
+Source: http://www.funtoo.org/archive/keychain/keychain-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: make
+BuildRequires: perl
 Requires: bash sh-utils
 
 %description
@@ -28,22 +30,27 @@ local machine is rebooted.
 %setup
 
 %build
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 keychain %{buildroot}%{_bindir}/keychain
-%{__install} -Dp -m0644 keychain.1 %{buildroot}%{_mandir}/man1/keychain.1
+%{__install} -Dp -m0644 keychain.1.gz %{buildroot}%{_mandir}/man1/keychain.1.gz
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING keychain.pod README
-%doc %{_mandir}/man1/keychain.1*
+%doc ChangeLog COPYING.txt keychain.pod README.rst
+%doc %{_mandir}/man?/*
 %{_bindir}/keychain
 
 %changelog
+* Tue Apr 06 2010 Steve Huff <shuff@vecna.org> - 2.7.0-1
+- Updated to release 2.7.0.
+- Changed upstream and source.
+
 * Sat Aug 29 2009 Dries Verachtert <dries@ulyssis.org> - 2.6.8-1
 - Updated to release 2.6.8.
 
