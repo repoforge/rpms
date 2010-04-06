@@ -7,10 +7,10 @@
 
 %define real_name Config-Auto
 
-Summary: Perl module named Config-Auto
+Summary: Magical config file parser
 Name: perl-Config-Auto
 Version: 0.20
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Auto/
@@ -20,9 +20,25 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Config::IniFiles)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec::Functions)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(YAML)
+BuildRequires: rpm-macros-rpmforge
+Requires: perl
+Requires: perl(Config::IniFiles)
+Requires: perl(File::Spec::Functions)
+Requires: perl(YAML)
+
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
-perl-Config-Auto is a Perl module.
+This module was written after having to write Yet Another Config File Parser
+for some variety of colon-separated config. I decided "never again".
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -44,11 +60,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
-%doc %{_mandir}/man3/Config::Auto.3pm*
+%doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/Config/
 #%{perl_vendorlib}/Config/Auto/
 %{perl_vendorlib}/Config/Auto.pm
 
 %changelog
+* Tue Apr 06 2010 Steve Huff <shuff@vecna.org> - 0.20-2
+- Captured missing dependencies.
+
 * Mon Jun 29 2009 Unknown - 0.20-1
 - Initial package. (using DAR)
