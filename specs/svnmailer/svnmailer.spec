@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Andre Malo <freshmeat$nd,perlig,de>
+# Upstream: Andre Malo <nd$perlig,de>
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
