@@ -10,7 +10,7 @@
 Summary: comma-separated values manipulator (using XS or PurePerl)
 Name: perl-Text-CSV
 Version: 1.16
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-CSV/

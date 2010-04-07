@@ -14,7 +14,7 @@
 Summary: use Moose or Mouse modules
 Name: perl-Any-Moose
 Version: 0.11
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Any-Moose/

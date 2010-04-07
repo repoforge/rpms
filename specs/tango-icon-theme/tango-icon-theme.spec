@@ -3,7 +3,7 @@
 
 Name:		tango-icon-theme
 Version:	0.7.2
-Release:	6
+Release:	6%{?dist}
 Summary:	Icons from Tango Project
 Summary(pl):	Ikony Projektu Tango
 

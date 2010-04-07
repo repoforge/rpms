@@ -10,7 +10,7 @@
 Summary: Obtain expiration date of domain names
 Name: perl-Net-Domain-ExpireDate
 Version: 0.97
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Domain-ExpireDate/

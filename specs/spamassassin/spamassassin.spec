@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-
 %{?rh8:%define _with_perl_5_6 1}
 %{?rh7:%define _with_perl_5_6 1}
 %{?el2:%define _with_perl_5_6 1}
@@ -14,7 +13,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.3.1
-Release: 1%{?dist}
+Release: 3%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -43,7 +42,7 @@ Requires: perl(Mail::DKIM) >= 0.37
 Requires: perl(Net::DNS)
 Requires: perl(Net::Ident)
 Requires: perl(NetAddr::IP) >= 4.000
-Requires: perl(Razor2) >= 2.61
+Requires: perl(Razor2::Client::Agent) >= 2.61
 Requires: perl(Time::HiRes)
 Requires: perl-libwww-perl
 Requires: procmail
@@ -236,9 +235,12 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
-* Mon Mar 22 2010 Steve Huff <shuff@vecna.org> - 
+* Mon Mar 22 2010 Steve Huff <shuff@vecna.org> - 3.3.1-3
 - Don't install concurrently with amavisd-new < 2.6.2
   (https://issues.apache.org/SpamAssassin/show_bug.cgi?id=6257)
+
+* Mon Mar 22 2010 Dag Wieers <dag@wieers.com> -  3.3.1-2
+- Fixed incorrect dependency for perl-Razor2. (Steve Huff)
 
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.3.1-1
 - Updated to release 3.3.1.

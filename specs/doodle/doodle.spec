@@ -2,14 +2,11 @@
 # Authority: dag
 # Upstream: Christian Grothoff <christian@grothoff.org>
 
-
 %{?el3:%define _without_gamin 1}
-%{?fc2:%define _without_gamin 1}
-%{?fc1:%define _without_gamin 1}
 
 Summary: Searches your hard drive for files using pattern matching on meta-data
 Name: doodle
-Version: 0.6.7
+Version: 0.7.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -18,7 +15,9 @@ URL: http://gnunet.org/doodle/
 Source: http://gnunet.org/doodle/download/doodle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libextractor-devel, gcc-c++, gettext
+BuildRequires: gettext
+BuildRequires: gcc-c++
+BuildRequires: libextractor-devel
 %{?_without_gamin:BuildRequires: fam-devel}
 %{!?_without_gamin:BuildRequires: gamin-devel}
 
@@ -74,6 +73,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libdoodle.la
 
 %changelog
+* Wed Jan 20 2010 Dag Wieers <dag@wieers.com> - 0.7.0-1
+- Updated to release 0.7.0.
+
 * Thu Dec 06 2007 Dag Wieers <dag@wieers.com> - 0.6.7-1
 - Updated to release 0.6.7.
 

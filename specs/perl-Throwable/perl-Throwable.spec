@@ -11,7 +11,7 @@
 Summary: a role for classes that can be thrown
 Name: perl-Throwable
 Version: 0.100090
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Throwable/

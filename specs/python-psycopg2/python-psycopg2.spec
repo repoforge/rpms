@@ -46,7 +46,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{python_sitearch}/psycopg2/_psycopg.so
 %{python_sitearch}/psycopg2/*.py
 %{python_sitearch}/psycopg2/*.pyc
-%{python_sitearch}/psycopg2-%{version}-py*.egg-info
+#%{python_sitearch}/psycopg2-%{version}-py*.egg-info
 %ghost %{python_sitearch}/psycopg2/*.pyo
 
 %changelog

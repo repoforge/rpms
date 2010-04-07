@@ -10,7 +10,7 @@
 Summary: an extension to MooseX::Traits
 Name: perl-MooseX-Traits-Pluggable
 Version: 0.08
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Traits-Pluggable/

@@ -8,13 +8,14 @@
 
 Summary: Perl module to merge arbitrarily deep hashes into a single hash
 Name: perl-Hash-Merge
-Version: 0.11
+Version: 0.12
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Hash-Merge/
 
-Source: http://www.cpan.org/modules/by-module/Hash/Hash-Merge-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMUEY/Hash-Merge-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Hash/Hash-Merge-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -54,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Hash/Merge.pm
 
 %changelog
+* Mon Mar 22 2010 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Update version 0.11.
 

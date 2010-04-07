@@ -41,31 +41,31 @@ FahMon is a GUI monitor for Folding@Home clients.
 %setup -n %{real_name}-%{version}
 
 %build
-%configure --disable-dependency-tracking
+%configure \
+    --disable-dependency-tracking \
+    --disable-static
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR=%{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f fahmon.lang
 %defattr(-, root, root, 0755)
-%doc ABOUT-NLS AUTHORS ChangeLog COPYING NEWS 
-%doc README TEMPLATE_SYNTAX THANKS
-%doc doc/
-%{_bindir}/*
-%{_datadir}/applications/*
+%doc AUTHORS ChangeLog COPYING NEWS README TEMPLATE_SYNTAX THANKS
+#%doc doc/
+%{_bindir}/fahmon
+%{_datadir}/applications/fahmon.desktop
 %{_datadir}/fahmon/
-%{_datadir}/locale/*/LC_MESSAGES/*
 %{_datadir}/pixmaps/fahmon/
-%{_iconsbasedir}/*/apps/*
-%{_libdir}/*
-%exclude %{_libdir}/*.la
-# yes, really, regardless of 32- or 64-bit
-%exclude %{_usr}/lib/debug
+%{_iconsbasedir}/*/apps/fahmon.png
+%{_libdir}/libwxcurl.so.*
+%exclude %{_libdir}/libwxcurl.la
+%exclude %{_libdir}/libwxcurl.so
 
 %changelog
 * Sun Apr 04 2010 Steve Huff <shuff@vecna.org> - 2.3.99.1-1

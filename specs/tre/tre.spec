@@ -4,10 +4,10 @@
 
 Summary: Regexp matching library
 Name: tre
-Version: 0.7.5
+Version: 0.8.0
 Release: 1%{?dist}
 License: GPL
-Group: Development/Libraries
+Group: System Environment/Libraries
 URL: http://laurikari.net/tre/
 
 Source: http://laurikari.net/tre/tre-%{version}.tar.bz2
@@ -39,13 +39,13 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--enable-static
+    --program-prefix="%{?_program_prefix}" \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %post -p /sbin/ldconfig
@@ -63,12 +63,14 @@ you will need to install %{name}-devel.
 
 %files devel
 %{_includedir}/tre/
-%{_libdir}/libtre.a
-%exclude %{_libdir}/libtre.la
 %{_libdir}/libtre.so
 %{_libdir}/pkgconfig/tre.pc
+%exclude %{_libdir}/libtre.la
 
 %changelog
+* Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 0.8.0-1
+- Updated to release 0.8.0.
+
 * Sun Dec 10 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.5-1
 - Updated to release 0.7.5.
 

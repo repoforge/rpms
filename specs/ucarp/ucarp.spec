@@ -1,28 +1,29 @@
 # $Id$
 # Authority: matthias
 
-
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp
-Version: 1.1
+Version: 1.5.2
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.ucarp.org/
-Source: http://www.pureftpd.org/ucarp/ucarp-%{version}.tar.bz2
+
+Source: http://download.pureftpd.org/pub/ucarp/ucarp-%{version}.tar.bz2
 Source1: carp.init
 Source2: vip-001.conf.example
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gettext
+BuildRequires: libpcap
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/chkconfig, /sbin/service
 Requires(postun): /sbin/service
-BuildRequires: libpcap, gettext
-%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
-
 
 %description
 UCARP allows a couple of hosts to share common virtual IP addresses in order
@@ -33,19 +34,16 @@ Strong points of the CARP protocol are: very low overhead, cryptographically
 signed messages, interoperability between different operating systems and no
 need for any dedicated extra network link between redundant hosts.
 
-
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 # Install the init script
@@ -72,10 +70,8 @@ EOF
 exec /sbin/ifconfig $1 down
 EOF
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 if [ $1 -eq 1 ]; then
@@ -93,7 +89,6 @@ if [ $1 -ge 1 ]; then
     /sbin/service carp condrestart >/dev/null 2>&1 || :
 fi
 
-
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING ChangeLog NEWS README examples/linux/*.sh
@@ -104,8 +99,10 @@ fi
 %attr(0700, root, root) %config(noreplace) %{_sysconfdir}/sysconfig/carp/vip-down
 %{_sbindir}/ucarp
 
-
 %changelog
+* Tue Mar 23 2010 Dag Wieers <dag@wieers.com> - 1.5.2-1
+- Updated to release 1.5.2.
+
 * Sun Oct 17 2004 Dag Wieers <dag@wieers.com> - 1.1-1
 - Updated to release 1.1.
 

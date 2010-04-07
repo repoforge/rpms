@@ -3,7 +3,7 @@
 
 Name:		tango-icon-theme-extras
 Version:	0.1.0
-Release:	2
+Release:	2%{?dist}
 Summary:	Extra Icons from the Tango Project
 
 License:	Creative Commons Attribution Share-Alike

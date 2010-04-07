@@ -11,7 +11,7 @@
 Summary: Moose-Policy module for perl
 Name: perl-Moose-Policy
 Version: 0.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose-Policy/

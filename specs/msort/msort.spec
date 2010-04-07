@@ -4,7 +4,7 @@
 
 Summary: Sort files in sophisticated ways
 Name: msort
-Version: 8.52
+Version: 8.53
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
@@ -47,6 +47,9 @@ by an optional GUI.
 %{_bindir}/msort
 
 %changelog
+* Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 8.53-1
+- Updated to release 8.53.
+
 * Thu Dec 11 2008 Dries Verachtert <dries@ulyssis.org> - 8.52-1
 - Updated to release 8.52.
 

@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-
 ### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
 
 %{?el5:%define _without_gsm 1}
@@ -21,7 +20,7 @@
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
 Version: 0.5
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/
@@ -219,6 +218,9 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/pkgconfig/libpostproc.pc
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.5-3
+- Rebuild against newer faad2 2.7.
+
 * Fri Jul 24 2009 Dag Wieers <dag@wieers.com> - 0.5-2
 - Change incdir to %%{_includedir}.
 

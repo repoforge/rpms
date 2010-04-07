@@ -2,11 +2,8 @@
 # Authority: dag
 
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7: %define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
-%{?fc6: %define _with_modxorg 1}
-%{?fc5: %define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: GNU vector and raster graphics utilities and libraries
 Name: plotutils
@@ -20,8 +17,8 @@ Source: ftp://ftp.gnu.org/gnu/plotutils/plotutils-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: flex, libpng-devel
-%{?_with_modxorg:BuildRequires: libX11-devel, libXaw-devel, libXt-devel, libXext-devel, xorg-x11-proto-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXaw-devel, libXt-devel, libXext-devel, xorg-x11-proto-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
 Requires: /sbin/install-info
 
 %description

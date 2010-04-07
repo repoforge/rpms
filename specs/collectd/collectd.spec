@@ -1,12 +1,11 @@
 # $Id$
 # Authority: dag
 
-
 %{?el3:%define _without_lmsensors 1}
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.9.0
+Version: 4.9.1
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -128,6 +127,9 @@ fi
 %exclude %{_libdir}/libcollectdclient.la
 
 %changelog
+* Tue Mar 23 2010 Dag Wieers <dag@wieers.com> - 4.9.1-1
+- Updated to release 4.9.1.
+
 * Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 4.9.0-1
 - Updated to release 4.9.0.
 

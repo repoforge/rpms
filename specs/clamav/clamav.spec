@@ -13,7 +13,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.95.3
+Version: 0.96
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -221,8 +221,11 @@ EOF
 %configure  \
     --program-prefix="%{?_program_prefix}" \
     --disable-clamav \
+    --disable-llvm \
     --disable-static \
     --disable-zlib-vcheck \
+    --enable-check \
+    --enable-clamdtop \
     --enable-dns \
     --enable-id-check \
 %{!?_without_milter:--enable-milter} \
@@ -230,6 +233,8 @@ EOF
     --with-group="clamav" \
     --with-libcurl \
     --with-user="clamav"
+### Disable JIT until it is implemented securely (RHbz #573191)
+#    --enable-llvm \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -320,6 +325,7 @@ fi
 %doc %{_mandir}/man1/freshclam.1*
 %doc %{_mandir}/man5/freshclam.conf.5*
 %config(noreplace) %{_sysconfdir}/freshclam.conf
+%{_bindir}/clambc
 %{_bindir}/clamscan
 %{_bindir}/freshclam
 %{_bindir}/sigtool
@@ -333,7 +339,7 @@ fi
 
 %files -n clamd
 %defattr(-, root, root, 0755)
-%doc contrib/clamdwatch/ etc/clamd.conf
+%doc etc/clamd.conf
 %doc %{_mandir}/man1/clamconf.1*
 %doc %{_mandir}/man1/clamdscan.1*
 %doc %{_mandir}/man1/clamdtop.1*
@@ -357,7 +363,6 @@ fi
 %if %{!?_without_milter:1}0
 %files milter
 %defattr(-, root, root, 0755)
-%doc contrib/old-clamav-milter/INSTALL
 %doc %{_mandir}/man8/clamav-milter.8*
 %config(noreplace) %{_sysconfdir}/clamav-milter.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/clamav-milter
@@ -385,15 +390,12 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
-<<<<<<< .mine
+* Wed Mar 31 2010 Dag Wieers <dag@wieers.com> - 0.96-1
+- Updated to release 0.96.
+
 * Thu Oct 29 2009 Dag Wieers <dag@wieers.com> - 0.95.3-1
 - Updated to release 0.95.3.
 
-=======
-* Thu Oct 29 2009 David Hrbáč <david@hrbac.cz> - 0.95.3-1
-- New upstream release
-
->>>>>>> .r7981
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 0.95.2-1
 - Updated to release 0.95.2.
 

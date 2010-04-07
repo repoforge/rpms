@@ -6,7 +6,7 @@ License:		LGPL
 Group:			System/GUI/GNOME
 BuildArchitectures:	noarch
 Version:		0.2
-Release:		1
+Release:		1%{?dist}
 Distribution:		Mercury
 Vendor:			OpenSolaris Project.
 Summary:		OpenSolaris branded GNOME login manager theme

@@ -8,7 +8,7 @@
 Summary: Advanced television viewing and recording program
 Name: fftv
 Version: 0.8.3
-Release: 1.2%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fftv.sourceforge.net/
@@ -39,15 +39,15 @@ EOF
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--disable-mmx \
-	--enable-mp3lame \
-	--enable-vorbis \
-	--enable-a52 \
-	--enable-faad \
-	--enable-faac \
-	--enable-gpl
-#	--enable-shared
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --disable-mmx \
+    --enable-mp3lame \
+    --enable-vorbis \
+    --enable-a52 \
+    --enable-faad \
+    --enable-faac \
+    --enable-gpl
+#   --enable-shared
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e 's|^(FFTV_SHARE_ICON)=share/(.*)$|$1=$2|;' config.mak
@@ -56,13 +56,13 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications
-desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	fftv.desktop
+desktop-file-install --vendor %{desktop_vendor} \
+    --add-category X-Red-Hat-Base               \
+    --dir %{buildroot}%{_datadir}/applications  \
+    fftv.desktop
 
 ### FIXME: Clean up buildroot to make it co-exist with ffmpeg/ffmpeg-devel (Fix upstream please)
 %{__rm} -f %{buildroot}%{_libdir}/vhook/{drawtext,fish,imlib2,null}.so
@@ -86,8 +86,8 @@ desktop-file-install --vendor %{desktop_vendor}    \
 #%{_includedir}/ffmpeg/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.8.3-1.2
-- Rebuild for Fedora Core 5.
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.8.3-2
+- Rebeuild against faad2 2.7.
 
 * Tue Jan 17 2006 Dag Wieers <dag@wieers.com> - 0.8.3-1
 - Updated to release 0.8.3.

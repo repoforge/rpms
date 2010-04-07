@@ -12,19 +12,30 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.5.22
+Version: 0.6.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
-URL: http://gnunet.org/libextractor/
+URL: http://www.gnu.org/software/libextractor/
 
-Source: http://gnunet.org/libextractor/download/libextractor-%{version}.tar.gz
+Source: http://ftpmirror.gnu.org/libextractor/libextractor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libvorbis-devel, libogg-devel, gcc-c++
-BuildRequires: ImageMagick, python-devel, gettext, pkgconfig, bzip2-devel
-BuildRequires: intltool, glib2-devel, libvorbis-devel, gtk2-devel
-BuildRequires: ImageMagick-devel, ImageMagick-c++-devel, exiv2, mpeg2dec-devel
+BuildRequires: bzip2-devel
+BuildRequires: exiv2
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: glib2-devel
+BuildRequires: gtk2-devel
+BuildRequires: ImageMagick
+BuildRequires: ImageMagick-c++-devel
+BuildRequires: ImageMagick-devel
+BuildRequires: intltool
+BuildRequires: libogg-devel
+BuildRequires: libvorbis-devel
+BuildRequires: mpeg2dec-devel
+BuildRequires: pkgconfig
+BuildRequires: python-devel
 %{?_with_libtoolltdl:BuildRequires: libtool-ltdl-devel}
 
 %description
@@ -114,6 +125,9 @@ fi
 #%{python_sitearch}/extractor.so
 
 %changelog
+* Wed Jan 20 2010 Dag Wieers <dag@wieers.com> - 0.6.0-1
+- Updated to release 0.6.0.
+
 * Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 0.5.22-1
 - Updated to release 0.5.22.
 

@@ -4,7 +4,7 @@
 
 Summary: Set up repositories from various sources (ISO, RHN, YOU, rsync, http, ftp, ...)
 Name: mrepo
-Version: 0.8.6
+Version: 0.8.7
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -110,6 +110,9 @@ fi
 %{_localstatedir}/mrepo/
 
 %changelog
+* Mon Mar 22 2010 Dag Wieers <dag@wieers.com> - 0.8.7-1
+- Updated to release 0.8.7.
+
 * Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 0.8.6-1
 - Updated to release 0.8.6.
 

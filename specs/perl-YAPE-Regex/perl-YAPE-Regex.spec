@@ -10,7 +10,7 @@
 Summary: Perl module that implements Yet Another Parser/Extractor for Regular Expressions
 Name: perl-YAPE-Regex
 Version: 3.04
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAPE-Regex/

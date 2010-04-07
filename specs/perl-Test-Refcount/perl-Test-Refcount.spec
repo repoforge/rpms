@@ -10,7 +10,7 @@
 Summary: assert reference counts on objects
 Name: perl-Test-Refcount
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Refcount/

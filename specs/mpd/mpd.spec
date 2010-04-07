@@ -2,7 +2,6 @@
 # Authority: shuff
 # Upstream: Max Kellermann <max$duempel,org>
 
-
 %{?el5:%define _without_pulseaudio 1}
 %{?el4:%define _without_pulseaudio 1}
 %{?el3:%define _without_pulseaudio 1}
@@ -14,8 +13,10 @@ Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.musicpd.org/
+
 Source: http://downloads.sourceforge.net/project/musicpd/mpd/%{version}/mpd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: alsa-lib-devel >= 1.0.16
 BuildRequires: audiofile-devel 
 BuildRequires: avahi-glib-devel
@@ -55,10 +56,8 @@ that provides control for music playback over a local network. It also makes
 a great desktop music player, especially if you are a console junkie, like
 frontend options, or restart X often.
 
-
 %prep
 %setup
-
 
 %build
 # packages without pkg-config files need to be configured manually
@@ -86,31 +85,30 @@ export FLAC_LIBS='-L%{_libdir}'
     --enable-shout
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %{__rm} -rf %{buildroot}%{_datadir}/doc/mpd/
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING INSTALL NEWS README UPGRADING
-%doc doc/mpdconf.example
-%{_bindir}/*
-%{_mandir}/man?/*
-
+%defattr(-, root, root, 0775)
+%doc AUTHORS COPYING README UPGRADING doc/mpdconf.example
+%doc %{_mandir}/man1/mpd.1*
+%doc %{_mandir}/man5/mpd.conf.5*
+%{_bindir}/mpd
 
 %changelog
 * Tue Mar 23 2010 Steve Huff <shuff@vecna.org> - 0.15.9-1
 - Update to 0.15.9.
 
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.13.0-3
+- Rebuild against newer faad2 2.7.
+
 * Mon Dec 17 2007 Dag Wieers <dag@wieers.com> - 0.13.0-2
-- Rebuild against libmpcdec 1.2.6.
+- Rebuild against newer libmpcdec 1.2.6.
 
 * Thu May 31 2007 Matthias Saou <http://freshrpms.net/> 0.13.0-1
 - Update to 0.13.0.
@@ -120,4 +118,3 @@ export FLAC_LIBS='-L%{_libdir}'
 
 * Mon Oct  9 2006 Matthias Saou <http://freshrpms.net/> 0.12.0-1
 - Initial RPM release.
-
