@@ -14,7 +14,7 @@
 Summary: Toolkit for the simulation of the passage of particles through matter
 Name: geant4
 Version: 9.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: FLOSS/Other
 Group: Applications/Engineering
 URL: http://geant4.web.cern.ch/geant4/
@@ -137,7 +137,7 @@ LDSOCONF
 
 # make the shell environment snippets
 %{__install} -m0755 -d %{buildroot}%{_sysconfdir}/profile.d
-cat > %{buildroot}%{_sysconfdir}/profile.d/%{name}.sh <<BOURNE
+cat > %{buildroot}%{_sysconfdir}/profile.d/%{name}.sh <<'BOURNE'
 export G4SYSTEM='Linux-g++'
 export G4INSTALL='%{_datadir}/%{name}/src'
 export G4INCLUDE='%{_includedir}/%{name}'
@@ -180,7 +180,7 @@ export G4ABLADATA='%{_datadir}/%{name}/data/G4ABLA%{G4ABLA_version}'
 export G4REALSURFACEDATA='%{_datadir}/%{name}/data/RealSurface%{RealSurface_version}'
 BOURNEDATA
 
-cat > %{buildroot}%{_sysconfdir}/profile.d/%{name}.csh <<CSH
+cat > %{buildroot}%{_sysconfdir}/profile.d/%{name}.csh <<'CSH'
 setenv G4SYSTEM 'Linux-g++'
 setenv G4INSTALL '%{_datadir}/%{name}/src'
 setenv G4INCLUDE '%{_includedir}/%{name}'
@@ -247,5 +247,8 @@ CSHDATA
 %{_sysconfdir}/profile.d/%{name}-data.*sh
 
 %changelog
+* Tue Apr 06 2010 Steve Huff <shuff@vecna.org> - 9.3-2
+- Fixed bug in profile scripts (undesired variable interpolation).
+
 * Fri Mar 05 2010 Steve Huff <shuff@vecna.org> - 9.3-1
 - Initial package.
