@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.96
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -318,8 +318,10 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README test/
+%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README
 %doc docs/*.pdf etc/freshclam.conf
+### Remove test virus documents as they trigger clamav
+#%doc test/
 %doc %{_mandir}/man1/sigtool.1*
 %doc %{_mandir}/man1/clamscan.1*
 %doc %{_mandir}/man1/freshclam.1*
@@ -390,6 +392,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Wed Apr 07 2010 Dag Wieers <dag@wieers.com> - 0.96-2
+- Removed test virus documents to prevent triggering clamav itself.
+
 * Wed Mar 31 2010 Dag Wieers <dag@wieers.com> - 0.96-1
 - Updated to release 0.96.
 
