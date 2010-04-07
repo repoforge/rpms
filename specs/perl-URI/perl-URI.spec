@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
-Version: 1.53
+Version: 1.54
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI.pm
 
 %changelog
+* Wed Apr  7 2010 Christoph Maser <cmr@financial.com> - 1.54-1
+- Updated to version 1.54.
+
 * Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 1.53-1
 - Updated to version 1.53.
 
