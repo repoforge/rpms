@@ -2,15 +2,18 @@
 # Authority: cmr
 # Upstream:  
 
+%define working_dir /var/bacula
+
+
 Summary: Network backup solution
 Name: bacula
 Version: 5.0.1
-Release: 1%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.bacula.org/
 
-Source: %{name}-%{version}.tar.bz2
+Source: http://switch.dl.sourceforge.net/project/bacula/bacula/%{version}/bacula-%{version}.tar.bz2
 Patch0: bacula-mtx-changer-mailslot.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -25,6 +28,7 @@ BuildRequires: zlib-devel
 Requires: atk 
 Requires: libstdc++
 Requires: libxml2
+Requires: mtx
 Requires: ncurses
 Requires: pango
 Requires: perl
@@ -48,16 +52,33 @@ Bacula source code has been released under the GPL version 2 license.
 %patch0 -p1
 
 %build
+
+
 %configure \
     --sysconfdir=%{_sysconfdir}/%{name} \
+    --with-working-dir="%{working_dir}" \
     --with-mysql
+
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__mkdir} %{buildroot}/%{_libdir}/%{name}/
+%{__mkdir} -p %{buildroot}/%{_libdir}/%{name}/
+%{__mkdir} -p %{buildroot}%{_initrddir}
+%{__mkdir} -p %{buildroot}%{_sysconfdir}/logrotate.d
+
+# Copy database update scripts
 %{__cp} -r updatedb %{buildroot}/%{_libdir}/%{name}/
+
+# Copy init-scripts
+%{__cp} platforms/redhat/bacula-dir %{buildroot}%{_initrddir}/bacula-dir
+%{__cp} platforms/redhat/bacula-fd %{buildroot}%{_initrddir}/bacula-fd
+%{__cp} platforms/redhat/bacula-sd %{buildroot}%{_initrddir}/bacula-sd
+
+# install the logrotate file
+%{__cp} scripts/logrotate $RPM_BUILD_ROOT/etc/logrotate.d/bacula
+
 
 
 %clean
@@ -66,16 +87,20 @@ Bacula source code has been released under the GPL version 2 license.
 %files 
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL LICENSE README 
+%attr(-, root,root, 0754) %{_initrddir}/bacula-dir
+%attr(-, root,root, 0754) %{_initrddir}/bacula-fd
+%attr(-, root,root, 0754) %{_initrddir}/bacula-sd
+%{_sysconfdir}/logrotate.d/bacula
 %{_sysconfdir}/bacula/bacula
 %{_sysconfdir}/bacula/bacula-ctl-dir
 %{_sysconfdir}/bacula/bacula-ctl-fd
 %{_sysconfdir}/bacula/bacula-ctl-sd
-%{_sysconfdir}/bacula/bacula-dir.conf
-%{_sysconfdir}/bacula/bacula-fd.conf
-%{_sysconfdir}/bacula/bacula-sd.conf
+%config(noreplace) %{_sysconfdir}/bacula/bacula-dir.conf
+%config(noreplace) %{_sysconfdir}/bacula/bacula-fd.conf
+%config(noreplace) %{_sysconfdir}/bacula/bacula-sd.conf
 %{_sysconfdir}/bacula/bacula_config
 %{_sysconfdir}/bacula/bconsole
-%{_sysconfdir}/bacula/bconsole.conf
+%config(noreplace) %{_sysconfdir}/bacula/bconsole.conf
 %{_sysconfdir}/bacula/btraceback.dbx
 %{_sysconfdir}/bacula/btraceback.gdb
 %{_sysconfdir}/bacula/create_bacula_database
@@ -94,7 +119,7 @@ Bacula source code has been released under the GPL version 2 license.
 %{_sysconfdir}/bacula/make_catalog_backup.pl
 %{_sysconfdir}/bacula/make_mysql_tables
 %{_sysconfdir}/bacula/mtx-changer
-%{_sysconfdir}/bacula/mtx-changer.conf
+%config(noreplace) %{_sysconfdir}/bacula/mtx-changer.conf
 %{_sysconfdir}/bacula/query.sql
 %{_sysconfdir}/bacula/startmysql
 %{_sysconfdir}/bacula/stopmysql
@@ -158,5 +183,16 @@ Bacula source code has been released under the GPL version 2 license.
 
 
 %changelog
+* Wed Apr 08 2010 Christoph Maser <cmr@financial.com> - 5.0.1-4
+- Copy init scripts
+- Copy logrotate script
+- Add dep for mtx
+
+* Wed Apr 08 2010 Christoph Maser <cmr@financial.com> - 5.0.1-3
+- Add configure option working-dir
+
+* Wed Apr 08 2010 Christoph Maser <cmr@financial.com> - 5.0.1-2
+- Flag some config files
+
 * Wed Apr 08 2010 Christoph Maser <cmr@financial.com>
 - Initial package.
