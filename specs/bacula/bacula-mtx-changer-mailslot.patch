@@ -1,0 +1,14 @@
+--- bacula-5.0.1/scripts/mtx-changer.in.org 2009-10-14 17:35:07.000000000 +0200
++++ bacula-5.0.1/scripts/mtx-changer.in 2009-10-14 17:39:52.000000000 +0200
+@@ -183,9 +183,9 @@
+       ${MTX} -f $ctl status >${TMPFILE}
+       rtn=$?
+       if test ${vxa_packetloader} -ne 0 ; then
+-	cat ${TMPFILE} | grep " *Storage Element [0-9]*:.*Full" | sed "s/ Storage Element //" | sed "s/Full :VolumeTag=//"
++	cat ${TMPFILE} | sed -e 's/ IMPORT\/EXPORT//g' | grep " *Storage Element [0-9]*:.*Full" | sed "s/ Storage Element //" | sed "s/Full :VolumeTag=//"
+       else
+-	cat ${TMPFILE} | grep " Storage Element [0-9]*:.*Full" | awk "{print \$3 \$4}" | sed "s/Full *\(:VolumeTag=\)*//"
++	cat ${TMPFILE} | sed -e 's/ IMPORT\/EXPORT//g' | grep " Storage Element [0-9]*:.*Full" | awk "{print \$3 \$4}" | sed "s/Full *\(:VolumeTag=\)*//"
+       fi
+       cat ${TMPFILE} | grep "^Data Transfer Element [0-9]*:Full (Storage Element [0-9]" | awk '{printf "%s:%s\n",$7,$10}'
+       rm -f ${TMPFILE} >/dev/null 2>&1
