@@ -135,7 +135,7 @@ status() {
 stop() {
         echo -n $"Stopping $prog"
     for dbuser in $DROPBOX_USERS; do
-        pkill -u $dbuser -f -x "$DROPBOX_PATH/dropboxd"
+        pkill -u $dbuser -f -x "$DROPBOX_PATH/dropbox"
     done
         RETVAL=$?
         echo
