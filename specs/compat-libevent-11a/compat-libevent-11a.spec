@@ -10,7 +10,7 @@
 %define real_version 1.1a
 
 Summary: Abstract asynchronous event notification library - backwards compatibility
-Name: compat-libevent11a
+Name: compat-libevent-11a
 Version: 3.2.1
 Release: 1%{?dist}
 License: BSD
