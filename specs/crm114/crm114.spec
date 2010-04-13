@@ -8,7 +8,7 @@
 Summary: Controllable Regex Mutilator
 Name: crm114
 Version: 20100106
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://crm114.sourceforge.net/
@@ -62,6 +62,22 @@ Emacs mode for editing CRM114 config files.
 %{__install} -m0755 -d %{buildroot}%{_datadir}/emacs/site-lisp/
 %{__make} install DESTDIR=%{buildroot}
 
+# put various .crm files in %{_libexecdir}
+%{__install} -m0755 -d %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 calc.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 classifymail.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 gatlingsort.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 mailfilter.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 mailreaver.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 mailtrainer.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 pad.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 quine.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 rewriteutil.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 shroud.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 shuffle.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 tenfold_validate.crm %{buildroot}%{_libexecdir}/crm114
+
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -70,11 +86,15 @@ Emacs mode for editing CRM114 config files.
 %doc README
 %doc *.txt *.recipe *.example *.cf
 %{_bindir}/*
+%{_libexecdir}/crm114
 
 %files emacs
 %dir %{_datadir}/emacs/site-lisp/
 %{_datadir}/emacs/site-lisp/*
 
 %changelog
+* Tue Apr 13 2010 Steve Huff <shuff@vecna.org> - 20100106-2
+- Oops, forgot to include a bunch of .crm scripts!
+
 * Sat Mar 13 2010 Steve Huff <shuff@vecna.org> - 20100106-1
 - Initial package.
