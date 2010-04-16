@@ -9,18 +9,26 @@
 
 Summary: Tie hashes to DBI relational databases
 Name: perl-Tie-DBI
-Version: 1.02
+Version: 1.05
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tie-DBI/
 
-Source: http://www.cpan.org/modules/by-module/Tie/Tie-DBI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TO/TODDR/Tie-DBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(DBD::SQLite)
+BuildRequires: perl(DBI)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+Requires: perl(DBI)
+Requires: perl(Test::More)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 This distribution contains Tie::DBI and Tie::RDBM, two modules that
@@ -36,6 +44,7 @@ privileges).
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,6 +64,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tie/RDBM.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.05-1
+- Updated to version 1.05.
+
+* Wed Apr  7 2010 Christoph Maser <cmr@financial.com> - 1.04-1
+- Updated to version 1.04.
+
 * Fri Jun  2 2006 Dries Verachtert <dries@ulyssis.org> - 1.02-1
 - Updated to release 1.02.
 
