@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Sebastian Riedel <sri$oook,de>
+# Upstream: Marcus Ramberg <mramberg@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: Simple Eyecandy ASCII Tables
 Name: perl-Text-SimpleTable
-Version: 2.02
+Version: 2.03
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-SimpleTable/
 
-Source: http://search.cpan.org/CPAN/authors/id/K/KR/KRAIH/Text-SimpleTable-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MR/MRAMBERG/Text-SimpleTable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -38,6 +38,7 @@ Simple eyecandy ASCII tables, as seen in Catalyst.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -56,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/SimpleTable.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 2.03-1
+- Updated to version 2.03.
+
 * Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 2.02-1
 - Updated to version 2.02.
 
