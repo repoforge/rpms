@@ -9,17 +9,16 @@
 
 Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.60
+Version: 1.62
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize/
 
-Source: http://www.cpan.org/modules/by-module/WWW/WWW-Mechanize-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/WWW-Mechanize-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Carp)
 BuildRequires: perl(File::Temp)
@@ -43,6 +42,7 @@ BuildRequires: perl(Test::Warn) >= 0.11
 BuildRequires: perl(URI) >= 1.36
 BuildRequires: perl(URI::URL)
 BuildRequires: perl(URI::file)
+BuildRequires: perl >= 5.008
 Requires: perl(Carp)
 Requires: perl(File::Temp)
 Requires: perl(FindBin)
@@ -65,7 +65,10 @@ Requires: perl(Test::Warn) >= 0.11
 Requires: perl(URI) >= 1.36
 Requires: perl(URI::URL)
 Requires: perl(URI::file)
-AutoReq: no
+Requires: perl >= 5.008
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Handy web browsing in a Perl object.
@@ -99,6 +102,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.62-1
+- Updated to version 1.62.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 1.60-1
 - Updated to version 1.60.
 
