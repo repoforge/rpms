@@ -2,12 +2,10 @@
 # Authority: dag
 # Upstream: Brad Fitzpatrick <brad$danga,com>
 
-%define el5_libevent 1.4.13
-
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.4.4
-Release: 2%{?dist}
+Version: 1.4.5
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://memcached.org/
@@ -183,6 +181,9 @@ fi
 %{_includedir}/memcached
 
 %changelog
+* Fri Apr 16 2010 Steve Huff <shuff@vecna.org> - 1.4.5-1
+- Updated to 1.4.5.
+
 * Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 1.4.4-2
 - Rebuild against libevent-1.4.13 on EL5.
 
