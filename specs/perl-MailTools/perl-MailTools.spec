@@ -10,24 +10,38 @@
 
 Summary: Various Mail related modules
 Name: perl-MailTools
-Version: 2.04
+Version: 2.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MailTools/
 
 Source: http://www.cpan.org/authors/id/M/MA/MARKOV/MailTools-%{version}.tar.gz
-#Source: http://www.cpan.org/modules/by-module/Mail/MailTools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: perl-Mail
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker) >= 0:5.00503
-%{?rh7:BuildRequires: perl-libnet >= 1.05}
-Requires: perl >= 0:5.00503
-%{?rh7:Requires: perl-libnet >= 1.05}
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Date::Format)
+BuildRequires: perl(Date::Parse)
+BuildRequires: perl(IO::Handle)
+BuildRequires: perl(Net::Domain) >= 1.05
+BuildRequires: perl(Net::SMTP) >= 1.03
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::Pod) >= 1
+Requires: perl(ExtUtils::MakeMaker)
+Requires: perl(Date::Format)
+Requires: perl(Date::Parse)
+Requires: perl(IO::Handle)
+Requires: perl(Net::Domain) >= 1.05
+Requires: perl(Net::SMTP) >= 1.03
+Requires: perl(Test::More)
+Requires: perl(Test::Pod) >= 1
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Various Mail related modules.
