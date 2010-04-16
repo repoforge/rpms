@@ -9,25 +9,29 @@
 
 Summary: Reliable job queue
 Name: perl-TheSchwartz
-Version: 1.07
-Release: 2%{?dist}
+Version: 1.10
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TheSchwartz/
 
-Source: http://www.cpan.org/authors/id/B/BR/BRADFITZ/TheSchwartz-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIXAPART/TheSchwartz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Data::ObjectDriver) >= 0.04
 BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(Storable)
 Requires: perl
 Requires: perl(Data::ObjectDriver) >= 0.04
 Requires: perl(Digest::MD5)
 Requires: perl(Storable)
-AutoReq: no
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Reliable job queue.
@@ -36,8 +40,9 @@ Reliable job queue.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"  --skipdeps
 %{__make} %{?_smp_mflags}
+# %{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,6 +60,7 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES MANIFEST MANIFEST.SKIP META.yml doc/
+%doc %{_mandir}/man1/schwartzmon.1*
 %doc %{_mandir}/man3/TheSchwartz.3pm*
 %doc %{_mandir}/man3/TheSchwartz::*.3pm*
 %{_bindir}/schwartzmon
@@ -62,6 +68,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/TheSchwartz.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.10-1
+- Updated to version 1.10.
+
 * Fri Jul 31 2009 Christoph Maser <cmr@financial.com> - 1.07-2
 - Set AutoReq: no to get rid of DBD-driver deps
 
