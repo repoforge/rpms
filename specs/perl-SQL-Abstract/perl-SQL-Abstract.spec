@@ -9,13 +9,13 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.61
+Version: 1.65
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Abstract-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/SQL-Abstract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -28,10 +28,10 @@ BuildRequires: perl(Test::Deep)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 #BuildRequires: perl(Test::Warn)
-BuildRequires: perl >= 5.6.1
+BuildRequires: perl >= 5.6.2
 Requires: perl(List::Util)
 Requires: perl(Scalar::Util)
-Requires: perl >= 5.6.1
+Requires: perl >= 5.6.2
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -79,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL/Abstract/Test.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.65-1
+- Updated to version 1.65.
+
 * Fri Feb 05 2010 Steve Huff <shuff@vecna.org> - 1.61-1
 - Updated to version 1.61.
 
