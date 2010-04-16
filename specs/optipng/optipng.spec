@@ -4,18 +4,18 @@
 
 Summary: Advanced PNG optimizer
 Name: optipng
-Version: 0.6.3
+Version: 0.6.4
 Release: 1%{?dist}
 License: zlib/libpng
 Group: Applications/Multimedia
 URL: http://optipng.sourceforge.net/
 
 Source: http://prdownloads.sourceforge.net/optipng/optipng-%{version}.tar.gz
-Patch0: optipng-0.6.3_prefix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bash, binutils, gcc, make
 BuildRequires: glibc-devel
+BuildRequires: zlib-devel
 
 %description
 OptiPNG is a PNG optimizer that recompresses image files to a smaller size,
@@ -26,30 +26,34 @@ and corrections.
 
 %prep
 %setup
-%patch0 -p1
 
 %build
-pushd src
-%{__make} %{?_smp_mflags} -f scripts/gcc.mak PREFIX=%{_prefix} MANDIR=%{_mandir}
-
-
-popd
+./configure --prefix=%{_prefix} --exec-prefix=%{_exec_prefix} \
+    --with-system-zlib
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-pushd src
-%{__make} -f scripts/gcc.mak install DESTDIR=%{buildroot} PREFIX=%{_prefix} MANDIR=%{_mandir}
-popd
+%{__make} install DESTDIR=%{buildroot}
+
+%{__install} -m0755 -d %{buildroot}%{_mandir}/man1
+%{__gzip} man/optipng.1
+%{__install} -m0755 man/optipng.1.gz %{buildroot}%{_mandir}/man1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE.txt README.txt doc/
+%doc LICENSE.txt README.txt doc/*
 %doc %{_mandir}/man?/*
 %{_bindir}/*
+%exclude /usr/man
 
 %changelog
+* Fri Apr 16 2010 Steve Huff <shuff@vecna.org> - 0.6.4-1
+- Updated to 0.6.4.
+- Converted to new configure script.
+
 * Tue Feb 02 2010 Steve Huff <shuff@vecna.org> - 0.6.3-1
 - Initial package.
