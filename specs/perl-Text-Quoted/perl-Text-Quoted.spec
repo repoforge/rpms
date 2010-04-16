@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jesse Vincent <jesse$bestpractical,com>
+# Upstream: Ruslan U. Zakirov <Ruslan.Zakirov@gmail.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,19 +9,26 @@
 
 Summary: Extract the structure of a quoted mail message
 Name: perl-Text-Quoted
-Version: 2.05
+Version: 2.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Quoted/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Quoted-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RU/RUZ/Text-Quoted-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.6.0
+BuildRequires: perl(Text::Autoformat)
+BuildRequires: perl >= 5.6.0
+Requires: perl(Text::Autoformat)
+Requires: perl >= 5.6.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Extract the structure of a quoted mail message.
@@ -32,6 +39,7 @@ Extract the structure of a quoted mail message.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Quoted.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 2.06-1
+- Updated to version 2.06.
+
 * Sat Jan 26 2008 Dag Wieers <dag@wieers.com> - 2.05-1
 - Updated to release 2.05.
 
