@@ -9,7 +9,7 @@
 
 Summary: Extract collocations and Ngrams from text
 Name: perl-Text-NSP
-Version: 1.13
+Version: 1.15
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
@@ -21,6 +21,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 The Ngram Statistics Package (NSP) is a suite of programs that aids in 
@@ -34,6 +37,7 @@ what constitutes a "token" can be defined by the user.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -54,8 +58,10 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man1/combig.pl.1*
 %doc %{_mandir}/man1/count.pl.1*
 %doc %{_mandir}/man1/huge-count.pl.1*
+%doc %{_mandir}/man1/huge-delete.pl.1*
 %doc %{_mandir}/man1/huge-merge.pl.1*
 %doc %{_mandir}/man1/huge-sort.pl.1*
+%doc %{_mandir}/man1/huge-split.pl.1*
 %doc %{_mandir}/man1/kocos.pl.1*
 %doc %{_mandir}/man1/rank.pl.1*
 %doc %{_mandir}/man1/statistic.pl.1*
@@ -67,8 +73,10 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/combig.pl
 %{_bindir}/count.pl
 %{_bindir}/huge-count.pl
+%{_bindir}/huge-delete.pl
 %{_bindir}/huge-merge.pl
 %{_bindir}/huge-sort.pl
+%{_bindir}/huge-split.pl
 %{_bindir}/kocos-script.sh
 %{_bindir}/kocos.pl
 %{_bindir}/rank-script.sh
@@ -78,6 +86,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Text/NSP.pm
 
 %changelog
+* Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.15-1
+- Updated to version 1.15.
+
 * Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.13-1
 - Updated to version 1.13.
 
