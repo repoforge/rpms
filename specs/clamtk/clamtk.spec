@@ -7,10 +7,6 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 %define desktop_vendor rpmforge
 
 Summary: Easy to use front-end for ClamAV
@@ -25,7 +21,7 @@ Source: http://downloads.sourceforge.net/project/clamtk/ClamTk/%{version}/clamtk
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+BuildRequires: desktop-file-utils
 Requires: perl(Date::Calc)
 Requires: perl(File::Find::Rule)
 Requires: perl(Gtk2)
@@ -67,16 +63,12 @@ It supports easy signature-updates.
 %{__install} -Dp -m0644 lib/Schedule.pm %{buildroot}%{perl_vendorlib}/ClamTk/
 %{__install} -Dp -m0644 lib/Update.pm %{buildroot}%{perl_vendorlib}/ClamTk/
 
-%if %{?_without_freedesktop:1}0
-    %{__install} -Dp -m0644 clamtk.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/clamtk.desktop
-%else
-    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-    desktop-file-install --delete-original \
-        --vendor %{desktop_vendor}                 \
-        --dir %{buildroot}%{_datadir}/applications \
-        --add-category X-Red-Hat-Base              \
-        clamtk.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --delete-original \
+    --vendor %{desktop_vendor}                 \
+    --dir %{buildroot}%{_datadir}/applications \
+    --add-category X-Red-Hat-Base              \
+    clamtk.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -87,8 +79,7 @@ It supports easy signature-updates.
 %doc %{_mandir}/man?/*
 %{_bindir}/clamtk
 %{perl_vendorlib}/ClamTk
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/clamtk.desktop}
+%{_datadir}/applications/%{desktop_vendor}-clamtk.desktop
 %{_datadir}/pixmaps/clamtk.xpm
 %{_datadir}/pixmaps/clamtk.png
 
