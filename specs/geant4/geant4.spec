@@ -32,13 +32,27 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: binutils, gcc-c++, make
 BuildRequires: clhep-devel >= 2.0.4.5
 BuildRequires: expat-devel
+BuildRequires: fontconfig-devel
+BuildRequires: freetype-devel
+BuildRequires: libdrm-devel
 BuildRequires: libICE-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
+BuildRequires: libSM-devel
+BuildRequires: libstdc++-devel
 BuildRequires: libX11-devel
+BuildRequires: libXau-devel
 BuildRequires: libXaw-devel
+BuildRequires: libXdmcp-devel
+BuildRequires: libXext-devel
+BuildRequires: libXft-devel
+BuildRequires: libXi-devel
+BuildRequires: libXmu-devel
+BuildRequires: libXp-devel
 BuildRequires: libXpm-devel
+BuildRequires: libXrender-devel
 BuildRequires: libXt-devel
+BuildRequires: libXxf86vm-devel
 BuildRequires: mesa-libGL-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: openmotif-devel
@@ -49,13 +63,27 @@ BuildRequires: zlib-devel
 Requires: clhep >= 2.0.4.5
 Requires: clhep-devel >= 2.0.4.5
 Requires: expat-devel
+Requires: fontconfig-devel
+Requires: freetype-devel
+Requires: libdrm-devel
 Requires: libICE-devel
 Requires: libjpeg-devel
 Requires: libpng-devel
+Requires: libSM-devel
+Requires: libstdc++-devel
 Requires: libX11-devel
+Requires: libXau-devel
 Requires: libXaw-devel
+Requires: libXdmcp-devel
+Requires: libXext-devel
+Requires: libXft-devel
+Requires: libXi-devel
+Requires: libXmu-devel
+Requires: libXp-devel
 Requires: libXpm-devel
+Requires: libXrender-devel
 Requires: libXt-devel
+Requires: libXxf86vm-devel
 Requires: mesa-libGL-devel
 Requires: mesa-libGLU-devel
 Requires: openmotif-devel
