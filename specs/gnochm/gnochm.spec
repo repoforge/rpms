@@ -3,11 +3,7 @@
 # Upstream: Ramos Rubens <rubensr$users,sourceforge,net>
 
 
-%{?fc1:%define _without_shmime 1}
 %{?el3:%define _without_shmime 1}
-%{?rh9:%define _without_shmime 1}
-%{?rh7:%define _without_shmime 1}
-%{?el2:%define _without_shmime 1}
 
 Summary: CHM file viewer
 Name: gnochm
