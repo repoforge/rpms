@@ -1,23 +1,30 @@
 # $Id$
-# Authority: dag
+# Authority: shuff
 
-
+%{?el5:%define _with_cairo 1}
 %{?el5:%define _with_compat_gcc34 1}
+%{?el5:%define _optimization 1}
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
+
+%if 0%{?_optimization}
+#Optimization flags for recent linux systems: see appendix B.3.3 of R-admin
+   %define CFLAGS '-O3 -g -std=gnu99'
+   %define CXXFLAGS '-O3 -g'
+   %define FFLAGS '-O2 -g' 
+   %define LDFLAGS '-Bdirect,--hash-stype=both,-Wl,-O1'
+%else
+#Standard optimization flags for linux: see appendix A.1 of R-admin
+   %define CFLAGS '-O2 -g -std=gnu99'
+   %define CXXFLAGS '-O2 -g'
+   %define FFLAGS '-O2 -g'
+   %define LDFLAGS '-Wl,-O1'
+%endif
 
 Summary: Language for data analysis and graphics
 Name: R
-Version: 2.5.1
+Version: 2.11.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -26,16 +33,20 @@ URL: http://www.r-project.org/
 Source: ftp://cran.r-project.org/pub/R/src/base/R-2/R-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, tetex-latex, texinfo 
+BuildRequires: gcc-c++, gcc-objc, tetex-latex, texinfo 
 BuildRequires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
-BuildRequires: tcl-devel, tk-devel
-BuildRequires: blas >= 3.0, pcre-devel, zlib-devel
+BuildRequires: tcl-devel, tk-devel, ncurses-devel
+BuildRequires: blas >= 3.0, pcre-devel, zlib-devel, bzip2-devel
 BuildRequires: java-1.4.2-gcj-compat
+%{?_with_cairo:BuildRequires: cairo-devel}
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_compat_gcc34:BuildRequires: compat-gcc-34-g77}
 %{!?_with_compat_gcc34:BuildRequires: gcc-g77}
-Requires: ggv, cups, firefox
+BuildRequires: rpm-macros-rpmforge
+Requires: cups, firefox, xdg-utils
+%{?_with_cairo:Requires: evince}
+%{!?_with_cairo:Requires: ggv}
 
 ### These are the submodules that R provides. Sometimes R modules say they
 ### depend on one of these submodules rather than just R. These are 
@@ -43,17 +54,18 @@ Requires: ggv, cups, firefox
 Provides: R-base = %{version}
 Provides: R-boot = 1.2
 Provides: R-class = %{version}
-Provides: R-cluster = 1.10.5
+Provides: R-cluster = 1.11.11
+Provides: R-codetools = 0.2
 Provides: R-datasets = %{version}
 Provides: R-foreign = 0.8
 Provides: R-graphics = %{version}
 Provides: R-grDevices = %{version}
 Provides: R-grid = %{version}
 Provides: R-KernSmooth = 2.22
-Provides: R-lattice = 0.13
+Provides: R-lattice = 0.17
 Provides: R-MASS = %{version}
 Provides: R-methods = %{version}
-Provides: R-mgcv = 1.3
+Provides: R-mgcv = 1.4
 Provides: R-nlme = 3.1
 Provides: R-nnet = %{version}
 Provides: R-rpart = 3.1
@@ -61,11 +73,15 @@ Provides: R-spatial = %{version}
 Provides: R-splines = %{version}
 Provides: R-stats = %{version}
 Provides: R-stats4 = %{version}
-Provides: R-survival = 2.24
+Provides: R-survival = 2.34
 Provides: R-tcltk = %{version}
 Provides: R-tools = %{version}
 Provides: R-utils = %{version}
 Provides: R-VR = 7.2
+
+# we do not provide any Perl modules outside the R:: tree
+%filter_from_provides /^perl.*File::Copy/d
+%filter_setup
 
 %description
 A language and environment for statistical computing and graphics. 
@@ -93,6 +109,7 @@ from the R project.  This packages provides the shared libRmath library.
 Summary: standalone math library from the R project
 Group: Development/Libraries
 Requires: libRmath = %{version}-%{release}
+Requires: pkgconfig
 
 %description -n libRmath-devel
 A standalone library of mathematical and statistical functions derived
@@ -103,9 +120,14 @@ and header files.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
-Requires: gcc-c++, gcc-g77, tetex-latex, texinfo 
+Requires: gcc-c++, gcc-objc, tetex-latex, texinfo 
 Requires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
-Requires: XFree86-devel, tcl-devel, tk-devel
+Requires: tcl-devel, tk-devel, pkgconfig
+%{?_with_cairo:BuildRequires: cairo-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{?_with_compat_gcc34:BuildRequires: compat-gcc-34-g77}
+%{!?_with_compat_gcc34:BuildRequires: gcc-g77}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -120,8 +142,12 @@ echo "%{_libdir}/R/lib/" >R.ld.conf
 %build
 export F77="g77"
 export R_BROWSER="%{_bindir}/firefox"
-export R_PDFVIEWER="%{_bindir}/ggv"
+export R_PDFVIEWER="%{_bindir}/xdg-open"
 export R_PRINTCMD="lpr"
+export CFLAGS=%{CFLAGS}
+export CXXFLAGS=%{CXXFLAGS}
+export FFLAGS=%{FFLAGS}
+export LDFLAGS=%{LDFLAGS}
 %configure \
 	--enable-R-shlib \
 	--with-system-bzlib \
@@ -173,10 +199,11 @@ export R_PRINTCMD="lpr"
 
 %files
 %defattr(-, root, root, 0755)
-%doc NEWS ONEWS README VERSION doc/AUTHORS doc/COPYING* doc/COPYRIGHTS doc/FAQ
-%doc doc/RESOURCES doc/THANKS doc/manual/R-admin.pdf doc/manual/R-data.pdf
-%doc doc/manual/R-FAQ.pdf doc/manual/R-intro.pdf doc/manual/R-lang.pdf
-%doc %{_mandir}/man1/*.1*
+%doc ChangeLog COPYING INSTALL *NEWS README VERSION
+%doc doc/AUTHORS doc/COPYING* doc/COPYRIGHTS 
+%doc doc/CRAN_mirrors.csv doc/FAQ doc/KEYWORDS
+%doc doc/RESOURCES doc/THANKS doc/manual/
+%doc %{_mandir}/man?/*
 %doc %{_infodir}/R-*.info*
 %config %{_sysconfdir}/ld.so.conf.d/R-%{_target}.conf
 %{_bindir}/R
@@ -187,7 +214,6 @@ export R_PRINTCMD="lpr"
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/manual/R-exts.pdf
 %{_libdir}/pkgconfig/libR.pc
 %{_libdir}/pkgconfig/libRmath.pc
 
@@ -201,6 +227,11 @@ export R_PRINTCMD="lpr"
 %{_libdir}/libRmath.a
 
 %changelog
+* Fri Apr 30 2010 Steve Huff <shuff@vecna.org> - 2.11.0-1
+- Updated to release 2.11.0.
+- Added some additional uncaptured dependencies.
+- Added optimization flags for el5.
+
 * Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 2.5.1-1
 - Updated to release 2.5.1.
 
