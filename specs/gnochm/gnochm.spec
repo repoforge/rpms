@@ -34,7 +34,7 @@ Requires: gnome-python2-canvas
 %description
 A CHM file viewer. Features are: full text search, bookmarks
 support for external ms-its links, configurable support for
-http links and internationalisation.
+http links and internationalization.
 
 %prep
 %setup
