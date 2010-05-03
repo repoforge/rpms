@@ -2,18 +2,15 @@
 # Authority: yury
 # Upstream: Apache Rivet team <rivet-dev$tcl,apache,org>
 
-%define contentdir /var/www
-%define rivet_snapshot 20100415152036
-
 Summary: Apache Rivet lets you use the Tcl scripting language to create dynamic web sites
 Name: mod_rivet
-Version: 0.8.0
-Release: 0.%{rivet_snapshot}.1%{?dist}
+Version: 2.0.0
+Release: 1%{?dist}
 License: Apache License Version 2.0
 Group: Development/Languages
 URL: http://tcl.apache.org/rivet/
 
-Source0: http://cvs.apache.org/snapshots/tcl-rivet/tcl-rivet_%{rivet_snapshot}.tar.gz
+Source0: http://www.apache.org/dist/tcl/rivet/rivet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: httpd-devel >= 2.0.46-1
@@ -36,13 +33,12 @@ httpd that makes it easy easy for developers to write dynamically
 generated webpages in Tcl.
 
 %prep
-%setup -q -n tcl-rivet
-
+%setup -q -n rivet-%{version}
 
 %build
 
 %{__aclocal}
-autoreconf -vfis
+autoreconf -vfs
 
 %configure  --with-tcl="%{_libdir}/tcl8.5"       \
             --with-apxs="%{_sbindir}/apxs"       \
@@ -92,13 +88,16 @@ EOT
 
 %files
 %defattr(-, root, root, 0755)
-%doc LICENSE NOTICE contrib doc/*
+%doc LICENSE NOTICE contrib doc/html doc/examples
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/rivet.conf
 %{_libdir}/httpd/modules/mod_rivet.so
 %{_libdir}/httpd/rivet%{version}
 
 
 %changelog
+* Mon May 03 2010 Yury V. Zaytsev <yury@shurup.com> - 2.0.0-1
+- Merged the updated version from Jeff.
+
 * Thu Apr 15 2010 Yury V. Zaytsev <yury@shurup.com> - 0.8.0-0.20100414032008.1
 - Initial import of the SPEC by Jeff Lawson <jeff$bovine,net>, thanks!
 - Minor RPMForge-related tweaks.
