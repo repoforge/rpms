@@ -9,7 +9,7 @@
 
 Summary: Simple lightweight parser for a subset of XML
 Name: perl-XML-Tiny
-Version: 2.03
+Version: 2.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Simple lightweight parser for a subset of XML.
@@ -51,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Tiny.pm
 
 %changelog
+* Tue May  4 2010 Christoph Maser <cmr@financial.com> - 2.04-1
+- Updated to version 2.04.
+
 * Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 2.03-1
 - Updated to version 2.03.
 
