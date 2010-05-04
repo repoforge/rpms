@@ -11,7 +11,7 @@
 
 Summary: Easily generate well-formed, namespace-aware XML
 Name: perl-XML-Writer
-Version: 0.610
+Version: 0.611
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,6 +24,9 @@ BuildArch: noarch
 BuildRequires: perl >= 0:5.006
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 0:5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 Easily generate well-formed, namespace-aware XML.
@@ -57,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/Writer.pm
 
 %changelog
+* Tue May  4 2010 Christoph Maser <cmr@financial.com> - 0.611-1
+- Updated to version 0.611.
+
 * Wed Mar 31 2010 Christoph Maser <cmr@financial.com> - 0.610-1
 - Updated to version 0.610.
 
