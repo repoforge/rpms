@@ -9,8 +9,8 @@
 
 Summary: Creates and updates RSS files
 Name: perl-XML-RSS
-Version: 1.47
-Release: 1
+Version: 1.48
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS/
@@ -72,6 +72,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/RSS.pm
 
 %changelog
+* Tue May  4 2010 Christoph Maser <cmr@financial.com> - 1.48-1
+- Updated to version 1.48.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.47-1
 - Updated to version 1.47.
 
