@@ -9,7 +9,7 @@
 
 Summary: Check the validity of links in an HTML or XHTML document
 Name: perl-%{real_name}
-Version: 4.5
+Version: 4.6
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,6 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SC/SCOP/W3C-LinkChecker-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: perl
 BuildRequires: perl(CGI)
 BuildRequires: perl(CGI::Carp)
 BuildRequires: perl(CGI::Cookie)
@@ -31,13 +30,12 @@ BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(HTML::Parser) >= 3.2
 BuildRequires: perl(HTTP::Request)
 BuildRequires: perl(HTTP::Response) >= 1.5
-BuildRequires: perl(Locale::Country)
-BuildRequires: perl(Locale::Language)
 BuildRequires: perl(LWP::RobotUA) >= 1.19
 BuildRequires: perl(LWP::UserAgent)
-BuildRequires: perl(Net::hostent)
+BuildRequires: perl(Locale::Country)
+BuildRequires: perl(Locale::Language)
 BuildRequires: perl(Net::IP)
-BuildRequires: perl(perl5lib)
+BuildRequires: perl(Net::hostent)
 BuildRequires: perl(Socket)
 BuildRequires: perl(Term::ReadKey) >= 2
 BuildRequires: perl(Test::More)
@@ -46,8 +44,7 @@ BuildRequires: perl(Time::HiRes)
 BuildRequires: perl(URI) >= 1.31
 BuildRequires: perl(URI::Escape)
 BuildRequires: perl(URI::file)
-BuildRequires: rpm-macros-rpmforge
-Requires: perl
+BuildRequires: perl(perl5lib)
 Requires: perl(CGI)
 Requires: perl(CGI::Carp)
 Requires: perl(CGI::Cookie)
@@ -58,13 +55,12 @@ Requires: perl(HTML::Entities)
 Requires: perl(HTML::Parser) >= 3.2
 Requires: perl(HTTP::Request)
 Requires: perl(HTTP::Response) >= 1.5
-Requires: perl(Locale::Country)
-Requires: perl(Locale::Language)
 Requires: perl(LWP::RobotUA) >= 1.19
 Requires: perl(LWP::UserAgent)
-Requires: perl(Net::hostent)
+Requires: perl(Locale::Country)
+Requires: perl(Locale::Language)
 Requires: perl(Net::IP)
-Requires: perl(perl5lib)
+Requires: perl(Net::hostent)
 Requires: perl(Socket)
 Requires: perl(Term::ReadKey) >= 2
 Requires: perl(Text::Wrap)
@@ -72,13 +68,12 @@ Requires: perl(Time::HiRes)
 Requires: perl(URI) >= 1.31
 Requires: perl(URI::Escape)
 Requires: perl(URI::file)
-Requires: rpm-macros-rpmforge
+Requires: perl(perl5lib)
 
 Provides: %{_bindir}/checklink
 Provides: config(checklink)
 
-### remove autoreq Perl dependencies
-%filter_from_requires /^perl.*/d
+%filter_from_requires /^perl*/d
 %filter_setup
 
 %description
@@ -122,5 +117,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %config(noreplace) %{_sysconfdir}/w3c/checklink.conf
 
 %changelog
+* Tue May  4 2010 Christoph Maser <cmr@financial.com> - 4.6-1
+- Updated to version 4.6.
+
 * Mon Feb 22 2010 Steve Huff <shuff@vecna.org> - 4.5-1
 - Initial package.
