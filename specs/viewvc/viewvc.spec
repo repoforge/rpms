@@ -3,7 +3,7 @@
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
-Version: 1.1.4
+Version: 1.1.5
 Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
@@ -107,6 +107,9 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 %{_localstatedir}/www/viewvc/
 
 %changelog
+* Wed Mar 31 2010 Dag Wieers <dag@wieers.com> - 1.1.5-1
+- Updated to release 1.1.5.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 

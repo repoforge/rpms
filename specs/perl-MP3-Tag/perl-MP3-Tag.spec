@@ -10,7 +10,7 @@
 Summary: Module for reading tags of MP3 audio files
 Name: perl-MP3-Tag
 Version: 1.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MP3-Tag/

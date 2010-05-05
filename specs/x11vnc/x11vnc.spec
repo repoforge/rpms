@@ -2,31 +2,22 @@
 # Authority: dag
 # Upstream: Karl Runge <xvml$karlrunge,com>
 
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh8:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.9.9
+Version: 0.9.10
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://www.karlrunge.com/x11vnc/
 
-Source: http://dl.sf.net/libvncserver/x11vnc-%{version}.tar.gz
+Source: http://dl.sf.net/project/libvncserver/x11vnc/%{version}/x11vnc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libjpeg-devel, zlib-devel
+BuildRequires: libjpeg-devel
+BuildRequires: zlib-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXext-devel, libXtst-devel}
 
@@ -66,6 +57,9 @@ fi
 %{_datadir}/x11vnc/
 
 %changelog
+* Tue May 04 2010 Dag Wieers <dag@wieers.com> - 0.9.10-1
+- Updated to release 0.9.10.
+
 * Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 0.9.9-1
 - Updated to release 0.9.9.
 

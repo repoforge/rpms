@@ -11,7 +11,7 @@
 
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
-Version: 0.7.2
+Version: 1.0.0
 Release: 1%{?dist}
 License: BSD and (Artistic or GPLv2+ or LGPLv2+) and LGPLv2
 Group: Development/Languages
@@ -65,6 +65,8 @@ you will need to install %{name}-devel.
 %doc Artistic.txt AUTHORS BSD.txt COPYING GNU*
 %doc %{_mandir}/man1/yasm.1*
 %{_bindir}/yasm
+%{_bindir}/vsyasm
+%{_bindir}/ytasm
 #%{_libdir}/*.so.*
 #%dir %{_libdir}/yasm/
 #%{_libdir}/yasm/*.so
@@ -83,6 +85,9 @@ you will need to install %{name}-devel.
 #%exclude %{_libdir}/yasm/*.la
 
 %changelog
+* Mon Apr 19 2010 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Sat Oct 11 2008 Dag Wieers <dag@wieers.com> - 0.7.2-1
 - Updated to release 0.7.2.
 

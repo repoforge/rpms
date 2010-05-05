@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.96
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -120,7 +120,6 @@ you will need to install %{name}-devel.
 
 %{__perl} -pi.orig -e '
         s|^(Example)|#$1|;
-        s|^(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
         s|^#(LogFile) .+$|$1 %{_localstatedir}/log/clamav/clamd.log|;
         s|^#(LogFileMaxSize) .*|$1 0|;
         s|^#(LogTime)|$1|;
@@ -128,6 +127,7 @@ you will need to install %{name}-devel.
         s|^#(PidFile) .+$|$1 %{_localstatedir}/run/clamav/clamd.pid|;
         s|^#(TemporaryDirectory) .+$|$1 %{_localstatedir}/tmp|;
         s|^#(DatabaseDirectory) .+$|$1 %{_localstatedir}/clamav|;
+        s|^#(LocalSocket) .+$|$1 %{_localstatedir}/run/clamav/clamd.sock|;
         s|^#(FixStaleSocket)|$1|;
         s|^#(TCPSocket) .+$|$1 3310|;
         s|^#(TCPAddr) .+$|$1 127.0.0.1|;
@@ -392,6 +392,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Mon May 03 2010 Dag Wieers <dag@wieers.com> - 0.96-3
+- Restored the LocalSocket configuration option to what it used to be. (Chris Butler)
+
 * Wed Apr 07 2010 Dag Wieers <dag@wieers.com> - 0.96-2
 - Removed test virus documents to prevent triggering clamav itself.
 

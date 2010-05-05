@@ -1,11 +1,6 @@
 # $Id$
 # Authority: dag
-
-##ExcludeDist: fc3
-##Tag: test
-
-
-%define _without_ruby 1
+# Upstream: CollabNet <dev$subversion,apache,org>
 
 #{?el3:#define _without_swig 1}
 %{?rh9:%define _without_pie 1}
@@ -27,7 +22,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.9
+Version: 1.6.11
 ### FC3 comes with release 1.1
 Release: 0.1%{?dist}
 License: BSD
@@ -45,13 +40,23 @@ Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-1.6.0-rpath.patch
 Patch6: subversion-1.6.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
+Patch8: subversion-1.6.6-ruby-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf, libtool, python, python-devel, texinfo, which
-BuildRequires: db4-devel >= 4.1.25, expat-devel, docbook-style-xsl, gettext
-BuildRequires: apr-util-devel >= 0.9.3-2, openssl-devel
 BuildRequires: apr-devel >= 0.9.4
+BuildRequires: apr-util-devel >= 0.9.4
+BuildRequires: autoconf
+BuildRequires: db4-devel >= 4.1.25
+BuildRequires: docbook-style-xsl
+BuildRequires: expat-devel
+BuildRequires: gettext
+BuildRequires: libtool
 BuildRequires: neon-devel >= 0.24.7-1
+BuildRequires: openssl-devel
+BuildRequires: python
+BuildRequires: python-devel
+BuildRequires: texinfo
+BuildRequires: which
 #%{!?_without_swig:BuildRequires: swig >= 1.3.21-5}
 #%{!?_without_swig:BuildRequires: swig}
 
@@ -127,6 +132,7 @@ This package includes the Ruby bindings to the Subversion libraries.
 %patch3 -p1 -b .rpath
 %{!?_without_pie:%patch6 -p1 -b .pie}
 %{?_with_java:%patch7 -p1 -b .java}
+%{!?_without_ruby:%patch8 -p0 -b .ruby-rpath}
 
 %{__rm} -rf neon apr apr-util
 %{__mv} sqlite-%{sqlite_version} sqlite-amalgamation
@@ -320,6 +326,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Mon Apr 19 2010 Dag Wieers <dag@wieers.com> - 1.6.11-0.1
+- Updated to release 1.6.11.
+
 * Mon Mar 22 2010 Dag Wieers <dag@wieers.com> - 1.6.9-0.1
 - Updated to release 1.6.9.
 

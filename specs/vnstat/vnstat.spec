@@ -68,6 +68,7 @@ EOF
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING FAQ INSTALL README
+#doc cron/
 %doc %{_mandir}/man1/vnstat.1*
 %config(noreplace) %{_sysconfdir}/sysconfig/vnstat
 %config %{_sysconfdir}/cron.d/vnstat
@@ -78,8 +79,8 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
-* Wed Apr 14 2010 Christoph Maser <cmr@financial.com> - 1.10-1
-- Updated to version 1.10.
+* Wed Apr 14 2010 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
 
 * Thu Apr 30 2009 Christoph Maser <cmr@financial.com> - 1.7-1
 - Updated to release 1.7.

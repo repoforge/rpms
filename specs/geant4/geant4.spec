@@ -119,7 +119,7 @@ popd
 
 %build
 %define config_args -d -e -r -s -O
-./Configure -build %{config_args} \
+sh Configure -build %{config_args} \
     -D g4final_install=%{buildroot}%{_usr} \
     -D g4includes_flag=y \
     -D g4clhep_base_dir=%{_usr} \
@@ -136,7 +136,7 @@ popd
 
 %install
 %{__rm} -rf %{buildroot}
-./Configure -install %{config_args} \
+sh Configure -install %{config_args} \
     -D g4final_install=%{buildroot}%{_usr} \
     -D g4includes_flag=y \
     -D g4clhep_base_dir=%{_usr} \
@@ -251,9 +251,7 @@ setenv G4ABLADATA '%{_datadir}/%{name}/data/G4ABLA%{G4ABLA_version}'
 setenv G4REALSURFACEDATA '%{_datadir}/%{name}/data/RealSurface%{RealSurface_version}'
 CSHDATA
 
-%post
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean

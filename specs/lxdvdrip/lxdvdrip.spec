@@ -3,8 +3,8 @@
 
 Summary: DVD backup tool
 Name: lxdvdrip
-Version: 1.74
-Release: 1%{?dist}
+Version: 1.76
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://lxdvdrip.berlios.de/
@@ -12,7 +12,12 @@ URL: http://lxdvdrip.berlios.de/
 Source: http://download.berlios.de/lxdvdrip/lxdvdrip-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: dvdauthor, dvdbackup, dvd+rw-tools, mplayer, streamdvd, transcode
+Requires: dvdauthor
+#Requires: dvdbackup
+Requires: dvd+rw-tools
+Requires: mplayer
+#Requires: streamdvd
+Requires: transcode
 
 %description
 lxdvdrip is a tool to make a copy from a Video DVD for private use.  It
@@ -61,12 +66,18 @@ automates the process of ripping, authoring, preview and burning a DVD.
 %{_bindir}/lxac3scan
 %{_bindir}/buffer_lxdvdrip
 %{_bindir}/dvdbackup_lxdvdrip
-#%{_bindir}/mpgtx_lxdvdrip
 %{_bindir}/play_cell_lxdvdrip
+%{_bindir}/requant_lxdvdrip
 %{_bindir}/vamps_lxdvdrip
 %{_datadir}/lxdvdrip/lxdvdrip.wav
 
 %changelog
+* Sun May 02 2010 Dag Wieers <dag@wieers.com> - 1.76-2
+- Removed dvdbackup and streamdvd requirements. (Akemi Yagi)
+
+* Mon Apr 19 2010 Dag Wieers <dag@wieers.com> - 1.76-1
+- Updated to release 1.76.
+
 * Sat Feb 21 2009 Dag Wieers <dag@wieers.com> - 1.74-1
 - Updated to release 1.74.
 

@@ -10,7 +10,7 @@
 Summary: Cache response to be polite
 Name: perl-WWW-Mechanize-Cached
 Version: 1.35
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize-Cached/
