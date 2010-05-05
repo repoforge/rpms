@@ -73,7 +73,7 @@ automates the process of ripping, authoring, preview and burning a DVD.
 
 %changelog
 * Sun May 02 2010 Dag Wieers <dag@wieers.com> - 1.76-2
-- Removed dvdbackup and streamdvd requirements. (Akemi Yagi)
+- Removed dvdbackup and streamdvd requirements. (Scott Robbins)
 
 * Mon Apr 19 2010 Dag Wieers <dag@wieers.com> - 1.76-1
 - Updated to release 1.76.
