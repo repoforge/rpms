@@ -22,6 +22,10 @@ BuildArch: noarch
 BuildRequires: perl(CGI)
 BuildRequires: perl(CGI::Carp)
 BuildRequires: perl(CGI::Cookie)
+BuildRequires: perl(CSS::DOM) >= 0.09
+BuildRequires: perl(CSS::DOM::Constants)
+BuildRequires: perl(CSS::DOM::Style)
+BuildRequires: perl(CSS::DOM::Util)
 BuildRequires: perl(Config::General) >= 2.06
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
@@ -48,6 +52,10 @@ BuildRequires: perl(perl5lib)
 Requires: perl(CGI)
 Requires: perl(CGI::Carp)
 Requires: perl(CGI::Cookie)
+Requires: perl(CSS::DOM) >= 0.09
+Requires: perl(CSS::DOM::Constants)
+Requires: perl(CSS::DOM::Style)
+Requires: perl(CSS::DOM::Util)
 Requires: perl(Config::General) >= 2.06
 Requires: perl(File::Spec)
 Requires: perl(Getopt::Long) >= 2.17
@@ -117,6 +125,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %config(noreplace) %{_sysconfdir}/w3c/checklink.conf
 
 %changelog
+* Wed May 05 2010 Steve Huff <shuff@vecna.org>
+- Added some uncaptured dependencies.
+
 * Tue May  4 2010 Christoph Maser <cmr@financial.com> - 4.6-1
 - Updated to version 4.6.
 
