@@ -5,14 +5,16 @@
 Summary: Sendmail milter for spamassassin
 Name: spamass-milter
 Version: 0.3.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://savannah.gnu.org/projects/spamass-milt/
 
 Source: http://savannah.nongnu.org/download/spamass-milt/spamass-milter-%{version}.tar.gz
 
-Patch0: spamass-milter-smtp-auth.patch
+Patch0: spamass-milter-0.3.1-smtp-auth-bypass.patch
+Patch1: spamass-milter-0.3.1-popen.patch
+Patch2: spamass-milter-0.3.1-rcvd.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -26,7 +28,9 @@ a highly customizable SpamFilter.
 
 %prep
 %setup -q
-%patch0 -p0 -b .smtpauth
+%patch0 -p1 -b .smtpauth
+%patch1 -p1 -b .popen
+%patch2 -p1 -b .rcvd
 
 %{__cat} <<EOF >spamass-milter.sysconfig
 ### Override for your different local config
@@ -154,6 +158,11 @@ fi
 %{_sbindir}/spamass-milter
 
 %changelog
+* Fri May 07 2010 Steven Haigh <netwiz@crc.id.au> - 0.3.1-3
+- Added patch to fix CVE-2010-1132.
+- Added patch to fix Received-header generation; this adds a space
+  before the "(" between macro_j and macro_v.)
+
 * Sun Mar 07 2010 Yury V. Zaytsev <yury@shurup.com> - 0.3.1-2
 - Added SMTP AUTH patch by Steven Haigh.
 
