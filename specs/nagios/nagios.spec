@@ -2,13 +2,6 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
-
-%{?rh7:%define _without_embedperl 1}
-%{?el2:%define _without_embedperl 1}
-
-%{?rh7:%define _without_perlcache 1}
-%{?el2:%define _without_perlcache 1}
-
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm
 %define logdir %{_localstatedir}/log/nagios
@@ -16,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -80,17 +73,15 @@ you will need to install %{name}-devel.
     --with-mail="/bin/mail" \
     --with-nagios-user="nagios" \
     --with-nagios-group="nagios" \
-%{!?_without_embedperl:--enable-embedded-perl} \
-%{!?_without_perlcache:--with-perlcache} \
+    --enable-embedded-perl \
+    --with-perlcache \
     --with-template-objects \
     --with-template-extinfo \
     --enable-event-broker
 %{__make} %{?_smp_mflags} all
 
 ### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
-%if %{!?_without_embedperl:1}0
 %{__make} %{?_smp_mflags} -C contrib
-%endif
 
 %install
 %{__rm} -rf %{buildroot}
@@ -101,11 +92,9 @@ you will need to install %{name}-devel.
     INIT_OPTS=""
 
 ### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
-%if %{!?_without_embedperl:1}0
 %{__make} install -C contrib \
     DESTDIR="%{buildroot}" \
     INSTALL_OPTS=""
-%endif
 
 %{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
 %{__cp} -afpv contrib/eventhandlers/* %{buildroot}%{_libdir}/nagios/plugins/eventhandlers/
@@ -145,7 +134,7 @@ fi
 
 if /usr/bin/id apache &>/dev/null; then
     if ! /usr/bin/id -Gn apache 2>/dev/null | grep -q nagios ; then
-        /usr/sbin/usermod -G nagios,nagiocmd apache &>/dev/null
+        /usr/sbin/usermod -a -G nagios,nagiocmd apache &>/dev/null
     fi
 else
     %logmsg "User \"apache\" does not exist and is not added to group \"nagios\". Sending commands to Nagios from the command CGI is not possible."
@@ -179,12 +168,12 @@ fi
 %doc Changelog INSTALLING LICENSE README UPGRADING
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
 %config %{_initrddir}/nagios
-%{!?_without_embedperl:%{_bindir}/convertcfg}
+%{_bindir}/convertcfg
 %{_bindir}/nagios
 %{_bindir}/nagiostats
-%{!?_without_perlcache:%{_bindir}/p1.pl}
-%{!?_without_embedperl:%{_bindir}/mini_epn}
-%{!?_without_embedperl:%{_bindir}/new_mini_epn}
+%{_bindir}/p1.pl
+%{_bindir}/mini_epn
+%{_bindir}/new_mini_epn
 %{_libdir}/nagios/
 %{_datadir}/nagios/
 
@@ -207,6 +196,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Fri May 07 2010 Yury V. Zaytsev <yury@shurup.com> - 3.2.1-2
+- Fixed Apache group assignement (Catalin Bucur).
+- Cleaned up old options.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.2.1-1
 - Updated to release 3.2.1.
 
