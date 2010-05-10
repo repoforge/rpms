@@ -239,10 +239,9 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/*
 
 %changelog
-* Wed Mar 24 2010 Steve Huff <shuff@vecna.org> - 0.7.110-1
-- Initial package.
-- Just a repackaging of the binary install; needs testing.
-
 * Mon May 10 2010 Steve Huff <shuff@vecna.org> - 0.7.110-2
 - Disabled AutoReqProv (thanks to Robin Bowes) to eliminate bogus Provides: entries.
 
+* Wed Mar 24 2010 Steve Huff <shuff@vecna.org> - 0.7.110-1
+- Initial package.
+- Just a repackaging of the binary install; needs testing.
