@@ -2,12 +2,11 @@
 # Authority: shuff
 # Upstream: Dropbox Support (https://www.dropbox.com/ticket)
 # ExclusiveArch: i386 x86_64
-# Test
 
 Summary: Sync and backup files between computers
 Name: dropbox
 Version: 0.7.110
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Proprietary
 Group: Applications/Utilities
 URL: http://www.dropbox.com/
@@ -24,8 +23,13 @@ Source2: http://dl.dropbox.com/u/119154/permalink/dropboxdir.py
 Patch0: %{name}_parentdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+# this contains binaries, don't autoprov
+AutoReqProv: no
+
 BuildRequires: dos2unix
 BuildRequires: rpm-macros-rpmforge
+
+Provides: %{name} = %{version}
 
 # trim python2.5
 %filter_from_requires /python2\.5/d
@@ -238,3 +242,7 @@ fi
 * Wed Mar 24 2010 Steve Huff <shuff@vecna.org> - 0.7.110-1
 - Initial package.
 - Just a repackaging of the binary install; needs testing.
+
+* Mon May 10 2010 Steve Huff <shuff@vecna.org> - 0.7.110-2
+- Disabled AutoReqProv (thanks to Robin Bowes) to eliminate bogus Provides: entries.
+
