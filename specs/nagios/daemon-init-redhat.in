@@ -1,0 +1,102 @@
+#!/bin/sh
+# $Id:$
+# Nagios	Startup script for the Nagios monitoring daemon
+#
+# chkconfig:	- 85 15
+# description:	Nagios is a service monitoring system
+# processname: nagios
+# config: @sysconfdir@/nagios.cfg
+# pidfile: @lockfile@
+#
+### BEGIN INIT INFO
+# Provides:		nagios
+# Required-Start:	$local_fs $syslog $network
+# Required-Stop:	$local_fs $syslog $network
+# Short-Description:    start and stop Nagios monitoring server
+# Description:		Nagios is is a service monitoring system 
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+prefix="@prefix@"
+exec_prefix="@exec_prefix@"
+exec="@bindir@/nagios"
+prog="nagios"
+config="@sysconfdir@/nagios.cfg"
+pidfile="@lockfile@"
+user="@nagios_user@"
+
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+lockfile=/var/lock/subsys/$prog
+
+start() {
+    [ -x $exec ] || exit 5
+    [ -f $config ] || exit 6
+    echo -n $"Starting $prog: "
+    daemon $exec -d $config
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc -p ${pidfile} -d 10 $exec
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $"Reloading $prog: "
+    killproc -p ${pidfile} $exec -HUP
+    RETVAL=$?
+    echo
+}
+
+force_reload() {
+    restart
+}
+
+case "$1" in
+    start)
+        status $prog && exit 0
+        $1
+        ;;
+    stop)
+        status $prog|| exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        status $prog || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        status $prog
+        ;;
+    condrestart|try-restart)
+        status $prog|| exit 0
+        restart
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
+exit $?
+

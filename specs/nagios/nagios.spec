@@ -9,13 +9,14 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.1
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
 Source0: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
 Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
+Source2: daemon-init-redhat.in
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gd-devel > 1.8
@@ -54,6 +55,9 @@ you will need to install %{name}-devel.
 # /usr/local/nagios is hardcoded in many places
 %{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' contrib/eventhandlers/submit_check_result
 
+# copy out init-script over the one provided by upstream
+%{__cp} -f %{SOURCE2} daemon-init.in
+
 %build
 %configure \
     --datadir="%{_datadir}/nagios" \
@@ -69,7 +73,7 @@ you will need to install %{name}-devel.
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/nagios" \
     --with-init-dir="%{_initrddir}" \
-    --with-lockfile="%{_localstatedir}/run/nagios.pid" \
+    --with-lockfile="%{_localstatedir}/nagios/nagios.pid" \
     --with-mail="/bin/mail" \
     --with-nagios-user="nagios" \
     --with-nagios-group="nagios" \
@@ -196,6 +200,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Tue May 11 2010 Christopha Maser <cmr@financial.com> - 3.2.1-3
+- Roll our own init-script
+- Move pid file to a location where nagios user has access
+
 * Fri May 07 2010 Yury V. Zaytsev <yury@shurup.com> - 3.2.1-2
 - Fixed Apache group assignement (Catalin Bucur).
 - Cleaned up old options.
