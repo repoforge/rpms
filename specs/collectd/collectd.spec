@@ -1,23 +1,34 @@
 # $Id$
 # Authority: dag
+# Tag: test
+
+%define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
+%define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
+%define perl_archlib %(eval "`%{__perl} -V:archlib`"; echo $archlib)
 
 %{?el3:%define _without_lmsensors 1}
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.9.1
+Version: 4.10.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://collectd.org/
 
-Source: http://collectd.org/files/collectd-%{version}.tar.gz
+Source: http://collectd.org/files/collectd-%{version}.tar.bz2
+Patch1: %{name}-4.10.0-configure-OpenIPMI.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: mysql-devel
+Requires: krb5-libs
+Requires: curl
+Requires: libxml2
+Requires: zlib
+BuildRequires: krb5-devel
+BuildRequires: curl-devel
+BuildRequires: libxml2-devel
+BuildRequires: zlib-devel
 BuildRequires: perl
-BuildRequires: perl-rrdtool
-BuildRequires: rrdtool-devel
 BuildRequires: which
 
 %{!?_without_lmsensors:BuildRequires: lm_sensors-devel}
@@ -28,6 +39,10 @@ Obsoletes: collectd-mysql <= %{version}-%{release}
 Provides: collectd-mysql = %{version}-%{release}
 Obsoletes: collectd-sensors <= %{version}-%{release}
 Provides: collectd-sensors = %{version}-%{release}
+
+%filter_provides_in %{_docdir} 
+%filter_requires_in %{_docdir}
+%filter_setup
 
 %description
 collectd is a small daemon written in C for performance.  It reads various
@@ -46,17 +61,110 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+%package collection3
+Summary: collect perl webfrontent
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: httpd
+Requires: perl(Config::General)
+Requires: perl(Regexp::Common)
+Requires: perl(HTML::Entities)
+Requires: perl(RRDs)
+%description collection3
+collection3 is a graphing front-end for the RRD files created by and filled
+with collectd. It is written in Perl and should be run as an CGI-script.
+Graphs are generated on-the-fly, so no cron job or similar is necessary.
+
+%package php-collection
+Summary: collect php webfrontent
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: httpd
+Requires: php
+Requires: php-rrdtool
+%description php-collection
+PHP graphing frontend for RRD files created by and filled with collectd.
+
+%package libvirt
+Summary: libvirt plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: libvirt
+Requires: OpenIPMI
+BuildRequires: libvirt-devel
+BuildRequires: OpenIPMI-devel
+BuildRequires: OpenIPMI-libs
+%description libvirt
+The libvirt plugin uses the virtualization API libvirt, created by RedHat's Emerging Technology group, to gather statistics about virtualized guests on a system.
+
+
+%package mysql
+Summary: xmms plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: mylsq
+BuildRequires: mysql-devel
+%description mysql
+This plugin collects status variable data from mysql
+
+%package notify_desktop
+Summary: notify_desktop plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: gtk2
+Requires: libnotify
+BuildRequires: gtk2-devel
+BuildRequires: libnotify-devel
+%description notify_desktop
+The Notify Desktop plugin uses libnotify to display notifications to the user via the desktop notification specification, i. e. on an X display. 
+
+%package -n perl-Collectd
+Summary: Perl bindings for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: perl
+%description -n perl-Collectd
+This package contains Perl bindings and plugin for collectd. 
+
+%package rrdtool
+Summary: xmms plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: rrdtool
+Requires: perl-rrdtool
+BuildRequires: rrdtool-devel
+%description rrdtool
+The RRDtool plugin writes values to RRD-files using librrd.
+
+
+%package xmms
+Summary: xmms plugin for collectd
+Group: System Environment/Daemons
+BuildRequires: xmms-devel
+Requires: collectd = %{version}-%{release}
+Requires: xmms
+%description xmms
+This plugin collects bit-rate and sampling rate as you play songs
+
+
 %prep
 %setup
+%patch1 -p0
 
 %{__perl} -pi.orig -e 's|-Werror||g' Makefile.in */Makefile.in
+
+# Disable Loading of modules in sub-packages
+sed -i -e 's/@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/#@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/' src/collectd.conf.in
 
 %build
 ### FIXME: --with-libmysql support not working
 %configure \
-    --disable-static \
-    --with-libmysql="%{_libdir}/mysql/"
+    --enable-static=no \
+    --enable-libvirt \
+    --with-libmysql="%{_libdir}/mysql/" \
+    --with-perl-bindings=INSTALLDIRS=vendor
 %{__make} %{?_smp_mflags}
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -65,12 +173,21 @@ you will need to install %{name}-devel.
 %{__install} -Dp -m0644 src/collectd.conf %{buildroot}%{_sysconfdir}/collectd.conf
 %{__install} -Dp -m0755 contrib/fedora/init.d-collectd %{buildroot}%{_initrddir}/collectd
 
-%{__install} -Dp -m0755 contrib/collection.cgi %{buildroot}%{_localstatedir}/www/cgi-bin/collection.cgi
+%{__mkdir} -p %{buildroot}%{_localstatedir}/www
+%{__cp} -ar contrib/collection3  %{buildroot}%{_localstatedir}/www
+# TODO: httpd config snippet for collection3
+
+%{__cp} -ar contrib/php-collection  %{buildroot}%{_localstatedir}/www
+
+
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/collectd/
 
 ### Clean up docs
 find contrib/ -type f -exec %{__chmod} a-x {} \;
+
+%{__rm} -f %{buildroot}/%{perl_vendorarch}/auto/Collectd/.packlist
+%{__rm} -f %{buildroot}/%{perl_archlib}/perllocal.pod
 
 %post
 /sbin/chkconfig --add collectd
@@ -93,7 +210,6 @@ fi
 %doc %{_mandir}/man1/collectd.1*
 %doc %{_mandir}/man1/collectdmon.1*
 %doc %{_mandir}/man1/collectd-nagios.1*
-%doc %{_mandir}/man3/Collectd::Unixsock.3pm*
 %doc %{_mandir}/man5/collectd.conf.5*
 %doc %{_mandir}/man5/collectd-email.5*
 %doc %{_mandir}/man5/collectd-exec.5*
@@ -107,16 +223,82 @@ fi
 %config %{_initrddir}/collectd
 %{_bindir}/collectd-nagios
 %{_datadir}/collectd/
-%{_libdir}/collectd/
+%dir %{_libdir}/collectd/
+%{_libdir}/collectd/apache.so
+%{_libdir}/collectd/apcups.so
+%{_libdir}/collectd/ascent.so
+%{_libdir}/collectd/battery.so
+%{_libdir}/collectd/bind.so
+%{_libdir}/collectd/conntrack.so
+%{_libdir}/collectd/contextswitch.so
+%{_libdir}/collectd/cpu.so
+%{_libdir}/collectd/cpufreq.so
+%{_libdir}/collectd/csv.so
+%{_libdir}/collectd/curl.so
+%{_libdir}/collectd/curl_xml.so
+%{_libdir}/collectd/df.so
+%{_libdir}/collectd/disk.so
+%{_libdir}/collectd/email.so
+%{_libdir}/collectd/entropy.so
+%{_libdir}/collectd/exec.so
+%{_libdir}/collectd/filecount.so
+%{_libdir}/collectd/fscache.so
+%{_libdir}/collectd/hddtemp.so
+%{_libdir}/collectd/interface.so
+%{_libdir}/collectd/ipmi.so
+%{_libdir}/collectd/iptables.so
+%{_libdir}/collectd/irq.so
+%{_libdir}/collectd/load.so
+%{_libdir}/collectd/logfile.so
+%{_libdir}/collectd/madwifi.so
+%{_libdir}/collectd/match_empty_counter.so
+%{_libdir}/collectd/match_hashed.so
+%{_libdir}/collectd/match_regex.so
+%{_libdir}/collectd/match_timediff.so
+%{_libdir}/collectd/match_value.so
+%{_libdir}/collectd/mbmon.so
+%{_libdir}/collectd/memcached.so
+%{_libdir}/collectd/memory.so
+%{_libdir}/collectd/multimeter.so
+%{_libdir}/collectd/network.so
+%{_libdir}/collectd/nfs.so
+%{_libdir}/collectd/nginx.so
+%{_libdir}/collectd/ntpd.so
+%{_libdir}/collectd/olsrd.so
+%{_libdir}/collectd/openvpn.so
+%{_libdir}/collectd/perl.so
+%{_libdir}/collectd/powerdns.so
+%{_libdir}/collectd/processes.so
+%{_libdir}/collectd/protocols.so
+%{_libdir}/collectd/sensors.so
+%{_libdir}/collectd/serial.so
+%{_libdir}/collectd/swap.so
+%{_libdir}/collectd/syslog.so
+%{_libdir}/collectd/table.so
+%{_libdir}/collectd/tail.so
+%{_libdir}/collectd/target_notification.so
+%{_libdir}/collectd/target_replace.so
+%{_libdir}/collectd/target_scale.so
+%{_libdir}/collectd/target_set.so
+%{_libdir}/collectd/tcpconns.so
+%{_libdir}/collectd/teamspeak2.so
+%{_libdir}/collectd/ted.so
+%{_libdir}/collectd/thermal.so
+%{_libdir}/collectd/unixsock.so
+%{_libdir}/collectd/uptime.so
+%{_libdir}/collectd/users.so
+%{_libdir}/collectd/uuid.so
+%{_libdir}/collectd/vmem.so
+%{_libdir}/collectd/vserver.so
+%{_libdir}/collectd/wireless.so
+%{_libdir}/collectd/write_http.so
 %{_libdir}/libcollectdclient.so.*
-%{_localstatedir}/www/cgi-bin/collection.cgi
 %{_sbindir}/collectd
 %{_sbindir}/collectdmon
 %dir %{_localstatedir}/lib/collectd/
-%{perl_sitelib}/Collectd.pm
-%{perl_sitelib}/Collectd/
-%exclude %{perl_archlib}
-%exclude %{perl_sitearch}
+
+%files collection3
+%{_localstatedir}/www/collection3
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -126,7 +308,37 @@ fi
 %exclude %{_libdir}/collectd/*.la
 %exclude %{_libdir}/libcollectdclient.la
 
+%files libvirt
+%{_libdir}/collectd/libvirt.so
+
+%files mysql
+%{_libdir}/collectd/mysql.so
+
+%files notify_desktop
+%{_libdir}/collectd/notify_desktop.so
+
+%files -n perl-Collectd
+%{_libdir}/collectd/perl.so
+%{perl_vendorlib}/Collectd.pm
+%{perl_vendorlib}/Collectd/
+%doc %{_mandir}/man5/collectd-perl.5*
+%doc %{_mandir}/man3/Collectd::Unixsock.3pm* 
+
+%files php-collection
+%{_localstatedir}/www/php-collection
+
+%files rrdtool
+%{_libdir}/collectd/rrdtool.so
+
+%files xmms
+%{_libdir}/collectd/xmms.so
+
 %changelog
+* Thu May 13 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-1
+- Updated to release 4.10.0.
+- Work around OpenIPMI pgk-config bug https://bugzilla.redhat.com/show_bug.cgi?id=591646
+- Split up in multiple packages to reduce dependencies
+
 * Tue Mar 23 2010 Dag Wieers <dag@wieers.com> - 4.9.1-1
 - Updated to release 4.9.1.
 
