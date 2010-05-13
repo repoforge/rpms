@@ -1,6 +1,7 @@
 # $Id: rrdtool.spec 3101 2005-04-04 20:13:17Z dag $
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
+# ExcludeDist: el4
 
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -11,7 +12,7 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.4.2
+Version: 1.4.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
@@ -20,44 +21,34 @@ URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 Source: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: cairo-devel
 BuildRequires: freetype-devel
 BuildRequires: gcc-c++
+BuildRequires: glib2-devel
 BuildRequires: gettext-devel
 BuildRequires: intltool
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
 BuildRequires: openssl-devel
+BuildRequires: pango-devel
 BuildRequires: python-devel >= 2.3
 BuildRequires: ruby
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
+BuildRequires: xulrunner-devel
 BuildRequires: zlib-devel
+Requires: cairo
 Requires: gettext
+Requires: glib2
 Requires: libxml2
 Requires: openssl
 Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
+Requires: pango
 Requires: python
 Requires: ruby
 Requires: xorg-x11-fonts-Type1
 Requires: zlib
-
-%if 0%{?el4}
-BuildRequires: evolution28-cairo-devel
-BuildRequires: evolution28-glib2-devel
-BuildRequires: evolution28-pango-devel
-Requires: evolution28-cairo
-Requires: evolution28-glib2
-Requires: evolution28-pango
-%else
-BuildRequires: cairo-devel
-BuildRequires: glib2-devel
-BuildRequires: pango-devel
-BuildRequires: xulrunner-devel
-Requires: cairo
-Requires: glib2
-Requires: pango
-%endif
 
 %description
 RRD is the Acronym for Round Robin Database. RRD is a system to store and
@@ -122,39 +113,15 @@ The ruby-%{name} package includes a library that implements RRDtool bindings
 for the Ruby language.
 
 %prep
-%if 0%{?el4}
-# Filter auto-requires for pango
-cat > find-requires-%{name} <<EOT
-#!/bin/sh
-%{__find_requires} | grep -v 'pango'
-exit 0
-EOT
-chmod 755 find-requires-%{name}
-%define __find_requires %{_builddir}/find-requires-%{name}
-%define _use_internal_dependency_generator 0
-%endif
-
 %setup
 
 %build
-%if 0%{?el4}
-export LD_LIBRARY_PATH=/usr/evolution28/%{_lib}
-export PKG_CONFIG_PATH=/usr/evolution28/%{_lib}/pkgconfig
-export RUBYARCHDIR=%{ruby_sitearch}
-export CFLAGS="$(pkg-config --cflags cairo pangocairo pango pangoft2)"
-export LDFLAGS="$(pkg-config --libs  cairo pangocairo pango pangoft2)"
-%endif
-
 %configure \
     --with-tcllib="%{_libdir}" \
     --with-perl-options='INSTALLDIRS="vendor"' \
     --enable-ruby-site-install
 
-%if 0%{?el4}
-%{__make} %{?_smp_mflags}  LDFLAGS="-Wl,-rpath-link /usr/evolution28/%{_lib} -Wl,-rpath /usr/evolution28/%{_lib} $LDFLAGS"
-%else
-%{__make} %{?_smp_mflags}
-%endif
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -166,15 +133,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
-%if 0%{?el4}
-%{__rm} -f %{_builddir}/find-requires-%{name}
-%endif
 
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES CONTRIBUTORS COPYING COPYRIGHT NEWS README THREADS TODO
 %doc examples/
 %doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man3/librrd.3*
+%{_bindir}/rrdcached
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool
 %{_bindir}/rrdupdate
@@ -184,6 +150,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_libdir}/librrd_th.a
 %{_libdir}/pkgconfig/librrd.pc
 %{_datadir}/rrdtool/
+%{_includedir}/rrd_client.h
 %{_includedir}/rrd_format.h
 
 %files devel
@@ -221,6 +188,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{ruby_sitearch}/RRD.so
 
 %changelog
+* Thu May 13 2010 Christoph Maser <cmr@financial.com> - 1.4.3-1
+- Updated to version 1.4.3.
+- remove el4 build
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.4.2-1
 - Updated to version 1.4.2.
 
