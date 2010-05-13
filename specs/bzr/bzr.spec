@@ -10,8 +10,8 @@
 #   Version: bzr version, add subrelease version here
 #   bzrrc: release candidate version, if any, line starts with % for rc, # for stable releas (no %).
 #   release: rpm subrelease (0.N for rc candidates, N for stable releases)
-%define bzrmajor 2.0
-%define bzrminor .3
+%define bzrmajor 2.1
+%define bzrminor .1
 #define bzrrc rc2
 %define release 1
 
@@ -43,6 +43,8 @@ Requires:   python-curl
 # This is also needed for EL-5
 BuildRequires:   python-elementtree
 Requires:   python-elementtree
+
+Requires: bash-completion
 
 %description
 Bazaar is a distributed revision control system that is powerful, friendly,
@@ -84,11 +86,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc NEWS README TODO COPYING.txt doc/  contrib/
 %{_bindir}/bzr
-%{_mandir}/man1/*
+%{_mandir}/man?/*
 %{python_sitearch}/bzrlib/
-%{_sysconfdir}/bash_completion.d/
+%doc %{_sysconfdir}/bash_completion.d/
+%{_sysconfdir}/bash_completion.d/*
 
 %changelog
+* Thu May 13 2010 Steve Huff <shuff@vecna.org> - 2.1.1-1
+- Updated to 2.1.1 release per Max Kanat-Alexander's request.
+- Captured dependency on bash-completion.
+
 * Thu Dec 17 2009 Steve Huff <shuff@vecna.org> - 2.0.3-1
 - Updated to 2.0.3 release.
 - RPMforge provides python-curl, not python-pycurl.
