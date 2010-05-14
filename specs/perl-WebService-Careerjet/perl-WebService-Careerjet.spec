@@ -10,7 +10,7 @@
 Summary: Perl interface to Careerjet's public search API
 Name: perl-WebService-Careerjet
 Version: 0.12
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WebService-Careerjet/

@@ -112,15 +112,29 @@ Provides: rrdtool-ruby = %{version}-%{release}
 The ruby-%{name} package includes a library that implements RRDtool bindings
 for the Ruby language.
 
+%package -n lua-rrdtool
+Summary: RRDtool module for Lua
+Group: Development/Languages
+Requires: %{name} = %{version}, lua-devel
+Obsoletes: rrdtool-lua <= %{version}-%{release}
+Provides: rrdtool-lua = %{version}-%{release}
+
+%description -n lua-rrdtool
+The lua-%{name} package includes a library that implements RRDtool bindings
+for the Lua language.
+
 %prep
 %setup
 
+### Fix incorrect $prefix/lib for LUA in configure
+%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' configure
+
 %build
 %configure \
-    --with-tcllib="%{_libdir}" \
+    --enable-ruby-site-install \
     --with-perl-options='INSTALLDIRS="vendor"' \
-    --enable-ruby-site-install
-
+    --with-pic \
+    --with-tcllib="%{_libdir}"
 %{__make}
 
 %install
@@ -144,20 +158,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool
 %{_bindir}/rrdupdate
+%{_datadir}/rrdtool/
 %{_libdir}/librrd.so.*
 %{_libdir}/librrd_th.so.*
-%{_libdir}/librrd.a
-%{_libdir}/librrd_th.a
-%{_libdir}/pkgconfig/librrd.pc
-%{_datadir}/rrdtool/
-%{_includedir}/rrd_client.h
-%{_includedir}/rrd_format.h
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/rrd.h
+%{_includedir}/rrd_client.h
+%{_includedir}/rrd_format.h
+%{_libdir}/librrd.a
 %{_libdir}/librrd.so
+%{_libdir}/librrd_th.a
 %{_libdir}/librrd_th.so
+%{_libdir}/pkgconfig/librrd.pc
 %exclude %{_libdir}/librrd.la
 %exclude %{_libdir}/librrd_th.la
 
@@ -187,10 +201,14 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc bindings/ruby/CHANGES bindings/ruby/README
 %{ruby_sitearch}/RRD.so
 
+%files -n lua-rrdtool
+%defattr(-, root, root, 0755)
+%{_libdir}/lua/
+
 %changelog
 * Thu May 13 2010 Christoph Maser <cmr@financial.com> - 1.4.3-1
 - Updated to version 1.4.3.
-- remove el4 build
+- Removed EL4 build.
 
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.4.2-1
 - Updated to version 1.4.2.

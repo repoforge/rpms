@@ -236,8 +236,10 @@ fi
 %{_libdir}/collectd/csv.so
 %{_libdir}/collectd/curl.so
 %{_libdir}/collectd/curl_xml.so
+%{_libdir}/collectd/dbi.so
 %{_libdir}/collectd/df.so
 %{_libdir}/collectd/disk.so
+%{_libdir}/collectd/dns.so
 %{_libdir}/collectd/email.so
 %{_libdir}/collectd/entropy.so
 %{_libdir}/collectd/exec.so
@@ -268,10 +270,14 @@ fi
 %{_libdir}/collectd/openvpn.so
 %{_libdir}/collectd/perl.so
 %{_libdir}/collectd/powerdns.so
+%{_libdir}/collectd/postgresql.so
 %{_libdir}/collectd/processes.so
 %{_libdir}/collectd/protocols.so
+%{_libdir}/collectd/python.so
+%{_libdir}/collectd/rrdcached.so
 %{_libdir}/collectd/sensors.so
 %{_libdir}/collectd/serial.so
+%{_libdir}/collectd/snmp.so
 %{_libdir}/collectd/swap.so
 %{_libdir}/collectd/syslog.so
 %{_libdir}/collectd/table.so

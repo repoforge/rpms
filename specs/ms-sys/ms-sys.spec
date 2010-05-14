@@ -4,7 +4,7 @@
 
 Summary: Create DOS/MS-compatible boot records
 Name: ms-sys
-Version: 2.1.5
+Version: 2.2.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -48,6 +48,9 @@ written.
 %{_bindir}/ms-sys
 
 %changelog
+* Fri May 14 2010 Dag Wieers <dag@wieers.com> - 2.2.0-1
+- Updated to release 2.2.0.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 2.1.5-1
 - Updated to release 2.1.5.
 
