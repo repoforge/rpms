@@ -13,7 +13,7 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.4.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -26,9 +26,11 @@ BuildRequires: freetype-devel
 BuildRequires: gcc-c++
 BuildRequires: glib2-devel
 BuildRequires: gettext-devel
+BuildRequires: groff
 BuildRequires: intltool
 BuildRequires: libpng-devel
 BuildRequires: libxml2-devel
+BuildRequires: lua-devel
 BuildRequires: openssl-devel
 BuildRequires: pango-devel
 BuildRequires: python-devel >= 2.3
@@ -42,8 +44,9 @@ Requires: cairo
 Requires: gettext
 Requires: glib2
 Requires: libxml2
+Requires: lua
 Requires: openssl
-Requires: perl >= %(rpm -q --qf '%%{epoch}:%%{version}' perl)
+Requires: perl
 Requires: pango
 Requires: python
 Requires: ruby
@@ -206,6 +209,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_libdir}/lua/
 
 %changelog
+* Fri May 14 2010 Christoph Maser <cmaser@gmx.de> - 1.4.3-2
+- evaluating perl version will not work in mock
+- lua fixes
+
 * Thu May 13 2010 Christoph Maser <cmr@financial.com> - 1.4.3-1
 - Updated to version 1.4.3.
 - Removed EL4 build.
