@@ -11,7 +11,7 @@
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
 Version: 4.10.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://collectd.org/
@@ -22,11 +22,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: krb5-libs
 Requires: curl
+Requires: libpcap
 Requires: libxml2
 Requires: zlib
 BuildRequires: krb5-devel
 BuildRequires: curl-devel
+BuildRequires: libpcap-devel
 BuildRequires: libxml2-devel
+BuildRequires: python-devel
 BuildRequires: zlib-devel
 BuildRequires: perl
 BuildRequires: which
@@ -55,11 +58,19 @@ fine grained since the files are updated every 10 seconds.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
-
 %description devel
 This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
+
+%package dbi
+Summary: dbi plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: libdbi
+BuildRequires: libdbi-devel
+%description dbi
+The DBI plugin uses libdbi, a database abstraction library, to execute SQL statements on a database and read back the result.
 
 %package collection3
 Summary: collect perl webfrontent
@@ -85,6 +96,15 @@ Requires: php-rrdtool
 %description php-collection
 PHP graphing frontend for RRD files created by and filled with collectd.
 
+%package postgresql
+Summary: postgresql plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: postgresql-libs
+BuildRequires: postgresql-devel
+%description postgresql
+The PostgreSQL plugin connects to and executes SQL statements on a PostgreSQL database.
+
 %package libvirt
 Summary: libvirt plugin for collectd
 Group: System Environment/Daemons
@@ -96,7 +116,6 @@ BuildRequires: OpenIPMI-devel
 BuildRequires: OpenIPMI-libs
 %description libvirt
 The libvirt plugin uses the virtualization API libvirt, created by RedHat's Emerging Technology group, to gather statistics about virtualized guests on a system.
-
 
 %package mysql
 Summary: xmms plugin for collectd
@@ -136,6 +155,14 @@ BuildRequires: rrdtool-devel
 %description rrdtool
 The RRDtool plugin writes values to RRD-files using librrd.
 
+%package snmp
+Summary: snmp plugin for collectd
+Group: System Environment/Daemons
+Requires: collectd = %{version}-%{release}
+Requires: net-snmp-libs
+BuildRequires: net-snmp-devel
+%description snmp
+The SNMP plugin uses the Net-SNMP library to read values from network devices using the Simple Network Management Protocol (SNMP). 
 
 %package xmms
 Summary: xmms plugin for collectd
@@ -236,7 +263,6 @@ fi
 %{_libdir}/collectd/csv.so
 %{_libdir}/collectd/curl.so
 %{_libdir}/collectd/curl_xml.so
-%{_libdir}/collectd/dbi.so
 %{_libdir}/collectd/df.so
 %{_libdir}/collectd/disk.so
 %{_libdir}/collectd/dns.so
@@ -270,14 +296,11 @@ fi
 %{_libdir}/collectd/openvpn.so
 %{_libdir}/collectd/perl.so
 %{_libdir}/collectd/powerdns.so
-%{_libdir}/collectd/postgresql.so
 %{_libdir}/collectd/processes.so
 %{_libdir}/collectd/protocols.so
 %{_libdir}/collectd/python.so
-%{_libdir}/collectd/rrdcached.so
 %{_libdir}/collectd/sensors.so
 %{_libdir}/collectd/serial.so
-%{_libdir}/collectd/snmp.so
 %{_libdir}/collectd/swap.so
 %{_libdir}/collectd/syslog.so
 %{_libdir}/collectd/table.so
@@ -306,6 +329,9 @@ fi
 %files collection3
 %{_localstatedir}/www/collection3
 
+%files dbi
+%{_libdir}/collectd/dbi.so
+
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/collectd/
@@ -333,13 +359,24 @@ fi
 %files php-collection
 %{_localstatedir}/www/php-collection
 
+%files postgresql
+%{_libdir}/collectd/postgresql.so
+
 %files rrdtool
 %{_libdir}/collectd/rrdtool.so
+%{_libdir}/collectd/rrdcached.so
+
+%files snmp
+%{_libdir}/collectd/snmp.so
 
 %files xmms
 %{_libdir}/collectd/xmms.so
 
 %changelog
+* Fri May 14 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-2
+- New rrdtool supports rrdcached
+- more sub-packages
+
 * Thu May 13 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-1
 - Updated to release 4.10.0.
 - Work around OpenIPMI pgk-config bug https://bugzilla.redhat.com/show_bug.cgi?id=591646
