@@ -6,7 +6,7 @@
 Summary: PECL package to save sessions to a MySQL database
 Name: php-pecl-session_mysql
 Version: 1.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT/Beerware
 Group: Development/Languages
 URL: http://websupport.sk/~stanojr/projects/session_mysql/
@@ -16,6 +16,8 @@ Requires: php, php-mysql
 BuildRequires: php, php-devel, mysql-devel
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
+
+Provides: php-pecl(session_mysql) = %{version}-%{release}
 
 %description
 MySQL session save handler for php.
@@ -106,6 +108,9 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 1.9-2
+- Added Provides: to conform to upstream standards.
+
 * Fri Jan 12 2007 Matthias Saou <http://freshrpms.net/> 1.9-1
 - Update to 1.9.
 

@@ -6,7 +6,7 @@
 Summary: PECL package to get file information through libmagic
 Name: php-pecl-fileinfo
 Version: 1.0.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/Fileinfo
@@ -16,6 +16,8 @@ Requires: php, file
 BuildRequires: php, php-devel, zlib-devel, file
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
+
+Provides: php-pecl(fileinfo) = %{version}-%{release}
 
 %description
 This extension allows retrieval of information regarding the vast majority of
@@ -60,6 +62,9 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 1.0.4-2
+- Added Provides: to conform to upstream standards.
+
 * Thu Jan 11 2007 Matthias Saou <http://freshrpms.net/> 1.0.4-1
 - Update to 1.0.4.
 

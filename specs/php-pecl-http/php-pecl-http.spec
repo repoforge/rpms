@@ -13,7 +13,7 @@
 Summary: PECL package to add HTTP request functionality
 Name: php-pecl-http
 Version: 1.6.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/%{real_name}
@@ -23,6 +23,8 @@ Requires: php, curl, libevent, openssl
 BuildRequires: php, php-devel, curl-devel, libevent-devel, openssl-devel
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
+
+Provides: php-pecl(http) = %{version}-%{release}
 
 %description
 This HTTP extension aims to provide a convenient and powerful
@@ -76,5 +78,8 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 1.6.5-2
+- Added Provides: to conform to upstream standards.
+
 * Mon Sep 28 2009 Steve Huff <shuff@vecna.org> - 1.6.5-1
 - Initial package.

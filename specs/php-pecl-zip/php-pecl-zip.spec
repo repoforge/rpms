@@ -6,7 +6,7 @@
 Summary: A zip management extension for php
 Name: php-pecl-zip
 Version: 1.8.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/zip
@@ -16,6 +16,8 @@ Requires: php, file
 BuildRequires: php, php-devel, zlib-devel, file
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
+
+Provides: php-pecl(zip) = %{version}-%{release}
 
 %description
 Zip is an extension to create, modify and read zip files.
@@ -56,6 +58,9 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 1.8.10-2
+- Added Provides: to conform to upstream standards.
+
 * Wed Apr 15 2009 Christoph Maser <cmr@financial.com> - 1.8.10
 - Initial RPM package.
 

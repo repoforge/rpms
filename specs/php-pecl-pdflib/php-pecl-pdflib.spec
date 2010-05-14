@@ -6,7 +6,7 @@
 Summary: PECL package for generating PDF files
 Name: php-pecl-pdflib
 Version: 2.0.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/pdflib
@@ -17,6 +17,8 @@ BuildRequires: php, php-devel, pdflib-devel
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
 Obsoletes: php-pdf <= 4.3.11
+
+Provides: php-pecl(pdflib) = %{version}-%{release}
 
 %description
 This PHP extension wraps the PDFlib programming library for processing PDF
@@ -58,6 +60,9 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 2.0.4-2
+- Added Provides: to conform to upstream standards.
+
 * Tue May 17 2005 Matthias Saou <http://freshrpms.net/> 2.0.4-1
 - Initial RPM release.
 

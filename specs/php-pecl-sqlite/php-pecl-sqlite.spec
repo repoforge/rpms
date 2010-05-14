@@ -6,7 +6,7 @@
 Summary: PECL package for accessing SQLite databases
 Name: php-pecl-sqlite
 Version: 1.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/SQLite
@@ -18,6 +18,8 @@ BuildRequires: php, php-devel
 
 BuildRequires: autoconf, automake, libtool, gcc-c++
 BuildRequires: sqlite-devel
+
+Provides: php-pecl(sqlite) = %{version}-%{release}
 
 %description
 SQLite is a C library that implements an embeddable SQL database engine.
@@ -61,6 +63,9 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 1.0.3-2
+- Added Provides: to conform to upstream standards.
+
 * Wed Feb 16 2005 Matthias Saou <http://freshrpms.net/> 1.0.3-1
 - Update to 1.0.3.
 

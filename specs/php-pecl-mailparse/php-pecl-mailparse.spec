@@ -6,7 +6,7 @@
 Summary: PECL package for parsing and working with email messages
 Name: php-pecl-mailparse
 Version: 2.1.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/mailparse
@@ -18,6 +18,8 @@ Requires: php
 BuildRequires: php, php-devel, re2c >= 0.9.11
 # Required by phpize
 BuildRequires: autoconf, automake, libtool, gcc-c++
+
+Provides: php-pecl(mailparse) = %{version}-%{release}
 
 %description
 Mailparse is an extension for parsing and working with email messages.
@@ -64,6 +66,9 @@ EOF
 
 
 %changelog
+* Fri May 14 2010 Steve Huff <shuff@vecna.org> - 2.1.5-2
+- Added Provides: to conform to upstream standards.
+
 * Thu Sep 24 2009 Steve Huff <shuff@vecna.org> - 2.1.5-1
 - Update to 2.1.5.
 - Added build dependency on re2c per warning from ./configure.
