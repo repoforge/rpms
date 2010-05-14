@@ -12,13 +12,13 @@
 
 Summary: x86/DOS emulator with sound/graphics
 Name: dosbox
-Version: 0.73
+Version: 0.74
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
 URL: http://dosbox.sourceforge.net/
 
-Source0: http://dl.sf.net/dosbox/dosbox-%{version}.tar.gz
+Source0: http://dl.sf.net/project/dosbox/dosbox/%{version}/dosbox-%{version}.tar.gz
 Source1: dosbox.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -86,6 +86,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/dosbox.png
 
 %changelog
+* Thu May 13 2010 Dag Wieers <dag@wieers.com> - 0.74-1
+- Updated to release 0.74.
+
 * Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 0.73-1
 - Updated to release 0.73.
 
