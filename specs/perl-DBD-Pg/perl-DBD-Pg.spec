@@ -9,7 +9,7 @@
 
 Summary: DBI PostgreSQL interface
 Name: perl-DBD-Pg
-Version: 2.16.1
+Version: 2.17.1
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,7 +21,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(DBI) >= 1.52
 #BuildRequires: perl(Test::More) >= 0.61
 BuildRequires: perl(Test::More)
-BuildRequires: perl(Time::HiRes)
 BuildRequires: perl >= 5.006001
 BuildRequires: perl(version)
 BuildRequires: postgresql-devel
@@ -67,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Tue May 18 2010 Christoph Maser <cmaser@gmx.de> - 2.17.1-1
+- Updated to version 2.17.1.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 2.16.1-1
 - Updated to version 2.16.1.
 
