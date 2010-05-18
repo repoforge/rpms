@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: David A. Golden <dagolden$cpan,org>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,21 +10,34 @@
 
 Summary: Capture STDOUT and STDERR from Perl code, subprocesses or XS
 Name: perl-IO-CaptureOutput
-Version: 1.1101
+Version: 1.1102
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-CaptureOutput/
 
-Source: http://www.cpan.org/modules/by-module/IO/IO-CaptureOutput-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/IO-CaptureOutput-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Carp)
+BuildRequires: perl(Exporter)
+BuildRequires: perl(File::Basename)
 #BuildRequires: perl(File::Spec) >= 3.27
+BuildRequires: perl(File::Temp) >= 0.16
 BuildRequires: perl(IO::File)
+BuildRequires: perl(Symbol)
 #BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: perl(Test::More)
+Requires: perl(Carp)
+Requires: perl(Exporter)
+Requires: perl(File::Basename)
+Requires: perl(File::Temp) >= 0.16
+Requires: perl(Symbol)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 Capture STDOUT and STDERR from Perl code, subprocesses or XS.
@@ -34,6 +48,7 @@ Capture STDOUT and STDERR from Perl code, subprocesses or XS.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/CaptureOutput.pod
 
 %changelog
+* Tue May 18 2010 Christoph Maser <cmaser@gmx.de> - 1.1102-1
+- Updated to version 1.1102.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 1.1101-1
 - Updated to version 1.1101.
 
