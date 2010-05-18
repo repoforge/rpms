@@ -13,7 +13,7 @@
 %define bzrmajor 2.1
 %define bzrminor .1
 #define bzrrc rc2
-%define release 1
+%define release 2
 
 # Magics to get the dots in Release string correct per the above
 %define subrelease %{?bzrrc:.}%{?bzrrc}
@@ -31,20 +31,17 @@ Source1:        https://launchpad.net/%{name}/%{bzrmajor}/%{version}%{?bzrrc}/+d
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  python-devel zlib-devel
-# We're using an old version of Pyrex, use the pregenerated C files instead
-# of rebuilding
-#BuildRequires: Pyrex
-Requires:   python-paramiko
-# Workaround Bug #230223 otherwise this would be a soft dependency
-Requires:   python-curl
-
+BuildRequires: python-devel zlib-devel
 # ElementTree is part of python2.5 on FC7+
 # This is also needed for EL-5
-BuildRequires:   python-elementtree
-Requires:   python-elementtree
+BuildRequires: python-elementtree
+BuildRequires: pyrex >= 0.9.6.3
 
 Requires: bash-completion
+# Workaround Bug #230223 otherwise this would be a soft dependency
+Requires: python-curl
+Requires: python-elementtree
+Requires: python-paramiko
 
 %description
 Bazaar is a distributed revision control system that is powerful, friendly,
@@ -84,14 +81,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc NEWS README TODO COPYING.txt doc/  contrib/
+%doc NEWS README TODO COPYING.txt doc/ contrib/
 %{_bindir}/bzr
 %{_mandir}/man?/*
 %{python_sitearch}/bzrlib/
-%doc %{_sysconfdir}/bash_completion.d/
+%dir %{_sysconfdir}/bash_completion.d/
 %{_sysconfdir}/bash_completion.d/*
 
 %changelog
+* Tue May 18 2010 Steve Huff <shuff@vecna.org> - 2.1.1-2
+- Captured dependency on newer pyrex.
+
 * Thu May 13 2010 Steve Huff <shuff@vecna.org> - 2.1.1-1
 - Updated to 2.1.1 release per Max Kanat-Alexander's request.
 - Captured dependency on bash-completion.

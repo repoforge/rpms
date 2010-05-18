@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Grew Ewing <greg.ewing$canterbury,ac,nz>
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -7,13 +8,13 @@
 
 Summary: Compiler/language for writing Python extension modules.
 Name: pyrex
-Version: 0.9.6.2
+Version: 0.9.9
 Release: 1%{?dist}
 License: Public Domain
 Group: Development/Languages
 URL: http://www.cosc.canterbury.ac.nz/~greg/python/Pyrex/
 
-Source: http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/oldtar/Pyrex-%{version}.tar.gz
+Source: http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/Pyrex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -51,6 +52,9 @@ of your Python code or wrapping an external library.
 %{python_sitelib}/Pyrex/
 
 %changelog
+* Tue May 18 2010 Steve Huff <shuff@vecna.org> - 0.9.9-1
+- Updated to release 0.9.9.
+
 * Fri Nov 16 2007 Dag Wieers <dag@wieers.com> - 0.9.6.2-1
 - Updated to release 0.9.6.2.
 

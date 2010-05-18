@@ -9,21 +9,21 @@
 # (bzrlib is arch dependent.  Thus bzrlib plugins are also arch dependent.)
 %define debug_package %{nil}
 
-%define bzrver 2.0
-%define bzrnextver 2.1
+%define bzrver 2.1
+%define bzrnextver 2.2
 
-Name:           bzrtools
-Version:        %{bzrver}.1
-Release:        2%{?dist}
-Summary:        A collection of utilities and plugins for Bazaar-NG
+Name: bzrtools
+Version: %{bzrver}.0
+Release: 1%{?dist}
+Summary: A collection of utilities and plugins for Bazaar-NG
 
-Group:          Development/Tools
-License:        GPLv2+
-URL:            http://bazaar-vcs.org/BzrTools
-Source0:        https://launchpad.net/bzrtools/stable/%{version}/+download/%{name}-%{version}.tar.gz
-Source1:        https://launchpad.net/bzrtools/stable/%{version}/+download/%{name}-%{version}.tar.gz.sig
+Group:   Development/Tools
+License: GPLv2+
+URL:     http://bazaar-vcs.org/BzrTools
+Source0: http://launchpad.net/bzrtools/trunk/%{version}/+download/bzrtools-%{version}.tar.gz
+Source1: http://launchpad.net/bzrtools/trunk/%{version}/+download/bzrtools-%{version}.tar.gz.sig
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  python-devel
 # Bzrtools is meant to work with a version of bzr that is the same major
@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/bzrlib/plugins/bzrtools
 
 %changelog
+* Tue May 18 2010 Steve Huff <shuff@vecna.org> - 2.1.0-1
+- Update to 2.1.0 for bzr-2.1.5.
+
 * Wed Nov 11 2009 Yury V. Zaytsev <yury@shurup.com> - 2.0.1-2
 - Ported to RPMForge.
 
