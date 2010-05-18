@@ -12,7 +12,7 @@
 
 Summary: High-performance, dynamic web site authoring system
 Name: perl-HTML-Mason
-Version: 1.44
+Version: 1.45
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -33,6 +33,7 @@ BuildRequires: perl(Params::Validate) >= 0.7
 BuildRequires: perl(Scalar::Util) >= 1.01
 BuildRequires: perl(Test)
 BuildRequires: perl(Test::Builder)
+BuildRequires: perl(Test::Deep)
 Requires: perl(CGI) >= 2.46
 Requires: perl(Cache::Cache) >= 1
 Requires: perl(Class::Container) >= 0.07
@@ -41,6 +42,7 @@ Requires: perl(File::Spec) >= 0.8
 Requires: perl(HTML::Entities)
 Requires: perl(Params::Validate) >= 0.7
 Requires: perl(Scalar::Util) >= 1.01
+Requires: perl(Test::Deep)
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -93,6 +95,9 @@ find eg/ htdocs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTML/Mason.pm
 
 %changelog
+* Tue May 18 2010 Christoph Maser <cmaser@gmx.de> - 1.45-1
+- Updated to version 1.45.
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.44-1
 - Updated to version 1.44.
 
