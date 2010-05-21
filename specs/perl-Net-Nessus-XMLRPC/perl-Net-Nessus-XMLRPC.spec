@@ -9,7 +9,7 @@
 
 Summary: Communicate with Nessus scanner(v4.2+) via XMLRPC
 Name: perl-%{real_name}
-Version: 0.20
+Version: 0.30
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,5 +69,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Nessus/*
 
 %changelog
+* Fri May 21 2010 Steve Huff <shuff@vecna.org> - 0.30-1
+- Updated to version 0.30.
+
 * Tue May 04 2010 Steve Huff <shuff@vecna.org> - 0.20-1
 - Initial package.
