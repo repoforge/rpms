@@ -64,7 +64,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README demo/
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorarch}/Devel/NYTProf/
 %{perl_vendorarch}/Devel/NYTProf.pm
