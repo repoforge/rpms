@@ -6,8 +6,8 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.7e
-Release: 3%{?dist}
+Version: 0.8.7f
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -15,10 +15,6 @@ URL: http://www.cacti.net/
 Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
-Patch1: http://www.cacti.net/downloads/patches/0.8.7e/cli_add_graph.patch
-Patch2: http://www.cacti.net/downloads/patches/0.8.7e/snmp_invalid_response.patch
-Patch3: http://www.cacti.net/downloads/patches/0.8.7e/template_duplication.patch
-Patch4: http://www.cacti.net/downloads/patches/0.8.7e/cross_site_fix.patch
 
 BuildRequires: mysql-devel, openssl-devel
 
@@ -55,10 +51,6 @@ This package includes the documentation for %{name}.
 
 %prep
 %setup
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
@@ -130,6 +122,10 @@ fi
 %doc docs/*
 
 %changelog
+* Tue May 25 2010 Christoph Maser <cmaser@gmx.de> - 0.8.7f-1
+- Updated to version 0.8.7f.
+- Remove 0.8.7e patches
+
 * Thu Dec 17 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.7e-3
 - Removed obsolete rh6/7/el2 defines.
 
