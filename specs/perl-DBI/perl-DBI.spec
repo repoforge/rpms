@@ -10,16 +10,30 @@
 
 Summary: Database independent interface for Perl
 Name: perl-DBI
-Version: 1.609
+Version: 1.611
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBI/
 
-Source: http://www.cpan.org/modules/by-module/DBI/DBI-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TI/TIMB/DBI-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Storable) >= 1
+#BuildRequires: perl(Test::Simple) >= 0.84
+BuildRequires: perl(Test::Simple) 
+Requires: perl(File::Spec)
+Requires: perl(Scalar::Util)
+Requires: perl(Storable) >= 1
+#Requires: perl(Test::Simple) >= 0.84
+Requires: perl(Test::Simple)
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 perl-DBI is a Perl module that implements a database independent interface.
@@ -30,6 +44,7 @@ perl-DBI is a Perl module that implements a database independent interface.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+#%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -74,6 +89,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog
+* Wed May 26 2010 Christoph Maser <cmaser@gmx.de> - 1.611-1
+- Updated to version 1.611.
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 1.609-1
 - Updated to version 1.609.
 
