@@ -9,7 +9,7 @@
 
 Summary: Read and write meta information
 Name: perl-Image-ExifTool
-Version: 8.00
+Version: 8.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -35,6 +35,7 @@ information in images.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Image/ExifTool.pod
 
 %changelog
+* Wed May 26 2010 Christoph Maser <cmaser@gmx.de> - 8.15-1
+- Updated to version 8.15.
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 8.00-1
 - Updated to version 8.00.
 
