@@ -9,21 +9,51 @@
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.710.08
+Version: 0.711
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
 
-Source: http://www.cpan.org/modules/by-module/SOAP/SOAP-Lite-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MK/MKUTTER/SOAP-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(Compress::Zlib)
-BuildRequires: perl(Crypt::SSLeay)
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(XML::Parser)
+BuildRequires: perl(FCGI)
+BuildRequires: perl(HTTP::Daemon)
+BuildRequires: perl(IO::File)
+BuildRequires: perl(IO::Socket::SSL)
+BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(MIME::Base64)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Task::Weaken)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI)
+BuildRequires: perl(XML::Parser) >= 2.23
+BuildRequires: perl(constant)
+BuildRequires: perl(version)
+BuildRequires: perl >= 5.006
+Requires: perl(Compress::Zlib)
+Requires: perl(FCGI)
+Requires: perl(HTTP::Daemon)
+Requires: perl(IO::File)
+Requires: perl(IO::Socket::SSL)
+Requires: perl(LWP::UserAgent)
+Requires: perl(MIME::Base64)
+Requires: perl(Scalar::Util)
+Requires: perl(Task::Weaken)
+Requires: perl(Test::More)
+Requires: perl(URI)
+Requires: perl(XML::Parser) >= 2.23
+Requires: perl(constant)
+Requires: perl >= 5.006
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 SOAP::Lite for Perl is a collection of Perl modules which provides a simple
@@ -40,6 +70,7 @@ on client and server side.
 %build
 (echo | %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}") || echo "ignore warnings"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -70,13 +101,15 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/stubmaker.pl
 %{perl_vendorlib}/Apache/
 %{perl_vendorlib}/IO/
-%{perl_vendorlib}/OldDocs/
 %{perl_vendorlib}/SOAP/
 %{perl_vendorlib}/UDDI/
 %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Wed May 26 2010 Christoph Maser <cmaser@gmx.de> - 0.711-1
+- Updated to version 0.711.
+
 * Sat Jul 26 2008 Dag Wieers <dag@wieers.com> - 0.710.08-1
 - Updated to release 0.710.08.
 
