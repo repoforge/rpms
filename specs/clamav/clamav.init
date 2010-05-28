@@ -17,36 +17,49 @@
 
 [ -x /usr/sbin/clamd ] || exit 0
 
+start(){
+        echo -n "Starting Clam AntiVirus Daemon: "
+        daemon clamd
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/clamd
+	return $RETVAL
+}
+
+stop() {
+        echo -n "Stopping Clam AntiVirus Daemon: "
+        killproc clamd
+        rm -f /var/clamav/clamd.socket
+        rm -f /var/run/clamav/clamav.pid
+        RETVAL=$?
+        echo
+	### heres the fix... we gotta remove the stale files on restart
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/clamd
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
 # See how we were called.
 case "$1" in
   start)
-	echo -n "Starting Clam AntiVirus Daemon: "
-	daemon clamd
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/clamd
+	start
 	;;
   stop)
-	echo -n "Stopping Clam AntiVirus Daemon: "
-	killproc clamd
-	rm -f /var/clamav/clamd.socket
-	rm -f /var/run/clamav/clamav.pid
-	RETVAL=$?
-	echo
-### heres the fix... we gotta remove the stale files on restart
-	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/clamd 	
+	stop
 	;;
   status)
 	status clamd
 	RETVAL=$?
 	;;
   restart|reload)
-	$0 stop
-	$0 start
-	RETVAL=$?
+	restart
 	;;
   condrestart)
-	[ -e /var/lock/subsys/clamd ] && restart
+	[ -e /var/lock/subsys/clamd ] && $0 restart
 	RETVAL=$?
 	;;
   *)
