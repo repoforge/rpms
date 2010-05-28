@@ -1,0 +1,14 @@
+diff -Naur newsbeuter-2.2-orig/src/utils.cpp newsbeuter-2.2/src/utils.cpp
+--- newsbeuter-2.2-orig/src/utils.cpp	2010-03-14 07:58:26.000000000 -0400
++++ newsbeuter-2.2/src/utils.cpp	2010-05-28 11:42:40.000000000 -0400
+@@ -796,8 +796,10 @@
+ 		return CURLPROXY_SOCKS4;
+ 	if (type == "socks5")
+ 		return CURLPROXY_SOCKS5;
++#ifdef CURLPROXY_SOCKS4A
+ 	if (type == "socks4a")
+ 		return CURLPROXY_SOCKS4A;
++#endif
+ 
+ 	if (type != "") {
+ 		LOG(LOG_USERERROR, "you configured an invalid proxy type: %s", type.c_str());
