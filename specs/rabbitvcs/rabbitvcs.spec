@@ -11,7 +11,7 @@
 
 Summary: Nautilus integration for Subversion
 Name: rabbitvcs
-Version: 0.13.1
+Version: 0.13.2
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -135,6 +135,9 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %{gedit_extensiondir}/*
 
 %changelog
+* Mon May 31 2010 Steve Huff <shuff@vecna.org> - 0.13.2-1
+- Updated to version 0.13.2.
+
 * Sun Mar 28 2010 Caghan Demirci <caghand@superonline.com> - 0.13.1-1
 - Updated to version 0.13.1.
 - Split out some clients into separate packages.
