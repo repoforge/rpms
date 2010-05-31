@@ -4,7 +4,7 @@
 
 Summary: Implementation of a YAML 1.1 parser and emitter
 Name: libyaml
-Version: 0.0.1
+Version: 0.1.3
 Release: 1%{?dist}
 License: MIT/X Consortium
 Group: Development/Libraries
@@ -14,7 +14,7 @@ Source: http://pyyaml.org/download/libyaml/yaml-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-LibYAML is a C library implementation of a YAML 1.1 parser and emitter. 
+LibYAML is a C library implementation of a YAML 1.1 parser and emitter.
 It includes a Python language binding.
 
 %package devel
@@ -39,7 +39,6 @@ you will need to install %{name}-devel.
 %{__make} install DESTDIR=%{buildroot}
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %clean
@@ -57,5 +56,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon May 17 2010 Dag Wieers <dag@wieers.com> - 0.1.3-1
+- Updated to release 0.1.3.
+
 * Mon May 28 2007 Dries Verachtert <dries@ulyssis.org> - 0.0.1-1
 - Initial package.

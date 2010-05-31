@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
 
-
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 

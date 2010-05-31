@@ -5,13 +5,13 @@
 
 Summary: AT Computing System and Process Monitor
 Name: atop
-Version: 1.23
+Version: 1.25
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
-URL: ftp://ftp.atcomputing.nl/pub/tools/linux/
+URL: http://atoptool.nl/
 
-Source: http://www.atconsultancy.nl/atop/packages/atop-%{version}.tar.gz
+Source: http://atoptool.nl/download/atop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, ncurses-devel
@@ -88,6 +88,9 @@ fi
 %dir %{_localstatedir}/log/atop/
 
 %changelog
+* Fri May 14 2010 Dag Wieers <dag@wieers.com> - 1.25-1
+- Updated to release 1.25.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.23-1
 - Updated to release 1.23.
 

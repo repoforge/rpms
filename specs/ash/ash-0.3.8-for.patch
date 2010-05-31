@@ -1,0 +1,41 @@
+diff -ur ash-0.3.8.orig/parser.c ash-0.3.8.lhh/parser.c
+--- ash-0.3.8.orig/parser.c	2003-08-14 13:10:57.000000000 -0400
++++ ash-0.3.8.lhh/parser.c	2003-08-14 13:09:57.000000000 -0400
+@@ -345,7 +345,8 @@
+ 		checkkwd = CHKKWD | CHKALIAS;
+ 		break;
+ 	}
+-	case TFOR:
++	case TFOR: {
++		int got, x;
+ 		if (readtoken() != TWORD || quoteflag || ! goodname(wordtext))
+ 			synerror("Bad for loop variable");
+ 		n1 = (union node *)stalloc(sizeof (struct nfor));
+@@ -381,13 +382,24 @@
+ 				tokpushback++;
+ 		}
+ 		checkkwd = CHKNL | CHKKWD | CHKALIAS;
+-		if (readtoken() != TDO)
++		got = readtoken();
++		if (got == TDO)
++			x = TDONE;
++		else if (got == TBEGIN)
++			x = TEND;
++		else {
++			checkkwd = CHKKWD | CHKALIAS;
+ 			synexpect(TDO);
++			break;
++		}
+ 		n1->nfor.body = list(0);
+-		if (readtoken() != TDONE)
+-			synexpect(TDONE);
++		if (readtoken() != x) {
++			checkkwd = CHKKWD | CHKALIAS;
++			synexpect(x);
++		}
+ 		checkkwd = CHKKWD | CHKALIAS;
+ 		break;
++	}
+ 	case TCASE:
+ 		n1 = (union node *)stalloc(sizeof (struct ncase));
+ 		n1->type = NCASE;

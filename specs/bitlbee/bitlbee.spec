@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 1.2.5
+Version: 1.2.7
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -30,7 +30,7 @@ networks like MSN/ICQ/Jabber.
 
 %prep
 %setup
-%patch0 -p1 -b .libresolv
+#patch0 -p1 -b .libresolv
 
 %{__perl} -pi.orig -e '
         s|\$\(BINDIR\)|\$(sbindir)|g;
@@ -68,8 +68,8 @@ CFLAGS="%{optflags}" ./configure \
     --mandir="%{_mandir}" \
     --datadir="%{_datadir}/bitlbee" \
     --config="%{_localstatedir}/lib/bitlbee" \
-    --pcdir=%{_libdir}/pkgconfig \
-    --plugindir=%{_libdir}/%{name} \
+    --pcdir="%{_libdir}/pkgconfig" \
+    --plugindir="%{_libdir}/%{name}" \
     --strip="0" \
     --plugins="1" \
 %if 0%{?fedora}%{?rhel}
@@ -111,6 +111,12 @@ CFLAGS="%{optflags}" ./configure \
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Thu May 27 2010 Dag Wieers <dag@wieers.com> - 1.2.7-1
+- Updated to release 1.2.7.
+
+* Mon Apr 19 2010 Dag Wieers <dag@wieers.com> - 1.2.6-1
+- Updated to release 1.2.6.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.2.5-1
 - Updated to release 1.2.5.
 

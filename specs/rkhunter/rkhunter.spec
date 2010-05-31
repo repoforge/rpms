@@ -7,15 +7,30 @@ Version: 1.3.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
-URL: http://www.rootkit.nl/
+URL: http://www.rootkit.nl/projects/rootkit_hunter.html
 
-Source: http://sourceforge.net/projects/rkhunter/files/rkhunter/%{version}/rkhunter-%{version}.tar.gz/download
+Source: http://dl.sf.net/project/rkhunter/rkhunter/%{version}/rkhunter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: /bin/sh, coreutils, binutils, modutils, findutils, grep, mktemp
-Requires: e2fsprogs, procps, lsof, prelink, iproute, net-tools, wget
-Requires: perl, perl(strict), perl(IO::Socket), mailx
+Requires: /bin/sh
+Requires: binutils
+Requires: coreutils
+Requires: e2fsprogs
+Requires: findutils
+Requires: grep
+Requires: iproute
+Requires: lsof
+Requires: mailx
+Requires: mktemp
+Requires: modutils
+Requires: net-tools
+Requires: perl
+Requires: perl(IO::Socket)
+Requires: perl(strict)
+Requires: prelink
+Requires: procps
+Requires: wget
 
 %description
 Rootkit Hunter scans files and systems for known and unknown rootkits,
@@ -70,10 +85,10 @@ RPM_BUILD_ROOT="%{buildroot}" ./installer.sh --layout RPM --install
 * Mon May 31 2010 Christoph Maser <cmaser@gmx.de> - 1.3.6-1
 - Updated to version 1.3.6.
 
-* Tue May 05 2009 Christoph Maser <cmr@financial.com> - 1.3.4 - 1
+* Tue May 05 2009 Christoph Maser <cmr@financial.com> - 1.3.4-1
 - Updated to release 1.3.4.
 
-* Tue Dec 23 2008 Christoph Maser <cmr@financial.com> - 1.3.2 - 1
+* Tue Dec 23 2008 Christoph Maser <cmr@financial.com> - 1.3.2-1
 - Updated to release 1.3.2.
 - Use --layout RPM from installer.sh.
 - Patch installer to use "/usr" prefix in RPM mode.

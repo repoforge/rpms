@@ -1,0 +1,13 @@
+--- ash-0.3.8.orig/mkbuiltins.tempfile	Thu Dec  6 17:20:31 2001
++++ ash-0.3.8.orig/mkbuiltins	Thu Dec  6 17:03:02 2001
+@@ -38,8 +38,8 @@
+ #	@(#)mkbuiltins	8.2 (Berkeley) 5/4/95
+ 
+ trap 'rm -f $temp $temp2' EXIT
+-temp=$(tempfile)
+-temp2=$(tempfile)
++temp=$(mktemp /tmp/temp.XXXXXX)
++temp2=$(mktemp /tmp/temp.XXXXXX)
+ 
+ shell=$1
+ builtins=$2

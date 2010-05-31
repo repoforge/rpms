@@ -5,8 +5,8 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.2.0
-Release: 2%{?dist}
+Version: 1.2.1
+Release: 1%{?dist}
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
@@ -249,7 +249,7 @@ EOF
 %{__install} -Dp -m0755 dsocksify %{buildroot}%{_bindir}/dsocksify
 %{__ln_s} -f dsocksify %{buildroot}%{_bindir}/socksify
 
-%{__mv} -f %{buildroot}%{_includedir}/socks.h.in %{buildroot}%{_includedir}/socks.h
+#%{__mv} -f %{buildroot}%{_includedir}/socks.h.in %{buildroot}%{_includedir}/socks.h
 
 ### FIXME: Set library as executable - prevent ldd from complaining
 %{__chmod} +x %{buildroot}%{_libdir}/*.so*
@@ -302,13 +302,16 @@ fi
 %doc doc/rfc* doc/SOCKS4.protocol INSTALL
 %{_libdir}/libsocks.so
 %{_includedir}/socks.h
-%{_includedir}/socks_glibc.h
+#%{_includedir}/socks_glibc.h
 #%{_libdir}/libdsocks.a
 %exclude %{_libdir}/libsocks.a
 %exclude %{_libdir}/libdsocks.la
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Fri May 28 2010 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 1.2.0-2
 - Backported GLIBC_PRIVATE related patch.
 

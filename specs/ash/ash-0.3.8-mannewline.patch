@@ -1,0 +1,9 @@
+--- ash-0.3.8.orig/sh.1.groff	2002-07-17 17:58:15.000000000 -0400
++++ ash-0.3.8.orig/sh.1	2002-07-17 19:34:33.000000000 -0400
+@@ -1613,4 +1613,4 @@
+ argument.
+ .Sh BUGS
+ Setuid shell scripts should be avoided at all costs, as they are a
+-significant security risk.
++significant security risk.
+\ No newline at end of file

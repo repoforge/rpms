@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc2 fc3
-
 ### xfsprogs abuses libexecdir
 %{expand: %%define _libexecdir %{_libdir}}
 %{expand: %%define _libdir /%{_lib}}
@@ -17,7 +15,7 @@ License: GPL
 Group: System Environment/Base
 URL: http://oss.sgi.com/projects/xfs/
 
-Source: ftp://oss.sgi.com/projects/xfs/download/cmd_tars/xfsprogs_%{version}-1.tar.gz
+Source: ftp://oss.sgi.com/projects/xfs/download/cmd_tars/xfsprogs-%{version}.src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool, gettext
@@ -55,19 +53,20 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-export tagname=CC
+export tagname="CC"
 %configure \
-	--enable-shared="yes" \
-	--enable-gettext="yes" \
-	--enable-readline="yes" \
-	--enable-editline="no" \
-	--enable-shared-uuid="yes"
+    --disable-static \
+    --enable-shared="yes" \
+    --enable-gettext="yes" \
+    --enable-readline="yes" \
+    --enable-editline="no" \
+    --enable-shared-uuid="yes"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install install-dev \
-	DIST_ROOT="%{buildroot}"
+    DIST_ROOT="%{buildroot}"
 
 ### nuke .la files, etc
 #rm -f $RPM_BUILD_ROOT/%{_lib}/*.la $RPM_BUILD_ROOT/{_lib}/*.a $RPM_BUILD_ROOT%{_lib}/*.so
@@ -78,39 +77,31 @@ export tagname=CC
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>dev/null || :
-
-%postun
-/sbin/ldconfig 2>dev/null || :
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc doc/CHANGES doc/COPYING doc/CREDITS doc/PORTING README doc/README.LVM doc/README.quota
-%doc %{_mandir}/man5/*
-%doc %{_mandir}/man8/*
+%doc %{_mandir}/man5/*.5*
+%doc %{_mandir}/man8/*.8*
 %{_bindir}/*
 %{_sbindir}/fsck.xfs
 %{_sbindir}/mkfs.xfs
 %{_sbindir}/xfs_repair
-%{_libdir}/*.so.*
+%{_libdir}/libhandle.so.*
 %exclude %{_docdir}/xfsprogs/
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/*
+%doc %{_mandir}/man3/*.3*
 %{_includedir}/disk/
 %{_includedir}/xfs/
-%{_libdir}/*.a
-#exclude %{_libdir}/*.la
-%{_libdir}/*.so
+%{_libdir}/libhandle.so
 %exclude %{_libexecdir}/*.a
 %exclude %{_libexecdir}/*.la
 
 %changelog
-* Sun Oct 08 2005 Dag Wieers <dag@wieers.com> - 2.8.11-1
-- Updates to release 2.8.11.
-
 * Fri Feb 25 2005 Dag Wieers <dag@wieers.com> - 2.6.13-3
 - Imported from RH CVS.
 

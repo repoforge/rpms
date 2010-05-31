@@ -13,8 +13,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.96
-Release: 3%{?dist}
+Version: 0.96.1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -365,11 +365,14 @@ fi
 %if %{!?_without_milter:1}0
 %files milter
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man5/clamav-milter.conf.5*
 %doc %{_mandir}/man8/clamav-milter.8*
 %config(noreplace) %{_sysconfdir}/clamav-milter.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/clamav-milter
 %config %{_initrddir}/clamav-milter
 %{_sbindir}/clamav-milter
+%else
+%exclude %{_mandir}/man5/clamav-milter.conf.5*
 %endif
 
 %files db
@@ -392,6 +395,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Wed May 19 2010 Dag Wieers <dag@wieers.com> - 0.96.1-1
+- Updated to release 0.96.1.
+
 * Mon May 03 2010 Dag Wieers <dag@wieers.com> - 0.96-3
 - Restored the LocalSocket configuration option to what it used to be. (Chris Butler)
 

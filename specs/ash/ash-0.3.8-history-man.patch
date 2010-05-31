@@ -1,0 +1,148 @@
+--- sh.1.orig	2003-02-18 14:34:05.000000000 -0500
++++ sh.1	2003-02-18 14:34:05.000000000 -0500
+@@ -72,9 +72,8 @@
+ .Xr chsh 1
+ command). The shell implements a language that has flow control
+ constructs, a macro facility that provides a variety of features in
+-addition to data storage, along with built in history and line editing
+-capabilities.  It incorporates many features to aid interactive use and
+-has the advantage that the interpretative language is common to both
++addition to data storage.  It incorporates many features to aid interactive
++use and has the advantage that the interpretative language is common to both
+ interactive and non-interactive use (shell scripts).  That is, commands
+ can be typed directly to the running shell or can be put into a file and
+ the file can be executed directly by the shell.
+@@ -1084,86 +1083,6 @@
+ With the
+ .Fl p
+ option specified the output will be formatted suitably for non-interactive use.
+-.It Xo fc Op Fl e Ar editor
+-.Op Ar first Op Ar last
+-.Xc
+-.It Xo fc Fl l
+-.Op Fl nr
+-.Op Ar first Op Ar last
+-.Xc
+-.It Xo fc Fl s Op Ar old=new
+-.Op Ar first
+-.Xc
+-The
+-.Ic fc
+-builtin lists, or edits and re-executes, commands previously entered
+-to an interactive shell.
+-.Bl -tag -width 5n
+-.It Fl e No editor
+-Use the editor named by editor to edit the commands.  The
+-editor string is a command name, subject to search via the
+-.Ev PATH
+-variable.  The value in the
+-.Ev FCEDIT
+-variable is used as a default when
+-.Fl e
+-is not specified.  If
+-.Ev FCEDIT
+-is null or unset, the value of the
+-.Ev EDITOR
+-variable is used.  If
+-.Ev EDITOR
+-is null or unset,
+-.Xr ed 1
+-is used as the editor.
+-.It Fl l No (ell)
+-List the commands rather than invoking an editor on them.  The commands
+-are written in the sequence indicated by the first and last operands, as
+-affected by
+-.Fl r ,
+-with each command preceded by the command number.
+-.It Fl n
+-Suppress command numbers when listing with -l.
+-.It Fl r
+-Reverse the order of the commands listed (with
+-.Fl l )
+-or edited (with neither
+-.Fl l
+-nor
+-.Fl s ) .
+-.It Fl s
+-Re-execute the command without invoking an editor.
+-.It first
+-.It last
+-Select the commands to list or edit.  The number of previous commands that
+-can be accessed are determined by the value of the
+-.Ev HISTSIZE
+-variable.  The value of first or last or both are one of the following:
+-.Bl -tag -width 5n
+-.It [+]number
+-A positive number representing a command number; command numbers can be
+-displayed with the
+-.Fl l
+-option.
+-.It Fl number
+-A negative decimal number representing the command that was executed
+-number of commands previously.  For example, -1 is the immediately
+-previous command.
+-.El
+-.It string
+-A string indicating the most recently entered command that begins with
+-that string.  If the old=new operand is not also specified with
+-.Fl s ,
+-the string form of the first operand cannot contain an embedded equal sign.
+-.El
+-.Pp
+-The following environment variables affect the execution of fc:
+-.Bl -tag -width HISTSIZE
+-.It Ev FCEDIT
+-Name of the editor to use.
+-.It Ev HISTSIZE
+-The number of previous commands that are accessible.
+-.El
+ .It fg Op Ar job
+ Move the specified job or the current job to the foreground.
+ .It getopts Ar optstring var
+@@ -1287,11 +1206,6 @@
+ .Fl r
+ option causes the hash command to delete all the entries in the hash table
+ except for functions.
+-.It jobid Op Ar job
+-Print the process id's of the processes in the job.
+-If the
+-.Ar job
+-argument is omitted, the current job is used.
+ .It jobs
+ This command lists out all the background processes
+ which are children of the current shell process.
+@@ -1508,27 +1422,6 @@
+ Wait for the specified job to complete and return the exit status of the
+ last process in the job. If the argument is omitted, wait for all jobs to
+ complete and the return an exit status of zero.
+-.El
+-.Ss Command Line Editing
+-When
+-.Nm
+-is being used interactively from a terminal, the current command
+-and the command history (see
+-.Ic fc
+-in
+-.Sx Builtins )
+-can be edited using vi-mode command-line editing. This mode uses commands,
+-described below, similar to a subset of those described in the vi man
+-page. The command
+-.Ql set -o vi
+-enables vi-mode editing and place sh into vi insert mode. With vi-mode
+-enabled, sh can be switched between insert mode and command mode. The
+-editor is not described in full here, but will be in a later document.
+-It's similar to vi: typing
+-.Aq ESC
+-will throw you into command VI command mode. Hitting
+-.Aq return
+-while in command mode will pass the line to the shell.
+ .Sh ENVIRONMENT
+ .Bl -tag -width MAILCHECK
+ .It Ev HOME
+@@ -1613,4 +1506,4 @@
+ argument.
+ .Sh BUGS
+ Setuid shell scripts should be avoided at all costs, as they are a
+-significant security risk.
+\ No newline at end of file
++significant security risk.

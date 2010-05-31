@@ -6,7 +6,7 @@
 Summary: RRDtool module for PHP
 Name: php-rrdtool
 %define real_version 20051205
-Version: 0.0.20051205
+Version: 1.4.3
 Release: 1%{?dist}
 License: GPL
 Group: Development/Languages
@@ -20,9 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: automake
 BuildRequires: php-devel
 BuildRequires: re2c
-BuildRequires: rrdtool-devel
+BuildRequires: rrdtool-devel = %{version}
 Requires: php
-Requires: rrdtool
+Requires: rrdtool = %{version}
 
 %description
 The php-rrdtool package includes a dynamic shared object (DSO) that adds
@@ -51,5 +51,8 @@ phpize
 %{_libdir}/php/modules/rrdtool.so
 
 %changelog
+* Thu May 27 2010 Dag Wieers <dag@wieers.com> - 1.4.3-1
+- Build against rrdtool-1.4.3.
+
 * Mon Dec 29 2008 Christoph Maser <cmr@financial.com> - 0.0.20051205-1
 - Initial package.
