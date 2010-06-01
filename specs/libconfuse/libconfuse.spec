@@ -7,7 +7,7 @@
 Summary: Configuration file parser library
 Name: libconfuse
 Version: 2.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.nongnu.org/confuse/
@@ -50,7 +50,10 @@ Install this package if you want to develop software that uses libConfuse.
 %patch0 -p1
 
 %build
-CFLAGS="%{optflags}" %configure
+CFLAGS="%{optflags}" %configure \
+    --disable-static \
+    --enable-shared \
+    --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,15 +66,20 @@ CFLAGS="%{optflags}" %configure
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS INSTALL NEWS README 
-%{_libdir}/*
+%{_libdir}/*.so.*
 %{_datadir}/locale/*/LC_MESSAGES/*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc AUTHORS INSTALL NEWS README doc/ examples/
 %{_includedir}/*
+%{_libdir}/*.so
 %{_libdir}/pkgconfig/*
+%exclude %{_libdir}/*la
 
 %changelog
+* Tue Jun 01 2010 Steve Huff <shuff@vecna.org> - 2.6-2
+- Default build is static-only, huh?
+
 * Thu Feb 18 2010 Steve Huff <shuff@vecna.org> - 2.6-1
 - Initial package.
