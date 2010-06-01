@@ -60,6 +60,12 @@ CFLAGS="%{optflags}" %configure \
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
+# install the man pages by hand
+%{__install} -m0755 -d %{buildroot}%{_mandir}/man3
+%{__mv} doc/man/man3/* %{buildroot}%{_mandir}/man3/
+%{__gzip} %{buildroot}%{_mandir}/man3/*
+%{__rm} -rf %{buildroot}%{_docdir}/man
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -72,6 +78,7 @@ CFLAGS="%{optflags}" %configure \
 %files devel
 %defattr(-, root, root, 0755)
 %doc AUTHORS INSTALL NEWS README doc/ examples/
+%doc %{_mandir}/man?/*
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
