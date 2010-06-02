@@ -94,8 +94,12 @@ case "$1" in
         status $prog|| exit 0
         restart
         ;;
+    configtest)
+	$exec -v $config
+	RETVAL=$?
+	;;
     *)
-        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}"
         exit 2
 esac
 exit $?

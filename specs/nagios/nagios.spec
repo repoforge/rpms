@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.1
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -200,7 +200,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
-* Tue May 11 2010 Christopha Maser <cmr@financial.com> - 3.2.1-3
+* Wed Jun 02 2010 Christoph Maser <cmr@financial.com> - 3.2.1-4
+- Add configtest to initscript
+
+* Tue May 11 2010 Christoph Maser <cmr@financial.com> - 3.2.1-3
 - Roll our own init-script
 - Move pid file to a location where nagios user has access
 
