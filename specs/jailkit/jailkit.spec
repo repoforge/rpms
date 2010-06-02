@@ -3,7 +3,7 @@
 
 Summary: Utilities to limit user accounts to specific files using chroot()
 Name: jailkit
-Version: 2.5
+Version: 2.11
 Release: 1%{?dist}
 License: Open Source
 Group: System Environment/Base
@@ -11,6 +11,8 @@ URL: http://olivier.sessink.nl/jailkit/
 
 Source: http://olivier.sessink.nl/jailkit/jailkit-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: binutils, gcc, make
+BuildRequires: glibc-devel
 BuildRequires: python
 
 %description
@@ -55,8 +57,7 @@ are in a chroot.
 
 %files
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man8/jk_*.8*
-%doc %{_mandir}/man8/jailkit.8*
+%doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/jailkit/
 %config %{_initrddir}/jailkit
 %{_sbindir}/jk_*
@@ -64,6 +65,9 @@ are in a chroot.
 %{_datadir}/jailkit/
 
 %changelog
+* Wed Jun 02 2010 Steve Huff <shuff@vecna.org> - 2.11-1
+- Updated to release 2.11.
+
 * Thu May 15 2008 Dries Verachtert <dries@ulyssis.org> - 2.5-1
 - Updated to release 2.5.
 
