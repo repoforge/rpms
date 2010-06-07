@@ -9,7 +9,7 @@
 
 Summary: Lets you build groups of accessors
 Name: perl-Class-Accessor-Grouped
-Version: 0.09002
+Version: 0.09003
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,6 +47,7 @@ Lets you build groups of accessors.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Grouped.pm
 
 %changelog
+* Mon Jun  7 2010 Christoph Maser <cmaser@gmx.de> - 0.09003-1
+- Updated to version 0.09003.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.09002-1
 - Updated to version 0.09002.
 
