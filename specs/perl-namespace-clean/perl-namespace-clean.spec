@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Florian Ragwitz <rafl@debian.org>
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +10,7 @@
 
 Summary: Keep imports and functions out of your namespace
 Name: perl-namespace-clean
-Version: 0.13
+Version: 0.17
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,13 +21,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(B::Hooks::EndOfScope) >= 0.07
-#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::MakeMaker) >= 6.31
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Sub::Identify) >= 0.04
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Symbol)
-#BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
 Requires: perl(B::Hooks::EndOfScope) >= 0.07
 Requires: perl(Sub::Identify) >= 0.04
@@ -46,6 +45,7 @@ Keep imports and functions out of your namespace.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/namespace/clean.pm
 
 %changelog
+* Mon Jun  7 2010 Christoph Maser <cmaser@gmx.de> - 0.17-1
+- Updated to version 0.17.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.13-1
 - Updated to version 0.13.
 
