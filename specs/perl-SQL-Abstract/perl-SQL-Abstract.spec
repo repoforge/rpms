@@ -9,7 +9,7 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.65
+Version: 1.67
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -79,6 +79,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL/Abstract/Test.pm
 
 %changelog
+* Mon Jun  7 2010 Christoph Maser <cmaser@gmx.de> - 1.67-1
+- Updated to version 1.67.
+
 * Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.65-1
 - Updated to version 1.65.
 
