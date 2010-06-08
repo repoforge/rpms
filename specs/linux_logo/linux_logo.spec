@@ -3,22 +3,22 @@
 
 Summary: The linux logo - a colorful console penguin logo
 Name: linux_logo
-Version: 5.03
+Version: 5.10
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.deater.net/weave/vmwprod/linux_logo/
+
 Source: http://www.deater.net/weave/vmwprod/linux_logo/linux_logo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gettext
 
 %description
 Linux logo creates a colorful penguin logo on the console.
 
-
 %prep
 %setup
-
 
 %build
 for logo in ./logos/*.logo ./logos/*/*.logo; do
@@ -29,7 +29,6 @@ done
 %{__make} %{?_smp_mflags} \
     C_OPTS="%{optflags} -I./\$(LIBSYSINFO)" \
     C_FLAGS="%{optflags} -I.. -I. -I../include" PREFIX=%{_prefix}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,19 +41,19 @@ done
     PREFIX=%{buildroot}%{_prefix}
 %find_lang %{name}
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING LINUX_LOGO.FAQ README* TODO USAGE
-%{_bindir}/%{name}
-%{_mandir}/man1/%{name}.1*
-
+%doc %{_mandir}/man1/linux_logo.1*
+%{_bindir}/linux_logo
 
 %changelog
+* Tue Jun 01 2010 Dag Wieers <dag@wieers.com> - 5.10-1
+- Updated to release 5.10.
+
 * Sun Feb 17 2008 Dries Verachtert <dries@ulyssis.org> - 5.03-1
 - Updated to release 5.03.
 
