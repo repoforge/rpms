@@ -20,7 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: libxslt-devel
-BuildRequires: perl(XML::LibXML) >= 1.58
+### XML::LibXML 1.70 introduces a non-backwards-compatible ABI
+BuildRequires: perl(XML::LibXML) >= 1.58, perl(XML::LibXML) < 1.70
+Conflicts: perl-XML-LibXML >= 1.70
 
 %description
 perl-XML-LibXSLT is a fast XSLT library, based on the Gnome libxslt engine

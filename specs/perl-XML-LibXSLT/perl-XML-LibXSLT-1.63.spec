@@ -1,7 +1,7 @@
-# $Id$
+# $Id: perl-XML-LibXSLT.spec 8817 2010-05-18 18:58:43Z shuff $
 # Authority: shuff
 # Upstream: Petr Pajas <pajas$matfyz,cz>
-# ExcludeDist: el5 el4 el3
+##ExcludeDist: el4 el3
 
 ### Newer versions require a later libxslt than available in el5
 
@@ -12,8 +12,8 @@
 
 Summary: Interface to Gnome libxslt library
 Name: perl-XML-LibXSLT
-Version: 1.68
-Release: 1%{?dist}
+Version: 1.63
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXSLT/
@@ -21,10 +21,12 @@ URL: http://search.cpan.org/dist/XML-LibXSLT/
 Source: http://www.cpan.org/modules/by-module/XML/XML-LibXSLT-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libxslt-devel >= 1.1.18
+BuildRequires: libxslt-devel >= 1.0.6
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(XML::LibXML) >= 1.70
+### XML::LibXML 1.70 introduces a non-backwards-compatible ABI
+BuildRequires: perl(XML::LibXML) >= 1.60, perl(XML::LibXML) <= 1.69
+Conflicts: perl-XML-LibXML >= 1.70
 
 %description
 perl-XML-LibXSLT is a fast XSLT library, based on the Gnome libxslt engine
@@ -61,18 +63,8 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/benchmark.pl
 
 %changelog
-* Mon Jun 07 2010 Dag Wieers <dag@wieers.com> - 1.68-1
-- Updated to release 1.78.
-
 * Tue May 18 2010 Steve Huff <shuff@vecna.org> - 1.63-2
-- Reverted to 1.63 (later versions can't build on el5).
 - Captured dependencies more precisely.
-
-* Tue May 18 2010 Steve Huff <shuff@vecna.org> - 1.70-1
-- Updated to release 1.70.
-
-* Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 1.66-1
-- Updated to release 1.66.
 
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.63-1
 - Updated to release 1.63.
