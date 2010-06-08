@@ -1,0 +1,50 @@
+--- lighttpd-1.4.26/doc/lighttpd.conf.orig	2010-06-08 21:53:45.000000000 +0200
++++ lighttpd-1.4.26/doc/lighttpd.conf	2010-06-08 21:56:34.000000000 +0200
+@@ -36,7 +36,7 @@
+ 
+ ## A static document-root. For virtual hosting take a look at the
+ ## mod_simple_vhost module.
+-server.document-root        = "/srv/www/htdocs/"
++server.document-root        = "/srv/www/lighttpd/"
+ 
+ ## where to send error-messages to
+ server.errorlog             = "/var/log/lighttpd/error.log"
+@@ -50,6 +50,7 @@
+ 
+ # mimetype mapping
+ mimetype.assign             = (
++  ".rpm"          =>      "application/x-rpm",
+   ".pdf"          =>      "application/pdf",
+   ".sig"          =>      "application/pgp-signature",
+   ".spl"          =>      "application/futuresplash",
+@@ -147,7 +148,7 @@
+ #server.error-handler-404   = "/error-handler.php"
+ 
+ ## to help the rc.scripts
+-#server.pid-file            = "/var/run/lighttpd.pid"
++server.pid-file            = "/var/run/lighttpd.pid"
+ 
+ 
+ ###### virtual hosts
+@@ -188,10 +189,10 @@
+ #server.chroot              = "/"
+ 
+ ## change uid to <uid> (default: don't care)
+-#server.username            = "wwwrun"
++server.username            = "lighttpd"
+ 
+ ## change uid to <uid> (default: don't care)
+-#server.groupname           = "wwwrun"
++server.groupname           = "lighttpd"
+ 
+ #### compress module
+ #compress.cache-dir         = "/var/cache/lighttpd/compress/"
+@@ -215,7 +216,7 @@
+ #                               ( "localhost" =>
+ #                                 (
+ #                                   "socket" => "/var/run/lighttpd/php-fastcgi.socket",
+-#                                   "bin-path" => "/usr/local/bin/php-cgi"
++#                                   "bin-path" => "/usr/bin/php-cgi"
+ #                                 )
+ #                               )
+ #                            )

@@ -4,26 +4,19 @@
 %{?el5:%define _without_lua 1}
 %{?el4:%define _without_lua 1}
 %{?el3:%define _without_lua 1}
-%{?rh9:%define _without_lua 1}
-
-%{?rh7:%define _without_lua 1}
-%{?rh7:%define _without_ssl 1}
-
-%{?el2:%define _without_lua 1}
-%{?el2:%define _without_ssl 1}
 
 %define webroot /srv/www/lighttpd
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.4.22
-Release: 2%{?dist}
+Version: 1.4.26
+Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
 
-Source: http://www.lighttpd.net/download/lighttpd-%{version}.tar.bz2
-Patch0: lighttpd-1.4.17-defaultconf.patch
+Source: http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-%{version}.tar.bz2
+Patch0: lighttpd-1.4.26-defaultconf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pcre-devel, bzip2-devel, zlib-devel, readline-devel
@@ -159,9 +152,10 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README
+%doc AUTHORS COPYING NEWS README
 %doc doc/*.txt doc/lighttpd.conf doc/lighttpd.user
-%doc %{_mandir}/man1/lighttpd.1*
+#doc %{_mandir}/man1/lighttpd.1*
+%doc %{_mandir}/man8/lighttpd.8*
 %dir %{_sysconfdir}/lighttpd/
 %config(noreplace) %{_sysconfdir}/lighttpd/lighttpd.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/lighttpd
@@ -187,13 +181,16 @@ fi
 %files fastcgi
 %defattr(-, root, root, 0755)
 %doc doc/fastcgi*.txt
-%doc %{_mandir}/man1/spawn-fcgi.1*
+#doc %{_mandir}/man1/spawn-fcgi.1*
 %config(noreplace) %{_sysconfdir}/php.d/lighttpd.ini
-%{_bindir}/spawn-fcgi
+#%{_bindir}/spawn-fcgi
 %dir %{_libdir}/lighttpd/
 %{_libdir}/lighttpd/mod_fastcgi.so
 
 %changelog
+* Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 1.4.26-1
+- Updated to release 1.4.26.
+
  * Sun Mar 15 2009 Stanis Trendelenburg <stanis.trendelenburg@gmail.com> - 1.4.22-2
 - Fix the logrotate script.
 
