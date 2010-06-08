@@ -10,13 +10,13 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 1.00
+Version: 1.02
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
 Patch0: %{name}_checkconflicts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -51,6 +51,7 @@ Requires: perl >= 5.8.1
 Conflicts: perl(Catalyst) <= 5.80017
 Conflicts: perl(Devel::REPL) <= 1.003008
 Conflicts: perl(Fey::ORM) <= 0.23
+Conflicts: perl(KiokuDB) <= 0.41
 Conflicts: perl(MooseX::Aliases) <= 0.07
 Conflicts: perl(MooseX::AttributeHelpers) <= 0.22
 Conflicts: perl(MooseX::Attribute::Prototype) <= 0.10
@@ -103,6 +104,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
+* Tue Jun 08 2010 Steve Huff <shuff@vecna.org> - 1.02-1
+- Updated to version 1.02.
+- Later version require an updated Class::MOP.
+
 * Fri Mar 26 2010 Steve Huff <shuff@vecna.org> - 1.00-1
 - Updated to version 1.00!
 - Upstream is back to Stevan Little.
