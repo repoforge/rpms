@@ -13,7 +13,7 @@
 Summary: Interface to Gnome libxslt library
 Name: perl-XML-LibXSLT
 Version: 1.63
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-LibXSLT/
@@ -26,6 +26,8 @@ BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 ### XML::LibXML 1.70 introduces a non-backwards-compatible ABI
 BuildRequires: perl(XML::LibXML) >= 1.60, perl(XML::LibXML) <= 1.69
+BuildRequires: perl(XML::LibXML::Common)
+Requires: perl(XML::LibXML::Common)
 Conflicts: perl-XML-LibXML >= 1.70
 
 %description
@@ -63,6 +65,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/benchmark.pl
 
 %changelog
+* Tue Jun 08 2010 Steve Huff <shuff@vecna.org> - 1.63-3
+- Captured missing XML::LibXML::Common dependency.
+
 * Tue May 18 2010 Steve Huff <shuff@vecna.org> - 1.63-2
 - Captured dependencies more precisely.
 
