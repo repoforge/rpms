@@ -3,34 +3,30 @@
 # Upstream: Carsten Haitzler <raster$rasterman,com>
 # Upstream: <enlightenment-devel$lists,sourceforge,net>
 
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 
 Summary: Powerful image loading and rendering library
 Name: imlib2
-Version: 1.4.0
+Version: 1.4.4
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://enlightenment.org/pages/imlib2.html
 
-Source: http://dl.sf.net/enlightenment/imlib2-%{version}.tar.gz
+Source: http://dl.sf.net/project/enlightenment/imlib2-src/%{version}/imlib2-%{version}.tar.bz2
 Patch0: imlib2-1.2.1-X11-path.patch
 Patch1: imlib2-1.3.0-multilib.patch
 Patch2: imlib2-1.3.0-loader_overflows.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: bzip2-devel
 BuildRequires: freetype-devel >= 1.2
-BuildRequires: zlib-devel, bzip2-devel
-BuildRequires: libpng-devel, libjpeg-devel, libungif-devel, libtiff-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: libtiff-devel
+BuildRequires: libungif-devel
+BuildRequires: zlib-devel
 # The ltdl.h file is required...
 BuildRequires: libtool, gcc-c++
 %{?_without_modxorg:BuildRequires: XFree86-devel}
@@ -56,9 +52,9 @@ Header, static libraries and documentation for Imlib2.
 
 %prep
 %setup
-%patch0 -p1 -b .x11-path
+#patch0 -p1 -b .x11-path
 #patch1 -p1 -b .multilib
-%patch2 -p1 -b .overflow
+#patch2 -p1 -b .overflow
 
 %{__perl} -pi.orig -e 's|/lib(?=[^/\w])|/%{_lib}|g' configure
 
@@ -70,6 +66,7 @@ touch `find -name Makefile.in`
 %build
 %configure \
     --disable-dependency-tracking \
+    --disable-static \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
     --with-pic \
 %ifarch %{ix86}
@@ -108,17 +105,17 @@ touch `find -name Makefile.in`
 %defattr(-, root, root, 0755)
 %{_bindir}/imlib2-config
 %{_includedir}/Imlib2.h
-%{_libdir}/libImlib2.a
 ### Required by kdelibs bug (RHbz #142244)
 %{_libdir}/libImlib2.la
 %{_libdir}/libImlib2.so
 %{_libdir}/pkgconfig/imlib2.pc
-%exclude %{_libdir}/imlib2/filters/*.a
 %exclude %{_libdir}/imlib2/filters/*.la
-%exclude %{_libdir}/imlib2/loaders/*.a
 %exclude %{_libdir}/imlib2/loaders/*.la
 
 %changelog
+* Tue Jun 01 2010 Dag Wieers <dag@wieers.com> - 1.4.4-1
+- Updated to release 1.4.4.
+
 * Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.4.0-1
 - Updated to release 1.4.0.
 

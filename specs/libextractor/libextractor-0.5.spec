@@ -9,8 +9,8 @@
 
 Summary: Meta-data extraction library
 Name: libextractor
-Version: 0.6.0
-Release: 1%{?dist}
+Version: 0.5.22
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/libextractor/
@@ -122,11 +122,8 @@ fi
 #%{python_sitearch}/extractor.so
 
 %changelog
-* Thu Jun 03 2010 Dag Wieers <dag@wieers.com> - 0.6.0-2
+* Thu Jun 03 2010 Dag Wieers <dag@wieers.com> - 0.5.22-2
 - Rebuild against exiv2-0.20.
-
-* Wed Jan 20 2010 Dag Wieers <dag@wieers.com> - 0.6.0-1
-- Updated to release 0.6.0.
 
 * Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 0.5.22-1
 - Updated to release 0.5.22.

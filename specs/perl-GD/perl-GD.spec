@@ -5,7 +5,6 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 

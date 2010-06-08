@@ -3,19 +3,31 @@
 
 Summary: Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name: mindi
-Version: 2.0.0
+Version: 2.0.7.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.mondorescue.org/
+
 Source: ftp://ftp.mondorescue.org/src/mindi-%{version}.tar.gz
-
-# Not yet possible as busybox is a binary that should go alongside
-# BuildArch:	noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: bzip2 >= 0.9, mkisofs, ncurses, binutils, gawk, dosfstools, mindi-busybox, parted, perl, mtools, which, grep >= 2.5
 
-# Not on all systems
+### Not yet possible as busybox is a binary that should go alongside
+#BuildArch: noarch
+Requires: binutils
+Requires: bzip2 >= 0.9
+Requires: dosfstools
+Requires: gawk
+Requires: grep >= 2.5
+Requires: mindi-busybox
+Requires: mkisofs
+Requires: mtools
+Requires: ncurses
+Requires: parted
+Requires: perl
+Requires: which
+
+### Not on all systems
 #Conflicts: bonnie++
 
 %description
@@ -40,7 +52,6 @@ export MANDIR="%{_mandir}"
 export LIBDIR="%{_libdir}"
 export CACHEDIR="%{_localstatedir}/cache/mindi"
 export PKGBUILDMINDI="true"
-
 sh -x install.sh
 
 %clean
@@ -48,16 +59,20 @@ sh -x install.sh
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING INSTALL README* svn.log TODO
+%doc ChangeLog COPYING INSTALL NEWS README* TODO
 %doc %{_mandir}/man8/mindi.8*
 %config(noreplace) %{_sysconfdir}/mindi/
 %{_libdir}/mindi/
 %{_localstatedir}/cache/mindi/
 %{_sbindir}/mindi
 %{_sbindir}/mindi-bkphw
+%{_sbindir}/mindi-get-perl-modules
 %{_sbindir}/parted2fdisk
 %{_sbindir}/parted2fdisk.pl
 
 %changelog
+* Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2.0.7.3-1
+- Updated to release 2.0.7.3.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 2.0.0-1
 - Initial package. (using DAR)

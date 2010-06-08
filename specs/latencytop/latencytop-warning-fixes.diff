@@ -1,0 +1,58 @@
+---
+ fsync.c       |    7 +++++--
+ gtk_display.c |    2 +-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+--- a/fsync.c
++++ b/fsync.c
+@@ -32,6 +32,7 @@
+ #include <time.h>
+ #include <wchar.h>
+ #include <ctype.h>
++#include <sys/time.h>
+ 
+ #include <glib.h>
+ 
+@@ -51,7 +52,7 @@
+ static GList *fsync_data;
+ 
+ 
+-static chain_file(struct fsync_process *proc, char *filename)
++static void chain_file(struct fsync_process *proc, char *filename)
+ {
+ 	struct fsync_files *file;
+ 	GList *item;
+@@ -75,7 +76,7 @@
+ 	proc->files = g_list_append(proc->files, file);
+ }
+ 
+-static report_file(char *process, char *file)
++static void report_file(char *process, char *file)
+ {
+ 	struct fsync_process *proc;
+ 	GList *item;
+@@ -157,11 +158,13 @@
+ 	write_to_file("/sys/kernel/debug/tracing/current_tracer", "fsync");	
+ 	write_to_file("/sys/kernel/debug/tracing/iter_ctrl", "ftrace_printk");	
+ 	write_to_file("/sys/kernel/debug/tracing/tracing_enabled", "1");
++	return 0;
+ }
+ 
+ int disable_fsync_tracer(void)
+ {
+ 	write_to_file("/sys/kernel/debug/tracing/tracing_enabled", "0");
++	return 0;
+ }
+ 
+ 
+--- a/gtk_display.c
++++ b/gtk_display.c
+@@ -594,7 +594,7 @@
+ 			 G_CALLBACK(freeze_toggled), NULL);
+ }
+ 
+-static load_icons(void)
++static void load_icons(void)
+ {
+ 	GError *err;
+ 

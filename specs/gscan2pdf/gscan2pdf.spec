@@ -6,28 +6,27 @@
 
 %define desktop_vendor rpmforge
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 Summary: Graphical tool for producing a multipage PDF from a scan
 Name: gscan2pdf
-Version: 0.9.29
-Release: 2%{?dist}
+Version: 0.9.30
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://gscan2pdf.sourceforge.net/
 
-Source: http://dl.sf.net/gscan2pdf/gscan2pdf-%{version}.tar.gz
+Source: http://dl.sf.net/project/gscan2pdf/gscan2pdf/%{version}/gscan2pdf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: desktop-file-utils
 BuildRequires: gettext
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Goo::Canvas)
 BuildRequires: perl(Gtk2::ImageView)
 BuildRequires: perl(Sane) >= 0.02
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 Requires: djvulibre
 Requires: gocr
+Requires: goocanvas
 Requires: perl(Cairo)
 Requires: perl(Gtk2::Ex::PodViewer)
 Requires: perl(PDF::API2)
@@ -58,12 +57,10 @@ touch -d "now" Makefile.PL
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-%if %{!?_without_freedesktop:1}0
 desktop-file-install --delete-original \
     --vendor="%{desktop_vendor}" \
     --dir=%{buildroot}%{_datadir}/applications \
     %{buildroot}%{_datadir}/applications/gscan2pdf.desktop
-%endif
 
 %post
 update-desktop-database &>/dev/null ||:
@@ -87,13 +84,15 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_bindir}/gscan2pdf
 %{_bindir}/scanadf-perl
 %{_bindir}/scanimage-perl
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-gscan2pdf.desktop}
-%{?_without_freedesktop:%{_datadir}/applications/gscan2pdf.desktop}
+%{_datadir}/applications/%{desktop_vendor}-gscan2pdf.desktop
 %{_datadir}/gscan2pdf/
 %{perl_vendorlib}/Gscan2pdf.pm
 %{_datadir}/pixmaps/gscan2pdf.svg
 
 %changelog
+* Thu Jun 03 2010 Dag Wieers <dag@wieers.com> - 0.9.30-1
+- Updated to release 0.9.30.
+
 * Sun May 10 2009 Dag Wieers <dag@wieers.com> - 0.9.29-2
 - Added missing perl(Cairo) dependency.
 

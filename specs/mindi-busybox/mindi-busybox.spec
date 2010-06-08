@@ -3,7 +3,7 @@
 
 Summary: Busybox version suited for Mindi
 Name: mindi-busybox
-Version: 1.7.2
+Version: 1.7.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
@@ -13,6 +13,7 @@ Source: ftp://ftp.mondorescue.org/src/mindi-busybox-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExcludeArch: ppc
+BuildRequires: gcc
 
 %description
 This package provides a busybox version suited for Mindi.
@@ -33,10 +34,13 @@ This package provides a busybox version suited for Mindi.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog INSTALL LICENSE README svn.log TODO
+%doc AUTHORS ChangeLog INSTALL LICENSE NEWS README TODO
 %dir %{_libdir}/mindi/
 %{_libdir}/mindi/rootfs/
 
 %changelog
+* Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 1.7.3-1
+- Updated to release 1.7.3.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 1.7.2-1
 - Initial package. (using DAR)

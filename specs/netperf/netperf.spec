@@ -4,11 +4,11 @@
 
 Summary: Performance testing tool for TCP/UDP
 Name: netperf
-Version: 2.4.2
+Version: 2.4.5
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
-URL: http://www.netperf.org/netperf/NetperfPage.html 
+URL: http://www.netperf.org/netperf/NetperfPage.html
 
 Source: ftp://ftp.netperf.org/netperf/netperf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -21,7 +21,7 @@ Netperf is a tool to measure TCP/UDP performance.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}"
 %{__make} %{_smp_mflags}
 
 %install
@@ -47,5 +47,8 @@ Netperf is a tool to measure TCP/UDP performance.
 %{_bindir}/netserver
 
 %changelog
+* Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2.4.5-1
+- Updated to release 2.4.5.
+
 * Mon Oct 09 2006 Dag Wieers <dag@wieers.com> - 2.4.2-1
 - Initial package. (using DAR)

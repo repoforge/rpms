@@ -4,7 +4,7 @@
 Summary: Lua scripting language
 Name: lua
 Version: 5.1.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://www.lua.org/
@@ -38,12 +38,15 @@ you will need to install %{name}-devel.
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
-        s|^(INSTALL_TOP=).*$|$1 %{buildroot}%{_prefix}|;
-        s|^(INSTALL_LIB=).*$|$1 %{buildroot}%{_libdir}|;
-        s|^(INSTALL_MAN=).*$|$1 %{buildroot}%{_mandir}/man1|;
-        s|^(INSTALL_EXEC=).*$|$1 %{__install} -p -m0755|;
-        s|^(INSTALL_DATA=).*$|$1 %{__install} -p -m0644|;
+        s|^(INSTALL_TOP=).*$|$1%{buildroot}%{_prefix}|;
+        s|^(INSTALL_LIB=).*$|$1%{buildroot}%{_libdir}|;
+        s|^(INSTALL_MAN=).*$|$1%{buildroot}%{_mandir}/man1|;
+        s|^(INSTALL_EXEC=).*$|$1%{__install} -p -m0755|;
+        s|^(INSTALL_DATA=).*$|$1%{__install} -p -m0644|;
     ' Makefile
+%{__perl} -pi.orig -e '
+        s|^(CFLAGS=).*$|$1%{optflags} -fPIC|;
+    ' src/Makefile
 
 %build
 %{__make} linux all
@@ -76,6 +79,9 @@ you will need to install %{name}-devel.
 %{_libdir}/liblua.a
 
 %changelog
+* Fri May 14 2010 Dag Wieers <dag@wieers.com> - 5.1.4-2
+- Adapt compiler flags.
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 5.1.4-1
 - Updated to release 5.1.4.
 

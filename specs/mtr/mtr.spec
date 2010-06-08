@@ -5,15 +5,11 @@
 # Rationale: EL3 and EL4 include a real old mtr version.
 ##ExcludeDist: el4
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
-
 %define desktop_vendor rpmforge
 
 Summary: Network diagnostic tool
 Name: mtr
-Version: 0.75
+Version: 0.78
 Release: 1%{?dist}
 Epoch: 2
 License: GPL
@@ -31,8 +27,10 @@ Patch6: mtr-0.54-ipv6-ifaddr.patch
 Patch7: mtr-0.54-ipv6-ip6arpa.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, libtermcap-devel
-BuildRequires: automake, gtk+-devel
+BuildRequires: automake
+BuildRequires: gtk+-devel
+BuildRequires: libtermcap-devel
+BuildRequires: ncurses-devel
 
 %description
 Mtr is a network diagnostic tool that combines ping and traceroute
@@ -139,15 +137,20 @@ autoconf
 
 %files gtk
 %defattr(-, root, root, 0755)
+%config %{_sysconfdir}/pam.d/xmtr
+%config %{_sysconfdir}/security/console.apps/xmtr
 %{_bindir}/xmtr
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-xmtr.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Internet/xmtr.desktop}
+%{_datadir}/applications/%{desktop_vendor}-xmtr.desktop
 %{_datadir}/pixmaps/xmtr.xpm
 %{_sbindir}/xmtr
-%{_sysconfdir}/pam.d/xmtr
-%{_sysconfdir}/security/console.apps/xmtr
 
 %changelog
+* Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2:0.78-1
+- Updated to release 0.78.
+
+* Wed Jun 02 2010 Dag Wieers <dag@wieers.com> - 2:0.77-1
+- Updated to release 0.77.
+
 * Tue Oct 28 2008 Dag Wieers <dag@wieers.com> - 2:0.75-1
 - Updated to release 0.75.
 

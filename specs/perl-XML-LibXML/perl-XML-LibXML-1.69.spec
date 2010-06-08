@@ -1,10 +1,6 @@
-# $Id$
+# $Id: perl-XML-LibXML.spec 8518 2010-02-01 21:01:16Z shuff $
 # Authority: dag
 # Upstream: Petr Pajas <pajas$matfyz,cz>
-
-# ExcludeDist: el3 el4 el5
-
-### Versions newer than 1.69 change ABI and fail against perl-XML-XSLT using native libxslt
 
 ### EL4 and EL5 ship with perl-XML-LibXML 1.58
 ### but we should still provide this as an option for perl-Image-Info
@@ -16,7 +12,7 @@
 
 Summary: Interface to Gnome libxml2 xml parsing and DOM library
 Name: perl-XML-LibXML
-Version: 1.70
+Version: 1.69
 Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -77,15 +73,6 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/LibXML.pod
 
 %changelog
-* Mon Feb 01 2010 Steve Huff <shuff@vecna.org> - 
-- This version obsoletes the upstream perl-XML-LibXML-Common package.
-
-* Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 1.70-2
-- Update perl-Image-Info-alternative provides
-
-* Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 1.70-1
-- Updated to version 1.70.
-
 * Thu Sep 10 2009 Steve Huff <shuff_@_hmdc.harvard.edu> - 1.69-2
 - This provides perl-Image-Info-alternative = 1.29.
 

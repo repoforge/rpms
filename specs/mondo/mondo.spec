@@ -3,7 +3,7 @@
 
 Summary: Create system image for bare-metal disaster recovery from CD, DVD or tape
 Name: mondo
-Version: 2.2.4
+Version: 2.2.9.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
@@ -13,11 +13,22 @@ Source: ftp://ftp.mondorescue.org/src/mondo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExcludeArch: ppc
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: gcc-c++
+BuildRequires: libtool
 BuildRequires: newt-devel >= 0.50
-
-Requires: mindi >= 1.2.1, bzip2 >= 0.9, afio, mkisofs, binutils, newt >= 0.50, buffer, cdrecord
+Requires: afio
+Requires: binutils
+Requires: buffer
+Requires: bzip2 >= 0.9
+Requires: cdrecord
+Requires: mindi >= 2.0.7
+Requires: mkisofs
+Requires: newt >= 0.50
 %ifarch ia64
-Requires: elilo, parted
+Requires: elilo
+Requires: parted
 %else
 Requires: syslinux >= 1.52
 %endif
@@ -46,7 +57,7 @@ damaged system, as well as deploy similar or less similar systems.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README svn.log TODO
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
 %doc docs/en/mondorescue-howto.html docs/en/mondorescue-howto.pdf
 %doc %{_mandir}/man8/mondoarchive.8*
 %doc %{_mandir}/man8/mondorestore.8*
@@ -54,7 +65,12 @@ damaged system, as well as deploy similar or less similar systems.
 %{_localstatedir}/cache/mondo/
 %{_sbindir}/mondoarchive
 %{_sbindir}/mondorestore
+%{_sbindir}/mrtest_mountlist
+%{_sbindir}/mrtest_truncname
 
 %changelog
+* Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2.2.9.3-1
+- Updated to release 2.2.9.3.
+
 * Fri Nov 09 2007 Dag Wieers <dag@wieers.com> - 2.2.4-1
 - Initial package. (using DAR)

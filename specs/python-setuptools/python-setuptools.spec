@@ -7,9 +7,9 @@
 
 Summary: Download, build, install, upgrade, and uninstall Python packages
 Name: python-setuptools
-Version: 0.6c6
+Version: 0.6c7
 Release: 1%{?dist}
-License: PSFL/ZPL
+License: Python or ZPLv2.0
 Group: Development/Languages
 URL: http://peak.telecommunity.com/DevCenter/setuptools
 
@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel >= 2.3
 Requires: python-devel >= 2.3
+Provides: python-setuptools-devel = %{version}-%{release}
 
 %description
 setuptools is a collection of enhancements to the Python distutils that allow
@@ -27,7 +28,6 @@ have dependencies on other packages.
 
 %prep
 %setup -n %{real_name}-%{version}
-chmod -x *.txt
 find -name '*.py' | xargs sed -i '1s|^#!python|#!%{__python}|'
 
 %build
@@ -35,10 +35,11 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}" \
+%{__python} setup.py install -O1 --skip-build \
+    --root "%{buildroot}" \
     --single-version-externally-managed
-find %{buildroot}%{python_sitelib} -name '*.exe' -exec rm -f {} \;
-find %{buildroot}%{python_sitelib} -name '*.txt' -exec chmod -x {} \;
+find %{buildroot}%{python_sitelib} -name '*.exe' | xargs rm -f
+find %{buildroot}%{python_sitelib} -name '*.txt' | xargs chmod -x
 chmod +x %{buildroot}%{python_sitelib}/setuptools/command/easy_install.py
 
 %clean
@@ -51,5 +52,8 @@ chmod +x %{buildroot}%{python_sitelib}/setuptools/command/easy_install.py
 %{python_sitelib}/*
 
 %changelog
+* Mon Jun 07 2010 Dag Wieers <dag@wieers.com> - 0.6c7-1
+- Updated to release 0.6c7.
+
 * Tue Jul 10 2007 Dag Wieers <dag@wieers.com> - 0.6c6-1
 - Initial package. (using DAR)

@@ -33,7 +33,7 @@ output generation on the web.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install --single-version-externally-managed --optimize="1" --root="%{buildroot}"
+%{__python} setup.py install --single-version-externally-managed --optimize="1" --root="%{buildroot}" --prefix="%{_prefix}"
 
 %clean
 %{__rm} -rf %{buildroot}

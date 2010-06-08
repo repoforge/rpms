@@ -4,27 +4,25 @@
 
 %define desktop_vendor rpmforge
 
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-%{?fc4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 
 Summary: Record, distribute and replay X protocol data
 Name: xnee
-Version: 2.06
+Version: 3.06
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
 URL: http://www.gnu.org/software/xnee/
 
-Source: ftp://ftp.gnu.org/gnu/xnee/Xnee-%{version}.tar.gz
+Source: http://ftp.gnu.org/gnu/xnee/xnee-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk2-devel, desktop-file-utils, ghostscript, tetex, ImageMagick
+BuildRequires: ImageMagick
+BuildRequires: desktop-file-utils
+BuildRequires: ghostscript
+BuildRequires: gtk2-devel
+BuildRequires: tetex
 BuildRequires: texinfo
 %{!?_without_modxorg:BuildRequires: libXtst-devel}
 
@@ -34,7 +32,7 @@ useful for automated tests of applications or benchmarking of applications.
 Think of it as a robot.
 
 %prep
-%setup -n Xnee-%{version}
+%setup
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]
@@ -48,18 +46,18 @@ Categories=Application;AudioVideo;
 EOF
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor %{desktop_vendor}    \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	xnee.desktop
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    xnee.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -69,13 +67,24 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README TODO
 #%doc %{_infodir}/cnee.info*
 %doc %{_mandir}/man1/cnee.1*
+%doc %{_mandir}/man1/gnee.1*
+%doc %{_mandir}/man1/pnee.1*
+%doc %{_mandir}/man1/xnee.1*
 %{_bindir}/cnee
 %{_bindir}/gnee
-#%{_libdir}/libxnee*
-%{_datadir}/Xnee/
+%{_libdir}/bonobo/servers/pnee.server
+%{_libdir}/gnome-panel/pnee
+%{_libdir}/libtestcb.a
+%{_libdir}/libtestcb.la
 %{_datadir}/applications/%{desktop_vendor}-xnee.desktop
+%{_datadir}/pixmaps/xnee.png
+%{_datadir}/pixmaps/xnee.xpm
+%{_datadir}/xnee/
 
 %changelog
+* Tue Jun 01 2010 Dag Wieers <dag@wieers.com> - 3.06-1
+- Updated to release 3.06.
+
 * Mon Jun 25 2007 Dag Wieers <dag@wieers.com> - 2.06-1
 - Updated to release 2.06.
 
