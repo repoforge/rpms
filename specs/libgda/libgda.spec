@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Jorge Ferrer <jferrer$ieeesb,etsit,upm,es>
 
-
 %{?fc4:%define _without_mdbtools 1}
 %{?rh7:%define _without_mdbtools 1}
 %{?el2:%define _without_mdbtools 1}
@@ -11,7 +10,7 @@
 Summary: Library for writing gnome database programs
 Name: libgda
 Version: 1.2.3
-Release: 1.2%{?dist}
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnome-db.org/
@@ -110,9 +109,6 @@ scrollkeeper-update -q || :
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Nov 11 2005 Dries Verachtert <dries@ulyssis.org> - 1.2.3-1
 - Updated to release 1.2.3.
 

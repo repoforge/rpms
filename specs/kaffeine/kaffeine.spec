@@ -6,7 +6,6 @@
 
 ##ExcludeDist: el3 fc1
 
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 

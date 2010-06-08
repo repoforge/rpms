@@ -4,7 +4,7 @@
 Summary: File manager for the GNOME desktop
 Name: gnome-commander
 Version: 1.2.7
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.nongnu.org/gcmd/
@@ -12,6 +12,7 @@ URL: http://www.nongnu.org/gcmd/
 Source: http://ftp.gnome.org/pub/GNOME/sources/%{name}/1.2/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: exiv2-devel
 BuildRequires: gcc-c++
 BuildRequires: gettext >= 0.10.36
 BuildRequires: glib2-devel >= 2.6
@@ -67,6 +68,12 @@ scrollkeeper-update -q || :
 %{_datadir}/pixmaps/gnome-commander.png
 
 %changelog
+* Thu Jun 03 2010 Dag Wieers <dag@wieers.com> - 1.2.7-4
+- Rebuild against exiv2-0.20.
+
+* Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 1.2.7-3
+- Rebuild against exiv2-0.19.
+
 * Fri Jul 10 2009 Dag Wieers <dag@wieers.com> - 1.2.7-2
 - Rebuild against exiv2-0.18.2.
 

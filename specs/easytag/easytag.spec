@@ -4,7 +4,7 @@
 Summary: Tag editor for mp3, ogg, flac and other music files
 Name: easytag
 Version: 2.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://easytag.sourceforge.net/
@@ -46,6 +46,9 @@ tagging easier.
 %{_datadir}/pixmaps/EasyTAG.xpm
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 2.1-2
+- Rebuild agains newer faad2 2.7.
+
 * Wed May 09 2007 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 

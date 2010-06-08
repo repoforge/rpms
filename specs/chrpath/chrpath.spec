@@ -23,7 +23,7 @@ missing.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install

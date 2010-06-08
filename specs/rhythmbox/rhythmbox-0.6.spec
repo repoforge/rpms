@@ -11,20 +11,22 @@
 Name: rhythmbox
 Summary: Music Management Application
 Version: 0.6.10
-Release: 0.1%{?_with_xine:xine}%{?dist}
+Release: 0.2%{?_with_xine:xine}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
+
 #Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/0.6/%{name}-%{version}.tar.bz2
 Source: http://dl.sf.net/rhythmbox/rhythmbox-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: gtk2 >= 2.0.3
-Requires: libgnomeui >= 2.0.0
-Requires: eel2 >= 2.0.0
+
 BuildRequires: libgnomeui-devel >= 2.0.0
 BuildRequires: libvorbis-devel
 BuildRequires: libmusicbrainz-devel >= 2.0.0
 BuildRequires: gettext, scrollkeeper, gcc-c++
+Requires: gtk2 >= 2.0.3
+Requires: libgnomeui >= 2.0.0
+Requires: eel2 >= 2.0.0
 
 %if %{xine}
 BuildRequires: xine-lib-devel >= 1.0.0
@@ -46,31 +48,26 @@ GStreamer media framework. It has a number of features, including and easy to
 use music browser, searching and sorting, comprehensive audio format support
 through GStreamer, Internet Radio support, playlists and more.
 
-
 %prep
 %setup
-
 
 %build
 %configure %{?_with_xine:--enable-xine}
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
 export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
+%find_lang %name
 unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 %{__rm} -f %{buildroot}%{_libdir}/bonobo/*.{a,la}
-%find_lang %name
 
 %{__rm} %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 touch %{buildroot}%{_datadir}/rhythmbox/iradio-initial.pls
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 /sbin/ldconfig
@@ -81,7 +78,6 @@ for S in $SCHEMAS; do
 done
 
 %postun -p /sbin/ldconfig
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -101,8 +97,10 @@ done
 %{_libdir}/bonobo/servers/*.server
 %{_libdir}/pkgconfig/rhythmbox.pc
 
-
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.6.10-0.2
+- Rebuild against newer faad2 2.7.
+
 * Mon Mar 29 2004 Matthias Saou <http://freshrpms.net/> 0.6.10-0.1
 - Update to 0.6.10.
 - Use sf.net source URL for now since ftp.gnome.org isn't up-to-date.

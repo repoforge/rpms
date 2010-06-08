@@ -54,6 +54,12 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 * Thu Feb 04 2010 Steve Huff <shuff@vecna.org> - 2.0-1
 - Updated to release 2.0.
 
+* Sat Aug 30 2008 Dag Wieers <dag@wieers.com> - 1.4.1-1
+- Updated to release 1.4.1.
+
+* Sun Apr 15 2007 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Mon Jun 19 2006 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
