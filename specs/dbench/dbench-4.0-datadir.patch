@@ -1,0 +1,26 @@
+--- dbench-4.0/Makefile.in.datadir	2007-07-11 15:26:53.000000000 -0400
++++ dbench-4.0/Makefile.in	2007-07-11 15:27:53.000000000 -0400
+@@ -32,9 +32,9 @@ tbench_srv: $(SRV_OBJS)
+ 
+ # Careful here: don't install client.txt over itself.
+ install: all
+-	${INSTALLCMD} -d $(DESTDIR)/$(bindir) $(DESTDIR)/$(datadir) $(DESTDIR)/$(mandir)
++	${INSTALLCMD} -d $(DESTDIR)/$(bindir) $(DESTDIR)/$(datadir)/dbench $(DESTDIR)/$(mandir)
+ 	${INSTALLCMD} dbench tbench tbench_srv $(DESTDIR)/$(bindir)
+-	${INSTALLCMD} client.txt $(DESTDIR)/$(datadir)
++	${INSTALLCMD} -m644 client.txt $(DESTDIR)/$(datadir)/dbench
+ 	${INSTALLCMD} -m644 dbench.1 $(DESTDIR)/$(mandir)
+ 	ln -sf dbench.1 $(DESTDIR)/$(mandir)/tbench.1
+ 	ln -sf dbench.1 $(DESTDIR)/$(mandir)/tbench_srv.1
+--- dbench-4.0/dbench.c.datadir	2008-04-14 09:10:00.000000000 +0530
++++ dbench-4.0/dbench.c	2008-04-14 09:10:22.000000000 +0530
+@@ -28,7 +28,7 @@
+ 
+ struct options options = {
+ 	.timelimit           = 600,
+-	.loadfile            = DATADIR "/client.txt",
++	.loadfile            = DATADIR "/dbench/client.txt",
+ 	.directory           = ".",
+ 	.tcp_options         = TCP_OPTIONS,
+ 	.nprocs              = 10,
+ 
