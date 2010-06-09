@@ -9,11 +9,14 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 4.0.8
+Version: 3.7.15
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://ftp.yars.free.net/pub/source/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -75,24 +78,6 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %exclude %{_libdir}/liblftp-tasks.la
 
 %changelog
-* Thu Jun 10 2010 Dag Wieers <dag@wieers.com> - 4.0.8-1
-- Updated to release 4.0.8.
-
-* Fri May 14 2010 Dag Wieers <dag@wieers.com> - 4.0.7-1
-- Updated to release 4.0.7.
-
-* Tue Apr 06 2010 Dag Wieers <dag@wieers.com> - 4.0.6-1
-- Updated to release 4.0.6.
-
-* Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 4.0.5-1
-- Updated to release 4.0.5.
-
-* Tue Nov 03 2009 Dag Wieers <dag@wieers.com> - 4.0.3-1
-- Updated to release 4.0.3.
-
-* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 4.0.1-1
-- Updated to release 4.0.1.
-
 * Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 3.7.15-1
 - Updated to release 3.7.15.
 
