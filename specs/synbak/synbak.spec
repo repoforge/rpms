@@ -4,7 +4,7 @@
 
 Summary: Universal backup system
 Name: synbak
-Version: 1.2.1
+Version: 1.3.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -14,8 +14,16 @@ Source: http://www.initzero.it/products/opensource/synbak/download/synbak-%{vers
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl-XML-Parser, gettext
-Requires: bash >= 2.0, bc, gawk, mktemp >= 1.5, nc, rsync, sed, tar
+BuildRequires: gettext
+BuildRequires: perl-XML-Parser
+Requires: bash >= 2.0
+Requires: bc
+Requires: gawk
+Requires: mktemp >= 1.5
+Requires: nc
+Requires: rsync
+Requires: sed
+Requires: tar
 
 %description
 Synbak is an application designed to unify several backup methods. Synbak
@@ -49,11 +57,14 @@ Synbak can make reports using email, html, rss-feeds and more...
 %{__rm} -rf %{buildroot}%{_docdir}
 
 %files -f %{name}.lang
-%doc AUTHORS BUGS ChangeLog COPYING INSTALL NEWS README THANKS TODO examples/
+%doc AUTHORS BUGS ChangeLog COPYING FAQ INSTALL NEWS README* THANKS TODO
 %{_bindir}/synbak
 %{_datadir}/synbak/
 
 %changelog
+* Wed Jun 09 2010 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Tue Feb 26 2008 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

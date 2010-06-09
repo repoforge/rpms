@@ -7,14 +7,14 @@
 
 %{?el5:%define _with_compat_gcc_version 34}
 %{?el4:%define _without_bluez 1}
+%{?el4:%define _without_curl 1}
 %{?el3:%define audio_drv_list esd,oss,sdl}
 %{?el3:%define _without_bluez 1}
-%{?rh9:%define audio_drv_list esd,oss,sdl}
-%{?rh9:%define _without_bluez 1}
+%{?el3:%define _without_curl 1}
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.10.6
+Version: 0.12.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
@@ -28,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel
 BuildRequires: zlib-devel
 %{?_with_compat_gcc_version:BuildRequires: compat-gcc-%{_with_compat_gcc_version}}
+%{!?_without_curl:BuildRequires: curl-devel}
 #BuildRequires: texi2html
 
 %description
@@ -50,8 +51,8 @@ reasonnable speed while being easy to port on new host CPUs.
 
 %prep
 %setup
-%patch0 -p1
-%patch2 -p1
+#patch0 -p1
+#patch2 -p1
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -156,11 +157,12 @@ EOF
 %build
 ./configure \
     --prefix="%{_prefix}" \
-    --cc="gcc%{?_with_compat_gcc_version}" \
+    --cc="%{__cc}%{?_with_compat_gcc_version}" \
     --interp-prefix="%{_prefix}/qemu-%%M" \
     --audio-drv-list="%{audio_drv_list}" \
     --audio-card-list="ac97,adlib,cs4231a,es1370,gus,sb16" \
-%{?_without_bluez:--disable-bluez}
+%{?_without_bluez:--disable-bluez} \
+%{?_without_curl:--disable-curl}
 #   --disable-gcc-check
 %{__make} %{?_smp_mflags}
 
@@ -200,6 +202,9 @@ fi
 %{_datadir}/qemu/
 
 %changelog
+* Wed Jun 09 2010 Dag Wieers <dag@wieers.com> - 0.12.4-1
+- Updated to release 0.12.4.
+
 * Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 0.10.6-1
 - Updated to release 0.10.6.
 
