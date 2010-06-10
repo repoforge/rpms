@@ -15,9 +15,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://lftp.yar.ru/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
 Source: http://ftp.yars.free.net/pub/source/lftp/lftp-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
