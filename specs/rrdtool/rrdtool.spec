@@ -13,12 +13,14 @@
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
 Version: 1.4.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
 
 Source: http://oss.oetiker.ch/rrdtool/pub/rrdtool-%{version}.tar.gz
+Source1: rrdcached.init
+Source2: rrdcached.sysconfig
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cairo-devel
@@ -148,8 +150,33 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{__rm} -f %{buildroot}%{perl_archlib}/perllocal.pod
 %{__rm} -f %{buildroot}%{perl_vendorarch}/ntmake.pl
 
+# Init script/sysconfig for rrfdcached
+%{__mkdir} -p %{buildroot}%{_initrddir}
+%{__cp} %{SOURCE1} %{buildroot}%{_initrddir}/rrdcached
+%{__mkdir} -p %{buildroot}%{_sysconfdir}/sysconfig
+%{__cp} %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/rrdcached
+
+# Create dir for rrdcached data and unix socket
+%{__mkdir} -p %{buildroot}%{_localstatedir}/rrdtool/rrdcached
+
 %clean
 %{__rm} -rf %{buildroot}
+
+%pre 
+# Add the "rrdcached" user
+/usr/sbin/useradd -c "rrdcached" \
+	-s /sbin/nologin -r -d %{_localstatedir}/rrdtool/rrdcached rrdcached  2> /dev/null || :
+
+%post 
+# Register the rrdcached service
+/sbin/chkconfig --add rrdcached
+
+%preun 
+if [ $1 = 0 ]; then
+	/sbin/service rrdcached stop > /dev/null 2>&1
+	/sbin/chkconfig --del rrdcached
+fi
+
 
 %files
 %defattr(-, root, root, 0755)
@@ -157,6 +184,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc examples/
 %doc %{_mandir}/man1/*.1*
 %doc %{_mandir}/man3/librrd.3*
+%{_initrddir}/rrdcached
+%{_sysconfdir}/sysconfig/rrdcached
 %{_bindir}/rrdcached
 %{_bindir}/rrdcgi
 %{_bindir}/rrdtool
@@ -164,6 +193,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_datadir}/rrdtool/
 %{_libdir}/librrd.so.*
 %{_libdir}/librrd_th.so.*
+%attr(775,rrdcached,rrdcached) %dir %{_localstatedir}/rrdtool/rrdcached
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -209,6 +239,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_libdir}/lua/
 
 %changelog
+* Fri Jun 11 2010 Christoph Maser <cmaser@gmx.de> - 1.4.3-3
+- create rrdcached user
+- add directory for rrdcached data and socket
+- add init script and sysconfig for rrdcached
+
 * Fri May 14 2010 Christoph Maser <cmaser@gmx.de> - 1.4.3-2
 - evaluating perl version will not work in mock
 - lua fixes
