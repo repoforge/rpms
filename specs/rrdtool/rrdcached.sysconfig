@@ -1,0 +1,2 @@
+# Settings for rrdcached
+OPTIONS="-l unix:/var/rrdtool/rrdcached/rrdcachd.sock -s rrdcached -m 664 -b /var/rrdtool/rrdcached"
