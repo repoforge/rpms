@@ -6,13 +6,13 @@
 
 Summary: GUI SFTP/FTP client
 Name: filezilla
-Version: 3.3.2
+Version: 3.3.2.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://filezilla-project.org/
 
-Source0: http://dl.sf.net/project/filezilla/FileZilla_Client/%{version}/FileZilla_%{version}_src.tar.bz2
+Source0: http://prdownloads.sourceforge.net/project/filezilla/FileZilla_Client/%{version}/FileZilla_%{version}_src.tar.bz2
 Source1: http://ftp.gnu.org/pub/gnu/gnutls/gnutls-%{gnutls_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -77,19 +77,17 @@ export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING docs/ GPL.html INSTALL NEWS README
-%doc %{_mandir}/man1/filezilla.1*
-%doc %{_mandir}/man1/fzputtygen.1*
-%doc %{_mandir}/man1/fzsftp.1*
-%doc %{_mandir}/man5/fzdefaults.xml.5*
-%{_bindir}/filezilla
-%{_bindir}/fzputtygen
-%{_bindir}/fzsftp
+%doc %{_mandir}/man?/*
+%{_bindir}/*
 %{_datadir}/applications/filezilla.desktop
 %{_datadir}/filezilla/
 %{_datadir}/icons/hicolor/*/apps/filezilla.png
 %{_datadir}/pixmaps/filezilla.png
 
 %changelog
+* Fri Jun 11 2010 Steve Huff <shuff@vecna.org> - 3.3.2.1-1
+- Updated to version 3.3.2.1.
+
 * Sun Feb 21 2010 Steve Huff <shuff@vecna.org> - 3.3.2-1
 - Updated to version 3.3.2.
 
