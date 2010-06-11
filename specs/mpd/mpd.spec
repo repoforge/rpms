@@ -8,7 +8,7 @@
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.15.9
+Version: 0.15.10
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -37,14 +37,12 @@ BuildRequires: libmodplug-devel
 BuildRequires: libmpcdec-devel
 BuildRequires: libogg-devel
 BuildRequires: libsamplerate-devel
-BuildRequires: libshout-devel
+BuildRequires: libshout-devel >= 2.2.2
 # BuildRequires: libsidplay2-devel
 BuildRequires: libvorbis-devel
 # BuildRequires: libwildmidi-devel
 BuildRequires: mikmod-devel
 BuildRequires: pkgconfig
-# remove the speex-devel dependency once libshout >= 2.2.2-2 is in the repo
-BuildRequires: speex-devel
 # BuildRequires: sqlite-devel
 BuildRequires: zziplib-devel
 %{!?_without_pulseaudio:BuildRequires: pulseaudio-devel}
@@ -101,6 +99,9 @@ export FLAC_LIBS='-L%{_libdir}'
 %{_bindir}/mpd
 
 %changelog
+* Fri Jun 11 2010 Steve Huff <shuff@vecna.org> - 0.15.10-1
+- Update to 0.15.10.
+
 * Tue Mar 23 2010 Steve Huff <shuff@vecna.org> - 0.15.9-1
 - Update to 0.15.9.
 
