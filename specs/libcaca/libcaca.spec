@@ -2,32 +2,37 @@
 # Authority: dag
 # Upstream: Sam Hocevar <sam$zoy,org>
 
+%{?el5: %define _with_modxorg 1}
+%{?el3: %define _without_glut 1}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7:  %define _with_modxorg 1}
-%{?el5:  %define _with_modxorg 1}
-%{?fc6:  %define _with_modxorg 1}
-%{?fc5:  %define _with_modxorg 1}
+%{!?ruby_sitelib: %global ruby_sitelib %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"] ')}
+%{!?ruby_sitearchdir: %global ruby_sitearchdir %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")}
 
-%{?el3:%define _without_glut 1}
-%{?el2:%define _without_glut 1}
+%define version_beta .beta17
 
 Summary: Library for Colour AsCii Art, text mode graphics
 Name: libcaca
 Version: 0.99
-Release: 0.1.beta11%{?dist}
-License: LGPL
+Release: 0.1%{?version_beta}%{?dist}
+License: LGPLv2
 Group: System Environment/Libraries
 URL: http://sam.zoy.org/projects/libcaca/
 
-Source: http://libcaca.zoy.org/files/libcaca-%{version}.beta11.tar.gz
+Source: http://libcaca.zoy.org/files/libcaca-%{version}%{?version_beta}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel >= 5, slang-devel, pango-devel
-BuildRequires: imlib2-devel, zlib-devel, doxygen, tetex-latex, tetex-dvips
+BuildRequires: cppunit-devel
+BuildRequires: ncurses-devel >= 5
+BuildRequires: slang-devel
+BuildRequires: pango-devel
+BuildRequires: imlib2-devel
+BuildRequires: zlib-devel
+BuildRequires: doxygen
+BuildRequires: tetex-latex, tetex-dvips
 %{!?_without_glut:BuildRequires: glut-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel}
+
 
 %description
 libcaca is the Colour AsCii Art library. It provides high level functions
@@ -51,6 +56,8 @@ compile applications or shared objects that use libcaca.
 %package -n caca-utils
 Summary: Colour AsCii Art Text mode graphics utilities based on libcaca
 Group: Amusements/Graphics
+Requires: ruby(abi) >= 1.8
+BuildRequires: ruby >= 1.8
 
 %description -n caca-utils
 This package contains utilities and demonstration programs for libcaca, the
@@ -68,13 +75,12 @@ rendering features such as line and ellipses drawing, triangle filling and
 sprite blitting.
 
 %prep
-%setup -n %{name}-%{version}.beta11
+%setup -n %{name}-%{version}%{?version_beta}
 
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
 	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--disable-rpath \
 	--enable-imlib2 \
 	--enable-ncurses \
 	--enable-slang \
@@ -89,53 +95,77 @@ sprite blitting.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-# We want to include the docs ourselves from the source directory
-%{__mv} %{buildroot}%{_docdir}/libcucul-dev libcucul-dev-docs
-
 %clean
 %{__rm} -rf %{buildroot}
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%post devel -p /sbin/ldconfig
+%postun devel -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %{_libdir}/libcaca.so.*
 %{_libdir}/libcucul.so.*
+%{_libdir}/libcaca++.so.*
+%{_libdir}/libcucul++.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING libcucul-dev-docs/*
+%doc ChangeLog COPYING
 %doc %{_mandir}/man1/caca-config.1*
 %doc %{_mandir}/man3/*.3*
 %{_bindir}/caca-config
 %{_includedir}/caca.h
 %{_includedir}/caca0.h
 %{_includedir}/cucul.h
+%{_includedir}/caca++.h
+%{_includedir}/caca_conio.h
+%{_includedir}/caca_types.h
 %{_libdir}/libcaca.a
 %exclude %{_libdir}/libcaca.la
 %{_libdir}/libcaca.so
-%{_libdir}/libcucul.a
+%{_libdir}/libcaca++.a
+%exclude %{_libdir}/libcaca++.la
+%{_libdir}/libcaca++.so
+#%{_libdir}/libcucul.a
 %exclude %{_libdir}/libcucul.la
 %{_libdir}/libcucul.so
+%exclude %{_libdir}/libcucul++.la
+%{_libdir}/libcucul++.so
 %{_libdir}/pkgconfig/caca.pc
 %{_libdir}/pkgconfig/cucul.pc
+%{_libdir}/pkgconfig/caca++.pc
+%{_libdir}/pkgconfig/cucul++.pc
+%{_defaultdocdir}/libcaca-dev/*
+%{_defaultdocdir}/libcucul-dev/*
 
 %files -n caca-utils
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING NEWS NOTES README THANKS TODO
+%doc AUTHORS COPYING NEWS NOTES README THANKS
 %doc %{_mandir}/man1/cacademo.1*
 %doc %{_mandir}/man1/cacafire.1*
 %doc %{_mandir}/man1/cacaplay.1*
 %doc %{_mandir}/man1/cacaserver.1*
 %doc %{_mandir}/man1/cacaview.1*
-%doc %{_mandir}/man1/img2irc.1*
+%doc %{_mandir}/man1/img2txt.1*
 %{_bindir}/cacademo
 %{_bindir}/cacafire
 %{_bindir}/cacaplay
 %{_bindir}/cacaserver
 %{_bindir}/cacaview
-%{_bindir}/img2irc
+%{_bindir}/img2txt
 %{_datadir}/libcaca/
+%{ruby_sitelib}/caca.rb
+%exclude %{ruby_sitearchdir}/caca.la
+%{ruby_sitearchdir}/caca.so
 
 %changelog
+* Sat Jun 12 2010 Yury V. Zaytsev <yury@shurup.com> - 0.99-0.1.beta17
+- Updates from Bjarne Saltbaek.
+- Minor fixes.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.99-0.1.beta11
 - Updated to release 0.99.beta11.
 
