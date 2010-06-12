@@ -29,6 +29,7 @@ BuildRequires: imlib2-devel
 BuildRequires: zlib-devel
 BuildRequires: doxygen
 BuildRequires: tetex-latex, tetex-dvips
+BuildRequires: ruby >= 1.8, ruby-devel >= 1.8
 %{!?_without_glut:BuildRequires: glut-devel}
 %{!?_with_modxorg:BuildRequires: XFree86-devel}
 %{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel}
@@ -56,8 +57,7 @@ compile applications or shared objects that use libcaca.
 %package -n caca-utils
 Summary: Colour AsCii Art Text mode graphics utilities based on libcaca
 Group: Amusements/Graphics
-Requires: ruby(abi) >= 1.8
-BuildRequires: ruby >= 1.8
+Requires: ruby >= 1.8, ruby(abi) >= 1.8
 
 %description -n caca-utils
 This package contains utilities and demonstration programs for libcaca, the
@@ -129,7 +129,7 @@ sprite blitting.
 %{_libdir}/libcaca++.a
 %exclude %{_libdir}/libcaca++.la
 %{_libdir}/libcaca++.so
-#%{_libdir}/libcucul.a
+#{_libdir}/libcucul.a
 %exclude %{_libdir}/libcucul.la
 %{_libdir}/libcucul.so
 %exclude %{_libdir}/libcucul++.la
@@ -139,7 +139,7 @@ sprite blitting.
 %{_libdir}/pkgconfig/caca++.pc
 %{_libdir}/pkgconfig/cucul++.pc
 %{_defaultdocdir}/libcaca-dev/*
-%{_defaultdocdir}/libcucul-dev/*
+%{_defaultdocdir}/libcucul-dev
 
 %files -n caca-utils
 %defattr(-, root, root, 0755)
