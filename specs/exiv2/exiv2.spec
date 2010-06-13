@@ -24,6 +24,8 @@ BuildRequires: graphviz
 BuildRequires: libtool
 BuildRequires: libxslt
 BuildRequires: python
+BuildRequires: zlib-devel 
+BuildRequires: expat-devel 
 
 %description
 Exiv2 comprises of a C++ library and a command line utility to access image
@@ -85,6 +87,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libexiv2.la
 
 %changelog
+* Sun Jun 13 2010 Fabian Arrotin <fabian.arrotin@arrfab.net>
+- Added missing zlib-devel & expat-devel BuildRequires
+
 * Tue Jun 01 2010 Dag Wieers <dag@wieers.com> - 0.20-1
 - Updated to release 0.20.
 
