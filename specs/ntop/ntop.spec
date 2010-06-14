@@ -2,15 +2,11 @@
 # Authority: dag
 # Upstream: Luca Deri <deri$ntop,org>
 
-
-%{!?dtag:%define _with_tcpwrappersdevel 1}
-%{!?dtag:%define _with_libpcapdevel 1}
-
-%{?fc7:%define _with_libpcapdevel 1}
-%{?fc7:%define _with_tcpwrappersdevel 1}
-
-%{?el5:%define _with_libpcapdevel 1}
-%{?fc6:%define _with_libpcapdevel 1}
+%{?el5:%define _without_tcpwrappersdevel 1}
+%{?el4:%define _without_libpcapdevel 1}
+%{?el4:%define _without_tcpwrappersdevel 1}
+%{?el3:%define _without_libpcapdevel 1}
+%{?el3:%define _without_tcpwrappersdevel 1}
 
 %define logmsg logger -t %{name}/rpm
 
@@ -43,8 +39,8 @@ BuildRequires: net-snmp-devel
 BuildRequires: openssl-devel
 BuildRequires: rrdtool-devel
 BuildRequires: zlib-devel
-%{?_with_libpcapdevel:BuildRequires: libpcap-devel}
-%{?_with_tcpwrappersdevel:BuildRequires: tcp_wrappers-devel}
+%{!?_without_libpcapdevel:BuildRequires: libpcap-devel}
+%{!?_without_tcpwrappersdevel:BuildRequires: tcp_wrappers-devel}
 %{!?_without_tcpwrappers:BuildRequires: tcp_wrappers}
 Requires: /sbin/chkconfig
 Requires: /sbin/ldconfig

@@ -2,11 +2,12 @@
 # Authority: dag
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define vimdir %(echo %{_datadir}/vim/vim*/)
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
 Version: 8.5.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
@@ -43,11 +44,15 @@ for d in dblatex docbook-xsl images javascripts stylesheets ; do
 done
 
 # Python API
-install -Dpm 644 asciidocapi.py %{buildroot}%{python_sitelib}/asciidocapi.py
+install -Dp -m644 asciidocapi.py %{buildroot}%{python_sitelib}/asciidocapi.py
 
 # Make it easier to %exclude these with both rpm < and >= 4.7
 for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
     touch ${file}{c,o}
+done
+
+for file in $(cd vim; find * -type f); do
+    %{__install} -Dp -m0644 vim/$file %{buildroot}%{vimdir}/$file
 done
 
 #%{__install} -Dp -m0755 asciidoc.py %{buildroot}%{_bindir}/asciidoc
@@ -89,10 +94,18 @@ done
 %{_bindir}/asciidoc.py
 %{_datadir}/asciidoc/
 %{python_sitelib}/asciidocapi.py*
+%dir %{vimdir}
+%dir %{vimdir}/ftdetect/
+%{vimdir}/ftdetect/asciidoc_filetype.vim
+%dir %{vimdir}/syntax/
+%{vimdir}/syntax/asciidoc.vim
 %exclude %{_bindir}/*.py[co]
 %exclude %{_datadir}/asciidoc/filters/*/*.py[co]
 
 %changelog
+* Thu Jun 10 2010 Dag Wieers <dag@wieers.com> - 8.5.3-2
+- Added VIM integration.
+
 * Tue Jan 26 2010 Dag Wieers <dag@wieers.com> - 8.5.3-1
 - Updated to release 8.5.3.
 
