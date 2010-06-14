@@ -3,6 +3,9 @@
 
 ### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
 
+%define _without_nut 1
+%define _without_openjpeg 1
+
 %{?el5:%define _without_gsm 1}
 %{?el5:%define _without_speex 1}
 
@@ -19,8 +22,8 @@
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
-Version: 0.5
-Release: 3%{?dist}
+Version: 0.5.2
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/
@@ -31,15 +34,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel
 BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
+BuildRequires: opencore-amr-devel
 BuildRequires: zlib-devel
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
-%{!?_without_amrnb:BuildRequires: amrnb-devel}
-%{!?_without_amrwb:BuildRequires: amrwb-devel}
+%{!?_without_opencore_amr:BuildRequires: opencore-amr-devel}
 #%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
 %{!?_without_lame:BuildRequires: lame-devel}
+%{!?_without_nut:BuildRequires: libnut-devel}
+%{!?_without_openjpeg:BuildRequires: openjpeg-devel}
 %{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
@@ -116,26 +121,35 @@ export CFLAGS="%{optflags}"
     --shlibdir="%{_libdir}" \
     --mandir="%{_mandir}" \
     --incdir="%{_includedir}" \
-%{?_without_v4l:--disable-demuxer=v4l} \
-%ifarch x86_64
-    --extra-cflags="-fPIC" \
+    --disable-avisynth \
+%{?_without_v4l:--disable-demuxer=v4l --disable-demuxer=v4l2} \
+%ifarch %ix86
+    --extra-cflags="%{optflags}" \
 %endif
-%{!?_without_amrnb:--enable-libamr-nb} \
-%{!?_without_amrwb:--enable-libamr-wb} \
+%ifarch x86_64
+    --extra-cflags="%{optflags} -fPIC" \
+%endif
+    --enable-avfilter \
+    --enable-avfilter-lavf \
 %{!?_without_dirac:--enable-libdirac} \
 %{!?_without_faac:--enable-libfaac} \
-%{!?_without_faad:--enable-libfaad} \
+%{!?_without_faad:--enable-libfaad --enable-libfaadbin} \
 %{!?_without_gsm:--enable-libgsm} \
 %{!?_without_lame:--enable-libmp3lame} \
+%{!?_without_nut:--enable-libnut} \
+%{!?_without_opencore_amr:--enable-libopencore-amrnb --enable-libopencore-amrwb} \
 %{!?_without_speex:--enable-libspeex} \
 %{!?_without_theora:--enable-libtheora} \
 %{!?_without_x264:--enable-libx264} \
     --enable-gpl \
     --enable-nonfree \
+%{!?_without_openjpeg:--enable-libopenjpeg} \
     --enable-postproc \
     --enable-pthreads \
     --enable-shared \
     --enable-swscale \
+    --enable-vdpau \
+    --enable-version3 \
     --enable-x11grab
 #%{!?_without_dc1394:--enable-libdc1394} \
 ### Native encoding exists for vorbis and xvid
@@ -180,6 +194,7 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_datadir}/ffmpeg/
 %{_libdir}/libavcodec.so.*
 %{_libdir}/libavdevice.so.*
+%{_libdir}/libavfilter.so.*
 %{_libdir}/libavformat.so.*
 %{_libdir}/libavutil.so.*
 %{_libdir}/libswscale.so.*
@@ -190,21 +205,25 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %doc _docs/*
 %{_includedir}/libavcodec/
 %{_includedir}/libavdevice/
+%{_includedir}/libavfilter/
 %{_includedir}/libavformat/
 %{_includedir}/libavutil/
 %{_includedir}/libswscale/
 %{_libdir}/libavcodec.a
 %{_libdir}/libavdevice.a
+%{_libdir}/libavfilter.a
 %{_libdir}/libavformat.a
 %{_libdir}/libavutil.a
 %{_libdir}/libswscale.a
 %{_libdir}/libavcodec.so
 %{_libdir}/libavdevice.so
+%{_libdir}/libavfilter.so
 %{_libdir}/libavformat.so
 %{_libdir}/libavutil.so
 %{_libdir}/libswscale.so
 %{_libdir}/pkgconfig/libavcodec.pc
 %{_libdir}/pkgconfig/libavdevice.pc
+%{_libdir}/pkgconfig/libavfilter.pc
 %{_libdir}/pkgconfig/libavformat.pc
 %{_libdir}/pkgconfig/libavutil.pc
 %{_libdir}/pkgconfig/libswscale.pc
@@ -218,6 +237,12 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/pkgconfig/libpostproc.pc
 
 %changelog
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 0.5.2-2
+- Added more functionality.
+
+* Fri Jun 11 2010 Dag Wieers <dag@wieers.com> - 0.5.2-1
+- Updated to release 0.5.2.
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.5-3
 - Rebuild against newer faad2 2.7.
 

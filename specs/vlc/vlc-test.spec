@@ -16,6 +16,7 @@
 #define _without_dirac 1
 #define _without_opencv 1
 %define _without_directfb 1
+#define _without_ffmpeg 1
 
 %ifarch %{ix86}
 %define _with_loader 1
@@ -32,27 +33,10 @@
 %{?el4:%define _without_glide 1}
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_modxorg 1}
+### We don't want to build a VLC without graphical interface
+#{?el4:#define _without_qt4 1}
 %{?el4:%define _without_sysfs 1}
 %{?el4:%define _without_theora 1}
-
-%{?fc3:%define _without_avahi 1}
-%{?fc3:%define _without_jack 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc3:%define _without_sysfs 1}
-
-%{?fc2:%define _without_avahi 1}
-%{?fc2:%define _without_hal 1}
-%{?fc2:%define _without_jack 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc2:%define _without_sysfs 1}
-
-%{?fc1:%define _without_avahi 1}
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_hal 1}
-%{?fc1:%define _without_jack 1}
-%{?fc1:%define _without_modxorg 1}
-%{?fc1:%define _without_sysfs 1}
-%{?fc1:%define _without_theora 1}
 
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
@@ -62,56 +46,10 @@
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_modxorg 1}
+### We don't want to build a VLC without graphical interface
+#{?el3:#define _without_qt4 1}
 %{?el3:%define _without_sysfs 1}
 %{?el3:%define _without_theora 1}
-
-%{?rh9:%define _without_alsa 1}
-%{?rh9:%define _without_avahi 1}
-%{?rh9:%define _without_dbus1 1}
-%{?rh9:%define _without_fribidi 1}
-%{?rh9:%define _without_hal 1}
-%{?rh9:%define _without_jack 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh9:%define _without_sysfs 1}
-%{?rh9:%define _without_theora 1}
-%{?rh9:%define _without_x264 1}
-
-%{?rh7:%define _without_alsa 1}
-%{?rh7:%define _without_avahi 1}
-%{?rh7:%define _without_dbus1 1}
-%{?rh7:%define _without_freedesktop 1}
-%{?rh7:%define _without_fribidi 1}
-%{?rh7:%define _without_hal 1}
-%{?rh7:%define _without_jack 1}
-%{?rh7:%define _without_modxorg 1}
-%{?rh7:%define _without_sysfs 1}
-%{?rh7:%define _without_theora 1}
-%{?rh7:%define _without_vorbis 1}
-#{?rh7:#define _without_wxwidgets 1}
-%{?rh7:%define _without_x264 1}
-%{?rh7:%define _without_xosd 1}
-
-%{?el2:%define mozilla seamonkey-devel}
-%{?el2:%define _without_alsa 1}
-%{?el2:%define _without_arts 1}
-%{?el2:%define _without_avahi 1}
-%{?el2:%define _without_dbus1 1}
-%{?el2:%define _without_freedesktop 1}
-%{?el2:%define _without_fribidi 1}
-%{?el2:%define _without_glx 1}
-%{?el2:%define _without_hal 1}
-%{?el2:%define _without_jack 1}
-%{?el2:%define _without_modxorg 1}
-%{?el2:%define _without_sysfs 1}
-%{?el2:%define _without_theora 1}
-#{?el2:#define _without_upnp 1}
-%{?el2:%define _without_vorbis 1}
-#{?el2:#define _without_wxwidgets 1}
-%{?el2:%define _without_x264 1}
-%{?el2:%define _without_xosd 1}
-
-%{?yd3:%define _without_alsa 1}
-%{?yd3:%define _without_fribidi 1}
 
 %define desktop_vendor rpmforge
 #define ffmpeg_date 20061215
@@ -119,18 +57,18 @@
 #define ffmpeg_date 20080113
 %define ffmpeg_date 20080225
 #define live_date 2006.12.08
-%define live_date 2008.09.02
+#define live_date 2008.09.02
+%define live_date 2009.07.09
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-%define real_version 1.0.0-rc1
-Version: 1.0.1
-Release: 0.2%{?dist}
+Version: 1.0.6
+Release: 0.1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 
-Source0: http://downloads.videolan.org/pub/videolan/testing/vlc-%{real_version}/vlc-%{real_version}.tar.bz2
+Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 #Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source1: http://rpm.greysector.net/livna/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
@@ -142,7 +80,7 @@ Patch21: vlc-0.8.6e-directfb.patch
 Patch80: vlc-0.8.6e-xulrunner.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildrequires: autoconf
+BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: gcc-c++
 BuildRequires: gnutls-devel
@@ -178,6 +116,7 @@ BuildRequires: libxml2-devel
 %{!?_without_esd:BuildRequires: esound-devel}
 %{!?_without_faad2:BuildRequires: faad2-devel >= 2.5}
 %{!?_without_ffmpeg:BuildRequires: lame-devel, faac-devel}
+%{?_without_ffmpeg:BuildRequires: ffmpeg-devel}
 %{!?_without_flac:BuildRequires: flac-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
@@ -196,7 +135,9 @@ BuildRequires: libxml2-devel
 %{!?_without_mpeg2dec:BuildRequires: mpeg2dec-devel}
 %{!?_without_ncurses:BuildRequires: ncurses-devel}
 %{!?_without_ogg:BuildRequires: libogg-devel}
+%{!?_without_opencv:BuildRequires: opencv-devel}
 %{!?_without_portaudio:BuildRequires: portaudio-devel}
+%{!?_without_qt4:BuildRequires: qt4-devel}
 %{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel}
 %{!?_without_shout:BuildRequires: libshout-devel >= 2.2.2}
 %{!?_without_smb:BuildRequires: samba-common}
@@ -260,7 +201,7 @@ It can also be used as a server to stream in unicast or multicast in
 IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
-%setup -n %{name}-%{real_version} -a 1 -a 2
+%setup -a 1 -a 2
 #patch0 -p1 -b .ffmpegX11
 #patch1 -p1 -b .wx28
 
@@ -304,17 +245,17 @@ pushd ffmpeg-%{ffmpeg_date}
         --enable-libmp3lame \
 %{!?_without_gsm:--enable-libgsm} \
         --enable-libfaac \
+        --enable-libfaad \
 %{!?_without_theora:--enable-libtheora} \
 %{!?_without_vorbis:--enable-libvorbis} \
+%{!?_without_x246:--enable-libx264} \
         --enable-libxvid \
         --enable-nonfree \
         --enable-pp \
         --enable-pthreads \
         --enable-shared
-#{!?_without_x246:--enable-libx264} \
-#        --enable-static
 #        --enable-libdc1394 \
-#        --enable-libfaad \
+#        --enable-static
     %{__make} %{?_smp_mflags}
 popd
 
@@ -398,6 +339,7 @@ export QTLIB="$QTDIR/lib"
 %{?_with_pth:--enable-pth} \
     --enable-pulse \
 %{!?_without_pvr:--enable-pvr} \
+%{?_without_qt4:--disable-qt4 --disable-skins2} \
     --enable-real \
     --enable-realrtsp \
 %{?_without_sdl:--disable-sdl} \
@@ -415,6 +357,7 @@ export QTLIB="$QTDIR/lib"
 %{!?_without_twolame:--enable-twolame} \
 %{!?_without_upnp:--enable-upnp} \
 %{!?_without_v4l:--enable-v4l} \
+%{?_without_v4l2:--disable-v4l2} \
 %{?_without_vorbis:--disable-vorbis} \
 %{?_without_wxwidgets:--disable-wxwidgets --disable-skins2} \
 %{?_without_x264:--disable-x264} \

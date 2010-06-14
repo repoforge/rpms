@@ -55,12 +55,13 @@
 #define ffmpeg_date 20080113
 %define ffmpeg_date 20080225
 #define live_date 2006.12.08
+#define live_date 2008.09.02
 %define live_date 2009.07.09
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.9.9a
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -317,9 +318,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_opencv:--enable-opencv} \
 %{!?_without_portaudio:--enable-portaudio} \
 %{?_with_pth:--enable-pth} \
-%{?_without_qt4:--disable-qt4 --disable-skins2} \
     --enable-pulse \
 %{!?_without_pvr:--enable-pvr} \
+%{?_without_qt4:--disable-qt4 --disable-skins2} \
     --enable-real \
     --enable-realrtsp \
 %{?_without_sdl:--disable-sdl} \
@@ -397,8 +398,11 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 0.9.9a-5
+- Rebuild against libdvbpsi-0.1.7.
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-4
-- Rebuild against newer faad2 2.7.
+- Rebuild against newer faad2-2.7.
 
 * Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-3
 - Rebuild with minor fixed. (David Ward)

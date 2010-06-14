@@ -1,23 +1,24 @@
 # $Id$
-# Authority: yury
-# Upstream: http://opencore-amr.sourceforge.net
+# Authority: dag
 
-Summary: Adaptive Multi Rate speech codec
+Summary: Adaptive Multi-Rate Floating-point (AMR) Speech Codec
 Name: opencore-amr
 Version: 0.1.2
 Release: 1%{?dist}
-License: Apache License
+License: Distributable
 Group: System Environment/Libraries
 URL: http://opencore-amr.sourceforge.net/
 
-Source: http://dl.sf.net/opencore-amr/opencore-amr-%{version}.tar.gz
+Source: http://dl.sf.net/project/opencore-amr/opencore-amr/%{version}/opencore-amr-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc-c++
+
 %description
-This library contains an implementation of the 3GPP TS 26.073
-specification for the Adaptive Multi Rate (AMR) speech codec. The
-implementation is derived from the OpenCORE framework, part of the
-Google Android project.
+3GPP released reference implementations 3GPP Adaptive Multi-Rate
+Floating-point (AMR) Speech Codec (3GPP TS 26.104 V 7.0.0) and 3GPP
+AMR Adaptive Multi-Rate - Wideband (AMR-WB) Speech Codec (3GPP TS
+26.204 V7.0.0).
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
@@ -31,7 +32,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %build
 %configure --disable-static
@@ -56,7 +57,8 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc test/*
-%{_includedir}/*
+%{_includedir}/opencore-amrnb/
+%{_includedir}/opencore-amrwb/
 %{_libdir}/libopencore-amrnb.so
 %{_libdir}/libopencore-amrwb.so
 %{_libdir}/pkgconfig/opencore-amrnb.pc
@@ -65,6 +67,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libopencore-amrwb.la
 
 %changelog
-* Sat Jun 12 2010 Yury V. Zaytsev <yury@shurup.com> - 0.1.2-1
-- Salvaged from RPMForge SRPM by Bjarne Saltbaek.
-- Minor fixes.
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 0.1.2-1
+- Updated to release 0.1.2.
+
+* Fri Aug 07 2009 Bjarne Saltbaek <arnebjarne72@hotmail.com> 0.1.1-0.git20090807
+- Initial package.

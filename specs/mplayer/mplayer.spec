@@ -1,34 +1,37 @@
 # $Id$
 # Authority: matthias
 
-%{?el5:%define _without_nas 1}
+%define _without_directfb 1
+%define _without_fribidi 1
+%define _without_ivtv 1
+%define _without_nas 1
+%define _without_xss 1
 
 %{?el4:%define _without_modxorg 1}
-%{?el4:%define _without_nas 1}
 
 %{?el3:%define _without_alsa 1}
-%{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_binutils214 1}
 %{?el3:%define _without_modxorg 1}
-%{?el3:%define _without_nas 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_xvmc 1}
 %{?el3:%define _without_x264_patch 1}
-%{?el3:%define _without_binutils214 1}
 
+%define real_name MPlayer
+%define real_version rc3
 %define live_version 2009.07.09
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-%define real_version 2009-07-11
-Release: 0.41.svn20090711%{?dist}
+Release: 0.43.%{real_version}%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2
-Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot-%{real_version}.tar.bz2
+#Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot-%{real_version}.tar.bz2
+Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{real_version}.tar.bz2
 Source1: http://www.live555.com/liveMedia/public/live.%{live_version}.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
 Source3: mplayer.png
@@ -48,6 +51,7 @@ BuildRequires: libmatroska-devel
 BuildRequires: libpng-devel
 BuildRequires: libungif-devel
 BuildRequires: SDL-devel
+BuildRequires: yasm
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_amrnb:BuildRequires: amrnb-devel}
@@ -58,6 +62,7 @@ BuildRequires: SDL-devel
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{!?_without_dv:BuildRequires: libdv-devel}
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
+%{!?_without_enca:BuildRequires: enca-devel}
 %{!?_without_esd:BuildRequires: esound-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_fame:BuildRequires: libfame-devel}
@@ -66,11 +71,11 @@ BuildRequires: SDL-devel
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel}
-%{!?_without_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel}
+%{!?_without_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel, xorg-x11-proto-devel}
 %{!?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
-%{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
-%{!?_without_mpc:BuildRequires: libmpcdec-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_musepack:BuildRequires: libmpcdec-devel >= 1.2.1}
 %{!?_without_nas:BuildRequires: nas-devel}
 %{!?_without_samba:BuildRequires: samba-common}
 %{!?_without_speex:BuildRequires: speex-devel}
@@ -78,6 +83,7 @@ BuildRequires: SDL-devel
 %{!?_without_twolame:BuildRequires: twolame-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_xss:BuildRequires: libXScrnSaver-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 Requires: mplayer-fonts
 
@@ -119,7 +125,7 @@ nice antialiased shaded subtitles and OSD.
 This package contains the end user documentation.
 
 %prep
-%setup -n mplayer-export-%{real_version} -a 1
+%setup -n %{real_name}-%{version}%{real_version} -a 1
 %patch1 -p1 -b .playlist
 %patch10 -p1 -b .fribidi
 #patch100 -p0 -b .h264_static
@@ -146,23 +152,37 @@ export CFLAGS="%{optflags} -fomit-frame-pointer"
 echo | ./configure \
     --prefix="%{_prefix}" \
     --bindir="%{_bindir}" \
-    --datadir="%{_datadir}/mplayer" \
-    --mandir="%{_mandir}" \
     --confdir="%{_sysconfdir}/mplayer" \
+    --datadir="%{_datadir}/mplayer" \
     --libdir="%{_libdir}" \
+    --mandir="%{_mandir}" \
+    --extra-cflags="-I%{_includedir}/directfb" \
 %{!?_with_dvdread:--disable-dvdread} \
 %{?_without_gcccheck:--disable-gcc-check} \
 %{?_without_binutils214:--disable-ssse3} \
+%{!?_without_directfb:--enable-directfb} \
     --enable-dynamic-plugins \
+    --enable-fbdev \
+%{!?_without_fribidi:--enable-fribidi} \
     --enable-gui \
+%{!?_without_ivtv:--enable-ivtv} \
     --enable-joystick \
     --enable-largefiles \
+    --enable-lirc \
 %{?_without_live:--disable-live} \
 %{!?_without_osdmenu:--enable-menu} \
+%{!?_without_musepack:--enable-musepack} \
+    --enable-radio \
+    --enable-radio-capture \
+    --enable-runtime-cpudetection \
+    --enable-tv-v4l1 \
+    --enable-tv-v4l2 \
+%{!?_without_xss:--enable-xss} \
 %{?_without_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib="XvMCW"}} \
 %{!?_without_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
 %ifarch %{ix86}
-    --enable-runtime-cpudetection \
+    --enable-qtx \
+    --enable-win32dll \
 %endif
     --language="all"
 #    --enable-win32 \
@@ -170,6 +190,7 @@ echo | ./configure \
 #    --with-xanimlibdir="%{_libdir}/codecs" \
 #    --with-reallibdir="%{_libdir}/codecs" \
 #%{!?_without_live:--with-livelibdir="$(pwd)/live"}
+#    --enable-xmms \
 
 #%{__make} %{?_smp_mflags}
 %{__make}
@@ -256,6 +277,12 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc DOCS/*
 
 %changelog
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 1.0-0.43.rc3
+- Updated to release 1.0rc3.
+
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 1.0-0.42.svn20090711
+- Rebuild against libdvbpsi 
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 1.0-0.41.svn20090711
 - Rebuild against faad2 2.7.
 
