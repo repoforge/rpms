@@ -1,0 +1,96 @@
+diff -Naur a/m4/_xine.m4 b/m4/_xine.m4
+--- a/m4/_xine.m4	2009-12-19 02:14:27.000000000 +0300
++++ b/m4/_xine.m4	2010-06-14 18:32:55.000000000 +0400
+@@ -28,31 +28,11 @@
+      [  --disable-lirc          Turn off LIRC support.],
+      [], enable_lirc=yes)
+ 
+-  found_lirc=no
++  found_lirc=yes
+   if test x"$enable_lirc" = xyes; then
+     have_lirc=yes
+-    PKG_CHECK_MODULES(LIRC, liblircclient0, [found_lirc=yes], [])
+-    if test "$LIRC_CFLAGS" != ''; then
+-      LIRC_INCLUDE="$LIRC_CFLAGS"
+-    else
+-     AC_REQUIRE_CPP
+-     AC_CHECK_LIB(lirc_client,lirc_init,
+-           [AC_CHECK_HEADER(lirc/lirc_client.h, true, have_lirc=no)], have_lirc=no)
+-     if test "$have_lirc" = "yes"; then
+-
+-        if test x"$LIRC_PREFIX" != "x"; then
+-           lirc_libprefix="$LIRC_PREFIX/lib"
+-  	   LIRC_INCLUDE="-I$LIRC_PREFIX/include"
+-        fi
+-        for llirc in $lirc_libprefix /lib /usr/lib /usr/local/lib; do
+-          AC_CHECK_FILE(["$llirc/liblirc_client.a"],
+-            [LIRC_LIBS="$llirc/liblirc_client.a"
+-             found_lirc=yes],,)
+-        done
+-     else
+-         AC_MSG_RESULT([*** LIRC client support not available, LIRC support will be disabled ***]);
+-     fi
+-    fi
++    LIRC_INCLUDE=" -I/usr/include/lirc "
++    LIRC_LIBS=" -llirc_client "
+   fi
+      if test "$found_lirc" = yes; then
+ 	AC_DEFINE([HAVE_LIRC],,[Define this if you have LIRC (liblirc_client) installed])
+diff -Naur a/src/fb/lirc.c b/src/fb/lirc.c
+--- a/src/fb/lirc.c	2009-12-19 03:34:22.000000000 +0300
++++ b/src/fb/lirc.c	2010-06-14 18:30:03.000000000 +0400
+@@ -28,7 +28,7 @@
+ #include <pthread.h>
+ #include <signal.h>
+ 
+-#include <lirc/lirc_client.h>
++#include <lirc_client.h>
+ 
+ #include "main.h"
+ #include "keys.h"
+diff -Naur a/src/fb/Makefile.am b/src/fb/Makefile.am
+--- a/src/fb/Makefile.am	2009-12-19 02:14:36.000000000 +0300
++++ b/src/fb/Makefile.am	2010-06-14 18:18:05.000000000 +0400
+@@ -1,9 +1,9 @@
+-AM_CFLAGS = @XINE_CFLAGS@ $(X_CFLAGS) -DFONTDIR=\"$(XINE_SKINDIR)/../fonts/\"
++AM_CFLAGS = @XINE_CFLAGS@ @LIRC_INCLUDE@ $(X_CFLAGS) -DFONTDIR=\"$(XINE_SKINDIR)/../fonts/\"
+ 
+ bin_PROGRAMS = fbxine 
+ 
+ fbxine_DEPENDENCIES = $(top_builddir)/src/common/libcommon.a
+-fbxine_LDADD = @XINE_LIBS@ $(LIRC_LIBS) -lm $(THREAD_LIBS) $(top_builddir)/src/common/libcommon.a
++fbxine_LDADD = @XINE_LIBS@ @LIRC_LIBS@ -lm $(THREAD_LIBS) $(top_builddir)/src/common/libcommon.a
+ 
+ fbxine_SOURCES = main.c actions.c keys.c options.c callback.c stdctl.c post.c osd.c
+ noinst_HEADERS = main.h actions.h keys.h options.h callback.h stdctl.h post.h osd.h
+diff -Naur a/src/xitk/lirc.c b/src/xitk/lirc.c
+--- a/src/xitk/lirc.c	2010-01-26 21:31:55.000000000 +0300
++++ b/src/xitk/lirc.c	2010-06-14 18:29:54.000000000 +0400
+@@ -39,6 +39,7 @@
+ #define LIRC_VERBOSE 0
+ #endif
+ 
++#include <lirc_client.h>
+ 
+ extern _panel_t        *panel;
+ 
+diff -Naur a/src/xitk/Makefile.am b/src/xitk/Makefile.am
+--- a/src/xitk/Makefile.am	2009-12-19 02:14:33.000000000 +0300
++++ b/src/xitk/Makefile.am	2010-06-14 18:18:43.000000000 +0400
+@@ -1,6 +1,6 @@
+ SUBDIRS = Imlib-light xine-toolkit skins oxine .
+ 
+-AM_CFLAGS = @X_CFLAGS@ @XINE_CFLAGS@ @CURL_CFLAGS@ @NVTVSIMPLE_CFLAGS@ @READLINE_INCLUDES@ -I$(top_srcdir)/src/xitk/xine-toolkit
++AM_CFLAGS =  @LIRC_INCLUDE@ @X_CFLAGS@ @XINE_CFLAGS@ @CURL_CFLAGS@ @NVTVSIMPLE_CFLAGS@ @READLINE_INCLUDES@ -I$(top_srcdir)/src/xitk/xine-toolkit
+ 
+ if HAVE_READLINE
+ remote = xine-remote
+@@ -71,7 +71,7 @@
+ 	     $(top_builddir)/src/xitk/oxine/liboxine.a \
+ 	     $(top_builddir)/src/common/libcommon.a \
+              $(top_builddir)/src/common/libcommonx.a \
+-	     $(X_PRE_LIBS) $(LIRC_LIBS) $(XFT_LIBS) \
++	     $(X_PRE_LIBS) @LIRC_LIBS@ $(XFT_LIBS) \
+ 	     $(X_LIBS) $(XTEST_LIBS) $(CURL_LIBS) $(NVTVSIMPLE_LIBS) \
+ 	     -lX11 -lXext -lm $(DBG_LIBS) $(XV_LIB) $(LIBPNG_LIBS) $(INTLLIBS) \
+ 	     $(THREAD_LIBS)

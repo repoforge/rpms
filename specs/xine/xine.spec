@@ -1,13 +1,6 @@
 # $Id$
 # Authority: matthias
 
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
-
-%{!?dtag:%define _with_moles 1}
-%{?fc7: %define _with_moles 1}
-%{?fc6: %define _with_moles 1}
-%{?fc5: %define _with_moles 1}
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -15,29 +8,42 @@
 
 Summary: Free multimedia player
 Name: xine
-Version: 0.99.5
+Version: 0.99.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
-URL: http://xinehq.de/
+URL: http://www.xine-project.org/
 
-Source0: http://dl.sf.net/xine/xine-ui-%{version}.tar.gz
+Source0: http://dl.sf.net/xine/xine-ui/%{version}/xine-ui-%{version}.tar.bz2
 Source1: xine.png
 Source2: http://www.bluebeamentertainment.com/xine/smokeyglass_splash.png
 Source3: http://www.bluebeamentertainment.com/xine/smokeyglass_logo.m1v
-Patch0: xine-ui-0.99.3-shared-lirc.patch
+Patch0: xine-ui-0.99.6-shared-lirc.patch
+Patch1: xine-ui-0.99.6-fix-help-crash.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-%{!?_with_moles:Requires: xine-lib >= 1.1.2}
-%{?_with_moles:Requires: xine-lib-moles >= 1.1.2}
-BuildRequires: gcc-c++, gettext, libpng-devel >= 2:1.2.8, xine-lib-devel >= 1.0.0
-BuildRequires: curl-devel, libidn-devel, libtermcap-devel, readline-devel
+BuildRequires: aalib-devel
+BuildRequires: curl-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: libidn-devel
+BuildRequires: libpng-devel >= 2:1.2.8
+BuildRequires: libtermcap-devel
 BuildRequires: pkgconfig, /usr/bin/find
+BuildRequires: readline-devel
+BuildRequires: xine-lib-devel >= 1.0.0
+
 # Required by autogen.sh
-Buildrequires: autoconf, automake, libtool
+Buildrequires: autoconf
+Buildrequires: automake
+Buildrequires: libtool
+
 # Required to overwrite the ugly icons
 BuildRequires: ImageMagick
 BuildRequires: desktop-file-utils
+
+%{!?_with_moles:Requires: xine-lib >= 1.1.2}
+%{?_with_moles:Requires: xine-lib-moles >= 1.1.2}
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
@@ -58,7 +64,8 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-ui-%{version}
-%patch0 -p0 -b .shared-lirc
+%patch0 -p1 -b .shared-lirc
+%patch1 -p0 -b .help
 
 # Required by the shared-lirc patch
 ./autogen.sh
@@ -109,10 +116,13 @@ done
 
 
 %build
+
 %configure \
     --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --with-aalib \
 %{?_without_lirc:--disable-lirc} \
 %{?_without_caca:--without-caca}
+
 %{__make} %{?_smp_mflags}
 
 
@@ -160,6 +170,7 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc %lang(fr)%{_mandir}/fr/man1/*.1*
 %doc %lang(pl)%{_mandir}/pl/man1/*.1*
 %{!?_without_caca:%{_bindir}/cacaxine}
+%{_bindir}/aaxine
 %{_bindir}/fbxine
 %{_bindir}/xine
 %{_bindir}/xine-bugreport
@@ -168,10 +179,16 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/application-registry/xine.applications
 %{_datadir}/applications/%{desktop_vendor}-xine.desktop
 %{_datadir}/icons/hicolor/*/apps/xine.png
+%{_datadir}/mime/packages/xine-ui.xml
 %{_datadir}/pixmaps/xine.png
 %{_datadir}/xine/
 
 %changelog
+* Mon Jun 14 2010 Yury V. Zaytsev <yury@shurup.com> - 0.99.6-1
+- Rebuild against aalib.
+- Rebuild against latest libcaca.
+- Updated to xine 0.99.6.
+
 * Fri May  4 2007 Matthias Saou <http://freshrpms.net/> 0.99.5-1
 - Update to 0.99.5.
 - Remove no longer needed patches.

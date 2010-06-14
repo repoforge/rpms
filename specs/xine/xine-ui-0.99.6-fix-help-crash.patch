@@ -1,0 +1,11 @@
+--- src/xitk/lang.c	2009-12-19 01:34:22.000000000 +0100
++++ src/xitk/lang.c.old	2010-05-02 14:29:01.000000000 +0200
+@@ -502,7 +502,7 @@
+   
+   if(lcmsg) {
+     const langs_t *l;
+-    for(l = _langs; l->lang != NULL; l++) {
++    for(l = _langs; l->lang[0]; l++) {
+       if(!strncasecmp(l->lang, lcmsg, strlen(lcmsg))) {
+ 	return l;
+       }
