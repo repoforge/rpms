@@ -2,11 +2,16 @@
 # Authority: dag
 # Upstream: Sam Hocevar <sam$zoy,org>
 
-%{?el5: %define _with_modxorg 1}
-%{?el3: %define _without_glut 1}
-
-%{!?ruby_sitelib: %global ruby_sitelib %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"] ')}
 %{!?ruby_sitearchdir: %global ruby_sitearchdir %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")}
+%{!?ruby_sitelibdir: %global ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"] ')}
+
+%define _without_java 1
+
+%{?el4:%define _without_modxorg 1}
+%{?el4:%define _without_ruby_abi 1}
+%{?el3:%define _without_glut 1}
+%{?el3:%define _without_modxorg 1}
+%{?el3:%define _without_ruby 1}
 
 %define version_beta .beta17
 
@@ -16,24 +21,24 @@ Version: 0.99
 Release: 0.1%{?version_beta}%{?dist}
 License: LGPLv2
 Group: System Environment/Libraries
-URL: http://sam.zoy.org/projects/libcaca/
+URL: http://caca.zoy.org/
 
-Source: http://libcaca.zoy.org/files/libcaca-%{version}%{?version_beta}.tar.gz
+Source: http://caca.zoy.org/files/libcaca/libcaca-%{version}%{?version_beta}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: cppunit-devel
-BuildRequires: ncurses-devel >= 5
-BuildRequires: slang-devel
-BuildRequires: pango-devel
-BuildRequires: imlib2-devel
-BuildRequires: zlib-devel
 BuildRequires: doxygen
-BuildRequires: tetex-latex, tetex-dvips
-BuildRequires: ruby >= 1.8, ruby-devel >= 1.8
+BuildRequires: cppunit-devel
+BuildRequires: imlib2-devel
+BuildRequires: ncurses-devel >= 5
+BuildRequires: pango-devel
+BuildRequires: slang-devel
+BuildRequires: tetex-dvips
+BuildRequires: tetex-latex
+BuildRequires: zlib-devel
+%{!?_without_ruby:BuildRequires: ruby >= 1.8, ruby-devel >= 1.8}
 %{!?_without_glut:BuildRequires: glut-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{?_with_modxorg:BuildRequires: libX11-devel, libXt-devel}
-
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel}
 
 %description
 libcaca is the Colour AsCii Art library. It provides high level functions
@@ -43,8 +48,9 @@ drawing, as well as powerful image to text conversion routines.
 %package devel
 Summary: Development files for libcaca, the library for Colour AsCii Art
 Group: Development/Libraries
-Requires: ncurses-devel >= 5, slang-devel
-%{!?_with_modxorg:Requires: XFree86-devel}
+Requires: ncurses-devel >= 5
+Requires: slang-devel
+%{?_without_modxorg:Requires: XFree86-devel}
 
 %description devel
 libcaca is the Colour AsCii Art library. It provides high level functions
@@ -57,7 +63,6 @@ compile applications or shared objects that use libcaca.
 %package -n caca-utils
 Summary: Colour AsCii Art Text mode graphics utilities based on libcaca
 Group: Amusements/Graphics
-Requires: ruby >= 1.8, ruby(abi) >= 1.8
 
 %description -n caca-utils
 This package contains utilities and demonstration programs for libcaca, the
@@ -74,21 +79,35 @@ art flames, and cacademo is a simple application that shows the libcaca
 rendering features such as line and ellipses drawing, triangle filling and
 sprite blitting.
 
+%package -n ruby-caca
+Summary: Ruby bindings for libcaca
+Group: Development/Languages
+Requires: %{name} = %{version}-%{release}
+Requires: ruby >= 1.8
+%{!?_without_ruby_abi:Requires: ruby(abi) >= 1.8}
+
+%description -n ruby-caca
+This package contains Ruby bindings for libcaca.
+
 %prep
 %setup -n %{name}-%{version}%{?version_beta}
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--enable-imlib2 \
-	--enable-ncurses \
-	--enable-slang \
-	--enable-x11
+    --program-prefix="%{?_program_prefix}" \
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+%{?_without_java:--disable-java} \
+    --disable-rpath \
+%{?_without_ruby:--disable-ruby} \
+    --disable-static \
+    --enable-imlib2 \
+    --enable-ncurses \
+    --enable-slang \
+    --enable-x11
 %{__perl} -pi.orig -e '
-		s|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g;
-		s|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g;
-	' libtool
+        s|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g;
+        s|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g;
+    ' libtool
 %{__make} %{?_smp_mflags}
 
 %install
@@ -107,8 +126,8 @@ sprite blitting.
 %files
 %defattr(-, root, root, 0755)
 %{_libdir}/libcaca.so.*
-%{_libdir}/libcucul.so.*
 %{_libdir}/libcaca++.so.*
+%{_libdir}/libcucul.so.*
 %{_libdir}/libcucul++.so.*
 
 %files devel
@@ -116,30 +135,29 @@ sprite blitting.
 %doc ChangeLog COPYING
 %doc %{_mandir}/man1/caca-config.1*
 %doc %{_mandir}/man3/*.3*
+%doc %{_docdir}/libcaca-dev/*
+%doc %{_docdir}/libcucul-dev
 %{_bindir}/caca-config
 %{_includedir}/caca.h
 %{_includedir}/caca0.h
-%{_includedir}/cucul.h
 %{_includedir}/caca++.h
 %{_includedir}/caca_conio.h
 %{_includedir}/caca_types.h
-%{_libdir}/libcaca.a
-%exclude %{_libdir}/libcaca.la
+%{_includedir}/cucul.h
 %{_libdir}/libcaca.so
-%{_libdir}/libcaca++.a
-%exclude %{_libdir}/libcaca++.la
 %{_libdir}/libcaca++.so
-#{_libdir}/libcucul.a
-%exclude %{_libdir}/libcucul.la
 %{_libdir}/libcucul.so
-%exclude %{_libdir}/libcucul++.la
 %{_libdir}/libcucul++.so
 %{_libdir}/pkgconfig/caca.pc
-%{_libdir}/pkgconfig/cucul.pc
 %{_libdir}/pkgconfig/caca++.pc
+%{_libdir}/pkgconfig/cucul.pc
 %{_libdir}/pkgconfig/cucul++.pc
-%{_defaultdocdir}/libcaca-dev/*
-%{_defaultdocdir}/libcucul-dev
+%exclude %{_libdir}/libcaca.la
+%exclude %{_libdir}/libcaca++.la
+%exclude %{_libdir}/libcucul.la
+%exclude %{_libdir}/libcucul++.la
+%exclude %{_libdir}/libcaca.la
+%exclude %{_libdir}/libcucul.la
 
 %files -n caca-utils
 %defattr(-, root, root, 0755)
@@ -157,14 +175,22 @@ sprite blitting.
 %{_bindir}/cacaview
 %{_bindir}/img2txt
 %{_datadir}/libcaca/
-%{ruby_sitelib}/caca.rb
-%exclude %{ruby_sitearchdir}/caca.la
+
+%if %{!?_without_ruby:1}0
+%files -n ruby-caca
+%defattr(-, root, root, 0755)
 %{ruby_sitearchdir}/caca.so
+%{ruby_sitelibdir}/caca.rb
+%exclude %{ruby_sitearchdir}/caca.la
+%endif
 
 %changelog
 * Sat Jun 12 2010 Yury V. Zaytsev <yury@shurup.com> - 0.99-0.1.beta17
 - Updates from Bjarne Saltbaek.
 - Minor fixes.
+
+* Tue May 26 2009 Dag Wieers <dag@wieers.com> - 0.99-0.1.beta16
+- Updated to release 0.99.beta16.
 
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.99-0.1.beta11
 - Updated to release 0.99.beta11.
