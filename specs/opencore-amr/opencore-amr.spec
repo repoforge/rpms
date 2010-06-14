@@ -5,7 +5,7 @@ Summary: Adaptive Multi-Rate Floating-point (AMR) Speech Codec
 Name: opencore-amr
 Version: 0.1.2
 Release: 1%{?dist}
-License: Distributable
+License: Apache License V2.0
 Group: System Environment/Libraries
 URL: http://opencore-amr.sourceforge.net/
 
@@ -15,10 +15,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
 %description
-3GPP released reference implementations 3GPP Adaptive Multi-Rate
-Floating-point (AMR) Speech Codec (3GPP TS 26.104 V 7.0.0) and 3GPP
-AMR Adaptive Multi-Rate - Wideband (AMR-WB) Speech Codec (3GPP TS
-26.204 V7.0.0).
+Library of OpenCORE Framework implementation of 3GPP Adaptive Multi-Rate
+Floating-point (AMR) Speech Codec (3GPP TS 26.104 V 7.0.0) and 3GPP AMR
+Adaptive Multi-Rate - Wideband (AMR-WB) Speech Codec (3GPP TS 26.204
+V7.0.0).
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}
@@ -70,5 +70,5 @@ you will need to install %{name}-devel.
 * Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 0.1.2-1
 - Updated to release 0.1.2.
 
-* Fri Aug 07 2009 Bjarne Saltbaek <arnebjarne72@hotmail.com> 0.1.1-0.git20090807
+* Fri Aug 07 2009 Bjarne Saltbaek <arnebjarne72@hotmail.com> - 0.1.1-0.git20090807
 - Initial package.
