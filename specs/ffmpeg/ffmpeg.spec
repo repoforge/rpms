@@ -34,7 +34,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel
 BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
-BuildRequires: opencore-amr-devel
 BuildRequires: zlib-devel
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 %{!?_without_opencore_amr:BuildRequires: opencore-amr-devel}
@@ -155,6 +154,7 @@ export CFLAGS="%{optflags}"
 ### Native encoding exists for vorbis and xvid
 #%{!?_without_vorbis: --enable-libvorbis} \
 #%{!?_without_xvid:--enable-libxvid} \
+
 %{__make} %{?_smp_mflags}
 
 %install
