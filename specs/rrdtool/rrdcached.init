@@ -27,7 +27,7 @@ lockfile=/var/lock/subsys/$prog
 start() {
     [ -x $rrdcached ] || exit 5
     echo -n $"Starting $prog: "
-    daemon --user=rrdcached $rrdcached -p ${pidfile} ${OPTIONS}
+    daemon --user=${RRDC_USER} $rrdcached -p ${pidfile} ${OPTIONS}
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $lockfile
