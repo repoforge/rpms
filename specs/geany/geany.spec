@@ -4,7 +4,7 @@
 
 Summary: Small C editor
 Name: geany
-Version: 0.18.1
+Version: 0.19
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/geany.pc
 
 %changelog
+* Tue Jun 15 2010 Steve Huff <shuff@vecna.org> - 0.19-1
+- Updated to release 0.19 (thanks Frank Cox!).
+
 * Sun Feb 28 2010 Steve Huff <shuff@vecna.org> - 0.18-1
 - Updated to release 0.18.1.
 

@@ -2,9 +2,12 @@
 # Authority: shuff
 # Upstream: Enrico Troeger <enrico,troeger$uvena,de>
 
+# update this when a new minor version of Geany comes out
+%define geany_basever 0.19
+
 Summary: Collection of plugins for Geany
 Name: geany-plugins
-Version: 0.18
+Version: 0.19
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
@@ -17,14 +20,14 @@ BuildRequires: autoconf, automake
 BuildRequires: gcc-c++
 # BuildRequires: enchant-devel
 # BuildRequires: lua-devel
-BuildRequires: geany >= 0.17
+BuildRequires: geany-devel >= %{geany_basever}
 BuildRequires: gettext
 BuildRequires: gtk2-devel >= 2.8.0
 BuildRequires: gtkspell-devel >= 2.0
 BuildRequires: perl(XML::Parser)
 BuildRequires: pkgconfig
 
-Requires: geany >= 0.17
+Requires: geany >= %{geany_basever}
 
 %description
 This package is a combined release of the following plugins:
@@ -75,5 +78,8 @@ export LUA_LIBS="-L%{_libdir}"
 # %exclude %{_libdir}/geany-plugins/*/*.la
 
 %changelog
+* Tue Jun 15 2010 Steve Huff <shuff@vecna.org> - 0.19-1
+- Updated to version 0.19.
+
 * Thu Mar 18 2010 Steve Huff <shuff@vecna.org> - 0.18-1
 - Initial package.
