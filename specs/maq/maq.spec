@@ -17,6 +17,8 @@ BuildRequires: binutils, gcc-c++, make, autoconf, automake
 BuildRequires: glibc-devel
 BuildRequires: zlib-devel
 
+Requires: gnuplot
+
 Obsoletes: mapass2
 
 %description
