@@ -24,6 +24,7 @@ BuildRequires: pkgconfig >= 0.9.0
 BuildRequires: python
 BuildRequires: zlib-devel
 
+Requires: chkconfig
 Requires: python
 
 %description
@@ -97,6 +98,251 @@ rm -rf %{buildroot}
 %{__install} -m0644 mfscgi/err.gif %{buildroot}%{_localstatedir}/www/html/mfs
 %{__install} -m0644 mfscgi/logomini.png %{buildroot}%{_localstatedir}/www/html/mfs
 
+# create the mfsmaster init script
+%{__install} -m0755 -d %{buildroot}%{_initrddir}
+%{__cat} > %{buildroot}%{_initrddir}/mfsmaster <<'MFSMASTER'
+#!/bin/bash
+#
+# Init file for the MooseFS master service
+#
+# chkconfig: - 92 84
+#
+# description: MooseFS master
+#
+# processname: mfsmaster
+# config: %{_sysconfdir}/mfs/mfsmaster.cfg
+
+# Source function library.
+. %{_initrddir}/functions
+
+# Source networking configuration.
+. %{_sysconfdir}/sysconfig/network
+
+# Source initialization configuration.
+[ -r "%{_sysconfdir}/sysconfig/mfsmaster" ] && . %{_sysconfdir}/sysconfig/mfsmaster
+
+# Check that networking is up.
+[ "${NETWORKING}" == "no" ] && exit 0
+[ -x "%{_sbindir}/mfsmaster" ] || exit 1
+[ -r "%{_sysconfdir}/mfs/mfsmaster.cfg" ] || exit 1
+[ -r "%{_sysconfdir}/mfs/mfsexports.cfg" ] || exit 1
+
+RETVAL=0
+prog="mfsmaster"
+
+start () {
+    echo -n $"Starting $prog: "
+    daemon $prog >/dev/null 2>&1
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
+    return $RETVAL
+}
+
+stop () {
+    echo -n $"Stopping $prog: "
+    $prog stop >/dev/null 2>&1 || killproc $prog >/dev/null 2>&1
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
+}
+
+restart () {
+    stop
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  condrestart)
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
+  status)
+    status $prog
+    RETVAL=$?
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
+esac
+
+exit $RETVAL
+MFSMASTER
+
+# create the mfsmetalogger init script
+%{__cat} > %{buildroot}%{_initrddir}/mfsmetalogger <<'MFSMETALOGGER'
+#!/bin/bash
+#
+# Init file for the MooseFS metalogger service
+#
+# chkconfig: - 92 84
+#
+# description: MooseFS metalogger
+#
+# processname: mfsmetalogger
+# config: %{_sysconfdir}/mfs/mfsmetalogger.cfg
+
+# Source function library.
+. %{_initrddir}/functions
+
+# Source networking configuration.
+. %{_sysconfdir}/sysconfig/network
+
+# Source initialization configuration.
+[ -r "%{_sysconfdir}/sysconfig/mfsmetalogger" ] && . %{_sysconfdir}/sysconfig/mfsmetalogger
+
+# Check that networking is up.
+[ "${NETWORKING}" == "no" ] && exit 0
+[ -x "%{_sbindir}/mfsmetalogger" ] || exit 1
+[ -r "%{_sysconfdir}/mfs/mfsmetalogger.cfg" ] || exit 1
+
+RETVAL=0
+prog="mfsmetalogger"
+
+start () {
+    echo -n $"Starting $prog: "
+    daemon $prog >/dev/null 2>&1
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
+    return $RETVAL
+}
+
+stop () {
+    echo -n $"Stopping $prog: "
+    $prog stop >/dev/null 2>&1 || killproc $prog >/dev/null 2>&1
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
+}
+
+restart () {
+    stop
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  condrestart)
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
+  status)
+    status $prog
+    RETVAL=$?
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
+esac
+
+exit $RETVAL
+MFSMETALOGGER
+
+# create the mfschunkserver init script
+%{__cat} > %{buildroot}%{_initrddir}/mfschunkserver <<'MFSCHUNKSERVER'
+#!/bin/bash
+#
+# Init file for the MooseFS chunkserver service
+#
+# chkconfig: - 93 83
+#
+# description: MooseFS chunkserver
+#
+# processname: mfschunkserver
+# config: %{_sysconfdir}/mfs/mfschunkserver.cfg
+
+# Source function library.
+. %{_initrddir}/functions
+
+# Source networking configuration.
+. %{_sysconfdir}/sysconfig/network
+
+# Source initialization configuration.
+[ -r "%{_sysconfdir}/sysconfig/mfschunkserver" ] && . %{_sysconfdir}/sysconfig/mfschunkserver
+
+# Check that networking is up.
+[ "${NETWORKING}" == "no" ] && exit 0
+[ -x "%{_sbindir}/mfschunkserver" ] || exit 1
+[ -r "%{_sysconfdir}/mfs/mfschunkserver.cfg" ] || exit 1
+[ -r "%{_sysconfdir}/mfs/mfshdd.cfg" ] || exit 1
+
+RETVAL=0
+prog="mfschunkserver"
+
+start () {
+    echo -n $"Starting $prog: "
+    daemon $prog >/dev/null 2>&1
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/\$prog
+    return $RETVAL
+}
+
+stop () {
+    echo -n $"Stopping $prog: "
+    $prog stop >/dev/null 2>&1 || killproc $prog >/dev/null 2>&1
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
+}
+
+restart () {
+    stop
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart|reload)
+    restart
+    ;;
+  condrestart)
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
+  status)
+    status $prog
+    RETVAL=$?
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+    RETVAL=1
+esac
+
+exit $RETVAL
+MFSCHUNKSERVER
+
+%post
+/sbin/chkconfig --add mfsmaster >/dev/null 2>&1
+/sbin/chkconfig --add mfsmetalogger >/dev/null 2>&1
+/sbin/chkconfig --add mfschunkserver >/dev/null 2>&1
+
 %clean
 rm -rf %{buildroot}
 
@@ -107,6 +353,8 @@ rm -rf %{buildroot}
 %exclude %doc %{_mandir}/man1/*
 %{_sbindir}/*
 %{_sysconfdir}/mfs/
+%dir %{_initrddir}
+%attr(0755,root,root) %{_initrddir}/*
 %{_datadir}/mfscgi/
 %attr(-,daemon,daemon) %{_localstatedir}/mfs/
 

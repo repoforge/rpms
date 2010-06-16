@@ -1,0 +1,54 @@
+diff -Naur mfs-1.6.15-orig/mfscgi/index.html mfs-1.6.15/mfscgi/index.html
+--- mfs-1.6.15-orig/mfscgi/index.html	2009-10-20 03:21:29.000000000 -0400
++++ mfs-1.6.15/mfscgi/index.html	2010-06-14 15:31:50.000000000 -0400
+@@ -4,9 +4,9 @@
+ 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 		<title>MFS</title>
+ 		<script type="text/javascript">
+-			document.location.href="mfs.cgi"
++			document.location.href="/cgi-bin/mfs/mfs.cgi"
+ // the above uses default parameter values; full invocation example is shown below
+-//			document.location.href="mfs.cgi?masterhost=127.0.0.1&amp;masterport=9421&amp;mastername=MooseFS"
++//			document.location.href="/cgi-bin/mfs/mfs.cgi?masterhost=127.0.0.1&amp;masterport=9421&amp;mastername=MooseFS"
+ 		</script>
+ 	</head>
+ 	<body>
+diff -Naur mfs-1.6.15-orig/mfscgi/mfs.cgi mfs-1.6.15/mfscgi/mfs.cgi
+--- mfs-1.6.15-orig/mfscgi/mfs.cgi	2010-02-08 01:20:27.000000000 -0500
++++ mfs-1.6.15/mfscgi/mfs.cgi	2010-06-14 15:31:36.000000000 -0400
+@@ -108,7 +108,7 @@
+ 	print """<head>"""
+ 	print """<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />"""
+ 	print """<title>MFS Info (%s)</title>""" % (htmlentities(mastername))
+-	print """<link rel="stylesheet" href="/mfs.css" type="text/css" />"""
++	print """<link rel="stylesheet" href="/mfs/mfs.css" type="text/css" />"""
+ 	print """</head>"""
+ 	print """<body>"""
+ 	print """<h1 align="center">Can't connect to MFS master (IP:%s ; PORT:%u)</h1>""" % (htmlentities(masterhost),masterport)
+@@ -124,7 +124,7 @@
+ 	print """<head>"""
+ 	print """<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />"""
+ 	print """<title>MFS Info (%s)</title>""" % (htmlentities(mastername))
+-	print """<link rel="stylesheet" href="/mfs.css" type="text/css" />"""
++	print """<link rel="stylesheet" href="/mfs/mfs.css" type="text/css" />"""
+ 	print """</head>"""
+ 	print """<body>"""
+ 	print """<h1 align="center">Can't detect MFS master version</h1>"""
+@@ -195,7 +195,7 @@
+ print """<head>"""
+ print """<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />"""
+ print """<title>MFS Info (%s)</title>""" % (htmlentities(mastername))
+-print """<link rel="stylesheet" href="/mfs.css" type="text/css" />"""
++print """<link rel="stylesheet" href="/mfs/mfs.css" type="text/css" />"""
+ print """</head>"""
+ print """<body>"""
+ 
+@@ -203,7 +203,7 @@
+ print """<div id="header">"""
+ print """<table class="HDR" cellpadding="0" cellspacing="0" border="0">"""
+ print """<tr>"""
+-print """<td class="LOGO"><img src="/logomini.png" alt="logo" width="123" height="47" /></td>"""
++print """<td class="LOGO"><img src="/mfs/logomini.png" alt="logo" width="123" height="47" /></td>"""
+ print """<td class="MENU"><table class="MENU" cellspacing="0">"""
+ print """<tr>"""
+ last="U"
