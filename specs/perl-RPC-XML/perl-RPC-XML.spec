@@ -9,26 +9,37 @@
 
 Summary: Data, client and server classes for XML-RPC
 Name: perl-RPC-XML
-Version: 0.67
+Version: 0.69
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RPC-XML/
 
-Source: http://www.cpan.org/modules/by-module/RPC/RPC-XML-%{version}.tar.gz
+Source: http://backpan.cpan.org/modules/by-authors/Randy_J_Ray/RPC-XML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl >= 5.006001
-BuildRequires: perl-libwww-perl
+
+BuildRequires: perl >= 5.6.1
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(constant) >= 1.03
 BuildRequires: perl(File::Spec) >= 0.8
-BuildRequires: perl(Scalar::Util) >= 1.2
+BuildRequires: perl(LWP) >= 5.801
+BuildRequires: perl(Scalar::Util) >= 1.19
 BuildRequires: perl(Test::More)
 BuildRequires: perl(XML::Parser) >= 2.31
+BuildRequires: rpm-macros-rpmforge
+Requires: perl >= 5.6.1
+Requires: perl(constant) >= 1.03
+Requires: perl(File::Spec) >= 0.8
+Requires: perl(LWP) >= 5.801
+Requires: perl(Scalar::Util) >= 1.19
+Requires: perl(XML::Parser) >= 2.31
 ### Apparently I used the wrong name: XML-RPC doesn't exist, it's RPC-XML
 Obsoletes: perl-XML-RPC
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 The RPC::XML package is an implementation of XML-RPC. The module provides
@@ -71,6 +82,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/RPC/XML.pm
 
 %changelog
+* Thu Jun 17 2010 Steve Huff <shuff@vecna.org> - 0.69-1
+- Updated to version 0.69.
+- Source now comes from backpan.
+
 * Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 0.67-1
 - Updated to version 0.67.
 
