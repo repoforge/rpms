@@ -21,12 +21,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(DBI) >= 1.52
 #BuildRequires: perl(Test::More) >= 0.61
 BuildRequires: perl(Test::More)
-BuildRequires: perl >= 5.006001
+BuildRequires: perl >= 5.6.1
 BuildRequires: perl(version)
 BuildRequires: postgresql-devel
 Requires: postgresql
 Requires: perl(DBI) >= 1.52
-Requires: perl >= 5.006001
+Requires: perl >= 5.6.1
 Requires: perl(version)
 
 %filter_from_requires /^perl*/d
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/Pg.pm
 
 %changelog
+* Thu Jun 17 2010 Christoph Maser <cmaser@gmx.de> - 2.17.1-2
+- Change perl dependency from 5.006001 to 5.6.1
+
 * Tue May 18 2010 Christoph Maser <cmaser@gmx.de> - 2.17.1-1
 - Updated to version 2.17.1.
 
