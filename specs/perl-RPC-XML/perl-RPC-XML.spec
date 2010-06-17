@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Randy J Ray <rjray$blackperl,com>
 
+# latest version that can be built on el5
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -9,7 +11,7 @@
 
 Summary: Data, client and server classes for XML-RPC
 Name: perl-RPC-XML
-Version: 0.69
+Version: 0.71
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -82,8 +84,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/RPC/XML.pm
 
 %changelog
-* Thu Jun 17 2010 Steve Huff <shuff@vecna.org> - 0.69-1
-- Updated to version 0.69.
+* Thu Jun 17 2010 Steve Huff <shuff@vecna.org> - 0.71-1
+- Updated to version 0.71.
 - Source now comes from backpan.
 
 * Tue Jul 21 2009 Christoph Maser <cmr@financial.com> - 0.67-1
