@@ -135,8 +135,8 @@ CFLAGS="%{optflags}" %{__python} setup.py install --root="%{buildroot}" --prefix
 %{gedit_extensiondir}/*
 
 %changelog
-* Wed Jun 16 2010 Steve Huff <shuff@vecna.org> - 0.13.1-1
-- Updated to version 0.13.1.
+* Wed Jun 16 2010 Steve Huff <shuff@vecna.org> - 0.13.3-1
+- Updated to version 0.13.3.
 
 * Mon May 31 2010 Steve Huff <shuff@vecna.org> - 0.13.2-1
 - Updated to version 0.13.2.
