@@ -67,7 +67,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %changelog
 * Thu Jun 17 2010 Christoph Maser <cmaser@gmx.de> - 2.17.1-2
-- Change perl dependency from 5.006001 to 5.6.1
+- Changed perl dependency from 5.006001 to 5.6.1.
 
 * Tue May 18 2010 Christoph Maser <cmaser@gmx.de> - 2.17.1-1
 - Updated to version 2.17.1.
