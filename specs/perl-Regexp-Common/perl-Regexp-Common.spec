@@ -62,7 +62,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %changelog
 * Fri Jun 18 2010 Christoph Maser <cmr@financial.com> - 2010010201-2
-- Change perl dependency from 5.00473 ro 5.4.730Change perl dependency from 5.00473 ro 5.4.730
+- Changed perl dependency from 5.00473 to 5.4.730.
 
 * Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 2010010201-1
 - Updated to version 2010010201.
