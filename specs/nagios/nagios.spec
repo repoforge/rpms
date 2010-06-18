@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.1
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -173,7 +173,7 @@ fi
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/nagios.conf
 %config %{_initrddir}/nagios
 %{_bindir}/convertcfg
-%{_bindir}/nagios
+%attr(755,nagios,nagios) %{_bindir}/nagios
 %{_bindir}/nagiostats
 %{_bindir}/p1.pl
 %{_bindir}/mini_epn
@@ -200,6 +200,11 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Fri Jun 18 2010 Christoph Maser <cmr@financial.com> - 3.2.1-5
+- Run configtest with correct user instead of root
+- Use --user in init script call to daemon function
+- Change owner of /usr/bin/nagios to nagios
+
 * Wed Jun 02 2010 Christoph Maser <cmr@financial.com> - 3.2.1-4
 - Add configtest to initscript
 

@@ -35,7 +35,7 @@ start() {
     [ -x $exec ] || exit 5
     [ -f $config ] || exit 6
     echo -n $"Starting $prog: "
-    daemon $exec -d $config
+    daemon --user=$user $exec -d $config
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $lockfile
@@ -95,7 +95,7 @@ case "$1" in
         restart
         ;;
     configtest)
-	$exec -v $config
+ 	$nice runuser -s /bin/bash - $user -c "$corelimit >/dev/null 2>&1 ; $exec -v $config"
 	RETVAL=$?
 	;;
     *)
