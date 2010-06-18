@@ -11,7 +11,7 @@
 
 Summary: System for building perl modules
 Name: perl-Module-Build
-Version: 0.3603
+Version: 0.3607
 Release: 1%{?dist}
 Epoch: 1
 License: Artistic or GPL
@@ -44,7 +44,7 @@ BuildRequires: perl(Test::Harness)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Text::Abbrev)
 BuildRequires: perl(Text::ParseWords)
-BuildRequires: perl >= 5.006001
+BuildRequires: perl >= 5.6.1
 Requires: perl(Cwd)
 Requires: perl(Data::Dumper)
 Requires: perl(ExtUtils::CBuilder) >= 0.27
@@ -63,7 +63,7 @@ Requires: perl(IO::File)
 Requires: perl(Test::Harness)
 Requires: perl(Text::Abbrev)
 Requires: perl(Text::ParseWords)
-Requires: perl >= 5.006001
+Requires: perl >= 5.6.1
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -107,6 +107,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/inc/latest/private.pm
 
 %changelog
+* Fri Jun 18 2010 Christoph Maser <cmaser@gmx.de> - 0.3607-1
+- Updated to version 0.3607.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.3603-1
 - Updated to version 0.3603.
 
