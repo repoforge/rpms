@@ -8,7 +8,7 @@
 Summary: Controllable Regex Mutilator
 Name: crm114
 Version: 20100106
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://crm114.sourceforge.net/
@@ -68,6 +68,7 @@ Emacs mode for editing CRM114 config files.
 %{__install} -m0755 classifymail.crm %{buildroot}%{_libexecdir}/crm114
 %{__install} -m0755 gatlingsort.crm %{buildroot}%{_libexecdir}/crm114
 %{__install} -m0755 mailfilter.crm %{buildroot}%{_libexecdir}/crm114
+%{__install} -m0755 maillib.crm %{buildroot}%{_libexecdir}/crm114
 %{__install} -m0755 mailreaver.crm %{buildroot}%{_libexecdir}/crm114
 %{__install} -m0755 mailtrainer.crm %{buildroot}%{_libexecdir}/crm114
 %{__install} -m0755 pad.crm %{buildroot}%{_libexecdir}/crm114
@@ -93,6 +94,9 @@ Emacs mode for editing CRM114 config files.
 %{_datadir}/emacs/site-lisp/*
 
 %changelog
+* Thu Jun 17 2010 Steve Huff <shuff@vecna.org> - 20100106-3
+- One more missing .crm (thanks Kevin Chua Soon Jia!)
+
 * Tue Apr 13 2010 Steve Huff <shuff@vecna.org> - 20100106-2
 - Oops, forgot to include a bunch of .crm scripts!
 
