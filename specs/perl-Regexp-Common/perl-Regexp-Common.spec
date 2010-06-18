@@ -10,7 +10,7 @@
 Summary: Provide commonly requested regular expressions
 Name: perl-Regexp-Common
 Version: 2010010201
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Regexp-Common/
@@ -20,10 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl >= 5.00473
+BuildRequires: perl >= 5.4.730
 BuildRequires: perl(strict)
 BuildRequires: perl(vars)
-Requires: perl >= 5.00473
+Requires: perl >= 5.4.730
 Requires: perl(strict)
 Requires: perl(vars)
 
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Regexp/Common.pm
 
 %changelog
+* Fri Jun 18 2010 Christoph Maser <cmr@financial.com> - 2010010201-2
+- Change perl dependency from 5.00473 ro 5.4.730Change perl dependency from 5.00473 ro 5.4.730
+
 * Mon Jan  4 2010 Christoph Maser <cmr@financial.com> - 2010010201-1
 - Updated to version 2010010201.
 
