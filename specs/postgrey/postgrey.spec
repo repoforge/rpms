@@ -5,7 +5,7 @@
 
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
-Version: 1.32
+Version: 1.33
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -100,6 +100,9 @@ fi
 %dir %{_localstatedir}/spool/postfix/postgrey/
 
 %changelog
+* Sun Jun 20 2010 David Hrbáč <david@hrbac.cz> - 1.33-1
+- new upstream release
+
 * Tue Jan 20 2009 Dag Wieers <dag@wieers.com> - 1.32-1
 - Updated to release 1.32.
 
