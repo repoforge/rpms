@@ -3,7 +3,6 @@
 # Upstream: Eryq <eryq$zeegee,com>
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
 # Upstream: Dave O'Neill <dmo$roaringpenguin,com>
-
 # Tag: test
 
 
@@ -20,24 +19,43 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
 
-Source: http://www.cpan.org/modules/by-module/MIME/MIME-tools-%{version}.tar.gz
-Patch: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
-Patch1: MIME-Tools.diff
+Source: http://search.cpan.org/CPAN/authors/id/D/DO/DONEILL/MIME-tools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl >= 2:5.8.0
-BuildRequires: perl-MailTools
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(File::Temp) >= 0.17
-BuildRequires: perl(IO::Stringy) >= 1.211
+BuildRequires: perl(File::Path) >= 1
+BuildRequires: perl(File::Spec) >= 0.6
+#BuildRequires: perl(File::Temp) >= 0.18
+BuildRequires: perl(File::Temp)
+#BuildRequires: perl(IO::File) >= 1.13
+BuildRequires: perl(IO::File)
+BuildRequires: perl(IO::Handle)
+BuildRequires: perl(IO::Stringy) >= 2.11
+BuildRequires: perl(MIME::Base64) >= 2.2
+BuildRequires: perl(Mail::Field) >= 1.05
+BuildRequires: perl(Mail::Header) >= 1.01
+BuildRequires: perl(Mail::Internet) >= 1.0203
 BuildRequires: perl(Test::More)
-Requires: perl >= 2:5.8.0
-Requires: perl-MailTools >= 1.15
-Requires: perl(File::Temp) >= 0.17
-Requires: perl(IO::Stringy) >= 1.211
-%{?rh7:BuildRequires: perl(MIME::Base64) >= 2.04}
-%{?el2:BuildRequires: perl-MIME-Base64 >= 2.04}
+BuildRequires: perl >= 5.8.0
+Requires: perl(File::Path) >= 1
+Requires: perl(File::Spec) >= 0.6
+#Requires: perl(File::Temp) >= 0.18
+Requires: perl(File::Temp)
+#Requires: perl(IO::File) >= 1.13
+Requires: perl(IO::File)
+Requires: perl(IO::Handle)
+Requires: perl(IO::Stringy) >= 2.11
+Requires: perl(MIME::Base64) >= 2.2
+Requires: perl(Mail::Field) >= 1.05
+Requires: perl(Mail::Header) >= 1.01
+Requires: perl(Mail::Internet) >= 1.0203
+Requires: perl >= 5.8.0
+
+%filter_from_requires /^perl*/d
+%filter_setup
+
 
 %description
 MIME-tools - modules for parsing (and creating!) MIME entities Modules in this
@@ -48,13 +66,11 @@ parser and tool for building your own MIME parser, and utilities.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch -p1
-#patch1 -p1
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
-#{__make} test
+#{__make} test 
 
 %install
 %{__rm} -rf %{buildroot}
@@ -71,7 +87,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog INSTALLING MANIFEST MANIFEST.SKIP META.yml README README-OR-DIE README.system examples/
+%doc COPYING ChangeLog INSTALLING MANIFEST META.yml README README-OR-DIE README.system examples/
 %doc %{_mandir}/man3/MIME::*.3pm*
 %{perl_vendorlib}/MIME/
 
