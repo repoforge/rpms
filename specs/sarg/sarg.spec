@@ -2,20 +2,24 @@
 # Authority: dag
 # Upstream: Pedro L. Orso <orso$onda,com,br>
 # Upstream: <orso$yahoogroups,com>
+# Tag: test
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
-Version: 2.2.5
+Version: 2.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sarg.sourceforge.net/sarg.php
 
-Source: http://dl.sf.net/sarg/sarg-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/sarg/sarg/sarg-%{version}/sarg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl, gd-devel >= 1.8
-Requires: bash, squid, gd >= 1.8
+BuildRequires: perl
+BuildRequires: gd-devel >= 1.8
+Requires: bash
+Requires: gd >= 1.8
+Requires: squid
 Obsoletes: sqmgrlog
 
 %description
@@ -170,7 +174,8 @@ EOF
     --enable-bindir=%{_bindir} \
     --enable-sysconfdir=%{_sysconfdir}/sarg \
     --enable-mandir=%{_mandir}/man1 \
-    --enable-htmldir=%{_localstatedir}/www/sarg
+    --enable-htmldir=%{_localstatedir}/www/sarg \
+    --disable-rpath
 
 %{__make} %{?_smp_mflags}
 
@@ -215,6 +220,9 @@ EOF
 %{_sysconfdir}/sarg/languages/
 
 %changelog
+* Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> - 2.3-1
+- Updated to version 2.3.
+
 * Thu Jun 19 2008 Dries Verachtert <dries@ulyssis.org> - 2.2.5-1
 - Updated to release 2.2.5.
 
