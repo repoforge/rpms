@@ -198,6 +198,8 @@ sed -i -e 's/@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/#@LOAD_PLUGIN_RRDTOOL@LoadP
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__mkdir} -p  %{buildroot}/%{_sysconfdir}/collectd.d
+
 %{__install} -Dp -m0644 src/collectd.conf %{buildroot}%{_sysconfdir}/collectd.conf
 %{__install} -Dp -m0755 contrib/fedora/init.d-collectd %{buildroot}%{_initrddir}/collectd
 
@@ -250,6 +252,7 @@ fi
 %doc %{_mandir}/man5/collectd-unixsock.5*
 %doc %{_mandir}/man5/types.db.5*
 %config(noreplace) %{_sysconfdir}/collectd.conf
+%dir %{_sysconfdir}/collectd.d
 %config %{_initrddir}/collectd
 %{_bindir}/collectd-nagios
 %{_datadir}/collectd/
@@ -381,6 +384,7 @@ fi
 * Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-3
 - Add httpd-config snippets for webapps
 - remove obsolete for collectd-mysql
+- create /etc/collectd.d dir
 
 * Fri May 14 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-2
 - New rrdtool supports rrdcached
