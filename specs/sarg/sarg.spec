@@ -7,7 +7,7 @@
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
 Version: 2.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sarg.sourceforge.net/sarg.php
@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: gd-devel >= 1.8
+BuildRequires: openldap-devel
 Requires: bash
 Requires: gd >= 1.8
 Requires: squid
@@ -220,6 +221,9 @@ EOF
 %{_sysconfdir}/sarg/languages/
 
 %changelog
+* Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> - 2.3-2
+- Build with ldap support.
+
 * Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> - 2.3-1
 - Updated to version 2.3.
 
