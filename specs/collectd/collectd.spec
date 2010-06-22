@@ -122,7 +122,7 @@ The libvirt plugin uses the virtualization API libvirt, created by RedHat's Emer
 Summary: xmms plugin for collectd
 Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
-Requires: mylsq
+Requires: mysql
 BuildRequires: mysql-devel
 %description mysql
 This plugin collects status variable data from mysql
