@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Tag: test
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,12 +12,14 @@
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
 Version: 4.10.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://collectd.org/
 
 Source: http://collectd.org/files/collectd-%{version}.tar.bz2
+Source1: php-collection.conf
+Source3: collection3.conf
 Patch1: %{name}-4.10.0-configure-OpenIPMI.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -200,12 +203,14 @@ sed -i -e 's/@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/#@LOAD_PLUGIN_RRDTOOL@LoadP
 %{__install} -Dp -m0644 src/collectd.conf %{buildroot}%{_sysconfdir}/collectd.conf
 %{__install} -Dp -m0755 contrib/fedora/init.d-collectd %{buildroot}%{_initrddir}/collectd
 
+%{__mkdir} -p  %{buildroot}/%{_sysconfdir}/httpd/conf.d
 %{__mkdir} -p %{buildroot}%{_localstatedir}/www
-%{__cp} -ar contrib/collection3  %{buildroot}%{_localstatedir}/www
-# TODO: httpd config snippet for collection3
 
 %{__cp} -ar contrib/php-collection  %{buildroot}%{_localstatedir}/www
+%{__cp} -ar ${SOURCE1}  %{buildroot}/%{_sysconfdir}etc/httpd/conf.d/
 
+%{__cp} -ar contrib/collection3  %{buildroot}%{_localstatedir}/www
+%{__cp} -ar ${SOURCE2}  %{buildroot}/%{_sysconfdir}etc/httpd/conf.d/
 
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/collectd/
@@ -328,6 +333,7 @@ fi
 
 %files collection3
 %{_localstatedir}/www/collection3
+%{_sysconfdir}/httpd/conf.d/collection3.conf
 
 %files dbi
 %{_libdir}/collectd/dbi.so
@@ -358,6 +364,7 @@ fi
 
 %files php-collection
 %{_localstatedir}/www/php-collection
+%{_sysconfdir}/httpd/conf.d/php-collection.conf
 
 %files postgresql
 %{_libdir}/collectd/postgresql.so
@@ -373,6 +380,9 @@ fi
 %{_libdir}/collectd/xmms.so
 
 %changelog
+* Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-3
+- Add httpd-config snippets for webapps
+
 * Fri May 14 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-2
 - New rrdtool supports rrdcached
 - more sub-packages
