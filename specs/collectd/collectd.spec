@@ -41,8 +41,6 @@ BuildRequires: which
 
 Obsoletes: collectd-apache <= %{version}-%{release}
 Provides: collectd-apache = %{version}-%{release}
-Obsoletes: collectd-mysql <= %{version}-%{release}
-Provides: collectd-mysql = %{version}-%{release}
 Obsoletes: collectd-sensors <= %{version}-%{release}
 Provides: collectd-sensors = %{version}-%{release}
 
@@ -382,6 +380,7 @@ fi
 %changelog
 * Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-3
 - Add httpd-config snippets for webapps
+- remove obsolete for collectd-mysql
 
 * Fri May 14 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-2
 - New rrdtool supports rrdcached
