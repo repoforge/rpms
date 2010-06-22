@@ -19,7 +19,7 @@ URL: http://collectd.org/
 
 Source: http://collectd.org/files/collectd-%{version}.tar.bz2
 Source1: php-collection.conf
-Source3: collection3.conf
+Source2: collection3.conf
 Patch1: %{name}-4.10.0-configure-OpenIPMI.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -204,11 +204,11 @@ sed -i -e 's/@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/#@LOAD_PLUGIN_RRDTOOL@LoadP
 %{__mkdir} -p  %{buildroot}/%{_sysconfdir}/httpd/conf.d
 %{__mkdir} -p %{buildroot}%{_localstatedir}/www
 
-%{__cp} -ar contrib/php-collection  %{buildroot}%{_localstatedir}/www
-%{__cp} -ar ${SOURCE1}  %{buildroot}/%{_sysconfdir}etc/httpd/conf.d/
+%{__cp} -a contrib/php-collection  %{buildroot}%{_localstatedir}/www
+%{__cp} -a %{SOURCE1}  %{buildroot}/%{_sysconfdir}/httpd/conf.d/
 
-%{__cp} -ar contrib/collection3  %{buildroot}%{_localstatedir}/www
-%{__cp} -ar ${SOURCE2}  %{buildroot}/%{_sysconfdir}etc/httpd/conf.d/
+%{__cp} -a contrib/collection3  %{buildroot}%{_localstatedir}/www
+%{__cp} -a %{SOURCE2}  %{buildroot}/%{_sysconfdir}/httpd/conf.d/
 
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/collectd/
