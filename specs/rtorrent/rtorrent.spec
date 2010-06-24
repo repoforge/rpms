@@ -22,7 +22,7 @@ BuildRequires: libsigc++20-devel
 BuildRequires: libtorrent-devel >= 0.12.5
 BuildRequires: ncurses-devel
 
-# Curl BuildRequires from Rawhide (no stunnel!)
+### Curl BuildRequires from Rawhide (no stunnel!)
 BuildRequires: krb5-devel
 BuildRequires: libidn-devel
 BuildRequires: nss-devel
@@ -45,21 +45,25 @@ management.
 
 %build
 
-# Build curl
+### Build curl
 pushd curl-%{curl_version}
-RESULT_DIR=`pwd`/result
+RESULT_DIR="$(pwd)/result"
 
 ./configure \
-	--without-ssl --with-nss --enable-ipv6 \
-	--with-ca-bundle=%{_sysconfdir}/pki/tls/certs/ca-bundle.crt \
-	--with-gssapi=%{_prefix}/kerberos --with-libidn \
-	--enable-ldaps --with-libssh2 --disable-manual \
-	--without-libssh2 \
-	--enable-static \
-	--disable-shared \
-	--prefix="$RESULT_DIR" \
-	--exec-prefix="$RESULT_DIR" \
-	--libdir="$RESULT_DIR/usr/%{_lib}"
+    --prefix="$RESULT_DIR" \
+    --exec-prefix="$RESULT_DIR" \
+    --libdir="$RESULT_DIR/usr/%{_lib}"
+    --disable-manual \
+    --disable-shared \
+    --enable-ipv6 \
+    --enable-ldaps \
+    --enable-static \
+    --without-libssh2 \
+    --without-ssl \
+    --with-ca-bundle="%{_sysconfdir}/pki/tls/certs/ca-bundle.crt" \
+    --with-gssapi="%{_prefix}/kerberos" \
+    --with-libidn \
+    --with-nss
 
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" install
 popd
