@@ -9,7 +9,7 @@
 
 Summary: Sophisticated file transfer program
 Name: lftp
-Version: 4.0.8
+Version: 4.0.9
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -58,6 +58,7 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %doc BUGS ChangeLog COPYING FAQ FEATURES INSTALL MIRRORS NEWS README* THANKS TODO
 %doc %{_mandir}/man1/lftp.1*
 %doc %{_mandir}/man1/lftpget.1*
+%doc %{_mandir}/man5/lftp.conf.5*
 %config(noreplace) %{_sysconfdir}/lftp.conf
 %{_bindir}/lftp
 %{_bindir}/lftpget
@@ -75,6 +76,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %exclude %{_libdir}/liblftp-tasks.la
 
 %changelog
+* Thu Jun 17 2010 Dag Wieers <dag@wieers.com> - 4.0.9-1
+- Updated to release 4.0.9.
+
 * Thu Jun 10 2010 Dag Wieers <dag@wieers.com> - 4.0.8-1
 - Updated to release 4.0.8.
 

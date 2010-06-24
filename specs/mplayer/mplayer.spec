@@ -23,15 +23,16 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-Release: 0.43.%{real_version}%{?dist}
+%define real_version 2009-07-11
+Release: 0.44.svn20090711%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2
-#Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot-%{real_version}.tar.bz2
-Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{real_version}.tar.bz2
+Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot-%{real_version}.tar.bz2
+#Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{real_version}.tar.bz2
 Source1: http://www.live555.com/liveMedia/public/live.%{live_version}.tar.gz
 Source2: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
 Source3: mplayer.png
@@ -125,7 +126,7 @@ nice antialiased shaded subtitles and OSD.
 This package contains the end user documentation.
 
 %prep
-%setup -n %{real_name}-%{version}%{real_version} -a 1
+%setup -n mplayer-export-%{real_version} -a 1
 %patch1 -p1 -b .playlist
 %patch10 -p1 -b .fribidi
 #patch100 -p0 -b .h264_static
@@ -277,14 +278,20 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc DOCS/*
 
 %changelog
+* Tue Jun 15 2010 Dag Wieers <dag@wieers.com> - 1.0-0.44.svn20090711
+- Rebuild RHEL4 against libcaca-0.99-0.1.beta17. (Jaroslaw Polok)
+
+* Mon Jun 14 2010 Dag Wieers <dag@wieers.com> - 1.0-0.43.svn20090711
+- Revert back to subversion snapshot 20090711. (Yury V. Zaytsev)
+
 * Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 1.0-0.43.rc3
 - Updated to release 1.0rc3.
 
 * Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 1.0-0.42.svn20090711
-- Rebuild against libdvbpsi 
+- Rebuild against libdvbpsi-0.1.7.
 
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 1.0-0.41.svn20090711
-- Rebuild against faad2 2.7.
+- Rebuild against faad2-2.7.
 
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.0-0.40.svn20090711
 - Updated to subversion snapshot 20090711.

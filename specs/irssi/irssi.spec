@@ -2,13 +2,12 @@
 # Authority: dag
 # Upstream: <irssi-dev$dragoncat,net>
 
-
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 
 Summary: Modular text-mode IRC client
 Name: irssi
-Version: 0.8.13
+Version: 0.8.15
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Communications
@@ -93,6 +92,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{_docdir}/irssi/
 
 %changelog
+* Thu Jun 17 2010 Dag Wieers <dag@wieers.com> - 0.8.15-1
+- Updated to release 0.8.15.
+
 * Thu Apr 02 2009 Dag Wieers <dag@wieers.com> - 0.8.13-1
 - Updated to release 0.8.13.
 

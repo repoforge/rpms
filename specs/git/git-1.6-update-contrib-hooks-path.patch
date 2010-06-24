@@ -1,4 +1,4 @@
->From 1963c852acc5d8c521a3e4f3b9ceb313d26a473c Mon Sep 17 00:00:00 2001
+From 1963c852acc5d8c521a3e4f3b9ceb313d26a473c Mon Sep 17 00:00:00 2001
 From: Todd Zullinger <tmz@pobox.com>
 Date: Mon, 22 Jun 2009 08:00:29 -0400
 Subject: [PATCH] Update path to contrib/hooks/post-receive-email
@@ -33,7 +33,7 @@ index 18d2e0f..cf57878 100755
 --- a/templates/hooks--post-receive.sample
 +++ b/templates/hooks--post-receive.sample
 @@ -12,4 +12,4 @@
- # see contrib/hooks/ for an sample, or uncomment the next line and
+ # see contrib/hooks/ for a sample, or uncomment the next line and
  # rename the file to "post-receive".
  
 -#. /usr/share/doc/git-core/contrib/hooks/post-receive-email

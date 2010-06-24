@@ -1,0 +1,29 @@
+From d3743bbfd82b058b68c1bcf6e3341966a3d9f707 Mon Sep 17 00:00:00 2001
+From: Jeff Layton <jlayton@samba.org>
+Date: Sun, 30 May 2010 07:47:26 -0400
+Subject: [PATCH] mount.cifs: fix parsing of "cred=" option
+
+When the mount option parsing was cleaned up recently, the detection of
+the "cred=" option was dropped.
+
+Signed-off-by: Jeff Layton <jlayton@samba.org>
+---
+ mount.cifs.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/mount.cifs.c b/mount.cifs.c
+index 326b94e..65754c0 100644
+--- a/mount.cifs.c
++++ b/mount.cifs.c
+@@ -800,6 +800,8 @@ static int parse_opt_token(const char *token)
+ 		return OPT_UNC;
+ 	if (strncmp(token, "dom", 3) == 0 || strncmp(token, "workg", 5) == 0)
+ 		return OPT_DOM;
++	if (strncmp(token, "cred", 4) == 0)
++		return OPT_CRED;
+ 	if (strncmp(token, "uid", 3) == 0)
+ 		return OPT_UID;
+ 	if (strncmp(token, "gid", 3) == 0)
+-- 
+1.6.6.1
+

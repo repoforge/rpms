@@ -1,4 +1,4 @@
->From 09891c65a5f7409ce0bd37daced0ff31fbb1b1c9 Mon Sep 17 00:00:00 2001
+From 09891c65a5f7409ce0bd37daced0ff31fbb1b1c9 Mon Sep 17 00:00:00 2001
 From: Todd Zullinger <tmz@pobox.com>
 Date: Mon, 23 Mar 2009 00:03:36 -0400
 Subject: [PATCH] git-cvsimport: Ignore cvsps-2.2b1 Branches: output

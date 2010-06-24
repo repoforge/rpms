@@ -17,8 +17,10 @@ Source: http://crm114.sourceforge.net/tarballs/crm114-%{version}-%{codename}.src
 Patch0: %{name}_Makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils, gcc, make
+BuildRequires: binutils
+BuildRequires: gcc
 BuildRequires: glibc-devel
+BuildRequires: make
 BuildRequires: tre-devel >= 0.7.5
 
 %description
@@ -58,40 +60,42 @@ Emacs mode for editing CRM114 config files.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -m0755 -d %{buildroot}%{_bindir}
-%{__install} -m0755 -d %{buildroot}%{_datadir}/emacs/site-lisp/
-%{__make} install DESTDIR=%{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_datadir}/emacs/site-lisp/
+%{__make} install DESTDIR="%{buildroot}"
 
 # put various .crm files in %{_libexecdir}
-%{__install} -m0755 -d %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 calc.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 classifymail.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 gatlingsort.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 mailfilter.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 maillib.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 mailreaver.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 mailtrainer.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 pad.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 quine.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 rewriteutil.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 shroud.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 shuffle.crm %{buildroot}%{_libexecdir}/crm114
-%{__install} -m0755 tenfold_validate.crm %{buildroot}%{_libexecdir}/crm114
-
+%{__install} -Dp -m0755 calc.crm %{buildroot}%{_libexecdir}/crm114/calc.crm
+%{__install} -Dp -m0755 classifymail.crm %{buildroot}%{_libexecdir}/crm114/classifymail.crm
+%{__install} -Dp -m0755 gatlingsort.crm %{buildroot}%{_libexecdir}/crm114/gatlingsort.crm
+%{__install} -Dp -m0755 mailfilter.crm %{buildroot}%{_libexecdir}/crm114/mailfilter.crm
+%{__install} -Dp -m0755 maillib.crm %{buildroot}%{_libexecdir}/crm114/maillib.crm
+%{__install} -Dp -m0755 mailreaver.crm %{buildroot}%{_libexecdir}/crm114/mailreaver.crm
+%{__install} -Dp -m0755 mailtrainer.crm %{buildroot}%{_libexecdir}/crm114/mailtrainer.crm
+%{__install} -Dp -m0755 pad.crm %{buildroot}%{_libexecdir}/crm114/pad.crm
+%{__install} -Dp -m0755 quine.crm %{buildroot}%{_libexecdir}/crm114/quine.crm
+%{__install} -Dp -m0755 rewriteutil.crm %{buildroot}%{_libexecdir}/crm114/rewriteutil.crm
+%{__install} -Dp -m0755 shroud.crm %{buildroot}%{_libexecdir}/crm114/shroud.crm
+%{__install} -Dp -m0755 shuffle.crm %{buildroot}%{_libexecdir}/crm114/shuffle.crm
+%{__install} -Dp -m0755 tenfold_validate.crm %{buildroot}%{_libexecdir}/crm114/tenfold_validate.crm
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README
-%doc *.txt *.recipe *.example *.cf
-%{_bindir}/*
-%{_libexecdir}/crm114
+%doc README *.txt *.recipe *.example *.cf
+%{_bindir}/crm
+%{_bindir}/cssdiff
+%{_bindir}/cssmerge
+%{_bindir}/cssutil
+%{_bindir}/osbf-util
+%{_libexecdir}/crm114/
 
 %files emacs
+%dir %{_datadir}/emacs/
 %dir %{_datadir}/emacs/site-lisp/
-%{_datadir}/emacs/site-lisp/*
+%{_datadir}/emacs/site-lisp/crm114-mode.el
 
 %changelog
 * Thu Jun 17 2010 Steve Huff <shuff@vecna.org> - 20100106-3

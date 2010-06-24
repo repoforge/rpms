@@ -9,7 +9,7 @@
 
 Summary: Dynamic Kernel Module Support Framework
 Name: dkms
-Version: 2.0.22.0
+Version: 2.1.1.2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
@@ -87,8 +87,12 @@ fi
 %{_localstatedir}/lib/dkms/
 %{_prefix}/lib/dkms/
 %{_sbindir}/dkms
+%exclude %{_datadir}/apport/
 
 %changelog
+* Thu Jun 17 2010 Dag Wieers <dag@wieers.com> - 2.1.1.2-1
+- Updated to release 2.1.1.2.
+
 * Mon Aug 17 2009 Dag Wieers <dag@wieers.com> - 2.0.22.0-1
 - Updated to release 2.0.22.0.
 

@@ -3,13 +3,14 @@
 
 Summary: John the Ripper password cracker
 Name: john
-Version: 1.7.0.2
-Release: 3%{?dist}
+Version: 1.7.6
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.openwall.com/john/
 
-Source: http://www.openwall.com/john/f/john-%{version}.tar.bz2
+#Source: http://www.openwall.com/john/f/john-%{version}.tar.bz2
+Source: http://www.openwall.com/john/g/john-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -82,6 +83,9 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %endif
 
 %changelog
+* Mon Jun 14 2010 Dag Wieers <dag@wieers.com> - 1.7.6-1
+- Updated to release 1.7.6.
+
 * Mon May 29 2006 Dag Wieers <dag@wieers.com> - 1.7.0.2-3
 - Fixed systemwide installation. (Solar Designer)
 - Fixed cpu fallback. (Solar Designer)

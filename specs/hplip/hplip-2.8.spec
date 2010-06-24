@@ -9,7 +9,7 @@
 
 Summary: HP Linux Imaging and Printing Project
 Name: hplip
-Version: 3.10.5
+Version: 2.8.12
 Release: 0.1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -17,7 +17,9 @@ URL: http://hplip.sourceforge.net/
 
 Source0: http://dl.sf.net/hplip/hplip-%{version}.tar.gz
 Source1: hplip.fdi
-Patch8: hplip-3.10.5-libsane.patch
+Patch1: hplip-2.8.10-desktop.patch
+Patch4: hplip-2.8.10-marker-supply.patch
+Patch8: hplip-2.8.10-libsane.patch
 Patch13: hplip-2.8.10-ui-optional.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -74,6 +76,12 @@ SANE driver for scanners in HP's multi-function devices (from HPOJ).
 %prep
 %setup
 
+# Fix desktop file.
+%patch1 -p1 -b .desktop
+
+# Low ink is a warning condition, not an error.
+%patch4 -p1 -b .marker-supply
+
 # Link libsane-hpaio against libsane (bug #234813).
 %patch8 -p1 -b .libsane
 
@@ -83,18 +91,12 @@ SANE driver for scanners in HP's multi-function devices (from HPOJ).
 %build
 %configure \
     --disable-cups-install \
-    --disable-qt4 \
-    --enable-cups-drv-install \
-    --enable-cups-ppd-install \
-    --enable-foomatic-drv-install \
-    --enable-foomatic-ppd-install \
-    --enable-foomatic-rip-hplip-install \
+    --disable-foomatic-rip-hplip-install \
+    --disable-foomatic-xml-install \
     --enable-dbus \
     --enable-fax-build \
     --enable-gui-build \
-    --enable-hpijs-install \
-    --enable-scan-build \
-    --enable-qt3
+    --enable-scan-build
 %{__make} %{?_smp_mflags}
 
 %install
@@ -138,6 +140,84 @@ find doc/images -type f -exec chmod 644 {} \;
 # window), so don't ship the launcher yet. Needs python-dbus 0.80+
 #rm -f %{buildroot}%{_sysconfdir}/xdg/autostart/hplip-systray.desktop
 
+%clean
+%{__rm} -rf %{buildroot}
+
+%files
+%defattr(-, root, root, 0755)
+%doc COPYING doc/*
+%dir %{_sysconfdir}/hp/
+%config(noreplace) %{_sysconfdir}/hp/hplip.conf
+%config %{_sysconfdir}/xdg/autostart/hplip-systray.desktop
+%dir %{_datadir}/hal/
+%dir %{_datadir}/hal/fdi/
+%dir %{_datadir}/hal/fdi/preprobe/
+%dir %{_datadir}/hal/fdi/preprobe/10osvendor
+%{_bindir}/hp-align
+%{_bindir}/hp-check
+%{_bindir}/hp-clean
+%{_bindir}/hp-colorcal
+%{_bindir}/hp-devicesetup
+%{_bindir}/hp-fab
+%{_bindir}/hp-faxsetup
+%{_bindir}/hp-firmware
+%{_bindir}/hp-info
+%{_bindir}/hp-levels
+%{_bindir}/hp-linefeedcal
+%{_bindir}/hp-makecopies
+%{_bindir}/hp-makeuri
+%{_bindir}/hp-mkuri
+%{_bindir}/hp-plugin
+%{_bindir}/hp-pqdiag
+%{_bindir}/hp-print
+%{_bindir}/hp-printsettings
+%{_bindir}/hp-probe
+%{_bindir}/hp-scan
+%{_bindir}/hp-sendfax
+%{_bindir}/hp-setup
+%{_bindir}/hp-systray
+%{_bindir}/hp-testpage
+%{_bindir}/hp-timedate
+%{_bindir}/hp-toolbox
+%{_bindir}/hp-unload
+%{_datadir}/applications/*.desktop
+%dir %{_datadir}/hal/
+%dir %{_datadir}/hal/fdi/
+%dir %{_datadir}/hal/fdi/policy/
+%dir %{_datadir}/hal/fdi/policy/10osvendor/
+%{_datadir}/hal/fdi/policy/10osvendor/10-hplip.fdi
+%dir %{_datadir}/hal/fdi/preprobe/
+%dir %{_datadir}/hal/fdi/preprobe/10osvendor/
+%{_datadir}/hal/fdi/preprobe/10osvendor/20-hplip-devices.fdi
+%{_datadir}/hplip/
+%{_libdir}/libhpmud.so*
+%{python_sitearch}/*.so
+%{_libdir}/python*/site-packages/*
+### Must be /usr/lib, since that is the CUPS serverbin directory
+%dir %{_prefix}/lib/cups/
+%dir %{_prefix}/lib/cups/backend/
+%{_prefix}/lib/cups/backend/hp
+%{_prefix}/lib/cups/backend/hpfax
+%exclude %{python_sitearch}/*.la
+
+%files -n hpijs
+%defattr(-, root, root, 0755)
+%{_bindir}/hpijs
+%dir %{_datadir}/ppd/
+%{_datadir}/ppd/HP/
+%dir %{_datadir}/cups/
+%{_datadir}/cups/drv/*
+%{_libdir}/libhpip.so*
+#### Must be /usr/lib, since that is the CUPS serverbin directory
+%dir %{_prefix}/lib/cups/
+%dir %{_prefix}/lib/cups/filter/
+%{_prefix}/lib/cups/filter/hplipjs
+
+%files -n libsane-hpaio
+%defattr(-, root, root, 0755)
+%{_libdir}/sane/libsane-*.so*
+%exclude %{_libdir}/sane/libsane-*.la
+
 %pre
 ### No daemons any more.
 /sbin/chkconfig --del hplip 2>/dev/null || :
@@ -161,95 +241,9 @@ if [ -f /etc/sane.d/dll.conf ]; then
 fi
 exit 0
 
-%clean
-%{__rm} -rf %{buildroot}
-
-%files
-%defattr(-, root, root, 0755)
-%doc COPYING doc/*
-%dir %{_sysconfdir}/hp/
-%config(noreplace) %{_sysconfdir}/hp/hplip.conf
-%config %{_sysconfdir}/cups/pstotiff.convs
-%config %{_sysconfdir}/cups/pstotiff.types
-%config %{_sysconfdir}/xdg/autostart/hplip-systray.desktop
-%{_bindir}/hp-align
-%{_bindir}/hp-devicesettings
-%{_bindir}/hp-check
-%{_bindir}/hp-clean
-%{_bindir}/hp-colorcal
-%{_bindir}/hp-fab
-%{_bindir}/hp-faxsetup
-%{_bindir}/hp-firmware
-%{_bindir}/hp-info
-%{_bindir}/hp-levels
-%{_bindir}/hp-linefeedcal
-%{_bindir}/hp-makecopies
-%{_bindir}/hp-makeuri
-%{_bindir}/hp-mkuri
-%{_bindir}/hp-pkservice
-%{_bindir}/hp-plugin
-%{_bindir}/hp-pqdiag
-%{_bindir}/hp-print
-%{_bindir}/hp-printsettings
-%{_bindir}/hp-probe
-%{_bindir}/hp-query
-%{_bindir}/hp-scan
-%{_bindir}/hp-sendfax
-%{_bindir}/hp-setup
-%{_bindir}/hp-systray
-%{_bindir}/hp-testpage
-%{_bindir}/hp-timedate
-%{_bindir}/hp-toolbox
-%{_bindir}/hp-unload
-%{_bindir}/hp-wificonfig
-%{_datadir}/applications/*.desktop
-%dir %{_datadir}/hal/
-%dir %{_datadir}/hal/fdi/
-%dir %{_datadir}/hal/fdi/policy/
-%dir %{_datadir}/hal/fdi/policy/10osvendor/
-%{_datadir}/hal/fdi/policy/10osvendor/10-hplip.fdi
-%dir %{_datadir}/hal/fdi/preprobe/
-%dir %{_datadir}/hal/fdi/preprobe/10osvendor/
-%{_datadir}/hal/fdi/preprobe/10osvendor/20-hplip-devices.fdi
-%{_datadir}/hplip/
-%{_libdir}/libhpmud.so*
-%{python_sitearch}/*.so
-%{_libdir}/python*/site-packages/*
-%{_localstatedir}/lib/hp/
-### Must be /usr/lib, since that is the CUPS serverbin directory
-%dir %{_prefix}/lib/cups/
-%dir %{_prefix}/lib/cups/backend/
-%{_prefix}/lib/cups/backend/hp
-%{_prefix}/lib/cups/backend/hpfax
-%dir %{_prefix}/lib/cups/filter/
-%{_prefix}/lib/cups/filter/foomatic-rip-hplip
-%{_prefix}/lib/cups/filter/hpcac
-%{_prefix}/lib/cups/filter/hpcups
-%{_prefix}/lib/cups/filter/hpcupsfax
-%{_prefix}/lib/cups/filter/pstotiff
-%exclude %{python_sitearch}/*.la
-
-%files -n hpijs
-%defattr(-, root, root, 0755)
-%{_bindir}/hpijs
-%dir %{_datadir}/ppd/
-%{_datadir}/ppd/HP/
-%dir %{_datadir}/cups/
-%{_datadir}/cups/drv/*
-%{_libdir}/libhpip.so*
-#### Must be /usr/lib, since that is the CUPS serverbin directory
-%dir %{_prefix}/lib/cups/
-%dir %{_prefix}/lib/cups/filter/
-%{_prefix}/lib/cups/filter/hplipjs
-
-%files -n libsane-hpaio
-%defattr(-, root, root, 0755)
-%{_libdir}/sane/libsane-*.so*
-%exclude %{_libdir}/sane/libsane-*.la
-
 %changelog
-* Fri Jun 18 2010 Dag Wieers <dag@wieers.com> - 3.10.5-1
-- Updated to release 3.10.5.
+* Fri Jun 18 2010 Dag Wieers <dag@wieers.com> - 2.8.12-1
+- Updated to release 2.8.12.
 
 * Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 2.8.10-1
 - Updated to release 2.8.10.

@@ -3,16 +3,18 @@
 
 Summary: Library implementing the SSH2 protocol
 Name: libssh2
-Version: 0.17
+Version: 1.2.6
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.libssh2.org/
 
-Source: http://dl.sf.net/sourceforge/libssh2/libssh2-%{version}.tar.gz
+Source: http://www.libssh2.org/download/libssh2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, openssl-devel, zlib-devel
+BuildRequires: openssl-devel
+BuildRequires: pkgconfig
+BuildRequires: zlib-devel
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by
@@ -60,12 +62,16 @@ you will need to install %{name}-devel.
 %files devel
 %defattr(-, root, root, 0755)
 %doc example/
-%doc %{_mandir}/man3/*.3*
-%{_libdir}/libssh2.so
+%doc %{_mandir}/man3/libssh2_*.3*
 %{_includedir}/libssh2*.h
+%{_libdir}/libssh2.so
+%{_libdir}/pkgconfig/libssh2.pc
 %exclude %{_libdir}/libssh2.la
 
 %changelog
+* Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 1.2.6-1
+- Updated to release 1.2.6.
+
 * Fri Sep 07 2007 Dag Wieers <dag@wieers.com> - 0.17-1
 - Updated to release 0.17.
 

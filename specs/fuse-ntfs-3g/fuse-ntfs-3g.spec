@@ -7,13 +7,14 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 2009.11.14
+Version: 2010.5.22
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://www.ntfs-3g.org/
 
-Source: http://www.ntfs-3g.org/ntfs-3g-%{version}.tgz
+#Source: http://www.ntfs-3g.org/ntfs-3g-%{version}.tgz
+Source: http://tuxera.com/opensource/ntfs-3g-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: fuse-devel >= 2.6.3
@@ -65,9 +66,8 @@ you will need to install %{name}-devel.
 %{__make} install DESTDIR="%{buildroot}"
 
 ### Symlink different locations
-%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs
-%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs-3g
-%{__ln_s} -f %{_bindir}/ntfs-3g %{buildroot}%{_bindir}/ntfsmount
+%{__ln_s} %{_bindir}/ntfs-3g %{buildroot}%{_sbindir}/mount.ntfs
+%{__ln_s} %{_bindir}/ntfs-3g %{buildroot}%{_bindir}/ntfsmount
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -79,16 +79,19 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* CREDITS NEWS README
 %doc %{_mandir}/man8/mount.ntfs-3g.8*
+%doc %{_mandir}/man8/mount.lowntfs-3g.8*
 %doc %{_mandir}/man8/ntfs-3g.8*
 %doc %{_mandir}/man8/ntfs-3g.probe.8*
 %doc %{_mandir}/man8/ntfs-3g.secaudit.8*
 %doc %{_mandir}/man8/ntfs-3g.usermap.8*
+%{_bindir}/lowntfs-3g
 %{_bindir}/ntfs-3g
 %{_bindir}/ntfs-3g.probe
 %{_bindir}/ntfs-3g.secaudit
 %{_bindir}/ntfs-3g.usermap
 %{_bindir}/ntfsmount
 %{_libdir}/libntfs-3g.so.*
+%{_sbindir}/mount.lowntfs-3g
 %{_sbindir}/mount.ntfs
 %{_sbindir}/mount.ntfs-3g
 %exclude %{_docdir}/ntfs-3g/
@@ -101,6 +104,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Sun Jun 20 2010 Dag Wieers <dag@wieers.com> - 2010.5.22-1
+- Updated to release 2010.5.22.
+
 * Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 2009.11.14-1
 - Updated to release 2009.11.14.
 

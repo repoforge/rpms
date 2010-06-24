@@ -8,8 +8,8 @@
 
 Name: trac
 Summary: Integrated SCM and project management tool
-Version: 0.11.7
-Release: 2%{?dist}
+Version: 0.12
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -18,15 +18,13 @@ Source: http://ftp.edgewall.com/pub/trac/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.3
+BuildRequires: python >= 2.4
 BuildRequires: python-setuptools => 0.6
-Requires: python >= 2.3
+Requires: python >= 2.4
 #Requires: python-clearsilver >= 0.9.3
-Requires: python-genshi >= 0.5
+Requires: python-genshi >= 0.6
 Requires: python-setuptools >= 0.6
 Requires: python-sqlite >= 1.0
-Requires: subversion >= 1.0.0
-#Requires: subversion-python >= 1.0.0
 Requires: webserver
 Requires: mod_python
 
@@ -97,9 +95,13 @@ EOF
 %dir %{_localstatedir}/www/
 %{_localstatedir}/www/trac/
 %{python_sitelib}/trac/
+%{python_sitelib}/tracopt/
 %{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Mon Jun 14 2010 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release 0.12.
+
 * Sun Jun 20 Yury V. Zaytsev <yury@shurup.com> - 0.11.7-2
 - Captured missing dependency on mod_python.
 
