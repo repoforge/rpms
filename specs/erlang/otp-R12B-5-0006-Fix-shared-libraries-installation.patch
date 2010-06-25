@@ -1,0 +1,41 @@
+From 43a522c155f9cdf60f741d10cee9b99402143437 Mon Sep 17 00:00:00 2001
+From: Peter Lemenkov <lemenkov@gmail.com>
+Date: Mon, 19 Apr 2010 13:44:40 +0400
+Subject: [PATCH 6/7] Fix shared libraries installation
+
+Several shared libraries (asn1_erl_drv.so, megaco_flex_scanner_drv_mt.so,
+megaco_flex_scanner_drv.so) were installed as data files previously.
+---
+ lib/asn1/c_src/Makefile.in      |    2 +-
+ lib/megaco/src/flex/Makefile.in |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/lib/asn1/c_src/Makefile.in b/lib/asn1/c_src/Makefile.in
+index e1aad44..73325bb 100644
+--- a/lib/asn1/c_src/Makefile.in
++++ b/lib/asn1/c_src/Makefile.in
+@@ -131,7 +131,7 @@ include $(ERL_TOP)/make/otp_release_targets.mk
+ 
+ release_spec: opt
+ 	$(INSTALL_DIR) $(RELSYSDIR)/priv/lib
+-	$(INSTALL_DATA) $(SHARED_OBJ_FILES) $(RELSYSDIR)/priv/lib
++	$(INSTALL_PROGRAM) $(SHARED_OBJ_FILES) $(RELSYSDIR)/priv/lib
+ 	$(INSTALL_DIR) $(RELSYSDIR)/c_src
+ 	$(INSTALL_DATA) $(C_FILES) $(RELSYSDIR)/c_src
+ 
+diff --git a/lib/megaco/src/flex/Makefile.in b/lib/megaco/src/flex/Makefile.in
+index 127f8b2..88c0876 100644
+--- a/lib/megaco/src/flex/Makefile.in
++++ b/lib/megaco/src/flex/Makefile.in
+@@ -219,7 +219,7 @@ release_spec: opt
+ 	$(INSTALL_DATA) $(TARGET_FILES) $(RELSYSDIR)/ebin
+ ifeq ($(ENABLE_MEGACO_FLEX_SCANNER),true)
+ 	$(INSTALL_DATA) $(FLEX_FILES) $(RELSYSDIR)/src/flex
+-	$(INSTALL_DATA) $(SOLIBS) $(RELSYSDIR)/priv/lib
++	$(INSTALL_PROGRAM) $(SOLIBS) $(RELSYSDIR)/priv/lib
+ endif
+ 
+ 
+-- 
+1.6.6.1
+

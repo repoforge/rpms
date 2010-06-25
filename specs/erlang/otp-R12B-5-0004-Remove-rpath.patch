@@ -1,0 +1,65 @@
+From 03e261ee3152f3c45b23886e143c28bf2953f78d Mon Sep 17 00:00:00 2001
+From: Peter Lemenkov <lemenkov@gmail.com>
+Date: Mon, 19 Apr 2010 13:36:36 +0400
+Subject: [PATCH 4/7] Remove rpath
+
+---
+ lib/crypto/c_src/Makefile.in |    2 +-
+ lib/crypto/priv/Makefile     |    2 +-
+ lib/ssl/c_src/Makefile.in    |    6 +++---
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/lib/crypto/c_src/Makefile.in b/lib/crypto/c_src/Makefile.in
+index fb9ebae..eddcd0a 100644
+--- a/lib/crypto/c_src/Makefile.in
++++ b/lib/crypto/c_src/Makefile.in
+@@ -80,7 +80,7 @@ ifeq ($(HOST_OS),)
+ HOST_OS := $(shell $(ERL_TOP)/erts/autoconf/config.guess)
+ endif
+ DYNAMIC_CRYPTO_LIB=@SSL_DYNAMIC_ONLY@
+-LD_R_FLAG=@DED_LD_FLAG_RUNTIME_LIBRARY_PATH@
++LD_R_FLAG=
+ ifeq ($(strip $(LD_R_FLAG)),)
+ LD_R_OPT =
+ else
+diff --git a/lib/crypto/priv/Makefile b/lib/crypto/priv/Makefile
+index b8acdac..2c2989a 100644
+--- a/lib/crypto/priv/Makefile
++++ b/lib/crypto/priv/Makefile
+@@ -60,7 +60,7 @@ OBJS = $(OBJDIR)/crypto_drv.o
+ # ----------------------------------------------------
+ 
+ $(SO_DRIVER): $(OBJS)
+-	$(SO_LD) $(SO_LDFLAGS) -L$(SO_SSL_LIBDIR) -Wl,-R$(SO_SSL_LIBDIR) \
++	$(SO_LD) $(SO_LDFLAGS) -L$(SO_SSL_LIBDIR) \
+ 	-o $@ $^ -lcrypto
+ 
+ $(DLL_DRIVER): $(OBJS)
+diff --git a/lib/ssl/c_src/Makefile.in b/lib/ssl/c_src/Makefile.in
+index 57b2929..6fc1140 100644
+--- a/lib/ssl/c_src/Makefile.in
++++ b/lib/ssl/c_src/Makefile.in
+@@ -104,7 +104,7 @@ else
+ SSL_MAKEFILE =
+ endif
+ 
+-CC_R_FLAG=@CFLAG_RUNTIME_LIBRARY_PATH@
++CC_R_FLAG=
+ ifeq ($(findstring @,$(CC_R_FLAG)),@)
+ # Old erts configure used which hasn't replaced @CFLAG_RUNTIME_LIBRARY_PATH@;
+ # we try our best here instead...
+@@ -113,9 +113,9 @@ ifeq ($(findstring darwin,$(TARGET)),darwin)	# darwin: no flag
+ CC_R_FLAG =
+ else
+ ifeq ($(findstring osf,$(TARGET)),osf)		# osf1: -Wl,-rpath,
+-CC_R_FLAG = -Wl,-rpath,
++CC_R_FLAG =
+ else						# Default: -Wl,-R
+-CC_R_FLAG = -Wl,-R
++CC_R_FLAG =
+ endif
+ endif
+ endif
+-- 
+1.6.6.1
+

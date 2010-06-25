@@ -1,0 +1,25 @@
+From 27c1838e985581f07972c6d069f9b682ec9e07b5 Mon Sep 17 00:00:00 2001
+From: Peter Lemenkov <lemenkov@gmail.com>
+Date: Mon, 19 Apr 2010 13:33:50 +0400
+Subject: [PATCH 2/7] Fix symlinking of epmd
+
+---
+ erts/etc/unix/Install.src |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/erts/etc/unix/Install.src b/erts/etc/unix/Install.src
+index 6568766..a6acfeb 100644
+--- a/erts/etc/unix/Install.src
++++ b/erts/etc/unix/Install.src
+@@ -87,7 +87,7 @@ if [ -h epmd ]; then
+   /bin/rm -f epmd
+ fi
+ 
+-ln -s $ERL_ROOT/erts-%I_VSN%/bin/epmd epmd
++ln -s ../erts-%I_VSN%/bin/epmd epmd
+ 
+ cp -p $ERL_ROOT/erts-%I_VSN%/bin/run_erl .
+ cp -p $ERL_ROOT/erts-%I_VSN%/bin/to_erl .
+-- 
+1.6.6.1
+

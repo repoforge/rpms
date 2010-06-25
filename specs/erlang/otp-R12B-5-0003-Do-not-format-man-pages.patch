@@ -1,0 +1,34 @@
+From 5e704c7ad11d10904d136c5687b045f4f9ac8c96 Mon Sep 17 00:00:00 2001
+From: Peter Lemenkov <lemenkov@gmail.com>
+Date: Mon, 19 Apr 2010 13:35:14 +0400
+Subject: [PATCH 3/7] Do not format man-pages
+
+---
+ erts/etc/unix/Install.src |   14 +-------------
+ 1 files changed, 1 insertions(+), 13 deletions(-)
+
+diff --git a/erts/etc/unix/Install.src b/erts/etc/unix/Install.src
+index a6acfeb..5f7caac 100644
+--- a/erts/etc/unix/Install.src
++++ b/erts/etc/unix/Install.src
+@@ -136,16 +136,4 @@ if [ "X$TARGET" != "Xsunos5" -a -d $ERL_ROOT/usr/lib ]; then
+ 	(ranlib $library) > /dev/null 2>&1
+     done
+ fi
+-
+-
+-#
+-# Fixing the man pages
+-#
+-
+-if [ -d $ERL_ROOT/man ]
+-then
+-    cd $ERL_ROOT
+-    ./misc/format_man_pages $ERL_ROOT
+-fi
+-
+-
++exit 0
+-- 
+1.6.6.1
+

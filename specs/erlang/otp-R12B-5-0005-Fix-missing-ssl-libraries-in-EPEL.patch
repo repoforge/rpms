@@ -1,0 +1,25 @@
+From eb824c996de021797b6a4dcce233e5ddb54b8059 Mon Sep 17 00:00:00 2001
+From: Peter Lemenkov <lemenkov@gmail.com>
+Date: Mon, 19 Apr 2010 13:39:17 +0400
+Subject: [PATCH 5/7] Fix missing ssl-libraries in EPEL
+
+---
+ lib/ssl/c_src/Makefile.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/lib/ssl/c_src/Makefile.in b/lib/ssl/c_src/Makefile.in
+index 6fc1140..9bdc2ad 100644
+--- a/lib/ssl/c_src/Makefile.in
++++ b/lib/ssl/c_src/Makefile.in
+@@ -40,7 +40,7 @@ VSN=$(SSL_VSN)
+ CC = @CC@
+ LD = @LD@
+ SHELL = /bin/sh
+-LIBS = @LIBS@
++LIBS = @LIBS@ -lkeyutils -lselinux
+ PLAIN_CFLAGS = @CFLAGS@
+ 
+ # ----------------------------------------------------
+-- 
+1.6.6.1
+
