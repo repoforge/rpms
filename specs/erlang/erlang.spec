@@ -6,7 +6,7 @@
 
 Name: erlang
 Version: R12B
-Release: %{rel}.1%{?dist}
+Release: %{rel}.11%{?dist}
 Summary: General-purpose programming language and runtime environment
 License: ERPL
 Group: Development/Languages
@@ -125,47 +125,59 @@ sed -i 's|@RX_LDFLAGS@||' lib/common_test/c_src/Makefile.in
 
 
 %build
-CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %configure --enable-dynamic-ssl-lib
+CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %configure \
+    --enable-dynamic-ssl-lib \
+    --enable-threads \
+    --enable-smp-support \
+    --enable-kernel-poll \
+    --enable-hipe \
+    --disable-erlang-mandir 
 %{__chmod} -R u+w .
 %{__make}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%{__make} INSTALL_PREFIX=$RPM_BUILD_ROOT install
+rm -rf %{buildroot}
+%{__make} INSTALL_PREFIX=%{buildroot} install
 
 # clean up
-find $RPM_BUILD_ROOT%{_libdir}/erlang -perm 0775 | xargs chmod 755
-find $RPM_BUILD_ROOT%{_libdir}/erlang -name Makefile | xargs chmod 644
-find $RPM_BUILD_ROOT%{_libdir}/erlang -name \*.o | xargs chmod 644
-find $RPM_BUILD_ROOT%{_libdir}/erlang -name \*.bat | xargs rm -f
-find $RPM_BUILD_ROOT%{_libdir}/erlang -name index.txt.old | xargs rm -f
+find %{buildroot}%{_libdir}/erlang -perm 0775 | xargs chmod 755
+find %{buildroot}%{_libdir}/erlang -name Makefile | xargs chmod 644
+find %{buildroot}%{_libdir}/erlang -name \*.o | xargs chmod 644
+find %{buildroot}%{_libdir}/erlang -name \*.bat | xargs rm -f
+find %{buildroot}%{_libdir}/erlang -name index.txt.old | xargs rm -f
 
 # doc
 %{__mkdir_p} erlang_doc
 %{__tar} -C erlang_doc -zxf %{SOURCE1}
-%{__tar} -C $RPM_BUILD_ROOT/%{_libdir}/erlang -zxf %{SOURCE2}
+%{__mkdir_p} %{buildroot}%{_mandir}
+%{__tar} -C %{buildroot}/%{_mandir}/.. -zxf %{SOURCE2}
+# clean up some unnecessary files from the man tarball
+%{__rm} -f %{buildroot}/%{_datadir}/COPYRIGHT
+%{__rm} -f %{buildroot}/%{_datadir}/PR.template
+%{__rm} -f %{buildroot}/%{_datadir}/README
 
 # make links to binaries
-%{__mkdir_p} $RPM_BUILD_ROOT/%{_bindir}
-cd $RPM_BUILD_ROOT/%{_bindir}
+%{__mkdir_p} %{buildroot}/%{_bindir}
+cd %{buildroot}/%{_bindir}
 for file in erl erlc escript dialyzer
 do
   %{__ln_s} -f ../%{_lib}/erlang/bin/$file .
 done
 
 # remove buildroot from installed files
-cd $RPM_BUILD_ROOT/%{_libdir}/erlang
-sed -i "s|$RPM_BUILD_ROOT||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start}
+cd %{buildroot}/%{_libdir}/erlang
+sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start}
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 
 %files
 %defattr(-,root,root)
 %doc AUTHORS EPLICENCE README
+%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/erlang
 
@@ -180,8 +192,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Fri Jun 25 2010 Steve Huff <shuff@vecna.org> - R12B-5.10
+* Fri Jun 25 2010 Steve Huff <shuff@vecna.org> - R12B-5.11
 - Ported from EPEL.
+- Turned on some additional compile-time options.
+- Moved man pages into standard $MANPATH.
 
 * Mon Jun  7 2010 Peter Lemenkov <lemenkov@gmail.com> - R12B-5.10
 - Added missing virtual provides erlang-erts
