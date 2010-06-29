@@ -3,20 +3,18 @@
 # Upstream: <syslinux$zytor,com>
 
 # Rationale: If you need syslinux, you'd appreciate the latest, trust me.
-# Tag: test
 
 %define _sbindir /sbin
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 4.00
-%define real_version 4.00-pre55
-Release: 0.pre55%{?dist}
+Version: 3.86
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
-Source: http://www.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
+Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -35,7 +33,7 @@ filesystems, Linux ext2/ext3 filesystems (EXTLINUX), PXE network boots
 MEMDISK, which loads legacy operating systems from these media.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %{__make} clean
@@ -62,7 +60,7 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING NEWS README doc/* sample/
+%doc BUGS COPYING NEWS README TODO doc/* sample/
 %doc %{_mandir}/man1/extlinux.1*
 %doc %{_mandir}/man1/gethostip.1*
 %doc %{_mandir}/man1/lss16toppm.1*
@@ -71,7 +69,6 @@ MEMDISK, which loads legacy operating systems from these media.
 %doc %{_mandir}/man1/syslinux2ansi.1*
 %{_bindir}/gethostip
 %{_bindir}/isohybrid
-%{_bindir}/isohybrid.pl
 %{_bindir}/keytab-lilo
 %{_bindir}/lss16toppm
 %{_bindir}/md5pass
@@ -86,95 +83,35 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
-* Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre54
-- Updated to release 4.00-pre54.
+* Sat Apr 03 2010 Dag Wieers <dag@wieers.com> - 3.86-1
+- Updated to release 3.86.
 
-* Wed Jun 16 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre49
-- Updated to release 4.00-pre49.
+* Mon Feb 22 2010 Dag Wieers <dag@wieers.com> - 3.85-1
+- Updated to release 3.85.
 
-* Sun May 30 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre47
-- Updated to release 4.00-pre47.
+* Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 3.84-1
+- Updated to release 3.84.
 
-* Mon May 17 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre45
-- Updated to release 4.00-pre45.
+* Fri Oct 09 2009 Dag Wieers <dag@wieers.com> - 3.83-1
+- Updated to release 3.83.
 
-* Thu May 13 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre43
-- Updated to release 4.00-pre43.
+* Tue Jun 09 2009 Dag Wieers <dag@wieers.com> - 3.82-1
+- Updated to release 3.82.
 
-* Sat May 01 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre40
-- Updated to release 4.00-pre40.
+* Sat May 30 2009 Dag Wieers <dag@wieers.com> - 3.81-1
+- Updated to release 3.81.
 
-* Sat Apr 03 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre38
-- Updated to release 4.00-pre38.
+* Wed May 06 2009 Dag Wieers <dag@wieers.com> - 3.80-1
+- Updated to release 3.80.
 
-* Wed Mar 31 2010 Dag Wieers <dag@wieers.com> - 3.86-0.pre2
-- Updated to release 3.86-pre2.
+* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 3.75-1
+- Updated to release 3.75.
 
-* Thu Feb 18 2010 Dag Wieers <dag@wieers.com> - 3.85-0.pre13
-- Updated to release 3.85-pre13.
+* Fri Apr 10 2009 Dag Wieers <dag@wieers.com> - 3.74-1
+- Updated to release 3.74.
 
-* Thu Feb 04 2010 Dag Wieers <dag@wieers.com> - 3.85-0.pre5
-- Updated to release 3.85-pre5.
-
-* Mon Sep 28 2009 Dag Wieers <dag@wieers.com> - 3.83-0.pre11
-- Updated to release 3.83-pre11.
-
-* Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 3.83-0.pre10
-- Updated to release 3.83-pre10.
-
-* Sat Aug 01 2009 Dag Wieers <dag@wieers.com> - 3.83-0.pre5
-- Updated to release 3.83-pre5.
-
-* Tue Jun 09 2009 Dag Wieers <dag@wieers.com> - 3.82-0.pre5
-- Updated to release 3.82-pre5.
-
-* Tue May 26 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre13
-- Updated to release 3.81-pre13.
-
-* Mon May 25 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre10
-- Updated to release 3.81-pre10.
-
-* Thu May 21 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre9
-- Updated to release 3.81-pre9.
-
-* Thu May 21 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre7
-- Updated to release 3.81-pre7.
-
-* Tue May 19 2009 Dag Wieers <dag@wieers.com> - 3.81-0.pre6
-- Updated to release 3.81-pre6.
-
-* Sun May 03 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre7
-- Updated to release 3.80-pre7.
-
-* Fri May 01 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre5
-- Updated to release 3.80-pre5.
-
-* Thu Apr 30 2009 Dag Wieers <dag@wieers.com> - 3.80-0.pre4
-- Updated to release 3.80-pre4.
-
-* Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 3.75-0.pre4
-- Updated to release 3.75-pre4.
-
-* Wed Apr 15 2009 Dag Wieers <dag@wieers.com> - 3.75-0.pre2
-- Updated to release 3.75-pre2.
-
-* Thu Apr 09 2009 Dag Wieers <dag@wieers.com> - 3.74-0.pre21
-- Updated to release 3.74-pre21.
-
-* Tue Apr 07 2009 Dag Wieers <dag@wieers.com> - 3.74-0.pre19
-- Updated to release 3.74-pre19.
-
-* Wed Jan 07 2009 Dag Wieers <dag@wieers.com> - 3.73-0.pre7
-- Updated to release 3.73-pre7
-
-* Sun Nov 23 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre6
-- Updated to release 3.73-pre6.
-
-* Thu Oct 16 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre4
-- Updated to release 3.73-pre4.
-
-* Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 3.73-0.pre3
-- Updated to release 3.73-pre3.
+* Mon Jan 26 2009 Dag Wieers <dag@wieers.com> - 3.73-1
+- Updated to release 3.73.
 
 * Sun Sep 28 2008 Dag Wieers <dag@wieers.com> - 3.72-2
 - Fixed Patch1.

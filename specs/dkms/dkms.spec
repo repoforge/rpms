@@ -1,11 +1,7 @@
 # $Id$
 # Authority: dag
 
-
 %{?el3:%define _without_kernel_devel 1}
-%{?rh9:%define _without_kernel_devel 1}
-%{?rh7:%define _without_kernel_devel 1}
-%{?el2:%define _without_kernel_devel 1}
 
 Summary: Dynamic Kernel Module Support Framework
 Name: dkms

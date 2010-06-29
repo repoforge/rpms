@@ -2,9 +2,6 @@
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
 
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-
 %define desktop_vendor rpmforge
 
 Summary: The Pan Newsreader
@@ -19,6 +16,7 @@ URL: http://pan.rebelbase.com/
 Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: desktop-file-utils
 BuildRequires: glib2-devel >= 2.0.4
 BuildRequires: gmime-devel >= 2.1.9
 BuildRequires: gnet2-devel
@@ -26,7 +24,6 @@ BuildRequires: gtk2-devel >= 2.0.5
 BuildRequires: gtkspell-devel >= 2.0.2
 BuildRequires: libxml2-devel >= 2.4.22
 BuildRequires: pcre-devel >= 5.0, gettext
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
 Pan is a newsreader, loosely based on Agent and Gravity, which attempts
@@ -51,7 +48,6 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-%if %{!?_without_freedesktop:1}0
 desktop-file-install --vendor %{desktop_vendor} \
     --delete-original                           \
     --add-category Application                  \
@@ -59,7 +55,6 @@ desktop-file-install --vendor %{desktop_vendor} \
     --add-category X-Red-Hat-Base               \
     --dir %{buildroot}%{_datadir}/applications  \
     %{buildroot}%{_datadir}/applications/pan.desktop
-%endif
 
 %clean
 %{__rm} -rf %{buildroot}

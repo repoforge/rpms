@@ -3,20 +3,8 @@
 
 %define desktop_vendor rpmforge
 
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
 
 Summary: Color VT102 terminal emulator for the X Window System
 Name: rxvt
@@ -30,8 +18,8 @@ URL: http://www.rxvt.org/
 Source: http://dl.sf.net/rxvt/rxvt-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: desktop-file-utils
 BuildRequires: libtool
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel, libXpm-devel}
 
@@ -91,15 +79,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %makeinstall mandir="%{buildroot}%{_mandir}/man1"
 
-%if %{?!_without_freedesktop:1}0
-    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-    desktop-file-install --vendor %{desktop_vendor} \
-        --add-category X-Red-Hat-Base               \
-        --dir %{buildroot}%{_datadir}/applications  \
-        rxvt.desktop
-%else
-        %{__install} -Dp -m0644 rxvt.desktop %{buildroot}%{_datadir}/gnome/apps/Utilities/rxvt.desktop
-%endif
+%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+desktop-file-install --vendor %{desktop_vendor} \
+    --add-category X-Red-Hat-Base               \
+    --dir %{buildroot}%{_datadir}/applications  \
+    rxvt.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -113,10 +97,9 @@ EOF
 %{_bindir}/rclock
 %{_bindir}/rxvt
 %{_bindir}/rxvt-2.7.10
+%{_datadir}/applications/%{desktop_vendor}-rxvt.desktop
 %{_libdir}/librxvt.so.*
 %exclude %{_libdir}/*.la
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-rxvt.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/rxvt.desktop}
 
 %files devel
 %defattr(-, root, root, 0755)

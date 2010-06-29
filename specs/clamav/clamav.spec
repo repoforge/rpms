@@ -402,7 +402,7 @@ fi
 - Restored the LocalSocket configuration option to what it used to be. (Chris Butler)
 
 * Wed Apr 07 2010 Dag Wieers <dag@wieers.com> - 0.96-2
-- Removed test virus documents to prevent triggering clamav itself.
+- Removed test virus documents to prevent triggering clamav itself. (Patrick Mulvany)
 
 * Wed Mar 31 2010 Dag Wieers <dag@wieers.com> - 0.96-1
 - Updated to release 0.96.

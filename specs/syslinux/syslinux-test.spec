@@ -9,9 +9,9 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.86
-%define real_version 3.86-pre2
-Release: 0.pre2%{?dist}
+Version: 4.00
+%define real_version 4.00-pre63
+Release: 0.pre63%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -62,7 +62,7 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README TODO doc/* sample/
+%doc COPYING NEWS README doc/* sample/
 %doc %{_mandir}/man1/extlinux.1*
 %doc %{_mandir}/man1/gethostip.1*
 %doc %{_mandir}/man1/lss16toppm.1*
@@ -71,9 +71,11 @@ MEMDISK, which loads legacy operating systems from these media.
 %doc %{_mandir}/man1/syslinux2ansi.1*
 %{_bindir}/gethostip
 %{_bindir}/isohybrid
+%{_bindir}/isohybrid.pl
 %{_bindir}/keytab-lilo
 %{_bindir}/lss16toppm
 %{_bindir}/md5pass
+%{_bindir}/memdiskfind
 %{_bindir}/mkdiskimage
 %{_bindir}/ppmtolss16
 %{_bindir}/pxelinux-options
@@ -85,6 +87,36 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Sun Jun 27 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre63
+- Updated to release 4.00-pre63.
+
+* Sun Jun 27 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre62
+- Updated to release 4.00-pre62.
+
+* Fri Jun 25 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre59
+- Updated to release 4.00-pre59.
+
+* Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre54
+- Updated to release 4.00-pre54.
+
+* Wed Jun 16 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre49
+- Updated to release 4.00-pre49.
+
+* Sun May 30 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre47
+- Updated to release 4.00-pre47.
+
+* Mon May 17 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre45
+- Updated to release 4.00-pre45.
+
+* Thu May 13 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre43
+- Updated to release 4.00-pre43.
+
+* Sat May 01 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre40
+- Updated to release 4.00-pre40.
+
+* Sat Apr 03 2010 Dag Wieers <dag@wieers.com> - 4.00-0.pre38
+- Updated to release 4.00-pre38.
+
 * Wed Mar 31 2010 Dag Wieers <dag@wieers.com> - 3.86-0.pre2
 - Updated to release 3.86-pre2.
 

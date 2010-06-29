@@ -4,8 +4,8 @@
 
 Summary: I/O performance measurement and load generation tool
 Name: spew
-Version: 1.0.4
-Release: 1.2%{?dist}
+Version: 1.0.8
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://spew.berlios.de/
@@ -34,7 +34,7 @@ problems.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,17 +42,17 @@ problems.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%doc %{_mandir}/man1/spew.1*
 %doc %{_mandir}/man1/gorge.1*
 %doc %{_mandir}/man1/regorge.1*
+%doc %{_mandir}/man1/spew.1*
 %config(noreplace) %{_sysconfdir}/spew.conf
-%{_bindir}/spew
 %{_bindir}/gorge
 %{_bindir}/regorge
+%{_bindir}/spew
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.4-1.2
-- Rebuild for Fedora Core 5.
+* Thu Jun 24 2010 Dag Wieers <dag@wieers.com> - 1.0.8-1
+- Updated to release 1.0.8.
 
 * Sun May 08 2005 Dag Wieers <dag@wieers.com> - 1.0.4-1
 - Initial package. (using DAR)

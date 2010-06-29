@@ -8,13 +8,13 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 3.86
+Version: 4.00
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
 
-Source: ftp://ftp.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
+Source: http://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ExclusiveArch: i386 x86_64
@@ -60,7 +60,7 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING NEWS README TODO doc/* sample/
+%doc COPYING NEWS README doc/* sample/
 %doc %{_mandir}/man1/extlinux.1*
 %doc %{_mandir}/man1/gethostip.1*
 %doc %{_mandir}/man1/lss16toppm.1*
@@ -69,9 +69,11 @@ MEMDISK, which loads legacy operating systems from these media.
 %doc %{_mandir}/man1/syslinux2ansi.1*
 %{_bindir}/gethostip
 %{_bindir}/isohybrid
+%{_bindir}/isohybrid.pl
 %{_bindir}/keytab-lilo
 %{_bindir}/lss16toppm
 %{_bindir}/md5pass
+%{_bindir}/memdiskfind
 %{_bindir}/mkdiskimage
 %{_bindir}/ppmtolss16
 %{_bindir}/pxelinux-options
@@ -83,6 +85,9 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Tue Jun 29 2010 Dag Wieers <dag@wieers.com> - 4.00-1
+- Updated to release 4.00.
+
 * Sat Apr 03 2010 Dag Wieers <dag@wieers.com> - 3.86-1
 - Updated to release 3.86.
 

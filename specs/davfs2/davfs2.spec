@@ -5,7 +5,7 @@
 
 Summary: FUSE-Filesystem to access WebDAV servers
 Name: davfs2
-Version: 1.4.5
+Version: 1.4.6
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
@@ -87,6 +87,9 @@ fi
 %dir %{_localstatedir}/cache/davfs2/
 
 %changelog
+* Mon Jun 28 2010 Dag Wieers <dag@wieers.com> - 1.4.6-1
+- Updated to release 1.4.6.
+
 * Sat Dec 26 2009 Dag Wieers <dag@wieers.com> - 1.4.5-1
 - Updated to release 1.4.5.
 
