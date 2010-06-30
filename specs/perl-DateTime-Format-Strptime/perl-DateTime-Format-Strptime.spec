@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Rick Measham <rickm$cpan,org>
+# Upstream: Dave Rolsky <autarch$urth,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,19 +9,19 @@
 
 Summary: Parse and format strp and strf time patterns
 Name: perl-DateTime-Format-Strptime
-Version: 1.1000
+Version: 1.2000
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Format-Strptime/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Format-Strptime-%{version}.tgz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-Format-Strptime-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(DateTime) >= 0.4304            
-BuildRequires: perl(DateTime::Locale) >= 0.43      
+BuildRequires: perl(DateTime::Locale) >= 0.45      
 BuildRequires: perl(DateTime::TimeZone) >= 0.79    
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Params::Validate) >= 0.64      
@@ -51,14 +51,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README
-%doc %{_mandir}/man3/DateTime::Format::Strptime.3pm*
+%doc Changes LICENSE MANIFEST META.yml README SIGNATURE
+%doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/DateTime/
 %dir %{perl_vendorlib}/DateTime/Format/
 #%{perl_vendorlib}/DateTime/Format/Strptime/
 %{perl_vendorlib}/DateTime/Format/Strptime.pm
 
 %changelog
+* Wed Jun 30 2010 Steve Huff <shuff@vecna.org> - 1.4000-1
+- Updated to version 1.2000.
+- Later versions will not build on el5.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 1.1000-1
 - Updated to version 1.1000.
 

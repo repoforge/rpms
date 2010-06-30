@@ -9,13 +9,13 @@
 
 Summary: Localization support for DateTime.pm
 Name: perl-DateTime-Locale
-Version: 0.44
+Version: 0.45
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Locale/
 
-Source: http://www.cpan.org/modules/by-module/DateTime/DateTime-Locale-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-Locale-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -24,8 +24,11 @@ BuildRequires: perl(Module::Build)
 BuildRequires: perl(Class::ISA)
 BuildRequires: perl(List::MoreUtils)
 BuildRequires: perl(Params::Validate) >= 0.91
-BuildRequires: perl >= 0:5.006
-Requires: perl >= 0:5.006
+BuildRequires: perl >= 0:5.6
+Requires: perl >= 0:5.6
+
+Conflicts: perl(DateTime::Format::Strptime) <= 1.1000
+Obsoletes: perl-DateTime-Locale = 0.4001
 
 %description
 The DateTime::Locale modules provide localization data for the
@@ -52,15 +55,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes LICENSE LICENSE.cldr MANIFEST MANIFEST.SKIP MANIFEST.base META.yml README SIGNATURE
-%doc %{_mandir}/man3/DateTime::Locale.3pm*
-%doc %{_mandir}/man3/DateTime::LocaleCatalog.3pm*
-%doc %{_mandir}/man3/DateTime::Locale::*.3pm*
+%doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/DateTime/
 %{perl_vendorlib}/DateTime/Locale/
 %{perl_vendorlib}/DateTime/Locale.pm
 %{perl_vendorlib}/DateTime/LocaleCatalog.pm
 
 %changelog
+* Wed Jun 30 2010 Steve Huff <shuff@vecna.org> - 0.45-1
+- Updated to versioN 0.45.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.44-1
 - Updated to version 0.44.
 
