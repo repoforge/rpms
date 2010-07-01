@@ -6,7 +6,7 @@
 
 Name: erlang
 Version: R12B
-Release: %{rel}.11%{?dist}
+Release: %{rel}.12%{?dist}
 Summary: General-purpose programming language and runtime environment
 License: ERPL
 Group: Development/Languages
@@ -169,6 +169,13 @@ done
 cd %{buildroot}/%{_libdir}/erlang
 sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start}
 
+# move aside some conflicting man pages
+%{__mv} %{buildroot}%{_mandir}/man3/inet.3 %{buildroot}%{_mandir}/man3/erlang_inet.3 
+%{__mv} %{buildroot}%{_mandir}/man3/queue.3 %{buildroot}%{_mandir}/man3/erlang_queue.3 
+%{__mv} %{buildroot}%{_mandir}/man3/random.3 %{buildroot}%{_mandir}/man3/erlang_random.3 
+%{__mv} %{buildroot}%{_mandir}/man3/rpc.3 %{buildroot}%{_mandir}/man3/erlang_rpc.3 
+%{__mv} %{buildroot}%{_mandir}/man3/string.3 %{buildroot}%{_mandir}/man3/erlang_string.3 
+%{__mv} %{buildroot}%{_mandir}/man3/zlib.3 %{buildroot}%{_mandir}/man3/erlang_zlib.3 
 
 %clean
 rm -rf %{buildroot}
@@ -192,6 +199,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jul 01 2010 Steve Huff <shuff@vecna.org> - R12B-5.12
+- A few man pages conflict with distro files; renamed them.
+
 * Fri Jun 25 2010 Steve Huff <shuff@vecna.org> - R12B-5.11
 - Ported from EPEL.
 - Turned on some additional compile-time options.
