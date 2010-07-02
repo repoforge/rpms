@@ -9,7 +9,7 @@
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.12
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -24,7 +24,7 @@ Requires: python >= 2.4
 #Requires: python-clearsilver >= 0.9.3
 Requires: python-genshi >= 0.6
 Requires: python-setuptools >= 0.6
-Requires: python-sqlite >= 1.0
+Requires: python-sqlite2
 Requires: webserver
 Requires: mod_python
 
@@ -99,10 +99,14 @@ EOF
 %{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Fri Jul 02 2010 Steve Huff <shuff@vecna.org> - 0.12-2
+- Increased python-sqlite dependency to python-sqlite2
+  (thanks Nico Kadel-Garcia!)
+
 * Mon Jun 14 2010 Dag Wieers <dag@wieers.com> - 0.12-1
 - Updated to release 0.12.
 
-* Sun Jun 20 Yury V. Zaytsev <yury@shurup.com> - 0.11.7-2
+* Sun Jun 06 2010 Yury V. Zaytsev <yury@shurup.com> - 0.11.7-2
 - Captured missing dependency on mod_python.
 
 * Fri Jun 04 2010 Dag Wieers <dag@wieers.com> - 0.11.7-1
