@@ -130,8 +130,7 @@ CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %configure \
     --enable-threads \
     --enable-smp-support \
     --enable-kernel-poll \
-    --enable-hipe \
-    --disable-erlang-mandir 
+    --enable-hipe
 %{__chmod} -R u+w .
 %{__make}
 
@@ -150,12 +149,7 @@ find %{buildroot}%{_libdir}/erlang -name index.txt.old | xargs rm -f
 # doc
 %{__mkdir_p} erlang_doc
 %{__tar} -C erlang_doc -zxf %{SOURCE1}
-%{__mkdir_p} %{buildroot}%{_mandir}
-%{__tar} -C %{buildroot}/%{_mandir}/.. -zxf %{SOURCE2}
-# clean up some unnecessary files from the man tarball
-%{__rm} -f %{buildroot}/%{_datadir}/COPYRIGHT
-%{__rm} -f %{buildroot}/%{_datadir}/PR.template
-%{__rm} -f %{buildroot}/%{_datadir}/README
+%{__tar} -C %{buildroot}/%{_libdir}/erlang -zxf %{SOURCE2}
 
 # make links to binaries
 %{__mkdir_p} %{buildroot}/%{_bindir}
@@ -169,14 +163,6 @@ done
 cd %{buildroot}/%{_libdir}/erlang
 sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start}
 
-# move aside some conflicting man pages
-%{__mv} %{buildroot}%{_mandir}/man3/inet.3 %{buildroot}%{_mandir}/man3/erlang_inet.3 
-%{__mv} %{buildroot}%{_mandir}/man3/queue.3 %{buildroot}%{_mandir}/man3/erlang_queue.3 
-%{__mv} %{buildroot}%{_mandir}/man3/random.3 %{buildroot}%{_mandir}/man3/erlang_random.3 
-%{__mv} %{buildroot}%{_mandir}/man3/rpc.3 %{buildroot}%{_mandir}/man3/erlang_rpc.3 
-%{__mv} %{buildroot}%{_mandir}/man3/string.3 %{buildroot}%{_mandir}/man3/erlang_string.3 
-%{__mv} %{buildroot}%{_mandir}/man3/zlib.3 %{buildroot}%{_mandir}/man3/erlang_zlib.3 
-
 %clean
 rm -rf %{buildroot}
 
@@ -184,7 +170,6 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc AUTHORS EPLICENCE README
-%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/erlang
 
@@ -199,7 +184,11 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Thu Jul 01 2010 Steve Huff <shuff@vecna.org> - R12B-5.12
+* Fri Jul 02 2010 Steve Huff <shuff@vecna.org> - R12B-5.12
+- Argh, Erlang uses standard man page format, but its man pages really are
+  not supposed to be installed in man's search path.  Huh.
+
+* Thu Jul 01 2010 Steve Huff <shuff@vecna.org> - 
 - A few man pages conflict with distro files; renamed them.
 
 * Fri Jun 25 2010 Steve Huff <shuff@vecna.org> - R12B-5.11
