@@ -1,0 +1,75 @@
+Index: configure.in
+===================================================================
+RCS file: /cvsroot/xmlstar/xmlstarlet/configure.in,v
+retrieving revision 1.58
+diff -u -p -r1.58 configure.in
+--- old/configure.in	19 Mar 2005 01:55:22 -0000	1.58
++++ new/configure.in	21 Nov 2005 18:20:42 -0000
+@@ -31,7 +31,7 @@ AC_ARG_WITH(libxml-prefix,
+         [  --with-libxml-prefix=[PFX]		Specify location of libxml],
+         LIBXML_PREFIX=$withval
+         LIBXML_CFLAGS="-I$withval/include/libxml2 -I$withval/include/libxml"
+-        LIBXML_LIBS="$withval/lib/libxml2.a -lz -lm -lpthread -ldl"
++        LIBXML_LIBS="-L$withval/lib -lxml2 -lz -lm -ldl"
+ )
+         
+ AC_ARG_WITH(libxml-include-prefix,
+@@ -41,13 +41,13 @@ AC_ARG_WITH(libxml-include-prefix,
+ 
+ AC_ARG_WITH(libxml-libs-prefix,
+         [  --with-libxml-libs-prefix=[PFX]	Specify location of libxml libs],
+-        LIBXML_LIBS="$withval/libxml2.a -lz -lm -lpthread -ldl"
++        LIBXML_LIBS="-L$withval -lxml2 -lz -lm -ldl"
+ )
+ 
+ AC_ARG_WITH(libxml-src,
+         [  --with-libxml-src=[DIR]               For libxml thats not installed yet (sets all three above)],
+         LIBXML_SRC="$withval"
+-        LIBXML_LIBS="$withval/.libs/libxml2.a -lz -lm -lpthread"
++        LIBXML_LIBS="-L$withval/.libs -lxml2 -lz -lm"
+         LIBXML_CFLAGS="-I$withval/include/libxml2 -I$withval/include/libxml -I$withval/include"
+ )
+ 
+@@ -74,7 +74,7 @@ AC_ARG_WITH(libxslt-prefix,
+         [  --with-libxslt-prefix=[PFX]		Specify location of libxslt],
+ 	LIBXSLT_PREFIX=$withval
+         LIBXSLT_CFLAGS="-I$withval/include/libxslt -I$withval/include/libexslt"
+-        LIBXSLT_LIBS="$withval/lib/libxslt.a $withval/lib/libexslt.a -lz -lm -lpthread"
++        LIBXSLT_LIBS="-L$withval/lib -lxslt -L$withval/lib -lexslt -lz -lm"
+ )
+         
+ AC_ARG_WITH(libxslt-include-prefix,
+@@ -84,13 +84,13 @@ AC_ARG_WITH(libxslt-include-prefix,
+ 
+ AC_ARG_WITH(libxslt-libs-prefix,
+         [  --with-libxslt-libs-prefix=[PFX]	Specify location of libxslt libs],
+-        LIBXSLT_LIBS="$withval/libxslt.a $withval/libexslt.a -lz -lm -lpthread"
++        LIBXSLT_LIBS="-L$withval -lxslt -L$withval -lexslt -lz -lm"
+ )
+ 
+ AC_ARG_WITH(libxslt-src,
+         [  --with-libxslt-src=[DIR]		For libxslt thats not installed yet (sets all three above)],
+         LIBXSLT_SRC="$withval"
+-        LIBXSLT_LIBS="$withval/libxslt/.libs/libxslt.a $withval/libexslt/.libs/libexslt.a -lz -lm -lpthread"
++        LIBXSLT_LIBS="-L$withval/libxslt/.libs -lxslt -L$withval/libexslt/.libs -lexslt -lz -lm"
+         LIBXSLT_CFLAGS="-I$withval/libxslt -I$withval/libexslt -I$withval"
+ )
+ 
+@@ -236,7 +236,7 @@ dnl Set LIBXML libraries location
+ dnl
+ if test "x$LIBXML_LIBS" = "x"
+ then
+-	LIBXML_LIBS="${LIBXML_PREFIX}/lib/libxml2.a -lz -lm -lpthread -ldl"
++	LIBXML_LIBS="-L${LIBXML_PREFIX}/lib -lxml2 -lz -lm -ldl"
+ fi
+ 
+ dnl
+@@ -252,7 +252,7 @@ dnl Set LIBXSLT libraries location
+ dnl
+ if test "x$LIBXSLT_LIBS" = "x"
+ then
+-	LIBXSLT_LIBS="${LIBXSLT_PREFIX}/lib/libxslt.a ${LIBXSLT_PREFIX}/lib/libexslt.a -lz -lm -lpthread"
++	LIBXSLT_LIBS="-L${LIBXSLT_PREFIX}/lib -lxslt -L${LIBXSLT_PREFIX}/lib -lexslt -lz -lm"
+ fi
+ 
+ dnl

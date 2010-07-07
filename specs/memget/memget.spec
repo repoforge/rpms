@@ -25,9 +25,8 @@ workstation.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_sbindir}
-%{__install} -p -m0755 memget %{buildroot}%{_sbindir}/memget
-%{__install} -p -m0755 mempeek %{buildroot}%{_sbindir}/mempeek
+%{__install} -Dp -m0755 memget %{buildroot}%{_sbindir}/memget
+%{__install} -Dp -m0755 mempeek %{buildroot}%{_sbindir}/mempeek
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,9 +37,6 @@ workstation.
 %{_sbindir}/mempeek
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.1.0-2.2
-- Rebuild for Fedora Core 5.
-
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 0.1.0-2
 - Cosmetic rebuild for Group-tag.
 

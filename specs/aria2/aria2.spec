@@ -4,7 +4,7 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 1.5.1
+Version: 1.9.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -34,8 +34,8 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang aria2
-%{__rm} -f %{buildroot}%{_datadir}/locale/locale.alias
-%{__mv} %{buildroot}%{_docdir}/aria2 _rpmdocs
+
+%{__mv} -v %{buildroot}%{_docdir}/aria2 _rpmdocs
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,8 +45,12 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %doc ChangeLog COPYING NEWS AUTHORS _rpmdocs/*
 %doc %{_mandir}/man1/aria2c.1*
 %{_bindir}/aria2c
+%exclude %{_datadir}/locale/locale.alias
 
 %changelog
+* Thu Jun 10 2010 Dag Wieers <dag@wieers.com> - 1.9.4-1
+- Updated to release 1.9.4.
+
 * Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 1.5.1-1
 - Updated to release 1.5.1.
 

@@ -3,13 +3,13 @@
 
 Summary: RRDtool-based mail graphing tool
 Name: mailgraph
-Version: 1.11
+Version: 1.14
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
-URL: http://people.ee.ethz.ch/~dws/software/mailgraph/
+URL: http://mailgraph.schweikert.ch/
 
-Source0: http://people.ee.ethz.ch/~dws/software/mailgraph/pub/mailgraph-%{version}.tar.gz
+Source0: http://mailgraph.schweikert.ch/pub/mailgraph-%{version}.tar.gz
 Source1: mailgraph.httpd-conf
 Patch0: mailgraph.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -37,14 +37,14 @@ received/sent and bounced/rejected mail.
 %clean
 %{__rm} -rf %{buildroot}
 
-%postun
-if [ $1 -eq 0 ]; then
-	/sbin/chkconfig --del mailgraph
-fi
-
 %post
 if [ $1 -eq 1 ]; then
-	/sbin/chkconfig --add mailgraph
+    /sbin/chkconfig --add mailgraph
+fi
+
+%postun
+if [ $1 -eq 0 ]; then
+    /sbin/chkconfig --del mailgraph
 fi
 
 %files
@@ -54,9 +54,13 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/mailgraph
 %config %{_initrddir}/mailgraph
 %{_libdir}/mailgraph/
+%dir %{_localstatedir}/lib/mailgraph/
 %{_localstatedir}/lib/mailgraph/img/
 %{_localstatedir}/lib/mailgraph/rrd/
 
 %changelog
+* Sat Mar 01 2008 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Fri Jul 29 2005 Wil Cooley <wcooley@nakedape.cc> - 1.11-1
 - Initial package creation

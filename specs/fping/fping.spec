@@ -7,7 +7,7 @@
 Summary: Utility to ping multiple hosts at once
 Name: fping
 Version: 2.4
-Release: 1.b2.2%{?dist}
+Release: 1.b2.3%{?dist}
 License: distributable
 Group: Applications/Internet
 URL: http://www.fping.com/
@@ -53,11 +53,10 @@ will be considered unreachable.
 %configure --disable-ipv6
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-%{__install} -Dp -m4750 fping6 %{buildroot}%{_sbindir}/fping6
+%{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m4755 fping6 %{buildroot}%{_sbindir}/fping6
 %{__ln_s} -f fping.8 %{buildroot}%{_mandir}/man8/fping6.8
 
 %clean
@@ -68,12 +67,14 @@ will be considered unreachable.
 %doc ChangeLog COPYING README
 %doc %{_mandir}/man8/fping.8*
 %doc %{_mandir}/man8/fping6.8*
-%attr(4755,root,root) %{_sbindir}/fping
-%attr(4755,root,root) %{_sbindir}/fping6
+
+%defattr(4755, root, root)
+%{_sbindir}/fping
+%{_sbindir}/fping6
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.4-1.b2.2
-- Rebuild for Fedora Core 5.
+* Tue Jun 29 2010 Dag Wieers <dag@wieers.com> - 2.4-1.b2.3
+- Cosmetic changes.
 
 * Tue Feb 15 2005 Ken Tsukahara <ken.tsukahara@tmt-d.co.jp> 2.4-1.b2
 - Flush stdout for each line.

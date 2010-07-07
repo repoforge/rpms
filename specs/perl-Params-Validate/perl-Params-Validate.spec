@@ -9,13 +9,14 @@
 
 Summary: Validate method/function parameters
 Name: perl-Params-Validate
-Version: 0.94
-Release: 1
+Version: 0.95
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Params-Validate/
 
-Source: http://www.cpan.org/modules/by-module/Params/Params-Validate-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Params/Params-Validate-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Params-Validate-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl

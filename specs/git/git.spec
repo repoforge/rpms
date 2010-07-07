@@ -8,13 +8,14 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.1
-Release: 2%{?dist}
+Version: 1.7.1.1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
 
 Source0: http://kernel.org/pub/software/scm/git/git-%{version}.tar.bz2
+Source1: git-init.el
 Source2: git.xinetd.in
 Source3: git.conf.httpd
 Source4: git-gui.desktop
@@ -39,16 +40,8 @@ Requires: perl-Git = %{version}-%{release}
 Requires: rsync
 Requires: zlib >= 1.2
 
-Obsoletes: git-all <= %{version}-%{release}
-Provides: git-all = %{version}-%{release}
-Obsoletes: git-arch <= %{version}-%{release}
-Provides: git-arch = %{version}-%{release}
-Obsoletes: git-cvs <= %{version}-%{release}
-Provides: git-cvs = %{version}-%{release}
-Obsoletes: git-email <= %{version}-%{release}
-Provides: git-email = %{version}-%{release}
-Obsoletes: git-svn <= %{version}-%{release}
-Provides: git-svn = %{version}-%{release}
+Obsoletes: git-core <= %{version}-%{release}
+Provides: git-core = %{version}-%{release}
 
 %filter_from_requires /^perl(packed-refs)*/d
 %filter_setup
@@ -60,6 +53,46 @@ with regard to their history. The top layer is a SCM-like tool which
 enables human beings to work with the database in a manner to a degree
 similar to other SCM tools (like CVS, BitKeeper or Monotone).
 
+%package all
+Summary: Meta-package to pull in all git tools
+Group: Development/Tools
+Requires: emacs-git = %{version}-%{release}
+Requires: git = %{version}-%{release}
+Requires: git-arch = %{version}-%{release}
+Requires: git-cvs = %{version}-%{release}
+Requires: git-email = %{version}-%{release}
+Requires: git-gui = %{version}-%{release}
+Requires: git-svn = %{version}-%{release}
+Requires: gitk = %{version}-%{release}
+Requires: perl-Git = %{version}-%{release}
+Obsoletes: git <= 1.5.4.3
+
+%description all
+Git is a fast, scalable, distributed revision control system with an
+unusually rich command set that provides both high-level operations
+and full access to internals.
+
+This is a dummy package which brings in all subpackages.
+
+%package arch
+Summary: Git tools for importing Arch repositories
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+#Requires: tla
+
+%description arch
+Git tools for importing Arch repositories.
+
+%package cvs
+Summary: Git tools for importing CVS repositories
+Group: Development/Tools
+Requires: cvs
+Requires: cvsps
+Requires: %{name} = %{version}-%{release}
+
+%description cvs
+Git tools for importing CVS repositories.
+
 %package daemon
 Summary: Git protocol daemon
 Group: Development/Tools
@@ -69,13 +102,14 @@ Requires: xinetd
 %description daemon
 The git daemon for supporting git:// access to git repositories
 
-%package -n gitweb
-Summary: Simple web interface to git repositories
+%package email
+Summary: Git tools for sending email
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
+Requires: perl-Git = %{version}-%{release}
 
-%description -n gitweb
-Simple web interface to track changes in git repositories
+%description email
+Git tools for sending email.
 
 %package gui
 Summary: Graphical frontend to git
@@ -87,6 +121,25 @@ Requires: gitk = %{version}-%{release}
 %description gui
 Graphical frontend to git.
 
+%package svn
+Summary: Git tools for importing Subversion repositories
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+Requires: perl(Term::ReadKey)
+Requires: subversion
+
+%description svn
+Git tools for importing Subversion repositories.
+
+%package -n emacs-git
+Summary: Git version control system support for Emacs
+Group: Applications/Editors
+Requires: %{name} = %{version}-%{release}
+Requires: emacs-common
+
+%description -n emacs-git
+%{summary}.
+
 %package -n gitk
 Summary: Git revision tree visualiser
 Group: Development/Tools
@@ -96,10 +149,17 @@ Requires: tk >= 8.4
 %description -n gitk
 Git revision tree visualiser.
 
+%package -n gitweb
+Summary: Simple web interface to git repositories
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+
+%description -n gitweb
+Simple web interface to track changes in git repositories
+
 %package -n perl-Git
 Summary: Perl module that implements Git bindings
 Group: Applications/CPAN
-
 Requires: %{name} = %{version}-%{release}
 
 %description -n perl-Git
@@ -145,6 +205,12 @@ sed -i '/^#!bash/,+1 d' contrib/completion/git-completion.bash
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+
+%{__make} -C contrib/emacs install emacsdir="%{buildroot}%{_datadir}/emacs/site-lisp"
+for elc in %{buildroot}%{_datadir}/emacs/site-lisp/*.elc; do
+    %{__install} -p -m0644 contrib/emacs/$(basename $elc .elc).el %{buildroot}%{_datadir}/emacs/site-lisp/
+done
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/emacs/site-lisp/site-start.d/git-init.el
 
 ### Perl installation
 #%makeinstall -C perl INSTALLDIRS="vendor"
@@ -206,28 +272,25 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{_datadir}/git-core/
 %{_libexecdir}/git-core/
 %exclude %{_libexecdir}/git-core/git-citool
+%exclude %{_libexecdir}/git-core/git-cvsexportcommit
+%exclude %{_libexecdir}/git-core/git-cvsimport
+%exclude %{_libexecdir}/git-core/git-cvsserver
 %exclude %{_libexecdir}/git-core/git-daemon
 %exclude %{_libexecdir}/git-core/git-gui
 %exclude %{_libexecdir}/git-core/git-gui--askpass
+%exclude %{_libexecdir}/git-core/git-send-email
+%exclude %{_libexecdir}/git-core/git-svn
 
-%files gui
+%files arch
 %defattr(-, root, root, 0755)
-%{_datadir}/applications/%{desktop_vendor}-git-gui.desktop
-%{_datadir}/git-gui/
-%{_libexecdir}/git-core/git-citool
-%{_libexecdir}/git-core/git-gui
-%{_libexecdir}/git-core/git-gui--askpass
+%{_libexecdir}/git-core/git-archimport
 
-%files -n gitk
-%defattr(-,root,root)
-%doc Documentation/*gitk*.txt
-%{_bindir}/gitk
-%{_datadir}/gitk/
-
-%files -n perl-Git
+%files cvs
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/Git.3pm*
-%{perl_vendorlib}/Git.pm
+%{_bindir}/git-cvsserver
+%{_libexecdir}/git-core/git-cvsexportcommit
+%{_libexecdir}/git-core/git-cvsimport
+%{_libexecdir}/git-core/git-cvsserver
 
 %files daemon
 %defattr(-, root, root, 0755)
@@ -237,6 +300,33 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{_libexecdir}/git-core/git-daemon
 %{_localstatedir}/lib/git/
 
+%files email
+%defattr(-, root, root, 0755)
+%{_libexecdir}/git-core/git-send-email
+
+%files gui
+%defattr(-, root, root, 0755)
+%{_datadir}/applications/%{desktop_vendor}-git-gui.desktop
+%{_datadir}/git-gui/
+%{_libexecdir}/git-core/git-citool
+%{_libexecdir}/git-core/git-gui
+%{_libexecdir}/git-core/git-gui--askpass
+
+%files svn
+%defattr(-, root, root, 0755)
+%{_libexecdir}/git-core/git-svn
+
+%files -n emacs-git
+%defattr(-,root,root)
+%{_datadir}/emacs/site-lisp/*git*.el*
+%{_datadir}/emacs/site-lisp/site-start.d/git-init.el
+
+%files -n gitk
+%defattr(-,root,root)
+%doc Documentation/*gitk*.txt
+%{_bindir}/gitk
+%{_datadir}/gitk/
+
 %files -n gitweb
 %defattr(-, root, root, 0755)
 %doc gitweb/INSTALL gitweb/README
@@ -244,7 +334,18 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/git.conf
 %{_localstatedir}/www/git/
 
+%files -n perl-Git
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/Git.3pm*
+%{perl_vendorlib}/Git.pm
+
 %changelog
+* Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 1.7.1.1-1
+- Updated to release 1.7.1.1.
+
+* Mon Jun 28 2010 Dag Wieers <dag@wieers.com> - 1.7.1-3
+- Split out arch/cvs/email/svn as Fedora does. (Tom G. Christensen)
+
 * Wed Jun 23 2010 Dag Wieers <dag@wieers.com> - 1.7.1-2
 - Fix for perl(packed-refs), sigh.
 

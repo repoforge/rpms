@@ -1,0 +1,661 @@
+diff -uNr xmlstarlet-1.0.1-original/doc/gen-doc xmlstarlet-1.0.1/doc/gen-doc
+--- xmlstarlet-1.0.1-original/doc/gen-doc	2003-06-11 21:55:14.000000000 -0400
++++ xmlstarlet-1.0.1/doc/gen-doc	2005-11-22 18:20:09.000000000 -0500
+@@ -14,8 +14,8 @@
+ echo "1. BASIC COMMAND LINE OPTIONS"
+ echo "===================================================="
+ echo ""
+-echo "xml"
+-../src/xml 2>&1
++echo "xmlstarlet"
++../src/xmlstarlet 2>&1
+ 
+ echo ""
+ echo ""
+@@ -23,8 +23,8 @@
+ echo "2. Select/Query XML documents"
+ echo "===================================================="
+ echo ""
+-echo "xml sel --help"
+-../src/xml sel --help 2>&1
++echo "xmlstarlet sel --help"
++../src/xmlstarlet sel --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -32,8 +32,8 @@
+ echo "3. Editing XML documents"
+ echo "===================================================="
+ echo ""
+-echo "xml ed --help"
+-../src/xml ed --help 2>&1
++echo "xmlstarlet ed --help"
++../src/xmlstarlet ed --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -41,8 +41,8 @@
+ echo "4. Using XSLT to transform XML documents"
+ echo "===================================================="
+ echo ""
+-echo "xml tr --help"
+-../src/xml tr --help 2>&1
++echo "xmlstarlet tr --help"
++../src/xmlstarlet tr --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -50,8 +50,8 @@
+ echo "5. Formatting XML documents"
+ echo "===================================================="
+ echo ""
+-echo "xml fo --help"
+-../src/xml fo --help 2>&1
++echo "xmlstarlet fo --help"
++../src/xmlstarlet fo --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -59,8 +59,8 @@
+ echo "6. Validating XML documents"
+ echo "===================================================="
+ echo ""
+-echo "xml val --help"
+-../src/xml val --help 2>&1
++echo "xmlstarlet val --help"
++../src/xmlstarlet val --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -68,8 +68,8 @@
+ echo "7. Displaying structure of XML documents"
+ echo "===================================================="
+ echo ""
+-echo "xml el --help"
+-../src/xml el --help 2>&1
++echo "xmlstarlet el --help"
++../src/xmlstarlet el --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -78,8 +78,8 @@
+ echo "8. Escape/Unescape special XML characters"
+ echo "===================================================="
+ echo ""
+-echo "xml esc --help"
+-../src/xml esc --help 2>&1
++echo "xmlstarlet esc --help"
++../src/xmlstarlet esc --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -88,8 +88,8 @@
+ echo "9. List directory as XML"
+ echo "===================================================="
+ echo ""
+-echo "xml ls --help"
+-../src/xml ls --help 2>&1
++echo "xmlstarlet ls --help"
++../src/xmlstarlet ls --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -98,8 +98,8 @@
+ echo "10. XML canonicalization"
+ echo "===================================================="
+ echo ""
+-echo "xml c14n --help"
+-../src/xml c14n --help 2>&1
++echo "xmlstarlet c14n --help"
++../src/xmlstarlet c14n --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -108,8 +108,8 @@
+ echo "11. Convert XML into PYX format (based on ESIS - ISO 8879)"
+ echo "===================================================="
+ echo ""
+-echo "xml pyx --help"
+-../src/xml pyx --help 2>&1
++echo "xmlstarlet pyx --help"
++../src/xmlstarlet pyx --help 2>&1
+ 
+ echo ""
+ echo ""
+@@ -178,6 +178,6 @@
+ done
+ 
+ echo ""
+-} | sed -e "s#./xmlstarlet#xml#g"
++}
+ 
+ 
+diff -uNr xmlstarlet-1.0.1-original/doc/xmlstarlet-man.xml xmlstarlet-1.0.1/doc/xmlstarlet-man.xml
+--- xmlstarlet-1.0.1-original/doc/xmlstarlet-man.xml	2004-02-21 17:20:42.000000000 -0500
++++ xmlstarlet-1.0.1/doc/xmlstarlet-man.xml	2005-11-22 18:17:38.000000000 -0500
+@@ -84,7 +84,7 @@
+   <refsect1 id="shell">
+     <title>Commands</title>
+ 
+-    <para>Type: xml &lt;command&gt; --help &lt;ENTER&gt; for command
++    <para>Type: xmlstarlet &lt;command&gt; --help &lt;ENTER&gt; for command
+     help</para>
+ 
+     <para>Available commands include:</para>
+diff -uNr xmlstarlet-1.0.1-original/doc/xmlstarlet-ug.xml xmlstarlet-1.0.1/doc/xmlstarlet-ug.xml
+--- xmlstarlet-1.0.1-original/doc/xmlstarlet-ug.xml	2005-01-07 00:11:39.000000000 -0500
++++ xmlstarlet-1.0.1/doc/xmlstarlet-ug.xml	2005-11-22 18:16:11.000000000 -0500
+@@ -1,6 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+-"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
++"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
++<!ENTITY XMLSTARLET "xmlstarlet">
++]>
+ <book lang="en">
+   <title>XmlStarlet Command Line XML Toolkit User's Guide</title>
+ 
+@@ -298,7 +300,7 @@
+ 
+       <para>Basic command line syntax: <programlisting>bash-2.03$ xml
+ XMLStarlet Toolkit: Command line utilities for XML
+-Usage: xml [&lt;options&gt;] &lt;command&gt; [&lt;cmd-options&gt;]
++Usage: &XMLSTARLET; [&lt;options&gt;] &lt;command&gt; [&lt;cmd-options&gt;]
+ where &lt;command&gt; is one of:
+    ed    (or edit)      - Edit/Update XML document(s)
+    sel   (or select)    - Select data or query XML document(s) (XPATH, etc)
+@@ -318,7 +320,7 @@
+ Wherever file name mentioned in command help it is assumed
+ that URL can be used instead as well.
+ 
+-Type: xml &lt;command&gt; --help &lt;ENTER&gt; for command help
++Type: &XMLSTARLET; &lt;command&gt; --help &lt;ENTER&gt; for command help
+ 
+ XMLStarlet is a command line toolkit to query/edit/check/transform
+ XML documents (for more information see http://xmlstar.sourceforge.net/)</programlisting></para>
+@@ -350,7 +352,7 @@
+   &lt;/table&gt;
+ &lt;/xml&gt;</programlisting>
+ 
+-      <programlisting>xml el table.xml</programlisting>
++      <programlisting>&XMLSTARLET; el table.xml</programlisting>
+ 
+       <para>would produce the following output.</para>
+ 
+@@ -379,7 +381,7 @@
+ 
+       <para>EXAMPLE:</para>
+ 
+-      <programlisting>xml el -u table.xml</programlisting>
++      <programlisting>&XMLSTARLET; el -u table.xml</programlisting>
+ 
+       <para>Output:</para>
+ 
+@@ -396,7 +398,7 @@
+ 
+       <para>EXAMPLE:</para>
+ 
+-      <programlisting>xml el -a table.xml</programlisting>
++      <programlisting>&XMLSTARLET; el -a table.xml</programlisting>
+ 
+       <para>Output:</para>
+ 
+@@ -421,7 +423,7 @@
+ 
+       <para>EXAMPLE:</para>
+ 
+-      <programlisting>xml el -v table.xml</programlisting>
++      <programlisting>&XMLSTARLET; el -v table.xml</programlisting>
+ 
+       <para>Output:</para>
+ 
+@@ -448,10 +450,10 @@
+       <title>Querying XML documents</title>
+ 
+       <para>XmlStarlet 'select' or 'sel' option can be used to query or search
+-      XML documents. Here is synopsis for 'xml sel' command:</para>
++      XML documents. Here is synopsis for '&XMLSTARLET; sel' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: Select from XML document(s)
+-Usage: xml sel &lt;global-options&gt; {&lt;template&gt;} [ &lt;xml-file&gt; ... ]
++Usage: &XMLSTARLET; sel &lt;global-options&gt; {&lt;template&gt;} [ &lt;xml-file&gt; ... ]
+ where
+   &lt;global-options&gt; - global options for selecting
+   &lt;xml-file&gt; - input XML document file name/uri (stdin is used if missing)
+@@ -495,7 +497,7 @@
+ in a single template. The effect of applying command line templates
+ can be illustrated with the following XSLT analogue
+ 
+-xml sel -t -c "xpath0" -m "xpath1" -m "xpath2" -v "xpath3" \
++&XMLSTARLET; sel -t -c "xpath0" -m "xpath1" -m "xpath2" -v "xpath3" \
+         -t -m "xpath4" -c "xpath5"
+ 
+ is equivalent to applying the following XSLT
+@@ -549,7 +551,7 @@
+ 
+       <para></para>
+ 
+-      <programlisting>xml sel -t -v "count(/xml/table/rec/numField)" table.xml</programlisting>
++      <programlisting>&XMLSTARLET; sel -t -v "count(/xml/table/rec/numField)" table.xml</programlisting>
+ 
+       <para>Input (table.xml):</para>
+ 
+@@ -578,7 +580,7 @@
+       <para>Let's take a close look what it did internally. For that we will
+       use '-C' option</para>
+ 
+-      <programlisting>$ xml sel -C -t -v "count(/xml/table/rec/numField)"
++      <programlisting>$ &XMLSTARLET; sel -C -t -v "count(/xml/table/rec/numField)"
+ &lt;?xml version="1.0"?&gt;
+ &lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exslt="http://exslt.org/common"
+@@ -668,7 +670,7 @@
+       <para>Count all nodes in XML documents. Print input name and node count
+       after it.</para>
+ 
+-      <programlisting>xml sel -t -f -o " " -v "count(//node())" xml/table.xml xml/tab-obj.xml</programlisting>
++      <programlisting>&XMLSTARLET; sel -t -f -o " " -v "count(//node())" xml/table.xml xml/tab-obj.xml</programlisting>
+ 
+       <para>Output:</para>
+ 
+@@ -682,7 +684,7 @@
+       <para>Find XML files matching XPath expression (containing 'object'
+       element)</para>
+ 
+-      <programlisting>xml sel -t -m //object -f xml/table.xml xml/tab-obj.xml</programlisting>
++      <programlisting>&XMLSTARLET; sel -t -m //object -f xml/table.xml xml/tab-obj.xml</programlisting>
+ 
+       <para>Result output:</para>
+ 
+@@ -694,7 +696,7 @@
+ 
+       <para>Calculate EXSLT (XSLT extentions) XPath value</para>
+ 
+-      <programlisting>echo "&lt;x/&gt;" | xml sel -t -v "math:abs(-1000)"</programlisting>
++      <programlisting>echo "&lt;x/&gt;" | &XMLSTARLET; sel -t -v "math:abs(-1000)"</programlisting>
+ 
+       <para>Result output:</para>
+ 
+@@ -704,9 +706,9 @@
+ 
+       <para>EXAMPLE</para>
+ 
+-      <para>Adding elements and attributes using command line 'xml sel'</para>
++      <para>Adding elements and attributes using command line '&XMLSTARLET; sel'</para>
+ 
+-      <programlisting>echo "&lt;x/&gt;" | xml sel -t -m / -e xml -e child -a data -o value</programlisting>
++      <programlisting>echo "&lt;x/&gt;" | &XMLSTARLET; sel -t -m / -e xml -e child -a data -o value</programlisting>
+ 
+       <para>Result Output:</para>
+ 
+@@ -718,7 +720,7 @@
+ 
+       <para>Query XML document and produce sorted text table</para>
+ 
+-      <programlisting>xml sel -T -t -m /xml/table/rec -s D:N:- "@id" \
++      <programlisting>&XMLSTARLET; sel -T -t -m /xml/table/rec -s D:N:- "@id" \
+   -v "concat(@id,'|',numField,'|',stringField)" -n xml/table.xml</programlisting>
+ 
+       <para>Result Output:</para>
+@@ -751,7 +753,7 @@
+ 
+       <para>Predefine namespaces for XPath expressions</para>
+ 
+-      <programlisting>xml sel -N xsql=urn:oracle-xsql -t -v /xsql:query xsql/jobserve.xsql</programlisting>
++      <programlisting>&XMLSTARLET; sel -N xsql=urn:oracle-xsql -t -v /xsql:query xsql/jobserve.xsql</programlisting>
+ 
+       <para>Input (xsql/jobserve.xsql)</para>
+ 
+@@ -777,10 +779,10 @@
+ 
+       <para>EXAMPLE</para>
+ 
+-      <para>Print structure of XML element using xml sel (advanced XPath
+-      expressions and xml sel command usage)</para>
++      <para>Print structure of XML element using &XMLSTARLET; sel (advanced XPath
++      expressions and &XMLSTARLET; sel command usage)</para>
+ 
+-      <programlisting>xml sel -T -t -m '//*' \
++      <programlisting>&XMLSTARLET; sel -T -t -m '//*' \
+ -m 'ancestor-or-self::*' -v 'name()' -i 'not(position()=last())' -o . -b -b -n \
+ xml/structure.xml</programlisting>
+ 
+@@ -843,7 +845,7 @@
+ 
+       <para>Print all links of xhtml document</para>
+ 
+-      <programlisting>xml sel --net --html -T -t -m "//*[local-name()='a']" \
++      <programlisting>&XMLSTARLET; sel --net --html -T -t -m "//*[local-name()='a']" \
+    -o 'NAME: ' -v "translate(. , '&amp;#10;', ' ')" -n \
+    -o 'LINK: ' -v @href -n -n \
+    http://xmlstar.sourceforge.net/</programlisting>
+@@ -872,10 +874,10 @@
+     <sect1>
+       <title>Transforming XML documents</title>
+ 
+-      <para>Here is synopsis for 'xml tr' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; tr' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: Transform XML document(s) using XSLT
+-Usage: xml tr [&lt;options&gt;] &lt;xsl-file&gt; {-p|-s &lt;name&gt;=&lt;value&gt;} [ &lt;xml-file-or-uri&gt; ... ]
++Usage: &XMLSTARLET; tr [&lt;options&gt;] &lt;xsl-file&gt; {-p|-s &lt;name&gt;=&lt;value&gt;} [ &lt;xml-file-or-uri&gt; ... ]
+ where
+    &lt;xsl-file&gt;      - main XSLT stylesheet for transformation
+    &lt;xml-file&gt;      - input XML document file name (stdin is used if missing)
+@@ -904,7 +906,7 @@
+       <para>EXAMPLE:</para>
+ 
+       <programlisting># Transform passing parameters to XSLT stylesheet
+-xml tr xsl/param1.xsl -p Count='count(/xml/table/rec)' -s Text="Count=" xml/table.xml
++&XMLSTARLET; tr xsl/param1.xsl -p Count='count(/xml/table/rec)' -s Text="Count=" xml/table.xml
+ </programlisting>
+ 
+       <para>Input xsl/params1.xsl</para>
+@@ -934,10 +936,10 @@
+     <sect1>
+       <title>Editing XML documents</title>
+ 
+-      <para>Here is the synopsis for 'xml ed' command:</para>
++      <para>Here is the synopsis for '&XMLSTARLET; ed' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: Edit XML document(s)
+-Usage: xml ed &lt;global-options&gt; {&lt;action&gt;} [ &lt;xml-file-or-uri&gt; ... ]
++Usage: &XMLSTARLET; ed &lt;global-options&gt; {&lt;action&gt;} [ &lt;xml-file-or-uri&gt; ... ]
+ where
+   &lt;global-options&gt;  - global options for editing
+   &lt;xml-file-or-uri&gt; - input XML document file name/uri (stdin is used if missing)
+@@ -969,7 +971,7 @@
+       <para>EXAMPLE:</para>
+ 
+       <programlisting># Delete elements matching XPath expression
+-xml ed -d "/xml/table/rec[@id='2']" xml/table.xml
++&XMLSTARLET; ed -d "/xml/table/rec[@id='2']" xml/table.xml
+ </programlisting>
+ 
+       <para>Input</para>
+@@ -1011,7 +1013,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Move element node
+-echo '&lt;x id="1"&gt;&lt;a/&gt;&lt;b/&gt;&lt;/x&gt;' | xml ed -m "//b" "//a"
++echo '&lt;x id="1"&gt;&lt;a/&gt;&lt;b/&gt;&lt;/x&gt;' | &XMLSTARLET; ed -m "//b" "//a"
+ </programlisting>
+ 
+       <para>Output</para>
+@@ -1026,7 +1028,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Rename attributes
+-xml ed -r "//*/@id" -v ID xml/tab-obj.xml
++&XMLSTARLET; ed -r "//*/@id" -v ID xml/tab-obj.xml
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1056,7 +1058,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Rename elements
+-xml ed -r "/xml/table/rec" -v record xml/tab-obj.xml
++&XMLSTARLET; ed -r "/xml/table/rec" -v record xml/tab-obj.xml
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1086,7 +1088,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Update value of an attribute
+-xml ed -u "/xml/table/rec[@id=3]/@id" -v 5 xml/tab-obj.xml
++&XMLSTARLET; ed -u "/xml/table/rec[@id=3]/@id" -v 5 xml/tab-obj.xml
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1116,7 +1118,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Update value of an element
+-xml ed -u "/xml/table/rec[@id=1]/numField" -v 0 xml/tab-obj.xml
++&XMLSTARLET; ed -u "/xml/table/rec[@id=1]/numField" -v 0 xml/tab-obj.xml
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1147,10 +1149,10 @@
+     <sect1>
+       <title>Validating XML documents</title>
+ 
+-      <para>Here is synopsis for 'xml val' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; val' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: Validate XML document(s)
+-Usage: xml val &lt;options&gt; [ &lt;xml-file-or-uri&gt; ... ]
++Usage: &XMLSTARLET; val &lt;options&gt; [ &lt;xml-file-or-uri&gt; ... ]
+ where &lt;options&gt;
+    -w or --well-formed        - validate well-formedness only (default)
+    -d or --dtd &lt;dtd-file&gt;     - validate against DTD
+@@ -1171,7 +1173,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Validate XML document against DTD
+-xml val --dtd dtd/table.dtd xml/tab-obj.xml &gt;/dev/null 2&gt;&amp;1; echo $?
++&XMLSTARLET; val --dtd dtd/table.dtd xml/tab-obj.xml &gt;/dev/null 2&gt;&amp;1; echo $?
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1182,7 +1184,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Validate against XSD schema
+-xml val -b -s xsd/table.xsd xml/table.xml xml/tab-obj.xml 2&gt;/dev/null; echo $?
++&XMLSTARLET; val -b -s xsd/table.xsd xml/table.xml xml/tab-obj.xml 2&gt;/dev/null; echo $?
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1195,10 +1197,10 @@
+     <sect1>
+       <title>Formatting XML documents</title>
+ 
+-      <para>Here is synopsis for 'xml fo' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; fo' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: Format XML document
+-Usage: xml fo [&lt;options&gt;] &lt;xml-file&gt;
++Usage: &XMLSTARLET; fo [&lt;options&gt;] &lt;xml-file&gt;
+ where &lt;options&gt; are
+    -n or --noindent            - do not indent
+    -t or --indent-tab          - indent output with tabulation
+@@ -1219,7 +1221,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Format XML document disabling indent
+-cat xml/tab-obj.xml | xml fo --noindent 
++cat xml/tab-obj.xml | &XMLSTARLET; fo --noindent 
+ </programlisting>
+ 
+       <para>Output:</para>
+@@ -1249,7 +1251,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Recover malformed XML document
+-xml fo -R xml/malformed.xml 2&gt;/dev/null
++&XMLSTARLET; fo -R xml/malformed.xml 2&gt;/dev/null
+ </programlisting>
+ 
+       <para>Input:</para>
+@@ -1272,10 +1274,10 @@
+     <sect1>
+       <title>Canonicalization of XML documents</title>
+ 
+-      <para>Here is synopsis for 'xml c14n' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; c14n' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: XML canonicalization
+-Usage: xml c14n &lt;mode&gt; &lt;xml-file&gt; [&lt;xpath-file&gt;] [&lt;inclusive-ns-list&gt;]
++Usage: &XMLSTARLET; c14n &lt;mode&gt; &lt;xml-file&gt; [&lt;xpath-file&gt;] [&lt;inclusive-ns-list&gt;]
+ where
+   &lt;xml-file&gt;   - input XML document file name (stdin is used if '-')
+   &lt;xpath-file&gt; - XML file containing XPath expression for
+@@ -1303,7 +1305,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># XML canonicalization
+-xml c14n --with-comments ../examples/xml/structure.xml ; echo $?
++&XMLSTARLET; c14n --with-comments ../examples/xml/structure.xml ; echo $?
+ </programlisting>
+ 
+       <para>Input ../examples/xml/structure.xml</para>
+@@ -1345,7 +1347,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># XML exclusive canonicalization
+-xml c14n --exc-with-comments ../examples/xml/c14n.xml ../examples/xml/c14n.xpath
++&XMLSTARLET; c14n --exc-with-comments ../examples/xml/c14n.xml ../examples/xml/c14n.xpath
+ </programlisting>
+ 
+       <para>Input</para>
+@@ -1377,10 +1379,10 @@
+     <sect1>
+       <title>XML and PYX format</title>
+ 
+-      <para>Here is synopsis for 'xml pyx' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; pyx' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: Convert XML into PYX format (based on ESIS - ISO 8879)
+-Usage: xml pyx {&lt;xml-file&gt;}
++Usage: &XMLSTARLET; pyx {&lt;xml-file&gt;}
+ where
+    &lt;xml-file&gt; - input XML document file name (stdin is used if missing)
+ 
+@@ -1399,7 +1401,7 @@
+ 
+       <para>EXAMPLE</para>
+ 
+-      <programlisting>xml pyx input.xml
++      <programlisting>&XMLSTARLET; pyx input.xml
+ </programlisting>
+ 
+       <para>Input (input.xml)</para>
+@@ -1446,7 +1448,7 @@
+       <para>EXAMPLE (Delete all attributes). This should work really fast for
+       very large XML documents.</para>
+ 
+-      <programlisting>xml pyx input.xml | grep -v  "^A" | xml depyx</programlisting>
++      <programlisting>&XMLSTARLET; pyx input.xml | grep -v  "^A" | &XMLSTARLET; depyx</programlisting>
+ 
+       <para>Output</para>
+ 
+@@ -1466,11 +1468,11 @@
+     <sect1>
+       <title>Escape/Unescape special XML characters</title>
+ 
+-      <para>Here is synopsis for 'xml esc' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; esc' command:</para>
+ 
+-      <programlisting>xml esc --help
++      <programlisting>&XMLSTARLET; esc --help
+ XMLStarlet Toolkit: Escape special XML characters
+-Usage: xml esc [&lt;options&gt;] [&lt;string&gt;]
++Usage: &XMLSTARLET; esc [&lt;options&gt;] [&lt;string&gt;]
+ where &lt;options&gt; are
+    --help      - print usage
+    (TODO: more to be added in future)
+@@ -1483,7 +1485,7 @@
+       <para>EXAMPLE</para>
+ 
+       <programlisting># Escape special XML characters
+-cat xml/structure.xml | xml esc
++cat xml/structure.xml | &XMLSTARLET; esc
+ </programlisting>
+ 
+       <para>Input</para>
+@@ -1525,10 +1527,10 @@
+     <sect1>
+       <title>List directory as XML</title>
+ 
+-      <para>Here is synopsis for 'xml ls' command:</para>
++      <para>Here is synopsis for '&XMLSTARLET; ls' command:</para>
+ 
+       <programlisting>XMLStarlet Toolkit: List directory as XML
+-Usage: xml ls
++Usage: &XMLSTARLET; ls
+ Lists current directory in XML format.
+ 
+ XMLStarlet is a command line toolkit to query/edit/check/transform
+@@ -1537,7 +1539,7 @@
+ 
+       <para>EXAMPLE</para>
+ 
+-      <programlisting>xml ls
++      <programlisting>&XMLSTARLET; ls
+ </programlisting>
+ 
+       <para>Output</para>
+@@ -1583,7 +1585,7 @@
+       <para>And the following (initially looking correct) query to print all
+       links</para>
+ 
+-      <para><programlisting>xml sel -t -m "//a" -c . -n </programlisting></para>
++      <para><programlisting>&XMLSTARLET; sel -t -m "//a" -c . -n </programlisting></para>
+ 
+       <para>would return nothing. The issue with this query is that it is not
+       addressing element &lt;a&gt; in the right namespace. XPath requires all
+@@ -1593,7 +1595,7 @@
+       detail: namespace equivalency is determined not by namespace prefix, but
+       by URI. See query below, which would return expected result</para>
+ 
+-      <para><programlisting>xml sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:a" -c . -n</programlisting></para>
++      <para><programlisting>&XMLSTARLET; sel -N x="http://www.w3.org/1999/xhtml" -t -m "//x:a" -c . -n</programlisting></para>
+ 
+       <para>Example of deleting namespace declarations.</para>
+ 
+@@ -1608,7 +1610,7 @@
+ &lt;/doc&gt;
+ </programlisting></para>
+ 
+-      <para>Command:<programlisting>xml ed -N N="http://www.c.com/xyz" -d '//N:*' ns2.xml | \
++      <para>Command:<programlisting>&XMLSTARLET; ed -N N="http://www.c.com/xyz" -d '//N:*' ns2.xml | \
+   sed -e 's/ xmlns.*=".*"//g'</programlisting></para>
+ 
+       <para>Output<programlisting>&lt;doc&gt;
+@@ -1629,29 +1631,29 @@
+       executed by shell and shell does substitutions of its special characters
+       too. So for example, one may ask:</para>
+ 
+-      <para>"Why does the following query return nothing?"<programlisting>echo '&lt;X name="foo"&gt;EEE&lt;/X&gt;' | xml sel -t -m /X[@name='foo'] -v .</programlisting></para>
++      <para>"Why does the following query return nothing?"<programlisting>echo '&lt;X name="foo"&gt;EEE&lt;/X&gt;' | &XMLSTARLET; sel -t -m /X[@name='foo'] -v .</programlisting></para>
+ 
+       <para>The answer lies in the way shell substitues 'foo', which simply
+       becomes foo before the command is run. So the correct way to write that
+       would be</para>
+ 
+-      <para><programlisting>echo '&lt;X name="foo"&gt;EEE&lt;/X&gt;' | xml sel -t -m "/X[@name='foo']" -v .</programlisting></para>
++      <para><programlisting>echo '&lt;X name="foo"&gt;EEE&lt;/X&gt;' | &XMLSTARLET; sel -t -m "/X[@name='foo']" -v .</programlisting></para>
+ 
+       <para>Another example involves XML special characters. Question: How to
+       search for &amp;apos; in text nodes?</para>
+ 
+-      <para>The following should help<programlisting>xml sel -t -m "//line[contains(text(),&amp;quot;'&amp;quot;)]" -c .
++      <para>The following should help<programlisting>&XMLSTARLET; sel -t -m "//line[contains(text(),&amp;quot;'&amp;quot;)]" -c .
+ </programlisting></para>
+     </sect1>
+ 
+     <sect1>
+       <title id="s.5.3">Sorting</title>
+ 
+-      <para>Let's take a look at XSLT produced by the following 'xml sel'
++      <para>Let's take a look at XSLT produced by the following '&XMLSTARLET; sel'
+       command:</para>
+ 
+       <para><programlisting># Query XML document and produce sorted text table
+-xml sel -T -t -m /xml/table/rec -s D:N:- "@id" \
++&XMLSTARLET; sel -T -t -m /xml/table/rec -s D:N:- "@id" \
+    -v "concat(@id,'|',numField,'|',stringField)" -n xml/table.xml
+ </programlisting></para>
+ 
+@@ -1672,7 +1674,7 @@
+ &lt;/xsl:stylesheet&gt;
+ </programlisting></para>
+ 
+-      <para>-s option of 'xml sel' command controls 'order', 'data-type', and
++      <para>-s option of '&XMLSTARLET; sel' command controls 'order', 'data-type', and
+       'case-order' attributes of &lt;xsl:sort/&gt; element .</para>
+     </sect1>
+ 

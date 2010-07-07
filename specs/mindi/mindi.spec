@@ -3,7 +3,7 @@
 
 Summary: Mindi creates emergency boot disks/CDs using your kernel, tools and modules
 Name: mindi
-Version: 2.0.7.3
+Version: 2.0.7.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
@@ -71,6 +71,9 @@ sh -x install.sh
 %{_sbindir}/parted2fdisk.pl
 
 %changelog
+* Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 2.0.7.5-1
+- Updated to release 2.0.7.5.
+
 * Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2.0.7.3-1
 - Updated to release 2.0.7.3.
 

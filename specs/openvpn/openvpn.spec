@@ -32,14 +32,14 @@ if pkg-config openssl; then
     export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
 fi
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--enable-iproute2 \
-	--enable-pthread
+    --program-prefix="%{?_program_prefix}" \
+    --enable-iproute2 \
+    --enable-pthread
 %{__make} %{?_smp_mflags}
 
 ### Build plugins
 for pi in auth-pam down-root; do
-	%{__make} %{?_smp_mflags} -C plugin/$pi
+    %{__make} %{?_smp_mflags} -C plugin/$pi
 done
 
 %install
@@ -54,8 +54,8 @@ done
 
 ### Install plugins and move plugin documentation
 for pi in auth-pam down-root; do
-	%{__mv} -f plugin/$pi/README plugin/README.$pi
-	%{__install} -Dp -m0755 plugin/$pi/openvpn-$pi.so %{buildroot}%{_datadir}/openvpn/plugin/lib/openvpn-$pi.so
+    %{__mv} -f plugin/$pi/README plugin/README.$pi
+    %{__install} -Dp -m0755 plugin/$pi/openvpn-$pi.so %{buildroot}%{_datadir}/openvpn/plugin/lib/openvpn-$pi.so
 done
 %{__mv} -f plugin/README plugin/README.plugins
 

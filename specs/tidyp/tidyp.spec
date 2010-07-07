@@ -23,15 +23,16 @@ but all internal API stays the same.
 
 tidyp will validate your HTML, and output cleaned-up HTML.
 
-
 %package devel
-Summary: Headers and development files for tidyp.
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-Install this package if you want to develop software that uses libtidyp.
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
+
 %prep
 %setup
 
@@ -40,12 +41,13 @@ Install this package if you want to develop software that uses libtidyp.
     --disable-dependency-tracking \
     --disable-static \
     --enable-access \
-    --enable-utf16 \
-    --enable-asian
-%{__make} %{?_smp_mflags} 
+    --enable-asian \
+    --enable-utf16
+%{__make} %{?_smp_mflags}
 
 %install
-%{__make} install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -53,15 +55,14 @@ Install this package if you want to develop software that uses libtidyp.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog INSTALL README
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{_bindir}/tidyp
+%{_libdir}/libtidyp*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*
-%{_libdir}/*.so
-%exclude %{_libdir}/*.a
-%exclude %{_libdir}/*.la
+%{_includedir}/tidyp/
+%{_libdir}/libtidyp.so
+%exclude %{_libdir}/libtidyp.la
 
 %changelog
 * Wed Jun 30 2010 Steve Huff <shuff@vecna.org> - 1.02-1

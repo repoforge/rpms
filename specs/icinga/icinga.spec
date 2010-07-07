@@ -23,7 +23,7 @@ License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
 
-Source: http://downloads.sourceforge.net/project/icinga/icinga/%{version}/icinga-%{version}.tar.gz
+Source: http://dl.sf.net/project/icinga/icinga/%{version}/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc

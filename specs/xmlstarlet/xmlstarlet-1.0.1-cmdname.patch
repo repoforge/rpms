@@ -1,0 +1,192 @@
+Index: xmlstarlet.spec.in
+===================================================================
+RCS file: /cvsroot/xmlstar/xmlstarlet/xmlstarlet.spec.in,v
+retrieving revision 1.9
+diff -u -p -r1.9 xmlstarlet.spec.in
+--- old/xmlstarlet.spec.in	1 Feb 2004 23:21:25 -0000	1.9
++++ new/xmlstarlet.spec.in	21 Nov 2005 18:20:42 -0000
+@@ -43,6 +43,6 @@ rm -fr %{buildroot}
+ %doc AUTHORS ChangeLog NEWS README Copyright TODO doc/xmlstarlet.txt doc/xmlstarlet.pdf
+ %doc %{_mandir}/man1/xmlstarlet.1*
+ 
+-%{prefix}/bin/xml
++%{prefix}/bin/xmlstarlet
+ %changelog
+ 
+Index: src/Makefile.am
+===================================================================
+RCS file: /cvsroot/xmlstar/xmlstarlet/src/Makefile.am,v
+retrieving revision 1.21
+diff -u -p -r1.21 Makefile.am
+--- old/src/Makefile.am	21 Nov 2004 20:18:49 -0000	1.21
++++ new/src/Makefile.am	21 Nov 2005 18:20:42 -0000
+@@ -2,12 +2,12 @@ INCLUDES = -I. -I$(top_srcdir) -I$(top_s
+ 	   -I$(top_builddir) -I$(top_builddir)/src \
+ 	   $(LIBXML_CFLAGS) $(LIBXSLT_CFLAGS) $(LIBICONV_CFLAGS) $(CFLAGS)
+ 
+-bin_PROGRAMS = xml
++bin_PROGRAMS = xmlstarlet
+ 
+-xml_SOURCES = xml.c xml_edit.c xml_ls.c xml_escape.c xml_pyx.c xml_depyx.c xml_select.c xml_trans.c xml_validate.c xml_format.c xml_elem.c xml_C14N.c trans.c binsert.c stack.c binsert.h stack.h trans.h escape.h strdup.h strdup.c
+-xml_LDFLAGS = 
+-xml_DEPENDENCIES = $(DEPS)
+-xml_LDADD = $(LDADDS)
++xmlstarlet_SOURCES = xml.c xml_edit.c xml_ls.c xml_escape.c xml_pyx.c xml_depyx.c xml_select.c xml_trans.c xml_validate.c xml_format.c xml_elem.c xml_C14N.c trans.c binsert.c stack.c binsert.h stack.h trans.h escape.h strdup.h strdup.c
++xmlstarlet_LDFLAGS = 
++xmlstarlet_DEPENDENCIES = $(DEPS)
++xmlstarlet_LDADD = $(LDADDS)
+ 
+ EXTRA_DIST = xml.c xml_edit.c xml_ls.c xml_escape.c xml_pyx.c xml_depyx.c xml_select.c xml_trans.c xml_validate.c xml_format.c xml_elem.c xml_C14N.c trans.c binsert.c stack.c binsert.h stack.h trans.h escape.h strdup.h strdup.c
+ 
+--- xmlstarlet-1.0.1-original/src/xml.c	2004-11-10 22:39:34.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml.c	2005-11-22 18:29:58.000000000 -0500
+@@ -49,7 +49,7 @@
+  */
+ static const char usage_str_1[] = 
+ "XMLStarlet Toolkit: Command line utilities for XML\n"
+-"Usage: xml [<options>] <command> [<cmd-options>]\n";
++"Usage: xmlstarlet [<options>] <command> [<cmd-options>]\n";
+ 
+ static const char usage_str_2[] = 
+ "where <command> is one of:\n"
+@@ -74,7 +74,7 @@
+ "  --help               - show help\n"
+ "Wherever file name mentioned in command help it is assumed\n"
+ "that URL can be used instead as well.\n\n"
+-"Type: xml <command> --help <ENTER> for command help\n\n";
++"Type: xmlstarlet <command> --help <ENTER> for command help\n\n";
+ 
+ 
+ 
+--- xmlstarlet-1.0.1-original/src/xml_C14N.c	2004-11-23 22:00:10.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_C14N.c	2005-11-22 18:32:14.000000000 -0500
+@@ -34,7 +34,7 @@
+ 
+ static const char c14n_usage_str_1[] =
+ "XMLStarlet Toolkit: XML canonicalization\n"
+-"Usage: xml c14n <mode> <xml-file> [<xpath-file>] [<inclusive-ns-list>]\n"
++"Usage: xmlstarlet c14n <mode> <xml-file> [<xpath-file>] [<inclusive-ns-list>]\n"
+ "where\n"
+ "  <xml-file>   - input XML document file name (stdin is used if '-')\n"
+ "  <xpath-file> - XML file containing XPath expression for\n"
+--- xmlstarlet-1.0.1-original/src/xml_depyx.c	2005-03-11 22:24:23.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_depyx.c	2005-11-22 18:32:24.000000000 -0500
+@@ -38,7 +38,7 @@
+ 
+ static const char depyx_usage_str[] =
+ "XMLStarlet Toolkit: Convert PYX into XML\n"
+-"Usage: xml p2x [<pyx-file>]\n"
++"Usage: xmlstarlet p2x [<pyx-file>]\n"
+ "where\n"
+ "  <pyx-file> - input PYX document file name (stdin is used if missing)\n\n"
+ "The PYX format is a line-oriented representation of\n"
+--- xmlstarlet-1.0.1-original/src/xml_edit.c	2005-01-07 19:07:03.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_edit.c	2005-11-22 18:32:36.000000000 -0500
+@@ -108,7 +108,7 @@
+  */
+ static const char edit_usage_str_1[] =
+ "XMLStarlet Toolkit: Edit XML document(s)\n"
+-"Usage: xml ed <global-options> {<action>} [ <xml-file-or-uri> ... ]\n"
++"Usage: xmlstarlet ed <global-options> {<action>} [ <xml-file-or-uri> ... ]\n"
+ "where\n"
+ "  <global-options>  - global options for editing\n"
+ "  <xml-file-or-uri> - input XML document file name/uri (stdin otherwise)\n\n";
+--- xmlstarlet-1.0.1-original/src/xml_elem.c	2004-11-21 18:40:40.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_elem.c	2005-11-22 18:32:45.000000000 -0500
+@@ -67,7 +67,7 @@
+ 
+ static const char elem_usage_str[] =
+ "XMLStarlet Toolkit: Display element structure of XML document\n"
+-"Usage: xml el [<options>] <xml-file>\n"
++"Usage: xmlstarlet el [<options>] <xml-file>\n"
+ "where\n"
+ "  <xml-file> - input XML document file name (stdin is used if missing)\n"
+ "  <options> is one of:\n"
+--- xmlstarlet-1.0.1-original/src/xml_escape.c	2004-11-21 18:40:40.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_escape.c	2005-11-22 18:32:52.000000000 -0500
+@@ -52,7 +52,7 @@
+ 
+ static const char escape_usage_str[] =
+ "XMLStarlet Toolkit: %s special XML characters\n"
+-"Usage: xml %s [<options>] [<string>]\n"
++"Usage: xmlstarlet %s [<options>] [<string>]\n"
+ "where <options> are\n"
+ "  --help      - print usage\n"
+ "  (TODO: more to be added in future)\n"
+--- xmlstarlet-1.0.1-original/src/xml_format.c	2005-01-06 21:33:40.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_format.c	2005-11-22 18:32:59.000000000 -0500
+@@ -72,7 +72,7 @@
+  */
+ static const char format_usage_str_1[] =
+ "XMLStarlet Toolkit: Format XML document\n"
+-"Usage: xml fo [<options>] <xml-file>\n"
++"Usage: xmlstarlet fo [<options>] <xml-file>\n"
+ "where <options> are\n"
+ "  -n or --noindent            - do not indent\n"
+ "  -t or --indent-tab          - indent output with tabulation\n"
+--- xmlstarlet-1.0.1-original/src/xml_ls.c	2005-03-11 22:49:41.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_ls.c	2005-11-22 18:33:07.000000000 -0500
+@@ -44,7 +44,7 @@
+ 
+ static const char ls_usage_str[] =
+ "XMLStarlet Toolkit: List directory as XML\n"
+-"Usage: xml ls\n"
++"Usage: xmlstarlet ls\n"
+ "Lists current directory in XML format.\n"
+ "Time is shown per ISO 8601 spec.\n"
+ "\n";
+--- xmlstarlet-1.0.1-original/src/xml_pyx.c	2005-03-11 22:24:23.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_pyx.c	2005-11-22 18:33:13.000000000 -0500
+@@ -23,7 +23,7 @@
+  */
+ static const char pyx_usage_str_1[] =
+ "XMLStarlet Toolkit: Convert XML into PYX format (based on ESIS - ISO 8879)\n"
+-"Usage: xml pyx {<xml-file>}\n"
++"Usage: xmlstarlet pyx {<xml-file>}\n"
+ "where\n"
+ "  <xml-file> - input XML document file name (stdin is used if missing)\n\n";
+ 
+--- xmlstarlet-1.0.1-original/src/xml_select.c	2005-01-06 21:02:13.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_select.c	2005-11-22 18:39:29.000000000 -0500
+@@ -65,7 +65,7 @@
+  */
+ static const char select_usage_str_1[] =
+ "XMLStarlet Toolkit: Select from XML document(s)\n"
+-"Usage: xml sel <global-options> {<template>} [ <xml-file> ... ]\n"
++"Usage: xmlstarlet sel <global-options> {<template>} [ <xml-file> ... ]\n"
+ "where\n"
+ "  <global-options> - global options for selecting\n"
+ "  <xml-file> - input XML document file name/uri (stdin is used if missing)\n"
+@@ -119,8 +119,8 @@
+ "in a single template. The effect of applying command line templates\n"
+ "can be illustrated with the following XSLT analogue\n\n"
+ 
+-"xml sel -t -c \"xpath0\" -m \"xpath1\" -m \"xpath2\" -v \"xpath3\" \\\n"
+-"        -t -m \"xpath4\" -c \"xpath5\"\n\n"
++"xmlstarlet sel -t -c \"xpath0\" -m \"xpath1\" -m \"xpath2\" -v \"xpath3\" \\\n"
++"               -t -m \"xpath4\" -c \"xpath5\"\n\n"
+ 
+ "is equivalent to applying the following XSLT\n\n";
+ 
+--- xmlstarlet-1.0.1-original/src/xml_trans.c	2005-01-06 21:40:59.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_trans.c	2005-11-22 18:33:29.000000000 -0500
+@@ -47,7 +47,7 @@
+  */
+ static const char trans_usage_str_1[] =
+ "XMLStarlet Toolkit: Transform XML document(s) using XSLT\n"
+-"Usage: xml tr [<options>] <xsl-file> {-p|-s <name>=<value>} [<xml-file>...]\n"
++"Usage: xmlstarlet tr [<options>] <xsl-file> {-p|-s <name>=<value>} [<xml-file>...]\n"
+ "where\n"
+ "  <xsl-file>      - main XSLT stylesheet for transformation\n"
+ "  <xml-file>      - input XML document file/URL (stdin is used if missing)\n";
+--- xmlstarlet-1.0.1-original/src/xml_validate.c	2005-01-06 20:52:43.000000000 -0500
++++ xmlstarlet-1.0.1/src/xml_validate.c	2005-11-22 18:33:37.000000000 -0500
+@@ -68,7 +68,7 @@
+  */
+ static const char validate_usage_str_1[] =
+ "XMLStarlet Toolkit: Validate XML document(s)\n"
+-"Usage: xml val <options> [ <xml-file-or-uri> ... ]\n"
++"Usage: xmlstarlet val <options> [ <xml-file-or-uri> ... ]\n"
+ "where <options>\n"
+ "  -w or --well-formed        - validate well-formedness only (default)\n"
+ "  -d or --dtd <dtd-file>     - validate against DTD\n";

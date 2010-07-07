@@ -3,7 +3,7 @@
 
 Summary: Create system image for bare-metal disaster recovery from CD, DVD or tape
 Name: mondo
-Version: 2.2.9.3
+Version: 2.2.9.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
@@ -69,6 +69,9 @@ damaged system, as well as deploy similar or less similar systems.
 %{_sbindir}/mrtest_truncname
 
 %changelog
+* Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 2.2.9.4-1
+- Updated to release 2.2.9.4.
+
 * Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2.2.9.3-1
 - Updated to release 2.2.9.3.
 
