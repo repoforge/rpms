@@ -53,7 +53,6 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%{__chmod} +x ./configure
 %configure \
     --disable-dependency-tracking \
     --with-examples=yes \
