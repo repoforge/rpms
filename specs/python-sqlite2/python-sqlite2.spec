@@ -11,7 +11,7 @@ Version: 2.3.3
 Release: 1%{?dist}
 License: zlib/libpng
 Group: Development/Languages
-URL: http://pysqlite.org/
+URL: http://code.google.com/p/pysqlite/
 
 Source: http://initd.org/pub/software/pysqlite/releases/2.3/%{version}/pysqlite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
