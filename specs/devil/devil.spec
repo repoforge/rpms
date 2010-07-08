@@ -10,7 +10,7 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://openil.sourceforge.net/
 
-Source: http://downloads.sourceforge.net/project/openil/DevIL/%{version}/DevIL-%{version}.zip
+Source: http://downloads.sourceforge.net/project/openil/DevIL/%{version}/DevIL-%{version}.tar.gz
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-%{dist}-%{arch}-XXXXXX)
 
 BuildRequires: autoconf
