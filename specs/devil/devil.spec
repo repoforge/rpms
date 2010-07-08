@@ -80,14 +80,13 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING CREDITS INSTALL Libraries.txt NEWS 
 %doc README README.unix TODO 
-%doc docs/DevIL_manual.pdf
 %doc %{_infodir}/*
 %{_bindir}/*
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc docs/html
+%doc docs/html/*
 %{_datadir}/devil/examples/
 %{_includedir}/IL/
 %{_libdir}/*.so
