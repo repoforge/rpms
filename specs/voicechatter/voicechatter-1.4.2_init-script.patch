@@ -1,0 +1,44 @@
+diff -Naur VoiceChatter-1.4.2-orig/VCServerManager/vcsm VoiceChatter-1.4.2/VCServerManager/vcsm
+--- VoiceChatter-1.4.2-orig/VCServerManager/vcsm	2009-06-13 11:23:47.000000000 -0400
++++ VoiceChatter-1.4.2/VCServerManager/vcsm	2010-07-09 16:48:46.000000000 -0400
+@@ -2,20 +2,20 @@
+ #
+ # VCServerManager             Start/Stop the VoiceChatter Master Server
+ #
+-# chkconfig: 2345 80 05
+-# description: VCServerManager - Example init.d script for the VoiceChatter Master Server
++# chkconfig: - 80 05
++# description: VCServerManager - VoiceChatter Master Server
+ # pidfile: /var/run/VCServerManager.pid
+ # processname: VCServerManager
+ 
+ 
+-DAEMONDIR="/home/vcs/vcs"
+-DAEMON="/home/vcs/vcs/VCServerManager"
++DAEMONDIR="/etc/voicechatterserver"
++DAEMON="/usr/sbin/VCServerManager"
+ NAME="VoiceChatter Master Server"
+ RUNDIR="/var/run"
+-USER="vcs"
++USER="daemon"
+ 
+ 
+-ARGS="--daemon --servers /home/vcs/vcs"
++ARGS="--daemon --servers ${DAEMONDIR}"
+ #echo "Args: $ARGS"
+ 
+ PIDFILE="$RUNDIR/VCServerManager.pid"
+@@ -38,7 +38,7 @@
+ 	fi
+ 
+ #	start-stop-daemon --start --chuid $USER --pidfile $PIDFILE --exec $DAEMON -- $ARGS
+-	su $USER -c "$DAEMON $ARGS"
++	su $USER -s /bin/sh -c "$DAEMON $ARGS"
+ 	pgrep -n -f $DAEMON > $PIDFILE
+ #	NEWPID=`cat $PIDFILE`
+ #	echo "New PID: $NEWPID"
+@@ -80,4 +80,3 @@
+ 	echo $"Usage: $0 {start|stop|restart}"
+ 	exit 1
+ esac
+-
