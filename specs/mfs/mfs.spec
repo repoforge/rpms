@@ -49,14 +49,18 @@ Distinctive features of MooseFS are:
 * possibility of creating snapshots of files, which means coherent copies of
   the whole file, even while the file is being written/accessed.
 
-Install this package to run a MooseFS master server, metalogger server, or chunk server.  MooseFS clients require only the %{name}-client package; however, you may want to install %{name}-client on your servers as well, for administrative reasons.
+Install this package to run a MooseFS master server, metalogger server, or
+chunk server.  MooseFS clients require only the %{name}-client package;
+however, you may want to install %{name}-client on your servers as well, for
+administrative reasons.
 
 %package client
 Summary: Client tools for MooseFS
 Group: System Environment/Utilities
 
 %description client
-Install this package to run a MooseFS client.  This package contains administrative utilities for MooseFS in addition to basic client tools.
+Install this package to run a MooseFS client.  This package contains
+administrative utilities for MooseFS in addition to basic client tools.
 
 %package cgi
 Summary: Status CGI for MooseFS
@@ -64,9 +68,12 @@ Group: System Environment/Utilities
 Requires: httpd
 
 %description cgi
-Install this package to display MooseFS status via Apache-hosted CGI.  The CGI attempts to connect to localhost by default; if running on a host that is not the MooseFS master server, modify index.html accordingly. 
+Install this package to display MooseFS status via Apache-hosted CGI.  The CGI
+attempts to connect to localhost by default; if running on a host that is not
+the MooseFS master server, modify index.html accordingly. 
 
-If you just want to run the status CGI using the bundled CGI server, not Apache, it is not necessary to install this package.
+If you just want to run the status CGI using the bundled CGI server, not
+Apache, it is not necessary to install this package.
 
 %prep
 %setup
