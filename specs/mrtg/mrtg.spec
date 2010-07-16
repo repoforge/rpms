@@ -8,7 +8,7 @@
 
 Summary: Multi Router Traffic Grapher
 Name: mrtg
-Version: 2.16.3
+Version: 2.16.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -18,6 +18,7 @@ Source: http://oss.oetiker.ch/mrtg/pub/mrtg-%{version}.tar.gz
 Source4: README-14allcgi
 Source5: 14all.cgi
 Source6: filter-requires-mrtg.sh
+Patch0: mrtg-2.16.4-lib64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel, gd-devel, libjpeg-devel, libpng-devel
@@ -33,6 +34,7 @@ images which provide a LIVE visual representation of this traffic.
 
 %prep
 %setup
+%patch0 -p1 -b .lib64
 
 %{__cat} <<EOF >mrtg.cfg
 ######################################################################
@@ -139,6 +141,11 @@ done
 %{_libdir}/mrtg2/
 
 %changelog
+* Sun Jul 11 2010 Nico Kadel-Garcia <nkadel@gmail.com> 2.16.4-2
+- Restore and update lib64 patch from 2.12.1 SRPM
+  Uses @@lib@@ instead of lib in FindBin statements for lib64 systems.
+  Updated to release 2.16.4.
+
 * Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 2.16.3-1
 - Updated to release 2.16.3.
 
