@@ -18,7 +18,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 1.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -113,7 +113,7 @@ PHP api for %{name}
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir} -p %{buildroot}/%{apacheconfdir}
-%{__make} install install-init install-commandmode install-config \
+%{__make} install-unstripped install-init install-commandmode install-config \
     install-webconf install-idoutils \
     DESTDIR="%{buildroot}" \
     INSTALL_OPTS="" \
@@ -236,6 +236,9 @@ fi
 
 
 %changelog
+* Thu Jul 05 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-2
+- Enable debuginfo
+
 * Thu Jun 24 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-1
 - Update to 1.0.2-1
 
