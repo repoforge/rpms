@@ -11,8 +11,8 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.10.0
-Release: 3%{?dist}
+Version: 4.10.1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://collectd.org/
@@ -381,6 +381,9 @@ fi
 %{_libdir}/collectd/xmms.so
 
 %changelog
+* Fri Jul 16 2010 Christoph Maser <cmaser@gmx.de> - 4.10.1-1
+- Updated to version 4.10.1.
+
 * Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-3
 - Add httpd-config snippets for webapps
 - remove obsolete for collectd-mysql
