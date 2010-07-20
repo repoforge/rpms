@@ -1,0 +1,103 @@
+Use @@lib@@ instead of hardcoded lib, for lib64 systems. Patch should
+be pushed upstream.
+
+diff -cr mrtg-2.16.4.lib64/bin/cfgmaker mrtg-2.16.4/bin/cfgmaker
+*** mrtg-2.16.4.lib64/bin/cfgmaker	Mon May 17 09:59:20 2010
+--- mrtg-2.16.4/bin/cfgmaker	Sun Jul 11 14:58:42 2010
+***************
+*** 44,50 ****
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
+  
+  use MRTG_lib "2.100015";
+  use Getopt::Long;
+--- 44,50 ----
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+  
+  use MRTG_lib "2.100015";
+  use Getopt::Long;
+diff -cr mrtg-2.16.4.lib64/bin/indexmaker mrtg-2.16.4/bin/indexmaker
+*** mrtg-2.16.4.lib64/bin/indexmaker	Mon May 17 09:59:20 2010
+--- mrtg-2.16.4/bin/indexmaker	Sun Jul 11 14:58:28 2010
+***************
+*** 48,54 ****
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
+  
+  use MRTG_lib "2.100016";
+  use Getopt::Long;
+--- 48,54 ----
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+  
+  use MRTG_lib "2.100016";
+  use Getopt::Long;
+diff -cr mrtg-2.16.4.lib64/bin/mrtg mrtg-2.16.4/bin/mrtg
+*** mrtg-2.16.4.lib64/bin/mrtg	Mon May 17 09:59:20 2010
+--- mrtg-2.16.4/bin/mrtg	Sun Jul 11 14:58:54 2010
+***************
+*** 81,87 ****
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
+  use Getopt::Long;
+  use Math::BigFloat;
+  
+--- 81,87 ----
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+  use Getopt::Long;
+  use Math::BigFloat;
+  
+diff -cr mrtg-2.16.4.lib64/bin/mrtg-traffic-sum mrtg-2.16.4/bin/mrtg-traffic-sum
+*** mrtg-2.16.4.lib64/bin/mrtg-traffic-sum	Mon Dec 28 02:53:16 2009
+--- mrtg-2.16.4/bin/mrtg-traffic-sum	Sun Jul 11 14:59:04 2010
+***************
+*** 33,39 ****
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
+  use MRTG_lib "2.090017";
+  use POSIX qw(mktime);
+  
+--- 33,39 ----
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+  use MRTG_lib "2.090017";
+  use POSIX qw(mktime);
+  
+diff -cr mrtg-2.16.4.lib64/contrib/cfgmaker_dlci/cfgmaker_dlci mrtg-2.16.4/contrib/cfgmaker_dlci/cfgmaker_dlci
+*** mrtg-2.16.4.lib64/contrib/cfgmaker_dlci/cfgmaker_dlci	Tue Feb 26 05:16:39 2002
+--- mrtg-2.16.4/contrib/cfgmaker_dlci/cfgmaker_dlci	Sun Jul 11 14:59:12 2010
+***************
+*** 36,42 ****
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}lib${main::SL}mrtg2";
+  
+  use BER "0.57";
+  use SNMP_Session "0.59";
+--- 36,42 ----
+  
+  use FindBin;
+  use lib "${FindBin::Bin}";
+! use lib "${FindBin::Bin}${main::SL}..${main::SL}@@lib@@${main::SL}mrtg2";
+  
+  use BER "0.57";
+  use SNMP_Session "0.59";
