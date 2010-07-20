@@ -4,14 +4,14 @@
 
 Summary: Fault tolerant, network distributed file system
 Name: mfs
-Version: 1.6.15
-Release: 3%{?dist}
+Version: 1.6.16
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.moosefs.org/
 
 Source: http://moosefs.org/tl_files/mfscode/mfs-%{version}.tar.gz
-Patch0: mfs-1.6.15_cgi.patch
+Patch0: mfs-1.6.16_cgi.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, automake
@@ -93,7 +93,7 @@ rm -rf %{buildroot}
 %{__make} install DESTDIR=%{buildroot}
 
 # yes, really apply the patch here rather than during %setup
-%{__patch} -p1 < %{_sourcedir}/mfs-1.6.15_cgi.patch
+%{__patch} -p1 < %{_sourcedir}/mfs-1.6.16_cgi.patch
 
 # copy the CGI stuff into the right place for Apache
 %{__install} -m0755 -d %{buildroot}%{_localstatedir}/www/cgi-bin/mfs
@@ -381,6 +381,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Tue Jul 20 2010 Steve Huff <shuff@vecna.org> - 1.6.16-1
+- Update to 1.6.16.
+
 * Fri Jun 11 2010 Steve Huff <shuff@vecna.org> - 1.6.15-3
 - Ported to RPMforge.
 - Split out client into a separate package.
