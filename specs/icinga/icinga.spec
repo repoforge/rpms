@@ -23,7 +23,7 @@ License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
 
-Source: http://dl.sf.net/project/icinga/icinga/%{version}/icinga-%{version}.tar.gz
+Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc
@@ -58,12 +58,12 @@ Requires: httpd
 This package contains the webgui (html,css,cgi etc.) for %{name}
 
 %package idoutils
-Summary: Web content for %{name}
+Summary: database broker module for %{name}
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 
 %description idoutils
-This package contains the idoutils addon for %{name} wich provides 
+This package contains the idoutils broker module for %{name} which provides 
 database storage via libdbi.
 
 %package api
@@ -113,8 +113,13 @@ PHP api for %{name}
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir} -p %{buildroot}/%{apacheconfdir}
-%{__make} install-unstripped install-init install-commandmode install-config \
-    install-webconf install-idoutils \
+%{__make} install-unstripped \
+    install-init \
+    install-commandmode \
+    install-config \
+    install-webconf \
+    install-idoutils \
+    install-api \
     DESTDIR="%{buildroot}" \
     INSTALL_OPTS="" \
     COMMAND_OPTS="" \
@@ -236,6 +241,10 @@ fi
 
 
 %changelog
+* Tue Jul 27 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-3
+- Fix Summary of idoutils subpackage
+- add install-api to make command line
+
 * Thu Jul 05 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-2
 - Enable debuginfo
 
