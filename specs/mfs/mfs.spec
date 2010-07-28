@@ -4,7 +4,7 @@
 
 Summary: Fault tolerant, network distributed file system
 Name: mfs
-Version: 1.6.16
+Version: 1.6.17
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -381,6 +381,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Wed Jul 28 2010 Steve Huff <shuff@vecna.org> - 1.6.17-1
+- Update to 1.6.17.
+
 * Tue Jul 20 2010 Steve Huff <shuff@vecna.org> - 1.6.16-1
 - Update to 1.6.16.
 
