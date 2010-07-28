@@ -20,6 +20,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #BuildArch: noarch
 BuildRequires: perl
+BuildRequires: rpm-macros-rpmforge
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 
@@ -32,7 +37,7 @@ BuildRequires: perl
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} pure_install
 #%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
 %clean
@@ -40,8 +45,8 @@ BuildRequires: perl
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
+%doc Changes META.yml README
+%doc %{_mandir}/man?/*
 #%{perl_vendorlib}/NAMEDIR.pm
 #%{perl_vendorlib}/NAMEDIR/*
 #%exclude %{perl_archlib}/perllocal.pod
