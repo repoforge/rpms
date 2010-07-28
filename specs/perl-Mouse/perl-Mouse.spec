@@ -9,8 +9,8 @@
 
 Summary: Moose minus the antlers
 Name: perl-Mouse
-Version: 0.4501
-Release: 1%{?dist}
+Version: 0.40
+Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mouse/
@@ -22,7 +22,9 @@ BuildArch: noarch
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(ExtUtils::ParseXS) >= 2.21
-BuildRequires: perl(MouseX::AttributeHelpers) >= 0.06
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Path)
+BuildRequires: perl(File::Spec)
 BuildRequires: perl(Scalar::Util) >= 1.14
 BuildRequires: perl(Test::Exception) >= 0.27
 #BuildRequires: perl(Test::More) >= 0.88
@@ -38,7 +40,17 @@ Requires: perl >= 5.6.2
 %filter_setup
 
 %description
-Moose minus the antlers.
+Moose is wonderful. Use Moose instead of Mouse.
+
+Unfortunately, Moose has a compile-time penalty. Though significant progress
+has been made over the years, the compile time penalty is a non-starter for
+some very specific applications. If you are writing a command-line application
+or CGI script where startup time is essential, you may not be able to use
+Moose. We recommend that you instead use HTTP::Engine and FastCGI for the
+latter, if possible.
+
+Mouse aims to alleviate this by providing a subset of Moose's functionality,
+faster.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -60,23 +72,18 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml
-%doc %{_mandir}/man3/ouse.3pm*
-%doc %{_mandir}/man3/Mouse.3pm*
-%doc %{_mandir}/man3/Mouse::*.3pm*
-%doc %{_mandir}/man3/Squirrel.3pm*
-%doc %{_mandir}/man3/Squirrel::Role.3pm*
-%doc %{_mandir}/man3/Test::Mouse.3pm.gz
+%doc %{_mandir}/man?/*
 %{perl_vendorlib}/Mouse/
 %{perl_vendorlib}/Mouse.pm
 %{perl_vendorlib}/ouse.pm
 %{perl_vendorlib}/Squirrel/
 %{perl_vendorlib}/Squirrel.pm
-%{perl_vendorlib}/Test/Mouse.pm
 
 
 %changelog
-* Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 0.4501-1
-- Updated to version 0.4501.
+* Tue Jun 01 2010 Steve Huff <shuff@vecna.org> - 0.40-1
+- Updated to version 0.40.
+- Package has new maintainer, old spec wouldn't build.
 
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.28-1
 - Updated to version 0.28.
