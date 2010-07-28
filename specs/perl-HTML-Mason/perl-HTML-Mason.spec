@@ -13,7 +13,7 @@
 Summary: High-performance, dynamic web site authoring system
 Name: perl-HTML-Mason
 Version: 1.45
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Mason/
@@ -40,6 +40,7 @@ Requires: perl(Class::Container) >= 0.07
 Requires: perl(Exception::Class) >= 1.15
 Requires: perl(File::Spec) >= 0.8
 Requires: perl(HTML::Entities)
+Requires: perl(Log::Any) >= 0.08
 Requires: perl(Params::Validate) >= 0.7
 Requires: perl(Scalar::Util) >= 1.01
 Requires: perl(Test::Deep)
@@ -95,6 +96,9 @@ find eg/ htdocs/ samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTML/Mason.pm
 
 %changelog
+* Tue Jul 27 2010 Steve Huff <shuff@vecna.org> - 1.45-2
+- Captured dependency on Log::Any 0.08.
+
 * Tue May 18 2010 Christoph Maser <cmaser@gmx.de> - 1.45-1
 - Updated to version 1.45.
 
