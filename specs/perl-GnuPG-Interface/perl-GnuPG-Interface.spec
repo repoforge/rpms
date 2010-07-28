@@ -10,7 +10,7 @@
 Summary: Perl interface to GnuPG
 Name: perl-GnuPG-Interface
 Version: 0.42
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/GnuPG-Interface/
@@ -22,7 +22,9 @@ BuildArch: noarch
 BuildRequires: gnupg
 BuildRequires: perl
 BuildRequires: which
+BuildRequires: perl(Any::Moose)
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Any::Moose)
 Requires: perl(Class::MethodMaker)
 Requires: gnupg
 
@@ -61,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 #%{perl_vendorlib}/auto/GnuPG/Interface/
 
 %changelog
+* Wed Jul 28 2010 Steve Huff <shuff@vecna.org> - 0.42-2
+- Captured missing Any::Moose dependency.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.42-1
 - Updated to version 0.42.
 
