@@ -1,0 +1,38 @@
+diff -Naur stone_soup-0.7.1-1-g7ce9b19-orig/source/makefile stone_soup-0.7.1-1-g7ce9b19/source/makefile
+--- stone_soup-0.7.1-1-g7ce9b19-orig/source/makefile	2010-07-23 23:31:49.000000000 -0400
++++ stone_soup-0.7.1-1-g7ce9b19/source/makefile	2010-07-29 15:15:19.000000000 -0400
+@@ -451,7 +451,7 @@
+ endif
+ 
+ ifndef BUILD_SQLITE
+-  ifeq ($(shell grep -q sqlite3_prepare_v2 $(SQLITE_INCLUDE_DIR)/sqlite3.h 2>/dev/null && echo yes),yes)
++  ifeq ($(shell grep -q sqlite3_prepare $(SQLITE_INCLUDE_DIR)/sqlite3.h 2>/dev/null && echo yes),yes)
+     INCLUDES_L += -I$(SQLITE_INCLUDE_DIR)
+     LIBS += $(SQLITE_LIB)
+   else
+diff -Naur stone_soup-0.7.1-1-g7ce9b19-orig/source/sqldbm.cc stone_soup-0.7.1-1-g7ce9b19/source/sqldbm.cc
+--- stone_soup-0.7.1-1-g7ce9b19-orig/source/sqldbm.cc	2010-07-23 23:31:56.000000000 -0400
++++ stone_soup-0.7.1-1-g7ce9b19/source/sqldbm.cc	2010-07-29 15:14:50.000000000 -0400
+@@ -85,11 +85,8 @@
+         if (dbfile.find(".db") != dbfile.length() - 3)
+             dbfile += ".db";
+ 
+-        if (ec( sqlite3_open_v2(
+-                    dbfile.c_str(), &db,
+-                    readonly? SQLITE_OPEN_READONLY :
+-                    (SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE),
+-                    NULL
++        if (ec( sqlite3_open(
++                    dbfile.c_str(), &db
+                     ) ) != SQLITE_OK)
+         {
+             const std::string saveerr = error;
+@@ -294,7 +291,7 @@
+         finalise_query(q);
+ 
+     const char *query_tail;
+-    return ec(sqlite3_prepare_v2(db, sql, -1, q, &query_tail));
++    return ec(sqlite3_prepare(db, sql, -1, q, &query_tail));
+ }
+ 
+ ////////////////////////////////////////////////////////////////////////
