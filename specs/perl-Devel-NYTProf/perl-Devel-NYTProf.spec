@@ -9,7 +9,7 @@
 
 Summary: Powerful fast feature-rich perl source code profiler
 Name: perl-%{real_name}
-Version: 3.11
+Version: 4.04
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,6 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/T/TI/TIMB/Devel-NYTProf-%{version
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 5.8.1
+BuildRequires: perl(Config)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Getopt::Long)
 BuildRequires: perl(JSON::Any)
@@ -74,5 +75,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/*
 
 %changelog
+* Thu Jul 29 2010 Steve Huff <shuff@vecna.org> - 4.04-1
+- Updated to release 4.04.
+
 * Tue May 25 2010 Steve Huff <shuff@vecna.org> - 3.11-1
 - Initial package (thanks to Philip Durbin).
