@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/NNAAMMEE/
 Source: NNAAMMEE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#BuildArch: noarch
+BuildArch: noarch
 BuildRequires: perl
 BuildRequires: rpm-macros-rpmforge
 
