@@ -27,6 +27,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: java-1.4.2-gcj-compat-devel
 BuildRequires: flex
 BuildRequires: gd-devel
+BuildRequires: keyutils-libs-devel
 BuildRequires: m4
 BuildRequires: ncurses-devel
 BuildRequires: openssl-devel
@@ -34,7 +35,7 @@ BuildRequires: tcl-devel
 BuildRequires: tk-devel
 BuildRequires: unixODBC-devel
 
-Requires:	tk
+Requires: tk
 
 # Added virtual Provides for each erlang module
 Provides: erlang-appmon = %{version}-%{release}
@@ -94,7 +95,6 @@ environment. Erlang has built-in support for concurrency, distribution
 and fault tolerance. Erlang is used in several large telecommunication
 systems from Ericsson.
 
-
 %package doc
 Summary: Erlang documentation
 Group: Development/Languages
@@ -102,9 +102,8 @@ Group: Development/Languages
 %description doc
 Documentation for Erlang.
 
-
 %prep
-%setup -q -n otp_src_%{version}-%{rel}
+%setup -n otp_src_%{version}-%{rel}
 %patch1 -p1 -b .links
 %patch2 -p1 -b .fix_epmd_symlink
 %patch3 -p1 -b .manpages
@@ -112,7 +111,6 @@ Documentation for Erlang.
 %patch5 -p1 -b .missing_ssl_libraries
 %patch6 -p1 -b .so_lib_install_fix
 %patch7 -p1 -b .pcre_buffer_overflow
-
 
 # enable dynamic linking for ssl
 sed -i 's|SSL_DYNAMIC_ONLY=no|SSL_DYNAMIC_ONLY=yes|' erts/configure
@@ -123,9 +121,8 @@ sed -i 's|__GLIBC_MINOR__ <= 7|__GLIBC_MINOR__ <= 8|' erts/emulator/hipe/hipe_x8
 sed -i 's|@RX_LD@|gcc -shared|' lib/common_test/c_src/Makefile.in
 sed -i 's|@RX_LDFLAGS@||' lib/common_test/c_src/Makefile.in
 
-
 %build
-CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %configure \
+CFLAGS="%{optflags} -fno-strict-aliasing" %configure \
     --enable-dynamic-ssl-lib \
     --enable-threads \
     --enable-smp-support \
@@ -134,10 +131,9 @@ CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %configure \
 %{__chmod} -R u+w .
 %{__make}
 
-
 %install
-rm -rf %{buildroot}
-%{__make} INSTALL_PREFIX=%{buildroot} install
+%{__rm} -rf %{buildroot}
+%{__make} install INSTALL_PREFIX="%{buildroot}"
 
 # clean up
 find %{buildroot}%{_libdir}/erlang -perm 0775 | xargs chmod 755
@@ -154,8 +150,7 @@ find %{buildroot}%{_libdir}/erlang -name index.txt.old | xargs rm -f
 # make links to binaries
 %{__mkdir_p} %{buildroot}/%{_bindir}
 cd %{buildroot}/%{_bindir}
-for file in erl erlc escript dialyzer
-do
+for file in erl erlc escript dialyzer; do
   %{__ln_s} -f ../%{_lib}/erlang/bin/$file .
 done
 
@@ -164,24 +159,20 @@ cd %{buildroot}/%{_libdir}/erlang
 sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start}
 
 %clean
-rm -rf %{buildroot}
-
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS EPLICENCE README
 %{_bindir}/*
 %{_libdir}/erlang
 
-
 %files doc
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc erlang_doc/*
 
-
 %post
-%{_libdir}/erlang/Install -minimal %{_libdir}/erlang >/dev/null 2>/dev/null
-
+%{_libdir}/erlang/Install -minimal %{_libdir}/erlang &>/dev/null
 
 %changelog
 * Fri Jul 02 2010 Steve Huff <shuff@vecna.org> - R12B-5.12
