@@ -6,14 +6,13 @@
 
 Summary: Utilities for mounting and managing CIFS mounts
 Name: cifs-utils
-Version: 4.5
+Version: 4.6
 Release: 1%{?dist}
 License: GPLv3
 Group: System Environment/Daemons
 URL: http://linux-cifs.samba.org/cifs-utils/
 
-Source0: ftp://ftp.samba.org/pub/linux-cifs/cifs-utils/%{name}-%{version}.tar.bz2
-Patch0: cifs-utils-4.5-mount.cifs-fix-parsing-of-cred-option.patch
+Source: ftp://ftp.samba.org/pub/linux-cifs/cifs-utils/cifs-utils-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -34,7 +33,6 @@ file system.
 
 %prep
 %setup
-%patch0 -p1
 
 %build
 %configure
@@ -56,5 +54,8 @@ file system.
 %{!?_without_keyutils:%{_sbindir}/cifs.upcall}
 
 %changelog
+* Mon Aug 02 2010 Dag Wieers <dag@wieers.com> - 4.6-1
+- Updated to release 4.6.
+
 * Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 4.5-1
 - Initial package. (based on Fedora)
