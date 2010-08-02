@@ -33,28 +33,28 @@ The program also supports virtual servers, plugins and a lot of features.
 
 ### Commit permanent changes to default configuration
 %{__perl} -pi.orig -e '
-		s|^LogFile=.*$|LogFile="%{_localstatedir}/log/httpd/access_log"|;
-		s|^DirData=.*$|DirData="%{_localstatedir}/www/awstats"|;
-		s|^DirCgi=.*$|DirCgi="/awstats"|;
-		s|^DirIcons=.*$|DirIcons="/awstats/icon"|;
-		s|^SiteDomain=.*$|SiteDomain="localhost.localdomain"|;
-		s|^HostAliases=.*$|HostAliases="localhost 127.0.0.1"|;
-		s|^EnableLockForUpdate=.*$|EnableLockForUpdate=1|;
-		s|^SaveDatabaseFilesWithPermissionsForEveryone=.*$|SaveDatabaseFilesWithPermissionsForEveryone=0|;
-		s|^KeepBackupOfHistoricFiles=.*$|KeepBackupOfHistoricFiles=1|;
-		s|^SkipHosts=.*$|SkipHosts="127.0.0.1$"|;
-		s|^Expires=.*$|Expires=3600|;
-		s|^FirstDayOfWeek=.*$|FirstDayOfWeek=0|;
-		s|ShowLinksToWhoIs=.*$|ShowLinksToWhoIs=1|;
-	' wwwroot/cgi-bin/awstats.model.conf
+        s|^LogFile=.*$|LogFile="%{_localstatedir}/log/httpd/access_log"|;
+        s|^DirData=.*$|DirData="%{_localstatedir}/www/awstats"|;
+        s|^DirCgi=.*$|DirCgi="/awstats"|;
+        s|^DirIcons=.*$|DirIcons="/awstats/icon"|;
+        s|^SiteDomain=.*$|SiteDomain="localhost.localdomain"|;
+        s|^HostAliases=.*$|HostAliases="localhost 127.0.0.1"|;
+        s|^EnableLockForUpdate=.*$|EnableLockForUpdate=1|;
+        s|^SaveDatabaseFilesWithPermissionsForEveryone=.*$|SaveDatabaseFilesWithPermissionsForEveryone=0|;
+        s|^KeepBackupOfHistoricFiles=.*$|KeepBackupOfHistoricFiles=1|;
+        s|^SkipHosts=.*$|SkipHosts="127.0.0.1$"|;
+        s|^Expires=.*$|Expires=3600|;
+        s|^FirstDayOfWeek=.*$|FirstDayOfWeek=0|;
+        s|ShowLinksToWhoIs=.*$|ShowLinksToWhoIs=1|;
+    ' wwwroot/cgi-bin/awstats.model.conf
 
 %{__cat} <<EOF >awstats.cron
 #!/bin/bash
 
 if [ -f %{_localstatedir}/log/httpd/access_log ] ; then
-	exec %{_bindir}/awstats_updateall.pl now \
-		-confdir="%{_sysconfdir}" \
-		-awstatsprog="%{_localstatedir}/www/awstats/awstats.pl" >/dev/null
+    exec %{_bindir}/awstats_updateall.pl now \
+        -confdir="%{_sysconfdir}" \
+        -awstatsprog="%{_localstatedir}/www/awstats/awstats.pl" >/dev/null
 fi
 exit 0
 EOF
@@ -64,11 +64,11 @@ Alias /awstats/icon/ %{_localstatedir}/www/awstats/icon/
 
 ScriptAlias /awstats/ %{_localstatedir}/www/awstats/
 <Directory %{_localstatedir}/www/awstats/>
-	DirectoryIndex awstats.pl
-	Options ExecCGI
-	order deny,allow
-	deny from all
-	allow from 127.0.0.1
+    DirectoryIndex awstats.pl
+    Options ExecCGI
+    order deny,allow
+    deny from all
+    allow from 127.0.0.1
 </Directory>
 
 #Alias /css/ %{_localstatedir}/www/awstats/css/
@@ -116,7 +116,7 @@ dos2unix wwwroot/cgi-bin/awredir.pl
 
 %changelog
 * Fri Nov 27 2009 David Hrbáč <david@hrbac.cz> - 6.95-1
-- new upstream release
+- Updated to release 6.95.
 
 * Thu Feb 25 2009 Christoph Maser <cmr@financial.com> - 6.9-2
 - dos2unix for tools/awstats_exportlib.pl tools/urlaliasbuilder.pl 
