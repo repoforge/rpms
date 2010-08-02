@@ -10,7 +10,7 @@ License: GPL
 Group: System Environment/Shells
 URL: https://computing.llnl.gov/linux/pdsh.html
 
-Source: https://downloads.sourceforge.net/project/pdsh/pdsh/pdsh-%{version}/pdsh-%{version}.tar.bz2
+Source: http://dl.sf.net/project/pdsh/pdsh/pdsh-%{version}/pdsh-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -67,8 +67,6 @@ allow progress to continue while timeouts occur on some connections.
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/pdsh/
 touch %{buildroot}%{_sysconfdir}/pdsh/machines
 
-
-
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -77,11 +75,11 @@ touch %{buildroot}%{_sysconfdir}/pdsh/machines
 %doc AUTHORS ChangeLog COPYING DISCLAIMER META NEWS README README.KRB4
 %doc README.modules README.QsNet TODO
 %doc %{_mandir}/man?/*
+%dir %{_sysconfdir}/pdsh/
+%config(noreplace) %{_sysconfdir}/pdsh/machines
 %{_bindir}/*
 %{_libdir}/pdsh/*.so
 %exclude %{_libdir}/pdsh/*.la
-%dir %{_sysconfdir}/pdsh/
-%config(noreplace) %{_sysconfdir}/pdsh/machines
 
 %changelog
 * Tue Jul 13 2010 Steve Huff <shuff@vecna.org> - 2.18-1
