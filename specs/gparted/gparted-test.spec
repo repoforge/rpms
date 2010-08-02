@@ -1,11 +1,13 @@
 # $Id$
 # Authority: dag
 
+# Tag: test
+
 %define desktop_vendor rpmforge
 
 Summary: Gnome Partition Editor
 Name: gparted
-Version: 0.4.8
+Version: 0.5.2
 Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
@@ -35,6 +37,9 @@ will be detected at runtime and don't require a rebuild of GParted
 %prep
 %setup
 %patch0 -p0 -b .icon
+
+### Fails to build
+%{__rm} -rf po/lv.po
 
 %{__perl} -pi -e '
         s|\bsbin\b|\bbin\b|;
@@ -116,8 +121,8 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %exclude %{_localstatedir}/lib/scrollkeeper/
 
 %changelog
-* Fri Jul 30 2010 Dag Wieers <dag@wieers.com> - 0.4.8-1
-- Updated to release 0.4.8.
+* Fri Jul 30 2010 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
 
 * Wed Sep 19 2007 Dries Verachtert <dries@ulyssis.org> - 0.3.3-2
 - Only use hal-lock on recent distributions.
