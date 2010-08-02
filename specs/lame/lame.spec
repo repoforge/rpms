@@ -2,12 +2,7 @@
 # Authority: matthias
 # Upstream: <lame-dev$lists,sourceforge,net>
 
-
-%{?fc1:%define _without_selinux 1}
 %{?el3:%define _without_selinux 1}
-%{?rh9:%define _without_selinux 1}
-%{?rh7:%define _without_selinux 1}
-%{?el2:%define _without_selinux 1}
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
@@ -17,7 +12,7 @@ License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 
-Source: http://downloads.sourceforge.net/project/lame/lame/%{version}/lame-%{version}.tar.gz
+Source: http://dl.sf.net/project/lame/lame/%{version}/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -49,7 +44,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %build
 %configure \
@@ -59,10 +54,10 @@ you will need to install %{name}-devel.
 %ifarch %{ix86} x86_64
     --enable-nasm \
 %endif
-    --enable-decoder \
-    --with-vorbis \
     --enable-analyser="no" \
-    --enable-brhist 
+    --enable-brhist \
+    --enable-decoder \
+    --with-vorbis
 %{__make} test CFLAGS="%{optflags}"
 
 %install
@@ -87,7 +82,7 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING doc/html/ INSTALL INSTALL.configure 
+%doc ChangeLog COPYING INSTALL* doc/html/
 %doc LICENSE README TODO USAGE
 %doc %{_mandir}/man1/lame.1*
 %{_bindir}/lame
@@ -104,7 +99,6 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 %changelog
 * Tue Jul 06 2010 Steve Huff <shuff@vecna.org> - 3.98.4-1
 - Updated to release 3.98.4 (thanks Brandon Ooi!).
-- Updated source download URL, removed needless %{real_version} macro.
 - Captured libvorbis and gtk2 dependencies.
 
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 3.98.2-1
