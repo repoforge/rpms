@@ -9,7 +9,7 @@
 Summary: Git core and tools
 Name: git
 Version: 1.7.1.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
@@ -27,12 +27,14 @@ Patch1: git-cvsimport-Ignore-cvsps-2.2b1-Branches-output.patch
 Patch2: git-1.6-update-contrib-hooks-path.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: asciidoc > 6.0.3
 BuildRequires: curl-devel >= 7.9
 BuildRequires: desktop-file-utils
 BuildRequires: expat-devel
 BuildRequires: gettext
 BuildRequires: openssl-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: xmlto
 BuildRequires: zlib-devel >= 1.2
 Requires: less
 Requires: openssh-clients
@@ -191,7 +193,7 @@ EOF
 %{__perl} -pi -e "s|@PROJECTROOT@|%{_localstatedir}/lib/git|g" %{SOURCE5} >gitweb.conf
 
 %build
-%{__make} %{?_smp_mflags} all
+%{__make} %{?_smp_mflags} all doc
 
 ## Perl preparation
 cd perl
@@ -204,7 +206,7 @@ sed -i '/^#!bash/,+1 d' contrib/completion/git-completion.bash
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__make} install install-doc DESTDIR="%{buildroot}"
 
 %{__make} -C contrib/emacs install emacsdir="%{buildroot}%{_datadir}/emacs/site-lisp"
 for elc in %{buildroot}%{_datadir}/emacs/site-lisp/*.elc; do
@@ -264,8 +266,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING Documentation/*.txt README
-#%{!?_without_asciidoc:%doc %{_mandir}/man1/*.1*}
-#%{!?_without_asciidoc:%doc %{_mandir}/man7/*.7*}
+%doc %{_mandir}/man1/*.1*
+%doc %{_mandir}/man5/*.5*
+%doc %{_mandir}/man7/*.7*
 %config %{_sysconfdir}/bash_completion.d/
 %{_bindir}/git
 %{_bindir}/git-*
@@ -280,6 +283,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %exclude %{_libexecdir}/git-core/git-gui--askpass
 %exclude %{_libexecdir}/git-core/git-send-email
 %exclude %{_libexecdir}/git-core/git-svn
+
+%files all
+%defattr(-, root, root, 0755)
 
 %files arch
 %defattr(-, root, root, 0755)
@@ -340,6 +346,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Fri Jul 09 2010 Dag Wieers <dag@wieers.com> - 1.7.1.1-2
+- Added missing documentation.
+
 * Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 1.7.1.1-1
 - Updated to release 1.7.1.1.
 
