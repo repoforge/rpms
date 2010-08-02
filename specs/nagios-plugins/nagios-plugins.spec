@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <nagiosplug-devel$lists,sf,net>
 
-
 %{?el3:%define _without_gettextdevel 1}
 %{?rh9:%define _without_gettextdevel 1}
 %{?rh7:%define _without_gettextdevel 1}
@@ -35,19 +34,35 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 AutoReq: no
 #BuildRequires: nagios-devel
 #BuildRequires: bind-devel (not needed for check_dns)
-BuildRequires: gcc-c++, gettext, radiusclient-devel, python
-BuildRequires: fping, bind-utils, ntp, samba-client, openssh-clients, qstat
-BuildRequires: openldap-devel, mysql-devel, postgresql-devel
-BuildRequires: perl(Net::SNMP), apt
+BuildRequires: apt
+BuildRequires: bind-utils
+BuildRequires: fping
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: mysql-devel
+BuildRequires: ntp
+BuildRequires: openldap-devel
+BuildRequires: openssh-clients
+BuildRequires: perl(Net::SNMP)
+BuildRequires: postgresql-devel
+BuildRequires: python
+BuildRequires: qstat
+BuildRequires: radiusclient-devel
+BuildRequires: samba-client
 BuildRequires: %{_bindir}/mailq
 #BuildRequires: radiusclient-ng-devel
 %{!?_without_net_snmp:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?_without_net_snmp:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 
-#Requires: openldap, openssl, mysql, postgresql-libs
-Requires: perl, perl(Net::SNMP), fping
+Requires: fping
+#Requires: mysql
 #Requires: nagios
+#Requires: openldap
+#Requires: openssl
+Requires: perl
+Requires: perl(Net::SNMP)
+#Requires: postgresql-libs
 
 %description
 This package contains the basic plugins necessary for use with the
