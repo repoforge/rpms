@@ -2,14 +2,12 @@
 # Authority: dag
 # Upstream: Tobi Oetiker <tobi$oetiker,ch>
 
-# Tag: test
-
 %define _use_internal_dependency_generator 0
 
 Summary: Multi Router Traffic Grapher
 Name: mrtg
 Version: 2.16.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://oss.oetiker.ch/mrtg/
@@ -21,9 +19,14 @@ Source6: filter-requires-mrtg.sh
 Patch0: mrtg-2.16.4-lib64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: freetype-devel, gd-devel, libjpeg-devel, libpng-devel
-Requires: perl >= 5.8, gd
-Requires: vixie-cron, /sbin/service
+BuildRequires: freetype-devel
+BuildRequires: gd-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+Requires: gd
+Requires: perl >= 5.8
+Requires: vixie-cron
+Requires: /sbin/service
 
 %define __find_requires %{SOURCE6}
 
@@ -106,23 +109,23 @@ find contrib -name "*.pl" -exec %{__perl} -e 's|\015||gi' -p -i \{\} \;
 
 %{__install} -d -m0755 %{buildroot}%{_bindir}
 for bin in bin/mrtg bin/rateup bin/cfgmaker bin/indexmaker; do
-	%{__install} -p -m0755 $bin %{buildroot}%{_bindir}
+    %{__install} -p -m0755 $bin %{buildroot}%{_bindir}
 done
 for bin in mrtg cfgmaker indexmaker; do
-	%{__perl} -pi -e 's|\@\@lib\@\@|%{_lib}|g' %{buildroot}%{_bindir}/$bin
+    %{__perl} -pi -e 's|\@\@lib\@\@|%{_lib}|g' %{buildroot}%{_bindir}/$bin
 done
 
 %{__install} -dp -m0755 %{buildroot}%{_libdir}/mrtg2/Pod/
 for i in lib/mrtg2/*.pm; do
-	%{__install} -p -m0644 $i %{buildroot}%{_libdir}/mrtg2/
+    %{__install} -p -m0644 $i %{buildroot}%{_libdir}/mrtg2/
 done
 for i in lib/mrtg2/Pod/*.pm; do
-	%{__install} -p -m0644 $i %{buildroot}%{_libdir}/mrtg2/Pod/
+    %{__install} -p -m0644 $i %{buildroot}%{_libdir}/mrtg2/Pod/
 done
 
 %{__install} -dp -m0755 %{buildroot}%{_mandir}/man1/
 for i in doc/*.1; do
-	%{__install} -p -m0644 $i %{buildroot}%{_mandir}/man1/
+    %{__install} -p -m0644 $i %{buildroot}%{_mandir}/man1/
 done
 %{__perl} -pi -e 's|\@\@lib\@\@|%{_lib}|g' %{buildroot}%{_mandir}/man1/*.1
 
@@ -145,6 +148,9 @@ done
 - Restore and update lib64 patch from 2.12.1 SRPM
   Uses @@lib@@ instead of lib in FindBin statements for lib64 systems.
   Updated to release 2.16.4.
+
+* Fri Jul 09 2010 Dag Wieers <dag@wieers.com> - 2.16.4-1
+- Updated to release 2.16.4.
 
 * Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 2.16.3-1
 - Updated to release 2.16.3.
