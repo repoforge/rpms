@@ -12,8 +12,8 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.4.3
-Release: 3%{?dist}
+Version: 1.4.4
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
 URL: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
@@ -239,6 +239,9 @@ fi
 %{_libdir}/lua/
 
 %changelog
+* Fri Jul 09 2010 Dag Wieers <dag@wieers.com> - 1.4.4-1
+- Updated to release 1.4.4.
+
 * Fri Jun 11 2010 Christoph Maser <cmaser@gmx.de> - 1.4.3-3
 - create rrdcached user
 - add directory for rrdcached data and socket
