@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <wireless$kismetwireless,net>
 
-
 %define _without_gpsmap 1
 
 %{?el4:%define _without_modxorg 1}
@@ -11,8 +10,8 @@
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-%define real_version 2010-01-R1
-Release: 201001r1.1%{?dist}
+%define real_version 2010-07-R1
+Release: 201007r1.1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -97,6 +96,9 @@ echo -e "/* make dbus shut up when dbus < 1.0 */\n#define DBUS_API_SUBJECT_TO_CH
 %endif
 
 %changelog
+* Thu Jul 15 2010 Dag Wieers <dag@wieers.com> - 3.0.1-201007r1-1
+- Updated to release 2010-07-R1.
+
 * Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 3.0.1-201001r1-1
 - Updated to release 2010-01-R1.
 
