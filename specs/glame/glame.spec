@@ -3,10 +3,8 @@
 
 %{?fedora: %{expand: %%define fc%{fedora} 1}}
 
-%{!?dtag:%define _with_modxorg 1}
-%{?el5:%define _with_modxorg 1}
-%{?fc6:%define _with_modxorg 1}
-%{?fc5:%define _with_modxorg 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
@@ -27,8 +25,8 @@ BuildRequires: libgnomecanvas-devel, gtk2-devel >= 2.6.0
 BuildRequires: fftw-devel, audiofile-devel, esound-devel
 BuildRequires: lame-devel, libmad-devel, libvorbis-devel, ladspa-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-%{?_with_modxorg:BuildRequires: xorg-x11-xbitmaps}
+BuildRequires: desktop-file-utils
+%{!?_without_modxorg:BuildRequires: xorg-x11-xbitmaps}
 
 %description
 GLAME is meant to be the GIMP of audio processing. It is designed to be
