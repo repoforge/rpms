@@ -122,7 +122,7 @@ fi
 %doc docs/*
 
 %changelog
-* Wed Jul 14 2010 David Hrbáč <david@hrbac.cz> - 0.8.7g-1
+* Tue Jul 13 2010 Dag Wieers <dag@wieers.com> - 0.8.7g-1
 - Updated to release 0.8.7g.
 
 * Tue May 25 2010 Christoph Maser <cmaser@gmx.de> - 0.8.7f-1
