@@ -4,7 +4,7 @@
 
 Summary: Software watchdog
 Name: watchdog
-Version: 5.3.1
+Version: 5.4
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -154,7 +154,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0644 %{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/watchdog
 %{__install} -Dp -m0755 %{name}.sysv %{buildroot}%{_initrddir}/watchdog
 
@@ -185,6 +185,9 @@ fi
 %{_sbindir}/wd_keepalive
 
 %changelog
+* Fri Aug 17 2007 Dag Wieers <dag@wieers.com> - 5.4-1
+- Updated to release 5.4.
+
 * Thu Feb 22 2007 Dag Wieers <dag@wieers.com> - 5.3.1-1
 - Updated to release 5.3.1.
 
