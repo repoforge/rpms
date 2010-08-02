@@ -9,7 +9,7 @@
 
 Summary: HP Linux Imaging and Printing Project
 Name: hplip
-Version: 3.10.5
+Version: 3.10.6
 Release: 0.1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -82,17 +82,21 @@ SANE driver for scanners in HP's multi-function devices (from HPOJ).
 
 %build
 %configure \
+    --with-hpppddir="%{_datadir}/ppd/HP" \
     --disable-cups-install \
+    --disable-policykit \
     --disable-qt4 \
     --enable-cups-drv-install \
     --enable-cups-ppd-install \
+    --enable-dbus-build \
+    --enable-fax-build \
     --enable-foomatic-drv-install \
     --enable-foomatic-ppd-install \
     --enable-foomatic-rip-hplip-install \
-    --enable-dbus \
-    --enable-fax-build \
     --enable-gui-build \
+    --enable-hpcups-install \
     --enable-hpijs-install \
+    --enable-network-build \
     --enable-scan-build \
     --enable-qt3
 %{__make} %{?_smp_mflags}
@@ -159,7 +163,6 @@ if [ -f /etc/sane.d/dll.conf ]; then
         echo hpaio >> /etc/sane.d/dll.conf
     fi
 fi
-exit 0
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -212,6 +215,8 @@ exit 0
 %dir %{_datadir}/hal/fdi/preprobe/10osvendor/
 %{_datadir}/hal/fdi/preprobe/10osvendor/20-hplip-devices.fdi
 %{_datadir}/hplip/
+%dir %{_datadir}/ppd/
+%{_datadir}/ppd/HP/
 %{_libdir}/libhpmud.so*
 %{python_sitearch}/*.so
 %{_libdir}/python*/site-packages/*
@@ -248,6 +253,9 @@ exit 0
 %exclude %{_libdir}/sane/libsane-*.la
 
 %changelog
+* Fri Jul 30 2010 Dag Wieers <dag@wieers.com> - 3.10.6-1
+- Updated to release 3.10.6.
+
 * Fri Jun 18 2010 Dag Wieers <dag@wieers.com> - 3.10.5-1
 - Updated to release 3.10.5.
 
