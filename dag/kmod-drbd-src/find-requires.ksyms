@@ -1,0 +1,46 @@
+#! /bin/bash
+
+IFS=$'\n'
+
+all_provides() {
+    nm "$@" \
+    | sed -r -ne 's:^0*([0-9a-f]+) A __crc_(.+):\1\t\2:p' \
+    | sort -k2 -u
+}
+
+all_requires() {
+    for module in "$@"; do
+        set -- $(/sbin/modinfo -F vermagic "$module" | sed -e 's: .*::' -e q)
+        /sbin/modprobe --dump-modversions "$module" \
+        | sed -r -e 's:^0x0*::' -e 's:$:\t'"$1"':'
+    done \
+    | sort -k2 -u
+}
+
+if ! [ -e /sbin/modinfo -a -e /sbin/modprobe ]; then
+    cat > /dev/null
+    exit 0
+fi
+
+modules=($(grep -E '/lib/modules/.+\.ko$'))
+if [ ${#modules[@]} -gt 0 ]; then
+    symset_table=$(mktemp -t ${0##*/}.XXXXX)
+    /usr/lib/rpm/redhat/symset-table | sort > $symset_table
+
+    join -t $'\t' -j 1 -a 2 $symset_table <(
+        # Filter out requirements that we fulfill ourself.
+        join -t $'\t' -j 2 -v 1 \
+            <(all_requires "${modules[@]}") \
+            <(all_provides "${modules[@]}") \
+        | awk '
+        BEGIN { FS = "\t" ; OFS = "\t" }
+        { print $3 "/" $2 "/" $1 }
+        ' \
+        | sort -u) \
+    | sort -u \
+    | awk '
+    { FS = "\t" ; OFS = "\t" }
+    NF == 3 { print "kernel(" $2 ") = " $3
+              next }
+    '
+fi
