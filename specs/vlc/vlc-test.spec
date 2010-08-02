@@ -62,7 +62,7 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 1.0.6
+Version: 1.1.0
 Release: 0.1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -421,6 +421,9 @@ export QTLIB="$QTDIR/lib"
 %endif
 
 %changelog
+* Wed Jul 07 2010 Dag Wieers <dag@wieers.com> - 1.1.0-0.1
+- Updated to release 1.1.0.
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 1.0.1-0.2
 - Rebuild against newer faad2 2.7.
 
