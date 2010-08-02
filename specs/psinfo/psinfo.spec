@@ -4,7 +4,7 @@
 
 Summary: Shows process information and statistics
 Name: psinfo
-Version: 0.1
+Version: 0.12
 Release: 1%{?dist}
 License: GPL
 Group: Applications/
@@ -49,5 +49,8 @@ application when diagnosing issues or performance problems.
 %{_bindir}/psinfo
 
 %changelog
-* Fri Oct 10 2008 Dag Wieers <dag@wieers.com> - 1.0-1
+* Wed Jul 07 2010 Dag Wieers <dag@wieers.com> - 0.12-1
+- Updated to release
+
+* Fri Oct 10 2008 Dag Wieers <dag@wieers.com> - 0.1-1
 - Initial package. (using DAR)
