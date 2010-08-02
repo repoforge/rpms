@@ -2,10 +2,17 @@
 # Authority: dag
 # Upstream: Alec Thomas <alec$swapoff,org>
 
+%define _xauth /usr/bin/xauth
+
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
+
+%{?_without_modxorg:%define _xauth /usr/X11R6/bin/xauth}
+
 Summary: Allows restricted root access for specified users
 Name: op
 Version: 1.32
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://swapoff.org/op/
@@ -13,7 +20,11 @@ URL: http://swapoff.org/op/
 Source: http://swapoff.org/files/op/op-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, pam-devel
+BuildRequires: flex
+BuildRequires: pam-devel
+#%{!?_without_modxorg:BuildRequires: xorg-x11-xauth}
+#%{?_without_modxorg:BuildRequires: XFree86-xauth}
+Requires: %{_xauth}
 
 %description
 op provides a flexible means for system administrators to grant access
@@ -91,6 +102,7 @@ EOF
 #    users=dag,ramses,wim
 #    environment
 #    password
+#    xauth
 EOF
 
 %{__cat} <<EOF >op.pam
@@ -102,7 +114,7 @@ session    required	pam_stack.so service=system-auth
 EOF
 
 %build
-%configure
+%configure --enable-xauth="%{_xauth}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -127,6 +139,9 @@ EOF
 %{_bindir}/op
 
 %changelog
+* Sun Jul 25 2010 Dag Wieers <dag@wieers.com> - 1.32-4
+- Compiled with xauth support.
+
 * Mon Nov 10 2008 Dag Wieers <dag@wieers.com> - 1.32-3
 - Fix some configuration files.
 
