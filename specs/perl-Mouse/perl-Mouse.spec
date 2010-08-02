@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dag
+# Authority: shuff
 # Upstream: Shawn M Moore <sartak$gmail,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -10,7 +10,7 @@
 Summary: Moose minus the antlers
 Name: perl-Mouse
 Version: 0.40
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mouse/
@@ -31,7 +31,6 @@ BuildRequires: perl(Test::Exception) >= 0.27
 BuildRequires: perl(Test::More)
 BuildRequires: perl(XSLoader) >= 0.1
 BuildRequires: perl >= 5.6.2
-Requires: perl(MouseX::AttributeHelpers) >= 0.06
 Requires: perl(Scalar::Util) >= 1.14
 Requires: perl(XSLoader) >= 0.1
 Requires: perl >= 5.6.2
@@ -81,6 +80,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Mon Aug 02 2010 Steve Huff <shuff@vecna.org> - 0.40-2
+- Removed spurious perl(MouseX::AttributeHelpers) dependency.
+
 * Tue Jun 01 2010 Steve Huff <shuff@vecna.org> - 0.40-1
 - Updated to version 0.40.
 - Package has new maintainer, old spec wouldn't build.
