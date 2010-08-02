@@ -9,13 +9,13 @@
 
 Summary: Nagios::Object - Nagios object configuration parsing
 Name: perl-Nagios-Object
-Version: 0.20
+Version: 0.21.12
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nagios-Object/
 
-Source: http://www.cpan.org/authors/id/T/TO/TOBEYA/Nagios-Object-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DU/DUNCS/Nagios-Object-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -55,6 +55,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc ChangeLog MANIFEST META.yml README
 %doc %{_mandir}/man1/config_status_demo.pl.1*
+%doc %{_mandir}/man1/decode_flags.pl.1*
 %doc %{_mandir}/man1/parse.pl.1*
 %doc %{_mandir}/man1/statusdat_demo.pl.1*
 %doc %{_mandir}/man1/test_configuration.pl.1*
@@ -67,5 +68,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/
 
 %changelog
+* Mon Aug  2 2010 Christoph Maser <cmaser@gmx.de> - 0.21.12-1
+- Updated to version 0.21.12.
+
 * Wed Apr 09 2008 Dag Wieers <dag@wieers.com> - 0.20-1
 - Initial package. (using DAR)
