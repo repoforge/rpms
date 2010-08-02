@@ -9,7 +9,7 @@
 
 Summary: Clone of Mirabilis' popular ICQ
 Name: gnomeicu
-Version: 0.99.10
+Version: 0.99.14
 Release: 1%{?dist}
 Epoch: 1
 License: GPL
@@ -19,7 +19,8 @@ URL: http://gnomeicu.sourceforge.net/
 Source: http://download.sourceforge.net/gnomeicu/gnomeicu-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig >= 0.16, libgnomeui-devel >= 2.0.0, gnet-devel >= 1.1.3
+BuildRequires: pkgconfig >= 0.16, libgnomeui-devel >= 2.0.0
+#, gnet-devel >= 1.1.3
 BuildRequires: libxml2-devel >= 2.4.7, scrollkeeper >= 0.3.5
 BuildRequires: gtkspell-devel >= 2.0.4
 
@@ -50,7 +51,7 @@ The original source was taken from Matt Smith's mICQ.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %post
@@ -75,7 +76,7 @@ scrollkeeper-update -q || :
 %{_datadir}/applications/GnomeICU.desktop
 %{_datadir}/gnomeicu/
 %{_datadir}/omf/gnomeicu/
-%{_datadir}/pixmaps/gnome-gnomeicu.png
+%{_datadir}/pixmaps/gnomeicu.png
 %{_datadir}/sounds/gnomeicu/
 
 %if %{!?_without_applet:1}0
@@ -87,6 +88,9 @@ scrollkeeper-update -q || :
 %endif
 
 %changelog
+* Mon Nov 05 2007 Dag Wieers <dag@wieers.com> - 0.99.14-1
+- Updated to release 0.99.14.
+
 * Sat Feb 18 2006 Dag Wieers <dag@wieers.com> - 0.99.10-1
 - Updated to release 0.99.10.
 
