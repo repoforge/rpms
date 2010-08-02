@@ -1,0 +1,13 @@
+--- cpptest-1.1.0.org/libcpptest.pc.in	2009-03-17 04:13:58.000000000 +0530
++++ cpptest-1.1.0/libcpptest.pc.in	2009-03-17 04:15:05.000000000 +0530
+@@ -1,7 +1,7 @@
+ prefix=@prefix@
+-exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
+-includedir=${prefix}/include
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
+ 
+ Name: libcpptest
+ Description: C++ test suite
