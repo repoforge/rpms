@@ -18,13 +18,13 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.18.1
+Version: 1.1.19
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
 
-Source: http://downloads.sf.net/xine/xine-lib-%{version}.tar.bz2
+Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
 Patch0: xine-lib-1.1.9-speex104.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -180,6 +180,9 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Mon Jul 26 2010 Dag Wieers <dag@wieers.com> - 1.1.19-1
+- Updated to release 1.1.19.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.1.18.1-1
 - Updated to release 1.1.18.1.
 
