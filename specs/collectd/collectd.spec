@@ -171,9 +171,9 @@ Group: System Environment/Daemons
 BuildRequires: xmms-devel
 Requires: collectd = %{version}-%{release}
 Requires: xmms
+
 %description xmms
 This plugin collects bit-rate and sampling rate as you play songs
-
 
 %prep
 %setup
@@ -381,8 +381,8 @@ fi
 %{_libdir}/collectd/xmms.so
 
 %changelog
-* Fri Jul 16 2010 Christoph Maser <cmaser@gmx.de> - 4.10.1-1
-- Updated to version 4.10.1.
+* Tue Jul 13 2010 Dag Wieers <dag@wieers.com> - 4.10.1-1
+- Updated to release 4.10.1.
 
 * Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> 4.10.0-3
 - Add httpd-config snippets for webapps
