@@ -1,0 +1,26 @@
+diff -up xpdf-3.02/xpdf/XPDFViewer.cc.BAD xpdf-3.02/xpdf/XPDFViewer.cc
+--- xpdf-3.02/xpdf/XPDFViewer.cc.BAD	2007-08-28 14:44:09.000000000 -0400
++++ xpdf-3.02/xpdf/XPDFViewer.cc	2007-08-28 14:44:47.000000000 -0400
+@@ -140,6 +140,8 @@ struct ZoomMenuInfo {
+ 
+ static ZoomMenuInfo zoomMenuInfo[nZoomMenuItems] = {
+   { "400%",      400 },
++  { "300%",      300 },
++  { "250%",      250 },
+   { "200%",      200 },
+   { "150%",      150 },
+   { "125%",      125 },
+diff -up xpdf-3.02/xpdf/Stream.cc.BAD xpdf-3.02/xpdf/Stream.cc
+diff -up xpdf-3.02/xpdf/XPDFViewer.h.BAD xpdf-3.02/xpdf/XPDFViewer.h
+diff -up xpdf-3.02/xpdf/XPDFViewer.h.BAD xpdf-3.02/xpdf/XPDFViewer.h
+--- xpdf-3.02/xpdf/XPDFViewer.h.BAD	2007-08-28 16:46:48.000000000 -0400
++++ xpdf-3.02/xpdf/XPDFViewer.h	2007-08-28 16:46:57.000000000 -0400
+@@ -41,7 +41,7 @@ class XPDFViewer;
+ //------------------------------------------------------------------------
+ 
+ // NB: this must match the defn of zoomMenuBtnInfo in XPDFViewer.cc
+-#define nZoomMenuItems 10
++#define nZoomMenuItems 12
+ 
+ //------------------------------------------------------------------------
+ 

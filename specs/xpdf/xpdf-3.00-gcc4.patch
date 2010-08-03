@@ -1,0 +1,29 @@
+--- xpdf-3.00/xpdf/TextOutputDev.h.orig	2005-06-13 10:11:17.000000000 +0200
++++ xpdf-3.00/xpdf/TextOutputDev.h	2005-06-13 10:27:18.000000000 +0200
+@@ -169,7 +169,7 @@
+ class TextLine {
+ public:
+ 
+-  TextLine(TextBlock *blkA, int rotA, double baseA);
++  TextLine(class TextBlock *blkA, int rotA, double baseA);
+   ~TextLine();
+ 
+   void addWord(TextWord *word);
+@@ -226,7 +226,7 @@
+ class TextBlock {
+ public:
+ 
+-  TextBlock(TextPage *pageA, int rotA);
++  TextBlock(class TextPage *pageA, int rotA);
+   ~TextBlock();
+ 
+   void addWord(TextWord *word);
+@@ -416,7 +416,7 @@
+ private:
+ 
+   void clear();
+-  void assignColumns(TextLineFrag *frags, int nFrags, int rot);
++  void assignColumns(class TextLineFrag *frags, int nFrags, int rot);
+   int dumpFragment(Unicode *text, int len, UnicodeMap *uMap, GString *s);
+ 
+   GBool rawOrder;		// keep text in content stream order

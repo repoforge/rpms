@@ -1,0 +1,50 @@
+--- xpdf-2.02/goo/gfile.cc.orig	2003-03-31 16:45:50.000000000 +0200
++++ xpdf-2.02/goo/gfile.cc	2003-03-31 17:09:19.000000000 +0200
+@@ -486,32 +486,14 @@
+   char *s;
+   int fd;
+ 
+-  if (ext) {
+-#if HAVE_MKSTEMPS
+-    if ((s = getenv("TMPDIR"))) {
+-      *name = new GString(s);
+-    } else {
+-      *name = new GString("/tmp");
+-    }
+-    (*name)->append("/XXXXXX")->append(ext);
+-    fd = mkstemps((*name)->getCString(), strlen(ext));
+-#else
+-    if (!(s = tmpnam(NULL))) {
+-      return gFalse;
+-    }
++#if HAVE_MKSTEMP
++  if ((s = getenv("TMPDIR"))) {
+     *name = new GString(s);
+-    (*name)->append(ext);
+-    fd = open((*name)->getCString(), O_WRONLY | O_CREAT | O_EXCL, 0600);
+-#endif
+   } else {
+-#if HAVE_MKSTEMP
+-    if ((s = getenv("TMPDIR"))) {
+-      *name = new GString(s);
+-    } else {
+-      *name = new GString("/tmp");
+-    }
+-    (*name)->append("/XXXXXX");
+-    fd = mkstemp((*name)->getCString());
++    *name = new GString("/tmp");
++  }
++  (*name)->append("/XXXXXX");
++  fd = mkstemp((*name)->getCString());
+ #else // HAVE_MKSTEMP
+     if (!(s = tmpnam(NULL))) {
+       return gFalse;
+@@ -519,7 +501,7 @@
+     *name = new GString(s);
+     fd = open((*name)->getCString(), O_WRONLY | O_CREAT | O_EXCL, 0600);
+ #endif // HAVE_MKSTEMP
+-  }
++
+   if (fd < 0 || !(*f = fdopen(fd, mode))) {
+     delete *name;
+     return gFalse;

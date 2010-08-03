@@ -1,0 +1,32 @@
+--- xpdf-3.02/xpdf/XPDFApp.cc.fntlist	2007-02-27 15:05:52.000000000 -0700
++++ xpdf-3.02/xpdf/XPDFApp.cc	2007-08-02 20:39:26.000000000 -0600
+@@ -35,9 +35,9 @@
+ //------------------------------------------------------------------------
+ 
+ static String fallbackResources[] = {
+-  "*.zoomComboBox*fontList: -*-helvetica-medium-r-normal--12-*-*-*-*-*-iso8859-1",
+-  "*XmTextField.fontList: -*-courier-medium-r-normal--12-*-*-*-*-*-iso8859-1",
+-  "*.fontList: -*-helvetica-medium-r-normal--12-*-*-*-*-*-iso8859-1",
++  "*.zoomComboBox*fontList: -*-helvetica-medium-r-normal-*-12-*-*-*-*-*-iso8859-1",
++  "*XmTextField.fontList: -*-courier-medium-r-*-12-*-*-*-*-*-iso8859-1",
++  "*.fontList: -*-helvetica-medium-r-normal-*-12-*-*-*-*-*-iso8859-1",
+   "*XmTextField.translations: #override\\n"
+   "  Ctrl<Key>a:beginning-of-line()\\n"
+   "  Ctrl<Key>b:backward-character()\\n"
+--- xpdf-3.02/xpdf/XPDFViewer.cc.fntlist	2007-08-02 20:25:21.000000000 -0600
++++ xpdf-3.02/xpdf/XPDFViewer.cc	2007-08-02 20:38:03.000000000 -0600
+@@ -2789,11 +2789,11 @@ void XPDFViewer::initAboutDialog() {
+ 
+   //----- fonts
+   aboutBigFont =
+-    createFontList("-*-times-bold-i-normal--20-*-*-*-*-*-iso8859-1");
++    createFontList("-*-times-bold-i-normal-*-20-*-*-*-*-*-iso8859-1");
+   aboutVersionFont =
+-    createFontList("-*-times-medium-r-normal--14-*-*-*-*-*-iso8859-1");
++    createFontList("-*-times-medium-r-normal-*-14-*-*-*-*-*-iso8859-1");
+   aboutFixedFont =
+-    createFontList("-*-courier-medium-r-normal--12-*-*-*-*-*-iso8859-1");
++    createFontList("-*-courier-medium-r-*-12-*-*-*-*-*-iso8859-1");
+ 
+   //----- heading
+   n = 0;

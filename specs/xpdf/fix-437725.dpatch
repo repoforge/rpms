@@ -1,0 +1,42 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-437725.dpatch from Arno Renevier <arenevier@fdn.fr>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix segmentation fault when pressing Ctrl-W in full screen mode
+
+@DPATCH@
+--- a/xpdf/XPDFViewer.cc	2007-08-13 22:41:36.000000000 +0200
++++ b/xpdf/XPDFViewer.cc	2007-08-13 23:01:07.000000000 +0200
+@@ -400,18 +400,21 @@ void XPDFViewer::clear() {
+   title = app->getTitle() ? app->getTitle()->getCString()
+                           : (char *)xpdfAppName;
+   XtVaSetValues(win, XmNtitle, title, XmNiconName, title, NULL);
+-  s = XmStringCreateLocalized("");
+-  XtVaSetValues(pageNumText, XmNlabelString, s, NULL);
+-  XmStringFree(s);
+-  s = XmStringCreateLocalized(" of 0");
+-  XtVaSetValues(pageCountLabel, XmNlabelString, s, NULL);
+-  XmStringFree(s);
+ 
+-  // disable buttons
+-  XtVaSetValues(prevTenPageBtn, XmNsensitive, False, NULL);
+-  XtVaSetValues(prevPageBtn, XmNsensitive, False, NULL);
+-  XtVaSetValues(nextTenPageBtn, XmNsensitive, False, NULL);
+-  XtVaSetValues(nextPageBtn, XmNsensitive, False, NULL);
++  if (toolBar != None) {
++      s = XmStringCreateLocalized("");
++      XtVaSetValues(pageNumText, XmNlabelString, s, NULL);
++      XmStringFree(s);
++      s = XmStringCreateLocalized(" of 0");
++      XtVaSetValues(pageCountLabel, XmNlabelString, s, NULL);
++      XmStringFree(s);
++
++      // disable buttons
++      XtVaSetValues(prevTenPageBtn, XmNsensitive, False, NULL);
++      XtVaSetValues(prevPageBtn, XmNsensitive, False, NULL);
++      XtVaSetValues(nextTenPageBtn, XmNsensitive, False, NULL);
++      XtVaSetValues(nextPageBtn, XmNsensitive, False, NULL);
++  }
+ 
+   // remove the old outline
+ #ifndef DISABLE_OUTLINE

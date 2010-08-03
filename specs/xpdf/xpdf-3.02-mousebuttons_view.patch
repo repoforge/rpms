@@ -1,0 +1,18 @@
+--- xpdf-3.02/xpdf/XPDFViewer.cc~	2009-02-02 01:58:55.000000000 -0700
++++ xpdf-3.02/xpdf/XPDFViewer.cc	2009-02-02 02:27:04.000000000 -0700
+@@ -592,13 +592,13 @@ void XPDFViewer::mouseCbk(void *data, XE
+   int i;
+ 
+   if (event->type == ButtonPress) {
+-    if (event->xbutton.button >= 1 && event->xbutton.button <= 7) {
++    if (event->xbutton.button >= 1 && event->xbutton.button <= 9) {
+       keyCode = xpdfKeyCodeMousePress1 + event->xbutton.button - 1;
+     } else {
+       return;
+     }
+   } else if (event->type == ButtonRelease) {
+-    if (event->xbutton.button >= 1 && event->xbutton.button <= 7) {
++    if (event->xbutton.button >= 1 && event->xbutton.button <= 9) {
+       keyCode = xpdfKeyCodeMouseRelease1 + event->xbutton.button - 1;
+     } else {
+       return;

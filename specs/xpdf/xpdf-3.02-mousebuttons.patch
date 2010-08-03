@@ -1,0 +1,51 @@
+diff -up xpdf-3.02/xpdf/GlobalParams.cc.BAD xpdf-3.02/xpdf/GlobalParams.cc
+--- xpdf-3.02/xpdf/GlobalParams.cc.BAD	2007-08-28 14:30:13.000000000 -0400
++++ xpdf-3.02/xpdf/GlobalParams.cc	2007-08-28 14:30:38.000000000 -0400
+@@ -1574,10 +1574,10 @@ GBool GlobalParams::parseKey(GString *mo
+ 	     !p0[3]) {
+     *code = xpdfKeyCodeF1 + 10 * (p0[1] - '0') + (p0[2] - '0') - 1;
+   } else if (!strncmp(p0, "mousePress", 10) &&
+-	     p0[10] >= '1' && p0[10] <= '7' && !p0[11]) {
++	     p0[10] >= '1' && p0[10] <= '9' && !p0[11]) {
+     *code = xpdfKeyCodeMousePress1 + (p0[10] - '1');
+   } else if (!strncmp(p0, "mouseRelease", 12) &&
+-	     p0[12] >= '1' && p0[12] <= '7' && !p0[13]) {
++	     p0[12] >= '1' && p0[12] <= '9' && !p0[13]) {
+     *code = xpdfKeyCodeMouseRelease1 + (p0[12] - '1');
+   } else if (*p0 >= 0x20 && *p0 <= 0x7e && !p0[1]) {
+     *code = (int)*p0;
+diff -up xpdf-3.02/xpdf/GlobalParams.h.BAD xpdf-3.02/xpdf/GlobalParams.h
+--- xpdf-3.02/xpdf/GlobalParams.h.BAD	2007-08-28 14:30:44.000000000 -0400
++++ xpdf-3.02/xpdf/GlobalParams.h	2007-08-28 14:31:12.000000000 -0400
+@@ -164,6 +164,8 @@ public:
+ #define xpdfKeyCodeMousePress5    0x2005
+ #define xpdfKeyCodeMousePress6    0x2006
+ #define xpdfKeyCodeMousePress7    0x2007
++#define xpdfKeyCodeMousePress8    0x2008
++#define xpdfKeyCodeMousePress9    0x2009
+ #define xpdfKeyCodeMouseRelease1  0x2101
+ #define xpdfKeyCodeMouseRelease2  0x2102
+ #define xpdfKeyCodeMouseRelease3  0x2103
+@@ -171,6 +173,8 @@ public:
+ #define xpdfKeyCodeMouseRelease5  0x2105
+ #define xpdfKeyCodeMouseRelease6  0x2106
+ #define xpdfKeyCodeMouseRelease7  0x2107
++#define xpdfKeyCodeMouseRelease8  0x2108
++#define xpdfKeyCodeMouseRelease9  0x2109
+ #define xpdfKeyModNone            0
+ #define xpdfKeyModShift           (1 << 0)
+ #define xpdfKeyModCtrl            (1 << 1)
+diff -up xpdf-3.02/doc/xpdfrc.5.BAD xpdf-3.02/doc/xpdfrc.5
+--- xpdf-3.02/doc/xpdfrc.5.BAD	2007-08-28 14:31:25.000000000 -0400
++++ xpdf-3.02/doc/xpdfrc.5	2007-08-28 14:31:35.000000000 -0400
+@@ -483,8 +483,8 @@ can be a regular ASCII character, or any
+     pgdn
+     left / right / up / down        (arrow keys)
+     f1 .. f35                       (function keys)
+-    mousePress1 .. mousePress7      (mouse buttons)
+-    mouseRelease1 .. mouseRelease7  (mouse buttons)
++    mousePress1 .. mousePress9      (mouse buttons)
++    mouseRelease1 .. mouseRelease9  (mouse buttons)
+ 
+ .fi
+ .I Context

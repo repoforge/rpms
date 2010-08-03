@@ -1,0 +1,33 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10_add_accelerators.dpatch by  <hamish@noddy.cloud.net.au>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add keyboard accelerators for rotate (#385962)
+
+@DPATCH@
+diff -urNad xpdf-3.02~/xpdf/XPDFViewer.cc xpdf-3.02/xpdf/XPDFViewer.cc
+--- xpdf-3.02~/xpdf/XPDFViewer.cc	2007-04-25 01:40:50.000000000 +1000
++++ xpdf-3.02/xpdf/XPDFViewer.cc	2007-04-25 01:42:13.000000000 +1000
+@@ -1958,16 +1958,22 @@
+   n = 0;
+   s = XmStringCreateLocalized("Rotate counterclockwise");
+   XtSetArg(args[n], XmNlabelString, s); ++n;
++  s2 = XmStringCreateLocalized("[");
++  XtSetArg(args[n], XmNacceleratorText, s2); ++n;
+   btn = XmCreatePushButton(popupMenu, "rotateCCW", args, n);
+   XmStringFree(s);
++  XmStringFree(s2);
+   XtManageChild(btn);
+   XtAddCallback(btn, XmNactivateCallback,
+ 		&rotateCCWCbk, (XtPointer)this);
+   n = 0;
+   s = XmStringCreateLocalized("Rotate clockwise");
+   XtSetArg(args[n], XmNlabelString, s); ++n;
++  s2 = XmStringCreateLocalized("]");
++  XtSetArg(args[n], XmNacceleratorText, s2); ++n;
+   btn = XmCreatePushButton(popupMenu, "rotateCW", args, n);
+   XmStringFree(s);
++  XmStringFree(s2);
+   XtManageChild(btn);
+   XtAddCallback(btn, XmNactivateCallback,
+ 		&rotateCWCbk, (XtPointer)this);

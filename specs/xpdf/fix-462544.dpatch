@@ -1,0 +1,28 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## fix-462544.dpatch from Jiri Palecek <jpalecek@web.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix segmentation fault in image handling
+
+@DPATCH@
+--- xpdf-3.02/xpdf/SplashOutputDev.cc	2007-02-27 23:05:52.000000000 +0100
++++ xpdf-3.02.new/xpdf/SplashOutputDev.cc	2008-02-17 17:28:46.000000000 +0100
+@@ -2475,14 +2461,14 @@
+   tx = (int)floor(xMin);
+   if (tx < 0) {
+     tx = 0;
+-  } else if (tx > bitmap->getWidth()) {
+-    tx = bitmap->getWidth();
++  } else if (tx >= bitmap->getWidth()) {
++    tx = bitmap->getWidth()-1;
+   }
+   ty = (int)floor(yMin);
+   if (ty < 0) {
+     ty = 0;
+-  } else if (ty > bitmap->getHeight()) {
+-    ty = bitmap->getHeight();
++  } else if (ty >= bitmap->getHeight()) {
++    ty = bitmap->getHeight()-1;
+   }
+   w = (int)ceil(xMax) - tx + 1;
+   if (tx + w > bitmap->getWidth()) {

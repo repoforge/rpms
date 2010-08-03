@@ -1,0 +1,49 @@
+--- xpdf-3.01/xpdf-chinese-traditional/add-to-xpdfrc.NOCMAP	2006-09-25 15:26:58.000000000 -0500
++++ xpdf-3.01/xpdf-chinese-traditional/add-to-xpdfrc	2006-09-25 15:27:04.000000000 -0500
+@@ -2,7 +2,7 @@
+ cidToUnicode	Adobe-CNS1	/usr/share/xpdf/chinese-traditional/Adobe-CNS1.cidToUnicode
+ unicodeMap	Big5		/usr/share/xpdf/chinese-traditional/Big5.unicodeMap
+ unicodeMap	Big5ascii	/usr/share/xpdf/chinese-traditional/Big5ascii.unicodeMap
+-cMapDir		Adobe-CNS1	/usr/share/xpdf/chinese-traditional/CMap
+-toUnicodeDir			/usr/share/xpdf/chinese-traditional/CMap
++#cMapDir		Adobe-CNS1	/usr/share/xpdf/chinese-traditional/CMap
++#toUnicodeDir			/usr/share/xpdf/chinese-traditional/CMap
+ #displayCIDFontTT	Adobe-CNS1	/usr/..../bkai00mp.ttf
+ #----- end Chinese Traditional support package
+--- xpdf-3.01/xpdf-korean/add-to-xpdfrc.NOCMAP	2006-09-25 15:27:33.000000000 -0500
++++ xpdf-3.01/xpdf-korean/add-to-xpdfrc	2006-09-25 15:27:48.000000000 -0500
+@@ -1,8 +1,8 @@
+ #----- begin Korean support package (2005-jul-07)
+ cidToUnicode	Adobe-Korea1	/usr/share/xpdf/korean/Adobe-Korea1.cidToUnicode
+ unicodeMap	ISO-2022-KR	/usr/share/xpdf/korean/ISO-2022-KR.unicodeMap
+-cMapDir		Adobe-Korea1	/usr/share/xpdf/korean/CMap
+-toUnicodeDir			/usr/share/xpdf/korean/CMap
++#cMapDir		Adobe-Korea1	/usr/share/xpdf/korean/CMap
++#toUnicodeDir			/usr/share/xpdf/korean/CMap
+ #displayCIDFontTT	Adobe-Korea1	/usr/..../batang.ttf"
+ #displayCIDFontTT	Unidocs-Korea1	/usr/..../batang.ttf"
+ #----- end Korean support package
+--- xpdf-3.01/xpdf-chinese-simplified/add-to-xpdfrc.NOCMAP	2006-09-25 15:26:43.000000000 -0500
++++ xpdf-3.01/xpdf-chinese-simplified/add-to-xpdfrc	2006-09-25 15:26:49.000000000 -0500
+@@ -3,7 +3,7 @@ cidToUnicode	Adobe-GB1	/usr/share/xpdf/c
+ unicodeMap	ISO-2022-CN	/usr/share/xpdf/chinese-simplified/ISO-2022-CN.unicodeMap
+ unicodeMap	EUC-CN		/usr/share/xpdf/chinese-simplified/EUC-CN.unicodeMap
+ unicodeMap	GBK		/usr/share/xpdf/chinese-simplified/GBK.unicodeMap
+-cMapDir		Adobe-GB1	/usr/share/xpdf/chinese-simplified/CMap
+-toUnicodeDir			/usr/share/xpdf/chinese-simplified/CMap
++#cMapDir		Adobe-GB1	/usr/share/xpdf/chinese-simplified/CMap
++#toUnicodeDir			/usr/share/xpdf/chinese-simplified/CMap
+ #displayCIDFontTT	Adobe-GB1	/usr/..../gkai00mp.ttf
+ #----- end Chinese Simplified support package
+--- xpdf-3.01/xpdf-japanese/add-to-xpdfrc.NOCMAP	2006-09-25 15:27:16.000000000 -0500
++++ xpdf-3.01/xpdf-japanese/add-to-xpdfrc	2006-09-25 15:27:20.000000000 -0500
+@@ -3,7 +3,7 @@ cidToUnicode	Adobe-Japan1	/usr/share/xpd
+ unicodeMap	ISO-2022-JP	/usr/share/xpdf/japanese/ISO-2022-JP.unicodeMap
+ unicodeMap	EUC-JP		/usr/share/xpdf/japanese/EUC-JP.unicodeMap
+ unicodeMap	Shift-JIS	/usr/share/xpdf/japanese/Shift-JIS.unicodeMap
+-cMapDir		Adobe-Japan1	/usr/share/xpdf/japanese/CMap
+-toUnicodeDir			/usr/share/xpdf/japanese/CMap
++#cMapDir		Adobe-Japan1	/usr/share/xpdf/japanese/CMap
++#toUnicodeDir			/usr/share/xpdf/japanese/CMap
+ #displayCIDFontTT	Adobe-Japan1	/usr/..../kochi-mincho.ttf
+ #----- end Japanese support package

@@ -1,0 +1,48 @@
+diff -up xpdf-3.02/fofi/FoFiType1.cc.crash xpdf-3.02/fofi/FoFiType1.cc
+--- xpdf-3.02/fofi/FoFiType1.cc.crash	2007-02-27 17:05:51.000000000 -0500
++++ xpdf-3.02/fofi/FoFiType1.cc	2009-02-11 11:31:04.000000000 -0500
+@@ -235,9 +235,14 @@ void FoFiType1::parse() {
+ 	    }
+ 	  }
+ 	} else {
+-	  if (strtok(buf, " \t") &&
+-	      (p = strtok(NULL, " \t\n\r")) && !strcmp(p, "def")) {
+-	    break;
++	  p = strtok(buf, " \t\n\r");
++	  if (p)
++	  {
++	    if (!strcmp(p, "def")) break;
++	    if (!strcmp(p, "readonly")) break;
++	    // the spec does not says this but i'm mantaining old xpdf behaviour that accepts "foo def" as end of the encoding array
++	    p = strtok(buf, " \t\n\r");
++	    if (p && !strcmp(p, "def")) break;
+ 	  }
+ 	}
+       }
+diff -up xpdf-3.02/splash/Splash.cc.crash xpdf-3.02/splash/Splash.cc
+--- xpdf-3.02/splash/Splash.cc.crash	2007-02-27 17:05:52.000000000 -0500
++++ xpdf-3.02/splash/Splash.cc	2009-02-11 11:34:45.000000000 -0500
+@@ -1501,6 +1501,11 @@ SplashError Splash::fillWithPattern(Spla
+     xPath->aaScale();
+   }
+   xPath->sort();
++  if (!&xPath->segs[0])
++  {
++    delete xPath;
++    return splashErrEmptyPath;
++  }
+   scanner = new SplashXPathScanner(xPath, eo);
+ 
+   // get the min and max x and y values
+@@ -1573,6 +1578,11 @@ SplashError Splash::xorFill(SplashPath *
+   }
+   xPath = new SplashXPath(path, state->matrix, state->flatness, gTrue);
+   xPath->sort();
++  if (!&xPath->segs[0])
++  {
++    delete xPath;
++    return splashErrEmptyPath;
++  }
+   scanner = new SplashXPathScanner(xPath, eo);
+ 
+   // get the min and max x and y values
