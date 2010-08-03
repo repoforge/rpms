@@ -9,13 +9,14 @@
 
 Summary: Check validity of Internet email addresses
 Name: perl-Email-Valid
-Version: 0.182
+Version: 0.184
 Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Email-Valid/
 
-Source: http://www.cpan.org/modules/by-module/Email/Email-Valid-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Email/Email-Valid-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Email-Valid-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -57,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Email/Valid.pm
 
 %changelog
+* Tue Aug 03 2010 David Hrbáč <david@hrbac.cz> - 0.184-1
+- Updated to version 0.184.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.182-1
 - Updated to version 0.182.
 
