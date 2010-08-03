@@ -9,7 +9,7 @@
 Summary: Portable Document Format (PDF) viewer
 Name: xpdf
 Version: 3.02
-Release: 6
+Release: 6%{?dist}
 License: GPLv2
 Group: Applications/Publishing
 URL: http://www.foolabs.com/xpdf/

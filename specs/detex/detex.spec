@@ -4,7 +4,7 @@
 Summary: Strips Tex and LaTex commands from a file
 Name: detex
 Version: 2.8
-Release: 1
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
 URL: http://www.cs.purdue.edu/homes/trinkle/detex/ 
