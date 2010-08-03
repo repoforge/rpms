@@ -1,0 +1,20 @@
+--- Makefile.orig	2009-04-21 01:50:44.735919044 +0100
++++ Makefile	2009-04-21 01:51:18.237692007 +0100
+@@ -49,7 +49,7 @@
+ # Compile time flags, just uncomment the necessary lines
+ # Some say GNU make does not correctly handle += -- you may have to use :=
+ #
+-DEFS	=
++DEFS	+= -DNO_MALLOC_DECL	
+ #
+ # Add -traditional for GNU cc on ISC 386/ix system and possibly others
+ # (reported by pinard@iro.umontreal.ca)
+@@ -116,7 +116,7 @@
+ 	mv detex.c lexout.c
+ 
+ man-page:
+-	troff -man detex.1l
++	nroff  -man detex.1l > detex.1
+ 
+ # If you want detex available as delatex, uncomment the last two lines of
+ # this target
