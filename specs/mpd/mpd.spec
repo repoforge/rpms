@@ -8,7 +8,7 @@
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.15.10
+Version: 0.15.12
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -99,6 +99,9 @@ export FLAC_LIBS='-L%{_libdir}'
 %{_bindir}/mpd
 
 %changelog
+* Wed Aug 04 2010 Steve Huff <shuff@vecna.org> - 0.15.12-1
+- Update to 0.15.12.
+
 * Fri Jun 11 2010 Steve Huff <shuff@vecna.org> - 0.15.10-1
 - Update to 0.15.10.
 
