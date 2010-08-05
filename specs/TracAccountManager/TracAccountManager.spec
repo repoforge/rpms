@@ -2,6 +2,7 @@
 
 %define real_version trunk-r8337
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_version()')
 
 
 Summary: Account Manager Plugin for trac
@@ -17,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python
+BuildRequires: python-setuptools
 BuildRequires: python
 Requires: python
 
@@ -50,7 +52,7 @@ cd %{_builddir}/accountmanagerplugin/trunk
 %files
 %defattr(-, root, root, 0755)
 %{python_sitelib}/acct_mgr/
-%{python_sitelib}/TracAccountManager-0.2.1dev-py2.6.egg-info/
+%{python_sitelib}/TracAccountManager-0.2.1dev-py%{python_version}.egg-info/
 
 
 %changelog
