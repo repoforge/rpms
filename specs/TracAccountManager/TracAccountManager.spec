@@ -5,7 +5,7 @@
 %define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_version()')
 
 
-Summary: Account Manager Plugin for trac
+Summary: Account Manager Plugin for Trac
 Name: TracAcccountManager
 Version: 0.12.0.trunk_r8337
 Release: 1%{?dist}
@@ -19,8 +19,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python
 BuildRequires: python-setuptools
-BuildRequires: python
 Requires: python
+Requires: trac
 
 %description
 The AccountManagerPlugin offers several features for managing trac user accounts:
