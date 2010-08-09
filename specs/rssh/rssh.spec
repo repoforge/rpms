@@ -5,8 +5,8 @@
 
 Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh
-Version: 2.3.2
-Release: 1.2%{?dist}
+Version: 2.3.3
+Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.pizzashack.org/rssh/
@@ -25,6 +25,9 @@ access, you can use rssh to do that.
 
 %prep
 %setup
+
+# Temporary fix for non-root compilation (submitted upstream)
+sed -i 's|chmod u+s $(libexecdir)/rssh_chroot_helper|chmod u+s $(DESTDIR)$(libexecdir)/rssh_chroot_helper|g' Makefile.in
 
 %build
 %configure
@@ -47,6 +50,10 @@ access, you can use rssh to do that.
 %attr(4755, root, root) %{_libexecdir}/rssh_chroot_helper
 
 %changelog
+* Mon Aug 09 2010 Yury V. Zaytsev <yury@shurup.com> - 2.3.3-1
+- Updated to release 2.3.3.
+- Thanks to Nico Kadel-Garcia <nkadel@gmail.com>!
+
 * Tue Mar 07 2006 Dag Wieers <dag@wieers.com> - 2.3.2-1
 - Updated to release 2.3.2.
 
