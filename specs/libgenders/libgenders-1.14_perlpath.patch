@@ -1,0 +1,50 @@
+diff -Naur genders-1.14-orig/src/Genders/Makefile.am genders-1.14/src/Genders/Makefile.am
+--- genders-1.14-orig/src/Genders/Makefile.am	2009-08-12 17:52:37.000000000 -0400
++++ genders-1.14/src/Genders/Makefile.am	2010-08-09 09:26:55.000000000 -0400
+@@ -4,11 +4,11 @@
+ ## Process this file with automake to produce Makefile.in.
+ ##*****************************************************************************
+ 
+-INSTALLSITEARCH=`$(PERL) -e 'use Config; $$T=$$Config{installsitearch}; $$T=~/^\Q$$Config{siteprefix}\E\/(.+)/; print $$1;'`
++INSTALLVENDORARCH=`$(PERL) -e 'use Config; $$T=$$Config{installvendorarch}; $$T=~/^\Q$$Config{siteprefix}\E\/(.+)/; print $$1;'`
+ 
+ if WITH_PERL_EXTENSIONS
+ GENDERSPMFILES = Genders.pm
+-GENDERSPMFILESdir = $(prefix)/$(INSTALLSITEARCH)
++GENDERSPMFILESdir = $(prefix)/$(INSTALLVENDORARCH)
+ GENDERSPMFILES_DATA = $(GENDERSPMFILES)
+ 
+ Genders.$(PERLMAN3EXT):
+@@ -21,7 +21,7 @@
+ man3_MANS = Genders.$(PERLMAN3EXT)
+ 
+ install-data-hook:
+-	chmod 444 $(DESTDIR)/$(prefix)/$(INSTALLSITEARCH)/Genders.pm
++	chmod 444 $(DESTDIR)/$(prefix)/$(INSTALLVENDORARCH)/Genders.pm
+ endif
+ 
+ EXTRA_DIST = Genders.pm
+diff -Naur genders-1.14-orig/src/Genders/Makefile.in genders-1.14/src/Genders/Makefile.in
+--- genders-1.14-orig/src/Genders/Makefile.in	2010-03-24 17:27:17.000000000 -0400
++++ genders-1.14/src/Genders/Makefile.in	2010-08-09 09:26:19.000000000 -0400
+@@ -191,9 +191,9 @@
+ target_cpu = @target_cpu@
+ target_os = @target_os@
+ target_vendor = @target_vendor@
+-INSTALLSITEARCH = `$(PERL) -e 'use Config; $$T=$$Config{installsitearch}; $$T=~/^\Q$$Config{siteprefix}\E\/(.+)/; print $$1;'`
++INSTALLVENDORARCH = `$(PERL) -e 'use Config; $$T=$$Config{installvendorarch}; $$T=~/^\Q$$Config{siteprefix}\E\/(.+)/; print $$1;'`
+ @WITH_PERL_EXTENSIONS_TRUE@GENDERSPMFILES = Genders.pm
+-@WITH_PERL_EXTENSIONS_TRUE@GENDERSPMFILESdir = $(prefix)/$(INSTALLSITEARCH)
++@WITH_PERL_EXTENSIONS_TRUE@GENDERSPMFILESdir = $(prefix)/$(INSTALLVENDORARCH)
+ @WITH_PERL_EXTENSIONS_TRUE@GENDERSPMFILES_DATA = $(GENDERSPMFILES)
+ @WITH_PERL_EXTENSIONS_TRUE@man3_MANS = Genders.$(PERLMAN3EXT)
+ EXTRA_DIST = Genders.pm
+@@ -441,7 +441,7 @@
+ @WITH_PERL_EXTENSIONS_TRUE@	$(POD2MAN) Genders.pm Genders.$(PERLMAN3EXT)
+ 
+ @WITH_PERL_EXTENSIONS_TRUE@install-data-hook:
+-@WITH_PERL_EXTENSIONS_TRUE@	chmod 444 $(DESTDIR)/$(prefix)/$(INSTALLSITEARCH)/Genders.pm
++@WITH_PERL_EXTENSIONS_TRUE@	chmod 444 $(DESTDIR)/$(prefix)/$(INSTALLVENDORARCH)/Genders.pm
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

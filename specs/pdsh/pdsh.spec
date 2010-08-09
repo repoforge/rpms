@@ -5,7 +5,7 @@
 Summary: High-performance parallel remote shell utility
 Name: pdsh
 Version: 2.18
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: https://computing.llnl.gov/linux/pdsh.html
@@ -18,7 +18,7 @@ BuildRequires: automake
 BuildRequires: binutils
 BuildRequires: gcc
 BuildRequires: glibc-devel
-# BuildRequires: libgenders-devel
+BuildRequires: libgenders-devel
 # BuildRequires: libmunge-devel
 # BuildRequires: libnodeupdown-devel
 # BuildRequires: libslurm-devel
@@ -48,6 +48,7 @@ allow progress to continue while timeouts occur on some connections.
     --disable-static \
     --with-dshgroups \
     --with-exec \
+    --with-genders \
     --with-machines=%{_sysconfdir}/pdsh/machines \
     --with-nodeattr \
     --with-readline \
@@ -82,5 +83,8 @@ touch %{buildroot}%{_sysconfdir}/pdsh/machines
 %exclude %{_libdir}/pdsh/*.la
 
 %changelog
+* Mon Aug 09 2010 Steve Huff <shuff@vecna.org> - 2.18-2
+- Added genders support.
+
 * Tue Jul 13 2010 Steve Huff <shuff@vecna.org> - 2.18-1
 - Initial package.
