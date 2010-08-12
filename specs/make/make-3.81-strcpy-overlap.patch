@@ -1,0 +1,16 @@
+Index: job.c
+===================================================================
+RCS file: /sources/make/make/job.c,v
+retrieving revision 1.193
+diff -u -r1.193 job.c
+--- job.c	9 Jun 2009 15:35:38 -0000	1.193
++++ job.c	31 Jul 2009 11:42:16 -0000
+@@ -1600,7 +1600,7 @@
+       /* There are no more references in this line to worry about.
+ 	 Copy the remaining uninteresting text to the output.  */
+       if (out != in)
+-	strcpy (out, in);
++	memmove (out, in, strlen (in) + 1);
+ 
+       /* Finally, expand the line.  */
+       lines[i] = allocated_variable_expand_for_file (cmds->command_lines[i],

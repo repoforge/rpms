@@ -1,0 +1,261 @@
+diff -Bburpd make-3.81_orig/file.c make-3.81/file.c
+--- make-3.81_orig/file.c	2006-05-23 13:59:11.000000000 +0200
++++ make-3.81/file.c	2006-05-23 14:39:34.000000000 +0200
+@@ -490,7 +490,7 @@ expand_deps (struct file *f)
+ 
+               o = subst_expand (buffer, d->name, "%", "$*", 1, 2, 0);
+ 
+-              free (d->name);
++              hash_strfree (d->name);
+               d->name = savestring (buffer, o - buffer);
+               d->staticpattern = 0; /* Clear staticpattern so that we don't
+                                        re-expand %s below. */
+@@ -549,7 +549,7 @@ expand_deps (struct file *f)
+                         dp->name[0] = '\0';
+                       else
+                         {
+-                          free (dp->name);
++                          hash_strfree (dp->name);
+                           dp->name = savestring (buffer, o - buffer);
+                         }
+                     }
+@@ -580,7 +580,7 @@ expand_deps (struct file *f)
+           if (d1->file == 0)
+             d1->file = enter_file (d1->name);
+           else
+-            free (d1->name);
++            hash_strfree (d1->name);
+           d1->name = 0;
+           d1->staticpattern = 0;
+           d1->need_2nd_expansion = 0;
+Only in make-3.81: file.c~
+diff -Bburpd make-3.81_orig/implicit.c make-3.81/implicit.c
+--- make-3.81_orig/implicit.c	2006-05-23 13:59:11.000000000 +0200
++++ make-3.81/implicit.c	2006-05-23 14:40:01.000000000 +0200
+@@ -864,7 +864,7 @@ pattern_search (struct file *file, int a
+ 	      dep->file = enter_file (dep->name);
+               /* enter_file uses dep->name _if_ we created a new file.  */
+               if (dep->name != dep->file->name)
+-                free (dep->name);
++                hash_strfree (dep->name);
+ 	      dep->name = 0;
+ 	      dep->file->tried_implicit |= dep->changed;
+ 	    }
+Only in make-3.81: implicit.c~
+diff -Bburpd make-3.81_orig/main.c make-3.81/main.c
+--- make-3.81_orig/main.c	2006-05-23 13:59:11.000000000 +0200
++++ make-3.81/main.c	2006-05-23 14:40:49.000000000 +0200
+@@ -540,6 +540,7 @@ initialize_global_hash_tables (void)
+   init_hash_files ();
+   hash_init_directories ();
+   hash_init_function_table ();
++  init_hash_strings ();
+ }
+ 
+ static struct file *
+Only in make-3.81: main.c~
+diff -Bburpd make-3.81_orig/make.h make-3.81/make.h
+--- make-3.81_orig/make.h	2006-05-23 13:59:11.000000000 +0200
++++ make-3.81/make.h	2006-05-23 14:41:21.000000000 +0200
+@@ -431,6 +431,11 @@ extern void print_spaces PARAMS ((unsign
+ extern char *find_percent PARAMS ((char *));
+ extern FILE *open_tmpfile PARAMS ((char **, const char *));
+ 
++extern void init_hash_strings PARAMS ((void));
++extern char *hash_strdup PARAMS ((const char *));
++extern char *hash_savestring PARAMS ((const char *, unsigned int));
++extern void hash_strfree PARAMS ((char *));
++
+ #ifndef NO_ARCHIVES
+ extern int ar_name PARAMS ((char *));
+ extern void ar_parse_name PARAMS ((char *, char **, char **));
+Only in make-3.81: make.h~
+diff -Bburpd make-3.81_orig/misc.c make-3.81/misc.c
+--- make-3.81_orig/misc.c	2006-05-23 13:59:11.000000000 +0200
++++ make-3.81/misc.c	2006-05-23 14:42:59.000000000 +0200
+@@ -16,8 +16,10 @@ You should have received a copy of the G
+ GNU Make; see the file COPYING.  If not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.  */
+ 
++#include <assert.h>
+ #include "make.h"
+ #include "dep.h"
++#include "hash.h"
+ #include "debug.h"
+ 
+ /* Variadic functions.  We go through contortions to allow proper function
+@@ -511,7 +513,7 @@ void
+ free_dep (struct dep *d)
+ {
+   if (d->name != 0)
+-    free (d->name);
++    hash_strfree (d->name);
+ 
+   if (d->stem != 0)
+     free (d->stem);
+@@ -535,7 +537,7 @@ copy_dep_chain (const struct dep *d)
+       bcopy ((char *) d, (char *) c, sizeof (struct dep));
+ 
+       if (c->name != 0)
+-	c->name = xstrdup (c->name);
++	c->name = hash_strdup (c->name);
+       if (c->stem != 0)
+ 	c->stem = xstrdup (c->stem);
+ 
+@@ -909,3 +911,154 @@ close_stdout (void)
+       exit (EXIT_FAILURE);
+     }
+ }
++
++/* Hash table of duplicated strings.  */
++
++struct hash_string
++{
++  char *string;
++  unsigned int count;
++};
++
++static unsigned long
++string_hash_1 (key)
++    const void *key;
++{
++  return_ISTRING_HASH_1 (((const struct hash_string *) key)->string);
++}
++
++static unsigned long
++string_hash_2 (key)
++    const void *key;
++{
++  return_ISTRING_HASH_2 (((const struct hash_string *) key)->string);
++}
++
++static int
++string_hash_cmp (x, y)
++    const void *x;
++    const void *y;
++{
++  return_ISTRING_COMPARE (((const struct hash_string *) x)->string,
++			  ((const struct hash_string *) y)->string);
++}
++
++static struct hash_table strings;
++
++void
++init_hash_strings ()
++{
++  hash_init (&strings, 1000, string_hash_1, string_hash_2,
++	     string_hash_cmp);
++}
++
++/* Keep track duplicated string and return the old one if exists.  */
++
++char *
++hash_strdup (ptr)
++     const char *ptr;
++{
++  struct hash_string *h, key;
++
++  if (*ptr == '\0')
++    return "";
++
++  key.string = (char *) ptr;
++  key.count = 0;
++  h = (struct hash_string *) hash_find_item (&strings, &key);
++  if (h == NULL)
++    {
++      char *result = (char *) malloc (strlen (ptr) + 1);
++
++      if (result == NULL)
++	fatal (NILF, _("virtual memory exhausted"));
++
++      strcpy (result, ptr);
++
++      h = (struct hash_string *) malloc (sizeof (struct hash_string));
++      if (h == NULL)
++	fatal (NILF, _("virtual memory exhausted"));
++
++      h->string = result;
++      h->count = 1;
++      hash_insert (&strings, h);
++    }
++  else
++    {
++      h->count++;
++      assert (h->count != 0);
++    }
++
++  return h->string;
++}
++
++char *
++hash_savestring (str, length)
++     const char *str;
++     unsigned int length;
++{
++  struct hash_string *h, key;
++
++  if (length == 0 || *str == '\0')
++    return "";
++
++  key.string = alloca (length + 1);
++  key.count = 0;
++  bcopy (str, key.string, length);
++  key.string [length] = '\0';
++
++  h = (struct hash_string *) hash_find_item (&strings, &key);
++  if (h == NULL)
++    {
++      char *out = (char *) xmalloc (length + 1);
++      bcopy (str, out, length);
++      out[length] = '\0';
++
++      h = (struct hash_string *) malloc (sizeof (struct hash_string));
++      if (h == NULL)
++	fatal (NILF, _("virtual memory exhausted"));
++
++      h->string = out;
++      h->count = 1;
++      hash_insert (&strings, h);
++    }
++  else
++    {
++      h->count++;
++      assert (h->count != 0);
++    }
++
++  return h->string;
++}
++
++void
++hash_strfree (ptr)
++     char *ptr;
++{
++  struct hash_string *h, key;
++
++  if (*ptr == '\0')
++    return;
++
++  key.string = ptr;
++  key.count = 0;
++  h = (struct hash_string *) hash_find_item (&strings, &key);
++
++  /* Check if string comes from hash_strdup or hash_savestring.  */
++  if (h == NULL || h->string != ptr)
++    {
++      free (ptr);
++      return;
++    }
++
++  h->count--;
++  if (h->count == 0)
++    {
++      struct hash_string *d;
++
++      d = hash_delete (&strings, h);
++      assert (d == h);
++      free (h->string);
++      free (h);
++    }
++}
+Only in make-3.81: misc.c~
+Only in make-3.81: read.c~

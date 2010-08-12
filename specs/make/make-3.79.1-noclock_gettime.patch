@@ -1,0 +1,13 @@
+diff -urp make-3.81/configure make-3.81-pm/configure
+--- make-3.81/configure	2006-04-01 08:40:00.000000000 +0200
++++ make-3.81-pm/configure	2008-09-22 10:50:40.000000000 +0200
+@@ -8018,7 +8018,7 @@ fi
+ rm -f conftest.err conftest.$ac_objext \
+       conftest$ac_exeext conftest.$ac_ext
+ if test "$ac_cv_search_clock_gettime" = no; then
+-  for ac_lib in rt posix4; do
++  for ac_lib in posix4; do
+     LIBS="-l$ac_lib  $ac_func_search_save_LIBS"
+     cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+Only in make-3.81-pm/: configure.orig

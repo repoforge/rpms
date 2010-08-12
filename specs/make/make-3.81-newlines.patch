@@ -1,0 +1,23 @@
+--- make-3.81-orig/job.c	2007-02-21 19:10:54.000000000 +0100
++++ make-3.81-pm/job.c	2007-02-22 18:13:59.000000000 +0100
+@@ -2706,7 +2706,7 @@
+     unsigned int line_len = strlen (line);
+ 
+     char *new_line = (char *) alloca (shell_len + (sizeof (minus_c) - 1)
+-				      + (line_len * 2) + 1);
++				      + (line_len * 4) + 1);
+     char *command_ptr = NULL; /* used for batch_mode_shell mode */
+ 
+ # ifdef __EMX__ /* is this necessary? */
+@@ -2740,9 +2740,10 @@
+ #endif
+ 	    if (PRESERVE_BSNL)
+ 	      {
+-		*(ap++) = '\\';
++		*(ap++) = '\'';
+ 		*(ap++) = '\\';
+ 		*(ap++) = '\n';
++		*(ap++) = '\'';
+ 	      }
+ 
+ 	    ++p;

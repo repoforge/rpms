@@ -1,0 +1,111 @@
+diff -urp make-3.81/job.c make-3.81-pm/job.c
+--- make-3.81/job.c	2008-03-25 18:15:38.000000000 +0100
++++ make-3.81-pm/job.c	2008-03-25 17:51:11.000000000 +0100
+@@ -2079,6 +2079,9 @@ exec_command (char **argv, char **envp)
+ # else
+ 
+   /* Run the program.  */
++#ifdef SET_STACK_SIZE
++  restore_original_stack_rlimit ();
++#endif
+   environ = envp;
+   execvp (argv[0], argv);
+ 
+diff -urp make-3.81/main.c make-3.81-pm/main.c
+--- make-3.81/main.c	2008-03-25 18:15:38.000000000 +0100
++++ make-3.81-pm/main.c	2008-03-25 18:14:04.000000000 +0100
+@@ -44,12 +44,53 @@ Foundation, Inc., 51 Franklin St, Fifth 
+ # include <fcntl.h>
+ #endif
+ 
+-#if defined(HAVE_SYS_RESOURCE_H) && defined(HAVE_GETRLIMIT) && defined(HAVE_SETRLIMIT)
+-# define SET_STACK_SIZE
+-#endif
+-
+ #ifdef SET_STACK_SIZE
+ # include <sys/resource.h>
++/* Whether the rlimit was set successfuly */
++static int setrlimit_succeeded = 0;
++/* Original rlim_cur */
++static rlim_t setrlimit_orig_cur = 0;
++
++/* Get rid of any avoidable limit on stack size so that alloca does
++   not fail. */
++void
++set_max_stack_rlimit (void)
++{
++  struct rlimit rlim;
++
++  /* Back off if the limit is still set, probably due to failure in
++     restore_original_stack_rlimit. */
++  if (setrlimit_succeeded)
++    return;
++
++  if (getrlimit (RLIMIT_STACK, &rlim) == 0)
++    {
++      setrlimit_orig_cur = rlim.rlim_cur;
++      rlim.rlim_cur = rlim.rlim_max;
++      if (setrlimit (RLIMIT_STACK, &rlim) != -1)
++	setrlimit_succeeded = 1;
++    }
++}
++
++/* Set the rlimit back to its original value.  To be called before
++   process spawn. */
++void
++restore_original_stack_rlimit (void)
++{
++  struct rlimit rlim;
++
++  if (!setrlimit_succeeded)
++    return;
++
++  if (getrlimit (RLIMIT_STACK, &rlim) == 0)
++    {
++      rlim.rlim_cur = setrlimit_orig_cur;
++      setrlimit (RLIMIT_STACK, &rlim);
++      /* Don't reset the setrlimit_succeeded flag.  This can be called
++	 after vfork, in which case the flag is in memory shared with
++	 the parent. */
++    }
++}
+ #endif
+ 
+ #ifdef _AMIGA
+@@ -915,17 +956,7 @@ main (int argc, char **argv, char **envp
+ #endif
+ 
+ #ifdef SET_STACK_SIZE
+- /* Get rid of any avoidable limit on stack size.  */
+-  {
+-    struct rlimit rlim;
+-
+-    /* Set the stack limit huge so that alloca does not fail.  */
+-    if (getrlimit (RLIMIT_STACK, &rlim) == 0)
+-      {
+-        rlim.rlim_cur = rlim.rlim_max;
+-        setrlimit (RLIMIT_STACK, &rlim);
+-      }
+-  }
++  set_max_stack_rlimit ();
+ #endif
+ 
+ #ifdef HAVE_ATEXIT
+diff -urp make-3.81/make.h make-3.81-pm/make.h
+--- make-3.81/make.h	2008-03-25 18:15:38.000000000 +0100
++++ make-3.81-pm/make.h	2008-03-25 17:51:10.000000000 +0100
+@@ -346,6 +346,13 @@ extern int strcmpi (const char *,const c
+ #define N_(msgid)           gettext_noop (msgid)
+ #define S_(msg1,msg2,num)   ngettext (msg1,msg2,num)
+ 
++/* Handle rlimit */
++#if defined(HAVE_SYS_RESOURCE_H) && defined(HAVE_GETRLIMIT) && defined(HAVE_SETRLIMIT)
++# define SET_STACK_SIZE
++void set_max_stack_rlimit (void);
++void restore_original_stack_rlimit (void);
++#endif
++
+ /* Handle other OSs.  */
+ #if defined(HAVE_DOS_PATHS)
+ # define PATH_SEPARATOR_CHAR ';'
+diff -urp make-3.81/w32/Makefile make-3.81-pm/w32/Makefile

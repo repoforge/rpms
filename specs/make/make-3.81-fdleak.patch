@@ -1,0 +1,60 @@
+diff -urp make-3.81/read.c make-3.81-leak/read.c
+--- make-3.81/read.c	2006-03-17 15:24:20.000000000 +0100
++++ make-3.81-leak/read.c	2008-09-16 16:43:12.000000000 +0200
+@@ -296,6 +300,37 @@ restore_conditionals (struct conditional
+   conditionals = saved;
+ }
+ 
++/* If possible, open the file and mark it close-on-exec, so that make
++   doesn't leak the descriptor to binaries called via $(shell ...).*/
++static FILE *
++open_makefile (char *filename)
++{
++  FILE *fp;
++
++#if HAVE_FDOPEN
++  int fd = open (filename, O_RDONLY);
++  int save;
++  if (fd < 0)
++    return NULL;
++
++  fp = fdopen (fd, "r");
++  if (fp == NULL)
++    {
++      save = errno;
++      close (fd);
++      errno = save;
++      return NULL;
++    }
++
++  CLOSE_ON_EXEC (fd);
++
++#else
++  fp = fopen (filename, "r");
++#endif
++
++  return fp;
++}
++
+ static int
+ eval_makefile (char *filename, int flags)
+ {
+@@ -335,7 +376,8 @@ eval_makefile (char *filename, int flags
+ 	filename = expanded;
+     }
+ 
+-  ebuf.fp = fopen (filename, "r");
++  ebuf.fp = open_makefile (filename);
++
+   /* Save the error code so we print the right message later.  */
+   makefile_errno = errno;
+ 
+@@ -348,7 +390,7 @@ eval_makefile (char *filename, int flags
+       for (i = 0; include_directories[i] != 0; ++i)
+ 	{
+ 	  included = concat (include_directories[i], "/", filename);
+-	  ebuf.fp = fopen (included, "r");
++	  ebuf.fp = open_makefile (included);
+ 	  if (ebuf.fp)
+ 	    {
+ 	      filename = included;
