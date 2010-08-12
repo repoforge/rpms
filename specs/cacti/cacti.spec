@@ -7,7 +7,7 @@
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.7g
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -16,17 +16,26 @@ Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: mysql-devel, openssl-devel
+Patch1: http://www.cacti.net/downloads/patches/0.8.7g/data_source_deactivate.patch
+Patch2: http://www.cacti.net/downloads/patches/0.8.7g/graph_list_view.patch
+Patch3: http://www.cacti.net/downloads/patches/0.8.7g/html_output.patch
+Patch4: http://www.cacti.net/downloads/patches/0.8.7g/ldap_group_authenication.patch
+Patch5: http://www.cacti.net/downloads/patches/0.8.7g/script_server_command_line_parse.patch
 
-%{!?_without_net_snmp:BuildRequires: net-snmp-devel, net-snmp-utils}
-%{?_without_net_snmp:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
+BuildRequires: mysql-devel
+BuildRequires: openssl-devel
+BuildRequires: net-snmp-devel
+BuildRequires: net-snmp-utils
 
-Requires: webserver, mysql, rrdtool
-Requires: php, php-mysql
+Requires: webserver
+Requires: mysql
+Requires: rrdtool
+Requires: php
+Requires: php-mysql
 # el3 doesn't contain php-snmp
 %{!?el3:Requires: php-snmp}
-%{!?_without_net_snmp:Requires: net-snmp, net-snmp-utils}
-%{?_without_net_snmp:Requires: ucd-snmp, ucd-snmp-utils}
+Requires: net-snmp
+Requires: net-snmp-utils
 
 %description
 Cacti is a complete frontend to RRDTool. It stores all of the necessary
@@ -51,6 +60,12 @@ This package includes the documentation for %{name}.
 
 %prep
 %setup
+
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
@@ -122,6 +137,11 @@ fi
 %doc docs/*
 
 %changelog
+* Thu Aug 12 2010 Yury V. Zaytsev <yury@shurup.com> - 0.8.7g-2
+- Added patches from http://www.cacti.net/download_patches.php?version=0.8.7g
+- Thanks to Shane Goulden for the update.
+- Minor cleanup.
+
 * Tue Jul 13 2010 Dag Wieers <dag@wieers.com> - 0.8.7g-1
 - Updated to release 0.8.7g.
 
