@@ -4,7 +4,7 @@
 
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
-Version: 1.11
+Version: 1.13
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -31,7 +31,7 @@ your system is doing, and which components are the biggest problem.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} #CFLAGS="%{optflags} -D VERSION=\"%{version}\""
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,10 +44,13 @@ your system is doing, and which components are the biggest problem.
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING README
-%doc %{_mandir}/man1/powertop.1*
+%doc %{_mandir}/man8/powertop.8*
 %{_bindir}/powertop
 
 %changelog
+* Thu Aug 12 2010 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Mon Jan 19 2009 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 
