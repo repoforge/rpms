@@ -41,6 +41,8 @@ will be detected at runtime and don't require a rebuild of GParted
         s|_X-GNOME-FullName|X-GNOME-FullName|;
     ' gparted.desktop
 
+grep -v '^lv$' po/LINGUAS >po/LINGUAS
+
 %{__cat} <<EOF >gparted.pam
 #%PAM-1.0
 auth       sufficient   /%{_lib}/security/pam_rootok.so

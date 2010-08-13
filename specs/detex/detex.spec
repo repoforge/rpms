@@ -39,9 +39,10 @@ passed to a spell or diction checker
 
 %files
 %defattr(-, root, root, 0755)
+%doc COPYRIGHT README
 %doc %{_mandir}/man1/detex.1*
 %{_bindir}/detex
 
 %changelog
-* Tue Apr 21 2009 Hoffmann Geerd-Dietger <didi@ribalba.de> - 2.8-1
+* Tue Apr 21 2009 Geerd-Dietger Hoffmann <ribalba@gmail.com> - 2.8-1
 - Initial package.

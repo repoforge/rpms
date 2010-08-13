@@ -1,0 +1,45 @@
+--- configure.old   2010-04-02 20:43:45.000000000 +0300
++++ configure       2010-04-03 23:26:57.365947610 +0300
+@@ -6727,14 +6727,14 @@ 
+ 
+ fi
+ 
+-      as_ac_var=`$as_echo "ac_cv_cflags_-fPIC -Wl,--rpath,\\$ORIGIN/../lib" | $as_tr_sh`
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the compiler supports -fPIC -Wl,--rpath,\$ORIGIN/../lib" >&5
+-$as_echo_n "checking whether the compiler supports -fPIC -Wl,--rpath,\$ORIGIN/../lib... " >&6; }
++      as_ac_var=`$as_echo "ac_cv_cflags_-fPIC" | $as_tr_sh`
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the compiler supports -fPIC" >&5
++$as_echo_n "checking whether the compiler supports -fPIC" >&6; }
+ if { as_var=$as_ac_var; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   ac_wine_try_cflags_saved=$CFLAGS
+-CFLAGS="$CFLAGS -fPIC -Wl,--rpath,\$ORIGIN/../lib"
++CFLAGS="$CFLAGS -fPIC"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ int main(int argc, char **argv) { return 0; }
+@@ -6752,17 +6752,17 @@ 
+           { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+ $as_echo "$ac_res" >&6; }
+ if test `eval 'as_val=${'$as_ac_var'};$as_echo "$as_val"'` = yes; then :
+-  LDRPATH_INSTALL="-Wl,--rpath,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"
+-                       LDRPATH_LOCAL="-Wl,--rpath,\\\$\$ORIGIN/\$(TOPOBJDIR)/libs/wine"
++  LDRPATH_INSTALL=""
++  LDRPATH_LOCAL=""
+ else
+-  as_ac_var=`$as_echo "ac_cv_cflags_-fPIC -Wl,-R,\\$ORIGIN/../lib" | $as_tr_sh`
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the compiler supports -fPIC -Wl,-R,\$ORIGIN/../lib" >&5
+-$as_echo_n "checking whether the compiler supports -fPIC -Wl,-R,\$ORIGIN/../lib... " >&6; }
++  as_ac_var=`$as_echo "ac_cv_cflags_-fPIC" | $as_tr_sh`
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the compiler supports -fPIC" >&5
++$as_echo_n "checking whether the compiler supports -fPIC" >&6; }
+ if { as_var=$as_ac_var; eval "test \"\${$as_var+set}\" = set"; }; then :
+   $as_echo_n "(cached) " >&6
+ else
+   ac_wine_try_cflags_saved=$CFLAGS
+-CFLAGS="$CFLAGS -fPIC -Wl,-R,\$ORIGIN/../lib"
++CFLAGS="$CFLAGS -fPIC"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ int main(int argc, char **argv) { return 0; }

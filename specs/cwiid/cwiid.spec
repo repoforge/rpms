@@ -11,18 +11,18 @@
 Summary: Collection of Linux tools to interface with the Nintendo Wiimote
 Name: cwiid
 Version: 0.6.00
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://abstrakraft.org/cwiid/
 
 Source: http://abstrakraft.org/cwiid/downloads/cwiid-%{version}.tgz
 #Patch0: cwiid-0.6.00-flex.patch
-Patch0: cwiid-0.6.00-flex2.patch
+#Patch0: cwiid-0.6.00-flex2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
-BuildRequires: flex
+BuildRequires: flex > 2.5.4a
 BuildRequires: python-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 ### We patch the source to not require the newer flex
@@ -43,7 +43,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p0 -b .flex2
 
 for file in */README; do %{__cp} -v $file README.$(dirname $file); done
 
@@ -115,5 +114,8 @@ EOF
 %exclude %{_libdir}/libcwiid.a
 
 %changelog
+* Thu Aug 12 2010 Dag Wieers <dag@wieers.com> - 0.6.00-2
+- Built using newer flex.
+
 * Sat May 24 2008 Dag Wieers <dag@wieers.com> - 0.6.00-1
 - Initial package. (using DAR)

@@ -7,7 +7,7 @@
 
 Summary: Gnome Partition Editor
 Name: gparted
-Version: 0.5.2
+Version: 0.6.2
 Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
@@ -121,6 +121,9 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %exclude %{_localstatedir}/lib/scrollkeeper/
 
 %changelog
+* Mon Aug 02 2010 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Fri Jul 30 2010 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

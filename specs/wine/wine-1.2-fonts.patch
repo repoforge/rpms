@@ -1,0 +1,204 @@
+--- tools/wine.inf.in.orig  2010-05-26 07:41:44.000000000 +0200
++++ tools/wine.inf.in   2010-05-26 07:46:15.000000000 +0200
+@@ -576,13 +576,14 @@
+ HKLM,%FontSubStr%,"Courier New TUR,162",,"Courier New,162"
+ HKLM,%FontSubStr%,"Helv",,"MS Sans Serif"
+ HKLM,%FontSubStr%,"Helvetica",,"Arial"
+-HKLM,%FontSubStr%,"MS Shell Dlg 2",,"Tahoma"
++HKLM,%FontSubStr%,"MS Shell Dlg 2",,"Liberation Sans"
+ HKLM,%FontSubStr%,"Times",,"Times New Roman"
+ HKLM,%FontSubStr%,"Times New Roman Baltic,186",,"Times New Roman,186"
+ HKLM,%FontSubStr%,"Times New Roman CE,238",,"Times New Roman,238"
+ HKLM,%FontSubStr%,"Times New Roman CYR,204",,"Times New Roman,204"
+ HKLM,%FontSubStr%,"Times New Roman Greek,161",,"Times New Roman,161"
+ HKLM,%FontSubStr%,"Times New Roman TUR,162",,"Times New Roman,162"
++HKLM,%FontSubStr%,"MS Sans Serif",,"Liberation Serif"
+ HKLM,System\CurrentControlSet\Hardware Profiles\Current\Software\Fonts,"LogPixels",0x10003,0x00000060
+ 
+ [MCI]
+--- dlls/gdi32/freetype.c.orig  2010-05-19 22:02:43.000000000 +0200
++++ dlls/gdi32/freetype.c   2010-07-16 11:43:15.000000000 +0200
+@@ -400,7 +400,7 @@
+ /* Interesting and well-known (frequently-assumed!) font names */
+ static const WCHAR Lucida_Sans_Unicode[] = {'L','u','c','i','d','a',' ','S','a','n','s',' ','U','n','i','c','o','d','e',0};
+ static const WCHAR Microsoft_Sans_Serif[] = {'M','i','c','r','o','s','o','f','t',' ','S','a','n','s',' ','S','e','r','i','f',0 };
+-static const WCHAR Tahoma[] = {'T','a','h','o','m','a',0};
++static const WCHAR Liberation[] = {'L','i','b','e','r','a','t','i','o','n',' ','S','a','n','s',0};
+ static const WCHAR MS_UI_Gothic[] = {'M','S',' ','U','I',' ','G','o','t','h','i','c',0};
+ static const WCHAR SimSun[] = {'S','i','m','S','u','n',0};
+ static const WCHAR Gulim[] = {'G','u','l','i','m',0};
+@@ -494,6 +494,9 @@
+                                     'C','u','r','r','e','n','t','V','e','r','s','i','o','n','\\','F','o','n','t','L','i','n','k','\\',
+                                     'S','y','s','t','e','m','L','i','n','k',0};
+ 
++static const char liberationsans[] = {'Z',':','\\','u','s','r','\\','s','h','a','r','e','\\','f','o','n','t','s','\\','l','i','b','e','r','a','t','i','o','n','\\','L','i','b','e','r','a','t','i','o','n','S','a','n','s','-','R','e','g','u','l','a','r','.','t','t','f',0};
++static const char liberationserif[] = {'Z',':','\\','u','s','r','\\','s','h','a','r','e','\\','f','o','n','t','s','\\','l','i','b','e','r','a','t','i','o','n','\\','L','i','b','e','r','a','t','i','o','n','S','e','r','i','f','-','R','e','g','u','l','a','r','.','t','t','f',0};
++
+ /****************************************
+  *   Notes on .fon files
+  *
+@@ -1641,7 +1644,7 @@
+     WCHAR *entry, *next;
+     SYSTEM_LINKS *font_link, *system_font_link;
+     CHILD_FONT *child_font;
+-    static const WCHAR tahoma_ttf[] = {'t','a','h','o','m','a','.','t','t','f',0};
++    static const WCHAR liberation_ttf[] = {'L','i','b','e','r','a','t','i','o','n','S','a','n','s','-','R','e','g','u','l','a','r','.','t','t','f',0};
+     static const WCHAR System[] = {'S','y','s','t','e','m',0};
+     FONTSIGNATURE fs;
+     Family *family;
+@@ -1723,25 +1726,25 @@
+         RegCloseKey(hkey);
+     }
+ 
+-    /* Explicitly add an entry for the system font, this links to Tahoma and any links
+-       that Tahoma has */
++    /* Explicitly add an entry for the system font, this links to Liberation Sans and any links
++       that Liberation Sans has */
+ 
+     system_font_link = HeapAlloc(GetProcessHeap(), 0, sizeof(*system_font_link));
+     system_font_link->font_name = strdupW(System);
+     list_init(&system_font_link->links);    
+ 
+-    face = find_face_from_filename(tahoma_ttf, Tahoma);
++    face = find_face_from_filename(liberation_ttf, Liberation);
+     if(face)
+     {
+         child_font = HeapAlloc(GetProcessHeap(), 0, sizeof(*child_font));
+         child_font->face = face;
+         child_font->font = NULL;
+-        TRACE("Found Tahoma in %s index %ld\n", child_font->face->file, child_font->face->face_index);
++        TRACE("Found Liberation Sans in %s index %ld\n", child_font->face->file, child_font->face->face_index);
+         list_add_tail(&system_font_link->links, &child_font->entry);
+     }
+     LIST_FOR_EACH_ENTRY(font_link, &system_links, SYSTEM_LINKS, entry)
+     {
+-        if(!strcmpiW(font_link->font_name, Tahoma))
++        if(!strcmpiW(font_link->font_name, Liberation))
+         {
+             CHILD_FONT *font_link_entry;
+             LIST_FOR_EACH_ENTRY(font_link_entry, &font_link->links, CHILD_FONT, entry)
+@@ -2193,21 +2196,21 @@
+     /* Latin 1 (United States) */
+     { 1252, 437, "vgaoem.fon", "vgafix.fon", "vgasys.fon",
+       "coure.fon", "serife.fon", "smalle.fon", "sserife.fon",
+-      "Tahoma","Times New Roman",
++      "Liberation Sans","Times New Roman",
+       NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+       { 0 }, { 0 }, { 0 }
+     },
+     /* Latin 1 (Multilingual) */
+     { 1252, 850, "vga850.fon", "vgafix.fon", "vgasys.fon",
+       "coure.fon", "serife.fon", "smalle.fon", "sserife.fon",
+-      "Tahoma","Times New Roman",  /* FIXME unverified */
++      "Liberation Sans","Times New Roman",  /* FIXME unverified */
+       NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+       { 0 }, { 0 }, { 0 }
+     },
+     /* Eastern Europe */
+     { 1250, 852, "vga852.fon", "vgafixe.fon", "vgasyse.fon",
+       "couree.fon", "serifee.fon", "smallee.fon", "sserifee.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,238", "System,238",
+       "Courier New,238", "MS Serif,238", "Small Fonts,238",
+       "MS Sans Serif,238", "MS Sans Serif,238", "MS Serif,238",
+@@ -2218,7 +2221,7 @@
+     /* Cyrillic */
+     { 1251, 866, "vga866.fon", "vgafixr.fon", "vgasysr.fon",
+       "courer.fon", "serifer.fon", "smaller.fon", "sserifer.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,204", "System,204",
+       "Courier New,204", "MS Serif,204", "Small Fonts,204",
+       "MS Sans Serif,204", "MS Sans Serif,204", "MS Serif,204",
+@@ -2229,7 +2232,7 @@
+     /* Greek */
+     { 1253, 737, "vga869.fon", "vgafixg.fon", "vgasysg.fon",
+       "coureg.fon", "serifeg.fon", "smalleg.fon", "sserifeg.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,161", "System,161",
+       "Courier New,161", "MS Serif,161", "Small Fonts,161",
+       "MS Sans Serif,161", "MS Sans Serif,161", "MS Serif,161",
+@@ -2240,7 +2243,7 @@
+     /* Turkish */
+     { 1254, 857, "vga857.fon", "vgafixt.fon", "vgasyst.fon",
+       "couret.fon", "serifet.fon", "smallet.fon", "sserifet.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,162", "System,162",
+       "Courier New,162", "MS Serif,162", "Small Fonts,162",
+       "MS Sans Serif,162", "MS Sans Serif,162", "MS Serif,162",
+@@ -2251,7 +2254,7 @@
+     /* Hebrew */
+     { 1255, 862, "vgaoem.fon", "vgaf1255.fon", "vgas1255.fon",
+       "coue1255.fon", "sere1255.fon", "smae1255.fon", "ssee1255.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,177", "System,177",
+       "Courier New,177", "MS Serif,177", "Small Fonts,177",
+       "MS Sans Serif,177", "MS Sans Serif,177", "MS Serif,177",
+@@ -2260,7 +2263,7 @@
+     /* Arabic */
+     { 1256, 720, "vgaoem.fon", "vgaf1256.fon", "vgas1256.fon",
+       "coue1256.fon", "sere1256.fon", "smae1256.fon", "ssee1256.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,178", "System,178",
+       "Courier New,178", "MS Serif,178", "Small Fonts,178",
+       "MS Sans Serif,178", "MS Sans Serif,178", "MS Serif,178",
+@@ -2269,7 +2272,7 @@
+     /* Baltic */
+     { 1257, 775, "vga775.fon", "vgaf1257.fon", "vgas1257.fon",
+       "coue1257.fon", "sere1257.fon", "smae1257.fon", "ssee1257.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       "Fixedsys,186", "System,186",
+       "Courier New,186", "MS Serif,186", "Small Fonts,186",
+       "MS Sans Serif,186", "MS Sans Serif,186", "MS Serif,186",
+@@ -2280,14 +2283,14 @@
+     /* Vietnamese */
+     { 1258, 1258, "vga850.fon", "vgafix.fon", "vgasys.fon",
+       "coure.fon", "serife.fon", "smalle.fon", "sserife.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+       { 0 }, { 0 }, { 0 }
+     },
+     /* Thai */
+     { 874, 874, "vga850.fon", "vgaf874.fon", "vgas874.fon",
+       "coure.fon", "serife.fon", "smalle.fon", "ssee874.fon",
+-      "Tahoma","Times New Roman", /* FIXME unverified */
++      "Liberation Sans","Times New Roman", /* FIXME unverified */
+       NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+       { 0 }, { 0 }, { 0 }
+     },
+@@ -2325,7 +2328,7 @@
+ {
+     Lucida_Sans_Unicode,
+     Microsoft_Sans_Serif,
+-    Tahoma
++    Liberation
+ };
+ 
+ static const struct font_links_defaults_list
+@@ -2337,7 +2340,7 @@
+ } font_links_defaults_list[] =
+ {
+     /* Non East-Asian */
+-    { Tahoma, /* FIXME unverified ordering */
++    { Liberation, /* FIXME unverified ordering */
+       { MS_UI_Gothic, SimSun, Gulim, PMingLiU, NULL }
+     },
+     /* Below lists are courtesy of
+@@ -2399,8 +2402,8 @@
+ static void add_font_list(HKEY hkey, const struct nls_update_font_list *fl)
+ {
+     RegSetValueExA(hkey, "Courier", 0, REG_SZ, (const BYTE *)fl->courier, strlen(fl->courier)+1);
+-    RegSetValueExA(hkey, "MS Serif", 0, REG_SZ, (const BYTE *)fl->serif, strlen(fl->serif)+1);
+-    RegSetValueExA(hkey, "MS Sans Serif", 0, REG_SZ, (const BYTE *)fl->sserif, strlen(fl->sserif)+1);
++    RegSetValueExA(hkey, "MS Serif", 0, REG_SZ, (const BYTE *)liberationserif, strlen(liberationserif)+1);
++    RegSetValueExA(hkey, "MS Sans Serif", 0, REG_SZ, (const BYTE *)liberationsans, strlen(liberationsans)+1);
+     RegSetValueExA(hkey, "Small Fonts", 0, REG_SZ, (const BYTE *)fl->small, strlen(fl->small)+1);
+ }
+ 

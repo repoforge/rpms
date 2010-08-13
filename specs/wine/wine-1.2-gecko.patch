@@ -1,0 +1,127 @@
+--- dlls/mshtml/install.c.orig  2010-03-28 23:48:50.000000000 +0200
++++ dlls/mshtml/install.c   2010-03-29 20:43:54.000000000 +0200
+@@ -284,6 +284,103 @@
+     return ret;
+ }
+ 
++static BOOL install_from_fedora_mingw32_wine_gecko(void) {
++    const char *data_dir, *subdir;
++    BOOL res;
++
++    LPWSTR dos_dir_name;
++    LPSTR dos_dir_name_a;
++    static WCHAR *(*wine_get_dos_file_name)(const char*);
++    static const WCHAR kernel32W[] = {'k','e','r','n','e','l','3','2','.','d','l','l',0};
++
++    char install_dir[MAX_PATH];
++    char gecko_dir[MAX_PATH];
++
++    SHFILEOPSTRUCTA sf;
++
++    TRACE("()\n");
++
++    if((data_dir = wine_get_data_dir()))
++        subdir = "/gecko/";
++    else if((data_dir = wine_get_build_dir()))
++        subdir = "/../gecko/";
++    else
++        return FALSE;
++
++    TRACE("data_dir=%s\n",data_dir);
++    TRACE("subdir=%s\n",subdir);
++
++    memcpy(gecko_dir, data_dir, MAX_PATH);
++    strncat(gecko_dir, subdir, MAX_PATH-strlen(gecko_dir));
++    strncat(gecko_dir, GECKO_VERSION, MAX_PATH-strlen(gecko_dir));
++    strncat(gecko_dir, "/", MAX_PATH-strlen(gecko_dir));
++
++    if(!wine_get_dos_file_name)
++        wine_get_dos_file_name = (void*)GetProcAddress(GetModuleHandleW(kernel32W), "wine_get_dos_file_name");
++
++    if(wine_get_dos_file_name) { /* Wine UNIX mode */
++        dos_dir_name = wine_get_dos_file_name(gecko_dir);
++        if(!dos_dir_name) {
++            ERR("Could not get dos file name of %s\n", debugstr_a(gecko_dir));
++            return FALSE;
++        }
++    } else {
++        return FALSE;
++    }
++
++    TRACE("gecko_dir=%s\n", debugstr_a(gecko_dir));
++    TRACE("dos_dir_name=%s\n", debugstr_w(dos_dir_name));
++
++
++    if(GetFileAttributesW(dos_dir_name) == INVALID_FILE_ATTRIBUTES) {
++        TRACE("mingw32-wine-gecko package not installed\n");
++        return FALSE;
++    }
++
++    GetSystemDirectoryA(install_dir, sizeof(install_dir));
++    strncat(install_dir, "\\gecko\\",MAX_PATH-strlen(install_dir));
++    res = CreateDirectoryA(install_dir, NULL);
++    if(!res && GetLastError() != ERROR_ALREADY_EXISTS) {
++        ERR("Could not create directory: %08u\n", GetLastError());
++        return FALSE;
++    }
++
++    strncat(install_dir, GECKO_VERSION, MAX_PATH-strlen(install_dir));
++    res = CreateDirectoryA(install_dir, NULL);
++    if(!res && GetLastError() != ERROR_ALREADY_EXISTS) {
++        ERR("Could not create directory: %08u\n", GetLastError());
++        return FALSE;
++    }
++
++    TRACE("install_dir=%s\n",debugstr_a(install_dir));
++
++    dos_dir_name_a = heap_strdupWtoA(dos_dir_name);
++
++    lstrcatA(dos_dir_name_a,"*.*");
++    TRACE("dos_dir_name_a=%s\n",debugstr_a(dos_dir_name_a));
++
++    memset(&sf,0,sizeof(sf));
++    sf.hwnd = 0;
++    sf.wFunc = FO_COPY;
++    sf.pFrom = dos_dir_name_a;
++    sf.pTo = install_dir;
++    sf.fFlags = FOF_NOCONFIRMATION, FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
++    res = SHFileOperationA(&sf);
++
++    heap_free(dos_dir_name_a);
++
++    if(res != 0) {
++        ERR("Could not copy files: %08u\n", GetLastError());
++        return FALSE;
++    }
++
++    set_registry(install_dir);
++
++    clean_up();
++
++    return TRUE;
++}
++
+ static HRESULT WINAPI InstallCallback_QueryInterface(IBindStatusCallback *iface,
+                                                      REFIID riid, void **ppv)
+ {
+@@ -541,7 +638,8 @@
+          * - $datadir/gecko
+          * - download from URL stored in GeckoUrl value of HKCU/Software/MSHTML key
+          */
+-        if(!install_from_registered_dir()
++        if ( !install_from_fedora_mingw32_wine_gecko()
++           && !install_from_registered_dir()
+            && !install_from_default_dir()
+            && !silent && (url = get_url()))
+             DialogBoxW(hInst, MAKEINTRESOURCEW(ID_DWL_DIALOG), 0, installer_proc);
+--- dlls/mshtml/Makefile.in.orig    2010-03-29 15:13:47.000000000 +0200
++++ dlls/mshtml/Makefile.in 2010-03-29 15:49:55.000000000 +0200
+@@ -4,7 +4,7 @@
+ VPATH     = @srcdir@
+ MODULE    = mshtml.dll
+ IMPORTLIB = mshtml
+-IMPORTS   = strmiids uuid urlmon shlwapi ole32 oleaut32 user32 gdi32 advapi32 kernel32
++IMPORTS   = strmiids uuid urlmon shlwapi ole32 oleaut32 user32 gdi32 advapi32 kernel32 shell32
+ EXTRADEFS = -DCOM_NO_WINDOWS_H
+ DELAYIMPORTS = wininet
+ 

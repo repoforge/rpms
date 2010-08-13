@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-
 %define _without_freeglut 0
 %define _without_glut 1
 
@@ -30,12 +29,20 @@ Patch0: wine-prefixfonts.patch
 Patch1: wine-rpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, flex, libstdc++-devel
-BuildRequires: audiofile-devel, esound-devel
-BuildRequires: libjpeg-devel, lcms-devel, fontforge
-BuildRequires: libxml2-devel, libxslt-devel, openldap-devel
-BuildRequires: zlib-devel, ncurses-devel
+BuildRequires: audiofile-devel
+BuildRequires: bison
+BuildRequires: esound-devel
+BuildRequires: flex
+BuildRequires: fontforge
+BuildRequires: lcms-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libstdc++-devel
+BuildRequires: libxml2-devel
+BuildRequires: libxslt-devel
+BuildRequires: ncurses-devel
+BuildRequires: openldap-devel
 BuildRequires: sane-backends-devel
+BuildRequires: zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_cups:BuildRequires: cups-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

@@ -8,8 +8,9 @@
 
 Summary: Portable Document Format (PDF) viewer
 Name: xpdf
+Epoch: 1
 Version: 3.02
-Release: 6%{?dist}
+Release: 8%{?dist}
 License: GPLv2
 Group: Applications/Publishing
 URL: http://www.foolabs.com/xpdf/
@@ -204,7 +205,7 @@ for lang in arabic chinese-simplified chinese-traditional cyrillic greek hebrew 
 done
 
 ### xpdfrc cleanup
-%{__perl} -pi -e 's|/usr/local/share/|%{_datadir}/|g' %{buildroot}%{_sysconfdir}/xpdfrc
+%{__perl} -pi -e 's|/usr/local/share/|%{_datadir}/|g' %{buildroot}%{_sysconfdir}/{xpdfrc,xpdf/*}
 
 ### CJK are already in the file
 for lang in arabic cyrillic greek hebrew latin2 thai turkish; do
@@ -258,10 +259,16 @@ update-desktop-database &>/dev/null ||:
 %exclude %{_mandir}/man1/pdftotext.1*
 
 %changelog
+* Thu Aug 05 2010 Dag Wieers <dag@wieers.com> - 1:3.02-8
+- Fix /usr/local/share/xpdf references in /etc/xpdf/
+
+* Wed Aug 04 2010 Dag Wieers <dag@wieers.com> - 1:3.02-7
+- Added epoch for compatibility with RHEL5's poppler-utils.
+
 * Tue Aug 03 2010 Dag Wieers <dag@wieers.com> - 3.02-6
 - Imported package and added patches from fedora.
 
-* Thu Nov 20 2008 Geerd-Dietger Hoffman <ribalba@gmail.com> - 3.02-5
+* Thu Nov 20 2008 Geerd-Dietger Hoffmann <ribalba@gmail.com> - 3.02-5
 - Added 3.02pl2.patch.
 
 * Fri Aug 24 2007 Martin Brisby <rpms@mbrisby.org>
