@@ -1,0 +1,32 @@
+diff -Naur acct_mgr.orig/admin.py acct_mgr/admin.py
+--- acct_mgr.orig/admin.py	2010-02-25 17:33:08.000000000 +0300
++++ acct_mgr/admin.py	2010-08-16 17:07:53.000000000 +0400
+@@ -188,7 +188,11 @@
+                         _create_user(req, self.env, check_permissions=False)
+                     except TracError, e:
+                         data['registration_error'] = e.message
+-                        data['acctmgr'] = e.acctmgr
++
++                        # It might happen that the error will be raised from set_password,
++                        # which will not return correct acctmgr and cause a failure here
++                        data['acctmgr'] =  getattr(e, 'acctmgr', '')
++
+                 else:
+                     data['registration_error'] = 'The password store does ' \
+                                                  'not support creating users'
+diff -Naur acct_mgr.orig/web_ui.py acct_mgr/web_ui.py
+--- acct_mgr.orig/web_ui.py	2010-02-26 02:13:14.000000000 +0300
++++ acct_mgr/web_ui.py	2010-08-16 17:08:24.000000000 +0400
+@@ -348,7 +348,11 @@
+                 _create_user(req, self.env)
+             except TracError, e:
+                 data['registration_error'] = e.message
+-                data['acctmgr'] = e.acctmgr
++
++                # It might happen that the error will be raised from set_password,
++                # which will not return correct acctmgr and cause a failure here
++                data['acctmgr'] =  getattr(e, 'acctmgr', '')
++
+             else:
+                 req.redirect(req.href.login())
+         data['reset_password_enabled'] = \
