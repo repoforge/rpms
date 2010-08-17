@@ -1,0 +1,54 @@
+diff -Naur App-Asciio-1.02.71-orig/lib/App/Asciio/Dialogs.pm App-Asciio-1.02.71/lib/App/Asciio/Dialogs.pm
+--- App-Asciio-1.02.71-orig/lib/App/Asciio/Dialogs.pm	2008-12-17 17:50:22.000000000 -0500
++++ App-Asciio-1.02.71/lib/App/Asciio/Dialogs.pm	2010-08-17 15:12:32.000000000 -0400
+@@ -121,7 +121,7 @@
+ 
+ add_button_with_icon ($dialog, 'Continue editing', 'gtk-cancel' => 'cancel');
+ add_button_with_icon ($dialog, 'Save and Quit', 'gtk-save' => 999);
+-add_button_with_icon ($dialog, 'Quit and loose changes', 'gtk-ok' => 'ok');
++add_button_with_icon ($dialog, 'Quit and lose changes', 'gtk-ok' => 'ok');
+ 
+ my $lable = Gtk2::Label->new($text);
+ $dialog->vbox->add ($lable);
+diff -Naur App-Asciio-1.02.71-orig/script/asciio App-Asciio-1.02.71/script/asciio
+--- App-Asciio-1.02.71-orig/script/asciio	2008-12-17 17:50:22.000000000 -0500
++++ App-Asciio-1.02.71/script/asciio	2010-08-17 15:12:32.000000000 -0400
+@@ -68,7 +68,7 @@
+ 	
+ if($should_save) 
+ 	{
+-	$answer = App::Asciio::display_quit_dialog($window, 'asciio', ' ' x 25 . "Document is modified!\n\nAre you sure you want to quit and loose your changes?\n") ;
++	$answer = App::Asciio::display_quit_dialog($window, 'asciio', ' ' x 25 . "Document is modified!\n\nAre you sure you want to quit and lose your changes?\n") ;
+ 	}
+ 	
+ if($answer eq 'save_and_quit')
+diff -Naur App-Asciio-1.02.71-orig/Todo.txt App-Asciio-1.02.71/Todo.txt
+--- App-Asciio-1.02.71-orig/Todo.txt	2008-12-17 17:50:22.000000000 -0500
++++ App-Asciio-1.02.71/Todo.txt	2010-08-17 15:12:32.000000000 -0400
+@@ -32,7 +32,7 @@
+ 
+ Error: previously saved files (network) do not load new stencils
+ 
+-connected, non auto-connect, arrows loose their connection if the connectee is resized
++connected, non auto-connect, arrows lose their connection if the connectee is resized
+ 	=> this is because resize doesn't keep the connection. The 
+ 		canonizer reconnects elements but non auto-connect objects are not handled by the canonizer
+ 		
+@@ -559,7 +559,7 @@
+ 
+ #missing: save connections
+ 
+-#error moving groups looses connection
++#error moving groups loses connection
+ 
+ #thrown a few boxes and arrows in an empty document
+ 
+@@ -569,7 +569,7 @@
+ 	
+ #resize connectee doesn't move the connector
+ 
+-#move  group looses connections
++#move  group loses connections
+ 
+ #resizing downright arrow flips it to rightdown
+ 
