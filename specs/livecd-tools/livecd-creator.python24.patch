@@ -1,71 +1,99 @@
-diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
---- livecd-tools-013.orig/creator/livecd-creator	2007-11-30 12:06:23.000000000 -0500
-+++ livecd-tools-013/creator/livecd-creator	2007-11-30 12:06:44.000000000 -0500
-@@ -563,36 +563,37 @@
-             rpm.addMacro("_excludedocs","1")
+diff -Nur livecd.orig/imgcreate/creator.py livecd/imgcreate/creator.py
+--- livecd.orig/imgcreate/creator.py	2009-08-18 09:54:35.000000000 -0400
++++ livecd/imgcreate/creator.py	2009-08-18 12:09:28.000000000 -0400
+@@ -553,14 +553,15 @@
+             rpm.addMacro("_excludedocs", "1")
  
          try:
--            for pkg in (self.ksparser.handler.packages.packageList + 
--                        self._getRequiredPackages()):
--                try:
--                    self.ayum.selectPackage(pkg)
--                except yum.Errors.InstallError, e:
--                    if self.ksparser.handler.packages.handleMissing != \
--                           pykickstart.constants.KS_MISSING_IGNORE:
--                        raise InstallationError("Failed to find package '%s' : %s" % (pkg, e))
--                    else:
--                        print >> sys.stderr, "Unable to find package '%s'; skipping" %(pkg,)
--
--            for group in self.ksparser.handler.packages.groupList:
--                try:
--                    self.ayum.selectGroup(group.name, group.include)
--                except (yum.Errors.InstallError, yum.Errors.GroupsError), e:
--                    if self.ksparser.handler.packages.handleMissing != \
--                           pykickstart.constants.KS_MISSING_IGNORE:
--                        raise InstallationError("Failed to find group '%s' : %s" % (group.name, e))
--                    else:
--                        print >> sys.stderr, "Unable to find group '%s'; skipping" %(group.name,)
--
--            map(lambda pkg: self.ayum.deselectPackage(pkg),
--                self.ksparser.handler.packages.excludedList +
--                self._getRequiredExcludePackages())
--
--            self.ayum.runInstall()
+-            self.__select_packages(ayum)
+-            self.__select_groups(ayum)
+-            self.__deselect_packages(ayum)
+-            ayum.runInstall()
 -        except yum.Errors.RepoError, e:
--            raise InstallationError("Unable to download from repo : %s" %(e,))
+-            raise CreatorError("Unable to download from repo : %s" % (e,))
 -        except yum.Errors.YumBaseError, e:
--            raise InstallationError("Unable to install: %s" %(e,))
+-            raise CreatorError("Unable to install: %s" % (e,))
 +            try:
-+                for pkg in (self.ksparser.handler.packages.packageList + 
-+                            self._getRequiredPackages()):
-+                    try:
-+                        self.ayum.selectPackage(pkg)
-+                    except yum.Errors.InstallError, e:
-+                        if self.ksparser.handler.packages.handleMissing != \
-+                               pykickstart.constants.KS_MISSING_IGNORE:
-+                            raise InstallationError("Failed to find package '%s' : %s" % (pkg, e))
-+                        else:
-+                            print >> sys.stderr, "Unable to find package '%s'; skipping" %(pkg,)
-+
-+                for group in self.ksparser.handler.packages.groupList:
-+                    try:
-+                        self.ayum.selectGroup(group.name, group.include)
-+                    except (yum.Errors.InstallError, yum.Errors.GroupsError), e:
-+                        if self.ksparser.handler.packages.handleMissing != \
-+                               pykickstart.constants.KS_MISSING_IGNORE:
-+                            raise InstallationError("Failed to find group '%s' : %s" % (group.name, e))
-+                        else:
-+                            print >> sys.stderr, "Unable to find group '%s'; skipping" %(group.name,)
-+                            
-+                map(lambda pkg: self.ayum.deselectPackage(pkg),
-+                    self.ksparser.handler.packages.excludedList +
-+                    self._getRequiredExcludePackages())
-+
-+                self.ayum.runInstall()
++                self.__select_packages(ayum)
++                self.__select_groups(ayum)
++                self.__deselect_packages(ayum)
++                ayum.runInstall()
 +            except yum.Errors.RepoError, e:
-+                raise InstallationError("Unable to download from repo : %s" %(e,))
++                raise CreatorError("Unable to download from repo : %s" % (e,))
 +            except yum.Errors.YumBaseError, e:
-+                raise InstallationError("Unable to install: %s" %(e,))
++                raise CreatorError("Unable to install: %s" % (e,))
          finally:
-             self.ayum.closeRpmDB()
+             ayum.closeRpmDB()
+             ayum.close()
+@@ -595,11 +596,12 @@
+                 script = "/tmp/" + os.path.basename(path)
+ 
+             try:
+-                subprocess.call([s.interp, script],
+-                                preexec_fn = preexec, env = env)
+-            except OSError, (err, msg):
+-                raise CreatorError("Failed to execute %%post script "
+-                                   "with '%s' : %s" % (s.interp, msg))
++                try:
++                    subprocess.call([s.interp, script],
++                                    preexec_fn = preexec, env = env)
++                except OSError, (err, msg):
++                    raise CreatorError("Failed to execute %%post script "
++                                       "with '%s' : %s" % (s.interp, msg))
+             finally:
+                 os.unlink(path)
+ 
+diff -Nur livecd.orig/tools/image-creator livecd/tools/image-creator
+--- livecd.orig/tools/image-creator	2009-08-18 09:54:35.000000000 -0400
++++ livecd/tools/image-creator	2009-08-18 12:10:15.000000000 -0400
+@@ -59,10 +59,11 @@
+     creator = imgcreate.LoopImageCreator(ks, name)
+ 
+     try:
+-        creator.create()
+-    except imgcreate.CreatorError, e:
+-        print >> sys.stderr, "Error creating image : %s" % e
+-        return 1
++        try:
++            creator.create()
++        except imgcreate.CreatorError, e:
++            print >> sys.stderr, "Error creating image : %s" % e
++            return 1
+     finally:
+         creator.cleanup()
+ 
+diff -Nur livecd.orig/tools/livecd-creator livecd/tools/livecd-creator
+--- livecd.orig/tools/livecd-creator	2009-08-18 09:54:35.000000000 -0400
++++ livecd/tools/livecd-creator	2009-08-18 12:09:28.000000000 -0400
+@@ -111,18 +111,19 @@
+     creator.skip_minimize = options.skip_minimize
+ 
+     try:
+-        creator.mount(options.base_on, options.cachedir)
+-        creator.install()
+-        creator.configure()
+-        if options.give_shell:
+-            print "Launching shell. Exit to continue."
+-            print "----------------------------------"
+-            creator.launch_shell()
+-        creator.unmount()
+-        creator.package()
+-    except imgcreate.CreatorError, e:
+-        print >> sys.stderr, "Error creating Live CD : %s" % e
+-        return 1
++        try:
++            creator.mount(options.base_on, options.cachedir)
++            creator.install()
++            creator.configure()
++            if options.give_shell:
++                print "Launching shell. Exit to continue."
++                print "----------------------------------"
++                creator.launch_shell()
++            creator.unmount()
++            creator.package()
++        except imgcreate.CreatorError, e:
++            print >> sys.stderr, "Error creating Live CD : %s" % e
++            return 1
+     finally:
+         creator.cleanup()
  

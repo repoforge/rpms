@@ -1,20 +1,27 @@
-diff -Nur livecd-tools-013.orig/creator/livecd-creator livecd-tools-013/creator/livecd-creator
---- livecd-tools-013.orig/creator/livecd-creator	2009-04-06 19:56:24.000000000 -0400
-+++ livecd-tools-013/creator/livecd-creator	2009-04-06 19:59:28.000000000 -0400
-@@ -904,6 +904,9 @@
-         mcfg.write('MODULES+="squashfs ext3 ext2 vfat msdos "\n')
-         mcfg.write('MODULES+="sr_mod sd_mod ide-cd "\n')
+diff -Nur livecd.orig/imgcreate/live.py livecd/imgcreate/live.py
+--- livecd.orig/imgcreate/live.py	2009-08-18 09:54:35.000000000 -0400
++++ livecd/imgcreate/live.py	2009-08-18 14:16:35.000000000 -0400
+@@ -68,7 +68,7 @@
  
-+        if "=ata" in self._modules:
-+            mcfg.write('MODULES+="libata ahci ata_piix "\n')
-+            self._modules.remove("=ata")
-         if "=usb" in self._modules:
-             mcfg.write('MODULES+="ehci_hcd uhci_hcd ohci_hcd usb_storage usbhid "\n')
-             self._modules.remove("=usb")
-diff -Nur livecd-tools-013.orig/creator/mayflower livecd-tools-013/creator/mayflower
---- livecd-tools-013.orig/creator/mayflower	2009-04-06 19:56:24.000000000 -0400
-+++ livecd-tools-013/creator/mayflower	2009-04-06 19:58:12.000000000 -0400
-@@ -103,15 +103,7 @@
+         self.__isodir = None
+ 
+-        self.__modules = ["=ata", "sym53c8xx", "aic7xxx", "=usb", "=firewire", "=mmc"]
++        self.__modules = ["sym53c8xx", "aic7xxx", "=usb", "=firewire", "=mmc"]
+         self.__modules.extend(kickstart.get_modules(self.ks))
+ 
+     #
+@@ -218,6 +218,7 @@
+ 
+         f.write('MODULES+="squashfs ext3 ext2 vfat msdos "\n')
+         f.write('MODULES+="sr_mod sd_mod ide-cd "\n')
++        f.write('MODULES+="libata ahci ata_piix "\n')
+ 
+         for module in self.__modules:
+             if module == "=usb":
+diff -Nur livecd.orig/tools/mayflower livecd/tools/mayflower
+--- livecd.orig/tools/mayflower	2009-08-18 09:54:35.000000000 -0400
++++ livecd/tools/mayflower	2009-08-18 14:14:30.000000000 -0400
+@@ -107,15 +107,7 @@
      char=$(echo $m | cut -c1)
      if [ $char = '=' ]; then
  	NAME=$(echo $m | cut -c2-)

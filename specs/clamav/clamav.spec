@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.96.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -24,6 +24,7 @@ URL: http://www.clamav.net/
 Source: http://downloads.sourceforge.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
+Patch0: clamav-0.96.2-selinux.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel
@@ -106,6 +107,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p1
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
@@ -395,6 +397,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Tue Aug 17 2010 Dag Wieers <dag@wieers.com> - 0.96.2-2
+- Added patch that fixes segfault when using SELinux. (Beat Siegenthaler)
+
 * Thu Aug 12 2010 Dag Wieers <dag@wieers.com> - 0.96.2-1
 - Updated to release 0.96.2.
 

@@ -1,7 +1,7 @@
-# $Id: wine.spec 6529 2008-10-31 00:09:09Z dag $
+# $Id: wine-1.0.spec -1   $
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 %define _without_freeglut 0
 %define _without_glut 1
@@ -20,28 +20,45 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.1.35
+Version: 1.3.0
 Release: 1%{?dist}
-License: LGPL
+License: LGPLv2+
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
-Source: http://dl.sf.net/wine/wine-%{version}.tar.bz2
-Patch0: wine-prefixfonts.patch
-Patch1: wine-rpath.patch
+Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
+Patch1: wine-1.2-rpath.patch
+### Fix for RHbz #593140
+Patch100: wine-1.2-fonts.patch
+### Add wine-gecko support
+Patch1000: wine-1.2-gecko.patch 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: %{ix86} x86_64
-
-BuildRequires: bison, flex, libstdc++-devel
-BuildRequires: audiofile-devel, esound-devel
-BuildRequires: libjpeg-devel, lcms-devel, fontforge
-BuildRequires: libxml2-devel, libxslt-devel, openldap-devel
-BuildRequires: zlib-devel, ncurses-devel
+BuildRequires: audiofile-devel
+BuildRequires: autoconf
+BuildRequires: bison
+BuildRequires: desktop-file-utils
+BuildRequires: esound-devel
+BuildRequires: flex >= 2.5.35
+BuildRequires: fontforge
+%ifarch x86_64
+BuildRequires: gcc >= 4.4
+%endif
+BuildRequires: icoutils
+BuildRequires: lcms-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libstdc++-devel
+BuildRequires: libxml2-devel
+BuildRequires: libxslt-devel
+BuildRequires: mpg123-devel
+BuildRequires: ncurses-devel
+BuildRequires: openldap-devel
+BuildRequires: openssl-devel 
 BuildRequires: sane-backends-devel
+BuildRequires: unixODBC-devel
+BuildRequires: zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_cups:BuildRequires: cups-devel}
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{!?_without_glut:BuildRequires: glut-devel}
 %{!?_without_gphoto2:BuildRequires: gphoto2-devel}
@@ -154,7 +171,10 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0
+
+%patch1
+%patch100
+#patch1000
 
 %{__cat} <<EOF >wine-config.desktop
 [Desktop Entry]
@@ -214,16 +234,27 @@ source %{_initrddir}/functions
 RETVAL=0
 
 start() {
-    echo -n $"Registering binary handler for Windows applications"
-    /sbin/modprobe binfmt_misc &>/dev/null
-    echo ':windows:M::MZ::%{_bindir}/wine:' >/proc/sys/fs/binfmt_misc/register || :
-    echo ':windowsPE:M::PE::%{_bindir}/wine:' >/proc/sys/fs/binfmt_misc/register || :
+    if [ -e /proc/sys/fs/binfmt_misc/windows ]; then
+        echo -n $"Binary handler for Windows applications already registered"
+    else
+        echo -n $"Registering binary handler for Windows applications: "
+        /sbin/modprobe binfmt_misc &>/dev/null
+        echo ':windows:M::MZ::/usr/bin/wine:' >/proc/sys/fs/binfmt_misc/register || :
+        echo ':windowsPE:M::PE::/usr/bin/wine:' >/proc/sys/fs/binfmt_misc/register || :
+        RETVAL=$?
+        [ $RETVAL -eq 0 ] && success || failure
+    fi
+    echo
 }
 
 stop() {
     echo -n $"Unregistering binary handler for Windows applications"
-    echo "-1" >/proc/sys/fs/binfmt_misc/windows || :
-    echo "-1" >/proc/sys/fs/binfmt_misc/windowsPE || :
+    echo "-1" >/proc/sys/fs/binfmt_misc/windows
+    RETVAL=$?
+    echo "-1" >/proc/sys/fs/binfmt_misc/windowsPE
+    RETVAL=$((RETVAL + $?))
+    [ $RETVAL -eq 0 ] && success || failure
+    echo
 }
 
 reload() {
@@ -256,14 +287,14 @@ case "$1" in
         stop
         start
         ;;
-    condrestart)
+    condrestart|try-restart)
         if [ -e /proc/sys/fs/binfmt_misc/windows ]; then
             stop
             start
         fi
         ;;
     *)
-        echo $"Usage: $prog {start|stop|status|restart|condrestart}"
+        echo $"Usage: $prog {start|stop|status|restart|condrestart|try-restart}"
         exit 1
 esac
 exit $RETVAL
@@ -272,12 +303,16 @@ EOF
 echo "%{_libdir}/wine/" >wine.ld.conf
 
 %build
-%{expand: %%define optflags %%(echo %{optflags} | sed -e 's|-m64|-m32|')}
+export CFLAGS="%{optflags} -Wno-error"
 %configure \
-    --disable-static \
-    --libdir="%{_prefix}/lib" \
     --sysconfdir="%{_sysconfdir}/wine" \
-%{?_without_opengl:--without-opengl} \
+    --disable-tests \
+    --enable-maintainer-mode \
+%ifarch x86_64
+    --enable-win64 \
+%endif 
+    --with-x \
+%{?_without_opengl:--without-opengl}
 %{__make} depend
 %{__make} %{?_smp_mflags}
 
@@ -294,37 +329,30 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 %{__install} -Dp -m0755 wine.sysv %{buildroot}%{_initrddir}/wine
 %{__install} -Dp -m0644 wine.ld.conf %{buildroot}%{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
 
-%if %{?_without_freedesktop:1}0
-    %{__install} -Dp -m0644 wine-config.desktop %{buildroot}/etc/X11/applnk/Applications/wine-config.desktop
-    %{__install} -Dp -m0644 wine-fileman.desktop %{buildroot}/etc/X11/applnk/Applications/wine-fileman.desktop
-    %{__install} -Dp -m0644 wine-regedit.desktop %{buildroot}/etc/X11/applnk/Applications/wine-regedit.desktop
-    %{__install} -Dp -m0644 wine-uninstaller.desktop %{buildroot}/etc/X11/applnk/Applications/wine-uninstaller.desktop
-%else
-    desktop-file-install --delete-original             \
-        --vendor="%{desktop_vendor}"                   \
-        --dir="%{buildroot}%{_datadir}/applications"   \
-        %{buildroot}%{_datadir}/applications/wine.desktop
+desktop-file-install --delete-original             \
+    --vendor="%{desktop_vendor}"                   \
+    --dir="%{buildroot}%{_datadir}/applications"   \
+    %{buildroot}%{_datadir}/applications/wine.desktop
 
-    desktop-file-install                               \
-        --vendor="%{desktop_vendor}"                   \
-        --dir="%{buildroot}%{_datadir}/applications"   \
-        wine-config.desktop
+desktop-file-install                               \
+    --vendor="%{desktop_vendor}"                   \
+    --dir="%{buildroot}%{_datadir}/applications"   \
+    wine-config.desktop
 
-    desktop-file-install                               \
-        --vendor="%{desktop_vendor}"                   \
-        --dir="%{buildroot}%{_datadir}/applications"   \
-        wine-fileman.desktop
+desktop-file-install                               \
+    --vendor="%{desktop_vendor}"                   \
+    --dir="%{buildroot}%{_datadir}/applications"   \
+    wine-fileman.desktop
 
-    desktop-file-install                               \
-        --vendor="%{desktop_vendor}"                   \
-        --dir="%{buildroot}%{_datadir}/applications"   \
-        wine-regedit.desktop
+desktop-file-install                               \
+    --vendor="%{desktop_vendor}"                   \
+    --dir="%{buildroot}%{_datadir}/applications"   \
+    wine-regedit.desktop
 
-    desktop-file-install                               \
-        --vendor="%{desktop_vendor}"                   \
-        --dir="%{buildroot}%{_datadir}/applications"   \
-        wine-uninstaller.desktop
-%endif
+desktop-file-install                               \
+    --vendor="%{desktop_vendor}"                   \
+    --dir="%{buildroot}%{_datadir}/applications"   \
+    wine-uninstaller.desktop
 
 %post core
 /sbin/ldconfig
@@ -377,9 +405,9 @@ update-desktop-database &>/dev/null || :
 %doc ANNOUNCE AUTHORS COPYING.LIB LICENSE* README VERSION
 %doc documentation/ChangeLog* documentation/README.*
 %doc %{_mandir}/man1/wine.1*
-%doc %{_mandir}/man1/wineprefixcreate.1*
 %doc %{_mandir}/man1/wineserver.1*
 %doc %{_mandir}/*/man1/wine.1*
+%doc %{_mandir}/*/man1/winemaker.1*
 %doc %{_mandir}/*/man1/wineserver.1*
 %config %{_initrddir}/wine
 %config %{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
@@ -398,42 +426,36 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/winemaker
 %{_bindir}/winemine
 %{_bindir}/winepath
-%{_bindir}/wineprefixcreate
 %{_bindir}/wineserver
 %{_bindir}/wine-preloader
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-config.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-fileman.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-regedit.desktop}
-%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wine-uninstaller.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Applications/wine-config.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Applications/wine-fileman.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Applications/wine-regedit.desktop}
-%{?_without_freedesktop:/etc/X11/applnk/Applications/wine-uninstaller.desktop}
+%{_datadir}/applications/%{desktop_vendor}-wine.desktop
+%{_datadir}/applications/%{desktop_vendor}-wine-config.desktop
+%{_datadir}/applications/%{desktop_vendor}-wine-fileman.desktop
+%{_datadir}/applications/%{desktop_vendor}-wine-regedit.desktop
+%{_datadir}/applications/%{desktop_vendor}-wine-uninstaller.desktop
 %dir %{_datadir}/wine/
 %{_datadir}/wine/fonts/
 %{_datadir}/wine/generic.ppd
+%{_datadir}/wine/l_intl.nls
 %{_datadir}/wine/wine.inf
 %{_libdir}/libwine.so.1*
 %dir %{_libdir}/wine/
 %{_libdir}/wine/fakedlls/
 
-### exe16
-%{_libdir}/wine/krnl386.exe16
-%{_libdir}/wine/user.exe16
-
 ### exe16.so
 %{_libdir}/wine/gdi.exe16.so
+%{_libdir}/wine/krnl386.exe16.so
+%{_libdir}/wine/rundll.exe16.so
+%{_libdir}/wine/user.exe16.so
 %{_libdir}/wine/winhelp.exe16.so
 
-### cpl.so
-%{_libdir}/wine/appwiz.cpl.so
-
 ### exe.so
+%{_libdir}/wine/attrib.exe.so
 %{_libdir}/wine/cacls.exe.so
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
+%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/dxdiag.exe.so
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
@@ -446,9 +468,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mshta.exe.so
 %{_libdir}/wine/msiexec.exe.so
 %{_libdir}/wine/net.exe.so
+%{_libdir}/wine/ngen.exe.so
 %{_libdir}/wine/notepad.exe.so
 %{_libdir}/wine/ntoskrnl.exe.so
 %{_libdir}/wine/oleview.exe.so
+%{_libdir}/wine/ping.exe.so
 %{_libdir}/wine/progman.exe.so
 %{_libdir}/wine/reg.exe.so
 %{_libdir}/wine/regedit.exe.so
@@ -457,6 +481,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rundll32.exe.so
 %{_libdir}/wine/secedit.exe.so
 %{_libdir}/wine/services.exe.so
+%{_libdir}/wine/sc.exe.so
 %{_libdir}/wine/spoolsv.exe.so
 %{_libdir}/wine/start.exe.so
 %{_libdir}/wine/svchost.exe.so
@@ -479,10 +504,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
 %{_libdir}/wine/write.exe.so
+%{_libdir}/wine/wscript.exe.so
 %{_libdir}/wine/xcopy.exe.so
 
-### dll16
-%{_libdir}/wine/wprocs.dll16
+### cpl
+%{_libdir}/wine/appwiz.cpl.so
 
 ### dll16.so
 %{_libdir}/wine/avifile.dll16.so
@@ -511,6 +537,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/storage.dll16.so
 %{_libdir}/wine/stress.dll16.so
 %{_libdir}/wine/toolhelp.dll16.so
+%{_libdir}/wine/twain.dll16.so
 %{_libdir}/wine/typelib.dll16.so
 %{_libdir}/wine/ver.dll16.so
 %{_libdir}/wine/w32sys.dll16.so
@@ -549,7 +576,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/credui.dll.so
 %{_libdir}/wine/crtdll.dll.so
 %{_libdir}/wine/crypt32.dll.so
-%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/cryptdll.dll.so
 %{_libdir}/wine/cryptnet.dll.so
 %{_libdir}/wine/cryptui.dll.so
@@ -561,7 +587,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3d10core.dll.so
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
-#%{_libdir}/wine/d3dx8.dll.so
 %{_libdir}/wine/d3dx9_24.dll.so
 %{_libdir}/wine/d3dx9_25.dll.so
 %{_libdir}/wine/d3dx9_26.dll.so
@@ -589,6 +614,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/devenum.dll.so
 %{_libdir}/wine/dinput.dll.so
 %{_libdir}/wine/dinput8.dll.so
+%{_libdir}/wine/dispex.dll.so
 %{_libdir}/wine/dmband.dll.so
 %{_libdir}/wine/dmcompos.dll.so
 %{_libdir}/wine/dmime.dll.so
@@ -615,11 +641,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dxgi.dll.so
 %{_libdir}/wine/faultrep.dll.so
 %{_libdir}/wine/fltlib.dll.so
-%{_libdir}/wine/fusion.dll.so
 %{_libdir}/wine/fwpuclnt.dll.so
+%{_libdir}/wine/fusion.dll.so
+%{_libdir}/wine/gameux.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
 %{!?_without_opengl:%{_libdir}/wine/glu32.dll.so}
+#%{_libdir}/wine/glut32.dll.so
 %{_libdir}/wine/gpkcsp.dll.so
 %{_libdir}/wine/hal.dll.so
 %{_libdir}/wine/hid.dll.so
@@ -646,6 +674,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/localui.dll.so
 %{_libdir}/wine/lz32.dll.so
 %{_libdir}/wine/mapi32.dll.so
+%{_libdir}/wine/mapistub.dll.so
 %{_libdir}/wine/mciavi32.dll.so
 %{_libdir}/wine/mcicda.dll.so
 %{_libdir}/wine/mciqtz32.dll.so
@@ -674,7 +703,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mssip32.dll.so
 %{_libdir}/wine/mstask.dll.so
 %{_libdir}/wine/msvcirt.dll.so
+%{_libdir}/wine/msvcp90.dll.so
+%{_libdir}/wine/msvcr100.dll.so
+%{_libdir}/wine/msvcr70.dll.so
 %{_libdir}/wine/msvcr71.dll.so
+%{_libdir}/wine/msvcr80.dll.so
+%{_libdir}/wine/msvcr90.dll.so
 %{_libdir}/wine/msvcrt.dll.so
 %{_libdir}/wine/msvcrt20.dll.so
 %{_libdir}/wine/msvcrt40.dll.so
@@ -683,6 +717,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msvidc32.dll.so
 %{_libdir}/wine/mswsock.dll.so
 %{_libdir}/wine/msxml3.dll.so
+%{_libdir}/wine/msxml4.dll.so
 %{_libdir}/wine/nddeapi.dll.so
 %{_libdir}/wine/netapi32.dll.so
 %{_libdir}/wine/newdev.dll.so
@@ -724,6 +759,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rsabase.dll.so
 %{_libdir}/wine/rsaenh.dll.so
 %{_libdir}/wine/rtutils.dll.so
+%{_libdir}/wine/samlib.dll.so
 %{_libdir}/wine/sccbase.dll.so
 %{_libdir}/wine/schannel.dll.so
 %{_libdir}/wine/secur32.dll.so
@@ -764,7 +800,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wiaservc.dll.so
 %{_libdir}/wine/windowscodecs.dll.so
 %{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
-%{_libdir}/wine/winedos.dll.so
 %{_libdir}/wine/winemapi.dll.so
 %{_libdir}/wine/wing32.dll.so
 %{_libdir}/wine/winhttp.dll.so
@@ -829,6 +864,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msadp32.acm.so
 %{_libdir}/wine/msg711.acm.so
 %{_libdir}/wine/msgsm32.acm.so
+%{_libdir}/wine/winemp3.acm.so
 
 ### tlb.so
 %{_libdir}/wine/mshtml.tlb.so
@@ -839,11 +875,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hhctrl.ocx.so
 %{_libdir}/wine/msisys.ocx.so
 
-### mod16.so
+### mod16
 %{_libdir}/wine/winoldap.mod16.so
 
 ### sys.so
 %{_libdir}/wine/mountmgr.sys.so
+%{_libdir}/wine/usbd.sys.so
 
 %files capi
 %defattr(-, root, root, 0755)
@@ -878,7 +915,6 @@ update-desktop-database &>/dev/null || :
 %files twain
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/wine/
-%{_libdir}/wine/twain.dll16.so
 %{_libdir}/wine/twain_32.dll.so
 
 %files devel
@@ -909,44 +945,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
-* Tue Jan 12 2010 Dag Wieers <dag@wieers.com> - 1.1.35-1
-- Updated to release 1.1.35.
+* Fri Aug 13 2010 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
 
-* Wed Nov 18 2009 Dag Wieers <dag@wieers.com> - 1.1.33-1
-- Updated to release 1.1.33.
-
-* Sun Sep 27 2009 Dag Wieers <dag@wieers.com> - 1.1.30-1
-- Updated to release 1.1.30.
-
-* Thu Sep 10 2009 Dag Wieers <dag@wieers.com> - 1.1.29-1
-- Updated to release 1.1.29.
-
-* Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.1.26-1
-- Updated to release 1.1.26.
-
-* Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 1.1.25-1
-- Updated to release 1.1.25.
-
-* Sun May 24 2009 Dag Wieers <dag@wieers.com> - 1.1.22-1
-- Updated to release 1.1.22.
-
-* Sun May 17 2009 Dag Wieers <dag@wieers.com> - 1.1.21-1
-- Updated to release 1.1.21.
-
-* Tue Apr 28 2009 Dag Wieers <dag@wieers.com> - 1.1.20-1
-- Updated to release 1.1.20.
-
-* Mon Mar 16 2009 Dag Wieers <dag@wieers.com> - 1.1.17-1
-- Updated to release 1.1.17.
-
-* Wed Jan 21 2009 Dag Wieers <dag@wieers.com> - 1.1.13-1
-- Updated to release 1.1.13.
-
-* Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 1.1.10-1
-- Updated to release 1.1.10.
-
-* Thu Nov 27 2008 Dag Wieers <dag@wieers.com> - 1.1.9-1
-- Updated to release 1.1.9.
+* Thu Aug 12 2010 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+- Added a few fedora patches.
 
 * Fri Oct 31 2008 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.

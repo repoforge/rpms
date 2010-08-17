@@ -1,23 +1,23 @@
-diff -Nur livecd-tools-013.orig/creator/mayflower livecd-tools-013/creator/mayflower
---- livecd-tools-013.orig/creator/mayflower	2009-04-06 19:56:24.000000000 -0400
-+++ livecd-tools-013/creator/mayflower	2009-04-07 10:05:33.000000000 -0400
-@@ -383,7 +383,8 @@
+diff -Nur livecd.orig/tools/mayflower livecd/tools/mayflower
+--- livecd.orig/tools/mayflower	2009-08-18 09:54:35.000000000 -0400
++++ livecd/tools/mayflower	2009-08-18 10:13:42.000000000 -0400
+@@ -387,7 +387,8 @@
              ;;
          CDLABEL=*)
-             CDLABEL=\${root#CDLABEL=}
--            echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", ATTRS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"root\"" > /etc/udev/rules.d/00-cdlabel.rules
-+            echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"root\"" > /etc/udev/rules.d/00-cdlabel.rules
-+            echo "KERNEL==\"sd[a-z]\", BUS==\"scsi\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
-             echo "KERNEL==\"sr[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
-             echo "KERNEL==\"scd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
-             echo "KERNEL==\"pcd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
-@@ -626,7 +627,8 @@
+             CDLABEL=${root#CDLABEL=}
+-            echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", ATTRS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"root\"" > /etc/udev/rules.d/00-cdlabel.rules
++            echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"root\"" > /etc/udev/rules.d/00-cdlabel.rules
++            echo "KERNEL==\"sd[a-z]\", BUS==\"scsi\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
+             echo "KERNEL==\"sr[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
+             echo "KERNEL==\"scd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
+             echo "KERNEL==\"pcd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"root\"" >> /etc/udev/rules.d/00-cdlabel.rules
+@@ -627,7 +628,8 @@
  
      # create rule so udev creates /dev/live symlink on real rootfs
-     if [ -n "\$CDLABEL" ]; then
--       echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", ATTRS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
-+       echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
-+       echo "KERNEL==\"sd[a-z]\", BUS==\"scsi\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
-        echo "KERNEL==\"sr[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
-        echo "KERNEL==\"scd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
-        echo "KERNEL==\"pcd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"\$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
+     if [ -n "$CDLABEL" ]; then
+-       echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", ATTRS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
++       echo "KERNEL==\"hd[a-z]\", BUS==\"ide\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
++       echo "KERNEL==\"sd[a-z]\", BUS==\"scsi\", SYSFS{removable}==\"1\", SYSFS{media}==\"cdrom\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
+        echo "KERNEL==\"sr[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
+        echo "KERNEL==\"scd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*
+        echo "KERNEL==\"pcd[0-9]\", PROGRAM=\"/lib/udev/vol_id -l %N\", RESULT==\"$CDLABEL\", SYMLINK+=\"live\"" >> /sysroot/etc/udev/rules.d/50-udev*

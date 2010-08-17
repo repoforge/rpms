@@ -42,8 +42,8 @@ if [ $(id -u) != 0 ]; then
 fi
 
 # Check pxelinux.0 exists.
-if [ ! -f /usr/lib/syslinux/pxelinux.0 ]; then
-    echo "Warning: /usr/lib/syslinux/pxelinux.0 not found."
+if [ ! -f /usr/share/syslinux/pxelinux.0 -a ! -f /usr/lib/syslinux/pxelinux.0 ]; then
+    echo "Warning: pxelinux.0 not found."
     echo "Make sure syslinux or pxelinux is installed on this system."
 fi
 
@@ -95,7 +95,9 @@ ISODIRNAME=`dirname "$ISO"`
 cp $CDMNT/isolinux/vmlinuz0 tftpboot/vmlinuz0
 
 # pxelinux bootloader.
-if [ -f /usr/lib/syslinux/pxelinux.0 ]; then
+if [ -f /usr/share/syslinux/pxelinux.0 ]; then
+    cp /usr/share/syslinux/pxelinux.0 tftpboot
+elif [ -f /usr/lib/syslinux/pxelinux.0 ]; then
     cp /usr/lib/syslinux/pxelinux.0 tftpboot
 else
     echo "Warning: You need to add pxelinux.0 to tftpboot/ subdirectory"

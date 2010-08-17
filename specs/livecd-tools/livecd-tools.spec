@@ -3,27 +3,40 @@
 
 # ExclusiveDist: el5
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
+%define real_name livecd
+
 Summary: Tools for building live CDs
 Name: livecd-tools
-Version: 013
-Release: 9%{?dist}
+Version: 014
+Release: 8%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://git.fedoraproject.org/?p=hosted/livecd
 
-Source0: livecd-tools-%{version}.tar.bz2
+Source0: livecd-tools-%{version}.tar.gz
 Source1: livecd-iso-to-pxeboot.sh
 Patch1: livecd-creator.python24.patch
-Patch2: livecd-creator.yumbase_close.patch
-Patch3: livecd-creator.lvm.patch
-Patch4: livecd-creator.installer.patch
-Patch5: livecd-tools.pxeboot.patch
-Patch6: livecd-creator.textmode.patch
-Patch7: livecd-mayflower.cdbus.patch
-Patch8: livecd-tools.libata.support.patch
-Patch9: livecd-creator.append.patch
+Patch2: livecd-creator.xen.patch
+Patch3: livecd-mayflower.pxeboot.patch
+Patch4: livecd-mayflower.cdbus.patch
+Patch5: livecd-tools.libata.support.patch
+Patch6: livecd-creator.extlinux.patch
+Patch7: livecd-tools.checkisomd5.patch
+Patch8: livecd-creator.restorecon.patch
+Patch9: livecd-creator.isomd5sum.patch
+Patch10: livecd-creator.mayflowerconf.patch
+Patch11: livecd-creator.syslinux.patch
+Patch12: livecd-creator.mkisofs.patch
+Patch13: livecd-creator.typo.patch
+Patch15: livecd-tools.persistent-overlay.patch
+Patch16: livecd-creator.terminfo.patch
+Patch17: livecd-creator.minimal-dev.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
+BuildRequires: python
 Requires: anaconda-runtime
 Requires: coreutils
 #Requires: dosfstools >= 2.11-8
@@ -35,7 +48,7 @@ Requires: mkisofs
 Requires: pykickstart >= 0.43
 Requires: squashfs-tools
 Requires: util-linux
-Requires: yum >= 3.0.0
+Requires: yum >= 3.1.7
 %ifarch %{ix86} x86_64
 Requires: syslinux
 %endif
@@ -49,7 +62,7 @@ derived distributions such as RHEL, CentOS and others. See
 http://fedoraproject.org/wiki/FedoraLiveCD for more details.
 
 %prep
-%setup
+%setup -n %{real_name}
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -59,6 +72,13 @@ http://fedoraproject.org/wiki/FedoraLiveCD for more details.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
 
 %build
 %{__make} %{?_smp_mflags}
@@ -75,13 +95,53 @@ http://fedoraproject.org/wiki/FedoraLiveCD for more details.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING HACKING README
+%{_bindir}/image-creator
 %{_bindir}/livecd-creator
 %{_bindir}/livecd-iso-to-disk
 %{_bindir}/livecd-iso-to-pxeboot
-%{_prefix}/lib/livecd-creator/
 %{_datadir}/livecd-tools/
+%{_prefix}/lib/livecd-creator/
+%dir %{python_sitelib}/imgcreate/
+%{python_sitelib}/imgcreate/*.py
+%{python_sitelib}/imgcreate/*.pyc
+%{python_sitelib}/imgcreate/*.pyo
 
 %changelog
+* Fri Mar 12 2010 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-8
+- Remove selinux patch as it prevented building a LiveCD with selinux in a different state than enforcing
+
+* Wed Oct 28 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-7
+- Fix typo in creator.py
+- Fix "selinux --disabled"
+- Add the persistence feature (persistent overlay) - thanks to Douglas McClendon
+- Add terminfo bits to live initrd
+- Create a minimal /dev instead of bind mounting the host's /dev
+
+* Tue Oct 27 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-6
+- Fix livecd-iso-to-pxeboot.sh script: new location for pxelinux.0
+- Fix livecd-mayflower.pxeboot.patch: don't worry if $thingtomount is a regular file
+
+* Fri Sep 11 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-5
+- Add -T option to mkisofs. This should make the LiveCD compatible with 
+  non-Rock Ridge capable systems.
+
+* Fri Aug 28 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-4
+- Make sure livecd-creator is compatible with newer syslinux releases
+
+* Tue Aug 25 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-3
+- Ensure md5sum implantation is optionnal (patch from Ron Yorston)
+- Keep /etc/mayflower.conf file after initrd creation
+
+* Wed Aug 19 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-2
+- Fix how restorecon is called
+
+* Tue Aug 18 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 014-1
+- Updating to 014
+- Migrating required patches
+- Adding patch for xen (https://bugzilla.redhat.com/show_bug.cgi?id=470564)
+- Adding patch for extlinux from EPEL
+- Fix path for checkisomd5 in iso-to-disk utility (patch taken from EPEL)
+
 * Tue Apr 07 2009 Patrice Guay <patrice.guay@nanotechnologies.qc.ca> - 013-9
 - Add sd[a-z] to mayflower init's CDLABEL udev rules (patch submitted by Brandon Davidson)
 - Add support for libata (patch submitted by Brandon Davidson)
