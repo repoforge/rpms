@@ -29,6 +29,12 @@ BuildRequires: perl(Term::Size) >= 0.2
 BuildRequires: perl(Text::Wrap) >= 2001.0929
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
+Requires: perl(Check::ISA)
+Requires: perl(Class::ISA)
+Requires: perl(Devel::Size) >= 0.58
+Requires: perl(Sort::Naturally)
+Requires: perl(Term::Size) >= 0.2
+Requires: perl(Text::Wrap) >= 2001.0929
 
 
 ### remove autoreq Perl dependencies
