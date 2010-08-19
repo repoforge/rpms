@@ -7,7 +7,7 @@
 Summary: VoiceChatter (cross-platform voice communication) client
 Name: voicechatter
 Version: 1.4.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.voicechatter.org/
@@ -15,6 +15,7 @@ URL: http://www.voicechatter.org/
 Source: http://voicechatter.net/files/source/VoiceChatter-src-%{version}.tar.gz
 Patch0: voicechatter-1.4.2_libsndfile-flac.patch
 Patch1: voicechatter-1.4.2_init-script.patch
+Patch2: voicechatter-1.4.2_VCServerManager.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: atk-devel
@@ -57,6 +58,7 @@ This package includes the VoiceChatter server.
 %setup -n %{real_name}-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 CFLAGS="%{optflags}" %configure
@@ -107,5 +109,8 @@ cd ..
 %{_sysconfdir}/voicechatterserver
 
 %changelog
+* Thu Aug 19 2010 Steve Huff <shuff@vecna.org> - 1.4.2-2
+- Init script and VCServerManager patches from Steven Haigh.
+
 * Fri Jul 9 2010 Steve Huff <shuff@vecna.org> - 1.4.2-1
 - Initial package.

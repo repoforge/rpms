@@ -1,9 +1,10 @@
-diff -Naur VoiceChatter-1.4.2-orig/VCServerManager/vcsm VoiceChatter-1.4.2/VCServerManager/vcsm
---- VoiceChatter-1.4.2-orig/VCServerManager/vcsm	2009-06-13 11:23:47.000000000 -0400
-+++ VoiceChatter-1.4.2/VCServerManager/vcsm	2010-07-09 16:48:46.000000000 -0400
-@@ -2,20 +2,20 @@
+--- VoiceChatter-1.4.2-orig/VCServerManager/vcsm	2009-06-14 01:23:47.000000000 +1000
++++ VoiceChatter-1.4.2/VCServerManager/vcsm	2010-08-18 09:46:28.000000000 +1000
+@@ -1,26 +1,30 @@
+ #! /bin/bash
  #
- # VCServerManager             Start/Stop the VoiceChatter Master Server
+-# VCServerManager             Start/Stop the VoiceChatter Master Server
++# VCServerManager             Start/Stop the VoiceChatter Server Manager
  #
 -# chkconfig: 2345 80 05
 -# description: VCServerManager - Example init.d script for the VoiceChatter Master Server
@@ -15,20 +16,42 @@ diff -Naur VoiceChatter-1.4.2-orig/VCServerManager/vcsm VoiceChatter-1.4.2/VCSer
  
 -DAEMONDIR="/home/vcs/vcs"
 -DAEMON="/home/vcs/vcs/VCServerManager"
-+DAEMONDIR="/etc/voicechatterserver"
-+DAEMON="/usr/sbin/VCServerManager"
- NAME="VoiceChatter Master Server"
- RUNDIR="/var/run"
+-NAME="VoiceChatter Master Server"
+-RUNDIR="/var/run"
 -USER="vcs"
++#set this to the directory containing your server config file(s)
++CONFIGDIR="/etc/voicechatterserver"
++#set this to the path to the VCServerManager executable
++DAEMON="/usr/sbin/VCServerManager"
++#set this to the path to the VoiceChatter server executable
++SERVER="/usr/sbin/voicechatterserver"
++#this is purely aesthetic
++NAME="VoiceChatter Server Manager"
++#set this to the file for this daemon
++PIDFILE="/var/run/VCServerManager.pid"
++#set this to the user that should run the VC servers
 +USER="daemon"
  
  
 -ARGS="--daemon --servers /home/vcs/vcs"
-+ARGS="--daemon --servers ${DAEMONDIR}"
++ARGS="--daemon --servers $CONFIGDIR --exec $SERVER"
  #echo "Args: $ARGS"
  
- PIDFILE="$RUNDIR/VCServerManager.pid"
-@@ -38,7 +38,7 @@
+-PIDFILE="$RUNDIR/VCServerManager.pid"
+-#echo "Pid File: $PIDFILE"
+-
+ test -x $DAEMON || exit 0
+ 
+ start() {
+@@ -31,18 +35,18 @@
+ 			local PIDLIST=`ps -e | grep $PID`
+ 			#echo "pidlist = \"$PIDLIST\""
+ 			if test -n "$PIDLIST" ; then
+-				echo "VoiceChatter Master Server is already started"
++				echo "$NAME is already started"
+ 				return
+ 			fi
+ 		fi
  	fi
  
  #	start-stop-daemon --start --chuid $USER --pidfile $PIDFILE --exec $DAEMON -- $ARGS
@@ -37,8 +60,26 @@ diff -Naur VoiceChatter-1.4.2-orig/VCServerManager/vcsm VoiceChatter-1.4.2/VCSer
  	pgrep -n -f $DAEMON > $PIDFILE
  #	NEWPID=`cat $PIDFILE`
  #	echo "New PID: $NEWPID"
-@@ -80,4 +80,3 @@
- 	echo $"Usage: $0 {start|stop|restart}"
- 	exit 1
- esac
--
+-	echo "Started VoiceChatter Master Server"
++	echo "Started $NAME"
+ }
+ 
+ stop() {
+@@ -52,14 +56,14 @@
+ 			local PIDLIST=`ps -e | grep $PID`
+ 			if test -n PIDLIST ; then			
+ 				kill $PID
+-				echo "Killed the VoiceChatter Master Server"
++				echo "Killed the $NAME"
+ 			else
+-				echo "VoiceChatter Master Server not found"
++				echo "$NAME not found"
+ 			fi
+ 		fi
+ 		rm $PIDFILE
+ 	else
+-		echo "VoiceChatter Master Server not found"
++		echo "$NAME not found"
+ 	fi
+ 	
+ }

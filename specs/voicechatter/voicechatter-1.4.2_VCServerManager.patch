@@ -1,0 +1,158 @@
+--- VoiceChatter-1.4.2-orig/VCServerManager/VCServerManager.cpp	2009-08-30 10:42:12.000000000 +1000
++++ VoiceChatter-1.4.2/VCServerManager/VCServerManager.cpp	2010-08-18 09:41:00.000000000 +1000
+@@ -1,5 +1,6 @@
+ #include <stdio.h>
+ #include <sys/types.h>
++#include <sys/wait.h>
+ #include <unistd.h>
+ #include <string>
+ #include <vector>
+@@ -8,16 +9,19 @@
+ #include <stdlib.h>
+ 
+ 
+-char daemonDir[1024] = {0};
+-const char* VCServerExecutable = "voicechatterserver";
++char gConfigDir[1024] = {0};
++char gExecutablePath[1024] = {0};
++char gExecutableName[1024];
+ 
+ struct VCServer
+ {
+    VCServer()
+    {
++      mOldPID = -1;
+       mPID = -1;
+    }
+ 
++   pid_t mOldPID;
+    pid_t mPID;
+    std::string mConfigFile;
+ };
+@@ -31,11 +35,9 @@
+    if (pid == 0)
+    {
+       //child - execute the server
+-      char commandLine[1024];
+-      snprintf(commandLine, 1024, "%s/%s", daemonDir, VCServerExecutable);
+-      char* args[] = { (char*)VCServerExecutable, //"--daemon",
++      char* args[] = { (char*)gExecutableName, //"--daemon",
+          "--config", (char*)server.mConfigFile.c_str(), 0};
+-      printf("Executing \'%s\' with args", commandLine);
++      printf("Executing \'%s\' with args", gExecutablePath);
+       for (int i = 0; args[i] != NULL; i++)
+          printf(" %s", args[i]);
+       printf("\n");
+@@ -63,14 +65,15 @@
+          if (fd > 2)
+             close(fd);
+       }
+-      execvp(commandLine, args);
++      execvp(gExecutablePath, args);
+    }
++   server.mPID = pid;
+ }
+ 
+ void PopulateServers()
+ {
+    char buffer[1024];
+-   sprintf(buffer, "ls -1 %s/*.conf", daemonDir);
++   sprintf(buffer, "ls -1 %s/*.conf", gConfigDir);
+    
+    //search the daemon dir for conf files
+    FILE* pipeFile = popen(buffer, "r");
+@@ -89,7 +92,7 @@
+       if (buffer[len-1] == '\r' || buffer[len-1] == '\n')
+          buffer[--len] = '\0';
+       server.mConfigFile = buffer;
+-      //server.mConfigFile = daemonDir;
++      //server.mConfigFile = gConfigDir;
+       //server.mConfigFile += "/";
+       //server.mConfigFile += buffer;
+       gServers.push_back(server);
+@@ -109,7 +112,7 @@
+    while (fgets(buffer, 1024, pipeFile))
+    {
+       //only look at VC servers in the process list
+-      if (!strstr(buffer, VCServerExecutable))
++      if (!strstr(buffer, gExecutableName))
+          continue;
+ 
+       for (size_t i = 0; i < gServers.size(); i++)
+@@ -156,6 +159,7 @@
+    for (size_t i = 0; i < gServers.size(); i++)
+    {
+       VCServer& server = gServers[i];
++      server.mOldPID = server.mPID;
+       server.mPID = -1;
+    }
+    //and find them again
+@@ -163,7 +167,7 @@
+    while (fgets(buff, 1024, file))
+    {
+       //printf("::%s\n", buff);
+-      if (!strstr(buff, VCServerExecutable))
++      if (!strstr(buff, gExecutableName))
+          continue;
+       for (size_t i = 0; i < gServers.size(); i++)
+       {
+@@ -185,6 +189,13 @@
+       if (server.mPID > 0)
+          continue;
+       printf("%s is NOT running!\n", server.mConfigFile.c_str());
++      //wait on the child process so that it doesn't become a zombie
++      if (server.mOldPID > 0)
++      {
++         int status;
++         waitpid(server.mOldPID, &status, WNOHANG);
++         server.mOldPID = -1;
++      }
+       StartServer(server);
+    }
+ }
+@@ -245,9 +256,15 @@
+ 
+ int main(int argc, char** argv)
+ {
+-   strcpy(daemonDir, "/etc/voicechatterserver/");
+-   char cwd[1024];
+-   getcwd(cwd, 1024);
++   strcpy(gConfigDir, "/etc/voicechatterserver/");
++   strcpy(gExecutableName, "voicechatterserver");
++
++   getcwd(gExecutablePath, 1024);
++   size_t pathLen = strlen(gExecutablePath);
++   if (gExecutablePath[pathLen-1] != '/')
++      gExecutablePath[pathLen++] = '/';
++   strncat(gExecutablePath, gExecutableName, 1023-pathLen);
++   
+ //   printf("main: CWD = %s\n", cwd);
+ //   printf("argv0 is %s\n", argv[0]);
+ 
+@@ -261,14 +278,24 @@
+       if (strstr(argv[i], "--servers") && i+1 < argc)
+       {
+          i++;
+-         strncpy(daemonDir, argv[i], 1023);
++         strncpy(gConfigDir, argv[i], 1023);
++      }
++      if (strstr(argv[i], "--exec") && i+1 < argc)
++      {
++        i++;
++        strncpy(gExecutablePath, argv[i], 1023);
++        char* nameStart = strrchr(gExecutablePath, '/');
++        if (nameStart)
++           strncpy(gExecutableName, nameStart+1, 1023);
++        else
++           strncpy(gExecutableName, gExecutablePath, 1023);
+       }
+    }
+ 
+    PopulateServers();
+    while (true)
+    {
+-      sleep(60);
++      sleep(15);
+       CheckProcesses();
+    }
+    return 0;
