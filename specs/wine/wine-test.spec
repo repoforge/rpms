@@ -20,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.0
+Version: 1.3.1
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -464,6 +464,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hh.exe.so
 %{_libdir}/wine/icinfo.exe.so
 %{_libdir}/wine/iexplore.exe.so
+%{_libdir}/wine/ipconfig.exe.so
 %{_libdir}/wine/lodctr.exe.so
 %{_libdir}/wine/mshta.exe.so
 %{_libdir}/wine/msiexec.exe.so
@@ -585,6 +586,17 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3d9.dll.so
 %{_libdir}/wine/d3d10.dll.so
 %{_libdir}/wine/d3d10core.dll.so
+%{_libdir}/wine/d3dcompiler_33.dll.so
+%{_libdir}/wine/d3dcompiler_34.dll.so
+%{_libdir}/wine/d3dcompiler_35.dll.so
+%{_libdir}/wine/d3dcompiler_36.dll.so
+%{_libdir}/wine/d3dcompiler_37.dll.so
+%{_libdir}/wine/d3dcompiler_38.dll.so
+%{_libdir}/wine/d3dcompiler_39.dll.so
+%{_libdir}/wine/d3dcompiler_40.dll.so
+%{_libdir}/wine/d3dcompiler_41.dll.so
+%{_libdir}/wine/d3dcompiler_42.dll.so
+%{_libdir}/wine/d3dcompiler_43.dll.so
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
 %{_libdir}/wine/d3dx9_24.dll.so
@@ -606,6 +618,17 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx9_40.dll.so
 %{_libdir}/wine/d3dx9_41.dll.so
 %{_libdir}/wine/d3dx9_42.dll.so
+%{_libdir}/wine/d3dx10_33.dll.so
+%{_libdir}/wine/d3dx10_34.dll.so
+%{_libdir}/wine/d3dx10_35.dll.so
+%{_libdir}/wine/d3dx10_36.dll.so
+%{_libdir}/wine/d3dx10_37.dll.so
+%{_libdir}/wine/d3dx10_38.dll.so
+%{_libdir}/wine/d3dx10_39.dll.so
+%{_libdir}/wine/d3dx10_40.dll.so
+%{_libdir}/wine/d3dx10_41.dll.so
+%{_libdir}/wine/d3dx10_42.dll.so
+%{_libdir}/wine/d3dx10_43.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -639,6 +662,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dwmapi.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/dxgi.dll.so
+%{_libdir}/wine/explorerframe.dll.so
 %{_libdir}/wine/faultrep.dll.so
 %{_libdir}/wine/fltlib.dll.so
 %{_libdir}/wine/fwpuclnt.dll.so
@@ -945,6 +969,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Fri Aug 13 2010 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Updated to release 1.3.0.
 

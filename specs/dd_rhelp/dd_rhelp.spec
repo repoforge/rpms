@@ -3,7 +3,7 @@
 
 Summary: Helper script for ddrescue
 Name: dd_rhelp
-Version: 0.0.6
+Version: 0.1.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -30,21 +30,22 @@ is shown in an ASCII picture of your device being rescued.
 %setup
 
 %build
-%configure
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m0755 dd_rhelp %{buildroot}%{_bindir}/dd_rhelp
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING FAQ NEWS README THANKS TODO doc/example.txt
+%doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README* THANKS TODO doc/example.txt
 %{_bindir}/dd_rhelp
 
 %changelog
+* Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 0.1.2-1
+- Updated to release 0.1.2.
+
 * Thu Nov 01 2007 Dag Wieers <dag@wieers.com> - 0.0.6-1
 - Initial package. (using DAR)

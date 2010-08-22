@@ -3,7 +3,7 @@
 
 Summary: Library implementing the SSH2 protocol
 Name: libssh2
-Version: 1.2.6
+Version: 1.2.7
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libssh2.la
 
 %changelog
+* Wed Aug 18 2010 Dag Wieers <dag@wieers.com> - 1.2.7-1
+- Updated to release 1.2.7.
+
 * Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 1.2.6-1
 - Updated to release 1.2.6.
 

@@ -4,7 +4,6 @@
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
-
 %{?el4:%define _without_stackprotector 1}
 %{?el3:%define _without_stackprotector 1}
 %{?rh9:%define _without_stackprotector 1}
@@ -15,7 +14,7 @@
 
 Summary: Thorough, stand-alone memory tester
 Name: memtest86+
-Version: 4.00
+Version: 4.10
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
@@ -66,6 +65,9 @@ fi
 %{_prefix}/%{name}-%{version}
 
 %changelog
+* Sun Aug 22 2010 Dag Wieers <dag@wieers.com> - 4.10-1
+- Updated to release 4.10.
+
 * Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 4.00-1
 - Updated to release 4.00.
 

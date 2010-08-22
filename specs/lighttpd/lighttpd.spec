@@ -9,14 +9,14 @@
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.4.26
+Version: 1.4.27
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
 
 Source: http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-%{version}.tar.bz2
-Patch0: lighttpd-1.4.26-defaultconf.patch
+Patch0: lighttpd-1.4.27-defaultconf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pcre-devel, bzip2-devel, zlib-devel, readline-devel
@@ -107,11 +107,17 @@ EOF
 %{__make} install DESTDIR="%{buildroot}"
 
 ### Install included init script and sysconfig entry
-%{__install} -Dp -m0755 doc/rc.lighttpd.redhat %{buildroot}%{_sysconfdir}/rc.d/init.d/lighttpd
-%{__install} -Dp -m0644 doc/sysconfig.lighttpd %{buildroot}%{_sysconfdir}/sysconfig/lighttpd
+%{__install} -Dp -m0755 doc/initscripts/rc.lighttpd.redhat %{buildroot}%{_initrddir}/lighttpd
+%{__install} -Dp -m0644 doc/initscripts/sysconfig.lighttpd %{buildroot}%{_sysconfdir}/sysconfig/lighttpd
 
 ### Install (*patched above*) sample config file
-%{__install} -Dp -m0640 doc/lighttpd.conf %{buildroot}%{_sysconfdir}/lighttpd/lighttpd.conf
+%{__install} -Dp -m0640 doc/config/lighttpd.conf %{buildroot}%{_sysconfdir}/lighttpd/lighttpd.conf
+
+%{__install} -Dp -m0640 doc/config/modules.conf %{buildroot}%{_sysconfdir}/lighttpd/modules.conf
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/lighttpd/conf.d/
+%{__cp} -av doc/config/conf.d/*.conf %{buildroot}%{_sysconfdir}/lighttpd/conf.d/
+
+%{__install} -Dp -m0640 doc/config/vhosts.d/vhosts.template %{buildroot}%{_sysconfdir}/lighttpd/vhosts.d/vhosts.template
 
 ### Install our own logrotate entry
 %{__install} -Dp -m0644 lighttpd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/lighttpd
@@ -152,15 +158,18 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING NEWS README
-%doc doc/*.txt doc/lighttpd.conf doc/lighttpd.user
+%doc AUTHORS COPYING INSTALL NEWS README
+%doc doc/*.txt doc/config/lighttpd.conf tests/lighttpd.user
 #doc %{_mandir}/man1/lighttpd.1*
 %doc %{_mandir}/man8/lighttpd.8*
 %dir %{_sysconfdir}/lighttpd/
 %config(noreplace) %{_sysconfdir}/lighttpd/lighttpd.conf
+%config(noreplace) %{_sysconfdir}/lighttpd/modules.conf
+%config(noreplace) %{_sysconfdir}/lighttpd/conf.d/
+%config(noreplace) %{_sysconfdir}/lighttpd/vhosts.d/
 %config(noreplace) %{_sysconfdir}/logrotate.d/lighttpd
 %config(noreplace) %{_sysconfdir}/sysconfig/lighttpd
-%{_sysconfdir}/rc.d/init.d/lighttpd
+%config %{_initrddir}/lighttpd
 %{_sbindir}/lighttpd
 %{_sbindir}/lighttpd-angel
 %{_libdir}/lighttpd/
@@ -188,6 +197,9 @@ fi
 %{_libdir}/lighttpd/mod_fastcgi.so
 
 %changelog
+* Wed Aug 18 2010 Dag Wieers <dag@wieers.com> - 1.4.27-1
+- Updated to release 1.4.27.
+
 * Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 1.4.26-1
 - Updated to release 1.4.26.
 

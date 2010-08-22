@@ -6,12 +6,13 @@
 Summary: Untrusted/encrypted backup using rsync algorithm
 Name: duplicity
 Version: 0.4.11
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/duplicity/
 
 Source: http://savannah.nongnu.org/download/duplicity/duplicity-%{version}.tar.gz
+Patch0: duplicity-0.4.11-max_size.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.4, librsync-devel >= 0.9.6
@@ -32,6 +33,7 @@ directories, symbolic links, fifos, etc., but not hard links.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 %{__python} setup.py build
@@ -54,6 +56,9 @@ directories, symbolic links, fifos, etc., but not hard links.
 %ghost %{python_sitearch}/duplicity/*.pyo
 
 %changelog
+* Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 0.4.11-2
+- Added patch increase max_size to at least 512. (Luca Gibelli)
+
 * Sun Jun 22 2008 Dries Verachtert <dries@ulyssis.org> - 0.4.11-1
 - Updated to release 0.4.11.
 
