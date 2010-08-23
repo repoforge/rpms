@@ -7,7 +7,7 @@
 Summary: VoiceChatter (cross-platform voice communication) client
 Name: voicechatter
 Version: 1.4.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.voicechatter.org/
@@ -88,10 +88,10 @@ cd ..
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
+%post server
 /sbin/chkconfig --add vcsm
 
-%preun
+%preun server
 /sbin/chkconfig --del vcsm
 
 %files
@@ -109,6 +109,9 @@ cd ..
 %{_sysconfdir}/voicechatterserver
 
 %changelog
+* Mon Aug 23 2010 Steve Huff <shuff@vecna.org> - 1.4.2-3
+- D'oh, the chkconfig scripts were for the server package, not the client.
+
 * Thu Aug 19 2010 Steve Huff <shuff@vecna.org> - 1.4.2-2
 - Init script and VCServerManager patches from Steven Haigh.
 
