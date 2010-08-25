@@ -4,8 +4,8 @@
 
 Summary: Parallel shell and copy
 Name: massh
-%define real_version 1.0-3
-Version: 1.0.3
+%define real_version 1.0-4
+Version: 1.0.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -23,7 +23,7 @@ used to define sets of hosts that Massh and Pingz can use. Pingz is a mass
 pinger/resolver that can use Ambit ranges or files for host sets.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup -n %{name}-1.0
 
 ### Put documentation in place
 %{__mv} -v usr/local/share/doc/massh/* .
@@ -62,5 +62,8 @@ pinger/resolver that can use Ambit ranges or files for host sets.
 %dir %{_localstatedir}/massh/
 
 %changelog
+* Wed Aug 25 2010 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Fri Aug 13 2010 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Initial package. (using DAR)

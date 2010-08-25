@@ -8,17 +8,14 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.1.1
-Release: 2%{?dist}
+Version: 1.7.2.2
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
 
 Source0: http://kernel.org/pub/software/scm/git/git-%{version}.tar.bz2
 Source1: git-init.el
-Source2: git.xinetd.in
-Source3: git.conf.httpd
-Source4: git-gui.desktop
 Source5: gitweb.conf.in
 Patch0: git-1.5-gitweb-home-link.patch
 ### https://bugzilla.redhat.com/490602
@@ -182,15 +179,57 @@ NO_PYTHON = 1
 ETC_GITCONFIG = %{_sysconfdir}/gitconfig
 DESTDIR = %{buildroot}
 INSTALL = install -p
-GITWEB_PROJECTROOT = %{_var}/lib/git
+GITWEB_PROJECTROOT = %{_localstatedir}/lib/git
 htmldir = %{_docdir}/%{name}-%{version}
 prefix = %{_prefix}
 INSTALLDIRS = vendor
 mandir = %{_mandir}
 WITH_OWN_SUBPROCESS_PY = YesPlease
+ASCIIDOC_EXTRA = --unsafe
 EOF
 
-%{__perl} -pi -e "s|@PROJECTROOT@|%{_localstatedir}/lib/git|g" %{SOURCE5} >gitweb.conf
+%{__cat} <<EOF >git.xinetd
+# default: off
+# description: The git daemon allows git repositories to be exported using \
+#       the git:// protocol.
+
+service git
+{
+        disable         = yes
+        socket_type     = stream
+        wait            = no
+        user            = nobody
+        server          = %{_datadir}/git-core/git-daemon
+        server_args     = --base-path=%{_localstatedir}/lib/git --export-all --user-path=public_git --syslog --inetd --verbose
+        log_on_failure  += USERID
+        # xinetd does not enable IPv6 by default
+        flags           = IPv6
+}
+EOF
+
+%{__cat} <<EOF >git-gui.desktop
+[Desktop Entry]
+Name=Git GUI
+GenericName=Git GUI
+Comment=A graphical interface to Git
+Exec=git gui
+Icon=%{_datadir}/git-gui/lib/git-gui.ico
+Terminal=false
+Type=Application
+Categories=Development;
+EOF
+
+%{__cat} <<EOF >gitweb/gitweb.httpd
+Alias /git %{_datadir}/gitweb
+
+<Directory %{_datadir}/gitweb>
+    Options +ExecCGI
+    AddHandler cgi-script .cgi
+    DirectoryIndex gitweb.cgi
+</Directory>
+EOF
+
+%{__sed} -e "s|@PROJECTROOT@|%{_localstatedir}/lib/git|g" %{SOURCE5} >gitweb.conf
 
 %build
 %{__make} %{?_smp_mflags} all doc
@@ -217,28 +256,22 @@ done
 ### Perl installation
 #%makeinstall -C perl INSTALLDIRS="vendor"
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/git/
-%{__install} -p -m0644 gitweb/*.{css,js,png} %{buildroot}%{_localstatedir}/www/git/
-%{__install} -p -m0755 gitweb/gitweb.cgi %{buildroot}%{_localstatedir}/www/git/
-%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/httpd/conf.d/git.conf
+#%{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/git/static/
+#%{__install} -p -m0644 gitweb/*.{css,js,png} %{buildroot}%{_localstatedir}/www/git/
+#%{__install} -p -m0755 gitweb/gitweb.cgi %{buildroot}%{_localstatedir}/www/git/
+#%{__cp} -av gitweb/static/* %{buildroot}%{_localstatedir}/www/git/static/
+%{__install} -Dp -m0644 gitweb/gitweb.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/git.conf
 %{__install} -Dp -m0644 gitweb.conf %{buildroot}%{_sysconfdir}/gitweb.conf
 
-mkdir -p %{buildroot}%{_var}/lib/git
-mkdir -p %{buildroot}%{_sysconfdir}/xinetd.d
-# On EL <= 5, xinetd does not enable IPv6 by default
-enable_ipv6="        # xinetd does not enable IPv6 by default
-        flags           = IPv6"
-perl -p \
-    -e "s|\@GITCOREDIR\@|%{gitcoredir}|g;" \
-    -e "s|\@BASE_PATH\@|%{_var}/lib/git|g;" \
-    -e "s|^}|$enable_ipv6\n$&|;" \
-    %{SOURCE2} > %{buildroot}%{_sysconfdir}/xinetd.d/git
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/git/
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/xinetd.d/
+%{__install} -Dp -m0644 git.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/git
 
 %{__install} -Dp -m0644 contrib/completion/git-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/git
 
 # Move contrib/hooks out of %%docdir and make them executable
-mkdir -p %{buildroot}%{_datadir}/git-core/contrib
-mv contrib/hooks %{buildroot}%{_datadir}/git-core/contrib
+%{__install} -d -m0755 %{buildroot}%{_datadir}/git-core/contrib/
+%{__mv} -v contrib/hooks %{buildroot}%{_datadir}/git-core/contrib
 chmod +x %{buildroot}%{_datadir}/git-core/contrib/hooks/*
 pushd contrib > /dev/null
 ln -s ../../../git-core/contrib/hooks
@@ -247,7 +280,7 @@ popd > /dev/null
 desktop-file-install \
     --vendor %{desktop_vendor} \
     --dir=%{buildroot}%{_datadir}/applications \
-    %{SOURCE4}
+    git-gui.desktop
 
 ### Quiet some rpmlint complaints
 chmod -R g-w %{buildroot}
@@ -335,10 +368,10 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 
 %files -n gitweb
 %defattr(-, root, root, 0755)
-%doc gitweb/INSTALL gitweb/README
+%doc gitweb/GITWEB-BUILD-OPTIONS gitweb/INSTALL gitweb/README
 %config(noreplace) %{_sysconfdir}/gitweb.conf
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/git.conf
-%{_localstatedir}/www/git/
+%{_datadir}/gitweb/
 
 %files -n perl-Git
 %defattr(-, root, root, 0755)
@@ -346,6 +379,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 1.7.2.2-1
+- Updated to release 1.7.2.2.
+
 * Fri Jul 09 2010 Dag Wieers <dag@wieers.com> - 1.7.1.1-2
 - Added missing documentation.
 

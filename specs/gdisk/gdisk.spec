@@ -3,7 +3,7 @@
 
 Summary: Fdisk-like partitioning tool for GPT disks
 Name: gdisk
-Version: 0.6.8
+Version: 0.6.10
 Release: 1%{?dist}
 License: GPLv2
 Group: System Environment/Base
@@ -46,5 +46,8 @@ tables, and the ability to convert MBR disks to GPT format.
 %{_sbindir}/sgdisk
 
 %changelog
+* Mon Aug 23 2010 Dag Wieers <dag@wieers.com> - 0.6.10-1
+- Updated to release 0.6.10.
+
 * Mon Aug 16 2010 Dag Wieers <dag@wieers.com> - 0.6.8-1
 - Initial package. (using DAR)

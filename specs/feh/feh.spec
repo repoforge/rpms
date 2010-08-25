@@ -6,13 +6,13 @@
 
 Summary: Fast command line image viewer using Imlib2
 Name: feh
-Version: 1.8
+Version: 1.9
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Multimedia
 URL: http://linuxbrit.co.uk/feh/
 
-Source: https://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
+Source: http://derf.homelinux.org/projects/feh/feh-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: giblib-devel
 BuildRequires: imlib2-devel
@@ -59,5 +59,8 @@ export CFLAGS="%{optflags}"
 %exclude %{_docdir}/feh/
 
 %changelog
+* Wed Aug 25 2010 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Mon Jun 28 2010 Dag Wieers <dag@wieers.com> - 1.8-1
 - Initial package. (using DAR)

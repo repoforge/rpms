@@ -8,7 +8,7 @@ Version: 0.1.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
-URL: http://www.izzysoft.de/
+URL: http://projects.izzysoft.de/trac/ext3undel
 
 Source: ext3undel-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

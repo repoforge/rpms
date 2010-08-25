@@ -1,0 +1,87 @@
+--- asciidoc-8.6.1/asciidoc.py.orig	2010-08-23 10:41:48.000000000 +0200
++++ asciidoc-8.6.1/asciidoc.py	2010-08-23 10:45:03.000000000 +0200
+@@ -660,8 +660,10 @@
+         if not found:
+             if localapp():
+                 found = findfilter(filtername, APP_DIR, cmd)
+-            else:
++            if not found:
+                 found = findfilter(filtername, CONF_DIR, cmd)
++            if not found:
++                found = findfilter(filtername, DATA_DIR, cmd)
+     else:
+         if os.path.isfile(cmd):
+             found = cmd
+@@ -5202,6 +5204,7 @@
+ USER_DIR = None             # ~/.asciidoc
+ # Global configuration files directory (set by Makefile build target).
+ CONF_DIR = '/etc/asciidoc'
++DATA_DIR = '/usr/share/asciidoc'
+ HELP_FILE = 'help.conf'     # Default (English) help file.
+ 
+ # Globals
+--- asciidoc-8.6.1/Makefile.in.orig	2010-08-23 10:44:07.000000000 +0200
++++ asciidoc-8.6.1/Makefile.in	2010-08-23 10:47:46.000000000 +0200
+@@ -23,6 +23,7 @@
+ VPATH = @srcdir@
+ 
+ ASCIIDOCCONF = $(sysconfdir)/asciidoc
++ASCIIDOCDATA = $(datadir)/asciidoc
+ 
+ prog = asciidoc.py a2x.py
+ progdir = $(bindir)
+@@ -35,25 +36,26 @@
+ conf = $(wildcard *.conf)
+ confdir = $(ASCIIDOCCONF)
+ 
+-filtersdir = $(ASCIIDOCCONF)/filters
++filtersdir = $(ASCIIDOCDATA)/filters
++filtersconfdir = $(ASCIIDOCCONF)/filters
+ 
+ codefilter = filters/code/code-filter.py
+ codefilterdir = $(filtersdir)/code
+ codefilterconf = filters/code/code-filter.conf
+-codefilterconfdir = $(filtersdir)/code
++codefilterconfdir = $(filtersconfdir)/code
+ 
+ graphvizfilter = filters/graphviz/graphviz2png.py
+ graphvizfilterdir = $(filtersdir)/graphviz
+ graphvizfilterconf = filters/graphviz/graphviz-filter.conf
+-graphvizfilterconfdir = $(filtersdir)/graphviz
++graphvizfilterconfdir = $(filtersconfdir)/graphviz
+ 
+ musicfilter = filters/music/music2png.py
+ musicfilterdir = $(filtersdir)/music
+ musicfilterconf = filters/music/music-filter.conf
+-musicfilterconfdir = $(filtersdir)/music
++musicfilterconfdir = $(filtersconfdir)/music
+ 
+ sourcefilterconf = filters/source/source-highlight-filter.conf
+-sourcefilterconfdir = $(filtersdir)/source
++sourcefilterconfdir = $(filtersconfdir)/source
+ 
+ docbook = $(wildcard docbook-xsl/*.xsl)
+ docbookdir = $(ASCIIDOCCONF)/docbook-xsl
+@@ -128,6 +130,13 @@
+ 		chmod +x $$f; \
+ 	done
+ 
++fixdatapath:
++	@for f in $(prog); do \
++		echo "Fixing DATA_DIR in $$f"; \
++		$(SED) "s#^DATA_DIR = '.*'#DATA_DIR = '$(ASCIIDOCDATA)'#; s#^DATA_DIR=.*#DATA_DIR=$(ASCIIDOCDATA)#" $$f > $$f.out; \
++		mv $$f.out $$f; \
++	done
++
+ install-vim:
+ 	@for d in $(DESTDIR)/$(vimdir) /etc/vim; do \
+ 		if ! test -d $$d; then continue; fi ; \
+@@ -147,7 +156,7 @@
+ 	done
+ 
+ 
+-build: fixconfpath
++build: fixconfpath fixdatapath
+ 
+ install: all $(PROGTARGETS) $(DATATARGETS) progsymlink install-vim
+ 

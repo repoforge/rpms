@@ -1,8 +1,6 @@
 # $Id: wine-1.0.spec -1   $
 # Authority: dag
 
-# Tag: rft
-
 %define _without_freeglut 0
 %define _without_glut 1
 
@@ -20,7 +18,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.1
+Version: 1.2
 Release: 2%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -175,7 +173,7 @@ you will need to install %{name}-devel.
 
 %patch1
 %patch100
-#patch1000
+%patch1000
 
 %{__cat} <<EOF >wine-config.desktop
 [Desktop Entry]
@@ -329,7 +327,6 @@ export CFLAGS="%{optflags} -Wno-error"
 
 %{__install} -Dp -m0755 wine.sysv %{buildroot}%{_initrddir}/wine
 %{__install} -Dp -m0644 wine.ld.conf %{buildroot}%{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
-
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/wine/gecko/wine_gecko-1.0.0-x86.cab
 
 desktop-file-install --delete-original             \
@@ -449,7 +446,6 @@ update-desktop-database &>/dev/null || :
 ### exe16.so
 %{_libdir}/wine/gdi.exe16.so
 %{_libdir}/wine/krnl386.exe16.so
-%{_libdir}/wine/rundll.exe16.so
 %{_libdir}/wine/user.exe16.so
 %{_libdir}/wine/winhelp.exe16.so
 
@@ -468,7 +464,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/hh.exe.so
 %{_libdir}/wine/icinfo.exe.so
 %{_libdir}/wine/iexplore.exe.so
-%{_libdir}/wine/ipconfig.exe.so
 %{_libdir}/wine/lodctr.exe.so
 %{_libdir}/wine/mshta.exe.so
 %{_libdir}/wine/msiexec.exe.so
@@ -509,7 +504,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
 %{_libdir}/wine/write.exe.so
-%{_libdir}/wine/wscript.exe.so
 %{_libdir}/wine/xcopy.exe.so
 
 ### cpl
@@ -590,17 +584,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3d9.dll.so
 %{_libdir}/wine/d3d10.dll.so
 %{_libdir}/wine/d3d10core.dll.so
-%{_libdir}/wine/d3dcompiler_33.dll.so
-%{_libdir}/wine/d3dcompiler_34.dll.so
-%{_libdir}/wine/d3dcompiler_35.dll.so
-%{_libdir}/wine/d3dcompiler_36.dll.so
-%{_libdir}/wine/d3dcompiler_37.dll.so
-%{_libdir}/wine/d3dcompiler_38.dll.so
-%{_libdir}/wine/d3dcompiler_39.dll.so
-%{_libdir}/wine/d3dcompiler_40.dll.so
-%{_libdir}/wine/d3dcompiler_41.dll.so
-%{_libdir}/wine/d3dcompiler_42.dll.so
-%{_libdir}/wine/d3dcompiler_43.dll.so
 %{_libdir}/wine/d3dim.dll.so
 %{_libdir}/wine/d3drm.dll.so
 %{_libdir}/wine/d3dx9_24.dll.so
@@ -622,17 +605,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx9_40.dll.so
 %{_libdir}/wine/d3dx9_41.dll.so
 %{_libdir}/wine/d3dx9_42.dll.so
-%{_libdir}/wine/d3dx10_33.dll.so
-%{_libdir}/wine/d3dx10_34.dll.so
-%{_libdir}/wine/d3dx10_35.dll.so
-%{_libdir}/wine/d3dx10_36.dll.so
-%{_libdir}/wine/d3dx10_37.dll.so
-%{_libdir}/wine/d3dx10_38.dll.so
-%{_libdir}/wine/d3dx10_39.dll.so
-%{_libdir}/wine/d3dx10_40.dll.so
-%{_libdir}/wine/d3dx10_41.dll.so
-%{_libdir}/wine/d3dx10_42.dll.so
-%{_libdir}/wine/d3dx10_43.dll.so
 %{_libdir}/wine/d3dxof.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
@@ -666,12 +638,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/dwmapi.dll.so
 %{_libdir}/wine/dxdiagn.dll.so
 %{_libdir}/wine/dxgi.dll.so
-%{_libdir}/wine/explorerframe.dll.so
 %{_libdir}/wine/faultrep.dll.so
 %{_libdir}/wine/fltlib.dll.so
 %{_libdir}/wine/fwpuclnt.dll.so
 %{_libdir}/wine/fusion.dll.so
-%{_libdir}/wine/gameux.dll.so
 %{_libdir}/wine/gdi32.dll.so
 %{_libdir}/wine/gdiplus.dll.so
 %{!?_without_opengl:%{_libdir}/wine/glu32.dll.so}
@@ -731,7 +701,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mssip32.dll.so
 %{_libdir}/wine/mstask.dll.so
 %{_libdir}/wine/msvcirt.dll.so
-%{_libdir}/wine/msvcp90.dll.so
 %{_libdir}/wine/msvcr100.dll.so
 %{_libdir}/wine/msvcr70.dll.so
 %{_libdir}/wine/msvcr71.dll.so
@@ -973,14 +942,8 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
-* Tue Aug 24 2010 Dag Wieers <dag@wieers.com> - 1.3.1-2
+* Tue Aug 24 2010 Dag Wieers <dag@wieers.com> - 1.2-2
 - Added gecko cabinet file. (Bart Schaefer)
-
-* Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 1.3.1-1
-- Updated to release 1.3.1.
-
-* Fri Aug 13 2010 Dag Wieers <dag@wieers.com> - 1.3.0-1
-- Updated to release 1.3.0.
 
 * Thu Aug 12 2010 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.

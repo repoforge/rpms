@@ -3,7 +3,7 @@
 
 Summary: Tool to investigate deleted content on ext3 filesystem for recovery
 Name: ext3grep
-Version: 0.10.1
+Version: 0.10.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -40,6 +40,9 @@ possibly recover it.
 %{_bindir}/ext3grep
 
 %changelog
+* Sun Aug 22 2010 Dag Wieers <dag@wieers.com> - 0.10.2-1
+- Updated to release 0.10.2.
+
 * Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 0.10.1-1
 - Updated to release 0.10.1.
 
