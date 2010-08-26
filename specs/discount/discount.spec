@@ -2,15 +2,19 @@
 # Authority: shuff
 # Upstream: David Parsons <orc$pell,portland,or,us>
 
+# update these when getting a new version
+%define gitcommit gecf0b01
+%define githash 9dabdb8
+
 Summary: C compiler for Markdown
 Name: discount
-Version: 1.6.3
+Version: 1.6.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/
 
-Source: http://www.pell.portland.or.us/~orc/Code/discount/discount-%{version}.tar.gz
+Source: http://download.github.com/Orc-discount-v%{version}-0-%{gitcommit}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils, gcc, make
@@ -47,7 +51,7 @@ Install this package if you want to develop software that uses the Discount libr
 
 
 %prep
-%setup
+%setup -n Orc-discount-%{githash}
 
 %build
 ./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --libdir=%{_libdir} --mandir=%{_mandir} --enable-dl-tag --enable-pandoc-header --enable-superscript --relaxed-emphasis
@@ -67,20 +71,22 @@ Install this package if you want to develop software that uses the Discount libr
 %files
 %defattr(-, root, root, 0755)
 %doc COPYRIGHT INSTALL README VERSION
-%doc %{_mandir}/man1/markdown.1.gz
+%doc %{_mandir}/man1/*
 %doc %{_mandir}/man7/*
 %{_bindir}/*
 %{_libdir}/*
-%exclude %{_bindir}/theme
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/theme.1.gz
 %doc %{_mandir}/man3/*
-%{_bindir}/theme
 %{_includedir}/*
 
 %changelog
+* Thu Aug 26 2010 Steve Huff <shuff@vecna.org> - 1.6.6-1
+- Updated to version 1.6.6.
+- Source moved to github.
+- Why did I put theme in the devel package?
+
 * Tue Mar 09 2010 Steve Huff <shuff@vecna.org> - 1.6.3-1
 - Updated to version 1.6.3.
 
