@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.1
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -200,6 +200,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Sat Aug 29 2010 Christoph Maser <cmr@financial.com> - 3.2.1-6
+- remove "-p pidfile" from call to killproc in initscript to make
+  it el4 compatible
+
 * Fri Jun 18 2010 Christoph Maser <cmr@financial.com> - 3.2.1-5
 - Run configtest with correct user instead of root
 - Use --user in init script call to daemon function

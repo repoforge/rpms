@@ -44,7 +44,7 @@ start() {
 
 stop() {
     echo -n $"Stopping $prog: "
-    killproc -p ${pidfile} -d 10 $exec
+    killproc -d 10 $exec
     retval=$?
     echo
     [ $retval -eq 0 ] && rm -f $lockfile
