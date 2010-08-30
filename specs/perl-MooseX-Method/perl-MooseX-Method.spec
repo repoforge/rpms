@@ -73,6 +73,9 @@ doesn't get much Moosier than this.
 %prep
 %setup -n %{real_name}-%{version}
 
+# turn off CPAN dep checking
+sed -i -e '/^auto_install;/d' Makefile.PL
+
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
