@@ -6,7 +6,7 @@
 
 Summary: Encrypted pass-thru filesystem in userspace
 Name: fuse-encfs
-Version: 1.6.0
+Version: 1.7.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
@@ -63,6 +63,9 @@ it does not use NFS.
 %exclude %{_libdir}/libencfs.la
 
 %changelog
+* Mon Aug 30 2010 Dag Wieers <dag@wieers.com> - 1.7.0-1
+- Updated to release 1.7.0.
+
 * Wed Jul 07 2010 Dag Wieers <dag@wieers.com> - 1.6.0-1
 - Updated to release 1.6.0.
 

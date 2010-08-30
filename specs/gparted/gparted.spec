@@ -6,7 +6,7 @@
 Summary: Gnome Partition Editor
 Name: gparted
 Version: 0.4.8
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2+
 Group: Applications/System
 URL: http://gparted.sourceforge.net/
@@ -36,7 +36,7 @@ will be detected at runtime and don't require a rebuild of GParted
 %setup
 %patch0 -p0 -b .icon
 
-%{__perl} -pi -e 's|@gksuprog@ @installdir@|%{_bindir}|;' gparted.desktop.in.in
+%{__perl} -pi -e 's|\@gksuprog\@ \@installdir\@|%{_bindir}|;' gparted.desktop.in.in
 
 sed -i '/^lv$/d' po/LINGUAS
 
@@ -115,6 +115,9 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %exclude %{_localstatedir}/lib/scrollkeeper/
 
 %changelog
+* Sat Aug 28 2010 Dag Wieers <dag@wieers.com> - 0.4.8-4
+- Fix desktop file for mortals like us.
+
 * Thu Aug 19 2010 Dag Wieers <dag@wieers.com> - 0.4.8-3
 - Fix desktop file for mortals like us.
 
