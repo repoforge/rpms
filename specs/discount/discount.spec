@@ -2,19 +2,15 @@
 # Authority: shuff
 # Upstream: David Parsons <orc$pell,portland,or,us>
 
-# update these when getting a new version
-%define gitcommit gecf0b01
-%define githash 9dabdb8
-
 Summary: C compiler for Markdown
 Name: discount
-Version: 1.6.6
+Version: 1.6.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/
 
-Source: http://download.github.com/Orc-discount-v%{version}-0-%{gitcommit}.tar.gz
+Source: http://www.pell.portland.or.us/~orc/Code/discount/discount-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils, gcc, make
@@ -51,7 +47,7 @@ Install this package if you want to develop software that uses the Discount libr
 
 
 %prep
-%setup -n Orc-discount-%{githash}
+%setup
 
 %build
 ./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --libdir=%{_libdir} --mandir=%{_mandir} --enable-dl-tag --enable-pandoc-header --enable-superscript --relaxed-emphasis
@@ -82,6 +78,10 @@ Install this package if you want to develop software that uses the Discount libr
 %{_includedir}/*
 
 %changelog
+* Tue Aug 31 2010 Steve Huff <shuff@vecna.org> - 1.6.7-1
+- Updated to version 1.6.7.
+- Source is back on the original server for the time being (thanks David!)
+
 * Thu Aug 26 2010 Steve Huff <shuff@vecna.org> - 1.6.6-1
 - Updated to version 1.6.6.
 - Source moved to github.
