@@ -91,7 +91,10 @@ export PATH="$RESULT_DIR/bin:$PATH"
 %{__mv} %{buildroot}%{_sysconfdir}/rc.d/couchdb %{buildroot}%{_initrddir}
 
 # make a homedir for the admin user
-%{__install} -m2770 -d %{buildroot}%{_var}/lib/couchdb
+%{__install} -m2750 -d %{buildroot}%{_var}/lib/couchdb
+
+# make a log directory
+%{__install} -m2750 -d %{buildroot}%{_var}/log/couchdb
 
 %pre
 if [ $1 == 1 ]; then
@@ -126,12 +129,13 @@ fi
 %{_datadir}/couchdb/
 %{_initrddir}/couchdb/
 %{_libdir}/couchdb/
-%dir %{_sysconfdir}/couchdb/
-%{_sysconfdir}/couchdb/default.ini
-%config(noreplace) %{_sysconfdir}/couchdb/local.ini
+%attr(-, couchdb, couchdb) %dir %{_sysconfdir}/couchdb/
+%attr(-, couchdb, couchdb) %{_sysconfdir}/couchdb/default.ini
+%attr(-, couchdb, couchdb) %config(noreplace) %{_sysconfdir}/couchdb/local.ini
 %{_sysconfdir}/default/couchdb
 %{_sysconfdir}/logrotate.d/couchdb
-%attr(-, couchdb, couchdb) %{_var}/lib/couchdb
+%attr(-, couchdb, couchdb) %dir %{_var}/lib/couchdb
+%attr(-, couchdb, couchdb) %dir %{_var}/log/couchdb
 
 %changelog
 * Mon Aug 30 2010 Steve Huff <shuff@vecna.org> - 1.0.1-1
