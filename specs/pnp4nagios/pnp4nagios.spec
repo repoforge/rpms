@@ -1,18 +1,22 @@
 # $Id:$
 # Upstream:     pnp4nagios-devel@lists.sourceforge.net
 Name:		pnp4nagios
-Version: 	0.6.2
-Release:	2
+Version:	0.6.6
+Release:	1
 Summary: 	PNP is not PerfParse. A Nagios perfdata graphing solution	
 
 Group:	 	Applications/System	
 License:	GPLv2
 URL:		http://www.pnp4nagios.org/
-Source:	 	http://downloads.sourceforge.net/pnp4nagios/%{name}-%{version}.tar.gz
+Source: 	http://downloads.sourceforge.net/pnp4nagios/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:	rrdtool-devel nagios perl-rrdtool
-Requires:	rrdtool	nagios perl-rrdtool
+BuildRequires:	rrdtool-devel 
+BuildRequires:  nagios
+BuildRequires:  perl-rrdtool
+Requires:	rrdtool
+Requires:	nagios
+Requires:	perl-rrdtool
 Obsoletes:	pnp
 
 %description
@@ -58,6 +62,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc INSTALL
 %doc README
 %doc THANKS
+%config(noreplace) %{_sysconfdir}/nagios/%{name}/check_commands/check_all_local_disks.cfg-sample
+%config(noreplace) %{_sysconfdir}/nagios/%{name}/check_commands/check_nrpe.cfg-sample
 %config(noreplace) %{_sysconfdir}/nagios/%{name}/check_commands/check_nwstat.cfg
 %config(noreplace) %{_sysconfdir}/nagios/%{name}/npcd.cfg
 %config(noreplace) %{_sysconfdir}/nagios/%{name}/pages/web_traffic.cfg
@@ -71,15 +77,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/nagios/%{name}/pnp4nagios_release
 %attr(755,root,root) %{_sysconfdir}/rc.d/init.d/npcd
 %{_bindir}/npcd
-%{_bindir}/npcdmod.o
+%{_libdir}/pnp4nagios/npcdmod.o
 %{_libdir}/%{name}
 %{_libexecdir}/check_pnp_rrds.pl
 %{_libexecdir}/process_perfdata.pl
 %{_libexecdir}/verify_pnp_config.pl
+%{_libexecdir}/rrd_convert.pl
 %{_datadir}/nagios/%{name}
 
 
 %changelog
+* Tue Aug 31 2010 Christoph Maser <cmr@financial.com> - 0.6.6-1
+- Updated to version 0.6.6.
+
 * Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -  0.6.2 - 2
 - add --with-perfdata-spool-dir and --with-perfdata--dir
 - mark httpd-config snippet as config file
