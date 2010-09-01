@@ -13,7 +13,7 @@ Group: Applications/System
 URL: http://www.heiho.net/pam_shield/
 
 Source: http://www.heiho.net/pam_shield/pam_shield-%{version}.tar.gz
-Patch0: pam_shield-0.9.1-makefile.patch
+Patch0: pam_shield-0.9.3-makefile.patch
 Patch1: pam_shield-0.9.3-authpriv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -28,7 +28,7 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 
 %prep
 %setup
-%patch0 -p0
+%patch0 -p1
 %patch1 -p1
 
 %build
@@ -37,13 +37,6 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" libdir="%{_libdir}"
-
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/pam_shield/
-
-### FIXME: name of script is referenced in shield.conf differently (Please fix upstream)
-%{__mv} -f %{buildroot}%{_sbindir}/shield-trigger.sh %{buildroot}%{_sbindir}/shield-trigger
-
-%{__install} -Dp -m0755 shield-trigger-iptables.sh %{buildroot}%{_sbindir}/shield-trigger-iptables
 
 %clean
 %{__rm} -rf %{buildroot}
