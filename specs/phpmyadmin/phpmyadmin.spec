@@ -5,8 +5,8 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.11.10
-Release: 2%{?dist}
+Version: 2.11.10.1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 Requires: php-mysql >= 4.1.0
+Requires: php-mbstring >= 4.1.0
 %{?el5:Requires: php-mcrypt}
 Requires: webserver
 Obsoletes: phpMyAdmin <= %{version}-%{release}
@@ -42,21 +43,24 @@ the appropriate part in the MySQL manual.
   Allow from 127.0.0.1
 </Directory>
 
-Alias /phpmyadmin %{_datadir}/phpmyadmin
-Alias /phpMyAdmin %{_datadir}/phpmyadmin
-Alias /mysqladmin %{_datadir}/phpmyadmin
+Alias /phpmyadmin %{_datadir}/%{name}
+Alias /phpMyAdmin %{_datadir}/%{name}
+Alias /mysqladmin %{_datadir}/%{name}
 EOF
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
+%{__mkdir} -p %{buildroot}/%{_datadir}/%{name}
+%{__mkdir} -p %{buildroot}/%{_sysconfdir}/httpd/conf.d/
+%{__mkdir} -p %{buildroot}/%{_sysconfdir}/%{name}
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/phpmyadmin/
-%{__cp} -av *.{php,html,css,ico} %{buildroot}%{_datadir}/phpmyadmin/
-%{__cp} -av contrib/ js/ lang/ libraries/ pmd/ scripts/ test/ themes/ %{buildroot}%{_datadir}/phpmyadmin/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/%{name}/
+%{__cp} -av *.{php,html,css,ico} %{buildroot}%{_datadir}/%{name}/
+%{__cp} -av contrib/ js/ lang/ libraries/ pmd/ scripts/ themes/ %{buildroot}%{_datadir}/%{name}/
 
-%{__install} -Dp -m0644 config.sample.inc.php %{buildroot}%{_datadir}/phpmyadmin/config.inc.php
+%{__install} -Dp -m0644 config.sample.inc.php %{buildroot}%{_datadir}/%{name}/config.inc.php
 %{__install} -Dp -m0644 phpmyadmin.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/phpmyadmin.conf
 
 %clean
@@ -66,12 +70,16 @@ EOF
 %defattr(-, root, root, 0755)
 %doc ChangeLog CREDITS Documentation.* INSTALL LICENSE README RELEASE-DATE* TODO
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/phpmyadmin.conf
-%{_datadir}/phpmyadmin/
+%{_datadir}/%{name}/
 
 %defattr(0640, root, apache, 0755)
-%config(noreplace) %{_datadir}/phpmyadmin/config.inc.php
+%config(noreplace) %{_datadir}/%{name}/config.inc.php
 
 %changelog
+* Wed Sep 01 2010 David Hrbáč <david@hrbac.cz> - 2.11.10.1-1
+- new upstream release - CVE-2010-3056, CVE-2010-3055
+- added Requires: php-mbstring
+
 * Mon Jan 4 2010 Fabian Arrotin <fabian.arrotin@arrfab.net>- 2.11.10-2
 - Fixed a conditional Requires: php-mcrypt only for EL5
 
