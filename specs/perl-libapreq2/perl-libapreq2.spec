@@ -9,7 +9,7 @@
 
 Summary: Wrapper for libapreq2's module/handle API
 Name: perl-libapreq2
-Version: 2.08
+Version: 2.12
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,13 +21,19 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: apr-devel
 BuildRequires: apr-util-devel
 BuildRequires: httpd-devel
+BuildRequires: mod_perl-devel
 BuildRequires: perl >= 1:5.6.1
 BuildRequires: perl(Apache::Test) >= 1.04
 BuildRequires: perl(ExtUtils::MakeMaker) >= 6.15
 BuildRequires: perl(ExtUtils::XSBuilder) >= 0.23
 BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(mod_perl2) >= 1.999022
+Requires: perl(mod_perl2) >= 1.999022
 Requires: perl >= 1:5.6.1
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 Wrapper for libapreq2's module/handle API.
@@ -73,10 +79,11 @@ you will need to install %{name}-devel.
 #    --with-apache2-apxs="%{apxs}" \
 #CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} pure_install
+%{__make} install DESTDIR=%{buildroot}
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -89,11 +96,44 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES FAQ.pod INSTALL LICENSE MANIFEST META.yml NOTICE README *.html
+%doc CHANGES FAQ.pod INSTALL LICENSE MANIFEST META.yml NOTICE README 
 %doc %{_mandir}/man3/Apache2::Cookie.3pm*
+%{_mandir}/man3/APR::Request.3pm.gz
+%{_mandir}/man3/APR::Request::Apache2.3pm.gz
+%{_mandir}/man3/APR::Request::CGI.3pm.gz
+%{_mandir}/man3/APR::Request::Cookie.3pm.gz
+%{_mandir}/man3/APR::Request::Error.3pm.gz
+%{_mandir}/man3/APR::Request::Hook.3pm.gz
+%{_mandir}/man3/APR::Request::Param.3pm.gz
+%{_mandir}/man3/APR::Request::Parser.3pm.gz
+%{_mandir}/man3/Apache2::Request.3pm.gz
+%{_mandir}/man3/Apache2::Upload.3pm.gz
+%{_bindir}/apreq2-config
+%{_includedir}/httpd/apreq2/apreq_module_apache2.h
+%{_includedir}/apreq2/apreq.h
+%{_includedir}/apreq2/apreq_cookie.h
+%{_includedir}/apreq2/apreq_error.h
+%{_includedir}/apreq2/apreq_module.h
+%{_includedir}/apreq2/apreq_param.h
+%{_includedir}/apreq2/apreq_parser.h
+%{_includedir}/apreq2/apreq_util.h
+%{_includedir}/apreq2/apreq_version.h
+%{_libdir}/httpd/modules/mod_apreq2.la
+%{_libdir}/httpd/modules/mod_apreq2.so
+%{_libdir}/libapreq2.la
+%{_libdir}/libapreq2.so*
+%{perl_vendorarch}/APR
+%{perl_vendorarch}/Apache2
 %{perl_vendorarch}/auto/libapreq2/
-%{perl_vendorarch}/libapreq2.pm
+%{perl_vendorarch}/auto/APR
+%exclude %{perl_archlib}/perllocal.pod
 
 %changelog
+* Fri Sep  3 2010 Christoph Maser <cmr@financial.com> - 2.12-1
+- Updated to version 2.12.
+- Add BuildRequires: mod_perl-devel
+- Change build from perl module style to autotools project style
+- Update %files section
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 2.08-1
 - Initial package. (using DAR)
