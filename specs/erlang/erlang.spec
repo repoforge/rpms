@@ -2,11 +2,11 @@
 # Authority: shuff
 # ExcludeDist: el3
 
-%define rel 5
+%define rel 5.
 
 Name: erlang
 Version: R12B
-Release: %{rel}.12%{?dist}
+Release: %{rel}12%{?dist}
 Summary: General-purpose programming language and runtime environment
 License: ERPL
 Group: Development/Languages
