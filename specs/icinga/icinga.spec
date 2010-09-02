@@ -17,8 +17,8 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.0.2
-Release: 2%{?dist}
+Version: 1.0.3
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -53,6 +53,8 @@ Summary: Web content for %{name}
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 Requires: httpd
+Requires: php
+Requires: %{name}-doc
 
 %description gui
 This package contains the webgui (html,css,cgi etc.) for %{name}
@@ -63,7 +65,7 @@ Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 
 %description idoutils
-This package contains the idoutils broker module for %{name} which provides 
+This package contains the idoutils broker module for %{name} which provides
 database storage via libdbi.
 
 %package api
@@ -73,6 +75,13 @@ Requires: php
 
 %description api
 PHP api for %{name}
+
+%package doc
+Summary: documentation %{name}
+Group: Applications/System
+ 
+%description doc
+Documentation for %{name}
 
 
 %prep
@@ -204,13 +213,16 @@ fi
 %dir %{_localstatedir}/icinga/checkresults
 %attr(2755,icinga,icingacmd) %{_localstatedir}/icinga/rw/
 
+%files doc
+%defattr(-,icinga,icinga,-)
+%{_datadir}/icinga/docs
+
 %files gui
 %defattr(-,icinga,icinga,-)
 %config(noreplace) %attr(-,root,root) %{apacheconfdir}/icinga.conf
 %dir %{_datadir}/icinga
 %{_datadir}/icinga/cgi
 %{_datadir}/icinga/contexthelp
-%{_datadir}/icinga/docs
 %{_datadir}/icinga/getList.php
 %{_datadir}/icinga/images
 %{_datadir}/icinga/includes
@@ -238,12 +250,19 @@ fi
 %files api
 %defattr(-,icinga,icinga,-)
 %{_datadir}/icinga/icinga-api
+%attr(-,%{apacheuser},%{apacheuser}) %{_datadir}/icinga/icinga-api/log
 
 
 %changelog
-* Tue Jul 27 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-3
-- Fix Summary of idoutils subpackage
-- add install-api to make command line
+* Wed Sep 01 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-3
+- Put documentation in a separate package
+
+* Tue Aug 31 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-2
+- Set icinga-api logdir ownership to apache user 
+- add php dependency for icinga-gui subpackage
+
+* Wed Aug 18 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-1
+- Update to 1.0.3-1
 
 * Thu Jul 05 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-2
 - Enable debuginfo
