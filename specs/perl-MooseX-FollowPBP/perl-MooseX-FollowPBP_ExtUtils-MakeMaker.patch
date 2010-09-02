@@ -1,0 +1,21 @@
+diff -Naur MooseX-FollowPBP-0.04-orig/Makefile.PL MooseX-FollowPBP-0.04/Makefile.PL
+--- MooseX-FollowPBP-0.04-orig/Makefile.PL	2010-07-20 20:20:27.000000000 -0400
++++ MooseX-FollowPBP-0.04/Makefile.PL	2010-09-02 09:38:56.000000000 -0400
+@@ -4,7 +4,7 @@
+ 
+ 
+ 
+-use ExtUtils::MakeMaker 6.31;
++use ExtUtils::MakeMaker;
+ 
+ 
+ 
+@@ -15,7 +15,7 @@
+     'Test::More' => '0.88'
+   },
+   'CONFIGURE_REQUIRES' => {
+-    'ExtUtils::MakeMaker' => '6.31'
++    'ExtUtils::MakeMaker' => '6.30'
+   },
+   'DISTNAME' => 'MooseX-FollowPBP',
+   'EXE_FILES' => [],
