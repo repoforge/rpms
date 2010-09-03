@@ -15,7 +15,7 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 5.00
+Version: 5.21
 Release: 1%{?dist}
 Epoch: 2
 License: GPL
@@ -76,10 +76,25 @@ desktop-file-install --delete-original \
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING* HACKING docs/*.txt docs/*.xml docs/README
+%doc CHANGELOG COPYING* HACKING docs/*.txt docs/README
 %doc %{_mandir}/man1/ncat.1*
 %{!?_without_python24:%doc %{_mandir}/man1/ndiff.1*}
 %doc %{_mandir}/man1/nmap.1*
+%lang(de) %{_mandir}/de/man1/nmap.1*
+%lang(es) %{_mandir}/es/man1/nmap.1*
+%lang(fr) %{_mandir}/fr/man1/nmap.1*
+%lang(hr) %{_mandir}/hr/man1/nmap.1*
+%lang(hu) %{_mandir}/hu/man1/nmap.1*
+%lang(it) %{_mandir}/it/man1/nmap.1*
+%lang(jp) %{_mandir}/jp/man1/nmap.1*
+%lang(pl) %{_mandir}/pl/man1/nmap.1*
+%lang(pt_BR) %{_mandir}/pt_BR/man1/nmap.1*
+%lang(pt_PT) %{_mandir}/pt_PT/man1/nmap.1*
+%lang(ro) %{_mandir}/ro/man1/nmap.1*
+%lang(ru) %{_mandir}/ru/man1/nmap.1*
+%lang(sk) %{_mandir}/sk/man1/nmap.1*
+%lang(zh) %{_mandir}/zh/man1/nmap.1*
+
 %{_bindir}/ncat
 %{!?_without_python24:%{_bindir}/ndiff}
 %{_bindir}/nmap
@@ -103,6 +118,9 @@ desktop-file-install --delete-original \
 %endif
 
 %changelog
+* Fri Sep 03 2010 David Hrbáč <david@hrbac.cz> - 5.21-1
+- new upstream release
+
 * Fri Jul 17 2009 Dag Wieers <dag@wieers.com> - 5.00-1
 - Updated to release 5.00.
 
