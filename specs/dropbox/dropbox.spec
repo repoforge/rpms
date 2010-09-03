@@ -1,7 +1,7 @@
 # $Id$
 # Authority: shuff
 # Upstream: Dropbox Support (https://www.dropbox.com/ticket)
-# ExclusiveArch: ix86 x86_64
+# ExclusiveArch: i386 x86_64
 
 Summary: Sync and backup files between computers
 Name:    dropbox
@@ -11,7 +11,7 @@ License: Proprietary
 Group:   Applications/Utilities
 URL:     http://www.dropbox.com/
 
-ExclusiveArch: ix86 x86_64
+ExclusiveArch: %{ix86} x86_64
 %ifarch %{ix86}
     %define dropbox_arch x86
 %else
