@@ -1,18 +1,18 @@
 # $Id$
 # Authority: shuff
 # Upstream: Dropbox Support (https://www.dropbox.com/ticket)
-# ExclusiveArch: i386 x86_64
+# ExclusiveArch: ix86 x86_64
 
 Summary: Sync and backup files between computers
-Name: dropbox
+Name:    dropbox
 Version: 0.7.110
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Proprietary
-Group: Applications/Utilities
-URL: http://www.dropbox.com/
+Group:   Applications/Utilities
+URL:     http://www.dropbox.com/
 
-ExclusiveArch: i386 x86_64
-%ifarch i386
+ExclusiveArch: ix86 x86_64
+%ifarch %{ix86}
     %define dropbox_arch x86
 %else
     %define dropbox_arch x86_64
@@ -239,6 +239,9 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/*
 
 %changelog
+* Fri Sep 03 2010 Yury V. Zaytsev <yury@shurup.com> - 0.7.110-3
+- Changed ExclusiveArch to include all ix86 flavors.
+
 * Mon May 10 2010 Steve Huff <shuff@vecna.org> - 0.7.110-2
 - Disabled AutoReqProv (thanks to Robin Bowes) to eliminate bogus Provides: entries.
 
