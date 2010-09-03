@@ -4,13 +4,13 @@
 
 Summary: High-performance parallel remote shell utility
 Name: pdsh
-Version: 2.18
-Release: 2%{?dist}
+Version: 2.21
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
-URL: https://computing.llnl.gov/linux/pdsh.html
+URL: http://code.google.com/p/pdsh/
 
-Source: http://dl.sf.net/project/pdsh/pdsh/pdsh-%{version}/pdsh-%{version}.tar.bz2
+Source: http://pdsh.googlecode.com/files/pdsh-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -50,6 +50,7 @@ allow progress to continue while timeouts occur on some connections.
     --with-exec \
     --with-genders \
     --with-machines=%{_sysconfdir}/pdsh/machines \
+    --with-netgroup \
     --with-nodeattr \
     --with-readline \
     --with-ssh \
@@ -83,6 +84,10 @@ touch %{buildroot}%{_sysconfdir}/pdsh/machines
 %exclude %{_libdir}/pdsh/*.la
 
 %changelog
+* Fri Sep 03 2010 Steve Huff <shuff@vecna.org> - 2.21-1
+- Updated to version 2.21.
+- Source moved to Google Code.
+
 * Mon Aug 09 2010 Steve Huff <shuff@vecna.org> - 2.18-2
 - Added genders support.
 
