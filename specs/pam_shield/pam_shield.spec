@@ -6,15 +6,14 @@
 
 Summary: PAM module that uses failed login count to lock system
 Name: pam_shield
-Version: 0.9.3
-Release: 2%{?dist}
+Version: 0.9.4
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.heiho.net/pam_shield/
 
 Source: http://www.heiho.net/pam_shield/pam_shield-%{version}.tar.gz
-Patch0: pam_shield-0.9.3-makefile.patch
-Patch1: pam_shield-0.9.3-authpriv.patch
+Patch: pam_shield-0.9.4-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gdbm-devel
@@ -29,7 +28,6 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 %prep
 %setup
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} CFLAGS="%{optflags} -fPIC"
@@ -43,17 +41,19 @@ pam_shield is meant as an aid to protect public computers on the open internet.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog CREDITS GPL INSTALL README
+%doc Changelog CREDITS GPL INSTALL README shield-trigger-iptables
 %config(noreplace) %{_sysconfdir}/cron.daily/pam-shield
 %config(noreplace) %{_sysconfdir}/security/shield.conf
 %dir %{_libdir}/security/
 %{_libdir}/security/pam_shield.so
 %{_sbindir}/shield-purge
 %{_sbindir}/shield-trigger
-%{_sbindir}/shield-trigger-iptables
 %dir %{_localstatedir}/lib/pam_shield/
 
 %changelog
+* Sat Sep 04 2010 Dag Wieers <dag@wieers.com> - 0.9.4-1
+- Updated to release 0.9.4.
+
 * Wed Sep 01 2010 Dag Wieers <dag@wieers.com> - 0.9.3-2
 - Changed logging from AUTH to AUTHPRIV.
 - Included shield-trigger-iptables.
