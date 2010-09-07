@@ -1,10 +1,10 @@
 # $Id$
-# Authority: dries
+# Authority: shuff
 # Upstream: Enrico Troeger <enrico,troeger$uvena,de>
 
 Summary: Small C editor
 Name: geany
-Version: 0.19
+Version: 0.19.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/geany.pc
 
 %changelog
+* Tue Sep 07 2010 Steve Huff <shuff@vecna.org> - 0.19.1-1
+- Updated to release 0.19.1.
+
 * Tue Jun 15 2010 Steve Huff <shuff@vecna.org> - 0.19-1
 - Updated to release 0.19 (thanks Frank Cox!).
 
