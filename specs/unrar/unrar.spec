@@ -4,7 +4,7 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 3.9.4
+Version: 3.9.10
 Release: 1%{?dist}
 License: Freeware
 Group: Applications/Archiving
@@ -22,7 +22,7 @@ and developed for extracting, testing and viewing the contents of
 archives created with the RAR archiver version 1.50 and above.
 
 %prep
-%setup -n %{name}
+%setup -q -n %{name}
 ## Remove stripping to get useful debuginfo package
 %{__perl} -pi -e 's|^STRIP=.*|STRIP=true|g' makefile.unix
 
@@ -44,6 +44,9 @@ archives created with the RAR archiver version 1.50 and above.
 %{_bindir}/unrar
 
 %changelog
+* Tue Sep 07 2010 David Hrbáč <david@hrbac.cz> - 3.9.10-1
+- new upstream release
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 3.9.4-1
 - Updated to release 3.9.4.
 

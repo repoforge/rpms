@@ -8,7 +8,7 @@ Version: 1.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
-URL: http://www.kyz.uklinux.net/cabextract.php3
+URL:  http://www.cabextract.org.uk/
 
 Source: http://www.cabextract.org.uk/cabextract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root

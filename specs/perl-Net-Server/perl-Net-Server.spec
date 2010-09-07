@@ -9,13 +9,14 @@
 
 Summary: Perl module that implements an extensible, general Perl server engine
 Name: perl-Net-Server
-Version: 0.97
+Version: 0.99
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Server/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-Server-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Net/Net-Server-%{version}.tar.gz
+Source:	http://search.cpan.org/CPAN/authors/id/R/RH/RHANDOM/Net-Server-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -28,7 +29,7 @@ perl-Net-Server is a Perl module that implements an extensible,
 general Perl server engine.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -57,6 +58,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Net/Server.pod
 
 %changelog
+* Tue Sep 07 2010 David Hrbáč <david@hrbac.cz> - 0.99-1
+- new upstream release
+
 * Tue Aug 07 2007 Dag Wieers <dag@wieers.com> - 0.97-1
 - Updated to release 0.97.
 - Disabled auto-requires for examples/.

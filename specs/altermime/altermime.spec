@@ -3,13 +3,14 @@
 
 Summary: Alter MIME-encoded mailpacks
 Name: altermime
-Version: 0.3.9
+Version: 0.3.10
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.pldaniels.com/altermime/
 
 Source: http://www.pldaniels.com/altermime/altermime-%{version}.tar.gz
+Patch: altermime-0.3.10-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,10 +21,12 @@ headers, remove attachments based on filename or content-type and replace
 attachments based on filename.
 
 %prep
-%setup
+%setup -q
+%patch -p1
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} CC="%{__cc}" 
+
 
 %install
 %{__rm} -rf %{buildroot}
@@ -38,6 +41,10 @@ attachments based on filename.
 %{_bindir}/altermime
 
 %changelog
+* Tue Sep 07 2010 David Hrbáč <david@hrbac.cz> - 0.3.10-1
+- new upstream release
+- patch to build
+
 * Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 0.3.9-1
 - Updated to release 0.3.9.
 

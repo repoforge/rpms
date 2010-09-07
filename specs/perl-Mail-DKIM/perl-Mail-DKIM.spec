@@ -9,13 +9,14 @@
 
 Summary: Perl module to signs/verify Internet mail with DKIM/DomainKey signatures
 Name: perl-Mail-DKIM
-Version: 0.37
+Version: 0.38
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-DKIM/
 
-Source: http://www.cpan.org/modules/by-module/Mail/Mail-DKIM-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Mail/Mail-DKIM-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JA/JASLONG/Mail-DKIM-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,7 +35,7 @@ Mail-DKIM is a Perl module to signs/verify Internet mail
 with DKIM/DomainKey signatures.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,8 +59,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/Mail/
 %{perl_vendorlib}/Mail/DKIM/
 %{perl_vendorlib}/Mail/DKIM.pm
-
+%{perl_vendorlib}/Mail/sample_mime_lite.pl
 %changelog
+* Tue Sep 07 2010 David Hrbáč <david@hrbac.cz> - 0.38-1
+- new upstream release
+
 * Wed Sep  9 2009 Christoph Maser <cmr@financial.com> - 0.37-1
 - Updated to version 0.37.
 
