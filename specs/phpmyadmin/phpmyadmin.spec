@@ -5,7 +5,7 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.11.10.1
+Version: 2.11.11
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -76,6 +76,9 @@ EOF
 %config(noreplace) %{_datadir}/%{name}/config.inc.php
 
 %changelog
+* Wed Sep 08 2010 David Hrbáč <david@hrbac.cz> - 2.11.11-1
+- new upstream version
+
 * Wed Sep 01 2010 David Hrbáč <david@hrbac.cz> - 2.11.10.1-1
 - new upstream release - CVE-2010-3056, CVE-2010-3055
 - added Requires: php-mbstring
