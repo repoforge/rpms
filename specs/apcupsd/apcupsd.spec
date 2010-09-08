@@ -7,13 +7,14 @@
 
 Summary: APC UPS power control daemon
 Name: apcupsd
-Version: 3.14.3
+Version: 3.14.8
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.apcupsd.com/
 
-Source: http://dl.sf.net/apcupsd/apcupsd-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glibc-devel, gd-devel, net-snmp-devel
@@ -31,7 +32,7 @@ is met, apcupsd will inform users about this fact.
 Some features depend on what UPS model you have (simple or smart).
 
 %prep
-%setup
+%setup -q
 
 ### Add a default apcupsd.conf for Apache.
 %{__cat} <<EOF >apcupsd.httpd
@@ -116,6 +117,9 @@ fi
 %{_datadir}/hal/fdi/policy/20thirdparty/80-apcupsd-ups-policy.fdi
 
 %changelog
+* Wed Sep 08 2010 David Hrbáč <david@hrbac.cz> - 3.14.8-1
+- new upstream release
+
 * Sun Mar  2 2008 Dries Verachtert <dries@ulyssis.org> - 3.14.3-1
 - Updated to release 3.14.3.
 

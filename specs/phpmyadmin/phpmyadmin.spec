@@ -11,8 +11,9 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
 
-#Source: http://dl.sf.net/phpmyadmin/phpMyAdmin-%{version}-all-languages.tar.bz2
-Source: http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/%{version}/phpMyAdmin-%{version}-all-languages.tar.bz2
+#Source: http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/%{version}/phpMyAdmin-%{version}-all-languages.tar.bz2
+Source: http://downloads.sourceforge.net/%{name}/phpMyAdmin-%{version}-all-languages.tar.bz2
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -30,7 +31,7 @@ user who can read/write only the desired database. It's up to you to look up
 the appropriate part in the MySQL manual.
 
 %prep
-%setup -n %{real_name}-%{version}-all-languages
+%setup -q -n %{real_name}-%{version}-all-languages
 
 %{__cat} <<EOF >phpmyadmin.conf
 #
