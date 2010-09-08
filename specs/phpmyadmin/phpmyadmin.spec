@@ -11,7 +11,6 @@ License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
 
-#Source: http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/%{version}/phpMyAdmin-%{version}-all-languages.tar.bz2
 Source: http://downloads.sourceforge.net/%{name}/phpMyAdmin-%{version}-all-languages.tar.bz2
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
