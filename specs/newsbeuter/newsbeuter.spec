@@ -4,14 +4,13 @@
 
 Summary: The Mutt of news feed readers
 Name: newsbeuter
-Version: 2.2
+Version: 2.3
 Release: 1%{?dist}
 License: MIT/X Consortium
 Group: Applications/Text
 URL: http://newsbeuter.org/
 
 Source: http://newsbeuter.org/downloads/newsbeuter-%{version}.tar.gz
-Patch0: newsbeuter-2.2_el5libcurl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils, gcc-c++, make
@@ -50,7 +49,6 @@ A summary of some of its features:
 
 %prep
 %setup
-%patch0 -p1
 
 %build
 CFLAGS="%{optflags}" %{__make} %{?_smp_mflags}
@@ -74,5 +72,9 @@ CFLAGS="%{optflags}" %{__make} %{?_smp_mflags}
 %{_datadir}/locale/*/LC_MESSAGES/*
 
 %changelog
+* Mon Sep 13 2010 Steve Huff <shuff@vecna.org> - 2.3-1
+- Updated to 2.3, removed newsbeuter-2.2_el5libcurl.patch (in upstream now)
+- Thanks to Philip Durbin for the patch!
+
 * Fri May 28 2010 Steve Huff <shuff@vecna.org> - 2.2-1
 - Initial package.
