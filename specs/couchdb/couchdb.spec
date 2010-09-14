@@ -8,7 +8,7 @@
 Summary: A document database server, accessible via a RESTful JSON API
 Name: couchdb
 Version: 1.0.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Apache
 Group: Applications/Databases
 URL: http://couchdb.apache.org/
@@ -31,6 +31,7 @@ BuildRequires: openssl-devel
 BuildRequires: pkgconfig
 BuildRequires: which
 BuildRequires: rpm-macros-rpmforge
+Requires: erlang
 Requires: initscripts
 Requires: logrotate
 
@@ -138,6 +139,9 @@ fi
 %attr(-, couchdb, couchdb) %dir %{_var}/log/couchdb
 
 %changelog
+* Tue Sep 14 2010 Steve Huff <shuff@vecna.org> - 1.0.1-2
+- Oops, forgot the dependency on Erlang :(
+
 * Mon Aug 30 2010 Steve Huff <shuff@vecna.org> - 1.0.1-1
 - Initial package.
 - Static libcurl dependency satisfied by means of Zaytsev's Technique.
