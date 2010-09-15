@@ -5,7 +5,7 @@
 Summary: Fault tolerant, network distributed file system
 Name: mfs
 Version: 1.6.17
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.moosefs.org/
@@ -57,6 +57,7 @@ administrative reasons.
 %package client
 Summary: Client tools for MooseFS
 Group: System Environment/Utilities
+Requires: fuse >= 2.6
 
 %description client
 Install this package to run a MooseFS client.  This package contains
@@ -381,6 +382,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Wed Sep 15 2010 Steve Huff <shuff@vecna.org> - 1.6.17-2
+- Captured missing fuse dependency in mfs-client (thanks Laurent!)
+
 * Wed Jul 28 2010 Steve Huff <shuff@vecna.org> - 1.6.17-1
 - Update to 1.6.17.
 
