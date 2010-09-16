@@ -7,9 +7,9 @@
 %define python_version %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_version()')
 
 Summary: Account Manager Plugin for Trac
-Name: TracAcccountManager
+Name: trac-accountmanager
 Version: 0.12.0.r%{svn_revision}
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://trac-hacks.org/wiki/AccountManagerPlugin
@@ -58,6 +58,9 @@ cd %{_builddir}/accountmanagerplugin/trunk
 %{python_sitelib}/TracAccountManager-0.2.1dev-py%{python_version}.egg-info/
 
 %changelog
+* Thu Sep 16 2010 Yury V. Zaytsev <yury@shurup.com> - 0.12.0.r7737-3
+- Renamed the package.
+
 * Mon Aug 16 2010 Yury V. Zaytsev <yury@shurup.com> - 0.12.0.r7737-2
 - Added missing attribute patch (see http://trac-hacks.org/ticket/4040).
 - Various tweaks.
