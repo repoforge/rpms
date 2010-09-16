@@ -9,9 +9,9 @@
 %define real_name Django
 
 Summary: The Web framework for perfectionists with deadlines
-Name: django
+Name: python-django
 Version: 1.1.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.djangoproject.com/
@@ -21,9 +21,8 @@ Source1: python-django.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: python-devel >= %{python_minver} 
-BuildRequires: python >= %{python_minver} 
-Requires: mod_python
+BuildRequires: python-devel >= %{python_minver}
+BuildRequires: python >= %{python_minver}
 Requires: MySQL-python
 Requires: python >= %{python_minver}
 Requires: python-psycopg2
@@ -49,7 +48,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{__python} setup.py install --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
 # Make a directory to hold Django apps
-%{__install} -m0755 -d %{buildroot}%{_datadir}/django
+%{__install} -m0755 -d %{buildroot}%{_localstatedir}/www/django-apps
 
 # Install the Apache config
 %{__install} -m0755 -d %{buildroot}%{_sysconfdir}/httpd/conf.d/
@@ -58,7 +57,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %clean
 %{__rm} -rf %{buildroot}
 
-%files 
+%files
 %defattr(-, root, root, 0775)
 %doc AUTHORS INSTALL LICENSE README
 %doc docs/ examples/ extras/
@@ -67,8 +66,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %{_bindir}/*
 
 %defattr(0755, root, apache)
-%dir %{_datadir}/django
+%dir %{_localstatedir}/www/django-apps
 
 %changelog
+* Thu Sep 16 2010 Yury V. Zaytsev <yury@shurup.com> - 1.1.1-2
+- Extended default Apache configuration template.
+- Changed the path to hold Django sites.
+- Changed the name of the package.
+
 * Tue Apr 27 2010 Steve Huff <shuff@vecna.org> - 1.1.1-1
 - Initial package.
