@@ -20,13 +20,13 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
-Version: 1.4.14
+Version: 1.4.15
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
 
-Source: http://dl.sf.net/project/nagiosplug/nagiosplug/%{version}/nagios-plugins-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/nagiosplug/nagiosplug/%{version}/nagios-plugins-%{version}.tar.gz
 Patch0: nagios-plugins-1.4.3-ntpd.patch
 Patch1: nagios-plugins-1.4.4-check_ide_smart.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -321,6 +321,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Thu Sep 16 2010 Christoph Maser <cmaser@gmx.de> - 1.4.15-1
+- Updated to version 1.4.15.
+
 * Tue Apr 06 2010 Dag Wieers <dag@wieers.com> - 1.4.14-1
 - Updated to release 1.4.14.
 
