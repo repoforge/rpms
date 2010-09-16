@@ -24,7 +24,7 @@ check_logfiles is a plugin for Nagios which searches for patterns in logfiles. I
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" 
+%{__make} install DESTDIR="%{buildroot}"
 
 
 %clean
@@ -37,6 +37,6 @@ check_logfiles is a plugin for Nagios which searches for patterns in logfiles. I
 %changelog
 * Thu Sep 16 2010 Christoph Maser <cmaser@gmx.de> - 3.4.2-1
 - Update to version 3.4.2.
+
 * Thu Jan 10 2008 Christoph Maser <cmaser@gmx.de> - 2.3.1.2-1
 - Initial package.
-
