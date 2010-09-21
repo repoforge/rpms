@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.96.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -32,6 +32,7 @@ BuildRequires: gmp-devel
 BuildRequires: ncurses-devel
 BuildRequires: zlib-devel
 %{!?_without_milter:BuildRequires: sendmail-devel >= 8.12}
+BuildRequires: check-devel
 
 ### Do not require the latest release of clamav-db specifically (people may use freshclam onward)
 #Requires: clamav-db = %{version}-%{release}
@@ -105,7 +106,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -q
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
@@ -395,6 +396,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Tue Sep 21 2010 David Hrbáč <david@hrbac.cz> - 0.96.3-2
+- added buildrequires check-devel
+
 * Tue Sep 21 2010 Dag Wieers <dag@wieers.com> - 0.96.3-1
 - Updated to release 0.96.3.
 
