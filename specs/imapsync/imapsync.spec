@@ -3,7 +3,7 @@
 
 Summary: Tool to migrate across IMAP servers
 Name: imapsync
-Version: 1.293
+Version: 1.350
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -23,7 +23,8 @@ Requires: perl(Digest::HMAC_MD5)
 #Requires: perl(Digest::MD5::M4p)
 #Requires: perl(Net::SSLeay)
 
-%define __perl_requires %{_builddir}/%{buildsubdir}/imapsync-filter-requires.sh
+%filter_from_requires /^perl(--prefix2)/d
+%filter_setup
 
 %description
 imapsync is a tool for facilitating incremental recursive IMAP
@@ -37,12 +38,6 @@ successful transfer.
 %prep
 %setup
 
-%{__cat} <<'EOF' >imapsync-filter-requires.sh
-#!/bin/sh
-/usr/lib/rpm/perl.req $* | sed -e '/perl(--prefix2)/d'
-EOF
-%{__chmod} a+x imapsync-filter-requires.sh
-
 %build
 
 %install
@@ -51,14 +46,17 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog CREDITS FAQ GPL INSTALL README TODO
-%doc %{_mandir}/man?/*
+%doc ChangeLog COPYING CREDITS FAQ INSTALL README TODO
+%doc %{_mandir}/man1/imapsync.1*
 %{_bindir}/imapsync
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue Sep 07 2010 Dag Wieers <dag@wieers.com> - 1.350-1
+- Updated to release 1.350.
+
 * Wed Jan 13 2010 Steve Huff <shuff@vecna.org> - 1.293-1
 - Updated to version 1.293.
 

@@ -7,7 +7,7 @@
 
 Summary: VNC server for the current X11 session
 Name: x11vnc
-Version: 0.9.11
+Version: 0.9.12
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
@@ -58,6 +58,9 @@ fi
 %{_includedir}/rfb/
 
 %changelog
+* Mon Sep 13 2010 Dag Wieers <dag@wieers.com> - 0.9.12-1
+- Updated to release 0.9.12.
+
 * Tue Aug 10 2010 Dag Wieers <dag@wieers.com> - 0.9.11-1
 - Updated to release 0.9.11.
 

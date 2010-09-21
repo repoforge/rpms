@@ -3,9 +3,9 @@
 
 Summary: MSWord 6/7/8/9 binary file format to HTML converter
 Name: wv
-Version: 1.2.4
+Version: 1.2.7
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 Group: Applications/File
 URL: http://wvware.sourceforge.net/
 
@@ -42,11 +42,12 @@ you will need to install %{name}-devel.
 %setup
 %patch5 -p1 -b .printf-rhbug150461
 
+%{__perl} -pi -e 's|^LT_CURRENT=`expr $WV_MICRO_VERSION - \$WV_INTERFACE_AGE`|LT_CURRENT=3|' configure
+
+
 %build
 %configure \
-    --disable-static \
-    --with-exporter \
-    --with-libxml2
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -75,5 +76,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libwv.la
 
 %changelog
+* Sun Sep 05 2010 Dag Wieers <dag@wieers.com> - 1.2.7-1
+- Updated to release 1.2.7.
+
 * Mon Mar 17 2008 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Initial package. (using DAR)

@@ -3,7 +3,7 @@
 
 Summary: Library implementing the SSH2 protocol (0xbadc0de version)
 Name: libssh
-Version: 0.4.5
+Version: 0.4.6
 Release: 1%{?dist}
 License: LGPLv2+
 Group: System Environment/Libraries
@@ -70,6 +70,9 @@ cd obj
 #exclude %{_libdir}/libssh.la
 
 %changelog
+* Tue Sep 07 2010 Dag Wieers <dag@wieers.com> - 0.4.6-1
+- Updated to release 0.4.6.
+
 * Tue Jul 13 2010 Dag Wieers <dag@wieers.com> - 0.4.5-1
 - Updated to release 0.4.5.
 

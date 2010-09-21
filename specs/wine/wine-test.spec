@@ -1,4 +1,4 @@
-# $Id: wine-1.0.spec -1   $
+# $Id$
 # Authority: dag
 
 # Tag: rft
@@ -20,14 +20,13 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.1
-Release: 2%{?dist}
+Version: 1.3.3
+Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
-Source0: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
-Source1: http://dl.sf.net/wine/wine_gecko-1.0.0-x86.cab
+Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
 Patch1: wine-1.2-rpath.patch
 ### Fix for RHbz #593140
 Patch100: wine-1.2-fonts.patch
@@ -73,6 +72,7 @@ Requires: wine-capi = %{version}-%{release}
 Requires: wine-cms = %{version}-%{release}
 Requires: wine-core = %{version}-%{release}
 Requires: wine-esd = %{version}-%{release}
+Requires: wine-gecko = 1.1.0
 Requires: wine-jack = %{version}-%{release}
 Requires: wine-ldap = %{version}-%{release}
 Requires: wine-nas = %{version}-%{release}
@@ -308,12 +308,12 @@ export CFLAGS="%{optflags} -Wno-error"
 %configure \
     --sysconfdir="%{_sysconfdir}/wine" \
     --disable-tests \
-    --enable-maintainer-mode \
 %ifarch x86_64
     --enable-win64 \
 %endif 
     --with-x \
 %{?_without_opengl:--without-opengl}
+#    --enable-maintainer-mode \
 %{__make} depend
 %{__make} %{?_smp_mflags}
 
@@ -329,8 +329,6 @@ export CFLAGS="%{optflags} -Wno-error"
 
 %{__install} -Dp -m0755 wine.sysv %{buildroot}%{_initrddir}/wine
 %{__install} -Dp -m0644 wine.ld.conf %{buildroot}%{_sysconfdir}/ld.so.conf.d/wine-%{_arch}.conf
-
-%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/wine/gecko/wine_gecko-1.0.0-x86.cab
 
 desktop-file-install --delete-original             \
     --vendor="%{desktop_vendor}"                   \
@@ -438,7 +436,6 @@ update-desktop-database &>/dev/null || :
 %{_datadir}/applications/%{desktop_vendor}-wine-uninstaller.desktop
 %dir %{_datadir}/wine/
 %{_datadir}/wine/fonts/
-%{_datadir}/wine/gecko/
 %{_datadir}/wine/generic.ppd
 %{_datadir}/wine/l_intl.nls
 %{_datadir}/wine/wine.inf
@@ -512,8 +509,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wscript.exe.so
 %{_libdir}/wine/xcopy.exe.so
 
-### cpl
+### cpl.so
 %{_libdir}/wine/appwiz.cpl.so
+%{_libdir}/wine/inetcpl.cpl.so
 
 ### dll16.so
 %{_libdir}/wine/avifile.dll16.so
@@ -622,6 +620,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx9_40.dll.so
 %{_libdir}/wine/d3dx9_41.dll.so
 %{_libdir}/wine/d3dx9_42.dll.so
+%{_libdir}/wine/d3dx9_43.dll.so
 %{_libdir}/wine/d3dx10_33.dll.so
 %{_libdir}/wine/d3dx10_34.dll.so
 %{_libdir}/wine/d3dx10_35.dll.so
@@ -731,6 +730,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mssip32.dll.so
 %{_libdir}/wine/mstask.dll.so
 %{_libdir}/wine/msvcirt.dll.so
+%{_libdir}/wine/msvcp80.dll.so
 %{_libdir}/wine/msvcp90.dll.so
 %{_libdir}/wine/msvcr100.dll.so
 %{_libdir}/wine/msvcr70.dll.so
@@ -746,6 +746,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mswsock.dll.so
 %{_libdir}/wine/msxml3.dll.so
 %{_libdir}/wine/msxml4.dll.so
+%{_libdir}/wine/msxml6.dll.so
 %{_libdir}/wine/nddeapi.dll.so
 %{_libdir}/wine/netapi32.dll.so
 %{_libdir}/wine/newdev.dll.so
@@ -786,6 +787,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rpcrt4.dll.so
 %{_libdir}/wine/rsabase.dll.so
 %{_libdir}/wine/rsaenh.dll.so
+%{_libdir}/wine/rstrtmgr.dll.so
 %{_libdir}/wine/rtutils.dll.so
 %{_libdir}/wine/samlib.dll.so
 %{_libdir}/wine/sccbase.dll.so
@@ -825,6 +827,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/version.dll.so
 %{_libdir}/wine/w32skrnl.dll.so
 %{_libdir}/wine/wbemprox.dll.so
+%{_libdir}/wine/wer.dll.so
 %{_libdir}/wine/wiaservc.dll.so
 %{_libdir}/wine/windowscodecs.dll.so
 %{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
@@ -973,6 +976,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Sep 19 2010 Dag Wieers <dag@wieers.com> - 1.3.3-1
+- Updated to release 1.3.3.
+
+* Sat Sep 18 2010 Dag Wieers <dag@wieers.com> - 1.3.2-1
+- Updated to release 1.3.2.
+- Moved gecko cabinet file in separate wine-gecko package.
+
 * Tue Aug 24 2010 Dag Wieers <dag@wieers.com> - 1.3.1-2
 - Added gecko cabinet file. (Bart Schaefer)
 

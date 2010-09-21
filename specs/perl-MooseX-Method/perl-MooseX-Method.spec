@@ -30,7 +30,7 @@ BuildRequires: perl(Scalar::Util) >= 1.14
 BuildRequires: perl(Sub::Name) >= 0.02
 BuildRequires: perl(Test::Exception) >= 0.21
 BuildRequires: perl(Test::More) >= 0.47
-BuildRequires: perl(Test::Pod) >= 1/26
+BuildRequires: perl(Test::Pod) >= 1.26
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
 Requires: perl(Carp)
