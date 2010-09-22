@@ -10,7 +10,7 @@
 
 Summary: Database independent interface for Perl
 Name: perl-DBI
-Version: 1.613
+Version: 1.615
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,7 +39,7 @@ Requires: perl(Test::Simple)
 perl-DBI is a Perl module that implements a database independent interface.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,7 +58,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README Roadmap.pod TODO_2005.txt
+%doc Changes MANIFEST META.yml README TODO_2005.txt
 %doc %{_mandir}/man1/dbilogstrip.1*
 %doc %{_mandir}/man1/dbiprof.1*
 %doc %{_mandir}/man1/dbiproxy.1*
@@ -66,8 +66,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc %{_mandir}/man3/DBD::*.3pm*
 %doc %{_mandir}/man3/DBI.3pm*
 %doc %{_mandir}/man3/DBI::*.3pm*
-%doc %{_mandir}/man3/Roadmap.3pm*
-%doc %{_mandir}/man3/TASKS.3pm*
+#%doc %{_mandir}/man3/Roadmap.3pm*
+#%doc %{_mandir}/man3/TASKS.3pm*
 %doc %{_mandir}/man3/Win32::DBIODBC.3pm*
 %{_bindir}/dbilogstrip
 %{_bindir}/dbiprof
@@ -78,8 +78,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DBD/
 %{perl_vendorarch}/DBI/
 %{perl_vendorarch}/DBI.pm
-%{perl_vendorarch}/Roadmap.pod
-%{perl_vendorarch}/TASKS.pod
+#%{perl_vendorarch}/Roadmap.pod
+#%{perl_vendorarch}/TASKS.pod
 %dir %{perl_vendorarch}/Win32/
 %{perl_vendorarch}/Win32/DBIODBC.pm
 %{perl_vendorarch}/dbixs_rev.pl
@@ -89,6 +89,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorarch}/DBI/W32ODBC.pm
 
 %changelog
+* Wed Sep 22 2010 David Hrbáč <david@hrbac.cz> - 1.615-1
+- new upstream release
+
 * Fri Sep 10 2010 David Hrbáč <david@hrbac.cz> - 1.613-1
 - new upstream release
 
