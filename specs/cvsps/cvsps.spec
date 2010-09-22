@@ -4,13 +4,14 @@
 
 Name:           cvsps
 Version:        2.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Patchset tool for CVS
 
 Group:          Development/Tools
 License:        GPL
 URL:            http://www.cobite.com/cvsps/
 Source0:        http://www.cobite.com/cvsps/%{name}-%{version}.tar.gz
+Patch0:         cvsps-2.1-cflags.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  zlib-devel
@@ -29,6 +30,7 @@ changes were committed 'atomically' to the repository.
 
 %prep
 %setup -q
+%patch0 -p1 -b .cflags
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
@@ -48,7 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/cvsps.1*
 
 %changelog
-* Tue Dec 8 2009 Yury V. Zaytsev <yury@shurup.com> - 2.1-5
+* Wed Sep 22 2010 Yury V. Zaytsev <yury@shurup.com> - 2.1-6
+- Fixed build failure due to the incompatibility with DAR.
+
+* Tue Dec  8 2009 Yury V. Zaytsev <yury@shurup.com> - 2.1-5
 - Ported over RPMForge from EPEL with minor updates.
 
 * Tue Aug 29 2006 Ville Skyttä <ville.skytta at iki.fi> - 2.1-4
