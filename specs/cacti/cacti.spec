@@ -7,7 +7,7 @@
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.7g
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -21,6 +21,8 @@ Patch2: http://www.cacti.net/downloads/patches/0.8.7g/graph_list_view.patch
 Patch3: http://www.cacti.net/downloads/patches/0.8.7g/html_output.patch
 Patch4: http://www.cacti.net/downloads/patches/0.8.7g/ldap_group_authenication.patch
 Patch5: http://www.cacti.net/downloads/patches/0.8.7g/script_server_command_line_parse.patch
+Patch6: http://www.cacti.net/downloads/patches/0.8.7g/ping.patch
+Patch7: http://www.cacti.net/downloads/patches/0.8.7g/poller_interval.patch
 
 BuildRequires: mysql-devel
 BuildRequires: openssl-devel
@@ -59,13 +61,15 @@ database.
 This package includes the documentation for %{name}.
 
 %prep
-%setup
+%setup -q
 
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
@@ -137,6 +141,9 @@ fi
 %doc docs/*
 
 %changelog
+* Wed Sep 22 2010 David Hrbáč <david@hrbac.cz> - 0.8.7g-3
+- added ping.patch, poller_interval.patch
+
 * Thu Aug 12 2010 Yury V. Zaytsev <yury@shurup.com> - 0.8.7g-2
 - Added patches from http://www.cacti.net/download_patches.php?version=0.8.7g
 - Thanks to Shane Goulden for the update.
