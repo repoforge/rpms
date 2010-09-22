@@ -6,12 +6,12 @@
 Summary: Restricted shell for use with OpenSSH, allowing only scp and/or sftp
 Name: rssh
 Version: 2.3.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.pizzashack.org/rssh/
 
-Source: http://dl.sf.net/rssh/rssh-%{version}.tar.gz
+Source: http://sourceforge.net/projects/rssh/files/rssh/%{version}/rssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssh-server, openssh-clients
@@ -42,7 +42,7 @@ sed -i 's|chmod u+s $(libexecdir)/rssh_chroot_helper|chmod u+s $(DESTDIR)$(libex
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog CHROOT COPYING NEWS README SECURITY TODO
+%doc AUTHORS ChangeLog CHROOT COPYING NEWS README SECURITY TODO mkchroot.sh
 %doc %{_mandir}/man1/rssh.1*
 %doc %{_mandir}/man5/rssh.conf.5*
 %config(noreplace) %{_sysconfdir}/rssh.conf
@@ -50,6 +50,9 @@ sed -i 's|chmod u+s $(libexecdir)/rssh_chroot_helper|chmod u+s $(DESTDIR)$(libex
 %attr(4755, root, root) %{_libexecdir}/rssh_chroot_helper
 
 %changelog
+* Wed Sep 22 2010 Chritoph Maser <cmaser@gmx.de> 2.3.3-1
+- Add mkchroot.sh to %doc
+
 * Mon Aug 09 2010 Yury V. Zaytsev <yury@shurup.com> - 2.3.3-1
 - Updated to release 2.3.3.
 - Thanks to Nico Kadel-Garcia <nkadel@gmail.com>!
