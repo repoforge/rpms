@@ -196,14 +196,19 @@ EOF
 service git
 {
         disable         = yes
+
+        # git is in /etc/services only on RHEL5+
+        #type            = UNLISTED
+        #port            = 9418
+
         socket_type     = stream
         wait            = no
         user            = nobody
-        server          = %{_datadir}/git-core/git-daemon
+        server          = %{_libexecdir}/git-core/git-daemon
         server_args     = --base-path=%{_localstatedir}/lib/git --export-all --user-path=public_git --syslog --inetd --verbose
         log_on_failure  += USERID
         # xinetd does not enable IPv6 by default
-        flags           = IPv6
+        # flags           = IPv6
 }
 EOF
 
