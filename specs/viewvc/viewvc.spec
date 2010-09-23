@@ -3,7 +3,7 @@
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
-Version: 1.1.6
+Version: 1.1.7
 Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
@@ -15,7 +15,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python >= 1.5.2
-Requires: httpd, python >= 1.5.2
+Requires: httpd
+Requires: python >= 1.5.2
 Obsoletes: viewcvs
 Provides: viewcvs = %{version}-%{release}
 
@@ -107,6 +108,9 @@ find %{buildroot}%{_datadir}/viewvc/lib -type f -name "*.pyc" | xargs %{__rm} -f
 %{_localstatedir}/www/viewvc/
 
 %changelog
+* Fri Sep 10 2010 Dag Wieers <dag@wieers.com> - 1.1.7-1
+- Updated to release 1.1.7.
+
 * Thu Jun 03 2010 Dag Wieers <dag@wieers.com> - 1.1.6-1
 - Updated to release 1.1.6.
 

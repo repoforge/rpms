@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.96.3
-Release: 2%{?dist}
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -106,7 +106,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -q
+%setup
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 

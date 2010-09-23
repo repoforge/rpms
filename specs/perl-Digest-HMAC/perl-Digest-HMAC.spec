@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: Gisle Aas <gisle@ActiveState.com>
-# ExclusiveDist: rh6 el2 rh7 rh8
 
+# ExclusiveDist: rh6 el2 rh7 rh8
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

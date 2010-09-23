@@ -1,0 +1,11 @@
+--- uTidylib-0.2/tidy/lib.py~   2004-02-24 08:12:24.000000000 +0100
++++ uTidylib-0.2/tidy/lib.py    2008-10-18 14:26:02.000000000 +0200
+@@ -130,6 +130,8 @@
+ 
+ sinkfactory=SinkFactory()
+ 
++_tidy.Create.restype = ctypes.POINTER(ctypes.c_void_p)
++
+ class _Document(object):
+     def __init__(self):
+         self.cdoc = _tidy.Create()

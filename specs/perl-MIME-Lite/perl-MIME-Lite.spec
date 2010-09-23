@@ -15,7 +15,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-Lite/
 
-Source: http://www.cpan.org/modules/by-module/MIME/MIME-Lite-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/MIME-Lite-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
