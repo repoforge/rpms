@@ -9,13 +9,14 @@
 
 Summary: Lookup the username on the remote end of a TCP/IP connection
 Name: perl-Net-Ident
-Version: 1.20
-Release: 1.2%{?dist}
+Version: 1.23
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Ident/
 
-Source: http://www.cpan.org/modules/by-module/Net/Net-Ident-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Net/Net-Ident-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TO/TODDR/Net-Ident-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -32,7 +33,7 @@ information, so it is not always available for all TCP/IP
 connections.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -55,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/Ident.pm
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 1.23-1
+- new upstream release
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 1.20-1.2
 - Rebuild for Fedora Core 5.
 

@@ -10,7 +10,7 @@
 
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
-Version: 1.42
+Version: 1.44
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -38,7 +38,7 @@ Requires: perl(Test::More)
 This module allows you to check for POD errors in files.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 
 
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Pod.pm
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 1.44-1
+- new upstream release
+
 * Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.42-1
 - Updated to version 1.42.
 

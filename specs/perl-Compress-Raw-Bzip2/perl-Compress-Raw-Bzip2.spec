@@ -9,7 +9,7 @@
 
 Summary: Low-Level Interface to bzip2 compression library
 Name: perl-Compress-Raw-Bzip2
-Version: 2.024
+Version: 2.031
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,7 +28,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Low-Level Interface to bzip2 compression library.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Compress/Raw/Bzip2.pm
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 2.031-1
+- new upstream release
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 2.024-1
 - Updated to version 2.024.
 

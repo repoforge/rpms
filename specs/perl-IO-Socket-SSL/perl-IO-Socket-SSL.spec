@@ -9,8 +9,8 @@
 
 Summary: Nearly transparent SSL encapsulation for IO::Socket::INET
 Name: perl-IO-Socket-SSL
-Version: 1.31
-Release: 2%{?dist}
+Version: 1.33
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-SSL/
@@ -34,7 +34,7 @@ Provides: perl-Net-Nessus-XMLRPC-alternative = 0.20
 Nearly transparent SSL encapsulation for IO::Socket::INET.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -62,6 +62,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 1.33-1
+- new upstream release
+
 * Tue May 04 2010 Steve Huff <shuff@vecna.org> - 1.31-2
 - Satisfies an alternative dependency for perl-Net-Nessus-XMLRPC.
 

@@ -9,7 +9,7 @@
 
 Summary: Framework for parsing Pod
 Name: perl-Pod-Simple
-Version: 3.13
+Version: 3.14
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -58,7 +58,7 @@ Requires: perl(strict)
 This module contains a framework for parsing Pod.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -82,6 +82,9 @@ This module contains a framework for parsing Pod.
 %{perl_vendorlib}/Pod/Simple/*
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 3.14-1
+- new upstream release
+
 * Tue Dec 22 2009 Christoph Maser <cmr@financial.com> - 3.13-1
 - Updated to version 3.13.
 

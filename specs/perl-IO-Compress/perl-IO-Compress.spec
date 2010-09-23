@@ -9,7 +9,7 @@
 
 Summary: IO Interface to compressed data files/buffers
 Name: perl-IO-Compress
-Version: 2.024
+Version: 2.030
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,7 +38,7 @@ Obsoletes: perl-IO-Compress-Zlib
 IO Interface to compressed data files/buffers.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -65,13 +65,16 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %doc %{_mandir}/man3/IO::Compress*.3pm*
 %doc %{_mandir}/man3/IO::Uncompress*.3pm*
 %dir %{perl_vendorlib}/IO/
-%{perl_vendorlib}/auto/Compress/Zlib/autosplit.ix
+#%{perl_vendorlib}/auto/Compress/Zlib/autosplit.ix
 %{perl_vendorlib}/Compress/Zlib.pm
 %{perl_vendorlib}/File/GlobMapper.pm
 %{perl_vendorlib}/IO/Compress/
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 2.030-1
+- new upstream release
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 2.024-1
 - Updated to version 2.024.
 
