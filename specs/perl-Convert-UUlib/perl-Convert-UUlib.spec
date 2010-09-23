@@ -10,7 +10,8 @@
 Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
 Version: 1.33
-Release: 1%{?dist}
+Release: 2%{?dist}
+Epoch: 1
 License: GPL or Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-UUlib/
@@ -26,7 +27,7 @@ Requires: perl >= 2:5.8.0
 A perl interface to the uulib library (a.k.a. uudeview/uuenview).
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -50,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Convert/
 
 %changelog
+* Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 1:1.33-2
+- corrected Epoch
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.33-1
 - Updated to version 1.33.
 
