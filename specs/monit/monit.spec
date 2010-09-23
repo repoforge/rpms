@@ -1,12 +1,12 @@
 # $Id$
-# Authority: dag
-# Upstream: <monit-general$nongnu,org>
+# Authority: shuff
+# Upstream: <info$mmonit,com>
 
 %define logmsg logger -t %{name}/rpm
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 5.1.1
+Version: 5.2
 Release: 1%{?dist}
 License: GPLv3
 Group: Applications/Internet
@@ -27,6 +27,10 @@ and restart programs not responding.
 
 %{__perl} -pi.orig -e 's|\bmonitrc\b|monit.conf|' monitor.h
 %{__perl} -pi.orig -e 's|^#\s+(include .*)$|$1|' monitrc
+
+# store id and state files in /var/monit
+%{__perl} -pi.orig -e 's|^#(\s+)set (id\|state)file /var/\.monit\.(id\|state)$|set $2file /var/monit/$3|' monitrc
+
 
 %build
 %configure \
@@ -80,6 +84,9 @@ fi
 %attr(0644, root, root) %config(noreplace) %{_sysconfdir}/monit.conf
 
 %changelog
+* Thu Sep 23 2010 Steve Huff <shuff@vecna.org> - 5.2-1
+- Updated to release 5.2.
+
 * Mon Apr 12 2010 Chris Butler <rf@crustynet.org.uk> - 5.1.1-1
 - Updated to release 5.1.1
 
