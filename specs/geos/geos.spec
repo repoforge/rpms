@@ -4,7 +4,7 @@
 
 Summary: GEOS (Geometry Engine, Open Source) topology library
 Name: geos
-Version: 3.1.0
+Version: 3.2.2
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
@@ -66,6 +66,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgeos*.la
 
 %changelog
+* Wed Sep 08 2010 Steve Huff <shuff@vecna.org> - 3.2.2-1
+- Updated to release 3.2.2.
+
 * Mon Mar 23 2009 Dries Verachtert <dries@ulyssis.org> - 3.1.0-1
 - Updated to release 3.1.0.
 
