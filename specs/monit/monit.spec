@@ -15,7 +15,13 @@ URL: http://mmonit.com/monit/
 Source0: http://mmonit.com/monit/dist/monit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, openssl-devel, byacc
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: binutils
+BuildRequires: byacc
+BuildRequires: flex
+BuildRequires: gcc
+BuildRequires: openssl-devel
 
 %description
 Monit is an utility for monitoring daemons or similar programs running on
