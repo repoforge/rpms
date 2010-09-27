@@ -15,8 +15,6 @@ URL: http://mmonit.com/monit/
 Source0: http://mmonit.com/monit/dist/monit-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf
-BuildRequires: automake
 BuildRequires: binutils
 BuildRequires: byacc
 BuildRequires: flex
