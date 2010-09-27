@@ -21,7 +21,10 @@ BuildRequires: binutils
 BuildRequires: byacc
 BuildRequires: flex
 BuildRequires: gcc
+BuildRequires: make
 BuildRequires: openssl-devel
+BuildRequires: perl
+BuildRequires: /usr/bin/logger
 
 %description
 Monit is an utility for monitoring daemons or similar programs running on
@@ -82,12 +85,12 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt COPYING LICENSE README*
-%doc %{_mandir}/man1/monit.1*
+%doc %{_mandir}/man?/*
 %{_initrddir}/monit
 %config %{_sysconfdir}/monit.d/
 %{_localstatedir}/lib/monit/
 %attr(0755, root, root) %{_bindir}/monit
-%attr(0644, root, root) %config(noreplace) %{_sysconfdir}/monit.conf
+%attr(0600, root, root) %config(noreplace) %{_sysconfdir}/monit.conf
 
 %changelog
 * Thu Sep 23 2010 Steve Huff <shuff@vecna.org> - 5.2-1
