@@ -2,26 +2,19 @@
 # Authority: shuff
 # ExcludeDist: el3
 
-%define rel 5.
-
 Name: erlang
-Version: R12B
-Release: %{rel}12%{?dist}
+Version: R14A
+Release: 1%{?dist}
 Summary: General-purpose programming language and runtime environment
 License: ERPL
 Group: Development/Languages
 URL: http://www.erlang.org
 
-Source: http://www.erlang.org/download/otp_src_%{version}-%{rel}.tar.gz
-Source1: http://www.erlang.org/download/otp_doc_html_%{version}-%{rel}.tar.gz
-Source2: http://www.erlang.org/download/otp_doc_man_%{version}-%{rel}.tar.gz
-Patch1: otp-R12B-5-0001-Do-not-create-links-instead-of-real-files.patch
-Patch2: otp-R12B-5-0002-Fix-symlinking-of-epmd.patch
-Patch3: otp-R12B-5-0003-Do-not-format-man-pages.patch
-Patch4: otp-R12B-5-0004-Remove-rpath.patch
-Patch5: otp-R12B-5-0005-Fix-missing-ssl-libraries-in-EPEL.patch
-Patch6: otp-R12B-5-0006-Fix-shared-libraries-installation.patch
-Patch7: otp-R12B-5-0007-Fix-check-for-compile-workspace-overflow.patch
+Source: http://www.erlang.org/download/otp_src_%{version}.tar.gz
+Source1: http://www.erlang.org/download/otp_doc_html_%{version}.tar.gz
+Source2: http://www.erlang.org/download/otp_doc_man_%{version}.tar.gz
+Patch1: otp-R14A-0001-Do-not-format-man-pages.patch
+Patch2: otp-R12B-5-0005-Fix-missing-ssl-libraries-in-EPEL.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: java-1.4.2-gcj-compat-devel
@@ -103,23 +96,14 @@ Group: Development/Languages
 Documentation for Erlang.
 
 %prep
-%setup -n otp_src_%{version}-%{rel}
-%patch1 -p1 -b .links
-%patch2 -p1 -b .fix_epmd_symlink
-%patch3 -p1 -b .manpages
-%patch4 -p1 -b .rpath_removal
-%patch5 -p1 -b .missing_ssl_libraries
-%patch6 -p1 -b .so_lib_install_fix
-%patch7 -p1 -b .pcre_buffer_overflow
+%setup -n otp_src_%{version}%{?rel:-%{rel}}
+%patch1 -p1 -b .manpages
+%patch2 -p1 -b .missing_ssl_libraries
 
 # enable dynamic linking for ssl
 sed -i 's|SSL_DYNAMIC_ONLY=no|SSL_DYNAMIC_ONLY=yes|' erts/configure
-sed -i 's|^LD.*=.*|LD = gcc -shared|' lib/common_test/c_src/Makefile
 # fix for newer glibc version
 sed -i 's|__GLIBC_MINOR__ <= 7|__GLIBC_MINOR__ <= 8|' erts/emulator/hipe/hipe_x86_signal.c
-# use gcc -shared instead of ld
-sed -i 's|@RX_LD@|gcc -shared|' lib/common_test/c_src/Makefile.in
-sed -i 's|@RX_LDFLAGS@||' lib/common_test/c_src/Makefile.in
 
 %build
 CFLAGS="%{optflags} -fno-strict-aliasing" %configure \
@@ -163,7 +147,7 @@ sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS EPLICENCE README
+%doc AUTHORS EPLICENCE INSTALL* README*
 %{_bindir}/*
 %{_libdir}/erlang
 
@@ -175,6 +159,9 @@ sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start
 %{_libdir}/erlang/Install -minimal %{_libdir}/erlang &>/dev/null
 
 %changelog
+* Thu Sep 02 2010 Steve Huff <shuff@vecna.org> - R14A-1
+- Upgraded to version R14A.
+
 * Fri Jul 02 2010 Steve Huff <shuff@vecna.org> - R12B-5.12
 - Argh, Erlang uses standard man page format, but its man pages really are
   not supposed to be installed in man's search path.  Huh.
