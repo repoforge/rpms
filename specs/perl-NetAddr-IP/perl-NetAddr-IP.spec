@@ -9,13 +9,12 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 4.030
+Version: 4.032
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
 
-#Source: http://www.cpan.org/modules/by-module/NetAddr/NetAddr-IP-%{version}.tar.gz
 Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/NetAddr-IP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -57,6 +56,9 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/NetAddr/IP/
 
 %changelog
+* Tue Sep 28 2010 David Hrbáč <david@hrbac.cz> - 4.032-1
+- new upstream release
+
 * Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 4.030-1
 - new upstream release
 
