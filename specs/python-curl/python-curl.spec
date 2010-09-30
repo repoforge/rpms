@@ -6,18 +6,25 @@
 
 %define real_name pycurl
 
+# ancient code goes in the boneyard
+%{?el5:%define ancient 1}
+%{?el4:%define ancient 1}
+%{?el3:%define ancient 1}
+
 Summary: Python interface to libcurl
 Name: python-curl
 Version: %{curl_version}
-Release: 1.2%{?dist}
+Release: 1.3%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pycurl.sourceforge.net/
 
-Source: http://pycurl.sourceforge.net/download/pycurl-%{version}.tar.gz
+Source: http://pycurl.sourceforge.net/download/%{?ancient:00-OLD-VERSIONS/}pycurl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel, curl-devel
+
+Provides: python-pycurl = %{version}-%{release}
 
 %description
 PycURL is a Python interface to libcurl. PycURL can be used to fetch
@@ -39,11 +46,15 @@ urllib Python module.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING INSTALL README INSTALL TODO doc/ examples/ tests/
+%doc ChangeLog COPYING INSTALL README TODO doc/ examples/ tests/
 %{python_sitearch}/pycurl.so
 %{python_sitearch}/curl/
 %exclude %{_docdir}/pycurl/
 
 %changelog
+* Thu Sep 30 2010 Steve Huff <shuff@vecna.org> - %{curl_version}-1.3
+- Provide python-pycurl for compatibility.
+- Updated source path due to upstream reorganization.
+
 * Sun Nov 27 2005 Dag Wieers <dag@wieers.com> - %{curl_version}-1
 - Initial package. (using DAR)
