@@ -24,7 +24,7 @@
 
 Summary: Language for data analysis and graphics
 Name: R
-Version: 2.11.0
+Version: 2.11.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -123,11 +123,6 @@ Requires: %{name} = %{version}-%{release}
 Requires: gcc-c++, gcc-objc, tetex-latex, texinfo 
 Requires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
 Requires: tcl-devel, tk-devel, pkgconfig
-%{?_with_cairo:BuildRequires: cairo-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel}
-%{?_without_modxorg:BuildRequires: XFree86-devel}
-%{?_with_compat_gcc34:BuildRequires: compat-gcc-34-g77}
-%{!?_with_compat_gcc34:BuildRequires: gcc-g77}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -227,6 +222,10 @@ export LDFLAGS=%{LDFLAGS}
 %{_libdir}/libRmath.a
 
 %changelog
+* Thu Sep 30 2010 Steve Huff <shuff@vecna.org> - 2.11.1-1
+- Updated to release 2.11.1.
+- Needless duplication of BuildRequires: in subpackage was breaking the build.
+
 * Fri Apr 30 2010 Steve Huff <shuff@vecna.org> - 2.11.0-1
 - Updated to release 2.11.0.
 - Added some additional uncaptured dependencies.
