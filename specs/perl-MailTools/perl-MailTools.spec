@@ -10,7 +10,7 @@
 
 Summary: Various Mail related modules
 Name: perl-MailTools
-Version: 2.06
+Version: 2.07
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,7 +47,7 @@ Requires: perl(Test::Pod) >= 1
 Various Mail related modules.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -73,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Fri Oct 01 2010 David Hrbáč <david@hrbac.cz> - 2.07-1
+- new upstream release
+
 * Mon Oct 13 2008 Dag Wieers <dag@wieers.com> - 2.04-1
 - Updated to release 2.04.
 
