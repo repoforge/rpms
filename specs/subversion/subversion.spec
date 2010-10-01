@@ -2,13 +2,11 @@
 # Authority: dag
 # Upstream: CollabNet <dev$subversion,apache,org>
 
+%define _with_java 1
+# set JDK path to build javahl; default for JPackage
+%define jdk_path /usr/lib/jvm/java
+
 #{?el3:#define _without_swig 1}
-%{?rh9:%define _without_pie 1}
-%{?rh9:%define _without_swig 1}
-%{?rh7:%define _without_pie 1}
-%{?rh7:%define _without_swig 1}
-%{?el2:%define _without_pie 1}
-%{?el2:%define _without_swig 1}
 
 %define swig_version 1.3.39
 %define sqlite_version 3.6.13
@@ -23,7 +21,7 @@
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
 Version: 1.6.12
-Release: 0.1%{?dist}
+Release: 0.2%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -40,6 +38,7 @@ Patch3: subversion-1.6.0-rpath.patch
 Patch6: subversion-1.6.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
 Patch8: subversion-1.6.6-ruby-rpath.patch
+Patch100: subversion-1.6.12-javahl-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: apr-devel >= 0.9.4
@@ -129,16 +128,15 @@ This package includes the Ruby bindings to the Subversion libraries.
 %setup -a 10 -a 2
 %patch2 -p1 -b .deplibs
 %patch3 -p1 -b .rpath
-%{!?_without_pie:%patch6 -p1 -b .pie}
-%{?_with_java:%patch7 -p1 -b .java}
+%patch6 -p1 -b .pie
 %{!?_without_ruby:%patch8 -p0 -b .ruby-rpath}
+%{?_with_java:%patch7 -p1 -b .java}
+%{?_with_java:%patch100 -p1 -b .java-pic}
 
 %{__rm} -rf neon apr apr-util
 %{__mv} sqlite-%{sqlite_version} sqlite-amalgamation
 
 echo _without_swig: %_without_swig
-echo _without_pie: %_without_pie
-echo dtag: %dtag
 
 %build
 %if %{!?_without_swig:1}0
@@ -163,7 +161,7 @@ export svn_cv_ruby_link="%{__cc} -shared"
 export svn_cv_ruby_sitedir_libsuffix=""
 export svn_cv_ruby_sitedir_archsuffix=""
 
-export CC=gcc CXX=g++
+export CC=gcc CXX=g++ %{?_with_java:JAVA_HOME=%{jdk_path}} CFLAGS="$RPM_OPT_FLAGS"
 %configure \
     --disable-mod-activation \
     --disable-neon-version-check \
@@ -176,7 +174,8 @@ export CC=gcc CXX=g++
     --with-ruby-sitedir="%{ruby_sitearch}" \
     --with-sasl="%{_prefix}" \
     --with-ssl \
-%{!?_without_swig:--with-swig="swig-%{swig_version}/install"}
+%{!?_without_swig:--with-swig="swig-%{swig_version}/install"} \
+%{?_with_java:--enable-javahl}
 #    --disable-neon-version-check \
 # 1.3.0 tarball ships with generated swig sources
 #%{__make} extraclean-swig-headers swig-headers
@@ -188,8 +187,9 @@ export CC=gcc CXX=g++
 %{!?_without_ruby:%{__make} %{?_smp_mflags} swig-rb swig-rb-lib}
 %endif
 
-%{?_with_java:%{_make} %{?_smp_mflags} javahl-java javahl-javah}
-%{?_with_java:%{_make} %{?_smp_mflags} javahl}
+# javahl-javah does not parallel-make with javahl
+%{?_with_java:%{__make} javahl-java javahl-javah}
+%{?_with_java:%{__make} %{?_smp_mflags} javahl}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -204,7 +204,7 @@ export CC=gcc CXX=g++
         PERL_INSTALL_ROOT="%{buildroot}"
 %endif
 
-%{?_with_java:%{__make} install-javahl install-javahl-lib DESTDIR="%{buildroot}"}
+%{?_with_java:%{__make} install-javahl-java install-javahl-lib javahl_javadir=%{_javadir} DESTDIR="%{buildroot}"}
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/subversion
 
@@ -321,10 +321,14 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %files javahl
 %defattr(-, root, root, 0755)
 %{_libdir}/libsvnjavahl-1.*
-%{_libdir}/svn-javahl/
+%{_javadir}/svn-javahl.jar
 %endif
 
 %changelog
+* Fri Oct 01 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.12-0.2
+- Reenable building of Java packages (Claire M. Connelly).
+- Minor cleanups.
+
 * Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 1.6.12-0.1
 - Updated to release 1.6.12.
 
