@@ -20,8 +20,8 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.12
-Release: 0.2%{?dist}
+Version: 1.6.13
+Release: 0.1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
@@ -31,7 +31,7 @@ Source1: subversion.conf
 Source2: http://sqlite.org/sqlite-amalgamation-%{sqlite_version}.tar.gz
 Source3: filter-requires.sh
 Source4: http://www.xsteve.at/prg/emacs/psvn.el
-Source10: http://dl.sf.net/swig/swig-%{swig_version}.tar.gz
+Source10: http://prdownloads.sourceforge.net/sourceforge/swig/swig-%{swig_version}.tar.gz
 #Patch1: subversion-0.24.2-swig.patch
 Patch2: subversion-0.20.1-deplibs.patch
 Patch3: subversion-1.6.0-rpath.patch
@@ -325,8 +325,11 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Sun Oct 02 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.13-0.1
+- Updated to release 1.6.13 (Jose Pedro Oliveira).
+
 * Fri Oct 01 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.12-0.2
-- Reenable building of Java packages (Claire M. Connelly).
+- Reenabled building of Java packages (Claire M. Connelly).
 - Minor cleanups.
 
 * Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 1.6.12-0.1
