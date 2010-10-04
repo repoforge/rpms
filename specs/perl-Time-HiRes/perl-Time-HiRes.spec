@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Jarkko Hietaniemi <jhi$iki,fi>
+# RFX: el5
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@
 Summary: Perl module that implements high resolution alarm, sleep, gettimeofday, interval timers
 Name: perl-Time-HiRes
 Version: 1.9721
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-HiRes/
@@ -51,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Time/HiRes.pm
 
 %changelog
+* Mon Oct 04 2010 David Hrbáč <david@hrbac.cz> - 1.9721-2
+- RFXed for el5
+
 * Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 1.9721-1
 - Updated to version 1.9721.
 
