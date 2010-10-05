@@ -19,7 +19,7 @@ BuildRequires: db4-devel
 BuildRequires: pkgconfig
 
 %description
-bmf is a self contained and extremely efficient Bayesian mail filter. SeePaul
+bmf is a self contained and extremely efficient Bayesian mail filter. See Paul
 Graham's article "A Plan for Spam" for background information. It aims to be
 faster, smaller, and more versatile than similar applications.
 
