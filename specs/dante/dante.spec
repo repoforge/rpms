@@ -5,7 +5,7 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.2.1
+Version: 1.2.2
 Release: 1%{?dist}
 License: BSD-type
 Group: Applications/Internet
@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
 BuildRequires: flex
+BuildRequires: miniupnpc-devel
 
 %description
 Dante is a free implementation of the proxy protocols socks version 4,
@@ -300,15 +301,18 @@ fi
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/rfc* doc/SOCKS4.protocol INSTALL
-%{_libdir}/libsocks.so
 %{_includedir}/socks.h
 #%{_includedir}/socks_glibc.h
-#%{_libdir}/libdsocks.a
-%exclude %{_libdir}/libsocks.a
+%{_libdir}/libsocks.so
+%exclude %{_libdir}/libdsocks.a
 %exclude %{_libdir}/libdsocks.la
+%exclude %{_libdir}/libsocks.a
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Thu Sep 23 2010 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Fri May 28 2010 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

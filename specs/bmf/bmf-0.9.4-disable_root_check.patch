@@ -1,0 +1,7 @@
+--- Makefile.in.orig	2010-08-09 08:51:44.000000000 +0200
++++ Makefile.in	2010-08-09 08:51:58.000000000 +0200
+@@ -78,4 +78,3 @@
+ 	 cd $(PWD))
+ 
+ checkroot:
+-	[ "`whoami`" = root ] || (echo Need root; exit 1)

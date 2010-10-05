@@ -325,8 +325,8 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Sun Oct 02 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.13-0.1
-- Updated to release 1.6.13 (Jose Pedro Oliveira).
+* Sat Oct 02 2010 Dag Wieers <dag@wieers.com> - 1.6.13-0.1
+- Updated to release 1.6.13.
 
 * Fri Oct 01 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.12-0.2
 - Reenabled building of Java packages (Claire M. Connelly).

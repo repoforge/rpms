@@ -8,8 +8,8 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 3.2.1
-Release: 6%{?dist}
+Version: 3.2.2
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -200,6 +200,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 3.2.2-1
+- Updated to release 3.2.2.
+
 * Sat Aug 29 2010 Christoph Maser <cmr@financial.com> - 3.2.1-6
 - remove "-p pidfile" from call to killproc in initscript to make
   it el4 compatible

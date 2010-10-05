@@ -77,7 +77,6 @@ fi
 %doc %{_mandir}/man1/gsl-config.1*
 %doc %{_mandir}/man3/*.3*
 %doc %{_infodir}/*info*
-%exclude %{_infodir}/dir
 %{_bindir}/gsl-config*
 %dir %{_datadir}/aclocal/
 %{_datadir}/aclocal/*

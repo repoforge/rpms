@@ -7,7 +7,7 @@
 
 Summary: System performance benchmark
 Name: sysbench
-Version: 0.4.10
+Version: 0.4.12
 Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
@@ -62,5 +62,8 @@ benchmarks and third-party plug-in modules.
 %exclude %{_docdir}/sysbench/
 
 %changelog
+* Mon Sep 27 2010 Dag Wieers <dag@wieers.com> - 0.4.12-1
+- Updated to release 0.4.12.
+
 * Wed Jun 09 2010 Dag Wieers <dag@wieers.com> - 0.4.10-1
 - Initial package. (using DAR)

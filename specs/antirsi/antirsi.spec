@@ -7,7 +7,7 @@ Name: antirsi
 Version: 1.9.2
 Release: 1%{?dist}
 License: GPL
-Group: Applications/
+Group: Applications/Productivity
 URL: http://tech.inhelsinki.nl/antirsi/
 
 Source: http://tech.inhelsinki.nl/2006-07-08/antirsi-%{version}.tar.gz
@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: binutils
 BuildRequires: gcc
 BuildRequires: gtk2-devel
+BuildRequires: libXScrnSaver-devel
 BuildRequires: make
 BuildRequires: rpm-macros-rpmforge
 
@@ -35,8 +36,7 @@ Note: this version is a preview release of AntiRSI for Gnome.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -m0755 gnome/antirsi-gnome %{buildroot}%{_bindir}/antirsi
+%{__install} -Dp -m0755 gnome/antirsi-gnome %{buildroot}%{_bindir}/antirsi
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -44,7 +44,7 @@ Note: this version is a preview release of AntiRSI for Gnome.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING
-%{_bindir}/*
+%{_bindir}/antirsi
 
 %changelog
 * Thu Sep 30 2010 Steve Huff <shuff@vecna.org> - 1.9.2-1

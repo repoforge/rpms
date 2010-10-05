@@ -30,7 +30,6 @@ Requires: perl(Parse::RecDescent)
 %filter_from_requires /^perl*/d
 %filter_setup
 
-
 %description
 The Spreadsheet::WriteExcel module can be used to create a cross-
 platform Excel binary file. Multiple worksheets can be added to a

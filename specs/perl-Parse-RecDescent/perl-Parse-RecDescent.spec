@@ -6,28 +6,30 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Parse-RecDescent
+%define real_version 1.965001
 
 Summary: Generate Recursive-Descent Parsers
 Name: perl-Parse-RecDescent
-Version: 1.962.2
+Version: 1.965.1
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-RecDescent/
 
-Source: http://www.cpan.org/modules/by-module/Parse/Parse-RecDescent-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DC/DCONWAY/Parse-RecDescent-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(version)
 
 %description
 RecDescent incrementally generates top-down recursive-descent text
 parsers from simple yacc-like grammar specifications.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -45,11 +47,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
-%doc %{_mandir}/man3/*
-%{perl_vendorlib}/Parse/RecDescent.p*
+%doc Changes MANIFEST META.yml README tutorial/
+%doc %{_mandir}/man3/Parse::RecDescent.3pm*
+%{perl_vendorlib}/Parse/RecDescent.pm
 
 %changelog
+* Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 1.965.1-1
+- Updated to release 1.965001.
+- Added perl(version) BuildRequires.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 1.962.2-1
 - Updated to version 1.962.2.
 

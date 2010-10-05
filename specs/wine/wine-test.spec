@@ -20,14 +20,14 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.3
+Version: 1.3.4
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
 Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
-Patch1: wine-1.2-rpath.patch
+Patch1: wine-1.3.4-rpath.patch
 ### Fix for RHbz #593140
 Patch100: wine-1.2-fonts.patch
 ### Add wine-gecko support
@@ -467,6 +467,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/iexplore.exe.so
 %{_libdir}/wine/ipconfig.exe.so
 %{_libdir}/wine/lodctr.exe.so
+%{_libdir}/wine/mofcomp.exe.so
 %{_libdir}/wine/mshta.exe.so
 %{_libdir}/wine/msiexec.exe.so
 %{_libdir}/wine/net.exe.so
@@ -487,6 +488,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/spoolsv.exe.so
 %{_libdir}/wine/start.exe.so
 %{_libdir}/wine/svchost.exe.so
+%{_libdir}/wine/taskkill.exe.so
 %{_libdir}/wine/taskmgr.exe.so
 %{_libdir}/wine/termsv.exe.so
 %{_libdir}/wine/uninstaller.exe.so
@@ -696,6 +698,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/itss.dll.so
 %{_libdir}/wine/jscript.dll.so
 %{_libdir}/wine/kernel32.dll.so
+%{_libdir}/wine/ktmw32.dll.so
 %{_libdir}/wine/loadperf.dll.so
 %{_libdir}/wine/localspl.dll.so
 %{_libdir}/wine/localui.dll.so
@@ -976,6 +979,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Oct 03 2010 Dag Wieers <dag@wieers.com> - 1.3.4-1
+- Updated to release 1.3.4.
+
 * Sun Sep 19 2010 Dag Wieers <dag@wieers.com> - 1.3.3-1
 - Updated to release 1.3.3.
 
