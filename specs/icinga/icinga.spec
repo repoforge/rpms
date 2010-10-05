@@ -17,8 +17,8 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.0.3
-Release: 3%{?dist}
+Version: 1.2.0
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -53,7 +53,6 @@ Summary: Web content for %{name}
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 Requires: httpd
-Requires: php
 Requires: %{name}-doc
 
 %description gui
@@ -223,16 +222,13 @@ fi
 %dir %{_datadir}/icinga
 %{_datadir}/icinga/cgi
 %{_datadir}/icinga/contexthelp
-%{_datadir}/icinga/getList.php
 %{_datadir}/icinga/images
-%{_datadir}/icinga/includes
 %{_datadir}/icinga/index.html
 %{_datadir}/icinga/js
 %{_datadir}/icinga/main.html
 %{_datadir}/icinga/media
 %{_datadir}/icinga/menu.html
 %{_datadir}/icinga/robots.txt
-%{_datadir}/icinga/search.html
 %{_datadir}/icinga/sidebar.html
 %{_datadir}/icinga/ssi
 %{_datadir}/icinga/stylesheets
@@ -254,6 +250,12 @@ fi
 
 
 %changelog
+* Thu Sep 30 2010 Christoph Maser <cmaser@gmx.de> - 1.2.0-1
+- update for release 1.2.0
+
+* Mon Sep 20 2010 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.0.3-4
+- remove php depency for classic gui
+
 * Wed Sep 01 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-3
 - Put documentation in a separate package
 
