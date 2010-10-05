@@ -1,73 +1,117 @@
 # $Id$
-# Authority: dries
+# Authority: yury
 # Upstream: Matt Mackall <mpm$selenic,com>
 
+%define pythonver %(python -c 'import sys;print ".".join(map(str, sys.version_info[:2]))')
+%define emacs_lispdir %{_datadir}/emacs/site-lisp
 
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
-
-%{?fc10:%define _with_python_egginfo 1}
-%{?fc9:%define _with_python_egginfo 1}
-
-Summary: Fast lightweight source control management system
+Summary: A fast, lightweight Source Control Management system
 Name: mercurial
-Version: 1.5
+Version: 1.6.4
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 Group: Development/Tools
-URL: http://www.selenic.com/mercurial/wiki/
-
-Source: http://www.selenic.com/mercurial/release/mercurial-%{version}.tar.gz
+URL: http://mercurial.selenic.com/
+Source0: http://mercurial.selenic.com/release/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: python >= 2.4
 BuildRequires: python-devel >= 2.4
+BuildRequires: python-docutils >= 0.5
+BuildRequires: make
+BuildRequires: gcc
+BuildRequires: gettext
+
+Provides: hg = %{version}-%{release}
 Requires: python >= 2.4
 
 %description
-Mercurial is a fast, lightweight Source Control Management system designed 
-for the efficient handling of very large distributed projects. 
+Mercurial is a fast, lightweight source control management system designed
+for efficient handling of very large distributed projects.
 
 %package hgk
 Summary: hgk GUI for mercurial
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
+Requires: tk
 
 %description hgk
 With hgk you can browse a repository graphically.
 
+%package ssh
+Summary: SSH wrapper for mercurial
+Group: Development/Tools
+Requires: %{name} = %{version}-%{release}
+
+%description ssh
+A wrapper for ssh access to a limited set of mercurial repos.
+
 %prep
-%setup
+%setup -q
 
 %build
-CFLAGS="%{optflags}" %{__python} setup.py build
+CFLAGS="%{optflags}" %{__make} %{?_smp_mflags} all
 
 %install
 %{__rm} -rf %{buildroot}
-%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
-%{__make} install-doc PREFIX="%{buildroot}%{_prefix}" MANDIR="%{buildroot}%{_mandir}"
-%{__install} contrib/hgk %{buildroot}%{_bindir}/hgk
-# TODO: also install other contribs, maybe in subpackage
+%{__make} install  DESTDIR="%{buildroot}" PREFIX="%{_prefix}" MANDIR="%{_mandir}"
+
+%{__install} -m 755 contrib/hgk          %{buildroot}%{_bindir}
+%{__install} -m 755 contrib/hg-ssh       %{buildroot}%{_bindir}
+
+bash_completion_dir=%{buildroot}%{_sysconfdir}/bash_completion.d
+mkdir -p $bash_completion_dir
+%{__install} -m 644 contrib/bash_completion $bash_completion_dir/mercurial.sh
+
+zsh_completion_dir=%{buildroot}%{_datadir}/zsh/site-functions
+mkdir -p $zsh_completion_dir
+%{__install} -m 644 contrib/zsh_completion $zsh_completion_dir/_mercurial
+
+mkdir -p %{buildroot}%{emacs_lispdir}
+%{__install} -m 644 contrib/mercurial.el %{buildroot}%{emacs_lispdir}
+%{__install} -m 644 contrib/mq.el %{buildroot}%{emacs_lispdir}
+
+mkdir -p %{buildroot}/%{_sysconfdir}/mercurial/hgrc.d
+%{__install} -m 644 contrib/mergetools.hgrc %{buildroot}%{_sysconfdir}/mercurial/hgrc.d/mergetools.rc
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CONTRIBUTORS COPYING README contrib/
-%doc %{_mandir}/man1/hg.1*
-#%doc %{_mandir}/man1/hgmerge.1*
-%doc %{_mandir}/man5/hgignore.5*
-%doc %{_mandir}/man5/hgrc.5*
+%doc CONTRIBUTORS COPYING doc/README doc/hg*.txt doc/hg*.html *.cgi contrib/*.fcgi
+%doc %attr(644, root, root) %{_mandir}/man?/hg*
+%doc %attr(644, root, root) contrib/*.svg contrib/sample.hgrc
+%dir %{_datadir}/zsh/
+%dir %{_datadir}/zsh/site-functions/
+%{_datadir}/zsh/site-functions/_mercurial
+%dir %{_datadir}/emacs/site-lisp/
+%{_datadir}/emacs/site-lisp/mercurial.el
+%{_datadir}/emacs/site-lisp/mq.el
 %{_bindir}/hg
-#%{_bindir}/hgmerge
-%{python_sitearch}/hgext/
-%{python_sitearch}/mercurial/
-%{?_with_python_egginfo:%{python_sitearch}/mercurial-*.egg-info}
+%dir %{_sysconfdir}/bash_completion.d/
+%config(noreplace) %{_sysconfdir}/bash_completion.d/mercurial.sh
+%dir %{_sysconfdir}/mercurial
+%dir %{_sysconfdir}/mercurial/hgrc.d
+%config(noreplace) %{_sysconfdir}/mercurial/hgrc.d/mergetools.rc
+%if "%{?pythonver}" != "2.4"
+%{_libdir}/python%{pythonver}/site-packages/%{name}-*-py%{pythonver}.egg-info
+%endif
+%{_libdir}/python%{pythonver}/site-packages/%{name}
+%{_libdir}/python%{pythonver}/site-packages/hgext
 
 %files hgk
 %defattr(-, root, root, 0755)
 %{_bindir}/hgk
 
+%files ssh
+%defattr(-, root, root, 0755)
+%{_bindir}/hg-ssh
+
 %changelog
+* Tue Oct 05 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.4-1
+- Updated to release 1.6.4 (Tim Dettrick).
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 
