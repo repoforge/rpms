@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Shlomi Fish <shlomif$iglu,org,il>
+# RFX: el5
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@
 Summary: Object interface for AF_INET|AF_INET6 domain sockets
 Name: perl-IO-Socket-INET6
 Version: 2.57
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Socket-INET6/
@@ -59,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/IO/Socket/INET6.pm
 
 %changelog
+* Wed Oct 06 2010 David Hrbáč <david@hrbac.cz> - 2.57-2
+- RFXed for el5
+
 * Wed Dec 23 2009 Christoph Maser <cmr@financial.com> - 2.57-1
 - Updated to version 2.57.
 
