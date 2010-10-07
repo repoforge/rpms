@@ -1,7 +1,7 @@
 # $Id:$
 # Upstream:     pnp4nagios-devel@lists.sourceforge.net
 Name:		pnp4nagios
-Version:	0.6.6
+Version:	0.6.7
 Release:	1
 Summary: 	PNP is not PerfParse. A Nagios perfdata graphing solution	
 
