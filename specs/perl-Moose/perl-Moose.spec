@@ -11,7 +11,7 @@
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
 Version: 1.02
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
@@ -62,7 +62,7 @@ Conflicts: perl(MooseX::Params::Validate) <= 0.05
 Conflicts: perl(MooseX::Role::Cmd) <= 0.06
 Conflicts: perl(MooseX::Role::WithOverloading) <= 0.04
 Conflicts: perl(MooseX::Singleton) <= 0.19
-Conflicts: perl(MooseX::StringConstructor) <= 0.07
+Conflicts: perl(MooseX::StrictConstructor) <= 0.07
 Conflicts: perl(MooseX::Types) <= 0.19
 Conflicts: perl(namespace::autoclean) <= 0.08
 
@@ -104,6 +104,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
+* Fri Oct 08 2010 Steve Huff <shuff@vecna.org> - 1.02-1
+- Fixed a mis-specified conflict.
+
 * Tue Jun 08 2010 Steve Huff <shuff@vecna.org> - 1.02-1
 - Updated to version 1.02.
 - Later version require an updated Class::MOP.
