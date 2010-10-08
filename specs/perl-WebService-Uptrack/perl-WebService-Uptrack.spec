@@ -9,7 +9,7 @@
 
 Summary: access KSplice Uptrack web API
 Name: perl-WebService-Uptrack
-Version: 0.0.1
+Version: 0.0.2
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,13 @@ Requires: perl(version)
 %filter_setup
 
 %description
+This module provides a Perl interface to the KSplice Uptrack web API. API
+documentation is located here:
+
+http://www.ksplice.com/uptrack/api
+
+You need to provide a valid Uptrack API username and key in order to use this
+module; get this via the Uptrack web interface.
 
 %prep
 %setup -n %{real_name}-v%{version}
@@ -71,7 +78,7 @@ Requires: perl(version)
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes META.yml README TODO
+%doc Changes META.yml README SIGNATURE TODO
 %doc %{_mandir}/man?/*
 %{perl_vendorlib}/WebService/Uptrack.pm
 #%{perl_vendorlib}/WebService/Uptrack/*
@@ -79,5 +86,8 @@ Requires: perl(version)
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Fri Oct 08 2010 Steve Huff <shuff@vecna.org> - 0.0.2
+- Updated to version 0.0.2.
+
 * Tue Oct 05 2010 Steve Huff <shuff@vecna.org> - 0.0.1
 - Initial package.
