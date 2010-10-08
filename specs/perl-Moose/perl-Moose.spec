@@ -104,7 +104,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
-* Fri Oct 08 2010 Steve Huff <shuff@vecna.org> - 1.02-1
+* Fri Oct 08 2010 Steve Huff <shuff@vecna.org> - 1.02-2
 - Fixed a mis-specified conflict.
 
 * Tue Jun 08 2010 Steve Huff <shuff@vecna.org> - 1.02-1
