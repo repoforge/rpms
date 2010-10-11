@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Brad Fitzpatrick <brad$danga,com>
+# Upstream: Alan Kasindorf <dormando@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: Perl module implements a client library for memcached
 Name: perl-Cache-Memcached
-Version: 1.28
+Version: 1.29
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cache-Memcached/
 
-Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRADFITZ/Cache-Memcached-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DO/DORMANDO/Cache-Memcached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -66,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Cache/Memcached.pm
 
 %changelog
+* Mon Oct 11 2010 Christoph Maser <cmaser@gmx.de> - 1.29-1
+- Updated to version 1.29.
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.28-1
 - Updated to version 1.28.
 
