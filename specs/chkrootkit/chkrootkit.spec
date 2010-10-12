@@ -10,7 +10,7 @@
 
 Summary: Check locally for signs of a rootkit
 Name: chkrootkit
-Version: 0.47
+Version: 0.49
 Release: 1%{?dist}
 License: BSD-like
 Group: Applications/System
@@ -29,7 +29,7 @@ Requires: binutils
 chkrootkit is a tool to locally check for signs of a rootkit.
 
 %prep
-%setup
+%setup -q
 
 %patch -p1 -b .getCMD
 %patch1 -p1 -b .inetd
@@ -41,7 +41,7 @@ SESSION=true
 EOF
 
 %{__cat} <<EOF >chkrootkit.pam
-#%PAM-1.0
+#PAM-1.0
 auth       sufficient	pam_rootok.so
 auth       sufficient   pam_timestamp.so
 auth       required	pam_stack.so service=system-auth
@@ -120,6 +120,9 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-chkrootkit.desktop}
 
 %changelog
+* Tue Oct 12 2010 David Hrbáč <david@hrbac.cz> - 0.49-1
+- new upstream release
+
 * Sun Jan 21 2007 Dag Wieers <dag@wieers.com> - 0.47-1
 - Updated to release 0.47.
 
