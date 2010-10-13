@@ -1,6 +1,7 @@
 # $Id$
 # Authority: shuff
 # Upstream: Steve Huff <shuff$cpan,org>
+# ExclusiveDist: el4 el5
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -86,6 +87,9 @@ module; get this via the Uptrack web interface.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Wed Oct 13 2010 Steve Huff <shuff@vecna.org>
+- Don't try to build on el3.
+
 * Fri Oct 08 2010 Steve Huff <shuff@vecna.org> - 0.0.2
 - Updated to version 0.0.2.
 
