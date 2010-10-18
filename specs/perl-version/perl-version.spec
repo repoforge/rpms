@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements for Version Objects
 Name: perl-version
-Version: 0.82
+Version: 0.83
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -27,7 +27,7 @@ Requires: perl >= 0:5.005
 version is a Perl module that implements for Version Objects.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/version.pod
 
 %changelog
+* Mon Oct 18 2010 David Hrbáč <david@hrbac.cz> - 0.83-1
+- new upstream release
+
 * Tue Jul 13 2010 Dag Wieers <dag@wieers.com> - 0.82-1
 - Updated to release 0.82.
 
