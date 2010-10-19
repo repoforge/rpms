@@ -18,14 +18,14 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.2
-Release: 3%{?dist}
+Version: 1.2.1
+Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
 Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
-Patch1: wine-1.2-rpath.patch
+Patch1: wine-1.2.1-rpath.patch
 ### Fix for RHbz #593140
 Patch100: wine-1.2-fonts.patch
 ### Add wine-gecko support
@@ -504,7 +504,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/write.exe.so
 %{_libdir}/wine/xcopy.exe.so
 
-### cpl
+### cpl.so
 %{_libdir}/wine/appwiz.cpl.so
 
 ### dll16.so
@@ -940,6 +940,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Oct 09 2010 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Sat Sep 18 2010 Dag Wieers <dag@wieers.com> - 1.2-3
 - Moved gecko cabinet file in separate wine-gecko package.
 

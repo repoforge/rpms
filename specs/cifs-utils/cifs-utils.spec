@@ -7,7 +7,7 @@
 Summary: Utilities for mounting and managing CIFS mounts
 Name: cifs-utils
 Version: 4.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv3
 Group: System Environment/Daemons
 URL: http://linux-cifs.samba.org/cifs-utils/
@@ -54,6 +54,9 @@ file system.
 %{!?_without_keyutils:%{_sbindir}/cifs.upcall}
 
 %changelog
+* Tue Oct 19 2010 Dag Wieers <dag@wieers.com> - 4.6-2
+- Rebuild against libtalloc 1.2.0 on RHEL5.
+
 * Mon Aug 02 2010 Dag Wieers <dag@wieers.com> - 4.6-1
 - Updated to release 4.6.
 

@@ -1,0 +1,505 @@
+diff -uNr mock-0.6.12__orig/etc/centos-3-i386.cfg mock-0.6.12/etc/centos-3-i386.cfg
+--- mock-0.6.12__orig/etc/centos-3-i386.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-3-i386.cfg	2007-04-30 22:47:51.000000000 +0100
+@@ -0,0 +1,53 @@
++#!/usr/bin/python -tt
++import os
++config_opts['root'] = 'centos-3-i386'
++config_opts['target_arch'] = 'i386'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++logfile=/var/log/yum.log
++reposdir=/dev/null
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=3&arch=i386&repo=os
++#baseurl=http://mirror.centos.org/centos/3/os/i386/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=3&arch=i386&repo=updates
++#baseurl=http://mirror.centos.org/centos/3/updates/i386/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/3/
++
++"""
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     3
++
++#%_smp_mflags   -j1
++
++"""
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-3-ia64.cfg mock-0.6.12/etc/centos-3-ia64.cfg
+--- mock-0.6.12__orig/etc/centos-3-ia64.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-3-ia64.cfg	2007-04-30 22:48:03.000000000 +0100
+@@ -0,0 +1,54 @@
++#!/usr/bin/python -tt
++import os
++config_opts['root'] = 'centos-3-ia64'
++config_opts['target_arch'] = 'ia64'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++logfile=/var/log/yum.log
++reposdir=/dev/null
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=3&arch=ia64&repo=os
++#baseurl=http://mirror.centos.org/centos/3/os/ia64/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=3&arch=ia64&repo=updates
++#baseurl=http://mirror.centos.org/centos/3/updates/ia64/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/3/
++
++"""
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     3
++
++#%_smp_mflags   -j1
++
++"""
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-3-x86_64.cfg mock-0.6.12/etc/centos-3-x86_64.cfg
+--- mock-0.6.12__orig/etc/centos-3-x86_64.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-3-x86_64.cfg	2007-04-30 22:48:25.000000000 +0100
+@@ -0,0 +1,55 @@
++#!/usr/bin/python -tt
++import os
++
++config_opts['root'] = 'centos-3-x86_64'
++config_opts['target_arch'] = 'x86_64'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++reposdir=/dev/null
++logfile=/var/log/yum.log
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++exclude=[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz]*.i*86 g[abcdefghijkmnopqrstuvwxyz]*.i?86 glib2.i?86 glib.i?86 *-devel.i?86
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=3&arch=x86_64&repo=os
++#baseurl=http://mirror.centos.org/centos/3/os/x86_64/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=3&arch=x86_64&repo=updates
++#baseurl=http://mirror.centos.org/centos/3/updates/x86_64/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/3/
++"""
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     3
++
++#%_smp_mflags   -j1
++
++"""
++
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-4-i386.cfg mock-0.6.12/etc/centos-4-i386.cfg
+--- mock-0.6.12__orig/etc/centos-4-i386.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-4-i386.cfg	2007-04-30 22:46:59.000000000 +0100
+@@ -0,0 +1,55 @@
++#!/usr/bin/python -tt
++import os
++config_opts['root'] = 'centos-4-i386'
++config_opts['target_arch'] = 'i386'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++logfile=/var/log/yum.log
++reposdir=/dev/null
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=4&arch=i386&repo=os
++#baseurl=http://mirror.centos.org/centos/4/os/i386/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=4&arch=i386&repo=updates
++#baseurl=http://mirror.centos.org/centos/4/updates/i386/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/4/
++
++"""
++
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     4
++
++#%_smp_mflags   -j1
++
++"""
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-4-ia64.cfg mock-0.6.12/etc/centos-4-ia64.cfg
+--- mock-0.6.12__orig/etc/centos-4-ia64.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-4-ia64.cfg	2007-04-30 22:47:08.000000000 +0100
+@@ -0,0 +1,56 @@
++#!/usr/bin/python -tt
++import os
++config_opts['root'] = 'centos-4-ia64'
++config_opts['target_arch'] = 'ia64'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++logfile=/var/log/yum.log
++reposdir=/dev/null
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=4&arch=ia64&repo=os
++#baseurl=http://mirror.centos.org/centos/4/os/ia64/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=4&arch=ia64&repo=updates
++#baseurl=http://mirror.centos.org/centos/4/updates/ia64/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/4/
++
++"""
++
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     4
++
++#%_smp_mflags   -j1
++
++"""
++
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-4-x86_64.cfg mock-0.6.12/etc/centos-4-x86_64.cfg
+--- mock-0.6.12__orig/etc/centos-4-x86_64.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-4-x86_64.cfg	2007-04-30 22:47:13.000000000 +0100
+@@ -0,0 +1,56 @@
++#!/usr/bin/python -tt
++import os
++
++config_opts['root'] = 'centos-4-x86_64'
++config_opts['target_arch'] = 'x86_64'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++reposdir=/dev/null
++logfile=/var/log/yum.log
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++exclude=[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz]*.i*86 g[abcdefghijkmnopqrstuvwxyz]*.i?86 glib2.i?86 glib.i?86 *-devel.i?86
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=4&arch=x86_64&repo=os
++#baseurl=http://mirror.centos.org/centos/4/os/x86_64/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=4&arch=x86_64&repo=updates
++#baseurl=http://mirror.centos.org/centos/4/updates/x86_64/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/4/
++"""
++
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     4
++
++#%_smp_mflags   -j1
++
++"""
++
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-5-i386.cfg mock-0.6.12/etc/centos-5-i386.cfg
+--- mock-0.6.12__orig/etc/centos-5-i386.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-5-i386.cfg	2007-04-30 22:47:24.000000000 +0100
+@@ -0,0 +1,56 @@
++#!/usr/bin/python -tt
++import os
++config_opts['root'] = 'centos-5-i386'
++config_opts['target_arch'] = 'i386'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++logfile=/var/log/yum.log
++reposdir=/dev/null
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=5&arch=i386&repo=os
++#baseurl=http://mirror.centos.org/centos/5/os/i386/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=5&arch=i386&repo=updates
++#baseurl=http://mirror.centos.org/centos/5/updates/i386/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/5/
++
++"""
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     5
++
++#%_smp_mflags   -j1
++
++"""
++
++
++
++
+diff -uNr mock-0.6.12__orig/etc/centos-5-x86_64.cfg mock-0.6.12/etc/centos-5-x86_64.cfg
+--- mock-0.6.12__orig/etc/centos-5-x86_64.cfg	1970-01-01 01:00:00.000000000 +0100
++++ mock-0.6.12/etc/centos-5-x86_64.cfg	2007-04-30 22:47:29.000000000 +0100
+@@ -0,0 +1,55 @@
++#!/usr/bin/python -tt
++import os
++
++config_opts['root'] = 'centos-5-x86_64'
++config_opts['target_arch'] = 'x86_64'
++
++
++config_opts['yum.conf'] = """
++[main]
++cachedir=/var/cache/yum
++debuglevel=1
++reposdir=/dev/null
++logfile=/var/log/yum.log
++retries=20
++obsoletes=1
++gpgcheck=0
++assumeyes=1
++exclude=[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhijklmnopqrstuvwxyz]*.i*86 g[abcdefghijkmnopqrstuvwxyz]*.i?86 glib2.i?86 glib.i?86 *-devel.i?86
++# repos
++
++[os]
++name=os
++mirrorlist=http://mirrorlist.centos.org/?release=5&arch=x86_64&repo=os
++#baseurl=http://mirror.centos.org/centos/5/os/x86_64/
++
++[updates]
++name=updates
++mirrorlist=http://mirrorlist.centos.org/?release=5&arch=x86_64&repo=updates
++#baseurl=http://mirror.centos.org/centos/5/updates/x86_64/
++
++[groups]
++name=groups
++baseurl=http://dev.centos.org/centos/buildsys/5/
++"""
++
++
++config_opts['macros'] = """
++%_topdir /builddir/build
++%_rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
++
++# Change the next two lines to reflect yourself.
++
++#%packager  YourName <YourEmail@server.com>
++#%vendor   
++#%distribution 
++
++# please change this to reflect the Distro Tree and Repo hosting packages!
++#%dist    <distro>.<yourtag> 
++%centos_ver     5
++
++#%_smp_mflags   -j1
++
++"""
++
++
+diff -uNr mock-0.6.13__orig/etc/centos-3-i386.cfg mock-0.6.13/etc/centos-3-i386.cfg
+--- mock-0.6.13__orig/etc/centos-3-i386.cfg	2007-05-07 23:43:53.000000000 +0100
++++ mock-0.6.13/etc/centos-3-i386.cfg	2007-05-07 23:44:52.000000000 +0100
+@@ -2,6 +2,7 @@
+ import os
+ config_opts['root'] = 'centos-3-i386'
+ config_opts['target_arch'] = 'i386'
++config_opts['runuser'] = '/bin/su'
+ 
+ 
+ config_opts['yum.conf'] = """
+diff -uNr mock-0.6.13__orig/etc/centos-3-ia64.cfg mock-0.6.13/etc/centos-3-ia64.cfg
+--- mock-0.6.13__orig/etc/centos-3-ia64.cfg	2007-05-07 23:43:53.000000000 +0100
++++ mock-0.6.13/etc/centos-3-ia64.cfg	2007-05-07 23:45:04.000000000 +0100
+@@ -2,6 +2,7 @@
+ import os
+ config_opts['root'] = 'centos-3-ia64'
+ config_opts['target_arch'] = 'ia64'
++config_opts['runuser'] = '/bin/su'
+ 
+ 
+ config_opts['yum.conf'] = """
+diff -uNr mock-0.6.13__orig/etc/centos-3-x86_64.cfg mock-0.6.13/etc/centos-3-x86_64.cfg
+--- mock-0.6.13__orig/etc/centos-3-x86_64.cfg	2007-05-07 23:43:53.000000000 +0100
++++ mock-0.6.13/etc/centos-3-x86_64.cfg	2007-05-07 23:45:13.000000000 +0100
+@@ -3,6 +3,7 @@
+ 
+ config_opts['root'] = 'centos-3-x86_64'
+ config_opts['target_arch'] = 'x86_64'
++config_opts['runuser'] = '/bin/su'
+ 
+ 
+ config_opts['yum.conf'] = """

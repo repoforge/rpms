@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### RHEL5.5 ships with samba3x and libtalloc-1.2.0
+# ExcludeDist: el5
+
 %define real_name talloc
 
 Summary: The talloc library

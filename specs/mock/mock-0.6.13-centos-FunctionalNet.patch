@@ -1,0 +1,16 @@
+diff -uNr mock-0.6.13__orig/etc/defaults.cfg mock-0.6.13/etc/defaults.cfg
+--- mock-0.6.13__orig/etc/defaults.cfg	2006-06-13 06:31:30.000000000 +0100
++++ mock-0.6.13/etc/defaults.cfg	2007-05-15 02:02:40.000000000 +0100
+@@ -30,6 +30,10 @@
+ config_opts['cache_topdir'] = "root-cache"
+ config_opts['max_cache_age_days'] = 15
+ 
++# allow some network tests to run under the chroot
++config_opts['files']['/etc/resolv.conf'] = open("/etc/resolv.conf","r").read()
++config_opts['files']['/etc/hosts'] = open("/etc/hosts","r").read()
+ 
+ config_opts['chroot_setup_cmd'] = 'install buildsys-build'
+-#config_opts['chroot_setup_cmd'] = 'groupinstall build'
+\ No newline at end of file
++#config_opts['chroot_setup_cmd'] = 'groupinstall build'
++

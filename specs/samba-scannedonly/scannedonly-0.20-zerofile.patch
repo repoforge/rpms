@@ -1,0 +1,61 @@
+--- src/scannedonlyd_clamav.c.zerofile	2010-04-20 12:56:33.000000000 +0200
++++ src/scannedonlyd_clamav.c	2010-10-13 18:33:01.000000000 +0200
+@@ -313,7 +327,7 @@
+ }
+ 
+ static void handle_file_warning(int logid, const char *file, const char *warnprefix, const char *moveprefix, mode_t mode, uid_t uid, gid_t gid) {
+-	char *warn, *movename, *warncache;
++	char *warn, *movename;
+ 	
+ 	if (!file || file[0] != '/') {
+ 		/* defensive programming */
+@@ -322,7 +336,6 @@
+ 	}
+ 	
+ 	warn = filename_backend(file, warnprefix, ".txt");
+-	warncache = cachefile_name(warn);
+ 	if (quarantainedir) {
+ 		int qlen,flen,count=0,cont=1;
+ 		char *shortname;
+@@ -349,7 +362,6 @@
+ 	}
+ 	
+ 	create_file(warn, mode, uid,gid);
+-	create_file(warncache, mode, uid,gid);
+ 	syslog(LOG_NOTICE, "%d: moving %s to %s",logid,file,movename);
+ 	if (rename_or_move(file, movename)!=0) {
+ 		syslog(LOG_WARNING, "failed to rename %s to %s, error %d: %s",file,movename,errno,strerror(errno));
+@@ -357,7 +369,6 @@
+ 	
+ 	free(movename);
+ 	free(warn);
+-	free(warncache);
+ }
+ 
+ static int is_currently_scanning(const char *filename, int my_id) {
+@@ -571,6 +582,11 @@
+    			continue;
+    		}
+    		
++   		if (sbuf1.st_size == 0) {
++   			syslog(LOG_INFO, "%d: Not scanning %s: 0 byte file",id,currently_scanning[id]);
++			continue;
++   		}
++
+    		if (scanning_large==0 && sbuf1.st_size > (bigfiles*1048576) /* Mb */) {
+    			pthread_mutex_lock(&queuelock); /* <--------------------------------------- LOCK START */
+    			if (large_scanning_threads >= maxlargethreads) {
+@@ -597,13 +613,6 @@
+ 
+    		scannedname = cachefile_name(currently_scanning[id]);
+    		
+-   		if (sbuf1.st_size ==0) {
+-   			syslog(LOG_INFO, "%d: Not scanning %s: 0 byte file",id,currently_scanning[id]);
+-   			create_file(scannedname, sbuf1.st_mode, sbuf1.st_uid,sbuf1.st_gid);
+-
+-				free(scannedname);
+-				continue;
+-   		}
+    	
+    		failedname = filename_backend(currently_scanning[id], ".failed:", "");
+    		

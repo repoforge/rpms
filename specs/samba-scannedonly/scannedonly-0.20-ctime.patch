@@ -1,0 +1,44 @@
+--- src/scannedonlyd_clamav.c.orig	2010-10-13 15:17:16.000000000 +0200
++++ src/scannedonlyd_clamav.c	2010-10-13 15:17:36.000000000 +0200
+@@ -624,10 +624,10 @@
+ 		   			unlink(failedname);
+ 		   		} else {
+ 		   			/* it is a regular file and it exists, check the timestamps */
+-		   			if (sbuf1.st_mtime < sbuf3.st_mtime) {
++		   			if (sbuf1.st_ctime < sbuf3.st_ctime) {
+ 		   				/* .failed: file is newest, rescanning is useless */
+ 		   				
+-		   				if ((sbuf3.st_mtime+60*5) < time(NULL)) {
++		   				if ((sbuf3.st_ctime+60*5) < time(NULL)) {
+ 		   					/* the file did not change the last 5 minutes, it's probably not actively written to
+ 		   					so warn the user and move the file  */
+ 		   					syslog(LOG_INFO, "%d: Not scanning %s, last scan failed >5 minutes ago, creating a warning file",id,currently_scanning[id]);
+@@ -646,7 +646,7 @@
+ 	   		}
+ 	   	}
+ 	   	
+-			if (ret==-1 || (ret==0&&(sbuf1.st_mtime > sbuf2.st_mtime))) {
++			if (ret==-1 || (ret==0&&(sbuf1.st_ctime > sbuf2.st_ctime))) {
+ 					/* either the .scanned: file does not exist, or the file is newer than the .scanned: file
+ 					in any way we need to re-scan it */
+ 	   		const char *virname=NULL;
+--- src/vfs_scannedonly.c.orig	2010-10-13 15:56:20.000000000 +0200
++++ src/vfs_scannedonly.c	2010-10-13 15:55:47.000000000 +0200
+@@ -440,7 +440,7 @@
+ 
+ 	retval = SMB_VFS_NEXT_STAT(handle, cachefile, &sbuf2);
+ 	if (retval == 0) {
+-		if ((sbuf1.st_mtime <= sbuf2.st_mtime)) {
++		if ((sbuf1.st_ctime <= sbuf2.st_ctime)) {
+ 			talloc_free(cachefile);
+ #ifdef SAMBA_3_0
+ 			talloc_free(ctx);
+@@ -504,7 +504,7 @@
+ #endif
+ 	/* still no cachefile, or still too old, return 0 */
+ 	if (retval != 0
+-	    || (sbuf1.st_mtime > sbuf2.st_mtime)) {
++	    || (sbuf1.st_ctime > sbuf2.st_ctime)) {
+ 		DEBUG(SCANNEDONLY_DEBUG,
+ 		      ("retval=%d, return 0\n",retval));
+ 		return false;

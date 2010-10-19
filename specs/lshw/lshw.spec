@@ -12,8 +12,8 @@
 
 Summary: Hardware lister
 Name: lshw
-%define real_version B.02.14
-Version: 2.14
+%define real_version B.02.15
+Version: 2.15
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -67,6 +67,7 @@ Information can be output in plain text, XML or HTML.
     SBINDIR="%{_sbindir}" \
     MANDIR="%{_mandir}" \
     INSTALL="%{__install} -p"
+%find_lang %{name}
 
 %if %{!?_without_gtk24:1}0
 %{__make} install-gui\
@@ -81,12 +82,12 @@ Information can be output in plain text, XML or HTML.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
 %doc COPYING docs/*
 %doc %{_mandir}/man1/lshw.1*
-%{_sbindir}/lshw
 %{_datadir}/lshw/
+%{_sbindir}/lshw
 
 %if %{!?_without_gtk24:1}0
 %files gui
@@ -97,6 +98,9 @@ Information can be output in plain text, XML or HTML.
 %endif
 
 %changelog
+* Thu Oct 07 2010 Dag Wieers <dag@wieers.com> - 2.15-1
+- Updated to release B.02.15.
+
 * Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 2.14-1
 - Updated to release B.02.14.
 

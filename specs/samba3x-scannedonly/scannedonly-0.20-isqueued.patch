@@ -1,0 +1,24 @@
+--- src/scannedonlyd_clamav.c.isqueued	2010-10-13 18:05:23.000000000 +0200
++++ src/scannedonlyd_clamav.c	2010-10-13 18:21:32.000000000 +0200
+@@ -98,7 +98,21 @@
+ int status_num_files=0, status_num_files_large=0, status_num_skipped=0, status_num_skipped_large=0, status_num_failed=0, status_outside_scanroot=0, status_max_small_queue=0,status_max_large_queue=0, status_min_small_queue=0,status_min_large_queue=0;
+ int status_timer=10; /* minutes */
+ 
++static int is_queued(Tqueue *q, char *filename) {
++	Tlist *pos = q->first;
++	while (pos != NULL) {
++		if (! strcmp(pos->filename, filename))
++			return 1;
++		pos = pos->next;
++	}
++	return 0;
++}
++
+ static void push_to_queue(Tqueue *q, char *filename) {
++	if (is_queued(q, filename) ) {
++		syslog(LOG_INFO, "%s is already queued", filename);
++		return;
++	}
+ 	Tlist *l = malloc(sizeof(Tlist));
+ 	l->filename = strdup(filename);
+ 	l->next = NULL;

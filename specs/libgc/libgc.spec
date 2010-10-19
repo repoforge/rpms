@@ -5,7 +5,7 @@
 
 Summary: Conservative garbage collector for C
 Name: libgc
-Version: 7.0
+Version: 7.1
 Release: 1%{?dist}
 Epoch: 1
 License: BSD
@@ -82,6 +82,8 @@ you will need to install %{name}-devel.
 %{_libdir}/libgccpp.so
 %{_libdir}/libcord.so
 %{_includedir}/gc/
+%{_includedir}/gc.h
+%{_includedir}/gc_cpp.h
 %{_includedir}/libgc/
 %{_libdir}/pkgconfig/bdw-gc.pc
 %exclude %{_libdir}/libgc.a
