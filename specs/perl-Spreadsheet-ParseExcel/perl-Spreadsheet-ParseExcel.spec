@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Kawai Takanori
+# Upstream: John McNamara <jmcnamara$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Get information from Excel file
 Name: perl-Spreadsheet-ParseExcel
-Version: 0.57
+Version: 0.58
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -63,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Spreadsheet/ParseExcel.pm
 
 %changelog
+* Wed Oct 20 2010 Steve Huff <shuff@vecna.org> - 0.58-1
+- Updated to version 0.58.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.57-1
 - Updated to version 0.57.
 
