@@ -5,18 +5,19 @@
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define python_minver 2.3
+%define major_release 1.2
 
 %define real_name Django
 
 Summary: The Web framework for perfectionists with deadlines
 Name: python-django
-Version: 1.1.1
+Version: %{major_release}.3
 Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.djangoproject.com/
 
-Source0: http://media.djangoproject.com/releases/%{version}/Django-%{version}.tar.gz
+Source0: http://media.djangoproject.com/releases/%{major_release}/Django-%{version}.tar.gz
 Source1: python-django.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
@@ -63,7 +64,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files 
 %defattr(-, root, root, 0775)
 %doc AUTHORS INSTALL LICENSE README
-%doc docs/ examples/ extras/
+%doc docs/ extras/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/python-django.conf
 %{python_sitelib}/*
 %{_bindir}/*
@@ -72,6 +73,10 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %dir %{_localstatedir}/www/django
 
 %changelog
+* Thu Oct 21 2010 Steve Huff <shuff@vecna.org> - 1.2.3-1
+- Updated to version 1.2.3.
+- No more examples/ directory.
+
 * Tue Sep 21 2010 Steve Huff <shuff@vecna.org> - 1.1.1-2
 - Renamed package to python-django.
 - Removed mod_python dependency per Yury's suggestion.
