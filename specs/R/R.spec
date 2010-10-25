@@ -1,10 +1,13 @@
 # $Id$
 # Authority: shuff
+# ExcludeDist: el3 el4
+# Rationale: 2.12.0 requires gfortran
 
 %{?el5:%define _with_cairo 1}
-%{?el5:%define _with_compat_gcc34 1}
+%{?el5:%define _with_gcc4 1}
 %{?el5:%define _optimization 1}
 
+%{?el4:%define _with_g77 1}
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -24,7 +27,7 @@
 
 Summary: Language for data analysis and graphics
 Name: R
-Version: 2.11.1
+Version: 2.12.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -33,18 +36,42 @@ URL: http://www.r-project.org/
 Source: ftp://cran.r-project.org/pub/R/src/base/R-2/R-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gcc-objc, tetex-latex, texinfo 
-BuildRequires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
-BuildRequires: tcl-devel, tk-devel, ncurses-devel
-BuildRequires: blas >= 3.0, pcre-devel, zlib-devel, bzip2-devel
-BuildRequires: java-1.4.2-gcj-compat
+BuildRequires: binutils
+BuildRequires: blas-devel >= 3.0
+BuildRequires: bzip2-devel
+BuildRequires: make
+BuildRequires: gcc-objc
+BuildRequires: java >= 1.6.0
+BuildRequires: lapack-devel >= 3.0
+BuildRequires: libicu-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: libtermcap-devel
+BuildRequires: make
+BuildRequires: ncurses-devel
+BuildRequires: pcre-devel
+BuildRequires: perl >= 5.8.0
+BuildRequires: readline-devel
+BuildRequires: tcl-devel
+BuildRequires: tetex-latex
+BuildRequires: texinfo-tex
+BuildRequires: tk-devel
+BuildRequires: zlib-devel
+BuildRequires: rpm-macros-rpmforge
 %{?_with_cairo:BuildRequires: cairo-devel}
+%{!?_without_modxorg:BuildRequires: libICE-devel}
+%{!?_without_modxorg:BuildRequires: libSM-devel}
+%{!?_without_modxorg:BuildRequires: libXmu-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
-%{?_with_compat_gcc34:BuildRequires: compat-gcc-34-g77}
-%{!?_with_compat_gcc34:BuildRequires: gcc-g77}
-BuildRequires: rpm-macros-rpmforge
-Requires: cups, firefox, xdg-utils
+%{?_with_gcc4:BuildRequires: gcc-gfortran}
+%{?_with_g77:BuildRequires: gcc4-gfortran}
+Requires: blas >= 3.0
+Requires: cups
+Requires: firefox
+Requires: lapack >= 3.0
+Requires: xdg-utils
 %{?_with_cairo:Requires: evince}
 %{!?_with_cairo:Requires: ggv}
 
@@ -135,7 +162,7 @@ you will need to install %{name}-devel.
 echo "%{_libdir}/R/lib/" >R.ld.conf
 
 %build
-export F77="g77"
+export F77="gfortran"
 export R_BROWSER="%{_bindir}/firefox"
 export R_PDFVIEWER="%{_bindir}/xdg-open"
 export R_PRINTCMD="lpr"
@@ -145,6 +172,8 @@ export FFLAGS=%{FFLAGS}
 export LDFLAGS=%{LDFLAGS}
 %configure \
 	--enable-R-shlib \
+	--with-blas \
+	--with-lapack \
 	--with-system-bzlib \
 	--with-system-pcre \
 	--with-system-zlib \
@@ -222,6 +251,14 @@ export LDFLAGS=%{LDFLAGS}
 %{_libdir}/libRmath.a
 
 %changelog
+* Mon Oct 25 2010 Steve Huff <shuff@vecna.org> - 2.12.0-1
+- Updated to release 2.12.0.
+- 2.12.0 requires gfortran rather than g77.
+- Build using Java 1.6.0 or newer.
+- Added dependency on LAPACK.
+- Captured dependency on libicu.
+- Captured dependency on texinfo-tex.
+
 * Thu Sep 30 2010 Steve Huff <shuff@vecna.org> - 2.11.1-1
 - Updated to release 2.11.1.
 - Needless duplication of BuildRequires: in subpackage was breaking the build.
