@@ -4,7 +4,7 @@
 
 Summary: High-performance parallel remote shell utility
 Name: pdsh
-Version: 2.21
+Version: 2.23
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
@@ -84,6 +84,9 @@ touch %{buildroot}%{_sysconfdir}/pdsh/machines
 %exclude %{_libdir}/pdsh/*.la
 
 %changelog
+* Mon Oct 25 2010 Steve Huff <shuff@vecna.org> - 2.23-1
+- Updated to version 2.23.
+
 * Fri Sep 03 2010 Steve Huff <shuff@vecna.org> - 2.21-1
 - Updated to version 2.21.
 - Source moved to Google Code.
