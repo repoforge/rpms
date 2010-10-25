@@ -28,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc
 BuildRequires: gd-devel > 1.8
+BuildRequires: httpd
 BuildRequires: zlib-devel
 BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
@@ -130,6 +131,7 @@ Documentation for %{name}
     install-api \
     DESTDIR="%{buildroot}" \
     INSTALL_OPTS="" \
+    INSTALL_OPTS_WEB="" \
     COMMAND_OPTS="" \
     INIT_OPTS=""
 
@@ -252,6 +254,8 @@ fi
 %changelog
 * Mon Oct 25 2010 Christoph Maser <cmaser@gmx.de> - 1.2.1-1
 - update for release 1.2.1
+- add build dep for httpd
+- set INSTALL_OPTS_WEB=""
 
 * Thu Sep 30 2010 Christoph Maser <cmaser@gmx.de> - 1.2.0-1
 - update for release 1.2.0
