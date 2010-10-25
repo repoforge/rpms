@@ -80,31 +80,31 @@ Requires: xdg-utils
 ### provided for packager convenience. (taken from Fedora)
 Provides: R-base = %{version}
 Provides: R-boot = 1.2
-Provides: R-class = %{version}
-Provides: R-cluster = 1.11.11
+Provides: R-class = 7.3
+Provides: R-cluster = 1.13.1
 Provides: R-codetools = 0.2
 Provides: R-datasets = %{version}
 Provides: R-foreign = 0.8
 Provides: R-graphics = %{version}
 Provides: R-grDevices = %{version}
 Provides: R-grid = %{version}
-Provides: R-KernSmooth = 2.22
-Provides: R-lattice = 0.17
-Provides: R-MASS = %{version}
+Provides: R-KernSmooth = 2.23
+Provides: R-lattice = 0.19
+Provides: R-MASS = 7.3
+Provides: R-Matrix = 0.999375
 Provides: R-methods = %{version}
-Provides: R-mgcv = 1.4
+Provides: R-mgcv = 1.6
 Provides: R-nlme = 3.1
-Provides: R-nnet = %{version}
+Provides: R-nnet = 7.3
 Provides: R-rpart = 3.1
-Provides: R-spatial = %{version}
+Provides: R-spatial = 7.3
 Provides: R-splines = %{version}
 Provides: R-stats = %{version}
 Provides: R-stats4 = %{version}
-Provides: R-survival = 2.34
+Provides: R-survival = 2.35
 Provides: R-tcltk = %{version}
 Provides: R-tools = %{version}
 Provides: R-utils = %{version}
-Provides: R-VR = 7.2
 
 # we do not provide any Perl modules outside the R:: tree
 %filter_from_provides /^perl.*File::Copy/d
