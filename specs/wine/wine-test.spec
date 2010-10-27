@@ -20,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.4
+Version: 1.3.5
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -451,6 +451,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winhelp.exe16.so
 
 ### exe.so
+%{_libdir}/wine/aspnet_regiis.exe.so
 %{_libdir}/wine/attrib.exe.so
 %{_libdir}/wine/cacls.exe.so
 %{_libdir}/wine/clock.exe.so
@@ -979,6 +980,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Oct 26 2010 Dag Wieers <dag@wieers.com> - 1.3.5-1
+- Updated to release 1.3.5.
+
 * Sun Oct 03 2010 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Updated to release 1.3.4.
 

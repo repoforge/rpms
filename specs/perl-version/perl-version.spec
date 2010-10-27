@@ -27,7 +27,7 @@ Requires: perl >= 0:5.005
 version is a Perl module that implements for Version Objects.
 
 %prep
-%setup -q -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -54,8 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/version.pod
 
 %changelog
-* Wed Oct 27 2010 David Hrbáč <david@hrbac.cz> - 0.85-1
-- new upstream release
+* Tue Oct 26 2010 Dag Wieers <dag@wieers.com> - 0.85-1
+- Updated to release 0.85.
 
 * Mon Oct 25 2010 David Hrbáč <david@hrbac.cz> - 0.84-1
 - new upstream release

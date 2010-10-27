@@ -3,13 +3,13 @@
 
 Summary: Lightweight, non-caching, optionally anonymizing HTTP proxy
 Name: tinyproxy
-Version: 1.8.2
-Release: 1%{?dist}
+Version: 1.6.5
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://tinyproxy.sourceforge.net/
 
-Source: https://banu.com/pub/tinyproxy/1.8/tinyproxy-%{version}.tar.bz2
+Source: https://www.banu.com/pub/tinyproxy/1.6/tinyproxy-%{version}.tar.gz
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: asciidoc
@@ -50,7 +50,7 @@ source /etc/sysconfig/network
 # Check that networking is up.
 [ "${NETWORKING}" = "no" ] && exit 0
 
-[ -f %{_sysconfdir}/tinyproxy/tinyproxy.conf ] || exit 0
+[ -f /etc/tinyproxy/tinyproxy.conf ] || exit 0
 
 DAEMON="%{_bindir}/tinyproxy"
 OPTIONS=
@@ -119,6 +119,7 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/tinyproxy/
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__install} -Dp -m0644 doc/tinyproxy.conf %{buildroot}%{_sysconfdir}/tinyproxy/tinyproxy.conf
 touch %{buildroot}%{_sysconfdir}/tinyproxy/filter
 
 %{__install} -Dp -m0755 tinyproxy.sysv %{buildroot}%{_initrddir}/tinyproxy
@@ -144,11 +145,9 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO
-%doc docs/*.txt
-%doc %{_mandir}/man5/tinyproxy.conf.5*
+%doc AUTHORS COPYING ChangeLog INSTALL NEWS README TODO 
+%doc doc/{HTTP_ERROR_CODES,RFC_INFO,report.sh,tinyproxy.conf,filter-howto.txt}
 %doc %{_mandir}/man8/tinyproxy.8*
-%config(noreplace) %{_sysconfdir}/tinyproxy.conf
 %config(noreplace) %{_sysconfdir}/tinyproxy/
 %config(noreplace) %{_sysconfdir}/sysconfig/tinyproxy
 %config %{_initrddir}/tinyproxy
@@ -156,7 +155,7 @@ fi
 %{_datadir}/tinyproxy/
 
 %changelog
-* Thu Oct 21 2010 Dag Wieers <dag@wieers.com> - 1.8.2-1
+* Thu Oct 21 2010 Dag Wieers <dag@wieers.com> - 1.6.5-2
 - Fixed initscript. (Johan Huysmans)
 
 * Tue Mar 23 2010 Dag Wieers <dag@wieers.com> - 1.6.5-1

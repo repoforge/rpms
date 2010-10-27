@@ -4,13 +4,12 @@
 
 # ExcludeDist: rh9 el3
 
-
 %{?el4:%define _with_openoffice2 1}
 
 Summary: Tool to convert between any document format supported by OpenOffice
 Name: unoconv
-Version: 0.3
-Release: 2%{?dist}
+Version: 0.4
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/unoconv/
@@ -53,6 +52,9 @@ and more.
 %{_bindir}/unoconv
 
 %changelog
+* Thu Oct 21 2010 Dag Wieers <dag@wieers.com> - 0.4-1
+- Updated to release 0.4.
+
 * Wed Dec 19 2007 Dag Wieers <dag@wieers.com> - 0.3-2
 - Fixed openoffice.org2 dependency on RHEL4.
 
