@@ -5,7 +5,7 @@
 Summary: User and group administration tools for Samba-OpenLDAP
 Name: smbldap-tools
 Version: 0.9.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://sourceforge.net/projects/smbldap-tools/
@@ -15,9 +15,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 5.6
-Requires: perl >= 5.6, openldap, openldap-clients, samba
-#Requires: perl(XML::SAX::Base), perl(XML::NamespaceSupport)
+Requires: openldap
+Requires: openldap-clients
+Requires: perl >= 5.6
+Requires: samba-common
 #Requires: perl(Convert::ASN1)
+#Requires: perl(XML::NamespaceSupport)
+#Requires: perl(XML::SAX::Base)
 
 %description
 In settings with OpenLDAP and Samba-LDAP servers, this collection is
@@ -81,6 +85,9 @@ done
 %{_sbindir}/smbldap_tools.pm
 
 %changelog
+* Wed Oct 27 2010 Dag Wieers <dag@wieers.com> - 0.9.5-2
+- Changed dependency to samba-common to satisfy samba3x. (Franky Van Liedekerke)
+
 * Mon Jul  7 2008 Dries Verachtert <dries@ulyssis.org> - 0.9.5-1
 - Updated to release 0.9.5.
 
