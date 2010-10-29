@@ -9,7 +9,7 @@
 
 Summary: Getopt::Long with usage text
 Name: perl-Getopt-Long-Descriptive
-Version: 0.083
+Version: 0.086
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Getopt/Long/Descriptive.pm
 
 %changelog
+* Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 0.086-1
+- Updated to version 0.086.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.083-1
 - Updated to version 0.083.
 
