@@ -9,7 +9,7 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.67
+Version: 1.69
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -19,19 +19,25 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/SQL-Abstract-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Clone) >= 0.31
-BuildRequires: perl(ExtUtils::MakeMaker) 
+BuildRequires: perl(Class::Accessor::Grouped) >= 0.09005
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Getopt::Long::Descriptive) >= 0.086
+BuildRequires: perl(Hash::Merge) >= 0.12
 BuildRequires: perl(List::Util)
 BuildRequires: perl(Scalar::Util)
-BuildRequires: perl(Test::Builder)
-BuildRequires: perl(Test::Deep)
+BuildRequires: perl(Storable)
+BuildRequires: perl(Test::Deep) >= 0.106
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 #BuildRequires: perl(Test::Warn)
-BuildRequires: perl >= 5.6.2
+BuildRequires: perl >= v5.6.2
+Requires: perl(Class::Accessor::Grouped) >= 0.09005
+Requires: perl(Getopt::Long::Descriptive) >= 0.086
+Requires: perl(Hash::Merge) >= 0.12
 Requires: perl(List::Util)
 Requires: perl(Scalar::Util)
-Requires: perl >= 5.6.2
+Requires: perl >= v5.6.2
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -75,10 +81,17 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %{_mandir}/man3/*
 %dir %{perl_vendorlib}/SQL/
+%{_bindir}/format-sql
+%{perl_vendorlib}/DBIx/Class/Storage/Debug/PrettyPrint.pm
 %{perl_vendorlib}/SQL/Abstract.pm
 %{perl_vendorlib}/SQL/Abstract/Test.pm
+%{perl_vendorlib}/SQL/Abstract/Tree.pm
+
 
 %changelog
+* Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 1.69-1
+- Updated to version 1.69.
+
 * Mon Jun  7 2010 Christoph Maser <cmaser@gmx.de> - 1.67-1
 - Updated to version 1.67.
 
