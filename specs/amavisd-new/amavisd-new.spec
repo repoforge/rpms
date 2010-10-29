@@ -86,8 +86,29 @@ Requires: sendmail
 %description milter
 The Amavisd-new sendmail-milter Daemon
 
+%package snmp
+Group:          Applications/System
+Summary:        Exports amavisd SNMP data
+Requires:       %{name} = %{version}-%{release}
+Requires(post): /sbin/chkconfig
+Requires(post): /sbin/service
+Requires(preun): /sbin/chkconfig
+Requires(preun): /sbin/service
+
+%description snmp
+This package contains the program amavisd-snmp-subagent, which can be
+used as a SNMP AgentX, exporting amavisd statistical counters database
+(snmp.db) as well as a child process status database (nanny.db) to a
+SNMP daemon supporting the AgentX protocol (RFC 2741), such as NET-SNMP.
+
+It is similar to combined existing utility programs amavisd-agent and
+amavisd-nanny, but instead of writing results as text to stdout, it
+exports data to a SNMP server running on a host (same or remote), making
+them available to SNMP clients (such a Cacti or mrtg) for monitoring or
+alerting purposes.
+
 %prep
-%setup -n amavisd-new-%{version}
+%setup -q -n amavisd-new-%{version}
 
 ### FIXME: Some versions of install fail to change permissions when failing to change ownership. (Please fix upstream)
 %{__perl} -pi.orig -e 's| -o root | |g' helper-progs/Makefile.in
@@ -244,6 +265,88 @@ esac
 exit $RETVAL
 EOF
 
+%{__cat} <<'EOF' >amavisd-snmp.sysv
+#!/bin/bash
+#
+# Init script for amavisd-snmp-subagent
+#
+# Written by David Hrbáč <david@hrbac.cz>.
+#
+# chkconfig: 2345 79 31
+# description: Exports amavisd SNMP data
+#
+# processname: amavisd-snmp-subagent
+# pidfile: %{_localstatedir}/run/amavisd-snmp-subagent.pid
+
+source %{_initrddir}/functions
+
+[ -x %{_sbindir}/amavisd-snmp-subagent ] || exit 1
+
+### Default variables
+AMAVIS_USER="amavis"
+SYSCONFIG="%{_sysconfdir}/sysconfig/amavisd"
+
+### Read configuration
+[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
+
+### Backward compatibility
+[ "$AMAVIS_ACCOUNT" ] && AMAVIS_USER="$AMAVIS_ACCOUNT"
+
+RETVAL=0
+prog="amavisd-snmp-subagent"
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon --user "$AMAVIS_USER" %{_sbindir}/$prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Shutting down $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
+    return $RETVAL
+}
+
+restart() {
+    stop
+    start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    restart
+    ;;
+  reload)
+    restart
+    ;;
+  condrestart)
+    [ -e %{_localstatedir}/lock/subsys/$prog ] && restart
+    RETVAL=$?
+    ;;
+  status)
+    status $prog
+    RETVAL=$?
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|reload|condrestart|status}"
+    RETVAL=1
+esac
+
+exit $RETVAL
+EOF
+
 %build
 cd helper-progs
 %configure \
@@ -275,8 +378,11 @@ cd helper-progs
 %{__install} -Dp -m0755 amavisd-agent %{buildroot}%{_sbindir}/amavisd-agent
 %{__install} -Dp -m0755 amavisd-nanny %{buildroot}%{_sbindir}/amavisd-nanny
 %{__install} -Dp -m0755 amavisd-release %{buildroot}%{_sbindir}/amavisd-release
+%{__install} -Dp -m0755 amavisd-snmp-subagent %{buildroot}%{_sbindir}/amavisd-snmp-subagent
 %{__install} -Dp -m0755 p0f-analyzer.pl %{buildroot}%{_sbindir}/p0f-analyzer
 %{__install} -Dp -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
+%{__install} -Dp -m0755 amavisd-snmp.sysv %{buildroot}%{_initrddir}/amavisd-snmp
+
 %{__install} -Dp -m0700 amavisd.conf %{buildroot}%{_sysconfdir}/amavisd.conf
 %{__install} -Dp -m0644 LDAP.schema %{buildroot}%{_sysconfdir}/openldap/schema/amavisd-new.schema
 %{__install} -Dp -m0644 amavisd.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/amavisd
@@ -326,6 +432,12 @@ if [ $1 -eq 0 ] ; then
     /sbin/chkconfig --del amavisd
 fi
 
+%preun snmp
+if [ "$1" = 0 ]; then
+    /sbin/service amavisd-snmp stop 2>/dev/null || :
+    /sbin/chkconfig --del amavisd-snmp || :
+fi
+
 %postun
 if [ $1 -eq 0 ]; then
     /usr/sbin/userdel amavis || %logmsg "User \"amavis\" could not be deleted."
@@ -333,6 +445,10 @@ if [ $1 -eq 0 ]; then
 else
     /sbin/service amavisd condrestart &>/dev/null || :
 fi
+
+%post snmp
+/sbin/chkconfig --add amavisd-snmp || :
+/sbin/service amavisd-snmp condrestart || :
 
 %files
 %defattr(-, root, root, 0755)
@@ -365,10 +481,18 @@ fi
 %{_sbindir}/amavis
 %{_sbindir}/amavis-milter
 
+%files snmp
+%defattr(-,root,root)
+%attr(755,root,root) %{_initrddir}/amavisd-snmp
+%{_sbindir}/amavisd-snmp-subagent
+
 %changelog
+* Wed Oct 27 2010 David Hrbáč <david@hrbac.cz> - 2.6.4-3
+- added snmp sub-package for amavisd-snmp-subagent
+
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 2.6.4-2
 - Added p7zip, perl(Digest::SHA), perl(Mail::DKIM) and
-  perl(Crypt::OpenSSL::RSA) dependencies (Ned Slider, David Hrbá))
+  perl(Crypt::OpenSSL::RSA) dependencies (Ned Slider, David Hrbáč)
 
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 2.6.4-1
 - Updated to release 2.6.4.
