@@ -5,7 +5,7 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define real_name Math-Fibonacci-Phi
 
-Summary: unknown
+Summary: Perl extension for calculating Phi and phi for Fibonacci numbers.
 Name: perl-Math-Fibonacci-Phi
 Version: 0.02
 Release: 1%{?dist}
@@ -26,7 +26,7 @@ Requires: perl(Math::Fibonacci)
 
 
 %description
-
+Perl extension for calculating Phi and phi for Fibonacci numbers.
 
 %prep
 %setup -n %{real_name}-%{version}
