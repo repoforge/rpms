@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dries
-# Upstream: Rune Henssel <perl$henssel,dk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,7 +14,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Base36/
 
-Source: http://www.cpan.org/modules/by-module/Math/Math-Base36-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRICAS/Math-Base36-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
