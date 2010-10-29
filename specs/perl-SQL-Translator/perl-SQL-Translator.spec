@@ -9,13 +9,13 @@
 
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
-Version: 0.11003
+Version: 0.11006
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Translator/
 
-Source: http://www.cpan.org/modules/by-module/SQL/SQL-Translator-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Translator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -113,6 +113,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt-graph
 
 %changelog
+* Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 0.11006-1
+- Updated to version 0.11006.
+
 * Thu Oct 22 2009 Christoph Maser <cmr@financial.com> - 0.11003-1
 - Updated to version 0.11003.
 
