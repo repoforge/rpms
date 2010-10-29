@@ -6,7 +6,7 @@
 
 Summary: GUI SFTP/FTP client
 Name: filezilla
-Version: 3.3.3
+Version: 3.3.4.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -22,6 +22,7 @@ BuildRequires: gettext
 BuildRequires: libidn-devel
 BuildRequires: ncurses-devel
 BuildRequires: pkgconfig >= 0.9.0
+BuildRequires: wxGTK-devel
 BuildRequires: xdg-utils
 
 ### For gnutls
@@ -64,7 +65,8 @@ popd
 export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
 %configure \
     --disable-dependency-tracking \
-    --disable-manualupdatecheck
+    --disable-manualupdatecheck \
+    --with-tinyxml=builtin
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
@@ -85,6 +87,10 @@ export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
 %{_datadir}/pixmaps/filezilla.png
 
 %changelog
+* Fri Oct 29 2010 Steve Huff <shuff@vecna.org> - 3.3.4.1-1
+- Updated to version 3.3.4.1.
+- Captured missing wxGTK dependency.
+
 * Mon Jun 14 2010 Steve Huff <shuff@vecna.org> - 3.3.3-1
 - Updated to version 3.3.3.
 
