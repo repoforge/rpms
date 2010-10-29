@@ -29,6 +29,7 @@ Requires: perl(Test::More)
 
 
 %description
+List::Cycle gives you an iterator object for cycling through a series of values. The canonical use is for cycling through a list of colors for alternating bands of color on a report.
 
 
 %prep
