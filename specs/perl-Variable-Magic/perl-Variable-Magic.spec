@@ -9,7 +9,7 @@
 
 Summary: Associate user-defined magic to variables from Perl
 Name: perl-Variable-Magic
-Version: 0.41
+Version: 0.44
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Variable/Magic.pm
 
 %changelog
+* Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 0.44-1
+- Updated to version 0.44.
+
 * Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 0.41-1
 - Updated to version 0.41.
 
