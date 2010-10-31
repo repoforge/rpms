@@ -14,17 +14,14 @@
 
 Summary: Scannedonly scalable samba anti-virus daemon
 Name: samba-scannedonly
-Version: 0.20
-Release: 2%{?dist}
+Version: 0.21
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://olivier.sessink.nl/scannedonly/
 
 Source0: http://olivier.sessink.nl/scannedonly/scannedonly-%{version}.tar.bz2
 Source1: http://www.samba.org/samba/ftp/stable/samba-%{samba_version}.tar.gz
-Patch0: scannedonly-0.20-ctime.patch
-Patch1: scannedonly-0.20-zerofile.patch
-Patch2: scannedonly-0.20-isqueued.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: clamav-devel
@@ -58,9 +55,6 @@ but it does introduce some other issues. Choose the product that suits you best.
 
 %prep
 %setup -n %{real_name}-%{version} -a1
-%patch0 -p0
-%patch1 -p0
-%patch2 -p0
 
 %{__cat} <<EOF >scannedonlyd.sysconfig
 ### The UDP port to listen on. Default: 2020 (but by default a domain
@@ -290,6 +284,9 @@ fi
 %dir %{_localstatedir}/lib/scannedonly/
 
 %changelog
+* Fri Oct 29 2010 Dag Wieers <dag@wieers.com> - 0.21-1
+- Updated to release 0.21.
+
 * Thu Oct 14 2010 Dag Wieers <dag@wieers.com> - 0.20-2
 - Added a patch to skip already queued files.
 

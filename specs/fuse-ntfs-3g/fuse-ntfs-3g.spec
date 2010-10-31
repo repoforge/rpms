@@ -7,7 +7,7 @@
 
 Summary: Linux NTFS userspace driver 
 Name: fuse-ntfs-3g
-Version: 2010.5.22
+Version: 2010.10.2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
@@ -104,6 +104,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libntfs-3g.la
 
 %changelog
+* Sun Oct 31 2010 Dag Wieers <dag@wieers.com> - 2010.10.2-1
+- Updated to release 2010.10.2.
+
 * Sun Jun 20 2010 Dag Wieers <dag@wieers.com> - 2010.5.22-1
 - Updated to release 2010.5.22.
 
