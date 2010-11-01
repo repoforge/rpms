@@ -32,6 +32,9 @@ microblogging (Twitter, identi.ca, status.net, etc) as IM protocols.
 %setup -n %{real_name}-%{version}
 %patch0 -p1
 
+# fix libdir for 64-bitness
+%{__perl} -pi -e 's|/lib|/%{_lib}|;' global.mak Makefile gtkprpltwtr/Makefile
+
 %build
 %{__make}
 
