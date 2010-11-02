@@ -12,7 +12,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.6.4
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -282,22 +282,12 @@ source %{_initrddir}/functions
 
 [ -x %{_sbindir}/amavisd-snmp-subagent ] || exit 1
 
-### Default variables
-AMAVIS_USER="amavis"
-SYSCONFIG="%{_sysconfdir}/sysconfig/amavisd"
-
-### Read configuration
-[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
-
-### Backward compatibility
-[ "$AMAVIS_ACCOUNT" ] && AMAVIS_USER="$AMAVIS_ACCOUNT"
-
 RETVAL=0
 prog="amavisd-snmp-subagent"
 
 start() {
     echo -n $"Starting $prog: "
-    daemon --user "$AMAVIS_USER" %{_sbindir}/$prog
+    daemon %{_sbindir}/$prog
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
@@ -487,6 +477,9 @@ fi
 %{_sbindir}/amavisd-snmp-subagent
 
 %changelog
+* Tue Nov 02 2010 David Hrbáč <david@hrbac.cz> - 2.6.4-4
+- corrected amavisd-snmp init script
+
 * Wed Oct 27 2010 David Hrbáč <david@hrbac.cz> - 2.6.4-3
 - added snmp sub-package for amavisd-snmp-subagent
 
