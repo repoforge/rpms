@@ -18,6 +18,8 @@ BuildRequires: gcc
 BuildRequires: make
 BuildRequires: rpm-macros-rpmforge
 
+Conflicts: perl-WWW-Shorten
+
 %description
 shorten is a low complexity and fast waveform coder (i.e. audio
 compressor), originally written by Tony Robinson at SoftSound. It can
