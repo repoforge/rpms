@@ -11,7 +11,7 @@
 Summary: Interface to URL shortening sites
 Name: perl-WWW-Shorten
 Version: 2.04
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Shorten/
@@ -28,6 +28,8 @@ BuildRequires: perl(LWP) >= 5.75
 BuildRequires: perl(LWP::UserAgent) >= 2.023
 BuildRequires: perl(URI) >= 1.27
 Requires: perl >= 0:5.006
+
+Conflicts: shorten
 
 %description
 Interface to URL shortening sites.
@@ -60,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/shorten
 
 %changelog
+* Wed Nov 03 2010 Steve Huff <shuff@vecna.org> - 2.04-2
+- File conflict (%{_bindir}/shorten) with shorten.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 2.04-1
 - Updated to version 2.04.
 
