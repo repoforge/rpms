@@ -20,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.5
+Version: 1.3.6
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -844,6 +844,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winscard.dll.so
 %{_libdir}/wine/wintab32.dll.so
 %{_libdir}/wine/wintrust.dll.so
+%{_libdir}/wine/wlanapi.dll.so
 %{_libdir}/wine/wmi.dll.so
 %{_libdir}/wine/wmiutils.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
@@ -980,6 +981,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Nov 02 2010 Dag Wieers <dag@wieers.com> - 1.3.6-1
+- Updated to release 1.3.6.
+
 * Tue Oct 26 2010 Dag Wieers <dag@wieers.com> - 1.3.5-1
 - Updated to release 1.3.5.
 
