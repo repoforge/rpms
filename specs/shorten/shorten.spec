@@ -3,14 +3,20 @@
 
 Summary: Low complexity and fast waveform coder
 Name: shorten
-Version: 3.6.0
-Release: 1.2%{?dist}
+Version: 3.6.1
+Release: 1%{?dist}
 License: Distributable
 Group: Applications/Multimedia
 URL: http://www.etree.org/shnutils/shorten/
 
-Source: http://www.etree.org/shnutils/shorten/source/shorten-%{version}.tar.gz
+Source: http://etree.org/shnutils/shorten/dist/src/shorten-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: binutils
+BuildRequires: gawk
+BuildRequires: gcc
+BuildRequires: make
+BuildRequires: rpm-macros-rpmforge
 
 %description
 shorten is a low complexity and fast waveform coder (i.e. audio
@@ -38,6 +44,10 @@ operate in both lossy and lossless modes.
 %{_bindir}/shorten
 
 %changelog
+* Wed Nov 03 2010 Steve Huff <shuff@vecna.org> - 3.6.1-1
+- Updated to version 3.6.1.
+- Updated source location.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.6.0-1.2
 - Rebuild for Fedora Core 5.
 
