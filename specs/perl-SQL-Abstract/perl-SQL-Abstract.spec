@@ -10,7 +10,7 @@
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
 Version: 1.69
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
@@ -44,20 +44,18 @@ Requires: perl >= v5.6.2
 
 
 %description
-This module was inspired by the excellent L<DBIx::Abstract>.
-However, in using that module I found that what I really wanted
-to do was generate SQL, but still retain complete control over my
-statement handles and use the DBI interface. So, I set out to
-create an abstract SQL generation module.
+This module was inspired by the excellent DBIx::Abstract.  However, in using
+that module I found that what I really wanted to do was generate SQL, but still
+retain complete control over my statement handles and use the DBI interface.
+So, I set out to create an abstract SQL generation module.
 
-While based on the concepts used by L<DBIx::Abstract>, there are
-several important differences, especially when it comes to WHERE
-clauses. I have modified the concepts used to make the SQL easier
-to generate from Perl data structures and, IMO, more intuitive.
-The underlying idea is for this module to do what you mean, based
-on the data structures you provide it. The big advantage is that
-you don't have to modify your code every time your data changes,
-as this module figures it out.
+While based on the concepts used by DBIx::Abstract, there are several important
+differences, especially when it comes to WHERE clauses. I have modified the
+concepts used to make the SQL easier to generate from Perl data structures and,
+IMO, more intuitive.  The underlying idea is for this module to do what you
+mean, based on the data structures you provide it. The big advantage is that
+you don't have to modify your code every time your data changes, as this module
+figures it out.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -89,6 +87,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Wed Nov 03 2010 Steve Huff <shuff@vecna.org> - 1.69-2
+- Removed POD from %description.
+
 * Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 1.69-1
 - Updated to version 1.69.
 
