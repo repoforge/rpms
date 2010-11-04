@@ -5,7 +5,7 @@
 Summary: NNTP server for small sites
 Name: leafnode
 Version: 1.11.8
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://leafnode.sourceforge.net/
@@ -19,6 +19,8 @@ BuildRequires: gcc
 BuildRequires: make
 BuildRequires: pcre-devel
 BuildRequires: rpm-macros-rpmforge
+BuildRequires: setup
+Requires: setup
 Requires: vixie-cron
 Requires: xinetd
 
@@ -69,6 +71,15 @@ XINETD
 0,30 * * * * daemon %{_sbindir}/fetchnews
 CRON
 
+%{__cat} <<SH >leafnode.sh
+# if you're using leafnode, you probably want this
+export NNTPSERVER=localhost
+SH
+
+%{__cat} <<CSH >leafnode.csh
+# if you're using leafnode, you probably want this
+setenv NNTPSERVER localhost
+CSH
 
 %install
 %{__rm} -rf %{buildroot}
@@ -76,6 +87,10 @@ CRON
 
 %{__install} -m0755 -d %{buildroot}%{_sysconfdir}/cron.d/
 %{__install} -m0644 nntp.cron %{buildroot}%{_sysconfdir}/cron.d/nntp
+
+%{__install} -m0755 -d %{buildroot}%{_sysconfdir}/profile.d/
+%{__install} -m0644 leafnode.csh %{buildroot}%{_sysconfdir}/profile.d/
+%{__install} -m0644 leafnode.sh %{buildroot}%{_sysconfdir}/profile.d/
 
 %{__install} -m0755 -d %{buildroot}%{_sysconfdir}/xinetd.d/
 %{__install} -m0644 nntp.xinetd %{buildroot}%{_sysconfdir}/xinetd.d/nntp
@@ -98,11 +113,15 @@ CRON
 %{_bindir}/*
 %{_sbindir}/*
 %{_sysconfdir}/leafnode/
+%config(noreplace) %{_sysconfdir}/profile.d/*
 %{_sysconfdir}/cron.d/nntp
 %{_sysconfdir}/xinetd.d/nntp
 %attr(0755, daemon, daemon) %dir %{_localstatedir}/lock/leafnode/
 %attr(0755, daemon, daemon) %dir %{_localstatedir}/spool/news/
 
 %changelog
+* Thu Nov 04 2010 Steve Huff <shuff@vecna.org> - 1.11.8-2
+- Profile scripts to set NNTPSERVER.
+
 * Tue Oct 26 2010 Steve Huff <shuff@vecna.org> - 1.11.8-1
 - Initial package.
