@@ -25,6 +25,7 @@ BuildRequires: kdelibs-devel
 BuildRequires: make
 BuildRequires: pkgconfig
 %{!?el3:BuildRequires: libselinux-devel}
+Requires: kdegraphics
 Requires: kdelibs
 
 %description
