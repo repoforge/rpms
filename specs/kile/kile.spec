@@ -9,19 +9,22 @@
 
 Summary: User friendly TeX/LaTeX editor
 Name: kile
-Version: 2.0
+Version: 2.0.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://kile.sourceforge.net/
 
-Source: http://dl.sf.net/kile/kile-%{version}.tar.bz2
+Source: http://downloads.sourceforge.net/project/kile/stable/kile-%{version}/kile-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, kdelibs-devel, gcc, make, gcc-c++
-%{?el4:BuildRequires: libselinux-devel}
-%{?fc3:BuildRequires: libselinux-devel}
-%{?fc2:BuildRequires: libselinux-devel}
+BuildRequires: binutils
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: kdelibs-devel
+BuildRequires: make
+BuildRequires: pkgconfig
+%{!?el3:BuildRequires: libselinux-devel}
 Requires: kdelibs
 
 %description
@@ -66,6 +69,7 @@ source "/etc/profile.d/qt.sh"
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
+%doc Authors Building-with-cmake.txt ChangeLog COPYING README* TODO
 %doc %{_datadir}/doc/HTML/*/kile/
 %{_bindir}/kile
 %{_datadir}/applications/kile.desktop
@@ -75,11 +79,14 @@ source "/etc/profile.d/qt.sh"
 %{_datadir}/config.kcfg/kile.kcfg
 %{_datadir}/icons/*/*/apps/kile.*
 %{_datadir}/mimelnk/text/x-kilepr.desktop
-### Conflicts with kdelibs-3.2.2-8.FC2
+### Conflicts with kdelibs
 %exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
 %exclude %{_datadir}/apps/katepart/syntax/latex.xml
 
 %changelog
+* Thu Nov 04 2010 Steve Huff <shuff@vecna.org> - 2.0.3-1
+- Updated to release 2.0.3.
+
 * Mon Feb 11 2008 Dries Verachtert <dries@ulyssis.org> - 2.0-1
 - Updated to release 2.0.
 
