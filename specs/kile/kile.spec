@@ -69,7 +69,7 @@ source "/etc/profile.d/qt.sh"
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc Authors Building-with-cmake.txt ChangeLog COPYING README* TODO
+%doc AUTHORS Building-with-cmake.txt ChangeLog COPYING README* TODO
 %doc %{_datadir}/doc/HTML/*/kile/
 %{_bindir}/kile
 %{_datadir}/applications/kile.desktop
