@@ -8,14 +8,14 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
-Version: 3.2.2
+Version: 3.2.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
 
-Source0: http://dl.sf.net/nagios/nagios-%{version}.tar.gz
-Source1: http://dl.sf.net/nagios/imagepak-base.tar.gz
+Source0: http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-%{version}.tar.gz
+Source1: ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD-4.0/amd64/All/nagios-imagepak-base-20030219.tgz
 Source2: daemon-init-redhat.in
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -55,8 +55,8 @@ you will need to install %{name}-devel.
 # /usr/local/nagios is hardcoded in many places
 %{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' contrib/eventhandlers/submit_check_result
 
-# copy out init-script over the one provided by upstream
-%{__cp} -f %{SOURCE2} daemon-init.in
+# copy our init-script over the one provided by upstream nut not for el3
+%{!?el3:%{__cp} -f %{SOURCE2} daemon-init.in}
 
 %build
 %configure \
@@ -200,6 +200,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Fri Nov  5 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-1
+- Updated to version 3.2.3.
+- Use orignial init script on el3
+
 * Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 3.2.2-1
 - Updated to release 3.2.2.
 
