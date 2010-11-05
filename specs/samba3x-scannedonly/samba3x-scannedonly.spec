@@ -12,7 +12,7 @@
 Summary: Scannedonly scalable samba anti-virus daemon
 Name: samba3x-scannedonly
 Version: 0.21
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://olivier.sessink.nl/scannedonly/
@@ -266,21 +266,24 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING INSTALL
-%{_sbindir}/scannedonlyd_clamav
-%dir %{_localstatedir}/lib/scannedonly/
+%dir %{vfsdir}
+%{vfsdir}/scannedonly.so
 
 %files -n scannedonly
 %defattr(-, root, root, 0755)
-%dir %{vfsdir}
-%{vfsdir}/scannedonly.so
 %doc COPYING INSTALL
 %doc %{_mandir}/man8/scannedonlyd_clamav.8*
 %doc %{_mandir}/man8/scannedonly_prescan.8*
 %config(noreplace) %{_sysconfdir}/sysconfig/scannedonlyd
 %config %{_initrddir}/scannedonlyd
 %{_bindir}/scannedonly_prescan
+%{_sbindir}/scannedonlyd_clamav
+%dir %{_localstatedir}/lib/scannedonly/
 
 %changelog
+* Thu Nov 04 2010 Dag Wieers <dag@wieers.com> - 0.21-2
+- Fixed the content of both packages. (Frederic Vanden Poel)
+
 * Fri Oct 29 2010 Dag Wieers <dag@wieers.com> - 0.21-1
 - Updated to release 0.21.
 
