@@ -1,0 +1,12 @@
+diff -Naur mpdscribble-0.20-orig/doc/mpdscribble.conf mpdscribble-0.20/doc/mpdscribble.conf
+--- mpdscribble-0.20-orig/doc/mpdscribble.conf	2010-09-22 09:16:26.000000000 -0400
++++ mpdscribble-0.20/doc/mpdscribble.conf	2010-11-09 16:19:31.000000000 -0500
+@@ -8,7 +8,7 @@
+ #pidfile = /var/run/mpdscribble.pid
+ 
+ # Change to this system user after daemonization.
+-#daemon_user = mpdscribble
++daemon_user = daemon
+ 
+ # The location of the mpdscribble log file.  The special value
+ # "syslog" makes mpdscribble use the local syslog daemon.  On most
