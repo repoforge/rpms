@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -200,7 +200,10 @@ fi
 %{_includedir}/nagios/
 
 %changelog
-* Fri Nov  5 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-1
+* Tue Nov 09 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-2
+- remove -p ${pidfile} from killproc in reload el4 killproc doesnot support -p
+
+* Fri Nov 05 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-1
 - Updated to version 3.2.3.
 - Use orignial init script on el3
 

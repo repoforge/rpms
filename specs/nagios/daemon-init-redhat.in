@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id:$
+# $Id$
 # Nagios	Startup script for the Nagios monitoring daemon
 #
 # chkconfig:	- 85 15
@@ -59,7 +59,7 @@ restart() {
 
 reload() {
     echo -n $"Reloading $prog: "
-    killproc -p ${pidfile} $exec -HUP
+    killproc $exec -HUP
     RETVAL=$?
     echo
 }
