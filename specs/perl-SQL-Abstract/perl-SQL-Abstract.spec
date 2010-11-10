@@ -9,13 +9,14 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.69
-Release: 2%{?dist}
+Version: 1.71
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/SQL-Abstract-%{version}.tar.gz
+#Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/SQL-Abstract-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Abstract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -58,7 +59,7 @@ you don't have to modify your code every time your data changes, as this module
 figures it out.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 #chmod -R u+w %{_builddir}/%{pkgname}-%{version}
 
 %build
@@ -87,6 +88,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Wed Nov 10 2010 David Hrbáč <david@hrbac.cz> - 1.71-1
+- new upstream release
+
+* Tue Nov 09 2010 David Hrbáč <david@hrbac.cz> - 1.70-1
+- new upstream release
+
 * Wed Nov 03 2010 Steve Huff <shuff@vecna.org> - 1.69-2
 - Removed POD from %description.
 
