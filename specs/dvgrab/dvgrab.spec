@@ -4,7 +4,7 @@
 
 ### EL5 ships with dvgrab-2.0-1.2.2
 ### EL6 ships with dvgrab-3.4-3.1.el6
-# ExclusiveDist: el2 rh7 el3 el4
+# ExclusiveDist: el2 el3 el4
 
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
