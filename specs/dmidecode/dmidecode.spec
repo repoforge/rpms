@@ -3,7 +3,7 @@
 # Rationale: Includes all tools except dmidecode which ships with kernel-utils
 
 ### EL5+ includes biosdecode, ownership and vpddecode inside dmidecode package
-# ExclusiveDist: el2 rh7 rh9 el3 el4
+# ExclusiveDist: el2 el3 el4
 
 Summary: Tool to analyse BIOS DMI data
 Name: dmidecode
