@@ -4,7 +4,7 @@
 
 ### EL6 ships with gucharmap-2.28.2-2.el6
 ### EL5 ships with gucharmap-1.8.0-1.fc6
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3
+# ExclusiveDist: el2 el3
 
 Summary: Unicode/ISO10646 character map and font viewer
 Name: gucharmap
