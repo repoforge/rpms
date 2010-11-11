@@ -1,7 +1,10 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: fc2 fc3 el4
+### EL6 ships with flac-1.2.1-6.1.el6
+### EL5 ships with flac-1.1.2-28.el5_0.1
+### EL4 ships with flac-1.1.0-7.el4_5.2
+# ExclusiveDist: el2 el3
 # Tag: test
 
 %define xmms_inputdir %(xmms-config --input-plugin-dir)

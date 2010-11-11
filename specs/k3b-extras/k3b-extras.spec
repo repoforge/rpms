@@ -3,7 +3,6 @@
 
 # ExclusiveDist: el5
 
-
 %{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_kde32 1}

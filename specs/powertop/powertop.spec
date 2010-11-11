@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <power$bughost,org>
 
+### EL6 ships with powertop-1.11-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Tool that helps you find what software is using the most power
 Name: powertop
 Version: 1.13

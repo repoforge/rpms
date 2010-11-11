@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc2 fc3
+### EL6 ships with xfsprogs-3.1.1-4.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 ### xfsprogs abuses libexecdir
 %{expand: %%define _libexecdir %{_libdir}}

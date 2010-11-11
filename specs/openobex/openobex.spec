@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
 
-#ExclusiveDist: el2 rh7 rh9 el3 el4
-
+### EL6 ships with openobex-1.4-7.el6
+### EL5 ships with openobex-1.3-3.1
+# ExclusiveDist: el2 el3 el4
 
 ### undefined reference to `usb_get_string_simple' in obexftp linking
 %{?el3:%define _without_libusb018 1}

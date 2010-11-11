@@ -2,6 +2,7 @@
 # Authority: shuff
 # Upstream: Portland (http://portland.freedesktop.org/)
 
+### EL6 ships with xdg-utils-1.0.2-15.20091016cvs.el6
 # ExclusiveDist: el3 el4 el5
 
 Summary: Freedesktop.org desktop integration tools

@@ -4,6 +4,9 @@
 
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
+### EL6 ships with memtest86+-4.00-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %{?el4:%define _without_stackprotector 1}
 %{?el3:%define _without_stackprotector 1}
 %{?rh9:%define _without_stackprotector 1}

@@ -3,6 +3,11 @@
 # Upstream: <syslinux$zytor,com>
 
 # Rationale: If you need syslinux, you'd appreciate the latest, trust me.
+### EL6 ships with syslinux-3.86-1.1.el6
+### EL5 ships with syslinux-3.11-4
+### EL4 ships with syslinux-2.11-1
+### EL3 ships with syslinux-2.06-0.3E
+### EL2 ships with syslinux-2.00-1EL
 
 %define _sbindir /sbin
 

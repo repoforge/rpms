@@ -1,7 +1,8 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4 el5
+### EL6 ships with speex-1.2-0.12.rc1.1.el6
+# ExclusiveDist: el2 el3
 
 Summary: Open-source, patent-free speech codec
 Name: speex

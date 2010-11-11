@@ -3,6 +3,11 @@
 # Upstream: Martin Pool <mbp$sourcefrog,net>
 
 # Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
+### EL6 ships with rsync-3.0.6-5.el6
+### EL5 ships with rsync-2.6.8-3.1
+### EL4 ships with rsync-2.6.3-1
+### EL3 ships with rsync-2.5.7-5.3E
+### EL2 ships with rsync-2.5.7-3.21AS.1
 
 Summary: Program for synchronizing files over a network
 Name: rsync

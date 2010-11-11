@@ -1,6 +1,12 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with spamassassin-3.3.1-2.el6
+### EL5 ships with spamassassin-3.2.5-1.el5
+### EL4 ships with spamassassin-3.2.4-1.el4.1
+### EL3 ships with spamassassin-2.55-3.4
+# ExclusiveDist: el2 el3 el4 el5
+
 %{?rh8:%define _with_perl_5_6 1}
 %{?rh7:%define _with_perl_5_6 1}
 %{?el2:%define _with_perl_5_6 1}

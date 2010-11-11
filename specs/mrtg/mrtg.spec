@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Tobi Oetiker <tobi$oetiker,ch>
 
+### EL6 ships with mrtg-2.16.2-5.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define _use_internal_dependency_generator 0
 
 Summary: Multi Router Traffic Grapher

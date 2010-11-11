@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with xdg-user-dirs-0.12-4.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Handles user special directories
 Name: xdg-user-dirs
 Version: 0.10

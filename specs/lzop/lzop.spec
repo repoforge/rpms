@@ -2,10 +2,13 @@
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
+### EL6 ships with lzop-1.02-0.9.rc1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Real-time file compressor
 Name: lzop
-Version: 1.01
-Release: 2%{?dist}
+Version: 1.03
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.lzop.org/
@@ -30,7 +33,7 @@ reasonable drop-in compatiblity to gzip.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}"
+    --program-prefix="%{?_program_prefix}"
 echo "#define _LARGE_FILES 1" >>config.h
 %{__make} %{?_smp_mflags}
 
@@ -48,6 +51,9 @@ echo "#define _LARGE_FILES 1" >>config.h
 %{_bindir}/lzop
 
 %changelog
+* Wed Nov 10 2010 Dag Wieers <dag@wieers.com> - 1.03-1
+- Updated to release 1.03.
+
 * Fri Mar 02 2007 Dag Wieers <dag@wieers.com> - 1.01-2
 - Fix large file support. (Joe Buehler)
 

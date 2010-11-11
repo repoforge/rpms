@@ -2,6 +2,9 @@
 # Authority: dag
 # Christopher O'Brien <siege@preoccupied.net>
 
+### EL6 ships with meanwhile-1.1.0-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Lotus Sametime Community Client library
 Name: meanwhile
 Version: 1.0.2

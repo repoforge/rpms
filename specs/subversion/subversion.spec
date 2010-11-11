@@ -2,6 +2,10 @@
 # Authority: dag
 # Upstream: CollabNet <dev$subversion,apache,org>
 
+### EL6 ships with subversion-1.6.11-2.el6
+### EL5 ships with subversion-1.4.2-4.el5_3.1
+### EL4 ships with subversion-1.1.4-3.el4_8.2
+
 %define _with_java 1
 # set JDK path to build javahl; default for JPackage
 %define jdk_path /usr/lib/jvm/java

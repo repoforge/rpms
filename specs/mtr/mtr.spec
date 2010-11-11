@@ -3,7 +3,11 @@
 # Upstream: Roger Wolff <R.E.Wolff$BitWizard,nl>
 
 # Rationale: EL3 and EL4 include a real old mtr version.
-##ExcludeDist: el4
+### EL6 ships with mtr-0.75-5.el6
+### EL5 ships with mtr-0.71-3.1
+### EL4 ships with mtr-0.54-10
+### EL3 ships with mtr-0.52-2
+### EL2 ships with mtr-0.44-1
 
 %define desktop_vendor rpmforge
 

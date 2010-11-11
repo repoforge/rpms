@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <aide-devel@lists.sourceforge.net>
 
+### EL6 ships with aide-0.14-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Advanced intrusion detection environment
 Name: aide
 Version: 0.11

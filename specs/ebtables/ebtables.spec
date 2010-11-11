@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <ebtables-devel$lists,sourceforge,net>
 
+### EL6 ships with ebtables-2.0.9-5.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define _sbindir /sbin
 
 Summary: Ethernet Bridge frame table administration tool

@@ -1,17 +1,14 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with xrestop-0.4-7.1.el6
+### EL5 ships with xrestop-0.2-6.2.2
+### EL4 ships with xrestop-0.2-4
+# ExclusiveDist: el2 el3 el4 el5
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
 Summary: X resource monitor
 Name: xrestop

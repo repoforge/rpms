@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with taglib-1.6.1-1.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Audio Meta-Data Library
 Name: taglib
 Version: 1.5

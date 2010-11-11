@@ -2,8 +2,9 @@
 # Authority: matthias
 # Upstream: <nmap-dev$insecure,org>
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+### EL6 ships with nmap-5.21-3.el6
 
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}

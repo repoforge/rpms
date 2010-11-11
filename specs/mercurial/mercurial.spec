@@ -2,6 +2,9 @@
 # Authority: yury
 # Upstream: Matt Mackall <mpm$selenic,com>
 
+### EL6 ships with mercurial-1.4-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define pythonver %(python -c 'import sys;print ".".join(map(str, sys.version_info[:2]))')
 %define emacs_lispdir %{_datadir}/emacs/site-lisp
 

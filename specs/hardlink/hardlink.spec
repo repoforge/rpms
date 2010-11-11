@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with hardlink-1.0-10.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Tool to hardlink duplicate files in a directory tree
 Name: hardlink
 Version: 1.2

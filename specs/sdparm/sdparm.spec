@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with sdparm-1.04-1.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: List or change SCSI disk parameters
 Name: sdparm
 Version: 1.05

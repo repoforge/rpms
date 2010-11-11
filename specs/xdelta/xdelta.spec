@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with xdelta-1.1.4-8.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Binary file delta generator and an RCS replacement library
 Name: xdelta
 Version: 1.1.4

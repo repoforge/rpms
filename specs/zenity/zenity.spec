@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Glynn Foster <glynn,foster$sun,com>
 
+### EL6 ships with zenity-2.28.0-1.el6
+### EL5 ships with zenity-2.16.0-2.el5
 # ExclusiveDist: rh7 rh8 rh9 el3
 
 Summary: Display GNOME dialogs from the command line

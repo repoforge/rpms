@@ -1,7 +1,9 @@
 # $Id: rrdtool.spec 3101 2005-04-04 20:13:17Z dag $
 # Authority: matthias
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
-# ExcludeDist: el4
+
+### EL6 ships with rrdtool-1.3.8-6.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

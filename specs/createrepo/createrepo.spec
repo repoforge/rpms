@@ -4,9 +4,11 @@
 ### Ironically yum 2.4 (sqlite2) cannot be installed with createrepo (sqlite3)
 # ExcludeDist: el2 rh7 rh9 el3 el4
 
+### EL6 ships with createrepo-0.9.8-4.el6
+# ExclusiveDist: el5
+
 # Python name and version, use "--define 'python python2'"
 %{!?python: %{expand: %%define python python}}
-
 
 Summary: Creates a common metadata repository
 Name: createrepo

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with cifs-utils-4.4-5.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %{?el4:%define _without_keyutils 1}
 %{?el3:%define _without_keyutils 1}
 

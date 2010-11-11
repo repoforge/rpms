@@ -2,20 +2,24 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sourceforge,net>
 
+### EL5 ships with dvgrab-2.0-1.2.2
+### EL6 ships with dvgrab-3.4-3.1.el6
+# ExclusiveDist: el2 rh7 el3 el4
+
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
-Version: 1.6
-Release: 1.2%{?dist}
+Version: 1.8
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
 
-Source: http://kino.schirmacher.de/filemanager/download/37/dvgrab-%{version}.tar.gz
+Source: http://dl.sf.net/sourceforge/kino/dvgrab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libraw1394-devel, libavc1394-devel, libdv-devel
 BuildRequires: libquicktime-devel, libjpeg-devel, libpng-devel
-BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel, libmpeg3
+BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel, libmpeg3-devel
 BuildRequires: gcc-c++
 Requires: kernel >= 2.4.0
 
@@ -34,7 +38,7 @@ generation.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,12 +46,12 @@ generation.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc %{_mandir}/man1/dvgrab.1*
+%{_bindir}/dvgrab
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6-1.2
-- Rebuild for Fedora Core 5.
+* Mon Jan 15 2006 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
 
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 1.6-1
 - Update to 1.6.

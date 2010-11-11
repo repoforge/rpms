@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <linux5250$midrange,com>
 
+### EL6 ships with tn5250-0.17.4-3.2.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?el5:%define _without_slang 1}
 

@@ -1,8 +1,10 @@
 # $Id$
 # Authority: dag
 
-### EL4 ships with iptstate 1.3-4
-### EL5 ships with iptstate 1.4-1.1.2.2
+### EL6 ships with iptstate-2.2.2-4.el6
+### EL5 ships with iptstate-1.4-1.1.2.2
+### EL4 ships with iptstate-1.3-4
+### ExclusiveDist: el2 el3 el4 el5
 
 Summary: Display IP Tables state table information in a "top"-like interface
 Name: iptstate

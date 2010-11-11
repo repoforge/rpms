@@ -3,7 +3,7 @@
 
 Summary: Security and Privacy plugin for Pidgin
 Name: pidgin-privacy-please
-Version: 0.5.3
+Version: 0.6.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -44,5 +44,8 @@ auto-reply and it suppress repeated authorization requests.
 %exclude %{_libdir}/pidgin/libpidgin_pp.la
 
 %changelog
+* Mon Nov 08 2010 Dag Wieers <dag@wieers.com> - 0.6.4-1
+- Updated to release 0.6.4.
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 0.5.3-1
 - Initial package. (using DAR)

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with iotop-0.3.2-3.el6
+### ExclusiveDist: el5
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: Per process I/O bandwidth monitor
