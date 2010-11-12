@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Simon Kelley <simon$thekelleys,org,uk>
+# RFX: el6
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
