@@ -1,5 +1,6 @@
 # $Id$
 # Authority: stefan
+# RFX: el6
 
 Summary: Library implementing the SSH2 protocol
 Name: libssh2
