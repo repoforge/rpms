@@ -2,6 +2,7 @@
 # Authority: dag
 # Upstream: Alexander V. Lukyanov <lav$yars,free,net>
 # Upstream: <lftp-devel$uniyar,ac,ru>
+# RFX: el2 el3 el4 el5 el6
 
 ### EL6 ships with lftp-4.0.9-1.el6
 ### EL5 ships with lftp-3.7.11-4.el5
