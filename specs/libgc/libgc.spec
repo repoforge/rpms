@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# RFX: el6
 
 %define real_name gc
 
