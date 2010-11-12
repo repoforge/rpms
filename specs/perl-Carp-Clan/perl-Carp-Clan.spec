@@ -3,6 +3,7 @@
 # Upstream: Joshua ben Jore <jjore$cpan,org>
 # ExcludeDist: el4
 # el4 ships /usr/share/man/man3/Carp::Clan.3pm.gz inside perl-Date-Calc!
+# RFX: el4 el6
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
