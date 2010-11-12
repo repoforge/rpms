@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: Graham Barr <gbarr$cpan,org>
-
 # ExcludeDist: el4
+# RFX: el6
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
