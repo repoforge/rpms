@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Tels <nospam-abuse$bloodgate,com>
+# Upstream: Florian Ragwitz <rafl@debian.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,19 +9,27 @@
 
 Summary: Math::BigInt::Calc with some XS for more speed
 Name: perl-Math-BigInt-FastCalc
-Version: 0.19
+Version: 0.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-BigInt-FastCalc/
 
-Source: http://www.cpan.org/modules/by-module/Math/Math-BigInt-FastCalc-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Math-BigInt-FastCalc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 1:5.6.2
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Math::BigInt) >= 1.90
 #BuildRequires: perl(Test::More) >= 0.62
-Requires: perl >= 1:5.6.2
+BuildRequires: perl(Test::More)
+BuildRequires: perl >= 5.006
+Requires: perl(Math::BigInt) >= 1.90
+Requires: perl >= 5.006
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 Math::BigInt::Calc with some XS for more speed.
@@ -55,6 +63,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/Math/BigInt/FastCalc.pm
 
 %changelog
+* Fri Nov 12 2010 Christoph Maser <cmaser@gmx.de> - 0.22-1
+- Updated to version 0.22.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.19-1
 - Updated to release 0.19.
 
