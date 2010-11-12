@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
+# RFX: el6
 
 Summary: Pluggable real-time performance monitoring tool
 Name: dstat
