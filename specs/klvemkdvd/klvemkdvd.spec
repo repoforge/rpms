@@ -24,7 +24,7 @@ Group: Applications/Multimedia
 URL: http://lvempeg.sourceforge.net/klvemkdvd.html
 
 Source: http://dl.sf.net/lvempeg/klvemkdvd-%{version}.src.tgz
-Patch: gcc34-fixes.patch
+Patch0: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, libart_lgpl-devel, arts-devel, gcc-c++, gettext
@@ -49,7 +49,7 @@ lve package.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh

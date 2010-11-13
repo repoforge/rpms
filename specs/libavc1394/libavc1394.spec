@@ -1,7 +1,9 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+### EL6 ships with libavc1394-0.5.3-9.1.el6
+### EL5 ships with libavc1394-0.5.3-1.fc6
+# ExclusiveDist: el2 el3 el4
 
 Summary: Audio/Video Control library for IEEE-1394 devices
 Name: libavc1394
@@ -11,7 +13,7 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://sourceforge.net/projects/libavc1394/
 Source: http://dl.sf.net/libavc1394/libavc1394-%{version}.tar.gz
-Patch: libavc1394-0.5.1-librom.patch
+Patch0: libavc1394-0.5.1-librom.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libraw1394-devel, pkgconfig
 Obsoletes: librom1394 <= 0.5.0
@@ -34,7 +36,7 @@ Development libraries required to build applications using libavc1394.
 
 %prep
 %setup
-%patch -p1 -b .librom
+%patch0 -p1 -b .librom
 
 
 %build

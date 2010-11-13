@@ -11,7 +11,7 @@ Group: Applications/Internet
 URL: http://web.cnam.fr/reseau/bing.html
 
 Source: ftp://ftp.ibp.fr/pub/networking/bing-%{version}.tar.gz
-Patch: bing-1.0.4.diff
+Patch0: bing-1.0.4.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

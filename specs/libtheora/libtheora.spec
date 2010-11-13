@@ -1,12 +1,12 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: fc3 el4
+### EL6 ships with libtheora-1.1.0-2.el6
+### EL5 ships with libtheora-1.0alpha7-1
+### EL4 ships with libtheora-1.0alpha3-5
+# ExclusiveDist: el2 el3
 
-%{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
 
 %define prever alpha3

@@ -42,5 +42,5 @@ especially those made by beginners.
 %{_bindir}/lacheck
 
 %changelog
-* Mon Nov 24 2008 Hoffmann Geerd-Dietger <didi@ribalba.de> - 1.26-1
+* Mon Nov 24 2008 Geerd-Dietger Hoffmann <ribalba@gmail.com> - 1.26-1
 - Initial package.

@@ -19,7 +19,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
 
 Source: http://www.cpan.org/modules/by-module/MIME/MIME-tools-%{version}.tar.gz
-Patch: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
+Patch0: http://www.roaringpenguin.com/mimedefang/mime-tools-patch.txt
 Patch1: MIME-Tools.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

@@ -16,7 +16,7 @@ Group: Amusements/Games
 URL: http://www.parallelrealities.co.uk/starfighter.php
 Source0: starfighter-%{version}-1.tar.gz
 Source1: starfighter.png
-Patch: starfighter-1.1-makefile.patch
+Patch0: starfighter-1.1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, SDL_mixer-devel, SDL_image-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}

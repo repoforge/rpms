@@ -25,7 +25,7 @@ The programming language used is: PHP4, but work fine with PHP5.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1
+%patch0 -p1
 
 ### FIXME: Add a default sqlitemanager.conf for Apache. (Please fix upstream)
 %{__cat} <<EOF >sqlitemanager.httpd

@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://www.pldaniels.com/altermime/
 
 Source: http://www.pldaniels.com/altermime/altermime-%{version}.tar.gz
-Patch: altermime-0.3.10-makefile.patch
+Patch0: altermime-0.3.10-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -22,7 +22,7 @@ attachments based on filename.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 
 %build
 %{__make} CC="%{__cc}" 

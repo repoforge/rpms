@@ -12,7 +12,7 @@ Source0: http://dl.sf.net/sentrytools/%{name}-%{version}.tar.gz
 Source1: portsentry.init
 Source2: portsentry.modes
 Source3: portsentry.cron
-Patch: portsentry-1.1.patch
+Patch0: portsentry-1.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: sentry
 
@@ -38,7 +38,7 @@ port probes, but also the most prone to false alarms.
 
 %prep
 %setup
-%patch -p1 -b .freshrpms
+%patch0 -p1 -b .freshrpms
 
 %build
 %{__make} %{?_smp_mflags} linux

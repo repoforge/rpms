@@ -18,7 +18,7 @@ Source2: named.sysconfig
 Source3: named.init
 Source4: named.logrotate
 Source5: keygen.c
-Patch: bind-9.1.0b1-reverse.patch
+Patch0: bind-9.1.0b1-reverse.patch
 Patch1: bind-9.1.0b1-varrun.patch
 Patch3: bind-9.1.3rc2-key.patch
 Patch4: bind-9.1.3-ttl.patch
@@ -66,7 +66,7 @@ tools for verifying that the DNS server is operating properly.
 
 %prep
 %setup -q -n %{name}-%{version}
-%patch -p1 -b .rev
+%patch0 -p1 -b .rev
 %patch1 -p1 -b .varrun
 %patch3 -p1 -b .key
 %patch4 -p1 -b .ttl

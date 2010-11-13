@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with 0.99.0-19.20070615.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define snap 20091203
 
 Summary: Utility to clean up and pretty print HTML/XHTML/XML

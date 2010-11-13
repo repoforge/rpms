@@ -5,7 +5,7 @@
 Summary: RPMforge release file and RPM repository configuration
 Name: rpmforge-release
 Version: 0.5.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/
@@ -21,7 +21,7 @@ configuration for the RPMforge RPM Repository, as well as the public
 GPG keys used to sign them.
 
 %prep
-%setup -c
+%setup -cT
 
 %{?el6:version='6'}
 %{?el5:version='5'}
@@ -44,11 +44,18 @@ builder='dag'
 repomd http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH)/rpmforge
 EOF
 
-%{__cat} <<EOF >rpmforge-testing.apt
-### Name: RPMforge RPM Repository for RHEL $version - test
+%{__cat} <<EOF >rpmforge-extras.apt
+### Name: RPMforge RPM Repository for RHEL $version - extras
 ### URL: http://rpmforge.net/
-#rpm http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH) test
-#repomd http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH)/test
+#rpm http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH) extras
+#repomd http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH)/extras
+EOF
+
+%{__cat} <<EOF >rpmforge-testing.apt
+### Name: RPMforge RPM Repository for RHEL $version - testing
+### URL: http://rpmforge.net/
+#rpm http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH) testing
+#repomd http://apt.sw.be redhat/el\$(VERSION)/en/\$(ARCH)/testing
 EOF
 
 ### baseurl = http://rpmforge.sw.be/redhat/el$version/en/%{_arch}/rpmforge
@@ -56,17 +63,18 @@ EOF
 ### Name: RPMforge RPM Repository for RHEL $version - %{_arch} - $builder
 ### URL: http://rpmforge.net/
 [rpmforge]
-name = Extra packages from RPMforge.net for RHEL $version - %{_arch} - $builder
+name = Packages from RPMforge.net for RHEL $version - %{_arch} - $builder
 baseurl = http://apt.sw.be/redhat/el$version/en/%{_arch}/rpmforge
 type = rpm-md
-EOF
 
-%{__cat} <<EOF >rpmforge-testing.smart
-### Name: RPMforge RPM Repository for RHEL $version - %{_arch} - test
-### URL: http://rpmforge.net/
-#[rpmforge]
-#name = Test packages from RPMforge.net for RHEL $version - %{_arch} - test
-#baseurl = http://apt.sw.be/redhat/el$version/en/%{_arch}/test
+#[rpmforge-extras]
+#name = Extra packages from RPMforge.net for RHEL $version - %{_arch} - extras
+#baseurl = http://apt.sw.be/redhat/el$version/en/%{_arch}/extras
+#type = rpm-md
+
+#[rpmforge-testing]
+#name = Test packages from RPMforge.net for RHEL $version - %{_arch} - testing
+#baseurl = http://apt.sw.be/redhat/el$version/en/%{_arch}/testing
 #type = rpm-md
 EOF
 
@@ -85,18 +93,26 @@ enabled = 1
 protect = 0
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
 gpgcheck = 1
-EOF
 
-%{__cat} <<EOF >rpmforge-testing.yum
-### Name: RPMforge RPM Repository for RHEL $version - $builder
-### URL: http://rpmforge.net/
-[rpmforge-testing]
-name = RHEL \$releasever - RPMforge.net - test
-baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/test
+[rpmforge-extras]
+name = RHEL \$releasever - RPMforge.net - extras
+baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/extras
+mirrorlist = http://apt.sw.be/redhat/el$version/en/mirrors-rpmforge-extras
+#mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge-extras
 enabled = 0
 protect = 0
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
-gpgcheck = 0
+gpgcheck = 1
+
+[rpmforge-testing]
+name = RHEL \$releasever - RPMforge.net - testing
+baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/testing
+mirrorlist = http://apt.sw.be/redhat/el$version/en/mirrors-rpmforge-testing
+#mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge-testing
+enabled = 0
+protect = 0
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-$builder
+gpgcheck = 1
 EOF
 
 %{__cat} <<EOF >rpmforge.up2date
@@ -106,13 +122,22 @@ EOF
 # Add the following line to /etc/sysconfig/rhn/sources
 #
 #   yum rpmforge http://apt.sw.be/redhat/el$version/en/%{_arch}/rpmforge
+#   yum rpmforge http://apt.sw.be/redhat/el$version/en/%{_arch}/extras
+#   yum rpmforge http://apt.sw.be/redhat/el$version/en/%{_arch}/testing
 # or
 #   apt rpmforge http://apt.sw.be redhat/el$version/en/%{_arch} rpmforge
+#   apt rpmforge http://apt.sw.be redhat/el$version/en/%{_arch} extras
+#   apt rpmforge http://apt.sw.be redhat/el$version/en/%{_arch} testing
 EOF
 
+>mirrors-rpmforge.yum
+>mirrors-rpmforge-extras.yum
+>mirrors-rpmforge-testing.yum
 for mirror in $(%{__cat} %{SOURCE0}); do
-    echo "$mirror/redhat/el$version/en/\$ARCH/rpmforge"
-done >mirrors-rpmforge.yum
+    echo "$mirror/redhat/el$version/en/\$ARCH/rpmforge" >>mirrors-rpmforge.yum
+    echo "$mirror/redhat/el$version/en/\$ARCH/extras" >>mirrors-rpmforge-extras.yum
+    echo "$mirror/redhat/el$version/en/\$ARCH/testing" >>mirrors-rpmforge-testing.yum
+done
 
 %build
 
@@ -125,14 +150,15 @@ done >mirrors-rpmforge.yum
 #%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
 
 %{__install} -Dp -m0644 rpmforge.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge.list
+%{__install} -Dp -m0644 rpmforge-extras.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge-extras.list
 %{__install} -Dp -m0644 rpmforge-testing.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge-testing.list
 %{__install} -Dp -m0644 rpmforge.smart %{buildroot}%{_sysconfdir}/smart/channels/rpmforge.channel
-%{__install} -Dp -m0644 rpmforge-testing.smart %{buildroot}%{_sysconfdir}/smart/channels/rpmforge-testing.channel
 %{__install} -Dp -m0644 rpmforge.yum %{buildroot}%{_sysconfdir}/yum.repos.d/rpmforge.repo
-%{__install} -Dp -m0644 rpmforge-testing.yum %{buildroot}%{_sysconfdir}/yum.repos.d/rpmforge-testing.repo
 %{__install} -Dp -m0644 rpmforge.up2date %{buildroot}%{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
 
 %{__install} -Dp -m0644 mirrors-rpmforge.yum %{buildroot}%{_sysconfdir}/yum.repos.d/mirrors-rpmforge
+%{__install} -Dp -m0644 mirrors-rpmforge-extras.yum %{buildroot}%{_sysconfdir}/yum.repos.d/mirrors-rpmforge-extras
+%{__install} -Dp -m0644 mirrors-rpmforge-testing.yum %{buildroot}%{_sysconfdir}/yum.repos.d/mirrors-rpmforge-testing
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -152,26 +178,30 @@ rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/p
 %dir %{_sysconfdir}/apt/
 %dir %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge.list
+%config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge-extras.list
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge-testing.list
 %dir %{_sysconfdir}/smart/
 %dir %{_sysconfdir}/smart/channels/
 %config(noreplace) %{_sysconfdir}/smart/channels/rpmforge.channel
-%config(noreplace) %{_sysconfdir}/smart/channels/rpmforge-testing.channel
 %dir %{_sysconfdir}/sysconfig/rhn/
 %config %{_sysconfdir}/sysconfig/rhn/sources.rpmforge.txt
 %dir %{_sysconfdir}/yum.repos.d/
 %config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge.repo
-%config(noreplace) %{_sysconfdir}/yum.repos.d/rpmforge-testing.repo
 %config %{_sysconfdir}/yum.repos.d/mirrors-rpmforge
+%config %{_sysconfdir}/yum.repos.d/mirrors-rpmforge-extras
+%config %{_sysconfdir}/yum.repos.d/mirrors-rpmforge-testing
 %dir %{_sysconfdir}/pki/rpm-gpg/
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Sat Nov 13 2010 Dag Wieers <dag@wieers.com> - 0.5.2-2
+- Added entries for extras repository.
+
 * Thu Nov 11 2010 Dag Wieers <dag@wieers.com> - 0.5.2-1
 - Added entries for RHEL6.
 
 * Mon Jan 04 2010 Dag Wieers <dag@wieers.com> - 0.5.1-1
-- Added entries for test repositories.
+- Added entries for testing repository.
 
 * Mon Jan 04 2010 Dag Wieers <dag@wieers.com> - 0.5.0-1
 - Install the GPG keys only for a specific distribution/architecture.

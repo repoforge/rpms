@@ -2,11 +2,11 @@
 # Authority: dag
 
 ### EL6 ships with sdparm-1.04-1.1.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 Summary: List or change SCSI disk parameters
 Name: sdparm
-Version: 1.05
+Version: 1.06
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Base
@@ -49,6 +49,9 @@ such that the disk stops operating or is slowed down. Use with care.
 %{_bindir}/sdparm
 
 %changelog
+* Sat Nov 13 2010 Dag Wieers <dag@wieers.com> - 1.06-1
+- Updated to release 1.06.
+
 * Mon Apr 19 2010 Dag Wieers <dag@wieers.com> - 1.05-1
 - Updated to release 1.05.
 

@@ -6,14 +6,13 @@
 
 ##ExcludeDist: el3 fc1
 
-%{?el4:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-
-%{?el4:%define _without_gstreamer 1}
-%{?el3:%define _without_gstreamer 1}
-
 %{?el4:%define _kdelibs_without_mplayer2_desktop_file 1}
+%{?el4:%define _without_gstreamer 1}
+%{?el4:%define _without_modxorg 1}
+
 %{?el3:%define _kdelibs_without_mplayer2_desktop_file 1}
+%{?el3:%define _without_gstreamer 1}
+%{?el3:%define _without_modxorg 1}
 
 Summary: Media player based on xine-lib
 Name: kaffeine
@@ -33,8 +32,6 @@ BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: kdelibs-devel
 %{?el4:BuildRequires: libselinux-devel}
-%{?fc3:BuildRequires: libselinux-devel}
-%{?fc2:BuildRequires: libselinux-devel}
 BuildRequires: libvorbis-devel
 BuildRequires: xine-lib-devel >= 1.0.0
 %{!?_without_modxorg:BuildRequires: libXext-devel libXinerama-devel libXtst-devel}

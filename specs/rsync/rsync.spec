@@ -8,6 +8,10 @@
 ### EL4 ships with rsync-2.6.3-1
 ### EL3 ships with rsync-2.5.7-5.3E
 ### EL2 ships with rsync-2.5.7-3.21AS.1
+# Tag: rfx
+
+%{?el2:%define _without_acl 1}
+%{?el2:%define _without_attr 1}
 
 Summary: Program for synchronizing files over a network
 Name: rsync
@@ -20,8 +24,8 @@ URL: http://rsync.samba.org/
 Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libacl-devel
-BuildRequires: libattr-devel
+%{!?_without_acl:BuildRequires: libacl-devel}
+%{!?_without_attr:BuildRequires: libattr-devel}
 
 %description
 Rsync uses a reliable algorithm to bring remote and host files into

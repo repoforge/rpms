@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL ships with autotrace-0.31.1-25.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Utility for converting bitmaps to vector graphics
 Name: autotrace
 Version: 0.31.1
@@ -11,7 +14,6 @@ URL: http://autotrace.sourceforge.net/
 
 Source: http://dl.sf.net/autotrace/autotrace-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 AutoTrace is a program for converting bitmaps to vector graphics. The
@@ -39,10 +41,7 @@ documentation for %{name}.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/libautotrace.la
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,23 +49,21 @@ documentation for %{name}.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FAQ NEWS README* TODO
-%doc %{_mandir}/man1/*
+%doc %{_mandir}/man1/autotrace.1*
 %{_bindir}/autotrace
 %{_libdir}/libautotrace.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_bindir}/autotrace-config
-%{_libdir}/libautotrace.a
-%{_libdir}/libautotrace.so
-%{_includedir}/autotrace/
-%{_libdir}/pkgconfig/*.pc
 %{_datadir}/aclocal/*.m4
+%{_includedir}/autotrace/
+%{_libdir}/libautotrace.so
+%{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/libautotrace.a
+%exclude %{_libdir}/libautotrace.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.31.1-2.2
-- Rebuild for Fedora Core 5.
-
 * Mon Nov 25 2002  Dag Wieers <dag@wieers.com> - 0.31.1-0
 - Updated to release 0.31.1.
 

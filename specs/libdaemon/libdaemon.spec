@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Lennart Poettering <mzqnrzba$0pointer,de>
 
+### EL6 ships with libdaemon-0.14-1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 #{?el4:%define _without_lynx 1}
 #{?el3:%define _without_lynx 1}
@@ -87,8 +89,5 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.6-1.2
-- Rebuild for Fedora Core 5.
-
 * Sun Apr 18 2004 Dag Wieers <dag@wieers.com> - 0.6-1
 - Initial package. (using DAR)

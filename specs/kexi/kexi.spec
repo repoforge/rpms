@@ -38,7 +38,7 @@ Group: Applications/Databases
 URL: http://www.koffice.org/kexi/
 
 Source: http://ftp.belnet.be/packages/kde/stable/apps/KDE3.x/database/kexi-%{version}.tar.bz2
-Patch: gcc4-fix.patch
+Patch0: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel
@@ -59,7 +59,7 @@ OS X platforms.
 
 %prep
 %setup -n kexi-%{version}
-%patch -p1
+%patch0 -p1
 
 %build
 source /etc/profile.d/qt.sh

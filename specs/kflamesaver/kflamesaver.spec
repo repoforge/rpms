@@ -12,7 +12,7 @@ Group: Amusements/Graphics
 URL: http://kde-apps.org/content/show.php?content=4485
 
 Source: %{name}-%{version}.tar.gz
-Patch: gcc34-fixes.patch
+Patch0: gcc34-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libjpeg-devel
 BuildRequires: libpng-devel, arts-devel, zlib-devel, kdelibs-devel
@@ -26,7 +26,7 @@ A screensaver for KDE with flame effects like in Twin Peaks.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 . /etc/profile.d/qt.sh

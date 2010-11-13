@@ -1,9 +1,12 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libnetfilter_conntrack-0.0.100-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Netfilter conntrack userspace library
 Name: libnetfilter_conntrack
-Version: 0.0.97
+Version: 0.0.100
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries

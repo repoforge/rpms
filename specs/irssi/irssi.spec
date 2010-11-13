@@ -24,7 +24,7 @@ BuildRequires: ncurses-devel
 BuildRequires: openssl-devel
 BuildRequires: perl(ExtUtils::Embed)
 BuildRequires: zlib-devel
-%{?_with_gc:BuildRequires: libgc-devel}
+%{?_with_gc:BuildRequires: gc-devel}
 
 Provides: irssi-devel = %{version}-%{release}
 Obsoletes: irssi-devel <= %{version}-%{release}

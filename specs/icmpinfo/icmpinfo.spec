@@ -11,7 +11,7 @@ Group: Applications/Internet
 URL: http://www.demailly.com/~dl/softs.html
 
 Source: ftp://ftp.demailly.com/pub/icmpinfo-%{version}.tar.gz
-Patch: icmpinfo-1.11-libc6.patch
+Patch0: icmpinfo-1.11-libc6.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,7 +20,7 @@ the running host.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags} -pipe -D_BSD_SOURCE -Dlinux"

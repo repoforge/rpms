@@ -1,29 +1,25 @@
 # $Id$
 # Authority: dag
 
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
-
-%{!?dtag:%define _with_gettextdevel 1}
-%{?el5: %define _with_gettextdevel 1}
-%{?fc6: %define _with_gettextdevel 1}
-%{?fc5: %define _with_gettextdevel 1}
-%{?fc4: %define _with_gettextdevel 1}
-%{?fc3: %define _with_gettextdevel 1}
+%{?el4: %define _without_gettextdevel 1}
+%{?el3: %define _without_gettextdevel 1}
+%{?el2: %define _without_gettextdevel 1}
 
 Summary: Converts text files to HTML, XHTML, sgml, LaTeX, man...
 Name: txt2tags
-Version: 2.5
+Version: 2.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
-URL: http://txt2tags.sourceforge.net/
+URL: http://txt2tags.org/
 
-Source: http://dl.sf.net/txt2tags/txt2tags-%{version}.tgz
+Source: http://txt2tags.googlecode.com/files/txt2tags-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-%{?_with_gettextdevel:BuildRequires: gettext-devel}
-Requires: python
+%{!?_without_gettextdevel:BuildRequires: gettext-devel}
+BuildRequires: python >= 2.2
+Requires: python >= 2.2
 
 %description
 Txt2tags is a generic text converter. From a simple text file with minimal
@@ -36,13 +32,12 @@ no external commands or libraries are needed.
 %prep
 %setup
 
-### Remove executable flag
-%{__chmod} 0644 extras/*
-
 ### Create locale files
 for file in $(ls -1 po/*.po); do
     msgfmt -o ${file//.po/.mo} $file
 done
+
+find . -type d -exec chmod a+x {} \;
 
 %install
 %{__rm} -rf %{buildroot}
@@ -71,12 +66,15 @@ done
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc ChangeLog COPYING README TODO doc/*.pdf extras/ samples/
+%doc ChangeLog COPYING README doc/*.pdf extras/ samples/
 %doc %{_mandir}/man1/txt2tags.1*
 %doc %{_mandir}/*/man1/txt2tags.1*
 %{_bindir}/txt2tags
 
 %changelog
+* Mon Nov 08 2010 Dag Wieers <dag@wieers.com> - 2.6-1
+- Updated to release 2.6.
+
 * Sun Jul 27 2008 Dag Wieers <dag@wieers.com> - 2.5-1
 - Updated to release 2.5.
 

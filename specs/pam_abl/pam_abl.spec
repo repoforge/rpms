@@ -12,7 +12,7 @@ Group: System Environment/Base
 URL: http://www.hexten.net/sw/pam_abl/
 
 Source: http://dl.sf.net/sourceforge/pam-abl/pam_abl-%{version}.tar.gz	
-Patch: pam_abl-0.2.3-fixes.patch
+Patch0: pam_abl-0.2.3-fixes.patch
 BuildRequires: pam-devel, db4-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

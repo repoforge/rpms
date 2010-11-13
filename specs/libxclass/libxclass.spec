@@ -26,7 +26,7 @@ Group: System Environment/Libraries
 URL: http://xclass.sourceforge.net/
 
 Source: http://dl.sf.net/xclass/xclass-%{version}.tar.gz
-Patch: xclass-0.9.1-gcc41.patch
+Patch0: xclass-0.9.1-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{?_without_modxorg:BuildRequires: XFree86-devel}
@@ -53,7 +53,7 @@ against.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1
+%patch0 -p1
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '

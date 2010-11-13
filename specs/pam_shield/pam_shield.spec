@@ -13,7 +13,7 @@ Group: Applications/System
 URL: http://www.heiho.net/pam_shield/
 
 Source: http://www.heiho.net/pam_shield/pam_shield-%{version}.tar.gz
-Patch: pam_shield-0.9.4-makefile.patch
+Patch0: pam_shield-0.9.4-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gdbm-devel

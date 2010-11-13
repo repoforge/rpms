@@ -11,7 +11,7 @@ License: GPL
 Group: Amusements/Games
 URL: http://cannonsmash.sourceforge.net/
 Source: http://dl.sf.net/cannonsmash/%{name}-%{version}.tar.gz
-Patch: csmash-0.6.6-64bit-fixes.patch
+Patch0: csmash-0.6.6-64bit-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: Mesa-devel, libjpeg-devel, zlib-devel, gtk2-devel >= 2.0.0
 BuildRequires: SDL-devel >= 1.2.0, SDL_mixer-devel, SDL_image-devel
@@ -26,7 +26,7 @@ accelaration video card, this program runs very slowly.
 
 %prep
 %setup
-%patch -p0 -b .64bit
+%patch0 -p0 -b .64bit
 
 
 %build
