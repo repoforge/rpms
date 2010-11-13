@@ -1,9 +1,6 @@
 # $Id$
 # Authority: dries
 
-### Only build for Enterprise Linux (that are missing it) and unsupported fedoras
-# ExclusiveDist: rh7 rh9 el3 fc1 fc2 fc3 el4 el5
-
 Summary: Simple multi-channel audio mixer
 Name: SDL_mixer
 Version: 1.2.7

@@ -10,7 +10,7 @@ Group: System Environment/Base
 URL: http://savannah.gnu.org/projects/coreutils
 
 Source: ftp://alpha.gnu.org/gnu/coreutils/coreutils-7.0.tar.gz
-Patch: cp-use-less-memory-coreutils-7.0.patch
+Patch0: cp-use-less-memory-coreutils-7.0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -35,7 +35,7 @@ http://git.savannah.gnu.org/gitweb/?p=coreutils.git;a=commitdiff;h=3ece0355d52e4
 
 %prep
 %setup -n coreutils-7.0
-%patch -p1
+%patch0 -p1
 
 %build
 %configure

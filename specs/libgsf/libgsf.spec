@@ -1,8 +1,11 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: rh8 rh9
-
+### EL6 ships with libgsf-1.14.15-5.el6
+### EL5 ships with libgsf-1.14.1-6.1
+### EL4 ships with libgsf-1.10.1-2
+### EL3 ships with libgsf-1.6.0-7
+# ExclusiveDist: el2 rh8 rh9
 
 Summary: The GNOME Structure file library
 Name: libgsf
@@ -65,8 +68,5 @@ Headers and static libraries for libgsf.
 %exclude %{_libdir}/*.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.6.0-0.2
-- Rebuild for Fedora Core 5.
-
 * Wed Jan 22 2003 Dag Wieers <dag@wieers.com> - 1.4.0
 - Initial package.

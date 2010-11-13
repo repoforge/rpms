@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### EL6 ships with ggz-base-libs-0.99.5-5.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for client-server games
 Name: libggz
 Version: 0.0.14

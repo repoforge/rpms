@@ -13,7 +13,10 @@ URL: http://galculator.sourceforge.net/
 Source: http://dl.sf.net/galculator/galculator-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext, gtk2-devel >= 2.6, libglade2-devel >= 2.6
+BuildRequires: gettext
+BuildRequires: gtk2-devel >= 2.6
+BuildRequires: intltool
+BuildRequires: libglade2-devel >= 2.6
 BuildRequires: perl(XML::Parser)
 
 %description

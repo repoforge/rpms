@@ -15,7 +15,7 @@ Group: Applications/System
 URL: http://www.logwatch.org/
 
 Source: ftp://ftp.kaybee.org/pub/linux/logwatch-%{version}.tar.gz
-Patch: logwatch-4.3.2-nounicode.patch
+Patch0: logwatch-4.3.2-nounicode.patch
 Patch1: logwatch-4.3.2-nosegfault.patch
 Patch3: logwatch-5.1-catchlocal.patch
 Patch9: logwatch-5.2-RejectedAtt.patch
@@ -31,7 +31,7 @@ analyzing areas that you specify, in as much detail as you require.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 %patch3 -p1
 %patch9

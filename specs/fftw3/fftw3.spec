@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with fftw-3.2.1-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name fftw
 
 Summary: Fast Fourier Transform library

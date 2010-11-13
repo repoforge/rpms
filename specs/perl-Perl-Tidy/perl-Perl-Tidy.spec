@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Steve Hancock <shancock7078$bigfoot,com>
 
+### EL6 ships with perltidy-20090616-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

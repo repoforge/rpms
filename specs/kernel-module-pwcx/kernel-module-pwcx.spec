@@ -36,7 +36,7 @@ License: GPL with proprietary code
 Group: System Environment/Kernel
 URL: http://www.smcc.demon.nl/webcam/
 Source: http://www.smcc.demon.nl/webcam/pwcx-%{version}-beta-2.tar.gz
-Patch: pwcx.autotools.patch
+Patch0: pwcx.autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -67,7 +67,7 @@ This package contains a kernel module for the Philips USB webcams.
 
 %prep
 %setup -n pwcx-9.0-beta-2
-%patch -p2
+%patch0 -p2
 
 
 %build

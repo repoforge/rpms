@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?el5:%define _without_openssh44 1}
+%{?el4:%define _without_openssh44 1}
+%{?el3:%define _without_openssh44 1}
+%{?el2:%define _without_openssh44 1}
+
 %define real_name sshfs-fuse
 
 Summary: FUSE-Filesystem to access remote filesystems via SSH
@@ -47,7 +52,7 @@ mounting the filesystem is as easy as logging into the server with ssh.
 %doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/sshfs.1*
 %{_bindir}/sshfs
-%{_libdir}/sshnodelay.so
+%{?_without_openssh44:%{_libdir}/sshnodelay.so}
 
 %changelog
 * Sat Oct 25 2008 Dag Wieers <dag@wieers.com> - 2.2-1

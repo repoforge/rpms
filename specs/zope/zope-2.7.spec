@@ -30,7 +30,7 @@ URL: http://www.zope.org/
 Source0: http://zope.org/Products/Zope/%{version}/%{real_name}-%{real_version}.tgz
 Source1: zope.init.in
 Source2: zope.logrotate.in
-Patch: Zope-2.7.0-config.patch
+Patch0: Zope-2.7.0-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: python >= %{python_minver}
 Requires(pre): /usr/sbin/useradd
@@ -48,7 +48,7 @@ highly-productive, object-oriented scripting language.
 
 %prep
 %setup -n %{real_name}-%{version}-0
-%patch -p1 -b .config
+%patch0 -p1 -b .config
 
 
 %build

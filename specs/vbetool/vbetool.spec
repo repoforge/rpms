@@ -11,7 +11,7 @@ Group: Applications/System
 URL: http://www.srcf.ucam.org/~mjg59/vbetool/
 
 Source: http://www.srcf.ucam.org/~mjg59/vbetool/vbetool_%{version}.orig.tar.gz
-Patch: vbetool-0.2-makefile.patch
+Patch0: vbetool-0.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: i386

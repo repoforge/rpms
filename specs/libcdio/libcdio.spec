@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libcdio-0.81-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: CD-ROM input and control library
 Name: libcdio
 Version: 0.77
@@ -36,29 +39,31 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-cddb \
-	--disable-dependency-tracking \
-	--disable-rpath \
-	--disable-vcd-info
+    --disable-cddb \
+    --disable-dependency-tracking \
+    --disable-rpath \
+    --disable-vcd-info
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_infodir}/dir
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
 /sbin/ldconfig
-if [ -e "%{_infodir}/libcdio.info.gz" ]; then
-	/sbin/install-info %{_infodir}/libcdio.info.gz %{_infodir}/dir
-fi
+/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir || :
 
 %preun
-if [ -e "%{_infodir}/libcdio.info.gz" ]; then
-	/sbin/install-info --delete %{_infodir}/libcdio.info.gz %{_infodir}/dir
+if [ $1 -eq 0 ]; then
+    /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir || :
 fi
+
 
 %postun -p /sbin/ldconfig
 
@@ -77,9 +82,9 @@ fi
 %{_includedir}/cdio/
 %{_includedir}/cdio++/
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
+%exclude %{_libdir}/*.la
 
 %changelog
 * Sun Sep 24 2006 Matthias Saou <http://freshrpms.net/> 0.77-1

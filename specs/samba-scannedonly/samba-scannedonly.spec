@@ -6,6 +6,7 @@
 
 %define real_name scannedonly
 
+%{?el6:%define samba_version 3.5.4}
 %{?el5:%define samba_version 3.0.33}
 %{?el4:%define samba_version 3.0.33}
 %{?el3:%define samba_version 3.0.9}

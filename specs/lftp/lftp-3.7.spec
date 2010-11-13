@@ -4,6 +4,12 @@
 # Upstream: <lftp-devel$uniyar,ac,ru>
 
 # Rationale: lftp 3.0+ supports sftp, http redirects and lots of important improvements
+### EL6 ships with lftp-4.0.9-1.el6
+### EL5 ships with lftp-3.7.11-4.el5
+### EL4 ships with lftp-3.0.6-8.el4
+### EL3 ships with lftp-2.6.3-6
+### EL2 ships with lftp-2.4.9-3
+# Tag: rfx
 
 %{?el3:%define _without_modules 1}
 

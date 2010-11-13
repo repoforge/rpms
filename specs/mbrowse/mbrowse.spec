@@ -24,7 +24,7 @@ Group: Applications/Internet
 URL: http://www.kill-9.org/mbrowse/
 
 Source: http://www.kill-9.org/mbrowse/mbrowse-%{version}.tar.gz
-Patch: gcc.patch
+Patch0: gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel >= 1.2
@@ -37,7 +37,7 @@ Mbrowse is an SNMP MIB browser based on GTK and net-snmp.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %{__cat} <<EOF >mbrowse.desktop
 [Desktop Entry]

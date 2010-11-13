@@ -9,7 +9,7 @@
 
 Summary: Test testsuites that have been built with Test::Builder
 Name: perl-Test-Builder-Tester
-Version: 1.02
+Version: 1.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,8 +44,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE TODO
-%doc %{_mandir}/man3/*.3pm*
+%doc CHANGES MANIFEST META.yml
+%doc %{_mandir}/man3/Test::Builder::Tester.3pm*
+%doc %{_mandir}/man3/Test::Builder::Tester::*.3pm*
 %dir %{perl_vendorlib}/Test/
 %dir %{perl_vendorlib}/Test/Builder/
 %dir %{perl_vendorlib}/Test/Builder/Tester/
@@ -53,9 +54,6 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Builder/Tester.pm
 
 %changelog
-* Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.02-1
-- Updated to release 1.02.
-
 * Wed Dec 29 2004 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Updated to release 1.01.
 

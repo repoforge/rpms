@@ -16,7 +16,7 @@ Group: Applications/Internet
 URL: http://www.packetfactory.net/projects/firewalk/
 
 Source: http://www.packetfactory.net/firewalk/dist/firewalk-%{version}.tgz
-Patch: firewalk-5.0-gcc34.patch
+Patch0: firewalk-5.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libnet >= 1.1.0, libpcap, libdnet-devel, libtool

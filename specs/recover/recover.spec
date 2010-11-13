@@ -13,7 +13,7 @@ Group: Applications/System
 URL: http://recover.sourceforge.net/linux/recover/
 
 Source: recover-%{version}.tar.bz2
-Patch: recover-1.3c.patch
+Patch0: recover-1.3c.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 requires: e2fsprogs

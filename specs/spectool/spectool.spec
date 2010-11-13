@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Nils Philippsen <nphilipp$redhat,com>
 
+### EL6 includes spectool in rpmdevtools-7.5-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Display expanded Source/Patch macros from SPEC files
 Name: spectool
 Version: 1.0.11

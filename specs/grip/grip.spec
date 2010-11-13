@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.nostatic.org/grip/
 Source: http://dl.sf.net/grip/grip-%{version}.tar.gz
-Patch: grip-3.1.7-default.patch
+Patch0: grip-3.1.7-default.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: vorbis-tools
 BuildRequires: gcc-c++, libgnomeui-devel >= 2.2.0, vte-devel, curl-devel
@@ -30,7 +30,7 @@ servers.
 
 %prep
 %setup
-%patch -p1 -b .rh-default-encoder
+%patch0 -p1 -b .rh-default-encoder
 
 
 %build

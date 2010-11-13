@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://www.go-mono.com/
 
 Source: http://www.go-mono.com/archive/%{version}/libgdiplus-%{version}.tar.gz
-Patch: libgdiplus-remove-ltmain.patch
+Patch0: libgdiplus-remove-ltmain.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, cairo-devel >= 0.1.17, glib2-devel >= 2.2.3
@@ -33,7 +33,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %configure

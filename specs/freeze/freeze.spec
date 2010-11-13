@@ -10,7 +10,7 @@ Group: Applications/Archiving
 URL: ftp://ftp.std.com/src/util/
 
 Source: http://www.ibiblio.org/pub/Linux/utils/compress/freeze-%{version}.tar.gz
-Patch: freeze-2.5.patch
+Patch0: freeze-2.5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

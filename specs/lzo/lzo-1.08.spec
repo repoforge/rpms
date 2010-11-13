@@ -13,7 +13,7 @@ Packager: Dag Wieers <dag@wieers.com>
 Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch: lzo-1.08-asm.patch
+Patch0: lzo-1.08-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: zlib-devel, autoconf
 Requires: zlib >= 1.0.0
@@ -37,7 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p0 -b .asm
+%patch0 -p0 -b .asm
 
 %build
 #%{__autoconf}

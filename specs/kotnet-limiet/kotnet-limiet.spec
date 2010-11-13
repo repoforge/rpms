@@ -12,7 +12,7 @@ Group: Applications/Internet
 URL: http://cernunos.studentenweb.org/kotnet-limiet.html
 
 Source: http://cernunos.studentenweb.org/kotnet-limiet.tar.gz
-Patch: fedora.patch
+Patch0: fedora.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: superkaramba, python
 
@@ -22,7 +22,7 @@ download and upload stats, made by Stijn Opheide
 
 %prep
 %setup -n kotnet-limiet
-%patch -p1
+%patch0 -p1
 
 %build
 

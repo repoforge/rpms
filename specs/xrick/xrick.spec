@@ -16,7 +16,7 @@ License: GPL/Proprietary
 Group: Amusements/Games
 URL: http://www.bigorno.net/xrick/
 Source: http://www.bigorno.net/xrick/xrick-%{real_version}.tgz
-Patch: xrick-rpmoptflags-makefile.patch
+Patch0: xrick-rpmoptflags-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: SDL-devel, zlib-devel, ImageMagick
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
@@ -33,7 +33,7 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n %{name}-%{real_version}
-%patch -p1 -b .optflags
+%patch0 -p1 -b .optflags
 %{__perl} -pi.orig -e 's|data.zip|%{_datadir}/games/%{name}/data.zip|g' \
     src/xrick.c
 

@@ -39,7 +39,7 @@ URL: http://rpm5.org
 Source: http://rpm5.org/files/rpm/rpm-4.5/rpm-%{version}-%{rpm_release}.tar.gz
 
 # from http://cvs.pld-linux.org/cgi-bin/cvsweb/SOURCES/rpm-arch-x86_64.patch?rev=1.4
-Patch: rpm-arch-x86_64.patch
+Patch0: rpm-arch-x86_64.patch
 
 License: LGPL
 %ifos linux
@@ -159,7 +159,7 @@ programs that will manipulate RPM packages and databases.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 

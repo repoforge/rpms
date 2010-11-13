@@ -11,7 +11,7 @@ Group: System Environment/Libraries
 URL: http://sf.net/projects/tdb/
 
 Source: http://dl.sf.net/tdb/tdb-%{version}.tar.gz
-Patch: tdb-1.0.6-gcc33.patch
+Patch0: tdb-1.0.6-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gdbm-devel, libtool, gettext, sed, grep

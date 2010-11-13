@@ -14,7 +14,7 @@ Group: Applications/Databases
 URL: http://oss.oetiker.ch/rrdtool/
 
 Source: http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/rrdtool-%{version}.tar.gz
-Patch: php-1.0.47-rrdtool-config.patch
+Patch0: php-1.0.47-rrdtool-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: php-devel, tcl, perl

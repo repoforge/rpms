@@ -13,7 +13,7 @@ License: GPL
 Group: System Environment/Daemons
 URL: http://synergy2.sourceforge.net/
 Source: http://dl.sf.net/synergy2/synergy-%{version}.tar.gz
-Patch: synergy-1.2.2-werror.patch
+Patch0: synergy-1.2.2-werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, autoconf, automake
 %{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel, libXinerama-devel, libXtst-devel, libXext-devel}
@@ -28,7 +28,7 @@ own display.
 
 %prep
 %setup
-%patch -p1 -b .werror
+%patch0 -p1 -b .werror
 
 %build
 autoreconf

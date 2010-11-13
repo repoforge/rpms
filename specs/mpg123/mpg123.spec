@@ -1,11 +1,17 @@
 # $Id$
 # Authority: dag
 
-%{!?audio:%define audio alsa esd oss}
+%{!?audio:%define audio alsa oss}
 
+%{?el6:%define _without_esound 1}
+%{?el6:%define _without_jack 1}
+%{?el6:%define _without_nas 1}
+
+%{?el5:%define audio alsa esd oss}
 %{?el5:%define _without_jack 1}
 %{?el5:%define _without_nas 1}
 
+%{?el4:%define audio alsa esd oss}
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_nas 1}
 

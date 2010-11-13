@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://packages.qa.debian.org/libp/libpaper.html
 
 Source: http://ftp.debian.org/debian/pool/main/libp/libpaper/libpaper_%{version}.tar.gz
-Patch: libpaper-1.1.20-automake_1.10.patch
+Patch0: libpaper-1.1.20-automake_1.10.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libtool, gettext, gawk

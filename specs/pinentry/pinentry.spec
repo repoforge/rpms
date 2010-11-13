@@ -24,7 +24,7 @@ Group: Applications/System
 URL: http://www.gnupg.org/aegypten/
 
 Source: http://ftp.gnupg.org/gcrypt/pinentry/pinentry-%{version}.tar.gz
-Patch: pinentry-0.7.2-info.patch
+Patch0: pinentry-0.7.2-info.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib-devel >= 1.2, gtk+-devel >= 1.2

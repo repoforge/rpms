@@ -4,6 +4,8 @@
 %define _without_freeglut 0
 %define _without_glut 1
 
+%{?el6:%define _without_esound 1}
+
 %{?el4:%define _without_modxorg 1}
 
 ### EL3 has neither glut nor freeglut
@@ -36,7 +38,6 @@ BuildRequires: audiofile-devel
 BuildRequires: autoconf
 BuildRequires: bison
 BuildRequires: desktop-file-utils
-BuildRequires: esound-devel
 BuildRequires: flex >= 2.5.35
 BuildRequires: fontforge
 %ifarch x86_64
@@ -57,6 +58,7 @@ BuildRequires: unixODBC-devel
 BuildRequires: zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_cups:BuildRequires: cups-devel}
+%{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{!?_without_glut:BuildRequires: glut-devel}
 %{!?_without_gphoto2:BuildRequires: gphoto2-devel}
@@ -148,7 +150,7 @@ Group: System Environment/Libraries
 Requires: wine-core = %{version}-%{release}
 
 %description nas
-JACK sound support for wine.
+NAS sound support for wine.
 
 %package twain
 Summary: Twain support for wine

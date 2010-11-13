@@ -15,7 +15,7 @@ Group: Applications/Productivity
 URL: http://devel.pluto.linux.it/projects/Gringotts/
 
 Source: http://download.berlios.de/gringotts/gringotts-%{version}.tar.gz
-Patch: gringotts-1.2.8-gtk24.patch
+Patch0: gringotts-1.2.8-gtk24.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel >= 2.12, popt, textutils, libgringotts-devel >= 1.1.1, pkgconfig

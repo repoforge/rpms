@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
 
-### RHEL5 already ships with xz-4.999.9-0.3.beta.20091007git
-# ExclusiveDist: el3 el4
+### EL6 ships with xz-4.999.9-0.3.beta.20091007git.el6
+### EL5 ships with xz-4.999.9-0.3.beta.20091007git.el5
+# ExclusiveDist: el2 el3 el4
 
 %define git_date 20091007
 

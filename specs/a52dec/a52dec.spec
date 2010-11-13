@@ -9,7 +9,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://liba52.sourceforge.net/
 Source: http://liba52.sourceforge.net/files/a52dec-%{version}.tar.gz
-Patch: a52dec-0.7.4-PIC.patch
+Patch0: a52dec-0.7.4-PIC.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 BuildRequires: autoconf >= 2.52, automake, libtool
@@ -38,7 +38,7 @@ to build programs that use it.
 
 %prep
 %setup
-%patch -p1 -b .PIC
+%patch0 -p1 -b .PIC
 
 
 %build

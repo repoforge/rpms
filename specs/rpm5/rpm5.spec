@@ -33,7 +33,7 @@ Release: 0.3%{?dist}
 Group: System Environment/Base
 URL: http://wraptastic.org
 Source: http://rpm5.org/files/rpm/rpm-4.5/rpm-%{version}.tar.gz
-Patch: rpm5-add-5-suffix.patch
+Patch0: rpm5-add-5-suffix.patch
 License: LGPL
 %ifos linux
 Prereq: fileutils shadow-utils
@@ -201,7 +201,7 @@ This package contains the conflicting files of popt5-devel.
 
 %prep
 %setup -q -n rpm-%{rpm_version}
-%patch -p1
+%patch0 -p1
 %{__cp} gendiff gendiff5
 %{__cp} scripts/rpm2cpio scripts/rpm2cpio5
 # {__perl} -pi -e "s|@localedir@|/usr/share/locale|g;" po/Makefile* */Makefile*

@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
-# RFX: el6
+
+### EL6 ships with dstat-0.7.0-1.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with dstat-0.6.6-3.el5_4.1
+%{?el5:# Tag: rfx}
 
 Summary: Pluggable real-time performance monitoring tool
 Name: dstat

@@ -10,7 +10,7 @@ Group: Applications/System
 URL: http://projects.sentinelchicken.org/reglookup/
 
 Source: http://projects.sentinelchicken.org/data/downloads/reglookup-%{version}.tar.gz
-Patch: %{name}-0.9.0-DESTDIR.patch
+Patch0: %{name}-0.9.0-DESTDIR.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

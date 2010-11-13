@@ -60,20 +60,19 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} \
-    prefix=%{buildroot}%{_prefix} \
-    exec_prefix=%{buildroot}%{_prefix} \
-    bindir=%{buildroot}%{_bindir} \
-    sbindir=%{buildroot}%{_sbindir} \
-    sysconfdir=%{buildroot}%{_sysconfdir} \
-    datadir=%{buildroot}%{_datadir} \
-    includedir=%{buildroot}%{_includedir} \
-    libdir=%{buildroot}%{_libdir} \
-    libexecdir=%{buildroot}%{_libexecdir} \
-    localstatedir=%{buildroot}%{_localstatedir} \
-    sharedstatedir=%{buildroot}%{_sharedstatedir} \
-    mandir=%{buildroot}%{_mandir} \
-    infodir=%{buildroot}%{_infodir} install-bin install-doc install-man
+%{__make} install-bin install-doc install-man \
+    prefix="%{buildroot}%{_prefix}" \
+    exec_prefix="%{buildroot}%{_prefix}" \
+    bindir="%{buildroot}%{_bindir}" \
+    sbindir="%{buildroot}%{_sbindir}" \
+    sysconfdir="%{buildroot}%{_sysconfdir}" \
+    datadir="%{buildroot}%{_datadir}" \
+    includedir="%{buildroot}%{_includedir}" \
+    libdir="%{buildroot}%{_libdir}" \
+    libexecdir="%{buildroot}%{_libexecdir}" \
+    localstatedir="%{buildroot}%{_localstatedir}" \
+    sharedstatedir="%{buildroot}%{_sharedstatedir}" \
+    mandir="%{buildroot}%{_mandir}"
 %{__rm} -Rf %{buildroot}%{_datadir}/doc/moagg
 
 %if %{?_without_freedesktop:1}0

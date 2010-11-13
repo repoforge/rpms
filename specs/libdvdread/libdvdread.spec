@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### EL6 ships with libdvdread-4.1.4-0.2.svn1183.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for reading DVD video disks
 Name: libdvdread
 Version: 0.9.7

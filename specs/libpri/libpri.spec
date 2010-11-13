@@ -9,7 +9,7 @@ License: GPL
 Group: System Environment/Libraries
 URL: http://www.asterisk.org/
 Source: http://ftp.digium.com/pub/libpri/libpri-%{version}.tar.gz
-Patch: libpri-1.2.3-cflags.patch
+Patch0: libpri-1.2.3-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -31,7 +31,7 @@ will use libpri.
 
 %prep
 %setup
-%patch -p1 -b .cflags
+%patch0 -p1 -b .cflags
 %{__perl} -pi -e 's|(\$\(INSTALL_BASE\)/)lib|$1%{_lib}|g' Makefile
 
 

@@ -11,7 +11,7 @@ Group: Applications/Productivity
 URL: http://www.novell.com/products/connector/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/ximian-connector/1.4/ximian-connector-%{version}.tar.bz2
-Patch: evolution-connector-dynamic-ldap.patch
+Patch0: evolution-connector-dynamic-ldap.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: evolution-devel >= 1.4.5

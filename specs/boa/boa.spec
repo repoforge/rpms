@@ -20,7 +20,7 @@ Source2: boa.sysconfig
 Source10: index.html
 Source11: boa_logo_pasi2.png
 Source12: button-freshrpms.png
-Patch: boa-0.94.14rc17-config.patch
+Patch0: boa-0.94.14rc17-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: /etc/mime.types
 BuildRequires: tetex, texinfo
@@ -46,7 +46,7 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n %{name}-%{version}%{?rcver}
-%patch -p1 -b .config
+%patch0 -p1 -b .config
 
 
 %build

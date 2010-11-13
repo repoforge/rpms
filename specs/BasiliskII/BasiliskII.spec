@@ -31,7 +31,7 @@ URL: http://gwenole.beauchesne.info/projects/basilisk2/
 Source0: http://gwenole.beauchesne.info/projects/basilisk2/files/BasiliskII_src_%{inv_date}.tar.bz2
 Source1: http://cxmon.cebix.net/downloads/cxmon-%{cxmon_version}.tar.gz
 Source2: BasiliskII.png
-Patch: BasiliskII-1.0-nostrip.patch
+Patch0: BasiliskII-1.0-nostrip.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gtk2-devel, esound-devel >= 0.2.8
@@ -51,7 +51,7 @@ Available rebuild options :
 
 %prep
 %setup -a 1
-%patch -p1 -b .nostrip
+%patch0 -p1 -b .nostrip
 
 %build
 pushd src/Unix

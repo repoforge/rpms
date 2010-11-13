@@ -10,7 +10,7 @@ Group: System Environment/Console
 URL: http://www.devolution.com/~slouken/projects/splitvt/
 
 Source: http://www.devolution.com/~slouken/projects/splitvt/splitvt-%{version}.tar.gz
-Patch: splitvt-1.6.5-config.patch
+Patch0: splitvt-1.6.5-config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -21,7 +21,7 @@ real-estate without messing with windows.
 
 %prep
 %setup
-%patch -p0 -b .orig
+%patch0 -p0 -b .orig
 %{__rm} -f Makefile
 
 %build

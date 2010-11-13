@@ -10,7 +10,7 @@ Group: System Environment/Base
 URL: http://sunsite.unc.edu/pub/Linux/utils/terminal/
 
 Source: http://sunsite.unc.edu/pub/Linux/utils/terminal/ttysnoop-%{version}.tar.gz
-Patch: ttysnoop-0.12c-glibc.patch
+Patch0: ttysnoop-0.12c-glibc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,7 +20,7 @@ redirecting both input and output from/to it.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %{__make} %{?_smp_mflags} RPM_OPTS="%{optflags}"

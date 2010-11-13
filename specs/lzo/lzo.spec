@@ -11,7 +11,7 @@ Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch: lzo-1.08-asm.patch
+Patch0: lzo-1.08-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -37,7 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p0 -b .asm
+%patch0 -p0 -b .asm
 
 %build
 %configure --disable-dependency-tracking --disable-static --enable-shared

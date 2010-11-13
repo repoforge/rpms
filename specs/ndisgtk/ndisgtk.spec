@@ -10,7 +10,7 @@ Group: System Environment/Kernel
 URL: https://launchpad.net/ndisgtk/
 
 Source: http://jak-linux.org/projects/ndisgtk/ndisgtk-%{version}.tar.gz
-Patch: ndisgtk-0.8-centos.patch
+Patch0: ndisgtk-0.8-centos.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: intltool, kdebase >= 3.0.0, python-devel, pygtk2-devel

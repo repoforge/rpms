@@ -22,7 +22,7 @@ Group: Applications/Multimedia
 URL: http://www.getmiro.com/
 
 Source: ftp://ftp.osuosl.org/pub/pculture.org/miro/src/Miro-%{version}.tar.gz
-Patch: miro-0.9.9.1-svn.patch
+Patch0: miro-0.9.9.1-svn.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: boost-devel

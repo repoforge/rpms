@@ -23,7 +23,7 @@ URL: http://scrudgeware.org/projects/Hackedbox
 
 Source: http://scrudgeware.org/downloads/hackedbox/hackedbox-%{version}.tar.gz
 Source1: hackedbox.desktop
-Patch: blackbox-0.65.0-gcc34.patch
+Patch0: blackbox-0.65.0-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libstdc++-devel, gcc-c++, perl
@@ -39,7 +39,7 @@ add any functionality, only bugfixes and speed enhancements whenever possible.
 
 %prep
 %setup
-%patch -p1 -b .gcc34
+%patch0 -p1 -b .gcc34
 
 
 %build

@@ -11,7 +11,7 @@ Group: Applications/System
 URL: http://wizard.ae.krakow.pl/~mike/
 
 Source: http://wizard.ae.krakow.pl/~mike/download/whowatch-%{version}.tar.gz
-Patch: gcc4-fix.patch
+Patch0: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel
@@ -26,7 +26,7 @@ INT or KILL signal to selected process.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %configure

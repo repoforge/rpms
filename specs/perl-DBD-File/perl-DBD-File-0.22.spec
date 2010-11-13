@@ -18,7 +18,7 @@ URL: http://search.cpan.org/dist/DBD-File/
 
 Source: http://www.cpan.org/modules/by-module/DBD/DBD-File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: perl-DBD-File-el4fix.patch
+Patch0: perl-DBD-File-el4fix.patch
 
 BuildArch: noarch
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
@@ -29,7 +29,7 @@ for modules like DBD::CSV and DBD::AnyData.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
-# RFX: el6
+
+### EL6 ships with gc-7.1-10.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %define real_name gc
 
@@ -45,16 +47,16 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--enable-threads="pthreads" --enable-cplusplus
+    --enable-threads="pthreads" --enable-cplusplus
 %{__make} %{?_smp_mflags} LIBS="-ldl"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_libdir} \
-			%{buildroot}%{_includedir}/libgc/ \
-			%{buildroot}%{_mandir}/man1/
+            %{buildroot}%{_includedir}/libgc/ \
+            %{buildroot}%{_mandir}/man1/
 %makeinstall
-#	DESTDIR="%{buildroot}"
+#   DESTDIR="%{buildroot}"
 #%{__install} -Dp -m0644 include/*.h %{buildroot}%{_includedir}/libgc/
 %{__install} -Dp -m0655 doc/gc.man %{buildroot}%{_mandir}/man1/libgc.1
 

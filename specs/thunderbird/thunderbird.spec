@@ -34,7 +34,7 @@ URL: http://www.mozilla.org/projects/thunderbird/
 Source: http://ftp.mozilla.org/pub/mozilla.org/thunderbird/releases/%{version}/thunderbird-%{version}-source.tar.bz2
 Source1: http://downloads.mozdev.org/enigmail/src/ipc-1.0.7.tar.gz
 Source2: http://downloads.mozdev.org/enigmail/src/enigmail-0.85.0.tar.gz
-Patch: thunderbird-0.7.2-gcc34.patch
+Patch0: thunderbird-0.7.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: XFree86-devel, zlib-devel, zip, gzip, perl
@@ -56,7 +56,7 @@ Mozilla Thunderbird is a redesign of the Mozilla mail component.
 %setup -T -D -a2 -n mozilla/extensions
 # This is to get back into the main mozilla directory
 %setup -T -D -n mozilla
-%patch -p1
+%patch0 -p1
 
 ### FIXME: Shouldn't the default thunderbird config be part of original source ?
 %{__cat} <<EOF >.mozconfig

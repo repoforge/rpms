@@ -12,7 +12,7 @@ License: GPL
 URL: http://www.student.hk-r.se/~pt98jan/colortail.html
 
 Source: ftp://ftp.be.netbsd.org/pub/NetBSD/packages/distfiles/colortail-%{version}.tar.gz
-Patch: colortail-0.3.0-gcc3.patch
+Patch0: colortail-0.3.0-gcc3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++, automake, autoconf
 

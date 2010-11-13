@@ -14,7 +14,7 @@ Group: Applications/Internet
 URL: http://delta.affinix.com/qca/
 
 Source: http://delta.affinix.com/download/qca/qca-tls-%{version}.tar.bz2
-Patch: qca-tls-1.0-mach.patch
+Patch0: qca-tls-1.0-mach.patch
 Patch1: qca-tls-1.0-openssl098.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 

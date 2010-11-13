@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with liboil-0.3.16-4.1.el6.
 ### EL5 ships with liboil 0.3.8-2.1
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 

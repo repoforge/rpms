@@ -70,7 +70,7 @@ implementing any number of interfaces.
 
 %prep
 %setup
-%patch -p0
+%patch0 -p0
 
 %build
 %configure \

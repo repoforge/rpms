@@ -1,6 +1,8 @@
 # $Id$
 # Authority: stefan
-# RFX: el6
+
+### EL6 ships with libssh2-1.2.2-7.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 Summary: Library implementing the SSH2 protocol
 Name: libssh2

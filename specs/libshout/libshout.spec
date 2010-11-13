@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+### EL6 ships with libshout-2.2.2-5.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 Summary: Library for communicating with and sending data to an icecast server
 Name: libshout

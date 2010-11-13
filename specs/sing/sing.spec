@@ -13,7 +13,7 @@ Group: Applications/Internet
 URL: http://sf.net/projects/sing/
 
 Source: http://dl.sf.net/sing/SING-%{version}.tgz
-Patch: sing-1.1-libnet-gcc32.patch
+Patch0: sing-1.1-libnet-gcc32.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

@@ -13,7 +13,7 @@ Group: Development/Tools
 URL: http://www.viewvc.org/
 
 Source: http://www.viewvc.org/viewvc-%{real_version}.tar.gz
-Patch: viewvc-tools.patch
+Patch0: viewvc-tools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

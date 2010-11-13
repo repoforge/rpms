@@ -18,7 +18,7 @@ Group: Development/Tools
 URL: http://www.gnu.org/software/make/
 
 Source: ftp://ftp.gnu.org/gnu/make/make-%{version}.tar.bz2
-Patch: make-3.79.1-noclock_gettime.patch
+Patch0: make-3.79.1-noclock_gettime.patch
 Patch4: make-3.80-j8k.patch
 Patch5: make-3.80-getcwd.patch
 Patch6: make-3.81-err-reporting.patch
@@ -43,7 +43,7 @@ makefile.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1

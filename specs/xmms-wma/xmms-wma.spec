@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://mcmcc.bat.ru/xmms-wma/
 Source: http://mcmcc.bat.ru/xmms-wma/xmms-wma-%{version}.tar.bz2
-Patch: xmms-wma-1.0.5-build.patch
+Patch0: xmms-wma-1.0.5-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: xmms-devel, gtk+-devel
 
@@ -25,7 +25,7 @@ Tag informations are converted from unicode to your system locale.
 
 %prep
 %setup
-%patch -p1 -b .build
+%patch0 -p1 -b .build
 
 
 %build

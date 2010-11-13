@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://delta.affinix.com/qca/
 
 Source: http://delta.affinix.com/download/qca/qca-%{version}.tar.bz2
-Patch: qca-1.0-mach.patch
+Patch0: qca-1.0-mach.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: qt-devel >= 1:3.0

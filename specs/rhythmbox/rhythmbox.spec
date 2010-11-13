@@ -13,7 +13,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.rhythmbox.org/
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{majmin}/rhythmbox-%{version}.tar.bz2
-Patch: rhythmbox-0.8.8-wma-mpc.patch
+Patch0: rhythmbox-0.8.8-wma-mpc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: gtk2 >= 2.0.3
 Requires: libgnomeui >= 2.0.0
@@ -35,7 +35,7 @@ through GStreamer, Internet Radio support, playlists and more.
 
 %prep
 %setup -n rhythmbox-%{version}
-%patch -p1 -b .wma-mpc
+%patch0 -p1 -b .wma-mpc
 
 
 %build

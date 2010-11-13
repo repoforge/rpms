@@ -17,7 +17,7 @@ Group: Amusements/Games
 URL: http://startracker.free.fr/stardust/stardust_en.html
 
 Source: http://startracker.free.fr/stardust/stardust-%{version}.tar.gz
-Patch: gcc-fc3-fix.patch
+Patch0: gcc-fc3-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
 BuildRequires: autoconf, automake, SDL-devel, zlib-devel
@@ -31,7 +31,7 @@ enemies and network mode.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]

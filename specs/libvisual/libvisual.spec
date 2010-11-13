@@ -3,6 +3,8 @@
 # Screenshot: http://libvisual.sourceforge.net/v2/images/jess1.png
 # ScreenshotURL: http://libvisual.sourceforge.net/v2/index.php?page=screenshots
 
+### EL6 ships with libvisual-0.4.0-9.1.el6.
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

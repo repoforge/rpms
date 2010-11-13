@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libsexy-0.1.11-13.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Collection of GTK+ widgets that extend functionality
 Name: libsexy
 Version: 0.1.11
@@ -37,8 +40,8 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
-	--disable-static \
-	--enable-gtk-doc
+    --disable-static \
+    --enable-gtk-doc
 %{__make} %{?_smp_mflags}
 
 %install

@@ -11,7 +11,7 @@ Group: Applications/Archiving
 License: distributable
 
 Source: http://www.ibiblio.org/pub/Linux/utils/compress/unarj-%{real_version}.tar.gz
-Patch: unarj-subdir.patch
+Patch0: unarj-subdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

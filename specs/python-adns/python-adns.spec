@@ -15,7 +15,7 @@ Group: Development/Libraries
 URL: http://dustman.net/andy/python/adns-python/
 
 Source: http://dustman.net/andy/python/adns-python/%{version}/adns-python-%{version}.tar.gz
-Patch: python-adns-1.1.0-srv.patch
+Patch0: python-adns-1.1.0-srv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel, adns-devel

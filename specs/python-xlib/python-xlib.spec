@@ -25,7 +25,7 @@ applications in Python.
 
 %prep
 %setup
-%patch -p0
+%patch0 -p0
 
 %build
 CFLAGS="%{optflags}" %{__python} setup.py build

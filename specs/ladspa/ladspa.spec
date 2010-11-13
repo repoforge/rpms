@@ -12,7 +12,7 @@ Group: System Environment/Libraries
 URL: http://www.ladspa.org/
 
 Source: http://www.ladspa.org/download/ladspa_sdk_%{version}.tgz
-Patch: ladspa-1.12-gcc41.patch
+Patch0: ladspa-1.12-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -38,7 +38,7 @@ you will need to install %{name}-devel.
 %prep
 %setup -n %{real_name}
 
-%patch -p1
+%patch0 -p1
 
 ### FIXME: Correct URLs to link to local file. (Please fix upstream)
 %{__perl} -pi -e 's|HREF="ladspa.h.txt"|HREF="file:///usr/include/ladspa.h"|' doc/*.html

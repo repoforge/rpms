@@ -13,6 +13,7 @@ Source: http://download.savannah.gnu.org/releases/lzip/lzip-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-%{_arch}-root
 
 BuildRequires: gcc-c++
+Requires: /sbin/install-info
 
 %description
 Lzip is a lossless data compressor based on the LZMA algorithm, with very safe
@@ -35,11 +36,16 @@ these tasks.
 
 %{__install} -Dp -m0644 doc/lzip.1 %{buildroot}%{_mandir}/man1/lzip.1
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_infodir}/dir
+
 %post
-/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
+/sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir || :
 
 %preun
-/sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
+if [ $1 -eq 0 ]; then
+    /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir || :
+fi
 
 %clean
 %{__rm} -rf %{buildroot}

@@ -6,12 +6,18 @@
 %define _without_freeglut 0
 %define _without_glut 1
 
+%{?el6:%define _without_esound 1}
+
+%{?el5:%define _without_gstreamer 1}
+
+%{?el4:%define _without_gstreamer 1}
 %{?el4:%define _without_modxorg 1}
 
 ### EL3 has neither glut nor freeglut
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_freeglut 1}
 %{?el3:%define _without_glut 1}
+%{?el3:%define _without_gstreamer 1}
 %{?el3:%define _without_ieee1284 1}
 %{?el3:%define _without_isdn4k 1}
 %{?el3:%define _without_modxorg 1}
@@ -38,7 +44,6 @@ BuildRequires: audiofile-devel
 BuildRequires: autoconf
 BuildRequires: bison
 BuildRequires: desktop-file-utils
-BuildRequires: esound-devel
 BuildRequires: flex >= 2.5.35
 BuildRequires: fontforge
 %ifarch x86_64
@@ -59,9 +64,11 @@ BuildRequires: unixODBC-devel
 BuildRequires: zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_cups:BuildRequires: cups-devel}
+%{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{!?_without_glut:BuildRequires: glut-devel}
 %{!?_without_gphoto2:BuildRequires: gphoto2-devel}
+%{!?_without_gstreamer:BuildRequires: gstreamer-devel}
 %{!?_without_isdn4k:BuildRequires: isdn4k-utils-devel}
 %{!?_without_ieee1284:BuildRequires: libieee1284-devel}
 %{!?_without_libusb:BuildRequires: libusb-devel}
@@ -150,7 +157,7 @@ Group: System Environment/Libraries
 Requires: wine-core = %{version}-%{release}
 
 %description nas
-JACK sound support for wine.
+NAS sound support for wine.
 
 %package twain
 Summary: Twain support for wine
@@ -835,6 +842,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wiaservc.dll.so
 %{_libdir}/wine/windowscodecs.dll.so
 %{!?_without_opengl:%{_libdir}/wine/wined3d.dll.so}
+%{!?_without_gstreamer:%{_libdir}/wine/winegstreamer.dll.so}
 %{_libdir}/wine/winemapi.dll.so
 %{_libdir}/wine/wing32.dll.so
 %{_libdir}/wine/winhttp.dll.so

@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://www.kegel.com/dkftpbench/
 
 Source: http://www.kegel.com/dkftpbench/dkftpbench-%{version}.tar.gz
-Patch: 64bit-fix.patch
+Patch0: 64bit-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake, gcc-c++
 
@@ -35,7 +35,7 @@ still alive at the end.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %configure \

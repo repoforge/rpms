@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with cairomm-1.8.0-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Cairomm is the C++ API for the cairo graphics library
 Name: cairomm
 Version: 1.2.4

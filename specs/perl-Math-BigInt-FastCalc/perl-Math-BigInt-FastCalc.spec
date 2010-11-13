@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Florian Ragwitz <rafl@debian.org>
 
+### EL6 ships with this included in perl-4:5.10.1-115.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

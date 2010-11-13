@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://icculus.org/smjpeg/
 
 Source: ftp://sunsite.dk/pub/os/linux/loki/open-source/smjpeg/smjpeg-%{version}.tar.gz
-Patch: smjpeg-0.2.1-fixes.patch
+Patch0: smjpeg-0.2.1-fixes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel, libtool, autoconf, automake

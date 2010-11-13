@@ -26,7 +26,7 @@ Group: Development/Tools
 URL: http://cvsgui.sourceforge.net/
 
 Source: http://dl.sf.net/cvsgui/gcvs-%{version}.tar.bz2
-Patch: gcvs-1.0-fc2-fix.patch
+Patch0: gcvs-1.0-fc2-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk+-devel, gcc-c++, texinfo, autoconf, automake

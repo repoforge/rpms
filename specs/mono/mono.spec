@@ -10,7 +10,7 @@ Group: Development/Tools
 URL: http://www.go-mono.com/
 
 Source: http://www.go-mono.com/archive/%{version}/mono-%{version}.tar.gz
-Patch: mono-remove-gacdir-flag.patch
+Patch0: mono-remove-gacdir-flag.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, glib2-devel >= 1.3.11, pkgconfig, libicu-devel
@@ -184,7 +184,7 @@ This package contains all runtime Mono packages
 
 %prep
 %setup
-%patch -p1 -P 0
+%patch0 -p1 -P 0
 
 %build
 %configure \

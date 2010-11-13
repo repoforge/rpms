@@ -9,7 +9,7 @@ Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 Source: ftp://ftp.gnupg.org/gcrypt/gpgme/gpgme-%{version}.tar.gz
-Patch: gpgme-0.3.15-m4warn.patch
+Patch0: gpgme-0.3.15-m4warn.patch
 URL: http://www.gnupg.org/related_software/gpgme/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libgpgme <= 0.3.15
@@ -43,7 +43,7 @@ Static libraries and header files from GPGME, GnuPG Made Easy.
 
 %prep
 %setup -n gpgme-%{version}
-%patch -p1 -b .m4warn
+%patch0 -p1 -b .m4warn
 
 
 %build

@@ -2,18 +2,21 @@
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
+### EL6 ships with lzo-2.03-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name lzo
 
 Summary: Portable lossless data compression library
 Name: lzo2
-Version: 2.02
-Release: 3%{?dist}
+Version: 2.04
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch: lzo-2.02-exec-stack.patch
+Patch0: lzo-2.02-exec-stack.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: zlib-devel, autoconf, gcc-c++
@@ -38,7 +41,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch
+#patch
 
 %build
 %configure \
@@ -65,10 +68,13 @@ you will need to install %{name}-devel.
 %doc doc/
 %{_includedir}/lzo/
 %{_libdir}/liblzo2.a
-%exclude %{_libdir}/liblzo2.la
 %{_libdir}/liblzo2.so
+%exclude %{_libdir}/liblzo2.la
 
 %changelog
+* Wed Nov 10 2010 Dag Wieers <dag@wieers.com> - 2.04-1
+- Updated to release 2.04.
+
 * Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 2.02-3
 - Patch added so it doesn't use an executable stack, thanks to Kenneth Porter.
 

@@ -11,7 +11,7 @@ Group: Applications/Multimedia
 URL: http://mfcn.ilo.de/gnomeradio/
 
 Source: http://www.wh-hms.uni-ulm.de/~mfcn/gnomeradio/packages/gnomeradio-%{version}.tar.gz
-Patch: gnomeradio-1.4-build.patch
+Patch0: gnomeradio-1.4-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, libgnomeui-devel

@@ -12,7 +12,7 @@ License: LGPL
 Group: System Environment/Libraries
 URL: http://libsigc.sourceforge.net/
 Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
-Patch: libsigc++-1.2.5-pc-cflags.patch
+Patch0: libsigc++-1.2.5-pc-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Obsoletes: libsigc++-examples <= %{version}
 BuildRequires: gcc-c++, m4
@@ -42,7 +42,7 @@ needed for development with libsigc++.
 
 %prep
 %setup
-%patch -p1 -b .pc
+%patch0 -p1 -b .pc
 
 
 %build

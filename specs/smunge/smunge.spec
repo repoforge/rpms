@@ -11,7 +11,7 @@ Group: System Environment/Daemons
 URL: http://www.i2pi.com/smunge/
 
 Source: http://www.i2pi.com/smunge/smunge-%{version}.tar.gz
-Patch: smunge-hostent.patch
+Patch0: smunge-hostent.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openldap-devel
@@ -34,7 +34,7 @@ The DRAC feature is not compiled by default in this package.
 
 %prep
 %setup -n %{name}
-%patch -p0
+%patch0 -p0
 
 %{__cat} <<EOF >smunged.sysconfig
 OPTIONS="-p 110 +localhost:2110"

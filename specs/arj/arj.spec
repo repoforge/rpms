@@ -27,7 +27,7 @@ provided by ARJ Software, Inc.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 for i in debian/patches/00*.patch; do
     patch -p1 < $i
 done

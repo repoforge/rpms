@@ -11,7 +11,7 @@ Group: Applications/Internet
 URL: ftp://ftp.obsidian.co.za/pub/mirrordir/
 
 Source: ftp://ftp.obsidian.co.za/pub/mirrordir/mirrordir-%{version}.tar.bz2
-Patch: mirrordir-0.10.49-datadir-fix.patch
+Patch0: mirrordir-0.10.49-datadir-fix.patch
 Patch1: mirrordir-0.10.49-zlib-1.1.3-zfree.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,7 +31,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 %patch1 -p1 -b .zfree
 
 %build

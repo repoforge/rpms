@@ -14,7 +14,7 @@ Group: System Environment/Kernel
 URL: http://atl1.sourceforge.net/
 
 Source: ftp://hogchain.net/pub/linux/attansic/vendor_driver/l1-linux-v%{version}.tar.gz
-Patch: atl1-1.2.40.2-irqreturn_t.patch
+Patch0: atl1-1.2.40.2-irqreturn_t.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

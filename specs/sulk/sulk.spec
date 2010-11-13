@@ -14,7 +14,7 @@ Group: Amusements/Games
 URL: http://sulk.sourceforge.net/
 
 Source: http://dl.sf.net/sulk/sulk-%{real_version}.tar.gz
-Patch: makefile-and-shellscript.patch
+Patch0: makefile-and-shellscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: python, python-game
@@ -25,7 +25,7 @@ made in Python with Pygame.
 
 %prep
 %setup -n sulk-%{real_version}
-%patch -p1
+%patch0 -p1
 
 %build
 %{__make} %{?_smp_mflags} \

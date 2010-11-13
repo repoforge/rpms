@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with 1.0.1-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for MTP media players
 Name: libmtp
 Version: 0.3.7
@@ -10,7 +13,7 @@ Group: System Environment/Libraries
 URL: http://libmtp.sourceforge.net/
 
 Source: http://dl.sf.net/libmtp/libmtp-%{version}.tar.gz
-Patch: libmtp-0.2.6.1-simpler-rules.patch
+Patch0: libmtp-0.2.6.1-simpler-rules.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libusb-devel

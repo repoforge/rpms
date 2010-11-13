@@ -1,15 +1,14 @@
-# $Id$
+# $Id: dvgrab.spec 4303 2006-04-18 22:05:03Z dries $
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sourceforge,net>
 
-### EL6 ships with dvgrab-3.4-3.1.el6
-### EL5 ships with dvgrab-2.0-1.2.2
-# ExclusiveDist: el2 el3 el4
+### EL5 ships with dvgrab dvgrab-2.0-1.2.2
+# ExclusiveDist: el2 rh7 el3 el4
 
 Summary: DV grabber through the FireWire interface
 Name: dvgrab
-Version: 1.8
-Release: 1%{?dist}
+Version: 2.1
+Release: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://kino.schirmacher.de/
@@ -17,7 +16,7 @@ URL: http://kino.schirmacher.de/
 Source: http://dl.sf.net/sourceforge/kino/dvgrab-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libraw1394-devel, libavc1394-devel, libdv-devel
+BuildRequires: libraw1394-devel >= 1.1.0, libavc1394-devel, libdv-devel
 BuildRequires: libquicktime-devel, libjpeg-devel, libpng-devel
 BuildRequires: libogg-devel, libvorbis-devel, a52dec-devel, libmpeg3-devel
 BuildRequires: gcc-c++
@@ -50,8 +49,8 @@ generation.
 %{_bindir}/dvgrab
 
 %changelog
-* Mon Jan 15 2006 Dag Wieers <dag@wieers.com> - 1.8-1
-- Updated to release 1.8.
+* Mon Jan 15 2006 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
 
 * Tue Jul 27 2004 Matthias Saou <http://freshrpms.net> 1.6-1
 - Update to 1.6.

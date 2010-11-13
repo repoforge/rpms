@@ -36,7 +36,7 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://aluminum.sourmilk.net/adm8211/
 Source: http://aluminum.sourmilk.net/adm8211/adm8211-%{date}.tar.bz2
-Patch: adm8211-20040821-autotools.patch
+Patch0: adm8211-20040821-autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -69,7 +69,7 @@ network adaptors.
 
 %prep
 %setup -n adm8211
-%patch -p1
+%patch0 -p1
 
 
 %build

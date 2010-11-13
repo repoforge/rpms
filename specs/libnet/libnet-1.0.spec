@@ -13,7 +13,7 @@ Group: Development/Libraries
 URL: http://www.packetfactory.net/projects/libnet/
 
 Source: http://www.packetfactory.net/libnet/dist/libnet-%{real_version}.tar.gz
-Patch: libnet-1.0.2a-gcc33.patch
+Patch0: libnet-1.0.2a-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

@@ -16,7 +16,7 @@ Group: System Environment/Kernel
 URL: http://fuse.sourceforge.net/
 
 Source: http://dl.sourceforge.net/sourceforge/fuse/fuse-%{version}.tar.gz
-Patch: fuse-udev_rules.patch
+Patch0: fuse-udev_rules.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires(pre): %{_sbindir}/groupadd

@@ -12,7 +12,7 @@ Group: Applications/Internet
 URL: http://0pointer.de/lennart/projects/waproamd/
 
 Source: http://0pointer.de/lennart/projects/waproamd/waproamd-%{version}.tar.gz
-Patch: waproamd-0.6-chkconfig.patch
+Patch0: waproamd-0.6-chkconfig.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdaemon-devel, lynx, pkgconfig
@@ -26,7 +26,7 @@ configuration commands for it.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e 's|\${DESTDIR}/\${sysvinitdir}|\$(DESTDIR)\$(sysconfdir)/rc.d/init.d|' conf/Makefile.in

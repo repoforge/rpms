@@ -10,7 +10,7 @@ Group: Development/Tools
 URL: http://www.go-mono.com/
 
 Source: http://www.go-mono.com/archive/%{version}/monodoc-%{version}.tar.gz
-Patch: monodoc-fix-gac.patch
+Patch0: monodoc-fix-gac.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mono-core, mono-web, gtk-sharp-gapi

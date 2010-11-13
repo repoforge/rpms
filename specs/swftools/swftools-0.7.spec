@@ -10,7 +10,7 @@ Group: Applications/Multimedia
 URL: http://www.swftools.org/
 
 Source: http://www.swftools.org/swftools-%{version}.tar.gz
-Patch: swftools-0.7.0-destdir.patch
+Patch0: swftools-0.7.0-destdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison, flex, zlib-devel, libjpeg-devel, t1lib-devel

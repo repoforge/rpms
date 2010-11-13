@@ -19,7 +19,7 @@ License: GPL
 Group: Applications/File
 URL: http://www.obsession.se/gentoo/
 Source: http://dl.sf.net/gentoo/gentoo-%{version}.tar.gz
-Patch: gentoo-0.11.52-pomkinstalldirs.patch
+Patch0: gentoo-0.11.52-pomkinstalldirs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel, desktop-file-utils
 %{?_with_gamin:BuildRequires: gamin-devel}
@@ -39,7 +39,7 @@ file manager "Directory OPUS"(TM) (written by Jonathan Potter).
 
 %prep
 %setup
-%patch -p1 -b .pomkinstalldirs
+%patch0 -p1 -b .pomkinstalldirs
 
 
 %build

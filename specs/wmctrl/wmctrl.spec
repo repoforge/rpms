@@ -14,7 +14,7 @@ Group: User Interface/X
 URL: http://sweb.cz/tripie/utils/wmctrl
 
 Source: http://sweb.cz/tripie/utils/wmctrl/dist/wmctrl-%{version}.tar.gz
-Patch: http://ftp.de.debian.org/debian/pool/main/w/wmctrl/wmctrl_1.07-6.diff.gz
+Patch0: http://ftp.de.debian.org/debian/pool/main/w/wmctrl/wmctrl_1.07-6.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel

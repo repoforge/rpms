@@ -2,19 +2,20 @@
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
 
-
 %define audio_drv_list alsa,esd,oss,sdl
 
 %{?el5:%define _with_compat_gcc_version 34}
+
 %{?el4:%define _without_bluez 1}
 %{?el4:%define _without_curl 1}
+
 %{?el3:%define audio_drv_list esd,oss,sdl}
 %{?el3:%define _without_bluez 1}
 %{?el3:%define _without_curl 1}
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.12.4
+Version: 0.13.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Emulators
@@ -172,9 +173,12 @@ EOF
     prefix="%{buildroot}%{_prefix}" \
     bindir="%{buildroot}%{_bindir}" \
     sharedir="%{buildroot}%{_datadir}/qemu" \
+    sysconfdir="%{buildroot}%{_sysconfdir}" \
+    confdir="%{buildroot}%{_sysconfdir}/qemu" \
     mandir="%{buildroot}%{_mandir}" \
     datadir="%{buildroot}%{_datadir}/qemu" \
     docdir="./rpm-doc"
+
 
 %{__install} -Dp -m0755 qemu.sysv %{buildroot}%{_initrddir}/qemu
 
@@ -197,11 +201,15 @@ fi
 %doc %{_mandir}/man1/qemu.1*
 %doc %{_mandir}/man1/qemu-img.1*
 %doc %{_mandir}/man8/qemu-nbd.8*
+%config(noreplace) %{_sysconfdir}/qemu/target-x86_64.conf
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
 %{_datadir}/qemu/
 
 %changelog
+* Sat Nov 13 2010 Dag Wieers <dag@wieers.com> - 0.13.0-1
+- Updated to release 0.13.0.
+
 * Wed Jun 09 2010 Dag Wieers <dag@wieers.com> - 0.12.4-1
 - Updated to release 0.12.4.
 

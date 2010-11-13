@@ -34,6 +34,7 @@ BuildRequires: mpeg2dec-devel
 BuildRequires: pkgconfig
 BuildRequires: python-devel
 %{!?_without_libtoolltdl:BuildRequires: libtool-ltdl-devel}
+Requires: /sbin/install-info
 
 %description
 libextractor is a simple library for meta-data extraction.
@@ -80,14 +81,17 @@ Python bindings to libextractor.
 %{__make} install DESTDIR="%{buildroot}" datadir="%{_datadir}" pkgconfigdatadir="%{_libdir}/pkgconfig"
 %find_lang %{name}
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_infodir}/dir
+
 %post
 /sbin/ldconfig
-/sbin/install-info %{_infodir}/extract.info %{_infodir}/dir 2>/dev/null || :
+/sbin/install-info %{_infodir}/extract.info %{_infodir}/dir || :
 
 
 %preun
 if [ $1 -eq 0 ]; then
-    /sbin/install-info --delete %{_infodir}/extract.info %{_infodir}/dir 2>/dev/null || :
+    /sbin/install-info --delete %{_infodir}/extract.info %{_infodir}/dir || :
 fi
 
 %postun -p /sbin/ldconfig

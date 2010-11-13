@@ -15,7 +15,7 @@ URL: http://proxytunnel.sourceforge.net/
 
 Source: http://dl.sf.net/proxytunnel/proxytunnel-%{version}-rc1.tgz
 #Source: http://proxytunnel.sf.net/files/proxytunnel-%{version}.tgz
-Patch: proxytunnel-1.6.0-rc1-makefile.patch
+Patch0: proxytunnel-1.6.0-rc1-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -39,7 +39,7 @@ proxy authentication
 
 %prep
 %setup -n %{name}-%{real_version}
-%patch -p0
+%patch0 -p0
 
 %build
 %{__make} %{?_smp_mflags}

@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://bmp-plugins.berlios.de/
 Source: http://download.berlios.de/bmp-plugins/bmp-wma-%{version}.tar.gz
-Patch: bmp-wma-0.1.1-gcc4.patch
+Patch0: bmp-wma-0.1.1-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: bmp-devel, gcc-c++
 
@@ -24,7 +24,7 @@ on Winamp 2.x skins, and is based on ("forked off") XMMS.
 
 %prep
 %setup
-%patch -p1 -b .gcc4
+%patch0 -p1 -b .gcc4
 
 
 %build

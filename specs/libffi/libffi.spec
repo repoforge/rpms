@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships wih libffi-3.0.5-3.2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Portable foreign function interface library
 Name: libffi
 Version: 3.0.9

@@ -29,7 +29,7 @@ URL: http://bochs.sf.net/
 
 Source: http://dl.sf.net/bochs/bochs-%{version}.tar.gz
 #Source1: http://bochs.sf.net/guestos/dlxlinux4.tar.gz
-Patch: bochs-2.1.1-gcc342.patch
+Patch0: bochs-2.1.1-gcc342.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 %{?_without_modxorg:BuildRequires: XFree86-devel}

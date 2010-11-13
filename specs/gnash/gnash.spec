@@ -1,12 +1,11 @@
 # $Id$
 # Authority: dag
 
-
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 
 Summary: Flash player
 Name: gnash
-Version: 0.8.5
+Version: 0.8.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -117,6 +116,9 @@ source %{_sysconfdir}/profile.d/qt.sh
 %endif
 
 %changelog
+* Tue Aug 24 2010 Dag Wieers <dag@wieers.com> - 0.8.8-1
+- Updated to release 0.8.8.
+
 * Fri Mar 13 2009 Dag Wieers <dag@wieers.com> - 0.8.5-1
 - Updated to release 0.8.5.
 

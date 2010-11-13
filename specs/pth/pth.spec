@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Ralf S. Engelschall <rse$engelschall,com>
 
+### EL6 ships with pth-2.0.7-9.3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: GNU Portable Threads.
 Name: pth
 Version: 2.0.1

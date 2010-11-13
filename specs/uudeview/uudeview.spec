@@ -17,7 +17,7 @@ Group: Applications/File
 URL: http://www.fpx.de/fp/Software/UUDeview/
 
 Source: http://www.fpx.de/fp/Software/UUDeview/download/uudeview-%{version}.tar.gz
-Patch: uudeview-shared.patch
+Patch0: uudeview-shared.patch
 Patch1: uudeview-latex-psfig-deprecated.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -55,7 +55,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 
 %build

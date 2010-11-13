@@ -9,7 +9,7 @@ Group: Development/Tools
 License: GPL
 URL: http://bluefish.openoffice.nl/
 Source: http://pkedu.fbt.eitn.wau.nl/~olivier/downloads/bluefish-%{version}.tar.bz2
-Patch: bluefish-1.0.2-desktop_icon.patch
+Patch0: bluefish-1.0.2-desktop_icon.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: shared-mime-info >= 0.14
 BuildRequires: libgnomeui-devel >= 2.6, pcre-devel >= 3.9, gnome-vfs2-devel
@@ -25,7 +25,7 @@ support.
 
 %prep
 %setup
-%patch -p1 -b .desktop_icon
+%patch0 -p1 -b .desktop_icon
 
 
 %build

@@ -11,7 +11,7 @@ Group: System Environment/Daemons
 URL: http://tcron.sourceforge.net/
 
 Source: http://dl.sf.net/tcron/tcron-%{version}.tar.bz2
-Patch: tcron.makefile.patch
+Patch0: tcron.makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

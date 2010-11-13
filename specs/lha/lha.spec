@@ -12,7 +12,7 @@ Group: Applications/Archiving
 URL: http://www2m.biglobe.ne.jp/~dolphin/lha/prog/
 
 Source: http://www2m.biglobe.ne.jp/~dolphin/lha/prog/lha-114i.tar.gz
-Patch: lha-114i-symlink.patch
+Patch0: lha-114i-symlink.patch
 Patch1: lha-114i-malloc.patch
 Patch2: lha-114i-sec.patch
 Patch3: lha-dir_length_bounds_check.patch
@@ -29,7 +29,7 @@ Install the lha package if you need to extract DOS files from LHA archives.
 %prep
 %setup -n lha-114i
 
-%patch -p1 -b .symlink
+%patch0 -p1 -b .symlink
 %patch1 -p1 -b .malloc
 
 # security fixes
