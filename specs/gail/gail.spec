@@ -1,7 +1,12 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+### EL5 ships with gail-1.9.2-3.el5
+### EL4 ships with gail-1.8.0-2
+%{?el4:# Tag: rfx}
+### EL3 ships with gail-1.2.2-1
+%{?el3:# Tag: rfx}
+# ExcludeDist: el5
 
 Summary: Accessibility implementation for GTK+ and GNOME libraries
 Name: gail
