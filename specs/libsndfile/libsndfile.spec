@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+### EL6 ships with libsndfile-1.0.20-3.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?fc1: %define _without_alsa 1}
 %{?el3: %define _without_alsa 1}
@@ -28,7 +30,6 @@ Libsndfile is a C library for reading and writing files containing
 sampled sound (such as MS Windows WAV and the Apple/SGI AIFF format)
 through one standard library interface.
 
-
 %package devel
 Summary: Header files and development documentation for libsndfile
 Group: Development/Libraries
@@ -42,15 +43,12 @@ through one standard library interface.
 This package contains the header files, static libraries and development
 documentation for libsndfile.
 
-
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot} _docs
@@ -58,15 +56,11 @@ documentation for libsndfile.
 # Clean up examples for inclusion in docs
 %{__rm} -rf examples/{.deps,.libs/,*.o}
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -80,11 +74,10 @@ documentation for libsndfile.
 %doc _docs/* examples/
 %{_includedir}/*
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_datadir}/octave/
-
+%exclude %{_libdir}/*.la
 
 %changelog
 * Thu Aug 31 2006 Matthias Saou <http://freshrpms.net/> 1.0.17-1

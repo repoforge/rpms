@@ -2,6 +2,10 @@
 # Authority: matthias
 # Upstream: Antony Dovgal <tony$daylessday,org>
 
+### EL6 ships with php-pecl-memcache-3.0.4-3.2.el6.2
+%{?el6:# Tag: rfx}
+# ExclusiveDist: el2 el3 el4 el5
+
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: PECL package to use the memcached distributed caching system

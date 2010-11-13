@@ -1,6 +1,9 @@
 # $Id $
 # Authority: dries
 
+### EL6 ships with gprolog-1.3.1-6.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Free implementation of the logic programming language PROLOG
 Name: gprolog
 Version: 1.2.16

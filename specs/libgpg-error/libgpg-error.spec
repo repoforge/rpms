@@ -2,7 +2,10 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
+### EL6 ships with libgpg-error-1.7-3.el6
+### EL5 ships with libgpg-error-1.4-2
+### EL4 ships with libgpg-error-1.0-1
+# ExclusiveDist: el2 el3
 
 Summary: Library with GPG related error codes and descriptions
 Name: libgpg-error

@@ -1,22 +1,12 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with graphviz-2.26.0-4.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?el5:%define _without_lua 1}
 %{?el5:%define _without_ocaml 1}
 %{?el5:%define _without_php 1}
-
-%{?fc5:%define _without_lua 1}
-%{?fc5:%define _without_pangocairo 1}
-%{?fc5:%define _without_rsvg 1}
-
-%{?fc4:%define _without_java 1}
-%{?fc4:%define _without_lua 1}
-%{?fc4:%define _without_modxorg 1}
-%{?fc4:%define _without_ocaml 1}
-%{?fc4:%define _without_pangocairo 1}
-%{?fc4:%define _without_php 1}
-%{?fc4:%define _without_rsvg 1}
 
 %{?el4:%define _without_java 1}
 %{?el4:%define _without_ltdl_devel 1}
@@ -26,44 +16,6 @@
 %{?el4:%define _without_pangocairo 1}
 %{?el4:%define _without_php 1}
 %{?el4:%define _without_rsvg 1}
-
-%{?fc3:%define _without_guile 1}
-%{?fc3:%define _without_java 1}
-%{?fc3:%define _without_ltdl_devel 1}
-%{?fc3:%define _without_lua 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc3:%define _without_ocaml 1}
-%{?fc3:%define _without_pangocairo 1}
-%{?fc3:%define _without_php 1}
-%{?fc3:%define _without_python 1}
-%{?fc3:%define _without_rsvg 1}
-%{?fc3:%define _without_ruby 1}
-
-%{?fc2:%define _without_guile 1}
-%{?fc2:%define _without_ipsepcola 1}
-%{?fc2:%define _without_java 1}
-%{?fc2:%define _without_ltdl_devel 1}
-%{?fc2:%define _without_lua 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc2:%define _without_ocaml 1}
-%{?fc2:%define _without_pangocairo 1}
-%{?fc2:%define _without_php 1}
-%{?fc2:%define _without_python 1}
-%{?fc2:%define _without_rsvg 1}
-%{?fc2:%define _without_ruby 1}
-
-%{?fc1:%define _without_guile 1}
-%{?fc1:%define _without_ipsepcola 1}
-%{?fc1:%define _without_java 1}
-%{?fc1:%define _without_ltdl_devel 1}
-%{?fc1:%define _without_lua 1}
-%{?fc1:%define _without_modxorg 1}
-%{?fc1:%define _without_ocaml 1}
-%{?fc1:%define _without_pangocairo 1}
-%{?fc1:%define _without_php 1}
-%{?fc1:%define _without_python 1}
-%{?fc1:%define _without_rsvg 1}
-%{?fc1:%define _without_ruby 1}
 
 %{?el3:%define _without_guile 1}
 %{?el3:%define _without_java 1}
@@ -77,51 +29,6 @@
 %{?el3:%define _without_python 1}
 %{?el3:%define _without_rsvg 1}
 %{?el3:%define _without_ruby 1}
-
-%{?rh9:%define _without_fontconfig 1}
-%{?rh9:%define _without_guile 1}
-%{?rh9:%define _without_ipsepcola 1}
-%{?rh9:%define _without_java 1}
-%{?rh9:%define _without_ltdl_devel 1}
-%{?rh9:%define _without_lua 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh9:%define _without_ocaml 1}
-%{?rh9:%define _without_pangocairo 1}
-%{?rh9:%define _without_php 1}
-%{?rh9:%define _without_python 1}
-%{?rh9:%define _without_rsvg 1}
-%{?rh9:%define _without_ruby 1}
-%{?rh9:%define _without_tcltk_devel 1}
-
-%{?rh8:%define _without_fontconfig 1}
-%{?rh8:%define _without_guile 1}
-%{?rh8:%define _without_ipsepcola 1}
-%{?rh8:%define _without_java 1}
-%{?rh8:%define _without_ltdl_devel 1}
-%{?rh8:%define _without_lua 1}
-%{?rh8:%define _without_modxorg 1}
-%{?rh8:%define _without_ocaml 1}
-%{?rh8:%define _without_pangocairo 1}
-%{?rh8:%define _without_php 1}
-%{?rh8:%define _without_python 1}
-%{?rh8:%define _without_rsvg 1}
-%{?rh8:%define _without_ruby 1}
-%{?rh8:%define _without_tcltk_devel 1}
-
-%{?rh7:%define _without_fontconfig 1}
-%{?rh7:%define _without_guile 1}
-%{?rh7:%define _without_ipsepcola 1}
-%{?rh7:%define _without_java 1}
-%{?rh7:%define _without_ltdl_devel 1}
-%{?rh7:%define _without_lua 1}
-%{?rh7:%define _without_modxorg 1}
-%{?rh7:%define _without_ocaml 1}
-%{?rh7:%define _without_pangocairo 1}
-%{?rh7:%define _without_php 1}
-%{?rh7:%define _without_python 1}
-%{?rh7:%define _without_rsvg 1}
-%{?rh7:%define _without_ruby 1}
-%{?rh7:%define _without_tcltk_devel 1}
 
 %{?el2:%define _without_fontconfig 1}
 %{?el2:%define _without_freetype 1}
@@ -151,9 +58,18 @@ URL: http://www.graphviz.org/
 Source: http://www.graphviz.org/pub/graphviz/ARCHIVE/graphviz-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, m4, flex, swig, tcl >= 8.3, tk
-BuildRequires: libjpeg-devel, libpng-devel, zlib-devel, expat-devel, gcc-c++
+BuildRequires: bison
+BuildRequires: expat-devel
+BuildRequires: flex
+BuildRequires: gcc-c++
+BuildRequires: m4
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
 BuildRequires: perl
+BuildRequires: swig
+BuildRequires: tcl >= 8.3
+BuildRequires: tk
+BuildRequires: zlib-devel
 %{!?_without_tcltk_devel:BuildRequires: tcl-devel >= 8.3, tk-devel}
 # needs version 2.0.34 of gdlib
 # BuildRequires: gd-progs, gd-devel

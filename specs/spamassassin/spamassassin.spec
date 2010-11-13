@@ -3,8 +3,11 @@
 
 ### EL6 ships with spamassassin-3.3.1-2.el6
 ### EL5 ships with spamassassin-3.2.5-1.el5
+%{?el5:# Tag: rfx}
 ### EL4 ships with spamassassin-3.2.4-1.el4.1
+%{?el4:# Tag: rfx}
 ### EL3 ships with spamassassin-2.55-3.4
+%{?el3:# Tag: rfx}
 # ExclusiveDist: el2 el3 el4 el5
 
 %{?rh8:%define _with_perl_5_6 1}

@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with liberation-fonts-common-1.05.1.20090721-4.el6
+### EL5 ships with liberation-fonts-1.0-1.el5
+### EL4 ships with liberation-fonts-1.0-1.el4
+### EL3 ships with liberation-fonts-1.0-1.1.el3
+# ExclusiveDist: el2
 
 %{?rh7:%define _without_fontconfig 1}
 %{?el2:%define _without_fontconfig 1}

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with opencv-2.0.0-9.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define _without_ffmpeg 1
 
 %define pythondir %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')

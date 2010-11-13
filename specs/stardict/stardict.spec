@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL5 ships with stardict-2.4.5-5
+# ExcludeDist: el5
+
 Summary: Versatile online dictionary
 Name: stardict
 Version: 2.4.4

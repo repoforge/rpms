@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### EL2 ships with SDL_mixer-1.2.0-6
+#%{?el2:# Tag: rfx}
+
 Summary: Simple multi-channel audio mixer
 Name: SDL_mixer
 Version: 1.2.7

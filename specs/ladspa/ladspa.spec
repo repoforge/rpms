@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with ladspa-1.13-6.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name ladspa_sdk
 
 Summary: Linux Audio Developer's Simple Plugin API

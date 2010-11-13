@@ -2,7 +2,11 @@
 # Authority: dag
 # Upstream: splint$splint,org
 
-# ExcludeDist: el4
+### EL5 ships with splint-3.1.1-16.el5
+### EL4 ships with splint-3.1.1-4
+### EL3 ships with splint-3.0.1.7-0.20030123
+%{?el3:# Tag: rfx}
+# ExcludeDist: el4 el5
 
 Summary: Secure programming lint
 Name: splint
@@ -31,13 +35,13 @@ checking than can be done by any standard lint.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--disable-dependency-tracking
+    --program-prefix="%{?_program_prefix}" \
+    --disable-dependency-tracking
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,9 +54,6 @@ checking than can be done by any standard lint.
 %{_datadir}/splint/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 3.1.1-1.2
-- Rebuild for Fedora Core 5.
-
 * Mon Mar 08 2004 Dag Wieers <dag@wieers.com> - 3.1.1-1
 - Added --program-prefix to %%configure.
 

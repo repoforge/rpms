@@ -2,7 +2,10 @@
 # Authority: matthias
 # Upstream: <libexif-devel$lists,sf,net>
 
-# ExcludeDist: el4
+### EL6 ships with libexif-0.6.16-4.1.el6
+### EL5 ships with libexif-0.6.13-4.0.2.el5_1.1
+### EL4 ships with libexif-0.5.12-5.1.0.2.el4_6.1
+# ExclusiveDist: el2 el3
 
 ### Beware FC3 comes with older libexif !
 # Tag: test
@@ -33,32 +36,26 @@ Requires: %{name} = %{version}, pkgconfig
 The libexif-devel package contains the libraries and include files
 that you can use to develop libexif applications.
 
-
 %prep
 %setup
-
 
 %build
 %configure
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %find_lang %{name}
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 /sbin/ldconfig
 
 %postun
 /sbin/ldconfig
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -72,7 +69,6 @@ that you can use to develop libexif applications.
 %exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
-
 
 %changelog
 * Thu Jul 15 2004 Matthias Saou <http://freshrpms.net/> 0.6.9-1

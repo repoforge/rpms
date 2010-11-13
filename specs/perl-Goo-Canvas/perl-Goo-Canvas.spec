@@ -9,7 +9,7 @@
 Summary: Perl interface to the GooCanvas
 Name: perl-Goo-Canvas
 Version: 0.06
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Goo-Canvas/
@@ -28,8 +28,8 @@ Perl interface to the GooCanvas.
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,11 +44,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
+%doc %{_mandir}/man1/perlmine.pl.1*
+%doc %{_mandir}/man1/perltetris.pl.1*
+%doc %{_mandir}/man3/Goo::Cairo::*.3pm*
 %doc %{_mandir}/man3/Goo::Canvas.3pm*
+%doc %{_mandir}/man3/Goo::Canvas::*.3pm*
 %dir %{perl_vendorarch}/auto/Goo/
 %{perl_vendorarch}/auto/Goo/Canvas/
 %dir %{perl_vendorarch}/Goo/
+%{perl_vendorarch}/Goo/Cairo/
+%{perl_vendorarch}/Goo/Canvas/
 %{perl_vendorarch}/Goo/Canvas.pm
+%{perl_vendorarch}/Goo/Canvas.pod
+%{_bindir}/perlmine.pl
+%{_bindir}/perltetris.pl
 
 %changelog
 * Thu Jun 03 2010 Dag Wieers <dag@wieers.com - 0.06-1

@@ -1,9 +1,10 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: fc2 el4
-
-#define prever rc2
+### EL6 ships with alsa-lib-1.0.21-3.el6
+### EL5 ships with alsa-lib-1.0.17-1.el5
+### EL4 ships with alsa-lib-1.0.6-5.RHEL4
+# ExclusiveDist: el2 el3
 
 Summary: The Advanced Linux Sound Architecture (ALSA) library
 Name: alsa-lib

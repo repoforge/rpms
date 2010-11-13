@@ -1,7 +1,8 @@
 # $Id$
 # Authority: matthias
 
-### EL5 ships with libiec61883 1.0.0-11
+### EL6 ships with libiec61883-1.2.0-4.el6
+### EL5 ships with libiec61883-1.0.0-11.fc6
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
 Summary: Streaming library for IEEE1394
@@ -12,7 +13,7 @@ License: LGPL
 URL: http://linux1394.org/
 Group: System Environment/Libraries
 Source: http://www.linux1394.org/dl/libiec61883-%{version}.tar.gz
-Patch: libiec61883-1.0.0-installtests.patch
+Patch0: libiec61883-1.0.0-installtests.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # Works only with newer libraw1394 versions
 Requires: libraw1394 >= 1.2.0
@@ -48,7 +49,7 @@ Utilities that make use of iec61883.
 
 %prep
 %setup
-%patch -p1 -b .installtests
+%patch0 -p1 -b .installtests
 
 
 %build

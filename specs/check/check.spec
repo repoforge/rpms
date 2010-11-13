@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
 
-### EL5 already ships with check 0.9.3-5.fc6
-# ExcludeDist: el5
+### EL6 ships with check-0.9.8-1.1.el6
+### EL5 ships with check-0.9.3-5.fc6
+# ExclusiveDist: el2 el3 el4
 
 Summary: Unit test framework for C
 Name: check

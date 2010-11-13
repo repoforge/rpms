@@ -1,7 +1,12 @@
 # $Id$
 # Authority: shuff
 # Upstream: Sridhar Samudrala <sri$us,ibm,com>
-## ExcludeDist: el3
+
+### EL6 ships with lksctp-tools-1.0.10-5.el6
+### EL5 ships with lksctp-tools-1.0.6-3.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with lksctp-tools-1.0.2-6.4E.1
+%{?el4:# Tag: rfx}
 
 Summary: User-space access to Linux Kernel SCTP
 Name: lksctp-tools

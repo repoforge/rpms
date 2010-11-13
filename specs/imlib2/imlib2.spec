@@ -3,6 +3,11 @@
 # Upstream: Carsten Haitzler <raster$rasterman,com>
 # Upstream: <enlightenment-devel$lists,sourceforge,net>
 
+%{?el5:%define _without_giflib 1}
+%{?el4:%define _without_giflib 1}
+%{?el3:%define _without_giflib 1}
+%{?el2:%define _without_giflib 1}
+
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -25,10 +30,11 @@ BuildRequires: freetype-devel >= 1.2
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
-BuildRequires: libungif-devel
 BuildRequires: zlib-devel
 # The ltdl.h file is required...
 BuildRequires: libtool, gcc-c++
+%{?_without_giflib:BuildRequires: libungif-devel}
+%{!?_without_giflib:BuildRequires: giflib-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libXext-devel}
 

@@ -1,6 +1,13 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with openmpi-1.4.1-4.3.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with openmpi-1.4-4.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with openmpi-1.2.8-4.el4
+%{?el4:# Tag: rfx}
+
 Summary: Powerful implementaion of MPI
 Name: openmpi
 Version: 1.4.2

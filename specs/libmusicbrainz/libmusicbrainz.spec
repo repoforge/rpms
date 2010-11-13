@@ -1,7 +1,10 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc1 fc2 fc3 el4
+### EL6 ships with libmusicbrainz-2.1.5-11.1.el6
+### EL5 ships with libmusicbrainz-2.1.1-4.1
+### EL4 ships with libmusicbrainz-2.0.2-11
+# ExclusiveDist: el2 el3
 
 Summary: MusicBrainz client library
 Name: libmusicbrainz

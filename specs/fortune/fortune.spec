@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### EL2 ships with fortune-mod-1.0-16
+%{?el2:# Tag: rfx}
+
 %define DisableOffensiveFortunes 1
 
 Summary: program which will display a fortune

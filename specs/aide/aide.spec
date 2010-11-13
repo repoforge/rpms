@@ -3,7 +3,9 @@
 # Upstream: <aide-devel@lists.sourceforge.net>
 
 ### EL6 ships with aide-0.14-3.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with aide-0.13.1-6.el5
+### EL4 ships with aide-0.13.1-3.el4
+# ExclusiveDist: el2 el3
 
 Summary: Advanced intrusion detection environment
 Name: aide

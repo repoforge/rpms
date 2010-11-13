@@ -2,7 +2,11 @@
 # Authority: matthias
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 # Upstream: <libdv-dev$lists,sourceforge,net>
-# ExcludeDist: fc2 fc3 el4
+
+### EL6 ships with libdv-1.0.0-8.1.el6
+### EL5 ships with libdv-0.104-4.fc6.1
+### EL4 ships with libdv-0.103-1
+# ExclusiveDist: el2 el3 el4
 
 Summary: Codec for DV video, used by most digital camcorders
 Name: libdv

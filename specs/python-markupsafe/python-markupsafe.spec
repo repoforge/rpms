@@ -1,6 +1,9 @@
 # $Id$
 # Authority: arrfab
 
+### EL6 ships with python-markupsafe-0.9.2-4.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_sitearch %(%{__python} -c 'from distutils.sysconfig import get_python_lib; print(get_python_lib(1))')
 
@@ -20,7 +23,7 @@ BuildRequires: python-devel python-setuptools
 A library for safe markup escaping.
 
 %prep
-%setup -q -n MarkupSafe-%{version}
+%setup -n MarkupSafe-%{version}
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build

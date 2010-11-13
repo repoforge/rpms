@@ -1,34 +1,18 @@
 # $Id$
 # Authority: dries
 
+### EL2 ships with xlockmore-4.17.2-4
+%{?el2:# Tag: rfx}
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
-%{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
 
 %{!?dtag:%define _with_lesstif 1}
 %{?el5:%define _with_openmotif 1}
-%{?fc6:%define _with_lesstif 1}
-%{?fc5:%define _with_openmotif 1}
-%{?fc4:%define _with_openmotif 1}
-%{?fc3:%define _with_lesstif 1}
 %{?el4:%define _with_openmotif 1}
 %{?el3:%define _with_openmotif 1}
 %{?el2:%define _with_lesstif 1}
@@ -128,9 +112,6 @@ desktop-file-install \
 %changelog
 * Sun Jul 12 2009 Dries Verachtert <dries@ulyssis.org> - 5.28-1
 - Updated to release 5.28.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 5.18-2.2
-- Rebuild for Fedora Core 5.
 
 * Thu Jul 28 2005 Dries Verachtert <dries@ulyssis.org> - 5.18-2
 - Fixed the name of the desktop file (thanks to Erik Williamson)

@@ -1,6 +1,14 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with tftp-0.49-5.1.el6
+### EL5 ships with tftp-0.49-2
+### EL4 ships with tftp-0.39-3.el4
+### EL3 ships with tftp-0.39-0.EL3.4
+### EL2 ships with tftp-0.17-14
+%{?el2:# Tag: rfx}
+# ExclusiveDist: el2
+
 %define real_name tftp-hpa
 
 Summary: The client for the Trivial File Transfer Protocol (TFTP)
@@ -12,7 +20,7 @@ Group: Applications/Internet
 URL: http://www.kernel.org/pub/software/network/tftp/
 
 Source: http://www.kernel.org/pub/software/network/tftp/tftp-hpa-%{version}.tar.bz2
-Patch: tftp-0.28-malta.patch
+Patch0: tftp-0.28-malta.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcp_wrappers
@@ -39,7 +47,7 @@ enabled unless it is expressly needed.  The TFTP server is run from
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch -p1 -b .malta
+%patch0 -p1 -b .malta
 
 %{__cat} <<EOF >tftp.xinetd
 # default: off

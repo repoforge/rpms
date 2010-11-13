@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libpaper-1.1.23-6.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library and tools for handling papersize
 Name: libpaper
 Version: 1.1.22

@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
+### EL6 ships with lzo-2.03-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Portable lossless data compression library
 Name: lzo
 Version: 1.08

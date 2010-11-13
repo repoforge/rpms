@@ -3,8 +3,11 @@
 # Upstream: Timo Sirainen <tss$iki,fi>
 # Upstream: <dovecot$dovecot,org>
 
-##ExcludeDist: fc3 el4
-
+### EL6 ships with dovecot-2.0-0.10.beta6.20100630.el6
+### EL5 ships with dovecot-1.0.7-7.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with dovecot-0.99.11-9.EL4
+%{?el4:# Tag: rfx}
 
 %{?el2:%define _without_postgresql 1}
 

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with plotutils-2.5-7.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

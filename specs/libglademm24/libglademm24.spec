@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libglademm24-2.6.7-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name libglademm
 
 Summary: C++ wrapper for libglade

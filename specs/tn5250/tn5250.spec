@@ -3,7 +3,12 @@
 # Upstream: <linux5250$midrange,com>
 
 ### EL6 ships with tn5250-0.17.4-3.2.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with tn5250-0.17.3-6
+### EL4 ships with tn5250-0.16.5-2
+%{?el4:# Tag: rfx}
+### EL3 ships with tn5250-0.16.5-1
+%{?el3:# Tag: rfx}
+# ExclusiveDist: el2 el3 el4
 
 %{?el5:%define _without_slang 1}
 

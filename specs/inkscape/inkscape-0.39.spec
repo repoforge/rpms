@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <inkscape-devel$lists,sf,net>
 
-
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
@@ -55,7 +54,7 @@ EOF
 
 %if %{!?_without_freedesktop:1}0
         desktop-file-install --delete-original             \
-		--vendor %{desktop_vendor}                 \
+                --vendor %{desktop_vendor}                 \
                 --add-category X-Red-Hat-Base              \
                 --dir %{buildroot}%{_datadir}/applications \
                 %{buildroot}%{_datadir}/applications/inkscape.desktop

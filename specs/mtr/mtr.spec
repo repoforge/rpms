@@ -8,6 +8,7 @@
 ### EL4 ships with mtr-0.54-10
 ### EL3 ships with mtr-0.52-2
 ### EL2 ships with mtr-0.44-1
+# Tag: rfx
 
 %define desktop_vendor rpmforge
 

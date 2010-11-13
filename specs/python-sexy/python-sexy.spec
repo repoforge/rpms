@@ -1,6 +1,9 @@
 # $Id$
 # Authority: hadams
 
+### EL6 ships with python-sexy-0.1.9-9.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name sexy-python

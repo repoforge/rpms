@@ -1,18 +1,14 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with xosview-1.7.3-6.72.1
+%{?el2:# Tag: rfx}
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
 
-%{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 

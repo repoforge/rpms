@@ -1,6 +1,10 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-urlgrabber-3.9.1-7.el6
+### EL5 ships with python-urlgrabber-3.1.0-5.el5
+# ExclusiveDist: el2 el3 el4
+
 %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
 
 %define real_name urlgrabber
@@ -14,7 +18,7 @@ Group: Development/Libraries
 URL: http://linux.duke.edu/projects/urlgrabber/
 
 Source: http://linux.duke.edu/projects/urlgrabber/download/urlgrabber-%{version}.tar.gz
-Patch: python-urlgrabber-2.9.6-reget.patch
+Patch0: python-urlgrabber-2.9.6-reget.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

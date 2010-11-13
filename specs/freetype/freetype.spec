@@ -1,7 +1,12 @@
 # $Id$
 # Authority: avi
 
-# ExclusiveDist: fc3 el4
+### EL6 ships with freetype-2.3.11-6.el6_0.1
+### EL5 ships with freetype-2.2.1-28.el5_5
+### EL4 ships with freetype-2.1.9-17.el4.8
+### EL3 ships with freetype-2.1.4-18.el3
+### EL2 ships with freetype-2.0.3-15.el21
+# Tag: rfx
 # VerbatimSource: redhat
 
 # Disables freetype 1 and 2 bytecode interpreter.  Setting to 0 enables

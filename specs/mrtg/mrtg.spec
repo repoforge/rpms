@@ -3,7 +3,15 @@
 # Upstream: Tobi Oetiker <tobi$oetiker,ch>
 
 ### EL6 ships with mrtg-2.16.2-5.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
+### EL5 ships with mrtg-2.14.5-2
+%{?el5:# Tag: rfx}
+### EL4 ships with mrtg-2.10.15-2a
+%{?el4:# Tag: rfx}
+### EL3 ships with mrtg-2.9.29-4.ent
+%{?el3:# Tag: rfx}
+### EL2 ships with mrtg-2.9.6-6
+%{?el2:# Tag: rfx}
 
 %define _use_internal_dependency_generator 0
 

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with latencytop-0.5-3.el6
+# DistExclusive: el2 el3 el4 el5
+
 Summary: Kernel latency measuring tool
 Name: latencytop
 Version: 0.5
@@ -10,7 +13,7 @@ Group: System/Monitoring
 URL: http://www.latencytop.org/
 
 Source: http://www.latencytop.org/download/latencytop-%{version}.tar.gz
-Patch: latencytop-warning-fixes.diff
+Patch0: latencytop-warning-fixes.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtk2-devel
@@ -26,7 +29,7 @@ hiccups. A version with graphic interface is available as xlatencytop.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 export CFLAGS="%{optflags}"

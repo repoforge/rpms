@@ -2,27 +2,15 @@
 # Authority: matthias
 # Upstream: <gtkglext-list$gnome,org>
 
+### EL6 ships with gtkglext-devel-1.2.0-11.el6
+# ExclusiveDist: el2 el3 el4 el5
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
-%{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
 
 Summary: OpenGL Extension to GTK
 Name: gtkglext

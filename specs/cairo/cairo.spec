@@ -2,9 +2,9 @@
 # Authority: dag
 # Upstream: <cairo$cairographics,org>
 
-### EL5 ships with version 1.2.4-5.el5
+### EL6 ships with cairo-1.8.8-3.1.el6
+### EL5 ships with cairo-1.2.4-5.el5
 # ExclusiveDist: el2 rh7 rh9 el3 el4
-
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

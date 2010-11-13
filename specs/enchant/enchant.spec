@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with enchant-aspell-1.5.0-4.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Cross-platform abstract layer to spellchecking
 Name: enchant
 Version: 1.3.0

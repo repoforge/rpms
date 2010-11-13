@@ -1,10 +1,12 @@
 # $Id$
 # Authority: dag
 
-### Ships with Fedora Core / Red Hat Enterprise
-##Tag: test
 # Rationale: We replace the RHEL version as it fixes a transparancy bug with compiz
-
+### EL6 ships with rdesktop-1.6.0-8.el6
+### EL5 ships with rdesktop-1.6.0-3
+### EL4 ships with rdesktop-1.3.1-10
+### EL3 ships with rdesktop-1.2.0-3
+# Tag: rfx
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

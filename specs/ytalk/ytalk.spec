@@ -1,6 +1,9 @@
 # $Id$
 # Authority: nac
 
+### EL2 ships with ytalk-3.1.1-7
+%{?el2:# Tag: rfx}
+
 Summary: Enhanced replacement for the BSD talk client
 Name: ytalk
 Version: 3.3.0

@@ -1,7 +1,10 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+### EL6 ships with gthumb-2.10.11-8.el6
+### EL5 ships with gthumb-2.7.8-8.el5
+### EL4 ships with gthumb-2.4.2-7
+# ExclusiveDist: el2 el3
 
 Summary: Image viewer and browser for the GNOME desktop
 Name: gthumb

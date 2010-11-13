@@ -1,7 +1,13 @@
 # $Id$
 # Authority: yury
 # Upstream: Wietse Venema <wietse$wzv,win,tue,nl>
-# Tag: test
+
+### EL6 ships with tcp_wrappers-7.6-56.3.el6
+### EL5 ships with tcp_wrappers-7.6-40.7.el5
+### EL4 ships with tcp_wrappers-7.6-37.9.el4
+### EL3 ships with tcp_wrappers-7.6-34.1
+### EL2 ships with tcp_wrappers-7.6-19
+# Tag: rfx
 
 Summary: A security tool which acts as a wrapper for TCP daemons
 Name: tcp_wrappers

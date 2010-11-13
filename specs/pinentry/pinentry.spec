@@ -2,16 +2,12 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-### RHEL 5.4 ships with 0.7.3-3.el5
-# ExclusiveDist el3 el4
-
+### EL6 ships with pinentry-0.7.6-5.el6
+### EL5 ships with pinentry-0.7.3-3.el5
+# ExclusiveDist: el2 el3 el4
 
 %{?el3:%define _without_gtk24 1}
 %{?el3:%define _without_qt33 1}
-%{?rh9:%define _without_gtk24 1}
-%{?rh9:%define _without_qt33 1}
-%{?rh7:%define _without_gtk24 1}
-%{?rh7:%define _without_qt33 1}
 %{?el2:%define _without_gtk24 1}
 %{?el2:%define _without_qt33 1}
 

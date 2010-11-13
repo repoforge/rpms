@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libEMF-1.0.4-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for generating Enhanced Metafiles
 Name: libEMF
 Version: 1.0.3
@@ -10,7 +13,7 @@ Group: System Environment/Libraries
 URL: http://libemf.sourceforge.net/
 
 Source: http://dl.sf.net/pstoedit/libEMF-%{version}.tar.gz
-Patch: libEMF-1.0.3-amd64.patch
+Patch0: libEMF-1.0.3-amd64.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libstdc++-devel
@@ -34,7 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch -p1 -b .amd64
+%patch0 -p1 -b .amd64
 %{__chmod} 0644 libemf/libemf.h
 
 %build

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with lua-5.1.4-4.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Lua scripting language
 Name: lua
 Version: 5.1.4

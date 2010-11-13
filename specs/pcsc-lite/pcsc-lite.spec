@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-### EL5 ships with pcsc-lite 1.3.1-7
+### EL6 ships with pcsc-lite-1.5.2-6.el6
+### EL5 ships with pcsc-lite-1.4.4-4.el5_5
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
 Summary: PC/SC Lite smart card framework and applications

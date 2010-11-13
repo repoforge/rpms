@@ -1,6 +1,9 @@
 # Authority: dag
 # Upstream: <miros-discuss@mirbsd.org>
 
+### EL6 ships with mksh-39-4.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define _bindir /bin
 
 Name: mksh

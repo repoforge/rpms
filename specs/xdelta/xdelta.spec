@@ -2,7 +2,13 @@
 # Authority: dag
 
 ### EL6 ships with xdelta-1.1.4-8.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL6 ships with xdelta-1.1.4-8.el6
+### EL5 ships with xdelta-1.1.3-20
+### EL4 ships with xdelta-1.1.3-15
+### EL3 ships with xdelta-1.1.3-11
+### EL2 ships with xdelta-1.1.1-11
+# ExclusiveDist: el2 el3 el4
+# Tag: rfx
 
 Summary: Binary file delta generator and an RCS replacement library
 Name: xdelta

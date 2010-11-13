@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### EL2 ships with SDL_net-1.2.2-1
+%{?el2:# Tag: rfx}
+
 Summary: Cross-platform network API
 Name: SDL_net
 Version: 1.2.7

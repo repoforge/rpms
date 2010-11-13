@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### EL2 ships with mpg321-0.2.9-2.5
+%{?el2:# Tag: rfx}
+
 Summary: MPEG audio player
 Name: mpg321
 Version: 0.2.10
@@ -8,10 +11,14 @@ Release: 8%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
+
 Source: http://dl.sf.net/mpg321/mpg321-%{version}.tar.gz
 Patch0: mpg321-0.2.10-printf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libao-devel >= 0.8.0, libmad-devel >= 0.14.2b, libid3tag-devel
+
+BuildRequires: libao-devel >= 0.8.0
+BuildRequires: libid3tag-devel
+BuildRequires: libmad-devel >= 0.14.2b
 BuildRequires: zlib-devel
 Obsoletes: mpg123 < %{version}
 
@@ -22,32 +29,26 @@ wave file decoder (primarily for use with CD-recording software.) In all
 of these capacities, mpg321 can be used as a drop-in replacement for
 mpg123.
 
-
 %prep
 %setup
 %patch0 -p1 -b .printf
-
 
 %build
 %configure --with-default-audio="alsa"
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS BUGS ChangeLog COPYING HACKING NEWS README* THANKS TODO
 %{_bindir}/*
 %{_mandir}/man1/*
-
 
 %changelog
 * Fri Mar 17 2006 Matthias Saou <http://freshrpms.net/> 0.2.10-8

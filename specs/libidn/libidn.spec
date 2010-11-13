@@ -2,7 +2,9 @@
 # Authority: dag
 # Upstream: <bug-libidn$gnu,org>
 
-### RHEL4 and newer ship with libidn
+### EL6 ships with libidn-1.18-2.el6
+### EL5 ships with libidn-0.6.5-1.1
+### EL4 ships with libidn-0.5.6-1
 # ExclusiveDist: el2 rh7 rh9 el3
 
 Summary: Internationalized string processing library
