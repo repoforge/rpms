@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-zope-interface-3.5.2-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name ZopeInterface
@@ -14,7 +17,7 @@ Group: Development/Libraries
 URL: http://pypi.python.org/pypi/zope.interface
 
 Source: http://zope.org/Products/ZopeInterface/%{version}final/ZopeInterface-%{version}.tgz
-Patch: ZopeInterface-3.0.1-declbug.patch
+Patch0: ZopeInterface-3.0.1-declbug.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
