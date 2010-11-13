@@ -1,6 +1,10 @@
 # $Id$
 # Authority: matthias
 
+### EL3 ships with Gtk-Perl-0.7008-31
+### EL2 ships with Gtk-Perl-0.7008-4
+# ExcludeDist: el2 el3
+
 %define _use_internal_dependency_generator 0
 
 Summary: Perl extensions for GTK+ (the Gimp ToolKit)

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with help2man-1.36.4-6.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Tool for generating simple man pages from program output
 Name: help2man
 Version: 1.38.2

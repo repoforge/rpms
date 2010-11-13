@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-decoratortools-1.7-4.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %{!?pyver: %define pyver %(%{__python} -c "import sys ; print sys.version[:3]")}
 

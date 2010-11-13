@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Gerd Knorr <kraxel$bytesex,org>
 
+### EL2 ships with xawtv-3.54-5
+%{?el2:# Tag: rfx}
 
 %define _without_libv4l 1
 

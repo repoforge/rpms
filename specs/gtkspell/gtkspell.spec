@@ -1,7 +1,10 @@
 # $Id$
 # Authority: matthias
 
-# ExclusiveDist: el2 rh7 rh9 el3 fc1 fc2 fc3
+### EL6 ships with gtkspell-2.0.16-1.el6
+### EL5 ships with gtkspell-2.0.11-2.1
+### EL4 ships with gtkspell-2.0.7-2
+# ExclusiveDist: el2 el3
 
 Summary: Gtk2 spell checker interface library
 Name: gtkspell

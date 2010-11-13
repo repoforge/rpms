@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
-# ExcludeDist: fc4
+
+### EL6 ships with udftools-1.0.0b3-12.el6
+### EL5 ships with udftools-1.0.0b3-0.1.el5
+# ExclusiveDist: el2 el3 el4
 
 Summary: Linux UDF Filesystem userspace utilities
 Name: udftools

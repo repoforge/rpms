@@ -1,6 +1,10 @@
 # $Id$
 # Authority: dag
 
+### EL4 ships with dia-0.94-5.7.2
+### EL2 ships with dia-0.88.1-3.3
+# ExcludeDist: el2 el4
+
 Summary: Diagram drawing program
 Name: dia
 Version: 0.97

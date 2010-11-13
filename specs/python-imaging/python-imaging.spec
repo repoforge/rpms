@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-imaging-1.1.6-19.el6
+### EL5 ships with python-imaging-1.1.5-5.el5
+# ExclusiveDist: el2 el3 el4
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define pyver %(%{__python} -c 'import sys; print sys.version[:3]' || echo 2.0)

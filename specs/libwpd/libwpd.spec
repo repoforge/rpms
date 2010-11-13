@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libwpd-0.8.14-4.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for reading and converting WordPerfect(tm) documents
 Name: libwpd
 Version: 0.8.14

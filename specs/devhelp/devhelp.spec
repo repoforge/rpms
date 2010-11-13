@@ -2,7 +2,10 @@
 # Authority: dag
 # Upstream: Mikael Hallendal <micke$imendio,com>
 
-# ExcludeDist: el4
+### EL6 ships with devhelp-devel-2.28.1-3.el6
+### EL5 ships with devhelp-0.12-21.el5
+### EL4 ships with devhelp-0.10-0.10.el4
+# ExclusiveDist: el2 el3
 
 Summary: API document browser
 Name: devhelp

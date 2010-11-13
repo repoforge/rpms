@@ -1,6 +1,14 @@
 # $Id$
 # Authority: dries
-# ExclusiveDist: el2 rh7 rh8 rh9 el3 fc1 fc2
+
+### EL6 ships with libxml2-2.7.6-1.el6
+### EL5 ships with libxml2-2.6.26-2.1.2.8.el5_5.1
+### EL4 ships with libxml2-2.6.16-12.8
+### EL3 ships with libxml2-2.5.10-15
+%{?el3:# Tag: rfx}
+### EL2 ships with libxml2-2.4.19-12.ent
+%{?el2:# Tag: rfx}
+# ExclusiveDist: el2 el3
 
 #%define python_version %(python2 -c 'import sys; print sys.version[:3]')
 %define python_version %(python -c 'import sys; print sys.version[:3]')

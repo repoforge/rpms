@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-simplejson-2.0.9-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 Summary: Simple, fast, extensible JSON encoder/decoder for Python

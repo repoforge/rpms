@@ -12,7 +12,7 @@ Group: Applications/Internet
 URL: http://www.enderunix.org/aget/
 
 Source: http://www.enderunix.org/aget/aget-%{version}.tar.gz
-Patch: errno-include.patch
+Patch0: errno-include.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -21,7 +21,7 @@ and can be run from the console.
 
 %prep
 %setup
-%patch -p1 -b .errno
+%patch0 -p1 -b .errno
 
 %build
 %{__make} %{?_smp_mflags}

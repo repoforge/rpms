@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
-# ExcludeDist: rh7 rh9
+
+### EL6 ships with recode-3.6-28.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 Summary: Conversion between character sets and surfaces
 Name: recode

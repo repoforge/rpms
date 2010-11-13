@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libfprint-0.1.0-19.pre2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Tool kit for fingerprint scanner
 Name: libfprint
 Version: 0.0.6

@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <galeon-devel$lists,sourceforge,net>
 
+### EL2 ships with galeon-1.2.14-1.2.8
+%{?el2:# Tag: rfx}
+
 %{?el4:%define _without_gnome212 1}
 
 %{?fc3:%define _without_gnome212 1}

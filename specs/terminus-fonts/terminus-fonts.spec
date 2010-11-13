@@ -1,7 +1,9 @@
 # $Id$
 # Authority: shuff
 # Upstream: Dimitar Zhekov <jimmy$is-vn,bg>
-# ExclusiveArch: el4 el5
+
+### EL6 ships with terminus-fonts-4.30-1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %define terminus_fontdir %{_datadir}/fonts/terminus
 

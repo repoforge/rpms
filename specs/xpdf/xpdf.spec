@@ -1,8 +1,12 @@
 # $Id$
 # Authority: dag
 
-### RHEL5 and newer do not include xpdf
-# ExcludeDist: el3 el4
+### EL4 ships with xpdf-3.00-24.el4_8.1
+%{?el4:# Tag: rfx}
+### EL3 ships with xpdf-2.02-19.el3
+%{?el3:# Tag: rfx}
+### EL2 ships with xpdf-0.92-19.el2
+%{?el2:# Tag: rfx}
 
 %define desktop_vendor rpmforge
 

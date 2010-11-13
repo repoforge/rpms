@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with dejavu-fonts-common-2.30-2.el6
+# ExclusiveDist: el2 el3 el4 el5
 # Dist: nodist
 
 %define real_name dejavu-ttf

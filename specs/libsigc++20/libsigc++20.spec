@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: <libsigc-list$gnome,org>
 
+### EL6 ships with libsigc++20-2.2.4.2-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Typesafe callback system for standard C++
 Name: libsigc++20
 Version: 2.0.17

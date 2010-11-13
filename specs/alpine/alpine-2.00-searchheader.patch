@@ -1,0 +1,165 @@
+diff -rc alpine-2.00/alpine/mailcmd.c alpine-2.00.searchheader/alpine/mailcmd.c
+*** alpine-2.00/alpine/mailcmd.c	2008-08-21 15:14:45.000000000 -0700
+--- alpine-2.00.searchheader/alpine/mailcmd.c	2008-08-26 20:57:00.000000000 -0700
+***************
+*** 253,258 ****
+--- 253,259 ----
+      {'r', 'r', "R", N_("Recipient")},
+      {'p', 'p', "P", N_("Participant")},
+      {'b', 'b', "B", N_("Body")},
++     {'h', 'h', "H", N_("Header")},
+      {-1, 0, NULL, NULL}
+  };
+  
+***************
+*** 7670,7676 ****
+      int          not = 0, me = 0;
+      char         sstring[80], savedsstring[80], tmp[128];
+      char        *p, *sval = NULL;
+!     char         buftmp[MAILTMPLEN];
+      ESCKEY_S     ekey[8];
+      ENVELOPE    *env = NULL;
+      HelpType     help;
+--- 7671,7677 ----
+      int          not = 0, me = 0;
+      char         sstring[80], savedsstring[80], tmp[128];
+      char        *p, *sval = NULL;
+!     char         buftmp[MAILTMPLEN], namehdr[80];
+      ESCKEY_S     ekey[8];
+      ENVELOPE    *env = NULL;
+      HelpType     help;
+***************
+*** 7757,7762 ****
+--- 7758,7797 ----
+  	sval = "BODYTEXT";
+  	break;
+  
++       case 'h' :
++ 	strcpy(tmp, "Name of HEADER to match : ");
++ 	flags = OE_APPEND_CURRENT;
++ 	namehdr[0] = '\0';
++ 	r = 'x';
++ 	while (r == 'x'){
++ 	       int done = 0;
++ 
++ 	       r = optionally_enter(namehdr, -FOOTER_ROWS(ps_global), 0,
++ 				 sizeof(namehdr), tmp, ekey, NO_HELP, &flags);
++ 	       if (r == 1){
++ 		  cmd_cancelled("Selection by text");
++ 		  return(1);
++ 	       }
++ 	       removing_leading_white_space(namehdr);
++ 	       while(!done){
++ 	          while ((namehdr[0] != '\0') && /* remove trailing ":" */
++ 			(namehdr[strlen(namehdr) - 1] == ':'))
++ 		     namehdr[strlen(namehdr) - 1] = '\0';
++ 		  if ((namehdr[0] != '\0') 
++ 		     && isspace((unsigned char) namehdr[strlen(namehdr) - 1]))
++ 		       removing_trailing_white_space(namehdr);
++ 		  else
++ 		    done++;
++ 	       }
++ 	       if (strchr(namehdr,' ') || strchr(namehdr,'\t') ||
++ 		   strchr(namehdr,':'))
++ 		  namehdr[0] = '\0';
++ 	       if (namehdr[0] == '\0')
++ 	         r = 'x';
++ 	}
++ 	sval = namehdr;
++ 	break;
++ 
+        case 'x':
+  	break;
+  
+***************
+*** 7953,7959 ****
+      flagsforhist = (not ? 0x1 : 0) + (me ? 0x2 : 0);
+      save_hist(history, sstring, flagsforhist, NULL);
+  
+!     rv = agg_text_select(stream, msgmap, type, not, me, sstring, "utf-8", limitsrch);
+      if(we_cancel)
+        cancel_busy_cue(0);
+  
+--- 7988,7994 ----
+      flagsforhist = (not ? 0x1 : 0) + (me ? 0x2 : 0);
+      save_hist(history, sstring, flagsforhist, NULL);
+  
+!     rv = agg_text_select(stream, msgmap, type, namehdr, not, me, sstring, "utf-8", limitsrch);
+      if(we_cancel)
+        cancel_busy_cue(0);
+  
+diff -rc alpine-2.00/pith/mailcmd.c alpine-2.00.searchheader/pith/mailcmd.c
+*** alpine-2.00/pith/mailcmd.c	2008-07-09 22:01:13.000000000 -0700
+--- alpine-2.00.searchheader/pith/mailcmd.c	2008-08-26 20:57:00.000000000 -0700
+***************
+*** 2158,2165 ****
+  
+  
+  int
+! agg_text_select(MAILSTREAM *stream, MSGNO_S *msgmap, char type, int not,
+! 		int check_for_my_addresses,
+  		char *sstring, char *charset, SEARCHSET **limitsrch)
+  {
+      int		 old_imap, we_cancel;
+--- 2158,2165 ----
+  
+  
+  int
+! agg_text_select(MAILSTREAM *stream, MSGNO_S *msgmap, char type, char *namehdr,
+! 		int not, int check_for_my_addresses,
+  		char *sstring, char *charset, SEARCHSET **limitsrch)
+  {
+      int		 old_imap, we_cancel;
+***************
+*** 2308,2313 ****
+--- 2308,2317 ----
+  
+    if(!mepgm)
+      switch(type){
++       case 'h' :	                        /* Any header */
++         pgm->header = mail_newsearchheader (namehdr, sstring);
++       break;
++ 
+        case 'r' :				/* TO or CC */
+  	if(old_imap){
+  	    /* No OR on old servers */
+diff -rc alpine-2.00/pith/mailcmd.h alpine-2.00.searchheader/pith/mailcmd.h
+*** alpine-2.00/pith/mailcmd.h	2008-07-09 22:01:13.000000000 -0700
+--- alpine-2.00.searchheader/pith/mailcmd.h	2008-08-26 20:57:00.000000000 -0700
+***************
+*** 65,71 ****
+  void	   cross_delete_crossposts(MAILSTREAM *);
+  long	   zoom_index(struct pine *, MAILSTREAM *, MSGNO_S *, int);
+  int	   unzoom_index(struct pine *, MAILSTREAM *, MSGNO_S *);
+! int	   agg_text_select(MAILSTREAM *, MSGNO_S *, char, int, int, char *,
+  			   char *, SEARCHSET **);
+  int	   agg_flag_select(MAILSTREAM *, int, int, SEARCHSET **);
+  char	  *get_uname(char *, char *, int);
+--- 65,71 ----
+  void	   cross_delete_crossposts(MAILSTREAM *);
+  long	   zoom_index(struct pine *, MAILSTREAM *, MSGNO_S *, int);
+  int	   unzoom_index(struct pine *, MAILSTREAM *, MSGNO_S *);
+! int	   agg_text_select(MAILSTREAM *, MSGNO_S *, char, char *, int, int, char *,
+  			   char *, SEARCHSET **);
+  int	   agg_flag_select(MAILSTREAM *, int, int, SEARCHSET **);
+  char	  *get_uname(char *, char *, int);
+diff -rc alpine-2.00/web/src/alpined.d/alpined.c alpine-2.00.searchheader/web/src/alpined.d/alpined.c
+*** alpine-2.00/web/src/alpined.d/alpined.c	2008-08-22 13:41:37.000000000 -0700
+--- alpine-2.00.searchheader/web/src/alpined.d/alpined.c	2008-08-26 20:57:00.000000000 -0700
+***************
+*** 6848,6854 ****
+  		    /* BUG: fix charset not to be NULL below */
+  		    if(agg_text_select(ps_global->mail_stream,
+  				       sp_msgmap(ps_global->mail_stream),
+! 				       field, not, 0, text, NULL, NULL))
+  		      /* BUG: plug in "charset" above? */
+  		      return(peSelectError(interp, "programmer botch"));
+  		}
+--- 6848,6854 ----
+  		    /* BUG: fix charset not to be NULL below */
+  		    if(agg_text_select(ps_global->mail_stream,
+  				       sp_msgmap(ps_global->mail_stream),
+! 				       field, NULL, not, 0, text, NULL, NULL))
+  		      /* BUG: plug in "charset" above? */
+  		      return(peSelectError(interp, "programmer botch"));
+  		}

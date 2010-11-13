@@ -2,6 +2,8 @@
 # Authority: ned
 # Dist: nodist
 
+### EL6 ships with iwl3945-firmware-15.32.2.9-4.el6
+
 %define real_name iwlwifi-3945-ucode
 
 Summary: Firmware for Intel Wireless 3945 network adapter

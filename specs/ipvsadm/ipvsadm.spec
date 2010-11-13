@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with ipvsadm-1.18-8
+%{?el2:# Tag: rfx}
+
 %define _sbindir /sbin
 
 Summary: Utility to administer the Linux Virtual Server
@@ -25,21 +28,21 @@ offered by the Linux kernel augmented with the IP Virtual Server patch.
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+    CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall \
-	BUILD_ROOT="%{buildroot}" \
-	MANDIR="%{_mandir}" \
-	INIT="%{buildroot}%{_initrddir}"
+    BUILD_ROOT="%{buildroot}" \
+    MANDIR="%{_mandir}" \
+    INIT="%{buildroot}%{_initrddir}"
 
 %post
 /sbin/chkconfig --add ipvsadm
 
 %preun
 if [ $1 -eq 0 ]; then
-	/sbin/chkconfig --del ipvsadm
+    /sbin/chkconfig --del ipvsadm
 fi
 
 %clean
@@ -53,8 +56,5 @@ fi
 %{_sbindir}/*
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.21-0.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jun 07 2003 Dag Wieers <dag@wieers.com> - 1.21-0
 - Initial package. (using DAR)

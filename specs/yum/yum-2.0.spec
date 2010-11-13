@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with yum-3.2.27-14.el6_0.1
+### EL5 ships with yum-3.2.22-26.el5_5.1
 # ExclusiveDist: rh9 el3
 
 Summary: RPM installer/updater

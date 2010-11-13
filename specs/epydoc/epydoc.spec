@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### EL6 ships with epydoc-3.0.1-5.1.el6
+# ExclusiveDist: el6
+
 Summary: Edward Loper's Python API documentation generation tool
 Name: epydoc
 Version: 2.1

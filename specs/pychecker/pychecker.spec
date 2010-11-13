@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Neal Norwitz <neal$metaslash,com>
 
+### EL2 ships with pychecker-0.7.5-1
+%{?el2:# Tag: rfx}
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: Find common bugs in Python source code

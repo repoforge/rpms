@@ -2,8 +2,9 @@
 # Authority: dag
 
 ### Ironically, yum 2.4 needs sqlite2, while this needs sqlite3
-# ExclusiveDist:
-# ExcludeDist: el4
+### EL6 ships with yum-metadata-parser-1.1.2-14.1.el6
+### EL5 ships with yum-metadata-parser-1.1.2-3.el5
+# ExclusiveDist: el2 el3
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
@@ -21,7 +22,11 @@ Patch1: yum-metadata-parser-1.0-files.patch
 Patch2: yum-metadata-parser-1.0-locationbase.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pkgconfig, python-devel, glib2-devel, libxml2-devel, sqlite-devel >= 3.0
+BuildRequires: glib2-devel
+BuildRequires: libxml2-devel
+BuildRequires: pkgconfig
+BuildRequires: python-devel
+BuildRequires: sqlite-devel >= 3.0
 
 %description
 Fast metadata parser for yum implemented in C.

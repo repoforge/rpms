@@ -2,6 +2,8 @@
 # Authority: ned
 # Dist: nodist
 
+### EL6 ships with iwl5000-firmware-8.24.2.12-3.el6
+
 %define real_name iwlwifi-5000-ucode
 
 Summary: Firmware for IntelÂ® Wireless WiFi Link 5000AGN series network adapters

@@ -2,8 +2,8 @@
 # Authority: dag
 # Upstream: Michael Kohn <mike$mikekohn,net>
 
-# Tag: test
-
+### EL2 ships with asp2php-0.75.17-1
+# Tag: rft
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

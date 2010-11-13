@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
-# ExcludeDist: fc5
+
+### EL6 ships with libgpod-0.7.2-6.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 

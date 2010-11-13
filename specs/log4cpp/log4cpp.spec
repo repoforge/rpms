@@ -2,6 +2,10 @@
 # Authority: dries
 # Upstream: Bastiaan Bakker <freshmeat$deal,webcriminals,com>
 
+### EL6 ships with log4cpp-1.0-13.el6
+### EL5 ships with log4cpp-1.0-9.el5
+# ExclusiveDist: el2 el3 el4
+
 Summary: Logging library for c++
 Name: log4cpp
 Version: 1.0

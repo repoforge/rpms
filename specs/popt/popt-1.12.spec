@@ -1,7 +1,12 @@
 # $Id$
 # Authority: dries
 
-# Tag: test
+### EL6 ships with popt-1.13-7.el6
+### EL5 ships with popt-1.10.2.3-20.el5_5.1
+### EL4 ships with popt-1.9.1-33_nonptl.el4_8.1
+### EL3 ships with popt-1.8.2-32_nonptl
+### EL2 ships with popt-1.6.4-7x.20
+# Tag: rft
 
 Summary: A C library for parsing command line parameters.
 Name: popt

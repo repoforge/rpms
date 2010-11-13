@@ -2,34 +2,18 @@
 # Authority: matthias
 # Upstream: Julian Seward <jseward$acm,org>
 
+### EL6 ships with valgrind-3.5.0-18.el6
+### EL5 ships with valgrind-3.5.0-1.el5
+### EL4 ships with valgrind-3.1.1-1.EL4
+# ExclusiveDist: el2 el3
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
-### Valgrind ships with FC3
-# ExcludeDist: fc3 el4
-
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
 %define _use_internal_dependency_generator 0
 

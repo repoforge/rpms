@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### EL6 ships with python-psycopg2-2.0.13-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
 %define real_name psycopg2

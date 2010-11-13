@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with gtkmm24-2.18.2-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: gtkmm24
 Version: 2.4.11

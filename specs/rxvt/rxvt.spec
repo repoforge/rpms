@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with rxvt-2.7.8-4
+%{?el2:# Tag: rfx}
+
 %define desktop_vendor rpmforge
 
 %{?el4:%define _without_modxorg 1}

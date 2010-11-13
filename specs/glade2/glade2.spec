@@ -2,8 +2,10 @@
 # Authority: dag
 # Rationale: This package doesn't need a lot of devel-packages.
 
-# ExcludeDist: el4
-
+### EL5 ships with glade2-2.12.1-6.el5
+### EL4 ships with glade2-2.6.0-1
+### EL3 ships with glade2-2.0.0-1
+# ExclusiveDist: el2
 
 %define real_name glade
 

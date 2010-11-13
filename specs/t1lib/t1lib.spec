@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with t1lib-5.1.2-6.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: PostScript Type 1 font rasterizer
 Name: t1lib
 Version: 5.1.0

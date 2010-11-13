@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+### EL6 ships with pygtk2-2.16.0-3.el6
+### EL5 ships with pygtk2-2.10.1-12.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with pygtk2-2.4.0-2.el4
+### EL3 ships with pygtk2-1.99.16-8
 # DistExclusive: el5
 
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")

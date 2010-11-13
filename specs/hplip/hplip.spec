@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el5
-
-# Tag: test
+### EL6 ships with hplip-3.9.8-33.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with hplip-1.6.7-4.1.el5_2.4
+%{?el5:# Tag: rfx}
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 

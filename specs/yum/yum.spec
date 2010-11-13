@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with yum-3.2.27-14.el6_0.1
+### EL5 ships with yum-3.2.22-26.el5_5.1
 # ExclusiveDist: el4
 
 %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")

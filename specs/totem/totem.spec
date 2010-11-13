@@ -1,6 +1,10 @@
 # $Id$
 # Authority: matthias
 
+### EL6 ships with totem-2.28.6-2.el6
+### EL5 ships with totem-2.16.7-7.el5
+# ExclusiveDist: el2 el3 el4
+
 Summary: Movie player for GNOME 2 based on the xine engine
 Name: totem
 Version: 0.100

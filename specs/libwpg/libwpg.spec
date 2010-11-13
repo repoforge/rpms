@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libwpg-0.1.3-4.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for importing and converting Corel WordPerfect(tm) Graphics images
 Name: libwpg
 Version: 0.1.2

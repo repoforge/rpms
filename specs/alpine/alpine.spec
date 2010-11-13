@@ -1,15 +1,22 @@
-# $Id: alpine.spec 6434 2008-07-31 00:54:17Z dag $
+# $Id: alpine-test.spec 9166 2010-10-07 13:05:43Z dag $
 # Authority: dag
+
+### EL2 ships with pine-4.44-20
+%{?el2:# Tag: rfx}
+
+%{?el6:%define _without_inews 1}
+
+%define real_name re-alpine
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
-Version: 2.00
-Release: 2%{?dist}
+Version: 2.02
+Release: 1%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
 
-Source0: ftp://ftp.cac.washington.edu/alpine/alpine-%{version}.tar.gz
+Source0: http://dl.sf.net/project/re-alpine/re-alpine-%{version}.tar.bz2
 Source1: pine.conf
 Source2: pine.conf.fixed
 ### http://staff.washington.edu/chappa/alpine/patches/
@@ -24,11 +31,20 @@ Patch3: alpine-2.00-searchheader.patch
 Patch4: alpine-1.10-select-bold-x.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: inews, aspell, openldap-devel, openssl-devel, krb5-devel, pam-devel, ncurses-devel
+BuildRequires: aspell
+#BuildRequires: inews
+BuildRequires: krb5-devel
+BuildRequires: ncurses-devel
+BuildRequires: openldap-devel
+BuildRequires: openssl-devel
+BuildRequires: pam-devel
 ### RPM bug causes package to conflict with itself
 #Conflicts: pine
 Obsoletes: pine <= 4.64
 Provides: pine = 4.64
+
+Provides: realpine = %{version}-%{release}
+Provides: re-alpine = %{version}-%{release}
 
 %description
 Alpine (Alternatively Licensed Program for Internet News & Email) is a tool
@@ -41,7 +57,7 @@ many advanced features, and an ever-growing number of configuration and
 personal-preference options.
 
 %prep
-%setup
+%setup -n %{real_name}-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -119,6 +135,9 @@ fi
 %{_sbindir}/mlock
 
 %changelog
+* Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 2.01-1
+- Updated to release 2.02 (re-alpine).
+
 * Sat May 23 2009 Dag Wieers <dag@wieers.com> - 2.00-2
 - Added searchheader patch.
 

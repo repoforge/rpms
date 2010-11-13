@@ -2,8 +2,9 @@
 # Authority: dag
 # Upstream: <bluez-devel$lists,sourceforge,net>
 
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
-
+### EL5 ships with bluez-utils-3.7-2.2
+### EL4 ships with bluez-utils-2.10-5.el4
+# ExclusiveDist: el2 el3
 
 %{?el3:%define _without_dbus 1}
 %{?rh9:%define _without_dbus 1}

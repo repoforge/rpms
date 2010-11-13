@@ -1,7 +1,9 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+### EL6 ships with rhythmbox-0.12.8-1.el6
+### EL4 ships with rhythmbox-0.8.8-1
+# ExclusiveDist: el5
 
 %define majmin 0.8
 

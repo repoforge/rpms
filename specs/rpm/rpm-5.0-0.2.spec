@@ -1,8 +1,12 @@
 # $Id$
 # Authority: dries
 
-# Tag: test
-
+### EL6 ships with rpm-4.8.0-12.el6
+### EL5 ships with rpm-4.4.2.3-20.el5_5.1
+### EL4 ships with rpm-4.3.3-33_nonptl.el4_8.1
+### EL3 ships with rpm-4.2.3-32_nonptl
+### EL2 ships with rpm-4.0.4-7x.20
+# Tag: rft
 
 %{!?dtag:%define with_python_version 2.5%{nil}}
 %{?el5:%define with_python_version 2.4%{nil}}

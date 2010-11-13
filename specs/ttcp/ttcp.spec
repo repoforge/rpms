@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Danny Davids <daniel,davids$cern,ch>
 
+### EL2 ships with ttcp-1.12-2
+%{?el2:# Tag: rfx}
+
 Summary: tool to do memory to memory performance measurements with TCP/IP.
 Name: ttcp
 Version: 3.7

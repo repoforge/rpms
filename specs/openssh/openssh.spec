@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with openssh-5.3p1-20.el6
+### EL5 ships with openssh-4.3p2-41.el5_5.1
+### EL4 ships with openssh-3.9p1-11.el4_8.1
+### EL3 ships with openssh-3.6.1p2-33.30.14
+### EL2 ships with openssh-3.1p1-21
 
 # OpenSSH privilege separation requires a user & group ID
 %define sshd_uid    74

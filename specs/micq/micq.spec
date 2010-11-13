@@ -3,6 +3,8 @@
 # Upstream: RÃdiger Kuhlmann <info$ruediger-kuhlmann,de>
 # Upstream: <micq-list$micq,org>
 
+### EL2 ships with micq-0.4.10.2-1
+%{?el2:# Tag: rfx}
 
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}

@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+### EL6 ships with gtkhtml3-3.28.3-3.el6
+### EL5 ships with gtkhtml3-3.16.3-1.el5
+### EL4 ships with gtkhtml3-3.3.2-7.EL
+### EL3 ships with gtkhtml3-3.0.9-7
+# ExclusiveDist: el2
 
 %define real_name gtkhtml
 

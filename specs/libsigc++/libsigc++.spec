@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+### EL2 ships with libsigc++-1.0.3-5
+%{?el2:# Tag: rfx}
 
 Summary: Typesafe Signal Framework for C++
 Name: libsigc++

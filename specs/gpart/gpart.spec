@@ -3,7 +3,7 @@
 # Upstream: Michail Brzitwa <michail$brzitwa,de>
 
 ### gpart 0.1h-3.1 ships with RHEL5
-# ExclusiveDist: el2 rh7 rh9 el3 el4
+# ExcludeDist: el5
 
 Summary: Guesses and recovers a damaged MBR (Master Boot Record)
 Name: gpart

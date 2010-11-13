@@ -2,6 +2,8 @@
 # Authority: matthias
 # Dist: nodist
 
+### EL6 ships with ipw2100-firmware-1.3-11.el6
+
 %define real_name ipw2100-fw
 
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
