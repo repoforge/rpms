@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with fakechroot-2.9-24.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Fake chroot environment
 Name: fakechroot
 Version: 2.9

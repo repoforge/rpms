@@ -3,6 +3,11 @@
 # Upstream: <nmap-dev$insecure,org>
 
 ### EL6 ships with nmap-5.21-3.el6
+### EL5 ships with nmap-4.11-1.1
+### EL4 ships with nmap-3.70-1
+### EL3 ships with nmap-3.00-4.1
+### EL2 ships with nmap-2.54BETA22-3
+# Tag: rfx
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 

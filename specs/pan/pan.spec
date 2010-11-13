@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
 
+### EL2 ships with pan-0.9.7-3
+%{?el2:# Tag: rfx}
+
 %define desktop_vendor rpmforge
 
 Summary: The Pan Newsreader

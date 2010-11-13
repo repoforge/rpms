@@ -1,7 +1,12 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+### EL6 ships with intltool-0.41.0-1.1.el6
+### EL5 ships with intltool-0.35.0-2
+### EL4 ships with intltool-0.31.2-1
+### EL3 ships with intltool-0.26-1
+%{?el3:# Tag: rfx}
+# ExclusiveDist: el2 el3
 
 Summary: Utility for internationalizing various kinds of data files
 Name: intltool
@@ -13,7 +18,6 @@ URL: http://www.gnome.org/
 
 Source: http://ftp.gnome.org/pub/GNOME/sources/intltool/%{version}/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 Requires: patch
 Obsoletes: xml-i18n-tools
@@ -33,7 +37,7 @@ them in the po files.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,8 +51,5 @@ them in the po files.
 %{_datadir}/aclocal/*.m4
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.28-0.2
-- Rebuild for Fedora Core 5.
-
 * Sun Dec 21 2003 Dag Wieers <dag@wieers.com> - 0.28-0
 - Initial package. (using DAR)

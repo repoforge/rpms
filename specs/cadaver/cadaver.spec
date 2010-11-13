@@ -2,8 +2,12 @@
 # Authority: dag
 # Upstream: Joe Orton <joe@orton.demon.co.uk>
 
-# ExcludeDist: fc1 fc2 fc3 el4
-
+### EL5 ships with cadaver-0.22.3-4.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with cadaver-0.22.1-3
+%{?el4:# Tag: rfx}
+### EL2 ships with cadaver-0.22.1-1.0
+%{?el2:# Tag: rfx}
 
 %{?rh9:%define _without_pie 1}
 %{?rh7:%define _without_pie 1}

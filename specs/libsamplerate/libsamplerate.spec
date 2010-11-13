@@ -3,6 +3,9 @@
 # Upstream: Erik de Castro Lopo <erikd$mega-nerd,com>
 # Upstream: <src$mega-nerd,com>
 
+### EL6 ships with libsamplerate-0.1.7-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for performing sample rate conversion on audio
 Name: libsamplerate
 Version: 0.1.7

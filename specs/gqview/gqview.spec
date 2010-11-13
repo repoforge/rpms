@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with gqview-0.8.1-5
+%{?el2:# Tag: rfx}
+
 %define desktop_vendor rpmforge
 
 Summary: Image browser and viewer

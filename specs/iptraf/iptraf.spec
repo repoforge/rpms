@@ -6,8 +6,10 @@
 ### EL6 ships with iptraf-3.0.1-13.el6
 ### EL5 ships with iptraf-3.0.0-5.el5
 ### EL4 ships with iptraf-2.7.0-11
+%{?el4:# Tag: rfx}
 ### EL2 ships with iptraf-2.5.0-3
-# ExclusiveDist: el2 rh7 rh9 el3 el4
+%{?el2:# Tag: rfx}
+# ExclusiveDist: el2 el3 el4
 
 Summary: Console-based network monitoring utility
 Name: iptraf

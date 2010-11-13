@@ -1,7 +1,10 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el2 rh7 rh9 el3 el4
+### EL4 ships with imlib-1.9.13-25.el4_8.2
+### EL3 ships with imlib-1.9.13-13.4
+### EL2 ships with imlib-1.9.13-4.3
+# ExcludeDist: el2 el3 el4
 
 Summary: Image loading and rendering library for X11R6
 Name: imlib

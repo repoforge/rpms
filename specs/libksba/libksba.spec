@@ -2,8 +2,9 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-### RHEL 5.4 ships with libksba-1.0.2-6.el5
-# ExclusiveDist: el3 el4
+### EL6 ships with libksba-1.0.7-1.el6
+### EL5 ships with libksba-1.0.5-2.el5
+# ExclusiveDist: el2 el3 el4
 
 Summary: X.509 library
 Name: libksba

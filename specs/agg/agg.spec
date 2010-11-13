@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL5 ships with agg-2.4-2.1
+# ExclusiveDist: el2 el3 el4 el6
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}

@@ -1,9 +1,9 @@
 # $Id$
 # Authority: dag
 
-### RHEL5 already ships with icu 3.6
+### EL6 ships with icu-4.2.1-9.el6
+### EL5 ships with icu-3.6-5.11.4
 # ExclusiveDist: el2 rh7 rh9 el3 el4
-
 
 %{?rh9:%define _without_doxygen13 1}
 %{?rh7:%define _without_doxygen13 1}

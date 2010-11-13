@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with seekwatcher-0.12-4.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Utility for visualizing block layer IO patterns and performance
 Name: seekwatcher
 Version: 0.12

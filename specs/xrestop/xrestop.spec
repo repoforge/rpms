@@ -3,7 +3,9 @@
 
 ### EL6 ships with xrestop-0.4-7.1.el6
 ### EL5 ships with xrestop-0.2-6.2.2
+%{?el5:# Tag: rfx}
 ### EL4 ships with xrestop-0.2-4
+%{?el4:# Tag: rfx}
 # ExclusiveDist: el2 el3 el4 el5
 
 %{?el4:%define _without_modxorg 1}

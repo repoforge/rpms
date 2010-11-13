@@ -2,6 +2,9 @@
 # Authority: matthias
 # Upstream: <gnupg-devel$gnupg,org>
 
+### EL6 ships with gpgme-1.1.8-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: GnuPG Made Easy
 Name: gpgme
 Version: 1.1.8

@@ -4,7 +4,13 @@
 # Upstream: <logwatch-bugs$logwatch,org>
 # Upstream: <logwatch-devel$logwatch,org>
 
-# ExcludeDist: el3 el4
+### EL6 ships with logwatch-7.3.6-48.1.el6
+### EL5 ships with logwatch-7.3-8.el5
+### EL4 ships with logwatch-5.2.2-4.el4
+### EL3 ships with logwatch-4.3.2-3.rhel3
+### EL2 ships with logwatch-2.6-2.EL2
+%{?el2:# Tag: rfx}
+# ExclusiveDist: el2
 
 Summary: Log file analysis program
 Name: logwatch

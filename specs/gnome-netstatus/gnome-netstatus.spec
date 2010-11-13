@@ -2,7 +2,9 @@
 # Authority: dag
 # Upstream: Mark McLoughlin <mark$skynet,ie>
 
-# ExcludeDist: el4
+### EL5 ships with gnome-netstatus-2.12.0-5.el5
+### EL4 ships with gnome-netstatus-2.8.0-3
+# ExcludeDist: el4 el5
 
 Summary: Network interface status applet
 Name: gnome-netstatus

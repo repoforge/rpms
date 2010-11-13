@@ -2,7 +2,9 @@
 # Authority: dag
 
 ### EL6 ships with hardlink-1.0-10.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
+### EL5 ships with hardlink-1.0-1.27
+%{?el5:# Tag: rfx}
 
 Summary: Tool to hardlink duplicate files in a directory tree
 Name: hardlink

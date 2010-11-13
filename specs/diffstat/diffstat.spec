@@ -1,8 +1,12 @@
 # $Id$
 # Authority: dag
 
-### RHEL already ships with diffstat
-# Tag: test
+### EL6 ships with diffstat-1.51-2.el6
+### EL5 ships with diffstat-1.41-1.2.3.el5
+### EL4 ships with diffstat-1.31-5
+### EL3 ships with diffstat-1.31-2
+### EL2 ships with diffstat-1.28-1
+# Tag: rfx
 
 Summary: Tool to provide statistics based on the output of diff
 Name: diffstat

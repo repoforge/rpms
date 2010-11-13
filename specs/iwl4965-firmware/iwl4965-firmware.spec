@@ -2,6 +2,8 @@
 # Authority: ned
 # Dist: nodist
 
+### EL6 ships with iwl4965-firmware-228.61.2.24-2.1.el6
+
 %define real_name iwlwifi-4965-ucode
 
 Summary: Firmware for Intel Wireless WiFi Link 4965AGN network adapter

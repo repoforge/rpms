@@ -2,6 +2,8 @@
 # Authority: matthias
 # Upstream: <gqclient-discuss$lists,sf,net>
 
+### EL2 ships with gq-0.4.0-3
+%{?el2:# Tag: rfx}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

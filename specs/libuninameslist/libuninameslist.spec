@@ -1,6 +1,8 @@
 # $Id$
-
 # Authority: dag
+
+### EL6 ships with libuninameslist-20080409-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %define real_version 030116
 
@@ -14,7 +16,6 @@ URL: http://libuninameslist.sourceforge.net/
 
 Source: http://dl.sf.net/libuninameslist/%{name}_src-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 
 %description
 The Unicode consortium provides a file containing annotations
@@ -47,11 +48,8 @@ you will need to install %{name}-devel.
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/*.la
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,7 +57,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING LICENSE
-%_libdir/*.so.*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -68,8 +66,5 @@ you will need to install %{name}-devel.
 #%exclude %{_libdir}/*.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.20030713-0.2
-- Rebuild for Fedora Core 5.
-
 * Mon Jul 28 2003 Dag Wieers <dag@wieers.com> - 0.20030713-0
 - Initial package. (using DAR)

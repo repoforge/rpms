@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libtasn1-2.3-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: This is the ASN.1 library used in GNUTLS
 Name: libtasn1
 Version: 0.3.9

@@ -2,10 +2,11 @@
 # Authority: dag
 # Upstream: <info$littlecms,com>
 
+### EL6 ships with lcms-1.19-1.el6
+### EL5 ships with lcms-1.18-0.1.beta1.el5_3.2
+# DistExclusive: el2 el3 el4
 
 %{?el3:%define _without_python 1}
-%{?rh9:%define _without_python 1}
-%{?rh7:%define _without_python 1}
 %{?el2:%define _without_python 1}
 
 Summary: Open Source color management engine

@@ -1,11 +1,14 @@
 # $Id$
 # Authority: dag
 
+### This package has been imported from EL6
 ### This package replaces base packages
-# Tag: rfb
-
-### This package has been imported from RHEL6 beta2
+### EL5 ships with bison-2.3-2.1
+### EL4 ships with bison-1.875c-2
+### EL3 ships with bison-1.875c-2.EL
+### EL2 ships with bison-1.28-7
 # ExclusiveDist: el2 el3 el4 el5
+# Tag: rfb
 
 Summary: A GNU general-purpose parser generator
 Name: bison

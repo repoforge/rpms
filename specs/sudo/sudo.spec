@@ -2,10 +2,12 @@
 # Authority: dag
 
 # Rationale: Some features of the newer sudo are nice to have (eg. -i)
-
-# Tag: test
-
-### This version of sudo ships with RHEL5
+### EL6 ships with sudo-1.7.2p2-9.el6
+### EL5 ships with sudo-1.7.2p1-9.el5_5
+### EL4 ships with sudo-1.6.7p5-30.1.5
+### EL3 ships with sudo-1.6.7p5-1.2
+### EL2 ships with sudo-1.6.5p2-1.7x.2
+# Tag: rfx
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
 Summary: Allows restricted root access for specified users.

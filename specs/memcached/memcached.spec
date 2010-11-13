@@ -3,7 +3,7 @@
 # Upstream: Brad Fitzpatrick <brad$danga,com>
 
 ### EL6 ships with memcached-1.4.4-3.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 Summary: Distributed memory object caching system
 Name: memcached

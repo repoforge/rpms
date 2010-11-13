@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with augeas-0.7.2-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Configuration API and editing tool
 Name: augeas
 Version: 0.2.2

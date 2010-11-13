@@ -2,7 +2,8 @@
 # Authority: dag
 # Upstream: <bluez-devel$lists,sf,net>
 
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 fc1
+### EL4 ships with bluez-bluefw-1.0-6
+# ExclusiveDist: el2
 
 %define _sbindir /sbin
 

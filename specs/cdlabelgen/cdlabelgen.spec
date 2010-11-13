@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Avinash Chopde <avinash$acm,org>
 
+### EL2 ships with cdlabelgen-1.5.0-9
+%{?el2:# Tag: rfx}
+
 Summary: Generates frontcards and traycards for inserting in CD jewelcases
 Name: cdlabelgen
 Version: 4.1.0

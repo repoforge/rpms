@@ -16,7 +16,7 @@ Group: Applications/System
 URL: http://viewglob.sourceforge.net/
 
 Source: http://dl.sf.net/viewglob/viewglob-%{version}.tar.gz
-Patch: viewglob-2.0.1-default_terminal.patch
+Patch0: viewglob-2.0.1-default_terminal.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bash, gtk2-devel >= 2.4, pkgconfig, autoconf, automake

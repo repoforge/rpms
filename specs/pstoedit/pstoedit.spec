@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with pstoedit-3.45-10.el6
+%{?el6:# Tag: rfx}
+
 Summary: Translates PostScript and PDF graphics into other vector formats
 Name: pstoedit
 Version: 3.50

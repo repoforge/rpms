@@ -2,8 +2,10 @@
 # Authority: dag
 # Upstream: Ross Burton <ross$burtonini,com>
 
-# ExcludeDist: fc3 el4
-
+### EL6 ships with sound-juicer-2.28.1-6.el6
+### EL5 ships with sound-juicer-2.16.0-3.el5
+### EL4 ships with sound-juicer-0.5.14-2.EL
+# ExclusiveDist: el2 el3
 
 Summary: Clean and lean CD ripper
 Name: sound-juicer

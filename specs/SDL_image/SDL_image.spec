@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Sam Latinga <slouken$devolution,com>
 
+### EL2 ships with SDL_image-1.2.0-3
+%{?el2:# Tag: rfx}
+
 Summary: Load images as SDL surfaces
 Name: SDL_image
 Version: 1.2.5

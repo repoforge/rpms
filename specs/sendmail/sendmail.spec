@@ -1,9 +1,13 @@
 # $Id$
-
 # Authority: dag
+
+### EL6 ships with sendmail-8.14.4-8.el6
+### EL5 ships with sendmail-8.13.8-8.el5
+### EL4 ships with sendmail-8.13.1-3.3.el4
+### EL3 ships with sendmail-8.12.11-4.RHEL3.6
+### EL2 ships with sendmail-8.12.11-4.21AS.10
 # ExclusiveDist: rh7 rh6
 # SourceDists: rh7
-
 
 #BuildRequires: sendmail < 8.12
 

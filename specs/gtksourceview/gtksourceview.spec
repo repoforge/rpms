@@ -1,7 +1,10 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc2 fc3 el4
+### EL6 ships with gtksourceview-1.8.5-7.el6.1
+### EL5 ships with gtksourceview-1.8.0-1.fc6
+### EL4 ships with gtksourceview-1.1.0-4
+# ExclusiveDist: el2 el3
 
 Summary: Source code viewer
 Name: gtksourceview

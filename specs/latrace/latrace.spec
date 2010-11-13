@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with latrace-0.5.9-2.el6
+# DistExclusive: el6
+
 Summary: LD_AUDIT feature frontend for glibc 2.4+
 Name: latrace
 Version: 0.5.9

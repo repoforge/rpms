@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL4 ships with ash-0.3.8-20.el4_7.1
+### EL3 ships with ash-0.3.8-16
+### EL2 ships with ash-0.3.7-2
 # ExcludeDist: el2 el3 el4
 
 Summary: A smaller version of the Bourne shell (sh).

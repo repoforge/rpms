@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-paramiko-1.7.5-2.1.el6
+%{?el6:# Tag: rfx}
+
 %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
 
 %define real_name paramiko

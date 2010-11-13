@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <irssi-dev$dragoncat,net>
 
+### EL6 ships with irssi-0.8.15-3.el6
+# DistExcludes: el6
+
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 

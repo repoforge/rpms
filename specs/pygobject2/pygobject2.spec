@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
-
 ### This package fixes bugs in the RHEL 5.2 pygobject2
+### EL6 ships with pygobject2-2.20.0-5.el6
+### EL5 ships with pygobject2-2.12.1-5.el5
+%{?el5:# Tag: rfx}
 # ExclusiveDist: el5
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')

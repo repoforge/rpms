@@ -1,38 +1,32 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with fontforge-20090622-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
-%{!?dtag:%define _with_modxorg 1}
-%{?fc7: %define _with_modxorg 1}
-%{?el5: %define _with_modxorg 1}
-%{?fc6: %define _with_modxorg 1}
-%{?fc5: %define _with_modxorg 1}
-
-%{?rh7:%define _without_freedesktop 1}
-%{?el2:%define _without_freedesktop 1}
+%{?el4:%define _without_modxorg 1}
+%{?el3:%define _without_modxorg 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Outline and bitmap font editor
 Name: fontforge
-%define real_version 20061025
-Version: 0.0.20061025
+%define real_version 20080828
+Version: 0.0.20080828
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Publishing
 URL: http://fontforge.sourceforge.net/
 
 Source: http://dl.sf.net/fontforge/fontforge_full-%{real_version}.tar.bz2
-Patch1: fontforge-20061025-usFirstCharIndex.patch
-Patch2: fontforge-20061025-fsSel.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel, libuninameslist-devel
 BuildRequires: libjpeg-devel, libpng-devel, libtiff-devel, libungif-devel
 BuildRequires: libxml2-devel
-%{?_with_modxorg:BuildRequires: libX11-devel, libSM-devel, libXi-devel}
-%{!?_with_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_modxorg:BuildRequires: libX11-devel, libSM-devel, libXi-devel}
+%{?_without_modxorg:BuildRequires: XFree86-devel}
+BuildRequires: desktop-file-utils
 
 Obsoletes: pfaedit <= %{version}-%{release}
 Provides: pfaedit = %{version}-%{release}
@@ -45,8 +39,6 @@ fonts. It supports a range of font formats, including PostScript
 
 %prep
 %setup -n %{name}-%{real_version}
-%patch1 -p1 -b .usFirstCharIndex
-%patch2 -p1 -b .fsSel
 
 %{__perl} -pi.orig -e 's|-rpath \$\(libdir\)||' fontforge/Makefile*.in
 %{__perl} -pi.orig -e 's|("mozilla", "opera",)|"htmlview", "firefox", $1|' fontforge/uiutil.c
@@ -67,13 +59,12 @@ EOF
 %build
 export LIBS="-lgif"
 %configure \
-    --with-freetype-bytecode="no" \
-    --with-regular-link
+    --with-freetype-bytecode="no"
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang FontForge
 
 %if %{?_without_freedesktop:1}0
@@ -119,6 +110,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %exclude %{_libdir}/libgunicode.so
 
 %changelog
+* Sat Sep 20 2008 Dag Wieers <dag@wieers.com> - 0.0.20080828-1
+- Updated to release 20080828.
+
 * Sat May 10 2008 Dag Wieers <dag@wieers.com> - 0.0.20061025-1
 - Updated to release 20061025.
 

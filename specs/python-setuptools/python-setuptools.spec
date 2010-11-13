@@ -1,6 +1,10 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-setuptools-0.6.10-3.el6
+### EL5 ships with python-setuptools-0.6c5-2.el5
+# ExclusiveDist: el2 el3 el4
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define real_name setuptools

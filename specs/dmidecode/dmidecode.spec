@@ -3,6 +3,8 @@
 # Rationale: Includes all tools except dmidecode which ships with kernel-utils
 
 ### EL5+ includes biosdecode, ownership and vpddecode inside dmidecode package
+### EL6 ships with dmidecode-2.10-1.30.1.el6
+### EL5 ships with dmidecode-2.10-3.el5
 # ExclusiveDist: el2 el3 el4
 
 Summary: Tool to analyse BIOS DMI data

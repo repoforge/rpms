@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: <list$epicsol,org>
 
+### EL5 ships with epic-2.4-1
+# ExcludeDist: el5
+
 Summary: IrcII chat client
 Name: epic
 Version: 2.2

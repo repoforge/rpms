@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+### EL5 ships with squirrelmail-1.4.8-5.el5_4.10
+### EL4 ships with squirrelmail-1.4.8-5.el4_8.8
+### EL3 ships with squirrelmail-1.4.8-16.el3
+# ExclusiveDist: el2 el6
+
 Summary: SquirrelMail webmail client
 Name: squirrelmail
 Version: 1.2.10

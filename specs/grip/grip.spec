@@ -2,6 +2,9 @@
 # Authority: matthias
 # Upstream: Mike Oliphant <grip$nostatic,org>
 
+### EL2 ships with grip-2.96-1.3
+%{?el2:# Tag: rfx}
+
 Summary: Graphical CD player, CD ripper and encoder frontend
 Name: grip
 Version: 3.2.0

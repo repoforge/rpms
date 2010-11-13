@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-mutagen-1.16-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
 
 %define real_name mutagen

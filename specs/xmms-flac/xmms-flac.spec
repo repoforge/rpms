@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL4 ships with xmms-flac-1.1.0-7.el4_5.2
+%{?el4:# Tag: rfx}
 
 %{!?dtag:%define _without_gettextdevel 1}
 %{?fc2:  %define _without_gettextdevel 1}

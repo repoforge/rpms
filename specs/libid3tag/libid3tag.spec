@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### EL6 ships with libid3tag-0.15.1b-11.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Library for reading and writing ID3v1 and ID3v2 tags
 Name: libid3tag
 Version: 0.15.1b
@@ -17,7 +20,6 @@ Conflicts: libmad < 0.15.1b
 A library for reading and (eventually) writing ID3 tags, both ID3v1 and the
 various versions of ID3v2.
 
-
 %package devel
 Summary: Header and library for developing programs that will use libid3tag
 Group: Development/Libraries
@@ -29,7 +31,6 @@ various versions of ID3v2.
 
 This package contains the header file as well as the static library needed
 to develop programs that will use libid3tag for ID3 tar reading and writing.
-
 
 %prep
 %setup
@@ -49,28 +50,20 @@ Libs: -L%{_libdir} -lid3tag -lz
 Cflags: -I%{_includedir}
 EOF
 
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
 %makeinstall
 %{__install} -Dp -m 644 id3tag.pc %{buildroot}%{_libdir}/pkgconfig/id3tag.pc
 
-
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -80,11 +73,10 @@ EOF
 %files devel
 %defattr(-, root, root, 0755)
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
-
+%exclude %{_libdir}/*.la
 
 %changelog
 * Mon Aug 30 2004 Matthias Saou <http://freshrpms.net/> 0.15.1b-3

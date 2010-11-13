@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with cleanfeed-0.95.7b-12
+# ExcludeDist: el2
+
 Summary: Spam filter for Usenet news servers
 Name: cleanfeed
 Version: 0.95.7b

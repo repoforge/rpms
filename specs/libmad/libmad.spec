@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+### EL2 ships with libmad-0.14.2b-3
+# ExcludeDist: el2
+
 Summary: MPEG audio decoding library
 Name: libmad
 Version: 0.15.1b

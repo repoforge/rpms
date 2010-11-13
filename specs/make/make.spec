@@ -1,11 +1,14 @@
 # $Id$
 # Authority: dag
 
-### This package replaces base packages
-# Tag: rfb
-
-### This package has been imported from RHEL6 beta2 (but same version is in RHEL5)
+### This package has been imported from EL6
+### EL6 ships with make-3.81-19.el6
+### EL5 ships with make-3.81-3.el5
+### EL4 ships with make-3.80-7.EL4
+### EL3 ships with make-3.79.1-17.1
+### EL2 ships with make-3.79.1-8
 # ExclusiveDist: el2 el3 el4
+# Tag: rfb
 
 # -*- coding: utf-8 -*-
 Summary: A GNU tool which simplifies the build process for users

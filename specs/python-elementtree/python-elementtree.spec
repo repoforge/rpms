@@ -1,8 +1,8 @@
 # $Id$
 # Authority: dag
 
-### EL5 ships with python-elementtree 1.2.6-5
-# ExclusiveDist: el2 rh7 rh9 el3 el4
+### EL5 ships with python-elementtree-1.2.6-5
+# ExcludeDist: el5
 
 #define python_abi %(%{__python} -c 'import sys; print ".".join(sys.version.split(".")[:2])')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')

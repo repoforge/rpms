@@ -2,6 +2,9 @@
 # Authority: yury
 # Upstream: <bazaar$lists,canonical,com>
 
+### EL6 ships with bzr-2.1.1-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 # All package versioning is found here:

@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
+### EL6 ships with startup-notification-0.10-2.1.el6
+### EL5 ships with startup-notification-0.8-4.1
+### EL4 ships with startup-notification-0.7-1
+### EL3 ships with startup-notification-0.5-1
+# ExclusiveDist: el2
 
 Summary: Library for tracking application startup
 Name: startup-notification

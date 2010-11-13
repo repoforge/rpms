@@ -2,6 +2,11 @@
 # Authority: dries
 # Upstream: Björn JACKE <bj$sarnet,de>
 
+### EL5 ships with convmv-1.10-1.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with convmv-1.08-3.EL
+%{?el4:# Tag: rfx}
+
 Summary: Convert filenames to a different encoding
 Name: convmv
 Version: 1.14

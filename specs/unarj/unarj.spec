@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with unarj-2.43-13
+%{?el2:# Tag: rfx}
+
 %define real_version 2.63a
 
 Summary: Uncompressor for .arj format archive files

@@ -1,13 +1,14 @@
 # $Id$
 # Authority: dag
 
+### EL4 ships with xmms-1.2.10-9
+%{?el4:# Tag: rfx}
+### EL3 ships with xmms-1.2.7-22.1.p
+%{?el3:# Tag: rfx}
+### EL2 ships with xmms-1.2.5-8.p
+%{?el2:# Tag: rfx}
 
 %{?el5:%define _without_arts 1}
-
-%{?fc2:%define _without_mikmod 1}
-
-%{?fc1:%define _without_alsa 1}
-%{?fc1:%define _without_mikmod 1}
 
 %{?el3:%define _without_alsa 1}
 

@@ -1,0 +1,21 @@
+--- hexedit/Makefile.in.orig	2002-06-18 14:06:55.000000000 +0200
++++ hexedit/Makefile.in	2002-06-18 14:08:29.000000000 +0200
+@@ -41,6 +41,6 @@
+ 
+ install: $(PRODUCT)
+ 	$(INSTALL) -d -m 755 $(bindir)
+-	$(INSTALL) -s -m 755 $(PRODUCT) $(bindir)
++	$(INSTALL) -m 755 $(PRODUCT) $(bindir)
+ 	$(INSTALL) -d -m 755 $(mandir)/man1
+ 	$(INSTALL) -m 644 $(PRODUCT).1 $(mandir)/man1
+--- hexedit/Makefile-build.in.orig	2002-06-18 14:08:36.000000000 +0200
++++ hexedit/Makefile-build.in	2002-06-18 14:09:37.000000000 +0200
+@@ -23,7 +23,7 @@
+ dynamic:
+ 	$(MAKE) $(PRODUCT)
+ 	install -d -m 755 usr/bin
+-	install -s -m 755 $(PRODUCT) usr/bin
++	install -m 755 $(PRODUCT) usr/bin
+ 	install -d -m 755 usr/man/man1
+ 	install -m 644 $(PRODUCT).1 usr/man/man1
+ 	tar cfz $(DYNAMICBIN) usr

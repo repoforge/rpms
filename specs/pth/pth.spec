@@ -3,7 +3,8 @@
 # Upstream: Ralf S. Engelschall <rse$engelschall,com>
 
 ### EL6 ships with pth-2.0.7-9.3.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with pth-2.0.7-6.el5
+# ExclusiveDist: el2 el3 el4
 
 Summary: GNU Portable Threads.
 Name: pth

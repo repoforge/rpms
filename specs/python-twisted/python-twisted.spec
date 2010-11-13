@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
-# Tag: test
+
+### EL6 ships with python-twisted-8.2.0-3.1.el6
+# Tag: rft
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 

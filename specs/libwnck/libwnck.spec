@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc1 fc2 fc3 el4
+### EL6 ships with libwnck-2.28.0-2.el6
+### EL5 ships with libwnck-2.16.0-4.fc6
+### EL4 ships with libwnck-2.8.1-7.el4
+### EL3 ships with libwnck-2.2.3-1.rhel3
+# ExclusiveDist: el2
 
 Summary: Library for writing pagers and taskslists
 Name: libwnck

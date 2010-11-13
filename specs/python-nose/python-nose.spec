@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with python-nose-0.10.4-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: Discovery-based unittest extension for Python

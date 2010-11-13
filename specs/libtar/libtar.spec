@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Mark D. Roth <roth$feep,net>
 
+### EL6 ships with libtar-1.2.11-16.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: C library for manipulating POSIX tar files.
 Name: libtar
 Version: 1.2.11

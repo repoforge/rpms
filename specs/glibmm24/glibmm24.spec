@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with glibmm24-2.22.1-1.el6
+# DistExclusive: el2 el3 el4 el5
+
 Summary: C++ interface for GTK2 (a GUI library for X)
 Name: glibmm24
 Version: 2.4.8
