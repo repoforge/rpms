@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with chrpath-0.13-7.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Change the dynamic library load path (rpath) of binaries
 Name: chrpath
 Version: 0.13

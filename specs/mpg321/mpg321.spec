@@ -9,7 +9,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://mpg321.sourceforge.net/
 Source: http://dl.sf.net/mpg321/mpg321-%{version}.tar.gz
-Patch: mpg321-0.2.10-printf.patch
+Patch0: mpg321-0.2.10-printf.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libao-devel >= 0.8.0, libmad-devel >= 0.14.2b, libid3tag-devel
 BuildRequires: zlib-devel
@@ -25,7 +25,7 @@ mpg123.
 
 %prep
 %setup
-%patch -p1 -b .printf
+%patch0 -p1 -b .printf
 
 
 %build
