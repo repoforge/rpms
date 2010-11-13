@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with watchdog-5.5-7.1.el6
+### EL5 ships with watchdog-5.6-1.el5
+# ExclusiveDist: el2 el3 el4
 
 Summary: Software watchdog
 Name: watchdog
