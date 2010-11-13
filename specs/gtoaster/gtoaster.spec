@@ -2,8 +2,8 @@
 # Authority: dag
 # Upstream: <A,Eckleder$bigfoot,com>
 
-### Goes into a loop with fc2/x86_64 (Please investigate)
-##ExcludeDist: fc2i fc2a
+### EL2 ships with gtoaster-1.0beta2-3.p
+%{?el2:# Tag: rfx}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
