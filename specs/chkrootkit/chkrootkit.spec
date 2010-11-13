@@ -18,7 +18,7 @@ URL: http://www.chkrootkit.org/
 
 Source: ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit-%{version}.tar.gz
 Source1: chkrootkit.png
-Patch: chkrootkit-0.44-getCMD.patch
+Patch0: chkrootkit-0.44-getCMD.patch
 Patch1: chkrootkit-0.44-inetd.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,7 +31,7 @@ chkrootkit is a tool to locally check for signs of a rootkit.
 %prep
 %setup -q
 
-%patch -p1 -b .getCMD
+%patch0 -p1 -b .getCMD
 %patch1 -p1 -b .inetd
 
 %{__cat} <<EOF >chkrootkit.apps
