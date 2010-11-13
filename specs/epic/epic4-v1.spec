@@ -34,7 +34,7 @@ you to chat with other people.
 
 %prep
 %setup -n epic4-%{version} -a 1
-%patch -p0 -b .default
+%patch0 -p0 -b .default
 %patch1 -p1 -b .gcc33
 %patch2 -p0 -b .alloca
 
