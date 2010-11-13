@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with gnome-vfsmm26-2.26.0-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name gnome-vfsmm
 
 Summary: C++ wrapper for gnome-vfs

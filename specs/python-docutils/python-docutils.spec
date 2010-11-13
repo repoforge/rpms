@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: David Goodger <goodger$python,org>
 
+### EL6 ships with python-docutils-0.6-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define real_name docutils

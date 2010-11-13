@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc2 fc3 el4
+### EL6 ships with libsoup-2.28.2-1.el6
+### EL5 ships with libsoup-2.2.98-2.el5_3.1
+### EL4 ships with libsoup-2.2.1-4.el4.1
+### EL3 ships with libsoup-1.99.26-1
+# ExclusiveDist: el2
 
 Summary: HTTP library implementation
 Name: libsoup

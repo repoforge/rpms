@@ -1,6 +1,16 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with lapack-3.2.1-4.el6
+### EL5 ships with lapack-3.0-37.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with lapack-3.0-25.1
+%{?el4:# Tag: rfx}
+### EL3 ships with lapack-3.0-20
+%{?el3:# Tag: rfx}
+### EL2 ships with lapack-3.0-12
+%{?el2:# Tag: rfx}
+
 Summary: LAPACK libraries for numerical linear algebra.
 Name: lapack
 Version: 3.1.1

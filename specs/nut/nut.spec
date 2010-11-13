@@ -2,6 +2,9 @@
 # Authority: yury
 # Upstream: Nut-packaging list <nut-packaging$lists,alioth,debian,org>
 
+### EL2 ships with nut-0.45.0-3
+%{?el2:# Tag: rfx}
+
 %define nut_uid 57
 %define nut_gid 57
 

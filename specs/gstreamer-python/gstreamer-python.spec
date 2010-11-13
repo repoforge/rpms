@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el5
+### EL6 ships with gstreamer-python-0.10.16-1.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 

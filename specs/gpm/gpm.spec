@@ -1,7 +1,12 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+### EL6 ships with gpm-1.20.6-11.el6
+### EL5 ships with gpm-1.20.1-74.1
+### EL4 ships with gpm-1.20.1-71.RHEL4
+### EL3 ships with gpm-1.19.3-27.2
+### EL2 ships with gpm-1.19.3-20
+# Tag: rft
 
 ### This defines the library version that this package builds.
 %define LIBVER 1.19.0

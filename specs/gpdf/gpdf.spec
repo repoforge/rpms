@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: fc2 fc3 el4
+### EL4 ships with gpdf-2.8.2-7.7.2.el4_8.7
+# ExcludeDist: el4
 
 Summary: Grpahical PDF viewer
 Name: gpdf

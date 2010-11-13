@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with iso-codes-3.16-2.el6
+### EL5 ships with iso-codes-0.53-1
+%{?el5:# Tag: rfx}
+# DistExclusives: el2 el3 el4 el5
+
 Summary: ISO code lists and translations
 Name: iso-codes
 Version: 1.0a
@@ -16,7 +21,7 @@ BuildArch: noarch
 BuildRequires: gettext
 
 %description
-This package provides the ISO-639 Language code list, the ISO-3166 
+This package provides the ISO-639 Language code list, the ISO-3166
 Territory code list, and ISO-3166-2 sub-territory lists, and all their 
 translations in gettext .po form.
 

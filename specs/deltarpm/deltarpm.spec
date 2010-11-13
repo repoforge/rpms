@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dries
 
+### EL6 ships with deltarpm-3.5-0.5.20090913git.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Create deltas between rpms
 Name: deltarpm
 Version: 3.3

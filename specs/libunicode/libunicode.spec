@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL2 ships with libunicode-0.4-6
+%{?el2:# Tag: rfx}
+
 Summary: Unicode manipulation library
 Name: libunicode
 Version: 0.7

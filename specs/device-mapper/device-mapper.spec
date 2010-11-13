@@ -1,7 +1,10 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: rh6 el2 rh7 rh8 rh9 el3 fc1
+### EL6 ships with device-mapper-devel-1.02.53-8.el6_0.2
+### EL5 ships with device-mapper-1.02.39-1.el5_5.2
+### EL4 ships with device-mapper-1.02.28-2.el4_8.1
+# ExclusiveDist: el2 el3
 
 %define _sbindir /sbin
 %define _libdir /lib

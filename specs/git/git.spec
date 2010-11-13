@@ -2,7 +2,7 @@
 # Authority: dag
 
 ### EL6 ships with git-1.7.1-2.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

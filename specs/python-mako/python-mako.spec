@@ -1,6 +1,9 @@
 # $Id$
 # Authority: arrfab
 
+### EL6 ships with python-mako-0.3.4-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Name: python-mako
@@ -32,7 +35,7 @@ and flexible models available, while also maintaining close ties to Python
 calling and scoping semantics.
 
 %prep
-%setup -q -n Mako-%{version}
+%setup -n Mako-%{version}
 
 %build
 %{__python} setup.py build

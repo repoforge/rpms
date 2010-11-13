@@ -1,8 +1,13 @@
 # $Id$
-
 # Authority: dag
+
+### EL6 ships with e2fsprogs-1.41.12-3.el6
+### EL5 ships with e2fsprogs-1.39-23.el5_5.1
+### EL4 ships with e2fsprogs-1.35-12.24.el4
+### EL3 ships with e2fsprogs-1.32-15.4
+### EL2 ships with e2fsprogs-1.26-1.73
 # ExclusiveDist: rh7
-# Tag: test
+# Tag: rft
 
 %define	_root_sbindir	/sbin
 %define	_root_libdir	/%{_lib}

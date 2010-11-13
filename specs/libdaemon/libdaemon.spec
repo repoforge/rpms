@@ -3,7 +3,8 @@
 # Upstream: Lennart Poettering <mzqnrzba$0pointer,de>
 
 ### EL6 ships with libdaemon-0.14-1.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with libdaemon-0.10-5.el5
+# ExclusiveDist: el2 el3 el4
 
 #{?el4:%define _without_lynx 1}
 #{?el3:%define _without_lynx 1}

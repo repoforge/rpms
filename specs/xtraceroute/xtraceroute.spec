@@ -4,30 +4,15 @@
 
 # Screenshot: http://www.dtek.chalmers.se/~d3august/xt/bigshot.jpg
 
+### EL2 ships with xtraceroute-0.9.0-3
+%{?el2:# Tag: rfx}
 
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
-%{?fc1:%define _without_xorg 1}
 %{?el3:%define _without_xorg 1}
-%{?rh9:%define _without_xorg 1}
-%{?rh8:%define _without_xorg 1}
-%{?rh7:%define _without_xorg 1}
 %{?el2:%define _without_xorg 1}
-%{?rh6:%define _without_xorg 1}
-%{?yd3:%define _without_xorg 1}
-
-# Tag: test
-# ExcludeDist: fc1
 
 Summary: Graphical version of the traceroute program
 Name: xtraceroute

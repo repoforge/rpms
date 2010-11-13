@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: Jess Thrysoee
 
+### EL6 ships with libedit-2.11-4.20080712cvs.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define tagnum 3.0
 
 Summary: NetBSD Editline library
@@ -15,9 +18,13 @@ URL: http://www.thrysoee.dk/editline/
 Source: http://www.thrysoee.dk/editline/libedit-%{version}-3.0.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils, gcc, autoconf, make, libtool
+BuildRequires: autoconf
+BuildRequires: binutils
+BuildRequires: gcc
 BuildRequires: glibc-devel
 BuildRequires: groff
+BuildRequires: libtool
+BuildRequires: make
 BuildRequires: ncurses-devel
 
 %description

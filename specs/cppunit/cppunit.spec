@@ -1,6 +1,9 @@
 # $Id$
 # Authority: hadams
 
+### EL6 ships with cppunit-1.12.1-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: C++ unit testing framework
 Name: cppunit
 Version: 1.12.0

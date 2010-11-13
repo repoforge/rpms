@@ -3,6 +3,9 @@
 # Upstream: Jan Akkerman <jan$it,uu,se>
 # Upstream: <html2ps-users-request$list,it,uu,se>
 
+### EL6 ships with html2ps-1.0-0.4.b5.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: HTML to PostScript converter
 Name: html2ps
 %define real_version 1.0b5

@@ -1,8 +1,12 @@
 # $Id$
 # Authority: dag
 
-
-# Tag: test
+### EL4 ships with lilo-21.4.4-26.1
+%{?el4:# Tag: rfx}
+### EL3 ships with lilo-21.4.4-23.1
+%{?el3:# Tag: rfx}
+### EL2 ships with lilo-21.4.4-14
+%{?el2:# Tag: rfx}
 
 Summary: The boot loader for Linux and other operating systems
 Name: lilo
@@ -16,7 +20,7 @@ Source: http://home.san.rr.com/johninsd/pub/linux/lilo/lilo-%{version}.src.tar.g
 Source2: keytab-lilo.c
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Exclusivearch: i386 x86_64
+Exclusivearch: %{ix86} x86_64
 
 BuildRequires: tetex-latex, tetex-dvips, fileutils, dosfstools
 BuildRequires: dev86 >= 0.16.10

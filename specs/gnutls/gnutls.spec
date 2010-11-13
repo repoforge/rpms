@@ -1,7 +1,10 @@
 # $Id$
 # Authority: matthias
 
-# ExcludeDist: el4
+### EL6 ships with gnutls-2.8.5-4.el6
+### EL5 ships with gnutls-1.4.1-3.el5_4.8
+### EL4 ships with gnutls-1.0.20-4.el4_8.7
+# ExclusiveDist: el2 el3
 
 Summary: The GNU Transport Layer Security library
 Name: gnutls

@@ -1,7 +1,9 @@
 # $Id$
 # Authority: dag
 
-##ExcludeDist: fc2
+### EL6 ships with gob2-2.0.16-5.el6
+### EL5 ships with gob2-2.0.14-1.1
+# ExclusiveDist: el2 el3 el4
 
 Summary: The GTK+ Object Builder, a preprocessor for making GObjects with inline C code
 Name: gob2
@@ -15,7 +17,9 @@ Source: http://ftp.5z.com/pub/gob/gob2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### gob2 2.0.9 was the last one to generate glib 2.2 compatible code
-BuildRequires: glib2-devel >= 2.4.0, flex, bison
+BuildRequires: bison
+BuildRequires: flex
+BuildRequires: glib2-devel >= 2.4.0
 
 %description
 GOB is a simple preprocessor for making GTK+ objects.  It makes objects from a
@@ -31,7 +35,7 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -45,9 +49,6 @@ generated files.  Syntax is somewhat inspired by java and yacc.
 %{_datadir}/aclocal/gob2.m4
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.0.14-1.2
-- Rebuild for Fedora Core 5.
-
 * Fri Jan 06 2006 Dag Wieers <dag@wieers.com> - 2.0.14-1
 - Updated to release 2.0.14.
 

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libmpcdec-1.2.6-6.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Musepack audio decoding library
 Name: libmpcdec
 Version: 1.2.6

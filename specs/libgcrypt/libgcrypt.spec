@@ -2,7 +2,10 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-# ExcludeDist: fc1 fc2 fc3 el4
+### EL6 ships with libgcrypt-1.4.5-3.el6
+### EL5 ships with libgcrypt-1.4.4-5.el5
+### EL4 ships with libgcrypt-1.2.0-3
+# ExclusiveDist: el2 el3
 
 Summary: GNU cryptographic library
 Name: libgcrypt

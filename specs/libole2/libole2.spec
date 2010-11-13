@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+### EL3 ships with libole2-0.2.4-6
+# ExcludeDist: el3
+### EL2 ships with libole2-0.2.3-1
+%{?el2:# Tag: rfx}
+
 Summary: Structured Storage OLE2 library
 Name: libole2
 Version: 0.2.4

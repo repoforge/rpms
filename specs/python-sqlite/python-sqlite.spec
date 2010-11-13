@@ -2,7 +2,9 @@
 # Authority: dag
 # Upstream: <pysqlite-devel$lists,sf,net>
 
-# ExcludeDist: el4
+### EL5 ships with python-sqlite-1.1.7-1.2.1
+%{?el5:# Tag: rfx}
+# ExclusiveDist: el5
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 

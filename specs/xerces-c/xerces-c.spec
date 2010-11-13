@@ -1,6 +1,9 @@
 # $Id$
 # Authority: leet
 
+### EL6 ships with xerces-c-3.0.1-20.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_version 2_7_0
 
 Summary: Validating XML Parser

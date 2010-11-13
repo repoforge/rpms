@@ -2,22 +2,25 @@
 # Authority: yury
 # Upstream: David Mansfield <cvsps$dm,cobite,com>
 
-Name:           cvsps
-Version:        2.1
-Release:        6%{?dist}
-Summary:        Patchset tool for CVS
+### EL6 ships with cvsps-2.2-0.6.b1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
-Group:          Development/Tools
-License:        GPL
-URL:            http://www.cobite.com/cvsps/
-Source0:        http://www.cobite.com/cvsps/%{name}-%{version}.tar.gz
-Patch0:         cvsps-2.1-cflags.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+Summary: Patchset tool for CVS
+Name: cvsps
+Version: 2.1
+Release: 6%{?dist}
+Group: Development/Tools
+License: GPL
+URL: http://www.cobite.com/cvsps/
 
-BuildRequires:  zlib-devel
+Source0: http://www.cobite.com/cvsps/%{name}-%{version}.tar.gz
+Patch0: cvsps-2.1-cflags.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: zlib-devel
 # Requires cvs only with --no-cvs-direct, but I cannot imagine this dep
 # being a problem on systems where cvsps will be installed...
-Requires:       cvs
+Requires: cvs
 
 %description
 CVSps is a program for generating 'patchset' information from a CVS
@@ -29,7 +32,7 @@ cvs tracks revision information, it is often difficult to see what
 changes were committed 'atomically' to the repository.
 
 %prep
-%setup -q
+%setup
 %patch0 -p1 -b .cflags
 
 %build

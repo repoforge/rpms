@@ -1,0 +1,32 @@
+diff -up automake-1.11.1/tests/Makefile.am.novala automake-1.11.1/tests/Makefile.am
+--- automake-1.11.1/tests/Makefile.am.novala	2010-02-19 13:33:06.000000000 +0100
++++ automake-1.11.1/tests/Makefile.am	2010-02-19 13:33:13.000000000 +0100
+@@ -703,12 +703,6 @@ unused.test \
+ upc.test \
+ upc2.test \
+ upc3.test \
+-vala.test \
+-vala1.test \
+-vala2.test \
+-vala3.test \
+-vala4.test \
+-vala5.test \
+ vars.test \
+ vars3.test \
+ vartar.test \
+diff -up automake-1.11.1/tests/Makefile.in.novala automake-1.11.1/tests/Makefile.in
+--- automake-1.11.1/tests/Makefile.in.novala	2010-02-19 13:33:22.000000000 +0100
++++ automake-1.11.1/tests/Makefile.in	2010-02-19 13:33:26.000000000 +0100
+@@ -937,12 +937,6 @@ unused.test \
+ upc.test \
+ upc2.test \
+ upc3.test \
+-vala.test \
+-vala1.test \
+-vala2.test \
+-vala3.test \
+-vala4.test \
+-vala5.test \
+ vars.test \
+ vars3.test \
+ vartar.test \

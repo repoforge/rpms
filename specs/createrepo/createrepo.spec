@@ -5,7 +5,9 @@
 # ExcludeDist: el2 rh7 rh9 el3 el4
 
 ### EL6 ships with createrepo-0.9.8-4.el6
+### EL5 ships with createrepo-0.4.11-3.el5
 # ExclusiveDist: el5
+# Tag: rfx
 
 # Python name and version, use "--define 'python python2'"
 %{!?python: %{expand: %%define python python}}

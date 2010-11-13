@@ -1,11 +1,14 @@
 # $Id$
 # Authority: dag
 
-### This package replaces base packages
-# Tag: rfb
-
-### This package has been imported from RHEL6 beta2
+### This package has been imported from EL6
+### EL6 ships with flex-2.5.35-8.el6
+### EL5 ships with flex-2.5.4a-41.fc6
+### EL4 ships with flex-2.5.4a-33
+### EL3 ships with flex-2.5.4a-29
+### EL2 ships with flex-2.5.4a-15
 # ExclusiveDist: el2 el3 el4 el5
+# Tag: rfb
 
 Summary: A tool for creating scanners (text pattern recognizers)
 Name: flex

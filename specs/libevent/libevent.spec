@@ -2,18 +2,19 @@
 # Authority: dag
 # Upstream: Niels Provos <provos$citi,umich,edu>
 
-### EL5 ships with libevent 1.1a-3.2.1
+### EL6 ships with libevent-1.4.13-1.el6
+### EL5 ships with libevent-1.4.13-1
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
 Summary: Abstract asynchronous event notification library
 Name: libevent
-Version: 1.5c
+Version: 1.3b
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://monkey.org/~provos/libevent/
 
-Source: http://www.citi.umich.edu/u/provos/honeyd/honeyd-%{version}.tar.gz
+Source: http://monkey.org/~provos/libevent-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -40,7 +41,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -67,14 +68,10 @@ you will need to install %{name}-devel.
 %{_includedir}/evdns.h
 %{_includedir}/event.h
 %{_includedir}/evhttp.h
-%{_libdir}/libevent.a
-%exclude %{_libdir}/libevent.la
 %{_libdir}/libevent.so
+%exclude %{_libdir}/libevent.la
 
 %changelog
-* Tue May 29 2007 Dag Wieers <dag@wieers.com> - 1.5c-1
-- Updated to release 1.5c.
-
 * Mon Mar 05 2007 Dag Wieers <dag@wieers.com> - 1.3b-1
 - Updated to release 1.3b.
 

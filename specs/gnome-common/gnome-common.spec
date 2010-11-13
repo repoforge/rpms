@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el5
+### EL6 ships with gnome-common-2.28.0-1.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 Summary: Useful things common to building gnome packages
 Name: gnome-common

@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with dash-0.5.5.1-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define _bindir /bin
 
 Summary: Small POSIX-compliant shell

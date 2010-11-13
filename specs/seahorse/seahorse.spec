@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with seahorse-2.28.1-4.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: GNOME gnupg interface
 Name: seahorse
 Version: 0.8
@@ -30,7 +33,7 @@ It uses gpgme as the backend.
 
 %build
 %configure \
-	--disable-schemas-install
+    --disable-schemas-install
 %{__make} %{?_smp_mflags}
 
 %install
@@ -42,13 +45,13 @@ export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_localstatedir}/scrollkeeper
 %{__rm} -f %{buildroot}%{_libdir}/bonobo/*.a \
-		%{buildroot}%{_libdir}/bonobo/*.la
+        %{buildroot}%{_libdir}/bonobo/*.la
 %{__rm} -Rf %{buildroot}%{_datadir}/mime/XMLnamespaces \
-	%{buildroot}%{_datadir}/mime/aliases \
-	%{buildroot}%{_datadir}/mime/globs \
-	%{buildroot}%{_datadir}/mime/magic \
-	%{buildroot}%{_datadir}/mime/subclasses \
-	%{buildroot}%{_datadir}/mime/application
+    %{buildroot}%{_datadir}/mime/aliases \
+    %{buildroot}%{_datadir}/mime/globs \
+    %{buildroot}%{_datadir}/mime/magic \
+    %{buildroot}%{_datadir}/mime/subclasses \
+    %{buildroot}%{_datadir}/mime/application
 
 %clean
 %{__rm} -rf %{buildroot}

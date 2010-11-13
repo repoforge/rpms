@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with wavpack-4.60-1.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Completely open audiocodec
 Name: wavpack
 Version: 4.50.1

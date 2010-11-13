@@ -2,6 +2,8 @@
 # Authority: matthias
 
 ### EL6 ships with speex-1.2-0.12.rc1.1.el6
+### EL5 ships with speex-1.0.5-4.el5_1.1
+### EL4 ships with speex-1.0.4-4.el4_6.1
 # ExclusiveDist: el2 el3
 
 Summary: Open-source, patent-free speech codec
@@ -39,9 +41,9 @@ Speex development files.
 %build
 export CFLAGS="%{optflags} -DRELEASE"
 %configure \
-	--enable-shared \
-	--enable-static \
-	--with-ogg-libraries="%{_libdir}"
+    --enable-shared \
+    --enable-static \
+    --with-ogg-libraries="%{_libdir}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,21 +59,21 @@ export CFLAGS="%{optflags} -DRELEASE"
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING doc/manual.pdf NEWS README
+%doc %{_mandir}/man1/speexdec.1*
+%doc %{_mandir}/man1/speexenc.1*
 %{_bindir}/speexdec
 %{_bindir}/speexenc
 %{_libdir}/libspeex.so.*
-%{_mandir}/man1/speexdec.1*
-%{_mandir}/man1/speexenc.1*
 
 %files devel
 %defattr(-, root, root, 0755)
+%{_datadir}/aclocal/speex.m4
 %{_includedir}/*.h
 %{_includedir}/speex/
 %{_libdir}/libspeex.a
-%exclude %{_libdir}/libspeex.la
 %{_libdir}/libspeex.so
 %{_libdir}/pkgconfig/speex.pc
-%{_datadir}/aclocal/speex.m4
+%exclude %{_libdir}/libspeex.la
 
 %changelog
 * Wed Jul 21 2004 Dag Wieers <dag@wieers.com> - 1.0.5-1

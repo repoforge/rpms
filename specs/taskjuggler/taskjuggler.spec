@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Chris Schlaeger <cs$kde,org>
 
+### EL6 ships with taskjuggler-2.4.3-5.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: Project management tool
 Name: taskjuggler
 Version: 2.4.0

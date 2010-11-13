@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with ipmitool-1.8.11-6.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 ### FIXME: Added included sysv scripts.
 
 Summary: Utility for IPMI control
@@ -34,8 +37,8 @@ and setting LAN configuration, and chassis power control.
 
 %build
 %configure \
-	--program-prefix="%{?_program_prefix}" \
-	--with-kerneldir
+    --program-prefix="%{?_program_prefix}" \
+    --with-kerneldir
 %{__make} %{?_smp_mflags}
 
 %install

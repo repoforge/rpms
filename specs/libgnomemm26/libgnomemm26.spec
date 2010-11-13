@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with libgnomemm26-2.28.0-2.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name libgnomemm
 
 Summary: C++ wrapper for Gnome libs

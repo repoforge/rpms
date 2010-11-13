@@ -5,7 +5,11 @@
 # Screenshot: http://www.memtest.org/pics/i875-big.gif
 
 ### EL6 ships with memtest86+-4.00-2.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
+### EL5 ships with memtest86+-1.65-4.1
+%{?el5:# Tag: rfx}
+### EL4 ships with memtest86+-1.26-2
+%{?el4:# Tag: rfx}
 
 %{?el4:%define _without_stackprotector 1}
 %{?el3:%define _without_stackprotector 1}

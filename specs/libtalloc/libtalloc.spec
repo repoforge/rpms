@@ -1,8 +1,9 @@
 # $Id$
 # Authority: dag
 
-### RHEL5.5 ships with samba3x and libtalloc-1.2.0
-# ExcludeDist: el5
+### EL6 ships with libtalloc-2.0.1-1.1.el6
+### EL5 ships with libtalloc-1.2.0-52.el5_5.2
+# ExclusiveDist: el2 el3 el4
 
 %define real_name talloc
 

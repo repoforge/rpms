@@ -2,7 +2,14 @@
 # Authority: dag
 
 ### EL6 ships with gsl-1.13-1.el6
-# ExclusiveDist: el2 el3 el5
+### EL5 ships with gsl-1.13-3.el5
+### EL4 ships with gsl-1.5-2.rhel4
+%{?el4:# Tag: rfx}
+### EL3 ships with gsl-1.1.1-5
+%{?el3:# Tag: rfx}
+### EL2 ships with gsl-0.9-1
+%{?el2:# Tag: rfx}
+# ExclusiveDist: el2 el3 el4
 
 Summary: GNU Scientific Library for numerical analysis
 Name: gsl

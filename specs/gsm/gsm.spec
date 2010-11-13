@@ -3,6 +3,8 @@
 # Upstream: Jutta Degener <jutta$pobox,com>
 
 ### EL6 ships with gsm-1.0.13-4.el6
+### EL2 ships with gsm-1.0.10-3
+%{?el2:# Tag: rfx}
 # ExclusiveDist: el2 el3 el4 el5
 
 Summary: Shared libraries for GSM speech compressor

@@ -1,7 +1,13 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el2 rh7 rh8 rh9 el3
+### EL6 ships with wireless-tools-29-5.1.1.el6
+### EL5 ships with wireless-tools-28-2.el5
+### EL4 ships with wireless-tools-28-0.pre16.3.3.EL4
+### EL3 ships with wireless-tools-26-2
+### EL2 ships with wireless-tools-21-3
+# ExclusiveDist: el2
+# Tag: rfx
 
 %define _sbindir /sbin
 %define _libdir /lib
