@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://jzb.rapanden.dk/projects/speex-xmms
 Source: http://jzb.rapanden.dk/pub/speex-xmms-%{version}.tar.gz
-Patch: speex-xmms-0.9.1.patch
+Patch0: speex-xmms-0.9.1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: xmms >= 1.0.0, glib >= 1.2.7, gtk+ >= 1.2.7
 BuildRequires: xmms-devel, gtk+-devel, speex-devel, libogg-devel
@@ -23,7 +23,7 @@ X MultiMedia System input plugin to play speex files.
 
 %prep
 %setup -n speex-xmms
-%patch -p1
+%patch0 -p1
 
 
 %build
