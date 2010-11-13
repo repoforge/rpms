@@ -12,7 +12,7 @@ Group: Applications/System
 URL: http://perso.club-internet.fr/farzeno/dvds/rpcmgr11.c
 
 Source: http://perso.club-internet.fr/farzeno/dvds/rpcmgr11.c
-Patch: http://perso.club-internet.fr/farzeno/dvds/rpcmgr12.patch
+Patch0: http://perso.club-internet.fr/farzeno/dvds/rpcmgr12.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -29,7 +29,7 @@ itself.
 %prep
 %setup -c %{name}-%{version} -T -D
 %{__cp} -fp %{SOURCE0} .
-%patch -p0 -b .rpcmgr12
+%patch0 -p0 -b .rpcmgr12
 %{__mv} -f rpcmgr11.c rpcmgr.c
 
 %build

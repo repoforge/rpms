@@ -13,7 +13,7 @@ Group: Applications/Internet
 URL: http://www.rhyolite.com/anti-spam/dcc/
 
 Source:	dcc-dccd.tar.Z
-Patch: dcc-1.2.2-sysv.patch
+Patch0: dcc-1.2.2-sysv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: sendmail-devel >= 8.12

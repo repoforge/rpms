@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Patrick Galbraith <patg$patg,net>
 
+### EL6 ships with perl-DBD-MySQL-4.013-3.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -27,7 +30,6 @@ Requires: perl(Data::Dumper)
 
 %filter_from_requires /^perl*/d
 %filter_setup
-
 
 # rhel/centos contains the perl module DBD-mysql in a package named perl-DBD-MySQL
 Obsoletes: perl-DBD-MySQL <= %{version}-%{release}

@@ -14,7 +14,7 @@ License: LGPL
 URL: http://linux.tlk.fr/
 
 Source: http://files1.sonicspot.com/sealsdk/%{real_name}%{real_version}.zip
-Patch: libseal-1.07-debian.patch
+Patch0: libseal-1.07-debian.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

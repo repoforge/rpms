@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with gconfmm26-2.28.0-1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define real_name gconfmm
 
 Summary: C++ wrapper for GConf2

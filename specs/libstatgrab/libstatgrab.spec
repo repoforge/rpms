@@ -10,7 +10,7 @@ Group: System Environment/Libraries
 URL: http://www.i-scream.org/libstatgrab/
 
 Source: http://ftp.i-scream.org/pub/i-scream/libstatgrab/libstatgrab-%{version}.tar.gz
-Patch: libstatgrab-0.14-nochmod.patch
+Patch0: libstatgrab-0.14-nochmod.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libtool, ncurses-devel

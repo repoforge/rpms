@@ -13,7 +13,7 @@ URL: http://www.treshna.com/bonddb/
 
 Source: http://www.treshna.com/downloads/bonddb-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: bonddb-fixmakefile.patch
+Patch0: bonddb-fixmakefile.patch
 
 BuildRequires: postgresql-devel, libtool
 BuildRequires: glib2-devel, pkgconfig, bison, flex
@@ -37,7 +37,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}
-%patch -p1
+%patch0 -p1
 
 %build
 %{__libtoolize} --force --copy

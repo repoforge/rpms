@@ -27,8 +27,12 @@ RPM macros used by the RPMForge project.
 
 %if %{?dtag:1}0
 %%{!?dtag:%%dtag %dtag}
-%%{!?%%dtag:%%%dtag 1}
+%%{!?%dtag:%%%dtag 1}
 %%{!?dist:%%dist .%dtag}
+%endif
+%if "%dtag" == "el6"
+%%distribution RPMForge repository for Red Hat Enterprise Linux 6
+%%errata 106
 %endif
 %if "%dtag" == "el5"
 %%distribution RPMForge repository for Red Hat Enterprise Linux 5
@@ -103,6 +107,9 @@ EOF
 %config %{_sysconfdir}/rpm/macros.rpmforge
 
 %changelog
+* Thu Nov 11 2010 Dag Wieers <dag@wieers.com> - 0-5
+- Added EL6 support.
+
 * Tue Nov 03 2009 Dag Wieers <dag@wieers.com> - 0-4
 - Added default %%dist when unset.
 - Added %%distribution and %%errata for RHEL4 and RHEL5.

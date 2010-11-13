@@ -10,7 +10,7 @@ Group: User Interface/X Hardware Support
 URL: http://www16.plala.or.jp/mano-a-mano/i810switch.html
 
 Source: http://www16.plala.or.jp/mano-a-mano/i810switch/i810switch-0.6.5.tar.gz
-Patch: i810switch-0.6.2.makefile.patch
+Patch0: i810switch-0.6.2.makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: pciutils
@@ -22,7 +22,7 @@ Daplas, and is now maintained by Ken Mano.
 
 %prep
 %setup
-%patch -p1 -b .buildroot
+%patch0 -p1 -b .buildroot
 %{__make} clean
 
 %build

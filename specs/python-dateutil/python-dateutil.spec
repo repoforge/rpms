@@ -24,7 +24,7 @@ module available in Python 2.3+.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %{__python} setup.py build

@@ -26,7 +26,7 @@ A phone manager.
 
 %prep
 %setup
-%patch -p0 -b .orbit2
+%patch0 -p0 -b .orbit2
 
 %build
 ./autogen.sh

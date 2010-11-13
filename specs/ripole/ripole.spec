@@ -11,7 +11,7 @@ Group: Applications/File
 URL: http://www.pldaniels.com/ripole/
 
 Source: http://www.pldaniels.com/ripole/ripole-%{version}.tar.gz
-Patch: ripole-0.1.4-shared.patch
+Patch0: ripole-0.1.4-shared.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

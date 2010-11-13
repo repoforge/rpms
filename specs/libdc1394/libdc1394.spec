@@ -1,9 +1,10 @@
 # $Id$
 # Authority: dries
-# Upstream:
+
+### EL6 ships with libdc1394-2.1.2-3.4
+# ExclusiveDist: el2 el3 el4 el5
 
 %define real_version 2.0.0-pre7
-
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
