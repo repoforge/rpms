@@ -10,7 +10,7 @@ Group: Applications/Productivity
 URL: http://usbsink.sourceforge.net/
 
 Source: http://dl.sf.net/sourceforge/usbsink/usbsink-%{version}.tar.gz
-Patch: usbsink-utils.patch
+Patch0: usbsink-utils.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, pcre-devel, gamin-devel, gnome-doc-utils, scrollkeeper

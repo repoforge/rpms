@@ -10,7 +10,7 @@ Group: Applications/Editors
 URL: http://sourceforge.net/projects/amyedit/
 
 Source: http://dl.sf.net/amyedit/amyedit-%{version}.tar.bz2
-Patch: makefile.patch
+Patch0: makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gtkmm24-devel, gcc-c++, pkgconfig, glibmm-devel
@@ -29,7 +29,7 @@ paned view.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %{__cat} <<EOF >%{name}.desktop
 [Desktop Entry]

@@ -10,7 +10,7 @@ Group: Applications/Multimedia
 URL: http://sjeng.org/vorbisgain.html
 
 Source: http://sjeng.org/ftp/vorbis/vorbisgain-%{version}.zip
-Patch: vorbisgain-0.36-double-fclose.patch
+Patch0: vorbisgain-0.36-double-fclose.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libogg, libogg-devel, libvorbis, libvorbis-devel
@@ -32,7 +32,7 @@ technology.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %configure

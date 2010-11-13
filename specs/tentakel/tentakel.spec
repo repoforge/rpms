@@ -13,7 +13,7 @@ Group: Applications/Internet
 URL: http://tentakel.biskalar.de/
 
 Source: http://dl.sf.net/tentakel/tentakel-%{version}.tgz
-Patch: tentakel-2.1.3-setup.py.patch
+Patch0: tentakel-2.1.3-setup.py.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -27,7 +27,7 @@ command can be controlled by means of format strings.
 
 %prep
 %setup
-%patch -p0
+%patch0 -p0
 
 %build
 %{__make}

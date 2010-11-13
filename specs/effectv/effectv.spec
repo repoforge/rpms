@@ -11,7 +11,7 @@ Group: Applications/Multimedia
 URL: http://effectv.sourceforge.net/
 
 Source: http://dl.sf.net/effectv/effectv-%{version}.tar.bz2
-Patch: effectv-0.3.11-gcc4.patch
+Patch0: effectv-0.3.11-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: nasm, SDL-devel
@@ -22,7 +22,7 @@ amazing effectors.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %{__make} %{?_smp_mflags} CFLAGS.opt="%{optflags}"

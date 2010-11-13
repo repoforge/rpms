@@ -13,7 +13,7 @@ URL: http://openobex.sourceforge.net/
 
 Source0: http://dl.sf.net/openobex/openobex-apps-%{version}.tar.gz
 Source1: http://www.frasunek.com/sources/unix/obexserver.c
-Patch: openobex-apps-1.0.0-gcc3.4.patch
+Patch0: openobex-apps-1.0.0-gcc3.4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openobex-devel

@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://www.elixar.com/products/airtraf.html
 
 Source: http://www.elixar.com/airtraf-%{version}.tar.gz
-Patch: airtraf-1.1-gcc34.patch
+Patch0: airtraf-1.1-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ncurses-devel
 

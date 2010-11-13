@@ -10,7 +10,7 @@ Group: Applications/File
 URL: http://e2undel.sf.net/
 
 Source: http://dl.sf.net/e2undel/e2undel-%{version}.tgz
-Patch: e2undel-0.82-compile.patch
+Patch0: e2undel-0.82-compile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -31,7 +31,7 @@ via the e2undel program.
 
 %prep
 %setup
-%patch -p1 -b .compile
+%patch0 -p1 -b .compile
 
 %build
 %{__make} e2undel compactlog %{?_smp_mflags} CFLAGS="%{optflags}" LDFLAGS="-O"

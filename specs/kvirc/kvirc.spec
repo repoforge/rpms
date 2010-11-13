@@ -23,7 +23,7 @@ Group: Applications/Internet
 URL: http://www.kvirc.net/
 
 Source: ftp://ftp.kvirc.net/pub/kvirc/%{version}/source/kvirc-%{version}.tar.bz2
-Patch: kvirc-gcc4.patch
+Patch0: kvirc-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: openssl-devel, libvorbis-devel, gettext, libart_lgpl-devel
 BuildRequires: libjpeg-devel, libpng-devel, arts-devel, zlib-devel
@@ -46,7 +46,7 @@ Kvirc is an irc client with the following features:
 
 %prep
 %setup -n kvirc-%{version}
-%patch -p1
+%patch0 -p1
 
 %build
 source %{_sysconfdir}/profile.d/qt.sh

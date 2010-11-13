@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 # Upstream: Simon Kelley <simon$thekelleys,org,uk>
-# RFX: el6
+
+### EL6 ships with dnsmasq-2.48-4.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with dnsmasq-2.45-1.1.el5_3
+%{?el5:# Tag: rfx}
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq

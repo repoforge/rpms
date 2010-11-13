@@ -10,7 +10,7 @@ Group: Applications/Internet
 URL: http://www.xmule.ws/
 
 Source: http://dl.sf.net/xmule/xmule-%{version}.tar.bz2
-Patch: xmule-1.10.0-install.patch
+Patch0: xmule-1.10.0-install.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, wxGTK-devel >= 2.4.2, zlib-devel, gettext
@@ -27,7 +27,7 @@ same network.
 
 %prep
 %setup
-%patch -p1 -b .install
+%patch0 -p1 -b .install
 
 %build
 #CXXFLAGS="`echo "%{optflags}" | sed 's/-O./-O1/'`" \

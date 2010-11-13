@@ -15,7 +15,7 @@ Source0: ftp://ftp.isc.org/isc/dhcp/dhcp-%{version}.tar.gz
 Source1: dhcpd.conf.sample
 Source2: dhcpd.init
 Source3: dhcrelay.init
-Patch: dhcp-3.0.3-alignment.patch
+Patch0: dhcp-3.0.3-alignment.patch
 Patch100: dhcp-3.0-jbuild.patch
 Patch102: dhcp-3.0.1rc13-dhcpctlman.patch
 Patch103: dhcp-3.0pl1-miscfixes.patch

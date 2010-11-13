@@ -10,7 +10,7 @@ Group: System Environment/Base
 URL: http://www.procyon.com/~pda/lphdisk/
 
 Source: http://www.procyon.com/~pda/lphdisk/lphdisk-%{version}.tar.gz
-Patch: lphdisk-0.9.1-gcc33.patch
+Patch0: lphdisk-0.9.1-gcc33.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -22,7 +22,7 @@ to perform this configuration step.
 
 %prep
 %setup
-%patch -p0 -b .gcc33
+%patch0 -p0 -b .gcc33
 
 %build
 %{__make} %{?_smp_mflags}

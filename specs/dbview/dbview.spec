@@ -10,7 +10,7 @@ Group: Applications/Databases
 URL: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/
 
 Source: ftp://metalab.unc.edu/pub/Linux/apps/database/proprietary/dbview-%{version}.tar.gz
-Patch: dbview-patch
+Patch0: dbview-patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 

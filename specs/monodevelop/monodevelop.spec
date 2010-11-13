@@ -10,7 +10,7 @@ Group: Development/Tools
 URL: http://www.monodevelop.com/
 
 Source: http://www.go-mono.com/archive/1.0.5/monodevelop-%{version}.tar.gz
-Patch: monodevelop-remove-mime-update.patch
+Patch0: monodevelop-remove-mime-update.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pkgconfig, intltool, gettext
@@ -26,7 +26,7 @@ mono and Gtk#. It was originally a port of SharpDevelop 0.98.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %configure

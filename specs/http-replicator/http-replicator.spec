@@ -30,7 +30,7 @@ the Internet pipe. This is very useful for maintaining a cache of Linux
 packages.
 
 %prep
-%setup -n http-replicator_%{version}
+%setup -n http-replicator-%{version}
 
 %{__cat} <<EOF >http-replicator.logrotate
 %{_localstatedir}/log/http-replicator.* {

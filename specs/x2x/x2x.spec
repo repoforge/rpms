@@ -20,7 +20,7 @@ Group: User Interface/Desktops
 URL: http://ftp.digital.com/pub/Digital/SRC/x2x/
 
 Source: http://ftp.digital.com/pub/Digital/SRC/x2x/x2x-1.27.tar.gz
-Patch: http://ftp.debian.org/debian/pool/main/x/x2x/x2x_1.27-8.diff.gz
+Patch0: http://ftp.debian.org/debian/pool/main/x/x2x/x2x_1.27-8.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?_without_modxorg:BuildRequires: XFree86-devel}

@@ -171,14 +171,14 @@ export CXXFLAGS=%{CXXFLAGS}
 export FFLAGS=%{FFLAGS}
 export LDFLAGS=%{LDFLAGS}
 %configure \
-	--enable-R-shlib \
-	--with-blas \
-	--with-lapack \
-	--with-system-bzlib \
-	--with-system-pcre \
-	--with-system-zlib \
-	--with-tcl-config="%{_libdir}/tclConfig.sh" \
-	--with-tk-config="%{_libdir}/tkConfig.sh"
+    --enable-R-shlib \
+    --with-blas \
+    --with-lapack \
+    --with-system-bzlib \
+    --with-system-pcre \
+    --with-system-zlib \
+    --with-tcl-config="%{_libdir}/tclConfig.sh" \
+    --with-tk-config="%{_libdir}/tkConfig.sh"
 %{__make}
 %{__make} -C src/nmath/standalone
 #make check-all
@@ -267,6 +267,9 @@ export LDFLAGS=%{LDFLAGS}
 - Updated to release 2.11.0.
 - Added some additional uncaptured dependencies.
 - Added optimization flags for el5.
+
+* Fri Feb 08 2008 Dag Wieers <dag@wieers.com> - 2.6.2-1
+- Updated to release 2.6.2.
 
 * Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 2.5.1-1
 - Updated to release 2.5.1.

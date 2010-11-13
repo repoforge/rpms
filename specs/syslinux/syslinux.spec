@@ -8,6 +8,7 @@
 ### EL4 ships with syslinux-2.11-1
 ### EL3 ships with syslinux-2.06-0.3E
 ### EL2 ships with syslinux-2.00-1EL
+# Tag: rfx
 
 %define _sbindir /sbin
 
@@ -22,7 +23,7 @@ URL: http://syslinux.zytor.com/
 Source: http://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: i386 x86_64
+ExclusiveArch: %{ix86} x86_64
 BuildRequires: nasm
 BuildRequires: netpbm-progs
 BuildRequires: perl

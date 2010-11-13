@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with gsl-1.13-1.el6
 # ExclusiveDist: el2 el3 el5
 
 Summary: GNU Scientific Library for numerical analysis
@@ -48,6 +49,9 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_infodir}/dir
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig

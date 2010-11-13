@@ -16,7 +16,7 @@ Group: Applications/Internet
 URL: http://www.honeyd.org/tools.php
 
 Source: http://www.citi.umich.edu/u/provos/honeyd/arpd-%{version}.tar.gz
-Patch: arpd-0.2-gcc4.patch
+Patch0: arpd-0.2-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libdnet-devel, libevent-devel, libpcap

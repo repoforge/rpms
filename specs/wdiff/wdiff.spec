@@ -10,7 +10,7 @@ Group: Applications/Text
 URL: http://www.gnu.org/software/wdiff/wdiff.html
 
 Source: http://ftp.gnu.org/gnu/wdiff/wdiff-%{version}.tar.gz
-Patch: wdiff-0.5-debian-12.patch
+Patch0: wdiff-0.5-debian-12.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -27,7 +27,7 @@ been refilled.
 
 %prep
 %setup
-%patch -p1 -b .debian
+%patch0 -p1 -b .debian
 
 %build
 #autoreconf --force --install --symlink

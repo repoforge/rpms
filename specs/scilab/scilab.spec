@@ -13,7 +13,7 @@ Group: Applications/Engineering
 URL: http://scilabsoft.inria.fr/
 
 Source: http://scilabsoft.inria.fr/download/stable/scilab-%{version}-src.tar.gz
-Patch: scilab-4.0.patch
+Patch0: scilab-4.0.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, gcc-g77
@@ -34,7 +34,7 @@ overloading. A number of toolboxes are available with the system.
 
 %prep
 %setup
-%patch -p1
+%patch0 -p1
 
 %build
 %{__perl} -pi.orig -e 's|-fwritable-strings||g;' configure

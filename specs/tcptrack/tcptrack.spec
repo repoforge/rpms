@@ -16,7 +16,7 @@ Group: Applications/Internet
 URL: http://www.rhythm.cx/~steve/devel/tcptrack/
 
 Source: http://www.rhythm.cx/~steve/devel/tcptrack/release/%{version}/source/tcptrack-%{version}.tar.gz
-Patch: remove-extra-qualifications.patch
+Patch0: remove-extra-qualifications.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++, ncurses-devel, libpcap

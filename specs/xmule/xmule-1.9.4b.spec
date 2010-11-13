@@ -8,7 +8,7 @@ Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 Source: http://download.berlios.de/xmule/xmule-%{version}.tar.bz2
-Patch: xmule-1.9.2-install.patch
+Patch0: xmule-1.9.2-install.patch
 URL: http://www.xmule.ws/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 Requires: wxGTK, /usr/sbin/alternatives
@@ -25,7 +25,7 @@ same network.
 
 %prep
 %setup
-%patch -p1 -b .install
+%patch0 -p1 -b .install
 
 
 %build

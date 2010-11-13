@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Jutta Degener <jutta$pobox,com>
 
+### EL6 ships with gsm-1.0.13-4.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 Summary: Shared libraries for GSM speech compressor
 Name: gsm
@@ -14,7 +16,7 @@ URL: http://kbs.cs.tu-berlin.de/~jutta/toast.html
 
 #Source: ftp://ftp.cs.tu-berlin.de/pub/local/kbs/tubmik/gsm/gsm-%{version}.tar.gz
 Source: http://kbs.cs.tu-berlin.de/~jutta/gsm/gsm-%{version}.tar.gz
-Patch: gsm-makefile-dag.patch
+Patch0: gsm-makefile-dag.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description

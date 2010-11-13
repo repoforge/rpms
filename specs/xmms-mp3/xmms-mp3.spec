@@ -10,7 +10,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://www.xmms.org/
 Source: http://www.xmms.org/files/1.2.x/xmms-%{version}.tar.bz2
-Patch: xmms-1.2.10-gcc4.patch
+Patch0: xmms-1.2.10-gcc4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gtk+-devel
 
@@ -21,7 +21,7 @@ Linux because the patented mp3 format itself is theoretically GPL incompatible.
 
 %prep
 %setup -n xmms-%{version}
-%patch -p1 -b .gcc4
+%patch0 -p1 -b .gcc4
 
 
 %build

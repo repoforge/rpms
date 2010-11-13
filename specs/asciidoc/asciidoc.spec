@@ -1,6 +1,9 @@
 # $id$
 # Authority: dag
 
+### EL6 ships with asciidoc-8.4.5-4.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define vimdir %(echo %{_datadir}/vim/vim*/)
 

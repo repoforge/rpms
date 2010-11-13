@@ -13,6 +13,8 @@ URL: http://www.netperf.org/netperf/NetperfPage.html
 Source: ftp://ftp.netperf.org/netperf/netperf-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Requires: /sbin/install-info
+
 %description
 Netperf is a tool to measure TCP/UDP performance.
 
@@ -28,14 +30,19 @@ Netperf is a tool to measure TCP/UDP performance.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_infodir}/dir
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
-/sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir 2>/dev/null || :
+/sbin/install-info %{_infodir}/${infofile} %{_infodir}/dir || :
 
 %preun
-/sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir 2>/dev/null || :
+if [ $1 -eq 0 ]; then
+    /sbin/install-info --delete %{_infodir}/${infofile} %{_infodir}/dir || :
+fi
 
 %files
 %defattr(-, root, root, 0755)

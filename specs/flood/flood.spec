@@ -11,7 +11,7 @@ Group: Applications/Internet
 URL: http://httpd.apache.org/test/flood/
 
 Source: http://www.apache.org/dist/httpd/flood/flood-%{version}.tar.gz
-Patch: flood-openssl.patch
+Patch0: flood-openssl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: httpd-devel

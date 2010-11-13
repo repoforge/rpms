@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with 0.9-3.1.el6
+# ExclusiveDist: el2 el3 el4 el5
+
 Summary: C library for reading, creating, and modifying zip archives
 Name: libzip
 Version: 0.9

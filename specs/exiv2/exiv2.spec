@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Andreas Huggel <ahuggel$gmx,net>
 
+### EL6 ships with exiv2-0.18.2-2.1.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 ### pkgconfig < 0.16.0 doesn't like 'URL:'
 %{?el4:%define _without_pkgconfig16 1}
@@ -19,13 +21,13 @@ Source: http://home.arcor.de/ahuggel/exiv2/exiv2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: doxygen
+BuildRequires: expat-devel
 BuildRequires: gcc-c++
 BuildRequires: graphviz
 BuildRequires: libtool
 BuildRequires: libxslt
 BuildRequires: python
-BuildRequires: zlib-devel 
-BuildRequires: expat-devel 
+BuildRequires: zlib-devel
 
 %description
 Exiv2 comprises of a C++ library and a command line utility to access image

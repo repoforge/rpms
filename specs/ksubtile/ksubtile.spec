@@ -17,7 +17,7 @@ Group: Applications/Multimedia
 URL: http://ksubtile.sourceforge.net/
 
 Source: http://dl.sf.net/ksubtile/ksubtile_%{real_version}.tar.bz2
-Patch: gcc4-fix.patch
+Patch0: gcc4-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext, libart_lgpl-devel, libjpeg-devel, libpng-devel
 BuildRequires: arts-devel, zlib-devel, kdelibs-devel, gcc, make, gcc-c++
@@ -34,7 +34,7 @@ in the SRT subtitle format.
 
 %prep
 %setup -n ksubtile-1.0
-%patch -p1
+%patch0 -p1
 
 %build
 source /etc/profile.d/qt.sh

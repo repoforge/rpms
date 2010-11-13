@@ -1,7 +1,9 @@
 # $Id$
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
-# ExcludeDist: el4
+
+### EL6 includes perl-DateTime-TimeZone in perl-DateTime-1:0.5300-1.el6
+# ExclusiveDist: el2 el3 el5
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

@@ -9,7 +9,7 @@ License: GPL
 Group: Amusements/Graphics
 URL: http://www.shatters.net/celestia/
 Source: http://dl.sf.net/celestia/celestia-%{version}.tar.gz
-Patch: celestia-1.3.2-gcc34.patch
+Patch0: celestia-1.3.2-gcc34.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libgnomeui-devel, gtkglext-devel, freeglut-devel
 BuildRequires: libpng-devel, libjpeg-devel, gcc-c++, zlib-devel
@@ -29,7 +29,7 @@ simple to navigate through the universe to the object you want to visit.
 
 %prep
 %setup
-%patch -p1 -b .gcc34
+%patch0 -p1 -b .gcc34
 %{__perl} -pi -e "s|StarDetails::StarDetails|StarDetails|g;" src/celengine/star.h
 %{__perl} -pi -e "s|CommandGotoLongLat::CommandGotoLongLat|CommandGotoLongLat|g;" src/celengine/command.h
 

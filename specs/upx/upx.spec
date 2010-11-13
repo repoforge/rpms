@@ -3,7 +3,7 @@
 
 Summary: The Ultimate Packer for eXecutables
 Name: upx
-Version: 3.03
+Version: 3.07
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -55,6 +55,9 @@ export CXXFLAGS="%{optflags}"
 %{_bindir}/upx
 
 %changelog
+* Wed Nov 10 2010 Dag Wieers <dag@wieers.com> - 3.07-1
+- Updated to release 3.07.
+
 * Sun Nov 02 2008 Dag Wieers <dag@wieers.com> - 3.03-1
 - Updated to release 3.03.
 

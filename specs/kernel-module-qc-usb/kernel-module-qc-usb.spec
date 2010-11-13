@@ -37,7 +37,7 @@ License: GPL
 Group: System Environment/Kernel
 URL: http://qce-ga.sourceforge.net/
 Source: http://dl.sf.net/qce-ga/qc-usb-%{version}.tar.gz
-Patch: qc-usb-0.6.1-autotools.patch
+Patch0: qc-usb-0.6.1-autotools.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{post26}
 BuildRequires: kernel-module-devel-%{krel}
@@ -78,7 +78,7 @@ Simple command-line utility to configure the QuickCam USB webcam settings.
 
 %prep
 %setup -n qc-usb-%{version}
-%patch -p1
+%patch0 -p1
 
 
 %build
