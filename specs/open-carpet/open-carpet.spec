@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Joe Shaw <joe$assbarn,com>
 
-# Tag: test
+# Tag: rft
 
 Summary: Open Carpet server generation tool
 Name: open-carpet

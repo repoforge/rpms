@@ -3,7 +3,7 @@
 # Upstream: <autrijus$autrijus,org>
 
 ### This package is dangerous, we don't want it to be available as-is
-# Tag: test
+# Tag: rft
 
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

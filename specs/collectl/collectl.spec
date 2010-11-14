@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 Summary: Utility to collect Linux performance data
 Name: collectl

@@ -3,7 +3,7 @@
 # Upstream: Eryq <eryq$zeegee,com>
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
 # Upstream: Dave O'Neill <dmo$roaringpenguin,com>
-# Tag: test
+# Tag: rft
 
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

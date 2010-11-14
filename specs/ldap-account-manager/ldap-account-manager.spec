@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 Summary:  LDAP Account Manager
 Name: ldap-account-manager

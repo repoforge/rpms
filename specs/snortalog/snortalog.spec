@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Jeremy Chartier <jeremy,chartier$free,fr>
 
-# Tag: test
+# Tag: rft
 
 ### FIXME: Disabled snortalog as it does not provide an install script and it is too hard to setup properly.
 

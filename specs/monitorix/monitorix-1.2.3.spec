@@ -2,7 +2,7 @@
 # Authority: fabian
 # Upstream: Jordi Sanfeliu <admin@fibranet.cat>
 
-# Tag: test
+# Tag: rft
 
 
 Summary: Monitorix system monitoring tool

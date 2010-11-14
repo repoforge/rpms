@@ -8,7 +8,7 @@
 # ExclusiveDist: el2 el3
 
 ### Beware FC3 comes with older libexif !
-# Tag: test
+# Tag: rft
 
 Name: libexif
 Summary: EXIF image tag library

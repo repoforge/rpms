@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Tom Wilkason <tom,wilkason$cox,net>
 
-# Tag: test
+# Tag: rft
 
 %define real_name snackAmp
 %define dfi %(which desktop-file-install &>/dev/null; echo $?)

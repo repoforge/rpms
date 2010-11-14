@@ -1,7 +1,7 @@
 # $Id: rsync.spec 2540 2004-11-23 18:39:10Z dag $
 # Authority: dag
 # Upstream: Martin Pool <mbp$sourcefrog,net>
-# Tag: test
+# Tag: rft
 
 # Rationale: rsync 2.6.3+ uses less resources and has lots of improvements
 

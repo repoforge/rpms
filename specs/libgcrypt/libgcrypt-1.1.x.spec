@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <gnupg-devel$gnupg,org>
 
-# Tag: test
+# Tag: rft
 
 Summary: GNU cryptographic library
 Name: libgcrypt

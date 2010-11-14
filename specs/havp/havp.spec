@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 Summary: HTTP anti-virus proxy filter
 Name: havp

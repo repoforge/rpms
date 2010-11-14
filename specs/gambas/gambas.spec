@@ -4,7 +4,7 @@
 # ScreenshotURL: http://gambas.sourceforge.net/screenshots.html
 
 # It compiles, but it does not work on my machine
-# Tag: test
+# Tag: rft
 
 
 %define real_version 1.0

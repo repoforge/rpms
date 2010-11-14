@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Jeff Johnson <n3npq$mac,com>
 
-# Tag: test
+# Tag: rft
 
 
 %define	with_python_subpackage	1%{nil}

@@ -6,7 +6,7 @@
 # ScreenshotURL: http://www.koffice.org/kexi/screenshots.php
 
 # ExcludeDist: el3
-# Tag: test
+# Tag: rft
 
 
 %{?fc1:%define _without_selinux 1}

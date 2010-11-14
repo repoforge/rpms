@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc

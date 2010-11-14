@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Tag: test
+# Tag: rft
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

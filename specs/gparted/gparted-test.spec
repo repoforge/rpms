@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 %define desktop_vendor rpmforge
 

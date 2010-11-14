@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <putty$projects,tartarus,org>
 
-# Tag: test
+# Tag: rft
 
 
 %{?rh7:%define _without_freedesktop 1}

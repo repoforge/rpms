@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <clamav-devel$lists,sf,net>
 
-# Tag: test
+# Tag: rft
 
 
 %{?el3:%define _without_milter 1}

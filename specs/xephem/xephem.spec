@@ -2,7 +2,7 @@
 # Authority:  dries
 
 # still work in progress
-# Tag: test
+# Tag: rft
 
 
 %{?fc4:%define _without_modxorg 1}

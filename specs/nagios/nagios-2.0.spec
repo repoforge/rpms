@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
 
-# Tag: test
+# Tag: rft
 
 ### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm

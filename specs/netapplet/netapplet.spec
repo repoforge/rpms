@@ -2,7 +2,7 @@
 # Authority: dag
 
 ### FIXME: Too heavily integrated with Novell's product.
-# Tag: test
+# Tag: rft
 
 Summary: Network switching and control applet.
 Name: netapplet

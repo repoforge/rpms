@@ -3,7 +3,7 @@
 # Upstream: Ben Escoto <bescoto$stanford,edu>
 # Upstream: <rdiff-backup-users$nongnu,org>
 
-# Tag: test
+# Tag: rft
 
 %define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')

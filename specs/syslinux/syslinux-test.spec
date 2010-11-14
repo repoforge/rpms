@@ -3,7 +3,7 @@
 # Upstream: <syslinux$zytor,com>
 
 # Rationale: If you need syslinux, you'd appreciate the latest, trust me.
-# Tag: test
+# Tag: rft
 
 %define _sbindir /sbin
 

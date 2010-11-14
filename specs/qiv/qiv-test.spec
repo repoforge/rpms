@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Adam Kopacz <adam,k$klografx,de>
 
-# Tag: test
+# Tag: rft
 
 Summary: Quick Image Viewer
 Name: qiv

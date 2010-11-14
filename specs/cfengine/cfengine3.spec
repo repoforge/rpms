@@ -1,7 +1,7 @@
 # $Id: cfengine.spec 6647 2009-01-14 17:05:42Z cmr $
 # Authority: dag
 # Upstream: Mark Burgess <Mark,Burgess$iu,hio,no>
-# Tag: test
+# Tag: rft
 
 
 %{?rh7:%define _without_db4 1}

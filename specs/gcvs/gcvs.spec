@@ -13,7 +13,7 @@
 %{?el2:%define _without_tcltk_devel 1}
 
 ### FIXME: Modified to co-exist with cvs. (Please fix upstream)
-# Tag: test
+# Tag: rft
 
 %define desktop_vendor rpmforge
 

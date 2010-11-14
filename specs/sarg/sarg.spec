@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Pedro L. Orso <orso$onda,com,br>
 # Upstream: <orso$yahoogroups,com>
-# Tag: test
+# Tag: rft
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
 ### Skip this package for dag's repo
-# Tag: test
+# Tag: rft
 
 
 # Which distro to make the default configuration for

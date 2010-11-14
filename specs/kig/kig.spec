@@ -3,7 +3,7 @@
 # Screenshot: http://edu.kde.org/kig/kig-snap-sine-curve.png
 # ScreenshotURL: http://edu.kde.org/kig/screenshots.php
 
-# Tag: test
+# Tag: rft
 # this program is now included in kde
 # ExcludeDist: fc3 fc2 fc1 el3
 

@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: <vlc-devel$videolan,org>
 
-# Tag: test
+# Tag: rft
 
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 

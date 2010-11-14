@@ -1,7 +1,7 @@
 # $Id: mplayer.spec 7398 2009-07-10 02:22:10Z dag $
 # Authority: matthias
 
-# Tag: test
+# Tag: rft
 
 
 %{?el5:%define _without_nas 1}

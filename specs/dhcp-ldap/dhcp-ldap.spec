@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 %define real_name dhcp
 %define workdir work.linux-2.2

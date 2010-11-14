@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 Summary: ISO 9660 Rock Ridge Filesystem Manipulator
 Name: xorriso

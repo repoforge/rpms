@@ -2,7 +2,7 @@
 # Authority: dag
 # Upstream: Ali Akcaagac <aliakc$web,de>
 
-# Tag: test
+# Tag: rft
 
 Summary: Light-weight GNOME web browser
 Name: atlantis

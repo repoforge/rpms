@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Tag: test
+# Tag: rft
 
 %{?rh7:%define _without_ewf 1}
 %{?rh7:%define _without_ntfs 1}
