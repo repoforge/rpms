@@ -25,7 +25,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 perl-MIME-Base64 is a Perl module for encoding and decoding of base64 strings.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
