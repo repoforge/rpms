@@ -4,7 +4,7 @@
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://rpmforge.net/
@@ -26,10 +26,13 @@ RPM macros used by the RPMForge project.
 #%%vendor RPMForge project (http://rpmforge.net/)
 
 %if %{?dtag:1}0
-%%{!?dtag:%%dtag %dtag}
-%%{!?%dtag:%%%dtag 1}
-%%{!?dist:%%dist .%dtag}
+%%dtag %dtag
+%else
+### Current distribution undefined in original buildsystem
+%%dtag unknown
 %endif
+%%%dtag 1
+%%dist .%dtag 
 %if "%dtag" == "el6"
 %%distribution RPMForge repository for Red Hat Enterprise Linux 6
 %%errata 106
@@ -107,6 +110,9 @@ EOF
 %config %{_sysconfdir}/rpm/macros.rpmforge
 
 %changelog
+* Tue Nov 16 2010 Dag Wieers <dag@wieers.com> - 0-6
+- Reverted inadvertent change. (Christoph Maser)
+
 * Thu Nov 11 2010 Dag Wieers <dag@wieers.com> - 0-5
 - Added EL6 support.
 
