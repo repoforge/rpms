@@ -8,7 +8,7 @@
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.3.3
+Version: 1.3.3c
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -208,6 +208,10 @@ fi
 %endif
 
 %changelog
+* Tue Nov 16 2010 David Hrbáč <david@hrbac.cz> - 1.3.3c-1
+- new upstream release
+- fixes CVE-2010-4221
+
 * Tue Nov 16 2010 David Hrbáč <david@hrbac.cz> - 1.3.3-1
 - new upstream release
 
