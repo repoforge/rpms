@@ -8,7 +8,7 @@
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.3.2
+Version: 1.3.3
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -79,7 +79,7 @@ Requires: %{name} = %{version}-%{release}
 Module to add PostgreSQL support to the ProFTPD FTP server.
 
 %prep
-%setup
+%setup -q
 
 # Disable stripping in order to get useful debuginfo packages
 %{__perl} -pi -e 's|"-s"|""|g' configure
@@ -91,7 +91,6 @@ if pkg-config openssl; then
 fi
 %configure \
     --libexecdir="%{_libexecdir}/proftpd" \
-    --localstatedir="%{_var}/run" \
     --enable-ctrls \
     --enable-dso \
 %{!?_without_acl:--enable-facl} \
@@ -122,6 +121,7 @@ fi
 %{__mkdir_p} %{buildroot}/var/ftp/uploads
 %{__mkdir_p} %{buildroot}/var/ftp/pub
 %{__mkdir_p} %{buildroot}/var/log/proftpd
+%{__mkdir_p} %{buildroot}/var/run/proftpd
 touch %{buildroot}%{_sysconfdir}/ftpusers
 
 %clean
@@ -208,6 +208,9 @@ fi
 %endif
 
 %changelog
+* Tue Nov 16 2010 David Hrbáč <david@hrbac.cz> - 1.3.3-1
+- new upstream release
+
 * Thu Mar 12 2009 Dries Verachtert <dries@ulyssis.org> - 1.3.2-1
 - Updated to release 1.3.2.
 
