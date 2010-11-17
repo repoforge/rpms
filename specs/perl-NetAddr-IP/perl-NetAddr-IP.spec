@@ -9,14 +9,13 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 4.035
-Release: 2%{?dist}
+Version: 4.036
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
 
 Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIKER/NetAddr-IP-%{version}.tar.gz
-Patch0: perl-NetAddr-IP-4.035_rt62521.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 0:5.00503
@@ -28,7 +27,6 @@ Manages IPv4 and IPv6 addresses and subnets.
 
 %prep
 %setup -q -n %{real_name}-%{version}
-%patch0 -p1
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,6 +56,10 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/NetAddr/IP/
 
 %changelog
+* Wed Nov 17 2010 Steve Huff <shuff@vecna.org> - 4.036-1
+- CPAN RT#62521 patch merged upstream.
+- new upstream release with other fixes.
+
 * Wed Nov 10 2010 Steve Huff <shuff@vecna.org> - 4.035-2
 - Applied patch for CPAN RT#62521 new6() issue.
 
