@@ -3,13 +3,13 @@
 
 Summary: Host-based tool to scan for rootkits, backdoors and local exploits
 Name: rkhunter
-Version: 1.3.6
+Version: 1.3.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.rootkit.nl/projects/rootkit_hunter.html
 
-Source: http://dl.sf.net/project/rkhunter/rkhunter/%{version}/rkhunter-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/rkhunter/rkhunter/%{version}/rkhunter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -82,6 +82,9 @@ RPM_BUILD_ROOT="%{buildroot}" ./installer.sh --layout RPM --install
 %exclude %{_docdir}
  
 %changelog
+* Wed Nov 17 2010 Steve Huff <shuff@vecna.org> - 1.3.8-1
+- Updated to version 1.3.8.
+
 * Mon May 31 2010 Christoph Maser <cmaser@gmx.de> - 1.3.6-1
 - Updated to version 1.3.6.
 
