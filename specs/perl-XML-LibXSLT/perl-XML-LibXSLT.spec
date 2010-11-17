@@ -1,7 +1,11 @@
 # $Id$
 # Authority: shuff
 # Upstream: Petr Pajas <pajas$matfyz,cz>
-# ExcludeDist: el5 el4 el3
+
+### EL6 ships with perl-XML-LibXSLT-1.70-1.1.el6
+%{?el6:# Tag: rfx}
+
+# ExcludeDist: el3 el4 el5
 
 ### Newer versions require a later libxslt than available in el5
 

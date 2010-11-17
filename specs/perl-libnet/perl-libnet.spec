@@ -2,7 +2,9 @@
 # Authority: dag
 # Upstream: Graham Barr <gbarr$pobox,com>
 
-# ExclusiveDist: rh6 el2 rh7 rh8
+### EL2 ships with perl-libnet-1.0703-6
+%{?el2:# Tag: rfx}
+# ExclusiveDist: el2
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

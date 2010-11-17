@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Adam Kennedy <adamk$cpan,org>
 
+### EL6 ships with perl-Params-Util-1.00-3.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Dan Kogai <dankogai$dan,co,jp>
 
+### EL2 ships with perl-Text-Kakasi-1.04-4
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

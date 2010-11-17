@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Audrey Tang <cpan$audreyt,org>
 
+### EL6 ships with perl-YAML-Syck-1.07-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

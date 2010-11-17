@@ -2,6 +2,13 @@
 # Authority: dag
 # Upstream: Andy Lester <andy$petdance,com>
 
+### EL6 ships with perl-HTML-Tagset-3.20-4.el6
+### EL5 ships with perl-HTML-Tagset-3.10-2.1.1
+### EL4 ships with perl-HTML-Tagset-3.03-30
+### EL3 ships with perl-HTML-Tagset-3.03-28
+### EL2 ships with perl-HTML-Tagset-3.03-3
+# Tag: rfx
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

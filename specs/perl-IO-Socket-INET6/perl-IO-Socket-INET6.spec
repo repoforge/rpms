@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dag
 # Upstream: Shlomi Fish <shlomif$iglu,org,il>
-# RFX: el5
+
+### EL6 ships with perl-IO-Socket-INET6-2.56-4.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-IO-Socket-INET6-2.51-2.fc6
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -35,7 +39,7 @@ in both AF_INET|AF_INET6 domain. It is built upon the IO::Socket interface and
 inherits all the methods defined by IO::Socket.
 
 %prep
-%setup -q -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"

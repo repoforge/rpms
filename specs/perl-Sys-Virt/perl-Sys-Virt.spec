@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Daniel P. Berrangé <dan$berrange,com>
 
+### EL6 ships with perl-Sys-Virt-0.2.4-1.el6
+%{?el6:# Tag: rfx}
+
 ### RHEL 5.4 ships with perl-Sys-Virt-0.2.0
 # ExclusiveDist: el3 el4
 

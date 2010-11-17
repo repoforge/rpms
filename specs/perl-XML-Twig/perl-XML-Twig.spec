@@ -2,6 +2,17 @@
 # Authority: dag
 # Upstream: Michel Rodriguez <xmltwig$gmail,com>
 
+### EL6 ships with perl-XML-Twig-3.34-1.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-XML-Twig-3.26-1.fc6
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-XML-Twig-3.13-6
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-XML-Twig-3.09-3
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-XML-Twig-2.02-2
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: D. H. <crazyinsomniac$yahoo,com>
 
+### EL6 ships with perl-XML-TokeParser-0.05-2.1.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

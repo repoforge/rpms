@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Paul Marquess <pmqs$cpan,org>
 
+### EL4 ships with perl-Filter-1.30-6
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-Filter-1.29-3
+%{?el3:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

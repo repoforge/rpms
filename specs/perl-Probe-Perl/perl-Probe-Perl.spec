@@ -4,6 +4,9 @@
 # Upstream: Based partly on code from the Module::Build project
 # by Ken Williams <kwilliams$cpan,org> and others,
 
+### EL6 ships with perl-Probe-Perl-0.01-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

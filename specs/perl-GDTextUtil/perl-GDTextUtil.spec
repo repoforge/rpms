@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Martien Verbruggen <mverb$cpan,org>
 
+### EL6 ships with perl-GDTextUtil-0.86-15.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

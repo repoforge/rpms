@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Andy Lester <andy$petdance,com>
 
+### EL6 ships with perl-Test-Taint-1.04-9.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,7 +2,8 @@
 # Authority: dag
 # Upstream: Andy Lester <andy$petdance,com>
 
-# ExclusiveDist: rh6 el2 rh7
+### EL6 ships with perl-Locale-Maketext-Simple-0.18-115.el6
+# ExclusiveDist: el2
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

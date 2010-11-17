@@ -3,6 +3,7 @@
 # Upstream: Mattia Barbon <mbarbon$users,sourceforge,net>
 
 ### EL6 ships with perl-Module-Info-0.31-7.el6
+%{?el6:# Tag: rfx}
 # ExclusiveDist: el2 el3 el4 el5
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

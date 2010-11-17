@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Eric J. Roode <sdn,crams20944$zoemail,net>
 
+### EL6 ships with perl-Readonly-XS-1.05-3.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

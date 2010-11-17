@@ -3,7 +3,10 @@
 # Upstream: Abhijit Menon-Sen <ams$wiw,org>
 
 ### Upstream perl package now provides perl(Storable)
-# ExclusiveDist: rh6 el2 rh7
+# ExclusiveDist: el2
+
+### EL2 ships with perl-Storable-0.6.11-6
+%{?el2:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

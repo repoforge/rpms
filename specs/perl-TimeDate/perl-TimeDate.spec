@@ -1,6 +1,13 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with perl-TimeDate-1.16-11.1.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-TimeDate-1.16-5.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-TimeDate-1.16-5.el4
+%{?el4:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

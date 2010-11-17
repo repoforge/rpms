@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Steffen Ullrich <Steffen_Ullrich$genua,de>
 
+### EL6 ships with perl-IO-Socket-SSL-1.31-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-IO-Socket-SSL-1.01-1.fc6
+%{?el5:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

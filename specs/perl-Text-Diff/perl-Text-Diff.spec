@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Barrie Slaymaker <barries$slaysys,com>
 
+### EL6 ships with perl-Text-Diff-1.37-2.1.el6
+%{?el6:# Tag: rfx}
+
 %define real_name Text-Diff
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

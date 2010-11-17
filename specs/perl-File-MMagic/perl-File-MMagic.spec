@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: NOKUBI Takatsugu <knok$daionet,gr,jp>
 
+### EL2 ships with perl-File-MMagic-1.06-2
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

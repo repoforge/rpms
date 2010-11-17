@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Brian Ingerson <ingy$cpan,org>
 
+### EL6 ships with perl-Spiffy-0.30-12.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

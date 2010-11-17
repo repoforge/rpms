@@ -2,7 +2,8 @@
 # Authority: dag
 # Upstream: Michael G Schwern <schwern$pobox,com>
 
-# ExclusiveDist: el2 rh7 rh9 el3
+### EL6 ships with perl-ExtUtils-MakeMaker-6.55-115.el6
+# ExclusiveDist: el2 el3
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

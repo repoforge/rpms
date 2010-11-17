@@ -2,6 +2,17 @@
 # Authority: dag
 # Upstream: Mike Wong <mike_w3$pacbell,net>
 
+### EL6 ships with perl-XML-Dumper-0.81-6.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-XML-Dumper-0.81-2.fc6
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-XML-Dumper-0.71-2
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-XML-Dumper-0.4-25
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-XML-Dumper-0.4-5
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

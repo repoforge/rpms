@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Andy Armstrong <andy$hexten,net>
 
+### EL6 ships with perl-Test-Harness-3.17-115.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

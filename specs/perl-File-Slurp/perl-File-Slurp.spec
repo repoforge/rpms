@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Uri Guttman <uri$stemsystems,com>
 
+### EL6 ships with perl-File-Slurp-9999.13-7.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -37,9 +40,6 @@ in a directory.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
-
-### Clean up buildroot
-find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;

@@ -2,6 +2,11 @@
 # Authority: dries
 # Upstream: Grant McLean <grantm$cpan,org>
 
+### EL6 ships with perl-XML-Simple-2.18-6.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-XML-Simple-2.14-4.fc6
+%{?el5:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

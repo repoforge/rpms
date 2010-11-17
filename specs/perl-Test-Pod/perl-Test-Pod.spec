@@ -1,6 +1,10 @@
 # $Id$
 # Authority: dries
 # Upstream: David E. Wheeler <david@justatheory.com>
+
+### EL6 ships with perl-Test-Pod-1.40-1.el6
+%{?el6:# Tag: rfx}
+
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

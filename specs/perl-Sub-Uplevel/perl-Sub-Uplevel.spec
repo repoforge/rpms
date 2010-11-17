@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: David A, Golden <dagolden$cpan,org>
 
+### EL6 ships with perl-Sub-Uplevel-0.2002-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

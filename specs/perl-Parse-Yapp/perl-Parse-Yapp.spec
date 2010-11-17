@@ -2,6 +2,15 @@
 # Authority: dag
 # Upstream: Francois Desarmenien <francois$fdesar,net>
 
+### EL6 ships with perl-Parse-Yapp-1.05-41.el6
+%{?el6:# Tag: rfx}
+### EL4 ships with perl-Parse-Yapp-1.05-32
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-Parse-Yapp-1.05-30
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-Parse-Yapp-1.04-3
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

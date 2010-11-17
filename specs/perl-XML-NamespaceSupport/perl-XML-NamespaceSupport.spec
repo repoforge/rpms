@@ -2,8 +2,12 @@
 # Authority: dag
 # Upstream: Chris Prather <chris@prather.org>
 
-### perl-XML-NamespaceSupport ships with EL4 and EL5
-##ExcludeDist: el4
+### EL6 ships with perl-XML-NamespaceSupport-1.10-3.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-XML-NamespaceSupport-1.09-1.2.1
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-XML-NamespaceSupport-1.08-6
+%{?el4:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

@@ -2,6 +2,13 @@
 # Authority: dries
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
+### EL6 ships with perl-IO-String-1.08-9.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-IO-String-1.08-1.1.1
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-IO-String-1.08-1.1.el4
+%{?el4:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

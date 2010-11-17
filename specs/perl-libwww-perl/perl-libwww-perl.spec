@@ -1,6 +1,12 @@
 # $Id$
 # Authority: cmr
 # Upstream: Gisle Aas <gisle$activestate,com>
+
+### EL6 ships with perl-libwww-perl-5.833-2.el6
+### EL5 ships with perl-libwww-perl-5.805-1.1.1
+### EL4 ships with perl-libwww-perl-5.79-5
+### EL3 ships with perl-libwww-perl-5.65-6
+### EL2 ships with perl-libwww-perl-5.53-3
 # Tag: rft
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

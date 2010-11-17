@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with perl-Hook-LexWrap-0.22-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Paul T. Seamons <perlspam$seamons,com>
 
+### EL6 ships with perl-Taint-Runtime-0.03-9.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

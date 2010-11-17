@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with perl-Net-SMTP-SSL-1.01-4.el6
+%{?el6:# Tag: rfx}
+
 %define real_name Net-SMTP
 
 Summary: Net-SMTP Perl module

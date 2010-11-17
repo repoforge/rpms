@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Martin Hosken <martin_hosken$sil,org>
 
+### EL6 ships with perl-Font-TTF-0.45-6.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

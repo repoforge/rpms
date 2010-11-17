@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Ken MacLeod <ken$bitsko,slc,ut,us>
 
+### EL6 ships with perl-Frontier-RPC-0.07b4p1-9.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,7 +2,16 @@
 # Authority: dag
 # Upstream: Matt Sergeant <msergeant$cpan,org>
 
-# ExcludeDist: el4
+### EL6 ships with perl-XML-Parser-2.36-7.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-XML-Parser-2.34-6.1.2.2.1
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-XML-Parser-2.34-5
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-XML-Parser-2.31-16.EL3
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-XML-Parser-2.30-7
+%{?el2:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

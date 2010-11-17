@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
+### EL2 ships with perl-MIME-Base64-2.12-6
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Alexandr Ciornii <alexchorny@gmail.com>
 
+### EL6 ships with perl-Tie-IxHash-1.21-10.1.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

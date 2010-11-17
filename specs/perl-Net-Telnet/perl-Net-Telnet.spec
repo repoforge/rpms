@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Jay Rogers <jay$rgrs,com>
 
+### EL5 ships with perl-Net-Telnet-3.03-5
+%{?el5:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

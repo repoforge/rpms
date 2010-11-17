@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Michael G Schwern <schwern$pobox,com>
 
+### EL6 ships with perl-Test-Simple-0.92-115.el6
+%{?el6:# Tag: rfx}
+
 ### From RH9 onwards perl(Test::Simple) is provided by the perl package (sigh)
 ## ExclusiveDist: el2 rh7
 

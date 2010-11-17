@@ -1,6 +1,10 @@
 # $Id$
 # Authority: dries
 # Upstream: Adam Kennedy <adamk@cpan.org>
+
+### EL6 ships with perl-PPI-1.206-4.el6
+%{?el6:# Tag: rfx}
+
 # ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

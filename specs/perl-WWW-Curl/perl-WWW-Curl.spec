@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Cris Bailiff <c,bailiff+curl$devsecure,com>
 
+### EL6 ships with perl-WWW-Curl-4.09-3.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

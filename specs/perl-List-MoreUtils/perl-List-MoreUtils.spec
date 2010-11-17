@@ -1,7 +1,9 @@
 # $Id$
 # Authority: dries
 # Upstream: Tassilo von Parseval <tassilo,parseval$post,rwth-aachen,de>
-# Tag: rft  
+
+### EL6 ships with perl-List-MoreUtils-0.22-10.el6
+# Tag: rft
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: John Gardiner Myers <jgmyers$proofpoint,com>
 
+### EL6 ships with perl-Encode-Detect-1.01-2.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,6 +2,14 @@
 # Authority: dag
 # Upstream: Olaf Kolkman <olaf$net-dns,org>
 
+### EL6 ships with perl-Net-DNS-0.65-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-Net-DNS-0.59-3.el5
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-Net-DNS-0.48-2.el4
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-Net-DNS-0.31-4.el3
+%{?el3:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

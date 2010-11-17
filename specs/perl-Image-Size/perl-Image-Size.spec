@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Randy J. Ray <rjray$blackperl,com>
 
+### EL6 ships with perl-Image-Size-3.2-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

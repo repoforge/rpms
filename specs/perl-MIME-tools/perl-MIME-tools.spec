@@ -3,8 +3,9 @@
 # Upstream: Eryq <eryq$zeegee,com>
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
 # Upstream: Dave O'Neill <dmo$roaringpenguin,com>
-# Tag: rft
 
+### EL6 ships with perl-MIME-tools-5.427-4.el6
+# Tag: rft
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

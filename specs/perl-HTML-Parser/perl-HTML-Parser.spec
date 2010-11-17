@@ -2,8 +2,13 @@
 # Authority: dag
 # Upstream: Gisle Aas <gisle$activestate,com>
 
-##ExcludeDist: el5
 # Rationale: spamassasin 3.20 needs this core package to be updated
+### EL6 ships with perl-HTML-Parser-3.64-2.el6
+### EL5 ships with perl-HTML-Parser-3.55-1.fc6
+### EL4 ships with perl-HTML-Parser-3.55-1.el4
+### EL3 ships with perl-HTML-Parser-3.26-17
+### EL2 ships with perl-HTML-Parser-3.25-2
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

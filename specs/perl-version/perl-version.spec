@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: John Peacock <jpeacock$rowman,com>
 
+### EL6 ships with perl-version-0.77-115.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

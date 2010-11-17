@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: &#1497;&#1493;&#1489;&#1500; &#1511;&#1493;&#1490;'&#1502;&#1503; <nothingmuch$woobling,org>
 
+### EL6 ships with perl-UNIVERSAL-isa-1.03-1.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,8 +2,16 @@
 # Authority: dag
 # Upstream: Gisle Aas <gisle$ActiveState,com>
 
-### RHEL ships with perl-URI already
-# ExclusiveDist: none
+### EL6 ships with perl-URI-1.40-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-URI-1.35-3
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-URI-1.30-4
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-URI-1.21-7
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-URI-1.12-5
+%{?el2:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

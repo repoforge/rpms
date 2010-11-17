@@ -2,6 +2,13 @@
 # Authority: dag
 # Upstream: Petr Pajas <pajas$matfyz,cz>
 
+### EL6 ships with perl-XML-LibXML-1.70-5.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-XML-LibXML-1.58-6
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-XML-LibXML-1.58-3.el4
+%{?el4:# Tag: rfx}
+
 # ExcludeDist: el3 el4 el5
 
 ### Versions newer than 1.69 change ABI and fail against perl-XML-XSLT using native libxslt

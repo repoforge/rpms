@@ -1,7 +1,12 @@
 # $Id$
 # Authority: dag
 # Upstream: Adam Kennedy <adamk@cpan.org>
-# ExcludeDist: el4  [because of perl(List::Util) >= 1.18]
+
+### EL6 ships with perl-Perl-MinimumVersion-1.20-3.el6
+%{?el6:# Tag: rfx}
+
+### Because of perl(List::Util) >= 1.18
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

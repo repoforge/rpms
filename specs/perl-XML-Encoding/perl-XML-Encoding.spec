@@ -3,6 +3,13 @@
 # Upstream: Clark Cooper <coopercc$netheaven,com>
 # Upstream: Steve Hay <shay$cpan,org>
 
+### EL4 ships with perl-XML-Encoding-1.01-26
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-XML-Encoding-1.01-23
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-XML-Encoding-1.01-2
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

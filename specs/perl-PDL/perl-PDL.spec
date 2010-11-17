@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Chris Marshall <chm$cpan,org>
 
+### EL3 ships with perl-PDL-2.3.4-4
+%{?el3:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
