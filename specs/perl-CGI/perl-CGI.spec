@@ -3,6 +3,13 @@
 # Upstream: Lincoln D. Stein <lincoln.stein$gmail,com>
 # Rationale: this package totally clobbers a core package, use with care
 
+### EL6 ships with perl-CGI-3.49-115.el6
+%{?el6:# Tag: rfx}
+### EL3 ships with perl-CGI-2.89-101.EL3
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-CGI-2.752-37.1.99ent
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 

@@ -3,6 +3,13 @@
 # Upstream: Tim Bunce <Tim,Bunce$pobox,com>
 # Upstream: Tim Bunce <dbi-users$perl,org>
 
+### EL6 ships with perl-DBI-1.609-4.el6
+### EL5 ships with perl-DBI-1.52-2.el5
+### EL4 ships with perl-DBI-1.40-9
+### EL3 ships with perl-DBI-1.32-9
+### EL2 ships with perl-DBI-1.18-3
+# Tag: rfx
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

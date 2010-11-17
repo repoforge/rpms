@@ -2,6 +2,13 @@
 # Authority: dag
 # Upstream: Steffen Beyer <sb$engelschall,com>
 
+### EL6 ships with perl-Date-Calc-6.3-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-Date-Calc-5.4-1.2.2.1
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-Date-Calc-5.3-9
+%{?el4:# Tag: rfx}
+
 # ExclusiveDist: el3
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)

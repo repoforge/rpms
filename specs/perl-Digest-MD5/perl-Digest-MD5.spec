@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el2
+### EL2 ships with perl-Digest-MD5-2.13-1
+%{?el2:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

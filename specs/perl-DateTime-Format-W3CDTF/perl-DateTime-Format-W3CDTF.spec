@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Kellan Elliott-Mccrea <kellan$protest,net>
 
+### EL6 ships with perl-DateTime-Format-W3CDTF-0.04-8.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

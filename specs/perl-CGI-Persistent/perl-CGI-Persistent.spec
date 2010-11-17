@@ -16,7 +16,7 @@ Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI-Persistent/
 
 Source: http://www.cpan.org/modules/by-module/CGI/CGI-Persistent-%{version}.tar.gz
-Patch: perl-CGI-Persistent-1.00-relpath.patch
+Patch0: perl-CGI-Persistent-1.00-relpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

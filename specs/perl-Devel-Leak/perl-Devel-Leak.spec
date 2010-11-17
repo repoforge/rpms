@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Nick Ing-Simmons <nick$ing-simmons,net>
 
+### EL6 ships with perl-Devel-Leak-0.03-10.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -2,6 +2,9 @@
 # Authority: cmr
 # Upstream: Juerd Waalboer <spamcollector_cpan$juerd,nl>
 
+### EL6 ships with perl-DBIx-Simple-1.32-3.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

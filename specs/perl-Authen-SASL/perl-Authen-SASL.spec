@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Graham Barr <gbarr$pobox,com>
 
+### EL6 ships with perl-Authen-SASL-2.13-2.el6
+%{?el6:# Tag: rfx}
+
 %{?el3:%define _without_gssapi 1}
 %{?rh9:%define _without_gssapi 1}
 %{?rh7:%define _without_gssapi 1}

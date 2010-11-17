@@ -2,6 +2,13 @@
 # Authority: dag
 # Upstream: Greg Sabino Mullane <greg$turnstep,com>
 
+### EL6 ships with perl-DBD-Pg-2.15.1-3.el6
+### EL5 ships with perl-DBD-Pg-1.49-2.el5_3.1
+### EL4 ships with perl-DBD-Pg-1.31-6
+### EL3 ships with perl-DBD-Pg-1.21-2
+### EL2 ships with perl-DBD-Pg-1.01-1
+# Tag: rfx
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

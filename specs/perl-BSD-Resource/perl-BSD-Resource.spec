@@ -1,7 +1,11 @@
 # $Id$
 # Authority: dries
 # Upstream: Jarkko Hietaniemi <jhi$iki,fi>
-# RFX: el6
+
+### EL6 ships with perl-BSD-Resource-1.29.03-3.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-BSD-Resource-1.28-1.fc6.1
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Paul Marquess <pmqs$cpan,org>
 
+### EL3 ships with perl-DB_File-1.806-101.EL3
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-DB_File-1.75-37.1.99ent
+%{?el2:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

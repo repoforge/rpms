@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Lincoln Stein <lstein$cshl,edu>
 
+### EL6 ships with perl-Devel-Cycle-1.10-3.1.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

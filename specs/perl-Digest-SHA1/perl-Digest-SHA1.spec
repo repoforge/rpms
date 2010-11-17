@@ -1,6 +1,15 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with perl-Digest-SHA1-2.12-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-Digest-SHA1-2.11-1.2.1
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-Digest-SHA1-2.07-5
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-Digest-SHA1-2.01-15.1
+%{?el3:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

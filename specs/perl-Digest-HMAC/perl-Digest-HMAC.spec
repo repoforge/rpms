@@ -2,7 +2,11 @@
 # Authority: dag
 # Upstream: Gisle Aas <gisle@ActiveState.com>
 
-# ExclusiveDist: rh6 el2 rh7 rh8
+### EL6 ships with perl-Digest-HMAC-1.01-22.el6
+### EL5 ships with perl-Digest-HMAC-1.01-15
+### EL4 ships with perl-Digest-HMAC-1.01-13
+### EL3 ships with perl-Digest-HMAC-1.01-11.1
+# ExclusiveDist: el2
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

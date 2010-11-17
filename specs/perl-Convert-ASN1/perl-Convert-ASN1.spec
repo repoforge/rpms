@@ -1,8 +1,13 @@
 # $Id$
 # Authority: dag
 # Upstream: Graham Barr <gbarr$cpan,org>
-# ExcludeDist: el4
-# RFX: el6
+
+### EL6 ships with perl-Convert-ASN1-0.22-1.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-Convert-ASN1-0.20-1.1
+%{?el5:# Tag: rfx}
+### EL4 ships with perl-Convert-ASN1-0.18-3
+%{?el4:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)

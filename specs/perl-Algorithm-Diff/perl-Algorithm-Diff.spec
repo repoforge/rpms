@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Tye McQueen <tyemq$cpan,org>
 
+### EL6 ships with perl-Algorithm-Diff-1.1902-9.el6
+%{?el6:# Tag: rfx}
+
 %define real_name Algorithm-Diff
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
