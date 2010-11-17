@@ -8,9 +8,9 @@
 
 Summary: Grep-like text search tool
 Name: ack
-Version: 1.92
+Version: 1.94
 Release: 1%{?dist}
-License: GPL+ or Artistic
+License: Artistic
 Group: Applications/Text
 URL: http://betterthangrep.com/
 
@@ -50,7 +50,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc ack-help.txt ack-help-types.txt Changes META.yml README TODO
+%doc ack-help.txt ack-help-types.txt Changes META.yml README.markdown TODO
 %doc %{_mandir}/man1/ack.1*
 %{_bindir}/ack
 %dir %{perl_vendorlib}/App/
@@ -58,5 +58,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/App/Ack/
 
 %changelog
+* Wed Nov 17 2010 Steve Huff <shuff@vecna.org> - 1.94-1
+- Update to version 1.94.
+
 * Mon Aug 30 2010 Dag Wieers <dag@wieers.com> - 1.92-1
 - Initial package. (using DAR)
