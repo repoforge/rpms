@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
+
+# ExclusiveDist: el4
 
 %define date 20061018
 %define time 042701

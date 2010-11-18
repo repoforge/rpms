@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
 
+# ExclusiveDist: el4
 
 Summary: QEMU accelerator kernel module
 Name: dkms-kqemu

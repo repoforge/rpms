@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
+
+# ExclusiveDist: el4
 
 Summary: Driver for RTL8111/8168B PCI Express Gigabit Ethernet controllers
 Name: dkms-r1000

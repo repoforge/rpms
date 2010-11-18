@@ -1,12 +1,13 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
 
-%define fromkernel 2.6.22.1
+# ExclusiveDist: el4
+
+%define fromkernel 2.6.19.1
 
 Summary: Driver for reading and writing on NTFS formatted volumes
 Name: dkms-ntfs
-Version: 2.1.28
+Version: 2.1.27
 Release: 2%{?dist}
 License: GPL
 Group: System Environment/Kernel

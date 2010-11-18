@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Dist: nodist
+# ExclusiveDist: el4
 
 %define desktop_vendor rpmforge
 %define nvidialibdir %{_libdir}/nvidia

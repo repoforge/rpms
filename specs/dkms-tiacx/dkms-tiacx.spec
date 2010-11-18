@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
+
+# ExclusiveDist: el4
 
 Summary: Driver for Texas Instruments' ACX100/ACX111 wireless network chips
 Name: dkms-tiacx

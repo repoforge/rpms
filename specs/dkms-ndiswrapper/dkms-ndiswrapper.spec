@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+# ExclusiveDist: el4
+
 %define real_name ndiswrapper
 
 Summary: Kernel module to allow the use of NDIS drivers 

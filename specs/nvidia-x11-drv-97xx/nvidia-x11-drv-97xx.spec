@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
-# ExclusiveDist: fc6 el5 fc7
+
+# ExclusiveDist: el4
 
 %define majmin          1.0
 %define relver          9762

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: matthias
-# ExclusiveDist: el4 el5
-# Dist: nodist
+
+# ExclusiveDist: el4
 
 %define real_name fuse
 

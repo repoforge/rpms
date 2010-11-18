@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
+
+# ExclusiveDist: el4
 
 # We disable lirc_gpio (build fails) and lirc_parallel (not SMP safe)
 %define modules lirc_atiusb lirc_bt829 lirc_cmdir lirc_dev lirc_i2c lirc_igorplugusb lirc_imon lirc_it87 lirc_mceusb lirc_mceusb2 lirc_sasem lirc_serial lirc_sir lirc_streamzap

@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Dist: nodist
+# ExclusiveDist: el4
 
 %define real_name r8168
 

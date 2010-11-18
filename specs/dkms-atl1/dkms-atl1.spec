@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Dist: nodist
+# ExclusiveDist: el4
 
 %define real_name l1-linux
 
@@ -18,7 +18,9 @@ Patch0: atl1-1.2.40.2-irqreturn_t.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: gcc, make, dkms
+Requires: dkms
+Requires: gcc
+Requires: make
 
 %description
 Driver (Linux kernel module) for Attansic L1 Gigabit Ethernet controllers.

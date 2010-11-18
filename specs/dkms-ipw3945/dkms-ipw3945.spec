@@ -1,6 +1,7 @@
 # $Id$
 # Authority: matthias
-# Dist: nodist
+
+# ExclusiveDist: el4
 
 Summary: Driver for Intel® PRO/Wirelss 3945 network adaptors
 Name: dkms-ipw3945

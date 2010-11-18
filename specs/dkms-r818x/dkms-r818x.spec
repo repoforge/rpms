@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-# Dist: nodist
+# ExclusiveDist: el4
 
 %define real_name rtl818x
 %define real_version 1.0.1-b
