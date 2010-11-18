@@ -12,7 +12,8 @@ URL: http://sky.prohosting.com/oparviai/soundtouch/
 Source: http://www.surina.net/soundtouch/soundtouch-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libtool
+BuildRequires: gcc-c++
+BuildRequires: libtool
 
 %description
 SoundTouch is a LGPL-licensed open-source audio processing library for
@@ -40,9 +41,15 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+%{__libtoolize} --force --copy
+%{__aclocal} #--force
+%{__autoheader}
+%{__automake} --add-missing -a --foreign
+%{__autoconf}
+#autoreconf --force --install --symlink
 %configure \
-	--disable-dependency-tracking \
-	--enable-shared
+    --disable-dependency-tracking \
+    --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
@@ -62,16 +69,20 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc COPYING.TXT README.html
 %{_bindir}/soundstretch
-%{_libdir}/lib*.so.*
+%{_libdir}/libBPM.so.*
+%{_libdir}/libSoundTouch.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_datadir}/aclocal/soundtouch.m4
 %{_includedir}/soundtouch/
-%{_libdir}/lib*.a
-%exclude %{_libdir}/lib*.la
-%{_libdir}/lib*.so
-%{_libdir}/pkgconfig/*.pc
+%{_libdir}/libBPM.so
+%{_libdir}/libSoundTouch.so
+%{_libdir}/pkgconfig/soundtouch-1.0.pc
+%exclude %{_libdir}/libBPM.a
+%exclude %{_libdir}/libBPM.la
+%exclude %{_libdir}/libSoundTouch.a
+%exclude %{_libdir}/libSoundTouch.la
 
 %changelog
 * Sun Mar 25 2007 Dag Wieers <dag@wieers.com> - 1.3.1-1

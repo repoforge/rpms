@@ -3,14 +3,16 @@
 
 Summary: Commodore 64 music player and SID chip emulator library
 Name: libsidplay
-Version: 1.36.59
-Release: 1.2%{?dist}
+Version: 1.36.60
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.geocities.com/SiliconValley/Lakes/5147/
-Source: http://www.geocities.com/SiliconValley/Lakes/5147/sidplay/packages/libsidplay-%{version}.tgz
+
+#Source: http://www.geocities.com/SiliconValley/Lakes/5147/sidplay/packages/libsidplay-%{version}.tgz
+Source: http://home.arcor.de/ms2002sep/bak/libsidplay-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-# libtool, sigh
+
 BuildRequires: gcc-c++
 
 %description
@@ -32,21 +34,15 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-### Clean up buildroot
-%{__rm} -f %{buildroot}%{_libdir}/*.la
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,23 +50,21 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING
-%{_libdir}/*.so.*
+%{_libdir}/libsidplay.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc DEVELOPER src/fastforward.txt src/format.txt src/mixing.txt src/mpu.txt src/panning.txt
-%{_libdir}/*.a
-%{_libdir}/*.so
+%doc DEVELOPER src/fastforward.txt src/mixing.txt src/mpu.txt src/panning.txt
 %{_includedir}/sidplay/
-#exclude %{_libdir}/*.la
+%{_libdir}/libsidplay.so
+%exclude %{_libdir}/libsidplay.la
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.36.59-1.2
-- Rebuild for Fedora Core 5.
+* Sun Nov 14 2010 Dag Wieers <dag@wieers.com> - 1.36.60-1
+- Updated to release 1.36.60.
 
 * Sun Nov 13 2005 Dries Verachtert <dries@ulyssis.org> - 1.36.59-1
 - Updated to release 1.36.59.
 
 * Thu Aug 28 2003 Dag Wieers <dag@wieers.com> - 1.36.57-0
 - Initial package. (using DAR)
-

@@ -15,6 +15,7 @@ Patch1: svgalib-1.4.3-fhs.patch
 Patch2: svgalib-1.9.21-demos.patch
 Patch3: svgalib-1.9.21-cfg.patch
 Patch4: svgalib-1.9.25-kernel-2.6.26.patch
+Patch5: svgalib-1.9.25-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Exclusivearch: %{ix86} x86_64
@@ -44,6 +45,7 @@ library.
 %patch2 -p1
 %patch3 -p1 -b .defaultcfg
 %patch4 -p1
+%patch5 -p0
 
 #the testlinear demo needs svgalib's internal libvga header, so copy it to the
 #demo dir

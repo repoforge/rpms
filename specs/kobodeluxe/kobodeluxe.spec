@@ -23,6 +23,7 @@ Source7: kobodeluxe-48.png
 Patch0: kobodeluxe-0.4pre10-gcc4.patch
 Patch1: kobodeluxe-0.4pre10-various-from-debian.patch
 Patch2: kobodeluxe-0.4pre10-fix-segfault-in-midi.patch
+Patch3: kobodeluxe-0.4pre10-gcc44.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: skobo <= %{version}-%{release}
@@ -40,6 +41,7 @@ of the major operating systems.
 %patch0 -p0 -b .gcc4
 %patch1 -p1
 %patch2 -p1 -z .pix
+%patch3 -p0
 
 %{__cat} <<EOF >kobodeluxe.desktop
 [Desktop Entry]

@@ -1,18 +1,22 @@
 # $Id$
-#
 # Authority: bert
 # Upstream: <lyx-devel$lists,lyx,org>
 
+# ExclusiveDist: el2 el3 el4 el5
+
+Summary: xft-compatible versions of some LaTeX fonts
 Name: latex-xft-fonts
 Version: 0.1
 Release: 2%{?dist}
 License: distributable
+Group: User Interface/X
+
 Source: http://movementarian.org/latex-xft-fonts-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildArch: noarch
-Group: User Interface/X
-Summary: xft-compatible versions of some LaTeX fonts
-Prereq: fontconfig chkfontpath
+Requires: chkfontpath
+Requires: fontconfig
 
 %description
 Latex-xft-fonts contains xft-compatible versions of
@@ -22,7 +26,7 @@ your version of Qt is using Xft for displaying
 fonts.
 
 %prep
-%setup -q
+%setup
 
 %install
 %{__rm} -rf %{buildroot}
@@ -31,7 +35,6 @@ fonts.
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %post
 fc-cache

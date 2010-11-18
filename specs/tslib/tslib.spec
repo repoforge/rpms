@@ -10,6 +10,7 @@ Group: System Environment/Libraries
 URL: http://tslib.berlios.de/
 
 Source: http://download.berlios.de/tslib/tslib-%{version}.tar.bz2
+Patch0: tslib-1.0-o_create.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -35,6 +36,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 autoreconf --force --install --symlink

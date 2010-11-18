@@ -1,9 +1,12 @@
 # $Id$
 # Authority: dag
 
-##ExcludeDist: fc3
-##Tag: test
-
+### EL6 ships with subversion-1.6.11-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with subversion-1.4.2-4.el5_3.1
+%{?el5:# Tag: rfx}
+### EL4 ships with subversion-1.1.4-3.el4_8.2
+%{?el4:# Tag: rfx}
 
 %define _without_ruby 1
 

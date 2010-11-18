@@ -1,7 +1,8 @@
-# $Id$
+# $Id: gstreamer-plugins-ugly.spec 8017 2009-11-16 20:46:44Z shuff $
 # Authority: matthias
+# ExclusiveDist: fc5 fc6 el5 fc7
 
-# ExclusiveDist: el6
+# Test
 
 %define desktop_vendor rpmforge
 
@@ -13,34 +14,33 @@
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
-Version: 0.10.16
+Version: 0.10.11
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
-
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
+Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
-Requires: %{gstreamer} >= %{gst_minver}
 
-BuildRequires: a52dec-devel >= 0.7.3
-BuildRequires: amrnb-devel >= 7.0.0.2
 BuildRequires: gcc-c++
 BuildRequires: gettext-devel
-BuildRequires: lame-devel >= 3.89
+
+BuildRequires: twolame-devel
 BuildRequires: libcdio-devel
+BuildRequires: libsidplay-devel >= 1.36.0
+BuildRequires: a52dec-devel >= 0.7.3
 #BuildRequires: libdvdnav-devel >= 0.1.3
 BuildRequires: libdvdread-devel >= 0.9.0
+BuildRequires: lame-devel >= 3.89
 BuildRequires: libid3tag-devel >= 0.15.0
 BuildRequires: libmad-devel >= 0.15.0
 BuildRequires: libmpeg2-devel >= 0.4.0
+BuildRequires: amrnb-devel >= 7.0.0.2
 BuildRequires: liboil-devel
-BuildRequires: libsidplay-devel >= 1.36.0
 BuildRequires: PyXML
-BuildRequires: twolame-devel
 
 Provides: gstreamer-sid = %{version}-%{release}
 Provides: gstreamer-lame = %{version}-%{release}
@@ -60,20 +60,22 @@ gstreamer-plugins-good because:
 - the license of the library is not LGPL
 - there are possible licensing issues with the code.
 
+
 %prep
 %setup -n gst-plugins-ugly-%{version}
 
+
 %build
 %configure \
-    --disable-static \
-    --enable-debug \
     --with-package-name='gst-plugins-ugly %{desktop_vendor} rpm' \
-    --with-package-origin='http://www.rpmforge.net/'
+    --with-package-origin='http://www.rpmforge.net/' \
+    --enable-debug \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%makeinstall
 
 # make output told me to do this
 libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
@@ -84,17 +86,16 @@ libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
 %{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
 %{__rm} -f %{buildroot}%{_libdir}/*.la
 
+
 %clean
 %{__rm} -rf %{buildroot}
+
 
 %files -f gst-plugins-ugly-%{majorminor}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING README REQUIREMENTS
-%{_datadir}/gstreamer-%{majorminor}/presets/GstAmrnbEnc.prs
-%{_datadir}/gstreamer-%{majorminor}/presets/GstX264Enc.prs
 %{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
-%{_libdir}/gstreamer-%{majorminor}/libgstamrwbdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstasf.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcdio.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
@@ -110,12 +111,8 @@ libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
 %{_libdir}/gstreamer-%{majorminor}/libgstrmdemux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstsid.so
 %{_libdir}/gstreamer-%{majorminor}/libgsttwolame.so
-%{_libdir}/gstreamer-%{majorminor}/libgstx264.so
 
 %changelog
-* Sun Nov 14 2010 Dag Wieers <dag@wieers.com> - 0.10.16-1
-- Updated to release 0.10.16.
-
 * Thu Nov 12 2009 Steve Huff <shuff@vecna.org> - 0.10.13-1
 - Updated to release 0.10.13.
 - No further updates possible without gstreamer update.

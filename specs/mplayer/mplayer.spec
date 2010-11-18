@@ -7,6 +7,8 @@
 %define _without_nas 1
 %define _without_xss 1
 
+%{?el6:%define _without_lirc 1}
+
 %{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_alsa 1}

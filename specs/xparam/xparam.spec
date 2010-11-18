@@ -12,7 +12,10 @@ URL: http://xparam.sourceforge.net/
 Source: http://dl.sf.net/xparam/xparam-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, automake, autoconf, libtool
+BuildRequires: automake
+BuildRequires: autoconf
+BuildRequires: gcc-c++
+BuildRequires: libtool
 
 %description
 XParam is a general-purpose tool for parameter handling in C++.
@@ -38,24 +41,22 @@ you will need to install %{name}-devel.
 %build
 %{__aclocal}
 %{__autoconf}
-# {__automake} --add-missing
 %configure \
-	--disable-config-examples
+    --disable-config-examples
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 ### Clean up buildroot (cannot be just excluded for rh8)
 %{__rm} -f %{buildroot}%{_infodir}/dir
 
 %post
-/sbin/ldconfig 2>/dev/null
+/sbin/ldconfig
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%postun -p /sbin/ldconfig
 
 %preun
 /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir
@@ -74,8 +75,8 @@ you will need to install %{name}-devel.
 %{_includedir}/xparam/*.h
 %{_includedir}/*.h
 %{_libdir}/*.a
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
+%exclude %{_libdir}/*.la
 
 %changelog
 * Tue May 11 2004 Dries Verachtert <dries@ulyssis.org> - 1.22-1

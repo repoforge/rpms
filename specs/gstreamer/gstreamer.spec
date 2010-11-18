@@ -1,3 +1,5 @@
+# ExclusiveDist: rh9
+
 %define _glib2		2.3.0
 %define _libxml2	2.4.9
 

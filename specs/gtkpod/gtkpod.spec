@@ -6,7 +6,7 @@
 Summary: Graphical song management program for Apple's iPod
 Name: gtkpod
 Version: 0.99.8
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gtkpod.org/
@@ -22,12 +22,11 @@ gtkpod is a platform independent Graphical User Interface for Apple's iPod
 using GTK2. It supports the first to fifth Generation including the iPod
 mini, iPod Photo, iPod Shuffle, iPod nano, and iPod Video..
 
-
 %prep
 %setup
 %patch0 -p1 -b .libgpod-0.4.2
-# Create a desktop menu entry
-%{__cat} > %{name}.desktop << EOF
+
+%{__cat} <<EOF >gtkpod.desktop
 [Desktop Entry]
 Name=iPod Song Manager
 Comment=Manage songs on your Apple iPod
@@ -39,37 +38,24 @@ Categories=GNOME;Application;AudioVideo;X-Red-Hat-Base;
 Encoding=UTF-8
 EOF
 
-
 %build
 %configure
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
-# Install menu icon
-%{__install} -D -p -m 0644 pixmaps/gtkpod-icon-48x48.png \
-    %{buildroot}%{_datadir}/pixmaps/gtkpod.png
+%{__install} -Dp -m 0644 pixmaps/gtkpod-icon-48x48.png %{buildroot}%{_datadir}/pixmaps/gtkpod.png
 
-# Install menu entry
-%if %{!?_without_freedesktop:1}0
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
     --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications \
-    %{name}.desktop
-%else
-%{__install} -D -p -m 0644 %{name}.desktop \
-    %{buildroot}%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
-%endif
-
+    gtkpod.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -77,14 +63,12 @@ desktop-file-install \
 %{_bindir}/gtkpod
 %{_datadir}/gtkpod/
 %{_datadir}/pixmaps/gtkpod.png
-%if %{!?_without_freedesktop:1}0
-%{_datadir}/applications/%{desktop_vendor}-%{name}.desktop
-%else
-%{_sysconfdir}/X11/applnk/Multimedia/%{name}.desktop
-%endif
-
+%{_datadir}/applications/%{desktop_vendor}-gtkpod.desktop
 
 %changelog
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.99.8-4
+- Rebuild against newer faad2 2.7.
+
 * Wed Jan 24 2007 Matthias Saou <http://freshrpms.net/> 0.99.8-3
 - Rebuild against new libgpod 0.4.2.
 

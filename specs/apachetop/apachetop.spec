@@ -19,7 +19,7 @@ Group: Applications/Internet
 URL: http://www.webta.org/projects/apachetop/wiki/Download
 
 Source: http://www.webta.org/apachetop/apachetop-%{version}.tar.gz
-Patch: apachetop-0.12.6-gcc41.patch
+Patch0: apachetop-0.12.6-gcc41.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, m4, readline-devel, gcc-c++, pcre-devel

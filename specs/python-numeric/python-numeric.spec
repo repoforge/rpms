@@ -3,7 +3,7 @@
 
 ### EL6 ships with numpy-1.3.0-6.2.el6
 ### EL5 ships with python-numeric-23.7-2.2.2
-# ExcusiveDist: el2 el3 el4
+# ExclusiveDist: el2 el3 el4
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 

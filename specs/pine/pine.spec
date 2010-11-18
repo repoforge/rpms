@@ -2,8 +2,10 @@
 # Authority: dag
 # Upstream: news://comp,mail,pine/
 
+### EL2 ships with pine-4.44-20
+%{?el2:# Tag: rfx}
 
-%define pgpver		0.18.0
+%define pgpver 0.18.0
 #%define with_gpgpine	1
 
 %define krb5inc %(/usr/kerberos/bin/krb5-config --cflags | sed -e 's|-I||')

@@ -1,11 +1,10 @@
 # $Id$
 # Authority: dag
 
-### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
-
 %define _without_nut 1
 %define _without_openjpeg 1
 
+### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
 %{?el5:%define _without_gsm 1}
 %{?el5:%define _without_speex 1}
 
@@ -32,9 +31,12 @@ Source: http://www.ffmpeg.org/releases/ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
+BuildRequires: dirac-devel
 BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
 BuildRequires: zlib-devel
+#libdc1394 support         no
+#libschroedinger enabled   no
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
 %{!?_without_opencore_amr:BuildRequires: opencore-amr-devel}
 #%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}

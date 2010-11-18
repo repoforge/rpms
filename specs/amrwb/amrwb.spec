@@ -11,7 +11,8 @@ URL: http://www.penguin.cz/~utx/amr
 
 #Source: ftp://ftp.freebsd.org/pub/FreeBSD/ports/local-distfiles/kwm/amrwb-%{version}.tar.gz
 #Source: http://distfiles.opendarwin.org/amrwb-%{version}.tar.gz
-Source: http://ftp.penguin.cz/pub/users/utx/amr/amrwb-%{version}.tar.bz2
+Source0: http://ftp.penguin.cz/pub/users/utx/amr/amrwb-%{version}.tar.bz2
+Source1: http://www.3gpp.org/ftp/Specs/archive/26_series/26.204/26204-700.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -29,6 +30,7 @@ AMR-WB is a wideband speech codec used in mobile phones development files.
 
 %prep
 %setup
+%{__cp} -v %{SOURCE1} .
 
 %build
 %configure --disable-static

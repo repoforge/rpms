@@ -12,7 +12,7 @@ URL: http://easysok.sourceforge.net/
 
 Source: http://dl.sf.net/easysok/%{name}-%{version}-kde3.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Patch: assert-include.patch
+Patch0: assert-include.patch
 BuildRequires: gettext, libjpeg-devel
 BuildRequires: libpng-devel, zlib-devel
 BuildRequires: kdelibs-devel, gcc-c++
@@ -42,7 +42,7 @@ Thinking Rabbit, Inc.
 %prep
 %{__rm} -rf %{buildroot}
 %setup
-%patch -p 1
+%patch0 -p 1
 
 %build
 . /etc/profile.d/qt.sh

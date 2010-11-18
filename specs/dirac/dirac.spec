@@ -13,7 +13,9 @@ URL: http://sourceforge.net/projects/dirac
 Source: http://dl.sf.net/dirac/dirac-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, xparam, doxygen, tetex-latex
+BuildRequires: doxygen
+BuildRequires: gcc-c++
+BuildRequires: tetex-latex
 
 %description
 Dirac is a general-purpose video codec aimed at resolutions from QCIF

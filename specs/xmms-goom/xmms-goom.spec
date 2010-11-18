@@ -13,7 +13,7 @@ Group: Applications/Multimedia
 URL: http://goom.sourceforge.net/
 
 Source: http://ios.free.fr/goom/devel/goom-%{version}-src.tgz
-Patch: goom-1.99.4-gcc3.patch
+Patch0: goom-1.99.4-gcc3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: xmms-devel, SDL-devel, gtk+-devel

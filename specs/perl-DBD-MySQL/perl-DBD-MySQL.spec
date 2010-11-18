@@ -1,9 +1,13 @@
-# $Id$
+# $Id: perl-DBD-mysql.spec 8763 2010-04-16 15:05:31Z cmr $
 # Authority: dag
 # Upstream: Patrick Galbraith <patg$patg,net>
 
 ### EL6 ships with perl-DBD-MySQL-4.013-3.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with perl-DBD-MySQL-3.0007-2.el5
+### EL4 ships with perl-DBD-MySQL-2.9004-3.1
+### EL3 ships with perl-DBD-MySQL-2.1021-4.EL3
+### EL2 ships with perl-DBD-MySQL-1.2216-4
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,7 +15,7 @@
 %define real_name DBD-mysql
 
 Summary: Perl module that implements a MySQL driver for DBI
-Name: perl-DBD-mysql
+Name: perl-DBD-MySQL
 Version: 4.014
 Release: 1%{?dist}
 License: Artistic/GPL
@@ -28,12 +32,9 @@ Requires: mysql
 Requires: perl(DBI) >= 1.08
 Requires: perl(Data::Dumper)
 
-%filter_from_requires /^perl*/d
-%filter_setup
-
-# rhel/centos contains the perl module DBD-mysql in a package named perl-DBD-MySQL
-Obsoletes: perl-DBD-MySQL <= %{version}-%{release}
-Provides: perl-DBD-MySQL = %{version}-%{release}
+### We used to provide RPMS with the upstreal distribution name perl-DBD-mysql
+Obsoletes: perl-DBD-mysql <= %{version}-%{release}
+Provides: perl-DBD-mysql = %{version}-%{release}
 
 %description
 perl-DBD-mysql is a Perl module that implements a MySQL driver for DBI.
@@ -61,7 +62,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog INSTALL.html MANIFEST MANIFEST.SKIP META.yml README TODO eg/
-%doc %{_mandir}/man3/*.3pm*
+%doc %{_mandir}/man3/Bundle::DBD::mysql.3pm*
+%doc %{_mandir}/man3/DBD::mysql.3pm*
+%doc %{_mandir}/man3/DBD::mysql::INSTALL.3pm*
 %dir %{perl_vendorarch}/auto/DBD/
 %{perl_vendorarch}/auto/DBD/mysql/
 %dir %{perl_vendorarch}/DBD/

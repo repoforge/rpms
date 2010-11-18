@@ -9,7 +9,7 @@
 %{?el3:%define _without_glibc232 1}
 %{?el3:%define _without_modxorg 1}
 
-%define date 20090708
+%define date 20101111
 
 Summary: Library for encoding and decoding H264/AVC video streams
 Name: x264
@@ -95,6 +95,9 @@ H264/AVC video streams using the x264 library.
 %{_libdir}/libx264.so
 
 %changelog
+* Mon Nov 15 2010 Dag Wieers <dag@wieers.com> - 0.0.0-0.4.20101111
+- Updated to git release 20101111 (soname .107).
+
 * Wed Jul 08 2009 Dag Wieers <dag@wieers.com> - 0.0.0-0.4.20090708
 - Updated to git release 20090708 (soname .68).
 

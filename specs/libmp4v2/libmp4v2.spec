@@ -12,6 +12,7 @@ URL: http://resare.com/libmp4v2/
 Source0: http://resare.com/libmp4v2/dist/libmp4v2-%{version}.tar.bz2
 ### Only here to be in the source package, "just in case, and FYI"
 Source1: http://resare.com/libmp4v2/mklibmp4v2/mklibmp4v2-r51.tar.bz2
+Patch0: libmp4v2-1.5.0.1-gcc44.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -33,6 +34,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure \

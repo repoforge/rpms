@@ -2,11 +2,13 @@
 # Authority: dag
 # Upstream: 
 
+%define real_name cfg2html-linux
+
 
 Summary: Tool to collect Linux system configuration into a HTML and text file.
 Name: cfg2html
-%define real_version 1.78-20100426
-Version: 1.78
+Version: 1.79
+%define real_version %{version}-20101104
 Release: 1%{?dist}
 License: Unknown
 Group: Applications/System
@@ -19,7 +21,6 @@ Buildarch: noarch
 
 Provides: cfg2html-linux = %{version}-%{release}
 Obsoletes: cfg2html-linux <= %{version}-%{release}
-Conflicts: cfg2html-linux
 
 %description
 Config to HTML is the "swiss army knife" for the ASE, CE, sysadmin etc. It helps
@@ -33,6 +34,10 @@ Kernel, Systemenhancements and Applications, Subsystems.
 
 %prep
 %setup -c
+
+%{__mv} %{name}-linux_%{version}-1_i386.changes Changes
+%{__mv} descript.ion README
+
 tar -xvzf %{name}-linux_%{version}-1.tar.gz
 cd %{name}-linux-%{version}
 
@@ -52,13 +57,12 @@ cd %{name}-linux-%{version}
 
 %files
 %defattr(-, root, root, 0755)
-%doc README*
+%doc Changes README*
 %doc %{name}-linux-%{version}/AUTHORS
 %doc %{name}-linux-%{version}/contrib/
 %doc %{name}-linux-%{version}/collect/
 %doc %{name}-linux-%{version}/README
 %doc %{name}-linux-%{version}/*.html
-%doc %{name}-linux-%{version}/*.png
 %doc %{name}-linux-%{version}/*.txt
 %doc %{_mandir}/man8/cfg2html.8*
 %doc %{_mandir}/man8/cfg2html-linux.8*
@@ -67,5 +71,9 @@ cd %{name}-linux-%{version}
 %{_bindir}/cfg2html-linux
 
 %changelog
+* Wed Nov 17 2010 Dag Wieers <dag@wieers.com> - 1.79-1
+- Updated to release 1.79.
+- Fix wrong conflict.
+
 * Mon Jun 07 2010 Dag Wieers <dag@wieers.com> - 1.78-1
 - Initial package. (using DAR)

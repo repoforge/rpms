@@ -1,37 +1,29 @@
-# $Id$
-# Authority: dag
+# $Id: vlc.spec 8878 2010-06-14 00:10:39Z dag $
+# Authority: matthias
 # Upstream: <vlc-devel$videolan,org>
-
-# ExclusiveDist: el6
 
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
-%define _with_avahi 1
-%define _with_mozilla 1
+%{?fedora: %{expand: %%define fc%{fedora} 1}}
+
+%{!?dtag:%define _with_avahi 1}
+
+### Firefox 3 xulrunner not supported.
+%{?el5:%undefine _with_mozilla}
 
 #define _without_dirac 1
 #define _without_opencv 1
-#define _without_directfb 1
-#define _without_ffmpeg 1
+%define _without_directfb 1
+%define _without_ffmpeg 1
 
 %ifarch %{ix86}
 %define _with_loader 1
 %endif
 
-%{?el6:%define mozilla xulrunner-devel nspr-devel}
-%{?el6:%define _without_fribidi 1}
-%{?el6:%define _without_glide 1}
-%{?el6:%define _without_jack 1}
-%{?el6:%define _without_lirc 1}
-%{?el6:%define _without_wxwidgets 1}
-%{?el6:%define _without_xosd 1}
-
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 %{?el5:%define _without_glide 1}
 %{?el5:%define _without_jack 1}
-%{?el5:%define _without_theora 1}
-### Firefox 3 xulrunner not supported.
-%{?el5:%undefine _with_mozilla}
+#{?el5:#define _without_theora 1}
 
 %{?el4:%define mozilla seamonkey-devel}
 %{?el4:%define _without_avahi 1}
@@ -42,7 +34,7 @@
 ### We don't want to build a VLC without graphical interface
 #{?el4:#define _without_qt4 1}
 %{?el4:%define _without_sysfs 1}
-%{?el4:%define _without_theora 1}
+#{?el4:#define _without_theora 1}
 
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
@@ -68,8 +60,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 1.1.5
-Release: 1%{?dist}
+Version: 0.9.9a
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -78,12 +70,7 @@ Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version
 #Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source1: http://rpm.greysector.net/livna/ffmpeg-%{ffmpeg_date}.tar.bz2
 Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
-Patch0: vlc-0.8.6-ffmpegX11.patch
-Patch1: vlc-0.8.6-wx28.patch
-#Patch2: vlc-0.8.6a-faad2.patch
 Patch4: ffmpeg-20080225-asmreg.patch
-Patch21: vlc-0.8.6e-directfb.patch
-Patch80: vlc-0.8.6e-xulrunner.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -173,7 +160,7 @@ Available rpmbuild rebuild options :
           a52 vorbis mpeg2dec flac aa caca esd arts alsa wxwidgets xosd
           lsp lirc id3tag faad2 theora mkv modplug smb speex glx x264
           gnomevfs vcd daap upnp pvr live portaudio avahi hal glide
-          ncurses
+          ncurses qt4 opencv
 
 Options that would need not yet existing add-on packages :
 --with loader ggi tarkin tremor
@@ -208,15 +195,9 @@ IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
 %setup -a 1 -a 2
-#patch0 -p1 -b .ffmpegX11
-#patch1 -p1 -b .wx28
 
 ### Use regex to change FAAD2 interface
-#patch2 -p1 -b .faad2
 %{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
-
-#patch21 -p1 -b .directfb
-#patch80 -p1 -b .libxul
 
 ### Fix PLUGIN_PATH path for lib64
 %{__perl} -pi -e 's|/lib\b|/%{_lib}|g' vlc-config.in.in configure*
@@ -287,16 +268,10 @@ export CFLAGS="%{optflags} -maltivec -mabi=altivec"
 
 ### Workaround to make -lX11 work on 64bit
 export LDFLAGS="-L/usr/X11R6/%{_lib}"
-export QTDIR="$(/usr/bin/pkg-config --variable=prefix QtGui)"
-export PATH="$QTDIR/bin:$PATH"
-export QTINC="$QTDIR/include"
-export QTLIB="$QTDIR/lib"
 %configure \
     --disable-dependency-tracking \
     --disable-rpath \
-    --disable-nls --disable-mozilla \
     --disable-static \
-    --with-PIC \
     --enable-release \
 %{?_without_a52:--disable-a52} \
 %{!?_without_aa:--enable-aa} \
@@ -375,10 +350,6 @@ export QTLIB="$QTDIR/lib"
 
 %install
 %{__rm} -rf %{buildroot} _docs
-export QTDIR="$(/usr/bin/pkg-config --variable=prefix QtGui)"
-export PATH="$QTDIR/bin:$PATH"
-export QTINC="$QTDIR/include"
-export QTLIB="$QTDIR/lib"
 %{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 # Include the docs below, our way
@@ -427,23 +398,29 @@ export QTLIB="$QTDIR/lib"
 %endif
 
 %changelog
-* Mon Nov 15 2010 Dag Wieers <dag@wieers.com> - 1.1.5-1
-- Updated to release 1.1.5.
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 0.9.9a-5
+- Rebuild against libdvbpsi-0.1.7.
 
-* Wed Jul 07 2010 Dag Wieers <dag@wieers.com> - 1.1.0-0.1
-- Updated to release 1.1.0.
+* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-4
+- Rebuild against newer faad2-2.7.
 
-* Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 1.0.1-0.2
-- Rebuild against newer faad2 2.7.
+* Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-3
+- Rebuild with minor fixed. (David Ward)
 
-* Wed Jul 29 2009 Dag Wieers <dag@wieers.com> - 1.0.1-0.1
-- Updated to release 1.0.1.
+* Wed Jul 22 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-2
+- Rebuild against portaudio-19.
 
-* Wed May 13 2009 Dag Wieers <dag@wieers.com> - 1.0.0-0.rc1
-- Updated to release 1.0.0-rc1.
+* Tue Jul 07 2009 Dag Wieers <dag@wieers.com> - 0.9.9a-1
+- Updated to release 0.9.9a.
+- Rebuild against ffmpeg-0.5.
+- Rebuild against x264-0.4.20090708.
+- Rebuild against libmodplug-0.8.7.
 
-* Wed Feb 11 2009 Dag Wieers <dag@wieers.com> - 0.9.9-0.rc
-- Updated to release 0.9.9-rc.
+* Sat Apr 04 2009 Dag Wieers <dag@wieers.com> - 0.9.9-2
+- Enable theora again.
+
+* Fri Apr 03 2009 Dag Wieers <dag@wieers.com> - 0.9.9-1
+- Updated to release 0.9.9.
 
 * Fri Dec 05 2008 Dag Wieers <dag@wieers.com> - 0.9.8a-1
 - Updated to release 0.9.8a.

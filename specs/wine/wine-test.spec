@@ -26,7 +26,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.6
+Version: 1.3.7
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -40,6 +40,8 @@ Patch100: wine-1.2-fonts.patch
 Patch1000: wine-1.2-gecko.patch 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+### 64bit build cannot run 32bit applications !
+BuildArch: %{ix86}
 BuildRequires: audiofile-devel
 BuildRequires: autoconf
 BuildRequires: bison
@@ -228,6 +230,14 @@ Encoding=UTF-8
 Categories=Application;System;
 EOF
 
+%ifarch %{ix86}
+%define winebin wine
+%endif
+
+%ifarch x86_64
+%define winebin wine64
+%endif
+
 %{__cat} <<'EOF' >wine.sysv
 #!/bin/sh
 #
@@ -247,8 +257,8 @@ start() {
     else
         echo -n $"Registering binary handler for Windows applications: "
         /sbin/modprobe binfmt_misc &>/dev/null
-        echo ':windows:M::MZ::/usr/bin/wine:' >/proc/sys/fs/binfmt_misc/register || :
-        echo ':windowsPE:M::PE::/usr/bin/wine:' >/proc/sys/fs/binfmt_misc/register || :
+        echo ':windows:M::MZ::/usr/bin/%{winebin}:' >/proc/sys/fs/binfmt_misc/register || :
+        echo ':windowsPE:M::PE::/usr/bin/%{winebin}:' >/proc/sys/fs/binfmt_misc/register || :
         RETVAL=$?
         [ $RETVAL -eq 0 ] && success || failure
     fi
@@ -423,7 +433,7 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/notepad
 %{_bindir}/regedit
 %{_bindir}/regsvr32
-%{_bindir}/wine
+%{_bindir}/%{winebin}
 %{_bindir}/wineboot
 %{_bindir}/winecfg
 %{_bindir}/wineconsole
@@ -435,7 +445,9 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/winemine
 %{_bindir}/winepath
 %{_bindir}/wineserver
+%ifarch %{ix86}
 %{_bindir}/wine-preloader
+%endif
 %{_datadir}/applications/%{desktop_vendor}-wine.desktop
 %{_datadir}/applications/%{desktop_vendor}-wine-config.desktop
 %{_datadir}/applications/%{desktop_vendor}-wine-fileman.desktop
@@ -451,11 +463,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/fakedlls/
 
 ### exe16.so
+%ifarch %{ix86}
 %{_libdir}/wine/gdi.exe16.so
 %{_libdir}/wine/krnl386.exe16.so
 %{_libdir}/wine/rundll.exe16.so
 %{_libdir}/wine/user.exe16.so
 %{_libdir}/wine/winhelp.exe16.so
+%endif
 
 ### exe.so
 %{_libdir}/wine/aspnet_regiis.exe.so
@@ -487,6 +501,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/progman.exe.so
 %{_libdir}/wine/reg.exe.so
 %{_libdir}/wine/regedit.exe.so
+%{_libdir}/wine/regsvcs.exe.so
 %{_libdir}/wine/regsvr32.exe.so
 %{_libdir}/wine/rpcss.exe.so
 %{_libdir}/wine/rundll32.exe.so
@@ -511,7 +526,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winemenubuilder.exe.so
 %{_libdir}/wine/winemine.exe.so
 %{_libdir}/wine/winepath.exe.so
+%ifarch %{ix86}
 %{_libdir}/wine/winevdm.exe.so
+%endif
 %{_libdir}/wine/winhlp32.exe.so
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
@@ -524,6 +541,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/inetcpl.cpl.so
 
 ### dll16.so
+%ifarch %{ix86}
 %{_libdir}/wine/avifile.dll16.so
 %{_libdir}/wine/commdlg.dll16.so
 %{_libdir}/wine/compobj.dll16.so
@@ -562,6 +580,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winnls.dll16.so
 %{_libdir}/wine/winsock.dll16.so
 %{_libdir}/wine/wintab.dll16.so
+%endif
 
 ### dll.so
 %{_libdir}/wine/acledit.dll.so
@@ -836,7 +855,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/uxtheme.dll.so
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
+%ifarch %{ix86}
 %{_libdir}/wine/w32skrnl.dll.so
+%endif
 %{_libdir}/wine/wbemprox.dll.so
 %{_libdir}/wine/wer.dll.so
 %{_libdir}/wine/wiaservc.dll.so
@@ -856,12 +877,15 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wmi.dll.so
 %{_libdir}/wine/wmiutils.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
+%ifarch %{ix86}
 %{_libdir}/wine/wow32.dll.so
+%endif
 %{_libdir}/wine/ws2_32.dll.so
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
 %{_libdir}/wine/wuapi.dll.so
 %{_libdir}/wine/wuaueng.dll.so
+%{_libdir}/wine/xapofx1_1.dll.so
 %{_libdir}/wine/xinput1_1.dll.so
 %{_libdir}/wine/xinput1_2.dll.so
 %{_libdir}/wine/xinput1_3.dll.so
@@ -872,6 +896,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/gphoto2.ds.so
 %{_libdir}/wine/sane.ds.so
 
+%ifarch %{ix86}
 ### drv16.so
 %{_libdir}/wine/comm.drv16.so
 %{_libdir}/wine/display.drv16.so
@@ -880,6 +905,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/sound.drv16.so
 %{_libdir}/wine/system.drv16.so
 %{_libdir}/wine/wineps16.drv16.so
+%endif
 
 ### drv.so
 %{_libdir}/wine/msacm32.drv.so
@@ -893,6 +919,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wineps.drv.so
 
 ### vxd
+%ifarch %{ix86}
 %{_libdir}/wine/ifsmgr.vxd.so
 %{_libdir}/wine/mmdevldr.vxd.so
 %{_libdir}/wine/monodebg.vxd.so
@@ -902,6 +929,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/vnetbios.vxd.so
 %{_libdir}/wine/vtdapi.vxd.so
 %{_libdir}/wine/vwin32.vxd.so
+%endif
 
 ### acm.so
 %{_libdir}/wine/imaadp32.acm.so
@@ -920,7 +948,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msisys.ocx.so
 
 ### mod16
+%ifarch %{ix86}
 %{_libdir}/wine/winoldap.mod16.so
+%endif
 
 ### sys.so
 %{_libdir}/wine/mountmgr.sys.so
@@ -989,6 +1019,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Nov 16 2010 Dag Wieers <dag@wieers.com> - 1.3.7-1
+- Updated to release 1.3.7.
+
 * Tue Nov 02 2010 Dag Wieers <dag@wieers.com> - 1.3.6-1
 - Updated to release 1.3.6.
 

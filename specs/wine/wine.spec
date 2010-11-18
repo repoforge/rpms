@@ -444,10 +444,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/fakedlls/
 
 ### exe16.so
+%ifarch %{ix86}
 %{_libdir}/wine/gdi.exe16.so
 %{_libdir}/wine/krnl386.exe16.so
 %{_libdir}/wine/user.exe16.so
 %{_libdir}/wine/winhelp.exe16.so
+%endif
 
 ### exe.so
 %{_libdir}/wine/attrib.exe.so
@@ -499,7 +501,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winemenubuilder.exe.so
 %{_libdir}/wine/winemine.exe.so
 %{_libdir}/wine/winepath.exe.so
+%ifarch %{ix86}
 %{_libdir}/wine/winevdm.exe.so
+%endif
 %{_libdir}/wine/winhlp32.exe.so
 %{_libdir}/wine/winver.exe.so
 %{_libdir}/wine/wordpad.exe.so
@@ -510,6 +514,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/appwiz.cpl.so
 
 ### dll16.so
+%ifarch %{ix86}
 %{_libdir}/wine/avifile.dll16.so
 %{_libdir}/wine/commdlg.dll16.so
 %{_libdir}/wine/compobj.dll16.so
@@ -548,6 +553,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winnls.dll16.so
 %{_libdir}/wine/winsock.dll16.so
 %{_libdir}/wine/wintab.dll16.so
+%endif
 
 ### dll.so
 %{_libdir}/wine/acledit.dll.so
@@ -792,7 +798,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/uxtheme.dll.so
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
+%ifarch %{ix86}
 %{_libdir}/wine/w32skrnl.dll.so
+%endif
 %{_libdir}/wine/wbemprox.dll.so
 %{_libdir}/wine/wiaservc.dll.so
 %{_libdir}/wine/windowscodecs.dll.so
@@ -809,7 +817,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wmi.dll.so
 %{_libdir}/wine/wmiutils.dll.so
 %{_libdir}/wine/wnaspi32.dll.so
+%ifarch %{ix86}
 %{_libdir}/wine/wow32.dll.so
+%endif
 %{_libdir}/wine/ws2_32.dll.so
 %{_libdir}/wine/wsock32.dll.so
 %{_libdir}/wine/wtsapi32.dll.so
@@ -846,6 +856,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/wineps.drv.so
 
 ### vxd
+%ifarch %{ix86}
 %{_libdir}/wine/ifsmgr.vxd.so
 %{_libdir}/wine/mmdevldr.vxd.so
 %{_libdir}/wine/monodebg.vxd.so
@@ -855,6 +866,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/vnetbios.vxd.so
 %{_libdir}/wine/vtdapi.vxd.so
 %{_libdir}/wine/vwin32.vxd.so
+%endif
 
 ### acm.so
 %{_libdir}/wine/imaadp32.acm.so

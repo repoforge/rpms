@@ -3,39 +3,38 @@
 # Upstream: Gernot Ziegler <gz$lysator,liu,se>
 # Upstream: <mjpeg-developer$lists,sourceforge,net>
 
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
-%{?fc1:%define _without_alsa 1}
 %{?el3:%define _without_alsa 1}
-%{?rh9:%define _without_alsa 1}
-%{?rh8:%define _without_alsa 1}
-%{?rh7:%define _without_alsa 1}
 %{?el2:%define _without_alsa 1}
-
-%define prever rc2
 
 Summary: Tools for recording, editing, playing and encoding mpeg video
 Name: mjpegtools
 Version: 1.9.0
-Release: 0.6.%{prever}%{?dist}
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mjpeg.sourceforge.net/
 
-Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}%{prever}.tar.gz
+Source: http://dl.sf.net/mjpeg/mjpegtools-%{version}.tar.gz
 #Source: mjpegtools-%{version}cvs.tar.gz
+Patch0: mjpegtools-1.9.0-gcc44.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, SDL-devel, libjpeg-devel, libpng-devel, gtk2-devel
-BuildRequires: libquicktime-devel, libdv-devel, SDL_gfx-devel
+BuildRequires: arts-devel
+BuildRequires: SDL-devel
+BuildRequires: SDL_gfx-devel
+BuildRequires: gcc-c++
+BuildRequires: gtk2-devel
+BuildRequires: libdv-devel
+BuildRequires: libjpeg-devel
+BuildRequires: libpng-devel
+BuildRequires: libquicktime-devel
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXxf86dga-devel}
 # Some other -devel package surely forgot this as a dependency
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 # Required by some other package, it seems... (SDL-devel is a good guess)
-BuildRequires: arts-devel
 Requires(post): /sbin/install-info, /sbin/ldconfig
 Requires(preun): /sbin/install-info
 
@@ -58,7 +57,8 @@ needed to compile applications that use part of the libraries
 of the mjpegtools package.
 
 %prep
-%setup -n %{name}-%{version}%{prever}
+%setup -n %{name}-%{version}
+%patch0 -p0
 
 %build
 %configure \
@@ -101,6 +101,9 @@ fi
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Nov 14 2010 Dag Wieers <dag@wieers.com> - 1.9.0-1
+- Updated to release 1.9.0.
+
 * Mon Apr 27 2009 Dag Wieers <dag@wieers.com> - 1.9.0-0.6.rc2
 - Rebuild against SDL_gfx 2.0.19.
 

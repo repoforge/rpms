@@ -1,9 +1,8 @@
 # $Id$
 # Authority: dag
 
-%{!?audio:%define audio alsa oss}
+%{!?audio:%define audio alsa esd oss}
 
-%{?el6:%define _without_esound 1}
 %{?el6:%define _without_jack 1}
 %{?el6:%define _without_nas 1}
 
@@ -23,7 +22,7 @@
 Summary: MPEG audio player
 Name: mpg123
 Version: 1.12.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/
@@ -78,7 +77,7 @@ export SDL_LIBS="$(sdl-config --libs)"
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README doc/
+%doc AUTHORS ChangeLog COPYING NEWS README
 %doc %{_mandir}/man1/mpg123.1*
 %{_bindir}/mpg123
 %{_libdir}/libmpg123.so.*
@@ -87,12 +86,17 @@ export SDL_LIBS="$(sdl-config --libs)"
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc doc/
 %{_includedir}/mpg123.h
 %{_libdir}/libmpg123.so
 %{_libdir}/pkgconfig/libmpg123.pc
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Thu Nov 18 2010 Dag Wieers <dag@wieers.com> - 
+- Cleaned up doc/ directory.
+- Enabled esound dependency on EL6.
+
 * Thu Oct 07 2010 Dag Wieers <dag@wieers.com> - 1.12.5-1
 - Updated to release 1.12.5.
 

@@ -5,23 +5,22 @@
 %{?el6:# Tag: rfx}
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
-%define vimdir %(echo %{_datadir}/vim/vim*/)
+%define vimdir %(ls -d %{_datadir}/vim/{vimfiles,vim[0-9]*} 2>/dev/null | tail -1)
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.6.2
+Version: 8.6.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
 
 Source: http://dl.sf.net/asciidoc/asciidoc-%{version}.tar.gz
-# http://groups.google.com/group/asciidoc/browse_thread/thread/7f7a633c5b11ddc3
-Patch0: asciidoc-8.6.1-datadir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.4
+Requires: docbook-style-xsl
 Requires: python >= 2.4
 
 %description
@@ -31,7 +30,6 @@ DocBook markups using the asciidoc(1) command.
 
 %prep
 %setup
-%patch0 -p1 -b .datadir
 
 ### Fix dependency on Docbook v4.5
 %{__perl} -pi.orig -e 's|4\.5\b|4.4|g' docbook.conf
@@ -43,7 +41,13 @@ DocBook markups using the asciidoc(1) command.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-### real conf data goes to sysconfdir, rest to datadir; symlinks so asciidoc works
+### real conf data goes to sysconfdir
+for file in filters/*/*.py; do
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/asciidoc/$(dirname $file)
+    %{__mv} %{buildroot}%{_sysconfdir}/asciidoc/$file %{buildroot}%{_datadir}/asciidoc/$(dirname $file)
+done
+
+### rest to datadir; symlinks so asciidoc works
 for dir in dblatex/ docbook-xsl/ images/ javascripts/ stylesheets/; do
     %{__mv} %{buildroot}%{_sysconfdir}/asciidoc/$dir %{buildroot}%{_datadir}/asciidoc
     %{__ln_s} %{_datadir}/asciidoc/$dir %{buildroot}%{_sysconfdir}/asciidoc/
@@ -109,6 +113,9 @@ done
 %exclude %{_datadir}/asciidoc/filters/*/*.py[co]
 
 %changelog
+* Thu Nov 18 2010 Dag Wieers <dag@wieers.com> - 8.6.3-1
+- Updated to release 8.6.3.
+
 * Sat Oct 09 2010 Dag Wieers <dag@wieers.com> - 8.6.2-1
 - Updated to release 8.6.2.
 

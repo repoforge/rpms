@@ -12,17 +12,19 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 3.3.10
-Release: 2%{?dist}
+Version: 4.0
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
 
-Source0: http://downloads.sourceforge.net/ntop/ntop-%{version}.tar.gz
+Source0: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
 Source1: http://www.lua.org/ftp/lua-5.1.4.tar.gz
 Source2: http://www.maxmind.com/download/geoip/api/c/GeoIP.tar.gz
 Source3: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 Source4: http://www.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
+### Please update this file everytime you rebuild ntop !!!
+Source5: http://ettercap.cvs.sourceforge.net/ettercap/ettercap_ng/share/etter.finger.os
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -53,15 +55,16 @@ extracted from the web server in formats suitable for manipulation in perl or ph
 
 %prep
 %setup
-%{__cp} -av %{SOURCE1} %{SOURCE2} .
-zcat %{SOURCE3} >GeoLiteCity.dat
-zcat %{SOURCE4} >GeoIPASNum.dat
+%{__cp} -av %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} .
+gunzip %(basename %{SOURCE3}) %(basename %{SOURCE4})
+gzip %(basename %{SOURCE5})
 
 %{__perl} -pi.orig -e 's|^NTOP_VERSION_EXTRA=.*$|NTOP_VERSION_EXTRA="(Dag Apt RPM Repository)"|;' configure.in
 
 %{__perl} -pi.orig -e '
         s|\@CFG_CONFIGFILE_DIR\@|\$(sysconfdir)/ntop|;
         s|(\$\(CFG_DBFILE_DIR\))|\$(DESTDIR)$1|;
+        s| dnetter$||;
     ' Makefile.am
 
 %{__perl} -pi.orig -e '
@@ -251,7 +254,7 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_bindir}
-%{__install} -d -m0755 %{buildroot}%{_datadir}/ntop/ \
+%{__install} -d -m0755 %{buildroot}%{_datadir}/ntop/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/ntop/ #/rrd/{flows,graphics,interfaces/eth0}
 %{__make} install install-data-local DESTDIR="%{buildroot}"
 
@@ -325,6 +328,9 @@ fi
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Tue Jul 20 2010 Dag Wieers <dag@wieers.com> - 4.0-1
+- Updated to release 4.0.
+
 * Thu Dec 10 2009 Steve Huff <shuff@vecna.org> - 3.3.10-2
 - Patched init script per Matt Ausmus' bug report on CentOS list.
 - Init options moved to %{_sysconfdir}/sysconfig/ntop.

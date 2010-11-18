@@ -1,4 +1,4 @@
-# $Id$
+# $Id: nmap.spec 4900 2006-11-18 23:59:38Z dag $
 # Authority: matthias
 # Upstream: <nmap-dev$insecure,org>
 
@@ -9,21 +9,25 @@
 ### EL2 ships with nmap-2.54BETA22-3
 # Tag: rfx
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+# ExclusiveDist: el2 el3
 
-%{?el5:%define _without_python26 1}
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %{?el4:%define _without_libpcapdevel 1}
 %{?el4:%define _without_python24 1}
 
+%{?el3:%define _without_gtk24 1}
 %{?el3:%define _without_libpcapdevel 1}
 %{?el3:%define _without_python24 1}
+
+%{?el2:%define _without_freedesktop 1}
+%{?el2:%define _without_gtk24 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 5.21
+Version: 4.20
 Release: 1%{?dist}
 Epoch: 2
 License: GPL
@@ -32,14 +36,10 @@ URL: http://www.insecure.org/nmap/
 
 Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-BuildRequires: desktop-file-utils
-BuildRequires: gcc-c++
-BuildRequires: libpcap
-BuildRequires: openssl-devel
-BuildRequires: pcre-devel
-%{!?_without_libpcapdevel:BuildRequires: libpcap-devel}
-%{!?_without_python24:BuildRequires: python-devel >= 2.4}
+BuildRequires: gcc-c++, libpcap, pcre-devel, openssl-devel
+%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+%{!?_without_freedesktop:BuildRequires: desktop-file-utils}
+%{!?_without_gtk24:BuildRequires: gtk2-devel >= 2.4}
 
 %description
 Nmap is a utility for network exploration or security auditing.  It supports
@@ -50,92 +50,59 @@ and port specification, decoy scanning, determination of TCP sequence
 predictability characteristics, reverse-identd scanning, and more.
 
 %package frontend
-Summary: Graphical frontend for nmap
+Summary: Gtk+ frontend for nmap
 Group: Applications/System
-Requires: nmap = %{epoch}:%{version}
+Requires: nmap = %{epoch}:%{version}, gtk+
 
 %description frontend
-This package includes zenmap, a graphical frontend for nmap. The nmap package
-must be installed before installing nmap-frontend.
+This package includes nmapfe, a Gtk+ frontend for nmap. The nmap package must
+be installed before installing nmap-frontend.
 
 %prep
 %setup
 
 %build
 %configure \
-    --enable-ipv6
+    --enable-ipv6 \
+%{?_without_gtk24:--without-nmapfe}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+#nmapdatadir="%{buildroot}%{_datadir}/nmap"
 
-%if %{!?_without_python24:1}0
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --delete-original \
-    --vendor %{desktop_vendor}                 \
+%if %{!?_without_gtk24:1}0
+%{__mkdir_p} %{buildroot}%{_datadir}/applications
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --delete-original \
     --dir %{buildroot}%{_datadir}/applications \
-    %{buildroot}%{_datadir}/applications/zenmap.desktop \
-    %{buildroot}%{_datadir}/applications/zenmap-root.desktop
+    %{buildroot}%{_datadir}/applications/nmapfe.desktop
 %endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
+
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING* HACKING docs/*.txt docs/README
-%doc %{_mandir}/man1/ncat.1*
-%{!?_without_python24:%doc %{_mandir}/man1/ndiff.1*}
-%doc %{_mandir}/man1/nmap.1*
-%lang(de) %{_mandir}/de/man1/nmap.1*
-%lang(es) %{_mandir}/es/man1/nmap.1*
-%lang(fr) %{_mandir}/fr/man1/nmap.1*
-%lang(hr) %{_mandir}/hr/man1/nmap.1*
-%lang(hu) %{_mandir}/hu/man1/nmap.1*
-%lang(it) %{_mandir}/it/man1/nmap.1*
-%lang(jp) %{_mandir}/jp/man1/nmap.1*
-%lang(pl) %{_mandir}/pl/man1/nmap.1*
-%lang(pt_BR) %{_mandir}/pt_BR/man1/nmap.1*
-%lang(pt_PT) %{_mandir}/pt_PT/man1/nmap.1*
-%lang(ro) %{_mandir}/ro/man1/nmap.1*
-%lang(ru) %{_mandir}/ru/man1/nmap.1*
-%lang(sk) %{_mandir}/sk/man1/nmap.1*
-%lang(zh) %{_mandir}/zh/man1/nmap.1*
-
-%{_bindir}/ncat
-%{!?_without_python24:%{_bindir}/ndiff}
+%doc CHANGELOG COPYING* HACKING docs/*.txt docs/*.xml docs/README
 %{_bindir}/nmap
-%{_datadir}/ncat/
-%{_datadir}/nmap/
+%{_datadir}/nmap
+%{_mandir}/man1/nmap.1*
 
-%if %{!?_without_python24:1}0
+%if %{!?_without_gtk24:1}0
 %files frontend
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/zenmap.1*
 %{_bindir}/nmapfe
-%{_bindir}/uninstall_zenmap
 %{_bindir}/xnmap
-%{_bindir}/zenmap
-%{_datadir}/applications/%{desktop_vendor}-zenmap.desktop
-%{_datadir}/applications/%{desktop_vendor}-zenmap-root.desktop
-%{_datadir}/zenmap/
-%{python_sitelib}/radialnet/
-%{!?_without_python26:%{python_sitelib}/zenmap-%{version}-py*.egg-info}
-%{python_sitelib}/zenmapCore/
-%{python_sitelib}/zenmapGUI/
+%{_datadir}/applications/%{desktop_vendor}-nmapfe.desktop
+%{_mandir}/man1/nmapfe.1*
+%{_mandir}/man1/xnmap.1*
 %endif
 
 %changelog
-* Fri Sep 03 2010 David Hrbáč <david@hrbac.cz> - 5.21-1
-- Updated to release 5.21.
-
-* Fri Jul 17 2009 Dag Wieers <dag@wieers.com> - 5.00-1
-- Updated to release 5.00.
-
-* Thu Dec 13 2007 Dag Wieers <dag@wieers.com> - 4.50-1
-- Updated to release 4.50.
-
 * Sun Dec 10 2006 Dag Wieers <dag@wieers.com> - 4.20-1
 - Updated to release 4.20.
 
