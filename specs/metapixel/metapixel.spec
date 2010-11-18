@@ -18,7 +18,7 @@ Group: Applications/Multimedia
 URL: http://www.complang.tuwien.ac.at/~schani/metapixel/
 
 Source: http://www.complang.tuwien.ac.at/~schani/metapixel/files/metapixel-%{version}.tar.gz
-Patch: metapixel-1.0.2-makefile.patch
+Patch0: metapixel-1.0.2-makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel, libpng-devel, zlib-devel
