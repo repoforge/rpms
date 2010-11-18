@@ -1,0 +1,11 @@
+--- dates-0.4.11/Makefile.in.orig   2010-09-08 13:46:51.556054164 +0100
++++ dates-0.4.11/Makefile.in    2010-09-08 13:47:29.980051583 +0100
+@@ -651,7 +651,7 @@
+ 
+ 
+ snapshot:
+-        $(MAKE) dist distdir=$(PACKAGE)-snap`date +"%Y%m%d"`
++	$(MAKE) dist distdir=$(PACKAGE)-snap`date +"%Y%m%d"`
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

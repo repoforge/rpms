@@ -1,0 +1,158 @@
+diff -ru dates-0.4.11.orig/src/dates_gtk.c dates-0.4.11/src/dates_gtk.c
+--- dates-0.4.11.orig/src/dates_gtk.c	2010-07-26 09:41:35.000000000 +0100
++++ dates-0.4.11/src/dates_gtk.c	2010-07-26 09:54:20.000000000 +0100
+@@ -1016,7 +1016,7 @@
+ 			GtkTreeIter iter;
+ 			GError *error = NULL;
+ 			const gchar *relative_uri;
+-			guint32 new_colour;
++			gchar * scolor;
+ 
+ #ifdef WITH_HILDON
+ 			GdkColor *hildon_color;
+@@ -1054,25 +1054,16 @@
+ 			/* Create a new source to use */
+ 			source = e_source_new (name, relative_uri);
+ 
+-#ifdef USE_OWL
+-			new_colour = owl_colour_button_get_colour (OWL_COLOUR_BUTTON (color_button));
+-#else
+-
+ #ifdef WITH_HILDON
+ 			hildon_color_button_get_color (HILDON_COLOR_BUTTON(color_button), &colour);
+ #else
+ 			gtk_color_button_get_color (GTK_COLOR_BUTTON(color_button), &colour);
+ #endif
+-			new_colour = (guint8)(colour.red >> 8);
+-			new_colour <<= 8;
+-			new_colour |= (guint8)(colour.green >> 8);
+-			new_colour <<= 8;
+-			new_colour |= (guint8)(colour.blue >> 8);
+-			new_colour <<= 8;
+-#endif
+ 
+ 			/* Set the colour */
+-			e_source_set_color (source, new_colour);
++			scolor = gdk_color_to_string (&colour);
++			e_source_set_color_spec(source, scolor);
++			g_free (scolor);
+ 
+ 			/* Set the group for the source */
+ 			e_source_set_group (source, group);
+@@ -1169,7 +1160,7 @@
+ 	ESourceGroup *group;
+ 
+ 	GdkColor colour;
+-	guint32 raw_colour;
++	const gchar *scolor;
+ 
+ 	const gchar *name = NULL;
+ 	const gchar *uri = NULL;
+@@ -1335,27 +1326,19 @@
+ 	gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+ 
+ 	/* Get the colour from the the source */
+-	e_source_get_color (source, &raw_colour);
++	scolor = e_source_peek_color_spec (source);
+ 
+ 	/* Munge this into something usable */
+-	colour.red = (guint16)(((raw_colour & 0xff0000) >> 16) << 8);
+-	colour.green = (guint16)(((raw_colour & 0xff00) >> 8) << 8);
+-	colour.blue = (guint16)(((raw_colour & 0xff) << 8));
++	gdk_color_parse(scolor, &colour);
+ 
+ 	/* Now we need to allocate the colour */
+ 	gdk_colormap_alloc_color (gdk_colormap_get_system (), &colour, TRUE, TRUE);
+ 
+-#ifdef USE_OWL
+-	color_button = owl_colour_button_new ();
+-	owl_colour_button_set_colour (OWL_COLOUR_BUTTON (color_button), raw_colour << 8);
+-#else
+-
+ #ifdef WITH_HILDON
+ 	color_button = hildon_color_button_new_with_color (&colour);
+ #else
+ 	color_button = gtk_color_button_new_with_color (&colour);
+ #endif
+-#endif
+ 
+ 	/* Add the label to the hbox */
+ 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+@@ -1436,30 +1419,18 @@
+ 	{
+ 		case GTK_RESPONSE_OK:
+ 		{
+-			/* 
+-			 * Next we need to pack the GDK colour into guint32
+-			 * for eds
+-			 */
+-			guint32 new_colour = 0;
++			gchar * scolor;
+ 
+ 			GError *error = NULL;
+-#ifdef USE_OWL
+-			new_colour = owl_colour_button_get_colour (OWL_COLOUR_BUTTON (color_button));
+-#else
+ #ifdef WITH_HILDON
+ 			hildon_color_button_get_color (HILDON_COLOR_BUTTON(color_button), &colour);
+ #else
+ 			gtk_color_button_get_color (GTK_COLOR_BUTTON(color_button), &colour);
+-#endif			
+-			new_colour = (guint8)(colour.red >> 8);
+-			new_colour <<= 8;
+-			new_colour |= (guint8)(colour.green >> 8);
+-			new_colour <<= 8;
+-			new_colour |= (guint8)(colour.blue >> 8);
+-			new_colour <<= 8;
+ #endif
+ 			/* Update the colour */
+-			e_source_set_color (source, new_colour);
++			scolor = gdk_color_to_string (&colour);
++			e_source_set_color_spec(source, scolor);
++			g_free (scolor);
+ 
+ 			/* And the name */
+ 			e_source_set_name (source, (gtk_entry_get_text (GTK_ENTRY (name_entry))));
+diff -ru dates-0.4.11.orig/src/dates_main.c dates-0.4.11/src/dates_main.c
+--- dates-0.4.11.orig/src/dates_main.c	2010-07-26 09:41:35.000000000 +0100
++++ dates-0.4.11/src/dates_main.c	2010-07-26 09:43:31.000000000 +0100
+@@ -112,7 +112,7 @@
+ 		system_source = e_source_new (_("Personal"), "system");
+ 
+ 		/* Default Evolution colour */
+-		e_source_set_color (system_source, 0xBECEDD);
++		e_source_set_color_spec(system_source, "0xBECEDD");
+ 
+ 		/* Set the group for the source and put it in the group */
+ 		e_source_set_group (system_source, local_group);
+diff -ru dates-0.4.11.orig/src/dates_view.c dates-0.4.11/src/dates_view.c
+--- dates-0.4.11.orig/src/dates_view.c	2010-07-26 09:41:35.000000000 +0100
++++ dates-0.4.11/src/dates_view.c	2010-07-26 09:57:08.000000000 +0100
+@@ -4846,7 +4846,8 @@
+ 	DatesViewPrivate *priv = DATES_VIEW_GET_PRIVATE (view);
+ 	DatesViewCalendar *cal;
+ 	ESource *source;
+-	guint32 colour;
++	const gchar *scolor;
++	GdkColor gcolour;
+ /*	GError *error = NULL;*/
+ 	
+ 	g_return_if_fail (E_IS_CAL (ecal));
+@@ -4876,11 +4877,12 @@
+ 	cal->text_gc = gdk_gc_new (
+ 		GDK_DRAWABLE (priv->main->window));
+ 
+-	if (e_source_get_color (source, &colour)) {
+-		GdkColor gcolour, dgcolour, tgcolour;
+-		gcolour.red = ((colour & 0xFF0000) >> 16) * 0x101;
+-		gcolour.green = ((colour & 0xFF00) >> 8)  * 0x101;
+-		gcolour.blue = (colour & 0xFF) * 0x101;
++	scolor = e_source_peek_color_spec (source);
++	if (scolor && gdk_color_parse(scolor, &gcolour)) {
++		GdkColor dgcolour, tgcolour;
++		gcolour.red *= 0x101;
++		gcolour.green *= 0x101;
++		gcolour.blue *= 0x101;
+ 
+ 		/* This is simplified sRGB -> LAB conversion; we do not need it
+ 		 * entirely precise, as we are only going to chose between
