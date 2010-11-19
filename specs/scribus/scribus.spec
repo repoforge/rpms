@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+### EL5 ships with scribus-1.3.3.2-3.el5
+%{?el5:# Tag: rfx}
 
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}

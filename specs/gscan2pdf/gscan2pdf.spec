@@ -9,7 +9,7 @@
 Summary: Graphical tool for producing a multipage PDF from a scan
 Name: gscan2pdf
 Version: 0.9.31
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://gscan2pdf.sourceforge.net/
@@ -31,6 +31,7 @@ Requires: perl(Cairo)
 Requires: perl(Gtk2::Ex::PodViewer)
 Requires: perl(PDF::API2)
 Requires: perl(Sane) >= 0.02
+Requires: perl(Set::IntSpan)
 Requires: sane-backends >= 1.0.17
 Requires: sane-frontends
 Requires: unpaper

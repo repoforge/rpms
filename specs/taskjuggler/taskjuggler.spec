@@ -3,7 +3,10 @@
 # Upstream: Chris Schlaeger <cs$kde,org>
 
 ### EL6 ships with taskjuggler-2.4.3-5.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
+### EL5 ships with taskjuggler-2.2.0-3
+%{?el5:# Tag: rfx}
+# ExclusiveDist: el2 el3 el4
 
 Summary: Project management tool
 Name: taskjuggler

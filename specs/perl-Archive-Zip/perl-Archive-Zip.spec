@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Adam Kennedy <adamk@cpan.org>
 
+### EL6 ships with perl-Archive-Zip-1.30-2.el6
+%{?el6:# Tag: rfx}
+### EL5 ships with perl-Archive-Zip-1.16-1.2.1
+%{?el5:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

@@ -15,13 +15,13 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Acme-Damn/
 
-Source: http://www.cpan.org/modules/by-module/Acme/Acme-Damn-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Acme/Acme-Damn-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IB/IBB/Acme-Damn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
-
 
 %description
 perl-Acme-Damn is a Perl module to 'Unbless' Perl objects.

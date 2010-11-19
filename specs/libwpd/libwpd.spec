@@ -2,7 +2,8 @@
 # Authority: dag
 
 ### EL6 ships with libwpd-0.8.14-4.1.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with libwpd-0.8.7-3.el5
+# ExclusiveDist: el2 el3 el4
 
 Summary: Library for reading and converting WordPerfect(tm) documents
 Name: libwpd
@@ -15,8 +16,12 @@ URL: http://libwpd.sourceforge.net/
 Source: http://dl.sf.net/libwpd/libwpd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0.0, libgsf-devel >= 1.6.0, gcc-c++, libstdc++-devel
-Requires: glib2 >= 2.0.0, libgsf >= 1.6.0
+BuildRequires: gcc-c++
+BuildRequires: glib2-devel >= 2.0.0
+BuildRequires: libgsf-devel >= 1.6.0
+BuildRequires: libstdc++-devel
+Requires: glib2 >= 2.0.0
+Requires: libgsf >= 1.6.0
 
 %description
 libwpd is a library for reading and converting WordPerfect(tm) documents.

@@ -1,46 +1,50 @@
-# $Id$
+# $Id: mock.spec 9305 2010-11-18 01:30:47Z dag $
 # Authority: dag
 
-# ExclusiveDist: el2 el3 el4
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
-%{?el3:%define _without_selinux 1}
-%{?rh9:%define _without_selinux 1}
-%{?rh7:%define _without_selinux 1}
-%{?el2:%define _without_selinux 1}
-
-Summary: Tool to allow building packages in chroots
+Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 0.6.13
+Version: 1.0.12
 Release: 3%{?dist}
 License: GPL
 Group: Development/Tools
-URL: http://fedoraproject.org/wiki/Projects/Mock/
+URL: http://fedoraproject.org/wiki/Projects/Mock
 
-Source: http://fedoraproject.org/projects/mock/releases/mock-%{version}.tar.gz
-Patch0: mock-0.6.13-centos-configs.patch
-Patch1: mock-0.6.13-centos-FunctionalNet.patch
+Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/mock-%{version}.tar.gz
+#Source: http://fedoraproject.org/projects/mock/releases/mock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-### FIXME: Make mock work without selinux
-#%{!?_without_selinux:BuildRequires: libselinux-devel}
-BuildRequires: libselinux-devel
-Requires: python, yum >= 2.2.1
+BuildArch: noarch
+BuildRequires: python-devel >= 2.4
+Requires: gzip
+Requires: python >= 2.4
+Requires: python-ctypes
+Requires: python-decoratortools
+Requires: python-hashlib
 Requires: shadow-utils
+Requires: tar
+Requires: usermode
+Requires: yum >= 2.4
 
 %description
 Mock builds SRPMs in a chroot.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
 
 %build
+%configure
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/cache/mock/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/mock/
+
+%{__ln_s} -f consolehelper %{buildroot}%{_bindir}/mock
 
 %{?el5: %{__ln_s} -f centos-5-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
 %{?el4: %{__ln_s} -f centos-4-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
@@ -68,25 +72,30 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog README buildsys-build.spec
+%doc AUTHORS ChangeLog COPYING INSTALL docs/*.txt
 %doc %{_mandir}/man1/mock.1*
 %config(noreplace) %{_sysconfdir}/mock/
+%config(noreplace) %{_sysconfdir}/pam.d/mock
+%config(noreplace) %{_sysconfdir}/security/console.apps/mock
 %{_bindir}/mock
-%{_libexecdir}/mock-yum/
-%{_libdir}/libselinux-mock.so
+%{python_sitelib}/*
 
-%defattr(4750, root, mock, 0755)
-%{_sbindir}/mock-helper
+%defattr(0755, root, root, 0755)
+%{_sbindir}/mock
 
-%defattr(0775, root, mock, 02775)
-%dir %{_localstatedir}/lib/mock
+%defattr(0755, root, mock, 02775)
+%dir %{_localstatedir}/cache/mock/
+%dir %{_localstatedir}/lib/mock/
 
 %changelog
-* Fri Nov 19 2010 Dag Wieers <dag@wieers.com> - 0.6.13-3
-- Fixed incorrect directory permissions, take two. (Steve Tindall)
+* Fri Nov 19 2010 Dag Wieers <dag@wieers.com> - 1.0.12-3
+- Fixed incorrect directory permissions, take 2. (Steve Tindall)
 
-* Thu Nov 18 2010 Dag Wieers <dag@wieers.com> - 0.6.13-2
+* Thu Nov 18 2010 Dag Wieers <dag@wieers.com> - 1.0.12-2
 - Fixed incorrect directory permissions. (Steve Tindall)
+
+* Fri Oct 15 2010 Dag Wieers <dag@wieers.com> - 1.0.12-1
+- Updated to release 1.0.12.
 
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 0.6.13-1
 - Updated to release 0.6.13.

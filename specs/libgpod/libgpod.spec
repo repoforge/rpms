@@ -2,7 +2,8 @@
 # Authority: matthias
 
 ### EL6 ships with libgpod-0.7.2-6.el6
-# ExclusiveDist: el2 el3 el4 el5
+### EL5 ships with libgpod-0.4.0-1.el5
+# ExclusiveDist: el2 el3 el4
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -22,7 +23,6 @@ BuildRequires: taglib-devel, python-devel, python-eyed3, swig
 Libgpod is a library to access the contents of an iPod. It supports playlists,
 smart playlists, playcounts, ratings, podcasts etc.
 
-
 %package devel
 Summary: Development files for the libgpod library
 Group: Development/Libraries
@@ -35,25 +35,20 @@ smart playlists, playcounts, ratings, podcasts etc.
 This package contains the files required to develop programs that will use
 libgpod.
 
-
 %prep
 %setup
-
 
 %build
 %configure --disable-static
 %{__make} %{?_smp_mflags}
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -63,12 +58,11 @@ libgpod.
 
 %files devel
 %defattr(-, root, root, 0755)
+%{_datadir}/gtk-doc/html/libgpod/
 %{_includedir}/gpod-1.0/
 %{_libdir}/pkgconfig/libgpod-1.0.pc
-%exclude %{_libdir}/*.la
 %{_libdir}/*.so
-%{_datadir}/gtk-doc/html/libgpod/
-
+%exclude %{_libdir}/*.la
 
 %changelog
 * Mon Sep 25 2006 Matthias Saou <http://freshrpms.net/> 0.4.0-0
@@ -83,4 +77,3 @@ libgpod.
 
 * Mon Dec 19 2005 Matthias Saou <http://freshrpms.net/> 0.3.0-1
 - Initial RPM release.
-

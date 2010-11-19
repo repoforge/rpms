@@ -19,7 +19,8 @@ Source: http://www.cpan.org/modules/by-module/PDF/PDF-API2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
 perl-PDF-API2 is a Perl module to faciliate the creation and modification of
