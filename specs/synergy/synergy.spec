@@ -10,7 +10,7 @@
 Summary: Mouse and keyboard sharing utility
 Name: synergy
 Version: 1.3.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy-foss.org/
@@ -27,10 +27,10 @@ BuildRequires: gcc-c++
 %{!?_without_modxorg:BuildRequires: libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
-Obsoletes: synergy-plus
+Conflicts: synergy-plus 
+Conflicts: synergy-plus-doc
+Obsoletes: synergy-plus 
 Obsoletes: synergy-plus-doc
-Provides: synergy-plus = %{version}-%{release}
-Provides: synergy-plus-doc = %{version}-%{release}
 
 %description
 Synergy lets you easily share a single mouse and keyboard between
@@ -63,7 +63,7 @@ autoreconf
 %{_bindir}/synergys
 
 %changelog
-* Fri Nov 19 2010 Steve Huff <shuff@vecna.org> - 1.3.4-1
+* Fri Nov 19 2010 Steve Huff <shuff@vecna.org> - 1.3.4-2
 - Merged from synergy-plus package, since Synergy+ and Synergy have merged
 
 * Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 1.3.1-2
