@@ -1,23 +1,36 @@
 # $Id$
-# Authority: matthias
+# Authority: shuff
+# Upstream: Nick Bolton <nick.bolton.uk$gmail,com>
 
+%define real_name synergy-plus
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.3.1
-Release: 2%{?dist}
+Version: 1.3.4
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
-URL: http://synergy2.sourceforge.net/
-Source: http://dl.sf.net/synergy2/synergy-%{version}.tar.gz
-Patch0: synergy-1.2.2-werror.patch
+URL: http://synergy-foss.org/
+Source: http://synergy-plus.googlecode.com/files/synergy-plus-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, autoconf, automake
-%{!?_without_modxorg:BuildRequires: libX11-devel, libXt-devel, libXinerama-devel, libXtst-devel, libXext-devel}
+
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: gcc-c++
+%{!?_without_modxorg:BuildRequires: libX11-devel}
+%{!?_without_modxorg:BuildRequires: libXt-devel}
+%{!?_without_modxorg:BuildRequires: libXinerama-devel}
+%{!?_without_modxorg:BuildRequires: libXtst-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
+
+Obsoletes: synergy-plus
+Obsoletes: synergy-plus-doc
+Provides: synergy-plus = %{version}-%{release}
+Provides: synergy-plus-doc = %{version}-%{release}
 
 %description
 Synergy lets you easily share a single mouse and keyboard between
@@ -27,8 +40,7 @@ with multiple computers on their desk since each system uses its
 own display.
 
 %prep
-%setup
-%patch0 -p1 -b .werror
+%setup -n %{real_name}-%{version}
 
 %build
 autoreconf
@@ -44,13 +56,16 @@ autoreconf
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/PORTING NEWS README
-%doc doc/*.css doc/*.html
+%doc AUTHORS ChangeLog COPYING doc/PORTING INSTALL NEWS README
+%doc doc/obsolete/*.css doc/obsolete/*.html
 %doc examples/synergy.conf
 %{_bindir}/synergyc
 %{_bindir}/synergys
 
 %changelog
+* Fri Nov 19 2010 Steve Huff <shuff@vecna.org> - 1.3.4-1
+- Merged from synergy-plus package, since Synergy+ and Synergy have merged
+
 * Mon Aug 28 2006 Matthias Saou <http://freshrpms.net/> 1.3.1-2
 - FC6 rebuild.
 
