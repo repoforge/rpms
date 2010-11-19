@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -121,7 +121,7 @@ you will need to install %{name}-devel.
 
 ### Install logos
 %{__mkdir} -p %{buildroot}%{_datadir}/nagios/images/logos
-tar -xvz -C %{buildroot}%{_datadir}/nagios/images/logos -f %{SOURCE1}
+tar -xvz -C %{buildroot}%{_prefix} --exclude=+* -f %{SOURCE1}
 
 %pre
 if ! /usr/bin/id nagios &>/dev/null; then
@@ -200,6 +200,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Fri Nov 19 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-3
+- adapt the extraction for nagios-imagepak-base from BSD
+
 * Tue Nov 09 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-2
 - remove -p ${pidfile} from killproc in reload el4 killproc doesnot support -p
 
