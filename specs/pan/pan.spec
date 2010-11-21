@@ -10,18 +10,19 @@
 Summary: The Pan Newsreader
 Name: pan
 Version: 0.133
-Release: 1%{?dist}
+Release: 2%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://pan.rebelbase.com/
 
 Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{version}.tar.bz2
+Patch0: pan-0.133-gcc44.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: desktop-file-utils
 BuildRequires: glib2-devel >= 2.0.4
-BuildRequires: gmime-devel >= 2.1.9
+BuildRequires: gmime20-devel >= 2.1.9
 BuildRequires: gnet2-devel
 BuildRequires: gtk2-devel >= 2.0.5
 BuildRequires: gtkspell-devel >= 2.0.2
@@ -38,13 +39,15 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %prep
 %setup
+%patch0 -p0 -b .gcc44
 
 %{__perl} -pi.orig -e 's|StartupNotify=false|StartupNotify=true|' pan.desktop.in
 
 %build
 %configure \
     --program-prefix="%{?_program_prefix}"
-%{__make} %{?_smp_mflags} LDFLAGS="-s"
+#%{__make} %{?_smp_mflags} LDFLAGS="-s"
+%{__make} LDFLAGS="-s"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -70,6 +73,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 0.133-2
+- Rebuilt against gmime20-2.2.26.
+
 * Wed Dec 31 2008 Dag Wieers <dag@wieers.com> - 0.133-1
 - Updated to release 0.133.
 

@@ -1,0 +1,50 @@
+--- pan/general/log.cc.orig	2010-11-21 14:58:18.000000000 +0100
++++ pan/general/log.cc	2010-11-21 14:58:28.000000000 +0100
+@@ -17,6 +17,7 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#include <cstdio> 
+ #include <config.h>
+ #include <iostream>
+ #include <cstdarg>
+--- pan/general/progress.cc.orig	2010-11-21 15:00:54.000000000 +0100
++++ pan/general/progress.cc	2010-11-21 15:01:08.000000000 +0100
+@@ -17,6 +17,7 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#include <cstdio>
+ #include <config.h>
+ #include <cstdarg>
+ #include "progress.h"
+--- pan/usenet-utils/numbers.cc.orig	2010-11-21 15:02:56.000000000 +0100
++++ pan/usenet-utils/numbers.cc	2010-11-21 15:03:11.000000000 +0100
+@@ -17,6 +17,7 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#include <cstdio>
+ #include <config.h>
+ #include <cctype>
+ #include <pan/general/string-view.h>
+--- pan/tasks/nntp.cc.orig	2010-11-21 15:05:06.000000000 +0100
++++ pan/tasks/nntp.cc	2010-11-21 15:05:21.000000000 +0100
+@@ -17,6 +17,7 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#include <cstdio>
+ #include <config.h>
+ #include <cassert>
+ #include <cstdarg>
+--- pan/tasks/nntp-pool.cc.orig	2010-11-21 15:07:19.000000000 +0100
++++ pan/tasks/nntp-pool.cc	2010-11-21 15:07:31.000000000 +0100
+@@ -17,6 +17,7 @@
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
++#include <cstdio>
+ #include <config.h>
+ #include <ctime>
+ #include <glib/gi18n.h>
