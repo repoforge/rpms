@@ -1,0 +1,13 @@
+diff -Nur libcarvpath1.0.0.orig//src/entity.c libcarvpath1.0.0/src/entity.c
+--- libcarvpath1.0.0.orig//src/entity.c	2010-03-03 14:51:19.000000000 +0100
++++ libcarvpath1.0.0/src/entity.c	2010-03-08 13:58:55.000000000 +0100
+@@ -242,7 +242,8 @@
+   } else {
+      return _carvpath_entity_add_fragment(self,frag);
+   }
+-  
++  errno=CARVPATH_ERR_NOENT_INT;
++  return 0;
+ }
+ 
+ //This function adds a new regular fragment to the end of an entity.

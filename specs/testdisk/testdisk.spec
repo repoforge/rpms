@@ -2,17 +2,27 @@
 # Authority: dag
 
 ### Problem when building testdisk 0.6.9 with EWF 20080501
-%define _without_ewf 1
+#define _without_ewf 1
 
-%{?rh7:%define _without_ewf 1}
-%{?rh7:%define _without_ntfs 1}
+### Build doesn't use libcarvpath, due to errors with libcarvpath 1.0.0
+%define _without_libcarvpath 1
 
+%{?el5:%define _without_libuuid 1}
+
+%{?el4:%define _without_libcarvpath 1}
+%{?el4:%define _without_libuuid 1}
+
+%{?el3:%define _without_libcarvpath 1}
+%{?el3:%define _without_libuuid 1}
+
+%{?el2:%define _without_libcarvpath 1}
+%{?el2:%define _without_libuuid 1}
 %{?el2:%define _without_ntfs 1}
 
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
 Version: 6.11.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cgsecurity.org/wiki/TestDisk
@@ -24,6 +34,8 @@ BuildRequires: e2fsprogs-devel
 BuildRequires: libjpeg-devel
 BuildRequires: ncurses-devel >= 5.2
 %{!?_without_ewf:BuildRequires: libewf-devel}
+%{!?_without_libcarvpath:BuildRequires: libcarvpath-devel}
+%{!?_without_libuuid:BuildRequires: libuuid-devel}
 %{!?_without_ntfs:BuildRequires: ntfsprogs-devel}
 
 %description
@@ -39,6 +51,7 @@ files from filesystems.
 %setup
 
 %build
+export CFLAGS="%{optflags} -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE"
 %configure \
     --program-prefix="%{?_program_prefix}" \
 %{?_without_ewf:--without-ewf} \
@@ -61,6 +74,9 @@ files from filesystems.
 %{_sbindir}/testdisk
 
 %changelog
+* Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 6.11.3-2
+- Rebuilt against libewf-20100226.
+
 * Sun May 17 2009 Dag Wieers <dag@wieers.com> - 6.11.3-1
 - Updated to release 6.11.3.
 

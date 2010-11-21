@@ -1,20 +1,41 @@
 # $Id$
 # Authority: dag
 
+%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%define _sbindir /sbin
+
+%{?el5:%define _without_fuse 1}
+%{?el5:%define _without_libuuid 1}
+%{?el5:%define _without_python25 1}
+
+%{?el4:%define _without_libuuid 1}
+%{?el4:%define _without_python25 1}
+
+%{?el3:%define _without_fuse 1}
+%{?el3:%define _without_libuuid 1}
+%{?el3:%define _without_python25 1}
+
+%{?el2:%define _without_fuse 1}
+%{?el2:%define _without_libuuid 1}
+%{?el2:%define _without_python25 1}
+
 Summary: Library for the Expert Witness Compression Format (EWF)
 Name: libewf
-%define real_version 20080501
-Version: 0.0.20080501
+Version: 20100226
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.uitwisselplatform.nl/projects/libewf/
 
-Source: http://www.uitwisselplatform.nl/frs/download.php/529/libewf-%{real_version}.tar.gz
+Source0: http://dl.sf.net/libewf/libewf-%{version}.tar.gz
+Source1: http://dl.sf.net/libewf/mount_ewf-20090113.py
+Patch0: libewf-20100226-pyver.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: e2fsprogs-devel
+%{!?_without_libuuid:BuildRequires: libuuid-devel}
 BuildRequires: openssl-devel
+BuildRequires: python-devel
 BuildRequires: zlib-devel
 
 %description
@@ -28,6 +49,8 @@ Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 Provides: %{name}-tools = %{version}-%{release}
 Obsoletes: %{name}-tools <= %{version}-%{release}
+%{!?_without_python25:Requires: fuse-python >= 0.2}
+Requires: disktype
 
 %description -n ewftools
 The ewftools package contains tools for %{name}.
@@ -45,17 +68,24 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
+%patch0 -p1 -b .pyver
 
 %build
 %configure \
     --disable-static \
+%{!?_without_python25:--enable-python} \
     --enable-wide-character-type
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" INSTALL="install -p"
+
+%if %{!?_without_fuse:1}0
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}/sbin/mount.ewf
+%{__ln_s} -f mount.ewf %{buildroot}/sbin/umount.ewf
+%endif
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -73,25 +103,34 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man1/ewfacquire.1*
 %doc %{_mandir}/man1/ewfacquirestream.1*
-#%doc %{_mandir}/man1/ewfalter.1*
 %doc %{_mandir}/man1/ewfexport.1*
 %doc %{_mandir}/man1/ewfinfo.1*
 %doc %{_mandir}/man1/ewfverify.1*
 %{_bindir}/ewfacquire
 %{_bindir}/ewfacquirestream
-%{_bindir}/ewfalter
 %{_bindir}/ewfexport
 %{_bindir}/ewfinfo
 %{_bindir}/ewfverify
+%if %{!?_without_fuse:1}0
+%{_sbindir}/mount.ewf
+%{_sbindir}/umount.ewf
+%endif
+%if %{!?_without_python25:1}0
+%{python_sitearch}/pyewf.so
+%exclude %{python_sitearch}/pyewf.la
+%endif
 
 %files devel
 %defattr(-, root, root, 0755)
-%dir %{_mandir}/man3/*.3*
+%dir %{_mandir}/man3/libewf.3*
 %{_includedir}/libewf/
 %{_includedir}/libewf.h
 %{_libdir}/libewf.so
 %{_libdir}/pkgconfig/libewf.pc
 
 %changelog
+* Sat Nov 20 2010 Dag Wieers <dag@wieers.com> - 20100226-1
+- Updated to release 20100226.
+
 * Thu May 22 2008 Dag Wieers <dag@wieers.com> - 0.0.20080501-1
-Initial package. (using DAR)
+- Initial package. (using DAR)
