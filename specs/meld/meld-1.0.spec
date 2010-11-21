@@ -1,27 +1,30 @@
-# $Id: meld.spec 6393 2008-06-30 22:25:34Z dag $
+# $Id: meld.spec 3221 2005-05-21 05:21:36Z dag $
 # Authority: dag
 # Upstream: Stephen Kennedy <steve9000$users,sf,net>
 
-# ExclusiveDist: el5
+# ExclusiveDist: el2 el3 el4
 
 %define desktop_vendor rpmforge
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 1.1.5
-Release: 1%{?dist}
+Version: 1.0.0
+Release: 1.rf
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/
 
-Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.1/meld-%{version}.tar.bz2
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
+
+Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.0/meld-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pygtk2-devel >= 2.6, gnome-python2 >= 1.99.14
+BuildRequires: pygtk2-devel >= 1.99.14, gnome-python2 >= 1.99.14
 BuildRequires: pyorbit-devel >= 1.99, desktop-file-utils
 
 BuildArch: noarch
-Requires: pygtk2 >= 2.6, gnome-python2 >= 1.99, gnome-python2-canvas
+Requires: pygtk2 >= 1.99.14, gnome-python2 >= 1.99, gnome-python2-canvas
 Requires: pygtk2-libglade, gnome-python2-gconf >= 1.99
 
 %description
@@ -64,24 +67,17 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/meld/glade2/pixmaps/
 %{__install} -p -m0644 *.py %{buildroot}%{_datadir}/meld/
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/vc/
-%{__install} -p -m0644 vc/* %{buildroot}%{_datadir}/meld/vc/
 %{__install} -p -m0644 glade2/*.glade* %{buildroot}%{_datadir}/meld/glade2/
 %{__install} -p -m0644 glade2/pixmaps/* %{buildroot}%{_datadir}/meld/glade2/pixmaps/
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/meld/po/
 %{__install} -p -m0644 po/*.po %{buildroot}%{_datadir}/meld/po/
 
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/help/C/figures
-%{__install} -p -m0644 help/C/meld* %{buildroot}%{_datadir}/meld/help/C/
-%{__install} -p -m0644 help/C/figures/*.png %{buildroot}%{_datadir}/meld/help/C/figures/
-
-
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor} \
-    --add-category X-Red-Hat-Base               \
-    --dir %{buildroot}%{_datadir}/applications  \
-    meld.desktop
+desktop-file-install --vendor %{desktop_vendor}    \
+	--add-category X-Red-Hat-Base              \
+	--dir %{buildroot}%{_datadir}/applications \
+	meld.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -96,22 +92,7 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/meld.png
 
 %changelog
-* Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 1.1.5-1
-- Updated to release 1.1.5.
-
-* Mon Jun 12 2006 Dag Wieers <dag@wieers.com> - 1.1.4-1
-- Updated to release 1.1.4.
-
-* Tue Feb 28 2006 Dag Wieers <dag@wieers.com> - 1.1.3-1
-- Updated to release 1.1.3.
-
-* Wed Dec 07 2005 Dries Verachtert <dries@ulyssis.org> - 1.1.2-2
-- Fixes: vc/* and help/* subdirectories added. (James Begley)
-
-* Wed Nov 30 2005 Dag Wieers <dag@wieers.com> - 1.1.2-1
-- Updated to release 1.1.2.
-
-* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
+* Mon Jul 11 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1 - 3221+/dag
 - Updated to release 1.0.0.
 
 * Wed May 18 2005 Dag Wieers <dag@wieers.com> - 0.9.6-1

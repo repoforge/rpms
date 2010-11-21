@@ -1,28 +1,37 @@
-# $Id: meld.spec 6393 2008-06-30 22:25:34Z dag $
+# $Id: meld.spec 6395 2008-07-04 02:30:42Z dag $
 # Authority: dag
 # Upstream: Stephen Kennedy <steve9000$users,sf,net>
 
-# ExclusiveDist: el5
-
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define desktop_vendor rpmforge
 
 Summary: Graphical visual diff and merge tool
 Name: meld
-Version: 1.1.5
+Version: 1.4.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://meld.sourceforge.net/
 
-Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.1/meld-%{version}.tar.bz2
+Source: http://ftp.gnome.org/pub/gnome/sources/meld/1.4/meld-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pygtk2-devel >= 2.6, gnome-python2 >= 1.99.14
-BuildRequires: pyorbit-devel >= 1.99, desktop-file-utils
-
 BuildArch: noarch
-Requires: pygtk2 >= 2.6, gnome-python2 >= 1.99, gnome-python2-canvas
-Requires: pygtk2-libglade, gnome-python2-gconf >= 1.99
+BuildRequires: desktop-file-utils
+BuildRequires: gettext
+BuildRequires: gnome-python2 >= 1.99.14
+BuildRequires: intltool
+BuildRequires: perl(XML::Parser)
+BuildRequires: pygtk2-devel >= 2.8
+BuildRequires: python >= 2.4
+BuildRequires: pyorbit-devel >= 1.99
+BuildRequires: scrollkeeper
+Requires: gnome-python2 >= 1.99
+Requires: gnome-python2-canvas
+Requires: gnome-python2-gconf >= 1.99
+Requires: pygobject2 >= 2.8.0
+Requires: pygtk2 >= 2.8
+Requires: pygtk2-libglade
 
 %description
 Meld is a GNOME2 visual diff and merge tool. It integrates especially
@@ -33,69 +42,41 @@ allows merges.
 %prep
 %setup
 
-%{__cat} <<'EOF' >meld.sh
-#!/bin/sh
-exec %{_datadir}/meld/meld $@
-EOF
-
-%{__cat} <<EOF >meld.desktop
-[Desktop Entry]
-Name=Meld Diff Viewer
-Comment=Compare and merge multiple files
-Exec=meld
-Icon=meld.png
-Type=Application
-Terminal=false
-StartupNotify=true
-Encoding=UTF-8
-Categories=GNOME;Application;Development;
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=meld
-X-GNOME-Bugzilla-Component=general
-EOF
-
 %build
+%{__make} %{?_smp_mflags} prefix="%{_prefix}" libdir="%{_datadir}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 meld.sh %{buildroot}%{_bindir}/meld
-%{__install} -Dp -m0644 glade2/pixmaps/icon.png %{buildroot}%{_datadir}/pixmaps/meld.png
-%{__install} -Dp -m0755 meld %{buildroot}%{_datadir}/meld/meld
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/glade2/pixmaps/
-%{__install} -p -m0644 *.py %{buildroot}%{_datadir}/meld/
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/vc/
-%{__install} -p -m0644 vc/* %{buildroot}%{_datadir}/meld/vc/
-%{__install} -p -m0644 glade2/*.glade* %{buildroot}%{_datadir}/meld/glade2/
-%{__install} -p -m0644 glade2/pixmaps/* %{buildroot}%{_datadir}/meld/glade2/pixmaps/
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/po/
-%{__install} -p -m0644 po/*.po %{buildroot}%{_datadir}/meld/po/
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/meld/help/C/figures
-%{__install} -p -m0644 help/C/meld* %{buildroot}%{_datadir}/meld/help/C/
-%{__install} -p -m0644 help/C/figures/*.png %{buildroot}%{_datadir}/meld/help/C/figures/
-
-
-%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-desktop-file-install --vendor %{desktop_vendor} \
-    --add-category X-Red-Hat-Base               \
-    --dir %{buildroot}%{_datadir}/applications  \
-    meld.desktop
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" libdir="%{_datadir}"
+%find_lang %{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-#%doc AUTHORS changelog COPYING INSTALL TODO.txt manual/manual.html manual/stylesheet.css
-%doc AUTHORS changelog COPYING INSTALL
+%doc AUTHORS COPYING INSTALL NEWS
 %{_bindir}/meld
-%{_datadir}/applications/%{desktop_vendor}-meld.desktop
+#%{_datadir}/application-registry/meld.applications
+%{_datadir}/applications/meld.desktop
+%{_datadir}/gnome/help/meld/
+%{_datadir}/icons/hicolor/*/apps/meld.png
+%{_datadir}/icons/hicolor/*/apps/meld.svg
 %{_datadir}/meld/
+%{_datadir}/omf/meld/
 %{_datadir}/pixmaps/meld.png
+#%{python_sitelib}/meld/
 
 %changelog
+* Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
+* Sun May 17 2009 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
+* Mon Jun 30 2008 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Sun Jun 10 2007 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Updated to release 1.1.5.
 
