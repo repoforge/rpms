@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.2.1.25
+Version: 0.2.1.27
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -17,7 +17,14 @@ URL: http://tor.eff.org/
 Source: http://tor.eff.org/dist/tor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libevent-devel, zlib-devel, automake, autoconf, openssl-devel
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: binutils
+BuildRequires: gcc
+BuildRequires: libevent-devel
+BuildRequires: make
+BuildRequires: openssl-devel
+BuildRequires: zlib-devel
 
 %description
 Tor is a network of virtual tunnels that allows people and groups to improve
@@ -98,6 +105,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Fri Nov 26 2010 Steve Huff <shuff@vecna.org> - 0.2.1.27-1
+- Updated to release 0.2.1.27.
+
 * Wed Mar 31 2010 Steve Huff <shuff@vecna.org> - 0.2.1.25-1
 - Updated to release 0.2.1.25.
 - Also could benefit from a rebuild against libevent-1.4.13.
