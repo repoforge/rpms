@@ -1,7 +1,8 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el6
+%{?el5:# Tag: rft}
+# ExclusiveDist: el5 el6
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 

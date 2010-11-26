@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+# Tag: rfb
+
 Summary: RPM macros used by the RPMForge project
 Name: rpm-macros-rpmforge
 Version: 0

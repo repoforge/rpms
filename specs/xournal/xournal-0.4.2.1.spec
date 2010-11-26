@@ -1,9 +1,11 @@
-# $Id$
+# $Id: xournal.spec 7981 2009-11-03 03:05:34Z dag $
 # Authority: dag
+
+# ExclusiveDist: el2 el3 el4 el5
 
 Summary: Stylus oriented notetaking
 Name: xournal
-Version: 0.4.5
+Version: 0.4.2.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
@@ -12,13 +14,8 @@ URL: http://xournal.sourceforge.net/
 Source: http://dl.sf.net/xournal/xournal-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf
-BuildRequires: automake
-BuildRequires: freetype-devel
-BuildRequires: glib2-devel >= 2.6
-BuildRequires: libgnomeprintui22-devel
-BuildRequires: poppler-devel
-BuildRequires: poppler-glib-devel
+BuildRequires: libgnomeprintui22-devel, glib2-devel >= 2.6, freetype-devel
+BuildRequires: autoconf, automake
 
 %description
 Xournal is an application for notetaking, sketching, keeping a journal using 
@@ -36,40 +33,18 @@ Windows Journal or to other alternatives such as Jarnal, Gournal, and NoteLab.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install desktop-install DESTDIR="%{buildroot}"
-%find_lang %{name}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README 
 %{_bindir}/xournal
-%{_datadir}/applications/xournal.desktop
-%{_datadir}/icons/hicolor/scalable/apps/xournal.svg
-%{_datadir}/icons/hicolor/scalable/mimetypes/gnome-mime-application-x-xoj.svg
-%{_datadir}/icons/hicolor/scalable/mimetypes/xoj.svg
-%{_datadir}/mime/packages/xournal.xml
-%{_datadir}/mimelnk/application/x-xoj.desktop
 %{_datadir}/xournal/
 
-%post
-update-desktop-database %{_datadir}/applications &>/dev/null || :
-touch --no-create %{_datadir}/hicolor &>/dev/null || : 
-gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2>/dev/null || :
-
-%postun
-if [ $1 -eq 0 ] ; then
-    update-desktop-database %{_datadir}/applications &>/dev/null ||:
-    touch --no-create %{_datadir}/hicolor &>/dev/null || :
-    gtk-update-icon-cache %{_datadir}/hicolor &>/dev/null || :
-fi
-
 %changelog
-* Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 0.4.5-1
-- Updated to release 0.4.5.
-
 * Fri Mar 28 2008 Dag Wieers <dag@wieers.com> - 0.4.2.1-1
 - Updated to release 0.4.2.1.
 

@@ -4,8 +4,6 @@
 # Screenshot: http://kaffeine.sourceforge.net/pics/05/kaffeine05-1.png
 # ScreenshotURL: http://kaffeine.sourceforge.net/screenshots.html
 
-##ExcludeDist: el3 fc1
-
 %{?el4:%define _kdelibs_without_mplayer2_desktop_file 1}
 %{?el4:%define _without_gstreamer 1}
 %{?el4:%define _without_modxorg 1}
@@ -16,123 +14,88 @@
 
 Summary: Media player based on xine-lib
 Name: kaffeine
-Version: 0.8.7
+Version: 1.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kaffeine.sourceforge.net/
 
-Source: http://dl.sf.net/kaffeine/kaffeine-%{version}.tar.bz2
+Source: http://dl.sf.net/project/kaffeine/kaffeine/kaffeine-%{version}/kaffeine-%{version}.tar.gz
+#Source: http://dl.sf.net/kaffeine/kaffeine-%{version}.tar.bz2
 #Source: http://hftom.free.fr/kaffeine-%{version}.tar.bz2
+Source1: kaffeine.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cdparanoia-devel cdparanoia
 BuildRequires: desktop-file-utils
 BuildRequires: gcc-c++
 BuildRequires: gettext
-BuildRequires: kdelibs-devel
+BuildRequires: kdelibs4-devel
 %{?el4:BuildRequires: libselinux-devel}
 BuildRequires: libvorbis-devel
 BuildRequires: xine-lib-devel >= 1.0.0
-%{!?_without_modxorg:BuildRequires: libXext-devel libXinerama-devel libXtst-devel}
+%{!?_without_modxorg:BuildRequires: libXext-devel libXinerama-devel libXtst-devel libXScrnSaver-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_gstreamer:BuildRequires: gstreamer-devel >= 0.10}
 %{!?_without_gstreamer:BuildRequires: gstreamer-plugins-base-devel >= 0.10}
+
+Obsoletes: kaffeine-libs < 1.0
+Obsoletes: kaffeine-devel < 1.0
+Requires: kdebase-runtime
+%{?_kde4_version:Requires: kdelibs4 >= %{_kde4_version}}
 
 %description
 Kaffeine is a simple and easy to use media player based on the xine-lib and
 full integrated in KDE3. It supports drag and drop and provides an editable
 playlist, a Konqueror plugin, a Mozilla plugin, OSD, and much more.
 
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
-
 %prep
 %setup
 
-### Fix 0.8.6 references throughout sources
-grep -rl 'kaffeine-0.8.6' . | xargs perl -pi -e 's|kaffeine-0.8.6|kaffeine-%{version}|g'
-
 %build
-source /etc/profile.d/qt.sh
-export CPPFLAGS="-I%{_includedir}/cdda"
-%configure \
-%{?_without_gstreamer:--without-gstreamer}
+%{cmake_kde4}
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-source /etc/profile.d/qt.sh
-%{__make} install DESTDIR="%{buildroot}"
-%find_lang %{name}-%{version}
+%{__make} install/fast DESTDIR="%{buildroot}"
+
+%{__mv} %{buildroot}%{_kde4_iconsdir}/oxygen %{buildroot}%{_kde4_iconsdir}/hicolor
+
+%{__install} -Dp -m644 %{SOURCE1} %{buildroot}%{_kde4_iconsdir}/hicolor/48x48/apps/kaffeine.png
+
+%find_lang %{name} --with-kde
 
 %post
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2>/dev/null || :
-update-desktop-database &>/dev/null || :
+update-desktop-database %{_datadir}/applications &>/dev/null || :
+touch --no-create %{_kde4_iconsdir}/hicolor &>/dev/null || :
+gtk-update-icon-cache -q %{_kde4_iconsdir}/icons/hicolor 2>/dev/null || :
 
 %postun
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2>/dev/null || :
-update-desktop-database &>/dev/null || :
+if [ $1 -eq 0 ] ; then
+    update-desktop-database %{_datadir}/applications &>/dev/null ||:
+    touch --no-create %{_kde4_iconsdir}/hicolor &>/dev/null || :
+    gtk-update-icon-cache %{_kde4_iconsdir}/hicolor &>/dev/null || :
+fi
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}-%{version}.lang
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING README TODO
-%doc %{_datadir}/doc/HTML/*/kaffeine
-%{_bindir}/kaffeine
-%{_datadir}/applications/kde/kaffeine.desktop
-%{_datadir}/apps/gstreamerpart/gstreamer_part.rc
-%{_datadir}/apps/kaffeine/
-%{_datadir}/apps/konqueror/servicemenus/kaffeine*.desktop
-%{_datadir}/apps/profiles/kaffeine.profile.xml
-%{_datadir}/icons/*/*/*/*.png
-%{_datadir}/mimelnk/application/*.desktop
-%{!?_kdelibs_without_mplayer2_desktop_file:%exclude %{_datadir}/mimelnk/application/x-mplayer2.desktop}
-%{_datadir}/services/gstreamer_part.desktop
-%{_datadir}/services/kaffeinemp3lame.desktop
-%{_datadir}/services/kaffeineoggvorbis.desktop
-%{_datadir}/services/xine_part.desktop
-%{_datadir}/servicetypes/kaffeineaudioencoder.desktop
-%{_datadir}/servicetypes/kaffeinedvbplugin.desktop
-%{_datadir}/servicetypes/kaffeineepgplugin.desktop
-%{_libdir}/kde3/libgstreamerpart.la
-%{_libdir}/kde3/libgstreamerpart.so
-%{_libdir}/kde3/libkaffeinemp3lame.la
-%{_libdir}/kde3/libkaffeinemp3lame.so
-%{_libdir}/kde3/libkaffeineoggvorbis.la
-%{_libdir}/kde3/libkaffeineoggvorbis.so
-%{_libdir}/kde3/libxinepart.la
-%{_libdir}/kde3/libxinepart.so
-%{_libdir}/libkaffeineaudioencoder.la
-%{_libdir}/libkaffeineaudioencoder.so.*
-%{_libdir}/libkaffeinedvbplugin.la
-%{_libdir}/libkaffeinedvbplugin.so.*
-%{_libdir}/libkaffeinepart.la
-%{_libdir}/libkaffeinepart.so
-%{_libdir}/libkaffeineepgplugin.la
-%{_libdir}/libkaffeineepgplugin.so.*
-
-%files devel
-%defattr(-, root, root, 0755)
-%{_includedir}/kaffeine/
-%{_libdir}/libkaffeineaudioencoder.so
-%{_libdir}/libkaffeinedvbplugin.so
-%{_libdir}/libkaffeineepgplugin.so
+%doc AUTHORS Changelog COPYING* INSTALL NOTES TODO
+%{_kde4_bindir}/kaffeine
+%{_kde4_bindir}/kaffeine-xbu
+%{_kde4_appsdir}/kaffeine/
+%{_kde4_appsdir}/solid/actions/*.desktop
+%{_kde4_datadir}/applications/kde4/kaffeine.desktop
+%{_kde4_iconsdir}/hicolor/*/*/*
+%{_kde4_appsdir}/profiles/kaffeine.profile.xml
 
 %changelog
+* Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Sun Sep 06 2009 Dag Wieers <dag@wieers.com> - 0.8.7-1
 - Updated to release 0.8.7.
 

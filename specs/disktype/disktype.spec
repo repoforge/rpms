@@ -34,6 +34,7 @@ boot codes.
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
 %doc HISTORY LICENSE README TODO
 %doc %{_mandir}/man1/disktype.1*
 %{_bindir}/disktype

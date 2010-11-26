@@ -1,7 +1,8 @@
 # $Id$
 # Authority: matthias
 
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
+%{?el6:%define _without_glide3 1}
+%{?el6:%define _without_lirc 1}
 
 %{?el5:%define _without_glide3 1}
 

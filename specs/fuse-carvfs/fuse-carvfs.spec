@@ -5,19 +5,19 @@
 
 Summary: Fuse carving filesystem
 Name: fuse-carvfs
-Version: 1.0.1
+Version: 2.3.0
 Release: 1%{?dist}
 License: GPL
 Group: System/Libraries
 URL: http://sourceforge.net/projects/carvpath/
 
-Source: carvfs%{version}.tgz
+Source: http://dl.sf.net/project/carvpath/CarvFS/carvfs%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cmake
+BuildRequires: fuse-devel
 BuildRequires: gcc
 BuildRequires: libcarvpath-devel
-BuildRequires: fuse-devel
 
 %description
 Fuse carving filesystem
@@ -68,5 +68,8 @@ cmake src -DCMAKE_C_FLAGS="%{optflags} -I$PWD/src" -DCMAKE_INSTALL_PREFIX="%{_pr
 %{_libdir}/libmodraw.so
 
 %changelog
+* Tue Nov 23 2010 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 
 - Initial package. (using DAR)

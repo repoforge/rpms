@@ -41,7 +41,8 @@ Net-SSLeay module for perl.
 %build
 echo "n" | CFLAGS="%{optflags}" %{__perl} Makefile.PL %{_prefix} INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
-%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" test
+### The tests require network access, which we don't allow
+#%{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}" test
 
 %install
 %{__rm} -rf %{buildroot}

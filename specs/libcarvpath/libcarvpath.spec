@@ -3,14 +3,13 @@
 
 Summary: Library for computer forensics carving tools
 Name: libcarvpath
-Version: 1.0.0
+Version: 2.3.0
 Release: 1%{?dist}
 License: Commercial
 Group: System/Libraries
 URL: http://sourceforge.net/projects/carvpath/
 
-Source: libcarvpath%{version}.tgz
-Patch0: libcarvpath-nonvoid.patch
+Source: http://dl.sf.net/project/carvpath/LibCarvPath/libcarvpath%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cmake
@@ -36,7 +35,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{name}%{version}
-%patch0 -p1
 
 %{__perl} -pi -e 's|/lib\b|/%{_lib}|g' src/CMakeLists.txt
 
@@ -56,7 +54,7 @@ cmake src -DCMAKE_C_FLAGS="%{optflags} -I$PWD/src" -DCMAKE_INSTALL_PREFIX="%{_pr
 
 %files
 %defattr (-, root, root, 0755)
-%doc ChangeLog COPYING NEWS README
+%doc AUTHORS COPYING INSTALL NEWS README
 %{_libdir}/libcarvpath.so.*
 
 %files devel
@@ -67,5 +65,8 @@ cmake src -DCMAKE_C_FLAGS="%{optflags} -I$PWD/src" -DCMAKE_INSTALL_PREFIX="%{_pr
 #%exclude %{_libdir}/libcarvpath.la
 
 %changelog
+* Tue Nov 23 2010 Dag Wieers <dag@wieers.com> - 2.3.0-1
+- Updated to release 2.3.0.
+
 * Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Initial package. (using DAR)

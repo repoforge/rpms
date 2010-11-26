@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 3.0.1
+Version: 1.2.8
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -14,6 +14,7 @@ Source: http://get.bitlbee.org/src/bitlbee-%{version}.tar.gz
 Patch0: bitlbee-1.2.5-libresolv.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: glib-devel
 BuildRequires: glib2-devel >= 2.4
 BuildRequires: gnutls-devel
 BuildRequires: libgcrypt-devel
@@ -110,9 +111,6 @@ CFLAGS="%{optflags}" ./configure \
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
-* Fri Nov 26 2010 Dag Wieers <dag@wieers.com> - 3.1.1-1
-- Updated to release 3.1.1.
-
 * Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 1.2.8-1
 - Updated to release 1.2.8.
 

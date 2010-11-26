@@ -1,0 +1,16 @@
+--- beecrypt-4.1.2/gnu.h.in.biarch	2006-05-22 15:53:45.000000000 -0400
++++ beecrypt-4.1.2/gnu.h.in	2006-05-22 15:53:49.000000000 -0400
+@@ -61,7 +61,12 @@
+  * make assumptions about the size set by the configure script
+  */
+ #if !defined(MP_WBITS)
+-# define MP_WBITS	@MP_WBITS@
++# include <bits/wordsize.h>
++#if __WORDSIZE == 32
++# define MP_WBITS	32U
++#elif __WORDSIZE == 64
++# define MP_WBITS	64U
++#endif
+ #endif
+ 
+ #endif

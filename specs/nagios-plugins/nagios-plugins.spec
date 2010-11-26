@@ -21,7 +21,7 @@
 Summary: Host/service/network monitoring program plugins for Nagios
 Name: nagios-plugins
 Version: 1.4.15
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
@@ -47,7 +47,7 @@ BuildRequires: perl(Net::SNMP)
 BuildRequires: postgresql-devel
 BuildRequires: python
 BuildRequires: qstat
-BuildRequires: radiusclient-devel
+BuildRequires: radiusclient-ng-devel
 BuildRequires: samba-client
 BuildRequires: %{_bindir}/mailq
 #BuildRequires: radiusclient-ng-devel
@@ -321,6 +321,9 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Fri Nov 26 2010 Dag Wieers <dag@wieers.com> - 14.15-2
+- Rebuild against radiusclient-ng 0.5.6.
+
 * Thu Sep 16 2010 Christoph Maser <cmaser@gmx.de> - 1.4.15-1
 - Updated to version 1.4.15.
 

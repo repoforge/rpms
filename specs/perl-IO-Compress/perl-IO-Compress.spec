@@ -3,7 +3,14 @@
 # Upstream: Paul Marquess <pmqs$cpan,org>
 
 ### EL6 ships with perl-IO-Compress-Base-2.020-115.el6
+### EL6 ships with perl-Compress-Zlib-2.020-115.el6
 %{?el6:# Tag: rfx}
+
+### EL5 ships with perl-Compress-Zlib-1.42-1.fc6
+%{?el5:# Tag: rfx}
+
+### EL4 ships with perl-Compress-Zlib-1.42-1.el4
+%{?el4:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
