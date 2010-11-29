@@ -12,7 +12,7 @@
 
 Summary: Perl module for encoding and decoding of base64 strings
 Name: perl-MIME-Base64
-Version: 3.11
+Version: 3.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/MIME/Base64/
 
 %changelog
+* Mon Nov 29 2010 David Hrbáč <david@hrbac.cz> - 3.13-1
+- new upstream release
+
 * Thu Nov 25 2010 David Hrbáč <david@hrbac.cz> - 3.11-1
 - new upstream release
 
