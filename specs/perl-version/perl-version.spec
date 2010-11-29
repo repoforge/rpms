@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements for Version Objects
 Name: perl-version
-Version: 0.85
+Version: 0.86
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/version.pod
 
 %changelog
+* Mon Nov 29 2010 David Hrbáč <david@hrbac.cz> - 0.86-1
+- new upstream release
+
 * Tue Oct 26 2010 Dag Wieers <dag@wieers.com> - 0.85-1
 - Updated to release 0.85.
 
