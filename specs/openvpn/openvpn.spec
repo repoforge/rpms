@@ -4,16 +4,21 @@
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
-Version: 2.0.9
+Version: 2.1.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/
 
-Source: http://openvpn.net/release/openvpn-%{version}.tar.gz
+Source: http://swupdate.openvpn.net/community/releases/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: lzo-devel >= 1.07, openssl-devel >= 0.9.6, pkgconfig, pam-devel
+BuildRequires: lzo-devel >= 1.07
+BuildRequires: openssl-devel >= 0.9.6
+BuildRequires: pkgconfig
+BuildRequires: pam-devel
+Requires: lzo
+Requires: openssl
 
 %description
 OpenVPN is a robust and highly flexible tunneling application.
@@ -80,7 +85,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
-%doc contrib/ easy-rsa/ management/ plugin/README.* sample-*/
+%doc contrib/ easy-rsa/ plugin/README.* sample-*/
 %doc %{_mandir}/man8/openvpn.8*
 %dir %{_sysconfdir}/openvpn/
 %config %{_initrddir}/openvpn
@@ -88,6 +93,9 @@ fi
 %{_sbindir}/openvpn
 
 %changelog
+* Tue Nov 30 2010 Christoph Maser <cmaser@gmx.de> - 2.1.4-1
+- Updated to version 2.1.4.
+
 * Fri Feb 02 2007 Dag Wieers <dag@wieers.com> - 2.0.9-1
 - Updated to release 2.0.9.
 
