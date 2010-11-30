@@ -13,7 +13,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.96.4
+Version: 0.96.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -106,7 +106,7 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup
+%setup -q
 
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g;' libtool configure
 
@@ -396,6 +396,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Tue Nov 30 2010 David Hrbáč <david@hrbac.cz> - 0.96.5-1
+- new upstream release
+
 * Mon Oct 25 2010 Dag Wieers <dag@wieers.com> - 0.96.4-1
 - Updated to release 0.96.4.
 
