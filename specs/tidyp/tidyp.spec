@@ -4,7 +4,7 @@
 
 Summary: Fork of tidy/libtidy
 Name: tidyp
-Version: 1.02
+Version: 1.04
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
@@ -13,8 +13,11 @@ URL: http://tidyp.com/
 Source: http://github.com/downloads/petdance/tidyp/tidyp-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils, gcc, gcc-c++, make, autoconf, automake
+BuildRequires: binutils
+BuildRequires: gcc
+BuildRequires: gcc-c++
 BuildRequires: libtool
+BuildRequires: make
 
 %description
 tidyp is a fork of tidy on SourceForge at http://tidy.sf.net.  The
@@ -65,5 +68,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libtidyp.la
 
 %changelog
+* Tue Nov 30 2010 Steve Huff <shuff@vecna.org> - 1.04-1
+- Updated to version 1.04.
+
 * Wed Jun 30 2010 Steve Huff <shuff@vecna.org> - 1.02-1
 - Initial package.
