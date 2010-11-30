@@ -10,7 +10,7 @@
 
 Summary: A fast, lightweight Source Control Management system
 Name: mercurial
-Version: 1.6.4
+Version: 1.7.1
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -112,6 +112,9 @@ mkdir -p %{buildroot}/%{_sysconfdir}/mercurial/hgrc.d
 %{_bindir}/hg-ssh
 
 %changelog
+* Tue Nov 30 2010 Yury V. Zaytsev <yury@shurup.com> - 1.7.1-1
+- Updated to release 1.7.1 (Tim Dettrick).
+
 * Tue Oct 05 2010 Yury V. Zaytsev <yury@shurup.com> - 1.6.4-1
 - Updated to release 1.6.4 (Tim Dettrick).
 
