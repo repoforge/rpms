@@ -5,6 +5,8 @@
 
 ### EL6 ships with perl-CGI-3.49-115.el6
 %{?el6:# Tag: rfx}
+### EL5 perl-5.8.8 provides CGI 3.15
+%{?el5:# Tag: rfx}
 ### EL3 ships with perl-CGI-2.89-101.EL3
 %{?el3:# Tag: rfx}
 ### EL2 ships with perl-CGI-2.752-37.1.99ent
@@ -18,7 +20,7 @@
 Summary: Handle Common Gateway Interface requests and responses
 Name: perl-CGI
 Version: 3.49
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/CGI/
@@ -73,5 +75,8 @@ Requires: perl(File::Spec) >= 0.82
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Fri Dec 03 2010 Steve Huff <shuff@vecna.org> - 3.49-2
+- rfx for el5 as well
+
 * Thu Jul 29 2010 Steve Huff <shuff@vecna.org> - 3.49-1
 - Initial package.
