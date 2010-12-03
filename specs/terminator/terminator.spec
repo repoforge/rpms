@@ -1,0 +1,80 @@
+# $Id$
+# Authority: shuff
+# Upstream: Chris Jones <cmsj$tenshu,net>
+
+%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+
+Summary: Arrange terminals in grids
+Name: terminator
+Version: 0.95
+Release: 1%{?dist}
+License: GPL
+Group: User Interface/Desktops
+URL: http://www.tenshu.net/terminator/ 
+
+Source: http://launchpad.net/terminator/trunk/%{version}/+download/terminator-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Buildarch: noarch
+BuildRequires: desktop-file-utils
+BuildRequires: gettext
+BuildRequires: gtk2-devel
+BuildRequires: python-devel
+BuildRequires: rpm-macros-rpmforge
+Requires: desktop-file-utils
+Requires: GConf2
+Requires: gnome-python2-gconf
+Requires: gtk2
+# Requires: python-keybinder
+Requires: vte
+
+%description
+Terminator is inspired by programs such as gnome-multi-term, quadkonsole, etc.
+in that the main focus is arranging terminals in grids (tabs is the most common
+default method, which Terminator also supports).
+
+Much of the behaviour of Terminator is based on GNOME Terminal, and we are
+adding more features from that as time goes by, but we also want to extend out
+in different directions with useful features for sysadmins and other users.
+
+%prep
+%setup
+%{__sed} -i '/#! \?\/usr.*/d' terminatorlib/*.py
+
+%build
+%{__python} setup.py build
+
+%install
+%{__rm} -rf %{buildroot}
+%{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
+
+%{__rm} -f %{buildroot}/%{_datadir}/icons/hicolor/icon-theme.cache
+%{__rm} -f %{buildroot}/%{_datadir}/applications/%{name}.desktop
+
+desktop-file-install --vendor "" \
+    --remove-category X-Ubuntu-Gettext-Domain \
+    --dir %{buildroot}%{_datadir}/applications \
+    data/%{name}.desktop
+
+%clean
+%{__rm} -rf %{buildroot}
+
+%post -p %{_bindir}/gtk-update-icon-cache
+
+%postun -p %{_bindir}/gtk-update-icon-cache
+
+%files
+%defattr(-, root, root, 0755)
+%doc ChangeLog COPYING INSTALL README
+%doc %{_mandir}/man?/*
+%{_bindir}/*
+%{python_sitelib}/*
+%{_datadir}/applications/*.desktop
+%{_datadir}/locale/*/LC_MESSAGES/terminator.mo
+%{_datadir}/pixmaps/*.png
+%{_iconsbasedir}/*/*/*.png
+%{_iconsbasedir}/*/*/*.svg
+
+%changelog
+* Fri Dec 03 2010 Steve Huff <shuff@vecna.org> - 0.95
+- Initial package.
