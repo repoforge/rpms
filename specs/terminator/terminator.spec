@@ -1,6 +1,8 @@
 # $Id$
 # Authority: shuff
 # Upstream: Chris Jones <cmsj$tenshu,net>
+# ExcludeDist: el3 el4
+# Rationale: needs python-configobj
 
 %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
 
@@ -25,8 +27,10 @@ Requires: desktop-file-utils
 Requires: GConf2
 Requires: gnome-python2-gconf
 Requires: gtk2
-# Requires: python-keybinder
+Requires: python-configobj
 Requires: vte
+%{!?el6:Requires: python-configobj}
+%{?el6:Requires: python-keybinder}
 
 %description
 Terminator is inspired by programs such as gnome-multi-term, quadkonsole, etc.
