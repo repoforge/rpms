@@ -9,7 +9,7 @@
 Summary: Arrange terminals in grids
 Name: terminator
 Version: 0.95
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tenshu.net/terminator/ 
@@ -30,7 +30,8 @@ Requires: gtk2
 Requires: python-configobj
 Requires: vte
 %{!?el6:Requires: python-configobj}
-%{?el6:Requires: python-keybinder}
+# uncomment this once python-keybinder is packaged
+# %{?el6:Requires: python-keybinder}
 
 %description
 Terminator is inspired by programs such as gnome-multi-term, quadkonsole, etc.
@@ -80,5 +81,8 @@ desktop-file-install --vendor "" \
 %{_iconsbasedir}/*/*/*.svg
 
 %changelog
+* Tue Dec 07 2010 Steve Huff <shuff@vecna.org> - 0.95-2
+- Captured Python dependencies more precisely.
+
 * Fri Dec 03 2010 Steve Huff <shuff@vecna.org> - 0.95
 - Initial package.
