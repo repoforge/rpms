@@ -3,13 +3,13 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 6.95
+Version: 7.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/
 
-Source: http://dl.sf.net/awstats/awstats-%{version}.tar.gz
+Source: http://sourceforge.net/projects/awstats/files/awstats-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -29,7 +29,7 @@ Statistics can be updated from a browser or your scheduler.
 The program also supports virtual servers, plugins and a lot of features.
 
 %prep
-%setup
+%setup -q
 
 ### Commit permanent changes to default configuration
 %{__perl} -pi.orig -e '
@@ -115,6 +115,9 @@ dos2unix wwwroot/cgi-bin/awredir.pl
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Tue Dec 07 2010 David Hrbáč <david@hrbac.cz> - 7.0-1
+- new upstream release
+
 * Fri Nov 27 2009 David Hrbáč <david@hrbac.cz> - 6.95-1
 - Updated to release 6.95.
 
