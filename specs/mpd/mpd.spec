@@ -2,14 +2,19 @@
 # Authority: shuff
 # Upstream: Max Kellermann <max$duempel,org>
 
+%define _without_cue 1
+%define _without_sidplay 1
+
+%{?el6:%define _without_mikmod 1}
+%{?el6:%define _without_flac 1}
+
 %{?el5:%define _without_pulseaudio 1}
-%{?el4:%define _without_pulseaudio 1}
-%{?el3:%define _without_pulseaudio 1}
+%{?el5:%define _without_sqlite 1}
 
 Summary: Music Player Daemon
 Name: mpd
 Version: 0.15.15
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.musicpd.org/
@@ -17,35 +22,35 @@ URL: http://www.musicpd.org/
 Source: http://downloads.sourceforge.net/project/musicpd/mpd/%{version}/mpd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: alsa-lib-devel >= 1.0.16
 BuildRequires: audiofile-devel 
-BuildRequires: avahi-glib-devel
 BuildRequires: bzip2-devel
 BuildRequires: curl-devel
 BuildRequires: faad2-devel
 BuildRequires: ffmpeg-devel
-BuildRequires: flac-devel >= 1.1.2
-BuildRequires: glib2-devel
+BuildRequires: glib2-devel >= 2.6
 # BuildRequires: jack-devel
 BuildRequires: lame-devel
 BuildRequires: libao-devel
-# BuildRequires: libcue-devel
 BuildRequires: libid3tag-devel
 BuildRequires: libmad-devel
-# BuildRequires: libmms-devel >= 0.4
 BuildRequires: libmodplug-devel
 BuildRequires: libmpcdec-devel
 BuildRequires: libogg-devel
 BuildRequires: libsamplerate-devel
 BuildRequires: libshout-devel >= 2.2.2
-# BuildRequires: libsidplay2-devel
 BuildRequires: libvorbis-devel
 # BuildRequires: libwildmidi-devel
-BuildRequires: mikmod-devel
 BuildRequires: pkgconfig
-# BuildRequires: sqlite-devel
 BuildRequires: zziplib-devel
-%{!?_without_pulseaudio:BuildRequires: pulseaudio-devel}
+%{!?_without_alsa:BuildRequires: alsa-lib-devel >= 1.0.16}
+%{!?_without_avahi:BuildRequires: avahi-glib-devel}
+%{!?_without_cue:BuildRequires: libcue-devel}
+%{!?_without_flac:BuildRequires: flac-devel >= 1.1.2}
+%{!?_without_libmms:BuildRequires: libmms-devel >= 0.4}
+%{!?_without_sidplay:BuildRequires: libsidplay2-devel}
+%{!?_without_mikmod:BuildRequires: mikmod-devel}
+%{!?_without_sqlite:BuildRequires: sqlite-devel >= 3.0}
+%{!?_without_pulseaudio:BuildRequires: pulseaudio-libs-devel}
 
 %description
 Music Player Daemon (MPD) allows remote access for playing music and managing
@@ -62,25 +67,27 @@ frontend options, or restart X often.
 export FLAC_CFLAGS='-I%{_includedir}'
 export FLAC_LIBS='-L%{_libdir}'
 %configure --disable-dependency-tracking \
-    --disable-cue \
-    --enable-lastfm \
-    --disable-sqlite \
-    --disable-mms \
+%{?_without_cue:--disable-cue} \
+%{?_without_flac:--disable-flac} \
+%{?_without_libmms:--disable-mms} \
+%{?_without_sidplay:--disable-sidplay} \
+%{?_without_sqlite:--disable-sqlite} \
+%{!?_without_alsa:--enable-alsa} \
     --enable-bzip2 \
-    --enable-zip \
-    --enable-iso9660 \
     --enable-ffmpeg \
-    --enable-mad \
-    --enable-mikmod \
-    --enable-modplug \
-    --disable-sidplay \
-    --enable-lsr \
-    --enable-vorbis-encoder \
-    --enable-lame-encoder \
-    --enable-alsa \
-    --enable-pipe-output \
     --enable-httpd-output \
-    --enable-shout
+    --enable-iso9660 \
+    --enable-lame-encoder \
+    --enable-lastfm \
+    --enable-lsr \
+    --enable-mad \
+%{!?_without_mikmod:--enable-mikmod} \
+    --enable-modplug \
+    --enable-pipe-output \
+%{!?_without_pulseaudio:--enable-pulseaudio} \
+    --enable-shout \
+    --enable-vorbis-encoder \
+    --enable-zip
 %{__make} %{?_smp_mflags}
 
 %install
@@ -99,6 +106,9 @@ export FLAC_LIBS='-L%{_libdir}'
 %{_bindir}/mpd
 
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 0.15.15-2
+- Rebuild against ffmpeg-0.6.1.
+
 * Tue Nov 09 2010 Steve Huff <shuff@vecna.org> - 0.15.15-1
 - Update to 0.15.15.
 

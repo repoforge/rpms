@@ -13,7 +13,7 @@
 
 Summary: Library for reading and writing quicktime files
 Name: libquicktime
-Version: 1.1.4
+Version: 1.2.1
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
@@ -101,6 +101,7 @@ programs that need to access quicktime files using libquicktime.
 %doc COPYING README TODO
 %doc %{_mandir}/man1/lqtplay.1*
 %{_bindir}/lqtplay
+%{_bindir}/lqtremux
 %{_bindir}/lqt_transcode
 %{_bindir}/qt*
 %{_libdir}/libquicktime.so.*
@@ -111,8 +112,6 @@ programs that need to access quicktime files using libquicktime.
 %defattr(-, root, root, 0755)
 %doc doc/*.html doc/*.html doc/apiref/
 %{?!_without_gtk24:%{_bindir}/libquicktime_config}
-%{_bindir}/lqt-config
-%{_datadir}/aclocal/*.m4
 %{_includedir}/lqt/
 %{_includedir}/quicktime
 %{_libdir}/*.so
@@ -122,6 +121,9 @@ programs that need to access quicktime files using libquicktime.
 %exclude %{_libdir}/libquicktime/lqt_*.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 

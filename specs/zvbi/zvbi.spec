@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
@@ -9,18 +8,26 @@
 Summary: Raw VBI, Teletext and Closed Caption decoding library
 Name: zvbi
 Version: 0.2.33
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://zapping.sourceforge.net/
 
 Source: http://dl.sf.net/zapping/zvbi-%{version}.tar.bz2
+Patch0: zvbi-0.2.24-tvfonts.patch
+Patch1: zvbi-0.2.25-openfix.patch
+Patch2: zvbi-0.2.33-stat.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libpng-devel, gcc-c++, doxygen, gettext
-%{!?_without_modxorg:BuildRequires: libXt-devel}
+BuildRequires: doxygen
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: libpng-devel
+%{!?_without_modxorg:BuildRequires: libICE-devel, xorg-x11-font-utils, fontconfig}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 Obsoletes: libzvbi <= 0.2.4
+Requires: /sbin/chkconfig
+Requires: /sbin/service
 
 %description
 This library provides routines to access raw vbi sampling devices
@@ -42,6 +49,9 @@ the zvbi library.
 
 %prep
 %setup
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %configure \
@@ -84,6 +94,9 @@ the zvbi library.
 %exclude %{_libdir}/libzvbi-chains.la
 
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 0.2.33-2
+- Added patches from fedora.
+
 * Sun Sep 14 2008 Dag Wieers <dag@wieers.com> - 0.2.33-1
 - Updated to release 0.2.33.
 

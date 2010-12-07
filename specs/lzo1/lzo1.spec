@@ -1,25 +1,25 @@
-# $Id: lzo.spec 3101 2005-04-04 20:13:17Z dag $
+# $Id$
 # Authority: dag
 # Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
 ### EL6 ships with lzo-2.03-3.1.el6
-# ExclusiveDist: el2 el3 el4 el5
 
 %define real_name lzo
 
 Summary: Portable lossless data compression library
-Name: lzo2
-Version: 2.04
-Release: 1%{?dist}
+Name: lzo1
+Version: 1.08
+Release: 5%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch0: lzo-2.02-exec-stack.patch
+Patch0: lzo1-1.08-asm.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: zlib-devel, autoconf, gcc-c++
+BuildRequires: autoconf
+BuildRequires: zlib-devel
 Requires: zlib >= 1.0.0
 
 %description
@@ -41,10 +41,12 @@ you will need to install %{name}-devel.
 
 %prep
 %setup -n %{real_name}-%{version}
-#patch
+%patch0 -p0 -b .asm
 
 %build
 %configure \
+    --disable-dependency-tracking \
+    --disable-static \
     --enable-shared
 %{__make} %{?_smp_mflags}
 
@@ -60,32 +62,18 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog NEWS README THANKS
-%{_libdir}/liblzo2.so.*
+%doc AUTHORS BUGS ChangeLog NEWS README THANKS doc/
+%{_libdir}/liblzo.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/
-%{_includedir}/lzo/
-%{_libdir}/liblzo2.a
-%{_libdir}/liblzo2.so
-%exclude %{_libdir}/liblzo2.la
+%{_includedir}/lzo*.h
+%{_libdir}/liblzo.so
+%exclude %{_libdir}/liblzo.la
 
 %changelog
-* Wed Nov 10 2010 Dag Wieers <dag@wieers.com> - 2.04-1
-- Updated to release 2.04.
-
-* Sun Aug 12 2007 Dries Verachtert <dries@ulyssis.org> - 2.02-3
-- Patch added so it doesn't use an executable stack, thanks to Kenneth Porter.
-
-* Sun Mar 19 2006 Dries Verachtert <dries@ulyssis.org> - 2.02-2
-- gcc-c++ buildrequirement added.
-
-* Mon Mar 13 2006 Dag Wieers <dag@wieers.com> - 2.02-1
-- Updated to release 2.02.
-
-* Tue May 31 2005 Dag Wieers <dag@wieers.com> - 2.00-1
-- Updated to release 2.00.
+* Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 1.08-5
+- Reworked SPEC file.
 
 * Tue Feb  1 2005 Matthias Saou <http://freshrpms.net/> 1.08-4
 - Add lzo-1.08-asm.patch to fix asm detection on i386.

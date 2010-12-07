@@ -1,6 +1,9 @@
 # $Id$
 # Authority: matthias
 
+%{?el6:%undefine _with_mozilla}
+%{?el6:%define mozilla xulrunner-devel nspr-devel}
+%{?el6:%define _without_lirc 1}
 
 %{?el5:%undefine _with_mozilla}
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
@@ -29,11 +32,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gettext
 BuildRequires: gtk2-devel >= 2.8
 BuildRequires: js-devel
-BuildRequires: lirc-devel
 BuildRequires: xine-lib-devel >= 1.0.0
 # This is checked at configure time :-( - Build fails as of 0.5.9
 # gtkvideo.c:2004: error: 'priv' undeclared (first use in this function)
 #Buildrequires: gnome-screensaver, dbus-glib-devel
+%{!?_without_lirc:BuildRequires: lirc-devel}
 %{?_with_mozilla:BuildRequires: %{mozilla}}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_modxorg:BuildRequires: libXaw-devel, libXtst-devel, libXinerama-devel, libXrandr-devel}
@@ -51,27 +54,10 @@ Available rpmbuild rebuild options :
 %setup
 
 %{__perl} -pi.orig -e 's|(\@XTEST_LIBS\@)|$1 \@X_LIBS\@|g' Makefile.in */Makefile.in
-# The desktop file now includes all the proper mime types, only tweak it a bit
-#%{__perl} -pi -e 's|^(Name=).*|$1GXine Video Player|g;
-#                  s|^(Categories=).*|$1GNOME;Application;AudioVideo;|g' \
-#    gxine.desktop
-#
-#%{__cat} <<EOF >gxine.applications
-#gxine
-#    command=gxine
-#    name=GXine
-#    can_open_multiple_files=true
-#    expects_uris=yes
-#    requires_terminal=false
-#    all_gnome_vfs_schemes_supported=yes
-#    uses_gnomevfs=true
-#    startup_notify=false
-#    supported_uri_schemes=rtp,mms,net,rtsp,pnm
-#    mime_types=video/mpeg,video/msvideo,video/quicktime,video/x-avi,video/x-ms-asf,video/x-ms-wmv,video/x-msvideo,application/x-ogg,application/ogg,audio/x-mp3,audio/x-mpeg,video/x-mpeg,video/x-fli,audio/x-wav,audio/x-mpegurl,audio/x-scpls,audio/x-ms-asx,application/vnd.rn-realmedia,audio/x-real-audio,audio/x-pn-realaudio,application/x-flac,audio/x-flac,application/x-shockwave-flash,audio/mpeg,audio/x-ms-asf,audio/x-m4a,audio/x-ms-wax,video/dv,video/x-anim,video/x-flc,misc/ultravox,application/x-matroska,audio/vnd.rn-realaudio,audio/x-pn-aiff,audio/x-pn-au,audio/x-pn-wav,audio/x-pn-windows-acm,image/vnd.rn-realpix,video/vnd.rn-realvideo
-#EOF
 
 %build
 %configure \
+%{?_without_lirc:--disable-lirc} \
     --with-dbus \
     --with-logo-format="auto"
 %{__make} %{?_smp_mflags}
@@ -83,15 +69,6 @@ Available rpmbuild rebuild options :
 %find_lang gxine.theme
 # Have both translation sets of files included (is there a better way?)
 %{__cat} gxine.theme.lang >> gxine.lang
-
-#%{__install} -D -m0644 gxine.applications %{buildroot}%{_datadir}/application-registry/gxine.applications
-
-#%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-#desktop-file-install --delete-original \
-#    --vendor %{desktop_vendor}                 \
-#    --dir %{buildroot}%{_datadir}/applications \
-#    --add-category X-Red-Hat-Base              \
-#    %{buildroot}%{_datadir}/applications/gxine.desktop
 
 %clean
 %{__rm} -rf %{buildroot}

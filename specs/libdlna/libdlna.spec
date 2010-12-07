@@ -2,13 +2,10 @@
 # Authority: dag
 # Upstream: Benjamin Zores <ben$geexbox,org>
 
-
-%{?el3:%define _without_ffmpeg05 1}
-
 Summary: Implementation of Digital Living Network Alliance (DLNA) standards
 Name: libdlna
 Version: 0.2.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://libdlna.geexbox.org/
@@ -50,7 +47,7 @@ export CFLAGS="%{optflags}"
     --disable-static \
     --libdir="%{_libdir}" \
     --prefix="%{_prefix}"
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} || :
 
 %install
 %{__rm} -rf %{buildroot}
@@ -73,6 +70,9 @@ export CFLAGS="%{optflags}"
 %{_libdir}/pkgconfig/libdlna.pc
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 0.2.3-3
+- Rebuild against ffmpeg-0.6.1.
+
 * Mon Jul 13 2009 Dag Wieers <dag@wieers.com> - 0.2.3-2
 - Rebuild against ffmpeg-0.5.
 

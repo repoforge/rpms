@@ -1,14 +1,16 @@
-# $Id$
+# $Id: SDL_image.spec 9276 2010-11-13 22:01:11Z dag $
 # Authority: dries
 # Upstream: Sam Latinga <slouken$devolution,com>
+
+# ExclusiveDist: el2 el3 el4
 
 ### EL2 ships with SDL_image-1.2.0-3
 %{?el2:# Tag: rfx}
 
 Summary: Load images as SDL surfaces
 Name: SDL_image
-Version: 1.2.10
-Release: 1%{?dist}
+Version: 1.2.4
+Release: 2%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.libsdl.org/projects/SDL_image/
@@ -23,7 +25,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 BuildRequires: perl
-BuildRequires: SDL-devel >= 1.2.10
+BuildRequires: SDL-devel >= 1.2.4
 BuildRequires: zlib-devel
 
 %description
@@ -68,15 +70,11 @@ you will need to install %{name}-devel.
 %dir %{_includedir}/SDL/
 %{_includedir}/SDL/SDL_image.h
 %{_libdir}/libSDL_image.so
-%{_libdir}/pkgconfig/SDL_image.pc
 %exclude %{_libdir}/*.la
 
 %changelog
-* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.2.10-1
-- Updated to release 1.2.10.
-
-* Fri May 19 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.5-1
-- Updated to release 1.2.5.
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.2.4-2
+- Rebuild.
 
 * Sun Dec 04 2005 Dries Verachtert <dries@ulyssis.org - 1.2.4-1
 - Initial package

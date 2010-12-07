@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Dan Dennedy <ddennedy$users,sf,net>
 
-
 %{?el4: %define _without_libiec61883 1}
 %{?el4:%define _without_modxorg 1}
 
@@ -11,7 +10,7 @@
 
 Summary: Simple non-linear video editor
 Name: kino
-Version: 1.3.3
+Version: 1.3.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -89,6 +88,9 @@ update-mime-database %{_datadir}/mime &>/dev/null || :
 %exclude %{_libdir}/kino-gtk2/*.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.3.4-1
+- Updated to release 1.3.4.
+
 * Tue Jul 21 2009 Dag Wieers <dag@wieers.com> - 1.3.3-1
 - Updated to release 1.3.3.
 

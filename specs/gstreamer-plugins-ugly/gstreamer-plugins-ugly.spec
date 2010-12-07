@@ -5,16 +5,16 @@
 
 %define desktop_vendor rpmforge
 
-%define majorminor   0.10
-%define gstreamer    gstreamer
+%define majorminor 0.10
+%define gstreamer gstreamer
 
-%define gst_minver   0.10.10.1
+%define gst_minver 0.10.10.1
 %define gstpb_minver 0.10.10.1
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
 Version: 0.10.16
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -42,13 +42,13 @@ BuildRequires: libsidplay-devel >= 1.36.0
 BuildRequires: PyXML
 BuildRequires: twolame-devel
 
-Provides: gstreamer-sid = %{version}-%{release}
-Provides: gstreamer-lame = %{version}-%{release}
-Provides: gstreamer-mad = %{version}-%{release}
 Provides: gstreamer-a52dec = %{version}-%{release}
 #Provides: gstreamer-dvdnav = %{version}-%{release}
 Provides: gstreamer-dvdread = %{version}-%{release}
+Provides: gstreamer-lame = %{version}-%{release}
+Provides: gstreamer-mad = %{version}-%{release}
 Provides: gstreamer-mpeg2dec = %{version}-%{release}
+Provides: gstreamer-sid = %{version}-%{release}
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -113,11 +113,14 @@ libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
 %{_libdir}/gstreamer-%{majorminor}/libgstx264.so
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 0.10.16-2
+- Rebuild against newer x264.
+
 * Sun Nov 14 2010 Dag Wieers <dag@wieers.com> - 0.10.16-1
 - Updated to release 0.10.16.
 
-* Thu Nov 12 2009 Steve Huff <shuff@vecna.org> - 0.10.13-1
-- Updated to release 0.10.13.
+* Thu Nov 12 2009 Steve Huff <shuff@vecna.org> - 0.10.11-1
+- Updated to release 0.10.11.
 - No further updates possible without gstreamer update.
 
 * Thu Apr 02 2009 Dag Wieers <dag@wieers.com> - 0.10.9-1

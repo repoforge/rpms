@@ -7,18 +7,19 @@
 %define __spec_install_post /usr/lib/rpm/brp-compress
 
 %define real_name libflashplayer
-%define real_version 092710
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 10.2.161.23
+%define real_version 111710
+Version: 10.3.162.29
 Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
 #Source0: http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer-%{version}.linux-x86_64.so.tar.gz
-Source0: http://download.macromedia.com/pub/labs/flashplayer10/flashplayer_square_p2_64bit_linux_%{real_version}.tar.gz
+#Source0: http://download.macromedia.com/pub/labs/flashplayer10/flashplayer_square_p2_64bit_linux_%{real_version}.tar.gz
+Source0: http://download.macromedia.com/pub/labs/flashplayer10/flashplayer10_2_p3_64bit_linux_%{real_version}.tar.gz
 Source1: README
 Source2: LICENSE
 Source3: homecleanup
@@ -70,6 +71,9 @@ fi
 %{_libdir}/flash-plugin/
 
 %changelog
+* Fri Dec 03 2010 Dag Wieers <dag@wieers.com> - 10.3.162.29-0.1
+- Updated to release 10.3.162.29.
+
 * Tue Nov 09 2010 Dag Wieers <dag@wieers.com> - 10.2.161.23-0.1
 - Updated to release 10.2.161.23.
 

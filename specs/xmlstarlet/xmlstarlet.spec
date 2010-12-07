@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define _default_patch_fuzz 2
+
 Summary: Command Line XML Toolkit
 Name: xmlstarlet
 Version: 1.0.2

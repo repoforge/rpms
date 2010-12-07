@@ -4,21 +4,17 @@
 
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
-
 %{!?dtag:%define _with_avahi 1}
 
 ### Problems with dirac
 %define _without_dirac 1
+%define _without_directfb 1
 
 %ifarch %{ix86}
 %define _with_loader 1
 %endif
 
-%{?fc7:%define _with_avahi 1}
 %{?el5:%define _with_avahi 1}
-%{?fc6:%define _with_avahi 1}
-%{?fc5:%define _with_avahi 1}
 
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 %{?el5:%define _without_jack 1}
@@ -340,6 +336,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Sun Dec 05 2010 Dag Wieers <dag@wieers.com> - 0.8.6i-3
+- Rebuild against ffmpeg-0.6.1.
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.8.6i-2
 - Rebuild against newer faad2 2.7.
 

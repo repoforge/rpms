@@ -1,7 +1,7 @@
 # $Id$
 # Authority: dag
 
-### EL2 ships with smpeg-0.4.4-3### EL2 ships with smpeg-0.4.4-3
+### EL2 ships with smpeg-0.4.4-3
 # ExcludeDist: el2
 
 Summary: MPEG library for SDL

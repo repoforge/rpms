@@ -1,22 +1,53 @@
 # $Id$
 # Authority: matthias
 
+%define _default_patch_fuzz 2
+
+%define desktop_vendor rpmforge
+
 %define _without_directfb 1
-%define _without_fribidi 1
+%define _without_faad2 1
 %define _without_ivtv 1
+%define _without_jack 1
+%define _without_live 1
 %define _without_nas 1
+%define _without_nemesi 1
+%define _without_openal 1
+%define _without_vdpau 1
+%define _without_xmms 1
 %define _without_xss 1
 
 %{?el6:%define _without_lirc 1}
 
+%{?el5:%define _without_pulseaudio 1}
+%{?el5:%define _without_schroedinger 1}
+%{?el5:%define _without_speex 1}
+%{?el5:%define _without_vpx 1}
+
+%{?el4:%define _without_giflib 1}
 %{?el4:%define _without_modxorg 1}
+%{?el4:%define _without_pulseaudio 1}
+%{?el4:%define _without_sdl 1}
+%{?el4:%define _without_samba 1}
+%{?el4:%define _without_speex 1}
+%{?el4:%define _without_vpx 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_binutils214 1}
+%{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_giflib 1}
+#{?el3:#define _without_h264 1}
 %{?el3:%define _without_modxorg 1}
+%{?el3:%define _without_pulseaudio 1}
+%{?el3:%define _without_samba 1}
+%{?el3:%define _without_schroedinger 1}
+%{?el3:%define _without_sdl 1}
+%{?el3:%define _without_speex 1}
 %{?el3:%define _without_theora 1}
-%{?el3:%define _without_xvmc 1}
+%{?el3:%define _without_v4l2 1}
+%{?el3:%define _without_vpx 1}
 %{?el3:%define _without_x264_patch 1}
+%{?el3:%define _without_xvmc 1}
 
 %define real_name MPlayer
 %define real_version rc3
@@ -25,26 +56,30 @@
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
-%define real_version 2009-07-11
-Release: 0.44.svn20090711%{?dist}
+%define real_version 2010-07-03
+Release: 0.45.svn20100703%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2
-Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot-%{real_version}.tar.bz2
+Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-%{real_version}.tar.bz2
 #Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{real_version}.tar.bz2
-Source1: http://www.live555.com/liveMedia/public/live.%{live_version}.tar.gz
-Source2: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
-Source3: mplayer.png
+Source1: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
+Source10: mplayer-snapshot.sh
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
-Patch1: MPlayer-0.90-playlist.patch
+Patch2: mplayer-config.patch
+Patch8: mplayer-manlinks.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
+Patch14: mplayer-nodvdcss.patch
 #Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: desktop-file-utils
 BuildRequires: flac-devel
+BuildRequires: fontconfig-devel
+BuildRequires: freetype-devel >= 2.0.9
 BuildRequires: gcc-c++
 BuildRequires: ImageMagick
 BuildRequires: lame-devel
@@ -53,11 +88,12 @@ BuildRequires: libmad-devel
 BuildRequires: libmatroska-devel
 BuildRequires: libpng-devel
 BuildRequires: libungif-devel
-BuildRequires: SDL-devel
+BuildRequires: lzo-devel >= 2.0
 BuildRequires: yasm
+%{!?_without_a52dec:BuildRequires: a52dec-devel}
 %{!?_without_aalib:BuildRequires: aalib-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
-%{!?_without_amrnb:BuildRequires: amrnb-devel}
+%{!?_without_amr:BuildRequires: opencore-amr-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
@@ -65,30 +101,48 @@ BuildRequires: yasm
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{!?_without_dv:BuildRequires: libdv-devel}
 %{?_with_dvdread:BuildRequires: libdvdread-devel}
+%{?_with_dvdnav:BuildRequires: libdvdnav-devel >= 4.1.3-1}
 %{!?_without_enca:BuildRequires: enca-devel}
-%{!?_without_esd:BuildRequires: esound-devel}
+%{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
+%{!?_without_faad2:BuildRequires: faad2-devel >= 1:2.6.1}
 %{!?_without_fame:BuildRequires: libfame-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_giflib:BuildRequires: giflib-devel}
+%{?_without_giflib:BuildRequires: libungif-devel}
 %{!?_without_gtk2:BuildRequires: gtk2-devel}
+%{!?_without_jack:BuildRequires: jack-audio-connection-kit-devel}
 %{!?_without_ladspa:BuildRequires: ladspa-devel}
 %{!?_without_lirc:BuildRequires: lirc-devel}
+%{!?_without_live555:BuildRequires: live555-devel}
 %{!?_without_lzo:BuildRequires: lzo-devel}
-%{!?_without_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel, xorg-x11-proto-devel}
+%{!?_without_modxorg:BuildRequires: libXv-devel, libXxf86vm-devel, libGL-devel, libXt-devel, xorg-x11-proto-devel, libXinerama-devel, libXScrnSaver-devel, libXv-devel, libXxf86dga-devel}
 %{!?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMC-devel}}
 %{?_without_modxorg:%{!?_without_xvmc:BuildRequires: libXvMCW-devel}}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
+%{!?_without_mpeg2:BuildRequires: libmpeg2-devel}
 %{!?_without_musepack:BuildRequires: libmpcdec-devel >= 1.2.1}
 %{!?_without_nas:BuildRequires: nas-devel}
-%{!?_without_samba:BuildRequires: samba-common}
-%{!?_without_speex:BuildRequires: speex-devel}
+%{!?_without_nemesi:BuildRequires: libnemesi-devel >= 0.6.3}
+%{!?_without_openal:BuildRequires: openal-soft-devel}
+%{!?_without_pulseaudio:BuildRequires: pulseaudio-lib-devel}
+%{!?_without_samba:BuildRequires: samba-common, libsmbclient-devel}
+%{!?_without_schroedinger:BuildRequires: schroedinger-devel}
+%{!?_without_speex:BuildRequires: speex-devel >= 1.1}
+%{!?_without_sdl:BuildRequires: SDL-devel}
+%{!?_without_svgalib:BuildRequires: svgalib-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_twolame:BuildRequires: twolame-devel}
+%{!?_without_vdpau:BuildRequires: libvdpau-devel}
+%{!?_without_vorbis:BuildRequires: libvorbis-devel}
+#%{!?_without_vpx:BuildRequires: libvpx-devel >= 0.9.1}
+%{!?_without_vpx:BuildRequires: libvpx-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
-%{!?_without_xss:BuildRequires: libXScrnSaver-devel}
+%{!?_without_xmms:BuildRequires: xmms-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 Requires: mplayer-fonts
+Requires: mplayer-common = %{version}-%{release}
 
 %description
 MPlayer is a multimedia player. It plays most video formats as well as DVDs.
@@ -106,7 +160,7 @@ Available rpmbuild rebuild options :
 %package -n mencoder
 Summary: MPlayer’s Movie Encoder
 Group: Applications/Multimedia
-Requires: %{name} = %{version}
+Requires: mplayer-common = %{version}-%{release}
 
 %description -n mencoder
 MPlayer’s Movie Encoder is a simple movie encoder, designed to encode
@@ -116,41 +170,52 @@ in 1, 2 or 3 passes.  Furthermore  it has stream copying abilities, a
 powerful filter system (crop, expand, flip, postprocess, rotate, scale,
 noise, rgb/yuv conversion) and more.
 
-%package docs
-Summary: Documentation for MPlayer, the Movie Player for Linux
+%package common
+Summary: MPlayer common files
 Group: Applications/Multimedia
 
-%description docs
+%description common
+This package contains common files for MPlayer packages.
+
+%package gui
+Summary: GUI for MPlayer
+Group: Applications/Multimedia
+Requires: mplayer-common = %{version}-%{release}
+Requires: hicolor-icon-theme
+
+%description gui
+This package contains a GUI for MPlayer and a default skin for it.
+
+%package doc
+Summary: Documentation for MPlayer, the Movie Player for Linux
+Group: Applications/Multimedia
+Obsoletes: mplayer-docs
+
+%description doc
 MPlayer is a movie player. It plays most video formats as well as DVDs.
 Its big feature is the wide range of supported output drivers. There are also
 nice antialiased shaded subtitles and OSD.
 
 This package contains the end user documentation.
 
+%package tools
+Summary: Useful scripts for MPlayer
+Group: Applications/Multimedia
+Requires: mencoder = %{version}-%{release}
+Requires: mplayer = %{version}-%{release}
+
+%description tools
+This package contains various scripts from MPlayer TOOLS directory.
+
 %prep
 %setup -n mplayer-export-%{real_version} -a 1
-%patch1 -p1 -b .playlist
+%patch2 -p1 -b .config
+%patch8 -p1 -b .manlinks
 %patch10 -p1 -b .fribidi
+%patch14 -p1 -b .nodvdcss
 #patch100 -p0 -b .h264_static
 
-# Overwrite some of the details of the provided system menu entry
-%{__perl} -pi -e 's|^Exec=gmplayer$|Exec=gmplayer %f|g;
-                  s|^Categories=.*|Categories=Application;AudioVideo;|g;
-                  s|^Icon=.*|Icon=mplayer.png|g' \
-    etc/mplayer.desktop
-echo "MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;video/x-anim;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;video/x-nsv;video/x-flc;video/x-fli;application/ogg;application/x-ogg;application/x-matroska;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-m4a;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;misc/ultravox;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;video/vnd.rn-realvideo;audio/x-pn-realaudio-plugin;" >> etc/mplayer.desktop
-
 %build
-# Build statically linked live555 libraries
-%if 0%{!?_without_live:1}
-pushd live
-    # Force the use of our CFLAGS
-    %{__perl} -pi -e 's|-O2|%{optflags}|g' config.linux
-    # Configure and build
-    ./genMakefiles linux && %{__make}
-popd
-%endif
-
 export CFLAGS="%{optflags} -fomit-frame-pointer"
 echo | ./configure \
     --prefix="%{_prefix}" \
@@ -159,27 +224,43 @@ echo | ./configure \
     --datadir="%{_datadir}/mplayer" \
     --libdir="%{_libdir}" \
     --mandir="%{_mandir}" \
-    --extra-cflags="-I%{_includedir}/directfb" \
+    --codecsdir="%{_libdir}/codecs" \
+    --extra-cflags="%{optflags}%{!?_without_live: -I/usr/include/liveMedia}" \
+    --disable-bitmap-font \
+    --disable-termcap \
+%{?_without_arts:--disable-arts} \
+%{?_without_esound:--disable-esd} \
+%{?_without_jack:--disable-jack} \
+%{?_without_openal:--disable-openal} \
+%{?_without_amr:--disable-libopencore_amrnb --disable-libopencore_amrwb} \
 %{!?_with_dvdread:--disable-dvdread} \
+%{?_without_faac:--disable-faac} \
 %{?_without_gcccheck:--disable-gcc-check} \
 %{?_without_binutils214:--disable-ssse3} \
 %{!?_without_directfb:--enable-directfb} \
+%{?_without_directfb:--disable-directfb} \
+%{?_without_sdl:--disable-sdl} \
+%{?_without_svgalib:--disable-svga} \
     --enable-dynamic-plugins \
     --enable-fbdev \
-%{!?_without_fribidi:--enable-fribidi} \
+%{!?_without_fribidi:--enable-fribidi --extra-libs="$(pkg-config --libs fribidi)"} \
     --enable-gui \
 %{!?_without_ivtv:--enable-ivtv} \
     --enable-joystick \
     --enable-largefiles \
-    --enable-lirc \
-%{?_without_live:--disable-live} \
+%{!?_without_lirc:--enable-lirc} \
+%{!?_without_live:--enable-live} \
 %{!?_without_osdmenu:--enable-menu} \
 %{!?_without_musepack:--enable-musepack} \
+%{?_without_nemesi:--disable-nemesi} \
     --enable-radio \
     --enable-radio-capture \
     --enable-runtime-cpudetection \
+%{?_without_samba:--disable-smb} \
     --enable-tv-v4l1 \
-    --enable-tv-v4l2 \
+%{!?_without_v4l2:--enable-tv-v4l2} \
+    --enable-unrarexec \
+%{!?_without_xmms:--enable-xmms --with-xmmslibdir="%{_libdir}"} \
 %{!?_without_xss:--enable-xss} \
 %{?_without_modxorg:%{!?_without_xvmc:--enable-xvmc --with-xvmclib="XvMCW"}} \
 %{!?_without_modxorg:%{!?_without_xvmc:--enable-xvmc}} \
@@ -188,53 +269,66 @@ echo | ./configure \
     --enable-win32dll \
 %endif
     --language="all"
-#    --enable-win32 \
-#    --with-win32libdir="%{_libdir}/codecs" \
-#    --with-xanimlibdir="%{_libdir}/codecs" \
-#    --with-reallibdir="%{_libdir}/codecs" \
-#%{!?_without_live:--with-livelibdir="$(pwd)/live"}
-#    --enable-xmms \
-
-#%{__make} %{?_smp_mflags}
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-# The libdir override is required for libpostproc when _libdir is /usr/lib64
-%{__make} install DESTDIR="%{buildroot}" \
-    STRIPBINARIES="no" \
-    libdir="%{buildroot}%{_libdir}"
+%{__make} install DESTDIR="%{buildroot}" INSTALLSTRIP=""
 
 # The default Skin
-%{__mkdir_p} %{buildroot}%{_datadir}/mplayer/Skin/
-%{__tar} -xjf %{SOURCE2} -C %{buildroot}%{_datadir}/mplayer/Skin/
-%{__mv} -f %{buildroot}%{_datadir}/mplayer/Skin/* %{buildroot}%{_datadir}/mplayer/Skin/default
+%{__install} -d -m0755 %{buildroot}%{_datadir}/mplayer/skins/
+%{__tar} -xjf %{SOURCE1} --exclude=".svn" -C %{buildroot}%{_datadir}/mplayer/skins/
+%{__ln_s} Blue %{buildroot}%{_datadir}/mplayer/skins/default
 
 # The fonts are now in a separate package
 %{__rm} -rf %{buildroot}%{_datadir}/mplayer/font || :
 
 # Remove unwanted stuff from the docs to be included
-%{__rm} -rf DOCS/{man,xml}
+%{__rm} -rf DOCS/{man,xml}/
 
 # Create empty binary codecs directory
-%{__mkdir_p} %{buildroot}%{_libdir}/codecs
+%{__install} -d -m0755 %{buildroot}%{_libdir}/codecs
 
-# Install our own nicer icon
-%{__rm} -f %{buildroot}%{_datadir}/pixmaps/mplayer.xpm
-%{__install} -p -m 0644 %{SOURCE3} %{buildroot}%{_datadir}/pixmaps/mplayer.png
+# Default config files
+%{__install} -Dp -m0644 etc/example.conf %{buildroot}%{_sysconfdir}/mplayer/mplayer.conf
+%{__install} -Dp -m0644 etc/input.conf %{buildroot}%{_sysconfdir}/mplayer/input.conf
+%{__install} -Dp -m0644 etc/menu.conf %{buildroot}%{_sysconfdir}/mplayer/menu.conf
 
-%post
-/sbin/ldconfig
+# Install tools
+for file in TOOLS/*.sh; do
+    %{__install} -Dp -m0755 $file %{buildroot}%{_bindir}/$(basename $file .sh)
+done
+for file in TOOLS/*.pl; do
+    %{__install} -Dp -m0755 $file %{buildroot}%{_bindir}/$(basename $file .pl)
+done
+for file in TOOLS/*.py; do
+    %{__install} -Dp -m0755 $file %{buildroot}%{_bindir}/$(basename $file .py)
+done
+%{__install} -d -m0755 %{buildroot}%{_datadir}/mplayer/
+%{__install} -p -m0644 TOOLS/*.fp %{buildroot}%{_datadir}/mplayer/
+
+%{__install} -Dp -m0644 etc/mplayer.xpm %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/mplayer.xpm
+desktop-file-install \
+    --vendor %{desktop_vendor} \
+    --dir %{buildroot}%{_datadir}/applications/ \
+    etc/mplayer.desktop
+
+%post gui
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
-%postun
-/sbin/ldconfig
+%postun gui
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
 update-desktop-database %{_datadir}/applications &>/dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
+%defattr(-, root, root, 0755)
+%{_bindir}/mplayer
+
+%files common
 %defattr(-, root, root, 0755)
 %doc AUTHORS Changelog Copyright LICENSE README etc/*.conf
 %doc %{_mandir}/man1/mplayer.1*
@@ -248,18 +342,20 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc %lang(ru) %{_mandir}/ru/man1/mplayer.1*
 %doc %lang(zh_CN) %{_mandir}/zh_CN/man1/mplayer.1*
 %dir %{_sysconfdir}/mplayer/
-#ghost %config %{_sysconfdir}/mplayer/codecs.conf
-#ghost %config %{_sysconfdir}/mplayer/input.conf
-#ghost %config %{_sysconfdir}/mplayer/menu.conf
-#ghost %config %{_sysconfdir}/mplayer/mplayer.conf
-%{_bindir}/gmplayer
-%{_bindir}/mplayer
-%dir %{_libdir}/codecs/
-#%{_libdir}/libdha.so*
-#%{_libdir}/mplayer/
-%{!?_without_freedesktop:%{_datadir}/applications/mplayer.desktop}
+%config(noreplace) %{_sysconfdir}/mplayer/input.conf
+%config(noreplace) %{_sysconfdir}/mplayer/menu.conf
+%config(noreplace) %{_sysconfdir}/mplayer/mplayer.conf
 %{_datadir}/mplayer/
-%{_datadir}/pixmaps/mplayer.png
+%dir %{_libdir}/codecs/
+
+%files gui
+%defattr(-, root, root, 0755)
+%{_bindir}/gmplayer
+%{_datadir}/applications/%{desktop_vendor}-mplayer.desktop
+%{_datadir}/icons/hicolor/32x32/apps/mplayer.xpm
+%{_datadir}/mplayer/skins/
+%{_datadir}/pixmaps/mplayer.xpm
+%exclude %{_datadir}/applications/mplayer.desktop
 
 %files -n mencoder
 %defattr(-, root, root, 0755)
@@ -275,11 +371,41 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %doc %lang(zh_CN) %{_mandir}/zh_CN/man1/mencoder.1*
 %{_bindir}/mencoder
 
-%files docs
+%files doc
 %defattr(-, root, root, 0755)
 %doc DOCS/*
 
+%files tools
+%defattr(-, root, root, 0755)
+%{_bindir}/aconvert
+%{_bindir}/binary_codecs
+%{_bindir}/calcbpp
+%{_bindir}/checktree
+%{_bindir}/countquant
+%{_bindir}/divx2svcd
+%{_bindir}/dvd2divxscript
+%{_bindir}/mencvcd
+%{_bindir}/midentify
+%{_bindir}/mpconsole
+%{_bindir}/mphelp_check
+%{_bindir}/mplmult
+%{_bindir}/plotpsnr
+%{_bindir}/psnr-video
+%{_bindir}/qepdvcd
+%{_bindir}/subedit
+%{_bindir}/subsearch
+%{_bindir}/vobshift
+%{_bindir}/w32codec_dl
+%{_bindir}/wma2ogg
+%{_datadir}/mplayer/*.fp
+
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.0-0.45.svn20100703
+- Rebuild against libmatroska-1.0.0.
+
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.0-0.44.svn20100703
+- Rebuild against newer x264.
+
 * Tue Jun 15 2010 Dag Wieers <dag@wieers.com> - 1.0-0.44.svn20090711
 - Rebuild RHEL4 against libcaca-0.99-0.1.beta17. (Jaroslaw Polok)
 

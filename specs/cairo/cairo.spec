@@ -6,13 +6,15 @@
 ### EL5 ships with cairo-1.2.4-5.el5
 # ExclusiveDist: el2 rh7 rh9 el3 el4
 
+%define _without_directfb 1
+
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
 Summary: Anti-aliased vector-based rendering for X
 Name: cairo
 Version: 1.2.4
-Release: 2.1%{?dist}
+Release: 3%{?dist}
 License: MIT
 Group: System Environment/Libraries
 URL: http://cairo.freedesktop.org/
@@ -84,6 +86,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libcairo.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.2.4-3
+- Disable directfb support to ease things (Red Hat does not include it either).
+
 * Tue Sep 23 2008 Dag Wieers <dag@wieers.com> - 1.2.4-2.1
 - Rebuild against directfb-1.2.4.
 

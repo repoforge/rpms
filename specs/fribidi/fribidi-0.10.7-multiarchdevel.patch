@@ -1,0 +1,139 @@
+--- fribidi-0.10.7.orig/fribidi_config.h.in	2006-05-02 10:45:43.000000000 +0100
++++ fribidi-0.10.7/fribidi_config.h.in	2006-05-02 10:49:34.000000000 +0100
+@@ -41,6 +41,12 @@
+ #define FALSE FRIBIDI_FALSE
+ #endif /* FALSE */
+ 
+-#define FRIBIDI_SIZEOF_SHORT @SIZEOF_SHORT@
+-#define FRIBIDI_SIZEOF_INT @SIZEOF_INT@
+-#define FRIBIDI_SIZEOF_LONG @SIZEOF_LONG@
++#include <bits/wordsize.h>
++
++#if __WORDSIZE == 32
++# include "fribidi_config-32.h"
++#elif __WORDSIZE == 64
++# include "fribidi_config-64.h"
++#else
++# error "unexpected value for __WORDSIZE macro"
++#endif
+--- /dev/null	2006-04-29 13:38:37.035974750 +0100
++++ fribidi-0.10.7/fribidi_config-64.h	2006-05-02 10:48:14.000000000 +0100
+@@ -0,0 +1,6 @@
++#ifndef FRIBIDI_CONFIG_SIXFOUR_H
++#define FRIBIDI_CONFIG-SIXFOUR_H
++#define FRIBIDI_SIZEOF_SHORT 2
++#define FRIBIDI_SIZEOF_INT 4
++#define FRIBIDI_SIZEOF_LONG 8
++#endif
+--- /dev/null	2006-04-29 13:38:37.035974750 +0100
++++ fribidi-0.10.7/fribidi_config-32.h	2006-05-02 10:47:54.000000000 +0100
+@@ -0,0 +1,6 @@
++#ifndef FRIBIDI_CONFIG_THREETWO_H
++#define FRIBIDI_CONFIG_THREETWO_H
++#define FRIBIDI_SIZEOF_SHORT 2
++#define FRIBIDI_SIZEOF_INT 4
++#define FRIBIDI_SIZEOF_LONG 4
++#endif
+--- fribidi-0.10.7.orig/Makefile.am	2006-05-02 10:52:33.000000000 +0100
++++ fribidi-0.10.7/Makefile.am	2006-05-02 10:52:55.000000000 +0100
+@@ -59,6 +59,8 @@
+ 	$(libfribidi_charsets_h)	\
+ 	$(libfribidi_charsets_extra_h)	\
+ 	fribidi_config.h	\
++	fribidi_config-32.h	\
++	fribidi_config-64.h	\
+ 	fribidi_mem.h
+ 
+ GETOPT_SRC =	\
+--- fribidi-0.10.7.orig/configure.in	2006-05-02 10:52:33.000000000 +0100
++++ fribidi-0.10.7/configure.in	2006-05-23 08:29:08.000000000 +0100
+@@ -199,7 +199,6 @@
+ AC_OUTPUT([
+ Makefile
+ fribidi_config.h
+-fribidi-config
+ fribidi.pc
+ fribidi.spec
+ ],[case "$CONFIG_FILES" in
+--- /dev/null	2006-05-21 20:51:02.793468250 +0100
++++ fribidi-0.10.7/fribidi-config	2006-05-23 08:28:36.000000000 +0100
+@@ -0,0 +1,79 @@
++#!/bin/sh
++
++prefix=`pkg-config --variable prefix fribidi`
++exec_prefix=`pkg-config --variable exec_prefix fribidi`
++exec_prefix_set=no
++
++usage()
++{
++       cat <<EOF
++Usage: fribidi-config [OPTIONS] [LIBRARIES]
++Options:
++       [--prefix[=DIR]]
++       [--exec-prefix[=DIR]]
++       [--version]
++       [--libs]
++       [--cflags]
++EOF
++       exit $1
++}
++
++if test $# -eq 0; then
++       usage 1 1>&2
++fi
++
++while test $# -gt 0; do
++  case "$1" in
++  -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
++  *) optarg= ;;
++  esac
++
++  case $1 in
++    --prefix=*)
++      prefix=$optarg
++      if test $exec_prefix_set = no ; then
++        exec_prefix=$optarg
++      fi
++      ;;
++    --prefix)
++      echo_prefix=yes
++      ;;
++    --exec-prefix=*)
++      exec_prefix=$optarg
++      exec_prefix_set=yes
++      ;;
++    --exec-prefix)
++      echo_exec_prefix=yes
++      ;;
++    --version)
++      pkg-config --modversion fribidi
++      ;;
++    --cflags)
++      echo_cflags=yes
++      ;;
++    --libs)
++      echo_libs=yes
++      ;;
++    *)
++      usage 1 1>&2
++      ;;
++  esac
++  shift
++done
++
++if test "$echo_prefix" = "yes"; then
++       echo $prefix
++fi
++
++if test "$echo_exec_prefix" = "yes"; then
++       echo $exec_prefix
++fi
++
++if test "$echo_cflags" = "yes"; then
++      pkg-config --cflags fribidi
++fi
++
++if test "$echo_libs" = "yes"; then
++      pkg-config --libs fribidi
++fi      
++

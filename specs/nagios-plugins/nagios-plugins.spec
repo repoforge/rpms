@@ -2,14 +2,16 @@
 # Authority: dag
 # Upstream: <nagiosplug-devel$lists,sf,net>
 
-%{?el3:%define _without_gettextdevel 1}
-%{?rh9:%define _without_gettextdevel 1}
-%{?rh7:%define _without_gettextdevel 1}
-%{?el2:%define _without_gettextdevel 1}
+%{?el5:%define _with_apt 1}
 
-%{?rh7:%define _without_net_snmp 1}
+%{?el4:%define _with_apt 1}
+
+%{?el3:%define _with_apt 1}
+%{?el3:%define _without_gettextdevel 1}
+
+%{?el2:%define _with_apt 1}
+%{?el2:%define _without_gettextdevel 1}
 %{?el2:%define _without_net_snmp 1}
-%{?rh6:%define _without_net_snmp 1}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -32,14 +34,14 @@ Patch1: nagios-plugins-1.4.4-check_ide_smart.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 AutoReq: no
-#BuildRequires: nagios-devel
+%{?_with_apt:BuildRequires: apt}
 #BuildRequires: bind-devel (not needed for check_dns)
-BuildRequires: apt
 BuildRequires: bind-utils
 BuildRequires: fping
 BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: mysql-devel
+#BuildRequires: nagios-devel
 BuildRequires: ntp
 BuildRequires: openldap-devel
 BuildRequires: openssh-clients
@@ -50,7 +52,6 @@ BuildRequires: qstat
 BuildRequires: radiusclient-ng-devel
 BuildRequires: samba-client
 BuildRequires: %{_bindir}/mailq
-#BuildRequires: radiusclient-ng-devel
 %{!?_without_net_snmp:BuildRequires: net-snmp-devel, net-snmp-utils}
 %{?_without_net_snmp:BuildRequires: ucd-snmp-devel, ucd-snmp-utils}
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
@@ -74,7 +75,7 @@ use, the following packages may be required:
 
     bind-utils, mysql, net-snmp-utils, ntp, openldap,
     openssh-clients, openssl, postgresql-libs
-    qstat, radiusclient, samba-client, sendmail
+    qstat, radiusclient-ng, samba-client, sendmail
 
 %package setuid
 Summary: Host/service/network monitoring program plugins for Nagios requiring setuid

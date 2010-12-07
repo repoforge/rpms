@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Torsten Schoenfeld <tsch@cpan.org>
 
+%define _without_directfb 1
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +12,7 @@
 Summary: Perl interface to the cairo library
 Name: perl-Cairo
 Version: 1.061
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Cairo/
@@ -19,7 +21,6 @@ Source: http://www.cpan.org/authors/id/T/TS/TSCH/Cairo-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cairo-devel
-BuildRequires: directfb-devel
 BuildRequires: perl >= 2:5.8.0
 BuildRequires: perl(ExtUtils::Depends) >= 0.2
 BuildRequires: perl(ExtUtils::MakeMaker)
@@ -27,15 +28,13 @@ BuildRequires: perl(ExtUtils::PkgConfig) >= 1
 BuildRequires: perl(Glib) >= 1.0.0
 BuildRequires: perl(Test::Number::Delta) >= 1
 BuildRequires: libpng-devel
+%{!?_without_directfb:BuildRequires: directfb-devel}
 Requires: perl >= 2:5.8.0
 Requires: perl(ExtUtils::Depends) >= 0.2
 Requires: perl(ExtUtils::PkgConfig) >= 1
 Requires: cairo
-Requires: directfb
 Requires: libpng
-
-%filter_from_requires /^perl*/d
-%filter_setup
+%{!?_without_directfb:Requires: directfb}
 
 %description
 Perl interface to the cairo library.
@@ -70,6 +69,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Cairo.pm
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.061-2
+- Disable directfb support to ease things (Red Hat does not include it either).
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 1.061-1
 - Updated to version 1.061.
 

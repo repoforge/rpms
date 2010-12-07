@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Antonio Diaz Diaz <ant_diaz$teleline,es>
 
+%define _default_patch_fuzz 2
+
 Summary: Data recovery tool
 Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT ADHERE TO THEIR OWN NAMING CONVENTION
@@ -42,7 +44,10 @@ etc.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+
 %{__install} -Dp -m0644 doc/ddrescue.1 %{buildroot}%{_mandir}/man1/ddrescue.1
+
+%{__rm} -rf %{buildroot}%{_infodir}/dir
 
 %post
 if [ -e %{_infodir}/ddrescue.info.gz ]; then

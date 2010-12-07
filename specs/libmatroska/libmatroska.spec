@@ -3,7 +3,7 @@
 
 Summary: Multimedia container format library
 Name: libmatroska
-Version: 0.8.1
+Version: 1.0.0
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
@@ -12,7 +12,8 @@ URL: http://www.matroska.org/
 Source: http://dl.matroska.org/downloads/libmatroska/libmatroska-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libebml-devel >= 0.7.6
+BuildRequires: gcc-c++
+BuildRequires: libebml-devel >= 1.0.0
 
 %description
 In short, matroska is a new Audio/Video container file format. It is an
@@ -29,7 +30,8 @@ All these features are not yet implemented but already defined in the format.
 %package devel
 Summary: Development files for the Matroska container format library
 Group: Development/Libraries
-Requires: %{name} = %{version}, libebml-devel >= 0.7.5
+Requires: %{name} = %{version}
+Requires: libebml-devel >= 1.0.0
 
 %description devel
 In short, matroska is a new Audio/Video container file format. It is an
@@ -60,7 +62,7 @@ the Matroska container format library.
     includedir="%{buildroot}%{_includedir}/matroska"
 
 # Needed for proper stripping of the library (0.7.7)
-%{__chmod} +x %{buildroot}%{_libdir}/*.so.*
+%{__chmod} +x %{buildroot}%{_libdir}/libmatroska.so.*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -80,6 +82,9 @@ the Matroska container format library.
 %exclude %{_libdir}/libmatroska.a
 
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 0.8.1-1
 - Updated to release 0.8.1.
 

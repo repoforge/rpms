@@ -4,6 +4,12 @@
 
 ### EL6 ships with perl-Date-Manip-5.54-4.el6
 %{?el6:# Tag: rfx}
+### EL4 ships with perl-DateManip-5.42a-3
+%{?el4:# Tag: rfx}
+### EL3 ships with perl-DateManip-5.42a-0.rhel3
+%{?el3:# Tag: rfx}
+### EL2 ships with perl-DateManip-5.39-5
+%{?el2:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -33,10 +39,6 @@ BuildRequires: rpm-macros-rpmforge
 Requires: perl >= 0:5.6.0
 Requires: perl(Carp)
 Requires: perl(IO::File)
-
-### remove autoreq Perl dependencies
-%filter_from_requires /^perl.*/d
-%filter_setup
 
 Obsoletes: perl-DateManip <= %{version}-%{release}
 Provides: perl-DateManip = %{version}-%{release}

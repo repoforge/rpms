@@ -2,9 +2,10 @@
 # Authority: dag
 # Upstream: <inkscape-devel$lists,sf,net>
 
+%define _default_patch_fuzz 2
+
 ### EL6 ships with inkscape-0.47-6.el6
 %{?el6:# Tag: rfx}
-# ExcludeDist: el6
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
@@ -13,15 +14,15 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.47
+Version: 0.48.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
 
-Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.gz
-Patch0: inkscape-20090410svn-uniconv.patch
-# Patch1: inkscape-20090410svn-formats.patch
+Source: http://dl.sf.net/inkscape/inkscape-%{version}.tar.bz2
+#Patch0: inkscape-20090410svn-uniconv.patch
+#Patch1: inkscape-20090410svn-formats.patch
 Patch1: inkscape-20091229ay-el5.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -34,11 +35,10 @@ BuildRequires: gnome-vfs2-devel >= 2.0
 BuildRequires: gsl-devel
 BuildRequires: gtk2-devel >= 2.8
 BuildRequires: gtkmm24-devel
-BuildRequires: glibmm24-devel
+BuildRequires: glibmm24-devel >= 2.14
 BuildRequires: intltool
 BuildRequires: lcms-devel >= 1.13
 BuildRequires: libpng-devel
-BuildRequires: libsigc++-devel
 BuildRequires: libsigc++20-devel
 BuildRequires: libwpg-devel
 BuildRequires: libxml2-devel
@@ -61,8 +61,8 @@ Inkscape is an SVG based generic vector-drawing program.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
+#patch0 -p1
+#patch1 -p1
 
 %build
 %configure \
@@ -83,17 +83,21 @@ Inkscape is an SVG based generic vector-drawing program.
 %find_lang %{name}
 
 %post
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q %{_datadir}/applications &>/dev/null || :
+/usr/bin/gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 
 %postun
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q %{_datadir}/applications &>/dev/null || :
+/usr/bin/gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING* HACKING*txt NEWS README TRANSLATORS
+%doc AUTHORS ChangeLog COPYING* INSTALL NEWS README*.txt TRANSLATORS doc/*.txt
 %doc %{_mandir}/man1/inkscape.1*
 %doc %{_mandir}/man1/inkview.1*
 %doc %{_mandir}/*/man1/inkscape.1*
@@ -101,10 +105,13 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_bindir}/inkscape
 %{_bindir}/inkview
 %{_datadir}/applications/inkscape.desktop
+%{_datadir}/icons/hicolor/*/apps/inkscape.png
 %{_datadir}/inkscape/
-%{_datadir}/pixmaps/inkscape.png
 
 %changelog
+* Fri Dec 03 2010 Dag Wieers <dag@wieers.com> - 0.48-1
+- Updated to release 0.48.
+
 * Tue Dec 29 2009 Akemi Yagi <amyagi@gmail.com> - 0.47-1
 - Updated to release 0.47.
 - Applied el5 patch.

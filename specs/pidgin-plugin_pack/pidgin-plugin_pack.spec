@@ -3,6 +3,8 @@
 
 ### FIXME: SPEC file should probably be renamed to purple-plugin_pack
 
+%{?el6:%define _without_xmms 1}
+
 %define real_name purple-plugin_pack
 
 Summary: Plugin Pack for Pidgin
@@ -22,7 +24,7 @@ BuildRequires: gtk2-devel
 BuildRequires: libtool
 BuildRequires: pidgin-devel
 BuildRequires: pkgconfig
-BuildRequires: xmms-devel
+%{!?_without_xmms:BuildRequires: xmms-devel}
 ### Require purple-plugin_pack for translations and to help people install all the plugins
 Requires: purple-plugin_pack = %{version}-%{release}
 
@@ -60,8 +62,8 @@ Plugin Pack is a collection of plugins for libpurple and derived IM clients.
 %doc AUTHORS ChangeLog COPYING NEWS README doc/*.txt
 %dir %{_libdir}/pidgin/
 %{_libdir}/pidgin/*.so
-%dir %{_datadir}/pixmaps/pidgin/
-%{_datadir}/pixmaps/pidgin/plugin_pack/
+#%dir %{_datadir}/pixmaps/pidgin/
+#%{_datadir}/pixmaps/pidgin/plugin_pack/
 %dir %{_datadir}/pixmaps/pidgin/protocols/
 %{_datadir}/pixmaps/pidgin/protocols/*/napster.png
 %exclude %{_libdir}/pidgin/*.la

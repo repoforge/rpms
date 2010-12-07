@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <xawdecode-project$lists,sf,net>
 
-
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -27,12 +26,16 @@ URL: http://xawdecode.sourceforge.net/
 Source: http://dl.sf.net/xawdecode/xawdecode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: divx4linux
+BuildRequires: ffmpeg-devel
+BuildRequires: lame-devel
 BuildRequires: lirc
 #BuildRequires: lirc-devel
+BuildRequires: Xaw3d-devel
+BuildRequires: xvidcore-devel
+BuildRequires: xosd-devel
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_modxorg:BuildRequires: libX11-devel}
-BuildRequires: xosd-devel, Xaw3d-devel
-BuildRequires: xvidcore-devel, divx4linux, lame-devel, ffmpeg-devel
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -65,10 +68,10 @@ EOF
 
 %build
 %configure \
-	--x-libraries="%{_prefix}/X11R6/%{_lib}" \
-	--disable-dependency-tracking \
-	--disable-alsa \
-	--enable-xosd
+    --x-libraries="%{_prefix}/X11R6/%{_lib}" \
+    --disable-dependency-tracking \
+    --disable-alsa \
+    --enable-xosd
 %{__make} %{?_smp_mflags}
 
 %install
@@ -78,20 +81,20 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}
 
 %makeinstall \
-	ROOT="%{buildroot}"
+    ROOT="%{buildroot}"
 
 %{__install} -Dp -m0644 xawdecode.1 %{buildroot}%{_mandir}/man1/xawdecode.1
 %{__install} -Dp -m0644 xawdecode_cmd.1 %{buildroot}%{_mandir}/man1/xawdecode_cmd.1
 %{__install} -Dp -m0644 xawdecode-48.png %{buildroot}%{_datadir}/pixmaps/xawdecode.png
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
+    %{__install} -Dp -m0644 xawdecode.desktop %{buildroot}%{_datadir}/gnome/apps/Multimedia/xawdecode.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		xawdecode.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        xawdecode.desktop
 %endif
 
 %post
@@ -122,9 +125,6 @@ xset fp rehash || :
 %{_includedir}/xawdecode/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.9.3-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Sep 22 2004 Dag Wieers <dag@wieers.com> - 1.9.3-1
 - Updated to release 1.9.3.
 

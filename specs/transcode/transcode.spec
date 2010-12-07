@@ -2,18 +2,23 @@
 # Authority: dag
 # Upstream: <transcode-users$exit1.org>
 
+%{?el5:%define _without_sdl 1}
+
 %{?el4:%define _without_magick 1}
 %{?el4:%define _without_modxorg 1}
+%{?el4:%define _without_sdl 1}
+%{?el4:%define _without_theora 1}
 
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_magick 1}
 %{?el3:%define _without_modxorg 1}
+%{?el4:%define _without_sdl 1}
 %{?el3:%define _without_theora 1}
 
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.1.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -29,7 +34,7 @@ BuildRequires: ed
 BuildRequires: ffmpeg-devel
 BuildRequires: freetype-devel >= 2.0
 BuildRequires: gcc-c++
-BuildRequires: gtk+-devel
+#BuildRequires: gtk+-devel
 # Seems like ImageMagick-devel should require this! (FC2 and higher)
 BuildRequires: libexif-devel
 BuildRequires: libjpeg-devel
@@ -135,6 +140,9 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %exclude %{_libdir}/transcode/*.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.1.5-2
+- Rebuild against ffmpeg-0.6.1.
+
 * Tue Nov 03 2009 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Updated to release 1.1.5.
 

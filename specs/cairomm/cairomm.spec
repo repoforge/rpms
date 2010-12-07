@@ -4,10 +4,12 @@
 ### EL6 ships with cairomm-1.8.0-2.1.el6
 # ExclusiveDist: el2 el3 el4 el5
 
+%define _without_directfb 1
+
 Summary: Cairomm is the C++ API for the cairo graphics library
 Name: cairomm
 Version: 1.2.4
-Release: 2.1%{?dist}
+Release: 3%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.cairographics.org/
@@ -68,6 +70,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libcairomm-1.0.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.2.4-3
+- Disable directfb support to ease things (Red Hat does not include it either).
+
 * Wed Sep 24 2008 Dag Wieers <dag@wieers.com> - 1.2.4-2.1
 - Rebuild against directfb-1.2.4.
 

@@ -27,7 +27,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.13
+Version: 1.6.15
 Release: 0.1%{?dist}
 License: BSD
 Group: Development/Tools
@@ -332,6 +332,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Thu Nov 25 2010 Dag Wieers <dag@wieers.com> - 1.6.14-0.1
+- Updated to release 1.6.15.
+
 * Sat Oct 02 2010 Dag Wieers <dag@wieers.com> - 1.6.13-0.1
 - Updated to release 1.6.13.
 

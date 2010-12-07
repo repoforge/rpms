@@ -2,8 +2,6 @@
 # Authority: dag
 # Upstream: Dag Wieers <dag@wieers.com>
 
-%{?dist: %{expand: %%define %dist 1}}
-
 Summary: Giving presentations (or control applications) with your Wiimote
 Name: wiipresent
 Version: 0.7.5.2

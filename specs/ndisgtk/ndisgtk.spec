@@ -3,7 +3,7 @@
 
 Summary: Graphical front-end for ndiswrapper
 Name: ndisgtk
-Version: 0.8
+Version: 0.8.5
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
@@ -13,8 +13,13 @@ Source: http://jak-linux.org/projects/ndisgtk/ndisgtk-%{version}.tar.gz
 Patch0: ndisgtk-0.8-centos.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: intltool, kdebase >= 3.0.0, python-devel, pygtk2-devel
-Requires: kdebase >= 3.0.0, python, pygtk2, ndiswrapper
+BuildArch: noarch
+BuildRequires: intltool
+BuildRequires: pygtk2-devel
+BuildRequires: python-devel
+Requires: ndiswrapper-utils
+Requires: pygtk2
+Requires: python
 
 %description
 Ndisgtk is a graphical front-end for ndiswrapper, which gives users an easy
@@ -22,7 +27,7 @@ way to install the Windows wireless drivers.
 
 %prep
 %setup
-%patch0 -p0
+#patch0 -p0
 
 %{__cat} <<EOF >ndisgtk.desktop.in
 [Desktop Entry]
@@ -71,6 +76,14 @@ EOF
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_datadir}/applications/ndisgtk-kde.desktop
 
+%post
+update-desktop-database -q || :
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
+
+%postun
+update-desktop-database -q || :
+gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -82,12 +95,15 @@ EOF
 %config %{_sysconfdir}/security/console.apps/ndisgtk
 %{_bindir}/ndisgtk
 %{_datadir}/applications/ndisgtk.desktop
-%{_datadir}/icons/ndisgtk.png
-%{_datadir}/icons/ndisgtk-error.png
+%{_datadir}/icons/hicolor/48x48/apps/ndisgtk-error.png
+%{_datadir}/icons/hicolor/48x48/apps/ndisgtk.png
 %{_datadir}/ndisgtk/
 %{_datadir}/pixmaps/ndisgtk.xpm
 %{_sbindir}/ndisgtk
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 0.8.5-1
+- Updated to release 0.8.5.
+
 * Mon Dec 03 2007 Dag Wieers <dag@wieers.com> - 0.8-1
 - Initial package. (using DAR)

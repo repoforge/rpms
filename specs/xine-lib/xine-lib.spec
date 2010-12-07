@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <xine-user$lists,sf,net>
 
+%define _without_directfb 1
+
 %{?el4:%define _with_speex104 1}
 %{?el4:%define _without_modxorg 1}
 
@@ -19,10 +21,10 @@
 Summary: Core library of the xine multimedia player
 Name: xine-lib
 Version: 1.1.19
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
-URL: http://xinehq.de/
+URL: http://www.xine-project.org/
 
 Source: http://dl.sf.net/xine/xine-lib-%{version}.tar.bz2
 Patch0: xine-lib-1.1.9-speex104.patch
@@ -69,7 +71,7 @@ BuildRequires: zlib-devel
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 %{?_without_gettextdevel:BuildRequires: gettext}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
-%{?_without_freeglut:BuildRequires: glut-devel}
+#%{?_without_freeglut:BuildRequires: glut-devel}
 Requires: libdvdcss
 
 Obsoletes: xine-libs <= 1.0.0
@@ -126,6 +128,7 @@ use the Xine library.
 %{?_without_freetype2_pc:export FT2_LIBS="$(freetype-config --libs)"}
 export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %configure \
+    --disable-rpath \
 %{?_without_alsa:--disable-alsa} \
     --enable-antialiasing \
 %{!?_without_directfb:--enable-directfb} \
@@ -180,6 +183,10 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.1.19-2
+- Disabled directfb support.
+- Rebuild against ffmpeg-0.6.1.
+
 * Mon Jul 26 2010 Dag Wieers <dag@wieers.com> - 1.1.19-1
 - Updated to release 1.1.19.
 

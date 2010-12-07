@@ -3,7 +3,7 @@
 
 Summary: Extensible Binary Meta Language library
 Name: libebml
-Version: 0.7.8
+Version: 1.0.0
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
@@ -44,7 +44,7 @@ use the Extensible Binary Meta Language.
     includedir="%{buildroot}%{_includedir}/ebml"
 
 # Needed for proper stripping of the library (0.7.5)
-%{__chmod} +x %{buildroot}%{_libdir}/*.so.*
+%{__chmod} +x %{buildroot}%{_libdir}/libebml.so.*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -63,8 +63,10 @@ use the Extensible Binary Meta Language.
 %{_libdir}/libebml.so
 %exclude %{_libdir}/libebml.a
 
-
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Mon Sep 15 2008 Dag Wieers <dag@wieers.com> - 0.7.8-1
 - Updated to release 0.7.8.
 

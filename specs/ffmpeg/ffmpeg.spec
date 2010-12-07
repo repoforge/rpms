@@ -1,27 +1,44 @@
 # $Id$
 # Authority: dag
 
+### No package yet
 %define _without_nut 1
 %define _without_openjpeg 1
+%define _without_vpx 1
+
+### Use native vorbis
+%define _without_vorbis 1
+
+### Use native xvid
+%define _without_xvid 1
 
 ### Disabled speex support as ffmpeg needs speex 1.2 and RHEL5 ships with 1.0.5
-%{?el5:%define _without_gsm 1}
-%{?el5:%define _without_speex 1}
 
-%{?el4:%define _without_gsm 1}
+%{?el5:%define _without_dc1394 1}
+%{?el5:%define _without_rtmp 1}
+%{?el5:%define _without_schroedinger 1}
+%{?el5:%define _without_speex 1}
+%{?el5:%define _without_theora 1}
+
+%{?el4:%define _without_dc1394 1}
+%{?el4:%define _without_rtmp 1}
 %{?el4:%define _without_speex 1}
 %{?el4:%define _without_texi2html 1}
 %{?el4:%define _without_theora 1}
-%{?el4:%define _without_v4l 1}
+%{?el4:%define _without_v4l2 1}
 
-%{?el3:%define _without_gsm 1}
+%{?el3:%define _without_dc1394 1}
+%{?el3:%define _without_dirac 1}
+%{?el3:%define _without_rtmp 1}
+%{?el3:%define _without_schroedinger 1}
 %{?el3:%define _without_speex 1}
 %{?el3:%define _without_texi2html 1}
 %{?el3:%define _without_theora 1}
+%{?el3:%define _without_v4l2 1}
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
-Version: 0.5.2
+Version: 0.6.1
 Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -31,23 +48,25 @@ Source: http://www.ffmpeg.org/releases/ffmpeg-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
-BuildRequires: dirac-devel
 BuildRequires: freetype-devel
 BuildRequires: imlib2-devel
 BuildRequires: zlib-devel
-#libdc1394 support         no
-#libschroedinger enabled   no
 %{!?_without_a52dec:BuildRequires: a52dec-devel}
-%{!?_without_opencore_amr:BuildRequires: opencore-amr-devel}
-#%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
+%{!?_without_dc1394:BuildRequires: libdc1394-devel}
+%{!?_without_dirac:BuildRequires: dirac-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_faad:BuildRequires: faad2-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
 %{!?_without_lame:BuildRequires: lame-devel}
 %{!?_without_nut:BuildRequires: libnut-devel}
+%{!?_without_opencore_amr:BuildRequires: opencore-amr-devel}
 %{!?_without_openjpeg:BuildRequires: openjpeg-devel}
+%{!?_without_rtmp:BuildRequires: librtmp-devel}
+%{!?_without_schroedinger:BuildRequires: schroedinger-devel}
 %{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
+%{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
+%{!?_without_vpx:BuildRequires: libvpx-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
 %{!?_without_xvid:BuildRequires: xvidcore-devel}
 %{!?_without_a52dec:Requires: a52dec}
@@ -70,11 +89,19 @@ Group: Development/Libraries
 Requires: %{name} = %{version}
 Requires: imlib2-devel, SDL-devel, freetype-devel, zlib-devel, pkgconfig
 %{!?_without_a52dec:Requires: a52dec-devel}
+%{!?_without_dc1394:Requires: libdc1394-devel}
+%{!?_without_dirac:Requires: dirac-devel}
 %{!?_without_faac:Requires: faac-devel}
 %{!?_without_faad:Requires: faad2-devel}
 %{!?_without_gsm:Requires: gsm-devel}
 %{!?_without_lame:Requires: lame-devel}
-#%{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
+%{!?_without_opencore_amr:Requires: opencore-amr-devel}
+%{!?_without_openjpeg:Requires: openjpeg-devel}
+%{!?_without_rtmp:Requires: librtmp-devel}
+%{!?_without_schroedinger:Requires: schroedinger-devel}
+%{!?_without_theora:Requires: libogg-devel, libtheora-devel}
+%{!?_without_vorbis:Requires: libogg-devel, libvorbis-devel}
+%{!?_without_vpx:Requires: libvpx-devel}
 %{!?_without_x264:Requires: x264-devel}
 %{!?_without_xvid:Requires: xvidcore-devel}
 
@@ -110,8 +137,6 @@ to use MPlayer, transcode or other similar programs.
 %prep
 %setup
 
-%{__perl} -pi.orig -e 's|gsm.h|gsm/gsm.h|' configure libavcodec/libgsm.c
-
 %build
 export CFLAGS="%{optflags}"
 # We should be using --disable-opts since configure is adding some default opts
@@ -123,7 +148,8 @@ export CFLAGS="%{optflags}"
     --mandir="%{_mandir}" \
     --incdir="%{_includedir}" \
     --disable-avisynth \
-%{?_without_v4l:--disable-demuxer=v4l --disable-demuxer=v4l2} \
+%{?_without_v4l:--disable-indev="v4l"} \
+%{?_without_v4l2:--disable-indev="v4l2"} \
 %ifarch %ix86
     --extra-cflags="%{optflags}" \
 %endif
@@ -132,6 +158,7 @@ export CFLAGS="%{optflags}"
 %endif
     --enable-avfilter \
     --enable-avfilter-lavf \
+%{!?_without_dc1394:--enable-libdc1394} \
 %{!?_without_dirac:--enable-libdirac} \
 %{!?_without_faac:--enable-libfaac} \
 %{!?_without_faad:--enable-libfaad --enable-libfaadbin} \
@@ -139,9 +166,14 @@ export CFLAGS="%{optflags}"
 %{!?_without_lame:--enable-libmp3lame} \
 %{!?_without_nut:--enable-libnut} \
 %{!?_without_opencore_amr:--enable-libopencore-amrnb --enable-libopencore-amrwb} \
+%{!?_without_rtmp: --enable-librtmp} \
+%{!?_without_schroedinger:--enable-libschroedinger} \
 %{!?_without_speex:--enable-libspeex} \
 %{!?_without_theora:--enable-libtheora} \
+%{!?_without_vorbis: --enable-libvorbis} \
+%{!?_without_vpx: --enable-libvpx} \
 %{!?_without_x264:--enable-libx264} \
+%{!?_without_xvid:--enable-libxvid} \
     --enable-gpl \
     --enable-nonfree \
 %{!?_without_openjpeg:--enable-libopenjpeg} \
@@ -152,10 +184,6 @@ export CFLAGS="%{optflags}"
     --enable-vdpau \
     --enable-version3 \
     --enable-x11grab
-#%{!?_without_dc1394:--enable-libdc1394} \
-### Native encoding exists for vorbis and xvid
-#%{!?_without_vorbis: --enable-libvorbis} \
-#%{!?_without_xvid:--enable-libxvid} \
 
 %{__make} %{?_smp_mflags}
 
@@ -187,9 +215,11 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING* CREDITS INSTALL MAINTAINERS README
+%doc %{_mandir}/man1/ffprobe.1*
 %doc %{_mandir}/man1/ffmpeg.1*
 %doc %{_mandir}/man1/ffplay.1*
 %doc %{_mandir}/man1/ffserver.1*
+%{_bindir}/ffprobe
 %{_bindir}/ffmpeg
 %{_bindir}/ffplay
 %{_bindir}/ffserver
@@ -200,7 +230,7 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/libavformat.so.*
 %{_libdir}/libavutil.so.*
 %{_libdir}/libswscale.so.*
-%{_libdir}/vhook/
+#%{_libdir}/vhook/
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -239,6 +269,9 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/pkgconfig/libpostproc.pc
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 0.6.1-1
+- Updated to release 0.6.1.
+
 * Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 0.5.2-2
 - Added more functionality.
 

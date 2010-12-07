@@ -3,10 +3,11 @@
 
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
+%{?el2:%define _without_modxorg 1}
 
 Summary: Fast command line image viewer using Imlib2
 Name: feh
-Version: 1.10
+Version: 1.10.1
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Multimedia
@@ -59,6 +60,9 @@ export CFLAGS="%{optflags}"
 %exclude %{_docdir}/feh/
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.10.1-1
+- Updated to release 1.10.1.
+
 * Fri Oct 08 2010 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 

@@ -13,12 +13,15 @@ Release: 4%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://libsigc.sourceforge.net/
+
 Source: http://dl.sf.net/libsigc/libsigc++-%{version}.tar.gz
 Patch0: libsigc++-1.2.5-pc-cflags.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Obsoletes: libsigc++-examples <= %{version}
+
 BuildRequires: gcc-c++, m4
 BuildRequires: libtool, autoconf, automake
+
+Obsoletes: libsigc++-examples <= %{version}
 
 %description
 This library implements a full callback system for use in widget libraries,
@@ -31,7 +34,6 @@ ease of use unmatched by other C++ callback libraries.
 
 Package gtkmm2, which is a C++ binding to the GTK2 library, uses libsigc++.
 
-
 %package devel
 Summary: Development tools for the Typesafe Signal Framework for C++
 Group: Development/Libraries
@@ -41,54 +43,45 @@ Requires: %{name} = %{version}, pkgconfig
 The libsigc++-devel package contains the static libraries and header files
 needed for development with libsigc++.
 
-
 %prep
 %setup
 %patch0 -p1 -b .pc
-
 
 %build
 %{__aclocal} -I scripts
 %{__libtoolize} -c -f
 %{__autoconf}
 %{__automake} -a -c -f
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
+#%{__make} install DESTDIR="%{buildroot}"
 %makeinstall
+
 # Clean up the docs
 find doc -name "Makefile*" | xargs rm -f
-
 
 %clean
 %{__rm} -rf %{buildroot}
 
-
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING* FEATURES IDEAS NEWS README TODO
-%{_libdir}/*.so.*
+%{_libdir}/libsigc-1.2.so*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
-%{_includedir}/*
-%{_libdir}/*.a
-%exclude %{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/sigc++*
-
+%{_includedir}/sigc++-1.2/
+%{_libdir}/libsigc-1.2.so
+%{_libdir}/pkgconfig/sigc++-1.2.pc
+%{_libdir}/sigc++-1.2/
+%exclude %{_libdir}/libsigc-1.2.la
 
 %changelog
 * Tue Mar  1 2005 Matthias Saou <http://freshrpms.net/> 1.2.5-4

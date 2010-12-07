@@ -2,53 +2,53 @@
 # Authority: matthias
 # ExclusiveDist: fc5 fc6 el5 fc7
 
-# Test
-
 %define desktop_vendor rpmforge
 
-%define majorminor   0.10
-%define gstreamer    gstreamer
+%define majorminor 0.10
+%define gstreamer gstreamer
 
-%define gst_minver   0.10.10.1
+%define gst_minver 0.10.10.1
 %define gstpb_minver 0.10.10.1
 
 Summary: GStreamer streaming media framework "ugly" plug-ins
 Name: gstreamer-plugins-ugly
 Version: 0.10.11
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
+
 Source: http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: %{gstreamer} >= %{gst_minver}
+
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 
+BuildRequires: a52dec-devel >= 0.7.3
+BuildRequires: amrnb-devel >= 7.0.0.2
 BuildRequires: gcc-c++
 BuildRequires: gettext-devel
-
-BuildRequires: twolame-devel
+BuildRequires: lame-devel >= 3.89
 BuildRequires: libcdio-devel
-BuildRequires: libsidplay-devel >= 1.36.0
-BuildRequires: a52dec-devel >= 0.7.3
 #BuildRequires: libdvdnav-devel >= 0.1.3
 BuildRequires: libdvdread-devel >= 0.9.0
-BuildRequires: lame-devel >= 3.89
 BuildRequires: libid3tag-devel >= 0.15.0
 BuildRequires: libmad-devel >= 0.15.0
 BuildRequires: libmpeg2-devel >= 0.4.0
-BuildRequires: amrnb-devel >= 7.0.0.2
+BuildRequires: libsidplay-devel >= 1.36.0
 BuildRequires: liboil-devel
 BuildRequires: PyXML
+BuildRequires: twolame-devel
 
-Provides: gstreamer-sid = %{version}-%{release}
-Provides: gstreamer-lame = %{version}-%{release}
-Provides: gstreamer-mad = %{version}-%{release}
+Requires: %{gstreamer} >= %{gst_minver}
+
 Provides: gstreamer-a52dec = %{version}-%{release}
 #Provides: gstreamer-dvdnav = %{version}-%{release}
 Provides: gstreamer-dvdread = %{version}-%{release}
+Provides: gstreamer-lame = %{version}-%{release}
+Provides: gstreamer-mad = %{version}-%{release}
 Provides: gstreamer-mpeg2dec = %{version}-%{release}
+Provides: gstreamer-sid = %{version}-%{release}
 
 %description
 GStreamer is a streaming media framework, based on graphs of elements which
@@ -60,10 +60,8 @@ gstreamer-plugins-good because:
 - the license of the library is not LGPL
 - there are possible licensing issues with the code.
 
-
 %prep
 %setup -n gst-plugins-ugly-%{version}
-
 
 %build
 %configure \
@@ -75,7 +73,7 @@ gstreamer-plugins-good because:
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 # make output told me to do this
 libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
@@ -86,10 +84,8 @@ libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
 %{__rm} -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
 %{__rm} -f %{buildroot}%{_libdir}/*.la
 
-
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files -f gst-plugins-ugly-%{majorminor}.lang
 %defattr(-,root,root,-)
@@ -113,8 +109,11 @@ libtool --finish %{buildroot}%{_libdir}/gstreamer-%{majorminor}
 %{_libdir}/gstreamer-%{majorminor}/libgsttwolame.so
 
 %changelog
-* Thu Nov 12 2009 Steve Huff <shuff@vecna.org> - 0.10.13-1
-- Updated to release 0.10.13.
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 0.10.11-2
+- Rebuild against newer x264.
+
+* Thu Nov 12 2009 Steve Huff <shuff@vecna.org> - 0.10.11-1
+- Updated to release 0.10.11.
 - No further updates possible without gstreamer update.
 
 * Thu Apr 02 2009 Dag Wieers <dag@wieers.com> - 0.10.9-1

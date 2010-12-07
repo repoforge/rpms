@@ -26,17 +26,17 @@
 %{?el2:%define _without_tslib 1}
 
 %define real_name DirectFB
-%define real_version 1.2-0
+%define real_version 1.4-5
 
 Summary: Hardware graphics acceleration library
 Name: directfb
-Version: 1.2.4
+Version: 1.4.11
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.directfb.org/
 
-Source: http://www.directfb.org/download/DirectFB/DirectFB-%{version}.tar.gz
+Source: http://directfb.org/downloads/Core/DirectFB-1.4/DirectFB-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: freetype-devel >= 2.0
@@ -155,6 +155,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libfusion.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.4.11-1
+- Updated to release 1.4.11.
+
 * Mon Sep 22 2008 Dag Wieers <dag@wieers.com> - 1.2.4-1
 - Updated to release 1.2.4.
 

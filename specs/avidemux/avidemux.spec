@@ -7,7 +7,7 @@
 Summary: Graphical video editing tool
 Name: avidemux
 Version: 2.4.4
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://fixounet.free.fr/avidemux/
@@ -101,6 +101,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/applications/%{desktop_vendor}-avidemux.desktop
 
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 2.4.4-3
+- Rebuild against newer x264.
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 2.4.4-2
 - Rebuild against faad2 2.7.
 

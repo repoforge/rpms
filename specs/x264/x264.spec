@@ -1,8 +1,8 @@
 # $Id$
 # Authority: matthias
 
-%{?fedora: %{expand: %%define fc%{fedora} 1}}
-
+### libquicktime fails to build with this on EL3
+# ExcludeDist: el2 el3
 %{?el4:%define _without_modxorg 1}
 
 %{?el3:%define _without_asm 1}
@@ -50,9 +50,7 @@ H264/AVC video streams using the x264 library.
 %{__perl} -pi -e 's|/usr/X11R6/lib |/usr/X11R6/%{_lib} |g' configure
 
 ### Required for glibc < 2.3.2 (http://article.gmane.org/gmane.comp.video.x264.devel/1696)
-%if %{?_without_glibc232:1}0
-%patch0 -p0
-%endif
+%{?_without_glibc232:%patch0 -p0}
 
 %build
 # Force PIC as applications fail to recompile against the lib on x86_64 without

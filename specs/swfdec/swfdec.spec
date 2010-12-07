@@ -1,15 +1,16 @@
 # $Id$
 # Authority: dag
 
+%define _without_directfb 1
 
-%{!?dtag:%define gimp_plugin 1}
-%{!?dtag:%define mozilla xulrunner}
-%{!?dtag:%define _without_mozilla 1}
-%{!?dtag:%define _without_gstreamer 1}
+### Can't figure out why only EL5 and EL6 produces swfdec-mozilla-player
+%{?el6:%define gimp_plugin 1}
+%{?el6:%define mozilla xulrunner}
+%{?el6:%define _with_mozilla_player 1}
+%{?el6:%define _without_gstreamer 1}
 
 %{?el5:%define gimp_plugin 1}
 %{?el5:%define mozilla xulrunner}
-### Can't figure out why only EL5 produces swfdec-mozilla-player
 %{?el5:%define _with_mozilla_player 1}
 %{?el5:%define _without_gstreamer 1}
 
@@ -24,7 +25,7 @@
 Summary: Flash animations rendering library
 Name: swfdec
 Version: 0.3.6
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://swfdec.freedesktop.org/wiki/
@@ -33,7 +34,6 @@ URL: http://swfdec.freedesktop.org/wiki/
 Source: http://www.schleef.org/swfdec/download/swfdec-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: directfb
 BuildRequires: ffmpeg-devel
 BuildRequires: gcc-c++
 BuildRequires: GConf2-devel
@@ -46,9 +46,10 @@ BuildRequires: liboil-devel
 BuildRequires: SDL-devel
 BuildRequires: x264-devel
 %{?gimp_plugin:BuildRequires: gimp-devel >= 2.0}
-%{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
+%{!?_without_directfb:BuildRequires: directfb}
 %{!?_without_gstreamer:BuildRequires: gstreamer-plugins-devel}
 %{!?_without_modxorg:BuildRequires: libXt-devel}
+%{!?_without_mozilla:BuildRequires: %{mozilla}-devel}
 
 %description
 Libswfdec is a library for rendering Flash animations. Currently it
@@ -78,6 +79,7 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 
 %build
 %configure \
+%{?_without_directfb:--disable-directfb} \
 %{?_without_mozilla:--disable-mozilla-plugin}
 %{__make} %{?_smp_mflags}
 
@@ -135,6 +137,9 @@ Mozilla plugin for rendering of Flash animations based on the swfdec library.
 %endif
 
 %changelog
+* Sun Dec 05 2010 Dag Wieers <dag@wieers.com> - 0.3.6-6
+- Disabled directfb support.
+
 * Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.3.6-5
 - Rebuild against ffmpeg-0.5.
 - Rebuild against x264-0.4.20090708.

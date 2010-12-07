@@ -1,6 +1,10 @@
 # $Id$
 # Authority: dag
 
+%define _default_patch_fuzz 2
+
+%{?el6:%define _with_bluez4 1}
+
 Summary: Simple Wiimote Library for Linux
 Name: libwiimote
 Version: 0.4
@@ -15,6 +19,7 @@ Patch1: libwiimote-0.4-includedir.patch
 Patch2: libwiimote-0.4-dso-symlinks.patch
 Patch3: libwiimote-0.4-soname.patch
 Patch4: libwiimote-0.4-svn20090207.patch
+Patch5: libwiimote-0.4-bluez4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -44,6 +49,7 @@ you will need to install %{name}-devel.
 %patch2 -p1 -b .dso-symlinks
 %patch3 -p1 -b .soname
 %patch4 -p1 -b .svn20090207
+%{?_with_bluez4:%patch5 -p0 -b .bluez4}
 
 %{__perl} -pi.orig -e 's|#-D_DISABLE_NONBLOCK_UPDATES -D_DISABLE_AUTO_SELECT_DEVICE|-D_DISABLE_BLOCKING_UPDATE|' config.mk.in
 

@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+%{?el6:%define _without_lirc 1}
+
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -39,7 +41,6 @@ BuildRequires: pkgconfig
 BuildRequires: readline-devel
 BuildRequires: xine-lib-devel >= 1.0.0
 BuildRequires: /usr/bin/find
-
 %{!?_with_moles:Requires: xine-lib >= 1.1.2}
 %{?_with_moles:Requires: xine-lib-moles >= 1.1.2}
 %{!?_without_modxorg:BuildRequires: libXt-devel, libXv-devel, libXinerama-devel, libXtst-devel, libXxf86vm-devel, libXext-devel, libXft-devel}
@@ -64,7 +65,7 @@ Available rpmbuild rebuild options :
 
 %prep
 %setup -n xine-ui-%{version}
-%patch0 -p1 -b .shared-lirc
+%{!?_without_lirc:%patch0 -p1 -b .shared-lirc}
 %patch1 -p0 -b .help
 
 # Required by the shared-lirc patch

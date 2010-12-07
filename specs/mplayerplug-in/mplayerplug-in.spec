@@ -5,26 +5,20 @@
 
 #%define mversion %(rpm -q mozilla-devel --qf "%%{epoch}:%%{version}")
 
-
 %define mozilla seamonkey-devel
 
 %{!?dtag:%define mozilla xulrunner-devel nspr-devel}
-%{?el5:%define mozilla nspr-devel xulrunner-devel}
-%{?fc7:%define mozilla firefox-devel}
-%{?fc6:%define mozilla firefox-devel}
 
-%{?fc4:%define _without_modxorg 1}
+%{?el6:%define mozilla nspr-devel xulrunner-devel}
+
+%{?el5:%define mozilla nspr-devel xulrunner-devel}
+
 %{?el4:%define _without_modxorg 1}
 %{?el4:%define mozilla seamonkey-devel}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
+
 %{?el3:%define _without_modxorg 1}
 %{?el3:%define mozilla seamonkey-devel}
-%{?rh9:%define _without_modxorg 1}
-%{?rh9:%define mozilla mozilla-devel}
-%{?rh7:%define _without_modxorg 1}
-%{?rh7:%define mozilla mozilla-devel}
+
 %{?el2:%define _without_modxorg 1}
 %{?el2:%define mozilla seamonkey-devel}
 

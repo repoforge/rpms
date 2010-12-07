@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define _default_patch_fuzz 2
+
 Summary: Web-interface for CVS and Subversion version control repositories
 Name: viewvc
 Version: 1.1.8

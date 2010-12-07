@@ -16,7 +16,7 @@
 Summary: Linux video stream processing utility
 Name: transcode
 Version: 1.0.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.transcoding.org/
@@ -126,6 +126,9 @@ export LDFLAGS="-L%{_usr}/X11R6/%{_lib}"
 %exclude %{_libdir}/transcode/*.la
 
 %changelog
+* Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.0.5-2
+- Rebuild against ffmpeg-0.6.1.
+
 * Fri Jan 11 2008 Dag Wieers <dag@wieers.com> - 1.0.5-1
 - Updated to release 1.0.5.
 

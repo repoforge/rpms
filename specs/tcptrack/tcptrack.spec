@@ -2,25 +2,25 @@
 # Authority: dag
 # Upstream: Steve Benson <steve$rhythm,cx>
 
-
-%{!?dtag:%define _with_libpcapdevel 1}
-%{?el5:%define _with_libpcapdevel 1}
-%{?fc6:%define _with_libpcapdevel 1}
+%{?el4:%define _without_libpcapdevel 1}
+%{?el3:%define _without_libpcapdevel 1}
+%{?el2:%define _without_libpcapdevel 1}
 
 Summary: Packet sniffer which displays TCP information like the 'top' command
 Name: tcptrack
-Version: 1.3.0
+Version: 1.4.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.rhythm.cx/~steve/devel/tcptrack/
 
 Source: http://www.rhythm.cx/~steve/devel/tcptrack/release/%{version}/source/tcptrack-%{version}.tar.gz
-Patch0: remove-extra-qualifications.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, ncurses-devel, libpcap
-%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+BuildRequires: gcc-c++
+BuildRequires: libpcap
+BuildRequires: ncurses-devel
+%{!?_without_libpcapdevel:BuildRequires:libpcap-devel}
 
 %description
 tcptrack is a sniffer which displays information about TCP connections it
@@ -32,7 +32,6 @@ bandwidth usage.
 
 %prep
 %setup
-#patch -p1
 
 %build
 %configure
@@ -52,6 +51,9 @@ bandwidth usage.
 %{_bindir}/tcptrack
 
 %changelog
+* Mon Nov 29 2010 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Thu Feb 07 2008 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Updated to release 1.3.0.
 

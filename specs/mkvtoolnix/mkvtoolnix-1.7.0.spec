@@ -6,7 +6,7 @@
 Summary: Set of tools to create, alter and inspect Matroska files
 Name: mkvtoolnix
 Version: 1.7.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.bunkus.org/videotools/mkvtoolnix/
@@ -15,11 +15,19 @@ Source0: http://www.bunkus.org/videotools/mkvtoolnix/sources/mkvtoolnix-%{versio
 Source1: mkvmerge-gui.desktop
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libebml-devel, libmatroska-devel
-BuildRequires: libogg-devel, libvorbis-devel, flac-devel
-BuildRequires: expat-devel, zlib-devel, lzo-devel, bzip2-devel
-BuildRequires: wxGTK-devel, gcc-c++
-BuildRequires: desktop-file-utils, ImageMagick
+BuildRequires: bzip2-devel
+BuildRequires: desktop-file-utils
+BuildRequires: expat-devel
+BuildRequires: flac-devel
+BuildRequires: gcc-c++
+BuildRequires: ImageMagick
+BuildRequires: libebml-devel
+BuildRequires: libmatroska-devel
+BuildRequires: libogg-devel
+BuildRequires: libvorbis-devel
+BuildRequires: lzo-devel
+BuildRequires: wxGTK-devel
+BuildRequires: zlib-devel
 
 %description
 MKVToolnix is a set of tools to create, alter and inspect Matroska files.
@@ -99,6 +107,9 @@ fi
 %{_datadir}/mkvtoolnix/
 
 %changelog
+* Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.7.0-4
+- Rebuild against libmatroska-1.0.0.
+
 * Wed Sep 17 2008 Dag Wieers <dag@wieers.com> - 1.7.0-3
 - Rebuild against wxGTK 2.8.8.
 
