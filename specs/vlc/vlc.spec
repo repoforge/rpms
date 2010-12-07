@@ -192,7 +192,6 @@ IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
 %setup
-%setup
 
 ### Use regex to change FAAD2 interface
 %{__perl} -pi -e 's|\bfaacDec\B|NeAACDec|g' modules/codec/faad.c
