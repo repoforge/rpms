@@ -6,7 +6,7 @@
 
 Summary: Implementation of the Sybase/Microsoft TDS (Tabular DataStream) protocol
 Name: freetds
-Version: 0.64
+Version: 0.82
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
@@ -15,7 +15,13 @@ URL: http://www.freetds.org/
 Source:	ftp://ftp.ibiblio.org/pub/Linux/ALPHA/freetds/stable/freetds-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: unixODBC-devel, gcc-c++
+BuildRequires: gcc-c++
+BuildRequires: gnutls-devel
+BuildRequires: libtool
+BuildRequires: ncurses-devel
+BuildRequires: openssl-devel
+BuildRequires: unixODBC-devel
+
 Obsoletes: freetds-unixodbc <= %{version}, freetds-doc <= %{version}
 
 %description
@@ -40,9 +46,11 @@ you will need to install %{name}-devel.
 %build
 %configure \
 	--disable-dependency-tracking \
+	--enable-msdblib \
+	--with-gnutls \
+	--with-openssl \
 	--with-tdsver="4.2" \
 	--with-unixodbc="%{_prefix}" \
-	--enable-msdblib \
 	--enable-sybase-compat
 %{__make} %{?_smp_mflags}
 
@@ -58,9 +66,8 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog COPYING* NEWS README TODO
-%doc doc/*.html doc/*.sgml doc/*.txt
-#%doc doc/doc/freetds-*/reference/ doc/doc/freetds-*/userguide/ doc/images/
+%doc AUTHORS BUGS ChangeLog COPYING* INSTALL NEWS README TODO
+%doc doc/*.html doc/*.sgml doc/*.txt samples/
 %doc %{_mandir}/man?/*
 %config %{_sysconfdir}/*.conf
 %{_bindir}/*
@@ -76,6 +83,10 @@ you will need to install %{name}-devel.
 %{_includedir}/
 
 %changelog
+* Thu Dec 09 2010 Steve Huff <shuff@vecna.org> - 0.82-1
+- Updated to release 0.82 (thanks Dave Miller!)
+- Captured some missing dependencies.
+
 * Sun Nov 12 2006 Dries Verachtert <dries@ulyssis.org> - 0.64-1
 - Updated to release 0.64.
 
