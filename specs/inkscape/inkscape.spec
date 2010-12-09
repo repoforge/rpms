@@ -7,6 +7,11 @@
 ### EL6 ships with inkscape-0.47-6.el6
 %{?el6:# Tag: rfx}
 
+### depends on gsl, which is rfx
+%{?el5:# Tag: rfx}
+%{?el4:# Tag: rfx}
+%{?el3:# Tag: rfx}
+
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -15,7 +20,7 @@
 Summary: Vector drawing application
 Name: inkscape
 Version: 0.48.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
@@ -109,6 +114,9 @@ Inkscape is an SVG based generic vector-drawing program.
 %{_datadir}/inkscape/
 
 %changelog
+* Thu Dec 09 2010 Steve Huff <shuff@vecna.org> - 0.48-2
+- Tag as rfx due to gsl dependency.
+
 * Fri Dec 03 2010 Dag Wieers <dag@wieers.com> - 0.48-1
 - Updated to release 0.48.
 

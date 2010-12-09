@@ -2,10 +2,15 @@
 # Authority: dries
 # Upstream: Thomas Eschenbacher <thomas,eschenbacher$gmx,de>
 
+# depends on gsl, which is rfx in these dists
+%{?el5:# Tag: rfx}
+%{?el4:# Tag: rfx}
+%{?el3:# Tag: rfx}
+
 Summary: Sound editor
 Name: kwave
 Version: 0.7.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://kwave.sourceforge.net/
@@ -80,6 +85,9 @@ cmake .
 %{_libdir}/libkwavegui.so
 
 %changelog
+* Thu Dec 09 2010 Steve Huff <shuff@vecna.org> - 0.7.10-2
+- Tagged as rfx due to gsl dependency.
+
 * Sat Aug 25 2007 Dries Verachtert <dries@ulyssis.org> - 0.7.10-1
 - Updated to release 0.7.10.
 

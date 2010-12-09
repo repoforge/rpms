@@ -2,6 +2,11 @@
 # Authority: dries
 # Upstream: Jonathan Leto <jonathan$leto,net>
 
+# gsl is in rfx for these dists
+%{?el5:# Tag: rfx}
+%{?el4:# Tag: rfx}
+%{?el3:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +15,7 @@
 Summary: Interface to The GNU Scientific Library
 Name: perl-Math-Gsl
 Version: 0.08
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Math-Gsl/
@@ -62,6 +67,9 @@ find contrib/ doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/Math/Gsl/
 
 %changelog
+* Thu Dec 09 2010 Steve Huff <shuff@vecna.org> - 0.08-3
+- Tag as rfx due to gsl dependency.
+
 * Thu Jul 5 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.08-2
 - Added Requires/BuildRequires to build for Fedora 7
 
