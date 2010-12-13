@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Dan Kogai <dankogai$dan,co,jp>
 
+# el5 has 2.12 in perl-5.8.8
+%{?el5:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: Perl module that implements character encodings
 Name: perl-Encode
 Version: 2.39
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Encode/
@@ -58,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/encoding.pm
 
 %changelog
+* Mon Dec 13 2010 Steve Huff <shuff@vecna.org> - 2.39-2
+- Tagged rfx for el5.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2.39-1
 - Updated to version 2.39.
 
