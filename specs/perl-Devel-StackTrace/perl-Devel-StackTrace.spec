@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: Dave Rolsky <autarch$urth,org>
+# ExcludeDist: el3 el4
 
 ### EL6 ships with perl-Devel-StackTrace-1.22-4.el6
 %{?el6:# Tag: rfx}
@@ -12,20 +13,22 @@
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-%define real_version 1.22
-Version: 1.2200
+%define real_version 1.26
+Version: 1.2600
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-StackTrace/
 
-Source: http://www.cpan.org/modules/by-module/Devel/Devel-StackTrace-%{real_version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 0:5.006
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(ExtUtils::MakeMaker)%{?!el5: >= 6.31}
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl(Test::More)%{?!el5: >= 0.88}
 Requires: perl >= 0:5.006
 
 %description
@@ -38,8 +41,11 @@ and backwards as you want or retrieve specific frames.
 %prep
 %setup -n %{real_name}-%{real_version}
 
+# damn it Dist::Zilla
+%{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.31.*/ && s/6\.3\d/6.30/' Makefile.PL}
+%{?el5:%{__perl} -pi -e '/.*Test::More.*0\.88.*/ && s/0\.\d+/0.62/' Makefile.PL}
+
 %build
-%{__perl} Build.PL
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -55,13 +61,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST META.yml README SIGNATURE
-%doc %{_mandir}/man3/Devel::StackTrace.3pm*
+%doc Changes LICENSE MANIFEST META.json README INSTALL SIGNATURE
+%doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/Devel/
-#%{perl_vendorlib}/Devel/StackTrace/
+%{perl_vendorlib}/Devel/StackTrace/
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Thu Dec 16 2010 Steve Huff <shuff@vecna.org> - 1.2600-1
+- Updated to version 1.26.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 1.2200-1
 - Updated to version 1.22.
 
