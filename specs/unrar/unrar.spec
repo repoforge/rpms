@@ -4,7 +4,7 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 4.0.2
+Version: 4.0.3
 Release: 1%{?dist}
 License: Freeware
 Group: Applications/Archiving
@@ -44,6 +44,9 @@ archives created with the RAR archiver version 1.50 and above.
 %{_bindir}/unrar
 
 %changelog
+* Sun Dec 19 2010 David Hrbáč <david@hrbac.cz> - 4.0.3-1
+- new upstream release
+
 * Mon Nov 29 2010 David Hrbáč <david@hrbac.cz> - 4.0.2-1
 - new upstream release
 
