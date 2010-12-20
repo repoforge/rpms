@@ -59,6 +59,9 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/NetAddr/IP/
 
 %changelog
+* Mon Dec 20 2010 David Hrbáč <david@hrbac.cz> - 4.038-1
+- new upstream release
+
 * Sat Nov 20 2010 David Hrbáč <david@hrbac.cz> - 4.037-1
 - new upstream release
 
