@@ -27,7 +27,7 @@
 
 Summary: Language for data analysis and graphics
 Name: R
-Version: 2.12.0
+Version: 2.12.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -81,7 +81,7 @@ Requires: xdg-utils
 Provides: R-base = %{version}
 Provides: R-boot = 1.2
 Provides: R-class = 7.3
-Provides: R-cluster = 1.13.1
+Provides: R-cluster = 1.13.2
 Provides: R-codetools = 0.2
 Provides: R-datasets = %{version}
 Provides: R-foreign = 0.8
@@ -93,7 +93,7 @@ Provides: R-lattice = 0.19
 Provides: R-MASS = 7.3
 Provides: R-Matrix = 0.999375
 Provides: R-methods = %{version}
-Provides: R-mgcv = 1.6
+Provides: R-mgcv = 1.7
 Provides: R-nlme = 3.1
 Provides: R-nnet = 7.3
 Provides: R-rpart = 3.1
@@ -101,7 +101,7 @@ Provides: R-spatial = 7.3
 Provides: R-splines = %{version}
 Provides: R-stats = %{version}
 Provides: R-stats4 = %{version}
-Provides: R-survival = 2.35
+Provides: R-survival = 2.36
 Provides: R-tcltk = %{version}
 Provides: R-tools = %{version}
 Provides: R-utils = %{version}
@@ -251,6 +251,9 @@ export LDFLAGS=%{LDFLAGS}
 %{_libdir}/libRmath.a
 
 %changelog
+* Mon Dec 20 2010 Steve Huff <shuff@vecna.org> - 2.12.1-1
+- Updated to release 2.12.1.
+
 * Mon Oct 25 2010 Steve Huff <shuff@vecna.org> - 2.12.0-1
 - Updated to release 2.12.0.
 - 2.12.0 requires gfortran rather than g77.
