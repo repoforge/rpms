@@ -12,7 +12,7 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 4.037
+Version: 4.038
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
