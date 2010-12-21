@@ -1,6 +1,8 @@
 # $Id$
 # Authority: shuff
 # Upstream: Max Kellermann <max$duempel,org>
+# ExcludeDist: el3 el4
+# Rationale: 0.16 needs GLib 2.12
 
 %define _without_cue 1
 %define _without_sidplay 1
@@ -8,13 +10,14 @@
 %{?el6:%define _without_mikmod 1}
 %{?el6:%define _without_flac 1}
 
+%{?el5:%define _without_inotify 1}
 %{?el5:%define _without_pulseaudio 1}
 %{?el5:%define _without_sqlite 1}
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.15.15
-Release: 2%{?dist}
+Version: 0.16
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.musicpd.org/
@@ -27,7 +30,7 @@ BuildRequires: bzip2-devel
 BuildRequires: curl-devel
 BuildRequires: faad2-devel
 BuildRequires: ffmpeg-devel
-BuildRequires: glib2-devel >= 2.6
+BuildRequires: glib2-devel >= 2.12
 # BuildRequires: jack-devel
 BuildRequires: lame-devel
 BuildRequires: libao-devel
@@ -40,7 +43,9 @@ BuildRequires: libsamplerate-devel
 BuildRequires: libshout-devel >= 2.2.2
 BuildRequires: libvorbis-devel
 # BuildRequires: libwildmidi-devel
+BuildRequires: mpg123-devel
 BuildRequires: pkgconfig
+BuildRequires: twolame-devel
 BuildRequires: zziplib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel >= 1.0.16}
 %{!?_without_avahi:BuildRequires: avahi-glib-devel}
@@ -67,8 +72,10 @@ frontend options, or restart X often.
 export FLAC_CFLAGS='-I%{_includedir}'
 export FLAC_LIBS='-L%{_libdir}'
 %configure --disable-dependency-tracking \
+%{!?without_avahi:--with-zeroconf=avahi} \
 %{?_without_cue:--disable-cue} \
 %{?_without_flac:--disable-flac} \
+%{?_without_inotify:--disable-inotify} \
 %{?_without_libmms:--disable-mms} \
 %{?_without_sidplay:--disable-sidplay} \
 %{?_without_sqlite:--disable-sqlite} \
@@ -79,15 +86,18 @@ export FLAC_LIBS='-L%{_libdir}'
     --enable-iso9660 \
     --enable-lame-encoder \
     --enable-lastfm \
+    --enable-libwrap \
     --enable-lsr \
     --enable-mad \
 %{!?_without_mikmod:--enable-mikmod} \
     --enable-modplug \
     --enable-pipe-output \
 %{!?_without_pulseaudio:--enable-pulseaudio} \
+    --enable-recorder-output \
     --enable-shout \
+    --enable-twolame-encoder \
     --enable-vorbis-encoder \
-    --enable-zip
+    --enable-zzip
 %{__make} %{?_smp_mflags}
 
 %install
@@ -106,6 +116,10 @@ export FLAC_LIBS='-L%{_libdir}'
 %{_bindir}/mpd
 
 %changelog
+* Tue Dec 21 2010 Steve Huff <shuff@vecna.org> - 0.16-1
+- Update to 0.16.
+- A few tweaks of requirements and configure options.
+
 * Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 0.15.15-2
 - Rebuild against ffmpeg-0.6.1.
 
