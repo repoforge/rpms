@@ -47,6 +47,7 @@ BuildRequires: libvorbis-devel
 BuildRequires: mpg123-devel
 BuildRequires: pkgconfig
 BuildRequires: twolame-devel
+BuildRequires: wavpack-devel
 BuildRequires: zziplib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel >= 1.0.16}
 %{!?_without_avahi:BuildRequires: avahi-glib-devel}
