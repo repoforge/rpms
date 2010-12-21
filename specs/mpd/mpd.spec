@@ -34,6 +34,7 @@ BuildRequires: glib2-devel >= 2.12
 # BuildRequires: jack-devel
 BuildRequires: lame-devel
 BuildRequires: libao-devel
+BuildRequires: libcdio-devel
 BuildRequires: libid3tag-devel
 BuildRequires: libmad-devel
 BuildRequires: libmodplug-devel
