@@ -4,8 +4,8 @@
 
 Summary: Fault tolerant, network distributed file system
 Name: mfs
-Version: 1.6.17
-Release: 2%{?dist}
+Version: 1.6.19
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.moosefs.org/
@@ -382,6 +382,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Wed Dec 22 2010 Steve Huff <shuff@vecna.org> - 1.6.19-1
+- Update to 1.6.19.
+
 * Wed Sep 15 2010 Steve Huff <shuff@vecna.org> - 1.6.17-2
 - Captured missing fuse dependency in mfs-client (thanks Laurent!)
 
