@@ -1,10 +1,12 @@
 # $Id$
-# Authority: dries
+# Authority: shuff
 # Upstream: Gustavo Noronha <kov$debian,org>
+
+# 2.0.12 needs GTK+ 2.12.0
 
 Summary: Simple API for su and sudo
 Name: libgksu
-Version: 2.0.5
+Version: 2.0.11
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -13,8 +15,9 @@ URL: http://www.nongnu.org/gksu/
 Source: http://people.debian.org/~kov/gksu/libgksu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext, bison, pkgconfig, gtk-doc
+BuildRequires: gcc-c++, gettext, bison, pkgconfig >= 0.9.0, gtk-doc
 BuildRequires: glib2-devel >= 2.6, gtk2-devel >= 2.6
+BuildRequires: perl(XML::Parser)
 
 Obsoletes: libgksuui <= %{version}-%{release}
 Provides: libgksuui = %{version}-%{release}
@@ -47,7 +50,6 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%find_lang %{name}
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -55,10 +57,11 @@ you will need to install %{name}-devel.
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL
 %doc %{_datadir}/gtk-doc/html/libgksu*/
+%doc %{_mandir}/man?/*
 %config %{_sysconfdir}/gconf/schemas/gksu.schemas
 %{_bindir}/gksu-properties
 %{_datadir}/applications/gksu-properties.desktop
@@ -75,6 +78,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgksu2.la
 
 %changelog
+* Wed Dec 22 2010 Steve Huff <shuff@vecna.org> - 2.0.11-1
+- Updated to release 2.0.11.
+
 * Fri Oct 12 2007 Dag Wieers <dag@wieers.com> - 2.0.5-1
 - Updated to release 2.0.5.
 
