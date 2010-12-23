@@ -5,7 +5,7 @@
 Summary: Text-mode interface for git
 Name: tig
 Version: 0.16.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://jonas.nitro.dk/tig/
@@ -47,8 +47,8 @@ with the log message, diffstat, and the diff.
 %{__make} install install-doc DESTDIR="%{buildroot}"
 
 # bash completion
-%{__install} -m0755 -d %{buildroot}%{_sysconfdir}/bash.completion.d/
-%{__install} -m0755 contrib/tig-completion.bash %{buildroot}%{_sysconfdir}/bash.completion.d/tig
+%{__install} -m0755 -d %{buildroot}%{_sysconfdir}/bash_completion.d/
+%{__install} -m0755 contrib/tig-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/tig
 
 # stupid install-doc
 %{__install} -m0755 -d tigdocs
@@ -63,8 +63,11 @@ with the log message, diffstat, and the diff.
 %doc BUGS COPYING INSTALL NEWS* README* SITES TODO VERSION contrib/ tigdocs/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
-%{_sysconfdir}/bash.completion.d/tig
+%{_sysconfdir}/bash_completion.d/tig
 
 %changelog
+* Thu Dec 23 2010 Steve Huff <shuff@vecna.org> - 0.16.2-2
+- Gah, wrong path for bash-completion support :(
+
 * Mon Nov 08 2010 Steve Huff <shuff@vecna.org> - 0.16.2-1
 - Initial package.
