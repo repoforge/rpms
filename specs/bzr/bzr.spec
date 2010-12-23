@@ -3,7 +3,7 @@
 # Upstream: <bazaar$lists,canonical,com>
 
 ### EL6 ships with bzr-2.1.1-2.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
@@ -13,10 +13,10 @@
 #   Version: bzr version, add subrelease version here
 #   bzrrc: release candidate version, if any, line starts with % for rc, # for stable releas (no %).
 #   release: rpm subrelease (0.N for rc candidates, N for stable releases)
-%define bzrmajor 2.1
-%define bzrminor .1
+%define bzrmajor 2.2
+%define bzrminor .2
 #define bzrrc rc2
-%define release 2
+%define release 1
 
 # Magics to get the dots in Release string correct per the above
 %define subrelease %{?bzrrc:.}%{?bzrrc}
@@ -92,6 +92,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/bash_completion.d/*
 
 %changelog
+* Thu Dec 23 2010 Steve Huff <shuff@vecna.org> - 2.2.2-1
+- Updated to 2.2.2 release.
+
 * Tue May 18 2010 Steve Huff <shuff@vecna.org> - 2.1.1-2
 - Captured dependency on newer pyrex.
 
