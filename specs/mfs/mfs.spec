@@ -27,6 +27,9 @@ BuildRequires: zlib-devel
 Requires: chkconfig
 Requires: python
 
+Provides: moosefs = %{version}
+Provides: moosefs(server) = %{version}
+
 %description
 MooseFS is a fault tolerant, network distributed file system. It spreads data
 over several physical servers which are visible to the user as one resource.
@@ -59,6 +62,8 @@ Summary: Client tools for MooseFS
 Group: System Environment/Utilities
 Requires: fuse >= 2.6
 
+Provides: moosefs(client) = %{version}
+
 %description client
 Install this package to run a MooseFS client.  This package contains
 administrative utilities for MooseFS in addition to basic client tools.
@@ -67,6 +72,8 @@ administrative utilities for MooseFS in addition to basic client tools.
 Summary: Status CGI for MooseFS
 Group: System Environment/Utilities
 Requires: httpd
+
+Provides: moosefs(cgi) = %{version}
 
 %description cgi
 Install this package to display MooseFS status via Apache-hosted CGI.  The CGI
@@ -382,7 +389,10 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
-* Wed Dec 22 2010 Steve Huff <shuff@vecna.org> - 1.6.19-1
+* Tue Dec 28 2010 Steve Huff <shuff@vecna.org> - 1.6.19-1
+- Added additional Provides: per Michal Borychowski's request.
+
+* Wed Dec 22 2010 Steve Huff <shuff@vecna.org>
 - Update to 1.6.19.
 
 * Wed Sep 15 2010 Steve Huff <shuff@vecna.org> - 1.6.17-2
