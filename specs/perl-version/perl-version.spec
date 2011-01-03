@@ -12,7 +12,7 @@
 
 Summary: Perl module that implements for Version Objects
 Name: perl-version
-Version: 0.87
+Version: 0.88
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
