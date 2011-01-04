@@ -2,21 +2,20 @@
 # Authority: dag
 
 ### EL6 ships with t1lib-5.1.2-6.el6
-# ExclusiveDist: el2 el3 el4 el5
+# ExclusiveDist: el3 el4 el5
 
 Summary: PostScript Type 1 font rasterizer
 Name: t1lib
-Version: 5.1.0
+Version: 5.1.2
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Publishing
-URL: ftp://sunsite.unc.edu/pub/Linux/libs/graphics/
+URL: http://www.t1lib.org/
 
-Source: ftp://sunsite.unc.edu/pub/Linux/libs/graphics/t1lib-%{version}.tar.gz
+Source: ftp://ibiblio.org/pub/Linux/libs/graphics/t1lib-%{version}.tar.gz
 Patch0: t1lib-5.0.0-manpages.patch
 Patch1: t1lib-5.0.0-xglyph-env.patch
 Patch2: t1lib-5.0.0-t1libconfig.patch
-Patch3: t1lib-5.1.0-destdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -43,7 +42,6 @@ you will need to install %{name}-devel.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %configure
@@ -103,5 +101,10 @@ touch %{buildroot}%{_sysconfdir}/t1lib/t1lib.config
 %{_libdir}/libt1x.so
 
 %changelog
+* Tue Jan 04 2011 Steve Huff <shuff@vecna.org> - 5.1.2-1
+- Updated to version 5.1.2.
+- Source and homepage URLs have changed.
+- destdir patch merged upstream.
+
 * Mon Jan 22 2007 Dag Wieers <dag@wieers.com> - 5.1.0-1
 - Initial package. (using DAR)
