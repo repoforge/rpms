@@ -11,7 +11,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.3
+Version: 1.7.3.4
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -127,6 +127,7 @@ Graphical frontend to git.
 Summary: Git tools for importing Subversion repositories
 Group: Development/Tools
 Requires: %{name} = %{version}-%{release}
+Requires: perl(Error)
 Requires: perl(Term::ReadKey)
 Requires: subversion
 
@@ -240,7 +241,12 @@ EOF
 %{__sed} -e "s|@PROJECTROOT@|%{_localstatedir}/lib/git|g" %{SOURCE5} >gitweb.conf
 
 %build
-%{__make} %{?_smp_mflags} all doc
+%{__make} %{?_smp_mflags} all
+
+# bah, DocBook validation errors
+%{__perl} -pi -e 's|^XMLTO_EXTRA =\s*$|XMLTO_EXTRA = --skip-validation \n|;' Documentation/Makefile
+
+%{__make} %{?_smp_mflags} doc
 
 ## Perl preparation
 cd perl
@@ -387,6 +393,11 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Wed Jan 05 2011 Steve Huff <shuff@vecna.org> - 1.7.3.4-1
+- Updated to release 1.7.3.4.
+- Captured missing perl(Error) dependency in git-svn (thanks Seán O'Sullivan!)
+- Some man pages were persistently failing DocBook validation :(
+
 * Fri Sep 24 2010 Steve Huff <shuff@vecna.org> - 1.7.3-1
 - Updated to release 1.7.3.
 
