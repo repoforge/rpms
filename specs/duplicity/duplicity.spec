@@ -6,7 +6,7 @@
 Summary: Untrusted/encrypted backup using rsync algorithm
 Name: duplicity
 Version: 0.4.11
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/duplicity/
@@ -17,6 +17,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel >= 2.4, librsync-devel >= 0.9.6
 Requires: python >= 2.4, gnupg >= 1.0.6
+Requires: python-GnuPGInterface 
 
 %description
 Duplicity incrementally backs up files and directory by encrypting
@@ -56,6 +57,9 @@ directories, symbolic links, fifos, etc., but not hard links.
 %ghost %{python_sitearch}/duplicity/*.pyo
 
 %changelog
+* Wed Jan 05 2011 David Hrbáč <david@hrbac.cz> - 0.4.11-3
+- added python-GnuPGInterface requires
+
 * Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 0.4.11-2
 - Added patch increase max_size to at least 512. (Luca Gibelli)
 
