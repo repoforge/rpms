@@ -4,14 +4,17 @@
 Summary: John the Ripper password cracker
 Name: john
 Version: 1.7.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.openwall.com/john/
 
 #Source: http://www.openwall.com/john/f/john-%{version}.tar.bz2
 Source: http://www.openwall.com/john/g/john-%{version}.tar.bz2
+Patch: ftp://ftp.openwall.com/pub/projects/john/contrib/john-1.7.6-jumbo-9.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: openssl-devel
 
 %description
 John the Ripper is a fast password cracker. Its primary purpose is to
@@ -20,6 +23,7 @@ supported as well.
 
 %prep
 %setup
+%patch -p1
 
 %{__perl} -pi.orig -e 's|^(\#define CFG_FULL_NAME)\s.+$|$1 "%{_sysconfdir}/john.conf"|' src/params.h
 
@@ -27,26 +31,26 @@ supported as well.
 CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %ifarch %{ix86}
 %define _with_cpu_fallback 1
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" clean linux-x86-any
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-any
 %{__mv} -f run/john run/john-non-mmx
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" clean linux-x86-mmx
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-mmx
 #%{__mv} -f run/john run/john-non-sse
-#%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" clean linux-x86-sse2
+#%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-sse2
 %endif
 %ifarch x86_64
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" clean linux-x86-64
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" linux-x86-64
 %endif
 %ifarch alpha alphaev5 alphaev56 alphapca56 alphaev6 alphaev67
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" clean linux-alpha
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" linux-alpha
 %endif
 %ifarch sparc sparcv9
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" clean linux-sparc
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" linux-sparc
 %endif
 %ifarch ppc
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" clean linux-ppc32
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" linux-ppc32
 %endif
 %ifarch ppc64
-%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" clean linux-ppc64
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" linux-ppc64
 %endif
 
 %install
@@ -83,6 +87,10 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %endif
 
 %changelog
+* Sun Jan 24 2011 Yury V. Zaytsev <yury@shurup.com> - 1.7.6-2
+- Added jumbo patch and fixed builds.
+- Thanks to Alexander Kirillov!
+
 * Mon Jun 14 2010 Dag Wieers <dag@wieers.com> - 1.7.6-1
 - Updated to release 1.7.6.
 
