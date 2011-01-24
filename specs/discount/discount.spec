@@ -5,7 +5,7 @@
 Summary: C compiler for Markdown
 Name: discount
 Version: 2.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/
@@ -61,6 +61,9 @@ Install this package if you want to develop software that uses the Discount libr
 %{__install} -d %{buildroot}%{_mandir}
 %{__make} install.everything DESTDIR=%{buildroot}
 
+# fix for stupid strip issue
+%{__chmod} -R u+w %{buildroot}/*
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -78,6 +81,9 @@ Install this package if you want to develop software that uses the Discount libr
 %{_includedir}/*
 
 %changelog
+* Mon Jan 24 2011 Steve Huff <shuff@vecna.org> - 2.0.2-2
+- Applied a stupid fix that enables discount to build under el6 x86_64.
+
 * Sun Dec 19 2010 Steve Huff <shuff@vecna.org> - 2.0.2-1
 - Updated to version 2.0.2.
 
