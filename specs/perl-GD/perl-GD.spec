@@ -15,7 +15,7 @@
 
 Summary: Interface to Gd Graphics Library
 Name: perl-GD
-Version: 2.44
+Version: 2.45
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -84,6 +84,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/qd.pl
 
 %changelog
+* Mon Jan 24 2011 Yury V. Zaytsev <yury@shurup.com> - 2.45-1
+- Updated to version 2.45.
+- Thanks to Denis Fateyev!
+
 * Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 2.44-1
 - Updated to version 2.44.
 
