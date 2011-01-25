@@ -7,12 +7,12 @@
 
 Summary: Remote management framework
 Name: func
-Version: 0.25
-Release: 1%{?dist}
+Version: 0.27
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: https://fedorahosted.org/func/
-Source: http://people.fedoraproject.org/~alikins/files/func/func-%{version}.tar.gz
+Source: https://fedorahosted.org/releases/f/u/func/func-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
@@ -24,6 +24,9 @@ Requires: certmaster
 Requires: chkconfig
 Requires: logrotate
 Requires: pyOpenSSL
+Requires: python-sqlalchemy
+#Requires: smolt
+Requires: sqlite
 
 %description
 Func allows for running commands on remote systems in a secure way, like SSH,
@@ -84,14 +87,22 @@ fi
 %dir %{_sysconfdir}/func/
 %dir %{_sysconfdir}/func/minion-acl.d/
 %dir %{_sysconfdir}/func/modules/
+%exclude %dir %{_sysconfdir}/func/version
 %config(noreplace) %{_sysconfdir}/func/*.conf
 %config(noreplace) %{_sysconfdir}/func/modules/*.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/*
 %{python_sitelib}/func/
+%{?el6:%{python_sitelib}/func-%{version}*.egg-info}
 %dir %{_localstatedir}/log/func
 %attr(0600,root,root) %config(noreplace) %{_localstatedir}/log/func/*
 %dir %{_localstatedir}/lib/func/
 
 %changelog
+* Tue Jan 25 2011 Steve Huff <shuff@vecna.org> - 0.27-2
+- Captured missing python-sqlalchemy and smolt dependencies.
+
+* Mon Jan 24 2011 Steve Huff <shuff_@_hmdc.harvard.edu> - 0.27-1
+- Updated to release 0.27.
+
 * Thu Aug 05 2010 Steve Huff <shuff@vecna.org> - 0.25-1
 - Initial package, ported from Fedora.
