@@ -85,6 +85,9 @@ Moose is a Perl module that implements a complete modern object system.
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
+# fix for stupid strip issue
+%{__chmod} -R u+w %{buildroot}/*
+
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
