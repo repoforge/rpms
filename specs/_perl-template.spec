@@ -40,12 +40,18 @@ BuildRequires: rpm-macros-rpmforge
 %{__make} pure_install
 #%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
+# damn it Dist::Zilla
+#%{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.31.*/ && s/6\.3\d/6.30/' Makefile.PL}
+
+# fix for stupid strip issue
+#%{__chmod} -R u+w %{buildroot}/*
+
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes META.yml README
+%doc Changes META.yml META.json README
 %doc %{_mandir}/man?/*
 #%{perl_vendorlib}/NAMEDIR.pm
 #%{perl_vendorlib}/NAMEDIR/*
