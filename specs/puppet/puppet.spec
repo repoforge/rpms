@@ -1,21 +1,24 @@
 # $Id$
 # Authority: dag
+# ExcludeDist: el3 el4
 
 %define ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 0.22.4
+Version: 0.23.2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
-URL: http://reductivelabs.com/projects/puppet/
+URL: http://puppetlabs.com/projects/puppet/
 
-Source: http://reductivelabs.com/downloads/puppet/puppet-%{version}.tgz
+Source: http://puppetlabs.com/downloads/puppet/puppet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ruby-devel >= 1.8.1
-Requires: ruby >= 1.8.1, facter >= 1.1.4
+Requires: facter >= 1.1.4
+Requires: ruby >= 1.8.1
+Requires: ruby-shadow
 
 %description
 Puppet lets you centrally manage every important aspect of your system using a 
@@ -57,9 +60,9 @@ The server can also function as a certificate authority and file server.
 %{__install} -Dp -m0644 conf/redhat/server.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/puppetmaster
 %{__install} -Dp -m0755 conf/redhat/server.init %{buildroot}%{_initrddir}/puppetmaster
 %{__install} -Dp -m0644 conf/redhat/fileserver.conf %{buildroot}%{_sysconfdir}/puppet/fileserver.conf
-%{__install} -Dp -m0644 conf/redhat/puppetd.conf %{buildroot}%{_sysconfdir}/puppet/puppetd.conf
-%{__ln_s} puppetd.conf %{buildroot}%{_sysconfdir}/puppet/puppetmasterd.conf
-%{__ln_s} puppetd.conf %{buildroot}%{_sysconfdir}/puppet/puppetca.conf
+%{__install} -Dp -m0644 conf/redhat/puppet.conf %{buildroot}%{_sysconfdir}/puppet/puppet.conf
+%{__ln_s} puppet.conf %{buildroot}%{_sysconfdir}/puppet/puppetmasterd.conf
+%{__ln_s} puppet.conf %{buildroot}%{_sysconfdir}/puppet/puppetca.conf
 
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/puppet/manifests/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/puppet/
@@ -71,13 +74,15 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING LICENSE README TODO examples/
+%doc CHANGELOG COPYING LICENSE README examples/
 %config %{_initrddir}/puppet
 %config(noreplace) %{_sysconfdir}/logrotate.d/puppet
-%config(noreplace) %{_sysconfdir}/puppet/puppetd.conf
+%config(noreplace) %{_sysconfdir}/puppet/puppet.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/puppet
 %{_bindir}/puppet
+%{_sbindir}/filebucket
 %{_sbindir}/puppetd
+%{_sbindir}/ralsh
 %{ruby_sitelibdir}/puppet.rb
 %{ruby_sitelibdir}/puppet/
 
@@ -130,5 +135,8 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 0.23.2-1
+- Update to version 0.23.2.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.22.4-1
 - Initial package. (using DAR)
