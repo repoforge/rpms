@@ -1,24 +1,23 @@
 # $Id$
-# Authority: shuff
-# ExcludeDist: el3 el4 el5
+# Authority: dag
+# ExcludeDist: el3 el4
 
 %define ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.6.4
+Version: 0.23.2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://puppetlabs.com/projects/puppet/
 
-Source: http://puppetlabs.com/downloads/puppet/puppet-%{version}.tar.gz
+Source: http://puppetlabs.com/downloads/puppet/puppet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ruby-devel >= 1.8.1
-Requires: facter >= 1.5
+Requires: facter >= 1.1.4
 Requires: ruby >= 1.8.1
-Requires: ruby-augeas
 Requires: ruby-shadow
 
 %description
@@ -136,9 +135,6 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
-* Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 2.6.4-1
-- Update to version 2.6.4 (EL6 only).
-
 * Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 0.23.2-1
 - Update to version 0.23.2.
 
