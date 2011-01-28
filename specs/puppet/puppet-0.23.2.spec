@@ -19,7 +19,7 @@ BuildArch: noarch
 BuildRequires: ruby-devel >= 1.8.1
 Requires: facter >= 1.1.4
 Requires: ruby >= 1.8.1
-Requires: ruby(api) = 1.8
+Requires: ruby(abi) = 1.8
 Requires: ruby-shadow
 
 %description
