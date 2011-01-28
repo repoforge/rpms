@@ -14,10 +14,12 @@ URL: http://puppetlabs.com/projects/puppet/
 
 Source: http://puppetlabs.com/downloads/puppet/puppet-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 
 BuildRequires: ruby-devel >= 1.8.1
 Requires: facter >= 1.1.4
 Requires: ruby >= 1.8.1
+Requires: ruby(api) = 1.8
 Requires: ruby-shadow
 
 %description
