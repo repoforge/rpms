@@ -12,7 +12,7 @@
 
 Summary: Perl extension for SHA-1/224/256/384/512
 Name: perl-Digest-SHA
-Version: 5.48
+Version: 5.50
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -29,7 +29,7 @@ Requires: perl >= 0:5.003
 Digest-SHA Perl module
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -60,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Digest/SHA.pm
 
 %changelog
+* Sun Jan 30 2011 David Hrbáč <david@hrbac.cz> - 5.50-1
+- new upstream release
+
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 5.48-1
 - Updated to version 5.48.
 
