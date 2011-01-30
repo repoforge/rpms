@@ -14,7 +14,7 @@
 
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
-Version: 5.428
+Version: 5.500
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -88,11 +88,14 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING ChangeLog INSTALLING MANIFEST META.yml README README-OR-DIE README.system examples/
+%doc COPYING ChangeLog INSTALLING MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/MIME::*.3pm*
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Sun Jan 30 2011 David Hrbáč <david@hrbac.cz> - 5.500-1
+- new upstream release
+
 * Fri Sep 10 2010 David Hrbáč <david@hrbac.cz> - 5.428-1
 - new upstream release
 
