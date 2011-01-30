@@ -67,6 +67,9 @@ find docs/ example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Socket/SSL.pm
 
 %changelog
+* Sun Jan 30 2011 David Hrbáč <david@hrbac.cz> - 1.38-1
+- new upstream release
+
 * Mon Jan 03 2011 David Hrbáč <david@hrbac.cz> - 1.37-1
 - new upstream release
 
