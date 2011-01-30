@@ -12,7 +12,7 @@
 
 Summary: Low-Level Interface to zlib compression library
 Name: perl-Compress-Raw-Zlib
-Version: 2.030
+Version: 2.033
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Compress/Raw/Zlib.pm
 
 %changelog
+* Sun Jan 30 2011 David Hrbáč <david@hrbac.cz> - 2.033-1
+- new upstream release
+
 * Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 2.030-1
 - new upstream release
 
