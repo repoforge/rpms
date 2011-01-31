@@ -1,23 +1,26 @@
 # $Id$
-# Authority: dag
+# Authority: shuff
 
+# ExcludeDist: el4
 ### EL6 ships with augeas-0.7.2-3.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 Summary: Configuration API and editing tool
 Name: augeas
-Version: 0.2.2
+Version: 0.7.4
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Base
 URL: http://augeas.net/
 
 Source: http://augeas.net/download/augeas-%{version}.tar.gz
-Patch0: augeas-0.2.2-const.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: bison
+BuildRequires: flex
+BuildRequires: gcc-c++
 BuildRequires: readline-devel
-Requires: augeas-libs = %{version}-%{release}
+Provides: augeas-libs = %{version}-%{release}
 
 %description
 Augeas is a configuration API and editing tool. It parses common configuration
@@ -36,19 +39,31 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+%package vim
+Summary: Vim syntax definitions for %{name}.
+Group: Applications/Editors
+Requires: vim-common >= 7.0
+
+%description vim
+Syntax and filetype detection files to make editing Augeas configurations in
+Vim 7 easier.
+
 %prep
 %setup
-%patch0 -p0
 
 %build
-%configure --disable-static
+%configure --disable-dependency-tracking --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+# fix location of Vim files
+%{!?el6:%{__mv} %{buildroot}%{_datadir}/vim %{buildroot}%{_datadir}/vim70}
+
 %post -p /sbin/ldconfig
+
 %postun -p /sbin/ldconfig
 
 %clean
@@ -56,25 +71,32 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
-%doc %{_mandir}/man1/augtool.1*
-%doc %{_mandir}/man1/augparse.1*
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README
+%doc %{_mandir}/man?/*
 %{_bindir}/augtool
 %{_bindir}/augparse
+%{_bindir}/fadot
 %{_datadir}/augeas/
-%{_libdir}/libaugeas.so.*
-%{_libdir}/libfa.so.*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/augeas.h
-%{_includedir}/fa.h
-%{_libdir}/libaugeas.so
-%{_libdir}/libfa.so
+%doc HACKING
+%{_includedir}/*.h
+%{_libdir}/*.so
 %{_libdir}/pkgconfig/augeas.pc
 %exclude %{_libdir}/libaugeas.la
 %exclude %{_libdir}/libfa.la
 
+%files vim
+%{_datadir}/vim*/vimfiles/*/augeas.vim
+
 %changelog
+* Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 0.7.4-1
+- Update to version 0.7.4.
+- RFX in el6.
+- Split off Vim config files.
+- Patch no longer necessary.
+
 * Sun Jul 20 2008 Dag Wieers <dag@wieers.com> - 0.2.2-1
 - Initial package. (using DAR)
