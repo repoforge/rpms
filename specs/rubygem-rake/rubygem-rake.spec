@@ -32,7 +32,7 @@ Rake is a Make-like program implemented in Ruby.  Tasks and dependencies are
 specified in standard Ruby syntax.
 
 %prep
-%setup -q -c -T
+%setup -c -T
 
 %build
 %{__mkdir_p} .%{gemdir}
