@@ -60,7 +60,7 @@ Vim 7 easier.
 %{__make} install DESTDIR="%{buildroot}"
 
 # fix location of Vim files
-%{!?el6:%{__mv} %{buildroot}%{_datadir}/vim %{buildroot}%{_datadir}/vim70}
+%{!?el6:%{__mv} %{buildroot}%{_datadir}/vim/vimfiles %{buildroot}%{_datadir}/vim/vim70}
 
 %post -p /sbin/ldconfig
 
@@ -89,7 +89,7 @@ Vim 7 easier.
 %exclude %{_libdir}/libfa.la
 
 %files vim
-%{_datadir}/vim*/vimfiles/*/augeas.vim
+%{_datadir}/vim/vim*/*/augeas.vim
 
 %changelog
 * Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 0.7.4-1
