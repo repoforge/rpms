@@ -69,6 +69,9 @@ desktop-file-install --vendor net                  \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
+# fix for stupid strip issue
+#%{__chmod} -R u+w %{buildroot}/*
+
 %post
 /sbin/ldconfig 2>/dev/null
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
