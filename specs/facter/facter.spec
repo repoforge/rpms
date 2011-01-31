@@ -14,8 +14,9 @@ URL: http://puppetlabs.com/projects/facter/
 Source: http://puppetlabs.com/downloads/facter/facter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildArch: noarch
 BuildRequires: ruby-devel >= 1.8.1
-Requires: ruby >= 1.8.1
+Requires: ruby(abi) = 1.8
 
 %description 
 Ruby module for collecting simple facts about a host Operating
