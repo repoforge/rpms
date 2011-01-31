@@ -14,7 +14,6 @@ Source: http://6xq.net/media/00/16/pianobar-2011.01.24.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
-BuildRequires: faad2-devel
 BuildRequires: gcc
 BuildRequires: libao-devel
 BuildRequires: libmad-devel
@@ -55,12 +54,12 @@ This package contains the runtime components of the libpiano shared library.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} all
+%{__make} %{?_smp_mflags} all DISABLE_FAAD=1
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install PREFIX="%{_usr}" DESTDIR="%{buildroot}"
-%{__make} install-libpiano PREFIX="%{_usr}" DESTDIR="%{buildroot}"
+%{__make} install PREFIX="%{_usr}" LIBDIR="%{_libdir}" DESTDIR="%{buildroot}"
+%{__make} install-libpiano PREFIX="%{_usr}" LIBDIR="%{_libdir}" DESTDIR="%{buildroot}"
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
