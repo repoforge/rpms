@@ -60,7 +60,12 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 
 %files
 %defattr(-, root, root, -)
-%doc %{geminstdir}/CHANGES %{geminstdir}/LICENSE %{geminstdir}/README
+%doc %{geminstdir}/CHANGELOG
+%doc %{geminstdir}/COPYING
+%doc %{geminstdir}/LICENSE
+%doc %{geminstdir}/Manifest
+%doc %{geminstdir}/README
+%doc %{geminstdir}/GEMNAME.gemspec
 %doc %{geminstdir}/test
 %doc %{gemdir}/doc/GEMNAME-%{version}
 %doc %{geminstdir}/doc
@@ -70,8 +75,10 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %dir %{geminstdir}
 %{geminstdir}/Rakefile
 %{geminstdir}/install.rb
+%{geminstdir}/setup.rb
 %{geminstdir}/bin
 %{geminstdir}/lib
+%{geminstdir}/resources
 
 %changelog
 * Mon Jan 31 2011 Steve Huff <shuff@vecna.org> - 
