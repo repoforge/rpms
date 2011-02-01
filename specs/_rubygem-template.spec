@@ -18,7 +18,7 @@ Group: Development/Languages
 License: GPL
 URL: http://rubygems.org/gems/GEMNAME/
 
-Source0: http://rubygems.org/downloads/GEMNAME-%{version}.gem
+Source: http://rubygems.org/downloads/GEMNAME-%{version}.gem
 BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
