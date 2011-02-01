@@ -7,7 +7,8 @@
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
-%define _with_gcc44 %{?el5:1}%{!?el5:0}
+%{?el5:%global _with_gcc44 1}
+%{!?el5:%global _with_gcc44 0}
 
 %define real_name Config-Augeas
 
