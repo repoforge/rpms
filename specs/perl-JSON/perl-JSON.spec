@@ -12,7 +12,7 @@
 
 Summary: Converts Perl data to and from JavaScript Object Notation
 Name: perl-JSON
-Version: 2.17
+Version: 2.50
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -73,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/JSON.pm
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 2.50-1
+- Updated to version 2.50.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 2.17-1
 - Updated to version 2.17.
 
