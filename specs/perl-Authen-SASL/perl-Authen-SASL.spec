@@ -17,7 +17,7 @@
 
 Summary: SASL Authentication framework
 Name: perl-Authen-SASL
-Version: 2.13
+Version: 2.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -72,6 +72,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Authen/SASL.pod
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 2.15-1
+- Updated to version 2.15.
+
 * Thu Jan  7 2010 Christoph Maser <cmr@financial.com> - 2.13-1
 - Updated to version 2.13.
 
