@@ -12,7 +12,7 @@
 
 Summary: Get the list of modules shipped with versions of perl
 Name: perl-Module-CoreList
-Version: 2.25
+Version: 2.44
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/CoreList.pm
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 2.44-1
+- Updated to version 2.44.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 2.25-1
 - Updated to version 2.25.
 
