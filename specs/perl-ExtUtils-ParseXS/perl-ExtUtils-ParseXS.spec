@@ -9,11 +9,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name ExtUtils-ParseXS
-%define real_version 2.2002
+%define real_version 2.2206
 
 Summary: Converts Perl XS code into C code
 Name: perl-ExtUtils-ParseXS
-Version: 2.20.02
+Version: 2.22.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -64,6 +64,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/ExtUtils/xsubpp
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 2.22.06-1
+- Updated to version 2.22.06.
+
 * Mon Jul 23 2009 Christoph Maser <cmr@financial.com> - 2.20.02-1
 - Updated to version 2.20.02.
 
