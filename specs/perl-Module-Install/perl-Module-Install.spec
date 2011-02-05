@@ -12,7 +12,7 @@
 
 Summary: Standalone, extensible Perl module installer
 Name: perl-Module-Install
-Version: 0.92
+Version: 1.00
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -110,6 +110,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/auto/share/
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 1.00-1
+- Updated to version 1.00.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.92-1
 - Updated to version 0.92.
 
