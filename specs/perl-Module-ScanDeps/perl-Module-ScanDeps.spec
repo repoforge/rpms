@@ -12,13 +12,14 @@
 
 Summary: Recursively scan Perl code for dependencies
 Name: perl-Module-ScanDeps
-Version: 0.96
+Version: 0.98
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-ScanDeps/
 
-Source: http://www.cpan.org/modules/by-module/Module/Module-ScanDeps-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Module/Module-ScanDeps-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RS/RSCHUPP/Module-ScanDeps-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -77,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/ScanDeps.pm
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 0.98-1
+- Updated to version 0.98.
+
 * Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.96-1
 - Updated to version 0.96.
 
