@@ -9,13 +9,14 @@
 
 Summary: Check and create SIGNATURE files for CPAN distributions
 Name: perl-Module-Signature
-Version: 0.61
+Version: 0.66
 Release: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Signature/
 
-Source: http://www.cpan.org/modules/by-module/Module/Module-Signature-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Module/Module-Signature-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Module-Signature-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -64,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Module/Signature.pm
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 0.66-1
+- Updated to version 0.66.
+
 * Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.61-1
 - Updated to version 0.61.
 
