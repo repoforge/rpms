@@ -9,13 +9,14 @@
 
 Summary: Convert POD to README file
 Name: perl-Pod-Readme
-Version: 0.09
+Version: 0.11
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Pod-Readme/
 
-Source: http://www.cpan.org/modules/by-module/Pod/Pod-Readme-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/Pod/Pod-Readme-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BIGPRESH/Pod-Readme-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -53,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Pod/Readme.pm
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 0.11-1
+- Updated to version 0.11.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 0.09-1
 - Initial package. (using DAR)
