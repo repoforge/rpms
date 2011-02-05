@@ -12,7 +12,7 @@
 
 Summary: Perl extension providing access to the GSSAPIv2 library
 Name: perl-GSSAPI
-Version: 0.26
+Version: 0.28
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/GSSAPI.pm
 
 %changelog
+* Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 0.28-1
+- Updated to release 0.28.
+
 * Wed Feb 20 2008 Dag Wieers <dag@wieers.com> - 0.26-1
 - Updated to release 0.26.
 
