@@ -15,13 +15,13 @@
 
 Summary: Perl module for persistence for Perl data structures
 Name: perl-Storable
-Version: 2.21
+Version: 2.25
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Storable/
 
-Source: http://www.cpan.org/modules/by-module/Storable/Storable-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMS/Storable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -57,6 +57,9 @@ find %{buildroot}%{_libdir} -name "*.so" -exec chmod u+w {} \;
 %{perl_vendorarch}/Storable.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 2.25-1
+- Updated to version 2.25.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 2.21-1
 - Updated to version 2.21.
 
