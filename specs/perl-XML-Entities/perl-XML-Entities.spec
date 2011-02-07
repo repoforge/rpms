@@ -1,6 +1,6 @@
 # $Id$
 # Authority: cmr
-# Upstream: Oldrich Kruza <sixtease$cpan,org>
+# Upstream: Jan Oldrich Kruza <Sixtease+cpan@gmail.com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,21 +9,26 @@
 
 Summary: Mapping of XML entities to Unicode
 Name: perl-XML-Entities
-Version: 0.0307
+Version: 1.0000
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Entities/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-Entities-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SI/SIXTEASE/XML-Entities-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl >= 1:5.008
+
+BuildRequires: perl(Carp)
 BuildRequires: perl(Test::More)
-BuildRequires: perl-libwww-perl
-Requires: perl >= 1:5.008
-Requires: perl-libwww-perl
+BuildRequires: perl >= 5.008
+Requires: perl(Carp)
+Requires: perl >= 5.008
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 Mapping of XML entities to Unicode.
@@ -50,7 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/XML::Entities.3pm*
 %doc %{_mandir}/man3/XML::Entities::Data.3pm*
-%doc %{_mandir}/man1/download-entities.pl.1.gz
+%doc %{_mandir}/man1/download-entities.pl.1*
+%doc %{_mandir}/man3/download-entities.pl.3pm*
 %dir %{perl_vendorlib}/XML/
 %{perl_vendorlib}/XML/Entities/
 %{perl_vendorlib}/XML/Entities.pm
@@ -58,5 +64,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 1.0000-1
+- Updated to version 1.0000.
+
 * Mon Mar 16 2009 Unknown - 0.0307-1
 - Initial package. (using DAR)
