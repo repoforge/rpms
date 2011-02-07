@@ -26,8 +26,14 @@ Source: http://www.cpan.org/authors/id/G/GA/GAAS/libwww-perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl >= 0:5.006
 Requires: perl >= 0:5.006
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 The World-Wide Web library for Perl.
