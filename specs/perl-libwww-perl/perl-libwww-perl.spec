@@ -16,7 +16,7 @@
 
 Summary: The World-Wide Web library for Perl
 Name: perl-libwww-perl
-Version: 5.826
+Version: 5.835
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc AUTHORS Changes MANIFEST META.yml README README.SSL
 %doc %{_mandir}/man3/Bundle::LWP.3pm*
 %{_bindir}/lwp-download
+%{_bindir}/lwp-dump
 %{_bindir}/lwp-mirror
 %{_bindir}/lwp-request
 %{_bindir}/lwp-rget
@@ -71,6 +72,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/lwpcook.pod
 %{perl_vendorlib}/lwptut.pod
 %{_mandir}/man1/lwp-download.1.gz
+%{_mandir}/man1/lwp-dump.1.gz
 %{_mandir}/man1/lwp-mirror.1.gz
 %{_mandir}/man1/lwp-request.1.gz
 %{_mandir}/man1/lwp-rget.1.gz
@@ -88,5 +90,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 5.835-1
+- Updated to version 5.835.
+
 * Thu Jul 23 2009 Christoph Maser <cmr@financial.com> - 5.826-1
 - Initial package. (using DAR)
