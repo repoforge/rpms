@@ -8,17 +8,23 @@
 
 Summary: Perl module providing GUI testing/interaction facilities
 Name: perl-X11-GUITest
-Version: 0.21
+Version: 0.22
 Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/X11-GUITest/
 
-Source: http://www.cpan.org/modules/by-module/X11/X11-GUITest-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CT/CTRONDLP/X11-GUITest-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: libX11-devel
+BuildRequires: libXext-devel
+BuildRequires: libXt-devel
 BuildRequires: perl >= 0:5.00503
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: libX11
+Requires: libXext
+Requires: libXt
 Requires: perl >= 0:5.00503
 
 %description
@@ -54,5 +60,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/X11/GUITest/
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.22-1
+- Updated to version 0.22.
+
 * Thu Feb 22 2007 Dag Wieers <dag@wieers.com> - 0.20-1
 - Initial package. (using DAR)
