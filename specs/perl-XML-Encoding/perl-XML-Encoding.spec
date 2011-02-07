@@ -17,18 +17,23 @@
 
 Summary: Perl module for parsing XML encoding maps
 Name: perl-XML-Encoding
-Version: 2.07
+Version: 2.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Encoding/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-Encoding-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SH/SHAY/XML-Encoding-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(XML::Parser) >= 2.18
+Requires: perl(XML::Parser) >= 2.18
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 perl-XML-Encoding is a Perl module for parsing XML encoding maps.
@@ -62,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/Encoding.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 2.08-1
+- Updated to version 2.08.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 2.07-1
 - Updated to version 2.07.
 
