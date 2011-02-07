@@ -22,9 +22,15 @@ URL: http://search.cpan.org/dist/YAML-Syck/
 Source: http://search.cpan.org/CPAN/authors/id/A/AV/AVAR/YAML-Syck-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.3.7
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.3.7
+BuildRequires: perl(Scalar::Util)
+BuildRequires: perl >= v5.6.0
+Requires: perl(Scalar::Util)
+Requires: perl >= v5.6.0
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 # this module satisfies the requirements for JSON::Any
 Provides: perl-JSON-Any-alternative = 1.21
