@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a library containing over 100 Zen Koans
 Name: perl-Zen-Koans
-Version: 0.04
+Version: 0.05
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,12 @@ Source: http://www.cpan.org/authors/id/L/LU/LUKEC/Zen-Koans-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More) >= 0.42
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 perl-Zen-Koans is a Perl module that implements a library containing
@@ -58,5 +62,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Zen/Koans.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.05-1
+- Updated to version 0.05.
+
 * Thu Oct 11 2007 Dag Wieers <dag@wieers.com> - 0.04-1
 - Initial package. (using DAR)
