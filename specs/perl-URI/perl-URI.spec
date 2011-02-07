@@ -20,7 +20,7 @@
 
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
-Version: 1.54
+Version: 1.58
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -49,6 +49,7 @@ perl-URI is a Perl module that implements Uniform Resource Identifiers.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -69,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 1.58-1
+- Updated to version 1.58.
+
 * Wed Apr  7 2010 Christoph Maser <cmr@financial.com> - 1.54-1
 - Updated to version 1.54.
 
