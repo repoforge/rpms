@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jeff Pinyan <japhy,734+CPAN$gmail,com>
+# Upstream: Gene Sullivan <gsullivan@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +9,25 @@
 
 Summary: Perl module that consists of explanation of a regular expression
 Name: perl-YAPE-Regex-Explain
-Version: 3.011
+Version: 4.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAPE-Regex-Explain/
 
-Source: http://www.cpan.org/authors/id/P/PI/PINYAN/YAPE-Regex-Explain-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GS/GSULLIVAN/YAPE-Regex-Explain-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
+BuildRequires: perl(YAPE::Regex)
+Requires: perl(Test::More)
+Requires: perl(YAPE::Regex)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 perl-YAPE-Regex-Explain is a Perl module that consists of explanation
@@ -56,5 +64,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAPE/Regex/Explain.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 4.01-1
+- Updated to version 4.01.
+
 * Sun Nov 04 2007 Dag Wieers <dag@wieers.com> - 3.011-1
 - Initial package. (using DAR)
