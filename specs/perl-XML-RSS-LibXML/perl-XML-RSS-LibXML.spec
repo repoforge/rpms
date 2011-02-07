@@ -9,23 +9,35 @@
 
 Summary: XML::RSS with XML::LibXML
 Name: perl-XML-RSS-LibXML
-Version: 0.3004
+Version: 0.3100
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-RSS-LibXML/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-RSS-LibXML-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DM/DMAKI/XML-RSS-LibXML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(Class::Accessor::Fast)
 BuildRequires: perl(DateTime::Format::Mail)
 BuildRequires: perl(DateTime::Format::W3CDTF)
-BuildRequires: perl(XML::LibXML)
+BuildRequires: perl(Encode)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl(XML::LibXML) >= 1.66
+BuildRequires: perl(XML::LibXML::XPathContext)
+Requires: perl(Class::Accessor::Fast)
+Requires: perl(DateTime::Format::Mail)
+Requires: perl(DateTime::Format::W3CDTF)
+Requires: perl(Encode)
+Requires: perl(UNIVERSAL::require)
+Requires: perl(XML::LibXML) >= 1.66
+Requires: perl(XML::LibXML::XPathContext)
 
-
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 
 %description
@@ -58,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/RSS/LibXML.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.3100-1
+- Updated to version 0.3100.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.3004-1
 - Updated to version 0.3004.
 
