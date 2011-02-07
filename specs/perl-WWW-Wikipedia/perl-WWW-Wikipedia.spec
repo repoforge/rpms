@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Ed Summers <ehs$pobox,com>
+# Upstream: Brian Cassidy <bricas@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,23 +9,30 @@
 
 Summary: Automated interface to the Wikipedia
 Name: perl-WWW-Wikipedia
-Version: 1.96
+Version: 1.98
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Wikipedia/
 
-Source: http://www.cpan.org/modules/by-module/WWW/WWW-Wikipedia-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRICAS/WWW-Wikipedia-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More)
-# From yaml requires
 BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Text::Autoformat)
 BuildRequires: perl(URI)
+BuildRequires: perl >= v5.6.0
+Requires: perl(LWP::UserAgent)
+Requires: perl(Text::Autoformat)
+Requires: perl(URI)
+Requires: perl >= v5.6.0
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 
 %description
@@ -60,6 +67,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Wikipedia.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 1.98-1
+- Updated to version 1.98.
+
 * Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 1.96-1
 - Updated to version 1.96.
 
