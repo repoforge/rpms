@@ -9,17 +9,26 @@
 
 Summary: Pure Perl implementation for parsing/writing xml files
 Name: perl-XML-TreePP
-Version: 0.39
+Version: 0.41
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-TreePP/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-TreePP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/K/KA/KAWASAKI/XML-TreePP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
+
 BuildRequires: perl, perl(ExtUtils::MakeMaker)
+BuildRequires: perl(LWP) >= 5.802
+BuildRequires: perl(Test::More)
+Requires: perl(LWP) >= 5.802
+Requires: perl(Test::More)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 Pure Perl implementation for parsing/writing xml files.
@@ -53,6 +62,9 @@ find example/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/TreePP.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.41-1
+- Updated to version 0.41.
+
 * Wed Jul  1 2009 Christoph Maser <cmr@financial.com> - 0.39-1
 - Updated to version 0.39.
 
