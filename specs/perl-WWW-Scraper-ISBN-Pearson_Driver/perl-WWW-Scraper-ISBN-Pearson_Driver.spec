@@ -9,28 +9,27 @@
 
 Summary: Search driver for Pearson Education's online catalog
 Name: perl-WWW-Scraper-ISBN-Pearson_Driver
-Version: 0.11
+Version: 0.17
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Scraper-ISBN-Pearson_Driver/
 
-Source: http://www.cpan.org/modules/by-module/WWW/WWW-Scraper-ISBN-Pearson_Driver-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BA/BARBIE/WWW-Scraper-ISBN-Pearson_Driver-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(Test::More)
-# From yaml requires
-BuildRequires: perl(Test::More)
-BuildRequires: perl(WWW::Mechanize)
+
+BuildRequires: perl(Test::More) >= 0.45  
+BuildRequires: perl(WWW::Mechanize) >= 1.60
 BuildRequires: perl(WWW::Scraper::ISBN) >= 0.25
 BuildRequires: perl(WWW::Scraper::ISBN::Driver) >= 0.18
-# From yaml recommends
-#BuildRequires: perl(Test::CPAN::Meta)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Test::Pod)
-BuildRequires: perl(Test::Pod::Coverage)
+Requires: perl(WWW::Mechanize) >= 1.60
+Requires: perl(WWW::Scraper::ISBN) >= 0.25
+Requires: perl(WWW::Scraper::ISBN::Driver) >= 0.18
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 
 %description
@@ -58,7 +57,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Artistic Changes LICENSE MANIFEST META.yml README examples/
+%doc Changes LICENSE MANIFEST META.yml README examples/
 %doc %{_mandir}/man3/WWW::Scraper::ISBN::Pearson_Driver.3pm*
 %dir %{perl_vendorlib}/WWW/
 %dir %{perl_vendorlib}/WWW/Scraper/
@@ -67,6 +66,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/WWW/Scraper/ISBN/Pearson_Driver.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.17-1
+- Updated to version 0.17.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 
