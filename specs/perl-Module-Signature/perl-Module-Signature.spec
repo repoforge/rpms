@@ -20,8 +20,8 @@ Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Module-Signature-%{ver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: gnupg
+#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Digest::SHA)
 BuildRequires: perl(IO::Socket::INET)
