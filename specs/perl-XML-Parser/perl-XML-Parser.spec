@@ -20,19 +20,26 @@
 
 Summary: XML-Parser Perl module
 Name: perl-XML-Parser
-Version: 2.36
+Version: 2.40
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Parser/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-Parser-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/XML-Parser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: perl >= 0:5.004
 BuildRequires: expat-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.004
+BuildRequires: perl(LWP)
+BuildRequires: perl >= 5.00405
+Requires: expat
+Requires: perl(LWP)
+Requires: perl >= 5.00405
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 XML-Parser Perl module.
@@ -70,6 +77,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/XML/Parser.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 2.40-1
+- Updated to version 2.40.
+
 * Sat Nov 24 2007 Dag Wieers <dag@wieers.com> - 2.36-1
 - Updated to release 2.36.
 
