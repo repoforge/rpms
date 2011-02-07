@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Robin Berjon <robin$knowscape,com>
+# Upstream: Chris Prather <chris@prather.org>
 
 ### EL6 ships with perl-XML-SAX-Writer-0.50-8.el6
 %{?el6:# Tag: rfx}
@@ -12,18 +12,31 @@
 
 Summary: SAX2 XML Writer
 Name: perl-XML-SAX-Writer
-Version: 0.52
+Version: 0.53
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-SAX-Writer/
 
-Source: http://www.cpan.org/modules/by-module/XML/XML-SAX-Writer-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN/XML-SAX-Writer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
+BuildRequires: perl(Encode) >= 2.12
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) >= 0.40
+BuildRequires: perl(XML::Filter::BufferText) >= 1.00
+BuildRequires: perl(XML::NamespaceSupport) >= 1.00
+BuildRequires: perl(XML::SAX::Exception) >= 1.01
+Requires: perl(Encode) >= 2.12
+Requires: perl(XML::Filter::BufferText) >= 1.00
+Requires: perl(XML::NamespaceSupport) >= 1.00
+Requires: perl(XML::SAX::Exception) >= 1.01
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 SAX2 XML Writer.
@@ -53,6 +66,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/XML/SAX/Writer
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.53-1
+- Updated to version 0.53.
+
 * Fri May 29 2009 Christoph Maser <cmr@financial.com> - 0.52-1
 - Updated to version 0.52.
 
