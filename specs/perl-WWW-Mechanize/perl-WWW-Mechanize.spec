@@ -9,7 +9,7 @@
 
 Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.62
+Version: 1.66
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -35,11 +35,14 @@ BuildRequires: perl(HTTP::Server::Simple::CGI)
 BuildRequires: perl(HTTP::Status)
 BuildRequires: perl(IO::Socket::SSL)
 #BuildRequires: perl(LWP) >= 5.829
+BuildRequires: perl(LWP)
 #BuildRequires: perl(LWP::UserAgent) >= 5.829
+BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(Pod::Usage)
 BuildRequires: perl(Test::More) >= 0.34
 BuildRequires: perl(Test::Warn) >= 0.11
-BuildRequires: perl(URI) >= 1.36
+#BuildRequires: perl(URI) >= 1.36
+BuildRequires: perl(URI)
 BuildRequires: perl(URI::URL)
 BuildRequires: perl(URI::file)
 BuildRequires: perl >= 5.008
@@ -58,11 +61,14 @@ Requires: perl(HTTP::Server::Simple::CGI)
 Requires: perl(HTTP::Status)
 Requires: perl(IO::Socket::SSL)
 #Requires: perl(LWP) >= 5.829
+Requires: perl(LWP)
 #Requires: perl(LWP::UserAgent) >= 5.829
+Requires: perl(LWP::UserAgent)
 Requires: perl(Pod::Usage)
 Requires: perl(Test::More) >= 0.34
 Requires: perl(Test::Warn) >= 0.11
-Requires: perl(URI) >= 1.36
+#Requires: perl(URI) >= 1.36
+Requires: perl(URI)
 Requires: perl(URI::URL)
 Requires: perl(URI::file)
 Requires: perl >= 5.008
@@ -102,6 +108,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 1.66-1
+- Updated to version 1.66.
+
 * Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.62-1
 - Updated to version 1.62.
 
