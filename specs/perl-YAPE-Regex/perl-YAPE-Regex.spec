@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Jeff Pinyan <japhy,734+CPAN$gmail,com>
+# Upstream: Gene Sullivan <gsullivan@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: Perl module that implements Yet Another Parser/Extractor for Regular Expressions
 Name: perl-YAPE-Regex
-Version: 3.04
+Version: 4.00
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAPE-Regex/
 
-Source: http://www.cpan.org/authors/id/P/PI/PINYAN/YAPE-Regex-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GS/GSULLIVAN/YAPE-Regex-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/YAPE/Regex.pm
 
 %changelog
+* Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 4.00-1
+- Updated to version 4.00.
+
 * Tue Dec  8 2009 Christoph Maser <cmr@financial.com> - 3.04-1
 - Updated to version 3.04.
 
