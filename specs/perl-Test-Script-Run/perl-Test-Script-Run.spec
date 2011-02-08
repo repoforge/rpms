@@ -9,7 +9,7 @@
 
 Summary: test the script with run
 Name: perl-%{real_name}
-Version: 0.03
+Version: 0.05
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,16 +19,11 @@ Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUNNAVY/Test-Script-Run-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: perl
-BuildRequires: perl(Module::Install)
 BuildRequires: perl(IPC::Run3)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
-BuildRequires: rpm-macros-rpmforge
-Requires: perl
 Requires: perl(IPC::Run3)
 Requires: perl(Test::Exception)
-
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
@@ -48,6 +43,7 @@ this module.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -67,5 +63,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Script/Run.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.05-1
+- Updated to version 0.05.
+
 * Tue Dec 22 2009 Steve Huff <shuff@vecna.org> - 0.03-1
 - Initial package.
