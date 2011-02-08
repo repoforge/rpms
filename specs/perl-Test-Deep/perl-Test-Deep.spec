@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Fergal Daly <fergal$esatclear,ie>
+# Upstream: Ricardo SIGNES <rjbs@cpan.org>
 
 ### EL6 ships with perl-Test-Deep-0.106-1.el6
 %{?el6:# Tag: rfx}
@@ -12,23 +12,31 @@
 
 Summary: Perl module implements an extremely flexible deep comparison
 Name: perl-Test-Deep
-Version: 0.106
+Version: 0.108
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Deep/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Deep-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RJ/RJBS/Test-Deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(List::Util) >= 1.09
 BuildRequires: perl(Scalar::Util) >= 1.09
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::NoWarnings) >= 0.02
 BuildRequires: perl(Test::Tester) >= 0.04
+Requires: perl(List::Util) >= 1.09
+Requires: perl(Scalar::Util) >= 1.09
+Requires: perl(Test::More)
+Requires: perl(Test::NoWarnings) >= 0.02
+Requires: perl(Test::Tester) >= 0.04
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 
 %description
@@ -40,6 +48,7 @@ perl-Test-Deep is a Perl module implements an extremely flexible deep comparison
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -62,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Deep.pod
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.108-1
+- Updated to version 0.108.
+
 * Sat Aug 29 2009 Christoph Maser <cmr@financial.com> - 0.106-1
 - Updated to version 0.106.
 
