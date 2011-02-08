@@ -8,18 +8,25 @@
 
 Summary: serialize data-structures between threads
 Name: perl-Thread-Serialize
-Version: 0.10
+Version: 0.11
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Serialize/
 
-Source: http://www.cpan.org/modules/by-module/Thread/Thread-Serialize-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Serialize-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Storable)
+BuildRequires: perl(load) >= 0.10
+Requires: perl(Storable)
+Requires: perl(load) >= 0.10
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 The Thread::Serialize module is a library for centralizing the 
@@ -39,6 +46,7 @@ threads enabled.
 %{expand: %%define optflags %{optflags} -fPIC}
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,5 +66,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Thread/Serialize.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.11-1
+- Updated to version 0.11.
+
 * Fri Jun 22 2007 Dominik Gehl <gehl@inverse.ca> - 0.10-1
 - Initial package.
