@@ -9,7 +9,7 @@
 
 Summary: Perl module that provides URI query string manipulation
 Name: perl-URI-Query
-Version: 0.07
+Version: 0.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -47,13 +47,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README TODO
+%doc MANIFEST README
 %doc %{_mandir}/man3/URI::Query.3pm*
 %dir %{perl_vendorlib}/URI/
 #%{perl_vendorlib}/URI/Query/
 %{perl_vendorlib}/URI/Query.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.08-1
+- Updated to version 0.08.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.07-1
 - Updated to version 0.07.
 
