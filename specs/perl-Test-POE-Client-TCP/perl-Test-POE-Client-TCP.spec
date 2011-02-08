@@ -9,38 +9,35 @@
 
 Summary: A POE Component providing TCP client services for test cases
 Name: perl-Test-POE-Client-TCP
-Version: 1.06
+Version: 1.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-POE-Client-TCP/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-POE-Client-TCP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BI/BINGOS/Test-POE-Client-TCP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-#BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
-BuildRequires: perl(ExtUtils::MakeMaker)
+
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(POE) >= 1.28
 BuildRequires: perl(POE::Filter)
 BuildRequires: perl(POE::Filter::Line)
 BuildRequires: perl(POE::Wheel::ReadWrite)
 BuildRequires: perl(POE::Wheel::SocketFactory)
-#BuildRequires: perl(Test::More) >= 0.47
-BuildRequires: perl(Test::More)
+BuildRequires: perl(Test::More) >= 0.47
 BuildRequires: perl(Text::ParseWords)
-BuildRequires: perl >= 5.6.0
+BuildRequires: perl >= v5.6.0
 Requires: perl(POE) >= 1.28
 Requires: perl(POE::Filter)
 Requires: perl(POE::Filter::Line)
 Requires: perl(POE::Wheel::ReadWrite)
 Requires: perl(POE::Wheel::SocketFactory)
-Requires: perl >= 5.6.0
+Requires: perl >= v5.6.0
 
-%filter_from_requires /^perl*/d
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
 %filter_setup
-
-
 
 %description
 A POE Component providing TCP client services for test cases.
@@ -76,6 +73,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Test/POE/Client/TCP.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.08-1
+- Updated to version 1.08.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.06-1
 - Updated to version 1.06.
 
