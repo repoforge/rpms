@@ -9,7 +9,7 @@
 
 Summary: comma-separated values manipulator (using XS or PurePerl)
 Name: perl-Text-CSV
-Version: 1.16
+Version: 1.21
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,7 +19,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MAKAMAKA/Text-CSV-%{version}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::Handle)
 BuildRequires: perl(Test::Harness)
 BuildRequires: perl(Test::More)
@@ -42,6 +42,7 @@ fields into a CSV string and parse a CSV string into fields.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -64,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/CSV_PP.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.21-1
+- Updated to version 1.21.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.16-1
 - Updated to version 1.16.
 
