@@ -9,7 +9,7 @@
 
 Summary: Extract collocations and Ngrams from text
 Name: perl-Text-NSP
-Version: 1.15
+Version: 1.21
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
@@ -57,6 +57,8 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %doc CHANGES FDL.txt GPL.txt INSTALL MANIFEST META.yml README TODO doc/
 %doc %{_mandir}/man1/combig.pl.1*
 %doc %{_mandir}/man1/count.pl.1*
+%doc %{_mandir}/man1/count2huge.pl.1*
+%doc %{_mandir}/man1/find-compounds.pl.1*
 %doc %{_mandir}/man1/huge-count.pl.1*
 %doc %{_mandir}/man1/huge-delete.pl.1*
 %doc %{_mandir}/man1/huge-merge.pl.1*
@@ -72,6 +74,8 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{_bindir}/combig-script.sh
 %{_bindir}/combig.pl
 %{_bindir}/count.pl
+%{_bindir}/count2huge.pl
+%{_bindir}/find-compounds.pl
 %{_bindir}/huge-count.pl
 %{_bindir}/huge-delete.pl
 %{_bindir}/huge-merge.pl
@@ -86,6 +90,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Text/NSP.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.21-1
+- Updated to version 1.21.
+
 * Fri Apr 16 2010 Christoph Maser <cmr@financial.com> - 1.15-1
 - Updated to version 1.15.
 
