@@ -9,25 +9,25 @@
 
 Summary: check whether Perl module files compile correctly
 Name: perl-Test-Compile
-Version: 0.11
-Release: 1
+Version: 0.13
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Compile/
 
 Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/Test-Compile-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl(Devel::CheckOS) >= 1.42
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(UNIVERSAL::require)
-BuildRequires: perl >= 5.6.0
-Requires: perl(Devel::CheckOS) >= 1.42
-Requires: perl(UNIVERSAL::require)
-Requires: perl >= 5.6.0
 
+BuildRequires: perl(ExtUtils::MakeMaker) 
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More) 
+BuildRequires: perl(UNIVERSAL::require)
+BuildRequires: perl >= v5.6.0
+Requires: perl(UNIVERSAL::require)
+Requires: perl >= v5.6.0
+
+### remove autoreq Perl dependencies
 %filter_from_requires /^perl*/d
 %filter_setup
 
@@ -60,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Compile.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.13-1
+- Updated to version 0.13.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 
