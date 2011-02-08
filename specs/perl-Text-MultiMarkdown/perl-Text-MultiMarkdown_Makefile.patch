@@ -1,13 +1,12 @@
-diff -Naur Text-MultiMarkdown-1.000032-orig/Makefile.PL Text-MultiMarkdown-1.000032/Makefile.PL
---- Text-MultiMarkdown-1.000032-orig/Makefile.PL	2010-01-19 05:31:01.000000000 -0500
-+++ Text-MultiMarkdown-1.000032/Makefile.PL	2010-03-10 10:13:59.000000000 -0500
-@@ -24,7 +24,8 @@
+--- Text-MultiMarkdown-1.000033/Makefile.PL.orig	2011-02-08 12:34:10.000000000 +0100
++++ Text-MultiMarkdown-1.000033/Makefile.PL	2011-02-08 12:32:38.000000000 +0100
+@@ -24,6 +24,7 @@
          and die $!;
  }
  
+-install_script 'script/MultiMarkdown.pl';
 +# we'll handle this in the RPM, thanks
- # Scripts I install
--prompt_script('script/MultiMarkdown.pl');
-+# prompt_script('script/MultiMarkdown.pl');
++#install_script 'script/MultiMarkdown.pl';
  
  WriteAll;
+
