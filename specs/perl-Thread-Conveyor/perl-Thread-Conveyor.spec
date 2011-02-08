@@ -8,18 +8,27 @@
 
 Summary: Transport of any data-structure between threads
 Name: perl-Thread-Conveyor
-Version: 0.17
+Version: 0.19
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Conveyor/
 
-Source: http://www.cpan.org/modules/by-module/Thread/Thread-Conveyor-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Conveyor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Thread::Serialize)
+BuildRequires: perl(Thread::Tie) >= 0.09
+BuildRequires: perl(load)
+Requires: perl(Thread::Serialize)
+Requires: perl(Thread::Tie) >= 0.09
+Requires: perl(load)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 The Thread::Conveyor object is a thread-safe data structure that 
@@ -50,6 +59,7 @@ threads enabled.
 %{expand: %%define optflags %{optflags} -fPIC}
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -76,5 +86,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Thread/Conveyor/Tied.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.19-1
+- Updated to version 0.19.
+
 * Fri Jun 22 2007 Dominik Gehl <gehl@inverse.ca> - 0.17-1
 - Initial package.
