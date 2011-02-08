@@ -9,7 +9,7 @@
 
 Summary: Utility functions for fiddling with tied variables
 Name: perl-%{real_name}
-Version: 0.02
+Version: 0.03
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -27,6 +27,8 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(overload)
 BuildRequires: perl(Scalar::Util) >= 1.09
 BuildRequires: perl(Symbol)
+BuildRequires: perl(constant)
+BuildRequires: perl(overload)
 BuildRequires: perl(warnings)
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
@@ -36,6 +38,8 @@ Requires: perl(Exporter) >= 5.57
 Requires: perl(overload)
 Requires: perl(Scalar::Util) >= 1.09
 Requires: perl(Symbol)
+Requires: perl(constant)
+Requires: perl(overload)
 Requires: perl(warnings)
 
 
@@ -81,5 +85,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Tie/*
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.03-1
+- Updated to version 0.03.
+
 * Wed May 05 2010 Steve Huff <shuff@vecna.org> - 0.02-1
 - Initial package.
