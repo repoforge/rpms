@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: Yuval Kogman <nothingmuch$woobling,org>
+# Upstream: Jesse Luehrs <doy@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,19 +9,24 @@
 
 Summary: minimal try/catch with proper localization of $@
 Name: perl-%{real_name}
-Version: 0.04
+Version: 0.09
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Try-Tiny/
 
-Source: http://search.cpan.org/CPAN/authors/id/N/NU/NUFFIN/Try-Tiny-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Try-Tiny-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
+Requires: perl(Test::More)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 This module provides bare bones try/catch statements that are designed to
@@ -48,6 +53,7 @@ error values (simple strings, references, objects, overloaded objects, etc).
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,12 +67,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml SIGNATURE
+%doc Changes MANIFEST META.yml 
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/Try/
 %{perl_vendorlib}/Try/*
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.09-1
+- Updated to version 0.09.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.04-1
 - Updated to version 0.04.
 
