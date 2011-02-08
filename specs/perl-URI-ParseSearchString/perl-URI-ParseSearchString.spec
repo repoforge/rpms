@@ -9,7 +9,7 @@
 
 Summary: Parse Apache referer logs and extract search engine query strings
 Name: perl-URI-ParseSearchString
-Version: 3.41
+Version: 3.441
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,10 +21,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
-#BuildRequires: perl(Test::More)    conflicts with perl package
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::NoWarnings)
 BuildRequires: perl(URI)
-#Requires: perl(Test::More)   conflicts with perl package
+Requires: perl(Test::More
 Requires: perl(Test::NoWarnings)
 Requires: perl(URI)
 
@@ -40,6 +40,7 @@ Parse referer logs for search engine query strings.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/URI/ParseSearchString.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 3.441-1
+- Updated to version 3.441.
+
 * Mon Mar  8 2010 Christoph Maser <cmr@financial.com> - 3.41-1
 - Updated to version 3.41.
 
