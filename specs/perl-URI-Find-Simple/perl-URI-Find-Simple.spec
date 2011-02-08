@@ -9,18 +9,24 @@
 
 Summary: Perl module to implement a simple interface to URI::Find
 Name: perl-URI-Find-Simple
-Version: 1.01
+Version: 1.03
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Find-Simple/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-Find-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TO/TOMI/URI-Find-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.6.0
-Requires: perl >= 0:5.6.0
+
+BuildRequires: perl(Test::More)
+BuildRequires: perl(URI::Find)
+Requires: perl(Test::More)
+Requires: perl(URI::Find)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 perl-URI-Find-Simple is a Perl module to implement a simple interface
@@ -53,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/URI/Find/Simple.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.03-1
+- Updated to version 1.03.
+
 * Mon Jun  8 2009 Christoph Maser <cmr@financial.com> - 1.01-1
 - Updated to version 1.01.
 
