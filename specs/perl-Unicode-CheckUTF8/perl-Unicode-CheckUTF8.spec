@@ -9,13 +9,13 @@
 
 Summary: Check if a scalar is valid UTF-8
 Name: perl-Unicode-CheckUTF8
-Version: 1.01
-Release: 1.2%{?dist}
+Version: 1.03
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Unicode-CheckUTF8/
 
-Source: http://www.cpan.org/modules/by-module/Unicode/Unicode-CheckUTF8-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BR/BRADFITZ/Unicode-CheckUTF8-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -51,5 +51,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Unicode/CheckUTF8/
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.03-1
+- Updated to version 1.03.
+
 * Fri Dec  9 2005 Dries Verachtert <dries@ulyssis.org> - 1.01-1
 - Initial package.
