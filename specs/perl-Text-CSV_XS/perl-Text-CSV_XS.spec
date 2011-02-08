@@ -9,7 +9,7 @@
 
 Summary: Comma-separated values manipulation routines
 Name: perl-Text-CSV_XS
-Version: 0.71
+Version: 0.80
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Config)
 BuildRequires: perl(DynaLoader)
+BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(IO::Handle)
 BuildRequires: perl(Test::Harness)
 BuildRequires: perl(Test::More)
@@ -43,6 +44,7 @@ fields into a CSV string and parse a CSV string into fields.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -67,6 +69,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Text/CSV_XS.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.80-1
+- Updated to version 0.80.
+
 * Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 0.71-1
 - Updated to version 0.71.
 
