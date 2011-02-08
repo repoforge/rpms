@@ -9,7 +9,7 @@
 
 Summary: Edit and create a single vCard (RFC 2426)
 Name: perl-Text-vCard
-Version: 2.07
+Version: 2.10
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,15 +19,16 @@ Source: http://search.cpan.org/CPAN/authors/id/L/LL/LLAP/Text-vCard-%{version}.t
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl(Class::Accessor::Fast)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Slurp) >= 9999.04
 BuildRequires: perl(MIME::QuotedPrint) >= 3.07
 BuildRequires: perl(Test::More) >= 0.1
-BuildRequires: perl(Text::vFile::asData) >= 0.05
+BuildRequires: perl(Text::vFile::asData) >= 0.07
 Requires: perl(File::Slurp) >= 9999.04
 Requires: perl(MIME::QuotedPrint) >= 3.07
 Requires: perl(Test::More) >= 0.1
-Requires: perl(Text::vFile::asData) >= 0.05
+Requires: perl(Text::vFile::asData) >= 0.07
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -42,6 +43,7 @@ With this module you can create and edit a single vCard (RFC 2426).
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -63,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/vCard.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 2.10-1
+- Updated to version 2.10.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 2.07-1
 - Updated to version 2.07.
 
