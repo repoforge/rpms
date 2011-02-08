@@ -9,7 +9,7 @@
 
 Summary: Simple standalone HTTP daemon
 Name: perl-HTTP-Server-Simple
-Version: 0.41
+Version: 0.43
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -17,15 +17,19 @@ URL: http://search.cpan.org/dist/HTTP-Server-Simple/
 
 Source: http://search.cpan.org/CPAN/authors/id/J/JE/JESSE/HTTP-Server-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+
 BuildRequires: perl(CGI)
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(Socket)
 BuildRequires: perl(Test::More)
-BuildRequires: perl(URI::Escape)
+Requires: perl(CGI)
+Requires: perl(Socket)
+Requires: perl(Test::More)
 
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 HTTP::Server::Simple is a very simple standalone HTTP daemon with no non-core
@@ -38,6 +42,7 @@ your existing tools.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -60,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Server/Simple.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.43-1
+- Updated to version 0.43.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 0.41-1
 - Updated to version 0.41.
 
