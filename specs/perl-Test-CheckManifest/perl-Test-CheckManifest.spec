@@ -9,7 +9,7 @@
 
 Summary: Checks manifest files
 Name: perl-Test-CheckManifest
-Version: 1.2
+Version: 1.22
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -44,6 +44,7 @@ Checks manifest files.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -64,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/CheckManifest.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.22-1
+- Updated to version 1.22.
+
 * Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.2-1
 - Updated to version 1.2.
 
