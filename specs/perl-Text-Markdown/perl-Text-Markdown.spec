@@ -9,7 +9,7 @@
 
 Summary: Convert Markdown syntax to (X)HTML
 Name: perl-%{real_name}
-Version: 1.000030
+Version: 1.000031
 Release: 1%{?dist}
 License: BSD
 Group: Applications/CPAN
@@ -20,20 +20,24 @@ Patch0: %{name}_Makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: perl >= 5.8.0
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(Encode)
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(FindBin)
 BuildRequires: perl(List::MoreUtils)
 BuildRequires: perl(Test::Differences)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More) >= 0.42
-BuildRequires: rpm-macros-rpmforge
-Requires: perl >= 5.8.0
+BuildRequires: perl(Text::Balanced)
+BuildRequires: perl >= v5.8.0
 Requires: perl(Digest::MD5)
 Requires: perl(Encode)
-Requires: perl(FindBin)
-Requires: perl(List::MoreUtils)
 Requires: perl(Text::Balanced)
+Requires: perl >= v5.8.0
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 # we are a Markdown compiler
 Provides: Markdown
@@ -63,6 +67,7 @@ tags anywhere in a Markdown document, and you can use block level HTML tags
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -86,5 +91,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/*
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.000031-1
+- Updated to version 1.000031.
+
 * Wed Mar 10 2010 Steve Huff <shuff@vecna.org> - 1.000030-1
 - Initial package.
