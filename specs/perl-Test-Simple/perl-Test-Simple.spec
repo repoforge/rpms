@@ -15,19 +15,25 @@
 
 Summary: Basic utilities for writing tests
 Name: perl-Test-Simple
-Version: 0.94
+Version: 0.96
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Simple/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MS/MSCHWERN/Test-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
+BuildRequires: perl(Test::Harness) >= 2.03
+BuildRequires: perl >= 5.006
+Requires: perl(Test::Harness) >= 2.03
+Requires: perl >= 5.006
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 BuildRequires: perl(Test::Harness) >= 2.03
 
 
@@ -45,6 +51,7 @@ run either standalone or under Test::Harness.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,7 +65,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README SIGNATURE TODO
+%doc Changes MANIFEST META.yml README TODO
 %doc %{_mandir}/man3/Test::*.3pm*
 %dir %{perl_vendorlib}/Test/
 %{perl_vendorlib}/Test/Builder/
@@ -68,6 +75,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Tutorial.pod
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.96-1
+- Updated to version 0.96.
+
 * Fri Sep  4 2009 Christoph Maser <cmr@financial.com> - 0.94-1
 - Updated to version 0.94.
 
