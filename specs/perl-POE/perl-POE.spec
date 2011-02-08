@@ -11,7 +11,7 @@
 
 Summary: Portable multitasking and networking framework for Perl
 Name: perl-POE
-Version: 1.284
+Version: 1.299
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -19,8 +19,8 @@ URL: http://search.cpan.org/dist/POE/
 
 Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/POE-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
+
 BuildRequires: perl(Carp)
 BuildRequires: perl(Errno) >= 1.09
 BuildRequires: perl(Exporter)
@@ -84,6 +84,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/POE.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.299-1
+- Updated to version 1.299.
+
 * Thu Jan 14 2010 Christoph Maser <cmr@financial.com> - 1.284-1
 - Updated to version 1.284.
 
