@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jos&#233; Alves de Castro <cog$cpan,org>
+# Upstream: Alberto Manuel Brandao Simoes <ambs@perl-hackers.net>
 
 %define debug_package %{nil}
 
@@ -11,17 +11,21 @@
 
 Summary: Ngram analysis of text
 Name: perl-Text-Ngram
-Version: 0.11
+Version: 0.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Ngram/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Ngram-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AM/AMBS/Text/Text-Ngram-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 Ngram analysis of text.
@@ -32,6 +36,7 @@ Ngram analysis of text.
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -53,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Text/Ngram/
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.13-1
+- Updated to version 0.13.
+
 * Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 
