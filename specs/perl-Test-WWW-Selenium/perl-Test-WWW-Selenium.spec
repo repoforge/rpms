@@ -9,7 +9,7 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.21
+Version: 1.23
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(HTTP::Headers)
 BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::Mock::LWP)
@@ -43,6 +44,7 @@ Test applications using Selenium Remote Control.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -69,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/mypod2html.pl
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.23-1
+- Updated to version 1.23.
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 1.21-1
 - Updated to version 1.21.
 
