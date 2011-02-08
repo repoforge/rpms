@@ -9,7 +9,7 @@
 
 Summary: Parse record-oriented data in a text file
 Name: perl-Text-RecordParser
-Version: 1.4.0
+Version: v1.5.0
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -17,14 +17,13 @@ URL: http://search.cpan.org/dist/Text-RecordParser/
 
 Source: http://search.cpan.org/CPAN/authors/id/K/KC/KCLARK/Text-RecordParser-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(Module::Build)
+
 BuildRequires: perl(Class::Accessor)
 BuildRequires: perl(IO::Scalar)
 BuildRequires: perl(List::MoreUtils)
 BuildRequires: perl(List::Util)
+BuildRequires: perl(Module::Build) >= 0.36
 BuildRequires: perl(Readonly)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
@@ -49,6 +48,7 @@ Parse record-oriented data in a text file.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" destdir="%{buildroot}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -78,6 +78,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - v1.5.0-1
+- Updated to version v1.5.0.
+
 * Thu Mar 11 2010 Christoph Maser <cmr@financial.com> - 1.4.0-1
 - Updated to version 1.4.0.
 
