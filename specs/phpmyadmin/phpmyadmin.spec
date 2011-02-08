@@ -5,7 +5,7 @@
 
 Summary: Web application to manage MySQL
 Name: phpmyadmin
-Version: 2.11.11.1
+Version: 2.11.11.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -76,6 +76,9 @@ EOF
 %config(noreplace) %{_datadir}/%{name}/config.inc.php
 
 %changelog
+* Tue Feb 08 2011 David Hrbáč <david@hrbac.cz> - 2.11.11.2-1
+- new upstream release
+
 * Mon Nov 29 2010 David Hrbáč <david@hrbac.cz> - 2.11.11.1-1
 - new upstream release
 
