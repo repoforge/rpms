@@ -1,8 +1,6 @@
 # $Id$
 # Authority: dag
 # Upstream: Adam Kennedy <adamk$cpan,org>
-# perl(Class::Autouse) not available for el4
-# ExcludeDist: el4
 
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -12,20 +10,19 @@
 
 Summary: Embed your tests in your code, next to what is being tested
 Name: perl-Test-Inline
-Version: 2.211
+Version: 2.212
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Inline/
 
-Source: http://www.cpan.org/modules/by-module/Test/Test-Inline-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/A/AD/ADAMK/Test-Inline-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl >= 5.6.0
+
 BuildRequires: perl(Algorithm::Dependency) >= 1.02
-BuildRequires: perl(Class::Autouse) >= 1.29
 BuildRequires: perl(Config::Tiny) >= 2.00
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(File::Find::Rule) >= 0.26
 BuildRequires: perl(File::Flat) >= 1.00
 BuildRequires: perl(File::Remove) >= 0.37
@@ -36,9 +33,11 @@ BuildRequires: perl(Getopt::Long) >= 2.34
 BuildRequires: perl(List::Util) >= 1.19
 BuildRequires: perl(Params::Util) >= 0.21
 BuildRequires: perl(Pod::Tests) >= 0.18
-Requires: perl >= 5.6.0
+BuildRequires: perl(Test::ClassAPI) >= 1.02
+BuildRequires: perl(Test::More) >= 0.42
+BuildRequires: perl(Test::Script) >= 1.02
+BuildRequires: perl >= v5.6.0
 Requires: perl(Algorithm::Dependency) >= 1.02
-Requires: perl(Class::Autouse) >= 1.29
 Requires: perl(Config::Tiny) >= 2.00
 Requires: perl(File::Find::Rule) >= 0.26
 Requires: perl(File::Flat) >= 1.00
@@ -50,7 +49,11 @@ Requires: perl(Getopt::Long) >= 2.34
 Requires: perl(List::Util) >= 1.19
 Requires: perl(Params::Util) >= 0.21
 Requires: perl(Pod::Tests) >= 0.18
-AutoReq: no
+Requires: perl >= v5.6.0
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 
 %description
@@ -71,6 +74,7 @@ EOF
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -94,6 +98,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Inline.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 2.212-1
+- Updated to version 2.212.
+
 * Wed Jul 15 2009 Christoph Maser <cmr@financial.com> - 2.211-1
 - Updated to version 2.211.
 
