@@ -9,19 +9,21 @@
 
 Summary: Lightweight Text Template Processor
 Name: perl-Text-Templet
-Version: 2.9
+Version: 3.0
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Templet/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Templet-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DP/DPETROV/Text-Templet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.006
+
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.006
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 template processor built using Perl's eval().
@@ -32,6 +34,7 @@ template processor built using Perl's eval().
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Templet.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 3.0-1
+- Updated to version 3.0.
+
 * Thu Jun 11 2009 Christoph Maser <cmr@financial.com> - 2.9-1
 - Updated to version 2.9.
 
