@@ -10,17 +10,22 @@
 Summary: Efficiently compute time from local and GMT time
 Summary: Perl module named Time-Local
 Name: perl-Time-Local
-Version: 1.1901
+Version: 1.2000
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Time-Local/
 
-Source: http://www.cpan.org/modules/by-module/Time/Time-Local-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Time-Local-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 Efficiently compute time from local and GMT time.
@@ -31,6 +36,7 @@ Efficiently compute time from local and GMT time.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -51,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Time/Local.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.2000-1
+- Updated to version 1.2000.
+
 * Wed Jun 10 2009 Christoph Maser <cmr@financial.com> - 1.1901-1
 - Updated to version 1.1901.
 
