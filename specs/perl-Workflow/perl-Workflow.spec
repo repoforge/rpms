@@ -9,7 +9,7 @@
 
 Summary: Simple, flexible system to implement workflows
 Name: perl-Workflow
-Version: 1.33
+Version: 1.34
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -33,6 +33,7 @@ BuildRequires: perl(File::Slurp)
 BuildRequires: perl(List::MoreUtils)
 BuildRequires: perl(Log::Dispatch) >= 2
 BuildRequires: perl(Log::Log4perl) >= 0.34
+BuildRequires: perl(Module::Build) >= 0.36
 BuildRequires: perl(Safe)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More) >= 0.41
@@ -65,6 +66,7 @@ Simple, flexible system to implement workflows.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -87,6 +89,9 @@ find doc/ eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Workflow.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.34-1
+- Updated to version 1.34.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 1.33-1
 - Updated to version 1.33.
 
