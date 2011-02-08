@@ -8,18 +8,25 @@
 
 Summary: Tie variables into a thread of their own
 Name: perl-Thread-Tie
-Version: 0.12
+Version: 0.13
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Tie/
 
-Source: http://www.cpan.org/modules/by-module/Thread/Thread-Tie-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Tie-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Thread::Serialize) >= 0.07
+BuildRequires: perl(load) >= 0.11
+Requires: perl(Thread::Serialize) >= 0.07
+Requires: perl(load) >= 0.11
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 The standard shared variable scheme used by Perl, is based on tie-ing
@@ -53,6 +60,7 @@ threads enabled.
 %{expand: %%define optflags %{optflags} -fPIC}
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -83,5 +91,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Thread/Tie/Thread.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.13-1
+- Updated to version 0.13.
+
 * Fri Jun 22 2007 Dominik Gehl <gehl@inverse.ca> - 0.12-1
 - Initial package.
