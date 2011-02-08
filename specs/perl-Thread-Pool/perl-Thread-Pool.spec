@@ -8,18 +8,25 @@
 
 Summary: Group of threads for performing similar jobs
 Name: perl-Thread-Pool
-Version: 0.32
+Version: 0.33
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Thread-Pool/
 
-Source: http://www.cpan.org/modules/by-module/Thread/Thread-Pool-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/E/EL/ELIZABETH/Thread-Pool-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Thread::Conveyor) >= 0.15
+BuildRequires: perl(Thread::Conveyor::Monitored) >= 0.11
+Requires: perl(Thread::Conveyor) >= 0.15
+Requires: perl(Thread::Conveyor::Monitored) >= 0.11
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 The Thread::Pool allows you to set up a group of (worker) threads to
@@ -39,6 +46,7 @@ threads enabled.
 %{expand: %%define optflags %{optflags} -fPIC}
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,5 +66,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Thread/Pool.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.33-1
+- Updated to version 0.33.
+
 * Fri Jun 22 2007 Dominik Gehl <gehl@inverse.ca> - 0.32-1
 - Initial package.
