@@ -19,24 +19,34 @@
 
 Summary: Object Oriented Tk extension for Perl
 Name: perl-Tk
-Version: 804.028
-Release: 2%{?dist}
+Version: 804.029
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tk/
 
-Source: http://www.cpan.org/modules/by-module/Tk/Tk-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SR/SREZIC/Tk-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 1:5.7.0
 BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
+BuildRequires: perl(Encode)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{!?_without_tcltk_devel:BuildRequires: tk-devel}
 %{?_without_tcltk_devel:BuildRequires: tk}
 Requires: perl >= 1:5.7.0
-Provides: perl(Tk::LabRadio), perl(Tk::TextReindex)
+Requires: perl(Encode)
+Requires: perl(Test::More)
+Provides: perl(Tk::LabRadio)
+Provides: perl(Tk::TextReindex)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 This module contains an object oriented Tk extension for Perl.
@@ -48,6 +58,7 @@ This module contains an object oriented Tk extension for Perl.
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" \
     XFT="1" X11LIB="%{_prefix}/X11R6/%{_lib}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -90,6 +101,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/fix_4_os2.pl
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 804.029-1
+- Updated to version 804.029.
+
 * Thu Dec 27 2007 Dag Wieers <dag@wieers.com> - 804.028-2
 - Got rid of wrong /usr/local/bin/nperl dependency.
 
