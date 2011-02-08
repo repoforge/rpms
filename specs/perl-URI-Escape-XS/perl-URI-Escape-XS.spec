@@ -9,19 +9,23 @@
 
 Summary: Perl module that is a drop-in replacement for URI::Escape
 Name: perl-URI-Escape-XS
-Version: 0.06
+Version: 0.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-Escape-XS/
 
-Source: http://www.cpan.org/modules/by-module/URI/URI-Escape-XS-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DA/DANKOGAI/URI-Escape-XS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(ExtUtils::MakeMaker)
-#BuildRequires: perl(Test::More)
-#Requires: perl(Test::More)
+BuildRequires: perl(Test::More)
+Requires: perl(Test::More)
 Requires: perl 
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 perl-URI-Escape-XS is a Perl module that is a drop-in replacement
@@ -41,6 +45,7 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
+%{__make} test
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -60,6 +65,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/URI/Escape/XS/
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.08-1
+- Updated to version 0.08.
+
 * Fri Oct 16 2009 Christoph Maser <cmr@financial.com> - 0.06-1
 - Updated to version 0.06.
 
