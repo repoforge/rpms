@@ -12,35 +12,33 @@
 
 Summary: Perl extension to test methods for warnings
 Name: perl-Test-Warn
-Version: 0.21
-Release: 2%{?dist}
+Version: 0.22
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Test-Warn/
 
-Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/Test-Warn-%{version}.zip
+Source: http://search.cpan.org/CPAN/authors/id/C/CH/CHORNY/Test-Warn-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml requires
-#BuildRequires: perl(File::Spec)
-#BuildRequires: perl(Sub::Uplevel) >= 0.12
-#BuildRequires: perl(Test::Builder) >= 0.13
-#BuildRequires: perl(Test::Builder::Tester) >= 1.02
-BuildRequires: perl(Test::Builder::Tester)
-#BuildRequires: perl(Test::More)
-BuildRequires: perl(Tree::DAG_Node)
-BuildRequires: perl >= 5.006
 
-# From yaml requires ( the ones wich are not found automatically )
-Requires: perl(File::Spec)
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(Sub::Uplevel) >= 0.12
+BuildRequires: perl(Test::Builder) >= 0.13
+BuildRequires: perl(Test::Builder::Tester) >= 1.02
+BuildRequires: perl(Test::More)
+BuildRequires: perl(Tree::DAG_Node) >= 1.02
+BuildRequires: perl >= 5.006
+Requires: perl(Sub::Uplevel) >= 0.12
 Requires: perl(Test::Builder) >= 0.13
-#Requires: perl(Test::Builder::Tester) >= 1.02
-Requires: perl(Test::Builder::Tester)
-Requires: perl(Test::More)
-Requires: perl(Tree::DAG_Node)
+Requires: perl(Test::Builder::Tester) >= 1.02
+Requires: perl(Tree::DAG_Node) >= 1.02
+Requires: perl >= 5.006
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 
 %description
@@ -73,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Warn.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.22-1
+- Updated to version 0.22.
+
 * Thu Dec 09 2009 Christoph Maser <cmr@financial.com> - 0.21-2
 - remove version on dependency perl(Test::Builder::Tester)
 
