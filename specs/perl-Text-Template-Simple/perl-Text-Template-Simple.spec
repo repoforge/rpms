@@ -9,26 +9,25 @@
 
 Summary: Simple text template engine
 Name: perl-Text-Template-Simple
-Version: 0.81
+Version: 0.82
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Template-Simple/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Template-Simple-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/B/BU/BURAK/Text-Template-Simple-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-# From yaml build_requires
-BuildRequires: perl(File::Temp)
-BuildRequires: perl(Test::More)
-# From yaml requires
-BuildRequires: perl(Digest::MD5) >= 1.00
-# From yaml recommends
-BuildRequires: perl(Devel::Size)
-BuildRequires: perl(Perl::Tidy)
-BuildRequires: perl(Text::Table)
 
+BuildRequires: perl(Digest::MD5) >= 1.00
+BuildRequires: perl(File::Temp) >= 0.12
+BuildRequires: perl(Module::Build) >= 0.36
+BuildRequires: perl(Test::More) >= 0.40
+Requires: perl(Digest::MD5) >= 1.00
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 Simple text template engine.
@@ -39,6 +38,7 @@ Simple text template engine.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/Template/Simple.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.82-1
+- Updated to version 0.82.
+
 * Mon Sep 14 2009 Christoph Maser <cmr@financial.com> - 0.81-1
 - Updated to version 0.81.
 
