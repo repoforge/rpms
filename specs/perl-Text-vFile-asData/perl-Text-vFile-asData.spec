@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Richard Clamp <richardc$unixbeard,net>
+# Upstream: Elizabeth Mattijsen <liz@dijkmat.nl>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,19 +9,25 @@
 
 Summary: Parse vFile formatted files into data structures
 Name: perl-Text-vFile-asData
-Version: 0.05
-Release: 2%{?dist}
+Version: 0.07
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-vFile-asData/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-vFile-asData-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCLAMP/Text-vFile-asData-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
+BuildRequires: perl(Class::Accessor::Chained)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More) 
 Requires: perl(Class::Accessor::Chained)
+Requires: perl(Test::More)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 With this package you can parse vFile formatted files into data structures.
@@ -50,6 +56,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Text/vFile/asData.pm
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.07-1
+- Updated to version 0.07.
+
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.19-1
+- Updated to version 0.19.
+
 * Wed Jun 11 2008 Dries Verachtert <dries@ulyssis.org> - 0.05-2
 - Added Class::Accessor::Chained requirement, thanks to Sven Sternberger.
 
