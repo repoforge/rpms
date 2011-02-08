@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Greg McCarroll <greg$mccarroll,org,uk>
+# Upstream: Max Kanat-Alexander <mkanat@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: Library for generic Version Control System access in Perl
 Name: perl-VCS
-Version: 0.14
-Release: 1.2%{?dist}
+Version: 0.16
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/VCS/
 
-Source: http://www.cpan.org/modules/by-module/VCS/VCS-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/MK/MKANAT/VCS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/VCS_dev.pod
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.16-1
+- Updated to version 0.16.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 0.14-1.2
 - Rebuild for Fedora Core 5.
 
