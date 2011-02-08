@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Chia-liang Kao (&#39640;&#22025;&#33391;) <clkao$clkao,org>
+# Upstream: Thomas Sibley <tsibley@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,18 +9,22 @@
 
 Summary: Generate pronounceable passwords
 Name: perl-Text-Password-Pronounceable
-Version: 0.28
+Version: 0.30
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Text-Password-Pronounceable/
 
-Source: http://www.cpan.org/modules/by-module/Text/Text-Password-Pronounceable-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/T/TS/TSIBLEY/Text-Password-Pronounceable-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 Generate pronounceable passwords.
@@ -31,6 +35,7 @@ Generate pronounceable passwords.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -50,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorlib}/Text/Password/
 
 %changelog
+* Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.30-1
+- Updated to version 0.30.
+
 * Sun Apr 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.28-1
 - Initial package.
