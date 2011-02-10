@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Nicola Worthington <nicolaw$cpan,org>
+# Upstream: Jens Rehsack <rehsack@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,29 +9,32 @@
 
 Summary: Interface to filesystem names and their properties
 Name: perl-Sys-Filesystem
-Version: 1.25
-Release: 1
+Version: 1.30
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Sys-Filesystem/
 
-Source: http://www.cpan.org/modules/by-module/Sys/Sys-Filesystem-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RE/REHSACK/Sys-Filesystem-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
+
 BuildRequires: perl(Carp)
+BuildRequires: perl(FindBin)
 BuildRequires: perl(IO)
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(Module::Build) >= 0.36
+BuildRequires: perl(Module::Pluggable) >= 3.9
 BuildRequires: perl(Params::Util) >= 1.00
-BuildRequires: perl >= 5.006
+BuildRequires: perl(Test::More) >= 0.9
+BuildRequires: perl >= 5.008
 Requires: perl(Carp)
+Requires: perl(FindBin)
 Requires: perl(IO)
+Requires: perl(Module::Pluggable) >= 3.9
 Requires: perl(Params::Util) >= 1.00
-Requires: perl >= 5.006
+Requires: perl >= 5.008
 
-%filter_from_requires /^perl*/d
-%filter_setup
-
+### remove autoreq Perl dependencies
 %filter_from_requires /^perl*/d
 %filter_setup
 
@@ -66,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Sys/Filesystem/
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.30-1
+- Updated to version 1.30.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.25-1
 - Updated to version 1.25.
 
