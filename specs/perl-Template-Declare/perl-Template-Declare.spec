@@ -9,13 +9,13 @@
 
 Summary: Perlish declarative templates
 Name: perl-Template-Declare
-Version: 0.43
-Release: 1
+Version: 0.44
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Declare/
 
-Source: http://www.cpan.org/modules/by-module/Template/Template-Declare-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Template-Declare-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -48,6 +48,7 @@ Perlish declarative templates.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -69,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Declare.pm
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 0.44-1
+- Updated to version 0.44.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 0.43-1
 - Updated to version 0.43.
 
