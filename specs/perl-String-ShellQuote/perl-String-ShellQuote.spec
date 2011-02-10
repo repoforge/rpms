@@ -9,18 +9,22 @@
 
 Summary: Quote a string for passing through a shell
 Name: perl-String-ShellQuote
-Version: 1.03
-Release: 2.2%{?dist}
+Version: 1.04
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/String-ShellQuote/
 
-Source: http://www.cpan.org/modules/by-module/String/String-ShellQuote-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RO/ROSCH/String-ShellQuote-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
+
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 This module contains some functions which are useful for quoting strings
@@ -32,6 +36,7 @@ which are going to pass through the shell or a shell-like object.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +57,9 @@ which are going to pass through the shell or a shell-like object.
 %{perl_vendorlib}/String/ShellQuote.pm
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.04-1
+- Updated to version 1.04.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.03-2.2
 - Rebuild for Fedora Core 5.
 
