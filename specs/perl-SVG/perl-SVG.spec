@@ -9,19 +9,24 @@
 
 Summary: Perl extension for generating Scalable Vector Graphics (SVG) documents
 Name: perl-SVG
-Version: 2.49
+Version: 2.50
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SVG/
 
-Source: http://www.cpan.org/modules/by-module/SVG/SVG-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RO/RONAN/SVG-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl >= 0:5.00503
+
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl >= 0:5.00503
+BuildRequires: perl(Scalar::Util)
+Requires: perl(Scalar::Util)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 Perl extension for generating Scalable Vector Graphics (SVG) documents.
@@ -32,6 +37,7 @@ Perl extension for generating Scalable Vector Graphics (SVG) documents.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,6 +61,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/SVG.pm
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 2.50-1
+- Updated to version 2.50.
+
 * Wed Jun 17 2009 Christoph Maser <cmr@financial.com> - 2.49-1
 - Updated to version 2.49.
 
