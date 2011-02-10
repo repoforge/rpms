@@ -9,18 +9,18 @@
 
 Name: perl-SQL-Abstract
 Summary: Generate SQL from Perl data structures
-Version: 1.71
+Version: 1.72
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Abstract/
 
-#Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/SQL-Abstract-%{version}.tar.gz
-Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Abstract-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/SQL-Abstract-%{version}.tar.gz
+#Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Abstract-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Class::Accessor::Grouped) >= 0.09005
+BuildRequires: perl(Class::Accessor::Grouped) >= 0.10002
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Getopt::Long::Descriptive) >= 0.086
@@ -33,7 +33,7 @@ BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More)
 #BuildRequires: perl(Test::Warn)
 BuildRequires: perl >= v5.6.2
-Requires: perl(Class::Accessor::Grouped) >= 0.09005
+Requires: perl(Class::Accessor::Grouped) >= 0.10002
 Requires: perl(Getopt::Long::Descriptive) >= 0.086
 Requires: perl(Hash::Merge) >= 0.12
 Requires: perl(List::Util)
@@ -63,7 +63,7 @@ figures it out.
 #chmod -R u+w %{_builddir}/%{pkgname}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}" --skipdeps
 %{__make} %{?_smp_mflags}
 
 %install
@@ -88,6 +88,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.72-1
+- Updated to version 1.72.
+
 * Wed Nov 10 2010 David Hrbáč <david@hrbac.cz> - 1.71-1
 - new upstream release
 
