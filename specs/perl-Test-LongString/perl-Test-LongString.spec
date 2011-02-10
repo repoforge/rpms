@@ -9,7 +9,7 @@
 
 Summary: Tests strings for equality, with more helpful failures
 Name: perl-Test-LongString
-Version: 0.14
+Version: 0.15
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/LongString.pm
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 0.15-1
+- Updated to version 0.15.
+
 * Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 0.14-1
 - Updated to version 0.14.
 
