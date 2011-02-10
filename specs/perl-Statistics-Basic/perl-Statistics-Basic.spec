@@ -2,15 +2,13 @@
 # Authority: cmr
 # Upstream: Paul Miller <jettero@cpan.org>
 
-
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
-
 %define real_name Statistics-Basic
 
 Summary: Perl module named Statistics-Basic
 Name: perl-Statistics-Basic
-Version: 1.6601
-Release: 2%{?dist}
+Version: 1.6602
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Statistics-Basic/
@@ -40,6 +38,7 @@ perl-Statistics-Basic is a Perl module.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -61,6 +60,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Statistics/Basic.pod
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.6602-1
+- Updated to version 1.6602.
+
 * Sat Feb 06 2010 Christoph Maser <cmr@financial.com> - 1.6601-2
 - Cleanup, trigger rebuild
 
