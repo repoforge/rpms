@@ -9,7 +9,7 @@
 
 Summary: a interface to Prowl Public API
 Name: perl-%{real_name}
-Version: 0.06
+Version: 0.07
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -21,6 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Carp)
 BuildRequires: perl(Crypt::SSLeay)
 BuildRequires: perl(LWP::UserAgent)
+BuildRequires: perl(ExtUtils::MakeMaker) 
 BuildRequires: perl(Test::More)
 BuildRequires: perl(URI::Escape)
 BuildRequires: perl(XML::Simple)
@@ -46,6 +47,7 @@ This module aims to be a implementation of a interface to the Prowl Public API
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -68,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WebService/Prowl/*.pm
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 0.07-1
+- Updated to version 0.07.
+
 * Tue Nov 24 2009 Christoph Maser <cmr@financial.com> - 0.06-1
 - Updated to version 0.06.
 
