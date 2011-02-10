@@ -9,18 +9,24 @@
 
 Summary: The Command-Line User Interface
 Name: perl-Term-Clui
-Version: 1.44
-Release: 1
+Version: 1.64
+Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-Clui/
 
-Source: http://www.cpan.org/modules/by-module/Term/Term-Clui-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PJ/PJB/Term-Clui-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Term::ReadKey)
+Requires: perl(Term::ReadKey)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 
 %description
 Term::Clui offers a high-level user interface, with subroutines &choose
@@ -40,6 +46,7 @@ with its main subroutine &select_file.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -58,6 +65,9 @@ with its main subroutine &select_file.
 %{perl_vendorlib}/Term/Clui/*
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.64-1
+- Updated to version 1.64.
+
 * Wed Dec  9 2009 Christoph Maser <cmr@financial.com> - 1.44-1
 - Updated to version 1.44.
 
