@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Jeff Zucker <jeff$vpservices,com>
+# Upstream: Jens Rehsack <rehsack@cpan.org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,16 +9,16 @@
 
 Summary: SQL parsing and processing engine
 Name: perl-SQL-Statement
-Version: 1.23
-Release: 1
+Version: 1.33
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Statement/
 
-Source: http://www.cpan.org/modules/by-module/SQL/SQL-Statement-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RE/REHSACK/SQL-Statement-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
+
 BuildRequires: perl(Carp)
 BuildRequires: perl(Clone) >= 0.30
 BuildRequires: perl(DBD::File) >= 0.37
@@ -34,7 +34,7 @@ Requires: perl(DBD::File) >= 0.37
 Requires: perl(Data::Dumper)
 Requires: perl(Params::Util) >= 1.00
 Requires: perl(Scalar::Util) >= 1.0
-#dRequires: perl(Test::Simple) >= 0.86
+#BuildRequires: perl(Test::Simple) >= 0.86
 Requires: perl(Test::Simple)
 
 %filter_from_requires /^perl*/d
@@ -71,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/SQL
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.33-1
+- Updated to version 1.33.
+
 * Thu Dec 10 2009 Christoph Maser <cmr@financial.com> - 1.23-1
 - Updated to version 1.23.
 
