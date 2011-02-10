@@ -9,18 +9,23 @@
 
 Summary: TT2/3, HT, HTE, Tmpl, and Velocity Engine
 Name: perl-Template-Alloy
-Version: 1.013
+Version: 1.016
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Alloy/
 
-Source: http://www.cpan.org/modules/by-module/Template/Template-Alloy-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RH/RHANDOM/Template-Alloy-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
+
+BuildRequires: perl(Digest::MD5) >= 1
 BuildRequires: perl(ExtUtils::MakeMaker)
+Requires: perl(Digest::MD5) >= 1
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 perl-Template-Alloy is a Perl module that implements a TT2/3, HT, HTE,
@@ -32,6 +37,7 @@ Tmpl, and Velocity Engine.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,6 +63,9 @@ find samples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Template/Alloy.pod
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.016-1
+- Updated to version 1.016.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.013-1
 - Updated to version 1.013.
 
