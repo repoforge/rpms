@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ken Y, Clark <kclark$cpan,org>
+# Upstream: Jess Robinson <cpan@desert-island.me.uk>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,13 +9,13 @@
 
 Summary: SQL DDL transformations and more
 Name: perl-SQL-Translator
-Version: 0.11006
+Version: 0.11007
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SQL-Translator/
 
-Source: http://search.cpan.org/CPAN/authors/id/R/RI/RIBASUSHI/SQL-Translator-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/J/JR/JROBINSON/SQL-Translator-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,6 +34,7 @@ BuildRequires: perl(IO::Dir)
 BuildRequires: perl(IO::Scalar) >= 2.11
 BuildRequires: perl(Parse::RecDescent) >= 1.962002
 BuildRequires: perl(Pod::Usage)
+BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::Differences)
 BuildRequires: perl(Test::Exception)
 BuildRequires: perl(Test::More) >= 0.6
@@ -53,6 +54,7 @@ Requires: perl(IO::Dir)
 Requires: perl(IO::Scalar) >= 2.11
 Requires: perl(Parse::RecDescent) >= 1.962002
 Requires: perl(Pod::Usage)
+Requires: perl(Scalar::Util)
 Requires: perl(XML::Writer) >= 0.5
 Requires: perl >= 5.005
 
@@ -113,6 +115,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/sqlt-graph
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 0.11007-1
+- Updated to version 0.11007.
+
 * Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 0.11006-1
 - Updated to version 0.11006.
 
