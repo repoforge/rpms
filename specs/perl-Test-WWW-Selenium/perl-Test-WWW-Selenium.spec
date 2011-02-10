@@ -9,7 +9,7 @@
 
 Summary: Test applications using Selenium Remote Control
 Name: perl-Test-WWW-Selenium
-Version: 1.23
+Version: 1.24
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -71,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/WWW/mypod2html.pl
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.24-1
+- Updated to version 1.24.
+
 * Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 1.23-1
 - Updated to version 1.23.
 
