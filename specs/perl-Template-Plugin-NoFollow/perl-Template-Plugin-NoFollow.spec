@@ -9,19 +9,25 @@
 
 Summary: Template filter for adding nofollow
 Name: perl-Template-Plugin-NoFollow
-Version: 1.01
+Version: 1.02
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Template-Plugin-NoFollow/
 
-Source: http://www.cpan.org/modules/by-module/Template/Template-Plugin-NoFollow-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/G/GT/GTERMARS/Template-Plugin-NoFollow-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+
+BuildRequires: perl(HTML::Parser)
+BuildRequires: perl(Template) >= 2
 BuildRequires: perl(Test::More)
+Requires: perl(HTML::Parser)
+Requires: perl(Template) >= 2
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 TT filter to add rel="nofollow" to all HTML links.
@@ -32,6 +38,7 @@ TT filter to add rel="nofollow" to all HTML links.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+%{__make} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -52,6 +59,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Template/Plugin/NoFollow.pm
 
 %changelog
+* Thu Feb 10 2011 Christoph Maser <cmaser@gmx.de> - 1.02-1
+- Updated to version 1.02.
+
 * Sun Nov 18 2007 Dag Wieers <dag@wieers.com> - 1.01-1
 - Updated to release 1.01.
 
