@@ -8,13 +8,14 @@
 
 Summary: Perl module that implements YAML using XS and libyaml
 Name: perl-YAML-LibYAML
-Version: 0.32
+Version: 0.34
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/YAML-LibYAML/
 
-Source: http://www.cpan.org/modules/by-module/YAML/YAML-LibYAML-%{version}.tar.gz
+#Source: http://www.cpan.org/modules/by-module/YAML/YAML-LibYAML-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/I/IN/INGY/YAML-LibYAML-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 2:5.8.3 
@@ -53,7 +54,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorarch}/auto/YAML/
 %{perl_vendorarch}/auto/YAML/LibYAML/
 %{perl_vendorarch}/auto/YAML/XS/
+
 %changelog
+* Sat Feb 12 2011 Denis Fateyev <denis@fateyev.com> - 0.34-1
+- Updated to version 0.34.
+
 * Mon Jul 20 2009 Christoph Maser <cmr@financial.com> - 0.32-1
 - Updated to version 0.32.
 
