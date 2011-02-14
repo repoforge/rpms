@@ -19,6 +19,7 @@ Source: http://pypi.python.org/packages/source/c/cly/cly-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
+BuildRequires: python-docutils
 BuildRequires: python-setuptools
 BuildRequires: python-pygments
 
