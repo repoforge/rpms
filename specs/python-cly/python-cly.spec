@@ -48,8 +48,8 @@ popd
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING README doc/*
-%{python_sitelib}/cly/
-%{python_sitelib}/cly*.egg-info
+%{python_sitearch}/cly/
+%{python_sitearch}/cly*.egg-info
 
 %changelog
 * Mon Feb 14 2011 Steve Huff <shuff@vecna.org> - 0.9-1
