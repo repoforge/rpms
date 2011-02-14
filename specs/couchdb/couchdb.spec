@@ -7,7 +7,7 @@
 
 Summary: A document database server, accessible via a RESTful JSON API
 Name: couchdb
-Version: 1.0.1
+Version: 1.0.2
 Release: 2%{?dist}
 License: Apache
 Group: Applications/Databases
@@ -139,6 +139,9 @@ fi
 %attr(-, couchdb, couchdb) %dir %{_var}/log/couchdb
 
 %changelog
+* Mon Feb 14 2011 Steve Huff <shuff@vecna.org> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Tue Sep 14 2010 Steve Huff <shuff@vecna.org> - 1.0.1-2
 - Oops, forgot the dependency on Erlang :(
 
