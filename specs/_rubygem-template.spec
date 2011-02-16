@@ -66,7 +66,6 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %doc %{geminstdir}/Manifest
 %doc %{geminstdir}/README
 %doc %{geminstdir}/GEMNAME.gemspec
-%doc %{geminstdir}/test
 %doc %{gemdir}/doc/GEMNAME-%{version}
 %doc %{geminstdir}/doc
 %{_bindir}/*
@@ -78,7 +77,7 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %{geminstdir}/setup.rb
 %{geminstdir}/bin
 %{geminstdir}/lib
-%{geminstdir}/resources
+%{geminstdir}/test
 
 %changelog
 * Mon Jan 31 2011 Steve Huff <shuff@vecna.org> - 
