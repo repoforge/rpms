@@ -29,6 +29,7 @@ BuildRequires: ruby(abi) = %{rubyabi}
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Provides: rubygem(json) = %{version}
+Provides: rubygem(json_pure) = %{version}
 
 %description
 This is a implementation of the JSON specification according to RFC 4627. You
