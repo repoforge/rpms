@@ -1,0 +1,16 @@
+--- cparse.c.bak        2010-02-09 01:36:38.000000000 +0000
++++ cparse.c    2010-02-09 01:50:10.000000000 +0000
+@@ -13,6 +13,13 @@
+
+ #include <ruby.h>
+
++#ifndef RARRAY_LEN
++# define RARRAY_LEN(s) (RARRAY(s)->len)
++#endif
++#ifndef RARRAY_PTR
++# define RARRAY_PTR(s) (RARRAY(s)->ptr)
++#endif
++
+ /* -----------------------------------------------------------------------
+                         Important Constants
+ ----------------------------------------------------------------------- */ 
