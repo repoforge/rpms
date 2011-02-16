@@ -125,7 +125,6 @@ fi
 %doc AUTHORS BUGS CHANGES DEVELOPERS INSTALL INSTALL.Unix LICENSE
 %doc NEWS NOTICE README THANKS
 %exclude %{_docdir}/couchdb/
-%doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/couchdb/
 %{_initrddir}/couchdb/
