@@ -64,7 +64,14 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 
 %files
 %defattr(-, root, root, -)
+%doc %{geminstdir}/COPYING
+%doc %{geminstdir}/ChangeLog
+%doc %{geminstdir}/DEPENDS
 %doc %{geminstdir}/README.*
+%doc %{geminstdir}/TODO
+%doc %{geminstdir}/doc
+%doc %{geminstdir}/sample
+%doc %{geminstdir}/web
 %doc %{gemdir}/doc/racc-%{version}
 %{_bindir}/*
 %{gemdir}/cache/racc-%{version}.gem
@@ -72,9 +79,15 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %dir %{geminstdir}
 %{geminstdir}/Rakefile
 %{geminstdir}/bin
+%{geminstdir}/ext
+%{geminstdir}/fastcache
 %{geminstdir}/lib
-%{geminstdir}/sample
+%{geminstdir}/misc
+%{geminstdir}/setup.rb
+%{geminstdir}/tasks
 %{geminstdir}/test
+%exclude %{geminstdir}/.git*
+%exclude %{geminstdir}/.require_paths
 
 %changelog
 * Wed Feb 16 2011 Steve Huff <shuff@vecna.org> - 1.4.6-1
