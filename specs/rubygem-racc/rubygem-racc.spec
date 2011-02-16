@@ -64,9 +64,6 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 
 %files
 %defattr(-, root, root, -)
-%doc %{geminstdir}/CHANGELOG.rdoc
-%doc %{geminstdir}/DOCUMENTATION.*.rdoc
-%doc %{geminstdir}/Manifest.txt
 %doc %{geminstdir}/README.*
 %doc %{gemdir}/doc/racc-%{version}
 %{_bindir}/*
