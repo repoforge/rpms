@@ -12,7 +12,7 @@
 Summary: Interface to CouchDB's RESTful API
 Name: rubygem-couchrest
 
-Version: 1.0.0
+Version: 1.0.1
 Release: 1%{?dist}
 Group: Development/Languages
 License: GPL
@@ -26,9 +26,9 @@ BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
-Requires: rubygem(json) >= 1.2.4
+Requires: rubygem(json) >= 1.4.6
 Requires: rubygem(mime-types) >= 1.15
-Requires: rubygem(rest-client) >= 1.5
+Requires: rubygem(rest-client) >= 1.5.1
 Provides: rubygem(couchrest) = %{version}
 
 %description
@@ -76,5 +76,5 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %{geminstdir}/utils
 
 %changelog
-* Wed Feb 16 2011 Steve Huff <shuff@vecna.org> - 1.0.0-1
+* Wed Feb 16 2011 Steve Huff <shuff@vecna.org> - 1.0.1-1
 - Initial package.
