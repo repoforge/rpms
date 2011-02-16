@@ -55,10 +55,9 @@ gem install -V \
 %{__mkdir_p} %{buildroot}/%{_bindir}
 %{__mv} %{buildroot}%{gemdir}/bin/* %{buildroot}/%{_bindir}
 find %{buildroot}/%{_bindir} -type f | xargs -n 1 sed -i  -e 's"^#!/usr/bin/env ruby"#!/usr/bin/ruby"'
-find %{buildroot}/%{_bindir} -type f | xargs -n 1 sed -i  -e 's"^#!/usr/local/bin/"#!/usr/bin/ruby"'
+find %{buildroot}/%{_bindir} -type f | xargs -n 1 sed -i  -e 's"^#!/usr/local/bin/ruby"#!/usr/bin/ruby"'
 %{__rm}dir %{buildroot}%{gemdir}/bin
 find %{buildroot}%{geminstdir}/{lib,test} -type f | xargs -n 1 sed -i  -e '/^#!\/usr\/bin\/env ruby/d'
-find %{buildroot}%{geminstdir}/{bin} -type f | xargs -n 1 sed -i  -e '/^#!\/usr\/local\/bin\/ruby/d'
 find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 
 %clean
