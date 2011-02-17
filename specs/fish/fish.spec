@@ -29,8 +29,8 @@ Requires: coreutils
 Requires: grep
 Requires: sed
 
-Requires(post): augeas
-Requires(postun): augeas
+Requires(post): perl(Config::Augeas)
+Requires(postun): perl(Config::Augeas)
 
 %description
 fish is a shell geared towards interactive use. It's features are
@@ -54,22 +54,21 @@ is simple but incompatible with other shell languages.
 %{__rm} -rf %{buildroot}
 
 %post
-fish=$(augtool match '/files%{_sysconfdir}/shells/* %{_bindir}/fish')
-if [ -z "$fish" ]; then
-    %{__cat} <<"AUGEAS" | augtool 2>&1 >/dev/null
-set /files/%{_sysconfdir}/shells/0 %{_bindir}/fish
-save
+%{__cat} <<'AUGEAS' | perl -MConfig::Augeas -
+$aug = Config::Augeas->new;
+exit 0 if $aug->match( "/files%{_sysconfdir}/shells/*[. = '%{_bindir}/fish']" );
+$aug->set( '/files%{_sysconfdir}/shells/0', '%{_bindir}/fish' );
+$aug->save;
 AUGEAS
-fi
 
 %postun
-fish=$(augtool match '/files%{_sysconfdir}/shells/* %{_bindir}/fish')
-if [ ! -z "$fish" ]; then
-    %{__cat} <<"AUGEAS" | augtool 2>&1 >/dev/null
-rm $fish
-save
+%{__cat} <<'AUGEAS' | perl -MConfig::Augeas -
+$aug = Config::Augeas->new;
+foreach $match ( $aug->match( "/files%{_sysconfdir}/shells/*[. = '%{_bindir}/fish']" ) ) {
+    $aug->remove( $match );
+}
+$aug->save;
 AUGEAS
-fi
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
