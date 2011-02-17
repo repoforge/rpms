@@ -5,8 +5,8 @@
 
 Summary: SIP implementation
 Name: libosip2
-Version: 2.2.0
-Release: 1.2%{?dist}
+Version: 3.5.0
+Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Libraries
 URL: http://www.gnu.org/software/osip/osip.html
@@ -15,7 +15,9 @@ Source: http://ftp.gnu.org/gnu/osip/libosip2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: /sbin/ldconfig
-BuildRequires: gcc-c++, autoconf, automake
+BuildRequires: gcc-c++
+BuildRequires: autoconf
+BuildRequires: automake
 
 %description
 oSIP is an implementation of the Session Initiation Protocol as described
@@ -76,6 +78,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/libosip2.pc
 
 %changelog
+* Thu Feb 17 2011 Yury V. Zaytsev <yury@shurup.com> - 3.5.0-1
+- Updated to the latest version.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2.0-1.2
 - Rebuild for Fedora Core 5.
 
