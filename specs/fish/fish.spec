@@ -7,22 +7,34 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.23.0
+Version: 1.23.1
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
 URL: http://fishshell.org
 
-Source: http://fishshell.org/files/%{version}/fish-%{version}.tar.bz2
+Source: http://fishshell.com/files/%{version}/fish-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel, doxygen, groff, gettext, autoconf
+BuildRequires: autoconf
+BuildRequires: doxygen
+BuildRequires: gettext
+BuildRequires: groff
+BuildRequires: ncurses-devel
 %{!?_without_modxorg:BuildRequires: xorg-x11-proto-devel, libXt-devel, libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
+Requires: bc
+Requires: coreutils
+Requires: grep
+Requires: sed
+
+Requires(post): augeas
+Requires(postun): augeas
+
 %description
 fish is a shell geared towards interactive use. It's features are
-focused on user friendlieness and discoverability. The language syntax
+focused on user friendliness and discoverability. The language syntax
 is simple but incompatible with other shell languages.
 
 %prep
@@ -42,12 +54,26 @@ is simple but incompatible with other shell languages.
 %{__rm} -rf %{buildroot}
 
 %post
-#echo %{_bindir}/fish >>%{_sysconfdir}/shells
+fish=$(augtool match '/files%{_sysconfdir}/shells/* %{_bindir}/fish')
+if [ -z "$fish" ]; then
+    %{__cat} <<"AUGEAS" | augtool 2>&1 >/dev/null
+set /files/%{_sysconfdir}/shells/0 %{_bindir}/fish
+save
+AUGEAS
+fi
+
+%postun
+fish=$(augtool match '/files%{_sysconfdir}/shells/* %{_bindir}/fish')
+if [ ! -z "$fish" ]; then
+    %{__cat} <<"AUGEAS" | augtool 2>&1 >/dev/null
+rm $fish
+save
+AUGEAS
+fi
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc *.html doc_src/*.txt INSTALL README user_doc/html/
-#%doc %{_mandir}/man1/count.1*
+%doc *.html doc_src/*.txt ChangeLog INSTALL README user_doc/html/
 %doc %{_mandir}/man1/fish.1*
 %doc %{_mandir}/man1/fish_indent.1*
 %doc %{_mandir}/man1/fish_pager.1*
@@ -56,9 +82,6 @@ is simple but incompatible with other shell languages.
 %doc %{_mandir}/man1/set_color.1*
 %doc %{_mandir}/man1/xsel.1x*
 %config(noreplace) %{_sysconfdir}/fish
-#%config(noreplace) %{_sysconfdir}/fish_inputrc
-#%config(noreplace) %{_sysconfdir}/fish.d/
-#%{_bindir}/count
 %{_bindir}/fish
 %{_bindir}/fish_indent
 %{_bindir}/fish_pager
@@ -67,9 +90,17 @@ is simple but incompatible with other shell languages.
 %{_bindir}/set_color
 %{_bindir}/xsel
 %{_datadir}/fish/
-%exclude %{_docdir}/fish/
+%exclude %{_docdir}/ChangeLog
+%exclude %{_docdir}/*.css
+%exclude %{_docdir}/*.gif
+%exclude %{_docdir}/*.html
+%exclude %{_docdir}/*.png
 
 %changelog
+* Thu Feb 17 2011 Steve Huff <shuff@vecna.org> - 1.23.1-1
+- Updated to release 1.23.1.
+- Changed source URL.
+
 * Sun Jan 13 2008 Dries Verachtert <dries@ulyssis.org> - 1.23.0-1
 - Updated to release 1.23.0.
 
