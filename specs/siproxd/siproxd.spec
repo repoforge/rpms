@@ -13,6 +13,9 @@ URL: http://siproxd.sourceforge.net/
 Source0: http://downloads.sourceforge.net/project/%{name}/%{version}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+Requires: /sbin/chkconfig
+Requires: /sbin/service
+
 BuildRequires: gcc-c++
 BuildRequires: autoconf
 BuildRequires: automake
@@ -56,6 +59,22 @@ export CFLAGS="%{optflags}"
 %clean
 %{__rm} -rf %{buildroot}
 
+%post
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add siproxd
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/service siproxd stop &>/dev/null || :
+    /sbin/chkconfig --del siproxd
+fi
+
+%postun
+if [ $1 -ge 1 ]; then
+    /sbin/service siproxd condrestart &>/dev/null || :
+fi
+
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL NEWS README RELNOTES TODO ChangeLog
@@ -77,14 +96,6 @@ export CFLAGS="%{optflags}"
 
 %attr(0700,nobody,root) /var/run/siproxd
 %attr(0700,nobody,root) /var/lib/siproxd
-
-%post
-/sbin/chkconfig --add siproxd
-
-%preun
-if [ $1 = 0 ]; then
-   /sbin/chkconfig --del siproxd
-fi
 
 %changelog
 * Thu Feb 17 2011 Yury V. Zaytsev <yury@shurup.com> - 0.8.0-4
