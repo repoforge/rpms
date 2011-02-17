@@ -1,15 +1,15 @@
 # $Id$
 # Authority: dag
 # Upstream: Ethan Galstad <nagios$nagios,org>
+# Tag: test
 
-### FIXME: TODO: Add sysv script based on template. (remove cmd-file on start-up)
 %define logmsg logger -t %{name}/rpm
 %define logdir %{_localstatedir}/log/nagios
 
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.3
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -19,6 +19,7 @@ Source1: ftp://ftp.netbsd.org/pub/pkgsrc/packages/NetBSD-4.0/amd64/All/nagios-im
 Source2: daemon-init-redhat.in
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gcc
 BuildRequires: gd-devel > 1.8
 BuildRequires: zlib-devel
 BuildRequires: libpng-devel
@@ -53,27 +54,27 @@ you will need to install %{name}-devel.
 %setup
 
 # /usr/local/nagios is hardcoded in many places
-%{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' contrib/eventhandlers/submit_check_result
+%{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/spool/nagios/rw|g;' contrib/eventhandlers/submit_check_result
 
 # copy our init-script over the one provided by upstream nut not for el3
 %{!?el3:%{__cp} -f %{SOURCE2} daemon-init.in}
 
 %build
 %configure \
-    --datadir="%{_datadir}/nagios" \
-    --libexecdir="%{_libdir}/nagios/plugins" \
-    --localstatedir="%{_localstatedir}/nagios" \
-    --with-checkresult-dir="%{_localstatedir}/nagios/spool/checkresults" \
-    --sbindir="%{_libdir}/nagios/cgi" \
-    --sysconfdir="%{_sysconfdir}/nagios" \
+    --prefix="%{_datadir}/%{name}" \
+    --datadir="%{_datadir}/%{name}" \
+    --libexecdir="%{_libdir}/%{name}/plugins" \
+    --localstatedir="%{_localstatedir}/log/%{name}" \
+    --sbindir="%{_libdir}/%{name}/cgi" \
+    --sysconfdir="%{_sysconfdir}/%{name}" \
     --with-cgiurl="/nagios/cgi-bin" \
     --with-command-user="apache" \
     --with-command-group="apache" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
-    --with-htmurl="/nagios" \
+    --with-htmurl="/%{name}" \
     --with-init-dir="%{_initrddir}" \
-    --with-lockfile="%{_localstatedir}/nagios/nagios.pid" \
+    --with-lockfile="%{_localstatedir}/log/nagios/nagios.pid" \
     --with-mail="/bin/mail" \
     --with-nagios-user="nagios" \
     --with-nagios-group="nagios" \
@@ -81,7 +82,8 @@ you will need to install %{name}-devel.
     --with-perlcache \
     --with-template-objects \
     --with-template-extinfo \
-    --enable-event-broker
+    --enable-event-broker \
+    STRIP=/bin/true
 %{__make} %{?_smp_mflags} all
 
 ### Apparently contrib wants to do embedded-perl stuff as well and does not obey configure !
@@ -113,7 +115,15 @@ you will need to install %{name}-devel.
         s|log_file.*|log_file=%{logdir}/nagios.log|;
         s|log_archive_path=.*|log_archive_path=%{logdir}/archives|;
         s|debug_file=.*|debug_file=%{logdir}/nagios.debug|;
+        s|command_file=.*|command_file=%{_localstatedir}/spool/%{name}/rw/nagios.cmd|;
+        s|check_result_path=.*|check_result_path=%{_localstatedir}/spool/%{name}/checkresults|;
    ' %{buildroot}%{_sysconfdir}/nagios/nagios.cfg
+
+### Move checkresults and command file dir to /var/spool/nagios
+%{__mkdir} -p %{buildroot}/%{_localstatedir}/spool/nagios
+mv  %{buildroot}/%{logdir}/rw %{buildroot}/%{_localstatedir}/spool/%{name}
+mv  %{buildroot}/%{logdir}/spool/checkresults %{buildroot}/%{_localstatedir}/spool/%{name}
+%{__rm} -rf %{buildroot}/%{logdir}/spool
 
 ### make logdirs
 %{__mkdir} -p %{buildroot}%{logdir}/
@@ -132,6 +142,7 @@ if ! /usr/bin/getent group nagiocmd &>/dev/null; then
     /usr/sbin/groupadd nagiocmd &>/dev/null || \
         %logmsg "Unexpected error adding group \"nagiocmd\". Aborting installation."
 fi
+
 
 %post
 /sbin/chkconfig --add nagios
@@ -188,18 +199,23 @@ fi
 %dir %{_sysconfdir}/nagios/
 %config(noreplace) %{_sysconfdir}/nagios/*.cfg
 %config(noreplace) %{_sysconfdir}/nagios/objects
-%{_localstatedir}/nagios/
-%{_localstatedir}/nagios/spool/
 %{logdir}/
+%dir %{_localstatedir}/spool/nagios/checkresults
 
 %defattr(-, nagios, apache, 2755)
-%{_localstatedir}/nagios/rw/
+%dir %{_localstatedir}/spool/nagios/rw/
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/nagios/
 
 %changelog
+* Thu Feb 17 2011 Christoph Maser <cmaser@gmx.de> - 3.2.3-4
+- match selinux policy shipped in rhel5
+- move logs to /var/log/nagios
+- move command file and checkresults to /var/spool/nagios
+- move pid file to /var/log/nagios
+
 * Fri Nov 19 2010 Christoph Maser <cmaser@gmx.de> - 3.2.3-3
 - adapt the extraction for nagios-imagepak-base from BSD
 

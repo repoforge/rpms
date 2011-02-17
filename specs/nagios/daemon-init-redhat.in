@@ -24,7 +24,6 @@ exec_prefix="@exec_prefix@"
 exec="@bindir@/nagios"
 prog="nagios"
 config="@sysconfdir@/nagios.cfg"
-pidfile="@lockfile@"
 user="@nagios_user@"
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
