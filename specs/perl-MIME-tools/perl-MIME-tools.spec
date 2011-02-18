@@ -14,13 +14,13 @@
 
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
-Version: 5.500
+Version: 5.501
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DO/DONEILL/MIME-tools-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/D/DS/DSKOLL/MIME-tools-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -93,6 +93,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Fri Feb 18 2011 David Hrbáč <david@hrbac.cz> - 5.501-1
+- new upstream release
+
 * Sun Jan 30 2011 David Hrbáč <david@hrbac.cz> - 5.500-1
 - new upstream release
 
