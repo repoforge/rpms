@@ -15,8 +15,8 @@
 
 Summary: TimeDate module for perl
 Name: perl-TimeDate
-Version: 1.16
-Release: 1.2%{?dist}
+Version: 1.20
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/TimeDate/
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Time/
 
 %changelog
+* Sun Feb 20 2011 Denis Fateyev <denis@fateyev.com> - 1.20-1
+- Updated to version 1.20.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.16-1.2
 - Rebuild for Fedora Core 5.
 
