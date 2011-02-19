@@ -1,0 +1,55 @@
+--- sample-scripts/openvpn.init.orig	2010-10-21 23:37:51.000000000 +0600
++++ sample-scripts/openvpn.init		2011-01-16 14:55:37.000000000 +0600
+@@ -3,13 +3,28 @@
+ # openvpn       This shell script takes care of starting and stopping
+ #               openvpn on RedHat or other chkconfig-based system.
+ #
+-# chkconfig: 345 24 76
+-#
+-# description: OpenVPN is a robust and highly flexible tunneling application that
+-#              uses all of the encryption, authentication, and certification features
+-#              of the OpenSSL library to securely tunnel IP networks over a single
+-#              UDP port.
++# chkconfig: - 24 76
+ #
++# processname: openvpn
++# description: OpenVPN is a robust and highly flexible tunneling \
++#              application that uses all of the encryption, \
++#              authentication, and certification features of the OpenSSL \
++#              library to securely tunnel IP networks over a single UDP \
++#              port.
++#
++
++### BEGIN INIT INFO
++# Provides: openvpn
++# Required-Start: $network
++# Required-Stop: $network
++# Short-Description: start and stop openvpn
++# Description: OpenVPN is a robust and highly flexible tunneling \
++#              application that uses all of the encryption, \
++#              authentication, and certification features of the OpenSSL \
++#              library to securely tunnel IP networks over a single UDP \
++#              port.
++### END INIT INFO
++
+ 
+ # Contributed to the OpenVPN project by
+ # Douglas Keller <doug@voidstar.dyndns.org>
+@@ -148,10 +163,15 @@
+ 	for c in `/bin/ls *.conf 2>/dev/null`; do
+ 	    bn=${c%%.conf}
+ 	    if [ -f "$bn.sh" ]; then
+-		. $bn.sh
++		. ./$bn.sh
+ 	    fi
+ 	    rm -f $piddir/$bn.pid
+-	    $openvpn --daemon --writepid $piddir/$bn.pid --config $c --cd $work
++            # Handle backward compatibility, see Red Hat Bugzilla ID #458594
++            script_security=''
++            if [ -z "$( grep '^[[:space:]]*script-security[[:space:]]' $c )" ]; then
++                script_security="--script-security 2"
++            fi
++	    $openvpn --daemon --writepid $piddir/$bn.pid --config $c --cd $work $script_security
+ 	    if [ $? = 0 ]; then
+ 		successes=1
+ 	    else

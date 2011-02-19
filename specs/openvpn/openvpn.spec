@@ -2,23 +2,30 @@
 # Authority: dag
 # Upstream: James Yonan <jim$yonan,net>
 
+### PKCS#11 support (optional)
+%define _with_pkcs11 1
+
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
 Version: 2.1.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/
 
 Source: http://swupdate.openvpn.net/community/releases/%{name}-%{version}.tar.gz
+Patch:  openvpn-initscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lzo-devel >= 1.07
 BuildRequires: openssl-devel >= 0.9.6
 BuildRequires: pkgconfig
 BuildRequires: pam-devel
+%{?_with_pkcs11:BuildRequires: pkcs11-helper-devel}
 Requires: lzo
 Requires: openssl
+Requires: /sbin/chkconfig
+Requires: /sbin/service
 
 %description
 OpenVPN is a robust and highly flexible tunneling application.
@@ -31,6 +38,9 @@ most major OS platforms.
 %prep
 %setup
 
+### Fix provided initscript
+%patch -p0
+
 %build
 if pkg-config openssl; then
     export CFLAGS="%{optflags} $(pkg-config --cflags openssl)"
@@ -39,6 +49,9 @@ fi
 %configure \
     --program-prefix="%{?_program_prefix}" \
     --enable-iproute2 \
+    %{?_with_pkcs11:--enable-pkcs11} \
+    %{!?_with_pkcs11:--disable-pkcs11} \
+    --enable-password-save \
     --enable-pthread
 %{__make} %{?_smp_mflags}
 
@@ -70,8 +83,16 @@ find contrib/ easy-rsa/ sample-*/ -type f -exec %{__chmod} -x {} \;
 %clean
 %{__rm} -rf %{buildroot}
 
+%pre
+getent group openvpn &>/dev/null || groupadd -r openvpn
+getent passwd openvpn &>/dev/null || \
+    /usr/sbin/useradd -r -g openvpn -s /sbin/nologin \
+    -c OpenVPN -d /etc/openvpn openvpn
+
 %post
-/sbin/chkconfig --add openvpn
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add openvpn
+fi
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -80,7 +101,9 @@ if [ $1 -eq 0 ]; then
 fi
 
 %postun
-/sbin/service openvpn condrestart &>/dev/null || :
+if [ $1 -ge 1 ]; then
+    /sbin/service openvpn condrestart &>/dev/null || :
+fi
 
 %files
 %defattr(-, root, root, 0755)
@@ -93,6 +116,9 @@ fi
 %{_sbindir}/openvpn
 
 %changelog
+* Fri Feb 18 2011 Denis Fateyev <denis@fateyev.com> - 2.1.4-2
+- Some spec cleanup, added some patches from Fedora
+
 * Tue Nov 30 2010 Christoph Maser <cmaser@gmx.de> - 2.1.4-1
 - Updated to version 2.1.4.
 
