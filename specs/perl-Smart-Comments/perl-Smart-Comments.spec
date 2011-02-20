@@ -6,11 +6,11 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name Smart-Comments
-%define real_version 1.000003
+%define real_version 1.000004
 
 Summary: Perl module implements comments that do more than just sit there
 Name: perl-Smart-Comments
-Version: 1.0.3
+Version: 1.0.4
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -52,6 +52,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Smart/Comments.pm
 
 %changelog
+* Sun Feb 20 2011 Denis Fateyev <denis@fateyev.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Mon Feb 25 2008 Dag Wieers <dag@wieers.com> - 1.0.3-1
 - Updated to release 1.0.3.
 
