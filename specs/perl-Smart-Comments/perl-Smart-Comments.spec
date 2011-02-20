@@ -16,7 +16,7 @@ License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Smart-Comments/
 
-Source: http://www.cpan.org/authors/id/C/CH/CHORNY/Smart-Comments-v%{version}.tar.gz
+Source: http://www.cpan.org/authors/id/C/CH/CHORNY/Smart-Comments-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
