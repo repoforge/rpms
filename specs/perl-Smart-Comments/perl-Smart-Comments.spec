@@ -28,7 +28,7 @@ perl-Smart-Comments is a Perl module implements comments
 that do more than just sit there.
 
 %prep
-%setup -n %{real_name}-v%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
