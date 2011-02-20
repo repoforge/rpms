@@ -16,7 +16,7 @@
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
 Version: 5.240
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent/
@@ -208,7 +208,7 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 - Tagged RFX for EL5, because of perl-Net-SSLeay requirement.
 
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 5.240-1
-- Updated to version 5.240.
+- Updated to version 5.24.
 
 * Mon Oct 12 2009 Christoph Maser <cmr@financial.com> - 5.201-1
 - Updated to version 5.201.
