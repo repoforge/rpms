@@ -1,6 +1,6 @@
 # $Id: $
 # Authority: dries
-# Upstream: Byrne Reese <cpancontact$majordomo,com>
+# Upstream: Martin Kutter <martin.kutter$fen-net,de>
 
 ### EL6 ships with perl-SOAP-Lite-0.710.10-2.el6
 %{?el6:# Tag: rfx}
@@ -12,7 +12,7 @@
 
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
-Version: 0.711
+Version: 0.712
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -110,6 +110,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Mon Feb 21 2011 Denis Fateyev <denis@fateyev.com> - 0.712-1
+- Updated to version 0.712.
+
 * Wed May 26 2010 Christoph Maser <cmaser@gmx.de> - 0.711-1
 - Updated to version 0.711.
 
