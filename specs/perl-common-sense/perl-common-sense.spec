@@ -26,7 +26,9 @@ Requires: perl
 %filter_setup
 
 %description
-s module implements some sane defaults for Perl programs, as defined by two typical (or not so typical - use your common sense) specimens of Perl coders.
+This module implements some sane defaults for Perl programs, as defined
+by two typical (or not so typical - use your common sense) specimens of
+Perl coders.
 
 %prep
 %setup -n %{real_name}-%{version}
