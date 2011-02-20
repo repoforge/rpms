@@ -3,6 +3,10 @@
 # Upstream: Marc Lehmann <schmorp@schmorp.de>
 # ExcludeDist: el3
 
+### EL5 ships with perl-Net-SSLeay-1.30-4.fc6, so it's a dependency that
+### is impossible to satisfy without RFX
+%{?el5:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -200,8 +204,11 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
 
 %changelog
-* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 5.24-1
-- Updated to version 5.24.
+* Sun Feb 20 2011 Yury V. Zaytsev <yury@shurup.com> - 5.240-2
+- Tagged RFX for EL5, because of perl-Net-SSLeay requirement.
+
+* Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 5.240-1
+- Updated to version 5.240.
 
 * Mon Oct 12 2009 Christoph Maser <cmr@financial.com> - 5.201-1
 - Updated to version 5.201.
