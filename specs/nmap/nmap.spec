@@ -23,14 +23,14 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 5.21
+Version: 5.51
 Release: 1%{?dist}
 Epoch: 2
 License: GPL
 Group: Applications/System
-URL: http://www.insecure.org/nmap/
+URL: http://www.nmap.org/
 
-Source: http://download.insecure.org/nmap/dist/nmap-%{version}.tar.bz2
+Source: http://nmap.org/dist/nmap-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: desktop-file-utils
@@ -59,7 +59,7 @@ This package includes zenmap, a graphical frontend for nmap. The nmap package
 must be installed before installing nmap-frontend.
 
 %prep
-%setup
+%setup -q
 
 %build
 %configure \
@@ -102,10 +102,12 @@ desktop-file-install --delete-original \
 %lang(ru) %{_mandir}/ru/man1/nmap.1*
 %lang(sk) %{_mandir}/sk/man1/nmap.1*
 %lang(zh) %{_mandir}/zh/man1/nmap.1*
+%doc %{_mandir}/man1/nping.1*
 
 %{_bindir}/ncat
 %{!?_without_python24:%{_bindir}/ndiff}
 %{_bindir}/nmap
+%{_bindir}/nping
 %{_datadir}/ncat/
 %{_datadir}/nmap/
 
@@ -127,6 +129,9 @@ desktop-file-install --delete-original \
 %endif
 
 %changelog
+* Mon Feb 21 2011 David Hrbáč <david@hrbac.cz> - 2:5.51-1
+- new upstream release
+
 * Fri Sep 03 2010 David Hrbáč <david@hrbac.cz> - 5.21-1
 - Updated to release 5.21.
 
