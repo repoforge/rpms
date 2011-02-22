@@ -44,6 +44,9 @@ gem install -V \
 	--force --rdoc \
 	%{SOURCE0}
 
+# change some syntax to stop the whining
+%{__perl} -pi -e 's|raise RequestFailed self|raise RequestFailed(self)|' .%{geminstdir}/lib/restclient/abstract_response.rb
+
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{gemdir}
