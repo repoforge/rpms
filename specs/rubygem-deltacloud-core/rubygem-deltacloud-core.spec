@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: <mfojtik$redhat,com>
+# Upstream: Michal Fojtik <mfojtik$redhat,com>
 
 %define ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")
 %define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
