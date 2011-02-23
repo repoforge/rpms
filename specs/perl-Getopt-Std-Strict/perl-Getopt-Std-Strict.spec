@@ -20,14 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Exporter) >= 5.58
 BuildRequires: perl(Getopt::Std) >= 1.05
 BuildRequires: perl(Test::Simple) >= 0.74
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: rpm-macros-rpmforge
-
-### Remove autoreq Perl dependencies
-%filter_from_requires /^perl.*/d
-%filter_setup
 
 %description
 Getopt-Std-Strict module for perl

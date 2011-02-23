@@ -20,7 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl(String::Prettify)
+BuildRequires: perl(Exporter) >= 5.0
+BuildRequires: perl(Smart::Comments) >= 1.0
+BuildRequires: perl(String::ShellQuote) >= 1.03
+BuildRequires: perl(String::Prettify) >= 1.03
 BuildRequires: perl(ExtUtils::MakeMaker)
 
 %description
