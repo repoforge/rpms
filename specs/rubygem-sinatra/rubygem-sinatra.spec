@@ -7,6 +7,8 @@
 %define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
 %define geminstdir %{gemdir}/gems/sinatra-%{version}
 
+%{?el6:%define _has_ruby_186 1}
+
 %global rubyabi 1.8
 
 Summary: Classy web-development dressed in a DSL
@@ -24,15 +26,28 @@ BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+Requires: rdoc
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+Requires: rubygem(builder)
+#Requires: rubygem(coffee-script)
+Requires: rubygem(erubis)
+Requires: rubygem(less)
+Requires: rubygem(liquid)
+Requires: rubygem(markaby)
+Requires: rubygem(nokogiri)
 Requires: rubygem(rack) < 2.0
+Requires: rubygem(radius)
+%{?_has_ruby_186:Requires: rubygem(rdiscount)}
+Requires: rubygem(RedCloth)
+#Requires: rubygem(therubyracer)
 Requires: rubygem(tilt) >= 1.2.2
 Requires: rubygem(tilt) < 2.0
 Provides: rubygem(sinatra) = %{version}
 
 %description
-Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort:
+Sinatra is a DSL for quickly creating web applications in Ruby with minimal
+effort:
 
     # myapp.rb
     require 'sinatra'
@@ -40,6 +55,8 @@ Sinatra is a DSL for quickly creating web applications in Ruby with minimal effo
     get '/' do
       'Hello world!'
     end
+
+Note: this Sinatra package does not include support for CoffeeScript templates.
 
 %prep
 %setup -q -c -T
