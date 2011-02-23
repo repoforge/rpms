@@ -9,7 +9,7 @@
 
 %global rubyabi 1.8
 
-Summary: Deltacloud server
+Summary: Deltacloud server component
 Name: rubygem-deltacloud-core
 
 Version: 0.1.2
@@ -35,6 +35,7 @@ Requires: rubygem(rack) <= 1.1.0
 Requires: rubygem(sinatra) >= 0.9.4
 Requires: rubygem(haml) >= 2.2.17
 Requires: rubygem(rake) >= 0.8.7
+Requires: rubygem(right_aws)
 Provides: rubygem(deltacloud-core) = %{version}
 
 %description
