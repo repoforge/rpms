@@ -86,7 +86,7 @@ find %{buildroot}%{geminstdir}/lib -type f | xargs chmod 0644
 %{geminstdir}/support
 %{geminstdir}/views
 %{geminstdir}/*.rb
-%{geminstdir}/*.ru
+%config(noreplace) %{geminstdir}/*.ru
 
 %changelog
 * Tue Feb 22 2011 Steve Huff <shuff@vecna.org> - 0.1.2-1
