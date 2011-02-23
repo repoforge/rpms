@@ -15,7 +15,7 @@ Name: rubygem-GEMNAME
 Version: 
 Release: 1%{?dist}
 Group: Development/Languages
-License: GPL
+License: MIT
 URL: http://rubygems.org/gems/GEMNAME/
 
 Source: http://rubygems.org/downloads/GEMNAME-%{version}.gem
@@ -61,6 +61,7 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %files
 %defattr(-, root, root, -)
 %doc %{geminstdir}/CHANGELOG
+%doc %{geminstdir}/CHANGES
 %doc %{geminstdir}/COPYING
 %doc %{geminstdir}/LICENSE
 %doc %{geminstdir}/Manifest
