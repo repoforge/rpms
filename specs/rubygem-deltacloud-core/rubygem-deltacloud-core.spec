@@ -26,6 +26,7 @@ BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+Requires: rubygem(active_support)
 Requires: rubygem(amazon-ec2)
 Requires: rubygem(json) >= 1.1.9
 Requires: rubygem(rack-accept) >= 0.4.3
