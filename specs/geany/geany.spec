@@ -4,7 +4,7 @@
 
 Summary: Small C editor
 Name: geany
-Version: 0.19.1
+Version: 0.20
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
@@ -13,7 +13,11 @@ URL: http://geany.org
 Source: http://download.geany.org/geany-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, gettext, gtk2-devel >= 2.6, perl(XML::Parser), intltool
+BuildRequires: gcc-c++ 
+BuildRequires: gettext
+BuildRequires: gtk2-devel >= 2.6
+BuildRequires: intltool
+BuildRequires: perl(XML::Parser)
 BuildRequires: vte-devel
 
 %description
@@ -66,6 +70,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/geany.pc
 
 %changelog
+* Thu Feb 24 2011 Steve Huff <shuff@vecna.org> - 0.20-1
+- Updated to release 0.20.
+
 * Tue Sep 07 2010 Steve Huff <shuff@vecna.org> - 0.19.1-1
 - Updated to release 0.19.1.
 
