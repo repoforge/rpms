@@ -43,6 +43,7 @@ you will need to install %{name}-devel.
 
 %build
 %configure \
+    --docdir=%{_docdir} \
     --disable-dependency-tracking \
     --disable-static \
     --enable-gtk-doc
@@ -58,8 +59,8 @@ you will need to install %{name}-devel.
 %{__rm}dir %{buildroot}%{_libdir}/pkgconfig
 
 # docs in the wrong place
-%{__install} -m0755 -d %{buildroot}%{_docdir}
-%{__mv} %{buildroot}%{_datadir}/gtk-doc/html/ctpl %{buildroot}%{_docdir}
+%{__install} -m0755 -d %{buildroot}%{_docdir}/%{name}-%{version}
+%{__mv} %{buildroot}%{_datadir}/gtk-doc/html/ctpl %{buildroot}%{_docdir}/%{name}-%{version}
 %{__rm} -rf %{buildroot}%{_datadir}/gtk-doc
 
 # fix for stupid strip issue
@@ -75,11 +76,11 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING HACKING INSTALL NEWS README THANKS TODO
-%doc docs/reference/ctpl/*
 %{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
+%doc docs/reference/ctpl/*
 %{_datadir}/pkgconfig
 %{_includedir}/ctpl
 %{_libdir}/*.so
