@@ -31,6 +31,7 @@ streaming, thanks to GIO) and fine control over template parsing environment.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+Requires: pkgconfig
 
 %description devel
 This package contains the header files, static libraries and development
@@ -51,10 +52,15 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-# pkgconfig files in the wrong place
+# pkgconfig file in the wrong place
 %{__install} -m0755 -d %{buildroot}%{_datadir}/pkgconfig
 %{__mv} %{buildroot}%{_libdir}/pkgconfig/*.pc %{buildroot}%{_datadir}/pkgconfig
 %{__rm}dir %{buildroot}%{_libdir}/pkgconfig
+
+# docs in the wrong place
+%{__install} -m0755 -d %{buildroot}%{_docdir}
+%{__mv} %{buildroot}%{_datadir}/gtk-doc/html/ctpl %{buildroot}%{_docdir}
+%{__rm} -rf %{buildroot}%{_datadir}/gtk-doc
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
