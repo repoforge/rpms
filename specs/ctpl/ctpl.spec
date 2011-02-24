@@ -51,6 +51,11 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+# pkgconfig files in the wrong place
+%{__install} -m0755 -d %{buildroot}%{_datadir}/pkgconfig
+%{__mv} %{buildroot}%{_libdir}/pkgconfig/*.pc %{buildroot}%{_datadir}/pkgconfig
+%{__rm}dir %{buildroot}%{_libdir}/pkgconfig
+
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
 
@@ -69,9 +74,9 @@ you will need to install %{name}-devel.
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/*.h
+%{_datadir}/pkgconfig
+%{_includedir}/ctpl
 %{_libdir}/*.so
-%exclude %{_libdir}/*.a
 %exclude %{_libdir}/*.la
 
 %changelog
