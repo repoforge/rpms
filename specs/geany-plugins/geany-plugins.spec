@@ -4,6 +4,7 @@
 
 %{?el6:%define _has_sufficient_gio 1}
 %{?el6:%define _has_sufficient_lua 1}
+%{?el6:%define _has_webkit 1}
 
 # update this when a new minor version of Geany comes out
 %define geany_basever 0.20
@@ -32,8 +33,10 @@ BuildRequires: gtkspell-devel >= 2.0
 BuildRequires: make
 BuildRequires: perl(XML::Parser)
 BuildRequires: pkgconfig
+BuildRequires: /usr/bin/rst2html
 %{?_has_sufficient_gio:BuildRequires: ctpl-devel >= 0.3}
 %{?_has_sufficient_lua:BuildRequires: lua-devel}
+%{?_has_webkit:BuildRequires: webkitgtk-devel}
 Requires: aspell
 Requires: doxygen
 
@@ -59,7 +62,7 @@ This package is a combined release of the following plugins:
 * Shiftcolumn
 * TableConvert
 * TreeBrowser
-* WebHelper
+%{?_has_webkit:* WebHelper}
 %{?_has_sufficient_lua:* Spell Check}
 
 %prep
@@ -68,7 +71,8 @@ This package is a combined release of the following plugins:
 %build
 export LUA_CFLAGS="-I%{_includedir}" 
 export LUA_LIBS="-L%{_libdir}" 
-%configure --disable-dependency-tracking %{?!_has_sufficient_lua:--disable-geanylua} %{?!_has_sufficient_gio:--disable-geanygendoc}
+%configure --disable-dependency-tracking \
+            --disable-updatechecker %{?!_has_sufficient_lua:--disable-geanylua} %{?!_has_sufficient_gio:--disable-geanygendoc}
 %{__make} %{?_smp_mflags}
 
 %install
