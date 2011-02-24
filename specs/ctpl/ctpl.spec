@@ -63,8 +63,8 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING HCAKING INSTALL NEWS README THANKS TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS COPYING HACKING INSTALL NEWS README THANKS TODO
+%doc html/
 %{_libdir}/*.so.*
 
 %files devel
