@@ -64,7 +64,7 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING HACKING INSTALL NEWS README THANKS TODO
-%doc html/
+%doc docs/reference/ctpl/*
 %{_libdir}/*.so.*
 
 %files devel
