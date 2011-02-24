@@ -10,7 +10,7 @@
 Summary: Spiffy Application Building Framework
 Name: perl-Spoon
 Version: 0.24
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Spoon/
@@ -19,8 +19,25 @@ Source: http://www.cpan.org/authors/id/I/IN/INGY/Spoon-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 5.6.1
+BuildRequires: perl(DB_File)
+BuildRequires: perl(IO::All) >= 0.32
+BuildRequires: perl(Spiffy) >= 0.22
+BuildRequires: perl(Template) >= 2.10
+BuildRequires: perl(Time::HiRes)
+BuildRequires: perl(URI)
+BuildRequires: rpm-macros-rpmforge
+Requires: perl >= 5.6.1
+Requires: perl(DB_File)
+Requires: perl(IO::All) >= 0.32
+Requires: perl(Spiffy) >= 0.22
+Requires: perl(Template) >= 2.10
+Requires: perl(Time::HiRes)
+Requires: perl(URI)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
 Spoon is an Application Framework that is designed primarily for
@@ -46,12 +63,15 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes README
+%doc Changes META.yml README
 %doc %{_mandir}/man3/*
 %{perl_vendorlib}/Spoon.pm
 %{perl_vendorlib}/Spoon/
 
 %changelog
+* Thu Feb 24 2011 Steve Huff <shuff@vecna.org> - 0.24-2
+- Captured missing dependencies.
+
 * Wed Jan 03 2007 Dries Verachtert <dries@ulyssis.org> - 0.24-1
 - Updated to release 0.24.
 
