@@ -6,6 +6,10 @@
 %{?el6:%define _has_sufficient_lua 1}
 %{?el6:%define _has_webkit 1}
 
+%{?_has_sufficient_gio:%define _use_gendoc 1}
+%{?_has_sufficient_lua:%define _use_lua 1}
+%{?_has_webkit:%define _use_webhelper 1}
+
 # update this when a new minor version of Geany comes out
 %define geany_basever 0.20
 
@@ -34,7 +38,7 @@ BuildRequires: make
 BuildRequires: perl(XML::Parser)
 BuildRequires: pkgconfig
 BuildRequires: /usr/bin/rst2html
-%{?_has_sufficient_gio:BuildRequires: ctpl-devel >= 0.3}
+%{?_with_gendoc:BuildRequires: ctpl-devel >= 0.3}
 %{?_has_sufficient_lua:BuildRequires: lua-devel}
 %{?_has_webkit:BuildRequires: webkitgtk-devel}
 Requires: aspell
@@ -51,7 +55,6 @@ This package is a combined release of the following plugins:
 * GeanyDoc
 * GeanyExtraSel
 * GeanyGDB
-* GeanyGenDoc
 * GeanyInsertNum
 * GeanyLaTeX
 * GeanyLipsum
@@ -62,8 +65,10 @@ This package is a combined release of the following plugins:
 * Shiftcolumn
 * TableConvert
 * TreeBrowser
-%{?_has_webkit:* WebHelper}
-%{?_has_sufficient_lua:* Spell Check}
+%{?_use_webkit:* WebHelper}
+%{?_use_lua:* Spell Check}
+%{?_use_lua:* GeanyLua}
+%{?_use_gendoc:* GeanyGenDoc}
 
 %prep
 %setup
@@ -91,9 +96,11 @@ export LUA_LIBS="-L%{_libdir}"
 %doc NEWS README README.waf
 %doc geany-plugins-doc/*
 %dir %{_libexecdir}/geany-plugins/
+%{?_use_gendoc:%{_datadir}/geany-plugins/geanygendoc}
+%{?_use_lua:%{_datadir}/geany-plugins/geanylua}
+%{?_use_lua:%{_libdir}/geany-plugins/*}
 %{_libexecdir}/geany-plugins/*
 %{_libdir}/geany/*.so
-%{_datadir}/locale/*/LC_MESSAGES/*
 %exclude %{_libdir}/geany/*.la
 
 %changelog
