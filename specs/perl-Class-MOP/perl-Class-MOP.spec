@@ -24,15 +24,11 @@ BuildRequires: perl(Devel::GlobalDestruction)
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
-BuildRequires: perl(List::MoreUtils) >= 0.12
 BuildRequires: perl(MRO::Compat) >= 0.05
-BuildRequires: perl(Package::DeprecationManager) >= 0.10
-BuildRequires: perl(Package::Stash) >= 0.13
 BuildRequires: perl(Scalar::Util) >= 1.18
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Task::Weaken)
 BuildRequires: perl(Test::Exception) >= 0.27
-#BuildRequires: perl(Test::Fatal) >= 0.001
 #BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Try::Tiny) >= 0.02
@@ -40,10 +36,7 @@ BuildRequires: perl >= 5.8.1
 Requires: perl(Carp)
 Requires: perl(Data::OptList)
 Requires: perl(Devel::GlobalDestruction)
-Requires: perl(List::MoreUtils) >= 0.12
 Requires: perl(MRO::Compat) >= 0.05
-Requires: perl(Package::DeprecationManager) >= 0.10
-Requires: perl(Package::Stash) >= 0.13
 Requires: perl(Scalar::Util) >= 1.18
 Requires: perl(Sub::Name) >= 0.04
 Requires: perl(Task::Weaken)
