@@ -32,6 +32,9 @@ BuildRequires: rpm-macros-rpmforge
 %setup -n %{real_name}-%{version}
 
 %build
+# damn it Dist::Zilla
+#%{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.31.*/ && s/6\.3\d/6.30/' Makefile.PL}
+
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
@@ -39,9 +42,6 @@ BuildRequires: rpm-macros-rpmforge
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 #%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
-
-# damn it Dist::Zilla
-#%{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.31.*/ && s/6\.3\d/6.30/' Makefile.PL}
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
