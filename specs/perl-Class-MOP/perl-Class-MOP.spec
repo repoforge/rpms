@@ -60,6 +60,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
+# fix for stupid strip issue
+%{__chmod} -R u+w %{buildroot}/*
+
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
