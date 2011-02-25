@@ -11,31 +11,39 @@
 
 Summary: Meta Object Protocol for Perl 5
 Name: perl-Class-MOP
-Version: 0.98
+Version: 1.01
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MOP/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Class-MOP-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Class-MOP-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: perl(Carp)
 BuildRequires: perl(Devel::GlobalDestruction)
 #BuildRequires: perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Spec)
+BuildRequires: perl(List::MoreUtils) >= 0.12
 BuildRequires: perl(MRO::Compat) >= 0.05
+BuildRequires: perl(Package::DeprecationManager) >= 0.10
+BuildRequires: perl(Package::Stash) >= 0.13
 BuildRequires: perl(Scalar::Util) >= 1.18
 BuildRequires: perl(Sub::Name) >= 0.04
 BuildRequires: perl(Task::Weaken)
 BuildRequires: perl(Test::Exception) >= 0.27
+#BuildRequires: perl(Test::Fatal) >= 0.001
 #BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Try::Tiny) >= 0.02
 BuildRequires: perl >= 5.8.1
 Requires: perl(Carp)
+Requires: perl(Data::OptList)
 Requires: perl(Devel::GlobalDestruction)
+Requires: perl(List::MoreUtils) >= 0.12
 Requires: perl(MRO::Compat) >= 0.05
+Requires: perl(Package::DeprecationManager) >= 0.10
+Requires: perl(Package::Stash) >= 0.13
 Requires: perl(Scalar::Util) >= 1.18
 Requires: perl(Sub::Name) >= 0.04
 Requires: perl(Task::Weaken)
@@ -82,6 +90,11 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/metaclass.pm
 
 %changelog
+* Fri Feb 25 2011 Steve Huff <shuff@vecna.org> - 1.01-1
+- Updated to version 1.01.
+- Changed source URL.
+- NB: later versions require a newer Moose that won't work on el5.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.98-1
 - Updated to version 0.98.
 
