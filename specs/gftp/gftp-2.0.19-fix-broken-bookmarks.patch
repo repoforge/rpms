@@ -1,0 +1,188 @@
+diff -up gftp-2.0.19/docs/sample.gftp/bookmarks.BAD gftp-2.0.19/docs/sample.gftp/bookmarks
+--- gftp-2.0.19/docs/sample.gftp/bookmarks.BAD	2010-03-17 10:07:40.366848590 -0400
++++ gftp-2.0.19/docs/sample.gftp/bookmarks	2010-03-17 10:16:41.584837694 -0400
+@@ -42,21 +42,11 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[Debian Sites/Debian non-US]
+-hostname=non-us.debian.org
++[Fedora Sites/Fedora]
++hostname=download.fedora.redhat.com
+ port=21
+ protocol=FTP
+-remote directory=/
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+-[Debian Sites/Freshmeat DEBs]
+-hostname=ftp.freshmeat.net
+-port=21
+-protocol=FTP
+-remote directory=/pub/debs
++remote directory=/pub/fedora/linux
+ local directory=
+ username=anonymous
+ password=@EMAIL@
+@@ -132,16 +122,6 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[General Sites/Source Forge]
+-hostname=ftp.sourceforge.net
+-port=21
+-protocol=FTP
+-remote directory=/pub
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+ [General Sites/Tux.Org]
+ hostname=ftp.tux.org
+ port=21
+@@ -152,16 +132,6 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[General Sites/TSX-11]
+-hostname=tsx-11.mit.edu
+-port=21
+-protocol=FTP
+-remote directory=/pub/linux
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+ [General Sites/Wcarchive]
+ hostname=ftp.cdrom.com
+ port=21
+@@ -282,37 +252,7 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[RedHat Sites/FalseHope RPMs]
+-hostname=ftp.falsehope.com
+-port=21
+-protocol=FTP
+-remote directory=/pub
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+-[RedHat Sites/Freshmeat RPMs]
+-hostname=ftp.freshmeat.net
+-port=21
+-protocol=FTP
+-remote directory=/pub/rpms
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+-[RedHat Sites/RH Contrib]
+-hostname=contrib.redhat.com
+-port=21
+-protocol=FTP
+-remote directory=/pub
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+-[RedHat Sites/RH Main]
++[Red Hat Sites/RH Main]
+ hostname=ftp.redhat.com
+ port=21
+ protocol=FTP
+@@ -322,17 +262,7 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[RedHat Sites/RH Rawhide]
+-hostname=rawhide.redhat.com
+-port=21
+-protocol=FTP
+-remote directory=/
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+-[RedHat Sites/RH Updates]
++[Red Hat Sites/RH Updates]
+ hostname=updates.redhat.com
+ port=21
+ protocol=FTP
+@@ -342,17 +272,7 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[RedHat Sites/RPM.org]
+-hostname=ftp.rpm.org
+-port=21
+-protocol=FTP
+-remote directory=/pub
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+-[RedHat Sites/Fresh RPMS]
++[Red Hat Sites/Fresh RPMS]
+ hostname=ftp.freshrpms.net
+ port=21
+ protocol=FTP
+@@ -372,16 +292,6 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[Slackware Sites/linuxmafia.org]
+-hostname=packages.linuxmafia.org
+-port=21
+-protocol=FTP
+-remote directory=/pub/slackware-7.0
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+ [SuSE Sites/SuSE]
+ hostname=ftp.suse.com
+ port=21
+@@ -402,11 +312,11 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[SuSE Sites/SuSE Update]
+-hostname=ftp.suse.com
++[SuSE Sites/OpenSuSE Update]
++hostname=ftp.hosteurope.de
+ port=21
+ protocol=FTP
+-remote directory=/suse_update
++remote directory=/mirror/ftp.opensuse.org/update
+ local directory=
+ username=anonymous
+ password=@EMAIL@
+@@ -452,16 +362,6 @@ username=anonymous
+ password=@EMAIL@
+ account=
+ 
+-[X11 Sites/LessTif]
+-hostname=ftp.hungry.com
+-port=21
+-protocol=FTP
+-remote directory=/pub/hungry/lesstif
+-local directory=
+-username=anonymous
+-password=@EMAIL@
+-account=
+-
+ [X11 Sites/Qt]
+ hostname=ftp.troll.no
+ port=21

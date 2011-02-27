@@ -16,6 +16,7 @@ Url: http://gftp.seul.org/
 
 Source0: http://gftp.seul.org/%{name}-%{version}.tar.bz2 
 Source1: gftp-text-disabled.sh
+
 Patch0: gftp-stropts.patch
 Patch1: gftp-2.0.19-fix-broken-bookmarks.patch
 
