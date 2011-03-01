@@ -11,7 +11,7 @@ Group:          Development/Libraries
 License:        GPLv2 or BSD
 URL:            http://www.opensc-project.org/pkcs11-helper/
 Source0:        http://www.opensc-project.org/files/%{name}/%{name}-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  doxygen
 BuildRequires:  graphviz
@@ -89,8 +89,8 @@ programs using the pkcs11-helper library.
 
 %changelog
 * Tue Mar 01 2011 Denis Fateyev <denis@fateyev.com> - 1.08-1
-- Rebuild for rpmforge repository
-- Update to version 1.08.
+- Updated to version 1.08.
+- Rebuilt for RPMForge.
 
 * Mon Jul 13 2009 Kalev Lember <kalev@smartlink.ee> - 1.07-2.1
 - Fix EPEL-5 build by adding pkgconfig to BuildRequires.
