@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dfateyev
-# Upstream: Paul P Komkoff Jr <i$stingr,net> 
+# Upstream: Paul P Komkoff Jr <i$stingr,net>
 
 Name:           rzip
 Version:        2.1
@@ -9,8 +9,10 @@ Summary:        A large-file compression program
 Group:          Applications/File
 License:        GPL
 URL:            http://rzip.samba.org
+
 Source0:        http://rzip.samba.org/ftp/rzip/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires:  bzip2-devel
 
 
@@ -45,5 +47,5 @@ compression ratios than other programs.
 
 %changelog
 * Tue Mar 01 2011 Denis Fateyev <denis@fateyev.com> - 2.1-1
-- Initial release, thanks to Dan Pritts <danno@internet2.edu> for specs.
+- Initial release, thanks to Dan Pritts for the SPEC.
 
