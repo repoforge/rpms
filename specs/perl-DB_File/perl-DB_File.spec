@@ -14,13 +14,13 @@
 
 Summary: Perl5 access to Berkeley DB version 1.x
 Name: perl-DB_File
-Version: 1.820
+Version: 1.821
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DB_File/
 
-Source: http://www.cpan.org/modules/by-module/DB_File/DB_File-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PM/PMQS/DB_File-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DB_File.pm
 
 %changelog
+* Wed Mar 02 2011 David Hrbáč <david@hrbac.cz> - 1.821-1
+- new upstream release
+
 * Tue Jul  7 2009 Christoph Maser <cmr@financial.com> - 1.820-1
 - Updated to version 1.820.
 
