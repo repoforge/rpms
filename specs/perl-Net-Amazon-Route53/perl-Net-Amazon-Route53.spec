@@ -10,7 +10,7 @@
 
 Summary: Interface to Amazon's Route 53
 Name: perl-Net-Amazon-Route53
-Version: 0.110241
+Version: 0.110310
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,6 +25,7 @@ BuildRequires: perl(Digest::HMAC_SHA1)
 BuildRequires: perl(ExtUtils::MakeMaker) >= 6.30
 BuildRequires: perl(FindBin)
 BuildRequires: perl(Getopt::Long)
+BuildRequires: perl(HTML::Entities)
 BuildRequires: perl(HTTP::Request)
 BuildRequires: perl(LWP::UserAgent)
 BuildRequires: perl(MIME::Base64)
@@ -37,6 +38,7 @@ Requires: perl
 Requires: perl(Digest::HMAC_SHA1)
 Requires: perl(FindBin)
 Requires: perl(Getopt::Long)
+Requires: perl(HTML::Entities)
 Requires: perl(HTTP::Request)
 Requires: perl(LWP::UserAgent)
 Requires: perl(MIME::Base64)
@@ -80,5 +82,8 @@ Perl interface to Amazon's Route 53 DNS hosting service.
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
+* Fri Mar 04 2011 Steve Huff <shuff@vecna.org> - 0.110310-1
+- Update to version 0.110310.
+
 * Wed Jan 26 2011 Steve Huff <shuff@vecna.org> - 0.110241-1
 - Initial package.
