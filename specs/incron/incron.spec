@@ -4,16 +4,17 @@
 Summary: Inotify cron system
 Name: incron
 Version: 0.5.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://inotify.aiken.cz/
 
 Source: http://inotify.aiken.cz/download/incron/incron-%{version}.tar.bz2
+Patch0: incron-gcc44.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: /sbin/chkconfig
-Requires: /sbin/service
+Requires(post):  /sbin/chkconfig
+Requires(preun): /sbin/chkconfig, /sbin/service
 
 %description
 incron is an "inotify cron" system. incron consists of a daemon and a table
@@ -23,6 +24,7 @@ time periods.
 
 %prep
 %setup
+%patch0 -p1 -b .cstdlib
 
 %{__cat} <<'EOF' >incrond.sysv
 #!/bin/bash
@@ -98,19 +100,17 @@ EOF
 %{__rm} -rf %{buildroot}
 
 #%{__make} install DESTDIR="%{buildroot}"
+
+#install files manually since source Makefile tries to do it as root
 %{__install} -Dp -m0755 incrond %{buildroot}%{_sbindir}/incrond
 %{__install} -Dp -m4755 incrontab %{buildroot}%{_bindir}/incrontab
 %{__install} -Dp -m0755 incrond.sysv %{buildroot}%{_initrddir}/incrond
-
-%{__install} -Dp -m0400 incrontab.1 %{buildroot}%{_mandir}/man1/incrontab.1
-%{__install} -Dp -m0400 incrontab.5 %{buildroot}%{_mandir}/man5/incrontab.5
-%{__install} -Dp -m0400 incron.conf.5 %{buildroot}%{_mandir}/man5/incron.conf.5
-%{__install} -Dp -m0400 incrond.8 %{buildroot}%{_mandir}/man8/incrond.8
-
 %{__install} -Dp -m0644 incron.conf.example %{buildroot}%{_sysconfdir}/incron.conf
-
 %{__install} -d %{buildroot}%{_sysconfdir}/incron.d/
 %{__install} -d %{buildroot}%{_localstatedir}/spool/incron/
+
+# install manpages
+make install-man MANPATH="%{buildroot}%{_mandir}" INSTALL="install -D -p"
 
 %post
 if [ $1 -eq 1 ]; then
@@ -148,6 +148,9 @@ fi
 %{_bindir}/incrontab
 
 %changelog
+* Mon Mar 07 2011 Yury V. Zaytsev <yury@shurup.com> - 0.5.9-2
+- Fixed build failure on EL6 (thanks to Paul Evans!)
+
 * Wed Jun 24 2009 Dag Wieers <dag@wieers.com> - 0.5.9-1
 - Updated to release 0.5.9.
 

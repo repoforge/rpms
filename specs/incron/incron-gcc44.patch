@@ -1,0 +1,56 @@
+diff -up incron-0.5.8/appargs.cpp.orig incron-0.5.8/appargs.cpp
+--- incron-0.5.8/appargs.cpp.orig	2009-02-25 11:10:59.000000000 +0100
++++ incron-0.5.8/appargs.cpp	2009-02-25 11:11:11.000000000 +0100
+@@ -21,6 +21,7 @@
+ 
+ 
+ #include <cstring>
++#include <cstdio>
+ 
+ #include "strtok.h"
+ 
+diff -up incron-0.5.8/appinst.h.orig incron-0.5.8/appinst.h
+--- incron-0.5.8/appinst.h.orig	2008-12-29 17:31:09.000000000 +0100
++++ incron-0.5.8/appinst.h	2009-02-25 11:10:23.000000000 +0100
+@@ -23,6 +23,7 @@
+ 
+ 
+ #include <string>
++#include <cstdio>
+ 
+ 
+ #define APPLOCK_BASEDIR "/var/run"
+diff -up incron-0.5.8/incroncfg.cpp.orig incron-0.5.8/incroncfg.cpp
+--- incron-0.5.8/incroncfg.cpp.orig	2008-12-29 17:31:09.000000000 +0100
++++ incron-0.5.8/incroncfg.cpp	2009-02-25 11:10:23.000000000 +0100
+@@ -181,7 +181,7 @@ bool IncronCfg::ParseLine(const char* s,
+ 
+ bool IncronCfg::IsComment(const char* s)
+ {
+-  char* sx = strchr(s, '#');
++  const char* sx = strchr(s, '#');
+   if (sx == NULL)
+     return false;
+     
+diff -up incron-0.5.8/incroncfg.h.orig incron-0.5.8/incroncfg.h
+--- incron-0.5.8/incroncfg.h.orig	2008-12-29 17:31:09.000000000 +0100
++++ incron-0.5.8/incroncfg.h	2009-02-25 11:10:23.000000000 +0100
+@@ -19,6 +19,7 @@
+ 
+ 
+ #include <cstring>
++#include <cstdio>
+ #include <map>
+ 
+ /// Configuration class.
+diff -up incron-0.5.8/inotify-cxx.h.orig incron-0.5.8/inotify-cxx.h
+--- incron-0.5.8/inotify-cxx.h.orig	2008-12-29 17:31:09.000000000 +0100
++++ incron-0.5.8/inotify-cxx.h	2009-02-25 11:10:23.000000000 +0100
+@@ -28,6 +28,7 @@
+ 
+ #include <stdint.h>
+ #include <string>
++#include <cstdio>
+ #include <deque>
+ #include <map>
+ 
