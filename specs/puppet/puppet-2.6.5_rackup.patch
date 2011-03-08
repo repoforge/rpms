@@ -1,0 +1,103 @@
+diff -Naur puppet-2.6.5-orig/ext/rack/files/apache2.conf puppet-2.6.5/ext/rack/files/apache2.conf
+--- puppet-2.6.5-orig/ext/rack/files/apache2.conf	2011-02-28 18:33:01.000000000 -0500
++++ puppet-2.6.5/ext/rack/files/apache2.conf	2011-03-08 14:03:07.000000000 -0500
+@@ -15,13 +15,13 @@
+         SSLProtocol -ALL +SSLv3 +TLSv1
+         SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP
+ 
+-        SSLCertificateFile      /etc/puppet/ssl/certs/squigley.namespace.at.pem
+-        SSLCertificateKeyFile   /etc/puppet/ssl/private_keys/squigley.namespace.at.pem
+-        SSLCertificateChainFile /etc/puppet/ssl/ca/ca_crt.pem
+-        SSLCACertificateFile    /etc/puppet/ssl/ca/ca_crt.pem
++        SSLCertificateFile      /var/lib/puppet/ssl/certs/HOSTNAME.pem
++        SSLCertificateKeyFile   /var/lib/puppet/ssl/private_keys/HOSTNAME.pem
++        SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
++        SSLCACertificateFile    /var/lib/puppet/ssl/ca/ca_crt.pem
+         # If Apache complains about invalid signatures on the CRL, you can try disabling
+         # CRL checking by commenting the next line, but this is not recommended.
+-        SSLCARevocationFile     /etc/puppet/ssl/ca/ca_crl.pem
++        SSLCARevocationFile     /var/lib/puppet/ssl/ca/ca_crl.pem
+         SSLVerifyClient optional
+         SSLVerifyDepth  1
+         SSLOptions +StdEnvVars
+diff -Naur puppet-2.6.5-orig/ext/rack/manifest.pp puppet-2.6.5/ext/rack/manifest.pp
+--- puppet-2.6.5-orig/ext/rack/manifest.pp	2011-02-28 18:33:01.000000000 -0500
++++ puppet-2.6.5/ext/rack/manifest.pp	2011-03-08 15:08:59.000000000 -0500
+@@ -3,57 +3,50 @@
+   ensure => directory,
+   mode => 0755,
+   owner => root,
+-  group => root,
++  group => root
+ }
+ file { "/etc/puppet/rack/config.ru":
+   ensure => present,
+   source => "puppet:///modules/rack/config.ru",
+   mode => 0644,
+   owner => puppet,
+-  group => root,
++  group => root
+ }
+-file { "/etc/apache2/conf.d/puppetmasterd":
++file { "/etc/httpd/conf.d/puppetmaster.conf":
+   ensure => present,
+   source => "puppet:///modules/rack/apache2.conf",
+   mode => 0644,
+   owner => root,
+   group => root,
+-  require => [File["/etc/puppet/rack/config.ru"], File["/etc/puppet/rack/public"], Package["apache2"], Package["passenger"]],
+-  notify => Service["apache2"],
++  require => [File["/etc/puppet/rack/config.ru"], File["/etc/puppet/rack/public"], Package["httpd"], Package["mod_passenger"]],
++  notify => Service["httpd"]
+ }
+ 
+-package { ["rack", "passenger"]:
++package { ["rubygem-rack", "mod_passenger", "puppet-server"]:
+   ensure => installed,
+-  provider => "gem",
++  provider => "yum"
++}
++
++service { "httpd":
+ }
+ 
+-service { "apache2":
++service { "puppetmaster":
++  require => Package["puppet-server"],
++  ensure => "stopped",
++  enable => "false"
+ }
+ 
+ case $lsbdistid {
+-  "Debian": {
+-    package { ["apache2-mpm-worker", "apache2-threaded-dev", "apache2"]:
++  "RedHat","CentOS","Fedora": {
++    package { ["httpd", "httpd-devel", "mod_ssl"]:
+       ensure => installed,
++      provider => "yum"
+     }
+-    file { "/etc/apache2/mods-enabled/ssl.load":
+-      ensure => "../mods-available/ssl.load",
+-      notify => Service["apache2"],
+-      require => Package["apache2"],
+-    }
+-    Service["apache2"] {
+-      require => Package["apache2"],
+-    }
+-    exec { "/var/lib/gems/1.8/bin/passenger-install-apache2-module --auto":
+-      subscribe => Package["passenger"],
+-      before => Service["apache2"],
+-      require => Package[["passenger", "apache2-threaded-dev"]],
++    Service["httpd"] {
++      require => Package["httpd"]
+     }
+   }
+ }
+ 
+-notice("You need to manually enable mod_passenger.so for Apache.")
+-notice("Usually, you put these config stanzas into httpd.conf:")
+-notice("   LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.2/ext/apache2/mod_passenger.so")
+-notice("   PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.2")
+-notice("   PassengerRuby /usr/bin/ruby1.8")
++notice("Completed Puppet configuration for Phusion Passenger.")
+ notice("--------------------------------------------------------")

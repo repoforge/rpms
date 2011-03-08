@@ -19,6 +19,7 @@ Group: System Environment/Base
 URL: http://puppetlabs.com/projects/puppet/
 
 Source: http://puppetlabs.com/downloads/puppet/puppet-%{version}.tar.gz
+Patch0: puppet-2.6.5_rackup.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -64,6 +65,7 @@ Vim support for editing Puppet files.
 
 %prep
 %setup
+%patch0 -p1
 
 %{__perl} -pi -e 's|^#!.*$|#!/usr/bin/ruby|' bin/*
 
@@ -218,6 +220,7 @@ fi
 %changelog
 * Mon Mar 07 2011 Steve Huff <shuff@vecna.org> - 2.6.5-1
 - Update to version 2.6.5.
+- Port rackup config from Debian to Red Hat.
 
 * Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 2.6.4-1
 - Update to version 2.6.4 (el5 and el6 only).
