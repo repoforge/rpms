@@ -7,7 +7,7 @@
 
 Summary: Configuration API and editing tool
 Name: augeas
-Version: 0.7.4
+Version: 0.8.0
 Release: 1%{?dist}
 License: LGPL
 Group: System Environment/Base
@@ -39,12 +39,14 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
-%package vim
+%package -n vim-augeas
 Summary: Vim syntax definitions for %{name}.
 Group: Applications/Editors
 Requires: vim-common >= 7.0
+Provides: augeas-vim = %{version}-%{release}
+Obsoletes: augeas-vim < %{version}
 
-%description vim
+%description -n vim-augeas
 Syntax and filetype detection files to make editing Augeas configurations in
 Vim 7 easier.
 
@@ -88,10 +90,14 @@ Vim 7 easier.
 %exclude %{_libdir}/libaugeas.la
 %exclude %{_libdir}/libfa.la
 
-%files vim
+%files -n vim-augeas
 %{_datadir}/vim/vim*/*/augeas.vim
 
 %changelog
+* Tue Mar 08 2011 Steve Huff <shuff@vecna.org> - 0.8.0-1
+- Update to version 0.8.0.
+- Rename augeas-vim subpackage to vim-augeas, for consistency.
+
 * Fri Jan 28 2011 Steve Huff <shuff@vecna.org> - 0.7.4-1
 - Update to version 0.7.4.
 - RFX in el6.
