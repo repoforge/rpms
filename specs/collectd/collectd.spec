@@ -11,7 +11,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.10.1
+Version: 4.10.2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -161,7 +161,9 @@ Summary: snmp plugin for collectd
 Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
 Requires: net-snmp-libs
+Requires: tcp_wrappers
 BuildRequires: net-snmp-devel
+BuildRequires: tcp_wrappers
 %description snmp
 The SNMP plugin uses the Net-SNMP library to read values from network devices using the Simple Network Management Protocol (SNMP). 
 
@@ -381,6 +383,9 @@ fi
 %{_libdir}/collectd/xmms.so
 
 %changelog
+* Thu Mar 03 2011 Christoph Maser <cmaser@gmx.de> 4.10.2-1
+- Updated to release 4.10.2.
+
 * Tue Jul 13 2010 Dag Wieers <dag@wieers.com> - 4.10.1-1
 - Updated to release 4.10.1.
 
