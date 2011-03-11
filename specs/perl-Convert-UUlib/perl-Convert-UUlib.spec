@@ -9,8 +9,8 @@
 
 Summary: Perl interface to the uulib library
 Name: perl-Convert-UUlib
-Version: 1.33
-Release: 2%{?dist}
+Version: 1.34
+Release: 1%{?dist}
 Epoch: 1
 License: GPL or Artistic
 Group: Applications/CPAN
@@ -51,6 +51,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Convert/
 
 %changelog
+* Fri Mar 11 2011 David Hrbáč <david@hrbac.cz> - 1:1.34-1
+- new upstream release
+
 * Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 1:1.33-2
 - corrected Epoch
 
