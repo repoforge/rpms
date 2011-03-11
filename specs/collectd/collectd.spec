@@ -1,18 +1,21 @@
 # $Id$
 # Authority: dag
 # Tag: rft
-# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define perl_archlib %(eval "`%{__perl} -V:archlib`"; echo $archlib)
 
 %{?el3:%define _without_lmsensors 1}
+%{?el4:%define _without_dbi 1}
+%{?el4:%define _without_pcap 1}
+%{?el4:%define _without_libvirt 1}
+%{?el4:%define _without_libnotify 1}
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
 Version: 4.10.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://collectd.org/
@@ -23,14 +26,14 @@ Source2: collection3.conf
 Patch1: %{name}-4.10.0-configure-OpenIPMI.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: krb5-libs
 Requires: curl
-Requires: libpcap
+%{!?_without_pcap:Requires: libpcap}
+Requires: krb5-libs
 Requires: libxml2
 Requires: zlib
-BuildRequires: krb5-devel
 BuildRequires: curl-devel
-BuildRequires: libpcap-devel
+%{!?_without_pcap:BuildRequires: libpcap-devel}
+BuildRequires: krb5-devel
 BuildRequires: libxml2-devel
 BuildRequires: python-devel
 BuildRequires: zlib-devel
@@ -43,10 +46,6 @@ Obsoletes: collectd-apache <= %{version}-%{release}
 Provides: collectd-apache = %{version}-%{release}
 Obsoletes: collectd-sensors <= %{version}-%{release}
 Provides: collectd-sensors = %{version}-%{release}
-
-%filter_provides_in %{_docdir} 
-%filter_requires_in %{_docdir}
-%filter_setup
 
 %description
 collectd is a small daemon written in C for performance.  It reads various
@@ -64,6 +63,7 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+%if %{!?_without_dbi:1}0
 %package dbi
 Summary: dbi plugin for collectd
 Group: System Environment/Daemons
@@ -72,6 +72,7 @@ Requires: libdbi
 BuildRequires: libdbi-devel
 %description dbi
 The DBI plugin uses libdbi, a database abstraction library, to execute SQL statements on a database and read back the result.
+%endif
 
 %package collection3
 Summary: collect perl webfrontent
@@ -97,6 +98,7 @@ Requires: php-rrdtool
 %description php-collection
 PHP graphing frontend for RRD files created by and filled with collectd.
 
+%if %{!?_without_dbi:1}0
 %package postgresql
 Summary: postgresql plugin for collectd
 Group: System Environment/Daemons
@@ -105,7 +107,9 @@ Requires: postgresql-libs
 BuildRequires: postgresql-devel
 %description postgresql
 The PostgreSQL plugin connects to and executes SQL statements on a PostgreSQL database.
+%endif
 
+%if %{!?_without_libvirt:1}0
 %package libvirt
 Summary: libvirt plugin for collectd
 Group: System Environment/Daemons
@@ -117,6 +121,7 @@ BuildRequires: OpenIPMI-devel
 BuildRequires: OpenIPMI-libs
 %description libvirt
 The libvirt plugin uses the virtualization API libvirt, created by RedHat's Emerging Technology group, to gather statistics about virtualized guests on a system.
+%endif
 
 %package mysql
 Summary: xmms plugin for collectd
@@ -127,6 +132,7 @@ BuildRequires: mysql-devel
 %description mysql
 This plugin collects status variable data from mysql
 
+%if %{!?_without_libnotify:1}0
 %package notify_desktop
 Summary: notify_desktop plugin for collectd
 Group: System Environment/Daemons
@@ -137,6 +143,7 @@ BuildRequires: gtk2-devel
 BuildRequires: libnotify-devel
 %description notify_desktop
 The Notify Desktop plugin uses libnotify to display notifications to the user via the desktop notification specification, i. e. on an X display. 
+%endif
 
 %package -n perl-Collectd
 Summary: Perl bindings for collectd
@@ -190,9 +197,9 @@ sed -i -e 's/@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/#@LOAD_PLUGIN_RRDTOOL@LoadP
 ### FIXME: --with-libmysql support not working
 %configure \
     --enable-static=no \
-    --enable-libvirt \
     --with-libmysql="%{_libdir}/mysql/" \
-    --with-perl-bindings=INSTALLDIRS=vendor
+    --with-perl-bindings=INSTALLDIRS=vendor \
+    %{!?_without_libvirt:--enable-libvirt }
 %{__make} %{?_smp_mflags}
 
 
@@ -273,7 +280,7 @@ fi
 %{_libdir}/collectd/curl_xml.so
 %{_libdir}/collectd/df.so
 %{_libdir}/collectd/disk.so
-%{_libdir}/collectd/dns.so
+%{!?el4:%{_libdir}/collectd/dns.so}
 %{_libdir}/collectd/email.so
 %{_libdir}/collectd/entropy.so
 %{_libdir}/collectd/exec.so
@@ -281,8 +288,8 @@ fi
 %{_libdir}/collectd/fscache.so
 %{_libdir}/collectd/hddtemp.so
 %{_libdir}/collectd/interface.so
-%{_libdir}/collectd/ipmi.so
-%{_libdir}/collectd/iptables.so
+%{!?el4:%{_libdir}/collectd/ipmi.so}
+%{!?el4:%{_libdir}/collectd/iptables.so}
 %{_libdir}/collectd/irq.so
 %{_libdir}/collectd/load.so
 %{_libdir}/collectd/logfile.so
@@ -338,8 +345,10 @@ fi
 %{_localstatedir}/www/collection3
 %{_sysconfdir}/httpd/conf.d/collection3.conf
 
+%if %{!?_without_dbi:1}0
 %files dbi
 %{_libdir}/collectd/dbi.so
+%endif
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -349,14 +358,18 @@ fi
 %exclude %{_libdir}/collectd/*.la
 %exclude %{_libdir}/libcollectdclient.la
 
+%if %{!?_without_libvirt:1}0
 %files libvirt
 %{_libdir}/collectd/libvirt.so
+%endif
 
 %files mysql
 %{_libdir}/collectd/mysql.so
 
+%if %{!?_without_libnotify:1}0
 %files notify_desktop
 %{_libdir}/collectd/notify_desktop.so
+%endif
 
 %files -n perl-Collectd
 %{_libdir}/collectd/perl.so
@@ -369,12 +382,14 @@ fi
 %{_localstatedir}/www/php-collection
 %{_sysconfdir}/httpd/conf.d/php-collection.conf
 
+%if %{!?_without_dbi:1}0
 %files postgresql
 %{_libdir}/collectd/postgresql.so
+%endif
 
 %files rrdtool
 %{_libdir}/collectd/rrdtool.so
-%{_libdir}/collectd/rrdcached.so
+%{!?el4:%{_libdir}/collectd/rrdcached.so}
 
 %files snmp
 %{_libdir}/collectd/snmp.so
@@ -383,6 +398,9 @@ fi
 %{_libdir}/collectd/xmms.so
 
 %changelog
+* Fri Mar 11 2011 Christoph Maser <cmaser@gmx.de> 4.10.2-2
+- Add conditional to compile under el4
+
 * Thu Mar 03 2011 Christoph Maser <cmaser@gmx.de> 4.10.2-1
 - Updated to release 4.10.2.
 
