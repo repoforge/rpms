@@ -9,7 +9,7 @@
 
 Summary: Getopt::Long with usage text
 Name: perl-Getopt-Long-Descriptive
-Version: 0.086
+Version: 0.089
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -39,7 +39,7 @@ Requires: perl(Test::More)
 Getopt::Long with usage text.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -q -n %{real_name}-%{version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Getopt/Long/Descriptive.pm
 
 %changelog
+* Fri Mar 11 2011 David Hrbáč <david@hrbac.cz> - 0.089-1
+- new upstream release
+
 * Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 0.086-1
 - Updated to version 0.086.
 
