@@ -1,4 +1,4 @@
-# $Id: $
+# $Id$
 # Authority: dries
 # Upstream: Martin Kutter <martin.kutter$fen-net,de>
 
@@ -13,7 +13,7 @@
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
 Version: 0.712
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
@@ -39,6 +39,7 @@ BuildRequires: perl(XML::Parser) >= 2.23
 BuildRequires: perl(constant)
 BuildRequires: perl(version)
 BuildRequires: perl >= 5.006
+Requires: perl(Class::Inspector)
 Requires: perl(Compress::Zlib)
 Requires: perl(FCGI)
 Requires: perl(HTTP::Daemon)
@@ -110,6 +111,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Sat Mar 12 2011 Yury V. Zaytsev <yury@shurup.com> - 0.712-2
+- Added missing dependency on Class::Inspector (thanks to Dave Miller!)
+
 * Mon Feb 21 2011 Denis Fateyev <denis@fateyev.com> - 0.712-1
 - Updated to version 0.712.
 
