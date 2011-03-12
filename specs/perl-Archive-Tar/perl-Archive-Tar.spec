@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
-# Upstream: Chris Williams <chris@bingosnet.co.uk>
+# Upstream: Chris Williams <chris$bingosnet,co,uk>
 
 ### EL6 ships with perl-Archive-Tar-1.58-115.el6
 %{?el6:# Tag: rfx}
-### EL5 ships with perl-Archive-Tar-1.39.1-1.el5_5.2
+### EL5 ships with perl-Archive-Tar.noarch 1:1.39.1-1.el5_5.2 (RHN)
 %{?el5:# Tag: rfx}
 ### EL4 ships with perl-Archive-Tar-1.39.1-1.el4_8.2
 %{?el4:# Tag: rfx}
@@ -17,7 +17,8 @@
 Summary: Archive-Tar module for perl
 Name: perl-Archive-Tar
 Version: 1.56
-Release: 1%{?dist}
+Release: 2%{?dist}
+Epoch: 1
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Archive-Tar/
@@ -87,6 +88,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Archive/Tar.pm
 
 %changelog
+* Sat Mar 12 2011 Yury V. Zaytsev <yury@shurup.com> - 1.56-2
+- Added epoch to follow upstream (thanks to Dave Miller!)
+
 * Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 1.56-1
 - Updated to version 1.56.
 
