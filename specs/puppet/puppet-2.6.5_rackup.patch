@@ -22,8 +22,8 @@ diff -Naur puppet-2.6.5-orig/ext/rack/files/apache2.conf puppet-2.6.5/ext/rack/f
          SSLOptions +StdEnvVars
 diff -Naur puppet-2.6.5-orig/ext/rack/manifest.pp puppet-2.6.5/ext/rack/manifest.pp
 --- puppet-2.6.5-orig/ext/rack/manifest.pp	2011-02-28 18:33:01.000000000 -0500
-+++ puppet-2.6.5/ext/rack/manifest.pp	2011-03-08 15:08:59.000000000 -0500
-@@ -3,57 +3,50 @@
++++ puppet-2.6.5/ext/rack/manifest.pp	2011-03-14 08:50:33.000000000 -0400
+@@ -3,57 +3,63 @@
    ensure => directory,
    mode => 0755,
    owner => root,
@@ -50,18 +50,31 @@ diff -Naur puppet-2.6.5-orig/ext/rack/manifest.pp puppet-2.6.5/ext/rack/manifest
 +  require => [File["/etc/puppet/rack/config.ru"], File["/etc/puppet/rack/public"], Package["httpd"], Package["mod_passenger"]],
 +  notify => Service["httpd"]
  }
++augeas { "puppetmaster_ssl": 
++  if versioncmp($puppetversion, "2.6.0") < 0 {
++    $master = "puppetmasterd"
++  } else {
++    $master = "master"
++  }
++  context => "/files/etc/puppet/puppet.conf/$master",
++  changes => [
++    "set ssl_client_header SSL_CLIENT_S_DN",
++    "set ssl_client_verify_header SSL_CLIENT_VERIFY"
++  ],
++  require => Package["puppet-server"]
++
  
 -package { ["rack", "passenger"]:
 +package { ["rubygem-rack", "mod_passenger", "puppet-server"]:
    ensure => installed,
 -  provider => "gem",
 +  provider => "yum"
-+}
-+
-+service { "httpd":
  }
  
 -service { "apache2":
++service { "httpd":
++}
++
 +service { "puppetmaster":
 +  require => Package["puppet-server"],
 +  ensure => "stopped",
@@ -99,5 +112,5 @@ diff -Naur puppet-2.6.5-orig/ext/rack/manifest.pp puppet-2.6.5/ext/rack/manifest
 -notice("   LoadModule passenger_module /var/lib/gems/1.8/gems/passenger-2.2.2/ext/apache2/mod_passenger.so")
 -notice("   PassengerRoot /var/lib/gems/1.8/gems/passenger-2.2.2")
 -notice("   PassengerRuby /usr/bin/ruby1.8")
-+notice("Completed Puppet configuration for Phusion Passenger.")
++notice("Puppet configuration for Phusion Passenger.")
  notice("--------------------------------------------------------")
