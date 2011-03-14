@@ -14,7 +14,7 @@
 
 Summary: Checks for POD errors in files
 Name: perl-Test-Pod
-Version: 1.44
+Version: 1.45
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -68,6 +68,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Test/Pod.pm
 
 %changelog
+* Mon Mar 14 2011 David Hrbáč <david@hrbac.cz> - 1.45-1
+- new upstream release
+
 * Thu Sep 23 2010 David Hrbáč <david@hrbac.cz> - 1.44-1
 - new upstream release
 
