@@ -22,7 +22,7 @@ diff -Naur puppet-2.6.5-orig/ext/rack/files/apache2.conf puppet-2.6.5/ext/rack/f
          SSLOptions +StdEnvVars
 diff -Naur puppet-2.6.5-orig/ext/rack/manifest.pp puppet-2.6.5/ext/rack/manifest.pp
 --- puppet-2.6.5-orig/ext/rack/manifest.pp	2011-02-28 18:33:01.000000000 -0500
-+++ puppet-2.6.5/ext/rack/manifest.pp	2011-03-14 09:08:51.000000000 -0400
++++ puppet-2.6.5/ext/rack/manifest.pp	2011-03-14 09:12:38.000000000 -0400
 @@ -3,57 +3,65 @@
    ensure => directory,
    mode => 0755,
@@ -73,8 +73,8 @@ diff -Naur puppet-2.6.5-orig/ext/rack/manifest.pp puppet-2.6.5/ext/rack/manifest
  
 -service { "apache2":
 +service { "httpd":
-+  hasstatus => "yes",
-+  hasrefresh => "yes",
++  hasstatus => "true",
++  hasrestart => "true",
 +}
 +
 +service { "puppetmaster":
