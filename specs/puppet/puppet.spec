@@ -2,6 +2,10 @@
 # Authority: shuff
 # ExcludeDist: el3 el4
 
+# we need Augeas >= 0.8 for Apache conf manipulation
+# el6 ships with 0.7.x
+%{?el6:# Tag: rfx}
+
 %define ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')
 
 # no Ruby SELinux support in el5
@@ -12,7 +16,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.6.5
+Version: 2.6.6
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -24,6 +28,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby-devel >= 1.8.1
+Requires: augeas-libs >= 0.8
 Requires: facter >= 1.5
 Requires: ruby >= 1.8.1
 Requires: ruby(abi) = 1.8
@@ -218,6 +223,11 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Mar 16 2011 Steve Huff <shuff@vecna.org> - 2.6.6-1
+- Update to version 2.6.6.
+- Improvements to rackup config.
+- Require Augeas 0.8 for Apache config lens.
+
 * Mon Mar 07 2011 Steve Huff <shuff@vecna.org> - 2.6.5-1
 - Update to version 2.6.5.
 - Port rackup config from Debian to Red Hat.
