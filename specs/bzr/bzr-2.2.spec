@@ -13,8 +13,8 @@
 #   Version: bzr version, add subrelease version here
 #   bzrrc: release candidate version, if any, line starts with % for rc, # for stable releas (no %).
 #   release: rpm subrelease (0.N for rc candidates, N for stable releases)
-%define bzrmajor 2.3
-%define bzrminor .1
+%define bzrmajor 2.2
+%define bzrminor .4
 #define bzrrc rc2
 %define release 1
 
@@ -92,9 +92,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/bash_completion.d/*
 
 %changelog
-* Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.3.1-1
-- Updated to 2.3.1 release (needs an updated bzr)
-
 * Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.2.4-1
 - Updated to 2.2.4 release.
 

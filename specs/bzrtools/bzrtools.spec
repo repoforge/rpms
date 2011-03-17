@@ -9,8 +9,8 @@
 # (bzrlib is arch dependent.  Thus bzrlib plugins are also arch dependent.)
 %define debug_package %{nil}
 
-%define bzrver 2.2
-%define bzrnextver 2.3
+%define bzrver 2.3
+%define bzrnextver 2.4
 
 Name: bzrtools
 Version: %{bzrver}.0
@@ -20,8 +20,8 @@ Summary: A collection of utilities and plugins for Bazaar-NG
 Group:   Development/Tools
 License: GPLv2+
 URL:     http://bazaar-vcs.org/BzrTools
-Source0: http://launchpad.net/bzrtools/stable/%{version}/+download/bzrtools-%{version}.tar.gz
-Source1: http://launchpad.net/bzrtools/stable/%{version}/+download/bzrtools-%{version}.tar.gz.sig
+Source0: http://launchpad.net/bzrtools/trunk/%{version}/+download/bzrtools-%{version}.tar.gz
+Source1: http://launchpad.net/bzrtools/trunk/%{version}/+download/bzrtools-%{version}.tar.gz.sig
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -32,7 +32,9 @@ BuildRequires: python-devel
 # changed between releases.). But releases often lag behind slightly so
 # we allow one revision difference, hoping that it will work..
 Requires: bzr >= %{bzrver}, bzr <= %{bzrnextver}
+Requires: diffutils
 Requires: graphviz
+Requires: patch
 Requires: rsync
 
 %description
@@ -73,6 +75,10 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/bzrlib/plugins/bzrtools
 
 %changelog
+* Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.3.0-1
+- Update to 2.2.0 for bzr-2.3.1.
+- Captured diff and patch dependencies for several plugins.
+
 * Thu Dec 23 2010 Steve Huff <shuff@vecna.org> - 2.2.0-1
 - Update to 2.2.0 for bzr-2.2.2.
 - Captured graphviz dependency for graph-ancestry plugin.
