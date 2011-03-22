@@ -5,10 +5,12 @@
 ### EL2 ships with dia-0.88.1-3.3
 # ExcludeDist: el2 el4
 
+%{?el6:%define _default_patch_fuzz 2}
+
 Summary: Diagram drawing program
 Name: dia
 Version: 0.97
-Release: 1%{?dist}
+Release: 2%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
@@ -72,6 +74,9 @@ format, and can export to PostScript(TM).
 
 %{__perl} -pi.orig -e 's|\(W32::HDC\)user_data;|(W32::HDC)(guint64)user_data;|g' plug-ins/wmf/wmf.cpp
 
+# Change linking from static libpython${PYTHON_VERSION}.a to dynamic libpython${PYTHON_VERSION}.so
+%{__perl} -pi -e 's|libpython\${PYTHON_VERSION}.a|libpython\${PYTHON_VERSION}.so|' configure
+
 %build
 #autoreconf --force --install --symlink
 %configure \
@@ -123,6 +128,9 @@ unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE21}
 %{_libdir}/dia/
 
 %changelog
+* Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 0.97-2
+- Fixed EL6 build (thanks to Bjarne Saltbaek!)
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 0.97-1
 - Updated to release 0.97.
 
