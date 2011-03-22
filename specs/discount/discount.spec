@@ -4,8 +4,8 @@
 
 Summary: C compiler for Markdown
 Name: discount
-Version: 2.0.2
-Release: 2%{?dist}
+Version: 2.0.8
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/
@@ -13,7 +13,9 @@ URL: http://www.pell.portland.or.us/~orc/Code/discount/
 Source: http://www.pell.portland.or.us/~orc/Code/discount/discount-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils, gcc, make
+BuildRequires: binutils
+BuildRequires: gcc
+BuildRequires: make
 
 # we are a Markdown compiler
 Provides: Markdown
@@ -50,7 +52,7 @@ Install this package if you want to develop software that uses the Discount libr
 %setup
 
 %build
-./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --libdir=%{_libdir} --mandir=%{_mandir} --enable-all-options
+./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --libdir=%{_libdir} --mandir=%{_mandir} --enable-all-options --with-id-anchor --with-github-tags --with-dl=both
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
@@ -81,6 +83,9 @@ Install this package if you want to develop software that uses the Discount libr
 %{_includedir}/*
 
 %changelog
+* Tue Mar 22 2011 Steve Huff <shuff@vecna.org> - 2.0.8-1
+- Updated to version 2.0.8.
+
 * Mon Jan 24 2011 Steve Huff <shuff@vecna.org> - 2.0.2-2
 - Applied a stupid fix that enables discount to build under el6 x86_64.
 
