@@ -15,8 +15,8 @@
 
 #{?el3:#define _without_swig 1}
 
-%define swig_version 1.3.39
-%define sqlite_version 3.6.13
+%define swig_version 1.3.40
+%define sqlite_version 3.6.22
 
 # set to zero to avoid running test suite
 %define make_check 0
