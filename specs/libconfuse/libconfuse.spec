@@ -16,7 +16,11 @@ Source: http://bzero.se/confuse/confuse-%{version}.tar.gz
 Patch0: libconfuse-2.6_werror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils, gcc, make, autoconf, automake
+BuildRequires: binutils
+BuildRequires: gcc
+BuildRequires: make
+BuildRequires: autoconf
+BuildRequires: automake
 BuildRequires: doxygen
 BuildRequires: flex
 BuildRequires: gawk
