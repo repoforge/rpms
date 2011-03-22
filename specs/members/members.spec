@@ -8,7 +8,7 @@
 Summary:   Outputs members of a group
 Name:      members
 Version:   0.0
-Release:   0.%{real_version}.%{debian_release}%{?dist}
+Release:   0.%{real_version}.%{debian_release}.1%{?dist}
 License:   GPL
 Group:     Applications/System
 URL:       http://ftp.de.debian.org/debian/pool/main/m/members/
@@ -23,7 +23,7 @@ members is a program that sends a space-separated list of secondary
 member names to its standard output.
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n %{name}-%{real_version}
 
 %build
 make
@@ -48,5 +48,8 @@ make install DESTDIR="%{buildroot}"
 %{_mandir}/man1/members.1
 
 %changelog
+* Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 0.0-0.20080128.5.1
+- Hopefully fixed the build failure caused by a typo.
+
 * Sat Mar 12 2011 Yury V. Zaytsev <yury@shurup.com> - 0.0-0.20080128.5
 - Ported over to RPMForge (thanks to William Horka and Philip Durbin!)
