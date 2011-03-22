@@ -1,0 +1,102 @@
+#!/bin/bash
+#
+# chkconfig: - 85 15
+# description: Lightweight inotify based sync daemon
+#
+# processname:  lsyncd
+# config:       /etc/lsyncd.conf
+# config:       /etc/sysconfig/lsyncd
+# pidfile:      /var/run/lsyncd.pid
+
+# Source function library
+. /etc/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "$NETWORKING" = "no" ] && exit 0
+
+OPTIONS="-pidfile /var/run/lsyncd.pid /etc/lsyncd.conf"
+
+if [ -e /etc/sysconfig/lsyncd.options ]; then
+  . /etc/sysconfig/lsyncd.options
+fi
+
+RETVAL=0
+
+prog="lsyncd"
+thelock=/var/lock/subsys/lsyncd
+
+start() {
+        echo -n $"Starting $prog: "
+        if [ $UID -ne 0 ]; then
+                RETVAL=1
+                failure
+        else
+                daemon /usr/bin/lsyncd $OPTIONS
+                RETVAL=$?
+                [ $RETVAL -eq 0 ] && touch $thelock
+        fi;
+        echo
+        return $RETVAL
+}
+
+stop() {
+        echo -n $"Stopping $prog: "
+        if [ $UID -ne 0 ]; then
+                RETVAL=1
+                failure
+        else
+                killproc /usr/bin/lsyncd
+                RETVAL=$?
+                [ $RETVAL -eq 0 ] && rm -f $thelock
+        fi;
+        echo
+        return $RETVAL
+}
+
+reload(){
+        echo -n $"Reloading $prog: "
+        killproc /usr/bin/lsyncd -HUP
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+restart(){
+        stop
+        start
+}
+
+condrestart(){
+    [ -e $thelock ] && restart
+    return 0
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        restart
+        ;;
+  reload)
+        reload
+        ;;
+  condrestart)
+        condrestart
+        ;;
+  status)
+        status lsyncd
+        RETVAL=$?
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|reload}"
+        RETVAL=1
+esac
+
+exit $RETVAL

@@ -5,16 +5,21 @@
 Summary: Live syncing (mirroring) daemon
 Name: lsyncd
 Version: 2.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://code.google.com/p/lsyncd/
 
-Source: http://lsyncd.googlecode.com/files/lsyncd-%{version}.tar.gz
+Source0: http://lsyncd.googlecode.com/files/lsyncd-%{version}.tar.gz
+Source1: %{name}.init
+Source2: %{name}.sysconfig
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lua-devel
 
+Requires: /sbin/chkconfig
+Requires: /sbin/service
 Requires: lua
 Requires: rsync
 
@@ -40,8 +45,27 @@ export LUA_CFLAGS="-I/usr/include/"
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__install} -p -D -m 0755 %{SOURCE1} %{buildroot}%{_initrddir}/%{name}
+%{__install} -p -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+
 %clean
 %{__rm} -rf %{buildroot}
+
+%post
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add %{name}
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/service %{name} stop &>/dev/null || :
+    /sbin/chkconfig --del %{name}
+fi
+
+%postun
+if [ $1 -ge 1 ]; then
+    /sbin/service %{name} condrestart &>/dev/null || :
+fi
 
 %files
 %defattr(-, root, root, 0755)
@@ -49,8 +73,13 @@ export LUA_CFLAGS="-I/usr/include/"
 %doc %{_defaultdocdir}/lsyncd/
 %doc %{_mandir}/man1/lsyncd.1.gz
 %{_bindir}/lsyncd
+%{_initrddir}/%{name}
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 
 %changelog
+* Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 2.0.2-2
+- Added an init script (thanks to Aleksandar Ivanisevic!)
+
 * Tue Feb 22 2011 Yury V. Zaytsev <yury@shurup.com> - 2.0.2-1
 - Updated to release 2.0.2 (thanks to Aleksandar Ivanisevic!)
 

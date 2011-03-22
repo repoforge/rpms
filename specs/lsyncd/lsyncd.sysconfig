@@ -1,0 +1,3 @@
+# Put your lsyncd options here
+
+#OPTIONS="-pidfile /var/run/lsyncd.pid /etc/lsyncd.conf"
