@@ -1,0 +1,84 @@
+--- KoboDeluxe-0.4pre10/graphics/window.cpp.org 2010-11-15 22:28:23.000000000 +0100
++++ KoboDeluxe-0.4pre10/graphics/window.cpp     2010-11-15 22:29:23.000000000 +0100
+@@ -310,7 +310,7 @@
+                 */
+                if(token)
+                {
+-                       char *tok = strchr(txt, token);
++                       const char *tok = strchr(txt, token);
+                        if(tok)
+                                tokpos = tok-txt;
+                        else
+--- KoboDeluxe-0.4pre10/enemies.h.org   2010-11-15 23:04:52.000000000 +0100
++++ KoboDeluxe-0.4pre10/enemies.h       2010-11-15 23:06:00.000000000 +0100
+@@ -64,7 +64,7 @@
+ extern const enemy_kind cannon;
+ extern const enemy_kind pipe1;
+ extern const enemy_kind core;
+-extern const enemy_kind pipe2;
++extern const enemy_kind pipe2_kbdl;
+ extern const enemy_kind rock;
+ extern const enemy_kind ring;
+ extern const enemy_kind enemy_m1;
+@@ -257,10 +257,10 @@
+        }
+        else if(ek == &core)
+        {
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
+                enemies.make(&explosion, CS2PIXEL(x), CS2PIXEL(y));
+                release();
+                manage.destroyed_a_core();
+@@ -372,7 +372,7 @@
+
+ inline int _enemy::is_pipe()
+ {
+-       return ((_state != notuse) && ((ek == &pipe1) || (ek == &pipe2)));
++       return ((_state != notuse) && ((ek == &pipe1) || (ek == &pipe2_kbdl)));
+ }
+
+
+--- KoboDeluxe-0.4pre10/enemy.cpp.org   2010-11-15 23:06:12.000000000 +0100
++++ KoboDeluxe-0.4pre10/enemy.cpp       2010-11-15 23:06:52.000000000 +0100
+@@ -762,19 +762,19 @@
+        }
+        p ^= a;
+        if(p & U_MASK)
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 1);
+        if(p & R_MASK)
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 3);
+        if(p & D_MASK)
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 5);
+        if(p & L_MASK)
+-               enemies.make(&pipe2, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
++               enemies.make(&pipe2_kbdl, CS2PIXEL(x), CS2PIXEL(y), 0, 0, 7);
+        manage.add_score(10);
+        release();
+ }
+
+
+-const enemy_kind pipe2 = {
++const enemy_kind pipe2_kbdl = {
+        0,
+        &_enemy::make_pipe2,
+        &_enemy::move_pipe2,
+--- KoboDeluxe-0.4pre10/score.cpp.org   2010-11-15 22:40:13.000000000 +0100
++++ KoboDeluxe-0.4pre10/score.cpp       2010-11-15 22:40:33.000000000 +0100
+@@ -417,7 +417,7 @@
+
+                // if the last characters in the file name is the string
+                // UIDbuf...
+-               char *tmpptr = strstr(path, UIDbuf);
++               const char *tmpptr = strstr(path, UIDbuf);
+                if(tmpptr != NULL && (*(tmpptr + strlen(UIDbuf)) == '\0'))
+                {
+                        if(stat(path, &st_buffer))

@@ -11,7 +11,7 @@
 Summary: SDL port of Akira Higuchi's game XKobo 
 Name: kobodeluxe
 Version: 0.4
-Release: 0.pre10%{?dist}
+Release: 0.pre10.1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://www.olofson.net/kobodl/
@@ -24,6 +24,7 @@ Patch0: kobodeluxe-0.4pre10-gcc4.patch
 Patch1: kobodeluxe-0.4pre10-various-from-debian.patch
 Patch2: kobodeluxe-0.4pre10-fix-segfault-in-midi.patch
 Patch3: kobodeluxe-0.4pre10-gcc44.patch
+Patch4: kobodeluxe-0.4pre10-various-from-debian2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: skobo <= %{version}-%{release}
@@ -42,6 +43,7 @@ of the major operating systems.
 %patch1 -p1
 %patch2 -p1 -z .pix
 %patch3 -p0
+%patch4 -p1 -b .various-from-debian2
 
 %{__cat} <<EOF >kobodeluxe.desktop
 [Desktop Entry]
@@ -107,5 +109,8 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_localstatedir}/games/kobo-deluxe/
 
 %changelog
+* Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 0.4-0.pre10.1
+- Fixed EL6 build (thanks to Bjarne Saltbaek!)
+
 * Tue Feb 13 2007 Dag Wieers <dag@wieers.com> - 0.4-0.pre10
 - Initial package. (using DAR)
