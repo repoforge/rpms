@@ -13,7 +13,7 @@
 Summary: Interface to SOAP
 Name: perl-SOAP-Lite
 Version: 0.712
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SOAP-Lite/
@@ -53,6 +53,7 @@ Requires: perl(Test::More)
 Requires: perl(URI)
 Requires: perl(XML::Parser) >= 2.23
 Requires: perl(constant)
+Requires: perl(version)
 Requires: perl >= 5.006
 
 %filter_from_requires /^perl*/d
@@ -111,6 +112,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XMLRPC/
 
 %changelog
+* Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 0.712-3
+- Missing dependency on perl-version (Dave Miller, Francois Gaudreault)
+
 * Sat Mar 12 2011 Yury V. Zaytsev <yury@shurup.com> - 0.712-2
 - Added missing dependency on Class::Inspector (thanks to Dave Miller!)
 
