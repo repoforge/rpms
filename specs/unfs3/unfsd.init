@@ -1,0 +1,72 @@
+#!/bin/bash
+# -*- mode: shell-script; coding: UTF-8 -*-
+#
+# chkconfig: - 85 15
+# description: Start or stop the unfs3 server
+#
+# processname:  unfsd
+# pidfile:      /var/run/unfsd.pid
+#
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "$NETWORKING" = "no" ] && exit 0
+
+description="unfs3 NFS server"
+
+lockfile="/var/lock/subsys/unfsd"
+pidfile="/var/run/unfsd.pid"
+
+case "$1" in
+    start)
+        echo "Starting" ${description}
+        /usr/sbin/unfsd -i ${pidfile}
+        RETVAL=$?
+        if [ "${RETVAL}" = "0" ]; then
+            touch ${lockfile} >/dev/null 2>&1
+        fi
+        ;;
+    stop)
+        echo "Shutting down" ${description}
+        if [ -s ${pidfile} ]; then
+            pid=`cat ${pidfile}`
+            kill -TERM ${pid} 2>/dev/null
+            sleep 2
+            if kill -0 ${pid} 2>/dev/null; then
+                kill -KILL ${pid}
+            fi
+        fi
+        rm -f ${lockfile} ${pidfile}
+        ;;
+    status)
+        if [ -s ${pidfile} ]; then
+                pid=`cat ${pidfile}`
+                if kill -0 ${pid} 2>/dev/null; then
+                    echo "${description} (pid ${pid}) is running"
+                    RETVAL=0
+                else
+                    echo "${description} is stopped"
+                    RETVAL=1
+                fi
+        else
+            echo "${description} is stopped"
+            RETVAL=1
+        fi
+        ;;
+    restart)
+        /etc/init.d/unfsd stop && /etc/init.d/unfsd start
+        RETVAL=$?
+        ;;
+    condrestart)
+        [ -f /var/lock/subsys/unfsd ] && /etc/init.d/unfsd stop && /etc/init.d/unfsd start
+        RETVAL=$?
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|condrestart|status}"
+        RETVAL=1
+        ;;
+esac
+
+exit $RETVAL
