@@ -2,24 +2,22 @@
 # Authority: shuff
 # Upstream: Nick Bolton <nick.bolton.uk$gmail,com>
 
-%define real_name synergy-plus
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
 Summary: Mouse and keyboard sharing utility
 Name: synergy
-Version: 1.3.4
-Release: 2%{?dist}
+Version: 1.3.6
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://synergy-foss.org/
-Source: http://synergy-plus.googlecode.com/files/synergy-plus-%{version}.tar.gz
+Source: http://synergy.googlecode.com/files/synergy-%{version}-Source.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf
-BuildRequires: automake
+BuildRequires: cmake
 BuildRequires: gcc-c++
+BuildRequires: python
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{!?_without_modxorg:BuildRequires: libXt-devel}
 %{!?_without_modxorg:BuildRequires: libXinerama-devel}
@@ -27,10 +25,10 @@ BuildRequires: gcc-c++
 %{!?_without_modxorg:BuildRequires: libXext-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
-Conflicts: synergy-plus 
-Conflicts: synergy-plus-doc
-Obsoletes: synergy-plus 
-Obsoletes: synergy-plus-doc
+Conflicts: synergy-plus < %{version}
+Conflicts: synergy-plus-doc < %{version}
+Obsoletes: synergy-plus < %{version}
+Obsoletes: synergy-plus-doc < %{version}
 
 %description
 Synergy lets you easily share a single mouse and keyboard between
@@ -40,29 +38,32 @@ with multiple computers on their desk since each system uses its
 own display.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{name}-%{version}-Source
 
 %build
-autoreconf
-%configure
+cmake . 
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -m0755 synergyc %{buildroot}%{_bindir}
+%{__install} -m0755 synergys %{buildroot}%{_bindir}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/PORTING INSTALL NEWS README
-%doc doc/obsolete/*.css doc/obsolete/*.html
-%doc examples/synergy.conf
+%doc ChangeLog COMPILE COPYING doc/synergy*.conf INSTALL README
 %{_bindir}/synergyc
 %{_bindir}/synergys
 
 %changelog
+* Tue Mar 22 2011 Steve Huff <shuff@vecna.org> - 1.3.6-1
+- Update to version 1.3.6.
+- Now uses cmake to build.
+
 * Fri Nov 19 2010 Steve Huff <shuff@vecna.org> - 1.3.4-2
 - Merged from synergy-plus package, since Synergy+ and Synergy have merged
 
