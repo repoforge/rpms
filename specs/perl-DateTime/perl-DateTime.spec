@@ -12,8 +12,8 @@
 
 Summary: Date and time objects
 Name: perl-DateTime
-Version: 0.53
-Release: 1%{?dist}
+Version: 0.5300
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime/
@@ -81,6 +81,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DateTime/
 
 %changelog
+* Wed Mar 23 2011 Yury V. Zaytsev <yury@shurup.com> - 0.5300-2
+- Version bump to supersede 0.4305 (thanks to Matthew Vale!)
+
 * Mon Dec 28 2009 Christoph Maser <cmr@financial.com> - 0.53-1
 - Updated to version 0.53.
 
