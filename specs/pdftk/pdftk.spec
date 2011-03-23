@@ -7,13 +7,13 @@
 
 Summary: PDF Tool Kit
 Name: pdftk
-Version: 1.41
+Version: 1.44
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.pdfhacks.com/pdftk/
 
-Source: http://www.pdfhacks.com/pdftk/pdftk-%{version}.tar.bz2
+Source: http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk-%{version}-src.zip
 Patch0: pdftk-1.12-gcj4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -35,30 +35,34 @@ of your desktop and use it to:
     * Repair Corrupted PDF (Where Possible)
 
 %prep
-%setup
+%setup -n %{name}-%{version}-dist
 #%patch -p1
 
 %build
 export -n CLASSPATH
 %{!?_without_gcj3:%{__perl} -pi -e 's|-I"\$\(java_libs_root\)"|--classpath="\$(java_libs_root)"|' java_libs/Makefile}
 %{?_without_gcj3:%{__perl} -pi -e 's|--encoding=UTF-8||' java_libs/Makefile}
-%{__make} -C pdftk -f Makefile.RedHat
+%{__make} -C pdftk -f Makefile.Redhat
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 pdftk/pdftk %{buildroot}%{_bindir}/pdftk
-%{__install} -Dp -m644 debian/pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
+%{__install} -Dp -m644 pdftk.1 %{buildroot}%{_mandir}/man1/pdftk.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc pdftk.1.html pdftk.1.notes pdftk.1.txt
+%doc changelog* pdftk.1.html pdftk.1.notes pdftk.1.txt
+%doc license_gpl_pdftk/*
 %doc %{_mandir}/man1/pdftk.1*
 %{_bindir}/pdftk
 
 %changelog
+* Wed Mar 23 2011 Steve Huff <shuff@vecna.org> - 1.44-1
+- Updated to release 1.44.
+
 * Fri Nov 23 2007 Dag Wieers <dag@wieers.com> - 1.41-1
 - Updated to release 1.41.
 
