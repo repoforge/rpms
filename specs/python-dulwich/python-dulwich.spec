@@ -7,8 +7,12 @@
 
 %define real_name dulwich
 
+%{?el3:%define _conflict_pyrex 1}
+%{?el4:%define _conflict_pyrex 1}
+%{?el5:%define _conflict_pyrex 1}
+
 Name: python-dulwich
-Version: 0.6.2
+Version: 0.7.0
 Release: 1%{?dist}
 Summary: Pure-Python implementation of Git file formats and protocols
 
@@ -23,8 +27,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: python-setuptools 
 
-# pyrex causes a build failure
-BuildConflicts: pyrex
+# pyrex sometimes causes a build failure
+%{?_conflict_pyrex:BuildConflicts: pyrex}
+%{?_conflict_pyrex:BuildConflicts: Pyrex}
 
 Provides: dulwich = %{version}-%{release}
 
@@ -55,8 +60,14 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING HACKING NEWS README docs/*
 %{_bindir}/*
-%{python_sitelib}/*
+%{python_sitearch}/*
 
 %changelog
+* Thu Mar 24 2011 Steve Huff <shuff@vecna.org> - 0.7.0-1
+- D'oh, sitearch, not sitelib :(
+
+* Mon Jan 24 2011 Steve Huff <shuff@vecna.org> - 
+- Update to version 0.7.0.
+
 * Tue Nov 30 2010 Steve Huff <shuff@vecna.org> - 0.6.2-1
 - Initial package.
