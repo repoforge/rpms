@@ -8,7 +8,7 @@
 
 Summary: Dungeon Crawl Stone Soup (innovative roguelike game)
 Name: crawl%{?_with_tiles:-tiles}
-Version: 0.7.1
+Version: 0.7.2
 Release: 1%{?dist}
 License: Crawl GPL (based on Nethack Licence)
 Group: Applications/Games
@@ -41,7 +41,7 @@ BuildRequires: sqlite-devel
 %{!?_with_tiles:Conflicts: crawl-tiles}
 
 %description
-Dungeon Crawl Stone Soup is a free roguelike  game of exploration and
+Dungeon Crawl Stone Soup is a free roguelike game of exploration and
 treasure-hunting in dungeons filled with dangerous and unfriendly monsters in a
 quest for the mystifyingly fabulous Orb of Zot.
 
@@ -56,7 +56,7 @@ Available rpmbuild rebuild optionms:
     --with: tiles
 
 %prep
-%setup -n %{real_name}-%{version}-%{real_release}-%{git_hash}
+%setup -n %{real_name}-%{version}
 %patch0 -p1
 
 %build
@@ -85,5 +85,8 @@ cd ..
 %{_datadir}/crawl/
 
 %changelog
+* Wed Mar 23 2011 Steve Huff <shuff@vecna.org> - 0.7.2-1
+- Update to version 0.7.2.
+
 * Thu Jul 29 2010 Steve Huff <shuff@vecna.org> - 0.7.1-1
 - Initial package.
