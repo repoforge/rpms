@@ -1,13 +1,10 @@
-# $Id$
+# $Id: bash-completion.spec 7981 2009-11-03 03:05:34Z dag $
 # Authority: shuff
 # Upstream: David Paleino <d.paleino$gmail,com>
-# ExcludeDist: el3 el4
-# Tag: testing
 
 Summary: Programmable completion for Bash
 Name: bash-completion
-Epoch: 1
-Version: 1.2
+Version: 20080705
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
@@ -18,21 +15,36 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 
-Requires: bash >= 3.2
+Requires: bash >= 2.05
 Requires: fileutils
 Requires: grep
 Requires: sed
 Requires: textutils
 
-# version scheme changed from dates to dotted :(
-Provides: bash-completion = 20080705
-
 %description
 bash-completion is a collection of shell functions that take advantage
 of the programmable completion feature of bash 2.04 and later.
 
+To use this collection, you should ideally have version 2.05b or later of
+bash. This will ensure that all features work and that you experience the
+least amount of hindrance from bugs in the completion subsystem.
+
+bash 2.05a may also be used, but certain unavoidable annoyances will be
+experienced. You should upgrade to at least 2.05b.
+
+bash 2.05 may be used if you apply the group name completion patch available
+at http://www.caliban.org/files/bash/bash-2.05-group_completion.patch.
+Alternatively, you can just comment out the lines in
+%{_sysconfdir}/bash_completion that contain 'comp{lete,gen} -g'. However,
+upgrading to at least 2.05b is recommended.
+
+If you're stuck using bash 2.04, in addition to commenting out the lines
+mentioned above, you'll also need to edit %{_sysconfdir}/bashrc
+to reflect this version in the $BASH_VERSION test. Again, an upgrade to at
+least 2.05b is strongly recommended.
+
 %prep
-%setup
+%setup -n %{name}
 
 ### FIXME: Remove this line the next release !
 %{__perl} -pi.orig -e 's|_comp-dpkg-hold-packages|_comp_dpkg_hold_packages|g' bash_completion
@@ -70,16 +82,15 @@ EOF
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES COPYING README TODO
+%doc README TODO
 %doc contrib/
 %config %{_sysconfdir}/bash_completion
 %config %{_sysconfdir}/profile.d/*
 %config %{_sysconfdir}/bash_completion.d/
 
 %changelog
-* Fri Mar 25 2011 Steve Huff <shuff@vecna.org> - 1.2-1
-- This package has apparently come back to life.
-- I know Epochs are bad, but I don't see another sane way to fix this.
+* Fri Mar 25 2011 Steve Huff <shuff@vecna.org> - 20080705-1
+- Updated to release 20080705.
 
 * Mon Dec 18 2006 Dag Wieers <dag@wieers.com> - 20060301-1
 - Updated to release 20060301.
