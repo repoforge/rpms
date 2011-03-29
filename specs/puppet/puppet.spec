@@ -27,6 +27,7 @@ Patch0: puppet-2.6.5_rackup.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
+BuildRequires: ruby >= 1.8.1
 BuildRequires: ruby-devel >= 1.8.1
 Requires: augeas-libs >= 0.8
 Requires: facter >= 1.5
