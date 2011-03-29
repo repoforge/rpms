@@ -16,7 +16,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.6.6
+Version: 2.6.7
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -226,6 +226,9 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue Mar 29 2011 Steve Huff <shuff@vecna.org> - 2.6.7-1
+- Update to version 2.6.7.
+
 * Wed Mar 16 2011 Steve Huff <shuff@vecna.org> - 2.6.6-1
 - Update to version 2.6.6.
 - Improvements to rackup config.
