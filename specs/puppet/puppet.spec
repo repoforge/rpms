@@ -29,6 +29,7 @@ BuildArch: noarch
 
 BuildRequires: ruby >= 1.8.1
 BuildRequires: ruby-devel >= 1.8.1
+BuildRequires: ruby-rdoc >= 1.8.1
 Requires: augeas-libs >= 0.8
 Requires: facter >= 1.5
 Requires: ruby >= 1.8.1
