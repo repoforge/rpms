@@ -1,11 +1,11 @@
 # $Id$
-# Authority: dag
+# Authority: yury
 # Upstream: Axel Kittenberger <axkibe$gmail,com>
 
 Summary: Live syncing (mirroring) daemon
 Name: lsyncd
-Version: 2.0.2
-Release: 2%{?dist}
+Version: 2.0.4
+Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://code.google.com/p/lsyncd/
@@ -77,6 +77,9 @@ fi
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 
 %changelog
+* Wed Mar 30 2011 Yury V. Zaytsev <yury@shurup.com> - 2.0.4-1
+- Updated to release 2.0.4 (thanks to Aleksandar Ivanisevic!)
+
 * Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 2.0.2-2
 - Added an init script (thanks to Aleksandar Ivanisevic!)
 
