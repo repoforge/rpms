@@ -6,18 +6,12 @@
 
 %define logdir %{_localstatedir}/log/icinga
 
-%if "%{_vendor}" == "suse"
-%define apacheconfdir  %{_sysconfdir}/apache2/conf.d
-%define apacheuser wwwrun
-%endif
-%if "%{_vendor}" == "redhat"
 %define apacheconfdir  %{_sysconfdir}/httpd/conf.d
 %define apacheuser apache
-%endif
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.2.1
+Version: 1.3.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -97,7 +91,7 @@ Documentation for %{name}
     --libexecdir="%{_datadir}/icinga" \
     --localstatedir="%{_localstatedir}/icinga" \
     --with-checkresult-dir="%{_localstatedir}/icinga/checkresults" \
-    --sbindir="%{_datadir}/icinga/cgi" \
+    --sbindir="%{_libdir}/icinga/cgi" \
     --sysconfdir="%{_sysconfdir}/icinga" \
     --with-cgiurl="/icinga/cgi-bin" \
     --with-command-user="icinga" \
@@ -171,12 +165,7 @@ fi
 
 %pre gui
 # Add apacheuser in the icingacmd group
-%if "%{_vendor}" == "suse"
-  /usr/sbin/groupmod -A %{apacheuser} icingacmd
-%endif
-%if "%{_vendor}" == "redhat"
   /usr/sbin/usermod -a -G icingacmd %{apacheuser}
-%endif
 
 %post idoutils
 /sbin/chkconfig --add ido2db
@@ -196,6 +185,7 @@ fi
 %attr(755,root,root) %{_initrddir}/icinga
 %dir %{_sysconfdir}/icinga
 %config(noreplace) %{_sysconfdir}/icinga/cgi.cfg
+%config(noreplace) %{_sysconfdir}/icinga/cgiauth.cfg
 %config(noreplace) %{_sysconfdir}/icinga/icinga.cfg
 %config(noreplace) %{_sysconfdir}/icinga/objects/commands.cfg
 %config(noreplace) %{_sysconfdir}/icinga/objects/contacts.cfg
@@ -217,12 +207,13 @@ fi
 %files doc
 %defattr(-,icinga,icinga,-)
 %{_datadir}/icinga/docs
+%{_datadir}/icinga/doxygen
 
 %files gui
 %defattr(-,icinga,icinga,-)
 %config(noreplace) %attr(-,root,root) %{apacheconfdir}/icinga.conf
 %dir %{_datadir}/icinga
-%{_datadir}/icinga/cgi
+%{_libdir}/icinga/cgi
 %{_datadir}/icinga/contexthelp
 %{_datadir}/icinga/images
 %{_datadir}/icinga/index.html
@@ -243,6 +234,7 @@ fi
 %config(noreplace) %{_sysconfdir}/icinga/idomod.cfg
 %{_sysconfdir}/icinga/idoutils
 %{_bindir}/ido2db
+%{_bindir}/log2ido
 %{_bindir}/idomod.o
 
 %files api
@@ -252,6 +244,17 @@ fi
 
 
 %changelog
+* Tue Mar 31 2011 Christoph Maser <cmaser@gmx.de> - 1.3.1-0
+- update for release 1.3.1
+
+* Tue Feb 15 2011 Christoph Maser <cmaser@gmx.de> - 1.3.0-2
+- move cgis to libdir
+- remove suse suppot (packages available at opensuse build system)
+- add doxygen docs
+
+* Wed Nov 03 2010 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.3.0-1
+- prepared 1.3.0, added log2ido for idoutils install
+
 * Mon Oct 25 2010 Christoph Maser <cmaser@gmx.de> - 1.2.1-1
 - update for release 1.2.1
 - add build dep for httpd
