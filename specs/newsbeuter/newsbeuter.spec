@@ -4,7 +4,7 @@
 
 Summary: The Mutt of news feed readers
 Name: newsbeuter
-Version: 2.3
+Version: 2.4
 Release: 1%{?dist}
 License: MIT/X Consortium
 Group: Applications/Text
@@ -72,8 +72,12 @@ CFLAGS="%{optflags}" %{__make} %{?_smp_mflags}
 %{_datadir}/locale/*/LC_MESSAGES/*
 
 %changelog
+* Thu Mar 31 2011 Steve Huff <shuff@vecna.org> - 2.4-1
+- Updated to versionm 2.4.
+
 * Mon Sep 13 2010 Steve Huff <shuff@vecna.org> - 2.3-1
-- Updated to 2.3, removed newsbeuter-2.2_el5libcurl.patch (in upstream now)
+- Updated to version 2.3, removed newsbeuter-2.2_el5libcurl.patch 
+  (in upstream now)
 - Thanks to Philip Durbin for the patch!
 
 * Fri May 28 2010 Steve Huff <shuff@vecna.org> - 2.2-1
