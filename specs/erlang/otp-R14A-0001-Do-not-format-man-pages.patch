@@ -1,0 +1,18 @@
+diff -Naur otp_src_R14A-orig/erts/etc/unix/Install.src otp_src_R14A/erts/etc/unix/Install.src
+--- otp_src_R14A-orig/erts/etc/unix/Install.src	2010-06-11 11:29:43.000000000 -0400
++++ otp_src_R14A/erts/etc/unix/Install.src	2010-09-17 16:09:13.000000000 -0400
+@@ -140,14 +140,4 @@
+ cp -p $Name.boot start.boot
+ cp -p ../releases/%I_SYSTEM_VSN%/$Name.script start.script
+ 
+-#
+-# Fixing the man pages
+-#
+-
+-if [ -d $ERL_ROOT/man ]
+-then
+-    cd $ERL_ROOT
+-    ./misc/format_man_pages $ERL_ROOT
+-fi
+-
+ exit 0

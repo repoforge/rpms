@@ -2,8 +2,11 @@
 # Authority: shuff
 # ExcludeDist: el3
 
+%{?el5:%define _with_java142 1}
+%{?el4:%define _with_java142 1}
+
 Name: erlang
-Version: R14A
+Version: R14B02
 Release: 1%{?dist}
 Summary: General-purpose programming language and runtime environment
 License: ERPL
@@ -17,7 +20,8 @@ Patch1: otp-R14A-0001-Do-not-format-man-pages.patch
 Patch2: otp-R12B-5-0005-Fix-missing-ssl-libraries-in-EPEL.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: java-1.4.2-gcj-compat-devel
+%{?_with_java_142:BuildRequires: java-1.4.2-gcj-compat-devel}
+%{!?_with_java_142:BuildRequires: java-devel >= 1.5}
 BuildRequires: flex
 BuildRequires: gd-devel
 BuildRequires: keyutils-libs-devel
@@ -27,6 +31,7 @@ BuildRequires: openssl-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
 BuildRequires: unixODBC-devel
+BuildRequires: wxGTK-devel
 
 Requires: tk
 
@@ -111,7 +116,8 @@ CFLAGS="%{optflags} -fno-strict-aliasing" %configure \
     --enable-threads \
     --enable-smp-support \
     --enable-kernel-poll \
-    --enable-hipe
+    --enable-hipe \
+    --disable-halfword-emulator
 %{__chmod} -R u+w .
 %{__make}
 
@@ -159,8 +165,14 @@ sed -i "s|%{buildroot}||" erts*/bin/{erl,start} releases/RELEASES bin/{erl,start
 %{_libdir}/erlang/Install -minimal %{_libdir}/erlang &>/dev/null
 
 %changelog
+* Thu Mar 31 2011 Steve Huff <shuff@vecna.org> - R14B02-1
+- Updated to version R14B02.
+- HiPE and the halfword emulator cannot currently coexist.
+- We can use a more modern Java on el6.
+- Captured WxWidgets dependency.
+
 * Thu Sep 02 2010 Steve Huff <shuff@vecna.org> - R14A-1
-- Upgraded to version R14A.
+- Updated to version R14A.
 
 * Fri Jul 02 2010 Steve Huff <shuff@vecna.org> - R12B-5.12
 - Argh, Erlang uses standard man page format, but its man pages really are

@@ -13,17 +13,17 @@
 
 Summary: The GTK port of the wxWindows library
 Name: wxGTK
-Version: 2.8.10
+Version: 2.8.12
 Release: 1%{?dist}
 License: wxWidgets Library Licence
 Group: System Environment/Libraries
 URL: http://www.wxwindows.org/
 
-Source: http://dl.sf.net/wxwindows/wxGTK-%{version}.tar.bz2
+Source: http://downloads.sourceforge.net/project/wxwindows/%{version}/wxGTK-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_cairo:BuildRequires: cairo-devel}
-BuildRequires: cppunit-devel
+BuildRequires: cppunit-devel >= 1.8.0
 BuildRequires: expat-devel
 BuildRequires: gcc-c++
 BuildRequires: GConf2-devel
@@ -150,6 +150,9 @@ export GDK_USE_XFT="1"
 %{_libdir}/libwx_*.so
 
 %changelog
+* Thu Mar 31 2011 Steve Huff <shuff@vecna.org> - 2.8.12-1
+- Updated to release 2.8.12.
+
 * Mon May 25 2009 Dag Wieers <dag@wieers.com> - 2.8.10-1
 - Updated to release 2.8.10.
 
