@@ -73,7 +73,7 @@ CFLAGS="%{optflags}" %{__make} %{?_smp_mflags}
 
 %changelog
 * Thu Mar 31 2011 Steve Huff <shuff@vecna.org> - 2.4-1
-- Updated to versionm 2.4.
+- Updated to version 2.4.
 
 * Mon Sep 13 2010 Steve Huff <shuff@vecna.org> - 2.3-1
 - Updated to version 2.3, removed newsbeuter-2.2_el5libcurl.patch 
