@@ -6,17 +6,18 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name JSON-XS
+%define real_version 2.3
 
 Summary: Perl module that implements JSON serialising/deserialising
 Name: perl-JSON-XS
-Version: 2.3
+Version: %{real_version}0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/JSON-XS/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/JSON-XS-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/JSON-XS-%{real_version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{real_version}-%{release}-root
 
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(common::sense)
@@ -33,7 +34,7 @@ perl-JSON-XS is a Perl module that implements JSON serialising/deserialising,
 done correctly and fast.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -66,6 +67,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/JSON/XS.pm
 
 %changelog
+* Sun Apr 03 2011 Yury V. Zaytsev <yury@shurup.com> - 2.30-1
+- Version bump to supersede 0.27.
+
 * Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 2.3-1
 - Updated to version 2.3.
 
