@@ -65,8 +65,6 @@ rm -rf %{buildroot}
 %changelog
 * Thu Mar 24 2011 Steve Huff <shuff@vecna.org> - 0.7.0-1
 - D'oh, sitearch, not sitelib :(
-
-* Mon Jan 24 2011 Steve Huff <shuff@vecna.org> - 
 - Update to version 0.7.0.
 
 * Tue Nov 30 2010 Steve Huff <shuff@vecna.org> - 0.6.2-1
