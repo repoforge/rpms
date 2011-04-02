@@ -9,17 +9,18 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime
+%define real_version 0.53
 
 Summary: Date and time objects
 Name: perl-DateTime
-Version: 0.5300
+Version: %{real_version}00
 Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-%{real_version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{real_version}-%{release}-root
 
 BuildRequires: perl(DateTime::Locale) >= 0.41
 BuildRequires: perl(DateTime::TimeZone) >= 0.59
@@ -53,7 +54,7 @@ correct time zone. This is done by using the DateTime::TimeZone
 module.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -n %{real_name}-%{real_version}
 
 %build
 %{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
