@@ -18,6 +18,9 @@ BuildRequires: byacc
 BuildRequires: bison
 BuildRequires: flex
 
+Requires: /sbin/chkconfig
+Requires: /sbin/service
+
 %description
 UNFS3 is a user-space implementation of the NFS (Network File System)
 version 3 server specification. It provides a daemon that supports both
