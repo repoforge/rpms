@@ -4,14 +4,14 @@
 Summary: John the Ripper password cracker
 Name: john
 Version: 1.7.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.openwall.com/john/
 
 #Source: http://www.openwall.com/john/f/john-%{version}.tar.bz2
 Source: http://www.openwall.com/john/g/john-%{version}.tar.bz2
-Patch: ftp://ftp.openwall.com/pub/projects/john/contrib/john-1.7.6-jumbo-9.diff.gz
+Patch: ftp://ftp.openwall.com/pub/projects/john/contrib/john-1.7.6-jumbo-12.diff.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -33,9 +33,11 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %define _with_cpu_fallback 1
 %{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-any
 %{__mv} -f run/john run/john-non-mmx
+%{__make} -C src clean
 %{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-mmx
-#%{__mv} -f run/john run/john-non-sse
-#%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-sse2
+%{__mv} -f run/john run/john-non-sse
+%{__make} -C src clean
+%{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS -DCPU_FALLBACK=1" linux-x86-sse2
 %endif
 %ifarch x86_64
 %{__make} %{?_smp_mflags} -C src CFLAGS="$CFLAGS" linux-x86-64
@@ -87,6 +89,10 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %endif
 
 %changelog
+* Sun Apr 03 2011 Yury V. Zaytsev <yury@shurup.com> - 1.7.6-3
+- Fixed x86 builds (thanks to Alexander Kirillov!)
+- Updated to the latest jumbo patch version.
+
 * Sun Jan 24 2011 Yury V. Zaytsev <yury@shurup.com> - 1.7.6-2
 - Added jumbo patch and fixed builds.
 - Thanks to Alexander Kirillov!
