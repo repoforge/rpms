@@ -5,16 +5,13 @@
 
 Summary: Command Line XML Toolkit
 Name: xmlstarlet
-Version: 1.0.2
+Version: 1.1.0
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Text
 URL: http://xmlstar.sourceforge.net/
 
 Source: http://dl.sf.net/xmlstar/xmlstarlet-%{version}.tar.gz
-Patch0: xmlstarlet-1.0.1-nostatic.patch
-Patch1: xmlstarlet-1.0.1-cmdname.patch
-Patch2: xmlstarlet-1.0.1-docs.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -32,9 +29,11 @@ commands.
 
 %prep
 %setup
-%patch0 -p1 -b .nostatic
-%patch1 -p1 -b .cmdname
-%patch2 -p1 -b .docs
+
+### Rewrite xml reference to xmlstarlet
+%{__perl} -pi.orig -e 's|^(bin_PROGRAMS =) .*$|$1 xmlstarlet|' Makefile*
+%{__perl} -pi.orig -e 's|\bxml(\s)|xmlstarlet$1|g' Makefile* xmlstarlet.spec* src/*.c
+%{__perl} -pi.orig -e 's|\bxml(\s)|xmlstarlet$1|g' doc/gen-doc doc/*.xml
 
 pushd doc
 xmlto man xmlstarlet-man.xml
@@ -43,9 +42,8 @@ xmlto html-nochunks xmlstarlet-ug.xml
 popd
 
 %build
-autoreconf -i
-%configure
-%{__make} %{?_smp_mflags}
+%configure --disable-static-libs
+%{__make} %{?_smp_mflags} EXEEXT="starlet"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -62,5 +60,17 @@ autoreconf -i
 %{_bindir}/xmlstarlet
 
 %changelog
+* Mon Apr 04 2011 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
+* Mon Mar 14 2011 Dag Wieers <dag@wieers.com> - 1.0.6-1
+- Updated to release 1.0.6.
+
+* Thu Feb 17 2011 Dag Wieers <dag@wieers.com> - 1.0.5-1
+- Updated to release 1.0.5.
+
+* Wed Jan 26 2011 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
 * Wed Jun 30 2010 Dag Wieers <dag@wieers.com> - 1.0.2-1
 - Initial package. (using DAR)
