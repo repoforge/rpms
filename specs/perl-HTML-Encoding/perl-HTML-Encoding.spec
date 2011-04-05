@@ -9,7 +9,7 @@
 
 Summary: Determine the encoding of HTML/XML/XHTML documents
 Name: perl-HTML-Encoding
-Version: 0.60
+Version: 0.61
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -53,6 +53,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTML/Encoding.pm
 
 %changelog
+* Tue Apr 05 2011 Denis Fateyev <denis@fateyev.com> - 0.61-1
+- Updated to version 0.61.
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 0.60-1
 - Updated to release 0.60.
 

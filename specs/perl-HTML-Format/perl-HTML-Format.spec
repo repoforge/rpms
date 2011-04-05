@@ -12,13 +12,13 @@
 
 Summary: Format HTML as plaintext, PostScript or RTF
 Name: perl-HTML-Format
-Version: 2.04
-Release: 1.2%{?dist}
+Version: 2.05
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/HTML-Format/
 
-Source: http://www.cpan.org/modules/by-module/HTML/HTML-Format-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NI/NIGELM/HTML-Format-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -65,5 +65,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTML/Formatter.pm
 
 %changelog
+* Tue Apr 05 2011 Denis Fateyev <denis@fateyev.com> - 2.05-1
+- Updated to version 2.05.
+
 * Sat Apr  9 2005 Dries Verachtert <dries@ulyssis.org> - 2.04-1
 - Initial package.
