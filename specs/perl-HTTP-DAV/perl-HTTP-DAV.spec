@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Patrick Collins <pcollins$cpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 
 Summary: WebDAV client library for Perl
 Name: perl-HTTP-DAV
-Version: 0.40
+Version: 0.42
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -68,6 +69,9 @@ find doc/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/HTTP/DAV.pm
 
 %changelog
+* Tue Apr 05 2011 Denis Fateyev <denis@fateyev.com> - 0.42-1
+- Updated to version 0.42.
+
 * Wed Feb  3 2010 Christoph Maser <cmr@financial.com> - 0.40-1
 - Updated to version 0.40.
 

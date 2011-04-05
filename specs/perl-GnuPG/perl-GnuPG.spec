@@ -9,7 +9,7 @@
 
 Summary: Interface to the GNU Privacy Guard
 Name: perl-GnuPG
-Version: 0.11
+Version: 0.17
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/GnuPG
 
 %changelog
+* Tue Apr 05 2011 Denis Fateyev <denis@fateyev.com> - 0.17-1
+- Updated to version 0.17.
+
 * Sat Feb  6 2010 Christoph Maser <cmr@financial.com> - 0.11-1
 - Updated to version 0.11.
 

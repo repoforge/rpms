@@ -9,7 +9,7 @@
 
 Summary: Perl module that implements a lightweight HTTP implementation
 Name: perl-HTTP-Lite
-Version: 2.2
+Version: 2.3
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -56,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/HTTP/Lite.pm
 
 %changelog
+* Tue Apr 05 2011 Denis Fateyev <denis@fateyev.com> - 2.3-1
+- Updated to version 2.3.
+
 * Wed Dec 30 2009 Christoph Maser <cmr@financial.com> - 2.2-1
 - Updated to version 2.2.
 
