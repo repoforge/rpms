@@ -8,7 +8,7 @@
 Summary: PDF Tool Kit
 Name: pdftk
 Version: 1.44
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.pdfhacks.com/pdftk/
@@ -17,7 +17,9 @@ Source: http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk-%{version}-src.
 Patch0: pdftk-1.12-gcj4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-java, libgcj-devel
+BuildRequires: gcc-java
+BuildRequires: libgcj-devel
+Requires: jre-gcj
 
 %description
 If PDF is electronic paper, then pdftk is an electronic staple-remover,
@@ -60,6 +62,9 @@ export -n CLASSPATH
 %{_bindir}/pdftk
 
 %changelog
+* Tue Apr 05 2011 Steve Huff <shuff@vecna.org> - 1.44-2
+- Added dependency on jre-gcj (thanks, Olaf Mueller!)
+
 * Wed Mar 23 2011 Steve Huff <shuff@vecna.org> - 1.44-1
 - Updated to release 1.44.
 
