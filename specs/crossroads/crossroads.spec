@@ -4,7 +4,7 @@
 
 Summary: Load balance and fail over utility for TCP based services
 Name: crossroads
-Version: 2.41
+Version: 2.74
 Release: 1%{?dist}
 License: GPLv3
 Group: Applications/Utilities
@@ -13,6 +13,9 @@ URL: http://crossroads.e-tunity.com/
 Source: http://crossroads.e-tunity.com/downloads/versions/crossroads-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: binutils
+BuildRequires: gcc-c++
+BuildRequires: make
 BuildRequires: perl
 Requires: perl
 
@@ -45,7 +48,7 @@ of other back ends.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog
+%doc ChangeLog doc/xr.odt doc/xr.pdf
 %doc %{_mandir}/man1/xr*.1*
 %doc %{_mandir}/man1/xrctl.1*
 %doc %{_mandir}/man5/xrctl.xml.5*
@@ -53,6 +56,10 @@ of other back ends.
 %{_sbindir}/xr
 
 %changelog
+* Tue Apr 05 2011 Steve Huff <shuff@vecna.org> - 2.74-1
+- Updated to release 2.74.
+- Captured more documentation.
+
 * Fri Jan  9 2009 Dries Verachtert <dries@ulyssis.org> - 2.41-1
 - Updated to release 2.41.
 
