@@ -17,7 +17,10 @@ BuildRequires: binutils
 BuildRequires: gcc-c++ >= 4
 BuildRequires: make
 BuildRequires: perl
+Requires: bzip2
+Requires: gzip
 Requires: perl
+Requires: perl(LWP::UserAgent)
 
 %description
 Crossroads is an open source load balance and fail over utility for TCP based 
