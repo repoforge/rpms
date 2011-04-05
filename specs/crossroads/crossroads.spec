@@ -14,7 +14,7 @@ Source: http://crossroads.e-tunity.com/downloads/versions/crossroads-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++ >= 4
 BuildRequires: make
 BuildRequires: perl
 Requires: perl
