@@ -51,7 +51,7 @@ of other back ends.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog doc/xr.odt doc/xr.pdf
+%doc ChangeLog LICENSE doc/xr.odt doc/xr.pdf doc/fig/
 %doc %{_mandir}/man1/xr*.1*
 %doc %{_mandir}/man1/xrctl.1*
 %doc %{_mandir}/man5/xrctl.xml.5*
