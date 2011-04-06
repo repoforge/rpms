@@ -2,18 +2,22 @@
 # Authority: shuff
 # Upstream: Tim Kosse <tim.kosse$filezilla-project,org>
 
+%{?el3:%define _with_bundled_gnutls 1}
+%{?el4:%define _with_bundled_gnutls 1}
+%{?el5:%define _with_bundled_gnutls 1}
+
 %define gnutls_version 2.8.5
 
 Summary: GUI SFTP/FTP client
 Name: filezilla
-Version: 3.3.4.1
+Version: 3.4.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://filezilla-project.org/
 
 Source0: http://prdownloads.sourceforge.net/project/filezilla/FileZilla_Client/%{version}/FileZilla_%{version}_src.tar.bz2
-Source1: http://ftp.gnu.org/pub/gnu/gnutls/gnutls-%{gnutls_version}.tar.bz2
+%{?_with_bundled_gnutls:Source1: http://ftp.gnu.org/pub/gnu/gnutls/gnutls-%{gnutls_version}.tar.bz2}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: dbus-devel
@@ -25,10 +29,14 @@ BuildRequires: pkgconfig >= 0.9.0
 BuildRequires: wxGTK-devel
 BuildRequires: xdg-utils
 
+%if 0%{?_with_bundled_gnutls}
 ### For gnutls
 BuildRequires: libgpg-error-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: zlib-devel
+%else
+BuildRequires: gnutls-devel >= %{gnutls_version}
+%endif
 
 Requires: filesystem
 Requires: gnome-icon-theme
@@ -40,9 +48,10 @@ client with lots of useful features and an intuitive graphical user interface.
 
 %prep
 %setup
-%setup -T -D -a 1
+%{?_with_bundled_gnutls:%setup -T -D -a 1}
 
 %build
+%if 0%{?_with_bundled_gnutls}
 #### First, make a local gnutls
 pushd gnutls-%{gnutls_version}
 RESULT_DIR=`pwd`/result
@@ -61,9 +70,13 @@ RESULT_DIR=`pwd`/result
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" install
 popd
 
-### Now, make filezilla
 export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
+%endif
+
+### Now, make filezilla
 %configure \
+    --enable-static=%{?_with_bundled_gnutls:yes}%{!?_with_bundled_gnutls:no} \
+    --enable-locales \
     --disable-dependency-tracking \
     --disable-manualupdatecheck \
     --with-tinyxml=builtin
@@ -87,6 +100,11 @@ export PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH"
 %{_datadir}/pixmaps/filezilla.png
 
 %changelog
+* Wed Apr 06 2011 Steve Huff <shuff@vecna.org> - 3.4.0-1
+- Updated to version 3.4.0.
+- On el6, use the system gnutls.
+- Generate locale files.
+
 * Fri Oct 29 2010 Steve Huff <shuff@vecna.org> - 3.3.4.1-1
 - Updated to version 3.3.4.1.
 - Captured missing wxGTK dependency.
