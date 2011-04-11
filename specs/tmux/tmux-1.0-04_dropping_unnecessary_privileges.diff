@@ -1,0 +1,26 @@
+# using setresgid() for safely dropping utmp group membership which were needed
+# for makesocketpath() to create the user directory under /var/run/tmux which is
+# only writeable for processes that have setgid utmp.
+--- a/tmux.c
++++ b/tmux.c
+@@ -235,6 +235,7 @@
+ 	struct keylist	*keylist;
+ 	char		*s, *path, *label, *home, **var;
+ 	int	 	 opt, flags, quiet, keys;
++	u_int		gid;
+ 
+ #if defined(DEBUG) && defined(__OpenBSD__)
+ 	malloc_options = (char *) "AFGJPX";
+@@ -483,6 +484,12 @@
+ 			}
+ 		}
+ 	}
++	gid = getgid();
++	/* drop unnecessary privileges which were needed for makesocketpath() 
++	 * to create the user directory under /var/run/tmux which is only 
++	 * writeable for processes that have setgid utmp. */
++ 	if (setresgid(gid, gid, gid) != 0)
++ 		return (NULL);
+ 	if (label != NULL)
+ 		xfree(label);
+ 	if (realpath(path, socket_path) == NULL)

@@ -1,0 +1,57 @@
+diff -up tmux-1.2/tty.c.writehard tmux-1.2/tty.c
+--- tmux-1.2/tty.c.writehard	2010-03-08 15:53:49.000000000 +0100
++++ tmux-1.2/tty.c	2010-03-28 12:01:49.335023195 +0200
+@@ -300,7 +300,8 @@ tty_free(struct tty *tty)
+ void
+ tty_raw(struct tty *tty, const char *s)
+ {
+-	write(tty->fd, s, strlen(s));
++	if (write(tty->fd, s, strlen(s)) == -1)
++		fatal("write failed");
+ }
+ 
+ void
+@@ -333,7 +334,8 @@ tty_puts(struct tty *tty, const char *s)
+ 	bufferevent_write(tty->event, s, strlen(s));
+ 
+ 	if (tty->log_fd != -1)
+-		write(tty->log_fd, s, strlen(s));
++		if(write(tty->log_fd, s, strlen(s)) == -1)
++			fatal("write failed");
+ }
+ 
+ void
+@@ -359,7 +361,8 @@ tty_putc(struct tty *tty, u_char ch)
+ 	}
+ 
+ 	if (tty->log_fd != -1)
+-		write(tty->log_fd, &ch, 1);
++		if (write(tty->log_fd, &ch, 1) == -1)
++			fatal("write failed");
+ }
+ 
+ void
+@@ -370,7 +373,8 @@ tty_pututf8(struct tty *tty, const struc
+ 	size = grid_utf8_size(gu);
+ 	bufferevent_write(tty->event, gu->data, size);
+ 	if (tty->log_fd != -1)
+-		write(tty->log_fd, gu->data, size);
++		if(write(tty->log_fd, gu->data, size) == -1)
++			fatal("write failed");
+ 	tty->cx += gu->width;
+ }
+ 
+diff -up tmux-1.2/window.c.writehard tmux-1.2/window.c
+--- tmux-1.2/window.c.writehard	2010-02-08 19:10:07.000000000 +0100
++++ tmux-1.2/window.c	2010-03-28 12:03:07.316900726 +0200
+@@ -518,7 +518,9 @@ window_pane_spawn(struct window_pane *wp
+ 		return (-1);
+ 	case 0:
+ 		if (chdir(wp->cwd) != 0)
+-			chdir("/");
++			if (chdir("/") <0)
++				fatal("chdir failed");
++
+ 
+ 		if (tcgetattr(STDIN_FILENO, &tio2) != 0)
+ 			fatal("tcgetattr failed");

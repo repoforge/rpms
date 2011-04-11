@@ -4,13 +4,27 @@
 Summary: Terminal multiplexer program
 Name: tmux
 Version: 1.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://tmux.sourceforge.net/
 
 Source: http://downloads.sourceforge.net/tmux/tmux-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+# This first patch creates MANDIR in the GNUmakefile.  This has been sent
+# upstream via email but upstream replied and said would not change.
+Patch0:         tmux-1.0-02_fix_wrong_location.diff
+Patch1:         tmux-1.0-03_proper_socket_handling.diff
+# 2010-03-28: Submitted upstream:
+# https://sourceforge.net/tracker/?func=detail&aid=2977950&group_id=200378&atid=973264
+Patch2:         tmux-1.0-04_dropping_unnecessary_privileges.diff
+# 2010-03-28: Submitted upstream:
+# https://sourceforge.net/tracker/?func=detail&aid=2977945&group_id=200378&atid=973264
+Patch3:         tmux-1.2-writehard.patch
+
+BuildRequires:  ncurses-devel
+BuildRequires:  libevent-devel
 
 %description
 tmux is a "terminal multiplexer". It allows a number of terminals (or windows)
@@ -19,6 +33,10 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 
 %prep
 %setup -q
+%patch0 -p1 -b .location
+%patch1 -p1 -b .sockethandling
+%patch2 -p1 -b .dropprivs
+%patch3 -p1 -b .writehard
 
 %build
 %configure
@@ -27,19 +45,32 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 %install
 %{__rm} -rf %{buildroot}
 #%{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m0755 tmux %{buildroot}%{_bindir}/tmux
-%{__install} -Dp -m0644 tmux.1 %{buildroot}%{_mandir}/man1/tmux.1
+#%{__install} -Dp -m0755 tmux %{buildroot}%{_bindir}/tmux
+#%{__install} -Dp -m0644 tmux.1 %{buildroot}%{_mandir}/man1/tmux.1
+make install DESTDIR=%{buildroot} INSTALLBIN="install -p -m 755" INSTALLMAN="install -p -m 644"
+
+# Create the socket dir
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/run/%{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%pre
+getent group tmux >/dev/null || groupadd -r tmux
+
 %files
-%defattr(-, root, root, 0755)
-%doc NOTES TODO
-%doc %{_mandir}/man1/tmux.1*
-%{_bindir}/tmux
+%defattr(-,root,root,-)
+%doc CHANGES FAQ NOTES TODO examples/
+%attr(2755,root,tmux) %{_bindir}/tmux
+%{_mandir}/man1/tmux.1.*
+%attr(775,root,tmux) %{_localstatedir}/run/tmux
 
 %changelog
+* Mon Apr 11 2011 David Hrbáč <david@hrbac.cz> - 1.4-2
+- CVE-2011-1496 fix
+- imported Fedora patches
+- added examples
+
 * Mon Apr 11 2011 David Hrbáč <david@hrbac.cz> - 1.4-1
 - new upstream release
 

@@ -1,0 +1,75 @@
+# setting /usr/bin/tmux with sgid and proper location of socket
+---
+# GNUmakefile |    2 +-
+# Makefile    |    2 +-
+# compat.h    |    2 +-
+# tmux.1      |    6 +++---
+# tmux.c      |    2 +-
+# 5 files changed, 7 insertions(+), 7 deletions(-)
+#
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -54,7 +54,7 @@
+ PREFIX?= /usr/
+ INSTALL?= install
+ INSTALLDIR= $(INSTALL) -d
+-INSTALLBIN= $(INSTALL) -m 555
++INSTALLBIN= $(INSTALL) -g tmux -o root -m 2755
+ INSTALLMAN= $(INSTALL) -m 444
+ 
+ SRCS= $(shell echo *.c|LC_ALL=C sed 's|osdep-[a-z0-9]*.c||g')
+--- a/Makefile
++++ b/Makefile
+@@ -50,7 +50,7 @@
+ PREFIX?= /usr/
+ INSTALL?= install
+ INSTALLDIR= ${INSTALL} -d
+-INSTALLBIN= ${INSTALL} -m 555
++INSTALLBIN= $(INSTALL) -g tmux -o root -m 2755
+ INSTALLMAN= ${INSTALL} -m 444
+ 
+ SRCS!= echo *.c|LC_ALL=C sed 's|osdep-[a-z0-9]*.c||g'
+--- a/compat.h
++++ b/compat.h
+@@ -25,7 +25,7 @@
+ 
+ #ifndef HAVE_PATHS_H
+ #define	_PATH_BSHELL	"/bin/sh"
+-#define	_PATH_TMP	"/tmp/"
++#define _PATH_VARRUN    "/var/run/"
+ #define _PATH_DEVNULL	"/dev/null"
+ #define _PATH_TTY	"/dev/tty"
+ #define _PATH_DEV	"/dev/"
+--- a/tmux.c
++++ b/tmux.c
+@@ -188,7 +188,7 @@
+ 	u_int		uid;
+ 
+ 	uid = getuid();
+-	xsnprintf(base, MAXPATHLEN, "%s/tmux-%d", _PATH_TMP, uid);
++	xsnprintf(base, MAXPATHLEN, "%s/%s/%s-%d", _PATH_VARRUN, __progname, __progname, uid);
+ 
+ 	if (mkdir(base, S_IRWXU) != 0 && errno != EEXIST)
+ 		return (NULL);
+--- a/tmux.1
++++ b/tmux.1
+@@ -89,8 +89,8 @@
+ and all sessions are managed by a single
+ .Em server .
+ The server and each client are separate processes which communicate through a
+-socket in
+-.Pa /tmp .
++socket in a directory under
++.Pa /var/run/tmux .
+ .Pp
+ The options are as follows:
+ .Bl -tag -width "XXXXXXXXXXXX"
+@@ -134,7 +134,7 @@
+ .It Fl L Ar socket-name
+ .Nm
+ stores the server socket in a directory under
+-.Pa /tmp ;
++.Pa /var/run/tmux ;
+ the default socket is named
+ .Em default .
+ This option allows a different socket name to be specified, allowing several
