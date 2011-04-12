@@ -4,14 +4,17 @@
 
 Summary: Compute MD5, SHA-1, SHA-256, Tiger or Whirlpool message digests
 Name: md5deep
-Version: 1.13
+Version: 3.7
 Release: 1%{?dist}
-Group: System Environment/Base
 License: Public Domain
+Group: Applications/File
 URL: http://md5deep.sourceforge.net/
 
 Source: http://dl.sf.net/md5deep/md5deep-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: gcc-c++
+BuildRequires: libstdc++-devel
 
 %description
 md5deep computes the MD5, SHA-1, SHA-256, Tiger, or Whirlpool message digest
@@ -23,25 +26,26 @@ hashes in a variety of formats.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} linux OPTFLAGS="%{optflags}"
+%configure
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install \
-    BIN="%{buildroot}%{_bindir}" \
-    MAN="%{buildroot}%{_mandir}/man1"
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES README
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc %{_mandir}/man1/hashdeep.1*
 %doc %{_mandir}/man1/md5deep.1*
 %doc %{_mandir}/man1/sha1deep.1*
 %doc %{_mandir}/man1/sha256deep.1*
 %doc %{_mandir}/man1/tigerdeep.1*
 %doc %{_mandir}/man1/whirlpooldeep.1*
+%{_bindir}/hashdeep
 %{_bindir}/md5deep
 %{_bindir}/sha1deep
 %{_bindir}/sha256deep
@@ -49,5 +53,8 @@ hashes in a variety of formats.
 %{_bindir}/whirlpooldeep
 
 %changelog
+* Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 3.7-1
+- Updated to release 3.7.
+
 * Fri Aug 24 2007 Dag Wieers <dag@wieers.com> - 1.13-1
 - Initial package. (using DAR)
