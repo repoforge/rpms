@@ -3,17 +3,17 @@
 
 Summary: Library for creating and parsing MIME messages
 Name: gmime
-Version: 2.2.4
+Version: 2.5.3
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://spruce.sourceforge.net/gmime/
 
-Source: http://spruce.sourceforge.net/gmime/sources/v2.2/gmime-%{version}.tar.gz
-Patch1: gmime-2.2.1-use-pkg-config.patch
+Source: http://ftp.acc.umu.se/pub/GNOME/sources/gmime/2.5/gmime-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: glib2-devel >= 2.0, zlib-devel >= 1.2.1.1
+BuildRequires: glib2-devel >= 2.12
+BuildRequires: zlib-devel >= 1.2.1.1
 
 %description
 The GMime suite provides a core library and set of utilities which may be
@@ -33,10 +33,9 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch1 -p1 -b .use-pkg-config
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -57,19 +56,20 @@ you will need to install %{name}-devel.
 %doc AUTHORS ChangeLog COPYING README TODO
 %{_bindir}/gmime-uudecode
 %{_bindir}/gmime-uuencode
-%{_libdir}/libgmime-2.0.so.*
+%{_libdir}/libgmime-2.6.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc %{_datadir}/gtk-doc/html/gmime/
-%{_bindir}/gmime-config
-%{_includedir}/gmime-2.0/
-%{_libdir}/gmimeConf.sh
-%{_libdir}/libgmime-2.0.a
-%exclude %{_libdir}/libgmime-2.0.la
-%{_libdir}/libgmime-2.0.so
-%{_libdir}/pkgconfig/gmime-2.0.pc
+%doc %{_datadir}/gtk-doc/html/gmime-2.5/
+#%{_bindir}/gmime-config
+%{_includedir}/gmime-2.6/
+%{_libdir}/libgmime-2.6.so
+%{_libdir}/pkgconfig/gmime-2.6.pc
+%exclude %{_libdir}/libgmime-2.6.la
 
 %changelog
+* Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 2.5.3-1
+- Updated to release 2.5.3.
+
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 2.2.4-1
 - Initial package. (using DAR)

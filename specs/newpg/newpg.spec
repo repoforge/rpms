@@ -13,9 +13,13 @@ URL: http://www.gnupg.org/
 Source: ftp://ftp.gnupg.org/gcrypt/alpha/aegypten/newpg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgcrypt-devel >= 1.1.8, libksba-devel >= 0.4.6, pth-devel
+BuildRequires: libgcrypt-devel >= 1.1.8
+BuildRequires: libksba-devel >= 0.4.6
+BuildRequires: pth-devel
 Requires: %{_bindir}/pinentry
-Provides: gpgsm, gpg-agent
+Requires: /sbin/install-info
+Provides: gpg-agent
+Provides: gpgsm
 
 %description
 NewPG is a temporary project to work on GnuPG extensions.  It will be
@@ -26,13 +30,13 @@ merged into the regular GnuPG sources someday.
 
 %build
 %configure \
-	--enable-gpg
+    --enable-gpg
 %{__make} %{?_smp_mflags}
 %{__make} check
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 ### Clean up buildroot
@@ -42,11 +46,11 @@ merged into the regular GnuPG sources someday.
 %{__rm} -rf %{buildroot}
 
 %post
-install-info %{_infodir}/gnupg.info.gz %{_infodir}/dir
+install-info %{_infodir}/gnupg.info.gz %{_infodir}/dir || :
 
 %postun
 if [ $1 -eq 0 ]; then
-	install-info --delete %{_infodir}/gnupg.info.gz %{_infodir}/dir
+    install-info --delete %{_infodir}/gnupg.info.gz %{_infodir}/dir || :
 fi
 
 %files -f %{name}.lang

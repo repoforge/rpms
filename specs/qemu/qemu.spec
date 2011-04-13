@@ -2,6 +2,11 @@
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
 
+### EL6 ships with qemu-img-2:0.12.1-2.113
+%{?el6:# Tag: rfx}
+### EL5 ships with qemu-img-83-164.el5_5.23
+%{?el5:# Tag: rfx}
+
 %define audio_drv_list alsa,esd,oss,sdl
 
 %{?el5:%define _with_compat_gcc_version 34}
@@ -15,15 +20,13 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.13.0
+Version: 0.14.0
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+ and LGPLv2+ and BSD
 Group: Applications/Emulators
 URL: http://qemu.org/
 
 Source: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
-Patch0: qemu-0.7.0-build.patch
-Patch2: qemu-0.9.1-dhcp.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
@@ -50,10 +53,15 @@ As QEMU requires no host kernel patches to run, it is very safe and easy to use.
 QEMU is a FAST! processor emulator. By using dynamic translation it achieves a
 reasonnable speed while being easy to port on new host CPUs.
 
+%package img
+Summary: QEMU command line tool for manipulating disk images
+Group: Development/Tools
+
+%description img
+This package provides a command line tool for manipulating disk images
+
 %prep
 %setup
-#patch0 -p1
-#patch2 -p1
 
 %{__cat} <<'EOF' >qemu.sysv
 #!/bin/sh
@@ -199,14 +207,25 @@ fi
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING* LICENSE README* TODO *.html
 %doc %{_mandir}/man1/qemu.1*
-%doc %{_mandir}/man1/qemu-img.1*
 %doc %{_mandir}/man8/qemu-nbd.8*
 %config(noreplace) %{_sysconfdir}/qemu/target-x86_64.conf
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
 %{_datadir}/qemu/
+%exclude %{_bindir}/qemu-img
+%exclude %{_bindir}/qemu-io
+
+%files img
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/qemu-img.1*
+%{_bindir}/qemu-img
+%{_bindir}/qemu-io
 
 %changelog
+* Mon Mar 21 2011 Dag Wieers <dag@wieers.com> - 0.14.0-1
+- Updated to release 0.14.0.
+- Split off qemu-img package.
+
 * Sat Nov 13 2010 Dag Wieers <dag@wieers.com> - 0.13.0-1
 - Updated to release 0.13.0.
 

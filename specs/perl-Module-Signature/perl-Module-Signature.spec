@@ -10,7 +10,7 @@
 Summary: Check and create SIGNATURE files for CPAN distributions
 Name: perl-Module-Signature
 Version: 0.66
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Signature/

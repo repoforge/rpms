@@ -3,7 +3,7 @@
 
 Summary: ISO 9660 Rock Ridge Filesystem Manipulator
 Name: xorriso
-Version: 0.6.4
+Version: 1.0.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
@@ -40,6 +40,18 @@ incorporates the libraries of libburnia-project.org.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+%{__rm} -rf %{buildroot}%{_infodir}/dir
+
+%post
+if [ -e %{_infodir}/xorriso.info.gz ]; then
+    /sbin/install-info %{_infodir}/xorriso.info.gz %{_infodir}/dir
+fi  
+
+%preun
+if [ -e %{_infodir}/xorriso.info.gz ]; then
+    /sbin/install-info --delete %{_infodir}/xorriso.info.gz %{_infodir}/dir
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -47,7 +59,9 @@ incorporates the libraries of libburnia-project.org.
 %defattr(-, root, root, 0755)
 %doc AUTHORS CONTRIBUTORS COPYING COPYRIGHT README
 %doc %{_datadir}/info/xorriso.info*
+%doc %{_datadir}/info/xorrisofs.info*
 %doc %{_mandir}/man1/xorriso.1*
+%doc %{_mandir}/man1/xorrisofs.1*
 %{_bindir}/osirrox
 %{_bindir}/xorrecord
 %{_bindir}/xorriso
@@ -55,6 +69,18 @@ incorporates the libraries of libburnia-project.org.
 #exclude %{_libdir}/pkgconfig/xorriso.pc
 
 %changelog
+* Sun Apr 10 2011 Dag Wieers <dag@wieers.com> - 1.0.6-1
+- Updated to release 1.0.6.
+
+* Mon Mar 14 2011 Dag Wieers <dag@wieers.com> - 1.0.4-1
+- Updated to release 1.0.4.
+
+* Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
+* Wed Jan 26 2011 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Wed Oct 27 2010 Dag Wieers <dag@wieers.com> - 0.6.4-1
 - Updated to release 0.6.4.
 

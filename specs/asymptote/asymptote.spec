@@ -13,9 +13,14 @@ URL: http://asymptote.sourceforge.net/
 Source: http://dl.sf.net/asymptote/asymptote-%{version}.src.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libgc-devel >= 6.7, libgc >= 6.7, fftw-devel
-BuildRequires: ncurses-devel, readline-devel, gcc-c++
-BuildRequires: libsigsegv-devel, tetex-latex, ghostscript
+BuildRequires: fftw-devel
+BuildRequires: gc-devel >= 6.7
+BuildRequires: gcc-c++
+BuildRequires: ghostscript
+BuildRequires: libsigsegv-devel
+BuildRequires: ncurses-devel
+BuildRequires: readline-devel
+BuildRequires: tetex-latex
 
 %description
 Asymptote is a powerful descriptive vector graphics language for
@@ -55,9 +60,9 @@ EOF
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install --vendor rpmforge             \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{name}.desktop
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{name}.desktop
 %{__mv} %{buildroot}%{_docdir}/asymptote rpmdocs
 
 %post -p /sbin/ldconfig

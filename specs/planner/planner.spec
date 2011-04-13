@@ -1,8 +1,10 @@
 # $Id$
 # Authority: dag
 
-# ExcludeDist: el4
-
+### EL6 ships with planner-0.14.4-9.el6
+### EL4 ships with planner-0.12.1-2.3
+%{?el4:# Tag: rfx}
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?fc1:%define _without_shared_mime 1}
 %{?el3:%define _without_shared_mime 1}
@@ -10,8 +12,8 @@
 
 Summary: Graphical project management tool
 Name: planner
-Version: 0.12.1
-Release: 1.2%{?dist}
+Version: 0.14
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://planner.imendio.org/
@@ -67,18 +69,8 @@ intltoolize
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-#	MRP_PLUGINDIR="%{buildroot}%{_libdir}/planner/plugins" \
-#	MRP_VIEWDIR="%{buildroot}%{_libdir}/planner/views"
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
-#%find_lang planner-libplanner
-#%{__cat} planner-libplanner.lang >>%{name}.lang
-
-#desktop-file-install --vendor gnome --delete-original \
-#	--add-category X-Red-Hat-Base                 \
-#	--add-category Application                    \
-#	--dir %{buildroot}%{_datadir}/applications    \
-#	%{buildroot}%{_datadir}/applications/mrproject.desktop
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/planner{,/file-modules,/storage-modules,/views,/plugins}/*.la
@@ -134,8 +126,8 @@ scrollkeeper-update -q || :
 %{_libdir}/python*/site-packages/gtk-2.0/planner.so
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12.1-1.2
-- Rebuild for Fedora Core 5.
+* Wed Jun 14 2006 Dag Wieers <dag@wieers.com> - 0.14-1
+- Updated to release 0.14.
 
 * Mon Aug 30 2004 Dag Wieers <dag@wieers.com> - 0.12.1-1
 - Updated to release 0.12.1.

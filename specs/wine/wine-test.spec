@@ -26,7 +26,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.7
+Version: 1.3.17
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -41,7 +41,7 @@ Patch1000: wine-1.2-gecko.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### 64bit build cannot run 32bit applications !
-BuildArch: %{ix86}
+ExclusiveArch: %{ix86}
 BuildRequires: audiofile-devel
 BuildRequires: autoconf
 BuildRequires: bison
@@ -82,9 +82,7 @@ Requires: wine-cms = %{version}-%{release}
 Requires: wine-core = %{version}-%{release}
 Requires: wine-esd = %{version}-%{release}
 Requires: wine-gecko = 1.1.0
-Requires: wine-jack = %{version}-%{release}
 Requires: wine-ldap = %{version}-%{release}
-Requires: wine-nas = %{version}-%{release}
 Requires: wine-twain = %{version}-%{release}
 
 %description
@@ -106,8 +104,10 @@ Requires(post): /sbin/ldconfig, /sbin/chkconfig, /sbin/service,
 Requires(preun): /sbin/chkconfig, /sbin/service
 %{!?_without_modxorg:Requires: /usr/bin/xmessage}
 %{?_without_modxorg:Requires: /usr/X11R6/bin/xmessage}
-Obsoletes: wine-tools <= %{version}-%{release}
 Obsoletes: wine-arts <= %{version}-%{release}
+Obsoletes: wine-jack <= %{version}-%{release}
+Obsoletes: wine-nas <= %{version}-%{release}
+Obsoletes: wine-tools <= %{version}-%{release}
 Provides: wine-tools = %{version}-%{release}
 
 %description core
@@ -137,14 +137,6 @@ Requires: wine-core = %{version}-%{release}
 %description esd
 ESD sound support for wine.
 
-%package jack
-Summary: JACK sound support for wine
-Group: System Environment/Libraries
-Requires: wine-core = %{version}-%{release}
-
-%description jack
-JACK sound support for wine.
-
 %package ldap
 Summary: LDAP support for wine
 Group: System Environment/Libraries
@@ -152,14 +144,6 @@ Requires: wine-core = %{version}-%{release}
 
 %description ldap
 LDAP support for wine.
-
-%package nas
-Summary: NAS sound support for wine
-Group: System Environment/Libraries
-Requires: wine-core = %{version}-%{release}
-
-%description nas
-NAS sound support for wine.
 
 %package twain
 Summary: Twain support for wine
@@ -400,14 +384,8 @@ update-desktop-database &>/dev/null || :
 %post esd -p /sbin/ldconfig
 %postun esd -p /sbin/ldconfig
 
-%post jack -p /sbin/ldconfig
-%postun jack -p /sbin/ldconfig
-
 %post ldap -p /sbin/ldconfig
 %postun ldap -p /sbin/ldconfig
-
-%post nas -p /sbin/ldconfig
-%postun nas -p /sbin/ldconfig
 
 %post twain -p /sbin/ldconfig
 %postun twain -p /sbin/ldconfig
@@ -424,6 +402,17 @@ update-desktop-database &>/dev/null || :
 %doc documentation/ChangeLog* documentation/README.*
 %doc %{_mandir}/man1/wine.1*
 %doc %{_mandir}/man1/wineserver.1*
+%doc %{_mandir}/man1/msiexec.1.gz
+%doc %{_mandir}/man1/notepad.1.gz
+%doc %{_mandir}/man1/regedit.1.gz
+%doc %{_mandir}/man1/regsvr32.1.gz
+%doc %{_mandir}/man1/wineboot.1.gz
+%doc %{_mandir}/man1/winecfg.1.gz
+%doc %{_mandir}/man1/wineconsole.1.gz
+%doc %{_mandir}/man1/winecpp.1.gz
+%doc %{_mandir}/man1/winefile.1.gz
+%doc %{_mandir}/man1/winemine.1.gz
+%doc %{_mandir}/man1/winepath.1.gz
 %doc %{_mandir}/*/man1/wine.1*
 %doc %{_mandir}/*/man1/winemaker.1*
 %doc %{_mandir}/*/man1/wineserver.1*
@@ -474,6 +463,7 @@ update-desktop-database &>/dev/null || :
 ### exe.so
 %{_libdir}/wine/aspnet_regiis.exe.so
 %{_libdir}/wine/attrib.exe.so
+%{_libdir}/wine/cabarc.exe.so
 %{_libdir}/wine/cacls.exe.so
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
@@ -493,11 +483,13 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mshta.exe.so
 %{_libdir}/wine/msiexec.exe.so
 %{_libdir}/wine/net.exe.so
+%{_libdir}/wine/netsh.exe.so
 %{_libdir}/wine/ngen.exe.so
 %{_libdir}/wine/notepad.exe.so
 %{_libdir}/wine/ntoskrnl.exe.so
 %{_libdir}/wine/oleview.exe.so
 %{_libdir}/wine/ping.exe.so
+%{_libdir}/wine/plugplay.exe.so
 %{_libdir}/wine/progman.exe.so
 %{_libdir}/wine/reg.exe.so
 %{_libdir}/wine/regedit.exe.so
@@ -505,9 +497,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/regsvr32.exe.so
 %{_libdir}/wine/rpcss.exe.so
 %{_libdir}/wine/rundll32.exe.so
-%{_libdir}/wine/secedit.exe.so
-%{_libdir}/wine/services.exe.so
 %{_libdir}/wine/sc.exe.so
+%{_libdir}/wine/secedit.exe.so
+%{_libdir}/wine/servicemodelreg.exe.so
+%{_libdir}/wine/services.exe.so
 %{_libdir}/wine/spoolsv.exe.so
 %{_libdir}/wine/start.exe.so
 %{_libdir}/wine/svchost.exe.so
@@ -525,12 +518,14 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winefile.exe.so
 %{_libdir}/wine/winemenubuilder.exe.so
 %{_libdir}/wine/winemine.exe.so
+%{_libdir}/wine/winemsibuilder.exe.so
 %{_libdir}/wine/winepath.exe.so
 %ifarch %{ix86}
 %{_libdir}/wine/winevdm.exe.so
 %endif
 %{_libdir}/wine/winhlp32.exe.so
 %{_libdir}/wine/winver.exe.so
+%{_libdir}/wine/wmic.exe.so
 %{_libdir}/wine/wordpad.exe.so
 %{_libdir}/wine/write.exe.so
 %{_libdir}/wine/wscript.exe.so
@@ -662,6 +657,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/d3dx10_42.dll.so
 %{_libdir}/wine/d3dx10_43.dll.so
 %{_libdir}/wine/d3dxof.dll.so
+%{_libdir}/wine/dbgeng.dll.so
 %{_libdir}/wine/dbghelp.dll.so
 %{_libdir}/wine/dciman32.dll.so
 %{_libdir}/wine/ddraw.dll.so
@@ -752,9 +748,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mshtml.dll.so
 %{_libdir}/wine/msi.dll.so
 %{_libdir}/wine/msimg32.dll.so
+%{_libdir}/wine/msimsg.dll.so
 %{_libdir}/wine/msimtf.dll.so
 %{_libdir}/wine/msisip.dll.so
 %{_libdir}/wine/msnet32.dll.so
+%{_libdir}/wine/mspatcha.dll.so
 %{_libdir}/wine/msrle32.dll.so
 %{_libdir}/wine/mssign32.dll.so
 %{_libdir}/wine/mssip32.dll.so
@@ -774,12 +772,16 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msvfw32.dll.so
 %{_libdir}/wine/msvidc32.dll.so
 %{_libdir}/wine/mswsock.dll.so
+%{_libdir}/wine/msxml.dll.so
+%{_libdir}/wine/msxml2.dll.so
 %{_libdir}/wine/msxml3.dll.so
 %{_libdir}/wine/msxml4.dll.so
 %{_libdir}/wine/msxml6.dll.so
 %{_libdir}/wine/nddeapi.dll.so
 %{_libdir}/wine/netapi32.dll.so
 %{_libdir}/wine/newdev.dll.so
+%{_libdir}/wine/normaliz.dll.so
+%{_libdir}/wine/npmshtml.dll.so
 %{_libdir}/wine/ntdll.dll.so
 %{_libdir}/wine/ntdsapi.dll.so
 %{_libdir}/wine/ntprint.dll.so
@@ -909,8 +911,7 @@ update-desktop-database &>/dev/null || :
 
 ### drv.so
 %{_libdir}/wine/msacm32.drv.so
-%{_libdir}/wine/wineaudioio.drv.so
-%{_libdir}/wine/winecoreaudio.drv.so
+#%{_libdir}/wine/winecoreaudio.drv.so
 %{_libdir}/wine/winejoystick.drv.so
 %{_libdir}/wine/wineoss.drv.so
 %{_libdir}/wine/winex11.drv.so
@@ -971,20 +972,10 @@ update-desktop-database &>/dev/null || :
 %dir %{_libdir}/wine/
 %{_libdir}/wine/wineesd.drv.so
 
-%files jack
-%defattr(-, root, root, 0755)
-%dir %{_libdir}/wine/
-%{_libdir}/wine/winejack.drv.so
-
 %files ldap
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/wine/
 %{_libdir}/wine/wldap32.dll.so
-
-%files nas
-%defattr(-, root, root, 0755)
-%dir %{_libdir}/wine/
-%{_libdir}/wine/winenas.drv.so
 
 %files twain
 %defattr(-, root, root, 0755)
@@ -1019,6 +1010,15 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Mon Apr 04 2011 Dag Wieers <dag@wieers.com> - 1.3.17-1
+- Updated to release 1.3.17
+
+* Fri Feb 11 2011 Dag Wieers <dag@wieers.com> - 1.3.13-1
+- Updated to release 1.3.13.
+
+* Wed Jan 26 2011 Dag Wieers <dag@wieers.com> - 1.3.12-1
+- Updated to release 1.3.12.
+
 * Tue Nov 16 2010 Dag Wieers <dag@wieers.com> - 1.3.7-1
 - Updated to release 1.3.7.
 

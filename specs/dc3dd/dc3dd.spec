@@ -1,15 +1,12 @@
 # $Id$
 # Authority: dag
 
-
 %{?el3:%define _without_gettextdevel 1}
-%{?rh9:%define _without_gettextdevel 1}
-%{?rh7:%define _without_gettextdevel 1}
 %{?el2:%define _without_gettextdevel 1}
 
 Summary: Patched dd with Computer Forensics Features
 Name: dc3dd
-Version: 6.12.3
+Version: 7.0.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -17,6 +14,8 @@ URL: http://dc3dd.sourceforge.net/
 
 Source: http://dl.sf.net/sourceforge/dc3dd/dc3dd-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: autoconf >= 2.59
 
 %{!?_without_gettextdevel:BuildRequires: gettext-devel}
 %{?_without_gettextdevel:BuildRequires: gettext}
@@ -61,6 +60,9 @@ were rewritten for dc3dd.
 %{_bindir}/dc3dd
 
 %changelog
+* Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 7.0.0-1
+- Updated to release 7.0.0.
+
 * Mon Mar 23 2009 Dag Wieers <dag@wieers.com> - 6.12.3-1
 - Updated to release 6.12.3.
 

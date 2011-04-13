@@ -1,6 +1,8 @@
 # $Id$
 # Authority: matthias
 
+### EL5 ships with gaim-2.0.0-0.28.beta5.el5
+# ExclusiveDist: el2 el3
 ### FC2, FC3 and EL4 come with the latest gaim
 ##ExcludeDist: fc2 fc3 el4
 

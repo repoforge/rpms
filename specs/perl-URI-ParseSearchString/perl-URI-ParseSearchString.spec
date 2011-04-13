@@ -10,7 +10,7 @@
 Summary: Parse Apache referer logs and extract search engine query strings
 Name: perl-URI-ParseSearchString
 Version: 3.441
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ParseSearchString/
@@ -24,7 +24,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::NoWarnings)
 BuildRequires: perl(URI)
-Requires: perl(Test::More
+Requires: perl(Test::More)
 Requires: perl(Test::NoWarnings)
 Requires: perl(URI)
 
@@ -64,6 +64,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/URI/ParseSearchString.pm
 
 %changelog
+* Thu Apr 07 2011 Dag Wieers <dag@wieers.com> - 3.441-2
+- Fix typo in Requires.
+
 * Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 3.441-1
 - Updated to version 3.441.
 

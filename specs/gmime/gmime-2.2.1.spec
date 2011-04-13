@@ -36,7 +36,7 @@ you will need to install %{name}-devel.
 %patch1 -p1 -b .use-pkg-config
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -65,10 +65,9 @@ you will need to install %{name}-devel.
 %{_bindir}/gmime-config
 %{_includedir}/gmime-2.0/
 %{_libdir}/gmimeConf.sh
-%{_libdir}/libgmime-2.0.a
-%exclude %{_libdir}/libgmime-2.0.la
 %{_libdir}/libgmime-2.0.so
 %{_libdir}/pkgconfig/gmime-2.0.pc
+%exclude %{_libdir}/libgmime-2.0.la
 
 %changelog
 * Wed Mar 21 2007 Dag Wieers <dag@wieers.com> - 2.2.1-1

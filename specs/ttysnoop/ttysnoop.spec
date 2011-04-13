@@ -3,13 +3,13 @@
 
 Summary: Program to snoop on a TTY through another
 Name: ttysnoop
-Version: 0.12c
-Release: 1.2%{?dist}
+Version: 0.12d
+Release: 1%{?dist}
 License: distributable
 Group: System Environment/Base
-URL: http://sunsite.unc.edu/pub/Linux/utils/terminal/
+URL: http://www.mirrors.wiretapped.net/security/host-security/
 
-Source: http://sunsite.unc.edu/pub/Linux/utils/terminal/ttysnoop-%{version}.tar.gz
+Source0: http://www.mirrors.wiretapped.net/security/host-security/ttysnoop-%{version}.tar.gz
 Patch0: ttysnoop-0.12c-glibc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -45,8 +45,8 @@ redirecting both input and output from/to it.
 %{_sbindir}/ttysnoops
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.12c-1.2
-- Rebuild for Fedora Core 5.
+* Fri Dec 24 2010 Dag Wieers <dag@wieers.com> - 0.12d-1
+- Updated to release 0.12d.
 
 * Mon Aug 22 2005 Dag Wieers <dag@wieers.com> - 0.12c-1
 - Initial package. (using DAR)

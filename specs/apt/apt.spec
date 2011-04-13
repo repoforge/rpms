@@ -241,16 +241,19 @@ RPM {
     Allow-Duplicated {
         "^gpg-pubkey$";
         "^kernel$";
-        "^kernel-bigmem$";
+        "^kernel-bigmem";
         "^kernel-devel$";
-        "^kernel-enterprise$";
-        "^kernel-headers$";
-        "^kernel-hugemem$";
-        "^kernel-largesmp$";
-        "^kernel-smp$";
+        "^kernel-doc$";
+        "^kernel-enterprise";
+        "^kernel-hugemem";
+        "^kernel-largesmp";
+        "^kernel-ml";
+        "^kernel-rt";
+        "^kernel-smp";
         "^kernel-source$";
-        "^kernel-unsupported$";
-        "^kernel-xen$";
+        "^kernel-unsupported";
+        "^kernel-vm";
+        "^kernel-xen";
     };
     Order "true";
 };
@@ -397,7 +400,7 @@ EOF
     --includedir="%{_includedir}/apt-pkg" \
     --disable-dependency-tracking \
     --disable-static
-%{__make} %{?_smp_mflags}
+%{__make} #%{?_smp_mflags}
 
 %if %{!?_without_python22:1}0
 %{__make} -C python PYTHON="%{__python}" %{?_smp_mflags}

@@ -2,14 +2,13 @@
 # Authority: dag
 # Upstream: Roy Hills
 
-
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: ARP scanning and fingerprinting tool
 Name: arp-scan
-Version: 1.7
+Version: 1.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -18,7 +17,7 @@ URL: http://www.nta-monitor.com/tools/arp-scan/
 Source: http://www.nta-monitor.com/tools/arp-scan/download/arp-scan-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-#libdnet-devel, 
+#BuildRequires: libdnet-devel
 BuildRequires: libpcap
 %{?_with_libpcapdevel:BuildRequires:libpcap-devel}
 
@@ -62,6 +61,9 @@ fingerprinted based on how it responds to non-standard ARP packets.
 %{_datadir}/arp-scan/
 
 %changelog
+* Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 1.8-1
+- Updated to release 1.8.
+
 * Wed Oct 15 2008 Dag Wieers <dag@wieers.com> - 1.7-1
 - Updated to release 1.7.
 

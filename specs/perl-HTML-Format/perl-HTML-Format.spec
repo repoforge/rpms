@@ -52,7 +52,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/HTML::FormatRTF.3pm*
 %doc %{_mandir}/man3/HTML::FormatPS.3pm*
 %doc %{_mandir}/man3/HTML::FormatText.3pm*

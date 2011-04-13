@@ -1,6 +1,5 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 Summary: Tool to manage WBFS files and WBFS partitions
 Name: wbfs_file
@@ -13,7 +12,7 @@ URL: http://cfg-loader.googlecode.com/
 Source: http://cfg-loader.googlecode.com/files/wbfs_file_%{version}.zip
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Buildarch: noarch
+Buildarch: i386
 
 %description
 wbfs_file is a tool to manage WBFS files and WBFS partitions.

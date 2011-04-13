@@ -8,7 +8,7 @@ Summary: Data recovery tool
 Name: ddrescue
 ### Epoch to override Fedora Extras stupid decision to NOT ADHERE TO THEIR OWN NAMING CONVENTION
 Epoch: 1
-Version: 1.13
+Version: 1.14
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -70,6 +70,9 @@ fi
 %{_bindir}/ddrescue
 
 %changelog
+* Thu Jan 13 2011 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Sun Aug 29 2010 Dag Wieers <dag@wieers.com> - 1.13-1
 - Updated to release 1.13.
 

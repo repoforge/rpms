@@ -4,7 +4,7 @@
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
 Version: 7.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://awstats.sourceforge.net/
@@ -14,6 +14,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: dos2unix
+Requires: perl(Geo::IP)
 
 %description
 Advanced Web Statistics is a powerful and featureful tool that generates
@@ -29,7 +30,7 @@ Statistics can be updated from a browser or your scheduler.
 The program also supports virtual servers, plugins and a lot of features.
 
 %prep
-%setup -q
+%setup
 
 ### Commit permanent changes to default configuration
 %{__perl} -pi.orig -e '
@@ -115,6 +116,9 @@ dos2unix wwwroot/cgi-bin/awredir.pl
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Sat Apr 09 2011 Dag Wieers <dag@wieers.com> - 7.0-2
+- Add missing dependency perl(Geo::IP). (Zenon Panoussis)
+
 * Tue Dec 07 2010 David Hrbáč <david@hrbac.cz> - 7.0-1
 - new upstream release
 

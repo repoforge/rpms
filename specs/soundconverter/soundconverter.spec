@@ -6,24 +6,24 @@
 
 Summary: Simple sound converter application
 Name: soundconverter
-Version: 1.4.4
+Version: 1.5.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://soundconverter.berlios.de/
 
-Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.bz2
+Source: http://download.berlios.de/soundconverter/soundconverter-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: gstreamer-python >= 0.10
 BuildRequires: intltool
 BuildRequires: perl(XML::Parser)
-BuildRequires: python-devel >= 2.3.3
+BuildRequires: python-devel >= 2.5
 Requires: gnome-python2-gconf
 Requires: gstreamer-python >= 0.10
 Requires: pygtk2
-Requires: python >= 2.3.3
+Requires: python >= 2.5
 
 %description
 soundconverter is a sound conversion application. It reads anything the
@@ -57,6 +57,9 @@ WAV, FLAC, MP3, AAC, and Ogg Vorbis files.
 %{_datadir}/soundconverter/
 
 %changelog
+* Sat Jan 29 2011 Dag Wieers <dag@wieers.com> - 1.5.4-1
+- Updated to release 1.5.4.
+
 * Sat Jul 04 2009 Dag Wieers <dag@wieers.com> - 1.4.4-1
 - Updated to release 1.4.4.
 

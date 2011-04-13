@@ -9,9 +9,9 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 4.03
-%define real_version 4.03-pre6
-Release: 0.pre6%{?dist}
+Version: 4.04
+%define real_version 4.04-pre22
+Release: 0.pre22%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://syslinux.zytor.com/
@@ -19,7 +19,7 @@ URL: http://syslinux.zytor.com/
 Source: http://www.kernel.org/pub/linux/utils/boot/syslinux/Testing/syslinux-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: i386 x86_64
+ExclusiveArch: i386 i686 x86_64
 BuildRequires: nasm
 BuildRequires: netpbm-progs
 BuildRequires: perl
@@ -39,7 +39,9 @@ MEMDISK, which loads legacy operating systems from these media.
 
 %build
 %{__make} clean
-%{__make} %{?_smp_mflags} installer
+#%{__make} spotless
+#%{__make}
+%{__make} installer
 
 %install
 %{__rm} -rf %{buildroot}
@@ -48,8 +50,6 @@ MEMDISK, which loads legacy operating systems from these media.
     BINDIR="%{_bindir}" \
     MANDIR="%{_mandir}" \
     SBINDIR="%{_sbindir}"
-#    INCDIR="%{_includedir}" \
-#    LIBDIR="%{_prefix}/lib" \
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}/tftpboot/
@@ -87,6 +87,12 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Wed Mar 23 2011 Dag Wieers <dag@wieers.com> - 4.04-0.pre14.1
+- Updated to release 4.04-pre14.1.
+
+* Mon Mar 21 2011 Dag Wieers <dag@wieers.com> - 4.04-0.pre14
+- Updated to release 4.04-pre14.
+
 * Fri Nov 05 2010 Dag Wieers <dag@wieers.com> - 4.03-0.pre6
 - Updated to release 4.03-pre6.
 

@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: CollabNet <dev$subversion,apache,org>
 
+%define _default_patch_fuzz 2
+
 ### EL6 ships with subversion-1.6.11-2.el6
 %{?el6:# Tag: rfx}
 ### EL5 ships with subversion-1.4.2-4.el5_3.1

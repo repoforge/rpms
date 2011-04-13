@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Michael Peppler <mpeppler$peppler,org>
 
-
 %{?rh7:%define _with_threaded 1}
 %{?el2:%define _with_threaded 1}
 
@@ -15,13 +14,13 @@
 
 Summary: Perl module named DBD-Sybase
 Name: perl-DBD-Sybase
-Version: 1.09
+Version: 1.10
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-Sybase/
 
-Source: http://www.cpan.org/modules/by-module/DBD/DBD-Sybase-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/M/ME/MEWP/DBD-Sybase-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 #%{?_with_sybase:BuildArch: i386}
@@ -76,6 +75,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %exclude %{perl_vendorarch}/DBD/dbd-sybase.pod
 
 %changelog
+* Tue Jan 25 2011 Dag Wieers <dag@wieers.com> - 1.10-1
+- Updated to release 1.10.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 1.09-1
 - Updated to release 1.09.
 

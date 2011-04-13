@@ -1,0 +1,16 @@
+diff -ur mundelete.orig/mundelete.c mundelete/mundelete.c
+--- mundelete.orig/mundelete.c  2002-06-29 14:09:26 +0400
++++ mundelete/mundelete.c   2008-09-03 19:40:38 +0400
+@@ -320,8 +320,10 @@
+   seek (RESSECT * SECTSIZE, SEEK_SET);
+   readsect ((char *) block, FATSIZE * SECTSIZE);
+   next = ((int *) ((char *) block + (clust * FILESTYPE / 8)))[0];
+-  if ((clust * FILESTYPE) % 8)
+-    (unsigned int) next >>= 4;
++  if ((clust * FILESTYPE) % 8) {
++    unsigned int tmp = next;
++    next = tmp >> 4;
++  }
+   else if (FILESTYPE == FAT12)
+     next &= 0x0FFF;
+   if (is_eoclust (next))

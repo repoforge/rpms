@@ -1,0 +1,11 @@
+--- aqbanking-2.1.0/configure.foo	2006-09-05 10:02:03.000000000 -0400
++++ aqbanking-2.1.0/configure	2006-09-05 10:02:16.000000000 -0400
+@@ -2548,7 +2548,7 @@
+ #
+ # datetime
+ #
+-DATETIME="`date +\"%Y%m%d%H%M%S\"`"
++DATETIME="`date +\"%Y%m%d\"`"
+ 
+ 
+ 

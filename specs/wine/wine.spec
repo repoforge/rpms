@@ -20,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.2.1
+Version: 1.2.2
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -34,6 +34,8 @@ Patch100: wine-1.2-fonts.patch
 Patch1000: wine-1.2-gecko.patch 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+### 64bit build cannot run 32bit applications !
+ExclusiveArch: %{ix86}
 BuildRequires: audiofile-devel
 BuildRequires: autoconf
 BuildRequires: bison
@@ -173,7 +175,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%patch1
+#patch1
 %patch100
 %patch1000
 
@@ -954,6 +956,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Fri Feb 11 2011 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
+
 * Sat Oct 09 2010 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

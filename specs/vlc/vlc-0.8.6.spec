@@ -2,9 +2,9 @@
 # Authority: matthias
 # Upstream: <vlc-devel$videolan,org>
 
-%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
+# ExclusiveDist: el2 el3 el4
 
-%{!?dtag:%define _with_avahi 1}
+%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
 ### Problems with dirac
 %define _without_dirac 1
@@ -14,12 +14,13 @@
 %define _with_loader 1
 %endif
 
-%{?el5:%define _with_avahi 1}
-
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
 %{?el5:%define _without_jack 1}
 
 %{?el4:%define mozilla seamonkey-devel}
+%{?el4:%define _without_avahi 1}
+%{?el4:%define _without_cddax 1}
+%{?el4:%define _without_glide 1}
 %{?el4:%define _without_jack 1}
 %{?el4:%define _without_modxorg 1}
 %{?el4:%define _without_sysfs 1}
@@ -27,7 +28,9 @@
 
 %{?el3:%define mozilla seamonkey-devel}
 %{?el3:%define _without_alsa 1}
+%{?el3:%define _without_avahi 1}
 %{?el3:%define _without_fribidi 1}
+%{?el3:%define _without_glide 1}
 %{?el3:%define _without_hal 1}
 %{?el3:%define _without_jack 1}
 %{?el3:%define _without_modxorg 1}
@@ -38,32 +41,33 @@
 
 %define desktop_vendor rpmforge
 %define ffmpeg_date 20061215
-%define live_date 2006.12.08
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 0.8.6i
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 
 Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
 Source1: http://downloads.videolan.org/pub/videolan/vlc/%{version}/contrib/ffmpeg-%{ffmpeg_date}.tar.bz2
-Source2: http://www.live555.com/liveMedia/public/live.%{live_date}.tar.gz
 Patch0: vlc-0.8.6-ffmpegX11.patch
 Patch1: vlc-0.8.6-wx28.patch
 #Patch2: vlc-0.8.6a-faad2.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, libpng-devel, libxml2-devel, libtiff-devel
-BuildRequires: libgcrypt-devel, gnutls-devel, libtar-devel
+Buildrequires: autoconf
+BuildRequires: automake
+BuildRequires: gcc-c++
+BuildRequires: gnutls-devel
+BuildRequires: libgcrypt-devel
 BuildRequires: libjpeg-devel
-Buildrequires: autoconf, automake, libtool
-%{?_with_avahi:BuildRequires: avahi-devel}
-%{?_with_cddax:BuildRequires: cdparanoia-devel}
-%{?_with_glide:BuildRequires: Glide3-devel}
-%{?_with_hal:BuildRequires: hal-devel}
+BuildRequires: libpng-devel
+BuildRequires: libtar-devel
+BuildRequires: libtiff-devel
+BuildRequires: libtool
+BuildRequires: libxml2-devel
 %{!?_without_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 %{?_with_mozilla:BuildRequires: %{mozilla}}
@@ -73,7 +77,9 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_amr:BuildRequires: amrnb-devel amrwb-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_avahi:BuildRequires: avahi-devel}
 %{!?_without_caca:BuildRequires: libcaca-devel}
+%{!?_without_cddax:BuildRequires: cdparanoia-devel}
 %{!?_without_cddb:BuildRequires: libcddb-devel}
 %{!?_without_cdio:BuildRequires: libcdio-devel}
 %{!?_without_daap:BuildRequires: libopendaap-devel}
@@ -90,6 +96,7 @@ Buildrequires: autoconf, automake, libtool
 %{!?_without_flac:BuildRequires: flac-devel}
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
+%{!?_without_glide:BuildRequires: Glide3-devel}
 %{!?_without_gnomevfs:BuildRequires: gnome-vfs2-devel}
 #{!?_without_goom:BuildRequires: goom-devel}
 %{!?_without_gsm:BuildRequires: gsm-devel}
@@ -166,7 +173,7 @@ It can also be used as a server to stream in unicast or multicast in
 IPv4 or IPv6 on a high-bandwidth network.
 
 %prep
-%setup -a 1 -a 2
+%setup -a 1
 %patch0 -p1 -b .ffmpegX11
 #patch1 -p1 -b .wx28
 
@@ -199,16 +206,6 @@ for pkgconfig in theora vorbis vorbisenc ogg ;do
 done
 %endif
 
-### Then bundled live555
-%if %{!?_without_live:1}0
-pushd live
-    # Force the use of our CFLAGS
-    %{__perl} -pi -e 's|-O2|%{optflags} -fPIC -DPIC|g' config.linux
-    # Configure and build
-    ./genMakefiles linux && %{__make}
-popd
-%endif
-
 # Altivec compiler flags aren't set properly (0.8.2)
 %ifarch ppc ppc64
 export CFLAGS="%{optflags} -maltivec -mabi=altivec"
@@ -227,7 +224,7 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{!?_without_alsa:--enable-alsa} \
 %{!?_without_arts:--enable-arts} \
 %{!?_without_caca:--enable-caca} \
-%{?_with_cddax:--enable-cddax} \
+%{!?_without_cddax:--enable-cddax} \
 %{?_without_cdio--disable-libcdio} \
 %{!?_without_dirac:--enable-dirac} \
 %{!?_without_directfb:--enable-directfb} \
@@ -247,12 +244,12 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %{?_without_fribidi:--disable-fribidi} \
     --enable-galaktos \
 %{?_with_ggi:--enable-ggi} \
-%{?_with_glide:--enable-glide} \
+%{!?_without_glide:--enable-glide} \
 %{?_without_glx:--disable-glx} \
 %{!?_without_gnomevfs:--enable-gnomevfs} \
 %{!?_without_jack:--enable-jack} \
 %{!?_without_lirc:--enable-lirc} \
-%{!?_without_live:--enable-live555 --with-live555-tree="$(pwd)/live"} \
+%{!?_without_live:--enable-live555} \
 %{?_with_loader:--enable-loader} \
 %{?_without_mad:--disable-mad} \
 %{?_with_mga:--enable-mga} \
@@ -292,8 +289,6 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
     --enable-xvmc
 #{!?_without_dc1394:--enable-dc1394} \
 #{!?_without_goom:--enable-goom} \
-#{!?_without_ffmpeg:--with-ffmpeg-mp3lame --with-ffmpeg-faac} \
-#{!?_without_ffmpeg:--with-ffmpeg-tree=ffmpeg-%{ffmpeg_date}} \
 %{__make} %{?_smp_mflags}
 
 %install
@@ -336,6 +331,9 @@ export LDFLAGS="-L/usr/X11R6/%{_lib}"
 %endif
 
 %changelog
+* Tue Dec 07 2010 Dag Wieers <dag@wieers.com> - 0.8.6i-4
+- Rebuild against libmatroska-1.0.0.
+
 * Sun Dec 05 2010 Dag Wieers <dag@wieers.com> - 0.8.6i-3
 - Rebuild against ffmpeg-0.6.1.
 

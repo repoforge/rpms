@@ -58,8 +58,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 1.1.5
-Release: 2%{?dist}
+Version: 1.1.9
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -356,6 +356,15 @@ export QTLIB="$QTDIR/lib"
 %exclude %{_libdir}/mozilla/plugins/libvlcplugin.la
 
 %changelog
+* Tue Apr 12 2011 Dag Wieers <dag@wieers.com> - 1.1.9-1
+- Updated to release 1.1.9.
+
+* Thu Mar 24 2011 Dag Wieers <dag@wieers.com> - 1.1.8-1
+- Updated to release 1.1.8.
+
+* Wed Jan 26 2011 Dag Wieers <dag@wieers.com> - 1.1.6-1
+- Updated to release 1.1.6.
+
 * Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.1.5-2
 - Rebuild against libmatroska-1.0.0.
 

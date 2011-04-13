@@ -4,12 +4,14 @@
 ### EL6 ships with asciidoc-8.4.5-4.1.el6
 %{?el6:# Tag: rfx}
 
+%{?el5:%define dockbook_version 4.4}
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define vimdir %(ls -d %{_datadir}/vim/{vimfiles,vim[0-9]*} 2>/dev/null | tail -1)
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.6.3
+Version: 8.6.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
@@ -31,8 +33,8 @@ DocBook markups using the asciidoc(1) command.
 %prep
 %setup
 
-### Fix dependency on Docbook v4.5
-%{__perl} -pi.orig -e 's|4\.5\b|4.4|g' docbook.conf
+### Fix dependency on Docbook v4.5 for other distributions
+%{?docbook_version:%{__perl} -pi.orig -e 's|4\.5\b|%{docbook_version}|g' docbook.conf}
 
 %build
 %configure
@@ -113,6 +115,9 @@ done
 %exclude %{_datadir}/asciidoc/filters/*/*.py[co]
 
 %changelog
+* Mon Feb 21 2011 Dag Wieers <dag@wieers.com> - 8.6.4-1
+- Updated to release 8.6.4.
+
 * Thu Nov 18 2010 Dag Wieers <dag@wieers.com> - 8.6.3-1
 - Updated to release 8.6.3.
 

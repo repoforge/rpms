@@ -9,7 +9,7 @@
 
 Summary: Lightweight caching nameserver with integrated DHCP server
 Name: dnsmasq
-Version: 2.55
+Version: 2.57
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -161,6 +161,9 @@ fi
 %{_sbindir}/dnsmasq
 
 %changelog
+* Sat Feb 19 2011 Dag Wieers <dag@wieers.com> - 2.57-1
+- Updated to release 2.57.
+
 * Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 2.55-1
 - Updated to release 2.55.
 

@@ -4,7 +4,7 @@
 
 Summary: Nice editor
 Name: ne
-Version: 2.0.3
+Version: 2.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
@@ -38,7 +38,8 @@ This package includes the documentation for package %{name}.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} -C src CFLAGS="%{optflags}"
+#%{__make} %{?_smp_mflags} -C src CFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -71,6 +72,9 @@ This package includes the documentation for package %{name}.
 %doc doc/ne/ doc/*.pdf doc/ne.txt
 
 %changelog
+* Mon Mar 14 2011 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Sun Feb 22 2009 Dag Wieers <dag@wieers.com> - 2.0.3-1
 - Updated to release 2.0.3.
 

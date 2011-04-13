@@ -3,7 +3,7 @@
 
 Summary: User-space file system to navigate, extract, create and modify ZIP archives
 Name: fuse-zip
-Version: 0.2.12
+Version: 0.2.13
 Release: 1%{?dist}
 License: GPLv3+
 Group: System Environment/Libraries
@@ -52,8 +52,11 @@ on large archives with many files.
 %{_bindir}/fuse-zip
 
 %changelog
+* Tue Dec 07 2010 Dag Wieers <dag@wieers.com> - 0.2.13-1
+- Updated to release 0.2.13.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 0.2.12-1
-- Updated to release 0.2.12-1
+- Updated to release 0.2.12.
 
 * Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 0.2.9-1
 - Initial package. (using DAR)

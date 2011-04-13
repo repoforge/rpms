@@ -1,20 +1,21 @@
 # $Id$
 # Authority: dag
 
-%{?el5:# Tag: rft}
+#{?el5:# Tag: rft}
 # ExclusiveDist: el5 el6
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.6
+Version: 1.1.9
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://fedoraproject.org/wiki/Projects/Mock
 
 Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/mock-%{version}.tar.gz
+Patch0: mock-1.1.8-mknod.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -35,6 +36,7 @@ Mock takes an SRPM and builds it in a chroot
 
 %prep
 %setup
+%patch0
 
 %build
 %configure
@@ -84,6 +86,12 @@ fi
 %dir %{_localstatedir}/lib/mock/
 
 %changelog
+* Mon Mar 07 2011 Dag Wieers <dag@wieers.com> - 1.1.9-1
+- Updated to release 1.1.9.
+
+* Mon Feb 14 2011 Dag Wieers <dag@wieers.com> - 1.1.8-1
+- Updated to release 1.1.8.
+
 * Fri Nov 19 2010 Dag Wieers <dag@wieers.com> - 1.1.6-1
 - Updated to release 1.1.6.
 

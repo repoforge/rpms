@@ -1,0 +1,74 @@
+diff -up aqbanking-3.7.2/aqbanking-config.in.in.pkgconfig aqbanking-3.7.2/aqbanking-config.in.in
+--- aqbanking-3.7.2/aqbanking-config.in.in.pkgconfig	2008-07-31 14:13:31.000000000 -0400
++++ aqbanking-3.7.2/aqbanking-config.in.in	2008-09-09 13:18:20.000000000 -0400
+@@ -1,50 +1,44 @@
+ # $Id$
+ # Author of this file: Martin Preuss<martin@libchipcard.de>
+ 
+-prefix=@prefix@
+-exec_prefix=@exec_prefix@
+-libdir=@libdir@
+-includedir=@includedir@
+-datadir=@datadir@
+-
+ result=""
+ 
+ for d in $*; do
+     case $d in
+ 	--includes)
+-	    result="$result @aqbanking_includes@ @gwenhywfar_includes@"
++	    result="$result $(pkg-config --cflags aqbanking)"
+ 	    ;;
+ 	--libraries)
+-	    result="$result @aqbanking_ldflags@ @aqbanking_libs@"
++	    result="$result $(pkg-config --libs aqbanking)"
+ 	    ;;
+ 	--libraries++)
+ 	    result="$result "
+ 	    ;;
+ 	--plugins)
+-	    result="$result @aqbanking_plugindir@"
++	    result="$result $(pkg-config --variable=plugindir aqbanking)"
+ 	    ;;
+ 	--data)
+-	    result="$result @aqbanking_pkgdatadir@"
++	    result="$result $(pkg-config --variable=pkgdatadir aqbanking)"
+ 	    ;;
+ 
+         --has-qbanking)
+             result=@with_qbanking@
+             ;;
+ 	--qbanking-libraries)
+-	    result="$result @aqbanking_ldflags@ @qbanking_libs@"
++	    result="$result $(pkg-config --variable=qbanking_libs aqbanking)"
+ 	    ;;
+ 	--qbanking-plugins)
+-	    result="$result @qbanking_plugindir@"
++	    result="$result $(pkg-config --variable=qbanking_plugindir aqbanking)"
+ 	    ;;
+ 	--qbanking-helpdir)
+-	    result="$result @qbanking_helpdir@"
++	    result="$result $(pkg-config --variable=qbanking_helpdir aqbanking)"
+ 	    ;;
+ 
+         --has-aqhbci)
+             result=@with_aqhbci@
+             ;;
+ 	--aqhbci-libraries)
+-	    result="$result @aqbanking_ldflags@ @aqhbci_libs@"
++	    result="$result $(pkg-config --variable=aqhbci_libs aqbanking)"
+ 	    ;;
+ 
+ 	--vmajor)
+diff -up aqbanking-3.7.2/aqbanking.pc.in.pkgconfig aqbanking-3.7.2/aqbanking.pc.in
+--- aqbanking-3.7.2/aqbanking.pc.in.pkgconfig	2008-09-09 13:16:24.000000000 -0400
++++ aqbanking-3.7.2/aqbanking.pc.in	2008-09-09 13:18:22.000000000 -0400
+@@ -32,6 +32,8 @@ kbanking_datadir=@kbanking_data@
+ qbanking_includes=@qbanking_includes@
+ qbanking_libs=@qbanking_libs@
+ qbanking_datadir=@qbanking_data@
++qbanking_plugindir=@qbanking_plugindir@
++qbanking_helpdir=@qbanking_helpdir@
+ cbanking_includes=@cbanking_includes@
+ cbanking_libs=@cbanking_libs@
+ cbanking_datadir=@cbanking_data@

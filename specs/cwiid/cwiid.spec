@@ -3,6 +3,8 @@
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+%{?el6:%define _with_bluez4 1}
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -19,6 +21,7 @@ URL: http://abstrakraft.org/cwiid/
 Source: http://abstrakraft.org/cwiid/downloads/cwiid-%{version}.tgz
 #Patch0: cwiid-0.6.00-flex.patch
 #Patch0: cwiid-0.6.00-flex2.patch
+Patch0: cwiid-0.6.00-bluez4.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
@@ -43,6 +46,7 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%{?_with_bluez4:%patch0 -p0 -b .bluez4}
 
 for file in */README; do %{__cp} -v $file README.$(dirname $file); done
 
@@ -104,6 +108,7 @@ EOF
 %{_libdir}/libcwiid.so.*
 %{_libdir}/cwiid/
 %{python_sitearch}/cwiid.so
+%{python_sitearch}/cwiid-%{version}-py*.egg-info
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/wmgui.desktop}
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-wmgui.desktop}
 

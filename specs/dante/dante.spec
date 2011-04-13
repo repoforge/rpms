@@ -5,7 +5,7 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.2.2
+Version: 1.2.3
 Release: 1%{?dist}
 License: BSD-type
 Group: Applications/Internet
@@ -234,7 +234,7 @@ exit $RETVAL
 EOF
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -304,12 +304,13 @@ fi
 %{_includedir}/socks.h
 #%{_includedir}/socks_glibc.h
 %{_libdir}/libsocks.so
-%exclude %{_libdir}/libdsocks.a
 %exclude %{_libdir}/libdsocks.la
-%exclude %{_libdir}/libsocks.a
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Tue Mar 22 2011 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Thu Sep 23 2010 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 

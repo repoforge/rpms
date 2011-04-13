@@ -1,7 +1,7 @@
 Name:		wifi-radar
 Summary:	A utility for managing WiFi profiles
 Version:	1.9.8
-Release:	1
+Release:	1%{?dist}
 License:	GPL
 Group:		Applications/Internet
 URL:		http://wifi-radar.systemimager.org/
