@@ -2,26 +2,38 @@
 # Authority: dag
 # Upstream: Nigel Griffiths <nag$uk,ibm,com>
 
+%define ccopts %nil
+
+### RHEL4 kernel has backported features from >= 2.6.18
+%{?el4:%define ccopts -DKERNEL_2_6_18}
+
 Summary: Performance analysis tool
 Name: nmon
-Version: 12d
+Version: 14f
 Release: 1%{?dist}
-License: Proprietary
+License: GPLv3
 Group: Applications/System
-URL: http://www-128.ibm.com/developerworks/aix/library/au-analyze_aix/
-#URL: http://www-941.haw.ibm.com/collaboration/wiki/display/WikiPtype/nmon
+URL: http://nmon.sourceforge.net/
 
-Source: http://dl.sf.net/project/nmon/lmon12d.zip
+#Source: http://dl.sf.net/project/nmon/lmon12d.zip
+Source0: http://dl.sf.net/sourceforge/nmon/lmon%{version}.c
+Source1: http://dl.sf.net/sourceforge/nmon/makefile
+Source2: http://dl.sf.net/sourceforge/nmon/Documentation.txt
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: i386 x86_64 ppc ppc64
+ExclusiveArch: %{ix86} x86_64 ppc ppc64
+BuildRequires: ncurses-devel
+BuildRequires: /usr/include/linux/version.h
 
 %description
 nmon is designed for performance specialists to use for monitoring and
 analyzing performance data.
 
 %prep
-%setup -c
+%setup -c -T
+%{__install} -p -m0644 %{SOURCE0} .
+%{__install} -p -m0644 %{SOURCE1} .
+%{__install} -p -m0644 %{SOURCE2} .
 
 %{__cat} <<EOF >nmon-script.sysconfig
 ### The directory to store the nmon data files
@@ -64,9 +76,9 @@ EOF
 
 %build
 %ifarch ppc ppc64
-%{__cc} %{optflags} -D GETUSER -D JFS -D LARGEMEM -D POWER -lncurses lmon%{version}.c -o nmon
+%{__cc} %{optflags} -D GETUSER -D JFS -D LARGEMEM -D POWER %{ccopts} -lncurses lmon%{version}.c -o nmon
 %else
-%{__cc} %{optflags} -D GETUSER -D JFS -D LARGEMEM -lncurses lmon%{version}.c -o nmon
+%{__cc} %{optflags} -D GETUSER -D JFS -D LARGEMEM %{ccopts} -lncurses lmon%{version}.c -o nmon
 %endif
 
 %install
@@ -93,6 +105,9 @@ EOF
 %{_localstatedir}/log/nmon/
 
 %changelog
+* Wed Apr 13 2011 Dag Wieers <dag@wieers.com> - 14f-1
+- Updated to release 14f. (Simon Matter)
+
 * Thu Nov 05 2009 Dag Wieers <dag@wieers.com> - 12d-1
 - Updated to release 12d.
 
