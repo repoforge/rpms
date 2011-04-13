@@ -3,9 +3,14 @@
 # Upstream: Eryq <eryq$zeegee,com>
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
 # Upstream: Dave O'Neill <dmo$roaringpenguin,com>
+# ExcludeDist: el3
 
 ### EL6 ships with perl-MIME-tools-5.427-4.el6
 %{?el6:# Tag: rfx}
+
+### EL5 perl provides an older File::Temp
+%{?el5:# Tag: rfx}
+%{?el4:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -31,7 +36,6 @@ BuildRequires: perl(File::Spec) >= 0.6
 BuildRequires: perl(File::Temp) >= 0.18
 BuildRequires: perl(IO::File) >= 1.13
 BuildRequires: perl(IO::Handle)
-BuildRequires: perl(IO::Stringy) >= 2.11
 BuildRequires: perl(MIME::Base64) >= 3.03
 BuildRequires: perl(Mail::Field) >= 1.05
 BuildRequires: perl(Mail::Header) >= 1.01
@@ -45,7 +49,6 @@ Requires: perl(File::Spec) >= 0.6
 Requires: perl(File::Temp) >= 0.18
 Requires: perl(IO::File) >= 1.13
 Requires: perl(IO::Handle)
-Requires: perl(IO::Stringy) >= 2.11
 Requires: perl(MIME::Base64) >= 3.03
 Requires: perl(Mail::Field) >= 1.05
 Requires: perl(Mail::Header) >= 1.01
@@ -92,9 +95,11 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %changelog
 * Wed Apr 13 2011 Steve Huff <shuff@vecna.org> - 5.502-2
-- We can now satisfy just about all the actual dependencies in el5.
+- This package needs to be rfx; we need some dependencies we can't satisfy
+  with stock el.
   Removed the test tag, this package has been in testing forever.
 - Captured an outdated MIME::Base64 dependency.
+- Removed a superfluous IO::Stringy dependency.
 
 * Fri Mar 11 2011 David Hrbáč <david@hrbac.cz> - 5.502-1
 - new upstream release
