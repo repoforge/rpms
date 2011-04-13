@@ -1,0 +1,515 @@
+diff -urN mtree-3.1.orig/Makefile mtree-3.1/Makefile
+--- mtree-3.1.orig/Makefile	Thu Jan  1 03:00:00 1970
++++ mtree-3.1/Makefile	Sun Jul 28 08:18:17 2002
+@@ -0,0 +1,2 @@
++all clean:
++	$(MAKE) -C usr.sbin/mtree $@
+diff -urN mtree-3.1.orig/lib/libc/gen/setmode.c mtree-3.1/lib/libc/gen/setmode.c
+--- mtree-3.1.orig/lib/libc/gen/setmode.c	Tue Feb 19 22:39:36 2002
++++ mtree-3.1/lib/libc/gen/setmode.c	Sun Jul 28 08:28:03 2002
+@@ -187,6 +187,8 @@
+ 	if (!*p)
+ 		return (NULL);
+ 
++	equalopdone = 0;
++
+ 	/*
+ 	 * Get a copy of the mask for the permissions that are mask relative.
+ 	 * Flip the bits, we want what's not set.  Since it's possible that
+@@ -212,7 +214,7 @@
+ 	 */
+ 	if (isdigit(*p)) {
+ 		perml = strtol(p, NULL, 8);
+-		if (perml < 0 || (perml & ~(STANDARD_BITS|S_ISTXT))) {
++		if (perml < 0 || (perml & ~(STANDARD_BITS|S_ISVTX))) {
+ 			free(saveset);
+ 			return (NULL);
+ 		}
+@@ -222,7 +224,7 @@
+ 				free(saveset);
+ 				return (NULL);
+ 			}
+-		ADDCMD('=', (STANDARD_BITS|S_ISTXT), perm, mask);
++		ADDCMD('=', (STANDARD_BITS|S_ISVTX), perm, mask);
+ 		return (saveset);
+ 	}
+ 
+@@ -258,7 +260,7 @@
+ 		if (op == '=')
+ 			equalopdone = 0;
+ 
+-		who &= ~S_ISTXT;
++		who &= ~S_ISVTX;
+ 		for (perm = 0, permXbits = 0;; ++p) {
+ 			switch (*p) {
+ 			case 'r':
+@@ -278,8 +280,8 @@
+ 				 * only "other" bits ignore sticky.
+ 				 */
+ 				if (who == 0 || (who & ~S_IRWXO)) {
+-					who |= S_ISTXT;
+-					perm |= S_ISTXT;
++					who |= S_ISVTX;
++					perm |= S_ISVTX;
+ 				}
+ 				break;
+ 			case 'w':
+diff -urN mtree-3.1.orig/usr.sbin/mtree/Makefile mtree-3.1/usr.sbin/mtree/Makefile
+--- mtree-3.1.orig/usr.sbin/mtree/Makefile	Sun Sep 21 15:43:58 1997
++++ mtree-3.1/usr.sbin/mtree/Makefile	Sun Jul 28 08:25:42 2002
+@@ -1,9 +1,33 @@
+ #	$OpenBSD: Makefile,v 1.6 1997/09/21 11:43:58 deraadt Exp $
+ 
++CC = gcc
++LD = gcc
++RM = rm -f
++ifndef CFLAGS
++CFLAGS = -c -O2 -fomit-frame-pointer
++endif
++CFLAGS += -I. -I../../include
++CFLAGS += -Wall -Dlint
++LDFLAGS = -s -lcrypto
++
+ PROG=	mtree
+ #CFLAGS+=-DDEBUG
+ MAN=	mtree.8
+-SRCS=	compare.c crc.c create.c misc.c mtree.c spec.c verify.c
+-.PATH:	${.CURDIR}/../../usr.bin/cksum
+ 
+-.include <bsd.prog.mk>
++SRCS=	compare.c create.c misc.c mtree.c spec.c verify.c \
++	hashfile.c \
++	../../usr.bin/cksum/crc.c \
++	../../lib/libc/gen/setmode.c \
++	../../lib/libc/gen/vis.c \
++	../../lib/libc/gen/unvis.c
++
++all: $(PROG)
++
++$(PROG): $(SRCS:.c=.o)
++	$(LD) $(LDFLAGS) $+ -o $@
++
++.c.o:
++	$(CC) $(CFLAGS) $< -o $@
++
++clean:
++	$(RM) $(PROG) $(SRCS:.c=.o)
+diff -urN mtree-3.1.orig/usr.sbin/mtree/compare.c mtree-3.1/usr.sbin/mtree/compare.c
+--- mtree-3.1.orig/usr.sbin/mtree/compare.c	Thu Mar 14 19:44:25 2002
++++ mtree-3.1/usr.sbin/mtree/compare.c	Sun Jul 28 08:46:24 2002
+@@ -42,6 +42,7 @@
+ #endif
+ #endif /* not lint */
+ 
++#define _GNU_SOURCE
+ #include <sys/param.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+@@ -49,12 +50,11 @@
+ #include <errno.h>
+ #include <stdio.h>
+ #include <time.h>
++#include <sys/time.h>
+ #include <unistd.h>
+-#include <md5.h>
+-#include <sha1.h>
+-#include <rmd160.h>
+ #include "mtree.h"
+ #include "extern.h"
++#include "hashfile.h"
+ 
+ extern int lflag, tflag, uflag;
+ 
+@@ -195,7 +195,7 @@
+ 	}
+ 	if (s->flags & F_SIZE && s->st_size != p->fts_statp->st_size) {
+ 		LABEL;
+-		(void)printf("%ssize (%qd, %qd)\n",
++		(void)printf("%ssize (%lu, %lu)\n",
+ 		    tab, s->st_size, p->fts_statp->st_size);
+ 		tab = "\t";
+ 	}
+@@ -211,14 +211,15 @@
+ 		struct timeval tv[2];
+ 
+ 		TIMESPEC_TO_TIMEVAL(&tv[0], &s->st_mtimespec);
+-		TIMESPEC_TO_TIMEVAL(&tv[1], &p->fts_statp->st_mtimespec);
++		tv[1].tv_sec = p->fts_statp->st_mtime;
++		tv[1].tv_usec = 0;
+ 		if (tv[0].tv_sec != tv[1].tv_sec ||
+ 		    tv[0].tv_usec != tv[1].tv_usec) {
+ 			LABEL;
+ 			(void)printf("%smodification time (%.24s, ",
+ 			    tab, ctime(&s->st_mtimespec.tv_sec));
+ 			(void)printf("%.24s",
+-			    ctime(&p->fts_statp->st_mtimespec.tv_sec));
++			    ctime(&p->fts_statp->st_mtime));
+ 			if (tflag) {
+ 				tv[1] = tv[0];
+ 				if (utimes(p->fts_accpath, tv))
+@@ -232,7 +233,7 @@
+ 		}
+ 	}
+ 	if (s->flags & F_CKSUM) {
+-		if ((fd = open(p->fts_accpath, O_RDONLY, 0)) < 0) {
++		if ((fd = open(p->fts_accpath, MTREE_O_FLAGS, 0)) < 0) {
+ 			LABEL;
+ 			(void)printf("%scksum: %s: %s\n",
+ 			    tab, p->fts_accpath, strerror(errno));
+@@ -305,6 +306,7 @@
+ 		LABEL;
+ 		(void)printf("%slink ref (%s, %s)\n", tab, cp, s->slink);
+ 	}
++#if 0
+ 	if (s->flags & F_FLAGS && s->file_flags != p->fts_statp->st_flags) {
+ 		char *db_flags = NULL;
+ 		char *cur_flags = NULL;
+@@ -342,6 +344,7 @@
+ 			free(cur_flags);
+ 		}
+ 	}
++#endif
+ 	return (label);
+ }
+ 
+diff -urN mtree-3.1.orig/usr.sbin/mtree/create.c mtree-3.1/usr.sbin/mtree/create.c
+--- mtree-3.1.orig/usr.sbin/mtree/create.c	Thu Mar 14 20:01:16 2002
++++ mtree-3.1/usr.sbin/mtree/create.c	Sun Jul 28 09:46:08 2002
+@@ -42,6 +42,7 @@
+ #endif
+ #endif /* not lint */
+ 
++#define _GNU_SOURCE
+ #include <sys/param.h>
+ #include <sys/stat.h>
+ #include <time.h>
+@@ -55,11 +56,9 @@
+ #include <stdio.h>
+ #include <stdarg.h>
+ #include <vis.h>
+-#include <md5.h>
+-#include <sha1.h>
+-#include <rmd160.h>
+ #include "mtree.h"
+ #include "extern.h"
++#include "hashfile.h"
+ 
+ #define	INDENTNAMELEN	15
+ #define	MAXLINELEN	80
+@@ -75,7 +74,11 @@
+ static mode_t mode;
+ 
+ static int	dsort(const FTSENT **, const FTSENT **);
+-static void	output(int, int *, const char *, ...);
++static void	output(int, int *, const char *, ...)
++#ifdef __GNUC__
++__attribute__ ((format (printf, 3, 4)))
++#endif
++	;
+ static int	statd(FTS *, FTSENT *, uid_t *, gid_t *, mode_t *);
+ static void	statf(int, FTSENT *);
+ 
+@@ -195,17 +198,16 @@
+ 	if (keys & F_NLINK && p->fts_statp->st_nlink != 1)
+ 		output(indent, &offset, "nlink=%u", p->fts_statp->st_nlink);
+ 	if (keys & F_SIZE && S_ISREG(p->fts_statp->st_mode))
+-		output(indent, &offset, "size=%qd", p->fts_statp->st_size);
++		output(indent, &offset, "size=%lu", p->fts_statp->st_size);
+ 	if (keys & F_TIME)
+-		output(indent, &offset, "time=%ld.%ld",
+-		    p->fts_statp->st_mtimespec.tv_sec,
+-		    p->fts_statp->st_mtimespec.tv_nsec);
++		output(indent, &offset, "time=%ld.0",
++		    p->fts_statp->st_mtime);
+ 	if (keys & F_CKSUM && S_ISREG(p->fts_statp->st_mode)) {
+-		if ((fd = open(p->fts_accpath, O_RDONLY, 0)) < 0 ||
++		if ((fd = open(p->fts_accpath, MTREE_O_FLAGS, 0)) < 0 ||
+ 		    crc(fd, &val, &len))
+ 			error("%s: %s", p->fts_accpath, strerror(errno));
+ 		(void)close(fd);
+-		output(indent, &offset, "cksum=%lu", val);
++		output(indent, &offset, "cksum=%u", val);
+ 	}
+ 	if (keys & F_MD5 && S_ISREG(p->fts_statp->st_mode)) {
+ 		char *md5digest, buf[33];
+@@ -244,6 +246,7 @@
+ 		output(indent, &offset, "link=%s", escaped_name);
+ 		free(escaped_name);
+ 	}
++#if 0
+ 	if (keys & F_FLAGS && !S_ISLNK(p->fts_statp->st_mode)) {
+ 		char *file_flags;
+ 
+@@ -256,6 +259,7 @@
+ 			output(indent, &offset, "flags=none");
+ 		free(file_flags);
+ 	}
++#endif
+ 	(void)putchar('\n');
+ }
+ 
+diff -urN mtree-3.1.orig/usr.sbin/mtree/extern.h mtree-3.1/usr.sbin/mtree/extern.h
+--- mtree-3.1.orig/usr.sbin/mtree/extern.h	Sun Feb 17 00:28:05 2002
++++ mtree-3.1/usr.sbin/mtree/extern.h	Sun Jul 28 07:49:41 2002
+@@ -36,10 +36,17 @@
+  *	@(#)extern.h	8.1 (Berkeley) 6/6/93
+  */
+ 
++#include <fts.h>
++#include "mtree.h"
++
+ int	 compare(char *, NODE *, FTSENT *);
+ int	 crc(int, u_int32_t *, u_int32_t *);
+ void	 cwalk(void);
+-void	 error(const char *, ...);
++void	 error(const char *, ...)
++#ifdef __GNUC__
++__attribute__ ((format (printf, 1, 2)))
++#endif
++	;
+ char	*inotype(u_int);
+ u_int	 parsekey(char *, int *);
+ char	*rlink(char *);
+diff -urN mtree-3.1.orig/usr.sbin/mtree/hashfile.c mtree-3.1/usr.sbin/mtree/hashfile.c
+--- mtree-3.1.orig/usr.sbin/mtree/hashfile.c	Thu Jan  1 03:00:00 1970
++++ mtree-3.1/usr.sbin/mtree/hashfile.c	Sun Jul 28 08:01:57 2002
+@@ -0,0 +1,78 @@
++#define _GNU_SOURCE
++#include <stdio.h>
++#include <fcntl.h>
++#include <sys/stat.h>
++#include <stdlib.h>
++#include <errno.h>
++#include <unistd.h>
++
++#include <openssl/md5.h>
++#include <openssl/sha.h>
++#include <openssl/ripemd.h>
++
++#include "hashfile.h"
++
++#define FILE_BUFFER			0x1000
++
++static char hex[16] =
++	"0123456789abcdef";
++
++#define HASHFile(F, CTX, Init, Update, Final, N) \
++char *F(const char *pathname, char *output) \
++{ \
++	CTX c; \
++	unsigned char binary[N]; \
++	struct stat st; \
++	int fd, n, i; \
++	char *buffer, *p; \
++\
++	if (stat(pathname, &st)) return NULL; \
++	if (!S_ISREG(st.st_mode)) { \
++		errno = EIO; \
++		return NULL; \
++	} \
++\
++	if ((fd = open(pathname, MTREE_O_FLAGS)) < 0) \
++		return NULL; \
++\
++	if (fstat(fd, &st)) { \
++		close(fd); \
++		return NULL; \
++	} \
++	if (!S_ISREG(st.st_mode)) { \
++		close(fd); \
++		errno = EIO; \
++		return NULL; \
++	} \
++\
++	if (!(buffer = malloc(FILE_BUFFER))) { \
++		close(fd); \
++		errno = ENOMEM; \
++		return NULL; \
++	} \
++\
++	Init(&c); \
++	while ((n = read(fd, buffer, FILE_BUFFER)) > 0) \
++		Update(&c, buffer, n); \
++\
++	if (!n) { \
++		Final(binary, &c); \
++		p = output; \
++		for (i = 0; i < N; i++) { \
++			*p++ = hex[(int)binary[i] >> 4]; \
++			*p++ = hex[(int)binary[i] & 0x0f]; \
++		} \
++		*p = '\0'; \
++	} else \
++		output = NULL; \
++\
++	close(fd); \
++	free(buffer); \
++\
++	return output; \
++}
++
++HASHFile(MD5File, MD5_CTX, MD5_Init, MD5_Update, MD5_Final, 16)
++HASHFile(SHA1File, SHA_CTX, SHA1_Init, SHA1_Update, SHA1_Final, 20)
++HASHFile(RMD160File, RIPEMD160_CTX,
++	RIPEMD160_Init, RIPEMD160_Update, RIPEMD160_Final, 20)
+diff -urN mtree-3.1.orig/usr.sbin/mtree/hashfile.h mtree-3.1/usr.sbin/mtree/hashfile.h
+--- mtree-3.1.orig/usr.sbin/mtree/hashfile.h	Thu Jan  1 03:00:00 1970
++++ mtree-3.1/usr.sbin/mtree/hashfile.h	Sun Jul 28 07:41:19 2002
+@@ -0,0 +1,11 @@
++#ifndef _HASHFILE_H
++#define _HASHFILE_H
++
++extern char *MD5File(const char *pathname, char *output);
++extern char *SHA1File(const char *pathname, char *output);
++extern char *RMD160File(const char *pathname, char *output);
++
++#define MTREE_O_FLAGS \
++	(O_RDONLY | O_NOCTTY | O_NONBLOCK | O_NOFOLLOW)
++
++#endif
+diff -urN mtree-3.1.orig/usr.sbin/mtree/misc.c mtree-3.1/usr.sbin/mtree/misc.c
+--- mtree-3.1.orig/usr.sbin/mtree/misc.c	Thu Apr  4 11:33:23 2002
++++ mtree-3.1/usr.sbin/mtree/misc.c	Sun Jul 28 08:21:56 2002
+@@ -57,7 +57,9 @@
+ /* NB: the following table must be sorted lexically. */
+ static KEY keylist[] = {
+ 	{"cksum",	F_CKSUM,	NEEDVALUE},
++#if 0
+ 	{"flags",	F_FLAGS,	NEEDVALUE},
++#endif
+ 	{"gid",		F_GID,		NEEDVALUE},
+ 	{"gname",	F_GNAME,	NEEDVALUE},
+ 	{"ignore",	F_IGN,		0},
+diff -urN mtree-3.1.orig/usr.sbin/mtree/mtree.8 mtree-3.1/usr.sbin/mtree/mtree.8
+--- mtree-3.1.orig/usr.sbin/mtree/mtree.8	Sat Mar  9 21:54:19 2002
++++ mtree-3.1/usr.sbin/mtree/mtree.8	Sun Jul 28 08:50:17 2002
+@@ -34,7 +34,7 @@
+ .\"
+ .\"     @(#)mtree.8	8.2 (Berkeley) 12/11/93
+ .\"
+-.Dd December 11, 1993
++.Dd July 28, 2002
+ .Dt MTREE 8
+ .Os
+ .Sh NAME
+@@ -302,13 +302,16 @@
+ .Cm sha1digest
+ be run on the file systems, and a copy of the results stored on a different
+ machine, or, at least, in encrypted form.
+-The output file itself should be digested using the
+-.Xr sha1 1
+-utility.
++The output file itself should be digested using
++.Nm openssl
++.Cm dgst
++.Fl sha1 .
+ Then, periodically,
+ .Nm mtree
+ and
+-.Xr sha1 1
++.Nm openssl
++.Cm dgst
++.Fl sha1
+ should be run against the on-line specifications.
+ While it is possible for the bad guys to change the on-line specifications
+ to conform to their modified binaries, it is believed to be
+@@ -332,16 +335,15 @@
+ .Sh SEE ALSO
+ .Xr chgrp 1 ,
+ .Xr chmod 1 ,
++.Xr chown 1 ,
+ .Xr cksum 1 ,
+-.Xr md5 1 ,
+-.Xr rmd160 1 ,
+-.Xr sha1 1 ,
++.Xr md5sum 1 ,
++.Xr openssl 1 ,
++.Xr stat 1 ,
+ .Xr stat 2 ,
+-.Xr fts 3 ,
+ .Xr md5 3 ,
+-.Xr rmd160 3 ,
+-.Xr sha1 3 ,
+-.Xr chown 8
++.Xr ripemd 3 ,
++.Xr sha 3
+ .Sh HISTORY
+ The
+ .Nm mtree
+diff -urN mtree-3.1.orig/usr.sbin/mtree/mtree.h mtree-3.1/usr.sbin/mtree/mtree.h
+--- mtree-3.1.orig/usr.sbin/mtree/mtree.h	Sat Mar  9 21:54:19 2002
++++ mtree-3.1/usr.sbin/mtree/mtree.h	Sun Jul 28 08:22:35 2002
+@@ -36,6 +36,9 @@
+  *	@(#)mtree.h	8.1 (Berkeley) 6/6/93
+  */
+ 
++#ifndef _MTREE_H
++#define _MTREE_H
++
+ #include <string.h>
+ #include <stdlib.h>
+ 
+@@ -56,7 +59,7 @@
+ 	char	*slink;				/* symbolic link reference */
+ 	uid_t	st_uid;				/* uid */
+ 	gid_t	st_gid;				/* gid */
+-#define	MBITS	(S_ISUID|S_ISGID|S_ISTXT|S_IRWXU|S_IRWXG|S_IRWXO)
++#define	MBITS	(S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)
+ 	mode_t	st_mode;			/* mode */
+ 	nlink_t	st_nlink;			/* link count */
+ 	u_int32_t file_flags;			/* file flags */
+@@ -80,7 +83,9 @@
+ #define	F_UID		0x010000		/* uid */
+ #define	F_UNAME		0x020000		/* user name */
+ #define	F_VISIT		0x040000		/* file visited */
++#if 0
+ #define	F_FLAGS		0x080000		/* file flags */
++#endif
+ #define	F_NOCHANGE	0x100000		/* do not change owner/mode */
+ 	u_int32_t flags;			/* items set */
+ 
+@@ -99,3 +104,5 @@
+ #define	RP(p)	\
+ 	((p)->fts_path[0] == '.' && (p)->fts_path[1] == '/' ? \
+ 	    (p)->fts_path + 2 : (p)->fts_path)
++
++#endif
+diff -urN mtree-3.1.orig/usr.sbin/mtree/spec.c mtree-3.1/usr.sbin/mtree/spec.c
+--- mtree-3.1.orig/usr.sbin/mtree/spec.c	Thu Mar 14 20:01:16 2002
++++ mtree-3.1/usr.sbin/mtree/spec.c	Sun Jul 28 08:24:47 2002
+@@ -55,6 +55,9 @@
+ #include "mtree.h"
+ #include "extern.h"
+ 
++extern mode_t getmode(const void *set, mode_t mode);
++extern void * setmode(const char *mode_str);
++
+ int lineno;				/* Current spec line number. */
+ 
+ static void	 set(char *, NODE *);
+@@ -181,7 +184,9 @@
+ 	struct passwd *pw;
+ 	mode_t *m;
+ 	int value;
++#if 0
+ 	u_int32_t fset, fclr;
++#endif
+ 	char *ep;
+ 
+ 	for (; (kw = strtok(t, "= \t\n")); t = NULL) {
+@@ -199,6 +204,7 @@
+ 			if (!ip->md5digest)
+ 				error("%s", strerror(errno));
+ 			break;
++#if 0
+ 		case F_FLAGS:
+ 			if (!strcmp(val, "none")) {
+ 				ip->file_flags = 0;
+@@ -208,6 +214,7 @@
+ 				error("%s", strerror(errno));
+ 			ip->file_flags = fset;
+ 			break; 
++#endif
+ 		case F_GID:
+ 			ip->st_gid = strtoul(val, &ep, 10);
+ 			if (*ep)

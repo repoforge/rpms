@@ -1,0 +1,41 @@
+diff -Naur mtree-2.7.cvs/usr.sbin/mtree/create.c mtree-2.7.cvs.new/usr.sbin/mtree/create.c
+--- mtree-2.7.cvs/usr.sbin/mtree/create.c	2002-06-28 16:24:31 +0400
++++ mtree-2.7.cvs.new/usr.sbin/mtree/create.c	2002-06-28 16:26:18 +0400
+@@ -86,6 +86,28 @@
+ static int	statd(FTS *, FTSENT *, uid_t *, gid_t *, mode_t *);
+ static void	statf(int, FTSENT *);
+ 
++char *my_getlogin(){
++    const char *s=getlogin();
++    if (s && *s){
++	return s;
++    }else{
++	struct passwd *p=getpwuid(geteuid());
++	char *ss;
++	if (p && p->pw_name){
++	    if (asprintf(&ss,"(no controlling terminal) %s",p->pw_name)<0){
++		perror("asprintf");
++		return NULL;
++	    }
++	}else{
++	    if (asprintf(&ss,"(no controlling terminal) #%d",geteuid())<0){
++		perror("asprintf");
++		return NULL;
++	    }
++	}
++	return ss;
++    }
++}
++
+ void
+ cwalk()
+ {
+@@ -99,7 +121,7 @@
+ 	(void)gethostname(host, sizeof(host));
+ 	(void)printf(
+ 	    "#\t   user: %s\n#\tmachine: %s\n#\t   tree: %s\n#\t   date: %s",
+-	    getlogin(), host, fullpath, ctime(&clock));
++	    my_getlogin(), host, fullpath, ctime(&clock));
+ 
+ 	argv[0] = ".";
+ 	argv[1] = NULL;

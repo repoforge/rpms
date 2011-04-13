@@ -1,0 +1,11 @@
+diff -puNr mtree-3.1.orig/usr.sbin/mtree/compare.c mtree-3.1/usr.sbin/mtree/compare.c
+--- mtree-3.1.orig/usr.sbin/mtree/compare.c	Fri Jan  7 00:59:10 2005
++++ mtree-3.1/usr.sbin/mtree/compare.c	Fri Jan  7 01:03:17 2005
+@@ -185,6 +185,7 @@ typeerr:		LABEL;
+ 			(void)printf(")\n");
+ 		tab = "\t";
+ 	skip:
++		;
+ 	}
+ 	if (s->flags & F_NLINK && s->type != F_DIR &&
+ 	    s->st_nlink != p->fts_statp->st_nlink) {
