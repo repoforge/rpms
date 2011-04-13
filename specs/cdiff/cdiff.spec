@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define _default_patch_fuzz 2
+
 Summary: Diff readability enhancer for color terminals
 Name: cdiff
 Version: 1.5

@@ -2,6 +2,8 @@
 # Authority: shuff
 # Upstream: Sridhar Samudrala <sri$us,ibm,com>
 
+# ExclusiveDist: el4 el5
+
 ### EL6 ships with lksctp-tools-1.0.10-5.el6
 ### EL5 ships with lksctp-tools-1.0.6-3.el5
 %{?el5:# Tag: rfx}
@@ -11,16 +13,19 @@
 Summary: User-space access to Linux Kernel SCTP
 Name: lksctp-tools
 Version: 1.0.10
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: LGPL
 Group: System Environment/Libraries
-URL: http://lksctp.sourceforge.net
-Source0: http://downloads.sourceforge.net/project/lksctp/lksctp/%{name}-%{version}/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: gcc
-BuildRequires: libtool, automake, autoconf
-BuildRequires: kernel-devel >= 2.5.36
+URL: http://lksctp.sourceforge.net/
 
+Source: http://dl.sf.net/project/lksctp/lksctp/lksctp-tools-%{version}/lksctp-tools-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: gcc
+BuildRequires: kernel-devel >= 2.5.36
+BuildRequires: libtool
 Requires: kernel >= 2.5.36
 
 %description
@@ -60,46 +65,59 @@ Documents pertaining to LKSCTP & SCTP in general
 - IETF RFC's & Internet Drafts
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup
 
 %build
 %configure --enable-shared --enable-static
-make
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR="$RPM_BUILD_ROOT"
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING ChangeLog COPYING.lib
-%{_bindir}/*
+%defattr(-, root, root, 0755)
+%doc AUTHORS ChangeLog COPYING COPYING.lib
+%doc %{_mandir}/man7/sctp.7*
+%{_bindir}/checksctp
+%{_bindir}/sctp_darn
+%{_bindir}/sctp_status
+%{_bindir}/sctp_test
+%{_bindir}/withsctp
 %{_libdir}/libsctp.so.*
-%{_libdir}/lksctp-tools/*
+%dir %{_libdir}/lksctp-tools/
+%{_libdir}/lksctp-tools/*.so.*
+%exclude %{_libdir}/lksctp-tools/*.a
+%exclude %{_libdir}/lksctp-tools/*.la
 
 %files devel
-%defattr(-,root,root,-)
-%{_includedir}
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/sctp_*.3*
+%{_datadir}/lksctp-tools/
+%dir %{_includedir}/netinet/
+%{_includedir}/netinet/sctp.h
 %{_libdir}/libsctp.so
-%{_libdir}/libsctp.a
-%{_libdir}/libsctp.la
-%{_datadir}/lksctp-tools/*
-%{_mandir}/*
+%dir %{_libdir}/lksctp-tools/
+%{_libdir}/lksctp-tools/*.so*
+%exclude %{_libdir}/libsctp.a
+%exclude %{_libdir}/libsctp.la
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc doc/*.txt
 
 %changelog
+* Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 1.0.10-3
+- Remove .a and .la files.
+- Include directories.
+- Add man(7) to main package.
+
 * Mon Sep 28 2009 Steve Huff <shuff@vecna.org> - 1.0.10-2
 - some fixes for RPMforge standards compliance
 - updated to latest version

@@ -1,0 +1,23 @@
+Index: pptpsetup
+===================================================================
+RCS file: /cvsroot/pptpclient/pptp-linux/pptpsetup,v
+retrieving revision 1.4
+diff -u -r1.4 pptpsetup
+--- pptpsetup	2 Aug 2006 07:02:47 -0000	1.4
++++ pptpsetup	25 Mar 2009 13:41:37 -0000
+@@ -154,6 +154,7 @@
+ 
+     # delete entry from chap-secrets
+     my $chap_file = '/etc/ppp/chap-secrets';
++    my $mode = (stat($chap_file))[2] & 07777;
+ 
+     open( FILE, $chap_file )
+         or die "$0: can't read '$chap_file': $!\n";
+@@ -171,6 +172,7 @@
+     # write new chap-secrets
+     open( FILE, ">$chap_file" )
+         or die "$0: can't write '$chap_file': $!\n";
++    chmod $mode, $chap_file;
+     print FILE $new_chap;
+     close FILE;
+ 

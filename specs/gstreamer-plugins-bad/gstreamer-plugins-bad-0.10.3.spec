@@ -2,6 +2,8 @@
 # Authority: matthias
 # ExclusiveDist: fc5 fc6 el5 fc7
 
+%define _without_directfb 1
+
 %define desktop_vendor rpmforge
 
 %define majorminor   0.10
@@ -32,7 +34,7 @@ BuildRequires: PyXML
 Buildrequires: libXt-devel
 
 BuildRequires: liboil-devel
-BuildRequires: directfb-devel >= 1.0.1
+%{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.1}
 BuildRequires: libdca-devel
 BuildRequires: faac-devel
 BuildRequires: faad2-devel

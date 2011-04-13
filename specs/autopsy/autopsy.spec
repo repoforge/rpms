@@ -4,7 +4,7 @@
 
 Summary: Forensic browser for use with Sleuth Kit
 Name: autopsy
-Version: 2.00
+Version: 2.24
 Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -14,8 +14,17 @@ Source: http://dl.sf.net/autopsy/autopsy-%{version}.tar.gz
 Patch0: autopsy.patch-1.74
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: sleuthkit >= 1.61
-Provides: perl(conf.pl), perl(define.pl), perl(fs.pl), perl(search.pl), perl(autopsyfunc)
+BuildArch: noarch
+Requires: binutils
+Requires: coreutils
+Requires: file
+Requires: grep
+Requires: perl
+Requires: sleuthkit >= 3.1
+
+%filter_from_provides /^perl*/d
+%filter_from_requires /^perl*/d
+%filter_setup
 
 %description
 The Autopsy forensic browser is a graphical interface to utilities
@@ -51,10 +60,10 @@ EOF
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_datadir}/autopsy/ \
-			%{buildroot}%{_localstatedir}/log/autopsy/ \
-			%{buildroot}%{_localstatedir}/morgue/ \
-			%{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_datadir}/autopsy/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/log/autopsy/
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/morgue/
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %{__install} -Dp -m0755 autopsy %{buildroot}%{_sbindir}/autopsy
 %{__install} -p -m0755 autopsyfunc.pm fs.pl search.pl %{buildroot}%{_datadir}/autopsy/
 %{__install} -Dp -m0600 conf.pl %{buildroot}%{_datadir}/autopsy/conf.pl
@@ -78,9 +87,6 @@ EOF
 %{_datadir}/autopsy/
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.00-1.2
-- Rebuild for Fedora Core 5.
-
 * Wed Mar 31 2004 Dag Wieers <dag@wieers.com> - 2.00-1
 - Fix installation.
 

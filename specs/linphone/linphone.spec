@@ -13,20 +13,19 @@
 
 Summary: Software Internet phone using SIP
 Name: linphone
-Version: 1.0.0
+Version: 1.2.0
 Release: 1.2%{?dist}
 License: GPL
 Group: Applications/Communications
 URL: http://www.linphone.org/
 
-Source: http://simon.morlat.free.fr/download/%{version}/source/linphone-%{version}.tar.gz
+Source: http://simon.morlat.free.fr/download/1.2.x/source/linphone-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext, glib2-devel, libgnomeui-devel
 BuildRequires: libosip-devel, speex-devel, intltool, perl(XML::Parser)
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_gnome_applet:BuildRequires: gnome-panel-devel}
-Requires: /sbin/ldconfig
 
 %description
 Linphone is a web phone: it let you phone to your friends anywhere in
@@ -59,20 +58,17 @@ you will need to install %{name}-devel.
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
 desktop-file-install \
-	--delete-original                          \
-	--vendor %{desktop_vendor}                 \
-	--add-category X-Red-Hat-Base              \
-	--dir %{buildroot}%{_datadir}/applications \
-	%{buildroot}%{_datadir}/applications/linphone.desktop
+    --delete-original                          \
+    --vendor %{desktop_vendor}                 \
+    --add-category X-Red-Hat-Base              \
+    --dir %{buildroot}%{_datadir}/applications \
+    %{buildroot}%{_datadir}/applications/linphone.desktop
 
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-/sbin/ldconfig 2>/dev/null
-
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
@@ -101,8 +97,8 @@ desktop-file-install \
 %{_libdir}/pkgconfig/linphone.pc
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.0-1.2
-- Rebuild for Fedora Core 5.
+* Sat Dec 24 2005 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
 
 * Wed Mar 23 2005 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.

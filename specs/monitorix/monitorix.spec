@@ -20,7 +20,7 @@ BuildArch: noarch
 Monitorix is a free, open source, lightweight system monitoring tool.
 
 %prep
-%setup -q
+%setup
 
 %build
 
@@ -129,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 - Updated to 1.2.4
 * Mon Mar 30 2009 Fabian Arrotin <fabian.arrotin@arrfab.net> 1.2.3-1
 - Cosmetic changes for RPMforge inclusion
+
 * Thu Sep 01 2005 Jordi Sanfeliu <admin@fibranet.cat>
 - Release 0.7.8.
 - First public release.

@@ -1,0 +1,22 @@
+--- pptpsetup	2009-06-01 14:30:36.000000000 +0100
++++ pptpsetup	2009-06-01 14:36:39.000000000 +0100
+@@ -43,12 +43,13 @@
+ sub create {
+     my $TUNNEL = shift;
+ 
+-    # system checking
+-    &Check_MPPE_in_kernel
+-        or die "$0: couldn't find MPPE support in kernel.\n";
+-
+-    &Check_MPPE_in_pppd
+-        or die "$0: couldn't find MPPE support in pppd.\n";
++    # if encryption is requested, check for support in kernel and pppd
++    if ( $ENCRYPT ) {
++        &Check_MPPE_in_kernel
++            or die "$0: couldn't find MPPE support in kernel.\n";
++        &Check_MPPE_in_pppd
++            or die "$0: couldn't find MPPE support in pppd.\n";
++    }
+ 
+     # input validation
+     ($TUNNEL) = $TUNNEL =~ m{^(\w+)$}

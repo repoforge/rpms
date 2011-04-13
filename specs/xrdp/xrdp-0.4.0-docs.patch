@@ -1,0 +1,16 @@
+--- docs/Makefile	2006-03-04 04:02:02 +0300
++++ docs/Makefile	2007-08-27 15:36:47 +0400
+@@ -12,8 +12,8 @@
+ install:
+ 
+ installdeb:
+-	install man/sesman.8 $(DESTDIRDEB)/usr/man/man8/sesman.8
+-	install man/sesrun.8 $(DESTDIRDEB)/usr/man/man8/sesrun.8
+-	install man/xrdp.8 $(DESTDIRDEB)/usr/man/man8/xrdp.8
+-	install man/sesman.ini.5 $(DESTDIRDEB)/usr/man/man5/sesman.ini.5
+-	install man/xrdp.ini.5 $(DESTDIRDEB)/usr/man/man5/xrdp.ini.5
++	install -Dp -m0644 man/sesman.8 $(DESTDIRDEB)/usr/share/man/man8/sesman.8
++	install -Dp -m0644 man/sesrun.8 $(DESTDIRDEB)/usr/share/man/man8/sesrun.8
++	install -Dp -m0644 man/xrdp.8 $(DESTDIRDEB)/usr/share/man/man8/xrdp.8
++	install -Dp -m0644 man/sesman.ini.5 $(DESTDIRDEB)/usr/share/man/man5/sesman.ini.5
++	install -Dp -m0644 man/xrdp.ini.5 $(DESTDIRDEB)/usr/share/man/man5/xrdp.ini.5

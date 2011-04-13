@@ -14,11 +14,23 @@ Source: http://dl.sf.net/mpeg4ip/mpeg4ip-%{version}.tar.gz
 Patch0: mpeg4ip-1.5.0.1-nowerror.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: libtool, SDL-devel, gcc-c++
-BuildRequires: id3lib-devel, xvidcore-devel, a52dec-devel,libmad-devel
-BuildRequires: mpeg2dec-devel, libvorbis-devel, ffmpeg-devel, lame-devel
-BuildRequires: faac-devel, x264-devel, gtk2-devel, nasm
-BuildRequires: arts-devel, esound-devel
+BuildRequires: a52dec-devel
+BuildRequires: arts-devel
+BuildRequires: esound-devel
+BuildRequires: faac-devel
+BuildRequires: ffmpeg-devel
+BuildRequires: gcc-c++
+BuildRequires: gtk2-devel
+BuildRequires: id3lib-devel
+BuildRequires: lame-devel
+BuildRequires: libmad-devel
+BuildRequires: libtool
+BuildRequires: libvorbis-devel
+BuildRequires: mpeg2dec-devel
+BuildRequires: nasm
+BuildRequires: SDL-devel
+BuildRequires: x264-devel
+BuildRequires: xvidcore-devel
 
 %description
 MPEG4IP provides an end-to-end system to explore streaming multimedia. The
@@ -39,6 +51,9 @@ you will need to install %{name}-devel.
 %prep
 %setup
 %patch0 -p1 -b .nowerror
+
+%{__perl} -pi.orig -e 's|ffmpeg/avcodec.h|libavcodec/avcodec.h|' configure* \
+    player/plugin/audio/ffmpeg/*.h server/mp4live/*
 
 %build
 sh bootstrap --disable-warns-as-err
@@ -64,7 +79,7 @@ find %{buildroot} -name '*.la' -exec rm -f {} \;
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING FEATURES.html README* TODO
-%{_mandir}/man1/*.1*
+%doc %{_mandir}/man1/*.1*
 %{_bindir}/*
 %{_libdir}/*.so.*
 %{_libdir}/mp4player_plugin/

@@ -21,8 +21,8 @@
 
 Summary: MPEG audio player
 Name: mpg123
-Version: 1.12.5
-Release: 2%{?dist}
+Version: 1.13.2
+Release: 1%{?dist}
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/
@@ -93,9 +93,10 @@ export SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
-* Thu Nov 18 2010 Dag Wieers <dag@wieers.com> - 
+* Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 1.13.2-1
 - Cleaned up doc/ directory.
 - Enabled esound dependency on EL6.
+- Updated to release 1.13.2.
 
 * Thu Oct 07 2010 Dag Wieers <dag@wieers.com> - 1.12.5-1
 - Updated to release 1.12.5.

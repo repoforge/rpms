@@ -9,7 +9,7 @@ License: GPL
 Group: Applications/Multimedia
 URL: http://untrepid.com/lsdvd/
 Source: http://dl.sf.net/acidrip/lsdvd-%{version}.tar.gz
-Patch: lsdvd-0.16-build.patch
+Patch0: lsdvd-0.16-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, automake
 BuildRequires: libdvdread-devel
@@ -22,7 +22,7 @@ reading library for *nix
 
 %prep
 %setup
-%patch -p1 -b .build
+%patch0 -p1 -b .build
 %{__aclocal}
 %{__automake} --add-missing --copy --force --gnu --include-deps Makefile
 %{__autoconf}

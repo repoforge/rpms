@@ -6,7 +6,6 @@
 %define desktop_vendor rpmforge
 
 %define _without_directfb 1
-%define _without_faad2 1
 %define _without_ivtv 1
 %define _without_jack 1
 %define _without_live 1
@@ -17,26 +16,37 @@
 %define _without_xmms 1
 %define _without_xss 1
 
+### Use internal/ffmpeg libraries
+%define _without_dvdnav 1
+%define _without_dvdread 1
+%define _without_faac 1
+%define _without_faad2 1
+
 %{?el6:%define _without_lirc 1}
 
+### Disable internal ASS for RHEL5 (and older) as it requires fontconfig >= 2.4.2 :-/
+%{?el5:%define _without_ass 1}
+%{?el5:%define _without_internal_ass 1}
 %{?el5:%define _without_pulseaudio 1}
 %{?el5:%define _without_schroedinger 1}
 %{?el5:%define _without_speex 1}
-%{?el5:%define _without_vpx 1}
 
+%{?el4:%define _without_ass 1}
 %{?el4:%define _without_giflib 1}
+%{?el4:%define _without_internal_ass 1}
 %{?el4:%define _without_modxorg 1}
 %{?el4:%define _without_pulseaudio 1}
 %{?el4:%define _without_sdl 1}
 %{?el4:%define _without_samba 1}
 %{?el4:%define _without_speex 1}
-%{?el4:%define _without_vpx 1}
 
+%{?el3:%define _without_ass 1}
 %{?el3:%define _without_alsa 1}
 %{?el3:%define _without_binutils214 1}
 %{?el3:%define _without_fribidi 1}
 %{?el3:%define _without_giflib 1}
-#{?el3:#define _without_h264 1}
+%{?el3:%define _without_hicolortheme 1}
+%{?el3:%define _without_internal_ass 1}
 %{?el3:%define _without_modxorg 1}
 %{?el3:%define _without_pulseaudio 1}
 %{?el3:%define _without_samba 1}
@@ -45,27 +55,20 @@
 %{?el3:%define _without_speex 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_v4l2 1}
-%{?el3:%define _without_vpx 1}
-%{?el3:%define _without_x264_patch 1}
 %{?el3:%define _without_xvmc 1}
 
 %define real_name MPlayer
-%define real_version rc3
-%define live_version 2009.07.09
 
 Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
 %define real_version 2010-07-03
-Release: 0.45.svn20100703%{?dist}
+Release: 0.46.svn20100703%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 
-#Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{real_version}.tar.bz2
-#Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-snapshot.tar.bz2
 Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-%{real_version}.tar.bz2
-#Source0: http://www.mplayerhq.hu/MPlayer/releases/MPlayer-%{version}%{real_version}.tar.bz2
 Source1: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
 Source10: mplayer-snapshot.sh
 Patch0: MPlayer-0.90pre9-runtimemsg.patch
@@ -73,12 +76,11 @@ Patch2: mplayer-config.patch
 Patch8: mplayer-manlinks.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
 Patch14: mplayer-nodvdcss.patch
-#Patch100: mplayer-1.0rc1-h264-static.patch
+Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: desktop-file-utils
 BuildRequires: flac-devel
-BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel >= 2.0.9
 BuildRequires: gcc-c++
 BuildRequires: ImageMagick
@@ -95,18 +97,20 @@ BuildRequires: yasm
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_amr:BuildRequires: opencore-amr-devel}
 %{!?_without_arts:BuildRequires: arts-devel}
+%{!?_without_ass:BuildRequires: libass-devel, freetype-devel >= 2.1.0}
 %{!?_without_caca:BuildRequires: libcaca-devel}
 %{!?_without_cdparanoia:BuildRequires: cdparanoia-devel}
 %{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.1}
 %{!?_without_dts:BuildRequires: libdca-devel}
 %{!?_without_dv:BuildRequires: libdv-devel}
-%{?_with_dvdread:BuildRequires: libdvdread-devel}
-%{?_with_dvdnav:BuildRequires: libdvdnav-devel >= 4.1.3-1}
+%{!?_without_dvdnav:BuildRequires: libdvdnav-devel >= 4.1.3-1}
+%{!?_without_dvdread:BuildRequires: libdvdread-devel}
 %{!?_without_enca:BuildRequires: enca-devel}
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_faac:BuildRequires: faac-devel}
 %{!?_without_faad2:BuildRequires: faad2-devel >= 1:2.6.1}
 %{!?_without_fame:BuildRequires: libfame-devel}
+%{!?_without_fontconfig:BuildRequires: fontconfig-devel}
 %{!?_without_fribidi:BuildRequires: fribidi-devel}
 %{!?_without_giflib:BuildRequires: giflib-devel}
 %{?_without_giflib:BuildRequires: libungif-devel}
@@ -128,15 +132,13 @@ BuildRequires: yasm
 %{!?_without_pulseaudio:BuildRequires: pulseaudio-lib-devel}
 %{!?_without_samba:BuildRequires: samba-common, libsmbclient-devel}
 %{!?_without_schroedinger:BuildRequires: schroedinger-devel}
-%{!?_without_speex:BuildRequires: speex-devel >= 1.1}
 %{!?_without_sdl:BuildRequires: SDL-devel}
+%{!?_without_speex:BuildRequires: speex-devel >= 1.1}
 %{!?_without_svgalib:BuildRequires: svgalib-devel}
 %{!?_without_theora:BuildRequires: libtheora-devel}
 %{!?_without_twolame:BuildRequires: twolame-devel}
 %{!?_without_vdpau:BuildRequires: libvdpau-devel}
 %{!?_without_vorbis:BuildRequires: libvorbis-devel}
-#%{!?_without_vpx:BuildRequires: libvpx-devel >= 0.9.1}
-%{!?_without_vpx:BuildRequires: libvpx-devel}
 %{!?_without_vstream:BuildRequires: vstream-client-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
 %{!?_without_xmms:BuildRequires: xmms-devel}
@@ -181,7 +183,7 @@ This package contains common files for MPlayer packages.
 Summary: GUI for MPlayer
 Group: Applications/Multimedia
 Requires: mplayer-common = %{version}-%{release}
-Requires: hicolor-icon-theme
+%{!?_without_hicolortheme:Requires: hicolor-icon-theme}
 
 %description gui
 This package contains a GUI for MPlayer and a default skin for it.
@@ -216,6 +218,7 @@ This package contains various scripts from MPlayer TOOLS directory.
 #patch100 -p0 -b .h264_static
 
 %build
+export LDFLAGS="%{!?_without_fontconfig:$(pkg-config --libs fontconfig)} %{!?_without_fribidi:$(pkg-config --libs fribidi)}"
 export CFLAGS="%{optflags} -fomit-frame-pointer"
 echo | ./configure \
     --prefix="%{_prefix}" \
@@ -226,37 +229,40 @@ echo | ./configure \
     --mandir="%{_mandir}" \
     --codecsdir="%{_libdir}/codecs" \
     --extra-cflags="%{optflags}%{!?_without_live: -I/usr/include/liveMedia}" \
-    --disable-bitmap-font \
-    --disable-termcap \
-%{?_without_arts:--disable-arts} \
-%{?_without_esound:--disable-esd} \
-%{?_without_jack:--disable-jack} \
-%{?_without_openal:--disable-openal} \
-%{?_without_amr:--disable-libopencore_amrnb --disable-libopencore_amrwb} \
-%{!?_with_dvdread:--disable-dvdread} \
-%{?_without_faac:--disable-faac} \
-%{?_without_gcccheck:--disable-gcc-check} \
 %{?_without_binutils214:--disable-ssse3} \
-%{!?_without_directfb:--enable-directfb} \
-%{?_without_directfb:--disable-directfb} \
+    --disable-bitmap-font \
+%{?_without_gcccheck:--disable-gcc-check} \
+%{?_without_internal_ass:--disable-ass-internal} \
 %{?_without_sdl:--disable-sdl} \
-%{?_without_svgalib:--disable-svga} \
+    --disable-termcap \
+%{!?_without_amr:--enable-libopencore_amrnb --enable-libopencore_amrwb} \
+%{!?_without_arts:--enable-arts} \
+%{!?_without_ass:--enable-ass} \
+%{!?_without_directfb:--enable-directfb} \
+%{!?_without_dvdread:--enable-dvdread} \
     --enable-dynamic-plugins \
+%{!?_without_esound:--enable-esd} \
+%{!?_without_faac:--enable-faac} \
     --enable-fbdev \
-%{!?_without_fribidi:--enable-fribidi --extra-libs="$(pkg-config --libs fribidi)"} \
+%{!?_without_fontconfig:--enable-fontconfig} \
+%{!?_without_fribidi:--enable-fribidi} \
     --enable-gui \
 %{!?_without_ivtv:--enable-ivtv} \
+%{!?_without_jack:--enable-jack} \
     --enable-joystick \
     --enable-largefiles \
 %{!?_without_lirc:--enable-lirc} \
 %{!?_without_live:--enable-live} \
+%{!?_without_openal:--enable-openal} \
 %{!?_without_osdmenu:--enable-menu} \
 %{!?_without_musepack:--enable-musepack} \
-%{?_without_nemesi:--disable-nemesi} \
+%{!?_without_nemesi:--enable-nemesi} \
     --enable-radio \
     --enable-radio-capture \
     --enable-runtime-cpudetection \
-%{?_without_samba:--disable-smb} \
+%{!?_without_samba:--enable-smb} \
+%{!?_without_sdl:--enable-sdl} \
+%{!?_without_svgalib:--enable-svga} \
     --enable-tv-v4l1 \
 %{!?_without_v4l2:--enable-tv-v4l2} \
     --enable-unrarexec \
@@ -314,12 +320,14 @@ desktop-file-install \
     etc/mplayer.desktop
 
 %post gui
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q %{_datadir}/applications &>/dev/null || :
+/usr/bin/gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 
 %postun gui
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &>/dev/null || :
-update-desktop-database %{_datadir}/applications &>/dev/null || :
+/usr/bin/update-mime-database %{_datadir}/mime &>/dev/null || :
+/usr/bin/update-desktop-database -q %{_datadir}/applications &>/dev/null || :
+/usr/bin/gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -400,6 +408,9 @@ update-desktop-database %{_datadir}/applications &>/dev/null || :
 %{_datadir}/mplayer/*.fp
 
 %changelog
+* Tue Dec 07 2010 Dag Wieers <dag@wieers.com> - 1.0-0.46.svn20100703
+- Fix issue with fontconfig on RHEL5, RHEL4 and RHEL3.
+
 * Mon Dec 06 2010 Dag Wieers <dag@wieers.com> - 1.0-0.45.svn20100703
 - Rebuild against libmatroska-1.0.0.
 

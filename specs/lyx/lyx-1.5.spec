@@ -2,6 +2,7 @@
 # Authority: dag
 # Upstream: <lyx-devel$lists,lyx,org>
 
+
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -9,23 +10,19 @@
 
 Summary: WYSIWYM (What You See Is What You Mean) frontend to LaTeX
 Name: lyx
-Version: 1.6.8
+Version: 1.5.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
 URL: http://www.lyx.org/
 
-Source0: ftp://ftp.lyx.org/pub/lyx/stable/1.6.x/lyx-%{version}.tar.bz2
+Source: ftp://ftp.lyx.org/pub/lyx/stable/lyx-%{version}.tar.bz2
 Source1: lyx-icon.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
-BuildRequires: qt4-devel
+BuildRequires: qt4-devel, gcc-c++
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: qt4 >= 4.1.1
-Requires: tetex
-Requires: tetex-xdvi
-Requires: tetex-latex
+Requires: qt4 >= 4.1.1, tetex-xdvi, tetex, tetex-latex
 Obsoletes: tetex-lyx
 
 %description
@@ -44,6 +41,7 @@ to the backends (like LaTeX) that are specifically designed for the task.
 
 With LyX, the author can concentrate on the contents of his writing,
 and let the computer take care of the rest.
+
 
 %prep
 %setup
@@ -137,9 +135,6 @@ texhash &>/dev/null
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-lyx.desktop}
 
 %changelog
-* Fri Nov 26 2010 Dag Wieers <dag@wieers.com> - 1.6.8-1
-- Updated to release 1.6.8.
-
 * Sat Nov 08 2008 Christoph Maser <cmr@financial.com> - 1.5.6-1
 - Updated to release 1.5.6.
 

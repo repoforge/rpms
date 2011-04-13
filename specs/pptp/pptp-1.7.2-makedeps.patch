@@ -1,0 +1,80 @@
+Index: Makefile
+===================================================================
+RCS file: /cvsroot/pptpclient/pptp-linux/Makefile,v
+retrieving revision 1.47
+retrieving revision 1.49
+diff -u -r1.47 -r1.49
+--- Makefile	14 May 2008 06:32:52 -0000	1.47
++++ Makefile	24 Jul 2008 05:37:47 -0000	1.49
+@@ -96,3 +102,71 @@
+ release:
+ 	cp pptp_$(VERSION)-0_i386.deb $(WEB)
+ 	cd $(WEB);make
++
++# The following include file dependencies were generated using
++# "makedepend -w0 *.c", then manually removing out of tree entries.
++# DO NOT DELETE
++
++dirutil.o: dirutil.h
++orckit_quirks.o: pptp_msg.h
++orckit_quirks.o: pptp_compat.h
++orckit_quirks.o: pptp_options.h
++orckit_quirks.o: pptp_ctrl.h
++orckit_quirks.o: util.h
++ppp_fcs.o: ppp_fcs.h
++ppp_fcs.o: pptp_compat.h
++pptp.o: config.h
++pptp.o: pptp_callmgr.h
++pptp.o: pptp_gre.h
++pptp.o: pptp_compat.h
++pptp.o: version.h
++pptp.o: inststr.h
++pptp.o: util.h
++pptp.o: pptp_quirks.h
++pptp.o: pptp_msg.h
++pptp.o: pptp_ctrl.h
++pptp.o: pqueue.h
++pptp.o: pptp_options.h
++pptp_callmgr.o: pptp_callmgr.h
++pptp_callmgr.o: pptp_ctrl.h
++pptp_callmgr.o: pptp_compat.h
++pptp_callmgr.o: pptp_msg.h
++pptp_callmgr.o: dirutil.h
++pptp_callmgr.o: vector.h
++pptp_callmgr.o: util.h
++pptp_callmgr.o: routing.h
++pptp_compat.o: pptp_compat.h
++pptp_compat.o: util.h
++pptp_ctrl.o: pptp_msg.h
++pptp_ctrl.o: pptp_compat.h
++pptp_ctrl.o: pptp_ctrl.h
++pptp_ctrl.o: pptp_options.h
++pptp_ctrl.o: vector.h
++pptp_ctrl.o: util.h
++pptp_ctrl.o: pptp_quirks.h
++pptp_gre.o: ppp_fcs.h
++pptp_gre.o: pptp_compat.h
++pptp_gre.o: pptp_msg.h
++pptp_gre.o: pptp_gre.h
++pptp_gre.o: util.h
++pptp_gre.o: pqueue.h
++pptp_gre.o: test.h
++pptp_quirks.o: orckit_quirks.h
++pptp_quirks.o: pptp_options.h
++pptp_quirks.o: pptp_ctrl.h
++pptp_quirks.o: pptp_compat.h
++pptp_quirks.o: pptp_msg.h
++pptp_quirks.o: pptp_quirks.h
++pqueue.o: util.h
++pqueue.o: pqueue.h
++routing.o: routing.h
++test.o: util.h
++test.o: test.h
++util.o: util.h
++vector.o: pptp_ctrl.h
++vector.o: pptp_compat.h
++vector.o: vector.h
++vector_test.o: vector.h
++vector_test.o: pptp_ctrl.h
++vector_test.o: pptp_compat.h
++version.o: config.h

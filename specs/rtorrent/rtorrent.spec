@@ -52,7 +52,6 @@ RESULT_DIR="$(pwd)/result"
 ./configure \
     --prefix="$RESULT_DIR" \
     --exec-prefix="$RESULT_DIR" \
-    --libdir="$RESULT_DIR/usr/%{_lib}"
     --disable-manual \
     --disable-shared \
     --enable-ipv6 \
@@ -64,6 +63,7 @@ RESULT_DIR="$(pwd)/result"
     --with-gssapi="%{_prefix}/kerberos" \
     --with-libidn \
     --with-nss
+#    --libdir="$RESULT_DIR/usr/%{_lib}" \
 
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" install
 popd

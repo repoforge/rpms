@@ -2,18 +2,21 @@
 # Authority: matthias
 # ExclusiveDist: fc5 fc6 el5 fc7
 
+%define _without_directfb 1
+%define _without_x264 1
+
 %define desktop_vendor rpmforge
 
-%define majorminor   0.10
-%define gstreamer    gstreamer
+%define majorminor 0.10
+%define gstreamer gstreamer
 
-%define gst_minver   0.10.10.1
+%define gst_minver 0.10.10.1
 %define gstpb_minver 0.10.10.1
 
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.8
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -25,31 +28,30 @@ Requires: %{gstreamer} >= %{gst_minver}
 BuildRequires: %{gstreamer}-devel >= %{gst_minver}
 BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 
-BuildRequires: gcc-c++
-BuildRequires: gettext-devel
-BuildRequires: gtk-doc
-BuildRequires: PyXML
-Buildrequires: libXt-devel
-
 BuildRequires: bzip2-devel
-BuildRequires: directfb-devel >= 1.0.1
+%{!?_without_directfb:BuildRequires: directfb-devel >= 1.0.1}
 BuildRequires: faac-devel
 BuildRequires: faad2-devel
+BuildRequires: gcc-c++
+BuildRequires: gettext-devel
 BuildRequires: gsm-devel
+BuildRequires: gtk-doc
 BuildRequires: libdca-devel
 BuildRequires: libmms-devel
 BuildRequires: libmpcdec-devel
 BuildRequires: libmusicbrainz-devel
 BuildRequires: liboil-devel
+Buildrequires: libXt-devel
 BuildRequires: mesa-libGLU-devel
 BuildRequires: mjpegtools
 BuildRequires: neon-devel
+BuildRequires: PyXML
 BuildRequires: SDL-devel
 BuildRequires: soundtouch-devel
 #BuildRequires: swfdec-devel
 #Buildrequires: wavpack-devel
 BuildRequires: xvidcore-devel
-BuildRequires: x264-devel
+%{!?_without_x264:BuildRequires: x264-devel}
 
 %ifarch %{ix86}
 BuildRequires: divx4linux
@@ -89,6 +91,8 @@ you will need to install %{name}-devel.
 %configure \
     --disable-gtk-doc \
     --disable-static \
+%{?_without_directfb:--disable-directfb} \
+%{?_without_x264:--disable-x264} \
     --enable-debug \
     --with-package-name="gst-plugins-bad %{desktop_vendor} rpm" \
     --with-package-origin="http://www.rpmforge.net/"
@@ -113,7 +117,7 @@ you will need to install %{name}-devel.
 %{_libdir}/gstreamer-%{majorminor}/libgstcdaudio.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcdxaparse.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdeinterlace.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so
+%{!?_without_directfb:%{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so}
 %{_libdir}/gstreamer-%{majorminor}/libgstdirac.so
 %ifarch %{ix86}
 %{_libdir}/gstreamer-%{majorminor}/libgstdivxdec.so
@@ -171,7 +175,7 @@ you will need to install %{name}-devel.
 %{_libdir}/gstreamer-%{majorminor}/libgstvideosignal.so
 %{_libdir}/gstreamer-%{majorminor}/libgstvmnc.so
 #%{_libdir}/gstreamer-%{majorminor}/libgstwavpack.so
-%{_libdir}/gstreamer-%{majorminor}/libgstx264.so
+%{!?_without_x264:%{_libdir}/gstreamer-%{majorminor}/libgstx264.so}
 #%{_libdir}/gstreamer-%{majorminor}/libgstxingheader.so
 %{_libdir}/gstreamer-%{majorminor}/libgstxvid.so
 %{_libdir}/gstreamer-%{majorminor}/libgsty4menc.so
@@ -187,6 +191,10 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libgstapp-0.10.la
 
 %changelog
+* Sun Dec 05 2010 Dag Wieers <dag@wieers.com> - 0.10.8-5
+- Disabled directfb support.
+- Disabled x264 support. (Doesn't work with latest x264)
+
 * Fri Nov 06 2009 Dag Wieers <dag@wieers.com> - 0.10.8-4
 - Rebuild against newer faad2 2.7.
 

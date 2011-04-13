@@ -4,7 +4,7 @@
 
 Summary: Recover files based on their headers and footers
 Name: foremost
-Version: 1.5.4
+Version: 1.5.7
 Release: 1%{?dist}
 License: freeware
 Group: Applications/Archiving
@@ -30,7 +30,7 @@ headers you want to look for.
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 foremost %{buildroot}%{_sbindir}/foremost
 %{__install} -Dp -m0644 foremost.conf %{buildroot}%{_sysconfdir}/foremost.conf
-%{__install} -Dp -m0644 foremost.1 %{buildroot}%{_mandir}/man1/foremost.1
+%{__install} -Dp -m0644 foremost.8.gz %{buildroot}%{_mandir}/man8/foremost.8.gz
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -38,11 +38,14 @@ headers you want to look for.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES README
-%doc %{_mandir}/man1/foremost.1*
+%doc %{_mandir}/man8/foremost.8*
 %config %{_sysconfdir}/foremost.conf
 %{_sbindir}/foremost
 
 %changelog
+* Tue Feb 15 2011 Dag Wieers <dag@wieers.com> - 1.5.7-1
+- Updated to release 1.5.7.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 1.5.4-1
 - Updated to release 1.5.4.
 

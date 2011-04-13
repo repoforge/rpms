@@ -2,21 +2,23 @@
 # Authority: dag
 # ExclusiveDist: el6
 
+%define _without_directfb 1
+
 %{?el6:%define _without_jack 1}
 %{?el6:%define _without_soundtouch 1}
 
 %define desktop_vendor rpmforge
 
-%define majorminor   0.10
-%define gstreamer    gstreamer
+%define majorminor 0.10
+%define gstreamer gstreamer
 
-%define gst_minver   0.10.10.1
+%define gst_minver 0.10.10.1
 %define gstpb_minver 0.10.10.1
 
 Summary: GStreamer streaming media framework "bad" plug-ins
 Name: gstreamer-plugins-bad
 Version: 0.10.19
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://gstreamer.freedesktop.org/
@@ -30,7 +32,7 @@ BuildRequires: %{gstreamer}-plugins-base-devel >= %{gstpb_minver}
 Requires: %{gstreamer} >= %{gst_minver}
 
 BuildRequires: bzip2-devel
-BuildRequires: directfb-devel
+%{!?_without_directfb:BuildRequires: directfb-devel}
 BuildRequires: dirac-devel
 BuildRequires: faac-devel
 BuildRequires: faad2-devel
@@ -55,8 +57,10 @@ Buildrequires: libXt-devel
 BuildRequires: mesa-libGLU-devel
 %{!?_without_mjpegtools:BuildRequires: mjpegtools-devel}
 BuildRequires: neon-devel
+%{!?_without_orc:BuildRequires: orc-devel}
 BuildRequires: PyXML
 BuildRequires: SDL-devel
+%{!?_without_schroedinger:BuildRequires: schroedinger}
 %{!?_without_soundtouch:BuildRequires: soundtouch-devel}
 #BuildRequires: swfdec-devel
 Buildrequires: wavpack-devel
@@ -79,6 +83,7 @@ well enough, or the code is not of good enough quality.
 %build
 %configure \
     --disable-static \
+%{?_without_directfb:--disable-directfb} \
     --enable-debug \
     --with-package-name="gst-plugins-bad %{desktop_vendor} rpm" \
     --with-package-origin="http://www.rpmforge.net/"
@@ -100,8 +105,9 @@ well enough, or the code is not of good enough quality.
 %{_libdir}/gstreamer-%{majorminor}/libgstamrwbenc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstasfmux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstcdaudio.so
+%{!?_without_orc:%{_libdir}/gstreamer-%{majorminor}/libgstcog.so}
 %{_libdir}/gstreamer-%{majorminor}/libgstdc1394.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so
+%{!?_without_directfb:%{_libdir}/gstreamer-%{majorminor}/libgstdfbvideosink.so}
 %{_libdir}/gstreamer-%{majorminor}/libgstdirac.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdtsdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgstdvdspu.so
@@ -119,6 +125,7 @@ well enough, or the code is not of good enough quality.
 %{_libdir}/gstreamer-%{majorminor}/libgstneonhttpsrc.so
 %{_libdir}/gstreamer-%{majorminor}/libgstqtmux.so
 %{_libdir}/gstreamer-%{majorminor}/libgstreal.so
+%{!?_without_schroedinger:%{_libdir}/gstreamer-%{majorminor}/libgstschro.so}
 %{_libdir}/gstreamer-%{majorminor}/libgstsiren.so
 #%{_libdir}/gstreamer-%{majorminor}/libgstswfdec.so
 %{_libdir}/gstreamer-%{majorminor}/libgsttrm.so
@@ -200,6 +207,9 @@ well enough, or the code is not of good enough quality.
 %exclude %{_libdir}/gstreamer-%{majorminor}/*.la
 
 %changelog
+* Sun Dec 05 2010 Dag Wieers <dag@wieers.com> - 0.10.19-3
+- Disabled directfb support.
+
 * Wed Nov 17 2010 Dag Wieers <dag@wieers.com> - 0.10.19-2
 - Added libkate dependency.
 

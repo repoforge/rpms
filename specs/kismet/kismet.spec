@@ -10,8 +10,8 @@
 Summary: 802.11 (wireless) network sniffer and network dissector
 Name: kismet
 Version: 3.0.1
-%define real_version 2010-07-R1
-Release: 201007r1.1%{?dist}
+%define real_version 2011-01-R1
+Release: 201101r1.1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.kismetwireless.net/
@@ -96,6 +96,9 @@ echo -e "/* make dbus shut up when dbus < 1.0 */\n#define DBUS_API_SUBJECT_TO_CH
 %endif
 
 %changelog
+* Wed Jan 26 2011 Dag Wieers <dag@wieers.com> - 3.0.1-201101r1-1
+- Updated to release 2011-01-R1.
+
 * Thu Jul 15 2010 Dag Wieers <dag@wieers.com> - 3.0.1-201007r1-1
 - Updated to release 2010-07-R1.
 

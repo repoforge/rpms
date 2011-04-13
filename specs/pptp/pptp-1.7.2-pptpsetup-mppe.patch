@@ -1,0 +1,47 @@
+--- pptp-1.7.2/pptpsetup	2009-06-01 15:18:25.000000000 +0100
++++ pptp-1.7.2/pptpsetup	2009-06-01 15:19:25.000000000 +0100
+@@ -43,14 +43,6 @@
+ sub create {
+     my $TUNNEL = shift;
+ 
+-    # if encryption is requested, check for support in kernel and pppd
+-    if ( $ENCRYPT ) {
+-        &Check_MPPE_in_kernel
+-            or die "$0: couldn't find MPPE support in kernel.\n";
+-        &Check_MPPE_in_pppd
+-            or die "$0: couldn't find MPPE support in pppd.\n";
+-    }
+-
+     # input validation
+     ($TUNNEL) = $TUNNEL =~ m{^(\w+)$}
+       or die "$0: invalid tunnel name.\nTry '$0 --help' for more information.\n";
+@@ -180,29 +172,6 @@
+     exit;
+ }
+ 
+-### AUXILIAR SUBS ###
+-
+-sub Check_MPPE_in_kernel {
+-    my $command = q/modprobe ppp-compress-18/;
+-    if (system( $command ) == 0) {
+-        # no error!
+-        return 1;
+-    } else {
+-        return 0;
+-    }
+-}
+-
+-sub Check_MPPE_in_pppd {
+-    my $command = q/strings `which pppd`|grep -i mppe|wc --lines/;
+-    my $answer  = `$command`;
+-    if ($answer > 0) {
+-        # ok!
+-        return 1;
+-    } else {
+-        return 0;
+-    }
+-}
+-
+ __END__
+ 
+ =head1 NAME

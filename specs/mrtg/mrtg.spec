@@ -17,8 +17,8 @@
 
 Summary: Multi Router Traffic Grapher
 Name: mrtg
-Version: 2.16.4
-Release: 2%{?dist}
+Version: 2.17.1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://oss.oetiker.ch/mrtg/
@@ -155,6 +155,9 @@ done
 %{_libdir}/mrtg2/
 
 %changelog
+* Sat Feb 19 2011 Dag Wieers <dag@wieers.com> - 2.17.1-1
+- Updated to release 2.17.1.
+
 * Sun Jul 11 2010 Nico Kadel-Garcia <nkadel@gmail.com> 2.16.4-2
 - Restore and update lib64 patch from 2.12.1 SRPM
   Uses @@lib@@ instead of lib in FindBin statements for lib64 systems.

@@ -4,13 +4,13 @@
 
 Summary: Artificial benchmark for measuring memory bandwidth
 Name: bandwidth
-Version: 0.15
+Version: 0.26c
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://home.comcast.net/~fbui/bandwidth.html
 
-Source: http://home.comcast.net/~fbui/bandwidth-%{version}.tar.gz
+Source: http://home.comcast.net/~fbui/bandwidth-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -21,22 +21,35 @@ useful for identifying a computer's weak areas.
 %setup
 
 %build
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+%ifarch %{ix86}
+%{__make} bandwidth32
+%endif
+%ifarch x86_64
+%{__make} bandwidth64
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
 #%{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m0755 bandwidth %{buildroot}%{_bindir}/bandwidth
+%ifarch %{ix86}
+%{__install} -Dp -m0755 bandwidth32 %{buildroot}%{_bindir}/bandwidth
+%endif
+%ifarch x86_64
+%{__install} -Dp -m0755 bandwidth64 %{buildroot}%{_bindir}/bandwidth
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING README
+%doc COPYING.txt README.txt
 %{_bindir}/bandwidth
 
 %changelog
+* Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 0.26c-1
+- Updated to release 0.26c.
+
 * Sat Nov 08 2008 Dag Wieers <dag@wieers.com> - 0.15-1
 - Updated to release 0.15.
 
