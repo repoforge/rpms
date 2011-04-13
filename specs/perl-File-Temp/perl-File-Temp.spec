@@ -1,7 +1,13 @@
 # $Id$
 # Authority: dag
 # Upstream: Tim Jenness <tjenness$cpan,org>
-# RFX: el3 el4 el5
+
+# el6 provides File::Temp 0.22 as part of core perl
+%{?el6:# Tag: rfx}
+
+%{?el5:# Tag: rfx}
+%{?el4:# Tag: rfx}
+%{?el3:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,7 +17,7 @@
 Summary: Return name and handle of a temporary file safely
 Name: perl-File-Temp
 Version: 0.22
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/File-Temp/
@@ -51,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/File/Temp.pm
 
 %changelog
+* Wed Apr 13 2011 Steve Huff <shuff@vecna.org> - 0.22-2
+- This needs to be tagged rfx for all our distros.
+
 * Sun Jul  5 2009 Christoph Maser <cmr@financial.com> - 0.22-1
 - Updated to version 0.22.
 
