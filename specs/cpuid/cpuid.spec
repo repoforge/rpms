@@ -42,7 +42,7 @@ instruction, and also determines the exact model of CPU(s).
 
 %changelog
 * Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 0.0-20110325.1
-- Updated to release
+- Updated to release 20110325.
 
 * Thu Aug 24 2006 Dag Wieers <dag@wieers.com> - 0.0-20060823.1
 - Updated to release 20060823.
