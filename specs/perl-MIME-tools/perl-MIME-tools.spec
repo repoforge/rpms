@@ -1,11 +1,11 @@
 # $Id$
-# Authority: dag
+# Authority: shuff
 # Upstream: Eryq <eryq$zeegee,com>
 # Upstream: David F. Skoll <dfs$roaringpenguin,com>
 # Upstream: Dave O'Neill <dmo$roaringpenguin,com>
 
 ### EL6 ships with perl-MIME-tools-5.427-4.el6
-# Tag: rft
+%{?el6:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -15,7 +15,7 @@
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
 Version: 5.502
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
@@ -28,27 +28,25 @@ BuildArch: noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::Path) >= 1
 BuildRequires: perl(File::Spec) >= 0.6
-#BuildRequires: perl(File::Temp) >= 0.18
-BuildRequires: perl(File::Temp)
-#BuildRequires: perl(IO::File) >= 1.13
-BuildRequires: perl(IO::File)
+BuildRequires: perl(File::Temp) >= 0.18
+BuildRequires: perl(IO::File) >= 1.13
 BuildRequires: perl(IO::Handle)
 BuildRequires: perl(IO::Stringy) >= 2.11
-BuildRequires: perl(MIME::Base64) >= 2.2
+BuildRequires: perl(MIME::Base64) >= 3.03
 BuildRequires: perl(Mail::Field) >= 1.05
 BuildRequires: perl(Mail::Header) >= 1.01
 BuildRequires: perl(Mail::Internet) >= 1.0203
+BuildRequires: perl(Test::Deep)
 BuildRequires: perl(Test::More)
 BuildRequires: perl >= 5.8.0
+BuildRequires: rpm-macros-rpmforge
 Requires: perl(File::Path) >= 1
 Requires: perl(File::Spec) >= 0.6
-#Requires: perl(File::Temp) >= 0.18
-Requires: perl(File::Temp)
-#Requires: perl(IO::File) >= 1.13
-Requires: perl(IO::File)
+Requires: perl(File::Temp) >= 0.18
+Requires: perl(IO::File) >= 1.13
 Requires: perl(IO::Handle)
 Requires: perl(IO::Stringy) >= 2.11
-Requires: perl(MIME::Base64) >= 2.2
+Requires: perl(MIME::Base64) >= 3.03
 Requires: perl(Mail::Field) >= 1.05
 Requires: perl(Mail::Header) >= 1.01
 Requires: perl(Mail::Internet) >= 1.0203
@@ -93,6 +91,11 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Wed Apr 13 2011 Steve Huff <shuff@vecna.org> - 5.502-2
+- We can now satisfy just about all the actual dependencies in el5.
+  Removed the test tag, this package has been in testing forever.
+- Captured an outdated MIME::Base64 dependency.
+
 * Fri Mar 11 2011 David Hrbáč <david@hrbac.cz> - 5.502-1
 - new upstream release
 
