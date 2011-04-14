@@ -5,6 +5,15 @@
 ### EL6 ships with bzr-2.1.1-2.el6
 %{?el6:# Tag: rfx}
 
+%{?el3:%define _needs_curl 1}
+%{?el3:%define _needs_elementtree 1}
+%{?el4:%define _needs_curl 1}
+%{?el4:%define _needs_elementtree 1}
+%{?el5:%define _needs_curl 1}
+%{?el5:%define _needs_elementtree 1}
+
+%{?el6:%define _with_egginfo 1}
+
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 # All package versioning is found here:
@@ -34,17 +43,18 @@ Source1:        https://launchpad.net/%{name}/%{bzrmajor}/%{version}%{?bzrrc}/+d
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel zlib-devel
 # ElementTree is part of python2.5 on FC7+
 # This is also needed for EL-5
-BuildRequires: python-elementtree
-BuildRequires: pyrex >= 0.9.6.3
+BuildRequires: Pyrex >= 0.9.6.3
+BuildRequires: python-devel
+%{?_needs_curl:BuildRequires: python-curl}
+%{?_needs_elementtree:BuildRequires: python-elementtree}
 
 Requires: bash-completion
 # Workaround Bug #230223 otherwise this would be a soft dependency
-Requires: python-curl
-Requires: python-elementtree
 Requires: python-paramiko
+%{?_needs_curl:Requires: python-curl}
+%{?_needs_elementtree:Requires: python-elementtree}
 
 %description
 Bazaar is a distributed revision control system that is powerful, friendly,
@@ -90,10 +100,12 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitearch}/bzrlib/
 %dir %{_sysconfdir}/bash_completion.d/
 %{_sysconfdir}/bash_completion.d/*
+%{?_with_egginfo:%{python_sitearch}/bzr-*.egg-info}
 
 %changelog
 * Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.3.1-1
 - Updated to 2.3.1 release (needs an updated bzr)
+- Added conditionals for el6 support.
 
 * Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.2.4-1
 - Updated to 2.2.4 release.

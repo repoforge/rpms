@@ -2,6 +2,11 @@
 # Authority: yury
 # Upstream: <bazaar$lists,canonical,com>
 
+# el6 ships with bzr-2.1.1
+%{?el6:# Tag: rfx}
+
+%{?el6:%define _with_egginfo 1}
+
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
@@ -73,10 +78,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc README NEWS COPYING
 %{python_sitearch}/bzrlib/plugins/bzrtools
+%{?_with_egginfo:%{python_sitearch}/BzrTools-*.egg-info}
 
 %changelog
 * Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.3.0-1
-- Update to 2.2.0 for bzr-2.3.1.
+- Update to 2.3.0 for bzr-2.3.1.
 - Captured diff and patch dependencies for several plugins.
 
 * Thu Dec 23 2010 Steve Huff <shuff@vecna.org> - 2.2.0-1
