@@ -28,7 +28,7 @@ Additional plugins that can be used with 7z to extend its abilities.
 This package contains also a virtual file system for Midnight Commander.
 
 %prep
-%setup -q -n %{name}_%{version}
+%setup -n %{name}_%{version}
 
 ### Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
 ### same directory as the binaries, and we don't want them in %{_bindir}.
@@ -44,7 +44,7 @@ EOF
 
 %build
 %ifarch %{ix86} ppc
-%{__cp} -f makefile.linux_x86_ppc_alpha makefile.machine
+%{__cp} -f makefile.linux_any_cpu makefile.machine
 %endif
 %ifarch x86_64
 %{__cp} -f makefile.linux_amd64 makefile.machine
