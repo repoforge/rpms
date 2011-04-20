@@ -2,13 +2,13 @@
 # Authority: dag
 # Upstream: <lft$oppleman,com>
 
-%{!?dtag:%define _with_libpcapdevel 1}
-%{?el5:%define _with_libpcapdevel 1}
-%{?fc6:%define _with_libpcapdevel 1}
+%{?el4:%define _without_libpcapdevel 1}
+%{?el3:%define _without_libpcapdevel 1}
+%{?el2:%define _without_libpcapdevel 1}
 
 Summary: Alternative traceroute tool for network (reverse) engineers
 Name: lft
-Version: 3.31
+Version: 3.32
 Release: 1%{?dist}
 License: MainNerve Public License
 Group: Applications/Internet
@@ -18,7 +18,7 @@ Source: http://pwhois.org/dl/index.who?file=lft-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
-%{?_with_libpcapdevel:BuildRequires:libpcap-devel}
+%{!?_without_libpcapdevel:BuildRequires:libpcap-devel}
 
 Obsoletes: fft <= %{version}-%{release}
 
@@ -53,8 +53,11 @@ lookups, loose source routing, netblock name lookups, et al.
 %{_bindir}/lft
 
 %changelog
+* Wed Apr 20 2011 Dag Wieers <dag@wieers.com> - 3.32-1
+- Updated to release 3.32.
+
 * Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 3.31-1
-- Updated to release 3.31
+- Updated to release 3.31.
 
 * Thu May 17 2007 Dag Wieers <dag@wieers.com> - 3.0-1
 - Updated to release 3.0.
