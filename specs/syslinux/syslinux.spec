@@ -14,7 +14,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 4.03
+Version: 4.04
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -91,6 +91,9 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Tue Apr 19 2011 Dag Wieers <dag@wieers.com> - 4.04-1
+- Updated to release 4.04.
+
 * Sun Oct 24 2010 Dag Wieers <dag@wieers.com> - 4.03-1
 - Updated to release 4.03.
 

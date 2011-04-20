@@ -3,13 +3,13 @@
 
 Summary: Hardware Locality Library
 Name: hwloc
-Version: 1.1.2
+Version: 1.2
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.open-mpi.org/
 
-Source: http://www.open-mpi.org/software/hwloc/v1.1/downloads/hwloc-%{version}.tar.bz2
+Source: http://www.open-mpi.org/software/hwloc/v1.2/downloads/hwloc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -54,7 +54,7 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man1/hwloc-bind.1*
 %doc %{_mandir}/man1/hwloc-calc.1*
 %doc %{_mandir}/man1/hwloc-distrib.1*
-%doc %{_mandir}/man1/hwloc-gather-topology.sh.1*
+%doc %{_mandir}/man1/hwloc-gather-topology.1*
 %doc %{_mandir}/man1/hwloc-info.1*
 %doc %{_mandir}/man1/hwloc-ls.1*
 %doc %{_mandir}/man1/hwloc-mask.1*
@@ -64,7 +64,7 @@ you will need to install %{name}-devel.
 %{_bindir}/hwloc-bind
 %{_bindir}/hwloc-calc
 %{_bindir}/hwloc-distrib
-%{_bindir}/hwloc-gather-topology.sh
+%{_bindir}/hwloc-gather-topology
 %{_bindir}/hwloc-info
 %{_bindir}/hwloc-ls
 %{_bindir}/hwloc-mask
@@ -86,6 +86,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libhwloc.la
 
 %changelog
+* Wed Apr 20 2011 Dag Wieers <dag@wieers.com> - 1.2-1
+- Updated to release 1.2.
+
 * Fri Apr 08 2011 Dag Wieers <dag@wieers.com> - 1.1.2-1
 - Updated to release 1.1.2.
 

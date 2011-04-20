@@ -26,7 +26,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.17
+Version: 1.3.18
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -402,17 +402,17 @@ update-desktop-database &>/dev/null || :
 %doc documentation/ChangeLog* documentation/README.*
 %doc %{_mandir}/man1/wine.1*
 %doc %{_mandir}/man1/wineserver.1*
-%doc %{_mandir}/man1/msiexec.1.gz
-%doc %{_mandir}/man1/notepad.1.gz
-%doc %{_mandir}/man1/regedit.1.gz
-%doc %{_mandir}/man1/regsvr32.1.gz
-%doc %{_mandir}/man1/wineboot.1.gz
-%doc %{_mandir}/man1/winecfg.1.gz
-%doc %{_mandir}/man1/wineconsole.1.gz
-%doc %{_mandir}/man1/winecpp.1.gz
-%doc %{_mandir}/man1/winefile.1.gz
-%doc %{_mandir}/man1/winemine.1.gz
-%doc %{_mandir}/man1/winepath.1.gz
+%doc %{_mandir}/man1/msiexec.1*
+%doc %{_mandir}/man1/notepad.1*
+%doc %{_mandir}/man1/regedit.1*
+%doc %{_mandir}/man1/regsvr32.1*
+%doc %{_mandir}/man1/wineboot.1*
+%doc %{_mandir}/man1/winecfg.1*
+%doc %{_mandir}/man1/wineconsole.1*
+%doc %{_mandir}/man1/winecpp.1*
+%doc %{_mandir}/man1/winefile.1*
+%doc %{_mandir}/man1/winemine.1*
+%doc %{_mandir}/man1/winepath.1*
 %doc %{_mandir}/*/man1/wine.1*
 %doc %{_mandir}/*/man1/winemaker.1*
 %doc %{_mandir}/*/man1/wineserver.1*
@@ -758,6 +758,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mssip32.dll.so
 %{_libdir}/wine/mstask.dll.so
 %{_libdir}/wine/msvcirt.dll.so
+%{_libdir}/wine/msvcp100.dll.so
 %{_libdir}/wine/msvcp80.dll.so
 %{_libdir}/wine/msvcp90.dll.so
 %{_libdir}/wine/msvcr100.dll.so
@@ -822,6 +823,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/rstrtmgr.dll.so
 %{_libdir}/wine/rtutils.dll.so
 %{_libdir}/wine/samlib.dll.so
+%{_libdir}/wine/scarddlg.dll.so
 %{_libdir}/wine/sccbase.dll.so
 %{_libdir}/wine/schannel.dll.so
 %{_libdir}/wine/secur32.dll.so
@@ -855,6 +857,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/userenv.dll.so
 %{_libdir}/wine/usp10.dll.so
 %{_libdir}/wine/uxtheme.dll.so
+%{_libdir}/wine/vcomp.dll.so
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
 %ifarch %{ix86}
@@ -1010,8 +1013,11 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Tue Apr 19 2011 Dag Wieers <dag@wieers.com> - 1.3.18-1
+- Updated to release 1.3.18.
+
 * Mon Apr 04 2011 Dag Wieers <dag@wieers.com> - 1.3.17-1
-- Updated to release 1.3.17
+- Updated to release 1.3.17.
 
 * Fri Feb 11 2011 Dag Wieers <dag@wieers.com> - 1.3.13-1
 - Updated to release 1.3.13.

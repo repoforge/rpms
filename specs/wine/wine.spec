@@ -20,7 +20,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.2.2
+Version: 1.2.3
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -31,7 +31,7 @@ Patch1: wine-1.2.1-rpath.patch
 ### Fix for RHbz #593140
 Patch100: wine-1.2-fonts.patch
 ### Add wine-gecko support
-Patch1000: wine-1.2-gecko.patch 
+Patch1000: wine-1.2.3-gecko.patch 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### 64bit build cannot run 32bit applications !
@@ -407,7 +407,18 @@ update-desktop-database &>/dev/null || :
 %defattr(-, root, root, 0755)
 %doc ANNOUNCE AUTHORS COPYING.LIB LICENSE* README VERSION
 %doc documentation/ChangeLog* documentation/README.*
+%doc %{_mandir}/man1/msiexec.1*
+%doc %{_mandir}/man1/notepad.1*
+%doc %{_mandir}/man1/regedit.1*
+%doc %{_mandir}/man1/regsvr32.1*
 %doc %{_mandir}/man1/wine.1*
+%doc %{_mandir}/man1/wineboot.1*
+%doc %{_mandir}/man1/winecfg.1*
+%doc %{_mandir}/man1/winecpp.1*
+%doc %{_mandir}/man1/wineconsole.1*
+%doc %{_mandir}/man1/winefile.1*
+%doc %{_mandir}/man1/winemine.1*
+%doc %{_mandir}/man1/winepath.1*
 %doc %{_mandir}/man1/wineserver.1*
 %doc %{_mandir}/*/man1/wine.1*
 %doc %{_mandir}/*/man1/winemaker.1*
@@ -956,6 +967,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Fri Apr 15 2011 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Fri Feb 11 2011 Dag Wieers <dag@wieers.com> - 1.2.2-1
 - Updated to release 1.2.2.
 
