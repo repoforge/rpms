@@ -3,13 +3,13 @@
 
 Summary: Very high compression ratio file archiver
 Name: p7zip
-Version: 9.04
+Version: 9.20.1
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Archiving
 URL: http://p7zip.sourceforge.net/
 
-Source: http://dl.sf.net/p7zip/p7zip_%{version}_src_all.tar.bz2
+Source: http://sourceforge.net/projects/p7zip/files/p7zip/%{version}/p7zip_%{version}_src_all.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -28,7 +28,7 @@ Additional plugins that can be used with 7z to extend its abilities.
 This package contains also a virtual file system for Midnight Commander.
 
 %prep
-%setup -n %{name}_%{version}
+%setup -q -n %{name}_%{version}
 
 ### Create wrapper scripts, as 7zCon.sfx and Codecs/Formats need to be in the
 ### same directory as the binaries, and we don't want them in %{_bindir}.
@@ -88,6 +88,9 @@ EOF
 #%{_libexecdir}/p7zip/Formats/
 
 %changelog
+* Mon Apr 18 2011 David Hrbáč <david@hrbac.cz> - 9.20.1-1
+- new upstream release
+
 * Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 9.04-1
 - Updated to release 9.04.
 
