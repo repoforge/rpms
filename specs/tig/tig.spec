@@ -4,8 +4,8 @@
 
 Summary: Text-mode interface for git
 Name: tig
-Version: 0.16.2
-Release: 2%{?dist}
+Version: 0.17
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://jonas.nitro.dk/tig/
@@ -66,6 +66,9 @@ with the log message, diffstat, and the diff.
 %{_sysconfdir}/bash_completion.d/tig
 
 %changelog
+* Thu Apr 21 2011 Steve Huff <shuff@vecna.org> - 0.17-1
+- Updated to version 0.17.
+
 * Thu Dec 23 2010 Steve Huff <shuff@vecna.org> - 0.16.2-2
 - Gah, wrong path for bash-completion support :(
 
