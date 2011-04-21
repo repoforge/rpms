@@ -12,7 +12,7 @@ License: LGPL
 Group: Applications/Publishing
 URL: http://www.t1lib.org/
 
-Source: ftp://ibiblio.org/pub/Linux/libs/graphics/t1lib-%{version}.tar.gz
+Source: http://ibiblio.org/pub/Linux/libs/graphics/t1lib-%{version}.tar.gz
 Patch0: t1lib-5.0.0-manpages.patch
 Patch1: t1lib-5.0.0-xglyph-env.patch
 Patch2: t1lib-5.0.0-t1libconfig.patch
@@ -101,6 +101,9 @@ touch %{buildroot}%{_sysconfdir}/t1lib/t1lib.config
 %{_libdir}/libt1x.so
 
 %changelog
+* Thu Apr 21 2011 Steve Huff <shuff@vecna.org> - 
+- Ibiblio has turned off FTP access; use HTTP for source URL.
+
 * Tue Jan 04 2011 Steve Huff <shuff@vecna.org> - 5.1.2-1
 - Updated to version 5.1.2.
 - Source and homepage URLs have changed.
