@@ -1,6 +1,9 @@
 # Welcome to Repoforge!
 
-Repoforge is a repository of third-party RPM packages for RHEL and clones.
+*Repoforge is the new name of the RPMforge project.*
+
+Repoforge is a project that maintains RPM packages for Red Hat Enterprise Linux (RHEL), CentOS and Scientific Linux.
+It consists of a set of repositories compatible with various RHEL versions.
 
 ## For Users
 
