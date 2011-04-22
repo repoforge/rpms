@@ -8,7 +8,7 @@
 Summary: Dynamic modification of a user's environment
 Name: environment-modules
 Version: %{real_version}a
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Utilities
 URL: http://modules.sourceforge.net/
@@ -84,9 +84,13 @@ export CPPFLAGS=-DMANPATH=\'\"`manpath`\"\'
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_datadir}/Modules/
+%config(noreplace) %{_datadir}/Modules/init/.modulespath
 %{_sysconfdir}/profile.d/*
 %dir %{_sysconfdir}/modulefiles
 
 %changelog
+* Fri Apr 22 2011 Steve Huff <shuff@vecna.org> - 3.2.8a-2
+- Marked .modulepath file as %config(noreplace) (thanks, Dr. Paul Cochrane!)
+
 * Wed Apr 13 2011 Steve Huff <shuff@vecna.org> - 3.2.8a-1
 - Initial package (ported from EPEL).
