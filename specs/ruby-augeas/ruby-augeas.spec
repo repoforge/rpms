@@ -9,7 +9,7 @@
 Summary: Ruby bindings for Augeas.
 Name: ruby-augeas
 
-Version: 0.3.0
+Version: 0.4.1
 Release: 1%{?dist}
 Group: Development/Languages
 License: GPL
@@ -53,5 +53,8 @@ rake build
 %{ruby_sitelib}/*
 
 %changelog
+* Mon Apr 25 2011 Steve Huff <shuff@vecna.org> - 0.4.1-1
+- Update to version 0.4.1.
+
 * Mon Jan 31 2011 Steve Huff <shuff@vecna.org> - 0.3.0-1
 - Initial package (ported from EPEL).
