@@ -3,11 +3,17 @@
 # ExcludeDist: el3 el4
 # Rationale: 2.12.0 requires gfortran
 
+%{?el6:%define _with_cairo 1}
+%{?el6:%define _with_gcc4 1}
+%{?el6:%define _optimization 1}
+
 %{?el5:%define _with_cairo 1}
 %{?el5:%define _with_gcc4 1}
 %{?el5:%define _optimization 1}
+%{?el5:%define _with_older_gfortran 1}
 
 %{?el4:%define _with_g77 1}
+%{?el4:%define _with_older_gfortran 1}
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -25,9 +31,14 @@
    %define LDFLAGS '-Wl,-O1'
 %endif
 
+#Potential problem with gfortran < 4.4.4: see appendix B.6.1 of R-admin
+%if 0%{?_optimization}
+   %define FFLAGS '-O -g'
+%endif
+
 Summary: Language for data analysis and graphics
 Name: R
-Version: 2.12.1
+Version: 2.13.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -77,12 +88,13 @@ Requires: xdg-utils
 
 ### These are the submodules that R provides. Sometimes R modules say they
 ### depend on one of these submodules rather than just R. These are 
-### provided for packager convenience. (taken from Fedora)
+### provided for packager convenience.
 Provides: R-base = %{version}
 Provides: R-boot = 1.2
 Provides: R-class = 7.3
-Provides: R-cluster = 1.13.2
+Provides: R-cluster = 1.13.3
 Provides: R-codetools = 0.2
+Provides: R-compiler = %{version}
 Provides: R-datasets = %{version}
 Provides: R-foreign = 0.8
 Provides: R-graphics = %{version}
@@ -186,14 +198,23 @@ export LDFLAGS=%{LDFLAGS}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall install-info
-%makeinstall -C src/nmath/standalone
+%{__make} install install-info DESTDIR="%{buildroot}"
+%{__make} install -C src/nmath/standalone DESTDIR="%{buildroot}"
 
 %{__perl} -pi -e 's|R_HOME_DIR=.*|R_HOME_DIR=%{_libdir}/R|' bin/R
 %{__install} -Dp -m0755 bin/R %{buildroot}%{_libdir}/R/bin/R
 %{__install} -Dp -m0755 bin/R %{buildroot}%{_bindir}/R
 
 %{__install} -Dp -m0644 R.ld.conf %{buildroot}%{_sysconfdir}/ld.so.conf.d/R-%{_target}.conf
+
+# more hardcoded paths!
+%{__perl} -pi -e 's|%{buildroot}||;' %{buildroot}%{_libdir}/pkgconfig/*.pc
+
+# symlink binaries, don't copy them
+pushd %{buildroot}%{_bindir}
+for i in R Rscript; do
+  %{__rm} -f ${i} && %{__ln_s} ../%{_lib}/R/bin/${i}
+done
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/R/{AUTHORS,COPYING*,COPYRIGHTS,FAQ,NEWS,ONEWS,RESOURCES,THANKS}
@@ -251,6 +272,10 @@ export LDFLAGS=%{LDFLAGS}
 %{_libdir}/libRmath.a
 
 %changelog
+* Tue Apr 26 2011 Steve Huff <shuff@vecna.org> - 2.13.0-1
+- Updated to release 2.13.0.
+- Fixes for el6.
+
 * Mon Dec 20 2010 Steve Huff <shuff@vecna.org> - 2.12.1-1
 - Updated to release 2.12.1.
 
