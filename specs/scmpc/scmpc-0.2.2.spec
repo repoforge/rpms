@@ -1,13 +1,11 @@
 # $Id$
 # Authority: shuff
 # Upstream: Jonathan Coome <jcoome$users,berlios,de>
-# ExcludeDist: el3 el4 el5
-# Rationale: needs glib2 >= 2.16
 
 
 Summary: Scrobbling Music Player Daemon client
 Name: scmpc
-Version: 0.3.0
+Version: 0.2.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -17,9 +15,11 @@ Source: http://download.berlios.de/scmpc/scmpc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils, gcc, make, autoconf, automake
-BuildRequires: curl-devel >= 7.15.4
-BuildRequires: glib2-devel >= 2.16
+BuildRequires: curl-devel >= 7.10
+BuildRequires: glibc-devel
+BuildRequires: libargtable2-devel
 BuildRequires: libconfuse-devel
+BuildRequires: libdaemon-devel
 BuildRequires: pkgconfig >= 0.9.0
 
 %description
@@ -64,14 +64,12 @@ Features
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING NEWS README TODO scmpc.conf.example
+%doc COPYING DEPENDENCIES examples/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
+%{_datadir}/scmpc/
 
 
 %changelog
-* Wed Apr 27 2011 Steve Huff <shuff@vecna.org> - 0.3.0-1
-- Updated to release 0.3.0 (el6 only).
-
 * Fri May 07 2010 Steve Huff <shuff@vecna.org> - 0.2.2-1
 - Initial package.
