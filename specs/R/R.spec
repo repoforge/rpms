@@ -32,7 +32,7 @@
 %endif
 
 #Potential problem with gfortran < 4.4.4: see appendix B.6.1 of R-admin
-%if 0%{?_optimization}
+%if 0%{?_with_older_gfortran}
    %define FFLAGS '-O -g'
 %endif
 
