@@ -69,7 +69,8 @@ The Dropbox API is a OAuth based API.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes META.yml META.json README
+%doc Changes META.yml README
+%doc examples/
 %doc %{_mandir}/man?/*
 %{perl_vendorlib}/Net/Dropbox/API.pm
 #%{perl_vendorlib}/Net/Dropbox/API/*
