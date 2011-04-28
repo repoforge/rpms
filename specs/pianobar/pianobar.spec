@@ -4,13 +4,13 @@
 
 Summary: console Pandora.com client
 Name: pianobar
-Version: 2011.01.24
+Version: 2011.04.27
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://6xq.net/html/00/17.html
 
-Source: http://6xq.net/media/00/16/pianobar-2011.01.24.tar.bz2
+Source: http://6xq.net/media/00/16/pianobar-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
@@ -55,6 +55,7 @@ This package contains the runtime components of the libpiano shared library.
 
 %build
 %{__make} %{?_smp_mflags} all DISABLE_FAAD=1
+%{__make} %{?_smp_mflags} libpiano.so.0 DISABLE_FAAD=1
 
 %install
 %{__rm} -rf %{buildroot}
@@ -80,6 +81,10 @@ This package contains the runtime components of the libpiano shared library.
 %files -n libpiano
 %defattr(-, root, root, 0755)
 %{_libdir}/*.so.*
+%exclude %{_includedir}/piano.h
+%exclude %{_libdir}/libpiano.a
+%{_libdir}/libpiano.so
+
 
 # %files -n libpiano-devel
 # %defattr(-, root, root, 0755)
@@ -89,6 +94,11 @@ This package contains the runtime components of the libpiano shared library.
 # %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Apr 27 2011 Philip Durbin <philipdurbin@gmail.com> - 2011.04.27-1
+- updated to pianobar-2011.04.27
+- put version macro in Source
+- make libpiano.so.0 separately (no longer built by "make all")
+
 * Mon Jan 31 2011 Steve Huff <shuff@vecna.org> - 2011.01.24-1
 - Initial package.
 - Doesn't currently build/install libpiano-devel.
