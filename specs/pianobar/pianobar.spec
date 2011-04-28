@@ -62,6 +62,11 @@ This package contains the runtime components of the libpiano shared library.
 %{__make} install PREFIX="%{_usr}" LIBDIR="%{_libdir}" DESTDIR="%{buildroot}"
 %{__make} install-libpiano PREFIX="%{_usr}" LIBDIR="%{_libdir}" DESTDIR="%{buildroot}"
 
+# install the man page
+%{__install} -m0755 -d %{buildroot}%{_mandir}/man1
+%{__install} -m0755 contrib/pianobar.1 %{buildroot}%{_mandir}/man1
+%{__rm} -f contrib/pianobar.1
+
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
 
