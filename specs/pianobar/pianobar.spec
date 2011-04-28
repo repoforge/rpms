@@ -35,20 +35,19 @@ and some that pandora does not have (yet):
 %package -n libpiano
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
 
 %description -n libpiano
 This package contains the runtime components of the libpiano shared library.
 
-# %package -n libpiano-devel
-# Summary: Header files, libraries and development documentation for %{name}.
-# Group: Development/Libraries
-# Requires: %{name} = %{version}-%{release}
-# 
-# %description -n libpiano-devel
-# This package contains the header files, static libraries and development
-# documentation for libpiano. If you like to develop programs using %{name},
-# you will need to install libpiano-devel.
+%package -n libpiano-devel
+Summary: Header files, libraries and development documentation for %{name}.
+Group: Development/Libraries
+Requires: libpiano = %{version}-%{release}
+
+%description -n libpiano-devel
+This package contains the header files, static libraries and development
+documentation for libpiano. If you like to develop programs using %{name},
+you will need to install libpiano-devel.
 
 %prep
 %setup
@@ -86,17 +85,12 @@ This package contains the runtime components of the libpiano shared library.
 %files -n libpiano
 %defattr(-, root, root, 0755)
 %{_libdir}/*.so.*
-%exclude %{_includedir}/piano.h
-%exclude %{_libdir}/libpiano.a
-%{_libdir}/libpiano.so
 
-
-# %files -n libpiano-devel
-# %defattr(-, root, root, 0755)
-# %{_includedir}/*.h
-# %{_libdir}/*.so
-# %exclude %{_libdir}/*.a
-# %exclude %{_libdir}/*.la
+%files -n libpiano-devel
+%defattr(-, root, root, 0755)
+%{_includedir}/*.h
+%{_libdir}/*.so
+%exclude %{_libdir}/*.a
 
 %changelog
 * Wed Apr 27 2011 Philip Durbin <philipdurbin@gmail.com> - 2011.04.27-1
