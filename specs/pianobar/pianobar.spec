@@ -61,9 +61,7 @@ you will need to install libpiano-devel.
 %{__make} install PREFIX="%{_usr}" LIBDIR="%{_libdir}" DESTDIR="%{buildroot}"
 %{__make} install-libpiano PREFIX="%{_usr}" LIBDIR="%{_libdir}" DESTDIR="%{buildroot}"
 
-# install the man page
-%{__install} -m0755 -d %{buildroot}%{_mandir}/man1
-%{__install} -m0755 contrib/pianobar.1 %{buildroot}%{_mandir}/man1
+# remove the superfluous man page
 %{__rm} -f contrib/pianobar.1
 
 # fix for stupid strip issue
