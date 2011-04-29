@@ -30,13 +30,11 @@ BuildRequires: perl(PPI)
 BuildRequires: perl(Test::More) >= 0.42
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
-Requires: perl(Data::Dumper)
 Requires: perl(File::Find)
 Requires: perl(File::Spec)
 Requires: perl(File::Temp)
 Requires: perl(Module::Locate)
 Requires: perl(PPI)
-Requires: rpm-macros-rpmforge
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
