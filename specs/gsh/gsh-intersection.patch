@@ -1,0 +1,271 @@
+Only in gsh-1.0.2: Makefile
+Only in gsh-1.0.2: blib
+diff -cr gsh-1.0.2/lib/SystemManagement/Ghosts.pm gsh-1.0.2-intersections/lib/SystemManagement/Ghosts.pm
+*** gsh-1.0.2/lib/SystemManagement/Ghosts.pm	Fri May  5 17:08:16 2006
+--- gsh-1.0.2-intersections/lib/SystemManagement/Ghosts.pm	Thu Oct  9 22:15:05 2008
+***************
+*** 7,113 ****
+  
+  # loads the ghosts file into @sysadmin_ghosts
+  sub Load {
+! 	my($file) = @_;
+! 	my($line);
+! 	$file=$GHOSTS_PATH if (!$file || $file eq "");
+! 	open(GHOSTS_FILE,"<${file}") ||
+! 		warn("$0: Cannot open \"${file}\": $!\n");
+! 	while (<GHOSTS_FILE>) {
+! 		# kill blank lines
+! 		s/[ \t]*\n//;
+! 		my $line = $_;
+! 		# kill commented or blank lines
+! 		if ($line ne "" && $line !~ /^#/) {
+! 			push(@GHOSTS,$line);
+! 		}
+! 	}
+! 	close(GHOSTS_FILE);
+  }
+  
+  sub CheckGhostFor {
+! 	my($machine,$what) = @_;
+! 	my(@result,$list);
+  
+! 	@result=ParseGhosts(0,$what);
+! 	$list=":".join(":",@result).":";
+  
+! #	print "$what ($machine) sees $list\n";
+  
+! 	return 1 if ($list =~ /:$machine:/);
+! 	return 0;
+  }
+  
+  sub ParseGhosts {
+! 	my($depth,@what) = @_;
+  
+! 	if ($depth>10) {
+! 		print STDERR "ParseGhosts: recurrsive macro?  Depth == 10 at '".join(',',@what)."'\n";
+! 		return ("");
+  	}
+  
+- 	# if no argument, match all machine names
+- 	@what = ("all") if (!@what);
+  
+! 	# make the starting matching string, ":" separated
+! 	my $one_of_these = ":" . join("+",@what) . ":";     # prepare to expand "macros"
+! 	$one_of_these =~ s/\+/:/g;           # we hope to end up with list of
+! 	$one_of_these =~ s/-/:-/g;           #  colon separated attributes
+! 	$one_of_these =~ s/:+/:/g;
+! 
+! #	warn "ParseGhosts[$depth]: expanding '$one_of_these'\n";
+! 	my @repl;
+! 	Load() if ($#GHOSTS<0);
+! 	foreach my $line (@GHOSTS) {           # for each line of ghosts
+! 		if ($line =~ /^(\w+)=(.+)/) {         # a macro line?
+!         		my $name = $1;
+!                 my $repl = $2;
+!         		$repl =~ s/\+/:/g;	# make an addition
+! 		        $repl =~ s/-/:-/g;	# subtract
+!     			# do expansion in "wanted" list
+!         		if ($one_of_these =~ /:$name:/) {
+! 				my @query = ParseGhosts($depth+1,$repl);
+! 				$repl = ":" . join(":",@query) . ":";
+! #				warn "'$one_of_these' matched '$name' as '$repl'\n";
+!         			$one_of_these =~ s/:$name:/:$repl:/;
+! 			}
+! 				
+! 			# do expansion in "unwanted" list
+!         		if ($one_of_these =~ /:-$name:/) {
+! 				my @query = ParseGhosts($depth+1,$repl);
+! 				$repl = ":" . join(":",@query) . ":";
+! 			        $repl =~ s/:/:-/g;
+! #				warn "'$one_of_these' matched '-$name' as '$repl'\n";
+! 		        	$one_of_these =~ s/:-$name:/:$repl:/;
+! 			}
+! 		}
+! 		else {
+! 			# we have a normal line
+! 	
+              my @attr = split(' ',$line);# a list of attributes to match against
+!             #   which we put into an array
+              my $host = $attr[0];       # the first attribute is the host name
+! 	
+! 			my $wanted = 0;
+!     			foreach my $attr (@attr) { # iterate over attribute array
+!        		 		if (index($one_of_these,":$attr:") >= 0) {
+! 	       		 		$wanted++;
+! 				}
+!        		 		if (index($one_of_these,":-$attr:") >= 0) {
+!        		 			$wanted = 0;
+! 					last;
+! 				}
+!     			}
+! 			push(@repl,$host) if ($wanted > 0);
+  		}
+! 	        next;
+! 	}
+! 	@repl;
+  }
+  
+  # sets the BACKBONES variable depending on argument
+  sub Expanded {
+! 	my(@type) = @_;
+! 	return ParseGhosts(0,@type);
+  }
+  
+  1;
+--- 7,161 ----
+  
+  # loads the ghosts file into @sysadmin_ghosts
+  sub Load {
+!     my($file) = @_;
+!     my($line);
+!     $file=$GHOSTS_PATH if (!$file || $file eq "");
+!     open(GHOSTS_FILE,"<${file}") ||
+!         warn("$0: Cannot open \"${file}\": $!\n");
+!     while (<GHOSTS_FILE>) {
+!         # kill blank lines
+!         s/[ \t]*\n//;
+!         my $line = $_;
+!         # kill commented or blank lines
+!         if ($line ne "" && $line !~ /^#/) {
+!             push(@GHOSTS,$line);
+!         }
+!     }
+!     close(GHOSTS_FILE);
+  }
+  
+  sub CheckGhostFor {
+!     my($machine,$what) = @_;
+!     my(@result,$list);
+  
+!     @result=ParseGhosts(0,$what);
+!     $list=":".join(":",@result).":";
+  
+! #    print "$what ($machine) sees $list\n";
+  
+!     return 1 if ($list =~ /:$machine:/);
+!     return 0;
+  }
+  
+  sub ParseGhosts {
+!     my($depth,@what) = @_;
+  
+!     if ($depth>10) {
+!         print STDERR "ParseGhosts: recurrsive macro?  Depth == 10 at '".join(',',@what)."'\n";
+!         return ("");
+!     }
+! 
+!     # if no argument, match all machine names
+!     @what = ("all") if (!@what);
+! 
+!     # make the starting matching string, ":" separated
+!     my $one_of_these = ":" . join("+",@what) . ":";     # prepare to expand "macros"
+!     $one_of_these =~ s/\+/:/g;           # we hope to end up with list of
+!     $one_of_these =~ s/-/:-/g;           #  colon separated attributes
+!     $one_of_these =~ s/=/:=/g;           
+!     $one_of_these =~ s/:+/:/g;
+! 
+!     #
+!     # Extract any '=' items (intersections) an put them in the @inters
+!     # list
+!     #
+!     my @all = split(':', $one_of_these);
+!     my @unions = ();
+!     my @inters = ();
+!     for my $attr (@all){
+! 	next if $attr =~ /^\s*$/;
+! 	if ($attr =~ /^=(.*)/){
+! 	    push @inters, $1;
+  	}
++ 	else {
++ 	    push @unions, $attr;
++ 	}
++     }
++     $one_of_these = ":" . join(":", @unions) . ":";
+  
+  
+! #    warn "ParseGhosts[$depth]: expanding '$one_of_these'\n";
+!     my @repl;
+!     Load() if ($#GHOSTS<0);
+!     LINE:
+!     foreach my $line (@GHOSTS) {           # for each line of ghosts
+!         if ($line =~ /^(\w+)=(.+)/) {      # a macro line?
+! 	    my $name = $1;
+! 	    my $repl = $2;
+! 	    $repl =~ s/\+/:/g;    # make an addition
+! 	    $repl =~ s/-/:-/g;    # subtract
+! 	    $repl =~ s/=/:=/g;    # intersection
+! 	    # do expansion in "wanted" list
+! 	    if ($one_of_these =~ /:$name:/) {
+! 		my @query = ParseGhosts($depth+1,$repl);
+! 		$repl = ":" . join(":",@query) . ":";
+! #                warn "'$one_of_these' matched '$name' as '$repl'\n";
+! 		$one_of_these =~ s/:$name:/:$repl:/;
+! 	    }
+!                 
+!             # do expansion in "unwanted" list
+! 	    if ($one_of_these =~ /:-$name:/) {
+!                 my @query = ParseGhosts($depth+1,$repl);
+!                 $repl = ":" . join(":",@query) . ":";
+! 		$repl =~ s/:/:-/g;
+! #                warn "'$one_of_these' matched '-$name' as '$repl'\n";
+! 		$one_of_these =~ s/:-$name:/:$repl:/;
+!             }
+! 
+! 	    # do expansion in 'intersection' list
+! 	    if ($one_of_these =~ /:=$name:/) {
+!                 my @query = ParseGhosts($depth+1,$repl);
+! 		$one_of_these =~ s/:=$name:/:/;
+! 		push @inters, @query;
+! 	    }
+!         }
+!         else {
+!             # we have a normal line
+!     
+              my @attr = split(' ',$line);# a list of attributes to match against
+! 					#   which we put into an array
+              my $host = $attr[0];       # the first attribute is the host name
+!     
+!             my $wanted = 0;
+! 	    my %int_attr = ();
+! 	    ATTR:
+! 	    foreach my $attr (@attr) { # iterate over attribute array
+! 		if (index($one_of_these,":$attr:") >= 0) {
+! 		    $wanted++;
+  		}
+! 		if (index($one_of_these,":-$attr:") >= 0) {
+! 		    $wanted = 0;
+! 		    last ATTR;
+! 		}
+! 		#
+! 		# Now check the intersection attributes.  The entry must
+! 		# match all of the attributes to be included.
+! 		#
+! 		for my $inter (@inters){
+! 		    if ($attr eq $inter) {
+! 			$int_attr{$attr} = 1;
+! 		    }
+! 		}
+! 	    }
+!             if ($wanted > 0){
+! 		if (@inters){
+! 		    # if there are any "intersection" attributes, we must
+! 		    # have them all.
+! 		    for my $inter (@inters){
+! 			next LINE unless $int_attr{$inter};
+! 		    }
+! 		}
+! 		push(@repl,$host);
+! 	    }
+!         }
+!     }
+!     @repl;
+  }
+  
+  # sets the BACKBONES variable depending on argument
+  sub Expanded {
+!     my(@type) = @_;
+!     return ParseGhosts(0,@type);
+  }
+  
+  1;
+Only in gsh-1.0.2: pm_to_blib

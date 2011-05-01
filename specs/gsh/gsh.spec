@@ -16,6 +16,7 @@ Group: Applications/CPAN
 URL: http://outflux.net/unix/software/gsh/
 
 Source: http://outflux.net/unix/software/gsh/download/gsh-%{version}.tar.gz
+Patch0: gsh-intersection.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -40,6 +41,7 @@ parallel.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -67,3 +69,4 @@ parallel.
 %changelog
 * Fri Apr 29 2011 Philip Durbin <philipdurbin@gmail.com> 1.0.2-1
 - Initial package
+- Includes intersections patch from Mark D. Nagel.
