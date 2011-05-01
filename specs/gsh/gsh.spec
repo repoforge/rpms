@@ -22,6 +22,10 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
+Requires: perl(File::Temp)
+Requires: perl(Getopt::Long)
+Requires: perl(POSIX)
+Requires: perl(Pod::Usage)
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
