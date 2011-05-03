@@ -10,7 +10,7 @@
 
 Summary: A fast, lightweight Source Control Management system
 Name: mercurial
-Version: 1.8.2
+Version: 1.8.3
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -112,6 +112,9 @@ mkdir -p %{buildroot}/%{_sysconfdir}/mercurial/hgrc.d
 %{_bindir}/hg-ssh
 
 %changelog
+* Tue May 03 2011 David Hrbáč <david@hrbac.cz> - 1.8.3-1
+- new upstream release
+
 * Mon Apr 04 2011 David Hrbáč <david@hrbac.cz> - 1.8.2-1
 - new upstream release
 
