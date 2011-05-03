@@ -1,6 +1,8 @@
 # $Id: pan.spec 4308 2006-04-21 22:20:20Z dries $
 # Authority: dag
 # Upstream: <pan-devel$nongnu,org>
+# ExcludeDist: el3 el4 el5
+# Rationale: requires GTK 2.16.
 
 ### EL2 ships with pan-0.9.7-3
 %{?el2:# Tag: rfx}
@@ -9,22 +11,21 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.133
-Release: 2%{?dist}
+Version: 0.134
+Release: 1%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Internet
 URL: http://pan.rebelbase.com/
 
 Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{version}.tar.bz2
-Patch0: pan-0.133-gcc44.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: desktop-file-utils
 BuildRequires: glib2-devel >= 2.0.4
-BuildRequires: gmime20-devel >= 2.1.9
+BuildRequires: gmime-devel >= 2.4
 BuildRequires: gnet2-devel
-BuildRequires: gtk2-devel >= 2.0.5
+BuildRequires: gtk2-devel >= 2.16
 BuildRequires: gtkspell-devel >= 2.0.2
 BuildRequires: libxml2-devel >= 2.4.22
 BuildRequires: pcre-devel >= 5.0, gettext
@@ -39,7 +40,6 @@ to get a perfect score on the Good Net-Keeping Seal of Approval evalutions.
 
 %prep
 %setup
-%patch0 -p0 -b .gcc44
 
 %{__perl} -pi.orig -e 's|StartupNotify=false|StartupNotify=true|' pan.desktop.in
 
@@ -73,6 +73,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Tue May 03 2011 Steve Huff <shuff@vecna.org> - 0.134-1
+- Updated to release 0.134.
+
 * Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 0.133-2
 - Rebuilt against gmime20-2.2.26.
 
