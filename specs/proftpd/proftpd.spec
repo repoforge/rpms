@@ -90,6 +90,7 @@ if pkg-config openssl; then
     export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
 fi
 %configure \
+    --localstatedir="/var/run/proftpd" \
     --libexecdir="%{_libexecdir}/proftpd" \
     --enable-ctrls \
     --enable-dso \
@@ -208,6 +209,9 @@ fi
 %endif
 
 %changelog
+* Mon May 09 2011 Steve Huff <shuff@vecna.org> - 1.3.3c-2
+- Patch to fix localstatedir (thanks, Blake Hudson!)
+
 * Tue Nov 16 2010 David Hrbáč <david@hrbac.cz> - 1.3.3c-1
 - new upstream release
 - fixes CVE-2010-4221
