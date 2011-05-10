@@ -1,0 +1,35 @@
+diff -Naur gdal-1.8.0-orig/configure gdal-1.8.0/configure
+--- gdal-1.8.0-orig/configure	2011-01-14 00:19:06.000000000 -0500
++++ gdal-1.8.0/configure	2011-05-03 09:28:26.581179780 -0400
+@@ -24382,7 +24382,8 @@
+   print 1
+ except ImportError:
+   pass'
+-  PY_HAVE_SETUPTOOLS=`python -c "$SETUPTEST"`
++  # PY_HAVE_SETUPTOOLS=`python -c "$SETUPTEST"`
++  PY_HAVE_SETUPTOOLS=0
+   if test "$PY_HAVE_SETUPTOOLS" = "1"; then
+     { $as_echo "$as_me:${as_lineno-$LINENO}: result: found" >&5
+ $as_echo "found" >&6; }
+diff -Naur gdal-1.8.0-orig/swig/python/setup.py gdal-1.8.0/swig/python/setup.py
+--- gdal-1.8.0-orig/swig/python/setup.py	2011-01-14 00:19:06.000000000 -0500
++++ gdal-1.8.0/swig/python/setup.py	2011-05-03 09:30:06.442171209 -0400
+@@ -63,12 +63,12 @@
+ except ImportError:
+     pass
+ 
+-try:
+-    from setuptools import setup
+-    from setuptools import Extension
+-    HAVE_SETUPTOOLS = True
+-except ImportError:
+-    from distutils.core import setup, Extension
++# try:
++#     from setuptools import setup
++#     from setuptools import Extension
++#     HAVE_SETUPTOOLS = True
++# except ImportError:
++#     from distutils.core import setup, Extension
+ 
+ 
+ from distutils.command.build_ext import build_ext
