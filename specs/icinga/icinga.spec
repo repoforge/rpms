@@ -11,9 +11,9 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.3.1
+Version: 1.4.0
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 Group: Applications/System
 URL: http://www.icinga.org/
 
@@ -28,7 +28,7 @@ BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libdbi-devel
 BuildRequires: perl(ExtUtils::Embed)
-Provides: nagios
+Provides: nagios = %{version}
 
 %description
 Icinga is an application, system and network monitoring application.
@@ -79,10 +79,7 @@ Documentation for %{name}
 
 
 %prep
-%setup -n %{name}-%{version}
-
-# /usr/local/nagios is hardcoded in many places
-%{__perl} -pi.orig -e 's|/usr/local/nagios/var/rw|%{_localstatedir}/nagios/rw|g;' contrib/eventhandlers/submit_check_result
+%setup -qn %{name}-%{version}
 
 %build
 %configure \
@@ -95,7 +92,7 @@ Documentation for %{name}
     --sysconfdir="%{_sysconfdir}/icinga" \
     --with-cgiurl="/icinga/cgi-bin" \
     --with-command-user="icinga" \
-    --with-command-group="icingacmd" \
+    --with-command-group="icinga-cmd" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
@@ -144,14 +141,14 @@ Documentation for %{name}
 mv %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg-sample %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg
 mv %{buildroot}%{_sysconfdir}/icinga/idomod.cfg-sample %{buildroot}%{_sysconfdir}/icinga/idomod.cfg
 
-### copy idutils db-script
+### copy idoutils db-script
 cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
 
 %pre
 # Add icinga user
 /usr/sbin/groupadd icinga 2> /dev/null || :
-/usr/sbin/groupadd icingacmd 2> /dev/null || :
-/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G icingacmd -g icinga icinga 2> /dev/null || :
+/usr/sbin/groupadd icinga-cmd 2> /dev/null || :
+/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G icinga-cmd -g icinga icinga 2> /dev/null || :
 
 
 %post
@@ -164,8 +161,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %pre gui
-# Add apacheuser in the icingacmd group
-  /usr/sbin/usermod -a -G icingacmd %{apacheuser}
+# Add apacheuser in the icinga-cmd group
+  /usr/sbin/usermod -a -G icinga-cmd %{apacheuser}
 
 %post idoutils
 /sbin/chkconfig --add ido2db
@@ -184,6 +181,7 @@ fi
 %defattr(-,icinga,icinga,-)
 %attr(755,root,root) %{_initrddir}/icinga
 %dir %{_sysconfdir}/icinga
+%dir %{_sysconfdir}/icinga/modules
 %config(noreplace) %{_sysconfdir}/icinga/cgi.cfg
 %config(noreplace) %{_sysconfdir}/icinga/cgiauth.cfg
 %config(noreplace) %{_sysconfdir}/icinga/icinga.cfg
@@ -202,12 +200,11 @@ fi
 %{logdir}
 %dir %{_localstatedir}/icinga
 %dir %{_localstatedir}/icinga/checkresults
-%attr(2755,icinga,icingacmd) %{_localstatedir}/icinga/rw/
+%attr(2755,icinga,icinga-cmd) %{_localstatedir}/icinga/rw/
 
 %files doc
 %defattr(-,icinga,icinga,-)
 %{_datadir}/icinga/docs
-%{_datadir}/icinga/doxygen
 
 %files gui
 %defattr(-,icinga,icinga,-)
@@ -225,13 +222,14 @@ fi
 %{_datadir}/icinga/sidebar.html
 %{_datadir}/icinga/ssi
 %{_datadir}/icinga/stylesheets
-%{_datadir}/icinga/top.html
+%attr(0755,%{apacheuser},%{apachegroup}) %{_datadir}/icinga/log
 
 %files idoutils
 %defattr(-,icinga,icinga,-)
 %attr(755,root,root) %{_initrddir}/ido2db
 %config(noreplace) %{_sysconfdir}/icinga/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/icinga/idomod.cfg
+%config(noreplace) %{_sysconfdir}/icinga/modules/idoutils.cfg
 %{_sysconfdir}/icinga/idoutils
 %{_bindir}/ido2db
 %{_bindir}/log2ido
@@ -244,7 +242,15 @@ fi
 
 
 %changelog
-* Tue Mar 31 2011 Christoph Maser <cmaser@gmx.de> - 1.3.1-0
+* Thu Apr 28 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-1
+- update for release 1.4.0
+- remove perl subst for eventhandler submit_check_result, this is now done by configure
+- remove top.html, doxygen
+- set cgi log permissions to apache user
+- honour modules/ in icinga cfg and modules/idoutils.cfg for neb definitions
+- add /icinga/log for cmd.cgi logging, includes .htaccess
+
+* Tue Mar 31 2011 Christoph Maser <cmaser@gmx.de> - 1.3.1-1
 - update for release 1.3.1
 
 * Tue Feb 15 2011 Christoph Maser <cmaser@gmx.de> - 1.3.0-2
@@ -293,17 +299,17 @@ fi
 
 * Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 1.0-0.RC1.1
 - Update to 1.0-RC1
-- Correct checkconfig --del in idoutils %preun
+- Correct checkconfig --del in idoutils #preun
 
 * Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 0.8.4-3
-- Use icingacmd group and add apache user to that group instead
+- Use icinga-cmd group and add apache user to that group instead
   of using apachegroup as icinga command group.
 
 * Wed Oct 07 2009 Christoph Maser <cmr@financial.com> - 0.8.4-2
 - make packages openSUSE compatible
-- add %apachecondir, %apacheuser, %apachegroup depending on vendor
-- configure add --with-httpd-conf=%{apacheconfdir} 
-- configure add --with-init-dir=%{_initrddir}
+- add #apachecondir, #apacheuser, #apachegroup depending on vendor
+- configure add --with-httpd-conf=#{apacheconfdir} 
+- configure add --with-init-dir=#{_initrddir}
 
 * Wed Sep 16 2009 Christoph Maser <cmr@financial.com> - 0.8.4-1
 - Update to version 0.8.4.
@@ -332,4 +338,3 @@ fi
 
 * Sun Jul 19 2009 Christoph Maser <cmr@financial.com> - 0.8.1-1
 - initial package
-
