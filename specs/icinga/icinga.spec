@@ -12,7 +12,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: icinga
 Version: 1.4.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Group: Applications/System
 URL: http://www.icinga.org/
@@ -92,7 +92,7 @@ Documentation for %{name}
     --sysconfdir="%{_sysconfdir}/icinga" \
     --with-cgiurl="/icinga/cgi-bin" \
     --with-command-user="icinga" \
-    --with-command-group="icinga-cmd" \
+    --with-command-group="icingacmd" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
@@ -147,8 +147,8 @@ cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
 %pre
 # Add icinga user
 /usr/sbin/groupadd icinga 2> /dev/null || :
-/usr/sbin/groupadd icinga-cmd 2> /dev/null || :
-/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G icinga-cmd -g icinga icinga 2> /dev/null || :
+/usr/sbin/groupadd icingacmd 2> /dev/null || :
+/usr/sbin/useradd -c "icinga" -s /sbin/nologin -r -d /var/icinga -G icingacmd -g icinga icinga 2> /dev/null || :
 
 
 %post
@@ -161,8 +161,8 @@ if [ $1 -eq 0 ]; then
 fi
 
 %pre gui
-# Add apacheuser in the icinga-cmd group
-  /usr/sbin/usermod -a -G icinga-cmd %{apacheuser}
+# Add apacheuser in the icingacmd group
+  /usr/sbin/usermod -a -G icingacmd %{apacheuser}
 
 %post idoutils
 /sbin/chkconfig --add ido2db
@@ -200,7 +200,7 @@ fi
 %{logdir}
 %dir %{_localstatedir}/icinga
 %dir %{_localstatedir}/icinga/checkresults
-%attr(2755,icinga,icinga-cmd) %{_localstatedir}/icinga/rw/
+%attr(2755,icinga,icingacmd) %{_localstatedir}/icinga/rw/
 
 %files doc
 %defattr(-,icinga,icinga,-)
@@ -242,6 +242,9 @@ fi
 
 
 %changelog
+* Wed May 11 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-2
+- undo changes on icinga-cmd group, use icingacmd like before
+
 * Thu Apr 28 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-1
 - update for release 1.4.0
 - remove perl subst for eventhandler submit_check_result, this is now done by configure
