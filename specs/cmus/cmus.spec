@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# Upstream: Timo Hirvonen <tihirvon$gmail,com>
+# Upstream: Gregory Petrosyan <gregory.petrosyan$gmail,com>
 # ExcludeDist: el3 el4
 
 %{?el5:%define _without_pulseaudio 1}
@@ -64,7 +64,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING AUTHORS examples
+%doc AUTHORS COPYING README TODO contrib/ examples/
 %doc %{_mandir}/man?/*
 %{_bindir}/cmus
 %{_bindir}/cmus-remote
