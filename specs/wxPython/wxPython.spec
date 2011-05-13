@@ -4,6 +4,10 @@
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
+%{?el5:%define _without_egginfo 1}
+%{?el4:%define _without_egginfo 1}
+%{?el3:%define _without_egginfo 1}
+
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 %{?rh9:%define _without_modxorg 1}
@@ -12,13 +16,13 @@
 
 Summary: GUI toolkit for the Python programming language
 Name: wxPython
-Version: 2.8.9.1
+Version: 2.8.12.0
 Release: 1%{?dist}
 License: LGPL
 Group: Development/Languages
 URL: http://www.wxpython.org/
 
-Source: http://dl.sf.net/wxpython/wxPython-src-%{version}.tar.bz2
+Source: http://downloads.sourceforge.net/wxpython/wxPython-src-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libjpeg-devel
@@ -81,7 +85,8 @@ python setup.py install --root="%{buildroot}" WXPORT="gtk2" UNICODE="1"
 %dir %{python_sitearch}/wx-2.8-gtk2-unicode/
 %{python_sitearch}/wx-2.8-gtk2-unicode/wx/
 %{python_sitearch}/wx-2.8-gtk2-unicode/wxPython/
-%{python_sitelib}/wxaddons/
+%{!?_without_egginfo:%{python_sitelib}/*.egg-info}
+%{!?_without_egginfo:%{python_sitearch}/wx-2.8-gtk2-unicode/*.egg-info}
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -95,5 +100,8 @@ python setup.py install --root="%{buildroot}" WXPORT="gtk2" UNICODE="1"
 %{_includedir}/wx-2.8/wx/wxPython/i_files/*.swg
 
 %changelog
+* Fri May 13 2011 Steve Huff <shuff@vecna.org> - 2.8.12.0-1
+- Updated to version 2.8.12.0.
+
 * Mon May 25 2009 Dag Wieers <dag@wieers.com> - 2.8.9.1-1
 - Initial package. (based on Fedora)
