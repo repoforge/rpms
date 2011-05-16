@@ -1,15 +1,20 @@
 # $Id$
 # Authority: dag
-# Rationale: Includes all tools except dmidecode which ships with kernel-utils
+
+### Includes all tools except dmidecode which ships with kernel-utils on RHEL2, RHEL3 and RHEL4
+%{?el4:%define _without_dmidecode 1}
+%{?el3:%define _without_dmidecode 1}
+%{?el2:%define _without_dmidecode 1}
 
 ### EL5+ includes biosdecode, ownership and vpddecode inside dmidecode package
 ### EL6 ships with dmidecode-2.10-1.30.1.el6
 ### EL5 ships with dmidecode-2.10-3.el5
-# ExclusiveDist: el2 el3 el4
+%{!?_without_dmidecode:# Tag: rfx}
 
 Summary: Tool to analyse BIOS DMI data
 Name: dmidecode
-Version: 2.10
+Epoch: 1
+Version: 2.11
 Release: 0.1%{?dist}
 License: GPLv2+
 Group: System Environment/Base
@@ -18,9 +23,9 @@ URL: http://www.nongnu.org/dmidecode/
 Source: http://download.savannah.gnu.org/releases/dmidecode/dmidecode-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-ExclusiveArch: i386 x86_64
-### kernel-utils includes dmidecode
-Requires: kernel-utils
+ExclusiveArch: %{ix86} x86_64
+### kernel-utils includes dmidecode on RHEL2, RHEL3 and RHEL4
+%{?_without_dmidecode:Requires: kernel-utils}
 
 %description
 dmidecode reports information about x86 & ia64 hardware as described in the
@@ -59,10 +64,14 @@ package.
 %{_sbindir}/biosdecode
 %{_sbindir}/ownership
 %{_sbindir}/vpddecode
-%exclude %{_sbindir}/dmidecode
+%{?_without_dmidecode:%exclude %{_sbindir}/dmidecode}
+%{!?_without_dmidecode:%{_sbindir}/dmidecode}
 
 %changelog
-* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 1:2.10-1
+* Mon May 16 2011 Dag Wieers <dag@wieers.com> - 1:2.11-0.1
+- Updated to release 2.11.
+
+* Thu Sep 24 2009 Dag Wieers <dag@wieers.com> - 1:2.10-0.1
 - Updated to release 2.10.
 
 * Fri Sep 19 2008 Dag Wieers <dag@wieers.com> - 1:2.7-1
