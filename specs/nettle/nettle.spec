@@ -1,11 +1,9 @@
 # $Id$
-
 # Authority: dries
-# Upstream:
 
 Summary: Cryptographic library
 Name: nettle
-Version: 1.12
+Version: 2.1
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -14,7 +12,9 @@ URL: http://www.lysator.liu.se/~nisse/nettle/
 Source: http://www.lysator.liu.se/~nisse/archive/nettle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: m4, openssl-devel, gmp-devel
+BuildRequires: gmp-devel
+BuildRequires: m4
+BuildRequires: openssl-devel
 
 %description
 Nettle is a cryptographic library that is designed to fit easily in more or
@@ -48,18 +48,20 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure --enable-shared
+%configure \
+    --disable-static \
+    --enable-shared
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
-%post
-/sbin/ldconfig 2>/dev/null
+### Clean up buildroot
+%{__rm} -f %{buildroot}%{_infodir}/dir
 
-%postun
-/sbin/ldconfig 2>/dev/null
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -67,22 +69,30 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-%{_bindir}/*
-%{_libdir}/*.so.*
+%doc %{_infodir}/nettle.info*
+%{_bindir}/nettle-lfib-stream
+%{_bindir}/pkcs1-conv
+%{_bindir}/sexp-conv
+%{_libdir}/libhogweed.so.*
+%{_libdir}/libnettle.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/nettle/*.h
-%{_libdir}/*.a
-%{_datadir}/info/nettle.info.gz
-%{_libdir}/*.so
+%{_includedir}/nettle/
+%{_libdir}/libhogweed.so
+%{_libdir}/libnettle.so
+%exclude %{_libdir}/libhogweed.a
+%exclude %{_libdir}/libnettle.a
 
 %changelog
+* Fri Apr 22 2011 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
+
+* Fri Apr 22 2011 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.12-1
 - Updated to release 1.12.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.10-2.2
-- Rebuild for Fedora Core 5.
 
 * Sat Jun 12 2004 Dries Verachtert <dries@ulyssis.org> - 1.10-1
 - Fix ownership of devel package.
