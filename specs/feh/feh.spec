@@ -7,7 +7,7 @@
 
 Summary: Fast command line image viewer using Imlib2
 Name: feh
-Version: 1.12
+Version: 1.14
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Multimedia
@@ -60,6 +60,12 @@ export CFLAGS="%{optflags}"
 %exclude %{_docdir}/feh/
 
 %changelog
+* Wed May 11 2011 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
+* Sun Apr 24 2011 Dag Wieers <dag@wieers.com> - 1.13-1
+- Updated to release 1.13.
+
 * Mon Mar 14 2011 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 
