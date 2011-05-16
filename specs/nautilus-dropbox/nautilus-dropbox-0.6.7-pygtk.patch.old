@@ -1,0 +1,18 @@
+--- configure.orig	2011-04-26 01:41:43.000000000 +0200
++++ configure	2011-04-26 01:42:07.000000000 +0200
+@@ -10756,12 +10756,13 @@
+ $as_echo_n "checking for pygtk... " >&6; }
+ 
+ cat <<EOF | python
++import sys
+ try:
+  import gtk
+ except:
+- exit(1)
++ sys.exit(1)
+ else:
+- exit(0)
++ sys.exit(0)
+ EOF
+ 
+ if test $? -ne 0; then
