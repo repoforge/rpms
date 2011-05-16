@@ -9,7 +9,7 @@
 
 Summary: A Camping-inspired Web Microframework for Perl
 Name: perl-%{real_name}
-Version: 0.70
+Version: 0.81
 Release: 1%{?dist}
 License: MIT
 Group: Applications/CPAN
@@ -73,7 +73,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README doc/
+%doc Changes MANIFEST META.yml README doc/ eg/
 %doc %{_mandir}/man?/*
 %{perl_vendorlib}/squatting.pl
 %{perl_vendorlib}/Squatting.pm
@@ -81,5 +81,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_bindir}/*
 
 %changelog
+* Mon May 16 2011 Steve Huff <shuff@vecna.org> - 0.81-1
+- Updated to release 0.81.
+- Included the examples in the docdir.
+
 * Mon Jan 04 2010 Steve Huff <shuff@vecna.org> - 0.70-1
 - Initial package.
