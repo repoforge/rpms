@@ -4,27 +4,24 @@
 # ExclusiveArch: i386 x86_64
 
 Summary: Sync and backup files between computers
-Name:    dropbox
-Version: 0.7.110
-Release: 3%{?dist}
+Name: dropbox
+%define nautilus_dropbox_version 0.6.7
+Version: 1.1.27
+Release: 1%{?dist}
 License: Proprietary
-Group:   Applications/Utilities
-URL:     http://www.dropbox.com/
+Group: Applications/File
+URL: http://www.dropbox.com/
 
 ExclusiveArch: %{ix86} x86_64
-%ifarch %{ix86}
-    %define dropbox_arch x86
-%else
-    %define dropbox_arch x86_64
-%endif
-Source: http://dl-web.dropbox.com/u/17/dropbox-lnx.%{dropbox_arch}-%{version}.tar.gz
-Source1: https://dl.getdropbox.com/u/43645/dbcli.py
-Source2: http://dl.dropbox.com/u/119154/permalink/dropboxdir.py
+Source0: http://dl-web.dropbox.com/u/17/dropbox-lnx.x86-%{version}.tar.gz
+Source1: http://dl-web.dropbox.com/u/17/dropbox-lnx.x86_64-%{version}.tar.gz
+Source2: https://dl.getdropbox.com/u/43645/dbcli.py
+Source3: http://dl.dropbox.com/u/119154/permalink/dropboxdir.py
 Patch0: %{name}_parentdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # this contains binaries, don't autoprov
-AutoReqProv: no
+#AutoReqProv: no
 
 BuildRequires: dos2unix
 BuildRequires: rpm-macros-rpmforge
@@ -36,8 +33,6 @@ Provides: %{name} = %{version}
 %filter_setup
 
 # there are binaries in this package, don't mess with them
-%define debug_package %{nil}
-%define _enable_debug_packages %{nil}
 %define __os_install_post %{nil}
 
 %description
@@ -50,11 +45,14 @@ Dropbox's secure servers, you can also access them from any computer or mobile
 device using the Dropbox website.
 
 %prep
-%setup -n .dropbox-dist
+%ifarch %{ix86}
+%setup -n .dropbox-dist -T -b 0
+%else
+%setup -n .dropbox-dist -T -b 1
+%endif
 cd %{_builddir}/.dropbox-dist
-cp %{_sourcedir}/dbcli.py .
+cp %{SOURCE2} %{SOURCE3} .
 dos2unix -q dbcli.py
-cp %{_sourcedir}/dropboxdir.py .
 dos2unix -q dropboxdir.py
 %patch0 -p0
 
@@ -192,53 +190,51 @@ EOFBIN
 %{__rm} -rf %{buildroot}
 
 # first install the init script
-%{__install} -m0755 -d %{buildroot}%{_sysconfdir}/init.d
-%{__install} -m0755 dropbox-init %{buildroot}%{_sysconfdir}/init.d/dropbox
-%{__rm} -f dropbox-init
+%{__install} -Dp -m0755 dropbox-init %{buildroot}%{_sysconfdir}/init.d/dropbox
 
 # then install the sysconfig
-%{__install} -m0755 -d %{buildroot}%{_sysconfdir}/sysconfig
+%{__install} -Dp -m0755 -d %{buildroot}%{_sysconfdir}/sysconfig
 %{__install} -m0644 dropbox-sysconfig %{buildroot}%{_sysconfdir}/sysconfig/dropbox
-%{__rm} -f dropbox-sysconfig
 
 # and now the helper scripts
-%{__install} -m0755 -d %{buildroot}%{_bindir}
-%{__install} -m0755 dropbox-bin %{buildroot}%{_bindir}/dropbox
-%{__rm} -f dropbox-bin
-%{__install} -m0755 dbcli.py %{buildroot}%{_bindir}/dbcli
-%{__rm} -f dbcli.py
-%{__install} -m0755 dropboxdir.py %{buildroot}%{_bindir}/dropboxdir
-%{__rm} -f dropboxdir.py
+%{__install} -Dp -m0755 dropbox-bin %{buildroot}%{_bindir}/dropbox
+%{__install} -Dp -m0755 dbcli.py %{buildroot}%{_bindir}/dbcli
+%{__install} -Dp -m0755 dropboxdir.py %{buildroot}%{_bindir}/dropboxdir
 
 # finally, install everything else
-%{__install} -d %{buildroot}%{_libexecdir}/dropbox
-%{__cp} -a ./* %{buildroot}%{_libexecdir}/dropbox
+%{__install} -d %{buildroot}%{_libexecdir}/dropbox/
+%{__cp} -a ./* %{buildroot}%{_libexecdir}/dropbox/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %post
-if [ $1 -lt 2 ]; then
-    /sbin/chkconfig --add dropbox 2>&1 >/dev/null
+if (( $1 < 2 )); then
+    /sbin/chkconfig --add dropbox &>/dev/null || :
 fi
 /usr/bin/chcon -u system_u -t initrc_exec_t /etc/init.d/dropbox
 /usr/bin/chcon -u system_u -t etc_t /etc/sysconfig/dropbox
 
-
 %preun
-if [ $1 -eq 0 ]; then
-    /sbin/chkconfig --del dropbox 2>&1 >/dev/null
+if (( $1 == 0 )); then
+    /sbin/chkconfig --del dropbox &>/dev/null || :
 fi
 
 %files
 %defattr(-, root, root, 0755)
 %doc ACKNOWLEDGEMENTS VERSION
-%{_bindir}/*
-%{_libexecdir}/dropbox
-%config(noreplace) %{_sysconfdir}/init.d/*
-%config(noreplace) %{_sysconfdir}/sysconfig/*
+#doc %{_mandir}/man1/dropbox.1*
+%config(noreplace) %{_sysconfdir}/sysconfig/dropbox
+%config %{_sysconfdir}/init.d/dropbox
+%{_bindir}/dbcli
+%{_bindir}/dropbox
+%{_bindir}/dropboxdir
+%{_libexecdir}/dropbox/
 
 %changelog
+* Tue Apr 26 2011 Dag Wieers <dag@wieers.com> - 1.1.27-1
+- Updated to release 1.1.27.
+
 * Fri Sep 03 2010 Yury V. Zaytsev <yury@shurup.com> - 0.7.110-3
 - Changed ExclusiveArch to include all ix86 flavors.
 
