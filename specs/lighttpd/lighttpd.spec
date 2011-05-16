@@ -10,13 +10,14 @@
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
 Version: 1.4.28
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.lighttpd.net/
 
 Source: http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-%{version}.tar.bz2
-Patch0: lighttpd-1.4.27-defaultconf.patch
+Patch0: lighttpd-1.4.28-defaultconf.patch
+Patch1: lighttpd-1.4.28-vhostinclude.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: pcre-devel, bzip2-devel, zlib-devel, readline-devel
@@ -68,6 +69,7 @@ recompile PHP yourself.
 %prep
 %setup
 %patch0 -p1 -b .defaultconf
+%patch1 -p1 -b .vhostinclude
 
 %{__cat} <<EOF >lighttpd.logrotate
 %{_localstatedir}/log/lighttpd/*log {
@@ -117,7 +119,7 @@ EOF
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/lighttpd/conf.d/
 %{__cp} -av doc/config/conf.d/*.conf %{buildroot}%{_sysconfdir}/lighttpd/conf.d/
 
-%{__install} -Dp -m0640 doc/config/vhosts.d/vhosts.template %{buildroot}%{_sysconfdir}/lighttpd/vhosts.d/vhosts.template
+%{__install} -Dp -m0640 doc/config/vhosts.d/template.conf %{buildroot}%{_sysconfdir}/lighttpd/vhosts.d/template.conf
 
 ### Install our own logrotate entry
 %{__install} -Dp -m0644 lighttpd.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/lighttpd
@@ -197,6 +199,10 @@ fi
 %{_libdir}/lighttpd/mod_fastcgi.so
 
 %changelog
+* Mon May 16 2011 Steve Huff <shuff@vecna.org> - 1.4.28-2
+- Config now includes vhosts.d/* by default.
+- Updated defaultconf.patch for 1.4.28(???)
+
 * Sun Aug 22 2010 Dag Wieers <dag@wieers.com> - 1.4.28-1
 - Updated to release 1.4.28.
 

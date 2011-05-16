@@ -1,0 +1,85 @@
+diff -Naur lighttpd-1.4.28-orig/doc/config/lighttpd.conf lighttpd-1.4.28/doc/config/lighttpd.conf
+--- lighttpd-1.4.28-orig/doc/config/lighttpd.conf	2010-07-11 13:01:32.000000000 -0400
++++ lighttpd-1.4.28/doc/config/lighttpd.conf	2011-05-16 09:34:56.037224679 -0400
+@@ -421,6 +421,6 @@
+ ## custom includes like vhosts.
+ ##
+ #include "conf.d/config.conf"
+-#include_shell "cat /etc/lighttpd/vhosts.d/*.conf"
++include_shell "cat /etc/lighttpd/vhosts.d/*.conf"
+ ##
+ #######################################################################
+diff -Naur lighttpd-1.4.28-orig/doc/config/vhosts.d/template.conf lighttpd-1.4.28/doc/config/vhosts.d/template.conf
+--- lighttpd-1.4.28-orig/doc/config/vhosts.d/template.conf	1969-12-31 19:00:00.000000000 -0500
++++ lighttpd-1.4.28/doc/config/vhosts.d/template.conf	2011-05-16 09:36:03.097253248 -0400
+@@ -0,0 +1,33 @@
++#######################################################################
++##
++## For more examples check:
++##
++## http://www.lighttpd.net/documentation/configuration.html#conditional-configuration
++##
++# $HTTP["host"] == "download.example.com" {
++#   var.server_name = "download.example.com"
++# 
++#   server.name = server_name
++#   ##
++#   ## use trigger before download
++#   ## 
++#   include "conf.d/trigger_b4_dl.conf"
++# 
++#   server.document-root = vhosts_dir + "/example.com/download/htdocs"
++#   ##
++#   ## use a seperate access log file
++#   ## At the moment you cant have different error log files.
++#   ##
++#   accesslog.filename          = log_root + "/" + server_name "/access.log"
++# }
++# 
++# $SERVER["socket"] == "127.0.0.1:443" {
++#   server.name = "localhost"
++#   ssl.pemfile = "/etc/ssl/private/lighttpd-localhost.pem"
++#   ssl.engine  = "enable"
++# 
++#   server.document-root = vhosts_dir + "/ssl-localhost/pages/"
++# }
++
++##
++#######################################################################
+diff -Naur lighttpd-1.4.28-orig/doc/config/vhosts.d/vhosts.template lighttpd-1.4.28/doc/config/vhosts.d/vhosts.template
+--- lighttpd-1.4.28-orig/doc/config/vhosts.d/vhosts.template	2010-07-11 13:01:32.000000000 -0400
++++ lighttpd-1.4.28/doc/config/vhosts.d/vhosts.template	1969-12-31 19:00:00.000000000 -0500
+@@ -1,33 +0,0 @@
+-#######################################################################
+-##
+-## For more examples check:
+-##
+-## http://www.lighttpd.net/documentation/configuration.html#conditional-configuration
+-##
+-$HTTP["host"] == "download.example.com" {
+-  var.server_name = "download.example.com"
+-
+-  server.name = server_name
+-  ##
+-  ## use trigger before download
+-  ## 
+-  include "conf.d/trigger_b4_dl.conf"
+-
+-  server.document-root = vhosts_dir + "/example.com/download/htdocs"
+-  ##
+-  ## use a seperate access log file
+-  ## At the moment you cant have different error log files.
+-  ##
+-  accesslog.filename          = log_root + "/" + server_name "/access.log"
+-}
+-
+-$SERVER["socket"] == "127.0.0.1:443" {
+-  server.name = "localhost"
+-  ssl.pemfile = "/etc/ssl/private/lighttpd-localhost.pem"
+-  ssl.engine  = "enable"
+-
+-  server.document-root = vhosts_dir + "/ssl-localhost/pages/"
+-}
+-
+-##
+-#######################################################################
