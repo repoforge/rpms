@@ -3,7 +3,7 @@
 
 Summary: Lossless LZMA-based data compression
 Name: lzip
-Version: 1.11
+Version: 1.12
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -60,6 +60,9 @@ fi
 %{_bindir}/lziprecover
 
 %changelog
+* Fri May 13 2011 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Mon Sep 27 2010 Dag Wieers <dag@wieers.com> - 1.11-1
 - Updated to release 1.11.
 
