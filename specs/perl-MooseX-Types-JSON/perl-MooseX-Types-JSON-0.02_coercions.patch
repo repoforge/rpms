@@ -1,0 +1,65 @@
+diff -Naur -x '*.git*' MooseX-Types-JSON-0.02-orig/lib/MooseX/Types/JSON.pm MooseX-Types-JSON-0.02/lib/MooseX/Types/JSON.pm
+--- MooseX-Types-JSON-0.02-orig/lib/MooseX/Types/JSON.pm	2009-10-25 17:06:38.000000000 -0400
++++ MooseX-Types-JSON-0.02/lib/MooseX/Types/JSON.pm	2011-05-17 14:54:31.194682839 -0400
+@@ -26,6 +26,8 @@
+ 'relaxed' see L<JSON::XS>. All the heavy lifting in the background is also
+ done by L<JSON::XS>.
+ 
++Coercions from Defined types are included.
++
+ =over
+ 
+ =item * JSON
+@@ -48,11 +50,19 @@
+   where { ref( eval { JSON::XS->new->decode($_) } ) ne '' },
+   message { "Must be valid JSON" };
+ 
++coerce JSON,
++  from 'Defined',
++    via { JSON::XS->new->allow_nonref->encode($_) };
++
+ subtype relaxedJSON,
+   as "Str",
+   where { ref( eval { JSON::XS->new->relaxed->decode($_) } ) ne '' },
+   message { "Must be at least relaxed JSON" };
+ 
++coerce relaxedJSON,
++  from 'Defined',
++    via { JSON::XS->new->allow_nonref->encode($_) };
++
+ =head1 AUTHOR
+ 
+ Michael Langner, C<< <mila at cpan.org> >>
+diff -Naur -x '*.git*' MooseX-Types-JSON-0.02-orig/t/02-coercions.t MooseX-Types-JSON-0.02/t/02-coercions.t
+--- MooseX-Types-JSON-0.02-orig/t/02-coercions.t	1969-12-31 19:00:00.000000000 -0500
++++ MooseX-Types-JSON-0.02/t/02-coercions.t	2011-05-17 15:05:21.624171269 -0400
+@@ -0,0 +1,29 @@
++use Test::More tests => 4;
++
++{
++    package Foo;
++
++    use Moose;
++    use Moose::Util::TypeConstraints;
++    use MooseX::Types::JSON qw( JSON relaxedJSON );
++    
++    has json_strict  => ( is => 'rw', isa => JSON, coerce => 1        );
++    has json_relaxed => ( is => 'rw', isa => relaxedJSON, coerce => 1 );
++}
++
++my %json    = ( 'foo' => 'bar', 'answer' => '42' );
++my %nojson  = ( );
++
++my $foo = Foo->new;
++
++eval { $foo->json_strict(\%json) };
++ok( $@ eq "", "hash => strict" );
++
++eval { $foo->json_relaxed(\%json) };
++ok( $@ eq "", "hash => relaxed" );
++
++eval { $foo->json_strict(\%nojson) };
++ok( $@ eq "", "nohash => strict" );
++
++eval { $foo->json_relaxed(\%nojson) };
++ok( $@ eq "", "nohash => relaxed" );

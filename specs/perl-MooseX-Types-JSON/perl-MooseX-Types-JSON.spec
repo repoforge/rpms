@@ -10,12 +10,13 @@
 Summary: JSON datatype for Moose
 Name: perl-MooseX-Types-JSON
 Version: 0.02
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: perl
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MooseX-Types-JSON
 
 Source: http://search.cpan.org/CPAN/authors/id/M/MI/MILA/MooseX-Types-JSON-%{version}.tar.gz
+Patch0: perl-MooseX-Types-JSON-0.02_coercions.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -31,9 +32,13 @@ Requires: perl(MooseX::Types) >= 0.15
 
 
 %description
+String type constraints that match valid and relaxed JSON. For the meaning of
+'relaxed' see JSON::XS. All the heavy lifting in the background is also done by
+JSON::XS.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -58,5 +63,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/MooseX/Types/JSON.pm
 
 %changelog
+* Tue Sep 27 2011 Steve Huff <shuff@vecna.org> - 0.02-2
+- Included type coercions patch (submitted upstream).
+
 * Fri Apr 16 2010 Christoph Maser <cmr.financial.com> - 0.02-1
 - initial package
