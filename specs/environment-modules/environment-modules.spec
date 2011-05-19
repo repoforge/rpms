@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: <modules-interest$lists,sourceforge,net>
 
+### EL6 ships with environment-modules-3.2.7b-6.el6
+%{?el6:# Tag: rfx}
+
 %define real_name modules
 %define real_version 3.2.8
 
@@ -26,7 +29,6 @@ BuildRequires: make
 BuildRequires: man
 BuildRequires: tcl-devel
 BuildRequires: tclx-devel
-BuildRequires: rpm-macros-rpmforge
 Requires: procps
 
 %description
