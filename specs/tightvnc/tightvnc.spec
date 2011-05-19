@@ -2,38 +2,29 @@
 # Authority: dag
 # Upstream: <vnc-tight-list$lists,sf,net>
 
-
-%{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
 %{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
 
-%{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
-%{?rh6:%define _without_freedesktop 1}
 
 %define desktop_vendor rpmforge
 
 Summary: Graphical remote administration system
 Name: tightvnc
-Version: 1.3.9
-Release: 3%{?dist}
+Version: 1.3.10
+Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tightvnc.com/
 
-Source: http://dl.sf.net/vnc-tight/tightvnc-%{version}_unixsrc.tar.bz2
+Source: http://www.tightvnc.com/download/%{version}/tightvnc-%{version}_unixsrc.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildPrereq: /usr/bin/perl, tcp_wrappers
-BuildRequires: zlib-devel, libjpeg-devel
+BuildRequires: /usr/bin/perl
+BuildRequires: libjpeg-devel
+BuildRequires: tcp_wrappers
+BuildRequires: zlib-devel
 %{!?_without_modxorg:BuildRequires: libX11-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 #Obsoletes: vnc
@@ -54,7 +45,8 @@ Summary: TightVNC server
 Group: User Interface/X
 
 Requires: bash >= 2.0
-Prereq: /sbin/chkconfig, /sbin/service
+Requires: /sbin/chkconfig
+Requires: /sbin/service
 #Obsoletes: vnc-server
 Conflicts: vnc-server
 
@@ -205,7 +197,7 @@ cd Xvnc
 %configure
 %{__make} CDEBUGFLAGS="%{optflags}" \
     EXTRA_DEFINES="-DUSE_LIBWRAP=1" \
-    EXTRA_LIBRARIES="-lwrap -lnss_nis"
+    EXTRA_LIBRARIES="-lwrap -lnss_nis -L%{_libdir}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -268,6 +260,9 @@ fi
 %{_datadir}/vnc/
 
 %changelog
+* Mon May 16 2011 Dag Wieers <dag@wieers.com> - 1.3.10-1
+- Updated to release 1.3.10.
+
 * Thu Apr 10 2008 Dag Wieers <dag@wieers.com> - 1.3.9-3
 - Improved sysv script to include VNCSERVERARGS. (Arturo Díaz Rosemberg)
 
