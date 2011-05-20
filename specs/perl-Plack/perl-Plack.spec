@@ -3,8 +3,12 @@
 # Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,com>
 # ExcludeDist: el3 el4
 
+# el6 ships with perl-Devel-StackTrace-1.22, we need a later version
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
+
 
 %define real_name Plack
 
@@ -70,7 +74,7 @@ are and why we need them.
 %{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.42.*/ && s/6\.42/6.30/' Makefile.PL}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL --skipdeps INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -93,6 +97,7 @@ are and why we need them.
 %{perl_vendorlib}/Plack/*
 %{perl_vendorlib}/HTTP/Message/*
 %{perl_vendorlib}/HTTP/Server/*
+%{perl_vendorlib}/auto/share/dist/Plack/
 %{_bindir}/*
 #%exclude %{perl_archlib}/perllocal.pod
 %exclude %{perl_vendorarch}/auto/*/.packlist
