@@ -1,0 +1,25 @@
+=== modified file 'terminatorlib/terminal.py'
+--- terminatorlib/terminal.py	2011-05-11 12:36:47 +0000
++++ terminatorlib/terminal.py	2011-05-20 10:05:43 +0000
+@@ -1288,10 +1288,16 @@
+     def set_font(self, fontdesc):
+         """Set the font we want in VTE"""
+         antialias = self.config['antialias']
+-        if antialias:
+-            antialias = vte.ANTI_ALIAS_FORCE_ENABLE
+-        else:
+-            antialias = vte.ANTI_ALIAS_FORCE_DISABLE
++        try:
++            if antialias:
++                antialias = vte.ANTI_ALIAS_FORCE_ENABLE
++            else:
++                antialias = vte.ANTI_ALIAS_FORCE_DISABLE
++        except AttributeError:
++            if antialias:
++                antialias = 1
++            else:
++                antialias = 2
+         self.vte.set_font_full(fontdesc, antialias)
+ 
+     def get_cursor_position(self):
+

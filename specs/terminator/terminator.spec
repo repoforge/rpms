@@ -9,18 +9,20 @@
 Summary: Arrange terminals in grids
 Name: terminator
 Version: 0.95
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://www.tenshu.net/terminator/ 
 
 Source: http://launchpad.net/terminator/trunk/%{version}/+download/terminator-%{version}.tar.gz
+Patch0: terminator-vte-el5-font-fix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 BuildRequires: gtk2-devel
+BuildRequires: intltool
 BuildRequires: python-devel
 BuildRequires: rpm-macros-rpmforge
 Requires: desktop-file-utils
@@ -44,7 +46,9 @@ in different directions with useful features for sysadmins and other users.
 
 %prep
 %setup
+%{?el5:%patch0}
 %{__sed} -i '/#! \?\/usr.*/d' terminatorlib/*.py
+
 
 %build
 %{__python} setup.py build
@@ -81,6 +85,10 @@ desktop-file-install --vendor "" \
 %{_iconsbasedir}/*/*/*.svg
 
 %changelog
+* Fri May 20 2011 Steve Huff <shuff@vecna.org> - 0.95-3
+- Included Mike Miller's VTE font fix for el5 (bug#690191)
+- Captured build dependency on intltool.
+
 * Tue Dec 07 2010 Steve Huff <shuff@vecna.org> - 0.95-2
 - Captured Python dependencies more precisely.
 
