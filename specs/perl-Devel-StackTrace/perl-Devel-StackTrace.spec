@@ -6,6 +6,10 @@
 ### EL6 ships with perl-Devel-StackTrace-1.22-4.el6
 %{?el6:# Tag: rfx}
 
+%{?el6:%define _with_epoch 1}
+
+%define real_version %{?_with_epoch:%{version}}%{!?_with_epoch:1.26}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -13,9 +17,9 @@
 
 Summary: Stack trace and stack trace frame objects
 Name: perl-Devel-StackTrace
-%define real_version 1.26
-Version: 1.2600
-Release: 1%{?dist}
+Version: %{?_with_epoch:1.26}%{!?_with_epoch:1.2600}
+%{?_with_epoch:Epoch: 1}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Devel-StackTrace/
@@ -68,6 +72,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Devel/StackTrace.pm
 
 %changelog
+* Fri May 20 2011 Steve Huff <shuff@vecna.org> - 1.26-2
+- RFX for el6.
+- RH has added an Epoch, so we need to as well if we are going to clobber it.
+
 * Thu Dec 16 2010 Steve Huff <shuff@vecna.org> - 1.2600-1
 - Updated to version 1.26.
 

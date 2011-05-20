@@ -3,9 +3,6 @@
 # Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 # ExcludeDist: el3 el4
 
-### EL6 ships with perl-Devel-StackTrace-1.22-4.el6
-%{?el6:# Tag: rfx}
-
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -13,7 +10,7 @@
 
 Summary: Displays stack trace in HTML
 Name: perl-Devel-StackTrace-AsHTML
-Version: 0.09
+Version: 0.11
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -73,5 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 # %{perl_vendorlib}/Devel/StackTrace/AsHTML/
 
 %changelog
+* Fri May 20 2011 Steve Huff <shuff@vecna.org> - 0.11-1
+- Updated to version 0.11.
+- Removed rfx tag for el6.
+
 * Thu Dec 16 2010 Steve Huff <shuff@vecna.org> - 0.09-1
 - Initial package.
