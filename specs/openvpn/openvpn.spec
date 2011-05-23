@@ -47,12 +47,12 @@ if pkg-config openssl; then
     export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
 fi
 %configure \
+    --disable-dependency-tracking \
     --program-prefix="%{?_program_prefix}" \
     --enable-iproute2 \
     %{?_with_pkcs11:--enable-pkcs11} \
     %{!?_with_pkcs11:--disable-pkcs11} \
-    --enable-password-save \
-    --enable-pthread
+    --enable-password-save 
 %{__make} %{?_smp_mflags}
 
 ### Build plugins
@@ -79,6 +79,9 @@ done
 
 ### Disable find-requires for documentation
 find contrib/ easy-rsa/ sample-*/ -type f -exec %{__chmod} -x {} \;
+
+### Clean up any straggling documentation
+%{__rm} -rf %{buildroot}%{_docdir}/openvpn
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -108,7 +111,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
-%doc contrib/ easy-rsa/ plugin/README.* sample-*/
+%doc contrib/ easy-rsa/ plugin/README.* sample-*/ management/*
 %doc %{_mandir}/man8/openvpn.8*
 %dir %{_sysconfdir}/openvpn/
 %config %{_initrddir}/openvpn
