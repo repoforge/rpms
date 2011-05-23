@@ -23,7 +23,7 @@
 #   bzrrc: release candidate version, if any, line starts with % for rc, # for stable releas (no %).
 #   release: rpm subrelease (0.N for rc candidates, N for stable releases)
 %define bzrmajor 2.3
-%define bzrminor .1
+%define bzrminor .3
 #define bzrrc rc2
 %define release 1
 
@@ -103,6 +103,9 @@ rm -rf $RPM_BUILD_ROOT
 %{?_with_egginfo:%{python_sitearch}/bzr-*.egg-info}
 
 %changelog
+* Mon May 23 2011 Steve Huff <shuff@vecna.org> - 2.3.3-1
+- Updated to 2.3.3 release.
+
 * Thu Mar 17 2011 Steve Huff <shuff@vecna.org> - 2.3.1-1
 - Updated to 2.3.1 release (needs an updated bzr)
 - Added conditionals for el6 support.
