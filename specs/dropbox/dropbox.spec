@@ -21,7 +21,7 @@ Patch0: %{name}_parentdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # this contains binaries, don't autoprov
-#AutoReqProv: no
+AutoReqProv: no
 
 BuildRequires: dos2unix
 BuildRequires: rpm-macros-rpmforge
