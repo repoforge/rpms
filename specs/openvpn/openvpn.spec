@@ -7,7 +7,7 @@
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
-Version: 2.1.4
+Version: 2.2.0
 Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -116,6 +116,9 @@ fi
 %{_sbindir}/openvpn
 
 %changelog
+* Mon May 23 2011 Steve Huff <shuff@vecna.org> - 2.2.0-1
+- Updated to version 2.2.0.
+
 * Fri Feb 18 2011 Denis Fateyev <denis@fateyev.com> - 2.1.4-2
 - Some spec cleanup, added some patches from Fedora
 
