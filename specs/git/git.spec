@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.5.1
+Version: 1.7.5.2
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -395,6 +395,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Mon May 23 2011 Steve Huff <shuff@vecna.org> - 1.7.5.2-1
+- Updated to release 1.7.5.2.
+
 * Tue May 10 2011 Steve Huff <shuff@vecna.org> - 1.7.5.1-1
 - Updated to release 1.7.5.1.
 
