@@ -1,0 +1,21 @@
+diff -Naur lighttpd-1.4.28-orig/doc/config/lighttpd.conf lighttpd-1.4.28/doc/config/lighttpd.conf
+--- lighttpd-1.4.28-orig/doc/config/lighttpd.conf	2010-07-11 13:01:32.000000000 -0400
++++ lighttpd-1.4.28/doc/config/lighttpd.conf	2011-05-16 09:47:10.463156521 -0400
+@@ -90,7 +90,7 @@
+ ##
+ ## Use IPv6?
+ ##
+-server.use-ipv6 = "enable"
++server.use-ipv6 = "disable"
+ 
+ ##
+ ## bind to a specific IP
+@@ -112,7 +112,7 @@
+ ##
+ ## Document root
+ ##
+-server.document-root = server_root + "/htdocs"
++server.document-root = server_root + "/lighttpd"
+ 
+ ##
+ ## The value for the "Server:" response field.
