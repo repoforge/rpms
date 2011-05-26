@@ -14,7 +14,7 @@
 
 Summary: Perl Superglue for Web frameworks and servers (PSGI toolkit)
 Name: perl-Plack
-Version: 0.9978
+Version: 0.9979
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -103,5 +103,8 @@ are and why we need them.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Thu May 26 2011 Steve Huff <shuff@vecna.org> - 0.9979-1
+- Updated to version 0.9979.
+
 * Mon May 16 2011 Steve Huff <shuff@vecna.org> - 0.9978-1
 - Initial package.
