@@ -7,7 +7,7 @@
 
 Summary: console music player
 Name: cmus
-Version: 2.4.0
+Version: 2.4.1
 Release: 1%{?dist}
 Group: Applications/Multimedia
 License: GPLv2+
@@ -72,6 +72,9 @@ rm -rf %{buildroot}
 %{_datadir}/cmus
 
 %changelog
+* Fri May 27 2011 Johannes Weißl <jargon@molb.org> - 2.4.1-1
+- New upstream release
+
 * Mon Apr 25 2011 Johannes Weißl <jargon@molb.org> - 2.4.0-1
 - New upstream release
 
