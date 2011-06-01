@@ -1,12 +1,15 @@
 # $Id$
 # Authority: dag
+# ExclusiveDist: el3 el4 el5 el6
 
-# ExcludeDist: fc3
+# sticknotes_applet is included in el6 gnome-applets-2.28.0-7
+%{?el6:# Tag: rfx}
+
 
 Summary: Simple sticky notes applet for the GNOME desktop
 Name: stickynotes_applet
 Version: 1.2.3
-Release: 0.2%{?dist}
+Release: 0.3%{?dist}
 License: GPL
 Group: User Interface/Desktops
 URL: http://loban.caltech.edu/stickynotes/
@@ -67,6 +70,9 @@ scrollkeeper-update -q || :
 %{_datadir}/stickynotes/
 
 %changelog
+* Wed Jun 01 2011 Steve Huff <shuff@vecna.org> - 1.2.3-0.3
+- Tag as rfx for el6.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.2.3-0.2
 - Rebuild for Fedora Core 5.
 
