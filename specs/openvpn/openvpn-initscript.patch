@@ -40,7 +40,7 @@
 +        # Handle backward compatibility, see Red Hat Bugzilla ID #458594
 +        script_security=''
 +        if [ -z "$( grep '^[[:space:]]*script-security[[:space:]]' $c )" ]; then
-+            script_security-"--script-security 2"
++            script_security="--script-security 2"
 +        fi
 +	    $openvpn --daemon --writepid $piddir/$bn.pid --config $c --cd $work $script_security
  	    if [ $? = 0 ]; then
