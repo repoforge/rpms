@@ -10,7 +10,7 @@
 Summary: Nagios status monitor for your desktop
 Name: nagstamon
 Version: 0.9.7.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Utilities
 URL: http://nagstamon.ifw-dresden.de/
@@ -32,6 +32,7 @@ Requires: gnome-python2-libegg
 Requires: openssh
 Requires: pygtk2
 Requires: python >= 2.5
+Requires: python-setuptools
 Requires: rdesktop
 Requires: sox
 Requires: vnc
@@ -88,6 +89,9 @@ desktop-file-install --dir %{buildroot}%{_desktopdir} \
 %{python_sitelib}/nagstamon-*-py*.egg-info
 
 %changelog
+* Mon Jun 06 2011 Steve Huff <shuff@vecna.org> - 0.9.7.1-2
+- Captured missing dependency on python-setuptools.
+
 * Wed Jun 01 2011 Steve Huff <shuff@vecna.org> - 0.9.7.1-1
 - Initial package.
 
