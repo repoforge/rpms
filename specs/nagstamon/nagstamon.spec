@@ -17,6 +17,7 @@ URL: http://nagstamon.ifw-dresden.de/
 
 Source: http://downloads.sourceforge.net/project/nagstamon/nagstamon/nagstamon%20%{version}/nagstamon_%{version}.tar.gz
 Source1: nagstamon.desktop
+Patch0: nagstamon-0.9.7.1_sf3309166.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -47,6 +48,7 @@ sound. Hosts and services can be filtered by category and regular expressions.
 
 %prep
 %setup -n Nagstamon
+%patch0 -p2
 
 %build
 %{__python} setup.py build
