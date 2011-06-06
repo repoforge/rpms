@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Nagstamon
+Comment=Nagios status monitor
+GenericName=Nagios status monitor for your desktop
+Exec=nagstamon.py
+Icon=nagstamon
+Terminal=false
+StartupNotify=true
+Categories=System;Monitor;
+
