@@ -7,7 +7,7 @@
 
 Summary: Install an accessor subroutine
 Name: perl-Class-Accessor-Installer
-Version: 1.100820
+Version: 1.100880
 Release: 1%{?dist}
 License: perl
 Group: Applications/CPAN
@@ -69,6 +69,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Installer.pm
 
 %changelog
+* Tue Jun 07 2011 Steve Huff <shuff@vecna.org> - 1.100880-1
+- Updated to release 1.100880.
+
 * Fri Mar 26 2010 Christoph Maser <cmr@financial.com> - 1.100820-1
 - initial package
 
