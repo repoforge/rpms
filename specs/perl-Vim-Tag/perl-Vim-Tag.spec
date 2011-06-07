@@ -1,6 +1,8 @@
 # $Id$
 # Authority: shuff
 # Upstream: Marcel Gruenauer <marcel$cpan,org>
+# ExcludeDist: el3 el4 el5
+# Rationale: requires Perl 5.10
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -19,7 +21,7 @@ Source: http://search.cpan.org/CPAN/authors/id/M/MA/MARCEL/Vim-Tag-%{version}.ta
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl
+BuildRequires: perl >= 5.10
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::Accessor::Constructor)
 BuildRequires: perl(English)
@@ -35,7 +37,7 @@ BuildRequires: perl(UNIVERSAL::require)
 BuildRequires: perl(constant)
 BuildRequires: perl(parent)
 BuildRequires: rpm-macros-rpmforge
-Requires: perl
+Requires: perl >= 5.10
 Requires: perl(Class::Accessor::Constructor)
 Requires: perl(File::Find)
 Requires: perl(File::Slurp)
