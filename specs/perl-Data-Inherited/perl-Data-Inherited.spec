@@ -83,5 +83,5 @@ to accumulate hierarchy-wide list and hash results.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
-* Tue Jun 07 2011 Steve Huff <shuff@vecna.org> - 100860-1
+* Tue Jun 07 2011 Steve Huff <shuff@vecna.org> - 1.100860-1
 - Initial package.
