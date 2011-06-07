@@ -23,7 +23,7 @@ BuildRequires: perl >= 5.8.0
 BuildRequires: perl(Carp)
 BuildRequires: perl(Class::Accessor)
 BuildRequires: perl(Class::Accessor::Complex)
-BuildRequires: perl(Class::Accessor::Installer)
+BuildRequires: perl(Class::Accessor::Installer) >= 1.100880
 BuildRequires: perl(Data::Inherited)
 BuildRequires: perl(English)
 BuildRequires: perl(ExtUtils::MakeMaker) >= 6.11
@@ -39,7 +39,7 @@ Requires: perl >= 5.8.0
 Requires: perl(Carp)
 Requires: perl(Class::Accessor)
 Requires: perl(Class::Accessor::Complex)
-Requires: perl(Class::Accessor::Installer)
+Requires: perl(Class::Accessor::Installer) >= 1.100880
 Requires: perl(Data::Inherited)
 Requires: perl(English)
 Requires: perl(File::Find)
