@@ -37,6 +37,7 @@ BuildRequires: perl(UNIVERSAL::require)
 BuildRequires: perl(constant)
 BuildRequires: perl(parent)
 BuildRequires: rpm-macros-rpmforge
+Requires: bash
 Requires: perl >= 5.10
 Requires: perl(Class::Accessor::Constructor)
 Requires: perl(File::Find)
@@ -70,6 +71,10 @@ programmable completion project.
 %{__make} pure_install
 #%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
 
+# install the Bash profile script
+%{__install} -m0755 -d %{buildroot}%{_sysconfdir}/profile.d/
+%{__install} -m0755 etc/ptags.sh %{buildroot}%{_sysconfdir}/profile.d/
+
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
 
@@ -83,6 +88,7 @@ programmable completion project.
 %{perl_vendorlib}/Vim/Tag.pm
 %{perl_vendorlib}/Vim/Tag/*
 %{_bindir}/*
+%{_sysconfdir}/profile.d/*
 #%exclude %{perl_archlib}/perllocal.pod
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
