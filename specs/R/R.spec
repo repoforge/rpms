@@ -39,7 +39,7 @@
 Summary: Language for data analysis and graphics
 Name: R
 Version: 2.13.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Engineering
 URL: http://www.r-project.org/
@@ -162,6 +162,8 @@ Requires: %{name} = %{version}-%{release}
 Requires: gcc-c++, gcc-objc, tetex-latex, texinfo 
 Requires: libpng-devel, libjpeg-devel, readline-devel, libtermcap-devel
 Requires: tcl-devel, tk-devel, pkgconfig
+%{?_with_gcc4:Requires: gcc-gfortran}
+%{?_with_g77:Requires: gcc4-gfortran}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -272,6 +274,9 @@ done
 %{_libdir}/libRmath.a
 
 %changelog
+* Fri Jun 10 2011 Steve Huff <shuff@vecna.org> - 2.13.0-2
+- Captured missing gfortran dependency in R-devel.
+
 * Tue Apr 26 2011 Steve Huff <shuff@vecna.org> - 2.13.0-1
 - Updated to release 2.13.0.
 - Fixes for el6.
