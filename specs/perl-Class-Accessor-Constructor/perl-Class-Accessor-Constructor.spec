@@ -9,7 +9,7 @@
 
 Summary: Constructor generator
 Name: perl-Class-Accessor-Constructor
-Version: 1.100880
+Version: 1.111590
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -93,5 +93,8 @@ Sub::Documentation.
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
+* Fri Jun 10 2011 Steve Huff <shuff@vecna.org> - 1.111590-1
+- Update to release 1.111590.
+
 * Tue Jun 07 2011 Steve Huff <shuff@vecna.org> - 1.100880-1
 - Initial package.
