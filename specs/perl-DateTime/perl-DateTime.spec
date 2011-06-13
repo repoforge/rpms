@@ -9,12 +9,12 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name DateTime
-%define real_version 0.53
+%define real_version 0.70
 
 Summary: Date and time objects
 Name: perl-DateTime
 Version: %{real_version}00
-Release: 2%{?dist}
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime/
@@ -22,18 +22,19 @@ URL: http://search.cpan.org/dist/DateTime/
 Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/DateTime-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{real_version}-%{release}-root
 
+BuildRequires: perl >= 5.8.1
 BuildRequires: perl(DateTime::Locale) >= 0.41
-BuildRequires: perl(DateTime::TimeZone) >= 0.59
-BuildRequires: perl(ExtUtils::CBuilder)
-BuildRequires: perl(Module::Build)
+BuildRequires: perl(DateTime::TimeZone) >= 1.09
+BuildRequires: perl(Math::Round)
+BuildRequires: perl(Module::Build) >= 0.3601
 BuildRequires: perl(Params::Validate) >= 0.76
-BuildRequires: perl(Pod::Man) >= 1.14
 BuildRequires: perl(Scalar::Util)
 BuildRequires: perl(Test::Exception)
-BuildRequires: perl(Test::More) >= 0.34
+BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Time::Local) >= 1.04
 Requires: perl(DateTime::Locale) >= 0.41
-Requires: perl(DateTime::TimeZone) >= 0.59
+Requires: perl(DateTime::TimeZone) >= 1.09
+Requires: perl(Math::Round)
 Requires: perl(Params::Validate) >= 0.76
 Requires: perl(Scalar::Util)
 Requires: perl(Time::Local) >= 1.04
@@ -72,9 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CREDITS Changes LICENSE MANIFEST META.yml README SIGNATURE TODO leaptab.txt
-%doc %{_mandir}/man3/DateTime.3pm*
-%doc %{_mandir}/man3/DateTime::*.3pm*
+%doc CREDITS Changes LICENSE MANIFEST META.json META.yml README 
+%doc SIGNATURE TODO leaptab.txt
+%doc %{_mandir}/man?/*
 %{perl_vendorarch}/DateTime.pm
 %{perl_vendorarch}/DateTimePP.pm
 %{perl_vendorarch}/DateTimePPExtra.pm
