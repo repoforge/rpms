@@ -228,7 +228,7 @@ EOF
 # Under certain circumstances, the sched_yield() function causes the ntop web 
 # server to lock up.  It shouldn't happen, but it does.  This option causes 
 # ntop to skip those calls, at a tiny performance penalty.
---disable-schedyield
+#--disable-schedyield
 
 # Disables "phone home" behavior
 --skip-version-check=yes
