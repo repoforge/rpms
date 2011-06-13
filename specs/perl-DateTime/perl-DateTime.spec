@@ -2,8 +2,9 @@
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-### EL6 ships with perl-DateTime-0.5300-1.el6
+### EL6 ships with perl-DateTime-1:0.5300-1.el6
 %{?el6:# Tag: rfx}
+%{?el6:%define _with_epoch 1}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -14,6 +15,7 @@
 Summary: Date and time objects
 Name: perl-DateTime
 Version: %{real_version}00
+%{?_with_epoch:Epoch: 1}
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -83,6 +85,10 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DateTime/
 
 %changelog
+* Mon Jun 13 2011 Steve Huff <shuff@vecna.org> - 1:0.7000-1
+- Updated to version 0.70.
+- Added Epoch in el6 because RH did.
+
 * Wed Mar 23 2011 Yury V. Zaytsev <yury@shurup.com> - 0.5300-2
 - Version bump to supersede 0.4305 (thanks to Matthew Vale!)
 
