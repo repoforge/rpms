@@ -41,6 +41,8 @@ Requires: perl(Params::Validate) >= 0.76
 Requires: perl(Scalar::Util)
 Requires: perl(Time::Local) >= 1.04
 
+Provides: perl(DateTime) = %{epoch}:%{version}
+
 %filter_from_requires /^perl*/d
 %filter_setup
 
