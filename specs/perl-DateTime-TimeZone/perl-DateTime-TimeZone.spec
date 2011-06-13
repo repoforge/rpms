@@ -55,13 +55,12 @@ tools/parse_olson.
 %{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.31.*/ && s/6\.3\d/6.30/' Makefile.PL}
 
 %build
-%{__perl} Build.PL --installdirs vendor --destdir %{buildroot}
-./Build
-./Build test
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
-./Build pure_install
+%{__make} pure_install
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -71,7 +70,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes LICENSE MANIFEST MANIFEST.base META.yml README SIGNATURE
+%doc Changes INSTALL LICENSE MANIFEST META.json META.yml README SIGNATURE
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/DateTime/
 %{perl_vendorlib}/DateTime/TimeZone/
