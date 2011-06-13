@@ -12,13 +12,13 @@
 
 Summary: Network traffic probe that shows the network usage
 Name: ntop
-Version: 4.0
+Version: 4.0.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.ntop.org/
 
-Source0: http://dl.sf.net/ntop/ntop-%{version}.tar.gz
+Source0: http://downloads.sourceforge.net/project/ntop/ntop/Stable/ntop-%{version}.tgz
 Source1: http://www.lua.org/ftp/lua-5.1.4.tar.gz
 Source2: http://www.maxmind.com/download/geoip/api/c/GeoIP.tar.gz
 Source3: http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
@@ -32,6 +32,7 @@ BuildRequires: automake
 BuildRequires: gcc-c++
 BuildRequires: gd-devel
 BuildRequires: gdbm-devel
+BuildRequires: geoip-devel
 BuildRequires: gettext
 BuildRequires: glib-devel
 BuildRequires: libtool
@@ -39,6 +40,7 @@ BuildRequires: libpcap
 BuildRequires: lua-devel
 BuildRequires: net-snmp-devel
 BuildRequires: openssl-devel
+BuildRequires: python-devel
 BuildRequires: rrdtool-devel
 BuildRequires: zlib-devel
 %{!?_without_libpcapdevel:BuildRequires: libpcap-devel}
@@ -238,14 +240,13 @@ EOF
 %{__rm} -f libtool.m4.in
 ./autogen.sh --noconfig
 %configure \
+    --disable-dependency-tracking \
     --program-prefix="%{?_program_prefix}" \
     --disable-static \
-    --enable-i18n \
-    --enable-largerrdpop \
+    --enable-fc \
+    --enable-jumbo-frames \
     --enable-mysql \
-    --enable-optimize \
     --enable-snmp \
-    --enable-sslv3 \
 %{!?_without_tcpwrappers:--with-tcpwrap}
 #   --with-pcap-include="%{_includedir}/pcap" \
 #   --enable-xmldump \
@@ -316,18 +317,24 @@ fi
 
 %defattr(-, ntop, nobody, 0775)
 %{_localstatedir}/ntop/
-%ghost %{_localstatedir}/ntop/addressQueue.db
-%ghost %{_localstatedir}/ntop/dnsCache.db
-%ghost %{_localstatedir}/ntop/fingerprint.db
-%ghost %{_localstatedir}/ntop/LsWatch.db
-%ghost %{_localstatedir}/ntop/macPrefix.db
-%ghost %{_localstatedir}/ntop/ntop_pw.db
-%ghost %{_localstatedir}/ntop/prefsCache.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/addressQueue.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/dnsCache.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/fingerprint.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/LsWatch.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/macPrefix.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/ntop_pw.db
+%ghost %attr(0644, ntop, nobody) %{_localstatedir}/ntop/prefsCache.db
 
 %exclude %{_libdir}/*.la
 #%exclude %{_libdir}/plugins/
 
 %changelog
+* Mon Jun 13 2011 Steve Huff <shuff@vecna.org> - 4.0.3-1
+- Updated to release 4.0.3.
+- Updated Source0 URL.
+- Updated configure args.
+- Captured geoip-devel and python-devel dependencies.
+
 * Tue Jul 20 2010 Dag Wieers <dag@wieers.com> - 4.0-1
 - Updated to release 4.0.
 
