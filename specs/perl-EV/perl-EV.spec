@@ -7,7 +7,7 @@
 
 %define real_name EV
 
-Summary: Perl module named EV
+Summary: Perl interface to libev
 Name: perl-EV
 Version: 4.03
 Release: 1%{?dist}
