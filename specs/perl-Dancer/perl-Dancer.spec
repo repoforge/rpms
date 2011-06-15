@@ -9,13 +9,13 @@
 
 Summary: A minimal-effort oriented web application framework
 Name: perl-Dancer
-Version: 1.3040
+Version: 1.3060
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://perldancer.org/
 
-Source: http://search.cpan.org/CPAN/authors/id/X/XS/XSAWYERX/Dancer-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/S/SU/SUKRIA/Dancer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -106,5 +106,8 @@ environments.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Wed Jun 15 2011 Steve Huff <shuff@vecna.org> - 1.3060-1
+- Update to version 1.3060.
+
 * Thu May 05 2011 Steve Huff <shuff@vecna.org> - 1.3040-1
 - Initial package.
