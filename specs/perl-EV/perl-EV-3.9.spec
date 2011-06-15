@@ -7,9 +7,9 @@
 
 %define real_name EV
 
-Summary: Perl interface to libev
+Summary: Perl module named EV
 Name: perl-EV
-Version: 4.03
+Version: 3.9
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -26,14 +26,13 @@ Requires: perl(common::sense)
 %filter_setup
 
 %description
-This module provides an interface to libev
-(http://software.schmorp.de/pkg/libev.html).
+perl-EV is a Perl module.
 
 %prep
 %setup -n %{real_name}-%{version}
 
 %build
-CFLAGS="%{optflags}" PERL_MM_USE_DEFAULT="1" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags} OPTIMIZE="%{optflags}"
 
 %install
@@ -43,25 +42,18 @@ CFLAGS="%{optflags}" PERL_MM_USE_DEFAULT="1" %{__perl} Makefile.PL INSTALLDIRS="
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
-# fix for stupid strip issue
-%{__chmod} -R u+w %{buildroot}/*
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
 %doc COPYING Changes MANIFEST META.yml README
-%doc %{_mandir}/man?/*
+%doc %{_mandir}/man3/EV*.3pm*
 %{perl_vendorarch}/auto/EV/
 %{perl_vendorarch}/EV.pm
 %{perl_vendorarch}/EV
 
 %changelog
-* Tue Jun 14 2011 Steve Huff <shuff@vecna.org> - 4.03-1
-- Updated to version 4.03.
-- Split off 3.9 specfile for convenience.
-
 * Tue Jan  5 2010 Christoph Maser <cmr@financial.com> - 3.9-1
 - Updated to version 3.9.
 

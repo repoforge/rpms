@@ -1,5 +1,5 @@
 # $Id$
-# Authority: matthias
+# Authority: shuff
 # Upstream: Marc Lehmann <schmorp@schmorp.de>
 # ExcludeDist: el3
 
@@ -11,12 +11,12 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
 %define real_name AnyEvent
-%define real_version 5.24
+%define real_version 5.34
 
 Summary: Framework for multiple event loops
 Name: perl-AnyEvent
-Version: 5.240
-Release: 2%{?dist}
+Version: %{real_version}0
+Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent/
@@ -24,23 +24,22 @@ URL: http://search.cpan.org/dist/AnyEvent/
 Source: http://search.cpan.org/CPAN/authors/id/M/ML/MLEHMANN/AnyEvent-%{real_version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: noarch
 BuildRequires: perl >= 5.8.1
-# From yaml build_requires
 BuildRequires: perl(ExtUtils::MakeMaker)
-# From yaml recommends
-#BuildRequires: perl(Async::Interrupt)
-BuildRequires: perl(EV) >= 3.05
+BuildRequires: perl(Async::Interrupt) >= 1
+BuildRequires: perl(EV) >= 4
 BuildRequires: perl(Guard) >= 1.02
 BuildRequires: perl(JSON) >= 2.09
 BuildRequires: perl(JSON::XS) >= 2.2
 BuildRequires: perl(Net::SSLeay) >= 1.33
-#Requires: perl(Async::Interrupt)
-Requires: perl(EV) >= 3.05
+Requires: perl(Async::Interrupt) >= 1
+Requires: perl(EV) >= 4
 Requires: perl(Guard) >= 1.02
 Requires: perl(JSON) >= 2.09
 Requires: perl(JSON::XS) >= 2.2
 Requires: perl(Net::SSLeay) >= 1.33
+
+Provides: perl(AnyEvent) = %{version}
 
 %filter_from_requires /^perl(EV)*/d
 %filter_setup
@@ -53,7 +52,7 @@ AnyEvent provides a framework for multiple event loops.
 Summary: Perl AnyEvent implementation for perl-EV and libev
 Group: Applications/CPAN
 Requires: %{name} = %{version}-%{release}
-Requires: perl(EV)
+Requires: perl(EV) >= 4
 
 %description EV
 This subpackage contains the AnyEvent implementation for perl-EV and libev.
@@ -145,65 +144,72 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc COPYING Changes MANIFEST META.yml README eg/
+%doc COPYING Changes MANIFEST META.json README eg/
 %doc %{_mandir}/man3/AnyEvent.3pm*
 %doc %{_mandir}/man3/AE.3pm*
 %doc %{_mandir}/man3/AnyEvent::*.3pm*
-%dir %{perl_vendorlib}/AnyEvent/
-%{perl_vendorlib}/AE.pm
-%{perl_vendorlib}/AnyEvent.pm
-%{perl_vendorlib}/AnyEvent/*.pm
-%{perl_vendorlib}/AnyEvent/Impl/Perl.pm
-%{perl_vendorlib}/AnyEvent/Intro.pod
-%{perl_vendorlib}/AnyEvent/Util/idna.pl
-%{perl_vendorlib}/AnyEvent/Util/uts46data.pl
-%exclude %{perl_vendorlib}/AnyEvent/Impl/EV.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/Event.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/Glib.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/IOAsync.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/Irssi.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/POE.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/Qt.pm
-%exclude %{perl_vendorlib}/AnyEvent/Impl/Tk.pm
+%dir %{perl_vendorarch}/AnyEvent/
+%{perl_vendorarch}/AE.pm
+%{perl_vendorarch}/AnyEvent.pm
+%{perl_vendorarch}/AnyEvent/*.pm
+%{perl_vendorarch}/AnyEvent/Impl/Perl.pm
+%{perl_vendorarch}/AnyEvent/Intro.pod
+%{perl_vendorarch}/AnyEvent/FAQ.pod
+%{perl_vendorarch}/AnyEvent/Util/idna.pl
+%{perl_vendorarch}/AnyEvent/Util/uts46data.pl
+%{perl_vendorarch}/AnyEvent/constants.pl
+%exclude %{perl_vendorarch}/AnyEvent/Impl/EV.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/Event.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/EventLib.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/Glib.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/IOAsync.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/Irssi.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/POE.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/Qt.pm
+%exclude %{perl_vendorarch}/AnyEvent/Impl/Tk.pm
+# the Cocoa implementationm is not relevant to us
+%exclude %{perl_vendorarch}/AnyEvent/Impl/Cocoa.pm
 
 %files EV
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/EV.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/EV.pm
 
 %files Event
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/Event.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/Event.pm
 
 %files EventLib
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/EventLib.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/EventLib.pm
 
 %files Glib
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/Glib.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/Glib.pm
 
 %files IOAsync
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/IOAsync.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/IOAsync.pm
 
 %files Irssi
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/Irssi.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/Irssi.pm
 
 %files POE
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/POE.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/POE.pm
 
 %files Qt
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/Qt.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/Qt.pm
 
 %files Tk
-%dir %{perl_vendorlib}/AnyEvent/Impl/
-%{perl_vendorlib}/AnyEvent/Impl/Tk.pm
+%dir %{perl_vendorarch}/AnyEvent/Impl/
+%{perl_vendorarch}/AnyEvent/Impl/Tk.pm
 
 %changelog
+* Tue Jun 14 2011 Steve Huff <shuff@vecna.org> - 5.340-1
+- Updated to version 5.34.
+
 * Sun Feb 20 2011 Yury V. Zaytsev <yury@shurup.com> - 5.240-2
 - Tagged RFX for EL5, because of perl-Net-SSLeay requirement.
 
