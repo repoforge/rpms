@@ -2,7 +2,7 @@
 # Authority: dag
 
 ### EL6 ships with python-pygments-1.1.1-1.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -10,7 +10,7 @@
 
 Summary: Syntax highlighting engine written in Python
 Name: python-pygments
-Version: 0.9
+Version: 1.4
 Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
@@ -51,8 +51,12 @@ markup.
 %doc AUTHORS CHANGES LICENSE TODO docs/
 %doc %{_mandir}/man1/pygmentize.1*
 %{_bindir}/pygmentize
-%{python_sitelib}/*
+%{python_sitelib}/Pygments-%{version}-p*.egg-info/
+%{python_sitelib}/pygments/
 
 %changelog
+* Thu May 26 2011 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Mon Jul 06 2009 Dag Wieers <dag@wieers.com> - 0.9-1
 - Initial package. (using DAR)
