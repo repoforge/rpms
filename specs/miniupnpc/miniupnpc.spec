@@ -3,7 +3,7 @@
 
 Summary: Library and tool to control NAT in UPnP-enabled routers
 Name: miniupnpc
-Version: 1.4
+Version: 1.5
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
@@ -49,7 +49,8 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog.txt LICENCE README
+%doc Changelog.txt LICENSE README
+%{_bindir}/external-ip
 %{_bindir}/upnpc
 %{_libdir}/libminiupnpc.so.*
 
@@ -61,5 +62,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libminiupnpc.a
 
 %changelog
+* Sun Jun 19 2011 Dag Wieers <dag@wieers.com> - 1.5-1
+- Updated to release 1.5.
+
 * Thu Sep 23 2010 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)
