@@ -5,14 +5,13 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.2.3
+Version: 1.3.0
 Release: 1%{?dist}
 License: BSD-type
 Group: Applications/Internet
 URL: http://www.inet.no/dante/
 
 Source: ftp://ftp.inet.no/pub/socks/dante-%{version}.tar.gz
-Patch0: dante-1.2.0-private.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bison
@@ -50,7 +49,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-%patch0 -p0 -b .orig
 
 ### Example should use /var/log/sockd by default
 %{__perl} -pi -e 's|/var/log/lotsoflogs|%{_localstatedir}/log/sockd|' example/sockd.conf
@@ -275,7 +273,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS CREDITS INSTALL LICENSE NEWS README* SUPPORT TODO
+%doc BUGS CREDITS INSTALL LICENSE NEWS README* SUPPORT UPGRADE VERSION
 %doc doc/*.txt doc/README*
 %doc example/socks*.conf
 %doc %{_mandir}/man1/socksify.1*
@@ -308,6 +306,9 @@ fi
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Sun Jun 19 2011 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Tue Mar 22 2011 Dag Wieers <dag@wieers.com> - 1.2.3-1
 - Updated to release 1.2.3.
 
