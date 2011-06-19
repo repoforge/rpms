@@ -21,8 +21,8 @@
 
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
-Version: 6.11.3
-Release: 2%{?dist}
+Version: 6.12
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cgsecurity.org/wiki/TestDisk
@@ -68,12 +68,17 @@ export CFLAGS="%{optflags} -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFI
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README THANKS doc/
-%doc %{_mandir}/man1/photorec.1*
-%doc %{_mandir}/man1/testdisk.1*
-%{_sbindir}/photorec
-%{_sbindir}/testdisk
+%doc %{_mandir}/man8/fidentify.8*
+%doc %{_mandir}/man8/photorec.8*
+%doc %{_mandir}/man8/testdisk.8*
+%{_bindir}/fidentify
+%{_bindir}/photorec
+%{_bindir}/testdisk
 
 %changelog
+* Thu May 19 2011 Dag Wieers <dag@wieers.com> - 6.12-1
+- Updated to release 6.12.
+
 * Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 6.11.3-2
 - Rebuilt against libewf-20100226.
 
