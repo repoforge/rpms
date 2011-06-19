@@ -3,14 +3,14 @@
 
 Summary: Library implementing the SSH2 protocol (0xbadc0de version)
 Name: libssh
-Version: 0.4.6
+Version: 0.5.0
 Release: 1%{?dist}
 License: LGPLv2+
 Group: System Environment/Libraries
 URL: http://www.libssh.org/
 
-Source: http://www.libssh.org/files/%{name}-%{version}.tar.gz
-BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+Source: http://www.libssh.org/files/0.5/libssh-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: cmake
 BuildRequires: openssl-devel
@@ -62,14 +62,21 @@ cd obj
 %defattr(-, root, root, 0755)
 %doc AUTHORS BSD ChangeLog COPYING README
 %{_libdir}/libssh.so.*
+%{_libdir}/libssh_threads.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/libssh/
 %{_libdir}/libssh.so
+%{_libdir}/libssh_threads.so
+%{_libdir}/pkgconfig/libssh.pc
 #exclude %{_libdir}/libssh.la
+#exclude %{_libdir}/libssh_threads.la
 
 %changelog
+* Tue Jun 07 2011 Dag Wieers <dag@wieers.com> - 0.5.0-1
+- Updated to release 0.5.0.
+
 * Tue Sep 07 2010 Dag Wieers <dag@wieers.com> - 0.4.6-1
 - Updated to release 0.4.6.
 
