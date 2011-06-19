@@ -2,14 +2,13 @@
 # Authority: dag
 # Upstream: Emil Mikulic <www-28ab$dmr,ath,cx>
 
-
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Network traffic analyzer
 Name: darkstat
-Version: 3.0.713
+Version: 3.0.714
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -47,6 +46,9 @@ all sorts of useless but interesting statistics.
 %{_sbindir}/darkstat
 
 %changelog
+* Mon Jun 20 2011 Dag Wieers <dag@wieers.com> - 3.0.714-1
+- Updated to release 3.0.714.
+
 * Sun Mar 21 2010 Dag Wieers <dag@wieers.com> - 3.0.713-1
 - Updated to release 3.0.713.
 
