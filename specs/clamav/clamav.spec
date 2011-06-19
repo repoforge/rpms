@@ -324,6 +324,7 @@ fi
 ### Remove test virus documents as they trigger clamav
 #%doc test/
 %doc %{_mandir}/man1/sigtool.1*
+%doc %{_mandir}/man1/clambc.1*
 %doc %{_mandir}/man1/clamscan.1*
 %doc %{_mandir}/man1/freshclam.1*
 %doc %{_mandir}/man5/freshclam.conf.5*

@@ -2,7 +2,7 @@
 # Authority: dries
 # Upstream: Dave Rolsky <autarch$urth,org>
 
-### EL6 includes perl-DateTime-Local in perl-DateTime-1:0.5300-1.el6
+### EL6 includes perl-DateTime-Locale in perl-DateTime-1:0.5300-1.el6
 # ExclusiveDist: el2 el3 el4 el5
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
