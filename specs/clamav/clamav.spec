@@ -13,7 +13,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.97
+Version: 0.97.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -343,6 +343,7 @@ fi
 %files -n clamd
 %defattr(-, root, root, 0755)
 %doc etc/clamd.conf
+%doc %{_mandir}/man1/clambc.1*
 %doc %{_mandir}/man1/clamconf.1*
 %doc %{_mandir}/man1/clamdscan.1*
 %doc %{_mandir}/man1/clamdtop.1*
@@ -396,6 +397,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Thu Jun 09 2011 Dag Wieers <dag@wieers.com> - 0.97.1-1
+- Updated to release 0.97.1.
+
 * Tue Feb 08 2011 Dag Wieers <dag@wieers.com> - 0.97-1
 - Updated to release 0.97.
 
