@@ -1,42 +1,43 @@
 # $Id$
 # Authority: dag
 
-#{?el5:# Tag: rft}
 # ExclusiveDist: el5 el6
+
+%{?el5:%define _with_python_hashlib 1}
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.9
+Version: 1.1.10
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://fedoraproject.org/wiki/Projects/Mock
 
 Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/mock-%{version}.tar.gz
-Patch0: mock-1.1.8-mknod.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 2.4
+Requires(post): coreutils
+Requires(pre): shadow-utils
 Requires: createrepo
 Requires: pigz
 Requires: python >= 2.4
 Requires: python-ctypes
 Requires: python-decoratortools
-Requires: python-hashlib
-Requires: shadow-utils
+%{?_with_python_hashlib:Requires: python-hashlib}
 Requires: tar
 Requires: usermode
 Requires: yum >= 2.4
+Requires: yum-utils >= 1.1.9
 
 %description
 Mock takes an SRPM and builds it in a chroot
 
 %prep
 %setup
-%patch0
 
 %build
 %configure
@@ -51,6 +52,7 @@ Mock takes an SRPM and builds it in a chroot
 
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/mock
 
+%{?el6: %{__ln_s} -f sl-6-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
 %{?el5: %{__ln_s} -f centos-5-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
 %{?el4: %{__ln_s} -f centos-4-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
 %{?el3: %{__ln_s} -f centos-3-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
@@ -86,6 +88,9 @@ fi
 %dir %{_localstatedir}/lib/mock/
 
 %changelog
+* Thu May 19 2011 Dag Wieers <dag@wieers.com> - 1.1.10-1
+- Updated to release 1.1.10.
+
 * Mon Mar 07 2011 Dag Wieers <dag@wieers.com> - 1.1.9-1
 - Updated to release 1.1.9.
 
