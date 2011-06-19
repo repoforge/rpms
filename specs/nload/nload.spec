@@ -3,16 +3,17 @@
 
 Summary: Console application which monitors network traffic and bandwidth usage in real time
 Name: nload
-Version: 0.7.2
+Version: 0.7.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.roland-riegel.de/nload/
 
-Source: http://dl.sf.net/nload/nload-%{version}.tar.gz
+Source: http://www.roland-riegel.de/nload/nload-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: ncurses-devel >= 5.0, gcc-c++
+BuildRequires: gcc-c++
+BuildRequires: ncurses-devel >= 5.0
 
 %description
 nload is a console application which monitors network traffic and bandwidth
@@ -41,6 +42,9 @@ network usage.
 %{_bindir}/nload
 
 %changelog
+* Mon Jun 20 2011 Dag Wieers <dag@wieers.com> - 0.7.3-1
+- Updated to release 0.7.3.
+
 * Sun Jun 29 2008 Dries Verachtert <dries@ulyssis.org> - 0.7.2-1
 - Updated to release 0.7.2.
 
