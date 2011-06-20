@@ -72,6 +72,29 @@ parameters, plus sugar to parse the results.
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
+# the example scripts have no shebang line
+PERLSCRIPT=$(cat <<'PERL'
+opendir( my $EXAMPLE, 'example' );
+while( my $script = readdir( $EXAMPLE ) ) {
+    next if $script =~ /^\.{1,2}$/;
+    open( my $SCRIPT, '<', "example/$script" );
+    while ( <$SCRIPT> ) {
+        push( @lines, $_ );
+    }
+    close( $SCRIPT );
+    unshift( @lines, "#!%{__perl}\n" );
+    open( my $SCRIPT, '>', "example/$script" );
+    while ( @lines ) {
+        my $line = shift( @lines );
+        print $SCRIPT "$line";
+    }
+    close( $SCRIPT );
+}
+closedir( $EXAMPLE );
+PERL
+)
+%{__perl} -e "$PERLSCRIPT"
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
