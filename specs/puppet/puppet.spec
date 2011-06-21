@@ -1,6 +1,6 @@
 # $Id$
 # Authority: shuff
-# ExcludeDist: el3 el4
+# ExclusiveDist: el5 el6
 
 # we need Augeas >= 0.8 for Apache conf manipulation
 # el6 ships with 0.7.x
