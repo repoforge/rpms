@@ -8,7 +8,7 @@
 
 Summary: Cisco Discovery Protocol reporter
 Name: cdpr
-Version: 2.3
+Version: 2.4
 Release: 1%{?dist}
 License: GPLv2+ 
 Group: Applications/System
@@ -46,5 +46,8 @@ Optionally it will decode the entire CDP packet.
 %{_bindir}/cdpr
 
 %changelog
+* Tue Jun 21 2011 Bert de Bruijn <bert+rpm@debruijn.be> - 2.4-1
+- Update to version 2.4
+
 * Sat Sep 20 2008 Dag Wieers <dag@wieers.com> - 2.3-1
 - Initial package. (using DAR)
