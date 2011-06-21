@@ -19,7 +19,7 @@
 
 Summary: IO Interface to compressed data files/buffers
 Name: perl-IO-Compress
-Version: 2.035
+Version: 2.036
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -82,6 +82,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Tue Jun 21 2011 David Hrbáč <david@hrbac.cz> - 2.036-1
+- new upstream release
+
 * Fri Jun 03 2011 David Hrbáč <david@hrbac.cz> - 2.035-1
 - new upstream release
 
