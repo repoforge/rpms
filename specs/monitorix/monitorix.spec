@@ -1,6 +1,5 @@
 # $Id$
-# Upstream: Jordi Sanfeliu <jordi@fibranet.cat>
-
+# Upstream: Jordi Sanfeliu <jordi$fibranet,cat>
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
@@ -10,12 +9,18 @@ License: GPL
 Group: Applications/System
 URL: http://www.monitorix.org
 
-
 Source: http://www.monitorix.org/%{name}-%{version}.tar.gz
-Requires: rrdtool, perl, perl-libwww-perl, perl-MailTools, perl-MIME-Lite
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
+Requires: rrdtool
+Requires: perl
+Requires: perl-libwww-perl
+Requires: perl-MailTools
+Requires: perl-MIME-Lite
+
+Requires: /sbin/chkconfig
+Requires: /sbin/service
 
 %description
 Monitorix is a free, open source, lightweight system monitoring tool designed
@@ -58,10 +63,25 @@ install -m 0644 man/man5/monitorix.conf.5 %{buildroot}%{_mandir}/man5
 install -m 0644 man/man8/monitorix.8 %{buildroot}%{_mandir}/man8
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
-/sbin/chkconfig --add monitorix
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add monitorix
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/service monitorix stop &>/dev/null || :
+    /sbin/chkconfig --del monitorix
+fi
+
+%postun
+if [ $1 -ge 1 ]; then
+    # For now monitorix's init script doesn't support condrestart
+    #/sbin/service monitorix condrestart &>/dev/null || :
+    /sbin/service monitorix restart &>/dev/null || :
+fi
 
 %files
 %defattr(-, root, root)
@@ -83,7 +103,11 @@ rm -rf %{buildroot}
 %doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD monitorix-alert.sh
 
 %changelog
-* Thu Sep 01 2005 Jordi Sanfeliu <jordi@fibranet.cat>
+* Tue Jun 21 2011 Yury V. Zaytsev <yury@shurup.com> - 2.2.0-1
+- Updated to the latest release (thanks to Jordi Sanfeliu!)
+- See gh-13 for the details
+
+* Thu Sep 01 2005 Jordi Sanfeliu <jordi@fibranet.cat> - 0.7.8-1
 - Release 0.7.8.
 - First public release.
 - All changes are described in the Changes file.
