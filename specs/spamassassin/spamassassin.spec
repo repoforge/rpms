@@ -21,8 +21,8 @@
 
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
-Version: 3.3.1
-Release: 3%{?dist}
+Version: 3.3.2
+Release: 1%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -244,6 +244,9 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Wed Jun 22 2011 David Hrbáč <david@hrbac.cz> - 3.3.2-1
+- new upstream release
+
 * Mon Mar 22 2010 Steve Huff <shuff@vecna.org> - 3.3.1-3
 - Don't install concurrently with amavisd-new < 2.6.2
   (https://issues.apache.org/SpamAssassin/show_bug.cgi?id=6257)
