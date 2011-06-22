@@ -5,17 +5,17 @@
 
 %{?el5:%define _with_python_hashlib 1}
 
-%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
 Version: 1.1.10
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://fedoraproject.org/wiki/Projects/Mock
 
-Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/mock-%{version}.tar.gz
+Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -47,47 +47,52 @@ Mock takes an SRPM and builds it in a chroot
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/cache/mock/
-%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/mock/
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/cache/mock/
+%{__install} -d -m2775 %{buildroot}%{_localstatedir}/lib/mock/
 
 %{__ln_s} -f consolehelper %{buildroot}%{_bindir}/mock
 
-%{?el6: %{__ln_s} -f sl-6-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
-%{?el5: %{__ln_s} -f centos-5-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
-%{?el4: %{__ln_s} -f centos-4-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
-%{?el3: %{__ln_s} -f centos-3-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
-%{?el2: %{__ln_s} -f centos-2-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
-
-%{?rh9: %{__ln_s} -f redhat-9-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
-%{?rh7: %{__ln_s} -f redhat-7-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
+%{?el6: %{__ln_s} -f epel-6-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
+%{?el5: %{__ln_s} -f epel-5-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
+%{?el4: %{__ln_s} -f epel-4-%{_arch}.cfg %{buildroot}%{_sysconfdir}/mock/default.cfg}
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %pre
 if [ $1 -eq 1 ]; then
-    groupadd -r mock &>/dev/null || :
+    groupadd -r mock >/dev/null 2>&1 || :
 fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL docs/*.txt
-%doc %{_mandir}/man1/mock.1*
+
 %config(noreplace) %{_sysconfdir}/mock/
 %config(noreplace) %{_sysconfdir}/pam.d/mock
 %config(noreplace) %{_sysconfdir}/security/console.apps/mock
 %config %{_sysconfdir}/bash_completion.d/mock.bash
+
+# executables
 %{_bindir}/mock
-%{python_sitelib}/mock/
+%attr(0755, root, root) %{_sbindir}/mock
 
-%defattr(0755, root, root, 0755)
-%{_sbindir}/mock
+# python stuff
+%{python_sitelib}/mock
 
-%defattr(0755, root, mock, 02775)
-%dir %{_localstatedir}/cache/mock/
-%dir %{_localstatedir}/lib/mock/
+# docs
+%doc AUTHORS ChangeLog COPYING INSTALL docs/*.txt
+%doc %{_mandir}/man1/mock.1*
+
+# build dir
+%attr(02775, root, mock) %dir /var/lib/mock
+
+# cache dir
+%attr(02775, root, mock) %dir /var/cache/mock
 
 %changelog
+* Wed Jun 22 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.10-2
+- Fixed directory permissions and default configuration.
+
 * Thu May 19 2011 Dag Wieers <dag@wieers.com> - 1.1.10-1
 - Updated to release 1.1.10.
 
