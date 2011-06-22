@@ -11,7 +11,7 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.6.5
+Version: 2.6.6
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -477,6 +477,9 @@ fi
 %{_sbindir}/amavisd-snmp-subagent
 
 %changelog
+* Wed Jun 22 2011 David Hrbáč <david@hrbac.cz> - 2.6.6-1
+- new upstream release
+
 * Wed Jun 22 2011 David Hrbáč <david@hrbac.cz> - 2.6.5-1
 - new upstream release
 
