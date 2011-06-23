@@ -9,8 +9,8 @@
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.10
-Release: 2%{?dist}
+Version: 1.1.11
+Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://fedoraproject.org/wiki/Projects/Mock
@@ -83,13 +83,16 @@ fi
 %doc AUTHORS ChangeLog COPYING INSTALL docs/*.txt
 %doc %{_mandir}/man1/mock.1*
 
-# build dir
-%attr(02775, root, mock) %dir /var/lib/mock
-
-# cache dir
-%attr(02775, root, mock) %dir /var/cache/mock
+# cache & build dirs
+%defattr(0775, root, mock, 02775)
+%dir /var/cache/mock
+%dir /var/lib/mock
 
 %changelog
+* Thu Jun 23 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.11-1
+- More fixes to the default directory permissions.
+- Updated to release 1.1.11.
+
 * Wed Jun 22 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.10-2
 - Fixed directory permissions and default configuration.
 
