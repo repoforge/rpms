@@ -2,8 +2,9 @@
 # Authority: shuff
 # Upstream: UPSTREAMTAG
 
-%define ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")
-%define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")
+%{!?ruby_sitelibdir: %define ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')}
+%{!?ruby_sitearchdir: %define ruby_sitearchdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')}
+
 %define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
 %define geminstdir %{gemdir}/gems/GEMNAME-%{version}
 
