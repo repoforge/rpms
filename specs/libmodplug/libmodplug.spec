@@ -3,13 +3,16 @@
 
 Summary: MOD music file playing library
 Name: libmodplug
-Version: 0.8.7
+Version: 0.8.8.3
 Release: 1%{?dist}
 License: Public Domain
 Group: System Environment/Libraries
 URL: http://modplug-xmms.sourceforge.net/
 
 Source: http://dl.sf.net/modplug-xmms/libmodplug-%{version}.tar.gz
+# Fedora specific, no need to send upstream
+Patch0: %{name}-0.8.4-timiditypaths.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: gcc-c++
 
@@ -29,6 +32,9 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
+%patch0 -p1
+chmod -c -x src/tables.h
+sed -i -e 's/\r//g' ChangeLog
 
 %build
 %configure --disable-static
@@ -37,6 +43,9 @@ you will need to install %{name}-devel.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+
+%check
+make check
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,6 +66,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libmodplug.la
 
 %changelog
+* Sat Jun 25 2011 Yury V. Zaytsev <yury@shurup.com> - 0.8.8.3-1
+- Updated to release 0.8.8.3.
+
 * Thu Jul 09 2009 Dag Wieers <dag@wieers.com> - 0.8.7-1
 - Updated to release 0.8.7.
 
