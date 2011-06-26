@@ -1,6 +1,17 @@
 # $Id$
 # Authority: shuff
 # Upstream:  Sergey Bostandzhyan <contact$mediatomb,cc>
+# ExcludeDist: el2
+
+# el6 changed the package name to libcurl
+%{?el3:%define _without_libcurl 1}
+%{?el4:%define _without_libcurl 1}
+%{?el5:%define _without_libcurl 1}
+
+# el6 split out file and file-devel
+%{?el3:%define _without_file-devel 1}
+%{?el4:%define _without_file-devel 1}
+%{?el5:%define _without_file-devel 1}
 
 Summary: UPnP server with web interface
 Name: mediatomb
@@ -16,12 +27,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #Buildarch: noarch
 BuildRequires: binutils
 BuildRequires: expat-devel 
-BuildRequires: file-devel 
+BuildRequires: file%{?_without_file-devel:-devel} 
 BuildRequires: ffmpeg-devel
 BuildRequires: gcc-c++
 BuildRequires: js-devel
 # BuildRequires: lastfmlib-devel
-BuildRequires: libcurl-devel >= 4
+BuildRequires: %{!?_without_libcurl:lib}curl-devel >= 4
 BuildRequires: libexif-devel
 # BuildRequires: libffmpegthumbnailer-devel
 BuildRequires: libssh2-devel
@@ -78,7 +89,8 @@ Supported Devices list for more information.
 
 %post
 if [ $1 -eq 1 ]; then
-    /usr/sbin/useradd -d %{_datadir}/mediatomb -U -r -s /bin/false mediatomb
+    /usr/sbin/groupadd -f -r mediatomb
+    /usr/sbin/useradd -d %{_datadir}/mediatomb -g mediatomb -r -s /bin/false mediatomb
     /sbin/chkconfig --add mediatomb
     exit 0
 fi
@@ -87,6 +99,7 @@ fi
 if [ $1 -eq 0 ]; then
     /sbin/chkconfig --del mediatomb
     /usr/sbin/userdel mediatomb
+    /usr/sbin/groupdel mediatomb
     exit 0
 fi
 
