@@ -2,54 +2,71 @@
 # Authority: shuff
 # ExclusiveDist: el5 el6
 
-# we need Augeas >= 0.8 for Apache conf manipulation
-# el6 ships with 0.7.x
-%{?el6:# Tag: rfx}
+# If you want the script to do Passenger provisioning to work, please update
+# augeas-libs from RFX!
 
-%define ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')
+# Augeas and SELinux requirements may be disabled at build time by passing
+# --without augeas and/or --without selinux to rpmbuild or mock
 
-# no Ruby SELinux support in el5
-%{?el5:%define _without_ruby_selinux 1}
-
-# these are RHEL packages
-%define confdir conf/redhat
+%{!?ruby_sitelibdir: %global ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')}
+%global confdir conf/redhat
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.6.7
+Version: 2.7.1
 Release: 1%{?dist}
-License: GPL
+License: Apache License 2.0
 Group: System Environment/Base
 URL: http://puppetlabs.com/projects/puppet/
 
-Source: http://puppetlabs.com/downloads/puppet/puppet-%{version}.tar.gz
+Source0: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz
+Source1: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz.asc
 Patch0: puppet-2.6.5_rackup.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: noarch
 
 BuildRequires: facter >= 1.5
 BuildRequires: ruby >= 1.8.1
-BuildRequires: ruby-devel >= 1.8.1
-BuildRequires: ruby-rdoc >= 1.8.1
-Requires: augeas-libs >= 0.8
+
+%if 0%{?fedora} || 0%{?rhel} >= 5
+BuildArch:      noarch
+Requires:       ruby(abi) = 1.8
+Requires:       ruby-shadow
+%endif
+
+# Pull in ruby selinux bindings where available
+%if 0%{?fedora} || 0%{?rhel} >= 6
+%{!?_without_selinux:Requires: ruby(selinux), libselinux-utils}
+%else
+%if 0%{?rhel} && 0%{?rhel} == 5
+%{!?_without_selinux:Requires: libselinux-ruby, libselinux-utils}
+%endif
+%endif
+
 Requires: facter >= 1.5
 Requires: ruby >= 1.8.1
-Requires: ruby(abi) = 1.8
-Requires: ruby-augeas
-Requires: ruby-shadow
-%{!?_without_ruby_selinux:Requires: libselinux-ruby}
-%{!?_without_ruby_selinux:Requires: ruby(selinux)}
+%{!?_without_augeas:Requires: ruby-augeas}
+
+Requires(pre):  shadow-utils
+Requires(post): chkconfig
+Requires(preun): chkconfig
+Requires(preun): initscripts
+Requires(postun): initscripts
 
 %description
-Puppet lets you centrally manage every important aspect of your system using a 
-cross-platform specification language that manages all the separate elements 
-normally aggregated in different files, like users, cron jobs, and hosts, 
+Puppet lets you centrally manage every important aspect of your system using a
+cross-platform specification language that manages all the separate elements
+normally aggregated in different files, like users, cron jobs, and hosts,
 along with obviously discrete elements like packages, services, and files.
 
 %package server
 Group: System Environment/Base
 Summary: Server for the puppet system management tool
 Requires: %{name} = %{version}-%{release}
+Requires(post): chkconfig
+Requires(preun): chkconfig
+Requires(preun): initscripts
+Requires(postun): initscripts
 
 %description server
 Provides the central puppet server daemon which provides manifests to clients.
@@ -74,6 +91,7 @@ Vim support for editing Puppet files.
 %prep
 %setup
 %patch0 -p1
+patch -s -p1 < conf/redhat/rundir-perms.patch
 
 %{__perl} -pi -e 's|^#!.*$|#!/usr/bin/ruby|' bin/*
 
@@ -110,12 +128,16 @@ install -Dp -m0644 %{confdir}/server.sysconfig %{buildroot}%{_sysconfdir}/syscon
 install -Dp -m0755 %{confdir}/server.init %{buildroot}%{_initrddir}/puppetmaster
 install -Dp -m0644 %{confdir}/fileserver.conf %{buildroot}%{_sysconfdir}/puppet/fileserver.conf
 install -Dp -m0644 %{confdir}/puppet.conf %{buildroot}%{_sysconfdir}/puppet/puppet.conf
-install -Dp -m0644 conf/auth.conf %{buildroot}%{_sysconfdir}/puppet/auth.conf
 install -Dp -m0644 %{confdir}/logrotate %{buildroot}%{_sysconfdir}/logrotate.d/puppet
 
+# Example auth.conf file, it mimics the puppetmasterd defaults
+install -Dp -m0644 conf/auth.conf %{buildroot}%{_sysconfdir}/puppet/auth.conf
+
+# We need something for these ghosted files, otherwise rpmbuild
+# will complain loudly. They won't be included in the binary packages
+touch %{buildroot}%{_sysconfdir}/puppet/puppetmasterd.conf
 touch %{buildroot}%{_sysconfdir}/puppet/puppetca.conf
 touch %{buildroot}%{_sysconfdir}/puppet/puppetd.conf
-touch %{buildroot}%{_sysconfdir}/puppet/puppetmasterd.conf
 
 # Install the ext/ directory to %{_datadir}/%{name}
 install -d %{buildroot}%{_datadir}/%{name}
@@ -139,14 +161,15 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG COPYING LICENSE README examples/ ext/
+%doc CHANGELOG LICENSE README.md examples/ ext/
 %doc %{_mandir}/man?/filebucket.?.gz
 %doc %{_mandir}/man?/pi.?.gz
-%doc %{_mandir}/man?/puppet.?.gz
-%doc %{_mandir}/man?/puppetd.?.gz
 %doc %{_mandir}/man?/puppet.conf.?.gz
+%doc %{_mandir}/man?/puppetd.?.gz
+%doc %{_mandir}/man?/puppetdoc.?.gz
+%doc %{_mandir}/man?/puppet-*.?.gz
+%doc %{_mandir}/man?/puppet.?.gz
 %doc %{_mandir}/man?/ralsh.?.gz
-%exclude %doc %{_mandir}/man?/puppetdoc.?.gz
 %config(noreplace) %{_sysconfdir}/logrotate.d/puppet
 %config(noreplace) %{_sysconfdir}/puppet/auth.conf
 %config(noreplace) %{_sysconfdir}/puppet/puppet.conf
@@ -155,12 +178,12 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 %{_bindir}/filebucket
 %{_bindir}/pi
 %{_bindir}/puppet
+%{_bindir}/puppetdoc
 %{_bindir}/ralsh
 %{_datadir}/puppet
-%{_sbindir}/puppetd
 %{_initrddir}/puppet
 %{ruby_sitelibdir}/*
-%exclude %{_bindir}/puppetdoc
+%{_sbindir}/puppetd
 
 %defattr(-, puppet, puppet, 0755)
 %{_localstatedir}/lib/puppet/
@@ -192,40 +215,76 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 %defattr(-, root, root, -)
 %{_datadir}/vim*/vimfiles/*/puppet.vim
 
+# Fixed uid/gid were assigned in bz 472073 (Fedora), 471918 (RHEL-5),
+# and 471919 (RHEL-4)
 %pre
-/usr/sbin/groupadd -r puppet 2>/dev/null || :
-/usr/sbin/useradd -g puppet -c "Puppet" -s /sbin/nologin -r -d %{_localstatedir}/lib/puppet puppet 2>/dev/null || :
+getent group puppet &>/dev/null || groupadd -r puppet -g 52 &>/dev/null
+getent passwd puppet &>/dev/null || \
+useradd -r -u 52 -g puppet -d %{_localstatedir}/lib/puppet -s /sbin/nologin \
+    -c "Puppet" puppet &>/dev/null
+# ensure that old setups have the right puppet home dir
 if [ $1 -gt 1 ] ; then
-	/usr/sbin/usermod -d %{_localstatedir}/lib/puppet puppet || :
+  usermod -d %{_localstatedir}/lib/puppet puppet &>/dev/null
 fi
+exit 0
 
 %post
-/sbin/chkconfig --add puppet
-
-%preun
-if [ $1 -eq 0 ] ; then
-	/sbin/service puppet stop &>/dev/null
-	/sbin/chkconfig --del puppet
+/sbin/chkconfig --add puppet || :
+if [ "$1" -ge 1 ]; then
+  # The pidfile changed from 0.25.x to 2.6.x, handle upgrades without leaving
+  # the old process running.
+  oldpid="%{_localstatedir}/run/puppet/puppetd.pid"
+  newpid="%{_localstatedir}/run/puppet/agent.pid"
+  if [ -s "$oldpid" -a ! -s "$newpid" ]; then
+    (kill $(< "$oldpid") && rm -f "$oldpid" && \
+      /sbin/service puppet start) >/dev/null 2>&1 || :
+  fi
 fi
 
 %post server
-/sbin/chkconfig --add puppetmaster
+/sbin/chkconfig --add puppetmaster || :
+if [ "$1" -ge 1 ]; then
+  # The pidfile changed from 0.25.x to 2.6.x, handle upgrades without leaving
+  # the old process running.
+  oldpid="%{_localstatedir}/run/puppet/puppetmasterd.pid"
+  newpid="%{_localstatedir}/run/puppet/master.pid"
+  if [ -s "$oldpid" -a ! -s "$newpid" ]; then
+    (kill $(< "$oldpid") && rm -f "$oldpid" && \
+      /sbin/service puppetmaster start) >/dev/null 2>&1 || :
+  fi
+fi
+
+%preun
+if [ "$1" = 0 ] ; then
+  /sbin/service puppet stop >/dev/null 2>&1
+  /sbin/chkconfig --del puppet || :
+fi
 
 %preun server
-if [ $1 -eq 0 ] ; then
-	/sbin/service puppetmaster stop &>/dev/null
-	/sbin/chkconfig --del puppetmaster
+if [ "$1" = 0 ] ; then
+  /sbin/service puppetmaster stop >/dev/null 2>&1
+  /sbin/chkconfig --del puppetmaster || :
+fi
+
+%postun
+if [ "$1" -ge 1 ]; then
+  /sbin/service puppet condrestart >/dev/null 2>&1 || :
 fi
 
 %postun server
-if [ $1 -ge 1 ]; then
-	/sbin/service puppetmaster condrestart &>/dev/null
+if [ "$1" -ge 1 ]; then
+  /sbin/service puppetmaster condrestart >/dev/null 2>&1 || :
 fi
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Mon Jun 27 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.1-1
+- UnRFX on EL6, please update Augeas from RFX if you need rack!
+- Sync with EPEL to make it easier to update the SPEC later.
+- Update to version 2.7.1.
+
 * Tue Mar 29 2011 Steve Huff <shuff@vecna.org> - 2.6.7-1
 - Update to version 2.6.7.
 
