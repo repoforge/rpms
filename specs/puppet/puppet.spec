@@ -161,7 +161,7 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG LICENSE README.md examples/ ext/
+%doc CHANGELOG LICENSE README.md examples/
 %doc %{_mandir}/man?/filebucket.?.gz
 %doc %{_mandir}/man?/pi.?.gz
 %doc %{_mandir}/man?/puppet.conf.?.gz
