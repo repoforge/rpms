@@ -1,31 +1,33 @@
 # $Id$
 # Authority: jim
 #
-# Please update phpmyadmin-php53.spec when you update this file!
+# Please update phpmyadmin.spec when you update this file!
+#
+# ExclusiveDist: el5
 #
 
 %define real_name phpMyAdmin
 
 Summary: Web application to manage MySQL
-Name: phpmyadmin
+Name: phpmyadmin-php53
 Version: 2.11.11.3
 Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.phpmyadmin.net/
 
-Source: http://downloads.sourceforge.net/%{name}/phpMyAdmin-%{version}-all-languages.tar.bz2
+Source: http://downloads.sourceforge.net/phpmyadmin/phpMyAdmin-%{version}-all-languages.tar.bz2
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-Requires: php-mysql >= 4.1.0
-Requires: php-mbstring >= 4.1.0
-%{?el5:Requires: php-mcrypt}
+Requires: php53-mysql
+Requires: php53-mbstring
+%{?el5:Requires: php53-mcrypt}
 Requires: webserver
 Obsoletes: phpMyAdmin <= %{version}-%{release}
 Provides: phpMyAdmin = %{version}-%{release}
-%{?el5:Conflicts: phpmyadmin-php53}
+Conflicts: phpmyadmin
 
 %description
 phpMyAdmin can manage a whole MySQL server (needs a super-user) as well as a
@@ -81,7 +83,8 @@ EOF
 
 %changelog
 * Mon Jun 27 2011 Yury V. Zaytsev <yury@shurup.com> - 2.11.11.3-2
-- On RHEL5 conflicts with phpmyadmin-php53 (which requires php53-*)
+- RHEL5 ships php53, but php53-* subpackaged don't have provides
+- Forked phpmyadmin into phpmyadmin-php53 for php53 installations
 
 * Mon Feb 14 2011 David Hrbáč <david@hrbac.cz> - 2.11.11.3-1
 - new upstream release
