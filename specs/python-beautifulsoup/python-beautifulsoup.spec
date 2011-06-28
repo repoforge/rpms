@@ -24,6 +24,7 @@ BuildArch: noarch
 
 BuildRequires: python(abi) >= 2.4
 BuildRequires: python-setuptools 
+Requires: python-chardet
 
 Provides: BeautifulSoup = %{version}-%{release}
 
