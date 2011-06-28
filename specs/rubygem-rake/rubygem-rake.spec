@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: Jim Weirich <jim$weirichhouse.org>
 
+### EL6 ships with rubygem-rake-0.8.7
+%{?el6:# Tag: rfx}
+
 %define ruby_sitelib %(ruby -rrbconfig -e "puts Config::CONFIG['sitelibdir']")
 %define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
 %define geminstdir %{gemdir}/gems/rake-%{version}
@@ -12,7 +15,7 @@ Summary: Make-like program for Ruby
 Name: rubygem-rake
 
 Version: 0.8.7
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: Development/Languages
 License: MIT
 URL: http://rubygems.org/gems/rake/
@@ -77,5 +80,8 @@ find %{buildroot}%{geminstdir}/{doc,lib,test} -type f | xargs chmod 0644
 %{geminstdir}/lib
 
 %changelog
+* Tue Jun 28 2011 Yury V. Zaytsev <yury@shurup.com> - 0.8.7-2
+- RFX on RHEL6.
+
 * Mon Jan 31 2011 Steve Huff <shuff@vecna.org> - 0.8.7-1
 - Initial package, ported from EPEL package.
