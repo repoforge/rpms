@@ -2,7 +2,7 @@
 # Authority: shuff
 # Upstream: Diego Nehab <diego$impa,br>
 
-%define luaversion %(eval "`pkg-config --variable=V lua`")
+%define luaversion %(echo `pkg-config --variable=V lua`)
 %define lualibdir %{_libdir}/lua/%{luaversion}
 %define luadatadir %{_datadir}/lua/%{luaversion}
 
