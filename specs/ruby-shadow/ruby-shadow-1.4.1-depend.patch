@@ -1,0 +1,5 @@
+--- shadow-1.4.1/depend.orig	1998-12-30 20:47:35.000000000 -0800
++++ shadow-1.4.1/depend	2007-07-18 15:55:14.000000000 -0700
+@@ -1 +1 @@
+-shadow.o : shadow.c $(hdrdir)/ruby.h $(hdrdir)/rubyio.h
++shadow.o : shadow.c
