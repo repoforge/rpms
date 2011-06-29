@@ -24,6 +24,7 @@ BuildRequires: lua-devel >= 5.1
 BuildRequires: make
 BuildRequires: perl
 BuildRequires: rpm-macros-rpmforge
+Requires: lua >= 5.1
 
 %description
 LuaSocket is a Lua extension library that is composed by two parts: a C core
