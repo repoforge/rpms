@@ -16,18 +16,21 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: binutils
 BuildRequires: gcc-c++
 BuildRequires: libidn-devel
-BuildRequires: lua-devel
-# BuildRequires: luadbi-devel
-# BuildRequires: luaevent-prosody-devel
-BuildRequires: luaexpat-devel
-BuildRequires: luafilesystem-devel
-# BuildRequires: luasec-devel
-BuildRequires: luasocket-devel
-# BuildRequires: luazlib-brimworks-devel
+BuildRequires: lua
+# BuildRequires: luadbi
+# BuildRequires: luaevent-prosody
+BuildRequires: luaexpat
+BuildRequires: luafilesystem
+# BuildRequires: luasec
+BuildRequires: luasocket
+# BuildRequires: luazlib-brimworks
 BuildRequires: make
 BuildRequires: openssl-devel
 BuildRequires: rpm-macros-rpmforge
 Requires: lua
+Requires: luaexpat
+Requires: luafilesystem
+Requires: luasocket
 
 %description
 Prosody is a modern flexible communications server for Jabber/XMPP written in
