@@ -31,6 +31,10 @@ Requires: lua
 Requires: luaexpat
 Requires: luafilesystem
 Requires: luasocket
+Requires(post): /usr/sbin/groupadd
+Requires(post): /usr/sbin/useradd
+Requires(preun): /usr/sbin/groupdel
+Requires(preun): /usr/sbin/userdel
 
 %description
 Prosody is a modern flexible communications server for Jabber/XMPP written in
@@ -42,8 +46,12 @@ rapidly develop added functionality, or prototype new protocols.
 %setup
 
 %build
-%configure \
-    --disable-dependency-tracking
+./configure \
+    --prefix=%{_prefix} \
+    --sysconfdir=%{_sysconfdir} \
+    --datadir=%{_sharedstatedir}/prosody \
+    --with-lua-lib=%{_libdir} \
+    --require-config
 %{__make} %{?_smp_mflags}
 
 %install
@@ -53,6 +61,20 @@ rapidly develop added functionality, or prototype new protocols.
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
 
+%post
+if [ $1 -eq 1 ]; then
+    /usr/sbin/groupadd -r prosody
+    /usr/sbin/useradd -r -d %{_sharedstatedir}/prosody -g prosody -s /bin/false prosody
+    exit 0
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    /usr/sbin/userdel prosody
+    /usr/sbin/groupdel prosody
+    exit 0
+fi
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -61,6 +83,14 @@ rapidly develop added functionality, or prototype new protocols.
 %doc AUTHORS COPYING DEPENDS HACKERS INSTALL README TODO doc/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
+%{_usr}/lib/prosody/
+%{_sharedstatedir}/*
+%config(noreplace) %{_sysconfdir}/prosody.cfg.lua
+%dir %{_sysconfdir}/certs/
+%{_sysconfdir}/certs/Makefile
+%config(noreplace) %{_sysconfdir}/certs/localhost*
+%config(noreplace) %{_sysconfdir}/certs/openssl.cnf
+
 
 %changelog
 * Tue Jun 28 2011 Steve Huff <shuff@vecna.org> - 0.8.2-1
