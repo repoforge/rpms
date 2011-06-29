@@ -1,8 +1,10 @@
 # $Id$
 # Authority: cmr
 # Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
+#
 # Needs libdbi
-# ExcludeDist: el4 el3
+#
+# ExclusiveDist: el5 el6
 
 %define logdir %{_localstatedir}/log/icinga
 
@@ -11,9 +13,9 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.4.0
+Version: 1.4.2
 Release: 2%{?dist}
-License: GPLv2+
+License: GPLv2
 Group: Applications/System
 URL: http://www.icinga.org/
 
@@ -28,7 +30,8 @@ BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libdbi-devel
 BuildRequires: perl(ExtUtils::Embed)
-Provides: nagios = %{version}
+#Requires: nagios-plugins
+Provides: nagios
 
 %description
 Icinga is an application, system and network monitoring application.
@@ -72,8 +75,8 @@ PHP api for %{name}
 
 %package doc
 Summary: documentation %{name}
-Group: Applications/System
- 
+Group: Documentation
+
 %description doc
 Documentation for %{name}
 
@@ -126,6 +129,10 @@ Documentation for %{name}
     COMMAND_OPTS="" \
     INIT_OPTS=""
 
+### strip binary
+%{__strip} %{buildroot}%{_bindir}/{icinga,icingastats,log2ido,ido2db}
+%{__strip} %{buildroot}%{_libdir}/icinga/cgi/*.cgi
+
 ### FIX log-paths
 %{__perl} -pi -e '
         s|log_file.*|log_file=%{logdir}/icinga.log|;
@@ -135,14 +142,38 @@ Documentation for %{name}
 
 ### make logdirs
 %{__mkdir} -p %{buildroot}%{logdir}/
+%{__mkdir} -p %{buildroot}%{logdir}/api/
+%{__mkdir} -p %{buildroot}%{logdir}/gui/
 %{__mkdir} -p %{buildroot}%{logdir}/archives/
+
+### remove PLACEHOLDER
+rm %{buildroot}%{_datadir}/icinga/icinga-api/log/PLACEHOLDER
+### Move all logging to logdir
+rmdir %{buildroot}%{_datadir}/icinga/icinga-api/log
+%{__perl} -pi -e '
+        s|define\("DEFAULT_API_LOG_FILE",.*|define\("DEFAULT_API_LOG_FILE","%{logdir}/api/icinga-api.log"\);|;
+   ' %{buildroot}%{_datadir}/icinga/icinga-api/objects/debug/debugTargets/icingaApiFileDebugger.php
+mv %{buildroot}%{_datadir}/icinga/log/{.htaccess,index.htm} %{buildroot}%{logdir}/gui
+rmdir %{buildroot}%{_datadir}/icinga/log/
+
+%{__perl} -pi -e '
+        s|cgi_log_file.*|cgi_log_file=%{logdir}/gui/icinga-cgi.log|;
+        s|cgi_log_archive_path=.*|cgi_log_archive_path=%{logdir}/archives|;
+   ' %{buildroot}%{_sysconfdir}/icinga/cgi.cfg
+%{__perl} -pi -e "
+        s|^use constant\tDEBUG_LOG_PATH.*|use constant\tDEBUG_LOG_PATH\t=> '/var/log/icinga/' ;|
+   " %{buildroot}%{_bindir}/p1.pl
+
 
 ### move idoutils sample configs to final name
 mv %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg-sample %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg
 mv %{buildroot}%{_sysconfdir}/icinga/idomod.cfg-sample %{buildroot}%{_sysconfdir}/icinga/idomod.cfg
+mv %{buildroot}%{_sysconfdir}/icinga/modules/idoutils.cfg-sample %{buildroot}%{_sysconfdir}/icinga/modules/idoutils.cfg
 
 ### copy idoutils db-script
 cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
+
+
 
 %pre
 # Add icinga user
@@ -182,9 +213,8 @@ fi
 %attr(755,root,root) %{_initrddir}/icinga
 %dir %{_sysconfdir}/icinga
 %dir %{_sysconfdir}/icinga/modules
-%config(noreplace) %{_sysconfdir}/icinga/cgi.cfg
-%config(noreplace) %{_sysconfdir}/icinga/cgiauth.cfg
 %config(noreplace) %{_sysconfdir}/icinga/icinga.cfg
+%dir %{_sysconfdir}/icinga/objects
 %config(noreplace) %{_sysconfdir}/icinga/objects/commands.cfg
 %config(noreplace) %{_sysconfdir}/icinga/objects/contacts.cfg
 %config(noreplace) %{_sysconfdir}/icinga/objects/localhost.cfg
@@ -197,10 +227,11 @@ fi
 %{_bindir}/icinga
 %{_bindir}/icingastats
 %{_bindir}/p1.pl
-%{logdir}
 %dir %{_localstatedir}/icinga
 %dir %{_localstatedir}/icinga/checkresults
 %attr(2755,icinga,icingacmd) %{_localstatedir}/icinga/rw/
+%{logdir}
+%{logdir}/archives
 
 %files doc
 %defattr(-,icinga,icinga,-)
@@ -209,8 +240,12 @@ fi
 %files gui
 %defattr(-,icinga,icinga,-)
 %config(noreplace) %attr(-,root,root) %{apacheconfdir}/icinga.conf
-%dir %{_datadir}/icinga
+%config(noreplace) %{_sysconfdir}/icinga/cgi.cfg
+%config(noreplace) %{_sysconfdir}/icinga/cgiauth.cfg
+%{_libdir}/icinga
 %{_libdir}/icinga/cgi
+%{_libdir}/icinga/cgi/*.cgi
+%dir %{_datadir}/icinga
 %{_datadir}/icinga/contexthelp
 %{_datadir}/icinga/images
 %{_datadir}/icinga/index.html
@@ -222,7 +257,10 @@ fi
 %{_datadir}/icinga/sidebar.html
 %{_datadir}/icinga/ssi
 %{_datadir}/icinga/stylesheets
-%attr(0755,%{apacheuser},%{apachegroup}) %{_datadir}/icinga/log
+#%attr(0755,%{apacheuser},%{apachegroup}) %{_datadir}/icinga/log
+%attr(2775,icinga,icingacmd) %dir %{logdir}/gui
+%attr(664,icinga,icingacmd) %{logdir}/gui/index.htm
+%attr(664,icinga,icingacmd) %{logdir}/gui/.htaccess
 
 %files idoutils
 %defattr(-,icinga,icinga,-)
@@ -237,11 +275,31 @@ fi
 
 %files api
 %defattr(-,icinga,icinga,-)
-%{_datadir}/icinga/icinga-api
-%attr(-,%{apacheuser},%{apacheuser}) %{_datadir}/icinga/icinga-api/log
+%dir %{_datadir}/icinga/icinga-api
+%{_datadir}/icinga/icinga-api/IcingaApi.php
+%{_datadir}/icinga/icinga-api/contrib
+%{_datadir}/icinga/icinga-api/objects
+%{_datadir}/icinga/icinga-api/tests
+%attr(2775,icinga,icingacmd) %dir %{logdir}/api
 
 
 %changelog
+* Wed Jun 29 2011 Yury V. Zaytsev <yury@shurup.com> - 1.4.2-2
+- Merged the submission by Michael Friedrich (thanks!)
+
+* Mon Jun 20 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.2-1
+- update to 1.4.2
+- mv idoutils.cfg-sample
+- move all logging to one location https://bugzilla.redhat.com/show_bug.cgi?id=693608
+- fix file perms and locations of cfgs
+- fix group for doc
+
+* Sun Jun 05 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.1-1
+- update to 1.4.1
+
+* Wed May 18 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-3
+- undo provides nagios version
+
 * Wed May 11 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-2
 - undo changes on icinga-cmd group, use icingacmd like before
 
