@@ -1,0 +1,13 @@
+--- Makefile-orig	2011-06-29 11:50:03.209914116 -0400
++++ Makefile	2011-06-29 11:49:34.257914751 -0400
+@@ -15,8 +15,8 @@
+ 	MACOSX_DEPLOYMENT_TARGET="10.3"; export MACOSX_DEPLOYMENT_TARGET; $(CC) $(CFLAGS) $(LIB_OPTION) -o src/lfs.so $(OBJS)
+ 
+ install:
+-	mkdir -p $(LUA_LIBDIR)
+-	cp src/lfs.so $(LUA_LIBDIR)
++	mkdir -p $(DESTDIR)$(LUA_LIBDIR)
++	cp src/lfs.so $(DESTDIR)$(LUA_LIBDIR)
+ 
+ clean:
+ 	rm -f src/lfs.so $(OBJS)
