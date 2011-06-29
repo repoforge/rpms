@@ -84,7 +84,7 @@ fi
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_usr}/lib/prosody/
-%{_sharedstatedir}/*
+%attr(prosody, prosody, 2750)%{_sharedstatedir}/*
 %config(noreplace) %{_sysconfdir}/prosody.cfg.lua
 %dir %{_sysconfdir}/certs/
 %{_sysconfdir}/certs/Makefile
