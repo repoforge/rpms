@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: Andy Armstrong <andy$hexten,net>
 
+### EL5 ships with Test::Harness version 2.56 (perl-5.8.8-32.el5_5.2 package)
+%{?el5:# Tag: rfx}
 ### EL6 ships with perl-Test-Harness-3.17-115.el6
 %{?el6:# Tag: rfx}
 
@@ -12,7 +14,7 @@
 
 Summary: Run Perl standard test scripts with statistics
 Name: perl-Test-Harness
-Version: 3.22
+Version: 3.23
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -70,6 +72,10 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/TAP/
 
 %changelog
+* Mon May 23 2011 Denis Fateyev <denis@fateyev.com> - 3.23-1
+- Tagged with 'rfx' for RHEL5
+- Updated to version 3.23.
+
 * Tue Feb  8 2011 Christoph Maser <cmaser@gmx.de> - 3.22-1
 - Updated to version 3.22.
 
