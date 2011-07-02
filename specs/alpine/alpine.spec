@@ -16,7 +16,7 @@ License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
 
-Source0: http://dl.sf.net/project/re-alpine/re-alpine-%{version}.tar.bz2
+Source0: http://dl.sf.net/project/%{real_name}/%{real_name}-%{version}.tar.bz2
 Source1: pine.conf
 Source2: pine.conf.fixed
 ### http://staff.washington.edu/chappa/alpine/patches/
