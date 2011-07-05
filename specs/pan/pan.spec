@@ -11,7 +11,7 @@
 
 Summary: The Pan Newsreader
 Name: pan
-Version: 0.134
+Version: 0.135
 Release: 1%{?dist}
 Epoch: 1
 License: GPL
@@ -22,13 +22,15 @@ Source: http://pan.rebelbase.com/download/releases/%{version}/source/pan-%{versi
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: desktop-file-utils
+BuildRequires: gettext
 BuildRequires: glib2-devel >= 2.0.4
 BuildRequires: gmime-devel >= 2.4
 BuildRequires: gnet2-devel
 BuildRequires: gtk2-devel >= 2.16
 BuildRequires: gtkspell-devel >= 2.0.2
 BuildRequires: libxml2-devel >= 2.4.22
-BuildRequires: pcre-devel >= 5.0, gettext
+BuildRequires: pcre-devel >= 5.0
+BuildRequires: perl >= 5.8.1
 
 %description
 Pan is a newsreader, loosely based on Agent and Gravity, which attempts
@@ -73,6 +75,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_datadir}/pixmaps/pan.png
 
 %changelog
+* Tue Jul 05 2011 Steve Huff <shuff@vecna.org> - 0.135-1
+- Updated to release 0.135.
+
 * Tue May 03 2011 Steve Huff <shuff@vecna.org> - 0.134-1
 - Updated to release 0.134.
 
