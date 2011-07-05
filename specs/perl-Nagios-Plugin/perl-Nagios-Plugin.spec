@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: Ton Voon <ton,voon$opsera,com>
+# Upstream: Nagios Plugin Development Team <nagiosplug-devel$lists,sourceforge,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,7 +9,7 @@
 
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
-Version: 0.33
+Version: 0.35
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,12 +20,40 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(Carp)
+BuildRequires: perl(Class::Accessor)
+BuildRequires: perl(Config::Tiny)
+BuildRequires: perl(File::Basename)
+BuildRequires: perl(File::Spec)
+BuildRequires: perl(IO::File)
 BuildRequires: perl(Math::Calc::Units)
-Requires: perl(Config::Tiny)
+BuildRequires: perl(Params::Validate)
+BuildRequires: perl(Test::More) >= 0.62
+BuildRequires: rpm-macros-rpmforge
+Requires: perl(Carp)
+Requires: perl(Class::Accessor)
 Requires: perl(Class::Accessor::Fast)
+Requires: perl(Config::Tiny)
+Requires: perl(File::Basename)
+Requires: perl(File::Spec)
+Requires: perl(IO::File)
+Requires: perl(Math::Calc::Units)
+Requires: perl(Params::Validate)
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
-A family of perl modules to streamline writing Nagios.
+Nagios::Plugin and its associated Nagios::Plugin::* modules are a family of
+perl modules to streamline writing Nagios plugins. The main end user modules
+are Nagios::Plugin, providing an object-oriented interface to the entire
+Nagios::Plugin::* collection, and Nagios::Plugin::Functions, providing a
+simpler functional interface to a useful subset of the available functionality.
+
+The purpose of the collection is to make it as simple as possible for
+developers to create plugins that conform the Nagios Plugin guidelines
+(http://nagiosplug.sourceforge.net/developer-guidelines.html).
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -46,7 +74,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README t/check_stuff.pl
 %doc %{_mandir}/man3/Nagios::Plugin.3pm*
 %doc %{_mandir}/man3/Nagios::Plugin::*.3pm*
 %dir %{perl_vendorlib}/Nagios/
@@ -54,6 +82,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Tue Jul 05 2011 Steve Huff <shuff@vecna.org> - 0.35-1
+- Updated to version 0.35.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 0.33-1
 - Updated to version 0.33.
 
