@@ -4,13 +4,13 @@
 
 Summary: console Pandora.com client
 Name: pianobar
-Version: 2011.04.27
+Version: 2011.07.09
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://6xq.net/html/00/17.html
 
-Source: http://6xq.net/media/00/16/pianobar-%{version}.tar.bz2
+Source: http://6xq.net/static/projects/pianobar/pianobar-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
@@ -91,6 +91,10 @@ you will need to install libpiano-devel.
 %exclude %{_libdir}/*.a
 
 %changelog
+* Tue Jul 12 2011 Steve Huff <shuff@vecna.org> - 2011.07.09-1
+- updated to pianobar-2011.07.09
+- updated Source URL
+
 * Wed Apr 27 2011 Philip Durbin <philipdurbin@gmail.com> - 2011.04.27-1
 - updated to pianobar-2011.04.27
 - put version macro in Source
