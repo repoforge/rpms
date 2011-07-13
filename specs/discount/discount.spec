@@ -4,9 +4,9 @@
 
 Summary: C compiler for Markdown
 Name: discount
-Version: 2.0.8
+Version: 2.0.9
 Release: 1%{?dist}
-License: GPL
+License: BSD
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/
 
@@ -75,14 +75,19 @@ Install this package if you want to develop software that uses the Discount libr
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man7/*
 %{_bindir}/*
-%{_libdir}/*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/*
 %{_includedir}/*
+%{_libdir}/*.a
 
 %changelog
+* Wed Jul 13 2011 Steve Huff <shuff@vecna.org> - 2.0.9-1
+- Updated to version 2.0.9.
+- Fixed license metadata.
+- Moved the static library to discount-devel.
+
 * Tue Mar 22 2011 Steve Huff <shuff@vecna.org> - 2.0.8-1
 - Updated to version 2.0.8.
 
