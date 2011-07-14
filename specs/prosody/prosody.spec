@@ -11,6 +11,7 @@ Group: Applications/Communications
 URL: http://prosody.im/
 
 Source: http://prosody.im/downloads/source/prosody-%{version}.tar.gz
+Patch0: prosody-0.8.2_posix.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
@@ -44,11 +45,12 @@ rapidly develop added functionality, or prototype new protocols.
 
 %prep
 %setup
+%patch0
 
 %build
 ./configure \
     --prefix=%{_prefix} \
-    --sysconfdir=%{_sysconfdir} \
+    --sysconfdir=%{_sysconfdir}/prosody \
     --datadir=%{_sharedstatedir}/prosody \
     --with-lua-lib=%{_libdir} \
     --require-config
@@ -58,12 +60,15 @@ rapidly develop added functionality, or prototype new protocols.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
+# make a pidfile directory
+%{__install} -d -m0775 %{buildroot}%{_localstatedir}/run/prosody
+
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
 
-%post
+%pre
 if [ $1 -eq 1 ]; then
-    /usr/sbin/groupadd -r prosody
+    /usr/sbin/groupadd -r -f prosody
     /usr/sbin/useradd -r -d %{_sharedstatedir}/prosody -g prosody -s /bin/false prosody
     exit 0
 fi
@@ -71,7 +76,7 @@ fi
 %preun
 if [ $1 -eq 0 ]; then
     /usr/sbin/userdel prosody
-    /usr/sbin/groupdel prosody
+    /usr/sbin/groupdel prosody >/dev/null 2>&1
     exit 0
 fi
 
@@ -84,12 +89,13 @@ fi
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_usr}/lib/prosody/
-%attr(prosody, prosody, 2750)%{_sharedstatedir}/*
-%config(noreplace) %{_sysconfdir}/prosody.cfg.lua
-%dir %{_sysconfdir}/certs/
-%{_sysconfdir}/certs/Makefile
-%config(noreplace) %{_sysconfdir}/certs/localhost*
-%config(noreplace) %{_sysconfdir}/certs/openssl.cnf
+%attr(2750, prosody, prosody) %{_sharedstatedir}/*
+%config(noreplace) %{_sysconfdir}/prosody/prosody.cfg.lua
+%dir %{_sysconfdir}/prosody/certs/
+%{_sysconfdir}/prosody/certs/Makefile
+%config(noreplace) %{_sysconfdir}/prosody/certs/localhost*
+%config(noreplace) %{_sysconfdir}/prosody/certs/openssl.cnf
+%dir %attr(2770, prosody, prosody) %{_localstatedir}/run/prosody
 
 
 %changelog
