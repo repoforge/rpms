@@ -1,0 +1,8 @@
+/var/log/dansguardian/access.log {
+  rotate 4
+  weekly
+  sharedscripts
+  postrotate
+    /bin/kill -HUP `cat /var/run/dansguardian.pid 2>/dev/null` 2> /dev/null || true
+  endscript
+}

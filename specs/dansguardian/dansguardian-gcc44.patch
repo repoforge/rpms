@@ -1,0 +1,55 @@
+diff -ruN dansguardian-2.10.1.1.orig/src/ConnectionHandler.cpp dansguardian-2.10.1.1/src/ConnectionHandler.cpp
+--- dansguardian-2.10.1.1.orig/src/ConnectionHandler.cpp	2009-02-25 12:36:22.000000000 +0100
++++ dansguardian-2.10.1.1/src/ConnectionHandler.cpp	2009-07-15 12:02:09.801533048 +0200
+@@ -45,6 +45,7 @@
+ 
+ #ifdef ENABLE_ORIG_IP
+ #include <linux/types.h>
++#include <limits.h>
+ #include <linux/netfilter_ipv4.h>
+ #endif
+ 
+diff -ruN dansguardian-2.10.1.1.orig/src/contentscanners/clamav.cpp dansguardian-2.10.1.1/src/contentscanners/clamav.cpp
+--- dansguardian-2.10.1.1.orig/src/contentscanners/clamav.cpp	2008-11-18 12:27:04.000000000 +0100
++++ dansguardian-2.10.1.1/src/contentscanners/clamav.cpp	2009-07-15 11:59:12.316495912 +0200
+@@ -26,6 +26,7 @@
+ #include "../ContentScanner.hpp"
+ #include "../OptionContainer.hpp"
+ 
++#include <cstdio>
+ #include <syslog.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
+diff -ruN dansguardian-2.10.1.1.orig/src/contentscanners/commandlinescan.cpp dansguardian-2.10.1.1/src/contentscanners/commandlinescan.cpp
+--- dansguardian-2.10.1.1.orig/src/contentscanners/commandlinescan.cpp	2008-11-18 12:27:04.000000000 +0100
++++ dansguardian-2.10.1.1/src/contentscanners/commandlinescan.cpp	2009-07-15 11:59:12.317495697 +0200
+@@ -28,6 +28,7 @@
+ #include "../OptionContainer.hpp"
+ #include "../RegExp.hpp"
+ 
++#include <cstdio>
+ #include <syslog.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
+diff -ruN dansguardian-2.10.1.1.orig/src/contentscanners/icapscan.cpp dansguardian-2.10.1.1/src/contentscanners/icapscan.cpp
+--- dansguardian-2.10.1.1.orig/src/contentscanners/icapscan.cpp	2008-11-18 12:27:04.000000000 +0100
++++ dansguardian-2.10.1.1/src/contentscanners/icapscan.cpp	2009-07-15 11:59:12.318495062 +0200
+@@ -29,6 +29,7 @@
+ #include "../ContentScanner.hpp"
+ #include "../OptionContainer.hpp"
+ 
++#include <cstdio>
+ #include <syslog.h>
+ #include <sys/time.h>
+ #include <sys/types.h>
+diff -ruN dansguardian-2.10.1.1.orig/src/downloadmanagers/fancy.cpp dansguardian-2.10.1.1/src/downloadmanagers/fancy.cpp
+--- dansguardian-2.10.1.1.orig/src/downloadmanagers/fancy.cpp	2008-11-18 12:27:04.000000000 +0100
++++ dansguardian-2.10.1.1/src/downloadmanagers/fancy.cpp	2009-07-15 11:59:12.319495964 +0200
+@@ -26,6 +26,7 @@
+ #include "../HTMLTemplate.hpp"
+ #include "../ConnectionHandler.hpp"
+ 
++#include <cstdio>
+ #include <syslog.h>
+ #include <sys/time.h>
+ #include <sys/types.h>

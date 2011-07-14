@@ -6,15 +6,32 @@
 
 Summary: Content filtering web proxy
 Name: dansguardian
-Version: 2.8.0.6
-Release: 1.2%{?dist}
-License: GPL
+Version: 2.10.1.1
+Release: 1%{?dist}
+License: GPLv2+
 Group: System Environment/Daemons
 URL: http://www.dansguardian.org/
 
-Source: http://dansguardian.org/downloads/2/Stable/dansguardian-%{version}.source.tar.gz
+Source0: http://dansguardian.org/downloads/2/Stable/%{name}-%{version}.tar.gz
+Source1: dansguardian.init
+Source2: dansguardian.httpd
+Source3: dansguardian.logrotate
+
+# Fixes some compilation errors with gcc 4.4
+Patch1: dansguardian-gcc44.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, zlib-devel, which
+
+BuildRequires: gcc-c++
+BuildRequires: pcre-devel
+BuildRequires: zlib-devel
+BuildRequires: pkgconfig
+BuildRequires: which
+
+Requires(pre):   shadow-utils
+Requires(post):  chkconfig
+Requires(preun): chkconfig
+Requires(preun): initscripts
 
 %description
 DansGuardian is a web filtering engine that checks the content within
@@ -26,180 +43,103 @@ MIME filtering, file extension filtering, POST filtering.
 
 %prep
 %setup
-
-### FIXME: Add a default dansguardian.httpd for Apache. (Please fix upstream)
-%{__cat} <<EOF >dansguardian.httpd
-### You may need to include conf.d/dansguardian.conf to make it work.
-ScriptAlias /dansguardian/ %{_localstatedir}/www/dansguardian/
-
-<Directory %{_localstatedir}/www/dansguardian/>
-        DirectoryIndex dansguardian.pl
-        Options ExecCGI
-        order deny,allow
-        deny from all
-        allow from 127.0.0.1
-</Directory>
-EOF
-
-%{__cat} <<'EOF' >dansguardian.init
-#!/bin/bash
-#
-# Init file for DansGuardian content filter.
-#
-# Written by Dag Wieers <dag@wieers.com>.
-#
-# chkconfig: - 92 8
-# description: DansGuardian content filter.
-#
-# processname: dansguardian
-# config: %{_sysconfdir}/dansguardian/dansguardian.conf
-# pidfile: %{_localstatedir}/run/dansguardian
-
-source %{_initrddir}/functions
-source %{_sysconfdir}/sysconfig/network
-
-### Check that networking is up.
-[ "${NETWORKING}" == "no" ] && exit 0
-
-[ -x "%{_sbindir}/dansguardian" ] || exit 1
-[ -r "%{_sysconfdir}/dansguardian/dansguardian.conf" ] || exit 1
-
-RETVAL=0
-prog="dansguardian"
-desc="Web Content Filter"
-
-start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
-}
-
-stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
-}
-
-restart() {
-	stop
-	start
-}
-
-reload() {
-        echo -n $"Reloading $desc ($prog): "
-        killproc $prog -HUP
-        RETVAL=$?
-        echo
-        return $RETVAL
-}
-
-case "$1" in
-  start)
-	start
-	;;
-  stop)
-	stop
-	;;
-  restart)
-	restart
-	;;
-  reload)
-	reload
-	;;
-  condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
-  status)
-	status $prog
-	RETVAL=$?
-	;;
-  *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
-esac
-
-exit $RETVAL
-EOF
+%patch1 -p1
 
 %build
-### FIXME: Makefiles don't follow proper autotools directory standard. (Please fix upstream)
-./configure \
-	--bindir="%{_sbindir}/" \
-	--cgidir="%{_localstatedir}/www/dansguardian/" \
-	--installprefix="%{buildroot}" \
-	--logdir="%{_localstatedir}/log/dansguardian/" \
-	--logrotatedir="%{_sysconfdir}/logrotate.d/" \
-	--mandir="%{_mandir}/" \
-	--sysconfdir="%{_sysconfdir}/dansguardian/" \
-	--sysvdir="%{_initrddir}/" \
-	--runas_usr="nobody" \
-	--runas_grp="nobody"
 
-%{__perl} -pi.orig -e '
-		s|^(CHKCONFIG) =.*$|$1 = :|;
-                s|^\tchown|#\tchown|;
-		s|/usr/lib|%{_libdir}|g;
-        ' Makefile
+%configure \
+   --disable-clamav \
+   --disable-clamd \
+   --enable-icap \
+   --enable-kavd \
+   --enable-commandline \
+   --enable-trickledm \
+   --enable-ntlm \
+   --enable-email \
+   --with-proxyuser=dansguardian \
+   --with-proxygroup=dansguardian
 
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 
-### FIXME: Directory not created prior installation. (Please fix upstream)
-%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/logrotate.d/
+%{__make} install DESTDIR=%{buildroot}
 
-%makeinstall
-%{__install} -Dp -m0644 dansguardian.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/dansguardian.conf
-%{__install} -Dp -m0755 dansguardian.init %{buildroot}%{_initrddir}/dansguardian
+install -Dpm 644 %{SOURCE3} \
+    $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/%{name}
 
-%post
-/sbin/chkconfig --add dansguardian
+# delete the other scripts since they are of no use for Fedora users
+rm -rf $RPM_BUILD_ROOT%{_datadir}/%{name}/scripts
+chmod 755 $RPM_BUILD_ROOT%{_datadir}/%{name}/%{name}.pl
 
-%preun
-if [ $1 -eq 0 ]; then
-        /sbin/service dansguardian stop &>/dev/null || :
-        /sbin/chkconfig --del dansguardian
-fi
+# install init script and httpd config
+install -Dpm 755 %{SOURCE1} $RPM_BUILD_ROOT%{_initrddir}/%{name}
+install -Dp -m0644 %{SOURCE2} \
+    $RPM_BUILD_ROOT%{_sysconfdir}/httpd/conf.d/%{name}.conf
 
-%postun
-/sbin/service dansguardian condrestart &>/dev/null || :
+# we'll install this later within %doc
+rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}
+
+# create the log dir
+install -dm 755 $RPM_BUILD_ROOT%{_localstatedir}/log/%{name}
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%pre
+getent group %{name} >/dev/null || groupadd -r %{name}
+getent passwd %{name} >/dev/null || \
+useradd -r -g %{name} -d %{_datadir}/%{name} -s /sbin/nologin \
+   -c "DansGuardian web content filter" %{name}
+exit 0
+
+%post
+if [ $1 -eq 1 ]; then
+    /sbin/chkconfig --add %{name}
+fi
+
+%preun
+if [ $1 -eq 0 ]; then
+    /sbin/service %{name} stop >/dev/null 2>&1
+    /sbin/chkconfig --del %{name}
+fi
+
+%postun
+if [ $1 -ge 1 ] ; then
+    /sbin/service %{name} condrestart >/dev/null 2>&1 || :
+fi
+
 %files
 %defattr(-, root, root, 0755)
-%doc INSTALL LICENSE README
-%doc %{_mandir}/man?/*
-%dir %{_sysconfdir}/dansguardian/
-%config(noreplace) %{_sysconfdir}/dansguardian/dansguardian.conf
-%config(noreplace) %{_sysconfdir}/dansguardian/dansguardianf1.conf
-#%config(noreplace) %{_sysconfdir}/dansguardian/template.html
-%config %{_sysconfdir}/dansguardian/*list
-%config %{_sysconfdir}/dansguardian/phraselists/
-#%config %{_sysconfdir}/dansguardian/messages
-%config %{_sysconfdir}/dansguardian/languages/
-%config %{_sysconfdir}/dansguardian/logrotation/
-%config %{_sysconfdir}/dansguardian/pics/
-%config %{_sysconfdir}/dansguardian/transparent1x1.gif
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/*
-%config %{_initrddir}/*
-%config %{_sysconfdir}/logrotate.d/*
-%{_sbindir}/*
-%{_localstatedir}/www/dansguardian/
+%doc COPYING INSTALL README UPGRADING
+%doc doc/AuthPlugins doc/ContentScanners doc/DownloadManagers doc/FAQ
+%doc doc/FAQ.html doc/Plugins
+%doc %{_mandir}/man8/%{name}.8.gz
+%{_sbindir}/%{name}
+%attr(-,%{name},%{name}) %{_datadir}/%{name}
+%{_initrddir}/%{name}
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %{_sysconfdir}/%{name}/%{name}*.conf
+%dir %{_sysconfdir}/%{name}/authplugins
+%config(noreplace) %{_sysconfdir}/%{name}/authplugins/*
+%dir %{_sysconfdir}/%{name}/contentscanners
+%config(noreplace) %{_sysconfdir}/%{name}/contentscanners/*
+%dir %{_sysconfdir}/%{name}/downloadmanagers
+%config(noreplace) %{_sysconfdir}/%{name}/downloadmanagers/*
+%dir %{_sysconfdir}/%{name}/lists
+%config(noreplace) %{_sysconfdir}/%{name}/lists/*
+%config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
+%config(noreplace) %{_sysconfdir}/httpd/conf.d/%{name}.conf
 
-%defattr(0700, nobody, nobody, 0755)
-%{_localstatedir}/log/dansguardian/
+%defattr(644, %{name}, %{name}, 755)
+%dir %{_localstatedir}/log/%{name}
 
 %changelog
+* Thu Jul 14 2011 Yury V. Zaytsev <yury@shurup.com> - 2.10.1.1-1
+- Synced the SPEC with Fedora Rawhide where appropriate.
+- Updated to release 2.10.1.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.8.0.6-1.2
 - Rebuild for Fedora Core 5.
 
