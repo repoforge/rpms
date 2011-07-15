@@ -23,7 +23,7 @@ Patch0: luaexpat-1.1.0_destdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
-BuildRequires: expat-devel >= 2.0.0
+BuildRequires: expat-devel
 BuildRequires: gcc
 BuildRequires: lua-devel >= 5.1
 BuildRequires: make
