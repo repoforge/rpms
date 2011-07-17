@@ -16,22 +16,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc-c++
-BuildRequires: libidn-devel
-BuildRequires: lua
+BuildRequires: libidn-devel >= 1.1
+BuildRequires: lua-devel >= 5.1
 # BuildRequires: luadbi
 # BuildRequires: luaevent-prosody
 BuildRequires: luaexpat
 BuildRequires: luafilesystem
-# BuildRequires: luasec
+BuildRequires: luasec
 BuildRequires: luasocket
 # BuildRequires: luazlib-brimworks
 BuildRequires: make
-BuildRequires: openssl-devel
+BuildRequires: openssl-devel >= 0.9.8
 BuildRequires: rpm-macros-rpmforge
-Requires: lua
+Requires: lua >= 5.1
 Requires: luaexpat
 Requires: luafilesystem
 Requires: luasocket
+Requires: luasec
 Requires(post): /usr/sbin/groupadd
 Requires(post): /usr/sbin/useradd
 Requires(preun): /usr/sbin/groupdel
