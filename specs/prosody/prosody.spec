@@ -96,7 +96,7 @@ fi
 %{_sysconfdir}/prosody/certs/Makefile
 %config(noreplace) %{_sysconfdir}/prosody/certs/localhost*
 %config(noreplace) %{_sysconfdir}/prosody/certs/openssl.cnf
-%dir %attr(2770, prosody, prosody) %{_localstatedir}/run/prosody
+%dir %attr(-, prosody, prosody) %{_localstatedir}/run/prosody
 
 
 %changelog
