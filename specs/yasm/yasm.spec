@@ -1,17 +1,10 @@
 # $Id$
-# Authority: matthias
-
-%{?fc2:%define _without_gettextdevel 1}
-%{?fc1:%define _without_gettextdevel 1}
-%{?el3:%define _without_gettextdevel 1}
-%{?rh9:%define _without_gettextdevel 1}
-%{?rh7:%define _without_gettextdevel 1}
-%{?el2:%define _without_gettextdevel 1}
-%{?el2:%define _without_xmlto 1}
+# Authority: yury
+# Upstream: Discussions about YASM development <yasm-devel$tortall,net>
 
 Summary: Complete rewrite of the NASM assembler
 Name: yasm
-Version: 1.0.1
+Version: 1.1.0
 Release: 1%{?dist}
 License: BSD and (Artistic or GPLv2+ or LGPLv2+) and LGPLv2
 Group: Development/Languages
@@ -20,10 +13,10 @@ URL: http://www.tortall.net/projects/yasm/
 Source: http://www.tortall.net/projects/yasm/releases/yasm-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, byacc
-%{!?_without_xmlto:BuildRequires:xmlto}
-%{!?_without_gettextdevel:BuildRequires: gettext-devel}
-%{?_without_gettextdevel:BuildRequires: gettext}
+BuildRequires: bison
+BuildRequires: byacc
+BuildRequires: xmlto
+BuildRequires: gettext-devel
 
 %description
 Yasm is a complete rewrite of the NASM assembler under the "new" BSD License
@@ -64,27 +57,22 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %doc Artistic.txt AUTHORS BSD.txt COPYING GNU*
 %doc %{_mandir}/man1/yasm.1*
-%{_bindir}/yasm
 %{_bindir}/vsyasm
+%{_bindir}/yasm
 %{_bindir}/ytasm
-#%{_libdir}/*.so.*
-#%dir %{_libdir}/yasm/
-#%{_libdir}/yasm/*.so
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man7/yasm_*.7*
 %{_includedir}/libyasm/
-%{_includedir}/libyasm-stdint.h
 %{_includedir}/libyasm.h
+%{_includedir}/libyasm-stdint.h
 %{_libdir}/libyasm.a
-#%{_libdir}/*.so
-#%dir %{_libdir}/yasm/
-#%{_libdir}/yasm/*.a
-#%exclude %{_libdir}/*.la
-#%exclude %{_libdir}/yasm/*.la
 
 %changelog
+* Sun Jul 17 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Wed May 19 2010 Dag Wieers <dag@wieers.com> - 1.0.1-1
 - Updated to release 1.0.1.
 
