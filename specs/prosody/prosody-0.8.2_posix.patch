@@ -1,0 +1,31 @@
+--- prosody.cfg.lua.dist-orig	2011-07-14 17:01:12.539956483 -0400
++++ prosody.cfg.lua.dist	2011-07-14 17:06:02.785916637 -0400
+@@ -59,7 +59,7 @@
+ 		--"admin_telnet"; -- Opens telnet console interface on localhost port 5582
+ 
+ 	-- Other specific functionality
+-		--"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
++		"posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
+ 		--"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+ 		--"httpserver"; -- Serve static files from a directory over HTTP
+ 		--"groups"; -- Shared roster support
+@@ -123,12 +123,16 @@
+ -- Logging configuration
+ -- For advanced logging see http://prosody.im/doc/logging
+ log = {
+-	info = "prosody.log"; -- Change 'info' to 'debug' for verbose logging
+-	error = "prosody.err";
+-	-- "*syslog"; -- Uncomment this for logging to syslog
++	-- info = "prosody.log"; -- Change 'info' to 'debug' for verbose logging
++	-- error = "prosody.err";
++	info = "*syslog";
+ 	-- "*console"; -- Log to the console, useful for debugging with daemonize=false
+ }
+ 
++-- POSIX runtime configuration
++pidfile = "/var/run/prosody/prosody.pid"
++prosody_user = "prosody"
++
+ ----------- Virtual hosts -----------
+ -- You need to add a VirtualHost entry for each domain you wish Prosody to serve.
+ -- Settings under each VirtualHost entry apply *only* to that host.

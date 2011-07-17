@@ -1,0 +1,29 @@
+--- makefile.orig	2011-06-28 17:14:16.169929588 -0400
++++ makefile	2011-06-28 17:15:50.491924296 -0400
+@@ -35,16 +35,16 @@
+ # Install LuaSocket according to recommendation
+ #
+ install: all
+-	cd src; mkdir -p $(INSTALL_TOP_SHARE)
+-	cd src; $(INSTALL_DATA) $(TO_TOP_SHARE) $(INSTALL_TOP_SHARE)
+-	cd src; mkdir -p $(INSTALL_SOCKET_SHARE)
+-	cd src; $(INSTALL_DATA) $(TO_SOCKET_SHARE) $(INSTALL_SOCKET_SHARE)
+-	cd src; mkdir -p $(INSTALL_SOCKET_LIB)
+-	cd src; $(INSTALL_EXEC) $(SOCKET_SO) $(INSTALL_SOCKET_LIB)/core.$(EXT)
+-	#cd src; mkdir -p $(INSTALL_MIME_SHARE)
+-	#cd src; $(INSTALL_DATA) $(TO_MIME_SHARE) $(INSTALL_MIME_SHARE)
+-	cd src; mkdir -p $(INSTALL_MIME_LIB)
+-	cd src; $(INSTALL_EXEC) $(MIME_SO) $(INSTALL_MIME_LIB)/core.$(EXT)
++	cd src; mkdir -p $(DESTDIR)$(INSTALL_TOP_SHARE)
++	cd src; $(INSTALL_DATA) $(TO_TOP_SHARE) $(DESTDIR)$(INSTALL_TOP_SHARE)
++	cd src; mkdir -p $(DESTDIR)$(INSTALL_SOCKET_SHARE)
++	cd src; $(INSTALL_DATA) $(TO_SOCKET_SHARE) $(DESTDIR)$(INSTALL_SOCKET_SHARE)
++	cd src; mkdir -p $(DESTDIR)$(INSTALL_SOCKET_LIB)
++	cd src; $(INSTALL_EXEC) $(SOCKET_SO) $(DESTDIR)$(INSTALL_SOCKET_LIB)/core.$(EXT)
++	#cd src; mkdir -p $(DESTDIR)$(INSTALL_MIME_SHARE)
++	#cd src; $(INSTALL_DATA) $(TO_MIME_SHARE) $(DESTDIR)$(INSTALL_MIME_SHARE)
++	cd src; mkdir -p $(DESTDIR)$(INSTALL_MIME_LIB)
++	cd src; $(INSTALL_EXEC) $(MIME_SO) $(DESTDIR)$(INSTALL_MIME_LIB)/core.$(EXT)
+ 
+ #------
+ # End of makefile

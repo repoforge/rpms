@@ -1,0 +1,19 @@
+--- makefile-orig	2011-06-29 11:06:07.460922805 -0400
++++ makefile	2011-06-29 11:07:16.329920768 -0400
+@@ -18,11 +18,11 @@
+ 	$(CC) -c $(CFLAGS) -o $@ $(COMPAT_DIR)/compat-5.1.c
+ 
+ install:
+-	mkdir -p $(LUA_LIBDIR)
+-	cp src/$(LIBNAME) $(LUA_LIBDIR)
+-	cd $(LUA_LIBDIR); ln -f -s $(LIBNAME) $T.so
+-	mkdir -p $(LUA_DIR)/$T
+-	cp src/$T/lom.lua $(LUA_DIR)/$T
++	mkdir -p $(DESTDIR)$(LUA_LIBDIR)
++	cp src/$(LIBNAME) $(DESTDIR)$(LUA_LIBDIR)
++	cd $(DESTDIR)$(LUA_LIBDIR); ln -f -s $(LIBNAME) $T.so
++	mkdir -p $(DESTDIR)$(LUA_DIR)/$T
++	cp src/$T/lom.lua $(DESTDIR)$(LUA_DIR)/$T
+ 
+ clean:
+ 	rm -f src/$(LIBNAME) $(OBJS)
