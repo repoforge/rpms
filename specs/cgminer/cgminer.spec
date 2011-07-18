@@ -4,7 +4,7 @@
 
 Summary: CPU/GPU Miner by Con Kolivas
 Name: cgminer
-Version: 1.2.7
+Version: 1.2.8
 Release: 1%{?dist}
 License: GPLv2
 Group: Applications/Internet
@@ -52,5 +52,8 @@ CPU mining is possible at this moment.
 %exclude %{_bindir}/*.cl
 
 %changelog
+* Mon Jul 18 2011 Yury V. Zaytsev <yury@shurup.com> - 1.2.8-1
+- Updated to release 1.2.8.
+
 * Sun Jul 17 2011 Yury V. Zaytsev <yury@shurup.com> - 1.2.7-1
 - Initial package.
