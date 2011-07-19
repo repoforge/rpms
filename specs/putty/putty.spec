@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: <putty$projects,tartarus,org>
 
-
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 %{?rh6:%define _without_freedesktop 1}
@@ -11,7 +10,7 @@
 
 Summary: Graphical SSH, Telnet and Rlogin client
 Name: putty
-Version: 0.60
+Version: 0.61
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Internet
@@ -20,7 +19,8 @@ URL: http://www.chiark.greenend.org.uk/~sgtatham/putty/
 Source: http://the.earth.li/~sgtatham/putty/latest/putty-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gtk+-devel, ImageMagick
+BuildRequires: gtk2-devel
+BuildRequires: ImageMagick
 %{!?_without_freedesktop:BuildRequires: desktop-file-utils}
 
 %description
@@ -47,23 +47,23 @@ EOF
 
 %build
 %{__make} %{?_smp_mflags} -C unix -f Makefile.gtk \
-	prefix="%{_prefix}"
+    prefix="%{_prefix}"
 %{__make} -C doc
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -d -m0755 %{buildroot}%{_bindir} \
-			%{buildroot}%{_mandir}/man1/
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
 %makeinstall -C unix -f Makefile.gtk
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 putty.desktop %{buildroot}%{_datadir}/gnome/apps/Network/putty.desktop
+    %{__install} -Dp -m0644 putty.desktop %{buildroot}%{_datadir}/gnome/apps/Network/putty.desktop
 %else
-	%{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-	desktop-file-install --vendor %{desktop_vendor}    \
-		--add-category X-Red-Hat-Base              \
-		--dir %{buildroot}%{_datadir}/applications \
-		putty.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        putty.desktop
 %endif
 
 convert windows/putty.ico putty.png
@@ -83,6 +83,9 @@ convert windows/putty.ico putty.png
 %{?_without_freedesktop:%{_datadir}/gnome/apps/Network/putty.desktop}
 
 %changelog
+* Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 0.61-1
+- Updated to release 0.61.
+
 * Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.60-1
 - Updated to release 0.60.
 

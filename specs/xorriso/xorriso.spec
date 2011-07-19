@@ -3,7 +3,7 @@
 
 Summary: ISO 9660 Rock Ridge Filesystem Manipulator
 Name: xorriso
-Version: 1.1.0
+Version: 1.1.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Archiving
@@ -69,6 +69,9 @@ fi
 #exclude %{_libdir}/pkgconfig/xorriso.pc
 
 %changelog
+* Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.1.2-1
+- Updated to release 1.1.2.
+
 * Sun Jun 19 2011 Dag Wieers <dag@wieers.com> - 1.1.0-1
 - Updated to release 1.1.0.
 

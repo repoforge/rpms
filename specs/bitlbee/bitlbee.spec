@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 3.0.2
+Version: 3.0.3
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -110,6 +110,9 @@ CFLAGS="%{optflags}" ./configure \
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Mon Jun 20 2011 Dag Wieers <dag@wieers.com> - 3.0.3-1
+- Updated to release 3.0.3.
+
 * Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 3.0.2-1
 - Updated to release 3.0.2.
 

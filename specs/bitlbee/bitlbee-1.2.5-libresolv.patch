@@ -1,0 +1,444 @@
+Patch by Robert Scheck <robert@fedoraproject.org>, based on a patch by Matěj Cepl
+<mcepl@redhat.com> for bitlbee >= 1.2, to avoid static linking to a private glibc
+function, normally visible as libc.so.6(GLIBC_PRIVATE) in the binary RPM package.
+Glibc >= 2.9 allows dynamic linking using -lresolv for ns_initparse()/ns_parserr(),
+but Red Hat Enterprise Linux 4 and 5 (including derivates) are shipping older glibc
+versions. A few more information and details regarding this patch are mentioned in
+Red Hat Bugzilla ID #439047: https://bugzilla.redhat.com/show_bug.cgi?id=439047
+
+--- bitlbee-1.2.5/configure			2010-03-17 02:13:55.000000000 +0100
++++ bitlbee-1.2.5/configure.libresolv		2010-03-18 23:16:54.000000000 +0100
+@@ -19,7 +19,7 @@
+ pidfile='/var/run/bitlbee.pid'
+ ipcsocket='/var/run/bitlbee.sock'
+ pcdir='$prefix/lib/pkgconfig'
+-systemlibdirs="/lib /usr/lib /usr/local/lib"
++systemlibdirs="/lib64 /usr/lib64 /usr/local/lib64 /lib /usr/lib /usr/local/lib"
+ 
+ msn=1
+ jabber=1
+@@ -155,7 +155,7 @@
+ fi
+ 
+ echo CFLAGS=$CFLAGS >> Makefile.settings
+-echo CFLAGS+=-I`pwd` -iquote`pwd`/lib -iquote`pwd`/protocols -I. >> Makefile.settings
++echo CFLAGS+=-I`pwd` -I`pwd`/lib -I`pwd`/protocols -I. >> Makefile.settings
+ 
+ echo CFLAGS+=-DHAVE_CONFIG_H >> Makefile.settings
+ 
+@@ -306,10 +306,10 @@
+ detect_resolv_static()
+ {
+ 	for i in $systemlibdirs; do
+-		if [ -f $i/libresolv.a ]; then
++		if [ -f $i/libresolv.so ]; then
+ 			echo "$RESOLV_TESTCODE" | $CC -o /dev/null -x c - -Wl,$i/libresolv.a >/dev/null 2>/dev/null
+ 			if [ "$?" = "0" ]; then
+-				echo 'EFLAGS+='$i'/libresolv.a' >> Makefile.settings
++				echo 'EFLAGS+=-lresolv' >> Makefile.settings
+ 				return 0
+ 			fi
+ 		fi
+--- bitlbee-1.2.5/lib/Makefile			2009-10-17 17:26:46.000000000 +0200
++++ bitlbee-1.2.5/lib/Makefile.libresolv	2009-10-17 20:17:38.000000000 +0200
+@@ -9,7 +9,7 @@
+ -include ../Makefile.settings
+ 
+ # [SH] Program variables
+-objects = arc.o base64.o $(EVENT_HANDLER) http_client.o ini.o md5.o misc.o proxy.o sha1.o $(SSL_CLIENT) url.o xmltree.o
++objects = arc.o base64.o $(EVENT_HANDLER) http_client.o ini.o md5.o misc.o proxy.o sha1.o srv.o $(SSL_CLIENT) url.o xmltree.o
+ 
+ CFLAGS += -Wall
+ LFLAGS += -r
+--- bitlbee-1.2.5/lib/misc.c			2009-10-17 17:26:46.000000000 +0200
++++ bitlbee-1.2.5/lib/misc.c.libresolv		2009-10-17 20:18:34.000000000 +0200
+@@ -43,6 +43,7 @@
+ #ifdef HAVE_RESOLV_A
+ #include <arpa/nameser.h>
+ #include <resolv.h>
++#include <netinet/in.h>
+ #endif
+ 
+ #include "ssl_client.h"
+@@ -467,58 +468,6 @@
+ 	return 0;
+ }
+ 
+-struct ns_srv_reply *srv_lookup( char *service, char *protocol, char *domain )
+-{	
+-	struct ns_srv_reply *reply = NULL;
+-#ifdef HAVE_RESOLV_A
+-	char name[1024];
+-	unsigned char querybuf[1024];
+-	const unsigned char *buf;
+-	ns_msg nsh;
+-	ns_rr rr;
+-	int i, len, size;
+-	
+-	g_snprintf( name, sizeof( name ), "_%s._%s.%s", service, protocol, domain );
+-	
+-	if( ( size = res_query( name, ns_c_in, ns_t_srv, querybuf, sizeof( querybuf ) ) ) <= 0 )
+-		return NULL;
+-	
+-	if( ns_initparse( querybuf, size, &nsh ) != 0 )
+-		return NULL;
+-	
+-	if( ns_parserr( &nsh, ns_s_an, 0, &rr ) != 0 )
+-		return NULL;
+-	
+-	size = ns_rr_rdlen( rr );
+-	buf = ns_rr_rdata( rr );
+-	
+-	len = 0;
+-	for( i = 6; i < size && buf[i]; i += buf[i] + 1 )
+-		len += buf[i] + 1;
+-	
+-	if( i > size )
+-		return NULL;
+-	
+-	reply = g_malloc( sizeof( struct ns_srv_reply ) + len );
+-	memcpy( reply->name, buf + 7, len );
+-	
+-	for( i = buf[6]; i < len && buf[7+i]; i += buf[7+i] + 1 )
+-		reply->name[i] = '.';
+-	
+-	if( i > len )
+-	{
+-		g_free( reply );
+-		return NULL;
+-	}
+-	
+-	reply->prio = ( buf[0] << 8 ) | buf[1];
+-	reply->weight = ( buf[2] << 8 ) | buf[3];
+-	reply->port = ( buf[4] << 8 ) | buf[5];
+-#endif
+-	
+-	return reply;
+-}
+-
+ /* Word wrapping. Yes, I know this isn't UTF-8 clean. I'm willing to take the risk. */
+ char *word_wrap( char *msg, int line_len )
+ {
+--- bitlbee-1.2.5/lib/misc.h			2009-10-17 17:26:46.000000000 +0200
++++ bitlbee-1.2.5/lib/misc.h.libresolv		2009-10-17 20:19:03.000000000 +0200
+@@ -28,14 +28,7 @@
+ 
+ #include <gmodule.h>
+ #include <time.h>
+-
+-struct ns_srv_reply
+-{
+-	int prio;
+-	int weight;
+-	int port;
+-	char name[];
+-};
++#include "srv.h"
+ 
+ G_MODULE_EXPORT void strip_linefeed( gchar *text );
+ G_MODULE_EXPORT char *add_cr( char *text );
+--- bitlbee-1.2.5/lib/srv.c			1970-01-01 01:00:00.000000000 +0100
++++ bitlbee-1.2.5/lib/srv.c.libresolv		2008-06-28 17:28:45.000000000 +0200
+@@ -0,0 +1,239 @@
++/* srv.c - DNS SRV code
++ * Copyright (C) 2003 Free Software Foundation, Inc.
++ *
++ * This file is part of GNUPG.
++ *
++ * GNUPG is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * GNUPG is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, see <http://www.gnu.org/licenses/>.
++ */
++
++#undef TEST
++
++#ifdef TEST
++#define HAVE_RESOLV_A
++#endif
++
++#include <config.h>
++#include <sys/types.h>
++
++#include <unistd.h>
++#include <stdlib.h>
++#include <string.h>
++#include <time.h>
++
++#include "srv.h"
++#include <glib.h>
++#include <glib/gprintf.h>
++#include <glib/gutils.h>
++
++/* Not every installation has gotten around to supporting SRVs yet...*/
++#ifndef T_SRV
++#define T_SRV 33
++#endif
++
++static int priosort(const void *a, const void *b) {
++	const struct ns_srv_reply *sa=a, *sb=b;
++	if (sa->prio>sb->prio)
++		return 1;
++	else if (sa->prio<sb->prio)
++		return -1;
++	else
++		return 0;
++}
++
++struct ns_srv_reply *srv_lookup(char *service, char *protocol, char *domain) {
++	struct ns_srv_reply *reply = NULL;
++	struct ns_srv_reply *list = NULL;
++	char name[1024];
++#ifdef HAVE_RESOLV_A
++	unsigned char answer[PACKETSZ];
++	int r, srvcount=0;
++	unsigned char *pt, *emsg;
++	int count, dlen;
++
++	g_snprintf(name, sizeof(name ), "_%s._%s.%s", service, protocol, domain);
++
++	_res.options |= RES_DEBUG;
++	
++	if ( res_init() != 0 ) 
++		return NULL;
++	
++	r=res_query(name, C_IN, T_SRV, answer, PACKETSZ);
++	
++	if (r<sizeof(HEADER) || r>PACKETSZ)
++		return NULL;
++
++	if ((((HEADER *)answer)->rcode)==NOERROR && (count=ntohs(((HEADER *)answer)->ancount))) {
++		int i, rc;
++
++		emsg=&answer[r]; /* end of message ??? */
++		pt=&answer[sizeof(HEADER)];
++
++		/* Skip over the query */
++		rc=dn_skipname(pt, emsg);
++		if (rc==-1)
++			goto fail;
++
++		pt+=rc+QFIXEDSZ;
++
++		while (count-->0 && pt<emsg) {
++			struct ns_srv_reply *srv=NULL;
++			int type, class;
++
++			list=g_realloc(list, (srvcount+1)*sizeof(struct ns_srv_reply));
++			memset(&list[srvcount], 0, sizeof(struct ns_srv_reply));
++			srv=&list[srvcount];
++			srvcount++;
++
++			rc=dn_skipname(pt, emsg); /* the name we just queried for */
++			if (rc==-1)
++				goto fail;
++			pt+=rc;
++
++			/* Truncated message? */
++			if ((emsg-pt)<16)
++				goto fail;
++
++			type=*pt++ << 8;
++			type|=*pt++;
++			/* We asked for SRV and got something else !? */
++			if (type!=T_SRV)
++				goto fail;
++
++			class=*pt++ << 8;
++			class|=*pt++;
++			/* We asked for IN and got something else !? */
++			if (class!=C_IN)
++				goto fail;
++
++			pt+=4; /* ttl */
++			dlen=*pt++ << 8;
++			dlen|=*pt++;
++			srv->prio=*pt++ << 8;
++			srv->prio|=*pt++;
++			srv->weight=*pt++ << 8;
++			srv->weight|=*pt++;
++			srv->port=*pt++ << 8;
++			srv->port|=*pt++;
++
++			/* Get the name.  2782 doesn't allow name compression, but
++			 dn_expand still works to pull the name out of the
++			 packet. */
++			rc=dn_expand(answer, emsg, pt, srv->name, MAXDNAME);
++			if (rc==1 && srv->name[0]==0) /* "." */
++				goto noanswer;
++			if (rc==-1)
++				goto fail;
++			pt+=rc;
++			/* Corrupt packet? */
++			if (dlen!=rc+6)
++				goto fail;
++		}
++
++		/* Now we have an array of all the srv records. */
++
++		/* Order by priority */
++		qsort(list, srvcount, sizeof(struct ns_srv_reply), priosort);
++
++		/* For each priority, move the zero-weighted items first. */
++		for (i=0; i<srvcount; i++) {
++			int j;
++
++			for (j=i; j<srvcount && list[i].prio==list[j].prio; j++) {
++				if (list[j].weight==0) {
++					/* Swap j with i */
++					if (j!=i) {
++						struct ns_srv_reply temp;
++
++						memcpy(&temp, &list[j], sizeof(struct ns_srv_reply));
++						memcpy(&list[j], &list[i], sizeof(struct ns_srv_reply));
++						memcpy(&list[i], &temp, sizeof(struct ns_srv_reply));
++					}
++
++					break;
++				}
++			}
++		}
++
++		/* Run the RFC-2782 weighting algorithm.  We don't need very
++		 high quality randomness for this, so regular libc srand/rand
++		 is sufficient. */
++		srand(time(NULL)*getpid());
++
++		for (i=0; i<srvcount; i++) {
++			int j;
++			float prio_count=0, chose;
++
++			for (j=i; j<srvcount && list[i].prio==list[j].prio; j++) {
++				prio_count+=list[j].weight;
++				list[j].run_count=prio_count;
++			}
++
++			chose=prio_count*rand()/RAND_MAX;
++
++			for (j=i; j<srvcount && list[i].prio==list[j].prio; j++) {
++				if (chose<=list[j].run_count) {
++					/* Swap j with i */
++					if (j!=i) {
++						struct ns_srv_reply temp;
++
++						memcpy(&temp, &list[j], sizeof(struct ns_srv_reply));
++						memcpy(&list[j], &list[i], sizeof(struct ns_srv_reply));
++						memcpy(&list[i], &temp, sizeof(struct ns_srv_reply));
++					}
++					break;
++				}
++			}
++		}
++	}
++
++	if (list == NULL)
++		return NULL;
++
++	/* TODO: bitlbee should expect a situation when more than one server
++	 * is available for the given SRV record.
++	 */
++	reply = g_malloc(sizeof(struct ns_srv_reply));
++	*reply = *list;
++	g_free(list);
++	/* list=NULL; */
++#endif /* HAVE_RESOLV_A */
++	return reply;
++
++	noanswer: g_free(list);
++	list=NULL;
++	return NULL;
++
++	fail: g_free(list);
++	list=NULL;
++	return NULL;
++}
++
++#ifdef TEST
++int main(int argc, char *argv[]) {
++	struct ns_srv_reply *srv;
++	/*int rc,i;*/
++
++	srv=srv_lookup("xmpp-client", "tcp", "jabber.org");
++	if (srv != NULL) {
++		printf("priority=%hu\n", srv->prio);
++		printf("weight=%hu\n", srv->weight);
++		printf("port=%hu\n", srv->port);
++		printf("target=%s\n", srv->name);
++		printf("\n");
++		g_free(srv);
++	}
++
++	return 0;
++}
++#endif /* TEST */
+--- bitlbee-1.2.5/lib/srv.h			1970-01-01 01:00:00.000000000 +0100
++++ bitlbee-1.2.5/lib/srv.h.libresolv		2008-06-28 17:29:39.000000000 +0200
+@@ -0,0 +1,49 @@
++/* srv.h
++ * Copyright (C) 2003, 2004 Free Software Foundation, Inc.
++ *
++ * This file is part of GNUPG.
++ *
++ * GNUPG is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * GNUPG is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program; if not, see <http://www.gnu.org/licenses/>.
++ */
++
++#ifndef GNUPG_COMMON_SRV_H
++#define GNUPG_COMMON_SRV_H
++
++#ifdef HAVE_RESOLV_A
++# ifdef _WIN32
++#  include <windows.h>
++# else
++#  include <netinet/in.h>
++#  include <arpa/nameser.h>
++#  include <resolv.h>
++# endif /* !_WIN32 */
++#endif /* USE_DNS_SRV */
++
++
++#ifndef MAXDNAME
++#define MAXDNAME 1025
++#endif
++
++struct ns_srv_reply
++{
++	int prio; /* priority */
++	int weight; /* weight */
++	int port; /* port */
++	int run_count; /* from struct srventry at gnupg's common/srv.h */
++	char name[MAXDNAME]; /* target */
++};
++
++struct ns_srv_reply *srv_lookup(char *service, char *protocol, char *domain);
++
++#endif /*GNUPG_COMMON_SRV_H*/
+--- bitlbee-1.2.5/Makefile			2010-03-18 20:56:16.000000000 +0100
++++ bitlbee-1.2.5/Makefile.libresolv		2010-03-18 23:15:51.000000000 +0100
+@@ -10,7 +10,7 @@
+ 
+ # Program variables
+ objects = account.o bitlbee.o chat.o crypting.o help.o ipc.o irc.o irc_commands.o nick.o query.o root_commands.o set.o storage.o $(STORAGE_OBJS) user.o
+-headers = account.h bitlbee.h commands.h conf.h config.h crypting.h help.h ipc.h irc.h log.h nick.h query.h set.h sock.h storage.h user.h lib/events.h lib/http_client.h lib/ini.h lib/md5.h lib/misc.h lib/proxy.h lib/sha1.h lib/ssl_client.h lib/url.h protocols/nogaim.h
++headers = account.h bitlbee.h commands.h conf.h config.h crypting.h help.h ipc.h irc.h log.h nick.h query.h set.h sock.h storage.h user.h lib/events.h lib/http_client.h lib/ini.h lib/md5.h lib/misc.h lib/proxy.h lib/sha1.h lib/srv.h lib/ssl_client.h lib/url.h protocols/nogaim.h
+ subdirs = lib protocols
+ 
+ ifeq ($(TARGET),i586-mingw32msvc)

@@ -58,7 +58,7 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 1.1.9
+Version: 1.1.11
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -127,7 +127,7 @@ BuildRequires: xcb-util-devel
 %{!?_without_opencv:BuildRequires: opencv-devel}
 %{!?_without_portaudio:BuildRequires: portaudio-devel}
 %{!?_without_pulseaudio:BuildRequires: pulseaudio-libs-devel}
-%{!?_without_qt4:BuildRequires: qt4-devel}
+%{!?_without_qt4:BuildRequires: qt-devel}
 %{!?_without_sdl:BuildRequires: SDL-devel, SDL_image-devel >= 1.2.10}
 %{!?_without_shout:BuildRequires: libshout-devel >= 2.2.2}
 %{!?_without_smb:BuildRequires: samba-common, libsmbclient-devel}
@@ -356,6 +356,12 @@ export QTLIB="$QTDIR/lib"
 %exclude %{_libdir}/mozilla/plugins/libvlcplugin.la
 
 %changelog
+* Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.1.11-1
+- Updated to release 1.1.11.
+
+* Tue Jun 07 2011 Dag Wieers <dag@wieers.com> - 1.1.10-1
+- Updated to release 1.1.10.
+
 * Tue Apr 12 2011 Dag Wieers <dag@wieers.com> - 1.1.9-1
 - Updated to release 1.1.9.
 

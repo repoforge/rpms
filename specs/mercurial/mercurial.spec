@@ -8,14 +8,15 @@
 %define pythonver %(python -c 'import sys;print ".".join(map(str, sys.version_info[:2]))')
 %define emacs_lispdir %{_datadir}/emacs/site-lisp
 
-Summary: A fast, lightweight Source Control Management system
+Summary: Fast, lightweight Source Control Management system
 Name: mercurial
-Version: 1.8.4
+Version: 1.9
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://mercurial.selenic.com/
-Source0: http://mercurial.selenic.com/release/%{name}-%{version}.tar.gz
+
+Source0: http://mercurial.selenic.com/release/mercurial-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.4
@@ -50,32 +51,22 @@ Requires: %{name} = %{version}-%{release}
 A wrapper for ssh access to a limited set of mercurial repos.
 
 %prep
-%setup -q
+%setup
 
 %build
 CFLAGS="%{optflags}" %{__make} %{?_smp_mflags} all
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install  DESTDIR="%{buildroot}" PREFIX="%{_prefix}" MANDIR="%{_mandir}"
+%{__make} install DESTDIR="%{buildroot}" PREFIX="%{_prefix}" MANDIR="%{_mandir}"
 
-%{__install} -m 755 contrib/hgk          %{buildroot}%{_bindir}
-%{__install} -m 755 contrib/hg-ssh       %{buildroot}%{_bindir}
-
-bash_completion_dir=%{buildroot}%{_sysconfdir}/bash_completion.d
-mkdir -p $bash_completion_dir
-%{__install} -m 644 contrib/bash_completion $bash_completion_dir/mercurial.sh
-
-zsh_completion_dir=%{buildroot}%{_datadir}/zsh/site-functions
-mkdir -p $zsh_completion_dir
-%{__install} -m 644 contrib/zsh_completion $zsh_completion_dir/_mercurial
-
-mkdir -p %{buildroot}%{emacs_lispdir}
-%{__install} -m 644 contrib/mercurial.el %{buildroot}%{emacs_lispdir}
-%{__install} -m 644 contrib/mq.el %{buildroot}%{emacs_lispdir}
-
-mkdir -p %{buildroot}/%{_sysconfdir}/mercurial/hgrc.d
-%{__install} -m 644 contrib/mergetools.hgrc %{buildroot}%{_sysconfdir}/mercurial/hgrc.d/mergetools.rc
+%{__install} -Dp -m0755 contrib/hgk %{buildroot}%{_bindir}/hgk
+%{__install} -Dp -m0755 contrib/hg-ssh %{buildroot}%{_bindir}/hg-ssh
+%{__install} -Dp -m0644 contrib/bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/mercurial.sh
+%{__install} -Dp -m0644 contrib/zsh_completion %{buildroot}%{_datadir}/zsh/site-functions/_mercurial
+%{__install} -Dp -m0644 contrib/mercurial.el %{buildroot}%{emacs_lispdir}/mercurial.el
+%{__install} -Dp -m0644 contrib/mq.el %{buildroot}%{emacs_lispdir}/mq.el
+%{__install} -Dp -m0644 contrib/mergetools.hgrc %{buildroot}%{_sysconfdir}/mercurial/hgrc.d/mergetools.rc
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -112,6 +103,9 @@ mkdir -p %{buildroot}/%{_sysconfdir}/mercurial/hgrc.d
 %{_bindir}/hg-ssh
 
 %changelog
+* Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.9-1
+- Updated to release 1.9.
+
 * Fri Jun 03 2011 David Hrbáč <david@hrbac.cz> - 1.8.4-1
 - new upstream release
 
