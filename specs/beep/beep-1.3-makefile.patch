@@ -1,0 +1,38 @@
+--- Makefile.orig	2011-06-07 01:20:15.000000000 +0200
++++ Makefile	2011-06-07 01:23:33.000000000 +0200
+@@ -1,19 +1,25 @@
+ CC=gcc
+ FLAGS=-Wall
+ EXEC_NAME=beep
+-INSTALL_DIR=/usr/bin
++BIN_DIR=/usr/bin
+ MAN_FILE=beep.1.gz
+-MAN_DIR=/usr/man/man1
++DATA_DIR=/usr/share
++MAN_DIR=$(DATA_DIR)/man
+ 
+-default : beep
++.PHONY: all
++all: $(EXEC_NAME)
+ 
+-clean : 
++.PHONY: clean
++clean:
+ 	rm ${EXEC_NAME}
+ 
+-beep : beep.c
+-	${CC} ${FLAGS} -o ${EXEC_NAME} beep.c
++$(EXEC_NAME): beep.c
++	$(CC) $(FLAGS) $(CFLAGS) -o ${EXEC_NAME} $<
+ 
+-install : 
+-	cp ${EXEC_NAME} ${INSTALL_DIR}
+-	# rm -f /usr/man/man1/beep.1.bz2
+-	cp ${MAN_FILE} ${MAN_DIR}
++install:
++	install -Dp -m0755 $(EXEC_NAME) $(DESTDIR)$(BIN_DIR)/$(EXEC_NAME)
++	install -Dp -m0644 $(MAN_FILE) $(DESTDIR)$(MAN_DIR)/man1/$(MAN_FILE)
++
++uninstall:
++	rm -f $(DESTDIR)$(BIN_DIR)/$(EXEC_NAME)
++	rm -f $(DESTDIR)$(MAN_DIR)/man1/$(MAN_FILE)

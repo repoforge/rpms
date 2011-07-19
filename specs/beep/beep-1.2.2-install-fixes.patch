@@ -1,0 +1,41 @@
+diff --git a/Makefile b/Makefile
+index 5856f9f..32bfb6b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,19 +1,26 @@
+ CC=gcc
+ FLAGS=-Wall
+ EXEC_NAME=beep
+-INSTALL_DIR=/usr/bin
++BIN_DIR=/usr/bin
+ MAN_FILE=beep.1.gz
+-MAN_DIR=/usr/man/man1
++MAN_DIR=/usr/share/man/man1
+ 
+-default : beep
++.PHONY: all
++all: $(EXEC_NAME)
+ 
+-clean : 
++.PHONY: clean
++clean:
+ 	rm ${EXEC_NAME}
+ 
+-beep : beep.c
+-	${CC} ${FLAGS} -o ${EXEC_NAME} beep.c
++$(EXEC_NAME): beep.c
++	$(CC) $(FLAGS) $(CFLAGS) -o $(EXEC_NAME) $<
+ 
+-install : 
+-	cp ${EXEC_NAME} ${INSTALL_DIR}
+-	rm -f /usr/man/man1/beep.1.bz2
+-	cp ${MAN_FILE} ${MAN_DIR}
++install:
++	install -m 0755 -d $(DESTDIR)$(BIN_DIR)
++	install -m 0755 -d $(DESTDIR)$(MAN_DIR)
++	install -m 0755 -p $(EXEC_NAME) $(DESTDIR)$(BIN_DIR)/
++	install -m 0644 -p $(MAN_FILE)  $(DESTDIR)$(MAN_DIR)/
++
++uninstall:
++	rm -f $(DESTDIR)$(BIN_DIR)/$(EXEC_NAME)
++	rm -f $(DESTDIR)$(MAN_DIR)/$(MAN_FILE)
