@@ -1,0 +1,11 @@
+diff -ur libbinio-1.4-orig/libbinio.pc.in libbinio-1.4/libbinio.pc.in
+--- libbinio-1.4-orig/libbinio.pc.in	2005-10-01 22:33:11.000000000 +0200
++++ libbinio-1.4/libbinio.pc.in	2005-10-01 22:49:52.000000000 +0200
+@@ -5,7 +5,6 @@
+ 
+ Name: @PACKAGE@
+ Description: Binary I/O stream class library
+-URL: http://libbinio.sourceforge.net
+ Version: @VERSION@
+ Libs: -L${libdir} -lbinio
+ Libs.private: -lm

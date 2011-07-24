@@ -4,14 +4,17 @@
 Summary: Library for binary I/O classes in C++
 Name: libbinio
 Version: 1.4
-Release: 1%{?dist}
-License: LGPL
+Release: 2%{?dist}
+License: LGPLv2+
 Group: System Environment/Libraries
 URL: http://libbinio.sourceforge.net/
 
 Source: http://dl.sf.net/libbinio/libbinio-%{version}.tar.gz
+
 Patch0: libbinio-1.4-texinfo.patch
 Patch1: libbinio-1.4-pkgconfigurl.patch
+Patch2: libbinio-1.4-includes.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: info
@@ -40,6 +43,7 @@ you will need to install %{name}-devel.
 %setup
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %configure --disable-static
@@ -49,8 +53,8 @@ you will need to install %{name}-devel.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-### Clean up buildroot
-%{__rm} -rf %{buildroot}%{_infodir}/dir/
+# Remove doc "dir"
+%{__rm} -rf %{buildroot}%{_infodir}/dir
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -80,5 +84,8 @@ fi
 %exclude %{_libdir}/libbinio.la
 
 %changelog
+* Sun Jul 24 2011 Yury V. Zaytsev <yury@shurup.com> - 1.4-2
+- Added patches from Fedora Rawhide to fix RHEL6 build.
+
 * Wed Jul 15 2009 Dag Wieers <dag@wieers.com> - 1.4-1
 - Initial package. (using DAR)
