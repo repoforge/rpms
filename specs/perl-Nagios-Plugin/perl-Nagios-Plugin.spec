@@ -10,7 +10,7 @@
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
 Version: 0.35
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nagios-Plugin/
@@ -30,6 +30,7 @@ BuildRequires: perl(Math::Calc::Units)
 BuildRequires: perl(Params::Validate)
 BuildRequires: perl(Test::More) >= 0.62
 BuildRequires: rpm-macros-rpmforge
+Requires: perl
 Requires: perl(Carp)
 Requires: perl(Class::Accessor)
 Requires: perl(Class::Accessor::Fast)
@@ -39,6 +40,10 @@ Requires: perl(File::Spec)
 Requires: perl(IO::File)
 Requires: perl(Math::Calc::Units)
 Requires: perl(Params::Validate)
+
+# don't scan the examples for autoreq/prov
+%filter_requires_in %{_docdir}
+%filter_provides_in %{_docdir}
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
@@ -57,6 +62,9 @@ developers to create plugins that conform the Nagios Plugin guidelines
 
 %prep
 %setup -n %{real_name}-%{version}
+
+# fix the busted shebangs
+%{__perl} -pi -e 's|^#!/usr/local/bin/perl|#!%{_bindir}/perl|;' t/check_stuff.*
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -82,6 +90,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Mon Jul 25 2011 Steve Huff <shuff@vecna.org> - 0.35-2
+- Filter out bogus /usr/local/bin/perl dep from example script.
+
 * Tue Jul 05 2011 Steve Huff <shuff@vecna.org> - 0.35-1
 - Updated to version 0.35.
 
