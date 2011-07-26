@@ -2,10 +2,13 @@
 # Authority: shuff
 # Upstream: Tim Waugh <twaugh$redhat,com>
 
+### EL6 ships with portreserve-0.0.4-4.el6
+%{?el6:# Tag: rfx}
+
 Summary: Prevent portmap from binding to specific ports
 Name: portreserve
 Version: 0.0.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://cyberelk.net/tim/software/portreserve/
@@ -84,5 +87,8 @@ fi
 /sbin/*
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 0.0.5-2
+- RFX'ed on RHEL6.
+
 * Wed Jul 06 2011 Steve Huff <shuff@vecna.org> - 0.0.5-1
 - Initial package.
