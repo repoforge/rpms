@@ -5,6 +5,9 @@
 ### EL5 ships with perl-Net-Telnet-3.03-5
 %{?el5:# Tag: rfx}
 
+### EL6 ships with perl-Net-Telnet-3.03-11.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -13,7 +16,7 @@
 Summary: Interface to telnet
 Name: perl-Net-Telnet
 Version: 3.03
-Release: 1.2%{?dist}
+Release: 1.3%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Telnet/
@@ -59,6 +62,9 @@ shell.
 %{perl_vendorlib}/Net/Telnet.pm
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 3.03-1.3
+- RFX'ed on RHEL6.
+
 * Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.03-1.2
 - Rebuild for Fedora Core 5.
 
