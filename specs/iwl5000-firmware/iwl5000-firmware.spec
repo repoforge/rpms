@@ -3,13 +3,14 @@
 # Dist: nodist
 
 ### EL6 ships with iwl5000-firmware-8.24.2.12-3.el6
+%{?el6:# Tag: rfx}
 
 %define real_name iwlwifi-5000-ucode
 
-Summary: Firmware for IntelÂ® Wireless WiFi Link 5000AGN series network adapters
+Summary: Firmware for Intel® Wireless WiFi Link 5000AGN series network adapters
 Name: iwl5000-firmware
 Version: 8.24.2.12
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/
@@ -44,6 +45,9 @@ WiFi Link 5000AGN series adapters with the Linux kernel iwlagn driver.
 /lib/firmware/iwlwifi-5000-2.ucode
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 8.24.2.12-2
+- RFX'ed on RHEL6.
+
 * Wed May 27 2009 Dag Wieers <dag@wieers.com> - 8.24.2.12-1
 - Updated to release 8.24.2.12.
 
