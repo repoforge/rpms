@@ -4,6 +4,9 @@
 # Upstream: Ed Avis <ed$membled,com>
 # Upstream: Joseph Walton <joe$kafsemo,org>
 
+### EL6 ships with perl-XML-Writer-0.606-6.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -12,7 +15,7 @@
 Summary: Easily generate well-formed, namespace-aware XML
 Name: perl-XML-Writer
 Version: 0.612
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-Writer/
@@ -60,6 +63,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/XML/Writer.pm
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 0.612-2
+- RFX'ed on RHEL6.
+
 * Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 0.612-1
 - Updated to version 0.612.
 

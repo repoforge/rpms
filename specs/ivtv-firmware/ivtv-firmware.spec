@@ -2,10 +2,13 @@
 # Authority: dag
 # Dist: nodist
 
+### EL6 ships with ivtv-firmware-20080701-20.2
+%{?el6:# Tag: rfx}
+
 Summary: Firmware for the Hauppauge PVR 250/350/150/500/USB2 model series
 Name: ivtv-firmware
 Version: 20070217
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://dl.ivtvdriver.org/ivtv/firmware/
@@ -53,5 +56,8 @@ done
 /lib/firmware/v4l-cx2341x-init.mpg
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 20070217-2
+- RFX'ed on RHEL6.
+
 * Sun Jun 15 2008 Dag Wieers <dag@wieers.com> - 20070217-1
-Initial package. (using DAR)
+- Initial package. (using DAR)

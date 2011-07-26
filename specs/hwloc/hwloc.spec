@@ -1,10 +1,13 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with hwloc-1.1-0.1.el6
+%{?el6:# Tag: rfx}
+
 Summary: Hardware Locality Library
 Name: hwloc
 Version: 1.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.open-mpi.org/
@@ -86,6 +89,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libhwloc.la
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 1.2-2
+- RFX'ed on RHEL6.
+
 * Wed Apr 20 2011 Dag Wieers <dag@wieers.com> - 1.2-1
 - Updated to release 1.2.
 

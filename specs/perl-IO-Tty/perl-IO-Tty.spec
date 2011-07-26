@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Roland Giersig <RGiersig$cpan,org>
 
+### EL6 ships with perl-IO-Tty-1.08-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: Interface to pseudo Tty
 Name: perl-IO-Tty
 Version: 1.08
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IO-Tty/
@@ -53,6 +56,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/IO/Tty/
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 1.08-2
+- RFX'ed on RHEL6.
+
 * Sat Jul  4 2009 Christoph Maser <cmr@financial.com> - 1.08-1
 - Updated to version 1.08.
 

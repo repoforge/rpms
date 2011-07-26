@@ -3,13 +3,14 @@
 # Dist: nodist
 
 ### EL6 ships with iwl4965-firmware-228.61.2.24-2.1.el6
+%{?el6:# Tag: rfx}
 
 %define real_name iwlwifi-4965-ucode
 
 Summary: Firmware for Intel Wireless WiFi Link 4965AGN network adapter
 Name: iwl4965-firmware
 Version: 228.57.2.23
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/
@@ -47,6 +48,9 @@ Wireless WiFi Link 4965AGN adapter with the Linux kernel iwl4965/iwlagn driver.
 /lib/firmware/iwlwifi-4965*.ucode
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 228.57.2.23-2
+- RFX'ed on RHEL6.
+
 * Thu Jan 22 2009 Philip J Perry <ned at unixmail.co.uk> - 228.57.2.23-1
 - Add firmware v2 228.57.2.23 required for (el-5.3) iwlagn driver.
 - keep firmware v1 228.57.1.21 required for (el-5.2) iwl4965 driver.
