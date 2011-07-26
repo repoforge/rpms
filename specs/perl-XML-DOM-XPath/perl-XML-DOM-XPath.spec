@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Michel Rodriguez <mirod$cpan,org>
 
+### EL6 ships with perl-XML-DOM-XPath-0.14-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: Perl extension to add XPath support to XML::DOM, using XML::XPath engine
 Name: perl-XML-DOM-XPath
 Version: 0.14
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/XML-DOM-XPath/
@@ -59,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 0.14-2
+- RFX'ed on RHEL6.
+
 * Wed May 14 2008 Dag Wieers <dag@wieers.com> - 0.14-1
 - Updated to release 0.14.
 
