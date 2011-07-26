@@ -3,13 +3,14 @@
 # Dist: nodist
 
 ### EL6 ships with ipw2200-firmware-3.1-4.el6
+%{?el6:# Tag: rfx}
 
 %define real_name ipw2200-fw
 
 Summary: Firmware for Intel® PRO/Wireless 2200 network adaptors
 Name: ipw2200-firmware
 Version: 3.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2200.sourceforge.net/firmware.php
@@ -48,6 +49,9 @@ in /lib/firmware/LICENSE.ipw2200. Please read it carefully.
 /lib/firmware/*.fw
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 3.0-4
+- RFX'ed on RHEL6.
+
 * Tue Oct 17 2006 Matthias Saou <http://freshrpms.net> 3.0-3
 - Move the LICENSE as LICENSE.ipw2200 in the firmware directory to fully
   comply to the Intel redistribution terms and conditions.
