@@ -12,7 +12,7 @@
 
 Summary: Low-Level Interface to zlib compression library
 Name: perl-Compress-Raw-Zlib
-Version: 2.035
+Version: 2.037
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -38,6 +38,10 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{__rm} -rf %{buildroot}
 %{__make} pure_install
 
+# install the FAQ
+%{__install} -m755 -d %{buildroot}%{perl_vendorlib}/Compress/Raw/Zlib/
+%{__install} -m644 pod/*.pod %{buildroot}%{perl_vendorlib}/Compress/Raw/Zlib/
+
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
@@ -49,7 +53,7 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README examples/
+%doc Changes MANIFEST META.yml README examples/ 
 %doc %{_mandir}/man3/Compress::Raw::Zlib.3pm*
 %dir %{perl_vendorarch}/auto/Compress/
 %dir %{perl_vendorarch}/auto/Compress/Raw/
@@ -57,8 +61,13 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %dir %{perl_vendorarch}/Compress/
 %dir %{perl_vendorarch}/Compress/Raw/
 %{perl_vendorarch}/Compress/Raw/Zlib.pm
+%{perl_vendorlib}/Compress/Raw/Zlib/*.pod
 
 %changelog
+* Wed Jul 27 2011 Steve Huff <shuff@vecna.org> - 2.037-1
+- Updated to version 2.037.
+- install the FAQ.
+
 * Fri Jun 03 2011 David Hrbáč <david@hrbac.cz> - 2.035-1
 - new upstream release
 
