@@ -180,6 +180,9 @@ export CFLAGS="%{optflags} -I/usr/kerberos/include"
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/spamassassin/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/spamassassin/
 
+### Allows stripping of binaries
+%{__chmod} 755 %{buildroot}%{_bindir}/*
+
 ### Disable find-requires for documentation
 find ldap/ sql/ -type f -exec %{__chmod} -x {} \;
 
