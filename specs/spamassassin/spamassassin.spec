@@ -233,6 +233,7 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/sa-update
 %config(noreplace) %{_sysconfdir}/mail/spamassassin/
 %config(noreplace) %{_sysconfdir}/sysconfig/spamassassin
+%dir %{_sysconfdir}/mail
 %dir %{_datadir}/spamassassin/
 %dir %{_localstatedir}/lib/spamassassin/
 %dir %{_localstatedir}/run/spamassassin/
