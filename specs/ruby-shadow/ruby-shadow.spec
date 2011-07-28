@@ -1,6 +1,9 @@
 # $Id$
 # Authority: dag
 
+### EL6 ships with ruby-shadow-1.4.1-13.el6 in rhn-tools-rhel-$arch-server-6
+### Apparently nothing to worry about, they take it directly from EPEL
+
 %{!?ruby_sitearch: %define ruby_sitearch %(ruby -rrbconfig -e "puts Config::CONFIG['sitearchdir']")}
 # This fails in mock since ruby doesn't exist in the default build env.
 #%%{!?ruby_abi: %%define ruby_abi %%(ruby -rrbconfig -e "puts Config::CONFIG['ruby_version']")}
