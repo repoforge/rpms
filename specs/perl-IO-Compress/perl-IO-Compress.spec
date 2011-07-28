@@ -29,11 +29,11 @@ Source: http://search.cpan.org/CPAN/authors/id/P/PM/PMQS/IO-Compress-%{version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: perl(Compress::Raw::Bzip2) >= 2.024
-BuildRequires: perl(Compress::Raw::Zlib) >= 2.024
+BuildRequires: perl(Compress::Raw::Bzip2) = %{version}
+BuildRequires: perl(Compress::Raw::Zlib) = %{version}
 BuildRequires: perl(ExtUtils::MakeMaker)
-Requires: perl(Compress::Raw::Bzip2) >= 2.024
-Requires: perl(Compress::Raw::Zlib) >= 2.024
+Requires: perl(Compress::Raw::Bzip2) = %{version}
+Requires: perl(Compress::Raw::Zlib) = %{version}
 Requires: perl(Scalar::Util)
  
 Obsoletes: perl-Compress-Zlib
@@ -82,6 +82,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Thu Jul 28 2011 Philip J Perry <phil@elrepo.org> - 2.036-2
+- Fix Requires versioning
+
 * Tue Jun 21 2011 David Hrbáč <david@hrbac.cz> - 2.036-1
 - new upstream release
 
