@@ -2,6 +2,7 @@
 # Authority: dag
 
 ### EL6 ships with spamassassin-3.3.1-2.el6
+%{?el6:# Tag: rfx}
 ### EL5 ships with spamassassin-3.2.5-1.el5
 %{?el5:# Tag: rfx}
 ### EL4 ships with spamassassin-3.2.4-1.el4.1
@@ -10,8 +11,6 @@
 %{?el3:# Tag: rfx}
 # ExclusiveDist: el2 el3 el4 el5
 
-%{?rh8:%define _with_perl_5_6 1}
-%{?rh7:%define _with_perl_5_6 1}
 %{?el2:%define _with_perl_5_6 1}
 
 %define perl_vendorlib  %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
@@ -22,7 +21,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.3.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -36,6 +35,7 @@ BuildRequires: perl(HTML::Parser) >= 3.24
 BuildRequires: perl(Net::DNS)
 BuildRequires: perl(NetAddr::IP) >= 4.000
 BuildRequires: perl(Time::HiRes)
+
 Requires: gcc
 Requires: gnupg
 Requires: perl(Archive::Tar) >= 1.23
@@ -58,8 +58,10 @@ Requires: procmail
 Requires: re2c
 Requires: /sbin/chkconfig
 Requires: /sbin/service
+
 Obsoletes: perl-Mail-SpamAssassin <= %{version}-%{release}
 Obsoletes: spamassassin-tools <= %{version}-%{release}
+
 Conflicts: amavisd-new < 2.6.2
 
 %define __find_requires %{SOURCE99}
@@ -248,8 +250,13 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Fri Jul 29 2011 Yury V. Zaytsev <yury@shurup.com> - 3.3.2-2
+- Fixed file permissions to allow for stripping debuginfo. (Philip J. Perry)
+- Spamassassin now owns the /etc/mail dir. (Philip J. Perry)
+- Tagged RFX on RHEL6.
+
 * Wed Jun 22 2011 David Hrbáč <david@hrbac.cz> - 3.3.2-1
-- new upstream release
+- New upstream release.
 
 * Mon Mar 22 2010 Steve Huff <shuff@vecna.org> - 3.3.1-3
 - Don't install concurrently with amavisd-new < 2.6.2
