@@ -59,7 +59,7 @@
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
 Version: 1.1.11
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -231,6 +231,7 @@ export QTLIB="$QTDIR/lib"
 %{!?_without_directfb:--enable-directfb} \
 %{!?_without_directfb:--with-directfb="%{_includedir}"} \
 %{!?_without_dvbpsi:--enable-dvbpsi} \
+%{!?_with_dvdcss:--without-dvdcss} \
 %{?_without_dvdnav:--disable-dvdnav} \
 %{!?_without_dvdread:--enable-dvdread} \
 %{!?_without_faad2:--enable-faad} \
@@ -356,6 +357,9 @@ export QTLIB="$QTDIR/lib"
 %exclude %{_libdir}/mozilla/plugins/libvlcplugin.la
 
 %changelog
+* Wed Jul 20 2011 Dag Wieers <dag@wieers.com> - 1.1.11-2
+- Added --without-dvdcss since libdvdread will pick up dvdcss support in runtime.
+
 * Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.1.11-1
 - Updated to release 1.1.11.
 

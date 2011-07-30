@@ -10,7 +10,7 @@
 Summary: Family of perl modules to streamline writing Nagios
 Name: perl-Nagios-Plugin
 Version: 0.35
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Nagios-Plugin/
@@ -74,7 +74,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README t/check_stuff.pl
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Nagios::Plugin.3pm*
 %doc %{_mandir}/man3/Nagios::Plugin::*.3pm*
 %dir %{perl_vendorlib}/Nagios/
@@ -82,6 +82,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Nagios/Plugin.pm
 
 %changelog
+* Mon Jul 25 2011 Dag Wieers <dag@wieers.com> - 0.35-2
+- Get rid of t/check_stuff.pl as it pulls /usr/local/bin/perl.
+
 * Tue Jul 05 2011 Steve Huff <shuff@vecna.org> - 0.35-1
 - Updated to version 0.35.
 

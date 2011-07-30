@@ -15,7 +15,7 @@ License: GPLv2+
 Group: Development/Tools
 URL: http://fedoraproject.org/wiki/Projects/Mock
 
-Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/%{name}-%{version}.tar.gz
+Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/mock-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch

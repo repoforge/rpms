@@ -5,7 +5,7 @@
 
 Summary: Gnome panel applet for hardware sensors
 Name: gnome-applet-sensors
-Version: 2.2.7
+Version: 1.7.10
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/Desktops
@@ -14,15 +14,10 @@ URL: http://sensors-applet.sourceforge.net/
 Source: http://dl.sf.net/sourceforge/sensors-applet/sensors-applet-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gettext
-BuildRequires: glib2-devel >= 2.6
-BuildRequires: gnome-doc-utils
-BuildRequires: gnome-panel-devel >= 2.8
-BuildRequires: intltool
-BuildRequires: libnotify-devel
-BuildRequires: lm_sensors-devel
-BuildRequires: perl-XML-Parser
-BuildRequires: scrollkeeper
+BuildRequires: gettext, gnome-doc-utils, intltool, perl-XML-Parser, scrollkeeper
+BuildRequires: lm_sensors-devel, libnotify-devel
+BuildRequires: glib2-devel >= 2.6, gnome-panel-devel >= 2.8
+Requires: scrollkeeper
 Requires: scrollkeeper
 
 Provides: %{real_name} = %{version}-%{release}
@@ -38,8 +33,8 @@ and voltage readings under Linux.
 
 %build
 %configure \
-    --disable-scrollkeeper \
-    --enable-libnotify
+	--disable-scrollkeeper \
+	--enable-libnotify
 %{__make} %{?_smp_mflags}
 
 %install
@@ -68,19 +63,8 @@ scrollkeeper-update -q || :
 %{_datadir}/omf/sensors-applet/
 %{_datadir}/pixmaps/sensors-applet/
 %{_libdir}/bonobo/servers/SensorsApplet.server
-%{_libdir}/libsensors-applet-plugin.so.*
-%{_libdir}/sensors-applet/
 %{_libexecdir}/sensors-applet
-%exclude %{_includedir}/sensors-applet/
-%exclude %{_libdir}/sensors-applet/plugins/*.a
-%exclude %{_libdir}/sensors-applet/plugins/*.la
-%exclude %{_libdir}/libsensors-applet-plugin.a
-%exclude %{_libdir}/libsensors-applet-plugin.la
-%exclude %{_libdir}/libsensors-applet-plugin.so
 
 %changelog
-* Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 2.2.7-1
-- Updated to release 2.2.7.
-
 * Thu Mar 22 2007 Dag Wieers <dag@wieers.com> - 1.7.10-1
 - Initial package. (using DAR)
