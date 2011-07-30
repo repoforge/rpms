@@ -20,7 +20,7 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.14.0
+Version: 0.14.1
 Release: 1%{?dist}
 License: GPLv2+ and LGPLv2+ and BSD
 Group: Applications/Emulators
@@ -31,6 +31,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
 BuildRequires: zlib-devel
+BuildRequires: esound-devel
 %{?_with_compat_gcc_version:BuildRequires: compat-gcc-%{_with_compat_gcc_version}}
 %{!?_without_curl:BuildRequires: curl-devel}
 #BuildRequires: texi2html
@@ -205,9 +206,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changelog COPYING* LICENSE README* TODO *.html
-%doc %{_mandir}/man1/qemu.1*
-%doc %{_mandir}/man8/qemu-nbd.8*
+%doc Changelog COPYING* LICENSE README* TODO
 %config(noreplace) %{_sysconfdir}/qemu/target-x86_64.conf
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
@@ -217,11 +216,13 @@ fi
 
 %files img
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/qemu-img.1*
 %{_bindir}/qemu-img
 %{_bindir}/qemu-io
 
 %changelog
+* Fri Jul 29 2011 Arnoud Vermeer <a.vermeer@freshway.biz> - 0.14.1-1
+- Updated to release 0.14.1.
+
 * Mon Mar 21 2011 Dag Wieers <dag@wieers.com> - 0.14.0-1
 - Updated to release 0.14.0.
 - Split off qemu-img package.
