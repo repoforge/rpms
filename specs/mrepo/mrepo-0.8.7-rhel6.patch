@@ -1,0 +1,594 @@
+diff -Naur mrepo-0.8.7.orig//ChangeLog mrepo-0.8.7/ChangeLog
+--- mrepo-0.8.7.orig//ChangeLog	2010-03-20 12:12:08.000000000 +0100
++++ mrepo-0.8.7/ChangeLog	2011-07-28 19:39:55.876475268 +0200
+@@ -1,3 +1,8 @@
++* 0.8.8 - ... - released 16/11/2010
++- Renamed YAMCONFIG to MREPOCONFIG
++- Updated distribution config files
++- Added RHEL6 product names to gensystemid
++
+ * 0.8.7 - Way Overdue - released 20/03/2010
+ - Add pyOpenSSL dependency to RPM spec file (Bryan Washer)
+ - Fixed a problem with createrepo options (David Zambonini)
+diff -Naur mrepo-0.8.7.orig//config/dists/centos2-i386.conf mrepo-0.8.7/config/dists/centos2-i386.conf
+--- mrepo-0.8.7.orig//config/dists/centos2-i386.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/centos2-i386.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -15,8 +15,8 @@
+ extras = http://mirror.centos.org/centos/$release/extras/
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el2.1/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el2.1/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el2.1/en/$arch/rpmforge/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el2.1/en/$arch/testing/RPMS/
+ 
+ ### Custom repository for your own RPM packages
+ custom = 
+diff -Naur mrepo-0.8.7.orig//config/dists/centos3.conf mrepo-0.8.7/config/dists/centos3.conf
+--- mrepo-0.8.7.orig//config/dists/centos3.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/centos3.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -5,7 +5,7 @@
+ name = CentOS $release ($arch)
+ release = 3.8
+ #arch = i386 x86_64 ia64 s390 s390x
+-arch = i386
++arch = i386 x86_64
+ metadata = repomd yum repoview
+ 
+ ### ISO images
+@@ -23,8 +23,9 @@
+ csgfs = http://mirror.centos.org/centos/$release/csgfs/$arch/RPMS/
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el3/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/testing/RPMS/
+ 
+ ### ATrpms repository
+ #atrpms-stable = rsync://dl.atrpms.net/dl.atrpms.net/el$release-$arch/atrpms/stable/
+diff -Naur mrepo-0.8.7.orig//config/dists/centos4.conf mrepo-0.8.7/config/dists/centos4.conf
+--- mrepo-0.8.7.orig//config/dists/centos4.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/centos4.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -5,7 +5,7 @@
+ name = CentOS $release ($arch)
+ release = 4
+ #arch = i386 x86_64 ia64 s390 s390x alpha
+-arch = i386
++arch = i386 x86_64
+ metadata = repomd repoview
+ 
+ ### ISO images
+@@ -23,9 +23,9 @@
+ csgfs = http://mirror.centos.org/centos/$release/csgfs/$arch/RPMS/
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el4/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el4/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/testing/RPMS/
+ 
+ ### ATrpms repository
+ #atrpms-stable = rsync://dl.atrpms.net/dl.atrpms.net/el$release-$arch/atrpms/stable/
+diff -Naur mrepo-0.8.7.orig//config/dists/centos5.conf mrepo-0.8.7/config/dists/centos5.conf
+--- mrepo-0.8.7.orig//config/dists/centos5.conf	2010-03-20 12:21:10.000000000 +0100
++++ mrepo-0.8.7/config/dists/centos5.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -4,8 +4,7 @@
+ [centos5]
+ name = CentOS $release ($arch)
+ release = 5
+-#arch = i386 x86_64 ia64 ppc s390 s390x alpha
+-arch = i386
++arch = i386 x86_64
+ metadata = repomd repoview
+ 
+ ### ISO images
+@@ -20,9 +19,9 @@
+ addons = http://mirror.centos.org/centos/$release/addons/$arch/RPMS/
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el5/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el5/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el5/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el5/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el5/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el5/en/$arch/testing/RPMS/
+ 
+ ### ELrepo repository
+ elrepo = http://elrepo.org/linux/elrepo/el5/$arch/
+diff -Naur mrepo-0.8.7.orig//config/dists/fedora8.conf mrepo-0.8.7/config/dists/fedora8.conf
+--- mrepo-0.8.7.orig//config/dists/fedora8.conf	2007-11-13 22:28:44.000000000 +0100
++++ mrepo-0.8.7/config/dists/fedora8.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -16,11 +16,6 @@
+ updates = http://download.fedora.redhat.com/pub/fedora/linux/updates/$release/$arch/
+ extras = http://download.fedora.redhat.com/pub/fedora/linux/extras/$release/$arch/
+ 
+-### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/fedora/$release/en/$arch/dries/RPMS/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/fedora/$release/en/$arch/dries/RPMS/
+-#rpmforge = http://apt.sw.be/fedora/$release/en/$arch/dries/RPMS/
+-
+ ### FreshRPMS repository
+ freshrpms = rsync://ayo.freshrpms.net/pub/freshrpms/pub/freshrpms/ayo/fedora/linux/$release/$arch/RPMS.$repo/
+ 
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel2.1as.conf mrepo-0.8.7/config/dists/rhel2.1as.conf
+--- mrepo-0.8.7.orig//config/dists/rhel2.1as.conf	2007-01-24 11:37:52.000000000 +0100
++++ mrepo-0.8.7/config/dists/rhel2.1as.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -16,9 +16,8 @@
+ updates = rhn:///redhat-advanced-server-$arch
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el$release/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
+ 
+ ### Custom repository for your own RPM packages
+ custom =
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel3as-i386.conf mrepo-0.8.7/config/dists/rhel3as-i386.conf
+--- mrepo-0.8.7.orig//config/dists/rhel3as-i386.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/rhel3as-i386.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -24,9 +24,9 @@
+ #rhaps-beta = rhns:///rhel-3-as-$arch-rhaps-beta
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el$release/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
+ 
+ ### ATrpms repository
+ #atrpms-stable = rsync://dl.atrpms.net/dl.atrpms.net/el$release-$arch/atrpms/stable/
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel3as-x86_64.conf mrepo-0.8.7/config/dists/rhel3as-x86_64.conf
+--- mrepo-0.8.7.orig//config/dists/rhel3as-x86_64.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/rhel3as-x86_64.conf	2011-07-28 19:39:55.876475268 +0200
+@@ -22,9 +22,9 @@
+ #rhaps-beta = rhns:///rhel-3-as-$arch-rhaps-beta
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el$release/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
+ 
+ ### ATrpms repository
+ #atrpms-stable = rsync://dl.atrpms.net/dl.atrpms.net/el$release-$arch/atrpms/stable/
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel4as.conf mrepo-0.8.7/config/dists/rhel4as.conf
+--- mrepo-0.8.7.orig//config/dists/rhel4as.conf	2007-08-22 15:58:12.000000000 +0200
++++ mrepo-0.8.7/config/dists/rhel4as.conf	2011-07-28 19:39:55.886475206 +0200
+@@ -5,7 +5,7 @@
+ name = Red Hat Advanced Server $release U3 ($arch)
+ release = 4
+ #arch = i386 x86_64 ia64 ppc s390 s390x
+-arch = i386
++arch = i386 x86_64
+ metadata = repomd yum repoview
+ 
+ ### ISO images
+@@ -43,9 +43,9 @@
+ rhn-tools = rhns:///rhn-tools-rhel-4-as-$arch
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el$release/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
+ 
+ ### ATrpms repository
+ #atrpms-stable = rsync://dl.atrpms.net/dl.atrpms.net/el$release-$arch/atrpms/stable/
+@@ -62,7 +62,7 @@
+ #postgresql = ftp://ftp.fr.postgresql.org/binary/v8.1.4/linux/rpms/redhat/rhel-as-$release-$arch/
+ 
+ ### Fedora EPEL packages (incompatible with RPMforge)
+-epel = http://download.fedora.redhat.com/pub/epel/$release/$arch/
++#epel = http://download.fedora.redhat.com/pub/epel/$release/$arch/
+ 
+ ### Custom repository for your own RPM packages
+ custom =
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel5c.conf mrepo-0.8.7/config/dists/rhel5c.conf
+--- mrepo-0.8.7.orig//config/dists/rhel5c.conf	2010-03-20 12:21:00.000000000 +0100
++++ mrepo-0.8.7/config/dists/rhel5c.conf	2011-07-28 19:39:55.886475206 +0200
+@@ -5,7 +5,7 @@
+ name = Red Hat Enterprise Client $release ($arch)
+ release = 5
+ #arch = i386 x86_64 ia64
+-arch = i386
++arch = i386 x86_64
+ metadata = repomd repoview
+ 
+ ### ISO images
+@@ -20,9 +20,9 @@
+ rhn-tools = rhns:///$repo-rhel-$arch-client-5
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el$release/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
+ 
+ ### ELrepo repository
+ elrepo = http://elrepo.org/linux/elrepo/el5/$arch/
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel5s.conf mrepo-0.8.7/config/dists/rhel5s.conf
+--- mrepo-0.8.7.orig//config/dists/rhel5s.conf	2010-03-20 12:20:42.000000000 +0100
++++ mrepo-0.8.7/config/dists/rhel5s.conf	2011-07-28 19:39:55.886475206 +0200
+@@ -2,10 +2,10 @@
+ ### URL: http://www.redhat.com/
+ 
+ [rhel5s]
+-name = Red Hat Enterprise Server $release ($arch)
++name = Red Hat Enterprise Linux Server $release ($arch)
+ release = 5
+ #arch = i386 x86_64 ia64 ppc s390 s390x
+-arch = i386
++arch = i386 x86_64
+ metadata = repomd repoview
+ 
+ ### ISO images
+@@ -17,16 +17,19 @@
+ supplementary = rhns:///rhel-$arch-server-$repo-5
+ fastrack = rhns:///rhel-$arch-server-$repo-5
+ hts = rhns:///rhel-$arch-server-$repo-5
++productivity = rhns:///rhel-$arch-server-productivity-5
+ rhn-tools = rhns:///$repo-rhel-$arch-server-5
+ 
+ ### RPMforge repository
+-rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = ftp://apt.sw.be/pub/dag/pub/redhat/el$release/en/$arch/RPMS.dag/
+-#rpmforge = http://apt.sw.be/redhat/el$release/en/$arch/RPMS.dag/
+-
+-### ELrepo repository
+-elrepo = http://elrepo.org/linux/elrepo/el5/$arch/
+-#elrepo-testing = http://elrepo.org/linux/testing/el5/$arch/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/buildtools/RPMS/
++rpmforge-extras = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/extras/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
++
++### ELRepo repository
++elrepo = http://elrepo.org/linux/elrepo/el$release/$arch/
++#elrepo-kernel = http://elrepo.org/linux/kernel/el$release/$arch/
++#elrepo-testing = http://elrepo.org/linux/testing/el$release/$arch/
+ 
+ ### OpenVZ repositories
+ #ovzkernel = http://download.openvz.org/kernel/rhel5/
+diff -Naur mrepo-0.8.7.orig//config/dists/rhel6s.conf mrepo-0.8.7/config/dists/rhel6s.conf
+--- mrepo-0.8.7.orig//config/dists/rhel6s.conf	1970-01-01 01:00:00.000000000 +0100
++++ mrepo-0.8.7/config/dists/rhel6s.conf	2011-07-28 19:39:55.886475206 +0200
+@@ -0,0 +1,42 @@
++### Name: Red Hat Enterprise Linux Server v6
++### URL: http://www.redhat.com/
++
++[rhel6s]
++name = Red Hat Enterprise Linux Server $release ($arch)
++release = 6
++#arch = i386 x86_64 ppc s390 s390x
++arch = i386 x86_64
++metadata = repomd repoview
++
++### ISO images
++iso = rhel-server-6.0-$arch-dvd.iso
++
++### Additional repositories
++updates = rhns:///rhel-$arch-server-6
++updates-fastrack = rhns:///rhel-$arch-server-fastrack-6
++ha = rhns:///rhel-$arch-server-ha-6
++ha-fastrack = rhns:///rhel-$arch-server-ha-fastrack-6
++lb = rhns:///rhel-$arch-server-lb-6
++lb-fastrack = rhns:///rhel-$arch-server-lb-fastrack-6
++optional = rhns:///rhel-$arch-server-optional-6
++optional-fastrack = rhns:///rhel-$arch-server-optional-fastrack-6
++rs = rhns:///rhel-$arch-server-rs-6
++rs-fastrack = rhns:///rhel-$arch-server-rs-fastrack-6
++supplementary = rhns:///rhel-$arch-server-supplementary-6
++
++### RPMforge repository
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/buildtools/RPMS/
++rpmforge-extras = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/extras/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el$release/en/$arch/testing/RPMS/
++
++### ELRepo repository
++elrepo = http://elrepo.org/linux/elrepo/el$release/$arch/
++#elrepo-kernel = http://elrepo.org/linux/kernel/el$release/$arch/
++#elrepo-testing = http://elrepo.org/linux/testing/el$release/$arch/
++
++### Fedora EPEL packages (incompatible with RPMforge)
++#epel = http://download.fedora.redhat.com/pub/epel/$release/$arch/
++
++### Custom repository for your own RPM packages
++custom =
+diff -Naur mrepo-0.8.7.orig//config/dists/sl3.conf mrepo-0.8.7/config/dists/sl3.conf
+--- mrepo-0.8.7.orig//config/dists/sl3.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/sl3.conf	2011-07-28 19:39:55.886475206 +0200
+@@ -26,8 +26,9 @@
+ rhaps = rsync://rsync.scientificlinux.org/scientific/RHAPS2/$arch/RPMS/
+ 
+ ### RPMforge repository
+-#rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/RPMS.dag/
+-rpmforge = http://apt.sw.be/redhat/el3/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el3/en/$arch/testing/RPMS/
+ 
+ ### Custom repository for your own RPM packages
+ custom =
+diff -Naur mrepo-0.8.7.orig//config/dists/sl4.conf mrepo-0.8.7/config/dists/sl4.conf
+--- mrepo-0.8.7.orig//config/dists/sl4.conf	2006-12-08 20:53:27.000000000 +0100
++++ mrepo-0.8.7/config/dists/sl4.conf	2011-07-28 19:39:55.886475206 +0200
+@@ -28,8 +28,9 @@
+ rhaps = rsync://rsync.scientificlinux.org/scientific/RHAPS2/$arch/RPMS/
+ 
+ ### RPMforge repository
+-#rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/RPMS.dag/
+-rpmforge = http://apt.sw.be/redhat/el4/en/$arch/RPMS.dag/
++rpmforge = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/rpmforge/RPMS/
++#rpmforge-buildtools = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/buildtools/RPMS/
++#rpmforge-testing = rsync://apt.sw.be/pub/freshrpms/pub/dag/redhat/el4/en/$arch/testing/RPMS/
+ 
+ ### OpenVZ repositories
+ #ovzkernel = http://download.openvz.org/kernel/rhel4/
+diff -Naur mrepo-0.8.7.orig//config/mrepo mrepo-0.8.7/config/mrepo
+--- mrepo-0.8.7.orig//config/mrepo	2007-11-13 17:41:30.000000000 +0100
++++ mrepo-0.8.7/config/mrepo	2011-07-28 19:39:55.886475206 +0200
+@@ -16,12 +16,12 @@
+ 
+ ### Default variables
+ SYSCONFIG="/etc/sysconfig/mrepo"
+-YAMCONFIG="/etc/mrepo.conf"
++MREPOCONFIG="/etc/mrepo.conf"
+ 
+ ### Read configuration
+ [ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
+ 
+-[ -r "$YAMCONFIG" ] || exit 1
++[ -r "$MREPOCONFIG" ] || exit 1
+ 
+ RETVAL=0
+ prog="mrepo"
+@@ -29,7 +29,7 @@
+ 
+ start() {
+ 	echo -n $"Starting $desc ($prog): "
+-	mrepo -q -c $YAMCONFIG
++	mrepo -q -c $MREPOCONFIG
+ 	RETVAL=$?
+ 	[ $RETVAL -eq 0 ] && success || failure
+ 	echo
+@@ -39,7 +39,7 @@
+ 
+ stop() {
+ 	echo -n $"Shutting down $desc ($prog): "
+-	mrepo -q --umount -c $YAMCONFIG
++	mrepo -q --umount -c $MREPOCONFIG
+ 	RETVAL=$?
+ 	[ $RETVAL -eq 0 ] && success || failure
+ 	echo
+diff -Naur mrepo-0.8.7.orig//docs/redhat-network.txt mrepo-0.8.7/docs/redhat-network.txt
+--- mrepo-0.8.7.orig//docs/redhat-network.txt	2007-08-20 18:57:48.000000000 +0200
++++ mrepo-0.8.7/docs/redhat-network.txt	2011-07-28 19:39:55.886475206 +0200
+@@ -151,10 +151,11 @@
+ ----
+ 
+ where +rhnuuid+ contains a unique identifier that matches your system. You can
+-generate this identifier by running:
+-
+-    $ uuidgen
++create this file by running:
+ 
++----
++UUID=$(uuidgen) ; /bin/echo -e "uuid[comment]=Universally Unique ID for this server\nrhnuuid=$UUID" > /etc/sysconfig/rhn/up2date-uuid
++----
+ 
+ == List of RHN channels
+ For a complete and up-to-date list of available channels, check the RHN
+diff -Naur mrepo-0.8.7.orig//gensystemid mrepo-0.8.7/gensystemid
+--- mrepo-0.8.7.orig//gensystemid	2008-08-15 02:51:19.000000000 +0200
++++ mrepo-0.8.7/gensystemid	2011-07-28 19:39:55.886475206 +0200
+@@ -18,7 +18,12 @@
+ global cfg, loginInfo
+ 
+ def checkrelease(release, arch):
++    ### We are not sure about the architectures below :-/
+     releases = {
++        '6Workstation': ('i386', 'x86_64'),
++        '6Server': ('i386', 'ppc', 's390', 's390x', 'x86_64'),
++        '6ComputeNode': ('i386', 'ppc', 's390', 's390x', 'x86_64'),
++        '6Client': ('i386', 'x86_64'),
+         '5Server': ('i386', 'ia64', 'ppc', 's390', 's390x', 'x86_64'),
+         '5Client': ('i386', 'ia64', 'x86_64'),
+         '4AS': ('i386', 'ia64', 'ppc', 's390', 's390x', 'x86_64'),
+@@ -143,7 +148,7 @@
+   -a, --arch=arch              specify architecture (i386, x86_64, ppc, ia64)
+   -q, --quiet                  minimal output
+   -p, --password=password      specify rhn password (asked when not given)
+-  -r, --release=rhnrelease     specify rhn release {2.1,3,4}{AS,ES,WS,Desktop} 5{Server,Client}
++  -r, --release=rhnrelease     specify rhn release {2.1,3,4}{AS,ES,WS,Desktop} 5{Server,Client} 6{Server,Client,Workstation,ComputeNode}
+   -u, --username=username      specify rhn username (asked when not given)
+   -v, --verbose                increase verbosity
+   -vv, -vvv, -vvvv..           increase verbosity more
+diff -Naur mrepo-0.8.7.orig//mrepo mrepo-0.8.7/mrepo
+--- mrepo-0.8.7.orig//mrepo	2010-03-20 12:12:17.000000000 +0100
++++ mrepo-0.8.7/mrepo	2011-07-28 19:39:55.896475144 +0200
+@@ -15,9 +15,26 @@
+ ### Copyright 2004-2007 Dag Wieers <dag@wieers.com>
+ 
+ from __future__ import generators # for Python 2.2
+-import os, sys, glob, re, shutil, getopt, popen2
+-import ConfigParser, urlparse, sha, types, traceback
++
++import ConfigParser
++import getopt
++import glob
++import os
++import re
++
++# Python >= 2.5
++try:
++    from hashlib import sha1 as sha1hash
++# Python <= 2.4
++except ImportError:
++    from sha import new as sha1hash
++
++import shutil
++import sys
+ import time
++import traceback
++import types
++import urlparse
+ 
+ __version__ = "$Revision: 8695 $"
+ # $Source$
+@@ -65,7 +82,7 @@
+ 
+         try:
+             opts, args = getopt.getopt (args, 'c:d:fghnqr:t:uvx',
+-                ('config=', 'dist=', 'dryrun', 'force', 'generate', 'help', 'quiet', 'repo',
++                ('config=', 'dist=', 'dry-run', 'force', 'generate', 'help', 'quiet', 'repo',
+                 'remount', 'type=', 'umount', 'unmount', 'update', 'verbose', 'version', 'extras'))
+         except getopt.error, exc:
+             print 'mrepo: %s, try mrepo -h for a list of all the options' % str(exc)
+@@ -328,7 +345,7 @@
+         "Get an option from a section from configfile"
+         try:
+             var = self.cfg.get(section, option)
+-            info(2, 'Setting option %s in section [%s] to: %s' % (option, section, var))
++            info(3, 'Setting option %s in section [%s] to: %s' % (option, section, var))
+         except ConfigParser.NoSectionError, e:
+             error(5, 'Failed to find section [%s]' % section)
+         except ConfigParser.NoOptionError, e:
+@@ -422,10 +439,18 @@
+                 repo.url = None
+                 srcdirs = [ pathjoin(self.dir, disc) for disc in self.discs ]
+                 self.linksync(repo, srcdirs)
+-                for file in glob.glob(pathjoin(self.dir + '/disc1/*/base/comps.xml')):
++
++                os_components = (
++                    glob.glob(pathjoin(self.dir + '/disc1/*/base/comps.xml')) + # RHEL 4
++                    glob.glob(pathjoin(self.dir + '/disc1/*/repodata/comps-*-core.xml')) + # RHEL 5
++                    glob.glob(pathjoin(self.dir + '/disc1/repodata/*-comps-*.xml')) # RHEL 6
++                )
++
++                for file in os_components:
+                     if not os.path.exists(pathjoin(self.srcdir, self.nick, 'os-comps.xml')):
+                         copy(file, pathjoin(self.srcdir, self.nick, 'os-comps.xml'))
+                     allsrcdirs.extend(srcdirs)
++
+             else:
+                 self.linksync(repo)
+                 allsrcdirs.append(repo.srcdir)
+@@ -518,7 +543,7 @@
+             extra_opts = ''
+             mount_cmd = cf.cmd['mount']
+             if readfile('/selinux/enforce') == '1':
+-                opts = opts + ',context=system_u:object_r:httpd_sys_content_t'
++                opts = opts + ',context=system_u:object_r:httpd_sys_content_t:s0'
+         for iso in self.isos:
+             if cf.shareiso:
+                 symlink(iso, os.path.join(self.dir, 'iso'))
+@@ -581,7 +606,7 @@
+             if not os.path.isfile(cf.cmd['umount']):
+                 die(5, 'umount command not %s' % cf.cmd['umount'])
+             if os.path.ismount(mount):
+-                if mountpoint(mount):
++                if mountpoint(iso):
+                     info(2, '%s: Unmount ISO %s from %s' % (self.nick, os.path.basename(iso), mount))
+                     run('%s %s' % (cf.cmd['umount'], mount))
+                 else:
+@@ -813,14 +838,20 @@
+         ### Find the createrepo version we are using (due to groupfile usage changes)
+         createrepo_version = None
+         groupfilename = 'RPMS.%s/comps.xml' % self.name
++
++        sys.path.append("/usr/share/createrepo")
+         try:
+-            sys.path.append("/usr/share/createrepo")
+-            import genpkgmetadata
+-            createrepo_version = genpkgmetadata.__version__
+-            sys.path.remove("/usr/share/createrepo")
+-            del genpkgmetadata
+-        except:
++            try:
++                import createrepo
++                createrepo_version = createrepo.__version__
++                del createrepo
++            except ImportError:
++                import genpkgmetadata
++                createrepo_version = genpkgmetadata.__version__
++                del genpkgmetadata
++        except ImportError:
+             pass
++        sys.path.remove("/usr/share/createrepo")
+ 
+         ### If version < 0.4.6, then use the old createrepo behaviour
+         if not createrepo_version:
+@@ -990,7 +1021,7 @@
+     output = ''
+     for file in files:
+         output = output + os.path.basename(file) + ' ' + str(os.stat(file).st_size) + '\n'
+-    return sha.new(output).hexdigest()
++    return sha1hash(output).hexdigest()
+ 
+ def writesha1(file, sha1sum=None):
+     "Write out sha1sum"
+diff -Naur mrepo-0.8.7.orig//rhn/transports.py mrepo-0.8.7/rhn/transports.py
+--- mrepo-0.8.7.orig//rhn/transports.py	2008-08-15 02:13:50.000000000 +0200
++++ mrepo-0.8.7/rhn/transports.py	2011-07-28 19:39:55.896475144 +0200
+@@ -33,6 +33,7 @@
+ 
+ class Transport(xmlrpclib.Transport):
+     user_agent = "rhn.rpclib.py/%s" % __version__
++    _use_datetime = False
+ 
+     def __init__(self, transfer=0, encoding=0, refreshCallback=None,
+             progressCallback=None):
+diff -Naur mrepo-0.8.7.orig//rhnget mrepo-0.8.7/rhnget
+--- mrepo-0.8.7.orig//rhnget	2009-10-15 12:49:32.000000000 +0200
++++ mrepo-0.8.7/rhnget	2011-07-28 19:39:55.896475144 +0200
+@@ -59,7 +59,7 @@
+ 
+         try:
+             opts, args = getopt.getopt (args, 'hlnqp:r:s:u:v',
+-                ('delete', 'download-all', 'dryrun', 'filter=', 'help', 'list', 'password=', 'quiet',
++                ('delete', 'download-all', 'dry-run', 'filter=', 'help', 'list', 'password=', 'quiet',
+                  'release=', 'source', 'systemid=', 'username=', 'verbose', 'version' ))
+         except getopt.error, exc:
+             print 'rhnget: %s, try rhnget -h for a list of all the options' % str(exc)
+diff -Naur mrepo-0.8.7.orig//up2date_client/up2dateUtils.py mrepo-0.8.7/up2date_client/up2dateUtils.py
+--- mrepo-0.8.7.orig//up2date_client/up2dateUtils.py	2007-06-08 18:10:26.000000000 +0200
++++ mrepo-0.8.7/up2date_client/up2dateUtils.py	2011-07-28 19:39:55.896475144 +0200
+@@ -13,7 +13,13 @@
+ import time
+ import rpm
+ import string
+-import md5
++
++# Python >= 2.5
++try:
++    from hashlib import md5 as md5hash
++# Python <= 2.4
++except ImportError:
++    from md5 import new as md5hash
+ 
+ sys.path.insert(0, "/usr/share/rhn/")
+ sys.path.insert(1,"/usr/share/rhn/up2date_client")
+@@ -158,7 +164,7 @@
+     
+ 
+ def md5sum(fileName):
+-    hashvalue = md5.new()
++    hashvalue = md5hash()
+     
+     try:
+         f = open(fileName, "r")

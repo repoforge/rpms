@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Barrie Slaymaker <barries$slaysys,com>
 
+### EL6 ships with perl-IPC-Run-0.84-2.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: IPC functions
 Name: perl-IPC-Run
 Version: 0.84
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/IPC-Run/
@@ -50,6 +53,9 @@ This module provides various IPC functionalities.
 %{perl_vendorlib}/IPC/Run/*
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 0.84-2
+- RFX'ed on RHEL6.
+
 * Mon Jul 13 2009 Christoph Maser <cmr@financial.com> - 0.84-1
 - Updated to version 0.84.
 

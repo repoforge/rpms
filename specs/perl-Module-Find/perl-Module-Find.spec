@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Christian Renz <crenz$web42,com>
 
+### EL6 ships with perl-Module-Find-0.08-3.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: Find and use installed modules in a (sub)category
 Name: perl-Module-Find
 Version: 0.08
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Module-Find/
@@ -59,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Module/Find.pm
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 0.08-2
+- RFX'ed on RHEL6.
+
 * Tue Sep  8 2009 Christoph Maser <cmr@financial.com> - 0.08-1
 - Updated to version 0.08.
 

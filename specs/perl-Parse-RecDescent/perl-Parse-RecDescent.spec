@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Damian Conway <damian$conway,org>
 
+### EL6 ships with perl-Parse-RecDescent-1.962.2-2.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -11,7 +14,7 @@
 Summary: Generate Recursive-Descent Parsers
 Name: perl-Parse-RecDescent
 Version: 1.965.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Parse-RecDescent/
@@ -52,6 +55,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Parse/RecDescent.pm
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 1.965.1-2
+- RFX'ed on RHEL6.
+
 * Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 1.965.1-1
 - Updated to release 1.965001.
 - Added perl(version) BuildRequires.

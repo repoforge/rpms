@@ -1,0 +1,12 @@
+diff -ur libbinio-1.4-orig/doc/libbinio.texi libbinio-1.4/doc/libbinio.texi
+--- libbinio-1.4-orig/doc/libbinio.texi	2005-10-01 22:33:11.000000000 +0200
++++ libbinio-1.4/doc/libbinio.texi	2005-10-01 22:47:27.000000000 +0200
+@@ -27,7 +27,7 @@
+ 
+ @dircategory Software Libraries
+ @direntry
+-* libbinio: (libbinio)          Binary I/O stream class library @value{VERSION}
++* libbinio: (libbinio).         Binary I/O stream class library @value{VERSION}
+ @end direntry
+ 
+ @titlepage

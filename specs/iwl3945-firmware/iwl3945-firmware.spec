@@ -3,13 +3,14 @@
 # Dist: nodist
 
 ### EL6 ships with iwl3945-firmware-15.32.2.9-4.el6
+%{?el6:# Tag: rfx}
 
 %define real_name iwlwifi-3945-ucode
 
 Summary: Firmware for Intel Wireless 3945 network adapter
 Name: iwl3945-firmware
 Version: 15.28.1.8
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: Redistributable, no modification permitted
 Group: System Environment/Kernel
 URL: http://intellinuxwireless.org/
@@ -46,6 +47,9 @@ Wireless 3945 adapter with the Linux kernel iwl3945 driver.
 /lib/firmware/iwlwifi-3945*.ucode
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 15.28.1.8-3
+- RFX'ed on RHEL6.
+
 * Sat Jan 24 2009 Dag Wieers <dag@wieers.com> - 15.28.1.8-2
 - Added 2.14.4 firmware.
 

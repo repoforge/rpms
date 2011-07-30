@@ -2,6 +2,9 @@
 # Authority: dries
 # Upstream: Steffen Schwigon <schwigon$cpan,org>
 
+### EL6 ships with perl-Class-MethodMaker-2.16-4.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: Module for creating generic methods
 Name: perl-Class-MethodMaker
 Version: 2.15
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-MethodMaker/
@@ -56,6 +59,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Class/MethodMaker/
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 2.15-2
+- RFX'ed on RHEL6.
+
 * Thu Jul 16 2009 Christoph Maser <cmr@financial.com> - 2.15-1
 - Updated to version 2.15.
 

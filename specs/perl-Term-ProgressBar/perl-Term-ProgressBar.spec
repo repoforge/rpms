@@ -2,6 +2,9 @@
 # Authority: dag
 # Upstream: Martyn J. Pearce <fluffy$cpan,org>
 
+### EL6 ships with perl-Term-ProgressBar-2.09-10.el6
+%{?el6:# Tag: rfx}
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +13,7 @@
 Summary: Perl module to provide a progress meter on a standard terminal
 Name: perl-Term-ProgressBar
 Version: 2.09
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-ProgressBar/
@@ -51,5 +54,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Term/ProgressBar.pm
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 2.09-2
+- RFX'ed on RHEL6.
+
 * Fri May 04 2007 Dag Wieers <dag@wieers.com> - 2.09-1
 - Initial package. (using DAR)

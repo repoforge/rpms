@@ -5,19 +5,24 @@
 Summary: Set up repositories from various sources (ISO, RHN, YOU, rsync, http, ftp, ...)
 Name: mrepo
 Version: 0.8.7
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://dag.wieers.com/home-made/mrepo/
 
 Source: http://dag.wieers.com/home-made/mrepo/mrepo-%{version}.tar.bz2
+Patch: mrepo-0.8.7-rhel6.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: /usr/bin/python2
+
 Requires: createrepo
 Requires: python >= 2.0
 Requires: pyOpenSSL
+#Requires: rhpl
+
 Obsoletes: yam <= %{version}-%{release}
 
 %description
@@ -38,7 +43,9 @@ updates for the whole network and provide the proper files to
 allow installations via the network.
 
 %prep
+
 %setup
+%patch -p1
 
 %{__perl} -pi.orig -e 's|^(VERSION)\s*=\s*.+$|$1 = "%{version}"|' mrepo
 
@@ -110,6 +117,9 @@ fi
 %{_localstatedir}/mrepo/
 
 %changelog
+* Wed Jul 27 2011 Yury V. Zaytsev <yury@shurup.com> - 0.8.7-2
+- Backported RHEL6-related patches.
+
 * Mon Mar 22 2010 Dag Wieers <dag@wieers.com> - 0.8.7-1
 - Updated to release 0.8.7.
 

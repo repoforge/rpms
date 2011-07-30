@@ -1,14 +1,13 @@
 # $Id$
 # Authority: dries
 
-
-%{?rh7:%define _with_python15 1}
-%{?el2:%define _with_python15 1}
+### EL6 ships with scons-2.0.1-1.el6
+%{?el6:# Tag: rfx}
 
 Summary: Software CONStruction tool, next-generation build tool
 Name: scons
 Version: 1.2.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Development/Tools
 URL: http://www.scons.org/
@@ -18,7 +17,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: python-devel >= 1.5
-%{?_with_python15:BuildRequires: python-distutils}
 Requires: python
 
 %description
@@ -56,6 +54,9 @@ SCons is an easier, more reliable and faster way to build software.
 %{_prefix}/lib/scons-%{version}/
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 1.2.0-2
+- RFX'ed on RHEL6.
+
 * Sun Jul 12 2009 Dag Wieers <dag@wieers.com> - 1.2.0-1
 - Updated to release 1.2.0.
 

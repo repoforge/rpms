@@ -3,13 +3,14 @@
 # Dist: nodist
 
 ### EL6 ships with ipw2100-firmware-1.3-11.el6
+%{?el6:# Tag: rfx}
 
 %define real_name ipw2100-fw
 
 Summary: Firmware for Intel® PRO/Wireless 2100 network adaptors
 Name: ipw2100-firmware
 Version: 1.3
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Distributable
 Group: System Environment/Kernel
 URL: http://ipw2100.sourceforge.net/firmware.php
@@ -48,6 +49,9 @@ to the terms of the Intel® license.
 /lib/firmware/*.fw
 
 %changelog
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 1.3-4
+- RFX'ed on RHEL6.
+
 * Tue Oct 17 2006 Matthias Saou <http://freshrpms.net> 1.3-3
 - Move the LICENSE as LICENSE.ipw2100 in the firmware directory to fully
   comply to the Intel redistribution terms and conditions.
