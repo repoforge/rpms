@@ -1,0 +1,102 @@
+#!/bin/sh
+#
+# qemu	Allow users to run non-native Linux programs by just clicking on them
+#	(or typing ./file.exe)
+#
+# chkconfig: 2345 35 98
+# description: Allow users to run non-native Linux programs by just clicking \
+#	       on them (or typing ./file.exe)
+
+. /etc/rc.d/init.d/functions
+RETVAL=0
+QEMU=/usr/bin
+
+start() {
+	cpu=`uname -m`
+        case "$cpu" in
+	    i386|i486|i586|i686|i86pc|BePC)
+		cpu="i386"
+		;;
+	    "Power Macintosh"|ppc|ppc64)
+		cpu="ppc"
+		;;
+	    armv4l|armv5l)
+		cpu="arm"
+		;;
+	    sh4)
+		cpu="sh4"
+		;;
+	esac
+
+	echo -n $"Registering binary handler for qemu applications"
+	/sbin/modprobe binfmt_misc &>/dev/null
+	if [ "$cpu" != i386 -a -x $QEMU/qemu-i386 -a -d /usr/qemu-i386 ] ; then
+	    echo ":qemu-i386:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfa\xff\xff\xff:$QEMU/qemu-i386:" > /proc/sys/fs/binfmt_misc/register
+	    echo ":qemu-i486:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x06\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfa\xff\xff\xff:$QEMU/qemu-i386:" > /proc/sys/fs/binfmt_misc/register
+	fi
+	if [ "$cpu" != arm -a -x $QEMU/qemu-arm -a -d /usr/qemu-arm ] ; then
+	    echo   ":qemu-arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfa\xff\xff\xff:$QEMU/qemu-arm:" > /proc/sys/fs/binfmt_misc/register
+	fi
+	if [ "$cpu" != ppc -a -x $QEMU/qemu-ppc -a -d /usr/qemu-ppc ] ; then
+	    echo   ":ppc:M::\x7fELF\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x14:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfa\xff\xff\xff:$QEMU/qemu-ppc:" > /proc/sys/fs/binfmt_misc/register
+	echo do ppc
+	fi
+	if [ "$cpu" != sparc -a -x $QEMU/qemu-sparc -a -d /usr/qemu-sparc ] ; then
+	    echo   ":qemu-sparc:M::\x7fELF\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x02:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfa\xff\xff\xff:$QEMU/qemu-sparc:" > /proc/sys/fs/binfmt_misc/register
+	fi
+	if [ "$cpu" != sh4 -a -x $QEMU/qemu-sh4 -a -d /usr/qemu-sh4 ] ; then
+	    echo   ":qemu-sh4:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x2a\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfa\xff\xff\xff:$QEMU/qemu-sh4:" > /proc/sys/fs/binfmt_misc/register
+	fi
+	echo
+}
+
+stop() {
+	echo -n $"Unregistering binary handler for qemu applications"
+	for a in i386 i486 ppc arm sparc sh4 ] ; do 
+	    [ -r /proc/sys/fs/binfmt_misc/qemu-$a ] && echo "-1" >/proc/sys/fs/binfmt_misc/qemu-$a
+	done
+	echo
+}
+
+reload() {
+	stop
+	start
+}
+
+qemu_status() {
+	if ls /proc/sys/fs/binfmt_misc/qemu-* &>/dev/null; then 
+		echo $"qemu binary format handlers are registered."
+		return 0
+	else
+		echo $"qemu binary format handlers are not registered."
+		return 3
+	fi
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		qemu_status
+		RETVAL=$?
+		;;
+	restart)
+		stop
+		start
+		;;
+	condrestart)
+		if qemu_status &>/dev/null; then
+			stop
+			start
+		fi
+		;;
+	*)
+		echo $"Usage: $prog {start|stop|status|restart|condrestart}"
+		exit 1
+esac
+exit $RETVAL
+
