@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 # Upstream: Fabrice Bellard <fabrice$bellard,org>
+#
+# ExclusiveDist: el5 el6
+#
+# AIO, KVM & Spice are only enabled on EL6 
+#
 
 ### EL6 ships with qemu-img-2:0.12.1-2.113
 %{?el6:# Tag: rfx}
@@ -9,32 +14,58 @@
 
 %define audio_drv_list alsa,esd,oss,sdl
 
-%{?el5:%define _with_compat_gcc_version 34}
-
-%{?el4:%define _without_bluez 1}
-%{?el4:%define _without_curl 1}
-
-%{?el3:%define audio_drv_list esd,oss,sdl}
-%{?el3:%define _without_bluez 1}
-%{?el3:%define _without_curl 1}
-
 Summary: CPU emulator
 Name: qemu
 Version: 0.14.1
-Release: 1%{?dist}
+Release: 2%{?dist}
+# Epoch because upstream pushed qemu-1.0 package
+Epoch: 2
 License: GPLv2+ and LGPLv2+ and BSD
 Group: Applications/Emulators
 URL: http://qemu.org/
 
-Source: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
+Source0: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
+Source1: qemu.init
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
-BuildRequires: zlib-devel
+BuildRequires: bluez-libs-devel
+BuildRequires: cyrus-sasl-devel
 BuildRequires: esound-devel
-%{?_with_compat_gcc_version:BuildRequires: compat-gcc-%{_with_compat_gcc_version}}
-%{!?_without_curl:BuildRequires: curl-devel}
-#BuildRequires: texi2html
+BuildRequires: gnutls-devel
+BuildRequires: libaio-devel
+BuildRequires: libattr-devel
+BuildRequires: ncurses-devel
+BuildRequires: pciutils-devel
+BuildRequires: rsync
+BuildRequires: texi2html
+BuildRequires: texinfo
+BuildRequires: which
+BuildRequires: zlib-devel
+
+%ifarch x86_64
+%{?el6:BuildRequires: spice-protocol >= 0.6.0 spice-server-devel >= 0.6.0}
+%endif
+
+%{?el6:BuildRequires: libcurl-devel}
+%{?el5:BuildRequires: curl-devel}
+
+%{?el6:BuildRequires: libuuid-devel}
+%{?el6:BuildRequires: pulseaudio-libs-devel}
+
+Requires: %{name}-img
+
+Requires(post): /usr/bin/getent
+Requires(post): /usr/sbin/groupadd
+Requires(post): /usr/sbin/useradd
+Requires(post): /sbin/chkconfig
+Requires(post): /sbin/service
+Requires(preun): /sbin/service /sbin/chkconfig
+Requires(postun): /sbin/service
+
+Provides: %{name}-common
+Provides: %{name}-user
 
 %description
 QEMU is a FAST! processor emulator using dynamic translation to achieve good
@@ -64,141 +95,88 @@ This package provides a command line tool for manipulating disk images
 %prep
 %setup
 
-%{__cat} <<'EOF' >qemu.sysv
-#!/bin/sh
-#
-# Init file for configuring Qemu non-native binary formats
-#
-# Written by Dag Wieers <dag@wieers.com>
-#
-# chkconfig: 2345 35 98
-# description: Qemu non-native binary formats
-
-source %{_initrddir}/functions
-
-RETVAL=0
-prog="qemu"
-
-start() {
-    case "$(uname -m)" in
-        (i386|i486|i586|i686|i86pc|BePC)
-            cpu="i386";;
-        ("Power Macintosh"|ppc|ppc64)
-            cpu="ppc";;
-        (armv4l|armv5l)
-            cpu="arm";;
-        (sh4)
-            cpu="sh4";;
-    esac
-    echo -n $"Registering non-native binary handler for Qemu"
-    /sbin/modprobe binfmt_misc &>/dev/null
-    if [ "$cpu" != "i386" -a -x "%{_bindir}/qemu-i386" -a -d "%{_prefix}/qemu-i386" ]; then
-        echo ':qemu-i386:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x03\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-i386:' >/proc/sys/fs/binfmt_misc/register
-        echo ':qemu-i486:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x06\x00:\xff\xff\xff\xff\xff\xfe\xfe\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-i386:' >/proc/sys/fs/binfmt_misc/register
-    fi
-    if [ "$cpu" != "arm" -a -x "%{_bindir}/qemu-arm" -a -d "%{_prefix}/qemu-arm" ]; then
-        echo ':qemu-arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-arm:' >/proc/sys/fs/binfmt_misc/register
-    fi
-    if [ "$cpu" != "ppc" -a -x "%{_bindir}/qemu-ppc" -a -d "%{_prefix}/qemu-ppc" ]; then
-        echo ':ppc:M::\x7fELF\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x14:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-ppc:' >/proc/sys/fs/binfmt_misc/register
-    fi
-    if [ "$cpu" != "sparc" -a -x "%{_bindir}/qemu-sparc" -a -d "%{_prefix}/qemu-sparc" ]; then
-        echo ':qemu-sparc:M::\x7fELF\x01\x02\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x02:\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-sparc:' >/proc/sys/fs/binfmt_misc/register
-    fi
-    if [ "$cpu" != "sh4" -a -x "%{_bindir}/qemu-sh4" -a -d "%{_prefix}/qemu-sh4" ]; then
-        echo ':qemu-sh4:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x2a\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfb\xff\xff\xff:%{_bindir}/qemu-sh4:' >/proc/sys/fs/binfmt_misc/register
-    fi
-
-    echo
-}
-
-stop() {
-    echo -n $"Unregistering non-native binary handler for Qemu"
-    for cpu in i386 i486 ppc arm sparc sh4; do
-        if [ -r "/proc/sys/fs/binfmt_misc/qemu-$cpu" ]; then
-            echo "-1" >/proc/sys/fs/binfmt_misc/qemu-$cpu
-        fi
-    done
-    echo
-}
-
-restart() {
-    stop
-    start
-}
-
-status() {
-    if ls /proc/sys/fs/binfmt_misc/qemu-* &>/dev/null; then
-        echo $"Qemu non-native binary format handlers registered."
-        return 0
-    else
-        echo $"Qemu non-native binary format handlers not registered."
-        return 1
-    fi
-}
-
-case "$1" in
-  start)
-    start
-    ;;
-  stop)
-    stop
-    ;;
-  restart|reload)
-    restart
-    ;;
-  condrestart)
-    if status &>/dev/null; then
-        restart
-    fi
-    ;;
-  status)
-    status
-    RETVAL=$?
-    ;;
-  *)
-    echo $"Usage: $prog {start|stop|restart|condrestart|status}"
-    RETVAL=1
-esac
-
-exit $RETVAL
-EOF
-
 %build
+
+%if 0%{?el6}
+    # --build-id option is used fedora 8 onwards for giving info to the debug packages.
+    extraldflags="-Wl,--build-id";
+    buildldflags="VL_LDFLAGS=-Wl,--build-id"
+%endif
+
 ./configure \
     --prefix="%{_prefix}" \
-    --cc="%{__cc}%{?_with_compat_gcc_version}" \
+    --sysconfdir=%{_sysconfdir} \
     --interp-prefix="%{_prefix}/qemu-%%M" \
-    --audio-drv-list="%{audio_drv_list}" \
+    --audio-drv-list="%{?el6:pa,}%{audio_drv_list}" \
     --audio-card-list="ac97,adlib,cs4231a,es1370,gus,sb16" \
-%{?_without_bluez:--disable-bluez} \
-%{?_without_curl:--disable-curl}
-#   --disable-gcc-check
-%{__make} %{?_smp_mflags}
+    --extra-ldflags=$extraldflags \
+    --extra-cflags="%{optflags}" \
+    --enable-attr \
+    --enable-bluez \
+    --enable-curl \
+    --enable-docs \
+    --enable-vnc-sasl \
+    --enable-vnc-tls \
+    --enable-uuid \
+%if 0%{?el6}
+    --enable-linux-aio \
+    --enable-kvm \
+%endif
+%ifarch x86_64
+    %{?el6:--enable-spice} \
+%endif
+    --disable-check-utests \
+    --disable-debug-tcg \
+    --disable-sparse \
+    --disable-strip \
+    --disable-werror \
+    --disable-xen
+
+echo "config-host.mak contents:"
+echo "==="
+cat config-host.mak
+echo "==="
+
+make V=1 %{?_smp_mflags} $buildldflags
 
 %install
 %{__rm} -rf %{buildroot}
+
 %{__make} install \
     prefix="%{buildroot}%{_prefix}" \
     bindir="%{buildroot}%{_bindir}" \
-    sharedir="%{buildroot}%{_datadir}/qemu" \
+    sharedir="%{buildroot}%{_datadir}/%{name}" \
     sysconfdir="%{buildroot}%{_sysconfdir}" \
-    confdir="%{buildroot}%{_sysconfdir}/qemu" \
+    confdir="%{buildroot}%{_sysconfdir}/%{name}" \
     mandir="%{buildroot}%{_mandir}" \
-    datadir="%{buildroot}%{_datadir}/qemu" \
+    datadir="%{buildroot}%{_datadir}/%{name}" \
     docdir="./rpm-doc"
 
+chmod -x ${RPM_BUILD_ROOT}%{_mandir}/man1/*
 
-%{__install} -Dp -m0755 qemu.sysv %{buildroot}%{_initrddir}/qemu
+install -D -p -m 0755 %{SOURCE1} %{buildroot}%{_initrddir}/qemu
+install -D -p -m 0644 qemu.sasl $RPM_BUILD_ROOT%{_sysconfdir}/sasl2/qemu.conf
 
 %post
-/sbin/chkconfig --add qemu
-/sbin/service qemu start &>/dev/null || :
+if [ $1 -eq 1 ]; then
+    getent group kvm >/dev/null || groupadd -g 36 -r kvm
+    getent group qemu >/dev/null || groupadd -g 107 -r qemu
+    getent passwd qemu >/dev/null || \
+      useradd -r -u 107 -g qemu -G kvm -d / -s /sbin/nologin \
+        -c "qemu user" qemu
+    /sbin/chkconfig --add %{name}
+    /sbin/service %{name} start &>/dev/null || :
+fi
 
 %preun
 if [ $1 -eq 0 ]; then
-    /sbin/service qemu stop &>/dev/null || :
-    /sbin/chkconfig --del qemu
+    /sbin/service %{name} stop &>/dev/null || :
+    /sbin/chkconfig --del %{name}
+fi
+
+%postun
+if [ $1 -ge 1 ]; then
+    /sbin/service %{name} condrestart &>/dev/null || :
 fi
 
 %clean
@@ -211,6 +189,9 @@ fi
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
 %{_datadir}/qemu/
+%config(noreplace) %{_sysconfdir}/sasl2/qemu.conf
+%{_mandir}/man1/qemu.1*
+%{_mandir}/man8/qemu-nbd.8*
 %exclude %{_bindir}/qemu-img
 %exclude %{_bindir}/qemu-io
 
@@ -218,8 +199,13 @@ fi
 %defattr(-, root, root, 0755)
 %{_bindir}/qemu-img
 %{_bindir}/qemu-io
+%{_mandir}/man1/qemu-img.1*
 
 %changelog
+* Sun Jul 31 2011 Yury V. Zaytsev <yury@shurup.com> - 0.14.1-2
+- Dropped support for RHEL4-, glibc is too old.
+- Synced features with RHEL / Fedora packages.
+
 * Fri Jul 29 2011 Arnoud Vermeer <a.vermeer@freshway.biz> - 0.14.1-1
 - Updated to release 0.14.1.
 
