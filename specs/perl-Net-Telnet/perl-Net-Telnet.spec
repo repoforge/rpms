@@ -2,11 +2,10 @@
 # Authority: dries
 # Upstream: Jay Rogers <jay$rgrs,com>
 
-### EL5 ships with perl-Net-Telnet-3.03-5
-%{?el5:# Tag: rfx}
-
 ### EL6 ships with perl-Net-Telnet-3.03-11.el6
 %{?el6:# Tag: rfx}
+### EL5 ships with perl-Net-Telnet-3.03-5
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -16,7 +15,7 @@
 Summary: Interface to telnet
 Name: perl-Net-Telnet
 Version: 3.03
-Release: 1.3%{?dist}
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-Telnet/
@@ -58,15 +57,13 @@ shell.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog README
-%{_mandir}/man3/*
+%{_mandir}/man3/Net::Telnet.3pm*
+%dir %{perl_vendorlib}/Net/
 %{perl_vendorlib}/Net/Telnet.pm
 
 %changelog
-* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 3.03-1.3
+* Tue Jul 26 2011 Yury V. Zaytsev <yury@shurup.com> - 3.03-2
 - RFX'ed on RHEL6.
-
-* Wed Mar 22 2006 Dries Verachtert <dries@ulyssis.org> - 3.03-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Jun 16 2004 Dries Verachtert <dries@ulyssis.org> - 3.03-1
 - Initial package.

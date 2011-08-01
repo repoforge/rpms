@@ -3,10 +3,10 @@
 
 # Tag: rft
 
+%define _without_esound 1
 %define _without_freeglut 0
 %define _without_glut 1
-
-%{?el6:%define _without_esound 1}
+%define _without_oss 1}
 
 %{?el5:%define _without_gstreamer 1}
 
@@ -26,14 +26,14 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.18
+Version: 1.3.25
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
 URL: http://www.winehq.org/
 
 Source: http://dl.sf.net/sourceforge/wine/wine-%{version}.tar.bz2
-Patch1: wine-1.3.4-rpath.patch
+Patch1: wine-1.3.25-rpath.patch
 ### Fix for RHbz #593140
 Patch100: wine-1.2-fonts.patch
 ### Add wine-gecko support
@@ -166,7 +166,7 @@ you will need to install %{name}-devel.
 %prep
 %setup
 
-%patch1
+%patch1 -p0
 %patch100
 #patch1000
 
@@ -437,6 +437,9 @@ update-desktop-database &>/dev/null || :
 %ifarch %{ix86}
 %{_bindir}/wine-preloader
 %endif
+%ifarch x86_64
+%{_bindir}/wine64-preloader
+%endif
 %{_datadir}/applications/%{desktop_vendor}-wine.desktop
 %{_datadir}/applications/%{desktop_vendor}-wine-config.desktop
 %{_datadir}/applications/%{desktop_vendor}-wine-fileman.desktop
@@ -475,6 +478,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/explorer.exe.so
 %{_libdir}/wine/extrac32.exe.so
 %{_libdir}/wine/hh.exe.so
+%{_libdir}/wine/hostname.exe.so
 %{_libdir}/wine/icinfo.exe.so
 %{_libdir}/wine/iexplore.exe.so
 %{_libdir}/wine/ipconfig.exe.so
@@ -759,6 +763,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mstask.dll.so
 %{_libdir}/wine/msvcirt.dll.so
 %{_libdir}/wine/msvcp100.dll.so
+%{_libdir}/wine/msvcp60.dll.so
+%{_libdir}/wine/msvcp70.dll.so
+%{_libdir}/wine/msvcp71.dll.so
 %{_libdir}/wine/msvcp80.dll.so
 %{_libdir}/wine/msvcp90.dll.so
 %{_libdir}/wine/msvcr100.dll.so
@@ -814,6 +821,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/query.dll.so
 %{_libdir}/wine/rasapi32.dll.so
 %{_libdir}/wine/rasdlg.dll.so
+%{_libdir}/wine/regapi.dll.so
 %{_libdir}/wine/resutils.dll.so
 %{_libdir}/wine/riched20.dll.so
 %{_libdir}/wine/riched32.dll.so
@@ -857,6 +865,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/userenv.dll.so
 %{_libdir}/wine/usp10.dll.so
 %{_libdir}/wine/uxtheme.dll.so
+%{_libdir}/wine/vbscript.dll.so
 %{_libdir}/wine/vcomp.dll.so
 %{_libdir}/wine/vdmdbg.dll.so
 %{_libdir}/wine/version.dll.so
@@ -876,6 +885,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/winmm.dll.so
 %{_libdir}/wine/winnls32.dll.so
 %{_libdir}/wine/winscard.dll.so
+%{_libdir}/wine/winsta.dll.so
 %{_libdir}/wine/wintab32.dll.so
 %{_libdir}/wine/wintrust.dll.so
 %{_libdir}/wine/wlanapi.dll.so
@@ -916,7 +926,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/msacm32.drv.so
 #%{_libdir}/wine/winecoreaudio.drv.so
 %{_libdir}/wine/winejoystick.drv.so
-%{_libdir}/wine/wineoss.drv.so
+%{!?_without_oss:%{_libdir}/wine/wineoss.drv.so}
 %{_libdir}/wine/winex11.drv.so
 %{_libdir}/wine/winspool.drv.so
 %{_libdir}/wine/winealsa.drv.so
@@ -970,10 +980,12 @@ update-desktop-database &>/dev/null || :
 %dir %{_libdir}/wine/
 %{_libdir}/wine/mscms.dll.so
 
+%if %{!?_without_esound:1}0
 %files esd
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/wine/
 %{_libdir}/wine/wineesd.drv.so
+%endif
 
 %files ldap
 %defattr(-, root, root, 0755)
@@ -1013,6 +1025,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Jul 30 2011 Dag Wieers <dag@wieers.com> - 1.3.25-1
+- Updated to release 1.3.25.
+
 * Tue Apr 19 2011 Dag Wieers <dag@wieers.com> - 1.3.18-1
 - Updated to release 1.3.18.
 

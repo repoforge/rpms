@@ -4,14 +4,13 @@
 
 Summary: UDP broadcast file distribution and installation
 Name: udpcast
-%define real_version 20081116
-Version: 0.0.20081116
+Version: 20110710
 Release: 1%{?dist}
 License: GPL or BSD
 Group: Applications/System
 URL: http://udpcast.linux.lu/
 
-Source: http://udpcast.linux.lu/download/udpcast-%{real_version}.tar.gz
+Source: http://udpcast.linux.lu/download/udpcast-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: m4
@@ -21,7 +20,7 @@ BuildRequires: m4
 udpcast is an application for multicasting data to multiple targets.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 
 %build
 %configure
@@ -46,6 +45,9 @@ udpcast is an application for multicasting data to multiple targets.
 %{_sbindir}/udp-sender
 
 %changelog
+* Mon Aug 01 2011 Dag Wieers <dag@wieers.com> - 20110710-1
+- Updated to release 20110710.
+
 * Wed Nov 19 2008 Dag Wieers <dag@wieers.com> - 0.0.20081116-1
 - Updated to release 20081116.
 

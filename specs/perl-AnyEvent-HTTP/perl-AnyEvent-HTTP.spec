@@ -7,9 +7,9 @@
 
 %define real_name AnyEvent-HTTP
 
-Summary: a simple but non-blocking HTTP/HTTPS client
+Summary: Simple but non-blocking HTTP/HTTPS client
 Name: perl-%{real_name}
-Version: 2.04
+Version: 2.13
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -70,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/AnyEvent/HTTP.pm
 
 %changelog
+* Sat Jul 30 2011 Dag Wieers <dag@wieers.com> - 2.13-1
+- Updated to release 2.13.
+
 * Thu Apr 21 2011 Steve Huff <shuff@vecna.org> - 2.04-1
 - Updated to release 2.04.
 - Fleshed out description and dependencies a bit.

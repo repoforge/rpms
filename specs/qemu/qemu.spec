@@ -30,8 +30,8 @@ Source: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: SDL-devel
-BuildRequires: zlib-devel
 BuildRequires: esound-devel
+BuildRequires: zlib-devel
 %{?_with_compat_gcc_version:BuildRequires: compat-gcc-%{_with_compat_gcc_version}}
 %{!?_without_curl:BuildRequires: curl-devel}
 #BuildRequires: texi2html
@@ -207,6 +207,8 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc Changelog COPYING* LICENSE README* TODO
+%doc %{_mandir}/man1/qemu.1*
+%doc %{_mandir}/man8/qemu-nbd.8*
 %config(noreplace) %{_sysconfdir}/qemu/target-x86_64.conf
 %config %{_initrddir}/qemu
 %{_bindir}/qemu*
@@ -216,6 +218,7 @@ fi
 
 %files img
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man1/qemu-img.1*
 %{_bindir}/qemu-img
 %{_bindir}/qemu-io
 

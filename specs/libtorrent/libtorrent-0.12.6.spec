@@ -2,12 +2,9 @@
 # Authority: yury
 # Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
-### Only build for RHEL6 for newer rtorrent
-# ExcludeDist: el2 el3 el4 el5
-
 Summary: BitTorrent library
 Name: libtorrent
-Version: 0.12.9
+Version: 0.12.6
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -61,13 +58,10 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/torrent/
 %{_libdir}/libtorrent.so
+%exclude %{_libdir}/*.la
 %{_libdir}/pkgconfig/libtorrent.pc
-%exclude %{_libdir}/libtorrent.la
 
 %changelog
-* Mon Aug 01 2011 Dag Wieers <dag@wieers.com> - 0.12.9-1
-- Updated to release 0.12.9.
-
 * Tue Dec 15 2009 Yury V. Zaytsev <yury@shurup.com> - 0.12.6-1
 - Updated to release 0.12.6.
 

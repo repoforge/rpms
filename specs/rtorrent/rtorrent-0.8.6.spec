@@ -2,18 +2,19 @@
 # Authority: yury
 # Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
-%{?el5:%define curl_version 7.19.6}
+%define curl_version 7.19.6
 
 Summary: Console-based BitTorrent client
 Name: rtorrent
-Version: 0.8.9
-Release: 1%{?dist}
+Version: 0.8.6
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
 
 Source0: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
-%{?curl_version:Source1: http://curl.haxx.se/download/curl-%{curl_version}.tar.bz2}
+Source1: http://curl.haxx.se/download/curl-%{curl_version}.tar.bz2
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -40,10 +41,10 @@ management.
 
 %prep
 %setup
-%{?curl_version:%setup -T -D -a 1}
+%setup -T -D -a 1
 
 %build
-%if %{?curl_version:1}0
+
 ### Build curl
 pushd curl-%{curl_version}
 RESULT_DIR="$(pwd)/result"
@@ -69,7 +70,6 @@ popd
 
 # Build rtorrent
 PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
-%endif
 
 %configure
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
@@ -84,13 +84,10 @@ PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PK
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-#%doc %{_mandir}/man1/rtorrent.1*
+%doc %{_mandir}/man1/rtorrent.1*
 %{_bindir}/rtorrent
 
 %changelog
-* Mon Aug 01 2011 Dag Wieers <dag@wieers.com> - 0.8.9-1
-- Updated to release 0.8.9.
-
 * Mon Dec 28 2009 Yury V. Zaytsev <yury@shurup.com> - 0.8.6-2
 - Removed stunnel build requirement that somehow got in from rawhide
   (and is not really needed), that was causing build failures as
