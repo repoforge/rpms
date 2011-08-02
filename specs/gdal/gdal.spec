@@ -8,7 +8,7 @@
 
 Summary: Geospatial Data Abstraction Library
 Name: gdal
-Version: 1.8.0
+Version: 1.8.1
 Release: 1%{?dist}
 License: MIT/X
 Group: Applications/Engineering
@@ -25,6 +25,8 @@ BuildRequires: gcc-c++
 BuildRequires: expat-devel >= 1.95.0
 BuildRequires: geos-devel >= 2.2.0
 BuildRequires: giflib-devel
+BuildRequires: hdf4-devel
+BuildRequires: hdf5-devel
 BuildRequires: jasper-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
@@ -165,6 +167,10 @@ find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
 
 
 %changelog
+* Tue Aug 02 2011 Steve Huff <shuff@vecna.org> - 1.8.1-1
+- Updated to release 1.8.1.
+- Added HDF4 and HDF5 dependencies.
+
 * Mon May 02 2011 Steve Huff <shuff@vecna.org> - 1.8.0-1
 - Updated to release 1.8.0.
 - Added SWIG bindings for Perl.
