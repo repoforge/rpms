@@ -134,8 +134,12 @@ PY_HAVE_SETUPTOOLS=0 %configure \
 # put the docs in the right place
 %{__mv} %{buildroot}%{_usr}/doc docs-to-install
 
-# no .packlist files in the Perl module
+# no .packlist or perllocal.pod files in the Perl module
 find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
+find %{buildroot}%{_libdir} -name 'perllocal.pod' | xargs %{__rm} -f
+
+# fix for stupid strip issue
+%{__chmod} -R u+w %{buildroot}/*
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -160,7 +164,6 @@ find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
 %defattr(-, root, root, 0755)
 %{perl_vendorarch}/Geo/*
 %{perl_vendorarch}/auto/Geo/*
-%exclude %{_libdir}/perl*/perllocal.pod
 
 # %files -n php-%{name}
 # %defattr(-, root, root, 0755)
