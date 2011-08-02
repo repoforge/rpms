@@ -14,12 +14,12 @@ Source: ftp://ftp.hdfgroup.org/HDF5/current/src/hdf5-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
+BuildRequires: bison
 BuildRequires: flex
 BuildRequires: gcc-c++
 BuildRequires: gcc-gfortran
 BuildRequires: libjpeg-devel
 BuildRequires: make
-BuildRequires: byacc
 BuildRequires: zlib-devel >= 1.1.2
 BuildRequires: rpm-macros-rpmforge
 

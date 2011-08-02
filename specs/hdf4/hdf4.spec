@@ -16,11 +16,11 @@ Source: http://www.hdfgroup.org/ftp/HDF/HDF_Current/src/hdf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
+BuildRequires: bison
 BuildRequires: flex
 BuildRequires: gcc-c++
 BuildRequires: libjpeg-devel
 BuildRequires: make
-BuildRequires: byacc
 BuildRequires: zlib-devel
 BuildRequires: rpm-macros-rpmforge
 
