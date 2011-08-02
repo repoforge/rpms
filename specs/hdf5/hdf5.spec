@@ -18,6 +18,7 @@ BuildRequires: gcc-c++
 BuildRequires: gcc-gfortran
 BuildRequires: libjpeg-devel
 BuildRequires: make
+BuildRequires: byacc
 BuildRequires: zlib-devel >= 1.1.2
 BuildRequires: rpm-macros-rpmforge
 

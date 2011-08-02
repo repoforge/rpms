@@ -19,6 +19,7 @@ BuildRequires: binutils
 BuildRequires: gcc-c++
 BuildRequires: libjpeg-devel
 BuildRequires: make
+BuildRequires: byacc
 BuildRequires: zlib-devel
 BuildRequires: rpm-macros-rpmforge
 
