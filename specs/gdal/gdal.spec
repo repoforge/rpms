@@ -6,6 +6,12 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+# we don't package OpenJPEG, but it's available in el6
+%{?el2:%define _without_openjpeg 1}
+%{?el3:%define _without_openjpeg 1}
+%{?el4:%define _without_openjpeg 1}
+%{?el5:%define _without_openjpeg 1}
+
 Summary: Geospatial Data Abstraction Library
 Name: gdal
 Version: 1.8.1
@@ -33,7 +39,7 @@ BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 BuildRequires: mysql-devel
 BuildRequires: netcdf-devel
-BuildRequires: openjpeg-devel
+%{!?_without_openjpeg:BuildRequires: openjpeg-devel}
 BuildRequires: openssl-devel
 BuildRequires: perl
 BuildRequires: php-devel
@@ -170,6 +176,7 @@ find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
 * Tue Aug 02 2011 Steve Huff <shuff@vecna.org> - 1.8.1-1
 - Updated to release 1.8.1.
 - Added HDF4 and HDF5 dependencies.
+- Conditional openjpeg dependency for >= el6.
 
 * Mon May 02 2011 Steve Huff <shuff@vecna.org> - 1.8.0-1
 - Updated to release 1.8.0.
