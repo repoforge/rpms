@@ -1,0 +1,112 @@
+diff -up spectrum-1.4.7/CMakeLists.txt.RH-build spectrum-1.4.7/CMakeLists.txt
+--- spectrum-1.4.7/CMakeLists.txt.RH-build	2011-01-22 13:35:20.000000000 +0100
++++ spectrum-1.4.7/CMakeLists.txt	2011-01-24 16:12:59.159833478 +0100
+@@ -1,6 +1,6 @@
+ project(spectrum)
+  
+-cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
++#cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
+ if(COMMAND cmake_policy)
+ 	cmake_policy(SET CMP0003 NEW)
+ endif(COMMAND cmake_policy)
+@@ -219,9 +219,9 @@ set(spectrum_MOC_HDRS
+ add_executable(spectrum ${spectrum_SRCS} ${lrelease_outputs})
+ 
+ if(DEFINED WITH_STATIC_GLOOX)
+-	target_link_libraries(spectrum ${WITH_STATIC_GLOOX} -lgnutls ${PURPLE_LIBRARY} ${GLIB2_LIBRARIES} ${LIBPOCO_LIBRARIES} ${EVENT_LIBRARIES} ${Magick_LIBRARY} -export-dynamic)
++	target_link_libraries(spectrum ${WITH_STATIC_GLOOX} -lgnutls ${PURPLE_LIBRARY} ${GLIB2_LIBRARIES} ${LIBPOCO_LIBRARIES} ${EVENT_LIBRARIES} ${Magick_LIBRARY} -export-dynamic -lgthread-2.0 -lpthread)
+ else(DEFINED WITH_STATIC_GLOOX)
+-	target_link_libraries(spectrum ${GLOOX_LIBRARIES} ${PURPLE_LIBRARY} ${GLIB2_LIBRARIES} ${LIBPOCO_LIBRARIES} ${EVENT_LIBRARIES} ${Magick_LIBRARY} -export-dynamic)
++	target_link_libraries(spectrum ${GLOOX_LIBRARIES} ${PURPLE_LIBRARY} ${GLIB2_LIBRARIES} ${LIBPOCO_LIBRARIES} ${EVENT_LIBRARIES} ${Magick_LIBRARY} -export-dynamic -lgthread-2.0 -lpthread)
+ endif(DEFINED WITH_STATIC_GLOOX)
+ 
+ message(STATUS "Transport will be installed into: " ${CMAKE_INSTALL_PREFIX})
+@@ -363,30 +363,6 @@ ELSE(NOT GETTEXT_MSGFMT_EXECUTABLE)
+  
+         ADD_CUSTOM_TARGET(translations ALL)
+  
+-        FILE(GLOB PO_FILES  ${CMAKE_CURRENT_SOURCE_DIR}/po/*.po)
+- 
+-        FOREACH(_poFile ${PO_FILES})
+-                GET_FILENAME_COMPONENT(_poFileName ${_poFile} NAME)
+-                STRING(REGEX REPLACE "^${catalogname}_?" "" _langCode ${_poFileName} )
+-                STRING(REGEX REPLACE "\\.po$" "" _langCode ${_langCode} )
+-				STRING(REGEX REPLACE "\\messages" "" _langCode ${_langCode} )
+- 
+-                IF( _langCode )
+-                        GET_FILENAME_COMPONENT(_lang po/${_poFile} NAME_WE)
+-                        SET(_gmoFile ${CMAKE_CURRENT_SOURCE_DIR}/po/${_lang}.mo)
+- 
+-                        ADD_CUSTOM_COMMAND(TARGET translations
+-                                COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${_gmoFile} ${_poFile}
+-                                DEPENDS ${_poFile})
+-
+-                        ADD_CUSTOM_COMMAND(TARGET xgettext
+-                                COMMAND msgmerge ${_poFile} ${CMAKE_CURRENT_SOURCE_DIR}/po/messages.po | msgattrib --no-obsolete > ${_poFile}.new && mv ${_poFile}.new ${_poFile}
+-								)
+-                        INSTALL(FILES ${_gmoFile} DESTINATION share/locale/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
+-                ENDIF( _langCode )
+- 
+-        ENDFOREACH(_poFile ${PO_FILES})
+- 
+ ENDIF(NOT GETTEXT_MSGFMT_EXECUTABLE)
+ 
+ ADD_CUSTOM_TARGET (man ALL ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/spectrumctl/make_man_page.py > ${CMAKE_CURRENT_SOURCE_DIR}/man/spectrumctl.8)
+diff -up spectrum-1.4.7/cmake_modules/FindPackageHandleStandardArgs.cmake.RH-build spectrum-1.4.7/cmake_modules/FindPackageHandleStandardArgs.cmake
+--- spectrum-1.4.7/cmake_modules/FindPackageHandleStandardArgs.cmake.RH-build	2011-01-24 16:10:34.622261022 +0100
++++ spectrum-1.4.7/cmake_modules/FindPackageHandleStandardArgs.cmake	2011-01-24 16:10:34.622261022 +0100
+@@ -0,0 +1,54 @@
++# FIND_PACKAGE_HANDLE_STANDARD_ARGS(NAME (DEFAULT_MSG|"Custom failure message") VAR1 ... )
++#    This macro is intended to be used in FindXXX.cmake modules files.
++#    It handles the REQUIRED and QUIET argument to FIND_PACKAGE() and
++#    it also sets the <UPPERCASED_NAME>_FOUND variable.
++#    The package is found if all variables listed are TRUE.
++#    Example:
++#
++#    FIND_PACKAGE_HANDLE_STANDARD_ARGS(LibXml2 DEFAULT_MSG LIBXML2_LIBRARIES LIBXML2_INCLUDE_DIR)
++#
++#    LibXml2 is considered to be found, if both LIBXML2_LIBRARIES and 
++#    LIBXML2_INCLUDE_DIR are valid. Then also LIBXML2_FOUND is set to TRUE.
++#    If it is not found and REQUIRED was used, it fails with FATAL_ERROR, 
++#    independent whether QUIET was used or not.
++#    If it is found, the location is reported using the VAR1 argument, so 
++#    here a message "Found LibXml2: /usr/lib/libxml2.so" will be printed out.
++#    If the second argument is DEFAULT_MSG, the message in the failure case will 
++#    be "Could NOT find LibXml2", if you don't like this message you can specify
++#    your own custom failure message there.
++
++MACRO(FIND_PACKAGE_HANDLE_STANDARD_ARGS _NAME _FAIL_MSG _VAR1 )
++
++  IF("${_FAIL_MSG}" STREQUAL "DEFAULT_MSG")
++    SET(_FAIL_MESSAGE "Could NOT find ${_NAME}")
++  ELSE("${_FAIL_MSG}" STREQUAL "DEFAULT_MSG")
++    SET(_FAIL_MESSAGE "${_FAIL_MSG}")
++  ENDIF("${_FAIL_MSG}" STREQUAL "DEFAULT_MSG")
++
++  STRING(TOUPPER ${_NAME} _NAME_UPPER)
++
++  SET(${_NAME_UPPER}_FOUND TRUE)
++  IF(NOT ${_VAR1})
++    SET(${_NAME_UPPER}_FOUND FALSE)
++  ENDIF(NOT ${_VAR1})
++
++  FOREACH(_CURRENT_VAR ${ARGN})
++    IF(NOT ${_CURRENT_VAR})
++      SET(${_NAME_UPPER}_FOUND FALSE)
++    ENDIF(NOT ${_CURRENT_VAR})
++  ENDFOREACH(_CURRENT_VAR)
++
++  IF (${_NAME_UPPER}_FOUND)
++    IF (NOT ${_NAME}_FIND_QUIETLY)
++        MESSAGE(STATUS "Found ${_NAME}: ${${_VAR1}}")
++    ENDIF (NOT ${_NAME}_FIND_QUIETLY)
++  ELSE (${_NAME_UPPER}_FOUND)
++    IF (${_NAME}_FIND_REQUIRED)
++        MESSAGE(FATAL_ERROR "${_FAIL_MESSAGE}")
++    ELSE (${_NAME}_FIND_REQUIRED)
++      IF (NOT ${_NAME}_FIND_QUIETLY)
++        MESSAGE(STATUS "${_FAIL_MESSAGE}")
++      ENDIF (NOT ${_NAME}_FIND_QUIETLY)
++    ENDIF (${_NAME}_FIND_REQUIRED)
++  ENDIF (${_NAME_UPPER}_FOUND)
++ENDMACRO(FIND_PACKAGE_HANDLE_STANDARD_ARGS)
