@@ -1,6 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?el5:%define _without_egg-info 1}
+%{?el4:%define _without_egg-info 1}
+%{?el3:%define _without_egg-info 1}
+%{?el2:%define _without_egg-info 1}
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 %define real_name dnspython
@@ -8,7 +13,7 @@
 Summary: DNS toolkit for Python
 Name: python-dns
 Version: 1.5.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD-like
 Group: Development/Languages
 URL: http://www.dnspython.org/
@@ -48,11 +53,12 @@ find examples/ -type f | xargs %{__chmod} a-x
 %defattr(-,root,root,-)
 %doc ChangeLog LICENSE README TODO examples/
 %{python_sitelib}/dns/
-%ghost %{python_sitelib}/dns/*.pyo
-%ghost %{python_sitelib}/dns/rdtypes/*.pyo
-%ghost %{python_sitelib}/dns/rdtypes/*/*.pyo
+%{!?_without_egg_info:%{python_sitelib}/*.egg-info}
 
 %changelog
+* Wed Aug 03 2011 Steve Huff <shuff@vecna.org> - 1.5.0-2
+- Update for el6 compatibility.
+
 * Tue Nov 06 2007 Dag Wieers <dag@wieers.com> - 1.5.0-1
 - Updated to release 1.5.0.
 
