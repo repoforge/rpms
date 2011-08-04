@@ -73,7 +73,7 @@ LOGROTATE
 %{__install} -D -m 644 schemas/mysql_schema.sql %{buildroot}%{_datadir}/spectrum/schemas/mysql_schema.sql
 %{__install} -D -m 755 initscripts/fedora/spectrum %{buildroot}%{_initrddir}/spectrum
 %{__install} -D -m 644 spectrum-logrotate %{buildroot}%{_sysconfdir}/logrotate.d/spectrum
-%{__install} -d -m 644 %{buildroot}%{_localstatedir}/{lib,run,log}/spectrum
+%{__install} -d -m 755 %{buildroot}%{_localstatedir}/{lib,run,log}/spectrum
 
 # daemon goes in sbin
 %{__install} -d -m755 %{buildroot}%{_sbindir}
@@ -82,7 +82,7 @@ LOGROTATE
 # config file example goes in docdir
 %{__mv} %{buildroot}%{_sysconfdir}/spectrum/spectrum.cfg.example .
 
-%find_lang %{name}
+%{!?el5:%find_lang %{name}}
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
@@ -117,7 +117,7 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-%files -f %{name}.lang
+%files%{!?el5: -f %{name}.lang}
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING TODO spectrum.cfg.example
 %doc %{_mandir}/man?/*
