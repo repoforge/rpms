@@ -71,7 +71,7 @@ LOGROTATE
 
 # install some additional stuff
 %{__install} -D -m 644 schemas/mysql_schema.sql %{buildroot}%{_datadir}/spectrum/schemas/mysql_schema.sql
-%{__install} -D -m 755 initscripts/fedora/spectrum %{buildroot}%{_initddir}/spectrum
+%{__install} -D -m 755 initscripts/fedora/spectrum %{buildroot}%{_initrddir}/spectrum
 %{__install} -D -m 644 spectrum-logrotate %{buildroot}%{_sysconfdir}/logrotate.d/spectrum
 %{__install} -d -m 644 %{buildroot}%{_localstatedir}/{lib,run,log}/spectrum
 
@@ -125,7 +125,7 @@ fi
 %{_bindir}/*
 %{_sbindir}/*
 %{_datadir}/spectrum/
-%{_initddir}/spectrum
+%{_initrddir}/spectrum
 %attr(700, spectrum, spectrum) %{_localstatedir}/lib/spectrum
 %attr(700, spectrum, spectrum) %{_localstatedir}/run/spectrum
 %attr(700, spectrum, spectrum) %{_localstatedir}/log/spectrum
