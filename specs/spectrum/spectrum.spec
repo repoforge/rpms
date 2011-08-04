@@ -20,7 +20,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: cmake
-BuildRequires: cppunit
+BuildRequires: cppunit-devel
 BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: gloox-devel >= 1.0
