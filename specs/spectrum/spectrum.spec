@@ -88,7 +88,7 @@ LOGROTATE
 #%{__chmod} -R u+w %{buildroot}/*
 
 %pre
-if [ $1 = 0 ]; then
+if [ $1 = 1 ]; then
     /usr/sbin/groupadd -r spectrum
     /usr/sbin/useradd -r -g spectrum -d %{_localstatedir}/lib/spectrum \
         -s /sbin/nologin \
@@ -109,7 +109,7 @@ if [ $1 = 0 ]; then
 fi
 
 %postun 
-if [ $1 >= 0 ]; then
+if [ $1 >= 1 ]; then
     /sbin/service spectrum condrestart >/dev/null 2>&1
     exit 0
 fi
