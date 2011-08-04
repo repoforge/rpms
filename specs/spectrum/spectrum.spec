@@ -47,7 +47,6 @@ uses the Gloox XMPP library and libpurple for "legacy networks".
 %build
 %cmake .
 %{__make} %{?_smp_mflags}
-%find_lang %{name}
 
 # make spectrumctl
 (cd spectrumctl && %{__python} setup.py build)
@@ -82,6 +81,8 @@ LOGROTATE
 
 # config file example goes in docdir
 %{__mv} %{buildroot}%{_sysconfdir}/spectrum/spectrum.cfg.example .
+
+%find_lang %{name}
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
