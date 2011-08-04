@@ -7,19 +7,20 @@
 
 Summary: Multi-protocol XMPP transport gateway
 Name: spectrum
-Version: 1.4.8
+Version: 1.4.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://spectrum.im/
 
 # this changes every release :(
-Source: http://spectrum.im/attachments/download/43/spectrum-%{version}.tar.gz
+Source: https://github.com/downloads/hanzz/spectrum/spectrum-%{version}.tar.gz
 Patch0: spectrum-1.4.7_cmake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: cmake
+BuildRequires: cppunit
 BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: gloox-devel >= 1.0
@@ -30,6 +31,7 @@ BuildRequires: python-xmpp
 BuildRequires: rpm-macros-rpmforge
 BuildRequires: ImageMagick-c++-devel
 Requires: logrotate
+Requires: python-xmpp
 
 %description
 Spectrum is an XMPP transport/gateway. It allows XMPP users to communicate with
@@ -45,6 +47,7 @@ uses the Gloox XMPP library and libpurple for "legacy networks".
 %build
 %cmake .
 %{__make} %{?_smp_mflags}
+%find_lang %{name}
 
 # make spectrumctl
 (cd spectrumctl && %{__python} setup.py build)
@@ -76,6 +79,9 @@ LOGROTATE
 # daemon goes in sbin
 %{__install} -d -m755 %{buildroot}%{_sbindir}
 %{__mv} %{buildroot}%{_bindir}/spectrum %{buildroot}%{_sbindir}
+
+# config file example goes in docdir
+%{__mv} %{buildroot}%{_sysconfdir}/spectrum/spectrum.cfg.example .
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
@@ -110,9 +116,9 @@ fi
 %clean
 %{__rm} -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING TODO
+%doc AUTHORS ChangeLog COPYING TODO spectrum.cfg.example
 %doc %{_mandir}/man?/*
 %{python_sitelib}/*
 %{_bindir}/*
@@ -126,6 +132,6 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/spectrum
 
 %changelog
-* Wed Aug 03 2011 Steve Huff <shuff@vecna.org> - 1.4.8-1
+* Wed Aug 03 2011 Steve Huff <shuff@vecna.org> - 1.4.7-1
 - Initial package (ported from EPEL).
 
