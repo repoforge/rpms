@@ -9,7 +9,7 @@
 Summary: Network socket extension for Lua
 Name: luasocket
 Version: 2.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Development
 URL: http://w3.impa.br/~diego/software/luasocket/
@@ -23,6 +23,7 @@ BuildRequires: gcc
 BuildRequires: lua-devel >= 5.1
 BuildRequires: make
 BuildRequires: perl
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 Requires: lua >= 5.1
 
@@ -72,5 +73,8 @@ and LTN12 (filters, sinks, sources and pumps) modules can be very handy.
 %{luadatadir}/*
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 2.0.2-2
+- Captured missing pkgconfig dependency.
+
 * Tue Jun 28 2011 Steve Huff <shuff@vecna.org> - 2.0.2-1
 - Initial package.

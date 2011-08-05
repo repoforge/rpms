@@ -11,7 +11,7 @@
 Summary: Filesystem management extension for Lua
 Name: luafilesystem
 Version: 1.5.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Development
 URL: http://keplerproject.github.com/luafilesystem/
@@ -25,6 +25,7 @@ BuildRequires: gcc
 BuildRequires: lua-devel >= 5.1
 BuildRequires: make
 BuildRequires: perl
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 Requires: lua >= 5.1
 
@@ -64,5 +65,8 @@ structure and file attributes.
 %{lualibdir}/*
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 1.5.0-2
+- Captured missing pkgconfig dependency.
+
 * Wed Jun 29 2011 Steve Huff <shuff@vecna.org> - 1.1.0-1
 - Initial package.

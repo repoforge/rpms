@@ -13,7 +13,7 @@
 Summary: Expat extension for Lua
 Name: luaexpat
 Version: 1.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Development
 URL: http://mathewwild.co.uk/projects/luaexpat/
@@ -28,6 +28,7 @@ BuildRequires: gcc
 BuildRequires: lua-devel >= 5.1
 BuildRequires: make
 BuildRequires: perl
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 Requires: lua >= 5.1
 
@@ -68,5 +69,8 @@ LuaExpat is a SAX XML parser based on the Expat library.
 %{luadatadir}/*
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 1.1.0-2
+- Captured missing pkgconfig build dependency.
+
 * Wed Jun 29 2011 Steve Huff <shuff@vecna.org> - 1.1.0-1
 - Initial package.
