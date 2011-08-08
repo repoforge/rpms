@@ -10,7 +10,7 @@
 
 Summary: Interface to Amazon's Route 53
 Name: perl-Net-Amazon-Route53
-Version: 0.110310
+Version: 0.111300
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -82,6 +82,9 @@ Perl interface to Amazon's Route 53 DNS hosting service.
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
 
 %changelog
+* Mon Aug 08 2011 Steve Huff <shuff@vecna.org> - 0.111300-1
+- Update to version 0.111300.
+
 * Fri Mar 04 2011 Steve Huff <shuff@vecna.org> - 0.110310-1
 - Update to version 0.110310.
 
