@@ -6,13 +6,15 @@
 ### Disable stripping
 %define __spec_install_post /usr/lib/rpm/brp-compress
 
+%{?el5:%define _without_kde 1}
+
 %define real_name libflashplayer
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
 %define real_version 071311
 Version: 11.0.1.60
-Release: 0.1%{?dist}
+Release: 0.2%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
@@ -74,13 +76,22 @@ fi
 %doc LICENSE README
 %{_bindir}/flash-player-properties
 %{_datadir}/pixmaps/flash-player-properties.png
-%{_datadir}/kde4/services/kcm_adobe_flash_player.desktop
 %{_datadir}/applications/flash-player-properties.desktop
 %{_datadir}/icons/hicolor/*/apps/flash-player-properties.png
 %{_libdir}/flash-plugin/
+
+%if %{?_without_kde:1}0
+%exclude %{_datadir}/kde4/services/kcm_adobe_flash_player.desktop
+%exclude %{_libdir}/kde4/kcm_adobe_flash_player.so
+%else
+%{_datadir}/kde4/services/kcm_adobe_flash_player.desktop
 %{_libdir}/kde4/kcm_adobe_flash_player.so
+%endif
 
 %changelog
+* Mon Jul 18 2011 Dag Wieers <dag@wieers.com> - 11.0.1.60-0.2
+- Disable KDE integration for RHEL5.
+
 * Mon Jul 18 2011 Dag Wieers <dag@wieers.com> - 11.0.1.60-0.1
 - Updated to release 11.0.1.60.
 
