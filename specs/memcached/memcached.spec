@@ -2,12 +2,14 @@
 # Authority: dag
 # Upstream: Brad Fitzpatrick <brad$danga,com>
 
+### perl-AnyEvent is rfx on EL5, and so memcached must be as well
+%{?el5:# Tag: rfx}
 ### EL6 ships with memcached-1.4.4-3.el6
 %{?el6:# Tag: rfx}
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.4.5
+Version: 1.4.6
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
@@ -184,6 +186,10 @@ fi
 %{_includedir}/memcached
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 1.4.6-1
+- Updated to 1.4.6.
+- Tagged as RFX in el5 as well (due to perl-AnyEvent dependency).
+
 * Fri Apr 16 2010 Steve Huff <shuff@vecna.org> - 1.4.5-1
 - Updated to 1.4.5.
 

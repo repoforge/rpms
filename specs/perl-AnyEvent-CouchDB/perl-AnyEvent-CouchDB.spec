@@ -5,11 +5,14 @@
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
+### perl-AnyEvent-HTTP is rfx on EL5
+%{?el5:# Tag: rfx}
+
 %define real_name AnyEvent-CouchDB
 
 Summary: a non-blocking CouchDB client based on jquery.couch.js
 Name: perl-AnyEvent-CouchDB
-Version: 1.21
+Version: 1.25
 Release: 1%{?dist}
 License: MIT
 Group: Applications/CPAN
@@ -32,6 +35,7 @@ Requires: perl
 Requires: perl(AnyEvent::HTTP) >= 1.11
 Requires: perl(CouchDB::View)
 Requires: perl(Data::Dump::Streamer)
+Requires: perl(Exception::Class)
 Requires: perl(IO::All)
 Requires: perl(JSON::XS)
 Requires: perl(Scope::Guard)
@@ -67,7 +71,7 @@ it makes sense in an asynchronous Perl environment.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes META.yml README
+%doc Changes META.json README
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{perl_vendorlib}/AnyEvent/CouchDB.pm
@@ -76,5 +80,9 @@ it makes sense in an asynchronous Perl environment.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Mon Aug 01 2011 Steve Huff <shuff@vecna.org> - 1.25-1
+- Updated to version 1.25.
+- RFX on el5 due to dependency on perl-AnyEvent-HTTP.
+
 * Fri Sep 24 2010 Steve Huff <shuff@vecna.org> - 1.21-1
 - Initial package.

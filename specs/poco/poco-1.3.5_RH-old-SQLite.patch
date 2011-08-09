@@ -1,0 +1,51 @@
+diff -up poco-1.3.5-all/Data/SQLite/include/Poco/Data/SQLite/SQLite.h.old-sqlite poco-1.3.5-all/Data/SQLite/include/Poco/Data/SQLite/SQLite.h
+--- poco-1.3.5-all/Data/SQLite/include/Poco/Data/SQLite/SQLite.h.old-sqlite	2010-04-06 14:39:21.000000000 +0200
++++ poco-1.3.5-all/Data/SQLite/include/Poco/Data/SQLite/SQLite.h	2010-04-06 14:40:44.000000000 +0200
+@@ -66,6 +66,11 @@
+ 	#define SQLite_API
+ #endif
+ 
++// Attempt to make this build compatible with more recent versions of SQLite
++// API.
++#ifndef SQLITE_LOCKED_SHAREDCACHE
++	#define SQLITE_LOCKED_SHAREDCACHE      (SQLITE_LOCKED | (1<<8) )
++#endif
+ 
+ //
+ // Automatically link Data library.
+diff -up poco-1.3.5-all/Data/SQLite/src/Connector.cpp.old-sqlite poco-1.3.5-all/Data/SQLite/src/Connector.cpp
+--- poco-1.3.5-all/Data/SQLite/src/Connector.cpp.old-sqlite	2010-04-06 14:34:27.000000000 +0200
++++ poco-1.3.5-all/Data/SQLite/src/Connector.cpp	2010-04-06 14:11:24.000000000 +0200
+@@ -84,7 +84,7 @@ void Connector::enableSharedCache(bool f
+ 
+ void Connector::enableSoftHeapLimit(int limit)
+ {
+-	sqlite3_soft_heap_limit(limit);
++	//sqlite3_soft_heap_limit(limit);
+ }
+ 
+ 
+diff -up poco-1.3.5-all/Data/SQLite/src/SessionImpl.cpp.old-sqlite poco-1.3.5-all/Data/SQLite/src/SessionImpl.cpp
+--- poco-1.3.5-all/Data/SQLite/src/SessionImpl.cpp.old-sqlite	2009-05-12 20:22:14.000000000 +0200
++++ poco-1.3.5-all/Data/SQLite/src/SessionImpl.cpp	2010-04-03 10:01:45.000000000 +0200
+@@ -115,7 +115,6 @@ void SessionImpl::open()
+ 		Utility::throwException(rc);
+ 	}
+ 
+-	sqlite3_extended_result_codes(_pDB, 1);
+ 	_connected = true;
+ }
+ 
+diff -up poco-1.3.5-all/Data/SQLite/src/SQLiteStatementImpl.cpp.old-sqlite poco-1.3.5-all/Data/SQLite/src/SQLiteStatementImpl.cpp
+--- poco-1.3.5-all/Data/SQLite/src/SQLiteStatementImpl.cpp.old-sqlite	2009-05-12 20:22:14.000000000 +0200
++++ poco-1.3.5-all/Data/SQLite/src/SQLiteStatementImpl.cpp	2010-04-06 14:41:10.000000000 +0200
+@@ -103,7 +103,7 @@ void SQLiteStatementImpl::compileImplImp
+ 
+ 	while (rc == SQLITE_OK && !pStmt && !queryFound)
+ 	{
+-		rc = sqlite3_prepare_v2(_pDB, pSql, -1, &pStmt, &pLeftover);
++		rc = sqlite3_prepare(_pDB, pSql, -1, &pStmt, &pLeftover);
+ 		if (rc != SQLITE_OK)
+ 		{
+ 			if (pStmt) 
+diff -up poco-1.3.5-all/Data/SQLite/src/Utility.cpp.old-sqlite poco-1.3.5-all/Data/SQLite/src/Utility.cpp

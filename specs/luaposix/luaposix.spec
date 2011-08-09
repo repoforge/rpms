@@ -9,7 +9,7 @@
 Summary: Lua bindings for POSIX APIs
 Name: luaposix
 Version: 5.1.11
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Public Domain
 Group: Applications/Development
 URL: https://github.com/rrthomas/luaposix/
@@ -22,6 +22,7 @@ BuildRequires: gcc
 BuildRequires: lua-devel >= 5.1
 BuildRequires: make
 BuildRequires: perl
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 Requires: lua >= 5.1
 
@@ -54,5 +55,8 @@ A POSIX library for Lua.
 %{lualibdir}/*
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 5.1.11-2
+- Captured missing pkgconfig dependency.
+
 * Fri Jul 15 2011 Steve Huff <shuff@vecna.org> - 5.1.11-1
 - Initial package.

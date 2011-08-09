@@ -9,7 +9,7 @@
 Summary: LDAP client library for Lua
 Name: lualdap
 Version: 1.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Development
 URL: http://www.keplerproject.org/lualdap/
@@ -24,6 +24,7 @@ BuildRequires: lua-devel >= 5.1
 BuildRequires: make
 BuildRequires: openldap-devel
 BuildRequires: perl
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 Requires: lua >= 5.1
 
@@ -64,5 +65,8 @@ to OpenLDAP or to ADSI. It enables a Lua program to:
 %{lualibdir}/*
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 1.1.0-2
+- Captured missing pkgconfig dependency.
+
 * Sun Jul 17 2011 Steve Huff <shuff@vecna.org> - 1.1.0-1
 - Initial package.

@@ -5,12 +5,15 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
+### perl-AnyEvent is rfx on EL5
+%{?el5:# Tag: rfx}
+
 %define real_name AnyEvent-HTTP
 
 Summary: Simple but non-blocking HTTP/HTTPS client
 Name: perl-%{real_name}
 Version: 2.13
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/AnyEvent-HTTP/
@@ -70,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/AnyEvent/HTTP.pm
 
 %changelog
+* Mon Aug 01 2011 Steve Huff <shuff@vecna.org> - 2.13-2
+- RFX on el5, since it needs AnyEvent.
+
 * Sat Jul 30 2011 Dag Wieers <dag@wieers.com> - 2.13-1
 - Updated to release 2.13.
 

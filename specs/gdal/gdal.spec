@@ -6,9 +6,15 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+# we don't package OpenJPEG, but it's available in el6
+%{?el2:%define _without_openjpeg 1}
+%{?el3:%define _without_openjpeg 1}
+%{?el4:%define _without_openjpeg 1}
+%{?el5:%define _without_openjpeg 1}
+
 Summary: Geospatial Data Abstraction Library
 Name: gdal
-Version: 1.8.0
+Version: 1.8.1
 Release: 1%{?dist}
 License: MIT/X
 Group: Applications/Engineering
@@ -25,13 +31,15 @@ BuildRequires: gcc-c++
 BuildRequires: expat-devel >= 1.95.0
 BuildRequires: geos-devel >= 2.2.0
 BuildRequires: giflib-devel
+BuildRequires: hdf4-devel
+BuildRequires: hdf5-devel
 BuildRequires: jasper-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
 BuildRequires: mysql-devel
 BuildRequires: netcdf-devel
-BuildRequires: openjpeg-devel
+%{!?_without_openjpeg:BuildRequires: openjpeg-devel}
 BuildRequires: openssl-devel
 BuildRequires: perl
 BuildRequires: php-devel
@@ -126,8 +134,12 @@ PY_HAVE_SETUPTOOLS=0 %configure \
 # put the docs in the right place
 %{__mv} %{buildroot}%{_usr}/doc docs-to-install
 
-# no .packlist files in the Perl module
+# no .packlist or perllocal.pod files in the Perl module
 find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
+find %{buildroot}%{_libdir} -name 'perllocal.pod' | xargs %{__rm} -f
+
+# fix for stupid strip issue
+%{__chmod} -R u+w %{buildroot}/*
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -152,7 +164,6 @@ find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
 %defattr(-, root, root, 0755)
 %{perl_vendorarch}/Geo/*
 %{perl_vendorarch}/auto/Geo/*
-%exclude %{_libdir}/perl*/perllocal.pod
 
 # %files -n php-%{name}
 # %defattr(-, root, root, 0755)
@@ -165,6 +176,11 @@ find %{buildroot}%{perl_vendorarch} -name '.packlist' | xargs %{__rm} -f
 
 
 %changelog
+* Tue Aug 02 2011 Steve Huff <shuff@vecna.org> - 1.8.1-1
+- Updated to release 1.8.1.
+- Added HDF4 and HDF5 dependencies.
+- Conditional openjpeg dependency for >= el6.
+
 * Mon May 02 2011 Steve Huff <shuff@vecna.org> - 1.8.0-1
 - Updated to release 1.8.0.
 - Added SWIG bindings for Perl.

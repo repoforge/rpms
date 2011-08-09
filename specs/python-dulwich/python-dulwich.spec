@@ -12,7 +12,7 @@
 %{?el5:%define _conflict_pyrex 1}
 
 Name: python-dulwich
-Version: 0.7.1
+Version: 0.8.0
 Release: 1%{?dist}
 Summary: Pure-Python implementation of Git file formats and protocols
 
@@ -63,6 +63,9 @@ rm -rf %{buildroot}
 %{python_sitearch}/*
 
 %changelog
+* Mon Aug 08 2011 Steve Huff <shuff@vecna.org> - 0.8.0-1
+- Update to version 0.8.0.
+
 * Thu Apr 14 2011 Steve Huff <shuff@vecna.org> - 0.7.1-1
 - Update to version 0.7.1.
 

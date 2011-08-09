@@ -9,7 +9,7 @@
 Summary: TLS/SSL support for Lua
 Name: luasec
 Version: 0.4.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: MIT
 Group: Applications/Development
 URL: http://www.inf.puc-rio.br/~brunoos/luasec/
@@ -25,6 +25,7 @@ BuildRequires: luasocket
 BuildRequires: make
 BuildRequires: openssl-devel
 BuildRequires: perl
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 Requires: lua >= 5.1
 Requires: luasocket
@@ -62,5 +63,8 @@ between the peers.
 %{luadatadir}/*
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 0.4.1-2
+- Captured missing pkgconfig dependency.
+
 * Thu Jul 14 2011 Steve Huff <shuff@vecna.org> - 0.4.1-1
 - Initial package.

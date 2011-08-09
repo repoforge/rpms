@@ -2,6 +2,8 @@
 # Authority: dries
 # Upstream: Matt Sergeant <matt$sergeant,org>
 
+### EL5 ships with perl-DBI-1.52
+%{?el5:# Tag: rfx}
 ### EL6 ships with perl-DBD-SQLite-1.27-3.el6
 %{?el6:# Tag: rfx}
 
@@ -13,7 +15,7 @@
 Summary: Small fast embedded SQL database engine
 Name: perl-DBD-SQLite
 Version: 1.29
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DBD-SQLite/
@@ -68,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/DBD/SQLite/
 
 %changelog
+* Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 1.29-2
+- RFX for el5 as well as el6, due to perl-DBI version requirement.
+
 * Fri Jan  8 2010 Christoph Maser <cmr@financial.com> - 1.29-1
 - Updated to version 1.29.
 
