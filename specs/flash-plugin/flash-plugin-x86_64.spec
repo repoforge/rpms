@@ -12,9 +12,9 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-%define real_version 071311
-Version: 11.0.1.60
-Release: 0.2%{?dist}
+%define real_version 080811
+Version: 11.0.1.98
+Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
@@ -22,7 +22,7 @@ URL: http://www.macromedia.com/downloads/
 #Source0: http://download.macromedia.com/pub/labs/flashplayer10/libflashplayer-%{version}.linux-x86_64.so.tar.gz
 #Source0: http://download.macromedia.com/pub/labs/flashplayer10/flashplayer_square_p2_64bit_linux_%{real_version}.tar.gz
 #Source0: http://download.macromedia.com/pub/labs/flashplayer10/flashplayer10_2_p3_64bit_linux_%{real_version}.tar.gz
-Source: http://download.macromedia.com/pub/labs/flashplatformruntimes/flashplayer11/flashplayer11_b1_install_lin_64_%{real_version}.tar.gz
+Source: http://download.macromedia.com/pub/labs/flashplatformruntimes/flashplayer11/flashplayer11_b2_install_lin_64_%{real_version}.tar.gz
 Source1: README
 Source2: LICENSE
 Source3: homecleanup
@@ -89,6 +89,9 @@ fi
 %endif
 
 %changelog
+* Thu Aug 11 2011 Dag Wieers <dag@wieers.com> - 11.0.1.98-0.1
+- Updated to release 11.0.1.98.
+
 * Mon Jul 18 2011 Dag Wieers <dag@wieers.com> - 11.0.1.60-0.2
 - Disable KDE integration for RHEL5.
 
