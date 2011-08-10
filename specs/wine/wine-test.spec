@@ -3,7 +3,6 @@
 
 # Tag: rft
 
-%define _without_esound 1
 %define _without_freeglut 0
 %define _without_glut 1
 %define _without_oss 1}
@@ -26,7 +25,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.25
+Version: 1.3.26
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -60,13 +59,12 @@ BuildRequires: libxslt-devel
 BuildRequires: mpg123-devel
 BuildRequires: ncurses-devel
 BuildRequires: openldap-devel
-BuildRequires: openssl-devel 
+BuildRequires: openssl-devel
 BuildRequires: sane-backends-devel
 BuildRequires: unixODBC-devel
 BuildRequires: zlib-devel
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
 %{!?_without_cups:BuildRequires: cups-devel}
-%{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_freeglut:BuildRequires: freeglut-devel}
 %{!?_without_glut:BuildRequires: glut-devel}
 %{!?_without_gphoto2:BuildRequires: gphoto2-devel}
@@ -80,8 +78,7 @@ BuildRequires: zlib-devel
 Requires: wine-capi = %{version}-%{release}
 Requires: wine-cms = %{version}-%{release}
 Requires: wine-core = %{version}-%{release}
-Requires: wine-esd = %{version}-%{release}
-Requires: wine-gecko = 1.1.0
+Requires: wine-gecko = 1.2.0
 Requires: wine-ldap = %{version}-%{release}
 Requires: wine-twain = %{version}-%{release}
 
@@ -105,6 +102,7 @@ Requires(preun): /sbin/chkconfig, /sbin/service
 %{!?_without_modxorg:Requires: /usr/bin/xmessage}
 %{?_without_modxorg:Requires: /usr/X11R6/bin/xmessage}
 Obsoletes: wine-arts <= %{version}-%{release}
+Obsoletes: wine-esd <= %{version}-%{release}
 Obsoletes: wine-jack <= %{version}-%{release}
 Obsoletes: wine-nas <= %{version}-%{release}
 Obsoletes: wine-tools <= %{version}-%{release}
@@ -128,14 +126,6 @@ Requires: wine-core = %{version}-%{release}
 
 %description cms
 Color Management for wine.
-
-%package esd
-Summary: ESD sound support for wine
-Group: System Environment/Libraries
-Requires: wine-core = %{version}-%{release}
-
-%description esd
-ESD sound support for wine.
 
 %package ldap
 Summary: LDAP support for wine
@@ -381,9 +371,6 @@ update-desktop-database &>/dev/null || :
 %post cms -p /sbin/ldconfig
 %postun cms -p /sbin/ldconfig
 
-%post esd -p /sbin/ldconfig
-%postun esd -p /sbin/ldconfig
-
 %post ldap -p /sbin/ldconfig
 %postun ldap -p /sbin/ldconfig
 
@@ -471,7 +458,6 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
-%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/dxdiag.exe.so
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
@@ -607,6 +593,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/credui.dll.so
 %{_libdir}/wine/crtdll.dll.so
 %{_libdir}/wine/crypt32.dll.so
+%{_libdir}/wine/cryptdlg.dll.so
 %{_libdir}/wine/cryptdll.dll.so
 %{_libdir}/wine/cryptnet.dll.so
 %{_libdir}/wine/cryptui.dll.so
@@ -712,6 +699,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/httpapi.dll.so
 %{_libdir}/wine/iccvid.dll.so
 %{_libdir}/wine/icmp.dll.so
+%{_libdir}/wine/ieframe.dll.so
 %{_libdir}/wine/imagehlp.dll.so
 %{_libdir}/wine/imm32.dll.so
 %{_libdir}/wine/inetcomm.dll.so
@@ -960,6 +948,7 @@ update-desktop-database &>/dev/null || :
 ### ocx.so
 %{_libdir}/wine/hhctrl.ocx.so
 %{_libdir}/wine/msisys.ocx.so
+%{_libdir}/wine/wshom.ocx.so
 
 ### mod16
 %ifarch %{ix86}
@@ -979,13 +968,6 @@ update-desktop-database &>/dev/null || :
 %defattr(-, root, root, 0755)
 %dir %{_libdir}/wine/
 %{_libdir}/wine/mscms.dll.so
-
-%if %{!?_without_esound:1}0
-%files esd
-%defattr(-, root, root, 0755)
-%dir %{_libdir}/wine/
-%{_libdir}/wine/wineesd.drv.so
-%endif
 
 %files ldap
 %defattr(-, root, root, 0755)
@@ -1025,6 +1007,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Wed Aug 10 2011 Dag Wieers <dag@wieers.com> - 1.3.26-1
+- Updated to release 1.3.26.
+
 * Sat Jul 30 2011 Dag Wieers <dag@wieers.com> - 1.3.25-1
 - Updated to release 1.3.25.
 
