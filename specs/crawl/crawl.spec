@@ -3,19 +3,16 @@
 # Upstream: Crawl dev team <crawl-ref-discuss$lists,sourceforge,net>
 
 %define real_name stone_soup
-%define real_release 1
-%define git_hash g7ce9b19
 
 Summary: Dungeon Crawl Stone Soup (innovative roguelike game)
 Name: crawl%{?_with_tiles:-tiles}
-Version: 0.7.2
+Version: 0.8.1
 Release: 1%{?dist}
 License: Crawl GPL (based on Nethack Licence)
 Group: Applications/Games
 URL: http://crawl.develz.org/
 
 Source: http://downloads.sourceforge.net/project/crawl-ref/Stone%20Soup/%{version}/stone_soup-%{version}-nodeps.tar.bz2
-Patch0: crawl-0.7.1_sqlite3.patch
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires: binutils
@@ -27,6 +24,7 @@ BuildRequires: libstdc++-devel
 BuildRequires: lua-devel
 BuildRequires: make
 BuildRequires: ncurses-devel
+BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 BuildRequires: sqlite-devel
 %{?_with_tiles:BuildRequires: freetype-devel}
@@ -57,7 +55,6 @@ Available rpmbuild rebuild optionms:
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0 -p1
 
 %build
 %define mflags DESTDIR="%{buildroot}" prefix=%{_prefix} bin_prefix=/bin DATADIR=%{_datadir}/crawl/ SAVEDIR='~/.crawl' USE_UNICODE=y %{?_with_tiles:TILES=y SDL_INCLUDE='-I%{_includedir}/SDL'}
@@ -85,6 +82,10 @@ cd ..
 %{_datadir}/crawl/
 
 %changelog
+* Wed Aug 10 2011 Steve Huff <shuff@vecna.org> - 0.8.1-1
+- Update to version 0.8.1.
+- Old SQLite patch merged upstream.
+
 * Wed Mar 23 2011 Steve Huff <shuff@vecna.org> - 0.7.2-1
 - Update to version 0.7.2.
 
