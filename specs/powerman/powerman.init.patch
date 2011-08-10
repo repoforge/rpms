@@ -1,6 +1,6 @@
-diff -up powerman-2.3.4/scripts/powerman.init.in.initfix powerman-2.3.4/scripts/powerman.init.in
---- powerman-2.3.4/scripts/powerman.init.in.initfix	2009-01-20 20:52:15.000000000 +0100
-+++ powerman-2.3.4/scripts/powerman.init.in	2009-02-11 14:32:19.006732642 +0100
+diff -up powerman-2.3.4/scripts/powerman.in.initfix powerman-2.3.4/scripts/powerman.in
+--- powerman-2.3.4/scripts/powerman.in.initfix	2009-01-20 20:52:15.000000000 +0100
++++ powerman-2.3.4/scripts/powerman.in	2009-02-11 14:32:19.006732642 +0100
 @@ -7,17 +7,18 @@
  # Copyright (C) 2001-2007 The Regents of the University of California.
  # UCRL-CODE-2002-009.
