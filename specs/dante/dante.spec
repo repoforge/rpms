@@ -5,7 +5,7 @@
 
 Summary: Free Socks v4/v5 client implementation
 Name: dante
-Version: 1.3.1
+Version: 1.3.2
 Release: 1%{?dist}
 License: BSD-type
 Group: Applications/Internet
@@ -310,6 +310,9 @@ fi
 %exclude %{_libdir}/libsocks.la
 
 %changelog
+* Tue Aug 09 2011 Dag Wieers <dag@wieers.com> - 1.3.2-1
+- Updated to release 1.3.2.
+
 * Mon Jul 11 2011 Yury V. Zaytsev <yury@shurup.com> - 1.3.1-1
 - Now build --without-glibc-secure to avoid using glibc private symbols.
 - Updated to release 1.3.1.

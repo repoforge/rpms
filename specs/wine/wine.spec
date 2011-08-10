@@ -73,12 +73,12 @@ BuildRequires: zlib-devel
 Requires: wine-capi = %{version}-%{release}
 Requires: wine-cms = %{version}-%{release}
 Requires: wine-core = %{version}-%{release}
-Requires: wine-esd = %{version}-%{release}
 Requires: wine-gecko = 1.0.0
 Requires: wine-jack = %{version}-%{release}
 Requires: wine-ldap = %{version}-%{release}
 Requires: wine-nas = %{version}-%{release}
 Requires: wine-twain = %{version}-%{release}
+#Requires: wine-esd = %{version}-%{release}
 
 %description
 While Wine is usually thought of as a Windows(TM) emulator, the Wine
@@ -99,8 +99,9 @@ Requires(post): /sbin/ldconfig, /sbin/chkconfig, /sbin/service,
 Requires(preun): /sbin/chkconfig, /sbin/service
 %{!?_without_modxorg:Requires: /usr/bin/xmessage}
 %{?_without_modxorg:Requires: /usr/X11R6/bin/xmessage}
-Obsoletes: wine-tools <= %{version}-%{release}
 Obsoletes: wine-arts <= %{version}-%{release}
+Obsoletes: wine-esd <= %{version}-%{release}
+Obsoletes: wine-tools <= %{version}-%{release}
 Provides: wine-tools = %{version}-%{release}
 
 %description core

@@ -16,15 +16,16 @@
 
 Summary: CPU emulator
 Name: qemu
-Version: 0.14.1
-Release: 2%{?dist}
+Version: 0.15.0
+Release: 1%{?dist}
 # Epoch because upstream pushed qemu-1.0 package
 Epoch: 2
 License: GPLv2+ and LGPLv2+ and BSD
 Group: Applications/Emulators
 URL: http://qemu.org/
 
-Source0: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
+Source0: http://wiki.qemu.org/download/qemu-%{version}.tar.gz
+#Source0: http://download.savannah.gnu.org/releases/qemu/qemu-%{version}.tar.gz
 Source1: qemu.init
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -204,6 +205,9 @@ fi
 %{_mandir}/man1/qemu-img.1*
 
 %changelog
+* Wed Aug 10 2011 Dag Wieers <dag@wieers.com> - 0.15.0-1
+- Updated to release 0.15.0.
+
 * Sun Jul 31 2011 Yury V. Zaytsev <yury@shurup.com> - 0.14.1-2
 - Dropped support for RHEL4-, glibc is too old.
 - Synced features with RHEL / Fedora packages.
