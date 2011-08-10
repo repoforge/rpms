@@ -3,22 +3,26 @@
 # Upstream: powerman-discuss mailing list <powerman-discuss$lists,sourceforge,net>
 
 Name: powerman
-Version: 2.3.5
-Release: 4%{?dist}
+Version: 2.3.9
+Release: 1%{?dist}
 Summary: PowerMan - Power to the Cluster
 
 Group: Applications/System
 License: GPLv2+
 Url: http://sourceforge.net/projects/powerman
-Source0: http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.bz2
+Source0: https://powerman.googlecode.com/files/powerman-%{version}.tar.gz
 Patch0: powerman.init.patch
 Patch1: powerman-multilib.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex bison readline-devel
-BuildRequires: tcp_wrappers
+BuildRequires: bison 
 BuildRequires: curl-devel
+BuildRequires: flex
+BuildRequires: libgenders-devel
 BuildRequires: ncurses-devel
+BuildRequires: net-snmp-devel
+BuildRequires: readline-devel
+BuildRequires: tcp_wrappers
 
 %description
 PowerMan is a tool for manipulating remote power control (RPC) devices from a 
@@ -42,9 +46,13 @@ Development files for Powerman
 
 %build
 
-sed -i 's/@PACKAGE_VERSION/%{version}/' -i lib/libpowerman.pc.in
+sed -i 's/@PACKAGE_VERSION/%{version}/' -i libpowerman/libpowerman.pc.in
 
-%configure --with-httppower --with-genders
+%configure \
+    --disable-dependency-tracking \
+    --with-genders \
+    --with-httppower \
+    --with-snmppower
 
 %{__make} %{?_smp_mflags} -e VERSION=%{version}
 
@@ -77,17 +85,19 @@ then
   fi
   /sbin/chkconfig --del powerman
 fi
+exit 0
 
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
-%doc ChangeLog DISCLAIMER COPYING NEWS TODO
+%doc AUTHORS ChangeLog DISCLAIMER COPYING INSTALL META NEWS README TODO
 %{_bindir}/powerman
 %{_bindir}/pm
 %{_sbindir}/plmpower
 %{_sbindir}/powermand
 %{_sbindir}/httppower
+%{_sbindir}/snmppower
 %{_sbindir}/vpcd
 %dir %{_sysconfdir}/%{name}/
 %config(noreplace) %{_sysconfdir}/%{name}/*
@@ -95,6 +105,7 @@ fi
 %{_sysconfdir}/init.d/%{name}
 %{_libdir}/libpowerman.so.0
 %{_libdir}/libpowerman.so.0.0.0
+%{_libdir}/stonith/plugins/external/powerman
 
 %files devel
 %defattr(-,root,root,-)
@@ -103,9 +114,13 @@ fi
 %exclude %{_libdir}/libpowerman.la
 %{_libdir}/pkgconfig/libpowerman.pc
 %{_libdir}/libpowerman.so
-%{_libdir}/stonith/plugins/external/powerman
 
 %changelog
+* Wed Aug 10 2011 Steve Huff <shuff@vecna.org> - 2.3.9-1
+- Updated to version 2.3.9.
+- Moved stonith plugins from devel to main package.
+- Added snmppower support.
+
 * Wed Feb 24 2010 Yury V. Zaytsev <yury@shurup.com> - 2.3.5-4
 - Fixed tcp_wrappers dependency issue, causing build failure.
 
