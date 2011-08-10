@@ -2,6 +2,11 @@
 # Authority: shuff
 # Upstream: Al Chu <achu$llnl,gov>
 
+%{?el5:%define _with_perlpatch 1}
+%{?el4:%define _with_perlpatch 1}
+%{?el3:%define _with_perlpatch 1}
+%{?el2:%define _with_perlpatch 1}
+
 %define real_name genders
 %define real_release 1
 
@@ -12,13 +17,13 @@
 Summary: Static cluster configuration database
 Name: libgenders
 Version: 1.14
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://computing.llnl.gov/linux/genders.html
 
 Source: http://downloads.sourceforge.net/project/genders/genders/%{version}-%{real_release}/genders-%{version}.tar.gz
-Patch0: libgenders-1.14_perlpath.patch
+%{?_with_perlpatch:Patch0: libgenders-1.14_perlpath.patch}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -74,7 +79,7 @@ This package provides the Perl API for libgenders.
 
 %prep
 %setup -n %{real_name}-%{version}
-%patch0 -p1
+%{?_with_perlpatch:%patch0 -p1}
 
 %build
 %configure \
@@ -87,6 +92,9 @@ This package provides the Perl API for libgenders.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}" INSTALLDIRS="vendor"
+
+# why is this in the wrong place?
+%{!?_with_perlpatch:%{__mv} %{buildroot}%{_libdir}/perl5/Genders.pm %{buildroot}%{perl_vendorarch}}
 
 %post -p /sbin/ldconfig
 
@@ -124,5 +132,8 @@ This package provides the Perl API for libgenders.
 %{perl_vendorarch}/*
 
 %changelog
+* Wed Aug 10 2011 Steve Huff <shuff@vecna.org> - 1.14-2
+- Fixed el6 support.
+
 * Mon Aug 09 2010 Steve Huff <shuff@vecna.org> - 1.14-1
 - Initial package.
