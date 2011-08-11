@@ -2,30 +2,30 @@
 # Authority: yury
 # Upstream: Apache Rivet team <rivet-dev$tcl,apache,org>
 
+%define real_name rivet
+
 Summary: Apache Rivet lets you use the Tcl scripting language to create dynamic web sites
 Name: mod_rivet
-Version: 2.0.0
+Version: 2.0.3
 Release: 1%{?dist}
 License: Apache License Version 2.0
 Group: Development/Languages
 URL: http://tcl.apache.org/rivet/
 
-Source0: http://www.apache.org/dist/tcl/rivet/rivet-%{version}.tar.gz
+Source0: http://www.apache.org/dist/tcl/%{real_name}/%{real_name}-%{version}.tar.gz
+Source1: http://www.apache.org/dist/tcl/%{real_name}/%{real_name}-%{version}.tar.gz.asc
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: httpd-devel >= 2.0.46-1
 BuildRequires: gcc-c++
 BuildRequires: libstdc++-devel
-BuildRequires: tcl >= 8.5
-BuildRequires: tcl-devel >= 8.5
-BuildRequires: autoconf >= 2.59
-BuildRequires: automake >= 1.9
-BuildRequires: libtool >= 1.4.3
+BuildRequires: tcl >= 8.4
+BuildRequires: tcl-devel >= 8.4
 
 Provides: mod_rivet = %{version}-%{release}
 
 Requires: httpd
-Requires: tcl >= 8.5
+Requires: tcl >= 8.4
 
 %description
 Tcl is a scripting language.  Apache Rivet is a module for Apache
@@ -37,18 +37,13 @@ generated webpages in Tcl.
 
 %build
 
-%{__aclocal}
-autoreconf -vfs
-
-%configure  --with-tcl="%{_libdir}/tcl8.5"       \
-            --with-apxs="%{_sbindir}/apxs"       \
-            --with-tclsh="%{_bindir}/tclsh8.5"   \
-            --with-apache="%{_prefix}"           \
-            --with-apache-version="2"            \
-            --with-rivet-target-dir="%{_libdir}/httpd/rivet%{version}"   \
-            --disable-debug \
-            --with-pic \
-            --disable-rpath
+%configure \
+    --with-apxs="%{_sbindir}/apxs"       \
+    --with-apache="%{_prefix}"           \
+    --with-apache-version="2"            \
+    --with-rivet-target-dir="%{_libdir}/httpd/rivet%{version}"   \
+    --with-pic \
+    --disable-rpath
 
 %{__make} %{?_smp_mflags}
 %{__make} %{?_smp_mflags} doc
@@ -95,6 +90,11 @@ EOT
 
 
 %changelog
+* Thu Aug 11 2011 Yury V. Zaytsev <yury@shurup.com> - 2.0.3-1
+- Regenerating the build system is no longer necessary.
+- Rivet can be built against TCL 8.4, so why not?
+- Merged the updated version from Jeff.
+
 * Mon May 03 2010 Yury V. Zaytsev <yury@shurup.com> - 2.0.0-1
 - Merged the updated version from Jeff.
 
