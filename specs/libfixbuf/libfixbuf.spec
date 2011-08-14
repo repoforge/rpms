@@ -3,13 +3,13 @@
 
 Summary: fixbuf IPFIX implementation library
 Name: libfixbuf
-Version: 0.9.0
+Version: 1.0.1
 Release: 1%{?dist}
 License: LGPL
 Group: Libraries
 URL: http://tools.netsa.cert.org/fixbuf/
 
-Source: http://tools.netsa.cert.org/releases/libfixbuf-%{version}.tar.gz
+Source: http://tools.netsa.cert.org/releases/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: glib2-devel >= 2.4.7
@@ -17,10 +17,10 @@ BuildRequires: glib2-devel >= 2.4.7
 BuildRequires: lksctp-tools-devel
 BuildRequires: pkgconfig
 
-%description 
+%description
 libfixbuf aims to be a compliant implementation of the IPFIX Protocol
 and message format, from which IPFIX Collecting Processes and
-IPFIX Exporting Processes may be built. 
+IPFIX Exporting Processes may be built.
 
 %package devel
 Summary: Header files, libraries and development documentation for %{name}.
@@ -65,5 +65,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libfixbuf.la
 
 %changelog
+* Sun Aug 14 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 0.9.0-1
 - Initial package. (using DAR)
