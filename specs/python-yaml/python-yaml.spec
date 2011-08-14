@@ -1,10 +1,10 @@
 # $Id$
 # Authority: dag
 
-%{?el5:%define _without_egg-info 1}
-%{?el4:%define _without_egg-info 1}
-%{?el3:%define _without_egg-info 1}
-%{?el2:%define _without_egg-info 1}
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+%{?el3:%define _without_egg_info 1}
+%{?el2:%define _without_egg_info 1}
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
@@ -14,7 +14,7 @@
 Summary: Python package implementing YAML parser and emitter
 Name: python-yaml
 Version: 3.09
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://pyyaml.org/wiki/PyYAML
@@ -51,9 +51,12 @@ and interaction with scripting languages.
 %defattr(-, root, root, 0755)
 %doc LICENSE README examples/
 %{python_sitearch}/yaml/
-%{!?_without_egg-info:%{python_sitearch}/*.egg-info}
+%{!?_without_egg_info:%{python_sitearch}/*.egg-info}
 
 %changelog
+* Sun Aug 14 2011 Yury V. Zaytsev <yury@shurup.com> - 3.09-3
+- Got rid of dashes in the macro name.
+
 * Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 3.09-2
 - Made the package arch-specific.
 - Added egg-info support for el6.
