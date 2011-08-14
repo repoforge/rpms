@@ -1,11 +1,14 @@
 # $Id$
 # Authority: dag
 
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: POP3 mail retriever with reliable Maildir delivery
 Name: getmail
-Version: 4.10.0
+Version: 4.20.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -50,9 +53,13 @@ should not be attempted over NFS.  getmail is written entirely in python.
 %{_bindir}/getmail_maildir
 %{_bindir}/getmail_mbox
 %{python_sitelib}/getmailcore/
-#%{python_sitelib}/getmail-%{version}*.egg-info
+%{!?_without_egg_info:%{python_sitelib}/getmail-%{version}*.egg-info}
 
 %changelog
+* Sun Aug 14 2011 Yury V. Zaytsev <yury@shurup.com> - 4.20.4-1
+- Added *.egg-info for compatibility with RHEL6+.
+- Updated to release 4.20.4 (Julian Yap).
+
 * Mon Aug 31 2009 Dries Verachtert <dries@ulyssis.org> - 4.10.0-1
 - Updated to release 4.10.0.
 
