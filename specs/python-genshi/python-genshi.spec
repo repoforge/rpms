@@ -26,7 +26,6 @@ BuildRequires: python-devel >= 2.4
 BuildRequires: python-setuptools >= 0.6
 
 Requires: python >= 2.4
-Requires: python-setuptools => 0.6
 
 %description
 Genshi is a Python library that provides an integrated set of components for
