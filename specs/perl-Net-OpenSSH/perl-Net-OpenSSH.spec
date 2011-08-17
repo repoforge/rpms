@@ -9,7 +9,7 @@
 
 Summary: Perl module named Net-OpenSSH
 Name: perl-Net-OpenSSH
-Version: 0.36
+Version: 0.52
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,6 +20,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+Requires: openssh-clients >= 4.1
+Requires: perl
+Requires: perl(IO::Pty)
+Requires: perl(Net::SFTP::Foreign)
 
 %description
 perl-Net-OpenSSH is a Perl module.
@@ -43,7 +47,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README
+%doc Changes MANIFEST META.yml README sample/
 %doc %{_mandir}/man3/Net::OpenSSH.3pm*
 %doc %{_mandir}/man3/Net::OpenSSH::*.3pm*
 %dir %{perl_vendorlib}/Net/
@@ -51,5 +55,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/OpenSSH.pm
 
 %changelog
+* Wed Aug 17 2011 Steve Huff <shuff@vecna.org> - 0.52-1
+- Update to version 0.52.
+
 * Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 0.36-1
 - Initial package. (using DAR)
