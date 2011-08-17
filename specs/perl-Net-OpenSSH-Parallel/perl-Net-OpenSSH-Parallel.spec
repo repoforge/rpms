@@ -57,11 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Net::OpenSSH::Parallel.3pm*
 %doc %{_mandir}/man3/Net::OpenSSH::Parallel::*.3pm*
-%dir %{perl_vendorlib}/Net/
-%{perl_vendorlib}/Net/OpenSSH/
+%dir %{perl_vendorlib}/Net/OpenSSH/
 %{perl_vendorlib}/Net/OpenSSH/Parallel.pm
-%{perl_vendorlib}/Net/OpenSSH/Parallel/
-%{perl_vendorlib}/Net/OpenSSH/Parallel/*.pm
+%{perl_vendorlib}/Net/OpenSSH/Parallel/*
 
 %changelog
 * Wed Aug 10 2011 Giacomo Tenaglia <Giacomo.Tenaglia@cern.ch> - 0.11-1
