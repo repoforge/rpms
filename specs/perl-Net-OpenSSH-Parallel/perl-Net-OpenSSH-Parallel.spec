@@ -7,7 +7,7 @@
 
 %define real_name Net-OpenSSH-Parallel
 
-Summary: Perl module named Net-OpenSSH-Parallel
+Summary: Run SSH jobs in parallel.
 Name: perl-Net-OpenSSH-Parallel
 Version: 0.11
 Release: 1%{?dist}
@@ -20,9 +20,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Net::OpenSSH) >= 0.39
+BuildRequires: rpm-macros-rpmforge
+
+### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
 
 %description
-Run SSH jobs in parallel.
+Net::OpenSSH::Parallel is an scheduler that can run commands in parallel in a
+set of hosts through SSH. It tries to find a compromise between being simple to
+use, efficient and covering a good part of the problem space of parallel
+process execution via SSH.
+
 
 %prep
 %setup -n %{real_name}-%{version}
