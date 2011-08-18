@@ -6,9 +6,9 @@
 
 Summary: File-synchronization tool
 Name: unison
-Version: 2.32.52
+Version: 2.40.63
 Release: 1%{?dist}
-License: GPL
+License: GPLv3
 Group: Applications/File
 URL: http://www.cis.upenn.edu/~bcpierce/unison/
 
@@ -47,7 +47,7 @@ Encoding=UTF-8
 EOF
 
 %build
-%{__make} %{?_smp_mflags} NATIVE="true" #UISTYLE="gtk2"
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -72,6 +72,9 @@ desktop-file-install \
 %{_datadir}/pixmaps/unison.png
 
 %changelog
+* Thu Aug 18 2011 Bjarne Saltbaek <arnebjarne72@hotmail.com> - 2.40.63-1
+- Updated to release 2.40.63.
+
 * Tue Jan 05 2010 Dag Wieers <dag@wieers.com> - 2.32.52-1
 - Updated to release 2.32.52.
 
@@ -83,3 +86,4 @@ desktop-file-install \
 
 * Thu Aug 11 2005 Dag Wieers <dag@wieers.com> - 2.12.0-1
 - Initial package. (using DAR)
+
