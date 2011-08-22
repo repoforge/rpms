@@ -196,19 +196,7 @@ EOF
 ### A simple update script for the clamav virus database.
 ### This could as well be replaced by a SysV script.
 
-### fix log file if needed
-LOG_FILE="%{_localstatedir}/log/clamav/freshclam.log"
-if [ ! -f "$LOG_FILE" ]; then
-    touch "$LOG_FILE"
-    chmod 644 "$LOG_FILE"
-    chown clamav.clamav "$LOG_FILE"
-fi
-
-%{_bindir}/freshclam \
-    --quiet \
-    --datadir="%{_localstatedir}/clamav" \
-    --log="$LOG_FILE" \
-    --daemon-notify="%{_sysconfdir}/clamd.conf"
+%{_bindir}/freshclam --quiet
 EOF
 
 %{__cat} <<EOF >clamav-milter.sysconfig
