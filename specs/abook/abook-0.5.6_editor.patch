@@ -1,0 +1,19 @@
+diff -Naur abook-0.5.6-orig/ui.c abook-0.5.6/ui.c
+--- abook-0.5.6-orig/ui.c	2006-04-09 14:57:34.000000000 -0400
++++ abook-0.5.6/ui.c	2011-08-23 11:05:34.156194587 -0400
+@@ -569,9 +569,13 @@
+ 	} else {
+ 		char *s;
+ 		s = ui_readline("/", findstr, MAX_FIELD_LEN - 1, 0);
+-		strncpy(findstr, s, MAX_FIELD_LEN);
+-		free(s);
+ 		refresh_screen();
++		if(s == NULL) {
++			return; /* user cancelled (ctrl-G) */
++		} else {
++			strncpy(findstr, s, MAX_FIELD_LEN);
++			free(s);
++		}
+ 	}
+ 
+ 	if( (item = find_item(findstr, curitem + !!next, search_fields)) < 0 &&
