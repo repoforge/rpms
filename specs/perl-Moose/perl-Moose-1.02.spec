@@ -1,8 +1,7 @@
 # $Id$
 # Authority: shuff
 # Upstream: Stevan Little <stevan.little$iinteractive,com>
-# ExcludeDist: el2 el3 el4 el5
-# Rationale: requires a newer Class::MOP
+# ExcludeDist: el4
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,69 +10,61 @@
 
 Summary: Postmodern object system for Perl 5
 Name: perl-Moose
-Version: 1.25
-Release: 1%{?dist}
+Version: 1.02
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Moose/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
 Patch0: %{name}_checkconflicts.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl(Carp)
-BuildRequires: perl(Class::MOP) >= 1.11
+BuildRequires: perl(Class::MOP) >= 0.98
 BuildRequires: perl(Data::OptList)
-BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(List::MoreUtils) >= 0.12
-BuildRequires: perl(Package::DeprecationManager) >= 0.10
-BuildRequires: perl(Params::Util) >= 1.00
+BuildRequires: perl(Module::Install) >= 0.91
+# BuildRequires: perl(Module::Install::ExtraTests)
+# BuildRequires: perl(Module::Install::AuthorRequires)
 BuildRequires: perl(Scalar::Util) >= 1.19
 BuildRequires: perl(Sub::Exporter) >= 0.980
 BuildRequires: perl(Sub::Name)
 BuildRequires: perl(Task::Weaken)
+BuildRequires: perl(Test::Exception) >= 0.27
 #BuildRequires: perl(Test::More) >= 0.88
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Try::Tiny) >= 0.02
-BuildRequires: perl >= 5.8.3
+BuildRequires: perl >= 5.8.1
 Requires: perl(Carp)
-Requires: perl(Class::MOP) >= 1.11
+Requires: perl(Class::MOP) >= 0.98
 Requires: perl(Data::OptList)
+Requires: perl(Filter::Simple)
 Requires: perl(List::MoreUtils) >= 0.12
-Requires: perl(Package::DeprecationManager) >= 0.10
-Requires: perl(Params::Util) >= 1.00
 Requires: perl(Scalar::Util) >= 1.19
 Requires: perl(Sub::Exporter) >= 0.980
 Requires: perl(Sub::Name)
 Requires: perl(Task::Weaken)
 Requires: perl(Try::Tiny) >= 0.02
-Requires: perl >= 5.8.3
+Requires: perl >= 5.8.1
 
-Conflicts: perl(Catalyst) <= 5.80028
+Conflicts: perl(Catalyst) <= 5.80017
 Conflicts: perl(Devel::REPL) <= 1.003008
-Conflicts: perl(Fey) <= 0.36
-Conflicts: perl(Fey::ORM) <= 0.34
-Conflicts: perl(File::ChangeNotify) <= 0.15
-Conflicts: perl(KiokuDB) <= 0.49
-Conflicts: perl(Markdent) <= 0.16
+Conflicts: perl(Fey::ORM) <= 0.23
+Conflicts: perl(KiokuDB) <= 0.41
 Conflicts: perl(MooseX::Aliases) <= 0.07
-Conflicts: perl(MooseX::AlwaysCoerce) <= 0.05
 Conflicts: perl(MooseX::AttributeHelpers) <= 0.22
-Conflicts: perl(MooseX::AttributeInflate) <= 0.02
 Conflicts: perl(MooseX::Attribute::Prototype) <= 0.10
-Conflicts: perl(MooseX::ClassAttribute) <= 0.17
-Conflicts: perl(MooseX::FollowPBP) <= 0.02
-Conflicts: perl(MooseX::NonMoose) <= 0.55
+Conflicts: perl(MooseX::ClassAttribute) <= 0.09
+Conflicts: perl(MooseX::MethodAttributes) <= 0.18
+Conflicts: perl(MooseX::NonMoose) <= 0.05
 Conflicts: perl(MooseX::Params::Validate) <= 0.05
-Conflicts: perl(MooseX::POE) <= 0.205
 Conflicts: perl(MooseX::Role::Cmd) <= 0.06
-Conflicts: perl(MooseX::Role::WithOverloading) <= 0.07
-Conflicts: perl(MooseX::Singleton) <= 0.24
-Conflicts: perl(MooseX::StrictConstructor) <= 0.08
+Conflicts: perl(MooseX::Role::WithOverloading) <= 0.04
+Conflicts: perl(MooseX::Singleton) <= 0.19
+Conflicts: perl(MooseX::StrictConstructor) <= 0.07
 Conflicts: perl(MooseX::Types) <= 0.19
-Conflicts: perl(MooseX::UndefTolerant) <= 0.04
 Conflicts: perl(namespace::autoclean) <= 0.08
-Conflicts: perl(Pod::Elemental) <= 0.093280
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -116,16 +107,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/auto/Moose/Moose.so
 
 %changelog
-* Tue Aug 23 2011 Steve Huff <shuff@vecna.org> - 1.25-1
-- Updated to version 1.25 (el6 only) - last pre-2.0 Moose release.
-- Split out perl-Moose-1.02 as a separate spec.
-
 * Fri Oct 08 2010 Steve Huff <shuff@vecna.org> - 1.02-2
 - Fixed a mis-specified conflict.
 
 * Tue Jun 08 2010 Steve Huff <shuff@vecna.org> - 1.02-1
 - Updated to version 1.02.
-- Later versions require an updated Class::MOP.
+- Later version require an updated Class::MOP.
 
 * Fri Mar 26 2010 Steve Huff <shuff@vecna.org> - 1.00-1
 - Updated to version 1.00!

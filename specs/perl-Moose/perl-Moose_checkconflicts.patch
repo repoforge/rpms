@@ -1,12 +1,13 @@
-diff -Naur Moose-1.02-orig/Makefile.PL Moose-1.02/Makefile.PL
---- Moose-1.02-orig/Makefile.PL	2010-04-23 20:23:45.000000000 -0400
-+++ Moose-1.02/Makefile.PL	2010-06-08 16:11:39.000000000 -0400
-@@ -5,7 +5,7 @@
- use 5.008001;
+diff -Naur Moose-1.25-orig/Makefile.PL Moose-1.25/Makefile.PL
+--- Moose-1.25-orig/Makefile.PL	2011-04-01 22:53:34.000000000 -0400
++++ Moose-1.25/Makefile.PL	2011-08-23 16:31:36.038096176 -0400
+@@ -6,7 +6,8 @@
+ use 5.008003;
  
  check_broken_extratests();
 -check_conflicts();
++# we will handle this in the RPM spec, thanks
 +# check_conflicts();
  
  name 'Moose';
- perl_version '5.008001';
+ perl_version '5.008003';
