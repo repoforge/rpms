@@ -1,8 +1,6 @@
 # $Id$
 # Authority: shuff
 # Upstream: Dave Rolsky <autarch$urth,org>
-# ExcludeDist: el2 el3 el4 el5
-# Rationale: conflicts with older perl-Moose
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -11,7 +9,7 @@
 
 Summary: Make your object constructors blow up on unknown attributes
 Name: perl-%{real_name}
-Version: 0.16
+Version: 0.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -22,10 +20,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: perl(Moose) >= 0.94
+BuildRequires: perl(Module::Build::Compat) >= 0.02
+BuildRequires: perl(Moose) >= 0.74
 BuildRequires: perl(Test::More)
-BuildRequires: perl(namespace::autoclean)
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
 Requires: perl(Moose) >= 0.74
@@ -60,15 +57,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes INSTALL MANIFEST META.json README SIGNATURE
+%doc Changes MANIFEST META.yml README SIGNATURE
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorlib}/MooseX/
 %{perl_vendorlib}/MooseX/*
 
 %changelog
-* Tue Aug 23 2011 Steve Huff <shuff@vecna.org> - 0.16-1
-- Updated to version 0.16 (el6-only).
-- Split out perl-MooseX-StrictConstructor-0.08 as its own spec.
-
 * Fri Dec 18 2009 Steve Huff <shuff@vecna.org> - 0.08-1
 - Initial package.
