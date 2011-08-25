@@ -13,7 +13,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.1
+Version: 2.7.3
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
@@ -280,6 +280,9 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Thu Aug 25 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.3-1
+- Update to version 2.7.3.
+
 * Mon Jun 27 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.1-1
 - UnRFX on EL6, please update Augeas from RFX if you need rack!
 - Sync with EPEL to make it easier to update the SPEC later.
