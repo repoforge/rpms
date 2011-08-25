@@ -9,7 +9,7 @@
 
 Summary: Abstract away statelessness of HTTP, for stateful Web applications
 Name: perl-%{real_name}
-Version: 1.01
+Version: 1.4
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,15 +20,13 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: perl
-#BuildRequires: perl(Coro) >= 4.37
-BuildRequires: perl(Coro)
+BuildRequires: perl(Coro) >= 4.37
 BuildRequires: perl(Coro::Event)
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(HTTP::Daemon) >= 1.36
 BuildRequires: rpm-macros-rpmforge
 Requires: perl
-#Requires: perl(Coro) >= 4.37
-Requires: perl(Coro)
+Requires: perl(Coro) >= 4.37
 Requires: perl(Coro::Event)
 Requires: perl(HTTP::Daemon) >= 1.36
 Requires: rpm-macros-rpmforge
@@ -77,5 +75,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Continuity/*
 
 %changelog
+* Thu Aug 25 2011 Steve Huff <shuff@vecna.org> - 1.4-1
+- Update to version 1.4.
+
 * Mon Jan 04 2010 Steve Huff <shuff@vecna.org> - 1.01-1
 - Initial package.
