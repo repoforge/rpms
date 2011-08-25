@@ -7,9 +7,15 @@
 ### EL6 ships with memcached-1.4.4-3.el6
 %{?el6:# Tag: rfx}
 
+%ifarch %{ix86}
+%define build_64bit --disable-64bit
+%else
+%define build_64bit --enable-64bit
+%endif
+
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.4.6
+Version: 1.4.7
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
@@ -145,7 +151,7 @@ EOF
 	--program-prefix="%{?_program_prefix}" \
 	--disable-dependency-tracking \
 	--enable-sasl \
-	--enable-threads
+    %{build_64bit}
 %{__make} %{?_smp_mflags}
 
 
@@ -157,6 +163,9 @@ EOF
 %{__install} -Dp -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
 
 %{__install} -Dp -m0755 scripts/memcached-tool %{buildroot}%{_bindir}
+
+%{__install} -Dp -m0755 scripts/damemtop %{buildroot}%{_bindir}
+%{__install} -Dp -m0644 scripts/damemtop.yaml %{buildroot}%{_sysconfdir}
 
 %post
 /sbin/chkconfig --add memcached
@@ -175,10 +184,12 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/*.txt scripts/*damemtop* NEWS README
+%doc AUTHORS ChangeLog COPYING doc/*.txt scripts/README.damemtop NEWS README
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
+%config(noreplace) %{_sysconfdir}/damemtop.yaml
 %config %{_initrddir}/memcached
+%{_bindir}/damemtop
 %{_bindir}/memcached
 %{_bindir}/memcached-tool
 
@@ -186,6 +197,10 @@ fi
 %{_includedir}/memcached
 
 %changelog
+* Thu Aug 25 2011 Steve Huff <shuff@vecna.org> - 1.4.7-1
+- Updated to 1.4.7.
+- Install damemtop in a sensible place.
+
 * Fri Aug 05 2011 Steve Huff <shuff@vecna.org> - 1.4.6-1
 - Updated to 1.4.6.
 - Tagged as RFX in el5 as well (due to perl-AnyEvent dependency).
