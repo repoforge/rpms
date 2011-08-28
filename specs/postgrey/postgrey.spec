@@ -5,15 +5,13 @@
 
 Summary: Postfix Greylisting Policy Server
 Name: postgrey
-Version: 1.33
+Version: 1.34
 Release: 1%{?dist}
-License: GPL
+License: GPLv2
 Group: System Environment/Daemons
 URL: http://postgrey.schweikert.ch/
-#URL: http://isg.ee.ethz.ch/tools/postgrey/
 
 Source0: http://postgrey.schweikert.ch/pub/postgrey-%{version}.tar.gz
-#Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
 Source1: postgrey.init
 Source2: README-rpm
 Patch0: postgrey-1.30-group.patch
@@ -56,6 +54,7 @@ pod2man \
 
 %{__install} -Dp -m0644 postgrey_whitelist_clients %{buildroot}%{confdir}/postgrey_whitelist_clients
 %{__install} -Dp -m0644 postgrey_whitelist_recipients %{buildroot}%{confdir}/postgrey_whitelist_recipients
+%{__install} -Dp -m0755 policy-test %{buildroot}%{_sbindir}/policy-test
 %{__install} -Dp -m0755 postgrey %{buildroot}%{_sbindir}/postgrey
 %{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/postgrey
 %{__install} -Dp -m0644 postgrey.8 %{buildroot}%{_mandir}/man8/postgrey.8
@@ -87,12 +86,13 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes COPYING README README-rpm
+%doc Changes COPYING README README.exim README-rpm
 %doc %{_mandir}/man8/postgrey.8*
 %config %{_initrddir}/postgrey
 %config(noreplace) %{confdir}/postgrey_whitelist_clients
 %config(noreplace) %{confdir}/postgrey_whitelist_recipients
 %config(noreplace) %{confdir}/postgrey_whitelist_clients.local
+%{_sbindir}/policy-test
 %{_sbindir}/postgrey
 %{_sbindir}/postgreyreport
 
@@ -100,6 +100,11 @@ fi
 %dir %{_localstatedir}/spool/postfix/postgrey/
 
 %changelog
+* Thu Aug 18 2011 Philip J Perry <phil@elrepo.org> - 1.34-1
+- Updated to release 1.34.
+- Install README.exim doc.
+- Install policy-test script
+
 * Sun Jun 20 2010 David Hrbáč <david@hrbac.cz> - 1.33-1
 - new upstream release
 
