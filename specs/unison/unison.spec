@@ -4,15 +4,18 @@
 
 %define desktop_vendor rpmforge
 
+%define major_ver 2.40
+%define minor_ver 63
+
 Summary: File-synchronization tool
 Name: unison
-Version: 2.40.63
+Version: %{major_ver}.%{minor_ver}
 Release: 1%{?dist}
 License: GPLv3
 Group: Applications/File
 URL: http://www.cis.upenn.edu/~bcpierce/unison/
 
-Source: http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-%{version}.tar.gz
+Source0: http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-%{version}.tar.gz
 Source1: unison.png
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -22,7 +25,6 @@ BuildRequires: emacs
 BuildRequires: ocaml
 #BuildRequires: gtk2-devel
 #BuildRequires: lablgtk >= 2.4.0
-#BuildRequires: tetex-latex
 
 %description
 Unison is a file-synchronization tool. It allows two replicas of a collection
@@ -47,11 +49,18 @@ Encoding=UTF-8
 EOF
 
 %build
-%{__make}
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 unison %{buildroot}%{_bindir}/unison
+
+INSTALLDIR="%{buildroot}/usr/bin"
+%{__mkdir_p} "$INSTALLDIR"
+touch "$INSTALLDIR/unison"
+
+%{__make} install INSTALLDIR="$INSTALLDIR/"
+%{__mv} -f $INSTALLDIR/unison-%{major_ver} $INSTALLDIR/unison
+
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/unison.png
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
@@ -72,7 +81,8 @@ desktop-file-install \
 %{_datadir}/pixmaps/unison.png
 
 %changelog
-* Thu Aug 18 2011 Bjarne Saltbaek <arnebjarne72@hotmail.com> - 2.40.63-1
+* Sun Aug 28 2011 Yury V. Zaytsev <yury@shurup.com> - 2.40.63-1
+- Doing 'make install', default target doesn't build all anymore.
 - Updated to release 2.40.63.
 
 * Tue Jan 05 2010 Dag Wieers <dag@wieers.com> - 2.32.52-1
