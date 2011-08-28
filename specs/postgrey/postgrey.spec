@@ -10,10 +10,8 @@ Release: 1%{?dist}
 License: GPLv2
 Group: System Environment/Daemons
 URL: http://postgrey.schweikert.ch/
-#URL: http://isg.ee.ethz.ch/tools/postgrey/
 
 Source0: http://postgrey.schweikert.ch/pub/postgrey-%{version}.tar.gz
-#Source0: http://isg.ee.ethz.ch/tools/postgrey/pub/postgrey-%{version}.tar.gz
 Source1: postgrey.init
 Source2: README-rpm
 Patch0: postgrey-1.30-group.patch
