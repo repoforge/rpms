@@ -1,3 +1,11 @@
+# $Id$
+# Authority: cmr
+# Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
+#
+# Needs libdbi
+#
+# ExclusiveDist: el5 el6
+
 %define logdir %{_localstatedir}/log/icinga
 
 %define apacheconfdir  %{_sysconfdir}/httpd/conf.d
