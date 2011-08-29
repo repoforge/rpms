@@ -4,12 +4,9 @@
 
 %define desktop_vendor rpmforge
 
-%define major_ver 2.40
-%define minor_ver 63
-
 Summary: File-synchronization tool
 Name: unison
-Version: %{major_ver}.%{minor_ver}
+Version: 2.40.63
 Release: 1%{?dist}
 License: GPLv3
 Group: Applications/File
@@ -49,7 +46,7 @@ Encoding=UTF-8
 EOF
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make}
 
 %install
 %{__rm} -rf %{buildroot}
@@ -57,9 +54,9 @@ EOF
 INSTALLDIR="%{buildroot}/usr/bin"
 %{__mkdir_p} "$INSTALLDIR"
 touch "$INSTALLDIR/unison"
-
 %{__make} install INSTALLDIR="$INSTALLDIR/"
-%{__mv} -f $INSTALLDIR/unison-%{major_ver} $INSTALLDIR/unison
+
+%{__rm} -f $INSTALLDIR/unison-*
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/unison.png
 
@@ -82,7 +79,7 @@ desktop-file-install \
 
 %changelog
 * Sun Aug 28 2011 Yury V. Zaytsev <yury@shurup.com> - 2.40.63-1
-- Doing 'make install', default target doesn't build all anymore.
+- Using single-threaded make, smpflags are not handled correctly.
 - Updated to release 2.40.63.
 
 * Tue Jan 05 2010 Dag Wieers <dag@wieers.com> - 2.32.52-1
