@@ -50,10 +50,7 @@ Authenticator.
 %{__make} pure_install
 find $RPM_BUILD_ROOT -type f -name .packlist -exec %{__rm} -f {} ';'
 find $RPM_BUILD_ROOT -type d -depth -exec rmdir {} 2>/dev/null ';'
-chmod -R u+w $RPM_BUILD_ROOT/*
-
-%check || :
-make test
+#chmod -R u+w $RPM_BUILD_ROOT/*
 
 %clean
 %{__rm} -rf %{buildroot}
