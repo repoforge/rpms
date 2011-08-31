@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.2.1.29
+Version: 0.2.2.32
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -17,9 +17,11 @@ URL: http://tor.eff.org/
 Source: http://tor.eff.org/dist/tor-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: asciidoc
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: binutils
+BuildRequires: doxygen
 BuildRequires: gcc
 BuildRequires: libevent-devel
 BuildRequires: make
@@ -43,7 +45,12 @@ that are blocked by their local Internet service providers (ISPs).
 %build
 #export CPPFLAGS="-I/usr/include/kerberos"
 export CPPFLAGS="-I/usr/kerberos/include"
-%configure --with-tor-user="%{toruser}" --with-tor-group="%{torgroup}"
+%configure \
+    --with-tor-user="%{toruser}" \
+    --with-tor-group="%{torgroup}" \
+    --enable-gcc-hardening \
+    --enable-geoip-stats \
+    --enable-linker-hardening
 %{__make} %{?_smp_mflags}
 %{__perl} -pi -e "s|# chkconfig: 2345|# chkconfig: -|g;" contrib/tor.sh
 
@@ -57,6 +64,9 @@ export CPPFLAGS="-I/usr/kerberos/include"
 %{__install} -d %{buildroot}%{_localstatedir}/lib/tor/
 %{__install} -d %{buildroot}%{_localstatedir}/log/tor/
 %{__install} -d %{buildroot}%{_localstatedir}/run/tor/
+
+# we handle %{_docdir} ourselves
+%{__rm} -rf %{buildroot}%{_docdir}/tor
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -82,7 +92,8 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog INSTALL LICENSE README
+%doc ChangeLog INSTALL LICENSE README
+%doc doc/HACKING doc/TODO doc/*.html doc/*.txt
 %doc %{_mandir}/man?/*
 %config %{_initrddir}/tor
 %config(noreplace) %{_sysconfdir}/logrotate.d/tor
@@ -105,6 +116,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Wed Aug 31 2011 Steve Huff <shuff@vecna.org> - 0.2.2.32-1
+- Updated to release 0.2.2.32.
+
 * Fri Jan 21 2011 Steve Huff <shuff@vecna.org> - 0.2.1.29-1
 - Updated to release 0.2.1.29.
 
