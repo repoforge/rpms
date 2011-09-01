@@ -3,7 +3,7 @@
 
 Summary: Cryptographic library
 Name: nettle
-Version: 2.1
+Version: 2.2
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -12,8 +12,8 @@ URL: http://www.lysator.liu.se/~nisse/nettle/
 Source: http://www.lysator.liu.se/~nisse/archive/nettle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gmp-devel
 BuildRequires: m4
+BuildRequires: gmp-devel
 BuildRequires: openssl-devel
 
 %description
@@ -48,9 +48,10 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+
 %configure \
-    --disable-static \
     --enable-shared
+
 %{__make} %{?_smp_mflags}
 
 %install
@@ -68,9 +69,10 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%doc AUTHORS ChangeLog COPYING.LIB INSTALL NEWS README TODO descore.README
 %doc %{_infodir}/nettle.info*
 %{_bindir}/nettle-lfib-stream
+%{_bindir}/nettle-hash
 %{_bindir}/pkcs1-conv
 %{_bindir}/sexp-conv
 %{_libdir}/libhogweed.so.*
@@ -85,6 +87,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libnettle.a
 
 %changelog
+* Thu Sep 01 2011 Yury V. Zaytsev <yury@shurup.com> - 2.2-1
+- Updated to release 2.2.
+
 * Fri Apr 22 2011 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 
