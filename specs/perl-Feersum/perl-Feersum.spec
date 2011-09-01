@@ -2,6 +2,10 @@
 # Authority: shuff
 # Upstream: Jeremy Stashewsky <jstash+cpan$gmail,com>
 
+# Plack is RFX on el6 and el5
+%{?el6: # Tag: rfx}
+%{?el5: # Tag: rfx}
+
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
@@ -10,7 +14,7 @@
 Summary: A PSGI engine for Perl based on EV/libev
 Name: perl-Feersum
 Version: 1.202
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Feersum/
@@ -86,5 +90,8 @@ HTTP/HTTPS server is placed between it and the Internet.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Thu Sep 01 2011 Steve Huff <shuff@vecna.org> - 1.202-2
+- RFX on el6 and el5
+
 * Tue Jul 19 2011 Steve Huff <shuff@vecna.org> - 1.202-1
 - Initial package.

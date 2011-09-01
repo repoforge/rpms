@@ -2,8 +2,9 @@
 # Authority: shuff
 # Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,com>
 
-# Plack requires a newer Devel::StackTrace on el6
+# Plack is RFX on el6 and el5
 %{?el6:# Tag: rfx}
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -13,7 +14,7 @@
 Summary: AnyEvent HTTP server for PSGI (like Thin)
 Name: perl-Twiggy
 Version: 0.1010
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Twiggy/
@@ -111,5 +112,8 @@ Supports Server::Starter for hot deploy and graceful restarts.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Thu Sep 01 2011 Steve Huff <shuff@vecna.org> - 0.1010-2
+- RFX on el5
+
 * Mon Jul 18 2011 Steve Huff <shuff@vecna.org> - 0.1010-1
 - Initial package.

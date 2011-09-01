@@ -3,8 +3,9 @@
 # Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,net>
 # ExcludeDist: el3 el4
 
-# Plack is rfx on el6
+# Plack is rfx on el6 and el5
 %{?el6:# Tag: rfx}
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
@@ -14,7 +15,7 @@
 Summary: Non-blocking web framework based on Plack and AnyEvent
 Name: perl-Tatsumaki
 Version: 0.1013
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Tatsumaki/
@@ -97,5 +98,8 @@ XML feeds), server push streaming and long-poll Comet in a clean unified API.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Thu Sep 01 2011 Steve Huff <shuff@vecna.org> - 0.1013-2
+- RFX on el5
+
 * Tue Jul 19 2011 Steve Huff <shuff@vecna.org> - 0.1013-1
 - Initial package.
