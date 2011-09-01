@@ -7,7 +7,7 @@
 ### EL4 ships with perl-libwww-perl-5.79-5
 ### EL3 ships with perl-libwww-perl-5.65-6
 ### EL2 ships with perl-libwww-perl-5.53-3
-# Tag: rft
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -16,7 +16,7 @@
 
 Summary: The World-Wide Web library for Perl
 Name: perl-libwww-perl
-Version: 5.835
+Version: 5.837
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -26,8 +26,34 @@ Source: http://www.cpan.org/authors/id/G/GA/GAAS/libwww-perl-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
+BuildRequires: perl(Compress::Raw::Zlib)
+BuildRequires: perl(Crypt::SSLeay)
+BuildRequires: perl(Digest::MD5)
+BuildRequires: perl(Encode)
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(HTML::Parser) >= 3.33
+BuildRequires: perl(IO::Compress::Deflate)
+BuildRequires: perl(IO::Compress::Gzip)
+BuildRequires: perl(IO::Uncompress::Gunzip)
+BuildRequires: perl(IO::Uncompress::Inflate)
+BuildRequires: perl(IO::Uncompress::RawInflate)
+BuildRequires: perl(MIME::Base64) >= 2.1
+BuildRequires: perl(Net::FTP) >= 2.58
+BuildRequires: perl(URI) >= 1.10
 BuildRequires: perl >= 0:5.006
+Requires: perl(Compress::Raw::Zlib)
+Requires: perl(Crypt::SSLeay)
+Requires: perl(Digest::MD5)
+Requires: perl(Encode)
+Requires: perl(HTML::Parser) >= 3.33
+Requires: perl(IO::Compress::Deflate)
+Requires: perl(IO::Compress::Gzip)
+Requires: perl(IO::Uncompress::Gunzip)
+Requires: perl(IO::Uncompress::Inflate)
+Requires: perl(IO::Uncompress::RawInflate)
+Requires: perl(MIME::Base64) >= 2.1
+Requires: perl(Net::FTP) >= 2.58
+Requires: perl(URI) >= 1.10
 Requires: perl >= 0:5.006
 
 ### remove autoreq Perl dependencies
@@ -96,6 +122,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 
 %changelog
+* Thu Sep 01 2011 Steve Huff <shuff@vecna.org> - 5.837-1
+- Updated to version 5.837.
+- Move from RFT to RFX.
+- Captured dependencies.
+
 * Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 5.835-1
 - Updated to version 5.835.
 
