@@ -1,10 +1,13 @@
 # $Id$
 # Authority: shuff
 # Upstream: Tatsuhiko Miyagawa <miyagawa$bulknews,com>
-# ExcludeDist: el3 el4
+# ExcludeDist: el2 el3 el4
 
 # el6 ships with perl-Devel-StackTrace-1.22, we need a later version
 %{?el6:# Tag: rfx}
+
+# el5 ships with perl-libwww-perl-5.805-1.1.1, we need a later version
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
