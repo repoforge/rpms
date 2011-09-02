@@ -14,9 +14,11 @@ Summary: Mako template library for Python
 Group: Development/Languages
 License: MIT
 URL: http://www.makotemplates.org/
+
 Source0: http://www.makotemplates.org/downloads/Mako-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
+
 BuildRequires: python-setuptools 
 BuildRequires: python-nose 
 BuildRequires: python-markupsafe

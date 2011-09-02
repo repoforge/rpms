@@ -14,10 +14,12 @@ Summary: Implements a XML/HTML/XHTML Markup safe string for Python
 Group: Development/Languages
 License: BSD
 URL: http://pypi.python.org/pypi/MarkupSafe
-Source0: http://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: python-devel python-setuptools
+Source0: http://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: python-devel
+BuildRequires: python-setuptools
 
 %description
 A library for safe markup escaping.

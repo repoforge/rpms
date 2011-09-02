@@ -10,11 +10,10 @@ Summary:        Pythonic, object-oriented web development framework
 Group:          Development/Libraries
 License:        BSD
 URL:            http://www.cherrypy.org/
-Source0:        http://download.cherrypy.org/cherrypy/%{version}/CherryPy-%{version}.tar.gz
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildArch:      noarch
+Source0: http://download.cherrypy.org/cherrypy/%{version}/CherryPy-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 
 BuildRequires:  python-setuptools
 BuildRequires:  python-devel

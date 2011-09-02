@@ -18,12 +18,12 @@ License: GPL
 URL: http://www.crummy.com/software/BeautifulSoup/
 
 Source: http://www.crummy.com/software/BeautifulSoup/download/3.x/BeautifulSoup-%{version}.tar.gz
-
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: python(abi) >= 2.4
-BuildRequires: python-setuptools 
+BuildRequires: python-setuptools
+
 Requires: python-chardet
 
 Provides: BeautifulSoup = %{version}-%{release}
