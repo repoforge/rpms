@@ -16,11 +16,10 @@ License: GPL
 URL: http://pypi.python.org/pypi/NNAAMMEE
 
 Source: 
-
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: python-setuptools 
+BuildRequires: python-setuptools
 
 Provides: nnaammee = %{version}-%{release}
 

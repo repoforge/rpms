@@ -12,10 +12,11 @@ URL:
 
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 Buildarch: noarch
+
 BuildRequires: 
 BuildRequires: rpm-macros-rpmforge
+
 Requires:
 
 %description
