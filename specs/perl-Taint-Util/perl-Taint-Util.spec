@@ -5,9 +5,11 @@ Summary:        Test for and flip the taint flag without regex matches or eval
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Taint-Util/
-Source0:        http://www.cpan.org/authors/id/A/AV/AVAR/Taint-Util-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+
+Source0: http://www.cpan.org/authors/id/A/AV/AVAR/Taint-Util-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Requires: perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 %description
 Wraps perl's internal routines for checking and setting the taint flag and
