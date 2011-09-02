@@ -31,7 +31,7 @@ Buildrequires:  autoconf >= 2.62
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 BuildArch:  noarch
-Buildroot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # for better tests coverage:
 BuildRequires: libtool gettext-devel flex bison texinfo-tex texlive-dvips

@@ -14,7 +14,7 @@ License: GPLv2+
 URL: http://cmus.sourceforge.net/
 
 Source: http://downloads.sourceforge.net/cmus/cmus-v%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: alsa-lib-devel >= 1.0.11
 BuildRequires: faad2-devel

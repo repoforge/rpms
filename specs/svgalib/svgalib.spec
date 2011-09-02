@@ -16,7 +16,8 @@ Patch2: svgalib-1.9.21-demos.patch
 Patch3: svgalib-1.9.21-cfg.patch
 Patch4: svgalib-1.9.25-kernel-2.6.26.patch
 Patch5: svgalib-1.9.25-static.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Exclusivearch: %{ix86} x86_64
 

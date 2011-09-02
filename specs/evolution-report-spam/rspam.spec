@@ -16,9 +16,11 @@ Version: 	%{version}
 Release: 	%{release}%{?dist}
 License:        GPL
 Group:          Applications/Internet
-Source: 	http://mips.edu.ms/%{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: 		http://mips.edu.ms/
+
+Source: http://mips.edu.ms/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 Requires:	gtk2 >= %gtk2
 Requires:	libgnomeui >= %libgnomeui
 Requires:	evolution >= %evreq

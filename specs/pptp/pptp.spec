@@ -18,7 +18,8 @@ Patch2: pptp-1.7.2-pptpsetup.patch
 Patch3: pptp-1.7.2-makedeps.patch
 Patch4: pptp-1.7.2-pptpsetup-encrypt.patch
 Patch5: pptp-1.7.2-pptpsetup-mppe.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: ppp >= 2.4.2
 Requires: /sbin/ip

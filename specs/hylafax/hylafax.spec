@@ -21,7 +21,7 @@ BuildRequires: libtiff-devel, zlib-devel, gcc, gcc-c++, pam-devel, openldap-deve
 Requires:    ghostscript, gawk, sharutils, mailx, crontabs
 Conflicts:   mgetty-sendfax
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/chkconfig

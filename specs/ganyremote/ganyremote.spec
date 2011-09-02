@@ -8,16 +8,19 @@ Version: 5.9
 Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
-Source0: http://downloads.sourceforge.net/anyremote/%{name}-%{version}.tar.gz
 URL: http://anyremote.sourceforge.net/
+
+Source0: http://downloads.sourceforge.net/anyremote/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
+
 Requires: pygtk2 >= 2.10
 Requires: python-bluez >= 0.9.1
 Requires: bluez-utils >= 3.7
 Requires: anyremote >= 4.18.1
+
 BuildRequires: desktop-file-utils
 BuildRequires: gettext-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch: noarch
 
 %description
 gAnyRemote package is GTK GUI frontend for anyRemote 
