@@ -19,17 +19,19 @@ License: GPL
 URL: http://rubygems.org/gems/mongrel/
 
 Source: http://rubygems.org/downloads/mongrel-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 #BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(cgi_multipart_eof_fix) >= 2.4
 Requires: rubygem(daemons) >= 1.0.3
 Requires: rubygem(fastthread) >= 1.0.1
 Requires: rubygem(gem_plugin) >= 0.2.3
+
 Provides: rubygem(mongrel) = %{version}
 
 %description

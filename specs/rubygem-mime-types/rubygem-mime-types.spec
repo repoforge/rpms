@@ -19,7 +19,7 @@ License: GPL
 URL: http://rubygems.org/gems/mime-types/
 
 Source: http://rubygems.org/downloads/mime-types-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
@@ -28,12 +28,14 @@ BuildRequires: rubygem(archive-tar-minitar) >= 0.5
 BuildRequires: rubygem(hoe) >= 1.8.3
 BuildRequires: rubygem(nokogiri) >= 1.2
 BuildRequires: rubygem(rcov) >= 0.8
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(archive-tar-minitar) >= 0.5
 Requires: rubygem(hoe) >= 1.8.3
 Requires: rubygem(nokogiri) >= 1.2
 Requires: rubygem(rcov) >= 0.8
+
 Provides: rubygem(mime-types) = %{version}
 
 %description

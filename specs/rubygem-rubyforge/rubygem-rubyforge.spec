@@ -19,14 +19,16 @@ License: GPL
 URL: http://rubygems.org/gems/rubyforge/
 
 Source: http://rubygems.org/downloads/rubyforge-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(json_pure) >= 1.1.7
+
 Provides: rubygem(rubyforge) = %{version}
 
 %description

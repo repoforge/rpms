@@ -21,7 +21,7 @@ License: MIT
 URL: http://github.com/rtomayko/rdiscount/
 
 Source: http://rubygems.org/downloads/rdiscount-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc
@@ -29,8 +29,10 @@ BuildRequires: make
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 BuildRequires: ruby-devel >= 1.8.6
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+
 Provides: rubygem(rdiscount) = %{version}
 
 %description

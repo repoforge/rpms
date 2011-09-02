@@ -19,7 +19,7 @@ License: MIT
 URL: http://redcloth.org/
 
 Source: http://rubygems.org/downloads/RedCloth-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc
@@ -27,8 +27,10 @@ BuildRequires: make
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 BuildRequires: ruby-devel
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+
 Provides: rubygem(RedCloth) = %{version}
 
 %description

@@ -19,7 +19,7 @@ License: MIT
 URL: http://rightscale.rubyforge.org/
 
 Source: http://rubygems.org/downloads/right_http_connection-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)

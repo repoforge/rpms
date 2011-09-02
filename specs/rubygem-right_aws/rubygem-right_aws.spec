@@ -19,14 +19,16 @@ License: MIT
 URL: http://rightscale.rubyforge.org/
 
 Source: http://rubygems.org/downloads/right_aws-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(right_http_connection) >= 1.2.1
+
 Provides: rubygem(right_aws) = %{version}
 
 %description

@@ -19,14 +19,16 @@ License: MIT
 URL: http://www.kuwata-lab.com/erubis/
 
 Source: http://rubygems.org/downloads/erubis-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(abstract) >= 1.0.0
+
 Provides: rubygem(erubis) = %{version}
 
 %description

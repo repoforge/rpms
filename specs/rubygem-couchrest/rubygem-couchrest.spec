@@ -19,16 +19,18 @@ License: GPL
 URL: http://rubygems.org/gems/couchrest/
 
 Source: http://rubygems.org/downloads/couchrest-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(json) >= 1.4.6
 Requires: rubygem(mime-types) >= 1.15
 Requires: rubygem(rest-client) >= 1.5.1
+
 Provides: rubygem(couchrest) = %{version}
 
 %description

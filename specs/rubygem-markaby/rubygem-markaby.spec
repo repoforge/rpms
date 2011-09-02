@@ -19,14 +19,16 @@ License: MIT
 URL: http://markaby.github.com/markaby/
 
 Source: http://rubygems.org/downloads/markaby-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(builder) >= 2.0.0
+
 Provides: rubygem(markaby) = %{version}
 Provides: rubygem(Markaby) = %{version}
 
