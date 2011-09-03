@@ -1,41 +1,57 @@
 # $Id$
 # Authority: shuff
 # Upstream: George Schollnagle <george$omniti.com>
-# ExcludeDist: el2 el3
+# ExcludeDist: el2 el3 el4
 
+### EL6 ships with php-pecl-apc-3.1.3p1
+%{?el6:# Tag: rfx}
+
+%{!?__pecl: %{expand: %%global __pecl %{_bindir}/pecl}}
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
+%global php_zendabiver %((echo 0; php -i 2>/dev/null | sed -n 's/^PHP Extension => //p') | tail -1)
 
-%define real_name APC
+%define pecl_name APC
 
 Summary: APC is a PHP opcode cache
 Name: php-pecl-apc
 Version: 3.1.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: PHP
 Group: Development/Languages
 URL: http://pecl.php.net/package/APC
+
 Source: http://pecl.php.net/get/APC-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf
-BuildRequires: automake
+
 BuildRequires: /usr/bin/iconv
-BuildRequires: libtool
-BuildRequires: gcc-c++
+BuildRequires: httpd-devel
 BuildRequires: pcre-devel
 BuildRequires: php-devel >= 5.1.0
 BuildRequires: php-pear
-Requires: php >= 5.1.0
 
-Provides: php-pecl(fileinfo) = %{version}-%{release}
+Requires(post): %{__pecl}
+Requires(postun): %{__pecl}
+
+%if %{?php_zend_api}0
+# Require clean ABI/API versions if available (RHEL6+)
+Requires: php(zend-abi) = %{php_zend_api}
+Requires: php(api) = %{php_core_api}
+%else
+# RHEL5
+Requires: php-zend-abi = %{php_zendabiver}
+%endif
+
+Provides: php-pecl(%{pecl_name}) = %{version}-%{release}
 
 # use only one PHP accelerator at a time
 Conflicts: php-eaccelerator
+Conflicts: php-mmcache
 Conflicts: php-xcache
 
 %description
 The Alternative PHP Cache (APC) is a free and open opcode cache for PHP. Its
 goal is to provide a free, open, and robust framework for caching and
-optimizing PHP intermediate code. 
+optimizing PHP intermediate code.
 
 %package devel
 Summary: PHP includes for %{name}/
@@ -47,9 +63,12 @@ This package contains the PHP header files for %{name}. If you like to develop
 programs using %{name}, you will need to install %{name}-devel.
 
 %prep
-%setup -n %{real_name}-%{version}
+%setup -c
 
 %build
+
+cd %{pecl_name}-%{version}
+
 # Workaround for broken old phpize on 64 bits
 %{__cat} %{_bindir}/phpize | sed 's|/lib/|/%{_lib}/|g' > phpize && sh phpize
 %configure \
@@ -58,6 +77,9 @@ programs using %{name}, you will need to install %{name}-devel.
 %{__make} %{?_smp_mflags}
 
 %install
+
+pushd %{pecl_name}-%{version}
+
 %{__rm} -rf %{buildroot}
 %{__make} install INSTALL_ROOT=%{buildroot}
 
@@ -66,6 +88,12 @@ programs using %{name}, you will need to install %{name}-devel.
 # Fix the charset of NOTICE
 iconv -f iso-8859-1 -t utf8 NOTICE >NOTICE.utf8
 mv NOTICE.utf8 NOTICE
+
+popd
+
+# Install the package XML file
+%{__mkdir_p} %{buildroot}%{pecl_xmldir}
+%{__install} -m 644 package.xml %{buildroot}%{pecl_xmldir}/%{name}.xml
 
 # Drop in the bit of configuration
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/php.d
@@ -143,20 +171,41 @@ apc.preload_path
 EOF
 
 
+%if 0%{?pecl_install:1}
+%post
+%{pecl_install} %{pecl_xmldir}/%{name}.xml >/dev/null || :
+%endif
+
+
+%if 0%{?pecl_uninstall:1}
+%postun
+if [ $1 -eq 0 ]  ; then
+    %{pecl_uninstall} %{pecl_name} >/dev/null || :
+fi
+%endif
+
+
 %clean
 %{__rm} -rf %{buildroot}
 
 
 %files
+%define src %{pecl_name}-%{version}
 %defattr(-, root, root, 0755)
-%doc CHANGELOG INSTALL LICENSE NOTICE TECHNOTES.txt TODO 
+%doc %{src}/CHANGELOG %{src}/INSTALL %{src}/LICENSE %{src}/NOTICE %{src}/TECHNOTES.txt %{src}/TODO
 %config(noreplace) %{_sysconfdir}/php.d/apc.ini
 %{_datadir}/%{name}/
 %{php_extdir}/apc.so
+%{pecl_xmldir}/%{name}.xml
 
 %files devel
 %{_includedir}/php/ext/apc
 
 %changelog
+* Sat Sep 03 2011 Yury V. Zaytsev <yury@shurup.com> - 3.1.9-2
+- Added ABI / API requirements and scriptlets.
+- Fixed Provides / improved Conflicts.
+- RFX on RHEL6 (Alfred Ganz).
+
 * Wed Aug 31 2011 Steve Huff <shuff@vecna.org> - 3.1.9-1
 - Initial package (ported from EPEL).
