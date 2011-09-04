@@ -6,7 +6,7 @@
 
 Summary: Dungeon Crawl Stone Soup (innovative roguelike game)
 Name: crawl%{?_with_tiles:-tiles}
-Version: 0.8.1
+Version: 0.9.1
 Release: 1%{?dist}
 License: Crawl GPL (based on Nethack Licence)
 Group: Applications/Games
@@ -82,6 +82,9 @@ cd ..
 %{_datadir}/crawl/
 
 %changelog
+* Sun Sep 04 2011 Steve Huff <shuff@vecna.org> - 0.9.1-1
+- Update to version 0.9.1.
+
 * Wed Aug 10 2011 Steve Huff <shuff@vecna.org> - 0.8.1-1
 - Update to version 0.8.1.
 - Old SQLite patch merged upstream.
