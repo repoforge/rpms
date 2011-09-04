@@ -1,0 +1,26 @@
+diff -Naur libowfat-0.28-orig/GNUmakefile libowfat-0.28/GNUmakefile
+--- libowfat-0.28-orig/GNUmakefile	2006-07-15 19:17:01.000000000 -0400
++++ libowfat-0.28/GNUmakefile	2011-08-19 10:47:54.335094672 -0400
+@@ -162,15 +162,15 @@
+ errmsg.h cdb.h cdb_make.h rangecheck.h
+ 
+ install: libowfat.a
+-	install -d $(INCLUDEDIR) $(MAN3DIR) $(LIBDIR)
+-	install -m 644 $(INCLUDES) $(INCLUDEDIR)
+-	install -m 644 $(wildcard */*.3) $(MAN3DIR)
+-	install -m 644 libowfat.a $(LIBDIR)
++	install -d $(DESTDIR)$(INCLUDEDIR) $(DESTDIR)$(MAN3DIR) $(DESTDIR)$(LIBDIR)
++	install -m 644 $(INCLUDES) $(DESTDIR)$(INCLUDEDIR)
++	install -m 644 $(wildcard */*.3) $(DESTDIR)$(MAN3DIR)
++	install -m 644 libowfat.a $(DESTDIR)$(LIBDIR)
+ 
+ uninstall:
+-	rm -f $(patsubst %.h,$(INCLUDEDIR)/%.h,$(INCLUDES))
+-	rm -f $(patsubst %.3,$(MAN3DIR)/%.3,$(notdir $(wildcard */*.3)))
+-	rm -f $(LIBDIR)/libowfat.a
++	rm -f $(patsubst %.h,$(DESTDIR)$(INCLUDEDIR)/%.h,$(INCLUDES))
++	rm -f $(patsubst %.3,$(DESTDIR)$(MAN3DIR)/%.3,$(notdir $(wildcard */*.3)))
++	rm -f $(DESTDIR)$(LIBDIR)/libowfat.a
+ 
+ VERSION=libowfat-$(shell head -n 1 CHANGES|sed 's/://')
+ CURNAME=$(notdir $(shell pwd))
