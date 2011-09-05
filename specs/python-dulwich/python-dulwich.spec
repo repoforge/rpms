@@ -22,10 +22,10 @@ URL: http://samba.org/~jelmer/dulwich/
 
 Source: http://samba.org/~jelmer/dulwich/dulwich-%{version}.tar.gz
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 # BuildArch: noarch
 
-BuildRequires: python-setuptools 
+BuildRequires: python-setuptools
 
 # pyrex sometimes causes a build failure
 %{?_conflict_pyrex:BuildConflicts: pyrex}

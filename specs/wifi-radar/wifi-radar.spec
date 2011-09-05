@@ -8,8 +8,10 @@ URL:		http://wifi-radar.systemimager.org/
 Source0:	http://wifi-radar.systemimager.org/pub/wifi-radar-%{version}.tar.bz2
 Source1:	fedora-wifi-radar.desktop
 Source2:	wifi-radar-pam.d
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:	noarch
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
+
 Requires:	pygtk2 net-tools wireless-tools dhclient usermode
 BuildRequires:	desktop-file-utils
 

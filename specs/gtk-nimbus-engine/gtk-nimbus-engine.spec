@@ -8,12 +8,14 @@ Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://dlc.sun.com/osol/jds/downloads/extras/
+
 Source0: http://dlc.sun.com/osol/jds/downloads/extras/nimbus-%{version}.tar.bz2
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: gtk2-devel
 BuildRequires: intltool >= 0.23
 BuildRequires: gnome-common >= 1.2.4
 BuildRequires: icon-naming-utils >= 0.8.1
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 Nimbus is the default gtk engine from Open Solaris

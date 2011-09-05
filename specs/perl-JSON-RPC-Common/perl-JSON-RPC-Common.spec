@@ -6,8 +6,10 @@ License:        CHECK(Distributable)
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/JSON-RPC-Common/
 Source0:        http://www.cpan.org/authors/id/N/NU/NUFFIN/JSON-RPC-Common-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
+
 BuildRequires:  perl(HTTP::Request)
 BuildRequires:  perl(JSON) >= 2.11
 BuildRequires:  perl(Moose) >= 0.48

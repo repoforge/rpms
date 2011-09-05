@@ -19,7 +19,7 @@ License: MIT
 URL: http://rubygems.org/gems/radius/
 
 Source: http://rubygems.org/downloads/radius-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)

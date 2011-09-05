@@ -19,15 +19,17 @@ License: GPL
 URL: http://www.deltacloud.org/
 
 Source: http://rubygems.org/downloads/deltacloud-client-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(nokogiri) >= 1.4.3
 Requires: rubygem(rest-client) >= 1.6.1
+
 Provides: rubygem(deltacloud-client) = %{version}
 
 %description

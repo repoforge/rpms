@@ -23,13 +23,16 @@ URL: http://rubygems.org/
 
 Source0: http://download.github.com/rubygems-rubygems-v%{version}-0-g%{git_hash}.tar.gz
 Patch0: rubygems-1.3.1-noarch-gemdir.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby-devel
 BuildRequires: ruby-rdoc
+
 Requires: ruby(abi) = 1.8
 Requires: ruby-rdoc
+
 Provides: ruby(rubygems) = %{version}
 
 %description

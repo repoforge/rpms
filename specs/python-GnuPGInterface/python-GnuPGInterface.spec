@@ -9,9 +9,11 @@ License:	LGPLv2+
 Group:		Development/Languages
 URL:		http://py-gnupg.sourceforge.net/
 Source:		http://downloads.sourceforge.net/py-gnupg/%{pkgname}-%{version}.tar.gz
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
+
 BuildRequires:	python-devel
-BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 GnuPGInterface is a Python module to interface with GnuPG. It

@@ -19,13 +19,15 @@ License: MIT
 URL: http://rubygems.org/gems/builder/
 
 Source: http://rubygems.org/downloads/builder-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+
 Provides: rubygem(builder) = %{version}
 
 %description

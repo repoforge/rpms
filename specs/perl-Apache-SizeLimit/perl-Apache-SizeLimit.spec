@@ -5,10 +5,13 @@ Summary:        Module to kill off Apache httpd processes if they grow too large
 License:        Apache v2.0
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Apache-SizeLimit/
-Source0:        http://search.cpan.org/CPAN/authors/id/P/PH/PHRED/Apache-SizeLimit-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
+
+Source0: http://search.cpan.org/CPAN/authors/id/P/PH/PHRED/Apache-SizeLimit-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
+
 BuildRequires:  mod_perl
+
 Requires:       mod_perl
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 

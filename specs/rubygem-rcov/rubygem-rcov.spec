@@ -19,15 +19,17 @@ License: GPL
 URL: http://rubygems.org/gems/rcov/
 
 Source: http://rubygems.org/downloads/rcov-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc
 BuildRequires: make
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+
 Provides: rubygem(rcov) = %{version}
 
 %description

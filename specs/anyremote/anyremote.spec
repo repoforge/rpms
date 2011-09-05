@@ -8,15 +8,18 @@ Version: 4.18.1
 Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
-Source0: http://downloads.sourceforge.net/anyremote/%{name}-%{version}.tar.gz
 URL: http://anyremote.sourceforge.net/
-Requires: bc
-Requires: anyremote-data >= 4.18.1
+
+Source0: http://downloads.sourceforge.net/anyremote/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: bluez-libs-devel
 BuildRequires: libX11-devel
 BuildRequires: libXtst-devel
 BuildRequires: xorg-x11-proto-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Requires: bc
+Requires: anyremote-data >= 4.18.1
 
 %description
 The overall goal of this project is to provide remote control service on Linux 

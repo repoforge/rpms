@@ -16,11 +16,10 @@ License: GPL
 URL: http://xmpppy.sourceforge.net/
 
 Source: http://downloads.sourceforge.net/project/xmpppy/xmpppy/%{version}/xmpppy-%{version}.tar.gz
-
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: python-setuptools 
+BuildRequires: python-setuptools
 
 Requires: python-dns
 

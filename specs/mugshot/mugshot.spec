@@ -10,7 +10,8 @@ Group:          Applications/Internet
 License:        GPL
 URL:            http://mugshot.org/
 Source0:        http://developer.mugshot.org/download/sources/linux/mugshot-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # Patching:
 #

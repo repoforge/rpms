@@ -17,10 +17,10 @@ URL: http://chardet.feedparser.org/
 
 Source: http://chardet.feedparser.org/download/python2-chardet-%{version}.tgz
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: python-setuptools 
+BuildRequires: python-setuptools
 
 Provides: chardet = %{version}-%{release}
 

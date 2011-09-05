@@ -19,7 +19,7 @@ License: GPL
 URL: http://rubygems.org/gems/treetop/
 
 Source: http://rubygems.org/downloads/treetop-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)

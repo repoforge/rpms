@@ -1,11 +1,12 @@
 # $Id$
 # Authority: dag
 # Upstream: Richard Hipp <drh$hwaci,com>
-
+#
 ### EL6 ships with sqlite-3.6.20-1.el6
 ### EL5 ships with sqlite-3.3.6-5
 ### Builds fine, but related python-sqlite needs python >= 2.3 and yum 2.4 needs sqlite2
-# ExcludeDist: el2 rh7 rh9 el3 el4
+#
+# ExclusiveDist: el3 el4
 
 %{?el3:%define _without_tcl 1}
 %{?rh9:%define _without_tcl 1}

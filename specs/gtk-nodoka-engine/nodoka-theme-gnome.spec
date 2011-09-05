@@ -15,8 +15,8 @@ URL:            http://hosted.fedoraproject.org/projects/nodoka
 # can get on a wiki, see URL
 Source0:        %{name}-%{version}.tar.gz 
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildArch: noarch
 
 #Requires:       gtk2-engines-nodoka >= 0.3.1.1
 Requires:       gtk-nodoka-engine >= 0.6.2

@@ -10,13 +10,14 @@ Name: python-beaker
 Version: 1.5.3
 Release: 1%{?dist}
 Summary: WSGI middleware layer to provide sessions
-
 Group: Development/Languages
 License: BSD
 URL: http://beaker.groovie.org/
+
 Source0: http://pypi.python.org/packages/source/B/Beaker/Beaker-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
+
 BuildRequires: python-setuptools
 
 %description

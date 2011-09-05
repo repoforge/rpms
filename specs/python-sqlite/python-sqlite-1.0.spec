@@ -1,6 +1,8 @@
-# $Id: python-sqlite.spec 3576 2005-09-13 00:54:46Z dag $
+# $Id$
 # Authority: dag
 # Upstream: <pysqlite-devel$lists,sf,net>
+#
+# ExclusiveDist: el3 el4
 
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 

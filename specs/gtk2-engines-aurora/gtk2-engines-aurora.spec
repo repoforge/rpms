@@ -6,7 +6,9 @@ License:        GPL-2
 Source0:        aurora-%{version}.tar.gz
 Source10:       gtkrc_themes.tar.bz2
 Patch0:		76134-01_aurora_no_mbar_shadow.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires:  make, bash, gtk2-devel, sed
 Group: 		System Environment/Libraries
 URL: 		http://gnome-look.org/content/show.php/Aurora+Gtk+Engine?content=56438

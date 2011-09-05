@@ -19,7 +19,7 @@ License: MIT
 URL: http://nokogiri.org/
 
 Source: http://rubygems.org/downloads/nokogiri-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc

@@ -19,14 +19,16 @@ License: GPL
 URL: http://rubygems.org/gems/minitest/
 
 Source: http://rubygems.org/downloads/minitest-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 BuildRequires: rubygem(hoe) >= 2.8.0
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
+
 Provides: rubygem(minitest) = %{version}
 
 %description

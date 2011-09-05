@@ -19,7 +19,7 @@ License: GPL
 URL: http://rubygems.org/gems/amazon-ec2/
 
 Source: http://rubygems.org/downloads/amazon-ec2-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: ruby(rubygems)

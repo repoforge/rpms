@@ -16,11 +16,10 @@ License: GPL
 URL: http://wwwsearch.sourceforge.net/mechanize/
 
 Source: http://pypi.python.org/packages/source/m/mechanize/mechanize-%{version}.tar.gz
-
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: python-setuptools 
+BuildRequires: python-setuptools
 
 Provides: mechanize = %{version}-%{release}
 

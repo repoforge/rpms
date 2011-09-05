@@ -19,7 +19,7 @@ License: MIT
 URL: http://code.macournoyer.com/thin/
 
 Source: http://rubygems.org/downloads/thin-%{version}.gem
-BuildRoot: %{_tmppath}/%{name}-%{version}-root-%(%{__id_u} -n)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc
@@ -27,11 +27,13 @@ BuildRequires: make
 BuildRequires: ruby(rubygems)
 BuildRequires: ruby(abi) = %{rubyabi}
 BuildRequires: ruby-devel
+
 Requires: ruby(rubygems)
 Requires: ruby(abi) = %{rubyabi}
 Requires: rubygem(daemons) >= 1.0.9
 Requires: rubygem(eventmachine) >= 0.12.6
 Requires: rubygem(rack) >= 1.0.0
+
 Provides: rubygem(thin) = %{version}
 
 %description

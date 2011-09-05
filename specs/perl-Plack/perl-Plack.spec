@@ -18,7 +18,7 @@
 Summary: Perl Superglue for Web frameworks and servers (PSGI toolkit)
 Name: perl-Plack
 Version: 0.9979
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://plackperl.org/
@@ -38,7 +38,8 @@ BuildRequires: perl(Hash::MultiValue) >= 0.05
 BuildRequires: perl(LWP) >= 5.814
 BuildRequires: perl(Pod::Usage)
 BuildRequires: perl(Test::TCP) >= 0.11
-BuildRequires: perl(Test::More) >= 0.88
+#BuildRequires: perl(Test::More) >= 0.88
+BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Requires)
 BuildRequires: perl(Try::Tiny)
 BuildRequires: perl(URI) >= 1.36
@@ -106,6 +107,9 @@ are and why we need them.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Fri Sep 02 2011 Steve Huff <shuff@vecna.org> - 0.9979-2
+- argh, el5 and Test::More!
+
 * Thu May 26 2011 Steve Huff <shuff@vecna.org> - 0.9979-1
 - Updated to version 0.9979.
 

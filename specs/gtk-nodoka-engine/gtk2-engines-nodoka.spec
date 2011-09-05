@@ -8,7 +8,8 @@ Release:        1%{?dist}
 License:        GPL-2
 URL:            https://hosted.fedoraproject.org/projects/nodoka/wiki
 Source:         %{name}-%{version}.tar.gz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: 	gtk2-engines-nodoka <= 0.6
 Provides: 	gtk-nodoka-engine = %{version}-%{release}
