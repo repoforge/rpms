@@ -9,13 +9,13 @@
 
 Summary: Convert filenames to a different encoding
 Name: convmv
-Version: 1.14
+Version: 1.15
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
-URL: http://j3e.de/linux/convmv/
+URL: https://www.j3e.de/linux/convmv/
 
-Source: http://j3e.de/linux/convmv/convmv-%{version}.tar.gz
+Source: https://www.j3e.de/linux/convmv/convmv-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
@@ -57,6 +57,9 @@ tool which requires at least Perl version 5.8.0.
 %{_bindir}/convmv
 
 %changelog
+* Mon Sep 05 2011 Dag Wieers <dag@wieers.com> - 1.15-1
+- Updated to release 1.15.
+
 * Fri Dec 12 2008 Dries Verachtert <dries@ulyssis.org> - 1.14-1
 - Updated to release 1.14.
 

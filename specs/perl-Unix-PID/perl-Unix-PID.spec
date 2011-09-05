@@ -8,7 +8,7 @@
 
 Summary: Perl module for getting PID info
 Name: perl-Unix-PID
-Version: 0.21
+Version: 0.23
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Unix/PID.pod
 
 %changelog
+* Mon Sep 05 2011 Dag Wieers <dag@wieers.com> - 0.23-1
+- Updated to release 0.23.
+
 * Fri Oct 29 2010 Christoph Maser <cmaser@gmx.de> - 0.21-1
 - Updated to version 0.21.
 
