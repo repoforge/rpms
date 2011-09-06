@@ -3,7 +3,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 2.2.0
+Version: 2.3.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -78,9 +78,7 @@ fi
 
 %postun
 if [ $1 -ge 1 ]; then
-    # For now monitorix's init script doesn't support condrestart
-    #/sbin/service monitorix condrestart &>/dev/null || :
-    /sbin/service monitorix restart &>/dev/null || :
+    /sbin/service monitorix condrestart &>/dev/null || :
 fi
 
 %files
@@ -103,6 +101,10 @@ fi
 %doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD monitorix-alert.sh
 
 %changelog
+* Tue Sep 06 2011 Yury V. Zaytsev <yury@shurup.com> - 2.3.0-1
+- Updated to the latest release (thanks to Jordi Sanfeliu!)
+- Init script now supports condrestart (see gh-52 for details)
+
 * Tue Jun 21 2011 Yury V. Zaytsev <yury@shurup.com> - 2.2.0-1
 - Updated to the latest release (thanks to Jordi Sanfeliu!)
 - See gh-13 for the details
