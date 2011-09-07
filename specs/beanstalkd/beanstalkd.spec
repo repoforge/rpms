@@ -4,7 +4,7 @@
 
 Summary: Simple, fast workqueue service
 Name: beanstalkd
-Version: 1.4.4
+Version: 1.4.6
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -13,22 +13,26 @@ URL: http://kr.github.com/beanstalkd/
 Source: http://xph.us/dist/beanstalkd/beanstalkd-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils, gcc, make
+BuildRequires: binutils
+BuildRequires: gcc
 BuildRequires: glibc-devel
+BuildRequires: make
 BuildRequires: libevent-devel >= 1.4.1
-Requires: chkconfig, initscripts
+Requires: chkconfig
+Requires: initscripts
 
 %description
 Beanstalk is a simple, fast workqueue service. Its interface is generic, but
 was originally designed for reducing the latency of page views in high-volume
 web applications by running time-consuming tasks asynchronously.
 
-
 %prep
 %setup
 
 %build
-%configure --disable-dependency-tracking
+%configure \
+    --disable-dependency-tracking \
+    --disable-rpath
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
@@ -75,5 +79,8 @@ fi
 %{_initrddir}/*
 
 %changelog
+* Wed Sep 07 2011 Steve Huff <shuff@vecna.org> - 1.4.6-1
+- Update to release 1.4.6.
+
 * Wed Apr 07 2010 Steve Huff <shuff@vecna.org> - 1.4.4-1
 - Initial package.
