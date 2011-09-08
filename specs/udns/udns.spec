@@ -13,7 +13,7 @@ Source: http://www.corpit.ru/mjt/udns/udns_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
-adns is a resolver library for C (and C++) programs, and a collection
+udns is a resolver library for C (and C++) programs, and a collection
 of useful DNS resolver utilities.
 
 %package devel
