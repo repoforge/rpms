@@ -2,55 +2,73 @@
 # Authority: dag
 # Upstream: Boris Wesslowski <boris$wesslowski,com>
 
+%{?el6:%define _without_initlog 1}
+%{?el6:%define _with_flex 1}
+
 Summary: Firewall log analyzer, report generator and realtime response agent
 Name: fwlogwatch
-Version: 1.1
+Version: 1.2
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 Group: Applications/System
-URL: http://cert.uni-stuttgart.de/projects/fwlogwatch/
+URL: http://fwlogwatch.inside-security.de/
 
-Source: http://www.kyb.uni-stuttgart.de/boris/sw/fwlogwatch-%{version}.tar.bz2
+Source0: http://fwlogwatch.inside-security.de/sw/%{name}-%{version}.tar.bz2
+Patch0: fwlogwatch-1.2-initlog.patch
+Patch1: fwlogwatch-1.2-flex.patch
+Patch2: fwlogwatch-1.2-nostrip.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: flex, zlib-devel, gettext
+%{?_with_flex:BuildRequires: flex}
+BuildRequires: gettext
+BuildRequires: zlib-devel
 
 %description
 fwlogwatch produces Linux ipchains, Linux netfilter/iptables,
-Solaris/BSD/Irix/HP-UX ipfilter, Cisco IOS, Cisco PIX, NetScreen,
-Windows XP firewall, Elsa Lancom router and Snort IDS log summary reports
-in plain text and HTML form and has a lot of options to analyze and display
-relevant patterns. It can produce customizable incident reports and send
-them to abuse contacts at offending sites or CERTs. Finally, it can also
-run as daemon (with web interface) doing realtime log monitoring and
+Solaris/BSD/Irix/HP-UX ipfilter, Cisco IOS, Cisco PIX/ASA, NetScreen, Elsa
+Lancom router and Snort IDS log summary reports in plain text and HTML form
+and has a lot of options to analyze and display relevant patterns. It also
+can run as daemon (with web interface) doing realtime log monitoring and
 reporting anomalies or starting attack countermeasures.
 
 %prep
 %setup
 
+%{?_without_initlog:%patch0 -p1}
+%{!?_with_flex:%patch1 -p1}
+
+%patch2 -p1
+
 ### FIXME: Make buildsystem use standard autotools directories (Fix upstream please)
 %{__perl} -pi.orig -e '
-		s|/etc|\$(sysconfdir)|g;
-		s|/usr/local|\$(prefix)|g;
-		s|/usr|\$(prefix)|g;
-	' Makefile
-%{__perl} -pi.orig -e '
-		s|/usr/local/sbin|\%{_sbindir}|g;
-		s|/usr/local|%{_prefix}|g;
-	' fwlogwatch.config main.h contrib/*
+    s|/usr/local/sbin|\%{_sbindir}|g;
+    s|/usr/local|%{_prefix}|g;
+    ' fwlogwatch.config main.h contrib/*
 
 %build
 %{__make} %{?_smp_mflags} \
-	CFLAGS="%{optflags}"
+    CFLAGS=" %{optflags} -DHAVE_ZLIB -DHAVE_GETTEXT -DHAVE_IPV6 " \
+    LDFLAGS=" -g "
+    CONF_DIR="%{_sysconfdir}" \
+    INSTALL_DIR="%{_prefix}" \
+    LOCALE_DIR="%{_prefix}" \
 
 %install
 %{__rm} -rf %{buildroot}
+
 ### FIXME: Create directories as Makefile doesn't take care of this.
-%{__install} -d -m0755 %{buildroot}%{_sbindir} \
-			%{buildroot}%{_initrddir} \
-			%{buildroot}%{_mandir}/man8/ \
-			%{buildroot}%{_datadir}/locale/{de,ja,pt_BR,sv,zh_CN,zh_TW}/LC_MESSAGES
-%makeinstall install-config install-i18n install-rhinit
+%{__install} -d -m0755 \
+    %{buildroot}%{_sbindir} \
+    %{buildroot}%{_initrddir} \
+    %{buildroot}%{_mandir}/man8/ \
+    %{buildroot}%{_datadir}/locale/{de,ja,pt,sv,zh_CN,zh_TW}/LC_MESSAGES
+
+%makeinstall install-config install-i18n install-rhinit \
+    CONF_DIR="%{buildroot}%{_sysconfdir}" \
+    INSTALL_DIR="%{buildroot}%{_prefix}" \
+    LOCALE_DIR="%{buildroot}%{_prefix}" \
+
 %find_lang %{name}
 
 %clean
@@ -61,13 +79,18 @@ reporting anomalies or starting attack countermeasures.
 %doc AUTHORS ChangeLog COPYING CREDITS README
 %doc contrib/fwlogsummary.cgi contrib/fwlogsummary_small.cgi
 %doc contrib/fwlogwatch.php
+%doc contrib/pix-names.sh
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/fwlogwatch.config
-%config(noreplace) %{_sysconfdir}/fwlogwatch.template
-%config(noreplace) %{_initrddir}/fwlogwatch
-%{_sbindir}/f*
+%{_initrddir}/fwlogwatch
+%{_sbindir}/fwl*
 
 %changelog
+* Thu Sep 08 2011 Yury V. Zaytsev <yury@shurup.com> - 1.2-1
+- Enabled zlib, gettext and ipv6 support for good.
+- Disabled initlog on RHEL6 (Helmut Drodofsky).
+- Updated to release 1.2.
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 1.1-1
 - Updated to release 1.1.
 
