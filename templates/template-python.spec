@@ -21,6 +21,7 @@ Source:
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
+BuildRequires: python-devel
 BuildRequires: python-setuptools
 
 Provides: nnaammee = %{version}-%{release}
