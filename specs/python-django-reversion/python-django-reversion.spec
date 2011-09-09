@@ -6,6 +6,8 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 %endif
 
+%{?el5:%define _with_python24 1}
+
 %define real_name django-reversion
 
 Name: python-%{real_name}
@@ -17,6 +19,8 @@ License: BSD
 URL: http://github.com/etianen/django-reversion
 
 Source0: http://github.com/downloads/etianen/%{real_name}/%{real_name}-%{version}.tar.gz
+Patch0: django-reversion-1.5-python2.4.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -32,6 +36,11 @@ existing Django project with a minimum of code changes.
 %prep
 %setup -n %{real_name}-%{version}
 
+%if 0%{?_with_python24}
+%patch0 -p1
+%{__rm} src/reversion/test*.py
+%endif
+
 %build
 %{__python} setup.py build
 
@@ -45,9 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 (cd $RPM_BUILD_ROOT && find . -name 'django*.mo') | %{__sed} -e 's|^.||' | %{__sed} -e \
   's:\(.*/locale/\)\([^/_]\+\)\(.*\.mo$\):%lang(\2) \1\2\3:' \
   >> %{name}.lang
-  
+
 find $RPM_BUILD_ROOT -name "*.po" | xargs rm -f
-  
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -55,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-, root, root, -)
 %doc PKG-INFO LICENSE README.markdown
 %dir %{python_sitelib}/reversion
-%{python_sitelib}/*.egg-info
+%{!?_with_python24:%{python_sitelib}/*.egg-info}
 %{python_sitelib}/reversion/*.py*
 %{python_sitelib}/reversion/management/
 %{python_sitelib}/reversion/migrations/
