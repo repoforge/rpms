@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dries
+# Authority: REPOFORGE_COMMITTER
 # Upstream: UPSTREAMTAG
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
