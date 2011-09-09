@@ -43,8 +43,8 @@ Thumbnails for Django. Totally rewritten.
 %build
 %{__python} setup.py build
 
-cd docs && make html
-cd - && mv docs/_build/html htmldocs
+make -C docs html
+mv docs/_build/html htmldocs
 rm -rf docs
 rm -f htmldocs/.buildinfo
 
