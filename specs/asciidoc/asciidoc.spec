@@ -11,7 +11,7 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.6.5
+Version: 8.6.6
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
@@ -115,6 +115,9 @@ done
 %exclude %{_datadir}/asciidoc/filters/*/*.py[co]
 
 %changelog
+* Mon Sep 12 2011 Dag Wieers <dag@wieers.com> - 8.6.6-1
+- Updated to release 8.6.6.
+
 * Mon May 23 2011 Dag Wieers <dag@wieers.com> - 8.6.5-1
 - Updated to release 8.6.5.
 

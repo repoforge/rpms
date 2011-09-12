@@ -9,8 +9,8 @@
 
 Summary: Graphical network viewer modeled after etherman
 Name: etherape
-Version: 0.9.9
-Release: 2%{?dist}
+Version: 0.9.12
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://etherape.sourceforge.net/
@@ -86,6 +86,9 @@ desktop-file-install --vendor %{desktop_vendor} \
     --dir %{buildroot}%{_datadir}/applications  \
     %{buildroot}%{_datadir}/applications/etherape.desktop
 
+### Clean up buildroot
+%{__rm} -rf %{buildroot}%{_localstatedir}/lib/scrollkeeper/
+
 %clean
 %{__rm} -rf %{buildroot}
 
@@ -106,6 +109,9 @@ desktop-file-install --vendor %{desktop_vendor} \
 %{_sbindir}/etherape
 
 %changelog
+* Mon Jun 20 2011 Dag Wieers <dag@wieers.com> - 0.9.12-1
+- Updated to release 0.9.12.
+
 * Thu Aug 19 2010 Dag Wieers <dag@wieers.com> - 0.9.9-2
 - Fix desktop categories.
 
