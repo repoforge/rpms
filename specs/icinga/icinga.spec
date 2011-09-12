@@ -13,7 +13,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.5.0
+Version: 1.5.1
 Release: 1%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -255,6 +255,9 @@ fi
 
 
 %changelog
+* Fri Sep 09 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.5.1-1
+- bump to 1.5.1
+
 * Wed Jun 29 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.5.0-1
 - set to 1.5.0 target, remove provides nagios version, set idoutils.cfg-sample
 - move all logging to one location https://bugzilla.redhat.com/show_bug.cgi?id=693608

@@ -1,0 +1,12 @@
+diff -Naur fwlogwatch-1.2.orig/contrib/fwlogwatch.init.redhat fwlogwatch-1.2/contrib/fwlogwatch.init.redhat
+--- fwlogwatch-1.2.orig/contrib/fwlogwatch.init.redhat	2009-02-13 19:50:07.000000000 +0100
++++ fwlogwatch-1.2/contrib/fwlogwatch.init.redhat	2011-09-08 11:08:42.266737194 +0200
+@@ -24,7 +24,7 @@
+ start()
+ {
+ 	echo -n $"Starting $prog:"
+-	initlog -c "$FWLOGWATCH -R -A -X 888 -Pn" && success || failure
++	$FWLOGWATCH -R -A -X 888 -Pn && success || failure
+ 	RETVAL=$?
+ 	[ "$RETVAL" = 0 ] && touch /var/lock/subsys/fwlogwatch
+ 	echo

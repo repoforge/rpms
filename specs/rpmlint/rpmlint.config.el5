@@ -1,0 +1,22 @@
+# -*- python -*-
+
+# System wide rpmlint default configuration.  Do not modify, override/add
+# options in /etc/rpmlint/config and/or ~/.rpmlintrc as needed.
+
+import os.path
+import re
+import sys
+
+from Config import *
+import Pkg
+
+# Inherit the base config and build from there.
+exec(open("/usr/share/rpmlint/config","rb").read())
+
+# Fedora 12 and newer no longer need a buildroot defined, to have the buildroot cleaned at the beginning
+# of %install, and do not need to define a %clean section unless the default is invalid.
+# However, EL-4 and EL-5 still need these checks.
+removeFilter("no-cleaning-of-buildroot")
+removeFilter("no-buildroot-tag")
+removeFilter("no-%clean-section")
+
