@@ -1,11 +1,13 @@
 # $Id$
 # Authority: dag
 
+%{?el5:%define _without_applabel 1}
+
 Summary: Yet Another Flow sensor
 Name: yaf
 Version: 2.1.1
-Release: 1%{?dist}
-License: GPL
+Release: 2%{?dist}
+License: GPLv2
 Group: Applications/Internet
 URL: http://tools.netsa.cert.org/yaf/
 
@@ -16,7 +18,7 @@ BuildRequires: glib2-devel
 BuildRequires: libfixbuf-devel >= 1.0.0
 BuildRequires: libpcap-devel
 BuildRequires: libtool-ltdl-devel
-BuildRequires: pcre-devel
+%{!?_without_applabel:BuildRequires: pcre-devel}
 BuildRequires: pkgconfig
 
 %description
@@ -41,8 +43,10 @@ Static libraries and C header files for yaf.
 %build
 
 %configure \
+    --disable-dependency-tracking \
     --disable-static \
-    --enable-applabel
+    --disable-ltdl-install \
+%{!?_without_applabel:    --enable-applabel \ }
 
 %{__make} %{?_smp_mflags}
 
@@ -71,18 +75,20 @@ Static libraries and C header files for yaf.
 %{_bindir}/yaf
 %{_bindir}/yafcollect
 %{_bindir}/yafscii
-%{_libdir}/*.so*
-%exclude %{_libdir}/libltdl.so*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
+%{_libdir}/*.so
 %exclude %{_libdir}/*.la
-%exclude %{_includedir}/libltdl/
-%exclude %{_includedir}/ltdl.h
 
 %changelog
+* Tue Sep 13 2011 Yury V. Zaytsev <yury@shurup.com> - 2.1.1-2
+- Explicitly disabled applabel on RHEL5.
+- Rebuild against libfixbuf 1.0.2.
+
 * Sun Aug 14 2011 Yury V. Zaytsev <yury@shurup.com> - 2.1.1-1
 - Excluded libltdl, since yaf should get linked to the system one.
 - Updated to release 2.1.1.
