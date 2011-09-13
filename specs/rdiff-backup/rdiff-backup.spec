@@ -6,10 +6,15 @@
 %define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+%{?el5:%define _without_egg_info 1}                                                                                                                                 
+%{?el4:%define _without_egg_info 1}                                                                                                                                 
+%{?el3:%define _without_egg_info 1}                                                                                                                                 
+%{?el2:%define _without_egg_info 1}        
+
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
 Version: 1.2.8
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/rdiff-backup/
@@ -62,8 +67,12 @@ differences from the previous backup will be transmitted.
 %{python_sitearch}/rdiff_backup/*.pyc
 %ghost %{python_sitearch}/rdiff_backup/*.pyo
 %{python_sitearch}/rdiff_backup/*.so
+%{!?_without_egg_info:%{python_sitearch}/*.egg-info}                  
 
 %changelog
+* Tue Sep 13 2011 David Hrbáč <david@hrbac.cz> - 1.2.8-2
+- added egg-info support for el6
+
 * Wed Apr 29 2009 Christoph Maser <cmr@financial.com> - 1.2.8-1
 - Updated to release 1.2.8.
 

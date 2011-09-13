@@ -4,6 +4,11 @@
 ### EL6 ships with python-lxml-2.2.3-1.1.el6
 # ExclusiveDist: el2 el3 el4 el5
 
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+%{?el3:%define _without_egg_info 1}
+%{?el2:%define _without_egg_info 1}
+
 %define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
@@ -11,7 +16,7 @@
 
 Summary: ElementTree-like Python bindings for libxml2 and libxslt
 Name: python-lxml
-Version: 1.3.4
+Version: 2.3
 Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
@@ -52,7 +57,11 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %doc CHANGES.txt CREDITS.txt LICENSES.txt PKG-INFO README.txt doc/
 %{python_sitearch}/lxml/
 %ghost %{python_sitearch}/lxml/*.pyo
+%{!?_without_egg_info:%{python_sitearch}/*.egg-info}
 
 %changelog
+* Tue Sep 13 2011 David Hrbáč <david@hrbac.cz> - 2.3-12.3-1
+- new upstream release
+
 * Tue Sep 11 2007 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Initial package. (using DAR)
