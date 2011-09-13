@@ -1,12 +1,12 @@
 # $Id$
 # Authority: dag
 
-Summary: fixbuf IPFIX implementation library
+Summary: Implementation of the IPFIX Protocol
 Name: libfixbuf
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{?dist}
-License: LGPL
-Group: Libraries
+License: LGPLv2
+Group: Development/Libraries
 URL: http://tools.netsa.cert.org/fixbuf/
 
 Source: http://tools.netsa.cert.org/releases/%{name}-%{version}.tar.gz
@@ -37,7 +37,10 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+
+%configure \
+    --disable-static
+
 %{__make} %{?_smp_mflags}
 
 %install
@@ -52,7 +55,7 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS COPYING ChangeLog NEWS README
+%doc AUTHORS COPYING NEWS README
 %{_libdir}/libfixbuf-%{version}.so.*
 
 %files devel
@@ -61,10 +64,13 @@ you will need to install %{name}-devel.
 %{_includedir}/fixbuf/
 %{_libdir}/libfixbuf.so
 %{_libdir}/pkgconfig/libfixbuf.pc
-%exclude %{_libdir}/libfixbuf.a
 %exclude %{_libdir}/libfixbuf.la
 
 %changelog
+* Tue Sep 13 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.2-1
+- Fixed rpmlint warnings.
+- Updated to release 1.0.2.
+
 * Sun Aug 14 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.1-1
 - Updated to release 1.0.1.
 
