@@ -7,6 +7,8 @@
 
 %define real_name NNAAMMEE
 
+%define perl_prefix "%{buildroot}%{_prefix}"
+
 Summary: 
 Name: perl-NNAAMMEE
 Version: 
@@ -35,7 +37,7 @@ BuildRequires: rpm-macros-rpmforge
 #%{?el5:%{__perl} -pi -e '/.*ExtUtils::MakeMaker.*6\.31.*/ && s/6\.3\d/6.30/' Makefile.PL}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{perl_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
