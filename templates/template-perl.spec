@@ -7,7 +7,7 @@
 
 %define real_name NNAAMMEE
 
-%define perl_prefix "%{buildroot}%{_prefix}"
+%define perl_prefix %{buildroot}%{_prefix}
 
 Summary: 
 Name: perl-NNAAMMEE
