@@ -3,17 +3,17 @@
 
 Summary: Tools for SWF (Flash) animations under linux
 Name: swftools
-Version: 0.8.1
+Version: 0.9.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.swftools.org/
 
 Source: http://www.swftools.org/swftools-%{version}.tar.gz
-Patch0: swftools-0.8.0-destdir.patch
+Patch0: swftools-0.9.1-destdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: bison, flex, gcc >= 3.0, zlib-devel, libjpeg-devel, t1lib-devel
+BuildRequires: bison, flex, gcc >= 3.0, zlib-devel, libjpeg-devel, t1lib-devel, giflib-devel
 #BuildRequires: libavifile-devel
 Conflicts: ming
 
@@ -39,7 +39,7 @@ SWF Tools is a collection of SWF manipulation and generation utilities.
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog COPYING FAQ TODO
+%doc AUTHORS ChangeLog COPYING
 #%doc %{_mandir}/man1/avi2swf.1*
 %doc %{_mandir}/man1/font2swf.1*
 %doc %{_mandir}/man1/gif2swf.1*
@@ -53,6 +53,8 @@ SWF Tools is a collection of SWF manipulation and generation utilities.
 %doc %{_mandir}/man1/swfextract.1*
 %doc %{_mandir}/man1/swfstrings.1*
 %doc %{_mandir}/man1/wav2swf.1*
+%doc %{_mandir}/man1/as3compile.1*
+%doc %{_mandir}/man1/swfrender.1*
 #%{_bindir}/avi2swf
 %{_bindir}/font2swf
 %{_bindir}/gif2swf
@@ -65,7 +67,9 @@ SWF Tools is a collection of SWF manipulation and generation utilities.
 %{_bindir}/swfdump
 %{_bindir}/swfextract
 %{_bindir}/swfstrings
+%{_bindir}/swfrender
 %{_bindir}/wav2swf
+%{_bindir}/as3compile
 %{_datadir}/swftools/
 
 %changelog
