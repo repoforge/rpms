@@ -5,21 +5,24 @@
 
 %{?el5:%define _with_python_hashlib 1}
 
+%if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+%endif
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.11
+Version: 1.1.15
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://fedoraproject.org/wiki/Projects/Mock
 
-Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/mock-%{version}.tar.gz
+Source: https://fedorahosted.org/mock/attachment/wiki/MockTarballs/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
+
 BuildRequires: python-devel >= 2.4
+
 Requires(post): coreutils
 Requires(pre): shadow-utils
 Requires: createrepo
@@ -66,7 +69,6 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-
 %config(noreplace) %{_sysconfdir}/mock/
 %config(noreplace) %{_sysconfdir}/pam.d/mock
 %config(noreplace) %{_sysconfdir}/security/console.apps/mock
@@ -77,18 +79,25 @@ fi
 %attr(0755, root, root) %{_sbindir}/mock
 
 # python stuff
-%{python_sitelib}/mock
+%{python_sitelib}/mockbuild
 
 # docs
-%doc AUTHORS ChangeLog COPYING INSTALL docs/*.txt
+%doc AUTHORS ChangeLog COPYING docs/*.txt
 %doc %{_mandir}/man1/mock.1*
 
 # cache & build dirs
 %defattr(0775, root, mock, 02775)
-%dir /var/cache/mock
-%dir /var/lib/mock
+%dir %{_localstatedir}/cache/mock
+%dir %{_localstatedir}/lib/mock
 
 %changelog
+* Sat Sep 24 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.15-1
+- Updated to release 1.1.15.
+
+* Mon Sep 19 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.14-1
+- Fixed SELinux plugin failure on RHEL5.
+- Updated to release 1.1.14.
+
 * Thu Jun 23 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.11-1
 - More fixes to the default directory permissions.
 - Updated to release 1.1.11.
