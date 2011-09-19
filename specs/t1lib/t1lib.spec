@@ -45,7 +45,6 @@ you will need to install %{name}-devel.
 
 %build
 %configure
-#%{__make} %{?_smp_mflags} without_doc
 %{__make} %{?_smp_mflags}
 %{__ln_s} README.t1lib-%{version} README
 
@@ -101,13 +100,11 @@ touch %{buildroot}%{_sysconfdir}/t1lib/t1lib.config
 %{_libdir}/libt1x.so
 
 %changelog
-* Thu Apr 21 2011 Steve Huff <shuff@vecna.org> - 
-- Ibiblio has turned off FTP access; use HTTP for source URL.
-
 * Tue Jan 04 2011 Steve Huff <shuff@vecna.org> - 5.1.2-1
 - Updated to version 5.1.2.
-- Source and homepage URLs have changed.
 - destdir patch merged upstream.
+- Ibiblio has turned off FTP access; use HTTP for source URL.
+- Source and homepage URLs have changed.
 
 * Mon Jan 22 2007 Dag Wieers <dag@wieers.com> - 5.1.0-1
 - Initial package. (using DAR)
