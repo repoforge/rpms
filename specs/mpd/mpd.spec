@@ -16,7 +16,7 @@
 
 Summary: Music Player Daemon
 Name: mpd
-Version: 0.16
+Version: 0.16.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -94,7 +94,7 @@ export FLAC_LIBS='-L%{_libdir}'
 %{!?_without_mikmod:--enable-mikmod} \
     --enable-modplug \
     --enable-pipe-output \
-%{!?_without_pulseaudio:--enable-pulseaudio} \
+%{!?_without_pulseaudio:--enable-pulse} \
     --enable-recorder-output \
     --enable-shout \
     --enable-twolame-encoder \
@@ -118,6 +118,10 @@ export FLAC_LIBS='-L%{_libdir}'
 %{_bindir}/mpd
 
 %changelog
+* Wed Sep 21 2011 Steve Huff <shuff@vecna.org> - 0.16.4-1
+- Update to 0.16.4.
+- More configure option tweaks.
+
 * Tue Dec 21 2010 Steve Huff <shuff@vecna.org> - 0.16-1
 - Update to 0.16.
 - A few tweaks of requirements and configure options.
