@@ -6,6 +6,8 @@
 %define python_version %(%{__python} -c 'import sys; print sys.version[:3]')
 %define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
 
+%{?el6:%define _popen_patch 1}
+
 %{?el5:%define _without_egg_info 1}                                                                                                                                 
 %{?el4:%define _without_egg_info 1}                                                                                                                                 
 %{?el3:%define _without_egg_info 1}                                                                                                                                 
@@ -14,12 +16,14 @@
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
 Version: 1.2.8
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://www.nongnu.org/rdiff-backup/
 
 Source: http://savannah.nongnu.org/download/rdiff-backup/rdiff-backup-%{version}.tar.gz
+Patch0: rdiff-backup-popen2.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python, python-devel >= 2.2, librsync-devel >= 0.9.7
@@ -41,6 +45,7 @@ differences from the previous backup will be transmitted.
 
 %prep
 %setup
+%{?_popen_patch: %patch0 -p1}
 
 %build
 %{__python} setup.py build
@@ -70,6 +75,9 @@ differences from the previous backup will be transmitted.
 %{!?_without_egg_info:%{python_sitearch}/*.egg-info}                  
 
 %changelog
+* Wed Sep 21 2011 David Hrbáč <david@hrbac.cz> - 1.2.8-3
+- popen patch for el6
+
 * Tue Sep 13 2011 David Hrbáč <david@hrbac.cz> - 1.2.8-2
 - added egg-info support for el6
 
