@@ -4,7 +4,7 @@
 
 Summary: MPD client which submits tracks to Last.fm
 Name: mpdscribble
-Version: 0.20
+Version: 0.22
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -65,5 +65,8 @@ Features
 %exclude %{_docdir}/mpdscribble/
 
 %changelog
+* Wed Sep 21 2011 Steve Huff <shuff@vecna.org> - 0.22-1
+- Updated to 0.22.
+
 * Tue Nov 09 2010 Steve Huff <shuff@vecna.org> - 0.20-1
 - Initial package.
