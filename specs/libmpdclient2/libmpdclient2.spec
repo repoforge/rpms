@@ -6,7 +6,7 @@
 
 Summary: MPD client API
 Name: libmpdclient2
-Version: 2.1
+Version: 2.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -76,5 +76,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Sep 21 2011 Steve Huff <shuff@vecna.org> - 2.5-1
+- Updated to 2.5.
+
 * Thu Mar 25 2010 Steve Huff <shuff@vecna.org> - 2.1-1
 - Initial package.
