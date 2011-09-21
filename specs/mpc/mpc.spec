@@ -5,7 +5,7 @@
 
 Summary: Music Player Daemon client
 Name: mpc
-Version: 0.19
+Version: 0.21
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -51,5 +51,8 @@ MPC is a minimalist command line interface to MPD.
 
 
 %changelog
+* Wed Sep 21 2011 Steve Huff <shuff@vecna.org> - 0.21-1
+- Updated to 0.21.
+
 * Thu Mar 25 2010 Steve Huff <shuff@vecna.org> - 0.19-1
 - Initial package.
