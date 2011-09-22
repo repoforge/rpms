@@ -1,38 +1,40 @@
 # $Id$
-# Authority: matthias
+# Authority: shuff
+# Upstream: Tim Riker <Tim$Rikers,org
 
+%define desktop_vendor RepoForge
 
-%{?fc4:%define _without_modxorg 1}
-%{?el4:%define _without_modxorg 1}
-%{?fc3:%define _without_modxorg 1}
-%{?fc2:%define _without_modxorg 1}
-%{?fc1:%define _without_modxorg 1}
-%{?el3:%define _without_modxorg 1}
-%{?rh9:%define _without_modxorg 1}
-%{?rh7:%define _without_modxorg 1}
-%{?el2:%define _without_modxorg 1}
-%{?rh6:%define _without_modxorg 1}
-%{?yd3:%define _without_modxorg 1}
-
-%define desktop_vendor rpmforge
-%define date           20050318
+%define bzlibdir %{_libdir}/bzflag-%{version}
 
 Summary: 3D multi-player tank battle game
 Name: bzflag
-Version: 2.0.2
+Version: 2.4.0
 Release: 1%{?dist}
 License: GPL
 Group: Amusements/Games
 URL: http://bzflag.org/
-Source: http://dl.sf.net/bzflag/bzflag-%{version}.%{date}.tar.bz2
+Source: https://downloads.sourceforge.net/project/bzflag/bzflag%20source/%{version}/bzflag-%{version}.tar.bz2
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: gcc-c++, desktop-file-utils
-BuildRequires: ncurses-devel, curl-devel, SDL-devel
-# This one should have been required by curl-devel
-%{!?dtag:BuildRequires: libidn-devel}
-%{?fc3:BuildRequires: libidn-devel}
-%{?_without_modxorg:BuildRequires: XFree86-devel}
-%{!?_without_modxorg:BuildRequires: libX11-devel}
+
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: binutils
+BuildRequires: c-ares-devel
+BuildRequires: curl-devel
+BuildRequires: desktop-file-utils
+BuildRequires: gcc-c++
+BuildRequires: libidn-devel
+BuildRequires: libtool
+BuildRequires: make
+BuildRequires: ncurses-devel
+BuildRequires: rpm-macros-rpmforge
+BuildRequires: SDL-devel >= 1.2.10
+BuildRequires: zlib-devel
+
+# our libs are not for others
+%filter_provides_in %{bzlibdir}
+%filter_setup
 
 %description
 BZFlag is a 3D multi-player tank battle game  that  allows users to play
@@ -43,34 +45,36 @@ scores a loss.  Rogues have no teammates (not even other rogues), so they
 cannot shoot teammates and they do not have a team score.
 There are two main styles of play: capture-the-flag and free-for-all.
 
-
 %prep
-%setup -n %{name}-%{version}.%{date}
+%setup
 
 
 %build
-%configure
+%configure \
+    --libdir="%{bzlibdir}" \
+    --disable-dependency-tracking \
+    --enable-robots
 %{__make} %{?_smp_mflags}
 
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m 644 data/bzflag-48x48.png \
     %{buildroot}%{_datadir}/pixmaps/bzflag.png
 
 # Desktop menu entry
-%{__cat} > %{name}.desktop << EOF
+%{__cat} > %{name}.desktop << DESKTOP
 [Desktop Entry]
-Categories=Game;ArcadeGame
+Categories=Game;ArcadeGame;
 Name=BZFlag
 Comment=3D multi-player tank battle game
 Exec=bzflag
-Icon=bzflag.png
+Icon=bzflag
 Terminal=false
 Type=Application
 Encoding=UTF-8
-EOF
+DESKTOP
 
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 desktop-file-install \
@@ -78,10 +82,21 @@ desktop-file-install \
     --dir %{buildroot}%{_datadir}/applications \
     %{name}.desktop
 
+# ld.so.conf.d file
+%{__cat} > %{name}-ldso.conf << LDSO
+%{bzlibdir}
+LDSO
+
+%{__install} -Dp -m 644 bzflag-ldso.conf %{buildroot}%{_sysconfdir}/ld.so.conf.d/bzflag.conf
+
+%{__rm} -f %{buildroot}%{bzlibdir}/*.la
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, 0755)
@@ -93,9 +108,15 @@ desktop-file-install \
 %{_datadir}/bzflag/
 %{_datadir}/pixmaps/bzflag.png
 %{_mandir}/man?/*
+%{_sysconfdir}/ld.so.conf.d/*
+%{bzlibdir}
 
 
 %changelog
+* Thu Sep 22 2011 Steve Huff <shuff@vecna.org> - 2.4.0-1
+- Update to 2.4.0.
+- Move messy shared libraries into their own libdir.
+
 * Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 2.0.2-1
 - Update to 2.0.2.
 
