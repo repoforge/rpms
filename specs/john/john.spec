@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dag
 
+%define real_version jumbo-7
+
 Summary: John the Ripper password cracker
 Name: john
-Version: 1.7.6
-Release: 3%{?dist}
-License: GPL
+Version: 1.7.8
+Release: 1%{?dist}
+License: GPLv2
 Group: Applications/System
 URL: http://www.openwall.com/john/
 
-#Source: http://www.openwall.com/john/f/john-%{version}.tar.bz2
-Source: http://www.openwall.com/john/g/john-%{version}.tar.bz2
-Patch: ftp://ftp.openwall.com/pub/projects/john/contrib/john-1.7.6-jumbo-12.diff.gz
+Source: ftp://ftp.openwall.com/pub/projects/%{name}/%{version}/%{name}-%{version}-%{real_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
@@ -22,8 +22,7 @@ detect weak Unix passwords, but a number of other hash types are
 supported as well.
 
 %prep
-%setup
-%patch -p1
+%setup -n %{name}-%{version}-%{real_version}
 
 %{__perl} -pi.orig -e 's|^(\#define CFG_FULL_NAME)\s.+$|$1 "%{_sysconfdir}/john.conf"|' src/params.h
 
@@ -89,6 +88,9 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %endif
 
 %changelog
+* Fri Sep 23 2011 Yury V. Zaytsev <yury@shurup.com> - 1.7.8-1
+- Bumped version to 1.7.8-jumbo-7 (Gilles Chauvin, GH-62).
+
 * Sun Apr 03 2011 Yury V. Zaytsev <yury@shurup.com> - 1.7.6-3
 - Fixed x86 builds (thanks to Alexander Kirillov!)
 - Updated to the latest jumbo patch version.
