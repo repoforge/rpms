@@ -2,6 +2,11 @@
 # Authority: shuff
 # Upstream: Tim Riker <Tim$Rikers,org
 
+%{?el5:%define _with_bundled_cares 1}
+%{?el4:%define _with_bundled_cares 1}
+%{?el3:%define _with_bundled_cares 1}
+%{?el2:%define _with_bundled_cares 1}
+
 %define desktop_vendor RepoForge
 
 %define bzlibdir %{_libdir}/bzflag-%{version}
@@ -20,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf
 BuildRequires: automake
 BuildRequires: binutils
-BuildRequires: c-ares-devel
+%{!?_with_bundled_cares:BuildRequires: c-ares-devel}
 BuildRequires: curl-devel
 BuildRequires: desktop-file-utils
 BuildRequires: gcc-c++
@@ -31,6 +36,8 @@ BuildRequires: ncurses-devel
 BuildRequires: rpm-macros-rpmforge
 BuildRequires: SDL-devel >= 1.2.10
 BuildRequires: zlib-devel
+
+%{?_with_bundled_cares:Conflicts: c-ares-devel}
 
 # our libs are not for others
 %filter_provides_in %{bzlibdir}
@@ -116,6 +123,7 @@ LDSO
 * Thu Sep 22 2011 Steve Huff <shuff@vecna.org> - 2.4.0-1
 - Update to 2.4.0.
 - Move messy shared libraries into their own libdir.
+- Enforce use of bundled c-ares on <el6.
 
 * Tue Apr  5 2005 Matthias Saou <http://freshrpms.net/> 2.0.2-1
 - Update to 2.0.2.
