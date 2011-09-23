@@ -10,13 +10,13 @@
 
 Summary: Fast, lightweight Source Control Management system
 Name: mercurial
-Version: 1.9
+Version: 1.9.2
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
 URL: http://mercurial.selenic.com/
 
-Source0: http://mercurial.selenic.com/release/mercurial-%{version}.tar.gz
+Source0: http://mercurial.selenic.com/release/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python >= 2.4
@@ -27,7 +27,6 @@ BuildRequires: gcc
 BuildRequires: gettext
 
 Provides: hg = %{version}-%{release}
-Requires: python >= 2.4
 
 %description
 Mercurial is a fast, lightweight source control management system designed
@@ -103,6 +102,9 @@ CFLAGS="%{optflags}" %{__make} %{?_smp_mflags} all
 %{_bindir}/hg-ssh
 
 %changelog
+* Fri Sep 23 2011 Yury V. Zaytsev <yury@shurup.com> - 1.9.2-1
+- Updated to release 1.9.2 (GH-61).
+
 * Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.9-1
 - Updated to release 1.9.
 
