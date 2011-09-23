@@ -4,7 +4,7 @@
 
 Summary: console Pandora.com client
 Name: pianobar
-Version: 2011.07.09
+Version: 2011.09.22
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -91,6 +91,9 @@ you will need to install libpiano-devel.
 %exclude %{_libdir}/*.a
 
 %changelog
+* Fri Sep 23 2011 Steve Huff <shuff@vecna.org> - 2011.09.22-1
+- Updated to pianobar-2011.09.22
+
 * Tue Jul 12 2011 Steve Huff <shuff@vecna.org> - 2011.07.09-1
 - updated to pianobar-2011.07.09
 - updated Source URL
