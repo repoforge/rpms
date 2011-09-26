@@ -8,6 +8,8 @@
 ### EL6 ships with augeas-0.7.2-3.el6
 %{?el6:# Tag: rfx}
 
+%{?el5:%define _without_noarch_subpackages 1}
+
 Summary: Configuration API and editing tool
 Name: augeas
 Version: 0.9.0
@@ -54,7 +56,7 @@ The libraries for %{name}.
 %package -n vim-augeas
 Summary: Vim syntax definitions for %{name}.
 Group: Applications/Editors
-BuildArch: noarch
+%{!?_without_noarch_subpackages:BuildArch: noarch}
 Requires: vim-common >= 7.0
 Provides: augeas-vim = %{version}-%{release}
 Obsoletes: augeas-vim < %{version}
