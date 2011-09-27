@@ -4,7 +4,7 @@
 
 Summary: C compiler for Markdown
 Name: discount
-Version: 2.0.9
+Version: 2.1.2
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
@@ -52,7 +52,16 @@ Install this package if you want to develop software that uses the Discount libr
 %setup
 
 %build
-./configure.sh --prefix=%{_prefix} --confdir=%{_sysconfdir} --libdir=%{_libdir} --mandir=%{_mandir} --enable-all-options --with-id-anchor --with-github-tags --with-dl=both
+./configure.sh \
+    --prefix=%{_prefix} \
+    --confdir=%{_sysconfdir} \
+    --libdir=%{_libdir} \
+    --mandir=%{_mandir} \
+    --enable-all-options \
+    --with-fenced-code \
+    --with-github-tags \
+    --with-id-anchor \
+    --with-dl=both
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
@@ -83,6 +92,9 @@ Install this package if you want to develop software that uses the Discount libr
 %{_libdir}/*.a
 
 %changelog
+* Tue Sep 27 2011 Steve Huff <shuff@vecna.org> - 2.1.2-1
+- Updated to version 2.1.2.
+
 * Wed Jul 13 2011 Steve Huff <shuff@vecna.org> - 2.0.9-1
 - Updated to version 2.0.9.
 - Fixed license metadata.
