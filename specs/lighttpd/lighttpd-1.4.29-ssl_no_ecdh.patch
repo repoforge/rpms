@@ -1,0 +1,17 @@
+diff -r -p lighttpd-1.4.29.orig/src/network.c lighttpd-1.4.29/src/network.c
+*** lighttpd-1.4.29.orig/src/network.c	2011-04-24 15:02:45.000000000 +0200
+--- lighttpd-1.4.29/src/network.c	2011-08-17 11:50:59.320647785 +0200
+*************** int network_init(server *srv) {
+*** 480,488 ****
+--- 480,490 ----
+  	network_backend_t backend;
+  
+  #if OPENSSL_VERSION_NUMBER >= 0x0090800fL
++ #ifndef OPENSSL_NO_ECDH
+  	EC_KEY *ecdh;
+  	int nid;
+  #endif
++ #endif
+  
+  #ifdef USE_OPENSSL
+  	DH *dh;

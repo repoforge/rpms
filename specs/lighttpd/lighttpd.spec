@@ -9,7 +9,7 @@
 
 Summary: Lightning fast webserver with light system requirements
 Name: lighttpd
-Version: 1.4.28
+Version: 1.4.29
 Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
@@ -18,19 +18,27 @@ URL: http://www.lighttpd.net/
 Source: http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-%{version}.tar.bz2
 Patch0: lighttpd-1.4.28-defaultconf.patch
 Patch1: lighttpd-1.4.28-vhostinclude.patch
+Patch2: lighttpd-1.4.29-ssl_no_ecdh.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: pcre-devel, bzip2-devel, zlib-devel, readline-devel
+BuildRequires: bzip2-devel
+BuildRequires: mysql-devel
+BuildRequires: pcre-devel
+BuildRequires: readline-devel
+BuildRequires: zlib-devel
 BuildRequires: /usr/bin/awk
 %{?_with_gamin:BuildRequires: gamin-devel}
 %{!?_without_gdbm:BuildRequires: gdbm-devel}
 %{!?_without_lua:BuildRequires: lua-devel >= 5.1}
+%{!?_without_memcache:BuildRequires: memcached-devel}
 %{!?_without_ldap:BuildRequires: openldap-devel}
 %{!?_without_ssl:BuildRequires: openssl-devel}
 Requires(pre): /usr/sbin/useradd
 Requires(post): /sbin/chkconfig
 Requires(preun): /sbin/service, /sbin/chkconfig
 Requires(postun): /sbin/service
+
+Provides: webserver
 
 %description
 Secure, fast, compliant and very flexible web-server which has been optimized
@@ -70,6 +78,7 @@ recompile PHP yourself.
 %setup
 %patch0 -p1 -b .defaultconf
 %patch1 -p1 -b .vhostinclude
+%patch2 -p1 -b .ssl_no_ecdh
 
 %{__cat} <<EOF >lighttpd.logrotate
 %{_localstatedir}/log/lighttpd/*log {
@@ -161,7 +170,7 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING INSTALL NEWS README
-%doc doc/*.txt doc/config/lighttpd.conf tests/lighttpd.user
+%doc doc/outdated doc/config/lighttpd.conf tests/lighttpd.user
 #doc %{_mandir}/man1/lighttpd.1*
 %doc %{_mandir}/man8/lighttpd.8*
 %dir %{_sysconfdir}/lighttpd/
@@ -185,13 +194,13 @@ fi
 
 %files mod_mysql_vhost
 %defattr(-, root, root, 0755)
-%doc doc/mysqlvhost.txt
+%doc doc/outdated/mysqlvhost.txt
 %dir %{_libdir}/lighttpd/
 %{_libdir}/lighttpd/mod_mysql_vhost.so
 
 %files fastcgi
 %defattr(-, root, root, 0755)
-%doc doc/fastcgi*.txt
+%doc doc/outdated/fastcgi*.txt
 #doc %{_mandir}/man1/spawn-fcgi.1*
 %config(noreplace) %{_sysconfdir}/php.d/lighttpd.ini
 #%{_bindir}/spawn-fcgi
@@ -199,6 +208,11 @@ fi
 %{_libdir}/lighttpd/mod_fastcgi.so
 
 %changelog
+* Tue Sep 27 2011 Steve Huff <shuff@vecna.org> - 1.4.29-1
+- Updated to release 1.4.29.
+- Included patch to permit building with OpenSSL < 1.0.0
+  (http://redmine.lighttpd.net/issues/2335)
+
 * Mon May 16 2011 Steve Huff <shuff@vecna.org> - 1.4.28-2
 - Config now includes vhosts.d/* by default.
 - Updated defaultconf.patch for 1.4.28(???)
