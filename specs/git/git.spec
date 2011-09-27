@@ -13,13 +13,13 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.6.1
+Version: 1.7.6.4
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
 
-Source0: http://kernel.org/pub/software/scm/git/git-%{version}.tar.bz2
+Source0: https://git-core.googlecode.com/files/git-%{version}.tar.gz
 Source1: git-init.el
 Source5: gitweb.conf.in
 Patch0: git-1.5-gitweb-home-link.patch
@@ -395,6 +395,10 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Tue Sep 27 2011 Steve Huff <shuff@vecna.org> - 1.7.6.4-1
+- Updated to release 1.7.6.4.
+- Source comes from Google Code now.
+
 * Wed Aug 31 2011 Steve Huff <shuff@vecna.org> - 1.7.6.1-1
 - Updated to release 1.7.6.1.
 
