@@ -37,7 +37,6 @@ provides a uniform API regardless of which JSON implementation is used.
 rm -rf %{buildroot}
 %{__python} setup.py install --skip-build --root %{buildroot}
 
-
 %clean
 rm -rf %{buildroot}
 
