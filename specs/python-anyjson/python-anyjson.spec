@@ -20,7 +20,7 @@ Source0: http://pypi.python.org/packages/source/a/%{real_name}/%{real_name}-%{ve
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-BuildRequires: python-devel
+BuildRequires: python-devel >= 2.4
 BuildRequires: python-setuptools
 
 %description
