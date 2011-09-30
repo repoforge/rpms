@@ -11,7 +11,7 @@
 
 Name: python-cjson
 Version: 1.0.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast JSON encoder/decoder for Python
 Group: Development/Languages
 License: LGPLv2+
@@ -22,6 +22,12 @@ Patch0: python-cjson-1.0.5-CVE-2010-1666.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
+
+# we don't want to provide private python extension libs
+%{?filter_setup:
+%filter_provides_in %{python_sitearch}/.*\.so$
+%filter_setup
+}
 
 %description
 JSON stands for JavaScript Object Notation and is a text based lightweight
@@ -58,5 +64,8 @@ rm -rf %{buildroot}
 %{!?_without_egginfo:%{python_sitearch}/*.egg-info}
 
 %changelog
+* Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.5-2
+- Fixed major rpmlint warnings.
+
 * Fri Sep 09 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.5-1
 - Initial package.
