@@ -13,7 +13,7 @@
 
 Name: python-pygraphviz
 Version: 1.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Python interface to Graphviz
 Group: Development/Languages
 License: BSD
@@ -28,6 +28,12 @@ BuildRequires: pkgconfig
 
 %{!?_without_sphinx:BuildRequires: python-sphinx}
 
+# we don't want to provide private python extension libs
+%{?filter_setup:
+%filter_provides_in %{python_sitearch}/%{real_name}/.*\.so$
+%filter_setup
+}
+
 %description
 PyGraphviz is a Python interface to the Graphviz graph layout and visualization
 package. With PyGraphviz you can create, edit, read, write, and d raw graphs
@@ -38,6 +44,8 @@ interface.
 %prep
 %setup -n %{real_name}-%{version}
 
+find . -type f -name \*.py | xargs -n 1 sed -i -e 's"^#!/usr/bin/env python"#!/usr/bin/python"'
+
 %build
 %{__python} setup.py build
 
@@ -45,6 +53,8 @@ interface.
 rm -rf %{buildroot}
 
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
+
+chmod 755 %{buildroot}%{python_sitearch}/%{real_name}/tests/test.py
 
 %if 0%{!?_without_sphinx:1}
     PYTHONPATH=%{buildroot}%{python_sitearch} make -C doc html
@@ -68,5 +78,8 @@ rm -rf %{buildroot}
 %{!?_without_egginfo:%{python_sitearch}/*.egg-info}
 
 %changelog
+* Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1-2
+- Fixed major rpmlint warnings.
+
 * Fri Sep 09 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1-1
 - Initial package.
