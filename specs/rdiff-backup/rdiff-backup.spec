@@ -8,16 +8,16 @@
 
 %{?el6:%define _popen_patch 1}
 
-%{?el5:%define _without_egg_info 1}                                                                                                                                 
-%{?el4:%define _without_egg_info 1}                                                                                                                                 
-%{?el3:%define _without_egg_info 1}                                                                                                                                 
-%{?el2:%define _without_egg_info 1}        
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+%{?el3:%define _without_egg_info 1}
+%{?el2:%define _without_egg_info 1}
 
 Summary: Convenient and transparent local/remote incremental mirror/backup
 Name: rdiff-backup
 Version: 1.2.8
-Release: 3%{?dist}
-License: GPL
+Release: 4%{?dist}
+License: GPLv2+
 Group: Applications/Archiving
 URL: http://www.nongnu.org/rdiff-backup/
 
@@ -26,9 +26,15 @@ Patch0: rdiff-backup-popen2.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python, python-devel >= 2.2, librsync-devel >= 0.9.7
+BuildRequires: python-devel >= 2.2
+BuildRequires: librsync-devel >= 0.9.7
 #BuildRequires: python-libacl, python-xattr
-Requires: python
+
+# we don't want to provide private python extension libs
+%{?filter_setup:
+%filter_provides_in %{python_sitearch}/rdiff_backup/.*\.so$
+%filter_setup
+}
 
 %description
 rdiff-backup is a script, written in Python, that backs up one directory
@@ -45,7 +51,7 @@ differences from the previous backup will be transmitted.
 
 %prep
 %setup
-%{?_popen_patch: %patch0 -p1}
+%{?_popen_patch:%patch0 -p1}
 
 %build
 %{__python} setup.py build
@@ -72,9 +78,12 @@ differences from the previous backup will be transmitted.
 %{python_sitearch}/rdiff_backup/*.pyc
 %ghost %{python_sitearch}/rdiff_backup/*.pyo
 %{python_sitearch}/rdiff_backup/*.so
-%{!?_without_egg_info:%{python_sitearch}/*.egg-info}                  
+%{!?_without_egg_info:%{python_sitearch}/*.egg-info}
 
 %changelog
+* Sat Oct 01 2011 Yury V. Zaytsev <yury@shurup.com> - 1.2.8-4
+- Fixed the popen patch (Julian Yap).
+
 * Wed Sep 21 2011 David Hrbáč <david@hrbac.cz> - 1.2.8-3
 - popen patch for el6
 

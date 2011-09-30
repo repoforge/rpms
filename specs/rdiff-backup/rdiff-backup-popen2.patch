@@ -1,26 +1,25 @@
 diff -Nur rdiff-backup-1.2.8.orig/rdiff_backup/SetConnections.py rdiff-backup-1.2.8/rdiff_backup/SetConnections.py
---- rdiff-backup-1.2.8.orig/rdiff_backup/SetConnections.py  2009-10-14 15:01:14.649750067 +0400
-+++ rdiff-backup-1.2.8/rdiff_backup/SetConnections.py   2009-10-14 16:01:13.066376858 +0400
+--- rdiff-backup-1.2.8.orig/rdiff_backup/SetConnections.py	2009-10-14 15:01:14.649750067 +0400
++++ rdiff-backup-1.2.8/rdiff_backup/SetConnections.py	2009-10-14 16:01:13.066376858 +0400
 @@ -135,15 +135,13 @@
-    if not remote_cmd: return Globals.local_connection
+ 	if not remote_cmd: return Globals.local_connection
  
-    Log("Executing " + remote_cmd, 4)
--   if os.name == "nt":
-+   if sys.version_info > (2, 4):
-        import subprocess
--       try:
--           process = subprocess.Popen(remote_cmd, shell=False, bufsize=0,
--                               stdin=subprocess.PIPE, 
--                               stdout=subprocess.PIPE)
--           (stdin, stdout) = (process.stdin, process.stdout)
--       except OSError:
--           (stdin, stdout) = (None, None)
-+       shell = os.name != "nt"
-+       process = subprocess.Popen(remote_cmd, shell=shell, bufsize=0,
-+                           stdin=subprocess.PIPE, 
-+                           stdout=subprocess.PIPE)
-+       (stdin, stdout) = (process.stdin, process.stdout)
-    else:
-        stdin, stdout = os.popen2(remote_cmd)
-    conn_number = len(Globals.connections)
-
+ 	Log("Executing " + remote_cmd, 4)
+-	if os.name == "nt":
++	if sys.version_info > (2, 4):
+ 		import subprocess
+-		try:
+-			process = subprocess.Popen(remote_cmd, shell=False, bufsize=0,
+-								stdin=subprocess.PIPE, 
+-								stdout=subprocess.PIPE)
+-			(stdin, stdout) = (process.stdin, process.stdout)
+-		except OSError:
+-			(stdin, stdout) = (None, None)
++		shell = os.name != "nt"
++		process = subprocess.Popen(remote_cmd, shell=shell, bufsize=0,
++							stdin=subprocess.PIPE, 
++							stdout=subprocess.PIPE)
++		(stdin, stdout) = (process.stdin, process.stdout)
+ 	else:
+ 		stdin, stdout = os.popen2(remote_cmd)
+ 	conn_number = len(Globals.connections)
