@@ -1,14 +1,14 @@
 # $Id$
 # Authority: yury
 
-%{!?ruby_sitelibdir: %define ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')}
+%{!?ruby_sitelibdir: %global ruby_sitelibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')}
 
-%define has_ruby_abi 0%{?fedora} || 0%{?rhel} >= 5
-%define has_ruby_noarch %has_ruby_abi
+%global has_ruby_abi 0%{?fedora} || 0%{?rhel} >= 5
+%global has_ruby_noarch %has_ruby_abi
 
 Summary: Ruby module for collecting simple facts about a host operating system
 Name: facter
-Version: 1.6.0
+Version: 1.6.1
 Release: 1%{?dist}
 License: Apache 2.0
 Group: System Environment/Base
@@ -38,31 +38,30 @@ operating system. Additional facts can be added through simple Ruby scripts
 
 %prep
 %setup
-
-%{__perl} -pi.orig -e 's|^#!.*$|#!/usr/bin/ruby|' bin/facter
+%{__perl} -e 's|^#!.*$|#!/usr/bin/ruby|' bin/facter
 
 %build
+# Nothing to build
 
 %install
 %{__rm} -rf %{buildroot}
 
 ruby install.rb --destdir=%{buildroot} --quick --no-rdoc
 
-# fix for stupid strip issue
-%{__chmod} -R u+w %{buildroot}/*
-
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG INSTALL LICENSE README.md
+%doc CHANGELOG LICENSE README.md
 %{_bindir}/facter
-%exclude %{_bindir}/facter.orig
 %{ruby_sitelibdir}/facter.rb
 %{ruby_sitelibdir}/facter
 
 %changelog
+* Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 1.6.1-1
+- Updated to release 1.6.1.
+
 * Thu Aug 04 2011 Yury V. Zaytsev <yury@shurup.com> - 1.6.0-1
 - Dropped Scientific Linux patch as it was upstreamed.
 - License has been changed from GPLv2+ to Apache 2.0.
