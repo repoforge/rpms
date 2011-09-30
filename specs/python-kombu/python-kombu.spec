@@ -51,6 +51,7 @@ rm -rf docs/.static
 %{__python} setup.py install --skip-build --root %{buildroot}
 
 %files
+%defattr(-,root,root,-)
 %doc AUTHORS Changelog FAQ LICENSE READ* THANKS TODO examples/ docs/
 %{python_sitelib}/%{real_name}/
 %{python_sitelib}/%{real_name}*.egg-info
