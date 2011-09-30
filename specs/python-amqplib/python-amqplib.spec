@@ -9,7 +9,7 @@
 %global real_name amqplib
 
 Name: python-amqplib
-Version: 1.0.0
+Version: 1.0.2
 Release: 1%{?dist}
 Summary: Client library for AMQP
 Group: Development/Languages
@@ -22,13 +22,14 @@ BuildArch: noarch
 
 BuildRequires: python-devel >= 2.4
 BuildRequires: python-setuptools
-# BuildRequires: python-nose
 
 %description
 Client library for AMQP (Advanced Message Queuing Protocol)
 
 %prep
 %setup -q -n %{real_name}-%{version}
+
+find . -type f -name \*.py | xargs -n 1 sed -i -e 's"^#!/usr/bin/env python"#!/usr/bin/python"'
 
 %build
 %{__python} setup.py build
@@ -40,21 +41,16 @@ rm -rf %{buildroot}
 %clean
 rm -rf %{buildroot}
 
-# Tests are not availalbe in the latest tarball
-#
-# %%check
-# cd tests/client_0_8
-# nosetests run_all.py
-
 %files
 %defattr(-,root,root,-)
-# It seems that 1.0.0 tarball has lost some weight
-#%%doc CHANGES LICENSE TODO docs/
-%doc PKG-INFO README
+%doc CHANGES LICENSE PKG-INFO README TODO docs/ demo/ extras/
 %{python_sitelib}/%{real_name}/
 %{python_sitelib}/%{real_name}*.egg-info
 
 %changelog
+* Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
 * Wed Sep 28 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.0-1
 - Imported into RepoForge with minor changes.
 - Updated to release 1.0.0.
