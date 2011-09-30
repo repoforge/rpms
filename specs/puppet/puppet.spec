@@ -13,7 +13,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.3
+Version: 2.7.4
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
@@ -29,9 +29,9 @@ BuildRequires: facter >= 1.5
 BuildRequires: ruby >= 1.8.1
 
 %if 0%{?fedora} || 0%{?rhel} >= 5
-BuildArch:      noarch
-Requires:       ruby(abi) = 1.8
-Requires:       ruby-shadow
+BuildArch: noarch
+Requires: ruby(abi) = 1.8
+Requires: ruby-shadow
 %endif
 
 # Pull in ruby selinux bindings where available
@@ -47,7 +47,7 @@ Requires: facter >= 1.5
 Requires: ruby >= 1.8.1
 %{!?_without_augeas:Requires: ruby-augeas}
 
-Requires(pre):  shadow-utils
+Requires(pre): shadow-utils
 Requires(post): chkconfig
 Requires(preun): chkconfig
 Requires(preun): initscripts
@@ -139,7 +139,7 @@ touch %{buildroot}%{_sysconfdir}/puppet/puppetmasterd.conf
 touch %{buildroot}%{_sysconfdir}/puppet/puppetca.conf
 touch %{buildroot}%{_sysconfdir}/puppet/puppetd.conf
 
-# Install the ext/ directory to %{_datadir}/%{name}
+# Install the ext/ directory to %%{_datadir}/%%{name}
 install -d %{buildroot}%{_datadir}/%{name}
 cp -a ext/ %{buildroot}%{_datadir}/%{name}
 # emacs and vim bits are installed elsewhere
@@ -188,7 +188,7 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 %defattr(-, puppet, puppet, 0755)
 %{_localstatedir}/lib/puppet/
 %{_localstatedir}/log/puppet/
-%{_localstatedir}/run/puppet/
+%ghost %{_localstatedir}/run/puppet/
 
 %files server
 %defattr(-, root, root, 0755)
@@ -280,8 +280,11 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.4-1
+- Updated to release 2.7.4.
+
 * Thu Aug 25 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.3-1
-- Update to version 2.7.3.
+- Updated to release 2.7.3.
 
 * Mon Jun 27 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.1-1
 - UnRFX on EL6, please update Augeas from RFX if you need rack!
