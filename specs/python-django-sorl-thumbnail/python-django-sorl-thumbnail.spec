@@ -9,14 +9,14 @@
 %define real_name sorl-thumbnail
 
 Name: python-django-sorl-thumbnail
-Version: 11.05.2
+Version: 11.09
 Release: 1%{?dist}
 Summary: Thumbnails for Django
 Group: Development/Languages
 License: BSD
 URL: https://github.com/sorl/sorl-thumbnail
 
-Source: http://pypi.python.org/packages/source/s/%{real_name}/%{real_name}-%{version}.tar.gz
+Source0: http://pypi.python.org/packages/source/s/%{real_name}/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -61,10 +61,12 @@ rm -rf %{buildroot}
 %doc LICENSE PKG-INFO README.rst
 %doc htmldocs
 %{python_sitelib}/sorl/*.py*
-%{python_sitelib}/sorl/tests/
 %{python_sitelib}/sorl/thumbnail/
 %{python_sitelib}/*.egg-info
 
 %changelog
+* Mon Oct 03 2011 Yury V. Zaytsev <yury@shurup.com> - 11.09-1
+- Updated to release 11.09.
+
 * Fri Sep 09 2011 Yury V. Zaytsev <yury@shurup.com> - 11.05.2-1
 - Initial package.
