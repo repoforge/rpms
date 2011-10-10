@@ -13,7 +13,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.4
+Version: 2.7.5
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
@@ -96,15 +96,18 @@ patch -s -p1 < conf/redhat/rundir-perms.patch
 %{__perl} -pi -e 's|^#!.*$|#!/usr/bin/ruby|' bin/*
 
 %build
+
 # Fix some rpmlint complaints
 for f in mac_dscl.pp mac_dscl_revert.pp \
          mac_pkgdmg.pp ; do
   sed -i -e'1d' examples/$f
   %{__chmod} a-x examples/$f
 done
+
 for f in external/nagios.rb network/http_server/mongrel.rb relationship.rb; do
   %{__sed} -i -e '1d' lib/puppet/$f
 done
+
 %{__chmod} +x ext/puppetstoredconfigclean.rb
 
 find examples/ -type f -empty | xargs rm
@@ -188,7 +191,7 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 %defattr(-, puppet, puppet, 0755)
 %{_localstatedir}/lib/puppet/
 %{_localstatedir}/log/puppet/
-%ghost %{_localstatedir}/run/puppet/
+%{_localstatedir}/run/puppet/
 
 %files server
 %defattr(-, root, root, 0755)
@@ -280,6 +283,10 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Sun Oct 09 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.5-1
+- Removed misused %%ghost macro (shame on me!)
+- Updated to release 2.7.5.
+
 * Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.4-1
 - Updated to release 2.7.4.
 
