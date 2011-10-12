@@ -12,7 +12,6 @@
 %define _without_nas 1
 %define _without_nemesi 1
 %define _without_openal 1
-%define _without_vdpau 1
 %define _without_xmms 1
 %define _without_xss 1
 
@@ -63,7 +62,7 @@ Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
 %define real_version 2010-07-03
-Release: 0.46.svn20100703%{?dist}
+Release: 0.47.svn20100703%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
@@ -408,6 +407,9 @@ desktop-file-install \
 %{_datadir}/mplayer/*.fp
 
 %changelog
+* Tue Oct 11 2011 Aleksey Cheusov <vle@gmx.net> - 1.0-0.47.svn20100703
+- Enable support for VDPAU.
+
 * Tue Dec 07 2010 Dag Wieers <dag@wieers.com> - 1.0-0.46.svn20100703
 - Fix issue with fontconfig on RHEL5, RHEL4 and RHEL3.
 
