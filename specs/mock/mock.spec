@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dag
+# Authority: yury
 
 # ExclusiveDist: el5 el6
 
@@ -11,7 +11,7 @@
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.15
+Version: 1.1.16
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -91,6 +91,9 @@ fi
 %dir %{_localstatedir}/lib/mock
 
 %changelog
+* Sat Oct 15 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.16-1
+- Updated to release 1.1.16.
+
 * Sat Sep 24 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.15-1
 - Updated to release 1.1.15.
 
