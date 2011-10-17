@@ -6,8 +6,8 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.7g
-Release: 3%{?dist}
+Version: 0.8.7h
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -16,28 +16,20 @@ Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
-Patch1: http://www.cacti.net/downloads/patches/0.8.7g/data_source_deactivate.patch
-Patch2: http://www.cacti.net/downloads/patches/0.8.7g/graph_list_view.patch
-Patch3: http://www.cacti.net/downloads/patches/0.8.7g/html_output.patch
-Patch4: http://www.cacti.net/downloads/patches/0.8.7g/ldap_group_authenication.patch
-Patch5: http://www.cacti.net/downloads/patches/0.8.7g/script_server_command_line_parse.patch
-Patch6: http://www.cacti.net/downloads/patches/0.8.7g/ping.patch
-Patch7: http://www.cacti.net/downloads/patches/0.8.7g/poller_interval.patch
-
 BuildRequires: mysql-devel
-BuildRequires: openssl-devel
 BuildRequires: net-snmp-devel
 BuildRequires: net-snmp-utils
+BuildRequires: openssl-devel
 
-Requires: webserver
 Requires: mysql
-Requires: rrdtool
+Requires: net-snmp
+Requires: net-snmp-utils
 Requires: php
 Requires: php-mysql
 # el3 doesn't contain php-snmp
 %{!?el3:Requires: php-snmp}
-Requires: net-snmp
-Requires: net-snmp-utils
+Requires: rrdtool
+Requires: webserver
 
 %description
 Cacti is a complete frontend to RRDTool. It stores all of the necessary
@@ -61,15 +53,7 @@ database.
 This package includes the documentation for %{name}.
 
 %prep
-%setup -q
-
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
+%setup
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
@@ -141,6 +125,9 @@ fi
 %doc docs/*
 
 %changelog
+* Tue Sep 27 2011 Dag Wieers <dag@wieers.com> - 0.8.7h-1
+- Updated to release 0.8.7h.
+
 * Wed Sep 22 2010 David Hrbáč <david@hrbac.cz> - 0.8.7g-3
 - added ping.patch, poller_interval.patch
 

@@ -8,7 +8,7 @@
 
 Summary: Fast c-based poller for the cacti graphing solution
 Name: cacti-spine
-Version: 0.8.7a
+Version: 0.8.7h
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/System
@@ -45,7 +45,7 @@ autoreconf --force --install --symlink
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 spine %{buildroot}%{_bindir}/spine
-%{__install} -Dp -m0600 spine.conf %{buildroot}%{_sysconfdir}/spine.conf
+%{__install} -Dp -m0600 spine.conf.dist %{buildroot}%{_sysconfdir}/spine.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,6 +59,12 @@ autoreconf --force --install --symlink
 %config(noreplace) %{_sysconfdir}/spine.conf
 
 %changelog
+* Tue Sep 27 2011 Dag Wieers <dag@wieers.com> - 0.8.7h-1
+- Updated to release 0.8.7h.
+
+* Sat Sep 17 2011 Dag Wieers <dag@wieers.com> - 0.8.7g-1
+- Updated to release 0.8.7g.
+
 * Sun Feb 10 2008 Dag Wieers <dag@wieers.com> - 0.8.7a-1
 - Updated to release 0.8.7a.
 

@@ -1,10 +1,9 @@
 # $Id$
 # Authority: dag
-# Upstream: 
 
 Summary: Disk Information Utility
 Name: di
-Version: 4.26
+Version: 4.30
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -49,5 +48,11 @@ platforms. Great for heterogenous networks. di Manual Page
 %{_bindir}/mi
 
 %changelog
+* Mon Oct 10 2011 Dag Wieers <dag@wieers.com> - 4.30-1
+- Updated to release 4.30.
+
+* Fri Sep 16 2011 Dag Wieers <dag@wieers.com> - 4.28-1
+- Updated to release 4.28.
+
 * Mon Jul 26 2010 Dag Wieers <dag@wieers.com> - 4.26-1
 - Initial package. (using DAR)

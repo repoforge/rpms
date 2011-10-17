@@ -25,7 +25,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.26
+Version: 1.3.29
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -480,8 +480,10 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/oleview.exe.so
 %{_libdir}/wine/ping.exe.so
 %{_libdir}/wine/plugplay.exe.so
+%{_libdir}/wine/presentationfontcache.exe.so
 %{_libdir}/wine/progman.exe.so
 %{_libdir}/wine/reg.exe.so
+%{_libdir}/wine/regasm.exe.so
 %{_libdir}/wine/regedit.exe.so
 %{_libdir}/wine/regsvcs.exe.so
 %{_libdir}/wine/regsvr32.exe.so
@@ -499,6 +501,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/termsv.exe.so
 %{_libdir}/wine/uninstaller.exe.so
 %{_libdir}/wine/unlodctr.exe.so
+%{_libdir}/wine/view.exe.so
 %{_libdir}/wine/wineboot.exe.so
 %{_libdir}/wine/winebrowser.exe.so
 %{_libdir}/wine/winecfg.exe.so
@@ -894,6 +897,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/xinput1_3.dll.so
 %{_libdir}/wine/xinput9_1_0.dll.so
 %{_libdir}/wine/xmllite.dll.so
+%{_libdir}/wine/xolehlp.dll.so
 
 ### ds.so
 %{_libdir}/wine/gphoto2.ds.so
@@ -1007,6 +1011,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Oct 09 2011 Dag Wieers <dag@wieers.com> - 1.3.29-1
+- Updated to release 1.3.29.
+
 * Wed Aug 10 2011 Dag Wieers <dag@wieers.com> - 1.3.26-1
 - Updated to release 1.3.26.
 
