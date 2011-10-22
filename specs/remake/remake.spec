@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 Summary: GNU Make with comprehensible tracing and a debugger
 Name: remake
-Epoch: 1
 Version: 3.82+dbg0.8
-Release: 0%{?dist}
+Release: 1%{?dist}
 License: GPLv3
 Group: Development/Tools
 URL: http://bashdb.sf.net/remake/

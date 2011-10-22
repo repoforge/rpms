@@ -4,7 +4,7 @@
 Name:           bashdb
 Summary:        BASH debugger, the BASH symbolic debugger
 Version:        4.2_0.8
-Release:        0%{?dist}
+Release:        1%{?dist}
 License:        GPLv2+
 Group:          Development/Debuggers
 Url:            http://bashdb.sourceforge.net/
@@ -51,7 +51,7 @@ make check
 /sbin/install-info %{_infodir}/%{name}.info.gz %{_infodir}/dir || :
 
 %postun
-if [ "$1" = 0 ]; then
+if [ "$1" = 0 ] && [ -f %{_infodir}/%{name}.info.gz ] ; then
    /sbin/install-info --delete %{_infodir}/%{name}.info.gz %{_infodir}/dir || :
 fi
 
