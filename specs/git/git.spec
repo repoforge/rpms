@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.6.4
+Version: 1.7.7.1
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -25,8 +25,6 @@ Source5: gitweb.conf.in
 Patch0: git-1.5-gitweb-home-link.patch
 ### https://bugzilla.redhat.com/490602
 Patch1: git-cvsimport-Ignore-cvsps-2.2b1-Branches-output.patch
-### https://bugzilla.redhat.com/500137
-Patch2: git-1.6-update-contrib-hooks-path.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: asciidoc > 6.0.3
@@ -174,7 +172,6 @@ Git is a Perl module that implements Git bindings.
 %setup
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %{__cat} <<EOF >config.mak
 V = 1
@@ -395,6 +392,10 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Wed Oct 26 2011 Steve Huff <shuff@vecna.org> - 1.7.7.1-1
+- Updated to release 1.7.7.1.
+- post-receive-email hook patch no longer applicable.
+
 * Tue Sep 27 2011 Steve Huff <shuff@vecna.org> - 1.7.6.4-1
 - Updated to release 1.7.6.4.
 - Source comes from Google Code now.
