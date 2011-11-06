@@ -2,32 +2,29 @@
 # Authority: dag
 
 ### EL6 ships with python-lxml-2.2.3-1.1.el6
-# ExclusiveDist: el2 el3 el4 el5
+# ExclusiveDist: el5
 
-%{?el5:%define _without_egg_info 1}
-%{?el4:%define _without_egg_info 1}
-%{?el3:%define _without_egg_info 1}
-%{?el2:%define _without_egg_info 1}
+%{?el5:%global _without_egg_info 1}
 
-%define python_version %(%{__python} -c 'import sys; print sys.version.split(" ")[0]')
-%define python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
+%global python_sitearch %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(1)')
+%endif
 
-%define real_name lxml
+%global real_name lxml
 
 Summary: ElementTree-like Python bindings for libxml2 and libxslt
 Name: python-lxml
-Version: 2.3
+Version: 2.3.1
 Release: 1%{?dist}
 License: BSD
 Group: Development/Libraries
-URL: http://codespeak.net/lxml/
+URL: http://lxml.de
 
-Source: http://codespeak.net/lxml/lxml-%{version}.tgz
+Source0: http://lxml.de/files/%{real_name}-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel
+BuildRequires: python-devel >= 2.4
 BuildRequires: libxslt-devel
-#BuildRequires: python-setuptools-devel
 
 %description
 lxml provides a Python binding to the libxslt and libxml2 libraries.
@@ -55,11 +52,13 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES.txt CREDITS.txt LICENSES.txt PKG-INFO README.txt doc/
-%{python_sitearch}/lxml/
-%ghost %{python_sitearch}/lxml/*.pyo
+%{python_sitearch}/%{real_name}/
 %{!?_without_egg_info:%{python_sitearch}/*.egg-info}
 
 %changelog
+* Sat Oct 22 2011 Yury V. Zaytsev <yury@shurup.com> - 2.3.1-1
+- Updated to release 2.3.1.
+
 * Tue Sep 13 2011 David Hrbáč <david@hrbac.cz> - 2.3-12.3-1
 - new upstream release
 
