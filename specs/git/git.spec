@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.7.1
+Version: 1.7.7.2
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -388,10 +388,15 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 
 %files -n perl-Git
 %defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/private-Error.3pm.*
 %doc %{_mandir}/man3/Git.3pm*
+%{perl_vendorlib}/Error.pm
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Mon Nov 14 2011 David Hrbáč <david@hrbac.cz> - 1.7.7.2-1
+- new upstream release
+
 * Wed Oct 26 2011 Steve Huff <shuff@vecna.org> - 1.7.7.1-1
 - Updated to release 1.7.7.1.
 - post-receive-email hook patch no longer applicable.
