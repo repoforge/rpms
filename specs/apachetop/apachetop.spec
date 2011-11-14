@@ -13,13 +13,15 @@
 Summary: Top-like display of Apache logs
 Name: apachetop
 Version: 0.12.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: BSD
 Group: Applications/Internet
 URL: http://www.webta.org/projects/apachetop/wiki/Download
 
 Source: http://www.webta.org/apachetop/apachetop-%{version}.tar.gz
 Patch0: apachetop-0.12.6-gcc41.patch
+Patch1: apachetop-0.12.6-maxpathlen.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: ncurses-devel, m4, readline-devel, gcc-c++, pcre-devel
@@ -34,6 +36,7 @@ fields in combined) and generates human-parsable output in realtime.
 %prep
 %setup
 %patch0
+%patch1 -p1 -b .maxpathlen
 
 %build
 %configure \
@@ -54,6 +57,9 @@ fields in combined) and generates human-parsable output in realtime.
 %{_bindir}/apachetop
 
 %changelog
+* Thu Nov 03 2011 David Hrbáč <david@hrbac.cz> - 0.12.6-3
+- patched a buffer overflow by wrong MAXPATHLEN define
+
 * Sat Jul 28 2007 Dag Wieers <dag@wieers.com> - 0.12.6-2
 - Added a patch to build on gcc 4.1. (Greg Swallow)
 
