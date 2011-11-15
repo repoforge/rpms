@@ -1,0 +1,49 @@
+diff -uap subversion-1.7.0/build.conf.rpath subversion-1.7.0/build.conf
+--- subversion-1.7.0/build.conf.rpath	2011-08-04 21:18:50.000000000 +0100
++++ subversion-1.7.0/build.conf	2011-10-12 09:23:43.844525530 +0100
+@@ -478,7 +478,7 @@ type = swig_lib
+ lang = python
+ path = subversion/bindings/swig/python/libsvn_swig_py
+ libs = libsvn_client libsvn_wc libsvn_ra libsvn_delta libsvn_subr apriconv apr
+-link-cmd = $(LINK)
++link-cmd = $(LINK_LIB)
+ install = swig-py-lib
+ # need special build rule to include -DSWIGPYTHON
+ compile-cmd = $(COMPILE_SWIG_PY)
+@@ -501,7 +501,7 @@ type = swig_lib
+ lang = ruby
+ path = subversion/bindings/swig/ruby/libsvn_swig_ruby
+ libs = libsvn_client libsvn_wc libsvn_delta libsvn_subr apriconv apr
+-link-cmd = $(LINK) $(SWIG_RB_LIBS)
++link-cmd = $(LINK_LIB) $(SWIG_RB_LIBS)
+ install = swig-rb-lib
+ # need special build rule to include
+ compile-cmd = $(COMPILE_SWIG_RB)
+diff -uap subversion-1.7.0/build/generator/gen_base.py.rpath subversion-1.7.0/build/generator/gen_base.py
+--- subversion-1.7.0/build/generator/gen_base.py.rpath	2011-06-22 17:44:54.000000000 +0100
++++ subversion-1.7.0/build/generator/gen_base.py	2011-10-12 09:23:15.368649375 +0100
+@@ -506,6 +506,10 @@ class TargetLib(TargetLinked):
+     self.msvc_fake = options.get('msvc-fake') == 'yes' # has fake target
+     self.msvc_export = options.get('msvc-export', '').split()
+ 
++    ### hmm. this is Makefile-specific
++    if self.link_cmd == '$(LINK)':
++      self.link_cmd = '$(LINK_LIB)'
++
+ class TargetApacheMod(TargetLib):
+ 
+   def __init__(self, name, options, gen_obj):
+diff -uap subversion-1.7.0/Makefile.in.rpath subversion-1.7.0/Makefile.in
+--- subversion-1.7.0/Makefile.in.rpath	2011-07-16 12:50:53.000000000 +0100
++++ subversion-1.7.0/Makefile.in	2011-10-12 09:24:36.165524732 +0100
+@@ -203,8 +203,8 @@ COMPILE_JAVAHL_CXX = $(LIBTOOL) $(LTCXXF
+ COMPILE_JAVAHL_JAVAC = $(JAVAC) $(JAVAC_FLAGS)
+ COMPILE_JAVAHL_JAVAH = $(JAVAH)
+ 
+-LINK = $(LIBTOOL) $(LTFLAGS) --mode=link $(CC) $(LT_LDFLAGS) $(CFLAGS) $(LDFLAGS) -rpath $(libdir)
+-LINK_LIB = $(LINK) $(LT_SO_VERSION)
++LINK = $(LIBTOOL) $(LTFLAGS) --mode=link $(CC) $(LT_LDFLAGS) $(CFLAGS) $(LDFLAGS)
++LINK_LIB = $(LINK) $(LT_SO_VERSION) -rpath $(libdir)
+ LINK_CXX = $(LIBTOOL) $(LTCXXFLAGS) --mode=link $(CXX) $(LT_LDFLAGS) $(CXXFLAGS) $(LDFLAGS) -rpath $(libdir)
+ LINK_CXX_LIB = $(LINK_CXX) $(LT_SO_VERSION)
+ 
