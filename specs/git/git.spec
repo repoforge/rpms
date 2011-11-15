@@ -14,7 +14,7 @@
 Summary: Git core and tools
 Name: git
 Version: 1.7.7.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
@@ -32,6 +32,7 @@ BuildRequires: curl-devel >= 7.9
 BuildRequires: desktop-file-utils
 BuildRequires: expat-devel
 BuildRequires: gettext
+BuildRequires: emacs
 BuildRequires: openssl-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: xmlto
@@ -394,6 +395,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Tue Nov 15 2011 David Hrbáč <david@hrbac.cz> - 1.7.7.2-2
+- emacs to build requirements
+
 * Mon Nov 14 2011 David Hrbáč <david@hrbac.cz> - 1.7.7.2-1
 - new upstream release
 
