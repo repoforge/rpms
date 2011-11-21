@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.7.2
+Version: 1.7.7.4
 Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
@@ -389,12 +389,14 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 
 %files -n perl-Git
 %defattr(-, root, root, 0755)
-%doc %{_mandir}/man3/private-Error.3pm.*
 %doc %{_mandir}/man3/Git.3pm*
-%{perl_vendorlib}/Error.pm
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Sun Nov 20 2011 Steve Huff <shuff@vecna.org> - 1.7.7.4-1
+- Updated to release 1.7.7.4.
+- No more custom Error perl module.
+
 * Tue Nov 15 2011 David Hrbáč <david@hrbac.cz> - 1.7.7.2-2
 - emacs to build requirements
 
