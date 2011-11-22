@@ -20,13 +20,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-Requires: openssh-clients >= 4.1
-Requires: perl
-Requires: perl(IO::Pty)
-Requires: perl(Net::SFTP::Foreign)
+BuildRequires: rpm-macros-rpmforge
+Requires: openssh-clients
+
+# don't scan the examples for autoreq/prov
+%filter_requires_in %{_docdir}
+%filter_provides_in %{_docdir}
+
+%filter_setup
 
 %description
-perl-Net-OpenSSH is a Perl module.
+Perl SSH client package implemented on top of OpenSSH.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -34,6 +38,9 @@ perl-Net-OpenSSH is a Perl module.
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
+
+# fix permissions on sample scripts
+%{__chmod} +x sample/*.pl
 
 %install
 %{__rm} -rf %{buildroot}
@@ -55,8 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Net/OpenSSH.pm
 
 %changelog
-* Wed Aug 17 2011 Steve Huff <shuff@vecna.org> - 0.52-1
-- Update to version 0.52.
+* Thu Aug 22 2011 Giacomo Tenaglia <Giacomo.Tenaglia@cern.ch> - 0.52-1
+- Upgrade to version 0.52.
+- Updated description.
 
 * Tue Jun 22 2010 Dag Wieers <dag@wieers.com> - 0.36-1
 - Initial package. (using DAR)
