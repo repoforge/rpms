@@ -21,7 +21,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl
 BuildRequires: rpm-macros-rpmforge
-Requires: openssh-clients
+Requires: openssh-clients >= 4.1
+Requires: perl
 
 # don't scan the examples for autoreq/prov
 %filter_requires_in %{_docdir}
