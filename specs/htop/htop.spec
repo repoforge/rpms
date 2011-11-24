@@ -5,13 +5,13 @@
 
 Summary: Interactive process viewer
 Name: htop
-Version: 0.9
+Version: 1.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://htop.sourceforge.net/
 
-Source: http://dl.sf.net/htop/htop-%{version}.tar.gz
+Source: http://download.sourceforge.net/htop/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, ncurses-devel
@@ -42,6 +42,9 @@ htop is an interactive process viewer for Linux.
 %{_datadir}/pixmaps/htop.png
 
 %changelog
+* Thu Nov 24 2011 David Hrbáč <david@hrbac.cz> - 1.0-1
+- new upstream release
+
 * Sun Nov 28 2010 Dag Wieers <dag@wieers.com> - 0.9-1
 - Updated to release 0.9.
 
