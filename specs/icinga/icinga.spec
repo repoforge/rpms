@@ -10,10 +10,11 @@
 
 %define apacheconfdir  %{_sysconfdir}/httpd/conf.d
 %define apacheuser apache
+%define apachegroup apache
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.5.1
+Version: 1.6.1
 Release: 1%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -31,7 +32,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libdbi-devel
 BuildRequires: perl(ExtUtils::Embed)
 ### Requires: nagios-plugins
-Provides: nagios
+### Provides: nagios
 
 %description
 Icinga is an application, system and network monitoring application.
@@ -65,14 +66,6 @@ Requires: %{name} = %{version}-%{release}
 This package contains the idoutils broker module for %{name} which provides
 database storage via libdbi.
 
-%package api
-Summary: PHP api for %{name}
-Group: Applications/System
-Requires: php
-
-%description api
-PHP api for %{name}
-
 %package doc
 Summary: documentation %{name}
 Group: Documentation
@@ -88,7 +81,7 @@ Documentation for %{name}
 %configure \
     --datadir="%{_datadir}/icinga" \
     --datarootdir="%{_datadir}/icinga" \
-    --libexecdir="%{_datadir}/icinga" \
+    --libexecdir="%{_libdir}/nagios/plugins" \
     --localstatedir="%{_localstatedir}/icinga" \
     --with-checkresult-dir="%{_localstatedir}/icinga/checkresults" \
     --sbindir="%{_libdir}/icinga/cgi" \
@@ -96,6 +89,8 @@ Documentation for %{name}
     --with-cgiurl="/icinga/cgi-bin" \
     --with-command-user="icinga" \
     --with-command-group="icingacmd" \
+    --with-web-user=%{apacheuser} \
+    --with-web-group=%{apachegroup} \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
@@ -113,7 +108,6 @@ Documentation for %{name}
     --with-init-dir=%{_initrddir} \
     --with-log-dir=%{logdir} \
     --with-cgi-log-dir=%{logdir}/gui \
-    --with-phpapi-log-dir=%{logdir}/api \
     --with-p1-file-dir="%{_libdir}/icinga"
 %{__make} %{?_smp_mflags} all
 
@@ -126,7 +120,6 @@ Documentation for %{name}
     install-config \
     install-webconf \
     install-idoutils \
-    install-api \
     DESTDIR="%{buildroot}" \
     INSTALL_OPTS="" \
     INSTALL_OPTS_WEB="" \
@@ -137,6 +130,13 @@ Documentation for %{name}
 %{__strip} %{buildroot}%{_bindir}/{icinga,icingastats,log2ido,ido2db}
 %{__strip} %{buildroot}%{_libdir}/icinga/cgi/*.cgi
 
+### enable cmd.cgi logging by default
+%{__perl} -pi -e '
+        s|use_logging.*|use_logging=1|;
+        s|cgi_log_file.*|cgi_log_file=%{logdir}/gui/icinga-cgi.log|;
+        s|cgi_log_archive_path=.*|cgi_log_archive_path=%{logdir}/gui|;
+   ' %{buildroot}%{_sysconfdir}/icinga/cgi.cfg
+
 ### move idoutils sample configs to final name
 mv %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg-sample %{buildroot}%{_sysconfdir}/icinga/ido2db.cfg
 mv %{buildroot}%{_sysconfdir}/icinga/idomod.cfg-sample %{buildroot}%{_sysconfdir}/icinga/idomod.cfg
@@ -145,7 +145,8 @@ mv %{buildroot}%{_sysconfdir}/icinga/modules/idoutils.cfg-sample %{buildroot}%{_
 ### copy idoutils db-script
 cp -r module/idoutils/db %{buildroot}%{_sysconfdir}/icinga/idoutils
 
-
+### remove icinga-api
+%{__rm} -rf %{buildroot}%{_datadir}/icinga/icinga-api
 
 %pre
 # Add icinga user
@@ -239,22 +240,25 @@ fi
 %config(noreplace) %{_sysconfdir}/icinga/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/icinga/idomod.cfg
 %config(noreplace) %{_sysconfdir}/icinga/modules/idoutils.cfg
+%config(noreplace) %{_sysconfdir}/icinga/objects/ido2db_check_proc.cfg
 %{_sysconfdir}/icinga/idoutils
 %{_bindir}/ido2db
 %{_bindir}/log2ido
 %{_bindir}/idomod.o
 
-%files api
-%defattr(-,icinga,icinga,-)
-%dir %{_datadir}/icinga/icinga-api
-%{_datadir}/icinga/icinga-api/IcingaApi.php
-%{_datadir}/icinga/icinga-api/contrib
-%{_datadir}/icinga/icinga-api/objects
-%{_datadir}/icinga/icinga-api/tests
-%attr(2775,icinga,icingacmd) %dir %{logdir}/api
-
-
 %changelog
+* Fri Dec 02 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.1-1
+- bump to 1.6.1
+
+* Sun Nov 27 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.0-1
+- set to 1.6.0 target
+- add --with-web-user/group
+- add objects/ido2db_check_proc.cfg
+- drop api package as this is now deprecated and not shipped anymore with icinga package
+- remove provides nagios, inaccurate
+- enable cmd.cgi logging by default, %{logdir}/gui used
+- fix --libexecdir to point to possible location of nagios-plugins in resource.cfg:$USER1$
+
 * Fri Sep 09 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.5.1-1
 - bump to 1.5.1
 
