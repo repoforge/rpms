@@ -7,29 +7,42 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.11
+Version: 0.4.12
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
-URL: http://oss.codepoet.no/revelation/
+URL: http://revelation.olasagasti.info/
 
-Source: ftp://oss.codepoet.no/revelation/revelation-%{version}.tar.bz2
+Source: https://bitbucket.org/erikg/revelation/downloads/revelation-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: python-devel >= 2.3, python-crypto >= 1.9
-BuildRequires: gnome-keyring-devel, pygtk2-devel >= 2.8, gnome-python2-devel
-BuildRequires: gnome-vfs2-devel, libgnomeui-devel, gnome-python2-bonobo
-BuildRequires: GConf2-devel, gnome-python2-gconf, gnome-python2-desktop
-BuildRequires: gnome-python2-applet, gnome-panel-devel, gnome-python2-extras
-BuildRequires: cracklib-devel, cracklib-dicts, intltool, perl(XML::Parser)
-%{?el5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
-%{?fc6:BuildRequires: gnome-python2-extras, gnome-panel-devel}
-%{?fc5:BuildRequires: gnome-python2-extras, gnome-panel-devel}
-%{?fc4:BuildRequires: gnome-python2-extras, gnome-panel-devel}
-Requires: python >= 2.3, pygtk2 >= 2.4, python-crypto >= 1.9
-Requires: gnome-python2-canvas, gnome-python2-gconf, gnome-python2-gnomevfs
-Requires: gnome-python2-bonobo, cracklib, gnome-python2-applet
+%{?el6:BuildRequires: cracklib-devel, gnome-python2-devel}
+BuildRequires: cracklib-dicts
+BuildRequires: GConf2-devel
+BuildRequires: gnome-keyring-devel
+BuildRequires: gnome-panel-devel
+BuildRequires: gnome-python2-applet
+BuildRequires: gnome-python2-bonobo
+BuildRequires: gnome-python2-desktop
+BuildRequires: gnome-python2-extras
+BuildRequires: gnome-python2-gconf
+BuildRequires: gnome-vfs2-devel
+BuildRequires: intltool
+BuildRequires: libgnomeui-devel
+BuildRequires: perl(XML::Parser)
+BuildRequires: pygtk2-devel >= 2.8
+BuildRequires: python-crypto >= 1.9
+BuildRequires: python-devel >= 2.3
+Requires: cracklib
 Requires: cracklib-dicts
+Requires: gnome-python2-applet
+Requires: gnome-python2-bonobo
+Requires: gnome-python2-canvas
+Requires: gnome-python2-gconf
+Requires: gnome-python2-gnomevfs
+Requires: pygtk2 >= 2.4
+Requires: python >= 2.3
+Requires: python-crypto >= 1.9
 
 %description
 Revelation is a password manager. It organizes accounts in
@@ -40,10 +53,10 @@ a tree structure, and stores them as AES-encrypted XML files.
 
 %build
 %configure \
-	--disable-desktop-update \
-	--disable-mime-update \
-	--disable-schemas-install \
-	--with-cracklib-dict="/usr/share/cracklib/pw_dict"
+    --disable-desktop-update \
+    --disable-mime-update \
+    --disable-schemas-install \
+    --with-cracklib-dict="/usr/share/cracklib/pw_dict"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -83,15 +96,15 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/applications/revelation.desktop
 %{_datadir}/revelation/
 %{_datadir}/icons/hicolor/*/apps/revelation.png
+%{_datadir}/icons/hicolor/*/apps/revelation.svg
+%{_datadir}/icons/hicolor/*/apps/revelation-locked.png
 %{_datadir}/icons/hicolor/48x48/mimetypes/gnome-mime-application-x-revelation.png
 %{_datadir}/mime/packages/revelation.xml
 
-%config %{_sysconfdir}/gconf/schemas/revelation-applet.schemas
-%{_libdir}/bonobo/servers/GNOME_RevelationApplet.server
-%{_libexecdir}/revelation-applet
-%{_datadir}/icons/hicolor/*/apps/revelation-locked.png
-
 %changelog
+* Tue Nov 15 2011 Dag Wieers <dag@wieers.com> - 0.4.12-1
+- Updated to release 0.4.12.
+
 * Tue Jan 16 2007 Dag Wieers <dag@wieers.com> - 0.4.11-1
 - Updated to release 0.4.11.
 

@@ -3,7 +3,7 @@
 
 Summary: Disk Information Utility
 Name: di
-Version: 4.30
+Version: 4.31
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -48,6 +48,9 @@ platforms. Great for heterogenous networks. di Manual Page
 %{_bindir}/mi
 
 %changelog
+* Thu Nov 24 2011 Dag Wieers <dag@wieers.com> - 4.31-1
+- Updated to release 4.31.
+
 * Mon Oct 10 2011 Dag Wieers <dag@wieers.com> - 4.30-1
 - Updated to release 4.30.
 

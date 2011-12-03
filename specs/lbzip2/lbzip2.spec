@@ -1,17 +1,15 @@
-# $Id$
+# $Id: lbzip2.spec 8698 2010-03-22 00:06:50Z dag $
 # Authority: dag
 
 Summary: Fast, multi-threaded bzip2 utility
 Name: lbzip2
-Version: 0.23
+Version: 2.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://lacos.hu/
 
-Source: http://lacos.web.elte.hu/pub/lbzip2/lbzip2-%{version}.tar.gz
-Patch0: Makefile.patch
-Patch1: lfs.patch
+Source: http://cloud.github.com/downloads/kjn/lbzip2/lbzip2-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel
@@ -27,40 +25,39 @@ can speed up archiving in combination with tar, because lbzip2 allows
 compression to overlap with disk usage to a greater extent than bzip2 does.
 
 %prep
-%setup -n %{name}
-%patch0 -p1
-%patch1 -p1
+%setup
 
 %build
+%configure
 %{__make} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 lbzip2 %{buildroot}%{_bindir}/lbzip2
+%{__install} -Dp -m0755 src/lbzip2 %{buildroot}%{_bindir}/lbzip2
 %{__ln_s} -f libzip2 %{buildroot}%{_bindir}/lbunzip2
 %{__ln_s} -f libzip2 %{buildroot}%{_bindir}/lbzcat
 
-%{__install} -Dp -m0644 lbzip2.1 %{buildroot}%{_mandir}/man1/lbzip2.1
+%{__install} -Dp -m0644 man/lbzip2.1 %{buildroot}%{_mandir}/man1/lbzip2.1
 %{__ln_s} -f lbzip2.1 %{buildroot}%{_mandir}/man1/lbunzip2.1
 %{__ln_s} -f lbzip2.1 %{buildroot}%{_mandir}/man1/lbzcat.1
-
-%{__install} -Dp -m0644 malloc_trace.pl %{buildroot}%{_datadir}/lbzip2/malloc_trace.pl
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog GPL-2.0 GPL-3.0 README
+%doc AUTHORS ChangeLog INSTALL NEWS COPYING README
 %doc %{_mandir}/man1/lbunzip2.1*
 %doc %{_mandir}/man1/lbzcat.1*
 %doc %{_mandir}/man1/lbzip2.1*
 %{_bindir}/lbunzip2
 %{_bindir}/lbzcat
 %{_bindir}/lbzip2
-%{_datadir}/lbzip2/malloc_trace.pl
 
 %changelog
+* Thu Nov 24 2011 Dag Wieers <dag@wieers.com> - 2.1-1
+- Updated to release 2.1.
+
 * Thu Mar 04 2010 Dag Wieers <dag@wieers.com> - 0.23-1
 - Updated to release 0.23.
 

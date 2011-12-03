@@ -13,15 +13,13 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.97.2
+Version: 0.97.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
 
-#Source: http://www.clamav.net/clamav-%{version}.tar.gz
-#Source: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
-Source: http://downloads.sourceforge.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
+Source: http://dl.sf.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -386,6 +384,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Mon Oct 17 2011 Dag Wieers <dag@wieers.com> - 0.97.3-1
+- Updated to release 0.97.3.
+
 * Mon Jul 25 2011 Dag Wieers <dag@wieers.com> - 0.97.2-1
 - Updated to release 0.97.2.
 

@@ -6,7 +6,7 @@
 
 Summary: Front end to diff for comparing files on a word per word basis
 Name: dwdiff
-Version: 1.8.1
+Version: 2.0
 Release: 1%{?dist}
 License: OSL 2.0
 Group: Applications/Text
@@ -68,6 +68,9 @@ export CFLAGS="%{optflags}"
 %endif
 
 %changelog
+* Mon Oct 24 2011 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Sun Jul 25 2010 Dag Wieers <dag@wieers.com> - 1.8.1-1
 - Updated to release 1.8.1.
 
