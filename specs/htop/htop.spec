@@ -11,7 +11,7 @@ License: GPL
 Group: Applications/System
 URL: http://htop.sourceforge.net/
 
-Source: http://dl.sf.net/htop/htop-%{version}.tar.gz
+Source: http://download.sourceforge.net/htop/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc >= 3.0, ncurses-devel
