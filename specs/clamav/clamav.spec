@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.97.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -68,7 +68,7 @@ The Clam AntiVirus Daemon
 Summary: The Clam AntiVirus sendmail-milter Daemon
 Group: Applications/System
 Requires: clamd = %{version}-%{release}
-Requires: sendmail
+Requires: smtpdaemon
 
 %description milter
 The Clam AntiVirus sendmail-milter Daemon
@@ -384,6 +384,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Sat Dec 103 2011 Philip J Perry <phil@elrepo.org> - 0.97.3-2
+- Fix Requires for clamav-milter to also allow use with Postfix.
+
 * Mon Oct 17 2011 Dag Wieers <dag@wieers.com> - 0.97.3-1
 - Updated to release 0.97.3.
 
