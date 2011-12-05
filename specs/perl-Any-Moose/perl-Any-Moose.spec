@@ -13,7 +13,7 @@
 
 Summary: use Moose or Mouse modules
 Name: perl-Any-Moose
-Version: 0.13
+Version: 0.17
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -61,6 +61,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Any/Moose.pm
 
 %changelog
+* Mon Dec 05 2011 David Hrbáč <david@hrbac.cz> - 0.17-1
+- new upstream release
+
 * Tue Apr 05 2011 Denis Fateyev <denis@fateyev.com> - 0.13-1
 - Updated to version 0.13.
 
