@@ -16,8 +16,11 @@ BuildRequires:  perl(HTTP::Request::Common)
 BuildRequires:  perl(JSON::Any)
 BuildRequires:  perl(JSON::XS)
 BuildRequires:  perl(Test::MockModule)
+BuildRequires:  perl(Test::Pod)
 BuildRequires:  perl(URI::Escape)
 BuildRequires:  perl(WWW::Mechanize::GZip)
+BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl-libwww-perl
 Requires:       perl(Any::Moose)
 Requires:       perl(Crypt::SSLeay)
 Requires:       perl(HTML::TreeBuilder)
@@ -35,7 +38,7 @@ http://github.com is a popular git host.
 %setup -q -n Net-GitHub-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+%{__perl} Makefile.PL INSTALLDIRS=vendor --skipdeps
 make %{?_smp_mflags}
 
 %install
