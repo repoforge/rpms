@@ -25,6 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(Mouse) >= 0.40
 BuildRequires: perl >= 5.006_002
+BuildRequires: perl(ExtUtils::MakeMaker)                                                                                                                           
 Requires: perl(Mouse) >= 0.40
 Requires: perl >= 5.006_002
 
