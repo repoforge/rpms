@@ -30,7 +30,7 @@ BuildArch: noarch
 BuildRequires: ruby-devel
 BuildRequires: ruby-rdoc
 
-Requires: ruby(abi) = 1.8
+Requires: ruby(abi) >= 1.8
 Requires: ruby-rdoc
 
 Provides: ruby(rubygems) = %{version}
@@ -80,6 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelib}/*
 
 %changelog
+
+* Sun Dec 11 2011 Rilindo Foster <rilindo.foster@monzell.com> - 1.3.2-3
+- Updated Requires to allow it to install if Ruby 1.9 is present, but not 1.8.
+
 * Tue Oct 11 2011 Steve Huff <shuff@vecna.org> - 1.3.2-2
 - GitHub URLs are not future-proofed, download from rubygems.org instead.
 
