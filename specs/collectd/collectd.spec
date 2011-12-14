@@ -141,7 +141,7 @@ Requires: libnotify
 BuildRequires: gtk2-devel
 BuildRequires: libnotify-devel
 %description notify_desktop
-The Notify Desktop plugin uses libnotify to display notifications to the user via the desktop notification specification, i. e. on an X display. 
+The Notify Desktop plugin uses libnotify to display notifications to the user via the desktop notification specification, i. e. on an X display.
 %endif
 
 %package -n perl-Collectd
@@ -150,7 +150,7 @@ Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
 Requires: perl
 %description -n perl-Collectd
-This package contains Perl bindings and plugin for collectd. 
+This package contains Perl bindings and plugin for collectd.
 
 %package rrdtool
 Summary: rrdtool plugin for collectd
@@ -171,7 +171,7 @@ Requires: tcp_wrappers
 BuildRequires: net-snmp-devel
 BuildRequires: tcp_wrappers
 %description snmp
-The SNMP plugin uses the Net-SNMP library to read values from network devices using the Simple Network Management Protocol (SNMP). 
+The SNMP plugin uses the Net-SNMP library to read values from network devices using the Simple Network Management Protocol (SNMP).
 
 %prep
 %setup
@@ -369,7 +369,7 @@ fi
 %{perl_vendorlib}/Collectd.pm
 %{perl_vendorlib}/Collectd/
 %doc %{_mandir}/man5/collectd-perl.5*
-%doc %{_mandir}/man3/Collectd::Unixsock.3pm* 
+%doc %{_mandir}/man3/Collectd::Unixsock.3pm*
 
 %files php-collection
 %{_localstatedir}/www/php-collection
@@ -388,6 +388,9 @@ fi
 %{_libdir}/collectd/snmp.so
 
 %changelog
+* Wed Dec 14 2011 Arnoud Vermeer <repoforge@freshway.biz> 5.0.1-1
+- Updated to release 5.0.1.
+
 * Fri Mar 11 2011 Christoph Maser <cmaser@gmx.de> 4.10.2-2
 - Add conditional to compile under el4
 
