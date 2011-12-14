@@ -14,8 +14,8 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 4.10.2
-Release: 2%{?dist}
+Version: 5.0.1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://collectd.org/
@@ -23,7 +23,6 @@ URL: http://collectd.org/
 Source: http://collectd.org/files/collectd-%{version}.tar.bz2
 Source1: php-collection.conf
 Source2: collection3.conf
-Patch1: %{name}-4.10.0-configure-OpenIPMI.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: curl
@@ -124,7 +123,7 @@ The libvirt plugin uses the virtualization API libvirt, created by RedHat's Emer
 %endif
 
 %package mysql
-Summary: xmms plugin for collectd
+Summary: mysql plugin for collectd
 Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
 Requires: mysql
@@ -154,7 +153,7 @@ Requires: perl
 This package contains Perl bindings and plugin for collectd. 
 
 %package rrdtool
-Summary: xmms plugin for collectd
+Summary: rrdtool plugin for collectd
 Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
 Requires: rrdtool
@@ -174,19 +173,8 @@ BuildRequires: tcp_wrappers
 %description snmp
 The SNMP plugin uses the Net-SNMP library to read values from network devices using the Simple Network Management Protocol (SNMP). 
 
-%package xmms
-Summary: xmms plugin for collectd
-Group: System Environment/Daemons
-BuildRequires: xmms-devel
-Requires: collectd = %{version}-%{release}
-Requires: xmms
-
-%description xmms
-This plugin collects bit-rate and sampling rate as you play songs
-
 %prep
 %setup
-%patch1 -p0
 
 %{__perl} -pi.orig -e 's|-Werror||g' Makefile.in */Makefile.in
 
@@ -251,6 +239,7 @@ fi
 %doc %{_mandir}/man1/collectd.1*
 %doc %{_mandir}/man1/collectdmon.1*
 %doc %{_mandir}/man1/collectd-nagios.1*
+%doc %{_mandir}/man1/collectdctl.1.gz
 %doc %{_mandir}/man5/collectd.conf.5*
 %doc %{_mandir}/man5/collectd-email.5*
 %doc %{_mandir}/man5/collectd-exec.5*
@@ -258,11 +247,13 @@ fi
 %doc %{_mandir}/man5/collectd-perl.5*
 %doc %{_mandir}/man5/collectd-python.5*
 %doc %{_mandir}/man5/collectd-snmp.5*
+%doc %{_mandir}/man5/collectd-threshold.5.gz
 %doc %{_mandir}/man5/collectd-unixsock.5*
 %doc %{_mandir}/man5/types.db.5*
 %config(noreplace) %{_sysconfdir}/collectd.conf
 %dir %{_sysconfdir}/collectd.d
 %config %{_initrddir}/collectd
+%{_bindir}/collectdctl
 %{_bindir}/collectd-nagios
 %{_datadir}/collectd/
 %dir %{_libdir}/collectd/
@@ -324,10 +315,12 @@ fi
 %{_libdir}/collectd/target_replace.so
 %{_libdir}/collectd/target_scale.so
 %{_libdir}/collectd/target_set.so
+%{_libdir}/collectd/target_v5upgrade.so
 %{_libdir}/collectd/tcpconns.so
 %{_libdir}/collectd/teamspeak2.so
 %{_libdir}/collectd/ted.so
 %{_libdir}/collectd/thermal.so
+%{_libdir}/collectd/threshold.so
 %{_libdir}/collectd/unixsock.so
 %{_libdir}/collectd/uptime.so
 %{_libdir}/collectd/users.so
@@ -393,9 +386,6 @@ fi
 
 %files snmp
 %{_libdir}/collectd/snmp.so
-
-%files xmms
-%{_libdir}/collectd/xmms.so
 
 %changelog
 * Fri Mar 11 2011 Christoph Maser <cmaser@gmx.de> 4.10.2-2
