@@ -10,7 +10,6 @@
 Summary: Generic config module
 Name: perl-Config-Std
 Version: 0.900
-# Version: 0.0.4
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
