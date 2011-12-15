@@ -9,7 +9,8 @@
 
 Summary: Generic config module
 Name: perl-Config-Std
-Version: 0.0.4
+Version: 0.900
+# Version: 0.0.4
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
@@ -56,3 +57,5 @@ rationale for this approach.
 %changelog
 * Fri Jun 29 2007 Quien Sabe (aka Jim) <quien-sabe@metaorg.com> - 0.0.4-1
 - Initial package.
+* Wed Dec 14 2011 Roderick A Anderson <raanders@cyber-office.net> - 0.900
+- Brought up to version 0.900
