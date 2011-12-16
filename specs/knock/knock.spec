@@ -5,6 +5,7 @@
 
 %{!?dtag:%define _with_libpcapdevel 1}
 %{?el5:%define _with_libpcapdevel 1}
+%{?el6:%define _with_libpcapdevel 1}
 %{?fc6:%define _with_libpcapdevel 1}
 
 Summary: Port-knocking server
@@ -55,6 +56,9 @@ holes in a firewall for quick access.
 %{_sbindir}/knockd
 
 %changelog
+* Fri Dec 16 2011 Jan Horacek <jahor@jhr.cz> - 0.5-2.jhr.1
+- EL6 has libpcap-devel
+
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
 - Updated to release 0.5.
 
