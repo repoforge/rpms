@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.8
+Version: 1.7.8.2
 Release: 2%{?dist}
 License: GPL
 Group: Development/Tools
@@ -399,6 +399,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git.pm
 
 %changelog
+* Wed Jan  4 2012 Steve Huff <shuff@vecna.org> - 1.7.8.2-1
+- Updated to release 1.7.8.2.
+
 * Mon Dec 12 2011 Steve Huff <shuff@vecna.org> - 1.7.8-1
 - Updated to release 1.7.8.
 - Captured additional Perl dependencies in git-email.
