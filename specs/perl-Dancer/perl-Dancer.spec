@@ -9,7 +9,7 @@
 
 Summary: A minimal-effort oriented web application framework
 Name: perl-Dancer
-Version: 1.3072
+Version: 1.3091
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -106,6 +106,9 @@ environments.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Wed Jan  4 2012 Steve Huff <shuff@vecna.org> - 1.3091-1
+- Update to version 1.3091.
+
 * Thu Aug 25 2011 Steve Huff <shuff@vecna.org> - 1.3072-1
 - Update to version 1.3072.
 
