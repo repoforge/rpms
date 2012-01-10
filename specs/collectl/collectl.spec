@@ -1,17 +1,17 @@
 # $Id$
 # Authority: dag
 
-# Tag: rft
+# Tag: rf
 
 Summary: Utility to collect Linux performance data
 Name: collectl
-Version: 3.1.1
+Version: 3.6.0
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/System
 URL: http://collectl.sourceforge.net/
 
-Source: http://dl.sf.net/collectl/collectl-%{version}.src.tar.gz
+Source: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.src.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -198,6 +198,9 @@ fi
 %{_localstatedir}/log/collectl/
 
 %changelog
+* Tue Jan 10 2012 David Hrbáč <david@hrbac.cz> - 3.6.0-1
+- new upstream release
+
 * Mon Dec 01 2008 Dag Wieers <dag@wieers.com> - 3.1.1-1
 - Updated to release 3.1.1.
 
