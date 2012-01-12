@@ -13,7 +13,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.5
+Version: 2.7.9
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
@@ -283,6 +283,9 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Thu Jan 12 2012 Yury V. Zaytsev <yury@shurup.com> - 2.7.9-1
+- Updated to release 2.7.9.
+
 * Sun Oct 09 2011 Yury V. Zaytsev <yury@shurup.com> - 2.7.5-1
 - Removed misused %%ghost macro (shame on me!)
 - Updated to release 2.7.5.
