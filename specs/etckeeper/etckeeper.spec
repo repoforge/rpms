@@ -2,14 +2,13 @@
 %{?el4:%define _without_bzr 1}
 
 Name:      etckeeper
-Version:   0.58
+Version:   0.59
 Release:   1%{?dist}
 Summary:   Store /etc in a SCM system (git, mercurial, bzr or darcs)
 Group:     Applications/System
 License:   GPLv2+
 URL:       http://kitenet.net/~joey/code/etckeeper/
-Source0:   http://ftp.debian.org/debian/pool/main/e/etckeeper/%{name}_%{version}.tar.gz
-Source1:   README.fedora
+Source:   http://ftp.debian.org/debian/pool/main/e/etckeeper/%{name}_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Requires:  git >= 1.5.4
@@ -47,7 +46,6 @@ etckeeper with bzr backend, install this package.
     s|LOWLEVEL_PACKAGE_MANAGER=dpkg|LOWLEVEL_PACKAGE_MANAGER=rpm|;
     ' etckeeper.conf
 %{__sed} -i -e '1d' yum-etckeeper.py
-cp -av %{SOURCE1} .
 
 %build
 make %{?_smp_mflags}
@@ -73,7 +71,7 @@ fi
 
 %files
 %defattr(-, root, root, -)
-%doc GPL TODO README README.fedora
+%doc GPL TODO README
 %{_bindir}/%{name}
 %{_mandir}/man8/%{name}.8*
 %dir %{_sysconfdir}/%{name}
@@ -99,6 +97,10 @@ fi
 %endif
 
 %changelog
+* Thu Jan 12 2012 David Hrbáč <david@hrbac.cz> - 0.59-1
+- new upstream release
+- removed missing README.fedora
+
 * Wed Dec 07 2011 David Hrbáč <david@hrbac.cz> - 0.58-1
 - new upstream release
 
