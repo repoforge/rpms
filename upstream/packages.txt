@@ -86,7 +86,7 @@ re2c DEFAULT SF-DEFAULT
 ripole DEFAULT http://www.pldaniels.com/ripole
 rkhunter DEFAULT SF-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/
-subversion DEFAULT http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=260&expandFolder=260&folderID=260
+subversion DEFAULT http://subversion.apache.org/download/
 syslinux DEFAULT http://www.kernel.org/pub/linux/utils/boot/syslinux/
 tig DEFAULT http://jonas.nitro.dk/tig/releases/
 tmux DEFAULT SF-DEFAULT
