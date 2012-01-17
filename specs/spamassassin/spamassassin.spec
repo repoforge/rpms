@@ -31,7 +31,7 @@ Source99: filter-requires-spamassassin.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
-%{?el6: BuildRequires: perl-devel}
+%{?el6:BuildRequires: perl-devel}
 BuildRequires: perl(Archive::Tar)
 BuildRequires: perl(HTML::Parser) >= 3.24
 BuildRequires: perl(Net::DNS)
