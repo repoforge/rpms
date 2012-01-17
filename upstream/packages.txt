@@ -4,6 +4,7 @@ arc DEFAULT SF-DEFAULT
 arj DEFAULT SF-DEFAULT
 awstats DEFAULT SF-DEFAULT
 cabextract DEFAULT  http://www.cabextract.org.uk/
+cacti DEFAULT http://www.cacti.net/downloads/
 chkrootkit DEFAULT ftp://ftp.pangeia.com.br/pub/seg/pac/
 clamav DEFAULT SF-DEFAULT
 crossroads DEFAULT http://crossroads.e-tunity.com/downloads/versions/
