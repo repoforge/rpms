@@ -7,12 +7,16 @@
 
 ##ExclusiveDist: fc1 fc2 fc3 el4
 
+%{?el6:%define _without_milter 1}
+%{?el5:%define _without_milter 0}
+%{?el4:%define _without_milter 0}
+
 %define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.6.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -21,8 +25,8 @@ Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 5.8.1
-BuildRequires: sendmail
-BuildRequires: sendmail-devel >= 8.12
+#BuildRequires: sendmail
+#BuildRequires: sendmail-devel >= 8.12
 Requires: altermime
 Requires: arc >= 5.21e
 Requires: bzip2
@@ -77,14 +81,18 @@ performance and robustness features. It's partly based on
 work being done on the official amavisd branch. Please see the
 README.amavisd-new-RELNOTES file for a detailed description.
 
+%if ! 0%{?_without_milter}
 %package milter
 Summary: The Amavisd-new sendmail-milter Daemon
 Group: Applications/System
 Requires: amavisd-new = %{version}-%{release}
 Requires: sendmail
+BuildRequires: sendmail
+BuildRequires: sendmail-devel >= 8.12
 
 %description milter
 The Amavisd-new sendmail-milter Daemon
+%endif
 
 %package snmp
 Group:          Applications/System
@@ -338,6 +346,7 @@ exit $RETVAL
 EOF
 
 %build
+%if ! 0%{?_without_milter} 
 cd helper-progs
 %configure \
     --enable-postfix \
@@ -347,11 +356,15 @@ cd helper-progs
     --with-sockname="%{_localstatedir}/amavis/amavisd.sock" \
     --with-user="amavis"
 %{__make} %{?_smp_mflags}
+%endif
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
+
+%if ! 0%{?_without_milter}
 %makeinstall -C helper-progs
+%endif
 
 %{__perl} -pi.orig -e '
         s|=\s*'\''vscan'\''|= "amavis"|;
@@ -409,12 +422,14 @@ for file in /etc/postfix/aliases /etc/mail/aliases /etc/aliases; do
     fi
 done
 
+%if ! 0%{?_without_milter}
 %post milter
 if [ -f /etc/mail/sendmail.mc ]; then
     if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
         echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
     fi
 fi
+%endif
 
 %preun
 if [ $1 -eq 0 ] ; then
@@ -466,10 +481,12 @@ fi
 %dir %{_localstatedir}/virusmails/
 %ghost %{_localstatedir}/log/amavis.log
 
+%if ! 0%{?_without_milter}
 %files milter
 %defattr(-, root, root, 0755)
 %{_sbindir}/amavis
 %{_sbindir}/amavis-milter
+%endif
 
 %files snmp
 %defattr(-,root,root)
@@ -477,6 +494,9 @@ fi
 %{_sbindir}/amavisd-snmp-subagent
 
 %changelog
+* Sun Jan 15 2012 David Hrbáč <david@hrbac.cz> - 2.6.6-2
+- first attempt to fix EL6 build
+
 * Wed Jun 22 2011 David Hrbáč <david@hrbac.cz> - 2.6.6-1
 - new upstream release
 

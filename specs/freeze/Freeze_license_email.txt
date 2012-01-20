@@ -1,0 +1,22 @@
+Date: Fri, 18 Jul 2008 14:14:18 -0700
+From: "Leo Broukhis" <leob@mailcom.com>
+To: "Tom spot Callaway" <tcallawa@redhat.com>
+Subject: Re: Freeze license
+
+On Fri, Jul 18, 2008 at 1:51 PM, Tom spot Callaway <tcallawa@redhat.com> wrote:
+> Well, at least one person in the Fedora community thinks it is useful,
+> because he wants to maintain it. :)
+
+All right.
+
+> If you have "GPL-like" license text, can you send it to me? Alternately,
+> it would be a lot simpler if you could choose one of the licenses from
+> this page, as we already know they are ok:
+>
+> http://fedoraproject.org/wiki/Licensing#Good_Licenses
+
+Let's call it GPL+, then.
+
+Thanks,
+
+Leo

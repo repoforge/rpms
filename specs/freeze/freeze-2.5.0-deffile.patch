@@ -1,0 +1,24 @@
+diff -Nur freeze-2.5.0-orig/freeze.1 freeze-2.5.0/freeze.1
+--- freeze-2.5.0-orig/freeze.1	1999-05-20 11:07:51.000000000 +0200
++++ freeze-2.5.0/freeze.1	2005-07-23 20:21:06.000000000 +0200
+@@ -109,7 +109,7 @@
+ of following files in the command string. An explicite definition
+ of the file's type can give up to 2% of additional compression.
+ The list of types is stored in file
+-.IR /usr/local/lib/freeze.cnf .
++.IR /usr/lib/freeze.cnf .
+ Types may be abbreviated while not ambigious. You can also determine
+ values for the static Huffman table by using a list of 8 numbers
+ separated by commas instead of
+diff -Nur freeze-2.5.0-orig/README freeze-2.5.0/README
+--- freeze-2.5.0-orig/README	1999-05-20 11:07:51.000000000 +0200
++++ freeze-2.5.0/README	2005-07-23 20:23:28.000000000 +0200
+@@ -160,7 +160,7 @@
+ Note: If you use "gensample | statist", remember that INTR influence BOTH
+ processes !!
+ 
+-You may create the /etc/default/freeze (or rather /usr/local/lib/freeze.cnf,
++You may create the /etc/default/freeze (or rather /usr/lib/freeze.cnf,
+ which is now the default, NOTE IT!) file (in MS-DOS it is FREEZE.CNF in
+ the directory of FREEZE.EXE), which has the following format:  name =
+ ``statist's output (8 numbers)'', e.g.:

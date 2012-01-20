@@ -8,7 +8,7 @@
 
 Summary: Flexible, stable and highly-configurable FTP server
 Name: proftpd
-Version: 1.3.3c
+Version: 1.3.4a
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -209,6 +209,9 @@ fi
 %endif
 
 %changelog
+* Tue Jan 17 2012 David Hrbáč <david@hrbac.cz> - 1.3.4a-1
+- new upstream release
+
 * Mon May 09 2011 Steve Huff <shuff@vecna.org> - 1.3.3c-2
 - Patch to fix localstatedir (thanks, Blake Hudson!)
 

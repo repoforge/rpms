@@ -1,16 +1,19 @@
 # $Id$
 # Authority: dag
 
-Summary: Archiver and compressor
+Summary: freeze/melt/fcat compression utilities
 Name: freeze
 Version: 2.5.0
-Release: 1.2%{?dist}
-License: distributable
+Release: 3%{?dist}
+License: GPL+
 Group: Applications/Archiving
 URL: ftp://ftp.std.com/src/util/
 
 Source: http://www.ibiblio.org/pub/Linux/utils/compress/freeze-%{version}.tar.gz
+Source1: Freeze_license_email.txt
 Patch0: freeze-2.5.patch
+Patch1: freeze-2.5.0-printf.patch
+Patch2: freeze-2.5.0-deffile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -20,7 +23,10 @@ dearchive files compressed with it.
 
 %prep
 %setup
-%patch
+cp -a %{SOURCE1} .
+%patch0 -p0
+%patch1 -p1 -b .printf
+%patch2 -p1 -b .deffile
 
 %build
 %{__chmod} u+x configure
@@ -46,11 +52,18 @@ done
 
 %files
 %defattr(-, root, root, 0755)
-%doc MANIFEST README
+%doc MANIFEST README Freeze_license_email.txt
 %{_bindir}/*
 %{_mandir}/man?/*
 
 %changelog
+* Tue Jan 17 2012 David Hrbáč <david@hrbac.cz> - 2.5.0-3
+- Fix bad printf string (#149613).
+- Fix default cnf file location in readme and man page.
+
+* Tue Jan 17 2012 David Hrbáč <david@hrbac.cz> - 2.5.0-2
+- corrected for EL6 build
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.5.0-1.2
 - Rebuild for Fedora Core 5.
 

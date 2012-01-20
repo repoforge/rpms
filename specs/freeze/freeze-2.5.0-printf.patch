@@ -1,0 +1,24 @@
+diff -Nur freeze-2.5.0-orig/freeze.c freeze-2.5.0/freeze.c
+--- freeze-2.5.0-orig/freeze.c	1999-05-20 11:07:51.000000000 +0200
++++ freeze-2.5.0/freeze.c	2005-07-23 20:25:42.000000000 +0200
+@@ -76,7 +76,7 @@
+     fprintf(stderr, "\n\
+       -c         Write output on stdout, don't remove original.\n\
+       -d         If given, melting is done instead.\n\
+-      -g         Use \"greedy\" parsing (1.5% worse, 40% faster).\n\
++      -g         Use \"greedy\" parsing (1.5%% worse, 40%% faster).\n\
+       -f         Forces output file to be generated, even if one already\n\
+                  exists, and even if no space is saved by freezeing.\n\
+       -i         Image mode.\n\
+diff -Nur freeze-2.5.0-orig/statist.c freeze-2.5.0/statist.c
+--- freeze-2.5.0-orig/statist.c	1999-05-20 11:07:51.000000000 +0200
++++ freeze-2.5.0/statist.c	2005-07-23 20:25:42.000000000 +0200
+@@ -261,7 +261,7 @@
+ 		}
+ 		in_count += i;
+ 		if ((in_count > indc_count)) {
+-			fprintf(stderr, "%5dK\b\b\b\b\b\b", in_count / 1024);
++			fprintf(stderr, "%5ldK\b\b\b\b\b\b", in_count / 1024);
+ 			fflush (stderr);
+ 			indc_count += 4096;
+ 		}

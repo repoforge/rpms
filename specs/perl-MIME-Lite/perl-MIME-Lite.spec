@@ -12,7 +12,7 @@
 
 Summary: Simple standalone module for generating MIME messages
 Name: perl-MIME-Lite
-Version: 3.027
+Version: 3.028
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,6 +65,9 @@ find contrib/ examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/changes.pod
 
 %changelog
+* Mon Jan 16 2012 David Hrbáč <david@hrbac.cz> - 3.028-1
+- new upstream release
+
 * Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 3.027-1
 - Updated to version 3.027.
 
