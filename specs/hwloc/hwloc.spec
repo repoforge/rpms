@@ -6,7 +6,7 @@
 
 Summary: Hardware Locality Library
 Name: hwloc
-Version: 1.3
+Version: 1.3.1
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
@@ -89,6 +89,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libhwloc.la
 
 %changelog
+* Wed Dec 21 2011 Dag Wieers <dag@wieers.com> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Mon Oct 24 2011 Dag Wieers <dag@wieers.com> - 1.3-1
 - Updated to release 1.3.
 
