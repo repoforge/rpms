@@ -19,7 +19,7 @@ lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
 monit DEFAULT http://mmonit.com/monit/dist/
 nagios DEFAULT SF-DEFAULT
-nmap DEFAULT http://nmap.org/dist/
+nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
 nmon DEFAULT SF-DEFAULT
 nomarch DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 p7zip p7zip_([\d\.]+)_src_all.tar.bz SF-DEFAULT
