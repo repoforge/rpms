@@ -9,7 +9,7 @@
 %{?el4:# Tag: rfx}
 ### EL3 ships with spamassassin-2.55-3.4
 %{?el3:# Tag: rfx}
-# ExclusiveDist: el2 el3 el4 el5
+# ExclusiveDist: el2 el3 el4 el5 el6
 
 %{?el2:%define _with_perl_5_6 1}
 
@@ -21,7 +21,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.3.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -252,6 +252,9 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Sat Jan 21 2012 David Hrbáč <david@hrbac.cz> - FIXME
+- another enable for EL6 build
+
 * Tue Jan 17 2012 David Hrbáč <david@hrbac.cz> - 3.3.2-3
 - enable EL6 build
 
