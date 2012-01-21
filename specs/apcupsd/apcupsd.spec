@@ -7,7 +7,7 @@
 
 Summary: APC UPS power control daemon
 Name: apcupsd
-Version: 3.14.8
+Version: 3.14.9
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -117,6 +117,9 @@ fi
 %{_datadir}/hal/fdi/policy/20thirdparty/80-apcupsd-ups-policy.fdi
 
 %changelog
+* Sat Jan 21 2012 David Hrbáč <david@hrbac.cz> - 3.14.9-1
+- new upstream release
+
 * Wed Sep 08 2010 David Hrbáč <david@hrbac.cz> - 3.14.8-1
 - new upstream release
 
