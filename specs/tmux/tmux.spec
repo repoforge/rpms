@@ -3,13 +3,13 @@
 
 Summary: Terminal multiplexer program
 Name: tmux
-Version: 1.5
+Version: 1.6
 Release: 1%{?dist}
 License: BSD
 Group: Applications/System
 URL: http://tmux.sourceforge.net/
 
-Source: http://dl.sf.net/tmux/tmux-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 # This first patch creates MANDIR in the GNUmakefile.  This has been sent
@@ -63,6 +63,9 @@ getent group tmux >/dev/null || groupadd -r tmux
 %attr(775,root,tmux) %{_localstatedir}/run/tmux/
 
 %changelog
+* Mon Jan 23 2012 David Hrbáč <david@hrbac.cz> - 1.6-1
+- new upstream release
+
 * Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 
