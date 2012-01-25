@@ -1,24 +1,26 @@
 # $Id$
-# Authority: matthias
+# Authority: dag
 
 Summary: Small application for displaying the contents of a DVD
 Name: lsdvd
 Version: 0.16
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://untrepid.com/lsdvd/
+
 Source: http://dl.sf.net/acidrip/lsdvd-%{version}.tar.gz
 Patch0: lsdvd-0.16-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: autoconf, automake
+
+BuildRequires: autoconf
+BuildRequires: automake
 BuildRequires: libdvdread-devel
 
 %description
 Lsdvd is a c application for reading the contents of a DVD and printing the
 contents to your terminal. Lsdvd uses libdvdread, the most popular dvd
 reading library for *nix
-
 
 %prep
 %setup
@@ -27,20 +29,16 @@ reading library for *nix
 %{__automake} --add-missing --copy --force --gnu --include-deps Makefile
 %{__autoconf}
 
-
 %build
 %configure
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
-
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
-
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
-
 
 %files
 %defattr(-, root, root, 0755)
@@ -48,8 +46,10 @@ reading library for *nix
 %{_bindir}/lsdvd
 %{_mandir}/man1/lsdvd.1*
 
-
 %changelog
+* Wed Jan 25 2012 Dag Wieers <dag@wieers.com> - 0.16-3
+- Rebuild against proper libdvdread.
+
 * Mon May  8 2006 Matthias Saou <http://freshrpms.net/> 0.16-2
 - Rebuild with latest tarball from sf.net, as apparently the original 0.16
   source was replaced after 3 days by a "fixed" source with the same file name.
