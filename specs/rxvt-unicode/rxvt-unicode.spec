@@ -8,7 +8,7 @@
 
 Summary: Unicode version of rxvt
 Name: rxvt-unicode
-Version: 9.07
+Version: 9.15
 Release: 1%{?dist}
 License: GPL
 Group: User Interface/X
@@ -110,6 +110,12 @@ desktop-file-install --vendor=%{desktop_vendor} \
 %{_libdir}/urxvt/
 
 %changelog
+* Wed Jan 25 2012 Dag Wieers <dag@wieers.com> - 9.15-1
+- Updated to release 9.15.
+
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 9.14-1
+- Updated to release 9.14.
+
 * Thu Dec 31 2009 Dag Wieers <dag@wieers.com> - 9.07-1
 - Updated to release 9.07.
 
