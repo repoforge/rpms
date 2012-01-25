@@ -3,7 +3,7 @@
 
 Summary: Implementation of the IPFIX Protocol
 Name: libfixbuf
-Version: 1.0.2
+Version: 1.1.0
 Release: 1%{?dist}
 License: LGPLv2
 Group: Development/Libraries
@@ -37,10 +37,8 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-
 %configure \
     --disable-static
-
 %{__make} %{?_smp_mflags}
 
 %install
@@ -67,6 +65,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libfixbuf.la
 
 %changelog
+* Sat Jan 21 2012 Dag Wieers <dag@wieers.com> - 1.1.0-1
+- Updated to release 1.1.0.
+
 * Tue Sep 13 2011 Yury V. Zaytsev <yury@shurup.com> - 1.0.2-1
 - Fixed rpmlint warnings.
 - Updated to release 1.0.2.
