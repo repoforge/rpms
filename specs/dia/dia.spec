@@ -9,14 +9,14 @@
 
 Summary: Diagram drawing program
 Name: dia
-Version: 0.97
-Release: 2%{?dist}
+Version: 0.97.2
+Release: 1%{?dist}
 Epoch: 1
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.gnome.org/projects/dia/
 
-Source0: http://ftp.gnome.org/pub/gnome/sources/dia/%{version}/dia-%{version}.tar.bz2
+Source0: http://ftp.gnome.org/pub/gnome/sources/dia/0.97/dia-%{version}.tar.xz
 Source11: http://dia-installer.de/shapes/central_data_processing/central_data_processing.zip
 Source12: http://dia-installer.de/shapes/chemistry_lab/chemistry_lab.zip
 Source13: http://dia-installer.de/shapes/cmos/cmos.zip
@@ -69,7 +69,7 @@ format, and can export to PostScript(TM).
 #patch1 -p1 -b .dtd
 #patch2 -p1 -b .help
 %patch3 -p1 -b .fallbacktoxpmicons
-%patch4 -p1 -b .py-detect
+#patch4 -p1 -b .py-detect
 #patch5 -p1 -b .64bit
 
 %{__perl} -pi.orig -e 's|\(W32::HDC\)user_data;|(W32::HDC)(guint64)user_data;|g' plug-ins/wmf/wmf.cpp
@@ -128,6 +128,9 @@ unzip -n -d %{buildroot}%{_datadir}/dia %{SOURCE21}
 %{_libdir}/dia/
 
 %changelog
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 0.97.2-1
+- Updated to release 0.97.2.
+
 * Tue Mar 22 2011 Yury V. Zaytsev <yury@shurup.com> - 0.97-2
 - Fixed EL6 build (thanks to Bjarne Saltbaek!)
 
