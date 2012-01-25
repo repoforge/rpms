@@ -8,9 +8,9 @@ Version: 1.3
 Release: 2%{?dist}
 License: GPL
 Group: System Environment/Base
-URL: http://www.core-dump.com.hr/?q=node/28
+URL: http://zvrba.net/software/secpwgen.html
 
-Source: http://www.core-dump.com.hr/software/secpwgen-%{version}.tar.gz
+Source: http://zvrba.net/software/secpwgen-%{version}.tar.gz
 Patch0: secpwgen-1.3_build_config.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
