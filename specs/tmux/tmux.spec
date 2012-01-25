@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 
+%define _default_patch_fuzz 2
+
 Summary: Terminal multiplexer program
 Name: tmux
 Version: 1.6
