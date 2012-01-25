@@ -4,7 +4,7 @@
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 1.1.4
+Version: 1.2.0
 Release: 1%{?dist}
 License: Artistic
 Group: Development/Tools
@@ -33,7 +33,7 @@ will be until completion.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 %find_lang %{name}
 
 %clean
@@ -53,6 +53,9 @@ will be until completion.
 %{_bindir}/pv
 
 %changelog
+* Tue Jan 24 2012 Dag Wieers <dag@wieers.com> - 1.2.0-1
+- Updated to release 1.2.0.
+
 * Fri Mar 07 2008 Dag Wieers <dag@wieers.com> - 1.1.4-1
 - Updated to release 1.1.4.
 
