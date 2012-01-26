@@ -6,13 +6,13 @@
 
 Summary: Hardware Locality Library
 Name: hwloc
-Version: 1.3.1
+Version: 1.4
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
-URL: http://www.open-mpi.org/
+URL: http://www.open-mpi.org/projects/hwloc/
 
-Source: http://www.open-mpi.org/software/hwloc/v1.3/downloads/hwloc-%{version}.tar.bz2
+Source: http://www.open-mpi.org/software/hwloc/v1.4/downloads/hwloc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -54,8 +54,11 @@ you will need to install %{name}-devel.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS COPYING NEWS README
+%doc %{_mandir}/man1/hwloc-assembler.1*
+%doc %{_mandir}/man1/hwloc-assembler-remote.1*
 %doc %{_mandir}/man1/hwloc-bind.1*
 %doc %{_mandir}/man1/hwloc-calc.1*
+%doc %{_mandir}/man1/hwloc-distances.1*
 %doc %{_mandir}/man1/hwloc-distrib.1*
 %doc %{_mandir}/man1/hwloc-gather-topology.1*
 %doc %{_mandir}/man1/hwloc-info.1*
@@ -64,8 +67,11 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man1/hwloc-ps.1*
 %doc %{_mandir}/man1/lstopo.1*
 %doc %{_mandir}/man7/hwloc.7*
+%{_bindir}/hwloc-assembler
+%{_bindir}/hwloc-assembler-remote
 %{_bindir}/hwloc-bind
 %{_bindir}/hwloc-calc
+%{_bindir}/hwloc-distances
 %{_bindir}/hwloc-distrib
 %{_bindir}/hwloc-gather-topology
 %{_bindir}/hwloc-info
@@ -89,6 +95,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libhwloc.la
 
 %changelog
+* Thu Jan 26 2012 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
 * Wed Dec 21 2011 Dag Wieers <dag@wieers.com> - 1.3.1-1
 - Updated to release 1.3.1.
 
