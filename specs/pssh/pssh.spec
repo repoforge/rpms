@@ -21,10 +21,10 @@ Source: http://parallel-ssh.googlecode.com/files/pssh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.0
+BuildRequires: python >= 2.4
 BuildRequires: python-setuptools
 Requires: openssh
-Requires: python >= 2.0
+Requires: python >= 2.4
 
 Provides: psshlib = %{version}
 
