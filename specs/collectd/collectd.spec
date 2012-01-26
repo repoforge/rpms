@@ -6,11 +6,24 @@
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define perl_archlib %(eval "`%{__perl} -V:archlib`"; echo $archlib)
 
-%{?el3:%define _without_lmsensors 1}
+%{?el5:%define _with_xmms 1}
+%{?el5:%define _without_snmp 1}
+
+%{?el4:%define _with_xmms 1}
 %{?el4:%define _without_dbi 1}
-%{?el4:%define _without_pcap 1}
-%{?el4:%define _without_libvirt 1}
+%{?el4:%define _without_libpcapdevel 1}
 %{?el4:%define _without_libnotify 1}
+%{?el4:%define _without_libvirt 1}
+
+%{?el3:%define _with_xmms 1}
+%{?el3:%define _without_dbi 1}
+%{?el3:%define _without_libpcapdevel 1}
+%{?el3:%define _without_libnotify 1}
+%{?el3:%define _without_libvirt 1}
+%{?el3:%define _without_lmsensors 1}
+
+%{?el2:%define _with_xmms 1}
+%{?el2:%define _without_libpcapdevel 1}
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
@@ -25,21 +38,24 @@ Source1: php-collection.conf
 Source2: collection3.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: curl-devel
+BuildRequires: krb5-devel
+BuildRequires: libpcap
+%{!?_without_libpcapdevel:BuildRequires:libpcap-devel}
+BuildRequires: libxml2-devel
+%{!?_without_lmsensors:BuildRequires: lm_sensors-devel}
+BuildRequires: perl
+BuildRequires: python-devel
+BuildRequires: rrdtool-devel
+BuildRequires: which
+%{?_with_xmms:BuildRequires: xmms-devel}
+BuildRequires: zlib-devel
 Requires: curl
 %{!?_without_pcap:Requires: libpcap}
 Requires: krb5-libs
 Requires: libxml2
 Requires: zlib
-BuildRequires: curl-devel
-%{!?_without_pcap:BuildRequires: libpcap-devel}
-BuildRequires: krb5-devel
-BuildRequires: libxml2-devel
-BuildRequires: python-devel
-BuildRequires: zlib-devel
-BuildRequires: perl
-BuildRequires: which
 
-%{!?_without_lmsensors:BuildRequires: lm_sensors-devel}
 
 Obsoletes: collectd-apache <= %{version}-%{release}
 Provides: collectd-apache = %{version}-%{release}
@@ -162,6 +178,7 @@ BuildRequires: rrdtool-devel
 %description rrdtool
 The RRDtool plugin writes values to RRD-files using librrd.
 
+%if %{!?_without_snmp:1}0
 %package snmp
 Summary: snmp plugin for collectd
 Group: System Environment/Daemons
@@ -172,6 +189,19 @@ BuildRequires: net-snmp-devel
 BuildRequires: tcp_wrappers
 %description snmp
 The SNMP plugin uses the Net-SNMP library to read values from network devices using the Simple Network Management Protocol (SNMP).
+%endif
+
+%if %{?_with_xmms:1}0
+%package xmms
+Summary: xmms plugin for collectd
+Group: System Environment/Daemons
+BuildRequires: xmms-devel
+Requires: collectd = %{version}-%{release}
+Requires: xmms
+
+%description xmms
+This plugin collects bit-rate and sampling rate as you play songs
+%endif
 
 %prep
 %setup
@@ -184,12 +214,14 @@ sed -i -e 's/@LOAD_PLUGIN_RRDTOOL@LoadPlugin rrdtool/#@LOAD_PLUGIN_RRDTOOL@LoadP
 %build
 ### FIXME: --with-libmysql support not working
 %configure \
-    --enable-static=no \
+    --enable-static="no" \
+%{?_without_dbi:--disable-dbi} \
+%{?_without_snmp:--disable-snmp} \
+%{!?_with_xmms:--disable-xmms} \
     --with-libmysql="%{_libdir}/mysql/" \
-    --with-perl-bindings=INSTALLDIRS=vendor \
+    --with-perl-bindings="INSTALLDIRS=vendor" \
     %{!?_without_libvirt:--enable-libvirt }
 %{__make} %{?_smp_mflags}
-
 
 %install
 %{__rm} -rf %{buildroot}
@@ -271,7 +303,7 @@ fi
 %{_libdir}/collectd/curl_xml.so
 %{_libdir}/collectd/df.so
 %{_libdir}/collectd/disk.so
-%{!?el4:%{_libdir}/collectd/dns.so}
+%{_libdir}/collectd/dns.so
 %{_libdir}/collectd/email.so
 %{_libdir}/collectd/entropy.so
 %{_libdir}/collectd/exec.so
@@ -384,8 +416,15 @@ fi
 %{_libdir}/collectd/rrdtool.so
 %{!?el4:%{_libdir}/collectd/rrdcached.so}
 
+%if %{!?_without_snmp:1}0
 %files snmp
 %{_libdir}/collectd/snmp.so
+%endif
+
+%if %{?_with_xmms:1}0
+%files xmms
+%{_libdir}/collectd/xmms.so
+%endif
 
 %changelog
 * Wed Dec 14 2011 Arnoud Vermeer <repoforge@freshway.biz> 5.0.1-1
