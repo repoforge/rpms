@@ -8,14 +8,11 @@ Version: 0.4.1
 Release: 1%{?dist}
 License: MIT
 Group: System Environment/Libraries
-URL: http://http.download.nvidia.com/XFree86/vdpau/doxygen/html/index.html
+URL: http://http.download.nvidia.com/XFree86/vdpau/doxygen/html/
 
 Source: http://people.freedesktop.org/~aplattner/vdpau/libvdpau-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: binutils
-BuildRequires: gcc
-BuildRequires: glibc-devel
 BuildRequires: libX11-devel
 BuildRequires: libXext-devel
 BuildRequires: libtool
@@ -42,10 +39,12 @@ documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
 %prep
-%setup -n %{name}-%{version}
+%setup
 
 %build
-%configure
+%configure \
+    --disable-documentation \
+    --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -63,17 +62,19 @@ you will need to install %{name}-devel.
 %doc AUTHORS COPYING NEWS README
 %doc doc/vdpau_data_flow.png
 %{_libdir}/libvdpau.so.*
+%dir %{_libdir}/vdpau/
 %{_libdir}/vdpau/libvdpau_trace.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/vdpau/*
+%{_includedir}/vdpau/
+%{_libdir}/libvdpau.so
 %{_libdir}/pkgconfig/vdpau.pc
+%dir %{_libdir}/vdpau/
+%{_libdir}/vdpau/libvdpau_trace.so
 %exclude %{_libdir}/libvdpau.la
 %exclude %{_libdir}/vdpau/libvdpau_trace.la
-%{_libdir}/libvdpau.so
-%{_libdir}/vdpau/libvdpau_trace.so
 
 %changelog
-* Wed Oct 11 2011 Aleksey Cheusov <vle@gmx.net> - 0.4.1
+* Wed Oct 11 2011 Aleksey Cheusov <vle@gmx.net> - 0.4.1-1
 - Initial package.
