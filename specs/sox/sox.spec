@@ -1,78 +1,103 @@
-Summary: A general purpose sound file conversion tool
+# $Id$
+# Authority: dag
+
+### EL6 ships with sox-14.2.0-6.el6
+### EL5 ships with sox-12.18.1-1
+### EL4 ships with sox-12.17.5-3
+### EL3 ships with sox-12.17.4-4.3
+### EL2 ships with sox-12.17.1-4
+# Tag: rfx
+
+Summary: General purpose sound file conversion tool
 Name: sox
 Version: 14.3.2
-Release: 1.{?dist}
+Release: 1%{?dist}
 License: GPLv2+ and LGPLv2+
 Group: Applications/Multimedia
-Source: http://prdownloads.sourceforge.net/sox/sox-%{version}.tar.gz
 URL: http://sox.sourceforge.net/
-BuildRequires: libvorbis-devel
-BuildRequires: alsa-lib-devel, libtool-ltdl-devel, libsamplerate-devel
-BuildRequires: gsm-devel, wavpack-devel, ladspa-devel, libpng-devel
-BuildRequires: flac-devel, libao-devel, libsndfile-devel, libid3tag-devel
+
+Source: http://prdownloads.sourceforge.net/sox/sox-%{version}.tar.gz
+Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: alsa-lib-devel
+BuildRequires: flac-devel
+BuildRequires: gsm-devel
+BuildRequires: ladspa-devel
+BuildRequires: libao-devel
+BuildRequires: libid3tag-devel
+BuildRequires: libpng-devel
+BuildRequires: libsamplerate-devel
+BuildRequires: libsndfile-devel
 BuildRequires: libtool
-Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires: libtool-ltdl-devel
+BuildRequires: libvorbis-devel
+BuildRequires: wavpack-devel
 
 %description
 SoX (Sound eXchange) is a sound file format converter SoX can convert
 between many different digitized sound formats and perform simple
 sound manipulation functions, including sound effects.
 
-%package -n  sox-devel
-Summary: The SoX sound file format converter libraries
+%package devel
+Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: pkgconfig
 
-%description -n sox-devel
-This package contains the library needed for compiling applications
-which will use the SoX sound file format converter.
+%description devel
+This package contains the header files, static libraries and development
+documentation for %{name}. If you like to develop programs using %{name},
+you will need to install %{name}-devel.
 
 %prep
-%setup -q
+%setup
 
 %build
-CFLAGS="$RPM_OPT_FLAGS -D_FILE_OFFSET_BITS=64 -fno-strict-aliasing" %configure --with-flac --with-gsm --with-sndfile --with-mp3 --disable-static --includedir=%{_includedir}/sox
-make %{?_smp_mflags}
+CFLAGS="%{optflags}" %configure \
+    --disable-static \
+    --includedir="%{_includedir}/sox" \
+    --with-flac \
+    --with-gsm \
+    --with-mp3 \
+    --with-sndfile
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-rm -f $RPM_BUILD_ROOT/%{_libdir}/libsox.la
-rm -f $RPM_BUILD_ROOT/%{_libdir}/sox/*.la
-rm -f $RPM_BUILD_ROOT/%{_libdir}/sox/*.a
-
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %post -p /sbin/ldconfig
-
 %postun -p /sbin/ldconfig
 
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README
+%doc %{_mandir}/man1/play.1*
+%doc %{_mandir}/man1/rec.1*
+%doc %{_mandir}/man1/sox.1*
+%doc %{_mandir}/man1/soxi.1*
+%doc %{_mandir}/man7/soxeffect.7*
+%doc %{_mandir}/man7/soxformat.7*
 %{_bindir}/play
 %{_bindir}/rec
 %{_bindir}/sox
 %{_bindir}/soxi
 %{_libdir}/libsox.so.*
 %dir %{_libdir}/sox/
-%{_mandir}/man1/*
-%{_mandir}/man7/*
-#%{_libdir}/sox/libsox_fmt_*.so
 
 %files -n sox-devel
-%defattr(-,root,root,-)
-%{_includedir}/sox
+%defattr(-, root, root, 0755)
+%doc %{_mandir}/man3/libsox.3*
+%{_includedir}/sox/
 %{_libdir}/libsox.so
 %{_libdir}/pkgconfig/sox.pc
-%{_mandir}/man3/*
-
+%exclude %{_libdir}/libsox.la
 
 %changelog
-* Mon Nov  7 2011 Mark Janssen <mark@sig-io.nl> - 14.3.2-0
+* Mon Nov 07 2011 Mark Janssen <mark@sig-io.nl> - 14.3.2-1
 - Rebased to upstream version 14.3.2
 - Enabled mp3 support
 
