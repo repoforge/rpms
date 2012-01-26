@@ -3,7 +3,15 @@
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
 ### EL6 ships with rrdtool-1.3.8-6.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
+
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+%{?el4:%define _without_xulrunner 1}
+%{?el3:%define _without_egg_info 1}
+%{?el3:%define _without_xulrunner 1}
+%{?el2:%define _without_egg_info 1}
+%{?el2:%define _without_xulrunner 1}
 
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -42,7 +50,7 @@ BuildRequires: ruby
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
-BuildRequires: xulrunner-devel
+%{!?_without_xulrunner:BuildRequires: xulrunner-devel}
 BuildRequires: zlib-devel
 Requires: cairo
 Requires: gettext
@@ -167,7 +175,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %pre
 # Add the "rrdcached" user
 /usr/sbin/useradd -c "rrdcached" \
-	-s /sbin/nologin -r -d %{_localstatedir}/rrdtool/rrdcached rrdcached  2> /dev/null || :
+    -s /sbin/nologin -r -d %{_localstatedir}/rrdtool/rrdcached rrdcached  2> /dev/null || :
 
 %post
 # Register the rrdcached service
@@ -175,8 +183,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %preun
 if [ $1 = 0 ]; then
-	/sbin/service rrdcached stop > /dev/null 2>&1
-	/sbin/chkconfig --del rrdcached
+    /sbin/service rrdcached stop > /dev/null 2>&1
+    /sbin/chkconfig --del rrdcached
 fi
 
 
@@ -229,7 +237,7 @@ fi
 %files -n python-rrdtool
 %defattr(-, root, root, 0755)
 %doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
-%{python_sitearch}/py_rrdtool-0.2.1-py2.6.egg-info
+%{!?_without_egg_info:%{python_sitearch}/*.egg-info}
 %{python_sitearch}/rrdtoolmodule.so
 
 %files -n ruby-rrdtool
