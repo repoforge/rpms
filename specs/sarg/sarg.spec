@@ -2,15 +2,18 @@
 # Authority: dag
 # Upstream: Pedro L. Orso <orso$onda,com,br>
 # Upstream: <orso$yahoogroups,com>
-# Tag: rft
+# Tag: test
 
 Summary: Squid usage report generator per user/ip/name
 Name: sarg
-Version: 2.3
-Release: 2%{?dist}
+Version: 2.3.1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://sarg.sourceforge.net/sarg.php
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: http://downloads.sourceforge.net/project/sarg/sarg/sarg-%{version}/sarg-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -57,12 +60,9 @@ EOF
 %{__cat} <<'EOF' >sarg.weekly
 #!/bin/bash
 LOG_FILES=
-if [ -s %{_localstatedir}/log/squid/access.log.1.gz ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
-fi
-if [ -s %{_localstatedir}/log/squid/access.log ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
-fi
+for FILE in /var/log/squid/access.log*; do
+    LOG_FILES="$LOG_FILES -l $FILE"
+done
 
 # Get yesterday's date
 YESTERDAY=$(date --date "1 day ago" +%d/%m/%Y)
@@ -80,21 +80,9 @@ EOF
 %{__cat} <<'EOF' >sarg.monthly
 #!/bin/bash
 LOG_FILES=
-if [ -s %{_localstatedir}/log/squid/access.log.4.gz ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.4.gz"
-fi
-if [ -s %{_localstatedir}/log/squid/access.log.3.gz ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.3.gz"
-fi
-if [ -s %{_localstatedir}/log/squid/access.log.2.gz ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.2.gz"
-fi
-if [ -s %{_localstatedir}/log/squid/access.log.1.gz ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log.1.gz"
-fi
-if [ -s %{_localstatedir}/log/squid/access.log ]; then
-    LOG_FILES="$LOG_FILES -l %{_localstatedir}/log/squid/access.log"
-fi
+for FILE in /var/log/squid/access.log*; do
+    LOG_FILES="$LOG_FILES -l $FILE"
+done
 
 # Get yesterday's date
 YESTERDAY=$(date --date "1 day ago" +%d/%m/%Y)
@@ -172,10 +160,12 @@ EOF
 
 %build
 %configure \
-    --enable-bindir=%{_bindir} \
-    --enable-sysconfdir=%{_sysconfdir}/sarg \
-    --enable-mandir=%{_mandir}/man1 \
-    --enable-htmldir=%{_localstatedir}/www/sarg \
+    --bindir=%{_bindir} \
+    --sysconfdir=%{_sysconfdir}/sarg \
+    --mandir=%{_mandir}/man1 \
+    --disable-sargphp \
+    --enable-imagedir=%{_sysconfdir}/sarg/images \
+    --enable-extraprotection \
     --disable-rpath
 
 %{__make} %{?_smp_mflags}
@@ -221,6 +211,10 @@ EOF
 %{_sysconfdir}/sarg/languages/
 
 %changelog
+* Thu Oct 13 2011 Thiago Coutinho <root@thiagoc.net> - 2.3.1-1
+- Updated to version 2.3.1.
+- Fixed cron scripts to support RHEL/CentOS 6.
+
 * Tue Jun 22 2010 Christoph Maser <cmaser@gmx.de> - 2.3-2
 - Build with ldap support.
 
