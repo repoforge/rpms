@@ -23,13 +23,11 @@ URL: http://rubygems.org/
 
 Source0: http://production.cf.rubygems.org/rubygems/rubygems-%{version}.tgz
 Patch0: rubygems-1.3.1-noarch-gemdir.patch
-
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-BuildArch: noarch
 
+BuildArch: noarch
 BuildRequires: ruby-devel
 BuildRequires: ruby-rdoc
-
 Requires: ruby(abi) >= 1.8
 Requires: ruby-rdoc
 
@@ -53,7 +51,7 @@ done
 # Nothing
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 GEM_HOME=%{buildroot}/%{gem_home} \
     ruby setup.rb --prefix=%{_prefix} \
         --no-rdoc --no-ri \
@@ -65,10 +63,10 @@ rm -rf %{buildroot}/%{ruby_sitelib}/bin
 mv %{buildroot}/%{ruby_sitelib}/usr/lib/* %{buildroot}/%{ruby_sitelib}/.
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, -)
+%defattr(-, root, root, 0755)
 %doc ChangeLog GPL.txt LICENSE.txt README 
 %dir %{gem_dir}
 %dir %{gem_home}
@@ -80,7 +78,6 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelib}/*
 
 %changelog
-
 * Sun Dec 11 2011 Rilindo Foster <rilindo.foster@monzell.com> - 1.3.2-3
 - Updated Requires to allow it to install if Ruby 1.9 is present, but not 1.8.
 
