@@ -4,9 +4,14 @@
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib(0)')
 
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+%{?el3:%define _without_egg_info 1}
+%{?el2:%define _without_egg_info 1}
+
 Summary: Parallel version of OpenSSH and related tools
 Name: pssh
-Version: 2.0
+Version: 2.3
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -18,13 +23,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python >= 2.0
 BuildRequires: python-setuptools
-Requires: openssh, python >= 2.0
+Requires: openssh
+Requires: python >= 2.0
 
-Provides: %{_bindir}/pssh
-Provides: %{_bindir}/pscp
-Provides: %{_bindir}/pnuke
-Provides: %{_bindir}/prsync
-Provides: %{_bindir}/pslurp
 Provides: psshlib = %{version}
 
 %description
@@ -39,7 +40,8 @@ which can be used within custom applications.
 CFLAGS="%{optflags}" %{__python} setup.py build
 
 %install
-%{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
+%{__rm} -rf %{buildroot}
+%{__python} setup.py install --root="%{buildroot}" --prefix="%{_prefix}" --install-data="%{_datadir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -47,10 +49,20 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL
-%{_bindir}/*
-%{python_sitelib}/*
+%doc %{_mandir}/man1/pssh.1*
+%{_bindir}/pnuke
+%{_bindir}/prsync
+%{_bindir}/pscp
+%{_bindir}/pslurp
+%{_bindir}/pssh
+%{_bindir}/pssh-askpass
+%{python_sitelib}/psshlib/
+%{!?_without_egg_info:%{python_sitelib}/*.egg-info}
 
 %changelog
+* Thu Jan 26 2012 Dag Wieers <dag@wieers.com> - 2.3-1
+- Updated to release 2.3.
+
 * Thu Feb 04 2010 Steve Huff <shuff@vecna.org> - 2.0-1
 - Updated to release 2.0.
 
