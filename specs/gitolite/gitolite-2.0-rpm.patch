@@ -1,0 +1,104 @@
+diff -ur sitaramc-gitolite-4c1e4b2.orig/conf/example.gitolite.rc sitaramc-gitolite-4c1e4b2/conf/example.gitolite.rc
+--- sitaramc-gitolite-4c1e4b2.orig/conf/example.gitolite.rc 2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/conf/example.gitolite.rc  2011-08-08 14:08:05.969544341 -0400
+@@ -19,8 +19,8 @@
+ # DO NOT CHANGE THE NEXT FOUR LINES UNLESS YOU REALLY KNOW WHAT YOU'RE DOING.
+ # These variables are set automatically by the install method you choose.
+ #            (PACKAGE MAINTAINERS: PLEASE READ doc/packaging.mkd)
+-# $GL_PACKAGE_CONF = "";
+-# $GL_PACKAGE_HOOKS = "";
++$GL_PACKAGE_CONF = "/usr/share/gitolite/conf";
++$GL_PACKAGE_HOOKS = "/usr/share/gitolite/hooks";
+ 
+ # ------------------------------------------------------------------------------
+ # most often used/changed variables
+diff -ur sitaramc-gitolite-4c1e4b2.orig/src/gitolite.pm sitaramc-gitolite-4c1e4b2/src/gitolite.pm
+--- sitaramc-gitolite-4c1e4b2.orig/src/gitolite.pm  2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/src/gitolite.pm   2011-08-08 14:10:35.330500567 -0400
+@@ -493,7 +493,7 @@
+ sub report_version {
+     my($user) = @_;
+     print "hello $user, the gitolite version here is ";
+-    print slurp( ($GL_PACKAGE_CONF || "$GL_ADMINDIR/conf") . "/VERSION" );
++    system("rpm", "-q", "--qf", '%{version}-%{release}', 'gitolite');
+ }
+ 
+ sub perm_code {
+diff -ur sitaramc-gitolite-4c1e4b2.orig/src/gl-install sitaramc-gitolite-4c1e4b2/src/gl-install
+--- sitaramc-gitolite-4c1e4b2.orig/src/gl-install   2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/src/gl-install    2011-08-08 14:12:09.177505993 -0400
+@@ -63,7 +63,7 @@
+ wrap_mkdir($REPO_BASE);
+ wrap_mkdir($GL_ADMINDIR, 0700);
+ # mkdir $GL_ADMINDIR's subdirs
+-for my $dir (qw(conf doc keydir logs src hooks hooks/common hooks/gitolite-admin)) {
++for my $dir (qw(conf keydir logs hooks hooks/common hooks/gitolite-admin)) {
+     # some of them will stay empty; too lazy to fix right now ;-)
+     wrap_mkdir("$GL_ADMINDIR/$dir", 0700);
+ }
+@@ -84,7 +84,7 @@
+                 RW+     =   yourname
+     2.  copy "yourname.pub" to $GL_ADMINDIR/keydir
+     3.  run this command
+-            $GL_ADMINDIR/src/gl-compile-conf
++            gl-compile-conf
+ EOF
+ }
+ 
+diff -ur sitaramc-gitolite-4c1e4b2.orig/src/gl-mirror-shell sitaramc-gitolite-4c1e4b2/src/gl-mirror-shell
+--- sitaramc-gitolite-4c1e4b2.orig/src/gl-mirror-shell  2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/src/gl-mirror-shell   2011-08-08 14:01:59.718499902 -0400
+@@ -4,7 +4,7 @@
+ GL_BYPASS_UPDATE_HOOK=1
+ 
+ get_rc_val() {
+-    ${0%/*}/gl-query-rc $1
++    /usr/bin/gl-query-rc $1
+ }
+ 
+ REPO_BASE=$( get_rc_val REPO_BASE)
+diff -ur sitaramc-gitolite-4c1e4b2.orig/src/gl-mirror-sync sitaramc-gitolite-4c1e4b2/src/gl-mirror-sync
+--- sitaramc-gitolite-4c1e4b2.orig/src/gl-mirror-sync   2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/src/gl-mirror-sync    2011-08-08 14:02:28.086500313 -0400
+@@ -6,7 +6,7 @@
+     { echo I cant ssh to $mirror; exit 1; }
+ 
+ cd $HOME
+-REPO_BASE=`${0%/*}/gl-query-rc REPO_BASE`
++REPO_BASE=`/usr/bin/gl-query-rc REPO_BASE`
+ cd $REPO_BASE
+ 
+ ssh $mirror cat \$HOME/.gitolite.rc | expand | egrep '^ *\$GL_SLAVE_MODE *= *1; *$' >/dev/null || {
+diff -ur sitaramc-gitolite-4c1e4b2.orig/src/gl-setup sitaramc-gitolite-4c1e4b2/src/gl-setup
+--- sitaramc-gitolite-4c1e4b2.orig/src/gl-setup 2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/src/gl-setup  2011-08-08 14:02:56.240514168 -0400
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ 
+-GL_PACKAGE_CONF=/tmp/share/gitolite/conf
++GL_PACKAGE_CONF=/usr/share/gitolite/conf
+ # must be the same as the value for the same variable in
+ # $GL_PACKAGE_CONF/example.gitolite.rc.  Sorry about the catch-22 :)
+ 
+@@ -21,7 +21,7 @@
+ die() { echo "$@"; exit 1; } >&2
+ 
+ get_rc_val() {
+-    ${0%/*}/gl-query-rc $1
++    /usr/bin/gl-query-rc $1
+ }
+ 
+ TEMPDIR=$(mktemp -d -t tmp.XXXXXXXXXX)
+diff -ur sitaramc-gitolite-4c1e4b2.orig/src/gl-tool sitaramc-gitolite-4c1e4b2/src/gl-tool
+--- sitaramc-gitolite-4c1e4b2.orig/src/gl-tool  2011-08-08 00:17:56.000000000 -0400
++++ sitaramc-gitolite-4c1e4b2/src/gl-tool   2011-08-08 14:03:17.720499044 -0400
+@@ -46,7 +46,7 @@
+     # side, it's not likely to change anytime soon!
+     AUTH_OPTIONS="no-port-forwarding,no-X11-forwarding,no-agent-forwarding"
+ 
+-    GL_BINDIR=`${0%/*}/gl-query-rc GL_BINDIR`
++    GL_BINDIR=`/usr/bin/gl-query-rc GL_BINDIR`
+ 
+     pubkey_file=$2
+     user=`basename $pubkey_file .pub`
+
