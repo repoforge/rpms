@@ -13,7 +13,7 @@
 
 Summary: X client for remote desktop into Windows Terminal Server
 Name: rdesktop
-Version: 1.7.0
+Version: 1.7.1
 Release: 0.1%{?dist}
 License: GPL
 Group: User Interface/Desktops
@@ -57,6 +57,9 @@ desktop. Unlike Citrix ICA, no server extensions are required.
 %{_datadir}/rdesktop/
 
 %changelog
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 1.7.1-0.1
+- Updated to release 1.7.1.
+
 * Wed Apr 20 2011 Dag Wieers <dag@wieers.com> - 1.7.0-0.1
 - Updated to release 1.7.0.
 

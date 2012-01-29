@@ -9,7 +9,7 @@
 %{?el4:# Tag: rfx}
 ### EL3 ships with spamassassin-2.55-3.4
 %{?el3:# Tag: rfx}
-# ExclusiveDist: el2 el3 el4 el5
+# ExclusiveDist: el2 el3 el4 el5 el6
 
 %{?el2:%define _with_perl_5_6 1}
 
@@ -21,7 +21,7 @@
 Summary: Spam filter for email which can be invoked from mail delivery agents
 Name: spamassassin
 Version: 3.3.2
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://spamassassin.apache.org/
@@ -31,6 +31,8 @@ Source99: filter-requires-spamassassin.sh
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
+%{?el6:BuildRequires: perl-devel}
+BuildRequires: perl(Archive::Tar)
 BuildRequires: perl(HTML::Parser) >= 3.24
 BuildRequires: perl(Net::DNS)
 BuildRequires: perl(NetAddr::IP) >= 4.000
@@ -250,6 +252,12 @@ fi
 %{perl_vendorlib}/spamassassin-run.pod
 
 %changelog
+* Sat Jan 21 2012 David Hrbáč <david@hrbac.cz> - FIXME
+- another enable for EL6 build
+
+* Tue Jan 17 2012 David Hrbáč <david@hrbac.cz> - 3.3.2-3
+- enable EL6 build
+
 * Fri Jul 29 2011 Yury V. Zaytsev <yury@shurup.com> - 3.3.2-2
 - Fixed file permissions to allow for stripping debuginfo. (Philip J. Perry)
 - Spamassassin now owns the /etc/mail dir. (Philip J. Perry)

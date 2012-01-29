@@ -6,8 +6,8 @@
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 5.2.5
-Release: 1%{?dist}
+Version: 5.3.2
+Release: 2%{?dist}
 License: GPLv3
 Group: Applications/Internet
 URL: http://mmonit.com/monit/
@@ -65,6 +65,11 @@ fi
 %post
 /sbin/chkconfig --add monit
 
+# Moving old style configuration file to upstream's default location
+[ -f %{_sysconfdir}/monit.conf ] &&
+    touch -r %{_sysconfdir}/monitrc %{_sysconfdir}/monit.conf &&
+    mv -f %{_sysconfdir}/monit.conf %{_sysconfdir}/monitrc 2> /dev/null || :
+
 %preun
 if [ $1 -eq 0 ]; then
 	service monit stop &>/dev/null || :
@@ -82,7 +87,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES.txt COPYING LICENSE README*
+%doc CHANGES COPYING README*
 %doc %{_mandir}/man?/*
 %{_initrddir}/monit
 %config %{_sysconfdir}/monit.d/
@@ -91,6 +96,12 @@ fi
 %attr(0600, root, root) %config(noreplace) %{_sysconfdir}/monit.conf
 
 %changelog
+* Mon Jan 23 2012 David Hrbáč <david@hrbac.cz> - 5.3.2-2
+- use upstream configuration file location
+
+* Tue Jan 17 2012 David Hrbáč <david@hrbac.cz> - 5.3.2-1
+- new upstream release
+
 * Mon Apr 04 2011 David Hrbáč <david@hrbac.cz> - 5.2.5-1
 - new upstream release
 

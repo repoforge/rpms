@@ -7,7 +7,7 @@ Summary: Sync and backup files between computers
 Name: dropbox
 %define nautilus_dropbox_version 0.6.7
 Version: 1.1.27
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Proprietary
 Group: Applications/File
 URL: http://www.dropbox.com/
@@ -232,6 +232,9 @@ fi
 %{_libexecdir}/dropbox/
 
 %changelog
+* Mon May 23 2011 Dag Wieers <dag@wieers.com> - 1.1.27-2
+- Re-enable AutoReqProv !
+
 * Tue Apr 26 2011 Dag Wieers <dag@wieers.com> - 1.1.27-1
 - Updated to release 1.1.27.
 

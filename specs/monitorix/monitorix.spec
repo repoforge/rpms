@@ -3,7 +3,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 2.3.0
+Version: 2.4.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -101,6 +101,9 @@ fi
 %doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD monitorix-alert.sh
 
 %changelog
+* Tue Jan 17 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.4.1-1
+- Updated to the latest version.
+
 * Tue Sep 06 2011 Yury V. Zaytsev <yury@shurup.com> - 2.3.0-1
 - Updated to the latest release (thanks to Jordi Sanfeliu!)
 - Init script now supports condrestart (see gh-52 for details)

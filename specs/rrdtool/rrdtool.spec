@@ -3,7 +3,15 @@
 # Upstream: Tobi Oetiker <oetiker$ee,ethz,ch>
 
 ### EL6 ships with rrdtool-1.3.8-6.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
+
+%{?el5:%define _without_egg_info 1}
+%{?el4:%define _without_egg_info 1}
+%{?el4:%define _without_xulrunner 1}
+%{?el3:%define _without_egg_info 1}
+%{?el3:%define _without_xulrunner 1}
+%{?el2:%define _without_egg_info 1}
+%{?el2:%define _without_xulrunner 1}
 
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -14,7 +22,7 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.4.4
+Version: 1.4.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
@@ -42,7 +50,7 @@ BuildRequires: ruby
 BuildRequires: ruby-devel
 BuildRequires: tcl-devel
 BuildRequires: tk-devel
-BuildRequires: xulrunner-devel
+%{!?_without_xulrunner:BuildRequires: xulrunner-devel}
 BuildRequires: zlib-devel
 Requires: cairo
 Requires: gettext
@@ -164,19 +172,19 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %clean
 %{__rm} -rf %{buildroot}
 
-%pre 
+%pre
 # Add the "rrdcached" user
 /usr/sbin/useradd -c "rrdcached" \
-	-s /sbin/nologin -r -d %{_localstatedir}/rrdtool/rrdcached rrdcached  2> /dev/null || :
+    -s /sbin/nologin -r -d %{_localstatedir}/rrdtool/rrdcached rrdcached  2> /dev/null || :
 
-%post 
+%post
 # Register the rrdcached service
 /sbin/chkconfig --add rrdcached
 
-%preun 
+%preun
 if [ $1 = 0 ]; then
-	/sbin/service rrdcached stop > /dev/null 2>&1
-	/sbin/chkconfig --del rrdcached
+    /sbin/service rrdcached stop > /dev/null 2>&1
+    /sbin/chkconfig --del rrdcached
 fi
 
 
@@ -229,6 +237,7 @@ fi
 %files -n python-rrdtool
 %defattr(-, root, root, 0755)
 %doc bindings/python/ACKNOWLEDGEMENT bindings/python/AUTHORS bindings/python/COPYING bindings/python/README
+%{!?_without_egg_info:%{python_sitearch}/*.egg-info}
 %{python_sitearch}/rrdtoolmodule.so
 
 %files -n ruby-rrdtool
@@ -241,6 +250,9 @@ fi
 %{_libdir}/lua/
 
 %changelog
+* Tue Dec 13 2011 Arnoud Vermeer <repoforge@freshway.biz> - 1.4.5-1
+- Updated to release 1.4.5.
+
 * Fri Jul 09 2010 Dag Wieers <dag@wieers.com> - 1.4.4-1
 - Updated to release 1.4.4.
 
@@ -405,4 +417,3 @@ fi
 * Tue Mar 12 2002 Henri Gomez <hgomez@users.sourceforge.net>
 - 1.0.34
 - rrdtools include zlib 1.1.4 which fix vulnerabilities in 1.1.3
-

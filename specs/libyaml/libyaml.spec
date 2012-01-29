@@ -4,7 +4,7 @@
 
 Summary: Implementation of a YAML 1.1 parser and emitter
 Name: libyaml
-Version: 0.1.3
+Version: 0.1.4
 Release: 1%{?dist}
 License: MIT/X Consortium
 Group: Development/Libraries
@@ -53,9 +53,12 @@ you will need to install %{name}-devel.
 %defattr(-, root, root, 0755)
 %{_includedir}/yaml.h
 %{_libdir}/libyaml.so
+%{_libdir}/pkgconfig/*.pc
 %exclude %{_libdir}/*.la
 
 %changelog
+* Tues Dec 27 2011 Rilindo Foster (rilindo.foster@monzell.com - 0.1.4-1
+- Updated to release 0.1.4, added path to pkgconfig
 * Mon May 17 2010 Dag Wieers <dag@wieers.com> - 0.1.3-1
 - Updated to release 0.1.3.
 

@@ -58,8 +58,8 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 1.1.11
-Release: 2%{?dist}
+Version: 1.1.13
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
@@ -357,6 +357,9 @@ export QTLIB="$QTDIR/lib"
 %exclude %{_libdir}/mozilla/plugins/libvlcplugin.la
 
 %changelog
+* Sun Jan 22 2012 Dag Wieers <dag@wieers.com> - 1.1.13-1
+- Updated to release 1.1.13.
+
 * Wed Jul 20 2011 Dag Wieers <dag@wieers.com> - 1.1.11-2
 - Added --without-dvdcss since libdvdread will pick up dvdcss support in runtime.
 

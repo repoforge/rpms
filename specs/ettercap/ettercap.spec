@@ -3,7 +3,6 @@
 # Upstream: Marco Valleri <crwm$freemail,it>
 # Upstream: Alberto Ornaghi <alor$users,sourceforge,net>
 
-
 %{!?dtag:%define _with_libpcapdevel 1}
 %{!?dtag:%define _with_libtoolltdl 1}
 
@@ -18,8 +17,8 @@
 
 Summary: Multipurpose sniffer/interceptor/logger for switched LAN
 Name: ettercap
-Version: 0.7.3
-Release: 2%{?dist}
+Version: 0.7.4
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://ettercap.sourceforge.net/
@@ -43,8 +42,8 @@ analysis.
 
 %build
 %configure \
-	--enable-devel \
-	--enable-plugins
+    --enable-devel \
+    --enable-plugins
 %{__make} %{?_smp_mflags}
 #CFLAG="%{optflags} -I/usr/kerberos/include"
 
@@ -67,6 +66,9 @@ analysis.
 %{_datadir}/ettercap/
 
 %changelog
+* Wed Dec 21 2011 Dag Wieers <dag@wieers.com> - 0.7.4-1
+- Updated to release 0.7.4.
+
 * Mon Nov 20 2006 Dries Verachtert <dries@ulyssis.org> - 0.7.3-2
 - libtool-ltdl-devel added as buildrequirement, thanks to Ahmed Kamal.
 

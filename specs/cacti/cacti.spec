@@ -6,13 +6,14 @@
 
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
-Version: 0.8.7h
-Release: 1%{?dist}
+Version: 0.8.7i
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
 
 Source: http://www.cacti.net/downloads/cacti-%{version}.tar.gz
+Patch0: settings_checkbox.patch 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -54,6 +55,7 @@ This package includes the documentation for %{name}.
 
 %prep
 %setup
+%patch0 -p1
 
 echo -e "*/5 * * * *\tcacti\tphp %{_localstatedir}/www/cacti/poller.php &>/dev/null" >cacti.crontab
 
@@ -125,6 +127,12 @@ fi
 %doc docs/*
 
 %changelog
+* Sat Jan 21 2012 David Hrbáč <david@hrbac.cz> - 0.8.7i-2
+- added settings_checkbox.patch
+
+* Wed Dec 21 2011 Dag Wieers <dag@wieers.com> - 0.8.7i-1
+- Updated to release 0.8.7i.
+
 * Tue Sep 27 2011 Dag Wieers <dag@wieers.com> - 0.8.7h-1
 - Updated to release 0.8.7h.
 

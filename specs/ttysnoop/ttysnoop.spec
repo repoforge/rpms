@@ -9,7 +9,8 @@ License: distributable
 Group: System Environment/Base
 URL: http://www.mirrors.wiretapped.net/security/host-security/
 
-Source0: http://www.mirrors.wiretapped.net/security/host-security/ttysnoop-%{version}.tar.gz
+Source0: http://dl.packetstormsecurity.net/UNIX/IDS/ttysnoop-%{version}.tar.gz
+#Source0: http://www.mirrors.wiretapped.net/security/host-security/ttysnoop-%{version}.tar.gz
 Patch0: ttysnoop-0.12c-glibc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -20,7 +21,7 @@ redirecting both input and output from/to it.
 
 %prep
 %setup
-%patch0 -p1
+#patch0 -p1
 
 %build
 %{__make} %{?_smp_mflags} RPM_OPTS="%{optflags}"

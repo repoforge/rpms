@@ -2,17 +2,15 @@
 # Authority: dag
 # Upstream: Thomas Dzubin <dzubin$vcn,bc,ca>
 
-%define real_version 2.4b2
-
 Summary: Utility to ping multiple hosts at once
 Name: fping
-Version: 2.4
+Version: 3.0
 Release: 1.b2.3%{?dist}
 License: distributable
 Group: Applications/Internet
 URL: http://www.fping.com/
 
-Source: http://www.fping.com/download/fping-%{real_version}.tar.gz
+Source: http://www.fping.com/download/fping-%{version}.tar.gz
 Patch0: fping-ac_fixes.patch
 Patch1: fping-ipv6.patch
 Patch2: fping-ipv6-ac.patch
@@ -35,7 +33,7 @@ If a host does not respond within a certain time limit and/or retry limit it
 will be considered unreachable.
 
 %prep
-%setup -n %{name}-%{real_version}
+%setup
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -73,6 +71,9 @@ will be considered unreachable.
 %{_sbindir}/fping6
 
 %changelog
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 3.0-1
+- Updated to release 3.0.
+
 * Tue Jun 29 2010 Dag Wieers <dag@wieers.com> - 2.4-1.b2.3
 - Cosmetic changes.
 

@@ -17,7 +17,7 @@
 Summary: The World-Wide Web library for Perl
 Name: perl-libwww-perl
 Version: 5.837
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/libwww-perl/
@@ -68,7 +68,7 @@ The World-Wide Web library for Perl.
 %setup -n %{real_name}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
+%{__perl} Makefile.PL INSTALLDIRS="vendor" --aliases PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
 
 %install
@@ -85,8 +85,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc AUTHORS Changes MANIFEST META.yml README README.SSL
 %doc %{_mandir}/man3/Bundle::LWP.3pm*
+%{_bindir}/GET
+%{_bindir}/HEAD
+%{_bindir}/POST
 %{_bindir}/lwp-download
 %{_bindir}/lwp-dump
+%{_bindir}/lwp-mirror
 %{_bindir}/lwp-mirror
 %{_bindir}/lwp-request
 %{_bindir}/lwp-rget
@@ -103,6 +107,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/RobotRules/AnyDBM_File.pm
 %{perl_vendorlib}/lwpcook.pod
 %{perl_vendorlib}/lwptut.pod
+%{_mandir}/man1/GET.1.gz
+%{_mandir}/man1/HEAD.1.gz
+%{_mandir}/man1/POST.1.gz
 %{_mandir}/man1/lwp-download.1.gz
 %{_mandir}/man1/lwp-dump.1.gz
 %{_mandir}/man1/lwp-mirror.1.gz
@@ -120,8 +127,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{_mandir}/man3/lwpcook.3pm.gz
 %{_mandir}/man3/lwptut.3pm.gz
 
-
 %changelog
+* Fri Jan 27 2012 David Hrbáč <david@hrbac.cz> - 5.837-2
+- fix #465855 - install --aliases by default
+- missing GET, HEAD, POST
+
 * Thu Sep 01 2011 Steve Huff <shuff@vecna.org> - 5.837-1
 - Updated to version 5.837.
 - Move from RFT to RFX.

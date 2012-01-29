@@ -10,14 +10,14 @@
 
 Summary: Tool to provide statistics based on the output of diff
 Name: diffstat
-Version: 1.53
+Version: 1.55
 Release: 1%{?dist}
 License: MIT
 Group: Development/Tools
 URL: http://invisible-island.net/diffstat/
 
-#Source0: http://invisible-island.net/datafiles/release/diffstat.tar.gz
-Source0: http://invisible-island.net/datafiles/release/diffstat-%{version}.tar.gz
+Source0: http://invisible-island.net/datafiles/release/diffstat.tar.gz
+#Source0: http://invisible-island.net/datafiles/release/diffstat-%{version}.tar.gz
 Source1: COPYING
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -54,5 +54,8 @@ diff command's output.
 %{_bindir}/diffstat
 
 %changelog
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 1.55-1
+- Updated to release 1.55.
+
 * Tue Jul 20 2010 Dag Wieers <dag@wieers.com> - 1.53-1
 - Initial package. (using DAR)

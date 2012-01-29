@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Eric Gerbier <gerbier$users,sourceforge,net>
 
-
 %{?rh7:%define _without_freedesktop 1}
 %{?el2:%define _without_freedesktop 1}
 
@@ -12,8 +11,8 @@
 
 Summary: File integrity checker
 Name: afick
-Version: 2.2
-Release: 2.2%{?dist}
+Version: 2.19
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://afick.sourceforge.net/
@@ -82,19 +81,19 @@ EOF
 %{__ln_s} -f afick-tk.pl %{buildroot}%{_bindir}/afick-tk
 
 %if %{?_without_freedesktop:1}0
-	%{__install} -Dp -m0644 afick.desktop %{buildroot}%{_datadir}/gnome/apps/System/afick.desktop
+    %{__install} -Dp -m0644 afick.desktop %{buildroot}%{_datadir}/gnome/apps/System/afick.desktop
 %else
-        %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-        desktop-file-install --vendor %{desktop_vendor}    \
-		--delete-original                          \
-                --add-category X-Red-Hat-Base              \
-                --dir %{buildroot}%{_datadir}/applications \
-		afick.desktop
+    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
+    desktop-file-install --vendor %{desktop_vendor}    \
+        --delete-original                          \
+        --add-category X-Red-Hat-Base              \
+        --dir %{buildroot}%{_datadir}/applications \
+        afick.desktop
 %endif
 
 %post
 #if [ $1 -eq 1 ]; then
-#	%{_bindir}/afick -i
+#   %{_bindir}/afick -i
 #fi
 
 %clean
@@ -123,8 +122,8 @@ EOF
 %{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-afick.desktop}
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.2-2.2
-- Rebuild for Fedora Core 5.
+* Thu Nov 24 2011 Dag Wieers <dag@wieers.com> - 2.19-1
+- Updated to release 2.19.
 
 * Tue Jun 15 2004 Dag Wieers <dag@wieers.com> - 2.2-2
 - Fixed afick cron script. (Charles)

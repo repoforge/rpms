@@ -5,7 +5,7 @@
 
 Summary: Command Line XML Toolkit
 Name: xmlstarlet
-Version: 1.3.0
+Version: 1.3.1
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Text
@@ -60,6 +60,9 @@ popd
 %{_bindir}/xmlstarlet
 
 %changelog
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 1.3.1-1
+- Updated to release 1.3.1.
+
 * Mon Oct 10 2011 Dag Wieers <dag@wieers.com> - 1.3.0-1
 - Updated to release 1.3.0.
 

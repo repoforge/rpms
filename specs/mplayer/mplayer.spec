@@ -29,8 +29,8 @@
 %{?el5:%define _without_pulseaudio 1}
 %{?el5:%define _without_schroedinger 1}
 %{?el5:%define _without_speex 1}
-
 %{?el4:%define _without_ass 1}
+
 %{?el4:%define _without_giflib 1}
 %{?el4:%define _without_internal_ass 1}
 %{?el4:%define _without_modxorg 1}
@@ -38,6 +38,7 @@
 %{?el4:%define _without_sdl 1}
 %{?el4:%define _without_samba 1}
 %{?el4:%define _without_speex 1}
+%{?el4:%define _without_vdpau 1}
 
 %{?el3:%define _without_ass 1}
 %{?el3:%define _without_alsa 1}
@@ -54,6 +55,7 @@
 %{?el3:%define _without_speex 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_v4l2 1}
+%{?el3:%define _without_vdpau 1}
 %{?el3:%define _without_xvmc 1}
 
 %define real_name MPlayer
@@ -70,12 +72,10 @@ URL: http://mplayerhq.hu/
 Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-%{real_version}.tar.bz2
 Source1: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
 Source10: mplayer-snapshot.sh
-Patch0: MPlayer-0.90pre9-runtimemsg.patch
 Patch2: mplayer-config.patch
 Patch8: mplayer-manlinks.patch
 Patch10: MPlayer-1.0pre6a-fribidi.patch
 Patch14: mplayer-nodvdcss.patch
-Patch100: mplayer-1.0rc1-h264-static.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: desktop-file-utils
@@ -214,7 +214,6 @@ This package contains various scripts from MPlayer TOOLS directory.
 %patch8 -p1 -b .manlinks
 %patch10 -p1 -b .fribidi
 %patch14 -p1 -b .nodvdcss
-#patch100 -p0 -b .h264_static
 
 %build
 export LDFLAGS="%{!?_without_fontconfig:$(pkg-config --libs fontconfig)} %{!?_without_fribidi:$(pkg-config --libs fribidi)}"

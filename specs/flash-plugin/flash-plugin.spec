@@ -12,12 +12,13 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 11.0.1.152
+Version: 11.0.2.55
 Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
+### More information wrt. downloads: http://kb2.adobe.com/cps/142/tn_14266.html
 %ifarch %{ix86}
 Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.i386.tar.gz
 %endif
@@ -54,7 +55,7 @@ By downloading and installing this package you agree to the included LICENSE.
 %{__install} -Dp -m0755 %{SOURCE4} %{buildroot}%{_libdir}/flash-plugin/setup
 %{__install} -Dp -m0755 usr/bin/flash-player-properties %{buildroot}%{_bindir}/flash-player-properties
 %{__cp} -auvx usr/share/. %{buildroot}%{_datadir}
-%{__cp} -auvx usr/lib/. %{buildroot}%{_libdir}
+%{__cp} -auvx usr/%{_lib}/. %{buildroot}%{_libdir}
 
 %post
 if [ $1 -eq 1 ]; then
@@ -89,6 +90,9 @@ fi
 %endif
 
 %changelog
+* Wed Dec 14 2011 Dag Wieers <dag@wieers.com> - 11.0.2.55-0.1
+- Updated to release 11.0.2.55.
+
 * Fri Oct 07 2011 Dag Wieers <dag@wieers.com> - 11.0.1.152-0.1
 - Updated to release 11.0.1.152.
 

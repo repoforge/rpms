@@ -2,6 +2,13 @@
 # Authority: dag
 # Upstream: Johan Vromans <jv$cpan,org>
 
+### EL6 ships with Getopt::Long in perl-5.10.1-119.el6_1.1
+### EL5 ships with Getopt::Long in perl-5.8.8-32.el5_6.3
+### EL4 ships with Getopt::Long in perl-5.8.5-53.el4
+### EL3 ships with Getopt::Long in perl-5.8.0-101.EL3
+### EL2 ships with Getopt::Long in perl-5.6.1-37.1.99ent
+# Tag: rft
+
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 

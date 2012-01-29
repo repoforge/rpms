@@ -20,8 +20,8 @@
 
 Summary: Core library of the xine multimedia player
 Name: xine-lib
-Version: 1.1.19
-Release: 2%{?dist}
+Version: 1.1.20.1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.xine-project.org/
@@ -132,6 +132,7 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %{?_without_alsa:--disable-alsa} \
     --enable-antialiasing \
 %{!?_without_directfb:--enable-directfb} \
+%{?_without_esound:--without-esound} \
     --enable-ipv6 \
     --with-external-a52dec \
 %{?_with_extffmpeg:--with-external-ffmpeg} \
@@ -183,6 +184,9 @@ export SDL_CFLAGS="$(sdl-config --cflags)" SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libxine.la
 
 %changelog
+* Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 1.1.20.1-1
+- Updated to release 1.1.20.1.
+
 * Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 1.1.19-2
 - Disabled directfb support.
 - Rebuild against ffmpeg-0.6.1.

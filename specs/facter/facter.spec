@@ -8,7 +8,7 @@
 
 Summary: Ruby module for collecting simple facts about a host operating system
 Name: facter
-Version: 1.6.2
+Version: 1.6.4
 Release: 1%{?dist}
 License: Apache 2.0
 Group: System Environment/Base
@@ -24,12 +24,14 @@ BuildArch: noarch
 %endif
 
 BuildRequires: ruby >= 1.8.1
-
 Requires: ruby >= 1.8.1
-Requires: which
+
 %if %has_ruby_abi
 Requires: ruby(abi) = 1.8
 %endif
+
+Requires: dmidecode
+Requires: which
 
 %description
 Ruby module for collecting simple facts about a host Operating
@@ -59,6 +61,10 @@ ruby install.rb --destdir=%{buildroot} --quick --no-rdoc
 %{ruby_sitelibdir}/facter
 
 %changelog
+* Thu Jan 12 2012 Yury V. Zaytsev <yury@shurup.com> - 1.6.4-1
+- Merged improvements from TMZ.
+- Updated to release 1.6.4.
+
 * Sat Oct 15 2011 Yury V. Zaytsev <yury@shurup.com> - 1.6.2-1
 - Updated to release 1.6.2.
 

@@ -1,7 +1,9 @@
 # $Id$
 # Authority: dag
 
-# ExclusiveDist: el5
+# ExclusiveDist: el4,el5,el6
+
+%define _default_patch_fuzz 2
 
 Summary: Archiving and compression utility for LHarc format archives
 Name: lha
@@ -55,5 +57,8 @@ Install the lha package if you need to extract DOS files from LHA archives.
 %{_bindir}/lha
 
 %changelog
+* Sun Jan 15 2012 David Hrbáč <david@hrbac.cz> - 1.14i-19.2.2
+- builds fine on el{4,5,6}
+
 * Mon Apr 30 2007 Dag Wieers <dag@wieers.com> - 1.14i-19.2.2
 - Import from RHEL.

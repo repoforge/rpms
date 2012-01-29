@@ -25,7 +25,7 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.29
+Version: 1.3.37
 Release: 1%{?dist}
 License: LGPLv2+
 Group: Applications/Emulators
@@ -78,7 +78,7 @@ BuildRequires: zlib-devel
 Requires: wine-capi = %{version}-%{release}
 Requires: wine-cms = %{version}-%{release}
 Requires: wine-core = %{version}-%{release}
-Requires: wine-gecko = 1.2.0
+Requires: wine-gecko = 1.4
 Requires: wine-ldap = %{version}-%{release}
 Requires: wine-twain = %{version}-%{release}
 
@@ -458,6 +458,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/clock.exe.so
 %{_libdir}/wine/cmd.exe.so
 %{_libdir}/wine/control.exe.so
+%{_libdir}/wine/cscript.exe.so
 %{_libdir}/wine/dxdiag.exe.so
 %{_libdir}/wine/eject.exe.so
 %{_libdir}/wine/expand.exe.so
@@ -578,6 +579,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/advapi32.dll.so
 %{_libdir}/wine/advpack.dll.so
 %{_libdir}/wine/amstream.dll.so
+%{_libdir}/wine/apphelp.dll.so
 %{_libdir}/wine/atl.dll.so
 %{_libdir}/wine/authz.dll.so
 %{_libdir}/wine/avicap32.dll.so
@@ -657,6 +659,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/ddraw.dll.so
 %{_libdir}/wine/ddrawex.dll.so
 %{_libdir}/wine/devenum.dll.so
+%{_libdir}/wine/dhcpcsvc.dll.so
 %{_libdir}/wine/dinput.dll.so
 %{_libdir}/wine/dinput8.dll.so
 %{_libdir}/wine/dispex.dll.so
@@ -730,6 +733,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/mciwave.dll.so
 %{_libdir}/wine/midimap.dll.so
 %{_libdir}/wine/mlang.dll.so
+%{_libdir}/wine/mmcndmgr.dll.so
 %{_libdir}/wine/mmdevapi.dll.so
 %{_libdir}/wine/mpr.dll.so
 %{_libdir}/wine/mprapi.dll.so
@@ -798,6 +802,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/olethk32.dll.so
 %{!?_without_opengl:%{_libdir}/wine/opengl32.dll.so}
 %{_libdir}/wine/pdh.dll.so
+%{_libdir}/wine/photometadatahandler.dll.so
 %{_libdir}/wine/pidgen.dll.so
 %{_libdir}/wine/powrprof.dll.so
 %{_libdir}/wine/printui.dll.so
@@ -825,6 +830,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/scarddlg.dll.so
 %{_libdir}/wine/sccbase.dll.so
 %{_libdir}/wine/schannel.dll.so
+%{_libdir}/wine/scrrun.dll.so
 %{_libdir}/wine/secur32.dll.so
 %{_libdir}/wine/security.dll.so
 %{_libdir}/wine/sensapi.dll.so
@@ -898,6 +904,7 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/xinput9_1_0.dll.so
 %{_libdir}/wine/xmllite.dll.so
 %{_libdir}/wine/xolehlp.dll.so
+%{_libdir}/wine/xpsprint.dll.so
 
 ### ds.so
 %{_libdir}/wine/gphoto2.ds.so
@@ -1011,6 +1018,9 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sat Jan 21 2012 Dag Wieers <dag@wieers.com> - 1.3.37-1
+- Updated to release 1.3.37.
+
 * Sun Oct 09 2011 Dag Wieers <dag@wieers.com> - 1.3.29-1
 - Updated to release 1.3.29.
 
