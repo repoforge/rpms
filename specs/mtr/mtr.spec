@@ -14,7 +14,7 @@
 
 Summary: Network diagnostic tool
 Name: mtr
-Version: 0.80
+Version: 0.81
 Release: 1%{?dist}
 Epoch: 2
 License: GPL
@@ -22,18 +22,10 @@ Group: Applications/Internet
 URL: http://www.BitWizard.nl/mtr
 
 Source: ftp://ftp.bitwizard.nl/mtr/mtr-%{version}.tar.gz
-Patch0: mtr-0.49-s390x.patch
-Patch1: mtr-0.54-ipv6-kame.patch
-Patch2: mtr-0.48-nogtk.patch
-Patch3: mtr-0.52-SA_LEN.patch
-Patch4: mtr-0.54-servfail.patch
-Patch5: mtr-0.54-CVE-2002-0497.patch
-Patch6: mtr-0.54-ipv6-ifaddr.patch
-Patch7: mtr-0.54-ipv6-ip6arpa.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: automake
-BuildRequires: gtk+-devel
+BuildRequires: gtk2-devel >= 2.6.0
 BuildRequires: libtermcap-devel
 BuildRequires: ncurses-devel
 
@@ -55,14 +47,6 @@ diagnostic tool.
 
 %prep
 %setup
-#%patch0 -p1 -b .s390x
-#%patch1 -p1 -b .ipv6-kame
-#%patch2 -p1 -b .nogtk
-#%patch3 -p1 -b .SA_LEN
-#%patch4 -p1 -b .servfail
-#%patch5 -p1 -b .CVE-2002-0497
-#%patch6 -p1 -b .ipv6-ifaddr
-#%patch7 -p1 -b .ipv6-ip6arpa
 
 %{__cat} <<EOF >xmtr.desktop
 [Desktop Entry]
@@ -150,6 +134,9 @@ autoconf
 %{_sbindir}/xmtr
 
 %changelog
+* Mon Oct 10 2011 Dag Wieers <dag@wieers.com> - 2:0.81-1
+- Updated to release 0.81.
+
 * Thu Jul 15 2010 Dag Wieers <dag@wieers.com> - 2:0.80-1
 - Updated to release 0.80.
 

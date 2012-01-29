@@ -6,13 +6,13 @@
 
 Summary: Hardware Locality Library
 Name: hwloc
-Version: 1.2.1
+Version: 1.3
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
 URL: http://www.open-mpi.org/
 
-Source: http://www.open-mpi.org/software/hwloc/v1.2/downloads/hwloc-%{version}.tar.bz2
+Source: http://www.open-mpi.org/software/hwloc/v1.3/downloads/hwloc-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -89,6 +89,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libhwloc.la
 
 %changelog
+* Mon Oct 24 2011 Dag Wieers <dag@wieers.com> - 1.3-1
+- Updated to release 1.3.
+
 * Mon Sep 05 2011 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

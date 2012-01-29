@@ -1,4 +1,4 @@
-# $Id: flash-plugin.spec 5067 2007-01-11 00:54:46Z dag $
+# $Id$
 # Authority: dag
 
 # ExcludeDist: el2 rh7 rh9 el3 el4
@@ -6,24 +6,30 @@
 ### Disable stripping
 %define __spec_install_post /usr/lib/rpm/brp-compress
 
-%define real_name install_flash_player_10_linux
+%{?el5:%define _without_kde 1}
+
+%define real_name libflashplayer
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 10.3.183.5
+Version: 11.0.1.152
 Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
-Source: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_10_linux.tar.gz
+%ifarch %{ix86}
+Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.i386.tar.gz
+%endif
+%ifarch x86_64
+Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.%{_arch}.tar.gz
+%endif
 Source1: README
 Source2: LICENSE
 Source3: homecleanup
-Source4: setup
+Source4: setup64
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildArch: i386
 Obsoletes: mozilla-flash <= %{version}-%{release}
 #Requires: %{_libdir}/mozilla/plugins/
 
@@ -33,7 +39,7 @@ Macromedia Flash Player
 By downloading and installing this package you agree to the included LICENSE.
 
 %prep
-%setup -c %{real_name}
+%setup -c
 %{__install} -Dp -m0644 %{SOURCE1} LICENSE
 %{__install} -Dp -m0644 %{SOURCE2} README
 
@@ -46,6 +52,9 @@ By downloading and installing this package you agree to the included LICENSE.
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_libdir}/flash-plugin/README
 %{__install} -Dp -m0755 %{SOURCE3} %{buildroot}%{_libdir}/flash-plugin/homecleanup
 %{__install} -Dp -m0755 %{SOURCE4} %{buildroot}%{_libdir}/flash-plugin/setup
+%{__install} -Dp -m0755 usr/bin/flash-player-properties %{buildroot}%{_bindir}/flash-player-properties
+%{__cp} -auvx usr/share/. %{buildroot}%{_datadir}
+%{__cp} -auvx usr/lib/. %{buildroot}%{_libdir}
 
 %post
 if [ $1 -eq 1 ]; then
@@ -65,50 +74,56 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README
+%{_bindir}/flash-player-properties
+%{_datadir}/pixmaps/flash-player-properties.png
+%{_datadir}/applications/flash-player-properties.desktop
+%{_datadir}/icons/hicolor/*/apps/flash-player-properties.png
 %{_libdir}/flash-plugin/
 
+%if %{?_without_kde:1}0
+%exclude %{_datadir}/kde4/services/kcm_adobe_flash_player.desktop
+%exclude %{_libdir}/kde4/kcm_adobe_flash_player.so
+%else
+%{_datadir}/kde4/services/kcm_adobe_flash_player.desktop
+%{_libdir}/kde4/kcm_adobe_flash_player.so
+%endif
+
 %changelog
-* Thu Aug 11 2011 Dag Wieers <dag@wieers.com> - 10.3.183.5-0.1
-- Updated to release 10.3.183.5.
+* Fri Oct 07 2011 Dag Wieers <dag@wieers.com> - 11.0.1.152-0.1
+- Updated to release 11.0.1.152.
 
-* Sun Jun 19 2011 Dag Wieers <dag@wieers.com> - 10.3.181.26-0.1
-- Updated to release 10.3.181.26.
+* Thu Sep 22 2011 Dag Wieers <dag@wieers.com> - 11.0.1.129-0.1
+- Updated to release 11.0.1.129.
 
-* Thu Jun 09 2011 Dag Wieers <dag@wieers.com> - 10.3.181.22-0.1
-- Updated to release 10.3.181.22.
+* Thu Aug 11 2011 Dag Wieers <dag@wieers.com> - 11.0.1.98-0.1
+- Updated to release 11.0.1.98.
 
-* Fri May 13 2011 Dag Wieers <dag@wieers.com> - 10.3.181.14-0.1
-- Updated to release 10.3.181.14.
+* Mon Jul 18 2011 Dag Wieers <dag@wieers.com> - 11.0.1.60-0.2
+- Disable KDE integration for RHEL5.
 
-* Tue Apr 19 2011 Dag Wieers <dag@wieers.com> - 10.2.159.1-0.1
-- Updated to release 10.2.159.1.
+* Mon Jul 18 2011 Dag Wieers <dag@wieers.com> - 11.0.1.60-0.1
+- Updated to release 11.0.1.60.
 
-* Wed Mar 23 2011 Dag Wieers <dag@wieers.com> - 10.2.153.1-0.1
-- Updated to release 10.2.153.1.
+* Fri Dec 03 2010 Dag Wieers <dag@wieers.com> - 10.3.162.29-0.1
+- Updated to release 10.3.162.29.
 
-* Thu Feb 10 2011 Dag Wieers <dag@wieers.com> - 10.2.152.27-0.1
-- Updated to release 10.2.152.27.
+* Tue Nov 09 2010 Dag Wieers <dag@wieers.com> - 10.2.161.23-0.1
+- Updated to release 10.2.161.23.
 
-* Fri Dec 03 2010 Dag Wieers <dag@wieers.com> - 10.1.102.65-0.1
-- Updated to release 10.1.102.65.
+* Thu Sep 16 2010 Dag Wieers <dag@wieers.com> - 10.2.161.22-0.1
+- Updated to release 10.2.161.22.
 
-* Tue Nov 09 2010 Dag Wieers <dag@wieers.com> - 10.1.102.64-0.1
-- Updated to release 10.1.102.64.
-
-* Thu Aug 12 2010 Dag Wieers <dag@wieers.com> - 10.1.82.76-0.1
-- Updated to release 10.1.82.76.
-
-* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 10.1.53.64-0.1
-- Updated to release 10.1.53.64.
-
-* Sat Aug 08 2009 Dag Wieers <dag@wieers.com> - 10.0.32.18-0.2
-- Fixed to use the real 10.0.32.18 tarball. (damn adobe, version your stuff!)
+* Sun Jun 13 2010 Dag Wieers <dag@wieers.com> - 10.0.45.2-0.1
+- Updated to release 10.0.45.2.
 
 * Sat Aug 01 2009 Dag Wieers <dag@wieers.com> - 10.0.32.18-0.1
 - Updated to release 10.0.32.18.
 
 * Thu Apr 16 2009 Dag Wieers <dag@wieers.com> - 10.0.22.87-1
 - Updated to release 10.0.22.87.
+
+* Fri Dec 19 2008 Dag Wieers <dag@wieers.com> - 10.0.d21.1-1
+- Initial test-release for x86_64.
 
 * Thu Dec 18 2008 Dag Wieers <dag@wieers.com> - 10.0.15.3-1
 - Updated to release 10.0.15.3.

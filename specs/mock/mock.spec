@@ -1,17 +1,17 @@
 # $Id$
-# Authority: dag
+# Authority: yury
 
 # ExclusiveDist: el5 el6
 
-%{?el5:%define _with_python_hashlib 1}
+%{?el5:%global _with_python_hashlib 1}
 
 %if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
-%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %endif
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.15
+Version: 1.1.17
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -91,6 +91,12 @@ fi
 %dir %{_localstatedir}/lib/mock
 
 %changelog
+* Tue Nov 01 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.17-1
+- Updated to release 1.1.17.
+
+* Sat Oct 15 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.16-1
+- Updated to release 1.1.16.
+
 * Sat Sep 24 2011 Yury V. Zaytsev <yury@shurup.com> - 1.1.15-1
 - Updated to release 1.1.15.
 

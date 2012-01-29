@@ -12,7 +12,7 @@
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
 Version: 8.6.6
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
@@ -23,6 +23,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python-devel >= 2.4
 Requires: docbook-style-xsl
+Requires: libxslt
 Requires: python >= 2.4
 
 %description
@@ -43,14 +44,8 @@ DocBook markups using the asciidoc(1) command.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-### real conf data goes to sysconfdir
-for file in filters/*/*.py; do
-    %{__install} -d -m0755 %{buildroot}%{_datadir}/asciidoc/$(dirname $file)
-    %{__mv} %{buildroot}%{_sysconfdir}/asciidoc/$file %{buildroot}%{_datadir}/asciidoc/$(dirname $file)
-done
-
 ### rest to datadir; symlinks so asciidoc works
-for dir in dblatex/ docbook-xsl/ images/ javascripts/ stylesheets/; do
+for dir in docbook-xsl/ images/ javascripts/ stylesheets/; do
     %{__mv} %{buildroot}%{_sysconfdir}/asciidoc/$dir %{buildroot}%{_datadir}/asciidoc
     %{__ln_s} %{_datadir}/asciidoc/$dir %{buildroot}%{_sysconfdir}/asciidoc/
 done
@@ -59,7 +54,7 @@ done
 %{__install} -Dp -m0644 asciidocapi.py %{buildroot}%{python_sitelib}/asciidocapi.py
 
 ### Make it easier to %exclude these with both rpm < and >= 4.7
-for file in %{buildroot}{%{_bindir},%{_datadir}/asciidoc/filters/*}/*.py ; do
+for file in %{buildroot}{%{_bindir},%{_sysconfdir}/asciidoc/filters/*}/*.py ; do
     touch ${file}{c,o}
 done
 
@@ -112,7 +107,7 @@ done
 %dir %{vimdir}/syntax/
 %{vimdir}/syntax/asciidoc.vim
 %exclude %{_bindir}/*.py[co]
-%exclude %{_datadir}/asciidoc/filters/*/*.py[co]
+%exclude %{_sysconfdir}/asciidoc/filters/*/*.py[co]
 
 %changelog
 * Mon Sep 12 2011 Dag Wieers <dag@wieers.com> - 8.6.6-1

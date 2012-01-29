@@ -3,13 +3,13 @@
 
 Summary: Small utility for querying NT/2K/XP/2K3/Vista registries
 Name: reglookup
-Version: 0.12.0
+Version: 1.0.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://projects.sentinelchicken.org/reglookup/
 
-Source: http://projects.sentinelchicken.org/data/downloads/reglookup-%{version}.tar.gz
+Source: http://projects.sentinelchicken.org/data/downloads/reglookup-src-%{version}.tar.gz
 Patch0: reglookup-0.9.0-DESTDIR.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -25,11 +25,12 @@ a (mostly) standardized, quoted format. It also provides features for
 filtering of results based on registry path and data type.
 
 %prep
-%setup
-%patch0 -p1
+%setup -n %{name}-src-%{version}
+#patch0 -p1
 
 %build
-%{__make} CC="%{__cc}" OPTS="%{optflags}"
+#%{__make} CC="%{__cc}" OPTS="%{optflags}"
+smake
 
 %install
 %{__rm} -rf %{buildroot}
@@ -54,8 +55,14 @@ filtering of results based on registry path and data type.
 %{_bindir}/reglookup-timeline
 
 %changelog
+* Mon Oct 10 2011 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
+* Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.0.0-1
+- Updated to release 1.0.0.
+
 * Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 0.12.0-1
-- Updated to release
+- Updated to release 0.12.0.
 
 * Tue Nov 04 2008 Dag Wieers <dag@wieers.com> - 0.9.0-1
 - Initial package. (using DAR)

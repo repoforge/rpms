@@ -5,7 +5,7 @@
 
 Summary: Command Line XML Toolkit
 Name: xmlstarlet
-Version: 1.2.1
+Version: 1.3.0
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Text
@@ -16,7 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
 BuildRequires: automake
-BuildRequires: libxml2-devel >= 2.6.12
+BuildRequires: libxml2-devel >= 2.6.27
 BuildRequires: libxslt-devel >= 1.1.9
 BuildRequires: xmlto
 
@@ -60,6 +60,9 @@ popd
 %{_bindir}/xmlstarlet
 
 %changelog
+* Mon Oct 10 2011 Dag Wieers <dag@wieers.com> - 1.3.0-1
+- Updated to release 1.3.0.
+
 * Tue Jul 19 2011 Dag Wieers <dag@wieers.com> - 1.2.1-1
 - Updated to release 1.2.1.
 

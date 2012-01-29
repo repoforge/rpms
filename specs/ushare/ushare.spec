@@ -6,7 +6,7 @@
 Summary: Universal Plug'nPlay (uPNP) Media Server
 Name: ushare
 Version: 1.1a
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ushare.geexbox.org/
@@ -171,6 +171,9 @@ fi
 %exclude %{_sysconfdir}/init.d/ushare
 
 %changelog
+* Wed Nov 16 2011 Dag Wieers <dag@wieers.com> - 1.1a-4
+- Rebuild against libupnp 1.6.13.
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 1.1a-3
 - Rebuild against ffmpeg-0.5.
 

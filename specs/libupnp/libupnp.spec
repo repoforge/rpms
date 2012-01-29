@@ -3,7 +3,7 @@
 
 Summary: Universal Plug and Play (UPnP) SDK
 Name: libupnp
-Version: 1.6.6
+Version: 1.6.13
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
@@ -69,6 +69,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libupnp.la
 
 %changelog
+* Wed Nov 16 2011 Dag Wieers <dag@wieers.com> - 1.6.13-1
+- Updated to release 1.6.13.
+
 * Thu Sep 18 2008 Dag Wieers <dag@wieers.com> - 1.6.6-1
 - Updated to release 1.6.6.
 

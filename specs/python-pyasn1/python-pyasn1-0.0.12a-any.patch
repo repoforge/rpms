@@ -1,0 +1,109 @@
+diff -u --recursive pyasn1-0.0.12a/pyasn1/codec/ber/decoder.py pyasn1-0.0.12a.any/pyasn1/codec/ber/decoder.py
+--- pyasn1-0.0.12a/pyasn1/codec/ber/decoder.py	2010-11-19 12:43:25.000000000 -0500
++++ pyasn1-0.0.12a.any/pyasn1/codec/ber/decoder.py	2010-12-22 15:22:03.000000000 -0500
+@@ -316,6 +316,29 @@
+ class UTCTimeDecoder(OctetStringDecoder):
+     protoComponent = useful.UTCTime()
+ 
++class AnyDecoder(ChoiceDecoder):
++    protoComponent = univ.Any
++    def __init__(self, header):
++        self.__header = header
++    def _createComponent(self, tagSet, asn1Spec):
++        if asn1Spec is None:
++            return self.protoComponent(tagSet=tagSet)
++        else:
++            return asn1Spec.clone()
++    def valueDecoder(self, substrate, asn1Spec, tagSet,
++                     length, state, decodeFun):
++        if not decodeFun:
++            return r, substrate
++        component, new_substrate = decodeFun(
++            substrate, None, tagSet, length, state
++            )
++        assert substrate.endswith(new_substrate)
++        if new_substrate:
++            substrate = substrate[:-len(new_substrate)]
++        return univ.Any(self.__header+substrate), new_substrate
++
++    indefLenValueDecoder = valueDecoder
++
+ codecMap = {
+     eoo.endOfOctets.tagSet: EndOfOctetsDecoder(),
+     univ.Integer.tagSet: IntegerDecoder(),
+@@ -359,6 +382,7 @@
+         # Decode tag & length
+         while state != stStop:
+             if state == stDecodeTag:
++                substrate_full = substrate
+                 # Decode tag
+                 if not substrate:
+                     raise error.SubstrateUnderrunError(
+@@ -422,6 +446,7 @@
+                     raise error.SubstrateUnderrunError(
+                         '%d-octet short' % (length - len(substrate))
+                         )
++                substrate_header = substrate_full[:-len(substrate) or None]
+             if state == stGetValueDecoder:
+                 if asn1Spec is None:
+                     state = stGetValueDecoderByTag
+@@ -464,7 +489,12 @@
+                     __chosenSpec = asn1Spec
+                 else:
+                     __chosenSpec = None
+-                if __chosenSpec is None or not\
++                if __chosenSpec is None and isinstance(asn1Spec, dict) and \
++                        isinstance(asn1Spec.get(univ.Any.tagSet), univ.Any):
++                    concreteDecoder = AnyDecoder(substrate_header)
++                    asn1Spec = None
++                    state = stDecodeValue
++                elif __chosenSpec is None or not\
+                        __chosenSpec.getTypeMap().has_key(tagSet):
+                     state = stTryAsExplicitTag
+                 else:
+diff -u --recursive pyasn1-0.0.12a/pyasn1/codec/ber/encoder.py pyasn1-0.0.12a.any/pyasn1/codec/ber/encoder.py
+--- pyasn1-0.0.12a/pyasn1/codec/ber/encoder.py	2010-11-19 12:43:25.000000000 -0500
++++ pyasn1-0.0.12a.any/pyasn1/codec/ber/encoder.py	2010-12-22 15:22:03.000000000 -0500
+@@ -194,6 +194,16 @@
+                 ) + substrate
+         return substrate, 1
+ 
++class AnyEncoder(AbstractItemEncoder):
++    def _encodeTag(self, t, isConstructed):
++        if isConstructed:
++            return chr(t[0]|t[1]|t[2]|tag.tagFormatConstructed)
++        else:
++            return chr(t[0]|t[1]|t[2])
++    def encodeValue(self, encodeFun, value, defMode, maxChunkSize):
++        assert len(value._value) <= maxChunkSize
++        return str(value._value), 0
++
+ codecMap = {
+     eoo.endOfOctets.tagSet: EndOfOctetsEncoder(),
+     univ.Boolean.tagSet: IntegerEncoder(),
+@@ -234,7 +244,10 @@
+         if len(tagSet) > 1:
+             concreteEncoder = explicitlyTaggedItemEncoder
+         else:
+-            concreteEncoder = self.__codecMap.get(tagSet)
++            if isinstance(value, univ.Any):
++                concreteEncoder = AnyEncoder()
++            else:
++                concreteEncoder = self.__codecMap.get(tagSet)
+             if not concreteEncoder:
+                 # XXX
+                 baseTagSet = tagSet.getBaseTag()
+diff -u --recursive pyasn1-0.0.12a/pyasn1/type/univ.py pyasn1-0.0.12a.any/pyasn1/type/univ.py
+--- pyasn1-0.0.12a/pyasn1/type/univ.py	2010-11-19 12:43:25.000000000 -0500
++++ pyasn1-0.0.12a.any/pyasn1/type/univ.py	2010-12-22 15:22:03.000000000 -0500
+@@ -639,5 +639,10 @@
+ 
+     def setDefaultComponents(self): pass
+ 
++class Any(base.AbstractSimpleAsn1Item):
++    tagSet = tag.TagSet()  # untagged, XXX as in Choice
++    defaultValue = ''
++    def prettyOut(self, value): return repr(value)
++
+ # XXX
+ # coercion rules?

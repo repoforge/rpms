@@ -6,7 +6,7 @@
 
 Summary: Apache Rivet lets you use the Tcl scripting language to create dynamic web sites
 Name: mod_rivet
-Version: 2.0.3
+Version: 2.0.4
 Release: 1%{?dist}
 License: Apache License Version 2.0
 Group: Development/Languages
@@ -21,8 +21,6 @@ BuildRequires: gcc-c++
 BuildRequires: libstdc++-devel
 BuildRequires: tcl >= 8.4
 BuildRequires: tcl-devel >= 8.4
-
-Provides: mod_rivet = %{version}-%{release}
 
 Requires: httpd
 Requires: tcl >= 8.4
@@ -90,6 +88,9 @@ EOT
 
 
 %changelog
+* Thu Oct 6 2011 Jeff Lawson <jeff@bovine.net> - 2.0.4-1
+- Updated to release 2.0.4.
+
 * Thu Aug 11 2011 Yury V. Zaytsev <yury@shurup.com> - 2.0.3-1
 - Regenerating the build system is no longer necessary.
 - Rivet can be built against TCL 8.4, so why not?

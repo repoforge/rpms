@@ -9,13 +9,12 @@
 
 Summary: Performance analysis tool
 Name: nmon
-Version: 14f
+Version: 14g
 Release: 1%{?dist}
 License: GPLv3
 Group: Applications/System
 URL: http://nmon.sourceforge.net/
 
-#Source: http://dl.sf.net/project/nmon/lmon12d.zip
 Source0: http://dl.sf.net/sourceforge/nmon/lmon%{version}.c
 Source1: http://dl.sf.net/sourceforge/nmon/makefile
 Source2: http://dl.sf.net/sourceforge/nmon/Documentation.txt
@@ -105,6 +104,9 @@ EOF
 %{_localstatedir}/log/nmon/
 
 %changelog
+* Mon Oct 17 2011 Dag Wieers <dag@wieers.com> - 14g-1
+- Updated to release 14g.
+
 * Wed Apr 13 2011 Dag Wieers <dag@wieers.com> - 14f-1
 - Updated to release 14f. (Simon Matter)
 

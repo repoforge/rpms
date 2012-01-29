@@ -13,15 +13,13 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.97.2
-Release: 1%{?dist}
+Version: 0.97.3
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
 
-#Source: http://www.clamav.net/clamav-%{version}.tar.gz
-#Source: http://dl.sf.net/clamav/clamav-%{version}.tar.gz
-Source: http://downloads.sourceforge.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
+Source: http://dl.sf.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -70,7 +68,7 @@ The Clam AntiVirus Daemon
 Summary: The Clam AntiVirus sendmail-milter Daemon
 Group: Applications/System
 Requires: clamd = %{version}-%{release}
-Requires: sendmail
+Requires: smtpdaemon
 
 %description milter
 The Clam AntiVirus sendmail-milter Daemon
@@ -386,6 +384,12 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Sat Dec 103 2011 Philip J Perry <phil@elrepo.org> - 0.97.3-2
+- Fix Requires for clamav-milter to also allow use with Postfix.
+
+* Mon Oct 17 2011 Dag Wieers <dag@wieers.com> - 0.97.3-1
+- Updated to release 0.97.3.
+
 * Mon Jul 25 2011 Dag Wieers <dag@wieers.com> - 0.97.2-1
 - Updated to release 0.97.2.
 

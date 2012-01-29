@@ -4,7 +4,7 @@
 
 Summary: High-performance parallel remote shell utility
 Name: pdsh
-Version: 2.24
+Version: 2.27
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
@@ -49,7 +49,7 @@ allow progress to continue while timeouts occur on some connections.
     --with-dshgroups \
     --with-exec \
     --with-genders \
-    --with-machines=%{_sysconfdir}/pdsh/machines \
+    --with-machines="%{_sysconfdir}/pdsh/machines" \
     --with-netgroup \
     --with-nodeattr \
     --with-readline \
@@ -74,16 +74,24 @@ touch %{buildroot}%{_sysconfdir}/pdsh/machines
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING DISCLAIMER META NEWS README README.KRB4
-%doc README.modules README.QsNet TODO
-%doc %{_mandir}/man?/*
+%doc AUTHORS COPYING DISCLAIMER META NEWS README* TODO
+%doc %{_mandir}/man1/dshbak.1*
+%doc %{_mandir}/man1/pdcp.1*
+%doc %{_mandir}/man1/pdsh.1*
+%doc %{_mandir}/man1/rpdcp.1*
 %dir %{_sysconfdir}/pdsh/
 %config(noreplace) %{_sysconfdir}/pdsh/machines
-%{_bindir}/*
-%{_libdir}/pdsh/*.so
+%{_bindir}/dshbak
+%{_bindir}/pdcp
+%{_bindir}/pdsh
+%{_bindir}/rpdcp
+%{_libdir}/pdsh/
 %exclude %{_libdir}/pdsh/*.la
 
 %changelog
+* Mon Oct 24 2011 Dag Wieers <dag@wieers.com> - 2.27-1
+- Updated to release 2.27.
+
 * Wed Mar 02 2011 Steve Huff <shuff@vecna.org> - 2.24-1
 - Updated to version 2.24.
 

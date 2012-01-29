@@ -8,14 +8,14 @@
 
 Summary: Ruby module for collecting simple facts about a host operating system
 Name: facter
-Version: 1.6.1
+Version: 1.6.2
 Release: 1%{?dist}
 License: Apache 2.0
 Group: System Environment/Base
-URL: http://www.puppetlabs.com/puppet/related-projects/%{name}/
+URL: http://www.puppetlabs.com/puppet/related-projects/facter/
 
-Source0: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz
-Source1: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz.asc
+Source0: http://downloads.puppetlabs.com/%{name}/%{name}-%{version}.tar.gz
+Source1: http://downloads.puppetlabs.com/%{name}/%{name}-%{version}.tar.gz.asc
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -41,7 +41,7 @@ operating system. Additional facts can be added through simple Ruby scripts
 %{__perl} -e 's|^#!.*$|#!/usr/bin/ruby|' bin/facter
 
 %build
-# Nothing to build
+# Nothing to build
 
 %install
 %{__rm} -rf %{buildroot}
@@ -59,6 +59,9 @@ ruby install.rb --destdir=%{buildroot} --quick --no-rdoc
 %{ruby_sitelibdir}/facter
 
 %changelog
+* Sat Oct 15 2011 Yury V. Zaytsev <yury@shurup.com> - 1.6.2-1
+- Updated to release 1.6.2.
+
 * Fri Sep 30 2011 Yury V. Zaytsev <yury@shurup.com> - 1.6.1-1
 - Updated to release 1.6.1.
 

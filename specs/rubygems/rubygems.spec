@@ -15,13 +15,13 @@
 Summary: The Ruby standard for packaging ruby libraries
 Name: rubygems
 Version: 1.3.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 # No GPL version is specified.
 License: Ruby or GPL+
 Group: Development/Libraries
 URL: http://rubygems.org/
 
-Source0: http://download.github.com/rubygems-rubygems-v%{version}-0-g%{git_hash}.tar.gz
+Source0: http://production.cf.rubygems.org/rubygems/rubygems-%{version}.tgz
 Patch0: rubygems-1.3.1-noarch-gemdir.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -40,7 +40,7 @@ RubyGems is the Ruby standard for publishing and managing third party
 libraries.
 
 %prep
-%setup -q -n rubygems-rubygems-%{git_hash}
+%setup
 %patch0 -p1
 
 # Some of the library files start with #! which rpmlint doesn't like
@@ -80,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_sitelib}/*
 
 %changelog
+* Tue Oct 11 2011 Steve Huff <shuff@vecna.org> - 1.3.2-2
+- GitHub URLs are not future-proofed, download from rubygems.org instead.
+
 * Mon Jan 31 2011 Steve Huff <shuff@vecna.org> - 1.3.2-1
 - Ported over from Karanbir's repo.
 - Later versions require ruby >= 1.8.6, el5 has 1.8.5.

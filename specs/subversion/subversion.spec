@@ -29,24 +29,27 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.6.15
+Version: 1.7.1
 Release: 0.1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
 
-Source0: http://subversion.tigris.org/downloads/subversion-%{version}.tar.bz2
+Source0: http://www.apache.org/dist/subversion/subversion-%{version}.tar.bz2
 Source1: subversion.conf
 Source2: http://sqlite.org/sqlite-amalgamation-%{sqlite_version}.tar.gz
 Source3: filter-requires.sh
 Source4: http://www.xsteve.at/prg/emacs/psvn.el
 Source10: http://prdownloads.sourceforge.net/sourceforge/swig/swig-%{swig_version}.tar.gz
 #Patch1: subversion-0.24.2-swig.patch
-Patch2: subversion-0.20.1-deplibs.patch
-Patch3: subversion-1.6.0-rpath.patch
-Patch6: subversion-1.6.0-pie.patch
+#Patch2: subversion-0.20.1-deplibs.patch
+#Patch3: subversion-1.6.0-rpath.patch
+#Patch6: subversion-1.6.0-pie.patch
 Patch7: subversion-1.1.3-java.patch
 Patch8: subversion-1.6.6-ruby-rpath.patch
+Patch9: subversion-1.7.0-rpath.patch
+Patch10: subversion-1.7.0-pie.patch
+Patch11: subversion-1.7.0-kwallet.patch
 Patch100: subversion-1.6.12-javahl-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -135,12 +138,15 @@ This package includes the Ruby bindings to the Subversion libraries.
 
 %prep
 %setup -a 10 -a 2
-%patch2 -p1 -b .deplibs
-%patch3 -p1 -b .rpath
-%patch6 -p1 -b .pie
+#%patch2 -p1 -b .deplibs
+#%patch3 -p1 -b .rpath
+#%patch6 -p1 -b .pie
+%patch9 -p1 -b .rpath
+%patch10 -p1 -b .pie
+%patch11 -p1 -b .kwallet
 %{!?_without_ruby:%patch8 -p0 -b .ruby-rpath}
-%{?_with_java:%patch7 -p1 -b .java}
-%{?_with_java:%patch100 -p1 -b .java-pic}
+#%{?_with_java:%patch7 -p1 -b .java}
+#%{?_with_java:%patch100 -p1 -b .java-pic}
 
 %{__rm} -rf neon apr apr-util
 %{__mv} sqlite-%{sqlite_version} sqlite-amalgamation
@@ -178,7 +184,6 @@ export CC=gcc CXX=g++ %{?_with_java:JAVA_HOME=%{jdk_path}} CFLAGS="$RPM_OPT_FLAG
     --with-apr="%{_prefix}" \
     --with-apr-util="%{_prefix}" \
     --with-apxs="%{_sbindir}/apxs" \
-    --with-expat \
     --with-neon="%{_prefix}" \
     --with-ruby-sitedir="%{ruby_sitearch}" \
     --with-sasl="%{_prefix}" \
@@ -271,12 +276,13 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
-%doc mod_authz_svn-INSTALL contrib/ subversion/LICENSE tools/
+%doc BUGS COMMITTERS LICENSE NOTICE INSTALL README CHANGES
+%doc tools mod_authz_svn-INSTALL
 %doc %{_mandir}/man1/svn.1*
 %doc %{_mandir}/man1/svnadmin.1*
 %doc %{_mandir}/man1/svndumpfilter.1*
 %doc %{_mandir}/man1/svnlook.1*
+%doc %{_mandir}/man1/svnrdump.1*
 %doc %{_mandir}/man1/svnsync.1*
 %doc %{_mandir}/man1/svnversion.1*
 %doc %{_mandir}/man5/svnserve.conf.5*
@@ -285,6 +291,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %{_bindir}/svnadmin
 %{_bindir}/svndumpfilter
 %{_bindir}/svnlook
+%{_bindir}/svnrdump
 %{_bindir}/svnserve
 %{_bindir}/svnsync
 %{_bindir}/svnversion
@@ -334,6 +341,9 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Tue Nov 15 2011 David Hrbáč <david@hrbac.cz> - 1.7.1-0.1
+- new upstream release
+
 * Thu Nov 25 2010 Dag Wieers <dag@wieers.com> - 1.6.14-0.1
 - Updated to release 1.6.15.
 
