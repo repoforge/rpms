@@ -6,13 +6,13 @@
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
-Version: 3.98.4
+Version: 3.99.4
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
 
-Source: http://dl.sf.net/project/lame/lame/%{version}/lame-%{version}.tar.gz
+Source: http://dl.sf.net/project/lame/lame/3.99/lame-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -97,6 +97,9 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 %exclude %{_libdir}/libmp3lame.la
 
 %changelog
+* Sun Jan 29 2012 Dag Wieers <dag@wieers.com> - 3.99.4-1
+- Updated to release 3.99.4.
+
 * Tue Jul 06 2010 Steve Huff <shuff@vecna.org> - 3.98.4-1
 - Updated to release 3.98.4 (thanks Brandon Ooi!).
 - Captured libvorbis and gtk2 dependencies.
