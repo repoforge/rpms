@@ -1,0 +1,25 @@
+diff --git a/gmond/python_modules/conf.d/diskusage.pyconf b/gmond/python_modules/conf.d/diskusage.pyconf
+index 04a7ef1..1a7ef17 100644
+--- a/gmond/python_modules/conf.d/diskusage.pyconf
++++ b/gmond/python_modules/conf.d/diskusage.pyconf
+@@ -11,7 +11,8 @@ collection_group {
+   collect_every = 10
+   time_threshold = 50
+   metric {
+-    name = "<disk_used-metric-name>"
++    name_match = "([\\S]+)-disk_used"
++    name = "\\1-disk_used"
+     value_threshold = 1.0
+   }
+ }
+@@ -20,7 +21,8 @@ collection_group {
+   collect_once = yes
+   time_threshold = 20
+   metric {
+-    name = "<disk_total-metric-name>"
++    name_match = "([\\S]+)-disk_total"
++    name = "\\1-disk_total"
+   }
+ }
+ 
+
