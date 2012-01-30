@@ -1,0 +1,6 @@
+# Remove the following line if you want dictd
+# to answer remote clients.
+DICTD_FLAGS='--listen-to 127.0.0.1'
+
+# Enable preprocessing config file with 'm4 -P'
+DICTD_FLAGS="$DICTD_FLAGS --pp '/usr/bin/m4 -P'"

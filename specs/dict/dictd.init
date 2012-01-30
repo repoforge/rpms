@@ -1,0 +1,100 @@
+#!/bin/sh
+#
+# chkconfig: - 91 9
+# description: Starts and stops the dict server
+# processname: dictd
+# config: /etc/dictd.conf
+
+### BEGIN INIT INFO
+# Provides: dictd
+# Required-Start: 
+# Required-Stop: 
+# Default-Start: 
+# Default-Stop: 0 1 2 4 6
+# Short-Description: start|stop|restart|try-restart|status|force-reload dictd
+# Description: control dictionary server which allows clients access to 
+#  dictionary definitions from a set of natural language dictionary databases
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+
+DICTD=/usr/sbin/dictd
+DICTD_FLAGS=
+LOCKFILE=/var/lock/subsys/dictd
+prog=dictd
+
+[ -e /etc/sysconfig/dictd ] && . /etc/sysconfig/dictd
+
+function start
+{
+    unset RETVAL
+    if [ -x $DICTD ]; then
+	echo -n $"Starting $prog: "
+	if [ -s /etc/dictd.conf ]; then
+	   daemon $DICTD $DICTD_FLAGS
+	   echo
+	else
+	   echo -n $"no dictionaries installed"
+	   echo_failure
+	   echo
+	   RETVAL=6
+	fi
+    else
+		echo "$0: cannot find $DICTD or it's not executable"
+		RETVAL=1
+    fi
+
+    RETVAL=${RETVAL:-$?}
+    [ $RETVAL -eq 0 ] && touch $LOCKFILE
+}
+
+function stop
+{
+    echo -n $"Shutting down $prog: "
+    killproc $prog
+	RETVAL=$?
+    echo
+    rm -f $LOCKFILE
+}
+
+function restart
+{
+    stop
+    start
+}
+
+# See how we were called.
+case "$1" in
+    start)	start
+		;;
+    stop)	stop
+		;;
+    restart | force-reload)	restart
+		;;
+    reload)
+		killproc $prog -HUP
+		RETVAL=$?
+		;;
+    force-reload)
+		killproc $prog -USR1
+		killproc $prog -HUP
+		RETVAL=$?
+		;;
+    try-restart | condrestart )
+		RETVAL=0
+		test -f $LOCKFILE && restart
+		;;
+    status)
+		status dictd
+		RETVAL=$?
+		;;
+    *)
+		echo $"Usage: $0 {start|stop|restart|try-restart|condrestart|reload|force-reload|status}"
+		exit 1
+		;;
+esac
+
+exit $RETVAL
+
