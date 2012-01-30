@@ -1,3 +1,5 @@
+# ExclusiveDist: el5 el6
+
 Name:               ganglia
 Version:            3.1.7
 Release:            3%{?svnrev:.r%{svnrev}}%{?dist}
