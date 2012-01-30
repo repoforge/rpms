@@ -2,19 +2,15 @@
 # Authority: cheusov
 # Upstream: NetBSD
 
+Summary: The NetBSD make(1) tool
 Name: bmake
 Version: 20111010
 Release: 1%{?dist}
-
-Summary: The NetBSD make(1) tool
-
 License: BSD with advertising
 Group: Development/Tools
-Url: ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
+URL: ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
 
-Packager: Aleksey Cheusov <vle@gmx.net>
-
-Source0: ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/%{name}-%{version}.tar.gz
+Source0: ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/bmake-%{version}.tar.gz
 Source1: Linux.sys.mk
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -31,28 +27,31 @@ bmake is similar to GNU make, even though the syntax for the advanced features
 supported in Makefiles is very different.
 
 %prep
-%setup -q -n %name
+%setup -n %{name}
 
 %build
 unset MAKEFLAGS
-./boot-strap -q -o Linux --prefix=%{_prefix} \
-  --with-default-sys-path=%{_prefix}/share/mk --mksrc none \
-  --sysconfdir=/etc
+./boot-strap -o Linux \
+    --prefix="%{_prefix}" \
+    --sysconfdir="%{_sysconfdir}" \
+    --with-default-sys-path="%{_datadir}/mk" \
+    --mksrc none
 
 %install
-%{__install} -D -m 0644 bmake.1 %{buildroot}%{_mandir}/man1/bmake.1
-%{__install} -D -m 0755 Linux/bmake %{buildroot}%{_bindir}/bmake
-%{__install} -D -m 0644 %{SOURCE1} %{buildroot}%{_datadir}/mk/sys.mk
+%{__rm} -rf %{buildroot}
+%{__install} -Dp -m0644 bmake.1 %{buildroot}%{_mandir}/man1/bmake.1
+%{__install} -Dp -m0755 Linux/bmake %{buildroot}%{_bindir}/bmake
+%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_datadir}/mk/sys.mk
 
 %files
 %doc ChangeLog README
+%doc %{_mandir}/man1/bmake.1*
 %{_bindir}/bmake
-%{_mandir}/man1/*
-%{_datadir}/mk/sys.mk
+%{_datadir}/mk/
 
 %changelog
 * Mon Jan 02 2012 Aleksey Cheusov <cheusov@NetBSD.org> 20111010-1
-- update to 20111010 and adapted to repoforge
+- Update to 20111010 and adapted to Repoforge.
 
 * Tue Dec 08 2009 Vitaly Lipatov <lav@altlinux.ru> 20081111-alt4
 - add pkgsrc-mk-files require
