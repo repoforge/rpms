@@ -2,22 +2,28 @@
 # Authority: cheusov
 # Upstream:  Aleksey Cheusov <vle$gmx,net>
 
-Summary:   DICT protocol (RFC 2229) server and command-line client
-Name:      dict
-Version:   1.12.0
-Release:   1%{?dist}
-License:   GPL+ and zlib and MIT
-Group:     Applications/Internet
-Source0:   http://downloads.sourceforge.net/dict/dictd-%{version}.tar.gz
-Source1:   dictd.init
-Source2:   dictd.sysconfig
-Source3:   dictd.conf
-Source4:   dict.conf
-URL:       http://www.dict.org/
-BuildRoot: %{_tmppath}/dictd-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires:  flex libtool byacc
-BuildRequires:  zlib-devel libmaa-devel gawk
-BuildRequires:  shadow-utils
+Summary: DICT protocol (RFC 2229) server and command-line client
+Name: dict
+Version: 1.12.0
+Release: 1%{?dist}
+License: GPL+ and zlib and MIT
+Group: Applications/Internet
+URL: http://www.dict.org/
+
+Source0: http://dl.sf.net/dict/dictd-%{version}.tar.gz
+Source1: dictd.init
+Source2: dictd.sysconfig
+Source3: dictd.conf
+Source4: dict.conf
+BuildRoot: %{_tmppath}/dictd-%{version}-%{release}-root
+
+BuildRequires: byacc
+BuildRequires: flex
+BuildRequires: gawk
+BuildRequires: libmaa-devel
+BuildRequires: libtool
+BuildRequires: shadow-utils
+BuildRequires: zlib-devel
 
 %description
 Command-line client for the DICT protocol.  The Dictionary Server
@@ -28,10 +34,11 @@ language dictionary databases.
 %package server
 Summary: Server for the Dictionary Server Protocol (DICT)
 Group: System Environment/Daemons
-Requires(post):  chkconfig
+Requires(post): chkconfig
 Requires(preun): chkconfig
 Requires(postun): initscripts
 Requires: m4
+
 %description server
 A server for the DICT protocol. You need to install dictd-usable databases
 befor you can use this server. Those can be found p.e. at 
@@ -49,10 +56,10 @@ More information can be found in the INSTALL file in this package.
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -D -p -m 0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/dictd
-%{__install} -D -p -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/dictd
-%{__install} -D -p -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/dictd.conf
-%{__install} -D -p -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/dict.conf
+%{__install} -Dp -m 0755 %{SOURCE1} %{buildroot}%{_sysconfdir}/rc.d/init.d/dictd
+%{__install} -Dp -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/dictd
+%{__install} -Dp -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/dictd.conf
+%{__install} -Dp -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/dict.conf
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -62,7 +69,6 @@ if [ $1 -eq 1 ]; then
     /usr/sbin/groupadd -f -r dictd
     /usr/sbin/useradd -d %{_datadir}/dictd -g dictd -r -s /bin/false dictd
     /sbin/chkconfig --add dictd
-    exit 0
 fi
 
 %preun server
@@ -71,38 +77,36 @@ if [ $1 -eq 0 ]; then
     /sbin/chkconfig --del dictd
     /usr/sbin/userdel dictd
     /usr/sbin/groupdel dictd
-    exit 0
 fi
 
 %files
-%defattr(-,root,root,0755)
-%doc NEWS README TODO COPYING ChangeLog README doc/rfc2229.txt
+%defattr(-, root, root, 0755)
+%doc ChangeLog COPYING NEWS README TODO doc/rfc2229.txt
 %doc examples/dict1.conf
+%doc %{_mandir}/man1/colorit.1*
+%doc %{_mandir}/man1/dict.1*
+%doc %{_mandir}/man1/dict_lookup.1*
+%doc %{_mandir}/man1/dictl.1*
+%config(noreplace) %{_sysconfdir}/dict.conf
 %{_bindir}/colorit
 %{_bindir}/dict
 %{_bindir}/dict_lookup
 %{_bindir}/dictl
-%{_mandir}/man1/colorit.1*
-%{_mandir}/man1/dict.1*
-%{_mandir}/man1/dict_lookup.1*
-%{_mandir}/man1/dictl.1*
-%config(noreplace) %{_sysconfdir}/dict.conf
-
 
 %files server
-%doc NEWS README TODO COPYING ChangeLog README doc/rfc2229.txt
+%doc ChangeLog COPYING NEWS README TODO doc/rfc2229.txt
 %doc examples/dictd*
-%{_bindir}/dictfmt*
-%{_bindir}/dictzip*
-%{_bindir}/dictun*
-%{_sbindir}/dictd
-%{_mandir}/man1/dictfmt*
-%{_mandir}/man1/dictzip*
-%{_mandir}/man1/dictun*
-%{_mandir}/man8/dictd*
-%{_sysconfdir}/rc.d/init.d/*
+%doc %{_mandir}/man1/dictfmt*
+%doc %{_mandir}/man1/dictun*
+%doc %{_mandir}/man1/dictzip*
+%doc %{_mandir}/man8/dictd*
+%config %{_initrddir}/*
 %config(noreplace) %{_sysconfdir}/sysconfig/dictd
 %config(noreplace) %{_sysconfdir}/dictd.conf
+%{_bindir}/dictfmt*
+%{_bindir}/dictun*
+%{_bindir}/dictzip*
+%{_sbindir}/dictd
 
 %changelog
 * Sun Jan 29 2012 Aleksey Cheusov <vle@gmx.net> - 1.12.0-1
