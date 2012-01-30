@@ -10,6 +10,7 @@ chkrootkit DEFAULT ftp://ftp.pangeia.com.br/pub/seg/pac/
 clamav DEFAULT SF-DEFAULT
 crossroads DEFAULT http://crossroads.e-tunity.com/downloads/versions/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
+ganglia DEFAULT SF-DEFAULT
 htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
@@ -46,15 +47,12 @@ perl-Error CPAN-DEFAULT CPAN-DEFAULT
 perl-Geography-Countries CPAN-DEFAULT CPAN-DEFAULT
 perl-Getopt-Long-Descriptive CPAN-DEFAULT CPAN-DEFAULT
 perl-HTML-Parser CPAN-DEFAULT CPAN-DEFAULT
-perl-HTML-Parser CPAN-DEFAULT CPAN-DEFAULT
 perl-HTML-Tagset CPAN-DEFAULT CPAN-DEFAULT
 perl-IO-Compress CPAN-DEFAULT CPAN-DEFAULT
 perl-IO-Socket-SSL CPAN-DEFAULT CPAN-DEFAULT
 perl-IO-Zlib CPAN-DEFAULT CPAN-DEFAULT
 perl-IO-stringy CPAN-DEFAULT CPAN-DEFAULT
-perl-IO-stringy CPAN-DEFAULT CPAN-DEFAULT
 perl-IP-Country CPAN-DEFAULT CPAN-DEFAULT
-perl-List-Cycle CPAN-DEFAULT CPAN-DEFAULT
 perl-List-Cycle CPAN-DEFAULT CPAN-DEFAULT
 perl-MIME-Base64 CPAN-DEFAULT CPAN-DEFAULT
 perl-MIME-Lite CPAN-DEFAULT CPAN-DEFAULT
