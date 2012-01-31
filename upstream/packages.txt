@@ -18,6 +18,7 @@ lha DEFAULT DEFAULT
 lzo DEFAULT http://www.oberhumer.com/opensource/lzo/
 lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
+mirmon DEFAULT http://people.cs.uu.nl/henkp/mirmon/
 monit DEFAULT http://mmonit.com/monit/dist/
 nagios DEFAULT SF-DEFAULT
 nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
