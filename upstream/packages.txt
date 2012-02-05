@@ -90,6 +90,7 @@ spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassa
 subversion DEFAULT http://subversion.apache.org/download/
 syslinux DEFAULT http://www.kernel.org/pub/linux/utils/boot/syslinux/
 tig DEFAULT http://jonas.nitro.dk/tig/releases/
+tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
 tmux DEFAULT SF-DEFAULT
 unarj DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 unrar DEFAULT:unrarsrc http://www.rarlab.com/rar_add.htm
