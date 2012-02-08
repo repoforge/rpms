@@ -1,5 +1,6 @@
 altermime DEFAULT http://www.pldaniels.com/altermime/
 amavisd-new amavisd-new-(2\.[0-9.]*?).tar.gz http://www.amavis.org/
+apt-dater DEFAULT SF-DEFAULT
 arc DEFAULT SF-DEFAULT
 arj DEFAULT SF-DEFAULT
 awstats DEFAULT SF-DEFAULT
@@ -18,6 +19,7 @@ lha DEFAULT DEFAULT
 lzo DEFAULT http://www.oberhumer.com/opensource/lzo/
 lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
+mirmon DEFAULT http://people.cs.uu.nl/henkp/mirmon/
 monit DEFAULT http://mmonit.com/monit/dist/
 nagios DEFAULT SF-DEFAULT
 nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
@@ -89,6 +91,7 @@ spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassa
 subversion DEFAULT http://subversion.apache.org/download/
 syslinux DEFAULT http://www.kernel.org/pub/linux/utils/boot/syslinux/
 tig DEFAULT http://jonas.nitro.dk/tig/releases/
+tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
 tmux DEFAULT SF-DEFAULT
 unarj DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 unrar DEFAULT:unrarsrc http://www.rarlab.com/rar_add.htm
