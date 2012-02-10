@@ -11,6 +11,7 @@ cacti-spine DEFAULT http://www.cacti.net/downloads/spine/
 chkrootkit DEFAULT ftp://ftp.pangeia.com.br/pub/seg/pac/
 clamav DEFAULT SF-DEFAULT
 crossroads DEFAULT http://crossroads.e-tunity.com/downloads/versions/
+discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 ganglia DEFAULT SF-DEFAULT
 htop DEFAULT SF-DEFAULT
