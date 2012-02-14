@@ -91,6 +91,7 @@ razor-agents razor-agents-(.*?).tar.bz2 http://sourceforge.net/projects/razor/fi
 re2c DEFAULT SF-DEFAULT
 ripole DEFAULT http://www.pldaniels.com/ripole
 rkhunter DEFAULT SF-DEFAULT
+siege DEFAULT http://www.joedog.org/pub/siege/
 snappy DEFAULT GOOGLE-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/
 subversion DEFAULT http://subversion.apache.org/download/
