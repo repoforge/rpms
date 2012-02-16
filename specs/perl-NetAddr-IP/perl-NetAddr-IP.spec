@@ -15,8 +15,8 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 4.044
-Release: 2%{?dist}
+Version: 4.058
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/NetAddr-IP/
@@ -53,7 +53,7 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README TODO docs/
+%doc Changes MANIFEST MANIFEST.SKIP META.yml TODO docs/
 %doc %{_mandir}/man3/*.3pm*
 %dir %{perl_vendorarch}/NetAddr/
 %{perl_vendorarch}/NetAddr/IP.pm
@@ -62,6 +62,9 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/NetAddr/IP/
 
 %changelog
+* Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 4.058-1
+- new upstream release
+
 * Thu Jan 12 2012 David Hrbáč <david@hrbac.cz> - 4.044-2
 - rfxed for el6
 
