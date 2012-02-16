@@ -85,6 +85,7 @@ perl-Variable-Magic CPAN-DEFAULT CPAN-DEFAULT
 perl-version CPAN-DEFAULT CPAN-DEFAULT
 phpmyadmin phpMyAdmin-(2.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
 phpmyadmin3 phpMyAdmin-(3.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
+pianobar DEFAULT http://6xq.net/static/projects/pianobar/
 postgrey DEFAULT http://postgrey.schweikert.ch/pub/
 proftpd DEFAULT ftp://ftp.proftpd.org/distrib/source/
 razor-agents razor-agents-(.*?).tar.bz2 http://sourceforge.net/projects/razor/files/
