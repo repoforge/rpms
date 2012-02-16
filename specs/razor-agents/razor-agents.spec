@@ -6,13 +6,14 @@
 
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
-Version: 2.84
+Version: 2.85
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/
 
-Source: http://dl.sf.net/razor/razor-agents-%{version}.tar.bz2
+Source: http://download.sourceforge.net/project/razor/razor-agents/%{version}/razor-agents-%{version}.tar.bz2
+Patch0: razor-agents-2.85-use-sha-not-sha1.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl, perl(Net::DNS), perl(Digest::SHA1), perl(Time::HiRes), perl(MIME::Base64), perl-URI
@@ -43,6 +44,7 @@ Implements perl class Razor, a SPAM/UCE filtering agent.
 
 %prep
 %setup
+%patch0 -p1 -b .old
 
 %build
 CFLAGS="%{optflags}" perl Makefile.PL INSTALLDIRS="vendor"
@@ -91,6 +93,10 @@ pod2text Changes.pod > Changes
 %{perl_vendorarch}/auto/Razor2/
 
 %changelog
+* Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 2.85-1
+- new upstream release
+- use Digest::SHA instead of Digest::SHA1
+
 * Fri Sep 28 2007 Dag Wieers <dag@wieers.com> - 2.84-1
 - Updated to release 2.84.
 
