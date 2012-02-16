@@ -3,7 +3,7 @@
 
 Summary: HTTP regression testing and benchmarking utility
 Name: siege
-Version: 2.71
+Version: 2.72
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/siege2csv.pl
 
 %changelog
+* Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 2.72-1
+- new upstream release
+
 * Tue Feb 14 2012 David Hrbáč <david@hrbac.cz> - 2.71-1
 - new upstream release
 
