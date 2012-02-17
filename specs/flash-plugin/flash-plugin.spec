@@ -12,7 +12,7 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 11.0.2.55
+Version: 11.1.102.62
 Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
@@ -90,6 +90,9 @@ fi
 %endif
 
 %changelog
+* Sat Feb 18 2012 Dag Wieers <dag@wieers.com> - 11.1.102.62-0.1
+- Updated to release 11.1.102.62.
+
 * Wed Dec 14 2011 Dag Wieers <dag@wieers.com> - 11.0.2.55-0.1
 - Updated to release 11.0.2.55.
 
