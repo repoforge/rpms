@@ -1,4 +1,4 @@
-# $Id$
+# $Id: scribus.spec 7982 2009-11-03 03:41:01Z dag $
 # Authority: dag
 
 ### EL5 ships with scribus-1.3.3.2-3.el5
@@ -12,75 +12,39 @@
 
 Summary: Graphical desktop publishing (DTP) application
 Name: scribus
-Version: 1.4.0
+Version: 1.3.3.14
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://web2.altmuehlnet.de/fschmid/
 
 Source: http://dl.sf.net/scribus/scribus-%{version}.tar.bz2
-# http://bugs.scribus.net/view.php?id=10485
-Patch0: scribus-1.4.0-swatches.patch
-# http://bugs.scribus.net/view.php?id=10486
-Patch1: scribus-1.4.0-profiles.patch
-# use versioned documentation directory
-Patch2: scribus-1.4.0-docdir.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: aspell-devel
-BuildRequires: boost-devel
-BuildRequires: cairo-devel
-BuildRequires: cmake
 BuildRequires: cups-devel
-BuildRequires: freetype-devel
-BuildRequires: gnutls-devel
-BuildRequires: hyphen-devel
+BuildRequires: freetype-devel >= 2.1.7
+BuildRequires: gcc-c++
+BuildRequires: gettext
+BuildRequires: ghostscript >= 7.07
+BuildRequires: kdelibs-devel
 BuildRequires: lcms-devel >= 1.12
 BuildRequires: libart_lgpl-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libpng-devel
 BuildRequires: libtiff-devel
-BuildRequires: openssl-devel
-BuildRequires: podofo-devel
+BuildRequires: libtool
+BuildRequires: libxml2-devel
 BuildRequires: python >= 2.3
 BuildRequires: python-devel >= 2.3
-BuildRequires: qt4-devel
+BuildRequires: tkinter
 BuildRequires: zlib-devel
 %{?!_without_freedesktop:BuildRequires: desktop-file-utils}
-Requires: ghostscript
-Requires: python
-Requires: python-imaging
-Requires: shared-mime-info
-Requires: tkinter
-
-%filter_provides_in %{_libdir}/scribus/plugins
-%filter_setup
 
 %description
-Scribus is an desktop open source page layout program with
-the aim of producing commercial grade output in PDF and
-Postscript, primarily, though not exclusively for Linux.
-
-While the goals of the program are for ease of use and simple easy to
-understand tools, Scribus offers support for professional publishing
-features, such as CMYK color, easy PDF creation, Encapsulated Postscript
-import/export and creation of color separations.
-
-%package devel
-Summary: Header files, libraries and development documentation for %{name}.
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-
-%description devel
-This package contains the header files, static libraries and development
-documentation for %{name}. If you like to develop programs using %{name},
-you will need to install %{name}-devel.
+Scribus is a GUI desktop publishing (DTP) application for GNU/Linux.
 
 %prep
 %setup
-%patch0 -p2 -b .swatches
-%patch1 -p2 -b .profiles
-%patch2 -p1 -b .docdir
 
 %build
 %cmake -DWANT_DISTROBUILD=YES .
@@ -118,21 +82,20 @@ update-desktop-database &> /dev/null || :
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING README TODO
 %doc %{_mandir}/man1/scribus.1*
-%doc %{_mandir}/*/man1/scribus.1*
+%doc %{_mandir}/*/man1/scribus?1*
 %{_bindir}/scribus
-%{_datadir}/applications/%{desktop_vendor}-scribus.desktop
+%{!?_without_freedesktop:%{_datadir}/applications/%{desktop_vendor}-scribus.desktop}
+%{?_without_freedesktop:%{_datadir}/gnome/apps/Applications/scribus.desktop}
 %{_datadir}/mime/packages/scribus.xml
 %{_datadir}/pixmaps/scribus.png
-%{_datadir}/pixmaps/x-scribus.png
-%{_datadir}/scribus/
+%{_datadir}/pixmaps/scribusicon.png
+%{_datadir}/scribus
 %{_includedir}/scribus/
 %{_libdir}/scribus/
-%exclude %{_datadir}/scribus/samples/*.py[co]
-%exclude %{_datadir}/scribus/scripts/*.py[co]
 
 %changelog
-* Sun Feb 12 2012 Dag Wieers <dag@wieers.com> - 1.4.0-1
-- Updated to release 1.4.0.
+* Wed Jan 09 2008 Dag Wieers <dag@wieers.com> - 1.3.3.14-1
+- Updated to release 1.3.3.14.
 
 * Wed Jan 09 2008 Dag Wieers <dag@wieers.com> - 1.3.3.10-1
 - Updated to release 1.3.3.10.
