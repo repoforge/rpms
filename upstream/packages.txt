@@ -101,5 +101,6 @@ tig DEFAULT http://jonas.nitro.dk/tig/releases/
 tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
 tmux DEFAULT SF-DEFAULT
 unarj DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
+unhide DEFAULT SF-DEFAULT
 unrar DEFAULT:unrarsrc http://www.rarlab.com/rar_add.htm
 zoo DEFAULT DEFAULT
