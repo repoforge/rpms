@@ -10,14 +10,15 @@
 
 Summary: Tool to find hidden processes and TCP/UDP ports from rootkits
 Name: unhide
-%define real_version 20080519
-Version: 0.0.20080519
+%define real_version 20110113
+Version: 0.0.20110113
 Release: 1%{?dist}
-License: GPL
+License: GPLv3
 Group: Applications/System
 URL: http://www.security-projects.com/?Unhide
 
-Source: http://www.security-projects.com/unhide%{real_version}.tgz
+#Source: http://www.security-projects.com/unhide%{real_version}.tgz
+Source: http://download.sourceforge.net/project/unhide/unhide-%{real_version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -40,7 +41,7 @@ in /bin/netstat through brute forcing of all TCP/UDP ports available.
 
 %build
 %{?_without_kernel26:%{__cc} --static %{optflags} unhide.c -o unhide}
-%{!?_without_kernel26:%{__cc} --static %{optflags} unhide-linux26.c -o unhide}
+%{!?_without_kernel26:%{__cc} %{optflags} -lpthread unhide-linux26.c -o unhide}
 %{__cc} --static %{optflags} unhide-tcp.c -o unhide-tcp
 
 %install
@@ -62,5 +63,8 @@ in /bin/netstat through brute forcing of all TCP/UDP ports available.
 %{_sbindir}/unhide-tcp
 
 %changelog
+* Sun Feb 19 2012 David Hrbáč <david@hrbac.cz> - 0.0.20110113-1
+- new upstream release
+
 * Tue Jul 01 2008 Dag Wieers <dag@wieers.com> - 0.0.20080519-1
 - Initial package. (using DAR)
