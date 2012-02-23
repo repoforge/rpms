@@ -15,6 +15,7 @@ discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 fuse-rdiff-backup-fs DEFAULT:rdiff-backup-fs GOOGLE-DEFAULT
 ganglia DEFAULT SF-DEFAULT
+git DEFAULT GOOGLE-DEFAULT:git-core
 htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
