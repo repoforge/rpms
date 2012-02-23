@@ -82,7 +82,9 @@ perl-Test-Pod CPAN-DEFAULT CPAN-DEFAULT
 perl-Time-HiRes CPAN-DEFAULT CPAN-DEFAULT
 perl-Unix-PID CPAN-DEFAULT CPAN-DEFAULT
 perl-Unix-Syslog CPAN-DEFAULT CPAN-DEFAULT
+perl-VCS-Lite CPAN-DEFAULT CPAN-DEFAULT
 perl-Variable-Magic CPAN-DEFAULT CPAN-DEFAULT
+perl-WWW-Mediawiki-Client CPAN-DEFAULT CPAN-DEFAULT
 perl-version CPAN-DEFAULT CPAN-DEFAULT
 phpmyadmin phpMyAdmin-(2.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
 phpmyadmin3 phpMyAdmin-(3.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
@@ -97,6 +99,7 @@ siege DEFAULT http://www.joedog.org/pub/siege/
 snappy DEFAULT GOOGLE-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/
 subversion DEFAULT http://subversion.apache.org/download/
+swish-e DEFAULT http://swish-e.org/download/index.html
 syslinux DEFAULT http://www.kernel.org/pub/linux/utils/boot/syslinux/
 tig DEFAULT http://jonas.nitro.dk/tig/releases/
 tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
