@@ -26,6 +26,7 @@ mercurial DEFAULT http://mercurial.selenic.com/release/
 mirmon DEFAULT http://people.cs.uu.nl/henkp/mirmon/
 monit DEFAULT http://mmonit.com/monit/dist/
 nagios DEFAULT SF-DEFAULT
+netperf DEFAULT ftp://ftp.netperf.org/netperf/
 nload DEFAULT http://www.roland-riegel.de/nload/
 nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
 nmon DEFAULT SF-DEFAULT
