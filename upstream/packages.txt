@@ -20,7 +20,7 @@ htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
 lha DEFAULT DEFAULT
-lzo DEFAULT http://www.oberhumer.com/opensource/lzo/
+lzo DEFAULT http://www.oberhumer.com/opensource/lzo/download/
 lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
 mirmon DEFAULT http://people.cs.uu.nl/henkp/mirmon/
