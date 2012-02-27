@@ -13,8 +13,8 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.8.2
-Release: 2%{?dist}
+Version: 1.7.9.1
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
@@ -311,7 +311,7 @@ find contrib -type f | xargs chmod -x
 
 ### Clean up buildroot
 find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {} \;
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch} %{buildroot}%{_datadir}/locale/is
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -396,9 +396,14 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %files -n perl-Git
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/Git.3pm*
+%doc %{_mandir}/man3/Git::I18N.3pm*
 %{perl_vendorlib}/Git.pm
+%{perl_vendorlib}/Git/I18N.pm
 
 %changelog
+* Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 1.7.9.1-1
+- new upstream release
+
 * Wed Jan  4 2012 Steve Huff <shuff@vecna.org> - 1.7.8.2-1
 - Updated to release 1.7.8.2.
 
