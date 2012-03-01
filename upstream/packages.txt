@@ -32,6 +32,7 @@ nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
 nmon DEFAULT SF-DEFAULT
 nomarch DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 p7zip p7zip_([\d\.]+)_src_all.tar.bz SF-DEFAULT
+perl-Apache2-AuthenNIS CPAN-DEFAULT CPAN-DEFAULT
 perl-Archive-Zip CPAN-DEFAULT CPAN-DEFAULT
 perl-BerkeleyDB CPAN-DEFAULT CPAN-DEFAULT
 perl-Class-Accessor-Grouped CPAN-DEFAULT CPAN-DEFAULT
