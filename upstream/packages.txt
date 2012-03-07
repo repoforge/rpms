@@ -19,6 +19,7 @@ git DEFAULT GOOGLE-DEFAULT:git-core
 htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
+ldns DEFAULT http://www.nlnetlabs.nl/downloads/ldns/
 lha DEFAULT DEFAULT
 lzo DEFAULT http://www.oberhumer.com/opensource/lzo/download/
 lzop DEFAULT http://www.lzop.org/download/
@@ -109,6 +110,7 @@ tig DEFAULT http://jonas.nitro.dk/tig/releases/
 tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
 tmux DEFAULT SF-DEFAULT
 unarj DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
+unbound DEFAULT http://unbound.net/downloads/
 unhide DEFAULT SF-DEFAULT
 unrar DEFAULT:unrarsrc http://www.rarlab.com/rar_add.htm
 zoo DEFAULT DEFAULT
