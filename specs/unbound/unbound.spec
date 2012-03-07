@@ -2,6 +2,9 @@
 # Authority: shuff
 # Upstream: <unbound-bugs$nlnetlabs,nl>
 
+%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+%define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
+
 %define unbounddir %{_localstatedir}/unbound
 %define unbounduser unbound
 
@@ -25,6 +28,7 @@ BuildRequires: gcc
 BuildRequires: ldns-devel
 BuildRequires: libevent-devel >= 1.3
 BuildRequires: make
+BuildRequires: openssl-devel
 BuildRequires: python-devel
 BuildRequires: rpm-macros-rpmforge
 BuildRequires: swig
@@ -78,13 +82,15 @@ This package contains Python support for %{name}.
 
 %{__make} %{?_smp_mflags}
 
+%{__rm} -rf doc/man
+
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %{__install} -m0700 -d %{buildroot}%{_localstatedir}/unbound
 %{__install} -m0755 -d %{buildroot}%{_initrddir}
 %{__install} -m0755 contrib/unbound.init %{buildroot}%{_initrddir}/unbound
-%{_ln_s} %{_localstatedir}/unbound/unbound.conf %{buildroot}%{_sysconfdir}/unbound.conf
+%{__ln_s} %{_localstatedir}/unbound/unbound.conf %{buildroot}%{_sysconfdir}/unbound.conf
 
 # fix for stupid strip issue
 #%{__chmod} -R u+w %{buildroot}/*
@@ -122,18 +128,18 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc LICENSE README contrib/
-%doc %{_mandir}/man?/*
-%attr(0755,root,root) %{_initrddir}/unbound
+%doc %{_mandir}/man[1,5,8]/*
+%attr(0755,%{unbounduser},%{unbounduser}) %dir %{_initrddir}/unbound
 %attr(0700,%{unbounduser},%{unbounduser}) %{unbounddir}
 %attr(0644,%{unbounduser},%{unbounduser}) %config(noreplace) %{unbounddir}/unbound.conf
 %attr(0644,%{unbounduser},%{unbounduser}) %config(noreplace) %{_sysconfdir}/unbound.conf
 %{_sbindir}/*
 %{_libdir}/*.so.*
-%{_datadir}/applications/*.desktop
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc doc/*
+%doc %{_mandir}/man3/*
 %{_includedir}/*.h
 %{_libdir}/*.so
 %exclude %{_libdir}/*.a
@@ -141,6 +147,7 @@ fi
 
 %files -n python-libunbound
 %defattr(-, root, root, 0755)
+%{python_sitearch}/*
 
 %changelog
 * Wed Mar 7 2012 Steve Huff <shuff@vecna.org> - 1.4.16-1
