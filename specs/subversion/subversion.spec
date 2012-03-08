@@ -353,7 +353,8 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 - Update subversion.conf to load mod_dontdothat.so (from fedora)
 - Add subversion-1.7.2-ruby19.patch (from fedora)
 - Stop using subversion-1.1.3-java.patch 
-  and subversion-1.6.6-ruby-rpath.patch (from fedora)
+  and subversion-1.6.6-ruby-rpath.patch 
+  and subversion-1.6.12-javahl-pic.patch (from fedora)
 
 * Tue Nov 15 2011 David Hrbáč <david@hrbac.cz> - 1.7.1-0.1
 - new upstream release
