@@ -11,7 +11,7 @@
 
 Summary: Tool to allow building RPM packages in chroots
 Name: mock
-Version: 1.1.19
+Version: 1.1.21
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -91,6 +91,9 @@ fi
 %dir %{_localstatedir}/lib/mock
 
 %changelog
+* Wed Mar 14 2012 Yury V. Zaytsev <yury@shurup.com> - 1.1.21-1
+- Updated to release 1.1.21.
+
 * Fri Jan 13 2012 Yury V. Zaytsev <yury@shurup.com> - 1.1.19-1
 - Updated to release 1.1.19.
 
