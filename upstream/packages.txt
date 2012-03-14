@@ -21,6 +21,7 @@ icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
 ldns DEFAULT http://www.nlnetlabs.nl/downloads/ldns/
 lha DEFAULT DEFAULT
+lshw lshw-B.([\d.]*?).tar.gz http://ezix.org/software/files/
 lzo DEFAULT http://www.oberhumer.com/opensource/lzo/download/
 lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
