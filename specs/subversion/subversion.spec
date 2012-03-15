@@ -29,7 +29,7 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.7.3
+Version: 1.7.4
 Release: 0.1%{?dist}
 License: BSD
 Group: Development/Tools
@@ -54,6 +54,8 @@ Patch9: subversion-1.7.0-rpath.patch
 Patch10: subversion-1.7.0-pie.patch
 Patch11: subversion-1.7.0-kwallet.patch
 Patch12: subversion-1.7.2-ruby19.patch
+Patch13: subversion-1.7.4-hashorder.patch
+Patch14: subversion-1.7.4-httpd24.patch
 #Patch100: subversion-1.6.12-javahl-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -150,6 +152,8 @@ This package includes the Ruby bindings to the Subversion libraries.
 %patch10 -p1 -b .pie
 %patch11 -p1 -b .kwallet
 %{!?_without_ruby:%patch12 -p1 -b .ruby}
+%patch13 -p1 -b .hashorder
+%patch14 -p1 -b .httpd24
 #%{?_with_java:%patch7 -p1 -b .java}
 #%{?_with_java:%patch100 -p1 -b .java-pic}
 
@@ -347,7 +351,12 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Tue Nov 15 2011 Kevin White <github-kevin@kevbo.org> - 1.7.3-0.1
+* Fri Mar 16 2012 Kevin White <github-kevin@kevbo.org> - 1.7.3-0.1
+- Updated to release 1.7.4
+- Add fedora patches subversion-1.7.4-hashorder.patch 
+  and subversion-1.7.4-httpd24.patch.
+
+* Wed Mar 07 2012 Kevin White <github-kevin@kevbo.org> - 1.7.3-0.1
 - Updated to release 1.7.3
 - Add mod_dontdothat.so to mod_dav_svn
 - Update subversion.conf to load mod_dontdothat.so (from fedora)
