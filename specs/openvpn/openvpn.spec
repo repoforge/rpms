@@ -7,17 +7,17 @@
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
-Version: 2.2.0
-Release: 3%{?dist}
+Version: 2.2.2
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/
 
 Source: http://swupdate.openvpn.net/community/releases/%{name}-%{version}.tar.gz
-Patch:  openvpn-initscript.patch
+Patch:  openvpn-%{version}-initscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: lzo-devel >= 1.07
+BuildRequires: lzo-devel >= 2.03
 BuildRequires: openssl-devel >= 0.9.6
 BuildRequires: pkgconfig
 BuildRequires: pam-devel
@@ -52,7 +52,8 @@ fi
     --enable-iproute2 \
     %{?_with_pkcs11:--enable-pkcs11} \
     %{!?_with_pkcs11:--disable-pkcs11} \
-    --enable-password-save 
+    --enable-password-save \
+    --enable-pthread
 %{__make} %{?_smp_mflags}
 
 ### Build plugins
@@ -119,6 +120,9 @@ fi
 %{_sbindir}/openvpn
 
 %changelog
+* Fri Mar 16 2012 Denis Fateyev <denis@fateyev.com> - 2.2.2-1
+- Updated to version 2.2.2
+
 * Sun Jun 05 2011 Yury V. Zaytsev <yury@shurup.com> - 2.2.0-3
 - Fixed typo in the initscript patch, see gh-11 (thanks, Martin!)
 
