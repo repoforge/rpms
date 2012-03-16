@@ -95,7 +95,9 @@ compelling replacement for CVS.
 %package devel
 Group: Development/Tools
 Summary: Development package for Subversion developers.
-Requires: subversion = %{version}-%{release}, apr-devel, apr-util-devel
+Requires: subversion = %{version}-%{release} 
+Requires: apr-devel
+Requires: apr-util-devel
 
 %description devel
 The subversion-devel package includes the static libraries and
@@ -116,7 +118,8 @@ using HTTP, via the Apache httpd server.
 %package perl
 Group: Development/Libraries
 Summary: Perl bindings to the Subversion libraries
-BuildRequires: perl >= 2:5.8.0, perl(ExtUtils::MakeMaker)
+BuildRequires: perl >= 2:5.8.0
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: %(eval `perl -V:version`; echo "perl(:MODULE_COMPAT_$version)")
 Requires: subversion = %{version}-%{release}
 
@@ -135,8 +138,9 @@ This package includes the JNI bindings to the Subversion libraries.
 %package ruby
 Group: Development/Libraries
 Summary: Ruby bindings to the Subversion libraries
-%{!?_without_ruby:BuildRequires: ruby-devel >= 1.8.2, ruby >= 1.8.2}
-Requires: subversion = %{version}-%{release}, ruby-libs >= 1.8.2
+%{!?_without_ruby:BuildRequires: ruby-devel >= 1.8.2}
+Requires: subversion = %{version}-%{release}
+Requires: ruby-libs >= 1.8.2
 Requires: ruby(abi) = 1.8
 
 %description ruby
@@ -351,7 +355,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
-* Fri Mar 16 2012 Kevin White <github-kevin@kevbo.org> - 1.7.3-0.1
+* Fri Mar 16 2012 Kevin White <github-kevin@kevbo.org> - 1.7.4-0.1
 - Updated to release 1.7.4
 - Add fedora patches subversion-1.7.4-hashorder.patch 
   and subversion-1.7.4-httpd24.patch.
