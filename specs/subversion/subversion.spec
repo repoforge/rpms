@@ -29,11 +29,14 @@
 
 Summary: Modern Version Control System designed to replace CVS
 Name: subversion
-Version: 1.7.1
+Version: 1.7.4
 Release: 0.1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://subversion.tigris.org/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://www.apache.org/dist/subversion/subversion-%{version}.tar.bz2
 Source1: subversion.conf
@@ -45,12 +48,15 @@ Source10: http://prdownloads.sourceforge.net/sourceforge/swig/swig-%{swig_versio
 #Patch2: subversion-0.20.1-deplibs.patch
 #Patch3: subversion-1.6.0-rpath.patch
 #Patch6: subversion-1.6.0-pie.patch
-Patch7: subversion-1.1.3-java.patch
-Patch8: subversion-1.6.6-ruby-rpath.patch
+#Patch7: subversion-1.1.3-java.patch
+#Patch8: subversion-1.6.6-ruby-rpath.patch
 Patch9: subversion-1.7.0-rpath.patch
 Patch10: subversion-1.7.0-pie.patch
 Patch11: subversion-1.7.0-kwallet.patch
-Patch100: subversion-1.6.12-javahl-pic.patch
+Patch12: subversion-1.7.2-ruby19.patch
+Patch13: subversion-1.7.4-hashorder.patch
+Patch14: subversion-1.7.4-httpd24.patch
+#Patch100: subversion-1.6.12-javahl-pic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: apr-devel >= 0.9.4
@@ -141,10 +147,13 @@ This package includes the Ruby bindings to the Subversion libraries.
 #%patch2 -p1 -b .deplibs
 #%patch3 -p1 -b .rpath
 #%patch6 -p1 -b .pie
+#%{!?_without_ruby:%patch8 -p0 -b .ruby-rpath}
 %patch9 -p1 -b .rpath
 %patch10 -p1 -b .pie
 %patch11 -p1 -b .kwallet
-%{!?_without_ruby:%patch8 -p0 -b .ruby-rpath}
+%{!?_without_ruby:%patch12 -p1 -b .ruby}
+%patch13 -p1 -b .hashorder
+%patch14 -p1 -b .httpd24
 #%{?_with_java:%patch7 -p1 -b .java}
 #%{?_with_java:%patch100 -p1 -b .java-pic}
 
@@ -316,6 +325,7 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/subversion.conf
 %{_libdir}/httpd/modules/mod_dav_svn.so
 %{_libdir}/httpd/modules/mod_authz_svn.so
+%{_libdir}/httpd/modules/mod_dontdothat.so
 
 %if %{!?_without_swig:1}0
 %files perl
@@ -341,6 +351,20 @@ find tools/ -type f -exec %{__chmod} -x {} \;
 %endif
 
 %changelog
+* Fri Mar 16 2012 Kevin White <github-kevin@kevbo.org> - 1.7.3-0.1
+- Updated to release 1.7.4
+- Add fedora patches subversion-1.7.4-hashorder.patch 
+  and subversion-1.7.4-httpd24.patch.
+
+* Wed Mar 07 2012 Kevin White <github-kevin@kevbo.org> - 1.7.3-0.1
+- Updated to release 1.7.3
+- Add mod_dontdothat.so to mod_dav_svn
+- Update subversion.conf to load mod_dontdothat.so (from fedora)
+- Add subversion-1.7.2-ruby19.patch (from fedora)
+- Stop using subversion-1.1.3-java.patch 
+  and subversion-1.6.6-ruby-rpath.patch 
+  and subversion-1.6.12-javahl-pic.patch (from fedora)
+
 * Tue Nov 15 2011 David Hrbáč <david@hrbac.cz> - 1.7.1-0.1
 - new upstream release
 
