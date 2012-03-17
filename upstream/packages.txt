@@ -112,6 +112,7 @@ syslinux DEFAULT http://www.kernel.org/pub/linux/utils/boot/syslinux/
 tig DEFAULT http://jonas.nitro.dk/tig/releases/
 tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
 tmux DEFAULT SF-DEFAULT
+udpxy udpxy\.(.*?)-[\d]-prod.tgz SF-DEFAULT
 unarj DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 unbound DEFAULT http://unbound.net/downloads/
 unhide DEFAULT SF-DEFAULT
