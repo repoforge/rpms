@@ -97,6 +97,7 @@ phpmyadmin3 phpMyAdmin-(3.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/ho
 pianobar DEFAULT http://6xq.net/static/projects/pianobar/
 postgrey DEFAULT http://postgrey.schweikert.ch/pub/
 proftpd DEFAULT ftp://ftp.proftpd.org/distrib/source/
+python-webpy DEFAULT:web.py http://webpy.org/static/
 razor-agents razor-agents-(.*?).tar.bz2 http://sourceforge.net/projects/razor/files/
 re2c DEFAULT SF-DEFAULT
 ripole DEFAULT http://www.pldaniels.com/ripole
