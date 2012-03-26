@@ -1,5 +1,6 @@
 # $Id$
 # Upstream: Gregory Todd Williams <gwilliams@cpan.org>
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 Summary: An RDF query implementation of SPARQL/RDQL in Perl for use with RDF::Trine.
 Name: perl-RDF-Query
 Version: 2.904
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RDF-Query/
@@ -262,5 +263,8 @@ Requires: perl(URI) >= 1.52
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Mon Mar 26 2012 Steve Huff <shuff@vecna.org> - 2.904-2
+- Rebuild as RFX.
+
 * Mon Feb 07 2011 Christoph Maser <cmaser.gmx.de> - 2.904-1
 - initial package

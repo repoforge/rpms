@@ -1,5 +1,6 @@
 # $Id$
 # Upstream: Gregory Todd Williams <gwilliams@cpan.org>
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -8,7 +9,7 @@
 Summary: An RDF Framework for Perl
 Name: perl-RDF-Trine
 Version: 0.132
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/RDF-Trine/
@@ -214,5 +215,8 @@ Requires: perl >= v5.8.3
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Mon Mar 26 2012 Steve Huff <shuff@vecna.org> - 0.132-2
+- Rebuild as RFX.
+
 * Mon Feb 07 2011 Christoph Maser <cmaser.gmx.de> - 0.132-1
 - initial package
