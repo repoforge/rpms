@@ -2,13 +2,13 @@
 # Authority: yury
 # Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
-### Only build for RHEL6 for newer rtorrent
-# ExcludeDist: el2 el3 el4 el5
+### Only build for RHEL5,6 for newer rtorrent
+# ExcludeDist: el2 el3 el4
 
 Summary: BitTorrent library
 Name: libtorrent
 Version: 0.12.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/Libraries
 URL: http://libtorrent.rakshasa.no/
@@ -39,6 +39,11 @@ you will need to install %{name}-devel.
 %setup
 
 %build
+# work around a bug thats triggered by gcc 4.1
+export RPM_OPT_FLAGS=`echo $RPM_OPT_FLAGS | %{__sed} s/-O2/-Os/`
+export CFLAGS=$RPM_OPT_FLAGS
+export CXXFLAGS=$RPM_OPT_FLAGS
+
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -65,6 +70,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libtorrent.la
 
 %changelog
+* Fri Mar 30 2012 Denis Fateyev <denis@fateyev.com> - 0.12.9-2
+- Some fixes for unification in spec.
+
 * Mon Aug 01 2011 Dag Wieers <dag@wieers.com> - 0.12.9-1
 - Updated to release 0.12.9.
 
