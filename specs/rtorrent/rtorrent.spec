@@ -2,12 +2,13 @@
 # Authority: yury
 # Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
-%{?el5:%define curl_version 7.19.6}
+### More unification with curl version (7.19.7 shipped with el6)
+%{?el5:%define curl_version 7.19.7}
 
 Summary: Console-based BitTorrent client
 Name: rtorrent
 Version: 0.8.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://libtorrent.rakshasa.no/
@@ -18,19 +19,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
 BuildRequires: libsigc++20-devel
-BuildRequires: libtorrent-devel >= 0.12.5
+BuildRequires: libtorrent-devel >= 0.12.9
 BuildRequires: ncurses-devel
 
-### Curl BuildRequires from Rawhide (no stunnel!)
 BuildRequires: krb5-devel
 BuildRequires: libidn-devel
-BuildRequires: nss-devel
 BuildRequires: openldap-devel
 BuildRequires: openssh-clients
 BuildRequires: openssh-server
 BuildRequires: pkgconfig
 BuildRequires: valgrind
 BuildRequires: zlib-devel
+
+%{?el6:BuildRequires: curl-devel}
+%{?el6:BuildRequires: cppunit}
+%{?el6:BuildRequires: cppunit-devel}
+BuildRequires: xmlrpc-c-devel
+
 
 %description
 rTorrent is a console-based BitTorrent client. It aims to be a
@@ -54,29 +59,37 @@ RESULT_DIR="$(pwd)/result"
     --disable-manual \
     --disable-shared \
     --enable-ipv6 \
-    --enable-ldaps \
     --enable-static \
     --without-libssh2 \
     --without-ssl \
     --with-ca-bundle="%{_sysconfdir}/pki/tls/certs/ca-bundle.crt" \
     --with-gssapi="%{_prefix}/kerberos" \
-    --with-libidn \
-    --with-nss
-#    --libdir="$RESULT_DIR/usr/%{_lib}" \
+    --with-libidn
 
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" install
 popd
 
-# Build rtorrent
-PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
+### Build rtorrent
+PKG_CONFIG_PATH="$RESULT_DIR/lib/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
 %endif
 
-%configure
+### Avoid el5 gcc bug
+%{?el5:export CFLAGS="$CFLAGS -pthread"}
+%{?el5:export CXXFLAGS="$CXXFLAGS -pthread"}
+%ifarch i386
+%{?el5:export CFLAGS="$CFLAGS -march=i486"}
+%{?el5:export CXXFLAGS="$CXXFLAGS -march=i486"}
+%endif
+
+%configure --with-xmlrpc-c
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+
+### Manually install the man page to correct location for this release
+%{__install} -p -m 0644 -D ./doc/rtorrent.1 %{buildroot}/%{_mandir}/man1/rtorrent.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -84,10 +97,14 @@ PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PK
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-#%doc %{_mandir}/man1/rtorrent.1*
+%doc %{_mandir}/man1/rtorrent.1*
 %{_bindir}/rtorrent
 
+
 %changelog
+* Thu Aug 18 2011 Denis Fateyev <denis@fateyev.com> - 0.8.9-2
+- Some fixes in spec for rtorrent-0.8.9
+
 * Mon Aug 01 2011 Dag Wieers <dag@wieers.com> - 0.8.9-1
 - Updated to release 0.8.9.
 
