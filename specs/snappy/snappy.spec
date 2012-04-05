@@ -1,5 +1,5 @@
 Name:           snappy
-Version:        1.0.4
+Version:        1.0.5
 Release:        1%{?dist}
 Summary:        Fast compression and decompression library
 
@@ -70,5 +70,8 @@ make check
 
 
 %changelog
+* Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 1.0.5-1
+- new upstream release
+
 * Mon Feb 13 2012 David Hrbáč <david@hrbac.cz> - 1.0.4-1
-- initial releas
+- initial release

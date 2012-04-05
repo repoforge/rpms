@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dag
 # Upstream: <trac$lists,edgewall,com>
+# Tag: rfx
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
@@ -9,7 +10,7 @@
 Name: trac
 Summary: Integrated SCM and project management tool
 Version: 0.12
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://projects.edgewall.com/trac/
@@ -99,6 +100,9 @@ EOF
 %{python_sitelib}/Trac-%{version}-py*.egg-info/
 
 %changelog
+* Mon Mar 26 2012 Steve Huff <shuff@vecna.org> - 0.12-3
+- Rebuild as RFX.
+
 * Fri Jul 02 2010 Steve Huff <shuff@vecna.org> - 0.12-2
 - Increased python-sqlite dependency to python-sqlite2
   (thanks Nico Kadel-Garcia!)

@@ -1,0 +1,285 @@
+From f3bbca91caac29b6b8f332d92f06261e16c86ba2 Mon Sep 17 00:00:00 2001
+From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+Date: Mon, 25 Feb 2008 17:48:25 +0100
+Subject: [PATCH 2/5] fixed broken format string modifiers for size_t typed arguments
+
+---
+ lib/abyss/src/socket_unix.c             |    4 ++--
+ lib/libutil/memblock.c                  |    2 +-
+ lib/libutil/utf8.c                      |    4 ++--
+ src/cpp/packetsocket.cpp                |    6 +++---
+ src/cpp/server_cgi.cpp                  |    2 +-
+ src/parse_datetime.c                    |    2 +-
+ src/xmlrpc_data.c                       |    2 +-
+ src/xmlrpc_datetime.c                   |    2 +-
+ src/xmlrpc_decompose.c                  |    4 ++--
+ src/xmlrpc_parse.c                      |    8 ++++----
+ src/xmlrpc_server_abyss.c               |    2 +-
+ src/xmlrpc_string.c                     |    8 ++++----
+ tools/xmlrpc/xmlrpc.c                   |    2 +-
+ tools/xmlrpc_pstream/xmlrpc_pstream.cpp |    2 +-
+ 14 files changed, 25 insertions(+), 25 deletions(-)
+
+diff --git a/lib/abyss/src/socket_unix.c b/lib/abyss/src/socket_unix.c
+index f58efeb..42c2174 100644
+--- a/lib/abyss/src/socket_unix.c
++++ b/lib/abyss/src/socket_unix.c
+@@ -193,8 +193,8 @@ channelWrite(TChannel *            const channelP,
+                 fprintf(stderr, "Abyss channel: send() failed.  "
+                         "Socket closed.\n");
+             else
+-                fprintf(stderr, "Abyss channel: sent %u bytes: '%.*s'\n",
+-                        rc, rc, &buffer[len-bytesLeft]);
++                fprintf(stderr, "Abyss channel: sent %zu bytes: '%.*s'\n",
++                        rc, (int)rc, &buffer[len-bytesLeft]);
+         }
+         if (rc <= 0)
+             /* 0 means connection closed; < 0 means severe error */
+diff --git a/lib/libutil/memblock.c b/lib/libutil/memblock.c
+index 2993eae..9468217 100644
+--- a/lib/libutil/memblock.c
++++ b/lib/libutil/memblock.c
+@@ -74,7 +74,7 @@ xmlrpc_mem_block_init(xmlrpc_env *       const envP,
+ 
+     blockP->_block = (void*) malloc(blockP->_allocated);
+     if (!blockP->_block)
+-        xmlrpc_faultf(envP, "Can't allocate %u-byte memory block",
++        xmlrpc_faultf(envP, "Can't allocate %zu-byte memory block",
+                       blockP->_allocated);
+ }
+ 
+diff --git a/lib/libutil/utf8.c b/lib/libutil/utf8.c
+index 520c292..d7a211e 100644
+--- a/lib/libutil/utf8.c
++++ b/lib/libutil/utf8.c
+@@ -277,8 +277,8 @@ decode_utf8(xmlrpc_env * const envP,
+                 if (utf8Cursor + length > utf8_len) {
+                     xmlrpc_env_set_fault_formatted(
+                         envP, XMLRPC_INVALID_UTF8_ERROR,
+-                        "Invalid UTF-8 sequence indicates a %u-byte sequence "
+-                        "when only %u bytes are left in the string",
++                        "Invalid UTF-8 sequence indicates a %zu-byte sequence "
++                        "when only %zu bytes are left in the string",
+                         length, utf8_len - utf8Cursor);
+                 } else {
+                     decodeMultibyte(envP, &utf8_data[utf8Cursor], length, &wc);
+diff --git a/src/cpp/packetsocket.cpp b/src/cpp/packetsocket.cpp
+index bed2385..8cf55e6 100644
+--- a/src/cpp/packetsocket.cpp
++++ b/src/cpp/packetsocket.cpp
+@@ -307,7 +307,7 @@ packet::initialize(const unsigned char * const data,
+     this->bytes = reinterpret_cast<unsigned char *>(malloc(dataLength));
+ 
+     if (this->bytes == NULL)
+-        throwf("Can't get storage for a %u-byte packet.", dataLength);
++        throwf("Can't get storage for a %zu-byte packet.", dataLength);
+ 
+     this->allocSize = dataLength;
+ 
+@@ -359,7 +359,7 @@ packet::addData(const unsigned char * const data,
+             realloc(this->bytes, neededSize));
+ 
+     if (this->bytes == NULL)
+-        throwf("Can't get storage for a %u-byte packet.", neededSize);
++        throwf("Can't get storage for a %zu-byte packet.", neededSize);
+ 
+     memcpy(this->bytes + this->length, data, dataLength);
+ 
+@@ -610,7 +610,7 @@ packetSocket_impl::verifyNothingAccumulated() {
+     
+     if (this->inPacket)
+         throwf("Stream socket closed in the middle of a packet "
+-               "(%u bytes of packet received; no END marker to mark "
++               "(%zu bytes of packet received; no END marker to mark "
+                "end of packet)", this->packetAccumP->getLength());
+ }
+ 
+diff --git a/src/cpp/server_cgi.cpp b/src/cpp/server_cgi.cpp
+index c476dae..65518c7 100644
+--- a/src/cpp/server_cgi.cpp
++++ b/src/cpp/server_cgi.cpp
+@@ -241,7 +241,7 @@ writeNormalHttpResp(FILE * const  fileP,
+         fprintf(fileP, "Set-Cookie: auth=%s\n", authCookie.c_str());
+ 
+     fprintf(fileP, "Content-type: text/xml; charset=\"utf-8\"\n");
+-    fprintf(fileP, "Content-length: %u\n", httpBody.size());
++    fprintf(fileP, "Content-length: %zu\n", httpBody.size());
+     fprintf(fileP, "\n");
+ 
+     // HTTP body
+diff --git a/src/parse_datetime.c b/src/parse_datetime.c
+index f764c6e..5f91494 100644
+--- a/src/parse_datetime.c
++++ b/src/parse_datetime.c
+@@ -375,7 +375,7 @@ validateFormatNoRegex(xmlrpc_env * const envP,
+     if (strlen(dt) < 17)
+         xmlrpc_env_set_fault_formatted(
+             envP, XMLRPC_PARSE_ERROR, 
+-            "Invalid length of %u of datetime.  "
++            "Invalid length of %zu of datetime.  "
+             "Must be at least 17 characters",
+             strlen(dt));
+     else {
+diff --git a/src/xmlrpc_data.c b/src/xmlrpc_data.c
+index 2a6baea..c9fd75c 100644
+--- a/src/xmlrpc_data.c
++++ b/src/xmlrpc_data.c
+@@ -221,7 +221,7 @@ xmlrpc_read_base64(xmlrpc_env *           const envP,
+         byteStringValue = malloc(size);
+         if (byteStringValue == NULL)
+             xmlrpc_env_set_fault_formatted(
+-                envP, XMLRPC_INTERNAL_ERROR, "Unable to allocate %u bytes "
++                envP, XMLRPC_INTERNAL_ERROR, "Unable to allocate %zu bytes "
+                 "for byte string.", size);
+         else {
+             memcpy(byteStringValue, contents, size);
+diff --git a/src/xmlrpc_datetime.c b/src/xmlrpc_datetime.c
+index 2a43c41..06e1c50 100644
+--- a/src/xmlrpc_datetime.c
++++ b/src/xmlrpc_datetime.c
+@@ -468,7 +468,7 @@ validateFormat(xmlrpc_env * const envP,
+ 
+     if (strlen(dt) < 17)
+         xmlrpc_faultf(envP,
+-                      "Invalid length of %u of datetime string.  "
++                      "Invalid length of %zu of datetime string.  "
+                       "Must be at least 17 characters",
+                       strlen(dt));
+     else {
+diff --git a/src/xmlrpc_decompose.c b/src/xmlrpc_decompose.c
+index eeb3414..36e62f6 100644
+--- a/src/xmlrpc_decompose.c
++++ b/src/xmlrpc_decompose.c
+@@ -712,7 +712,7 @@ buildArrayDecompBranch(xmlrpc_env *            const envP,
+         if (itemCnt >= ARRAY_SIZE(decompNodeP->store.Tarray.itemArray))
+             xmlrpc_faultf(envP, "Too many array items in format string.  "
+                           "The most items you can have for an array in "
+-                          "a format string is %u.",
++                          "a format string is %zu.",
+                           ARRAY_SIZE(decompNodeP->store.Tarray.itemArray));
+         else {
+             struct decompTreeNode * itemNodeP;
+@@ -850,7 +850,7 @@ buildStructDecompBranch(xmlrpc_env *            const envP,
+             xmlrpc_faultf(envP,
+                           "Too many structure members in format string.  "
+                           "The most members you can specify in "
+-                          "a format string is %u.",
++                          "a format string is %zu.",
+                           ARRAY_SIZE(decompNodeP->store.Tstruct.mbrArray));
+         else {
+             struct mbrDecomp * const mbrP =
+diff --git a/src/xmlrpc_parse.c b/src/xmlrpc_parse.c
+index ea01638..7debbf2 100644
+--- a/src/xmlrpc_parse.c
++++ b/src/xmlrpc_parse.c
+@@ -59,7 +59,7 @@ setParseFault(xmlrpc_env * const envP,
+     do \
+         if (xml_element_children_size(elem) != (count)) \
+             XMLRPC_FAIL3(env, XMLRPC_PARSE_ERROR, \
+-             "Expected <%s> to have %d children, found %d", \
++             "Expected <%s> to have %d children, found %zd", \
+                          xml_element_name(elem), (count), \
+                          xml_element_children_size(elem)); \
+     while (0)
+@@ -298,7 +298,7 @@ xmlrpc_parse_call(xmlrpc_env *    const envP,
+     if (xmlDataLen > xmlrpc_limit_get(XMLRPC_XML_SIZE_LIMIT_ID))
+         xmlrpc_env_set_fault_formatted(
+             envP, XMLRPC_LIMIT_EXCEEDED_ERROR,
+-            "XML-RPC request too large.  Max allowed is %u bytes",
++            "XML-RPC request too large.  Max allowed is %zu bytes",
+             xmlrpc_limit_get(XMLRPC_XML_SIZE_LIMIT_ID));
+     else {
+         xml_element * callElemP;
+@@ -550,8 +550,8 @@ xmlrpc_parse_response2(xmlrpc_env *    const envP,
+     if (xmlDataLen > xmlrpc_limit_get(XMLRPC_XML_SIZE_LIMIT_ID))
+         xmlrpc_env_set_fault_formatted(
+             envP, XMLRPC_LIMIT_EXCEEDED_ERROR,
+-            "XML-RPC response too large.  Our limit is %u characters.  "
+-            "We got %u characters",
++            "XML-RPC response too large.  Our limit is %zu characters.  "
++            "We got %zu characters",
+             xmlrpc_limit_get(XMLRPC_XML_SIZE_LIMIT_ID), xmlDataLen);
+     else {
+         xmlrpc_env env;
+diff --git a/src/xmlrpc_server_abyss.c b/src/xmlrpc_server_abyss.c
+index 1001d15..50329c2 100644
+--- a/src/xmlrpc_server_abyss.c
++++ b/src/xmlrpc_server_abyss.c
+@@ -485,7 +485,7 @@ processCall(TSession *        const abyssSessionP,
+     if (contentSize > xmlrpc_limit_get(XMLRPC_XML_SIZE_LIMIT_ID))
+         xmlrpc_env_set_fault_formatted(
+             &env, XMLRPC_LIMIT_EXCEEDED_ERROR,
+-            "XML-RPC request too large (%d bytes)", contentSize);
++            "XML-RPC request too large (%zd bytes)", contentSize);
+     else {
+         xmlrpc_mem_block * body;
+         /* Read XML data off the wire. */
+diff --git a/src/xmlrpc_string.c b/src/xmlrpc_string.c
+index 89eb128..100cd77 100644
+--- a/src/xmlrpc_string.c
++++ b/src/xmlrpc_string.c
+@@ -141,7 +141,7 @@ xmlrpc_read_string(xmlrpc_env *         const envP,
+         MALLOCARRAY(stringValue, length + 1);
+         if (stringValue == NULL)
+             xmlrpc_faultf(envP, "Unable to allocate space "
+-                          "for %u-character string", length);
++                          "for %zu-character string", length);
+         else {
+             memcpy(stringValue, contents, length);
+             stringValue[length] = '\0';
+@@ -189,7 +189,7 @@ copyAndConvertLfToCrlf(xmlrpc_env *  const envP,
+     MALLOCARRAY(dst, dstLen + 1);
+     if (dst == NULL)
+         xmlrpc_faultf(envP, "Unable to allocate space "
+-                      "for %u-character string", dstLen + 1);
++                      "for %zu-character string", dstLen + 1);
+     else {
+         const char * p;  /* source pointer */
+         char * q;        /* destination pointer */
+@@ -370,7 +370,7 @@ xmlrpc_read_string_w(xmlrpc_env *     const envP,
+         wchar_t * stringValue;
+         MALLOCARRAY(stringValue, length + 1);
+         if (stringValue == NULL)
+-            xmlrpc_faultf(envP, "Unable to allocate space for %u-byte string", 
++            xmlrpc_faultf(envP, "Unable to allocate space for %zu-byte string",
+                           length);
+         else {
+             memcpy(stringValue, wcontents, length * sizeof(wchar_t));
+@@ -422,7 +422,7 @@ wCopyAndConvertLfToCrlf(xmlrpc_env *     const envP,
+     MALLOCARRAY(dst, dstLen + 1);
+     if (dst == NULL)
+         xmlrpc_faultf(envP, "Unable to allocate space "
+-                      "for %u-character string", dstLen + 1);
++                      "for %zu-character string", dstLen + 1);
+     else {
+         const wchar_t * p;  /* source pointer */
+         wchar_t * q;        /* destination pointer */
+diff --git a/tools/xmlrpc/xmlrpc.c b/tools/xmlrpc/xmlrpc.c
+index 2cf4fee..93255f3 100644
+--- a/tools/xmlrpc/xmlrpc.c
++++ b/tools/xmlrpc/xmlrpc.c
+@@ -295,7 +295,7 @@ buildBytestring(xmlrpc_env *    const envP,
+ 
+     if (valueStringSize / 2 * 2 != valueStringSize)
+         xmlrpc_faultf(envP, "Hexadecimal text is not an even "
+-                      "number of characters (it is %u characters)",
++                      "number of characters (it is %zu characters)",
+                       strlen(valueString));
+     else {
+         size_t const byteStringSize = strlen(valueString)/2;
+diff --git a/tools/xmlrpc_pstream/xmlrpc_pstream.cpp b/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
+index 1417708..0d6ec11 100644
+--- a/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
++++ b/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
+@@ -103,7 +103,7 @@ bytestringValFromParm(string const& valueString) {
+ 
+     if (valueString.length() / 2 * 2 != valueString.length())
+         throwf("Hexadecimal text is not an even "
+-               "number of characters (it is %u characters)",
++               "number of characters (it is %zu characters)",
+                valueString.length());
+     else {
+         vector<unsigned char> byteString(valueString.length() / 2);
+-- 
+1.7.0.1
+

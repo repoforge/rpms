@@ -8,13 +8,13 @@
 
 Summary: Secure concurrent multi-server terminal control
 Name: clusterssh
-Version: 3.19.1
+Version: 3.28
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://clusterssh.sourceforge.net/
 
-Source: http://dl.sf.net/clusterssh/clusterssh-%{version}.tar.gz
+Source: http://download.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -66,6 +66,9 @@ desktop-file-install --vendor %{desktop_vendor}    \
 %{_datadir}/icons/hicolor/48x48/apps/clusterssh.png
 
 %changelog
+* Mon Feb 20 2012 David Hrbáč <david@hrbac.cz> - 3.28-1
+- new upstream release
+
 * Wed Jan 24 2007 Dag Wieers <dag@wieers.com> - 3.19.1-1
 - Updated to release 3.19.1.
 
