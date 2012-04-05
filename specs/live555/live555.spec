@@ -1,8 +1,10 @@
 # $Id$
 # Authority: dag
 
+%define _default_patch_fuzz 2
+
 %define real_name live
-%define real_version 2010.04.09
+%define real_version 2012.02.04
 %define live_soversion 0
 
 Summary: Live555.com streaming libraries
@@ -87,9 +89,9 @@ developing applications that use %{name}.
 %setup -n %{real_name}
 %{__install} -Dp -m0644 config.linux config.linux.static
 %patch0 -p1 -b .shared
-%patch1 -p1 -b .vlc1
-%patch2 -p1 -b .vlc2
-%patch3 -p1 -b .vlc3
+#patch1 -p1 -b .vlc1
+#patch2 -p1 -b .vlc2
+#patch3 -p1 -b .vlc3
 
 %build
 ./genMakefiles %{_target_os}.static
@@ -178,5 +180,8 @@ popd
 %{_libdir}/libUsageEnvironment*.a
 
 %changelog
+* Tue Feb 21 2012 Dag Wieers <dag@wieers.com> - 0-0.27.2012.02.04
+- Updated to release 2012.02.04.
+
 * Sun Dec 05 2010 Dag Wieers <dag@wieers.com> - 0-0.27.2010.04.09
 - Initial package. (based on fedora)
