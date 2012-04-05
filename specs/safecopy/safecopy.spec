@@ -3,7 +3,7 @@
 
 Summary: Data recovery tool
 Name: safecopy
-Version: 1.6
+Version: 1.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -38,6 +38,9 @@ would fail due to I/O errors.
 %{_bindir}/safecopy
 
 %changelog
+* Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
+
 * Thu Sep 10 2009 Dag Wieers <dag@wieers.com> - 1.6-1
 - Updated to release 1.6.
 
