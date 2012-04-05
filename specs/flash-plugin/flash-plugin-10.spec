@@ -10,8 +10,8 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 10.3.183.15
-%define real_version 10_3r183_15
+Version: 10.3.183.16
+%define real_version 10_3r183_16
 Release: 0.1%{?dist}
 License: Commercial
 Group: Applications/Internet
@@ -19,7 +19,7 @@ URL: http://www.macromedia.com/downloads/
 
 ### More information wrt. downloads: http://kb2.adobe.com/cps/142/tn_14266.html
 #Source0: http://fpdownload.macromedia.com/get/flashplayer/current/install_flash_player_10_linux.tar.gz
-#Source0: http://fpdownload.macromedia.com/get/flashplayer/installers/archive/fp_10.3.183.11_archive.zip
+#Source0: http://fpdownload.macromedia.com/get/flashplayer/installers/archive/fp_%{version}_archive.zip
 Source0: flashplayer%{real_version}_linux.tar.gz
 Source1: README
 Source2: LICENSE
@@ -72,6 +72,9 @@ fi
 %{_libdir}/flash-plugin/
 
 %changelog
+* Thu Mar 15 2012 Dag Wieers <dag@wieers.com> - 10.3.183.16-0.1
+- Updated to release 10.3.183.16.
+
 * Fri Feb 17 2012 Dag Wieers <dag@wieers.com> - 10.3.183.15-0.1
 - Updated to release 10.3.183.15.
 
