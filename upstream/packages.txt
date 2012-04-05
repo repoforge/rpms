@@ -34,7 +34,7 @@ nload DEFAULT http://www.roland-riegel.de/nload/
 nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
 nmon DEFAULT SF-DEFAULT
 nomarch DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
-openvpn http://swupdate.openvpn.org/community/releases/
+openvpn DEFAULT http://swupdate.openvpn.org/community/releases/
 p7zip p7zip_([\d\.]+)_src_all.tar.bz SF-DEFAULT
 perl-Apache2-AuthenNIS CPAN-DEFAULT CPAN-DEFAULT
 perl-Archive-Zip CPAN-DEFAULT CPAN-DEFAULT
