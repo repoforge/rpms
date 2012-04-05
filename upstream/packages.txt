@@ -25,6 +25,7 @@ lshw lshw-B.([\d.]*?).tar.gz http://ezix.org/software/files/
 lzo DEFAULT http://www.oberhumer.com/opensource/lzo/download/
 lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
+mfs DEFAULT http://www.moosefs.org/download.html
 mirmon DEFAULT http://people.cs.uu.nl/henkp/mirmon/
 monit DEFAULT http://mmonit.com/monit/dist/
 nagios DEFAULT SF-DEFAULT
@@ -92,8 +93,8 @@ perl-VCS-Lite CPAN-DEFAULT CPAN-DEFAULT
 perl-Variable-Magic CPAN-DEFAULT CPAN-DEFAULT
 perl-WWW-Mediawiki-Client CPAN-DEFAULT CPAN-DEFAULT
 perl-version CPAN-DEFAULT CPAN-DEFAULT
-phpmyadmin phpMyAdmin-(2.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
 phpMyAdmin phpMyAdmin-(3.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
+phpmyadmin phpMyAdmin-(2.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
 pianobar DEFAULT http://6xq.net/static/projects/pianobar/
 postgrey DEFAULT http://postgrey.schweikert.ch/pub/
 proftpd DEFAULT ftp://ftp.proftpd.org/distrib/source/
