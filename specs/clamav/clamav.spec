@@ -13,8 +13,8 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.97.3
-Release: 2%{?dist}
+Version: 0.97.4
+Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -384,7 +384,10 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
-* Sat Dec 103 2011 Philip J Perry <phil@elrepo.org> - 0.97.3-2
+* Thu Mar 15 2012 Dag Wieers <dag@wieers.com> - 0.97.4-1
+- Updated to release 0.97.4.
+
+* Sat Dec 13 2011 Philip J Perry <phil@elrepo.org> - 0.97.3-2
 - Fix Requires for clamav-milter to also allow use with Postfix.
 
 * Mon Oct 17 2011 Dag Wieers <dag@wieers.com> - 0.97.3-1
