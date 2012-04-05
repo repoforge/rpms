@@ -59,10 +59,10 @@ errors_to_browser=false
 
 [handlers]
 ;Handler for php-scripts
-x-httpd-php=php:%{_bindir}/php
+x-httpd-php="php:%{_bindir}/php"
 
 ;Handler for CGI-scripts
-x-suphp-cgi=execute:!self
+x-suphp-cgi="execute:!self"
 EOF
 
 %{__cat} <<EOF >suphp.httpd
@@ -148,6 +148,9 @@ EOF
 %{_sbindir}/suphp
 
 %changelog
+* Thu Apr 05 2012 Samuel Stringham <me@samuelstringham.com> - 0.7.1-2
+- Correct syntax in conf file
+
 * Tue Mar 30 2010 Yury V. Zaytsev <yury@shurup.com> - 0.7.1
 - Updated to release 0.7.1 (thanks to Alessandro Iurlano).
 
