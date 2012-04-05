@@ -6,8 +6,8 @@
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
-Version: 3.99.4
-Release: 2%{?dist}
+Version: 3.99.5
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
 URL: http://lame.sourceforge.net/
@@ -105,6 +105,9 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 %exclude %{_libdir}/libmp3lame.la
 
 %changelog
+* Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 3.99.5-1
+- Updated to release 3.99.5.
+
 * Tue Jan 31 2012 Dag Wieers <dag@wieers.com> - 3.99.4-2
 - Added compatibility with ATrpms.
 
