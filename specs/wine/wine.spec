@@ -3,6 +3,8 @@
 
 # Tag: rft
 
+%define _default_patch_fuzz 2
+
 %define _without_freeglut 0
 %define _without_glut 1
 %define _without_oss 1}
@@ -25,8 +27,8 @@
 
 Summary: Windows 16/32/64 bit emulator
 Name: wine
-Version: 1.3.37
-Release: 1%{?dist}
+Version: 1.4
+Release: 1%{dist}
 License: LGPLv2+
 Group: Applications/Emulators
 URL: http://www.winehq.org/
@@ -40,7 +42,7 @@ Patch1000: wine-1.2-gecko.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 ### 64bit build cannot run 32bit applications !
-ExclusiveArch: %{ix86}
+#ExclusiveArch: %{ix86}
 BuildRequires: audiofile-devel
 BuildRequires: autoconf
 BuildRequires: bison
@@ -157,7 +159,7 @@ you will need to install %{name}-devel.
 %setup
 
 %patch1 -p0
-%patch100
+#patch100
 #patch1000
 
 %{__cat} <<EOF >wine-config.desktop
@@ -204,14 +206,6 @@ Encoding=UTF-8
 Categories=Application;System;
 EOF
 
-%ifarch %{ix86}
-%define winebin wine
-%endif
-
-%ifarch x86_64
-%define winebin wine64
-%endif
-
 %{__cat} <<'EOF' >wine.sysv
 #!/bin/sh
 #
@@ -231,8 +225,8 @@ start() {
     else
         echo -n $"Registering binary handler for Windows applications: "
         /sbin/modprobe binfmt_misc &>/dev/null
-        echo ':windows:M::MZ::/usr/bin/%{winebin}:' >/proc/sys/fs/binfmt_misc/register || :
-        echo ':windowsPE:M::PE::/usr/bin/%{winebin}:' >/proc/sys/fs/binfmt_misc/register || :
+        echo ':windows:M::MZ::/usr/bin/wine:' >/proc/sys/fs/binfmt_misc/register || :
+        echo ':windowsPE:M::PE::/usr/bin/wine:' >/proc/sys/fs/binfmt_misc/register || :
         RETVAL=$?
         [ $RETVAL -eq 0 ] && success || failure
     fi
@@ -296,21 +290,48 @@ echo "%{_libdir}/wine/" >wine.ld.conf
 
 %build
 export CFLAGS="%{optflags} -Wno-error"
-%configure \
-    --sysconfdir="%{_sysconfdir}/wine" \
-    --disable-tests \
 %ifarch x86_64
+mkdir wine64
+cd wine64
+../configure \
+    --prefix="%{_prefix}" \
+    --sysconfdir="%{_sysconfdir}/wine" \
+    --x-includes="%{_includedir}" \
+    --x-libraries="%{_libdir}" \
+    --disable-tests \
     --enable-win64 \
-%endif 
     --with-x \
 %{?_without_opengl:--without-opengl}
-#    --enable-maintainer-mode \
 %{__make} depend
 %{__make} %{?_smp_mflags}
+cd ..
+%endif
+mkdir wine32
+cd wine32
+../configure \
+    --prefix="%{_prefix}" \
+    --sysconfdir="%{_sysconfdir}/wine" \
+    --x-includes="%{_includedir}" \
+    --x-libraries="%{_libdir}" \
+    --disable-tests \
+    --with-x \
+%{?_without_opengl:--without-opengl}
+cd ..
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}" \
+
+%ifarch x86_64
+%{__make} -C wine64 install DESTDIR="%{buildroot}" \
+    dlldir="%{_libdir}/wine" \
+    includedir="%{_includedir}/wine" \
+    libdir="%{_libdir}" \
+    sysconfdir="%{_sysconfdir}/wine" \
+    LDCONFIG="/bin/true" \
+    UPDATE_DESKTOP_DATABASE="/bin/true"
+%endif
+
+%{__make} -C wine32 install DESTDIR="%{buildroot}" \
     dlldir="%{_libdir}/wine" \
     includedir="%{_includedir}/wine" \
     libdir="%{_libdir}" \
@@ -409,7 +430,7 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/notepad
 %{_bindir}/regedit
 %{_bindir}/regsvr32
-%{_bindir}/%{winebin}
+%{_bindir}/wine
 %{_bindir}/wineboot
 %{_bindir}/winecfg
 %{_bindir}/wineconsole
@@ -421,10 +442,9 @@ update-desktop-database &>/dev/null || :
 %{_bindir}/winemine
 %{_bindir}/winepath
 %{_bindir}/wineserver
-%ifarch %{ix86}
 %{_bindir}/wine-preloader
-%endif
 %ifarch x86_64
+%{_bindir}/wine64
 %{_bindir}/wine64-preloader
 %endif
 %{_datadir}/applications/%{desktop_vendor}-wine.desktop
@@ -1018,6 +1038,12 @@ update-desktop-database &>/dev/null || :
 %{_libdir}/wine/*.def
 
 %changelog
+* Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 1.4-1
+- Updated to release 1.4.
+
+* Sun Feb 26 2012 Dag Wieers <dag@wieers.com> - 1.4-0.rc5
+- Updated to release 1.4-rc5.
+
 * Sat Jan 21 2012 Dag Wieers <dag@wieers.com> - 1.3.37-1
 - Updated to release 1.3.37.
 
@@ -1033,11 +1059,17 @@ update-desktop-database &>/dev/null || :
 * Tue Apr 19 2011 Dag Wieers <dag@wieers.com> - 1.3.18-1
 - Updated to release 1.3.18.
 
+* Fri Apr 15 2011 Dag Wieers <dag@wieers.com> - 1.2.3-1
+- Updated to release 1.2.3.
+
 * Mon Apr 04 2011 Dag Wieers <dag@wieers.com> - 1.3.17-1
 - Updated to release 1.3.17.
 
 * Fri Feb 11 2011 Dag Wieers <dag@wieers.com> - 1.3.13-1
 - Updated to release 1.3.13.
+
+* Fri Feb 11 2011 Dag Wieers <dag@wieers.com> - 1.2.2-1
+- Updated to release 1.2.2.
 
 * Wed Jan 26 2011 Dag Wieers <dag@wieers.com> - 1.3.12-1
 - Updated to release 1.3.12.
@@ -1051,6 +1083,9 @@ update-desktop-database &>/dev/null || :
 * Tue Oct 26 2010 Dag Wieers <dag@wieers.com> - 1.3.5-1
 - Updated to release 1.3.5.
 
+* Sat Oct 09 2010 Dag Wieers <dag@wieers.com> - 1.2.1-1
+- Updated to release 1.2.1.
+
 * Sun Oct 03 2010 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Updated to release 1.3.4.
 
@@ -1061,7 +1096,13 @@ update-desktop-database &>/dev/null || :
 - Updated to release 1.3.2.
 - Moved gecko cabinet file in separate wine-gecko package.
 
+* Sat Sep 18 2010 Dag Wieers <dag@wieers.com> - 1.2-3
+- Moved gecko cabinet file in separate wine-gecko package.
+
 * Tue Aug 24 2010 Dag Wieers <dag@wieers.com> - 1.3.1-2
+- Added gecko cabinet file. (Bart Schaefer)
+
+* Tue Aug 24 2010 Dag Wieers <dag@wieers.com> - 1.2-2
 - Added gecko cabinet file. (Bart Schaefer)
 
 * Sat Aug 21 2010 Dag Wieers <dag@wieers.com> - 1.3.1-1

@@ -313,7 +313,7 @@ export CFLAGS="%{optflags} -Wno-error"
     --enable-maintainer-mode \
 %ifarch x86_64
     --enable-win64 \
-%endif 
+%endif
     --with-x \
 %{?_without_opengl:--without-opengl}
 %{__make} depend
