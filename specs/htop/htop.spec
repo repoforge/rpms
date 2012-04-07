@@ -3,6 +3,8 @@
 # Upstream: Hisham Muhammad <lode$gobolinux,org>
 # Upstream: <htop-general$lists,sourceforge,net>
 
+%define _default_patch_fuzz 2
+
 Summary: Interactive process viewer
 Name: htop
 Version: 1.0.1
@@ -15,7 +17,8 @@ Patch0: htop-blueweb-theme.patch
 Source: http://download.sourceforge.net/htop/htop-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc >= 3.0, ncurses-devel
+BuildRequires: gcc >= 3.0
+BuildRequires: ncurses-devel
 
 %description
 htop is an interactive process viewer for Linux.
