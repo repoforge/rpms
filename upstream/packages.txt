@@ -12,6 +12,7 @@ chkrootkit DEFAULT ftp://ftp.pangeia.com.br/pub/seg/pac/
 clamav DEFAULT SF-DEFAULT
 crossroads DEFAULT http://crossroads.e-tunity.com/downloads/versions/
 discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
+dnsmasq DEFAULT http://www.thekelleys.org.uk/dnsmasq/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 fuse-rdiff-backup-fs DEFAULT:rdiff-backup-fs GOOGLE-DEFAULT
 ganglia DEFAULT SF-DEFAULT
