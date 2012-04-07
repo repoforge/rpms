@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.9.6
+Version: 1.7.10
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -311,7 +311,7 @@ find contrib -type f | xargs chmod -x
 
 ### Clean up buildroot
 find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {} \;
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch} %{buildroot}%{_datadir}/locale/is
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch} %{buildroot}%{_datadir}/locale/*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -401,6 +401,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git/I18N.pm
 
 %changelog
+* Sat Apr 07 2012 David Hrbáč <david@hrbac.cz> - 1.7.10-1
+- new upstream release
+
 * Thu Apr  5 2012 Steve Huff <shuff@vecna.org> - 1.7.9.6-1
 - new upstream release
 
