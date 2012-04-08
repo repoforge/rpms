@@ -28,7 +28,9 @@ lzop DEFAULT http://www.lzop.org/download/
 mercurial DEFAULT http://mercurial.selenic.com/release/
 mfs DEFAULT http://www.moosefs.org/download.html
 mirmon DEFAULT http://people.cs.uu.nl/henkp/mirmon/
+mk-configure DEFAULT SF-DEFAULT
 monit DEFAULT http://mmonit.com/monit/dist/
+monitorix DEFAULT http://www.monitorix.org/
 nagios DEFAULT SF-DEFAULT
 netperf DEFAULT ftp://ftp.netperf.org/netperf/
 nload DEFAULT http://www.roland-riegel.de/nload/
@@ -100,6 +102,7 @@ phpmyadmin phpMyAdmin-(2.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/hom
 pianobar DEFAULT http://6xq.net/static/projects/pianobar/
 postgrey DEFAULT http://postgrey.schweikert.ch/pub/
 proftpd DEFAULT ftp://ftp.proftpd.org/distrib/source/
+pydb DEFAULT SF-DEFAULT
 python-webpy DEFAULT:web.py http://webpy.org/static/
 razor-agents razor-agents-(.*?).tar.bz2 http://sourceforge.net/projects/razor/files/
 re2c DEFAULT SF-DEFAULT
