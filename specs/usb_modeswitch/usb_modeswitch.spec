@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Josua Dietze <usb_admin@draisberghof.de>
 
 %define real_name usb-modeswitch
 
@@ -10,9 +11,6 @@ Release: 1%{?dist}
 Group: Applications/System
 License: GPLv2+
 URL: http://www.draisberghof.de/usb_modeswitch/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://www.draisberghof.de/usb_modeswitch/usb-modeswitch-%{version}.tar.bz2
 Source1: http://www.draisberghof.de/usb_modeswitch/device_reference.txt
@@ -53,5 +51,8 @@ sold by Huawei, T-Mobile, Vodafone, Option, ZTE, Novatel.
 /lib/udev/usb_modeswitch
 
 %changelog
+* Sat Apr 8 2012 Igor Velkov <mozdiav@iav.lv> - 1.2.3
+- Updated to the latest version.
+
 * Sat Dec 11 2010 Dag Wieers <dag@wieers.com> - 1.1.5-1
 - Initial package. (using DAR)

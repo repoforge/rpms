@@ -1,5 +1,6 @@
 # $Id$
 # Authority: dag
+# Upstream: Josua Dietze <usb_admin@draisberghof.de>
 
 ### Only build for distributions that have usb_modeswitch
 # ExcludeDist: el2 el3 el4
@@ -13,9 +14,6 @@ Release: 1%{?dist}
 License: GPLv2+
 Group: Applications/System
 URL: http://www.draisberghof.de/usb_modeswitch/
-
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source0: http://www.draisberghof.de/usb_modeswitch/%{real_name}-%{version}.tar.bz2
 Source1: http://www.draisberghof.de/usb_modeswitch/device_reference.txt
@@ -64,5 +62,8 @@ This package contains the data files needed for usb_modeswitch to function.
 /lib/udev/rules.d/40-usb_modeswitch.rules
 
 %changelog
+* Sat Apr 8 2012 Igor Velkov <mozdiav@iav.lv> - 20120120
+- Updated to the latest version.
+
 * Sat Dec 11 2010 Dag Wieers <dag@wieers.com> - 20101202-1
 - Initial package. (using DAR)
