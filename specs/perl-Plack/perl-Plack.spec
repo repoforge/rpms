@@ -17,13 +17,13 @@
 
 Summary: Perl Superglue for Web frameworks and servers (PSGI toolkit)
 Name: perl-Plack
-Version: 0.9979
-Release: 2%{?dist}
+Version: 0.9986
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://plackperl.org/
 
-Source: http://search.cpan.org/CPAN/authors/id/M/MI/MIYAGAWA/Plack-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Plack/Plack-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -34,6 +34,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(File::ShareDir) >= 1.00
 BuildRequires: perl(Filesys::Notify::Simple)
 BuildRequires: perl(HTTP::Body) >= 1.06
+BuildRequires: perl(HTTP::Message) >= 5.814
 BuildRequires: perl(Hash::MultiValue) >= 0.05
 BuildRequires: perl(LWP) >= 5.814
 BuildRequires: perl(Pod::Usage)
@@ -51,6 +52,7 @@ Requires: perl(Devel::StackTrace::AsHTML) >= 0.11
 Requires: perl(File::ShareDir) >= 1.00
 Requires: perl(Filesys::Notify::Simple)
 Requires: perl(HTTP::Body) >= 1.06
+Requires: perl(HTTP::Message) >= 5.814
 Requires: perl(Hash::MultiValue) >= 0.05
 Requires: perl(LWP) >= 5.814
 Requires: perl(Pod::Usage)
@@ -107,7 +109,10 @@ are and why we need them.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
-* Fri Sep 02 2011 Steve Huff <shuff@vecna.org> - 0.9979-2
+* Tue Mar 10 2012 Steve Huff <shuff@vecna.org> - 0.9986-1
+- Updated to version 0.9986.
+
+* Fri Sep  2 2011 Steve Huff <shuff@vecna.org> - 0.9979-2
 - argh, el5 and Test::More!
 
 * Thu May 26 2011 Steve Huff <shuff@vecna.org> - 0.9979-1
