@@ -111,6 +111,7 @@ re2c DEFAULT SF-DEFAULT
 ripole DEFAULT http://www.pldaniels.com/ripole
 rkhunter DEFAULT SF-DEFAULT
 rrdtool DEFAULT http://oss.oetiker.ch/rrdtool/pub/
+rsync DEFAULT http://rsync.samba.org/
 siege DEFAULT http://www.joedog.org/pub/siege/
 snappy DEFAULT GOOGLE-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/
