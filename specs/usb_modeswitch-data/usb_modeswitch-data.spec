@@ -38,11 +38,12 @@ This package contains the data files needed for usb_modeswitch to function.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0644 40-usb_modeswitch.rules %{buildroot}/lib/udev/rules.d/40-usb_modeswitch.rules
+%{?el6:%{__install} -Dp -m0644 40-usb_modeswitch.rules %{buildroot}/lib/udev/rules.d/40-usb_modeswitch.rules}
 %{__install} -p -m 644 %{SOURCE1} .
-
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}
 %{__cp} -av usb_modeswitch.d/ %{buildroot}%{_sysconfdir}/
+%{?el5:%{__sed} -i "s/ATTR/SYSF/g" 40-usb_modeswitch.rules}
+%{?el5:%{__install} -D -b -m0644 40-usb_modeswitch.rules %{buildroot}%{_sysconfdir}/udev/rules.d/40-usb_modeswitch.rules}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -59,7 +60,8 @@ This package contains the data files needed for usb_modeswitch to function.
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING README device_reference.txt
 %config %{_sysconfdir}/usb_modeswitch.d/
-/lib/udev/rules.d/40-usb_modeswitch.rules
+%{?el5:%{_sysconfdir}/udev/rules.d/40-usb_modeswitch.rules}
+%{?el6:/lib/udev/rules.d/40-usb_modeswitch.rules}
 
 %changelog
 * Sat Apr 8 2012 Igor Velkov <mozdiav@iav.lv> - 20120120
