@@ -3,7 +3,8 @@
 # Upstream: Adam Kennedy <adamk$cpan,org>
 
 ### EL6 ships with perl-Module-Install-0.91-4.el6
-%{?el6:# Tag: rfx}
+### RFXed since requires Archive::Tar >= 1.44 from RFX
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -12,7 +13,7 @@
 
 Summary: Standalone, extensible Perl module installer
 Name: perl-Module-Install
-Version: 1.00
+Version: 1.06
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -110,6 +111,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/auto/share/
 
 %changelog
+* Sat Apr 14 2012 Denis Fateyev <denis@fateyev.com> - 1.06-1
+- Updated to version 1.06, moved to RFX.
+
 * Sat Feb 05 2011 Denis Fateyev <denis@fateyev.com> - 1.00-1
 - Updated to version 1.00.
 
