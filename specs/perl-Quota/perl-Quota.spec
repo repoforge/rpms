@@ -1,5 +1,5 @@
 # $Id$
-# Authority: dries
+# Authority: shuff
 # Upstream: Tom Zoerner <tomzo$users,sourceforge,net>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
@@ -9,7 +9,7 @@
 
 Summary: Perl interface to file system quotas
 Name: perl-Quota
-Version: 1.6.3
+Version: 1.6.7
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -59,6 +59,9 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Quota.pm
 
 %changelog
+* Fri Apr 13 2012 Steve Huf <shuff@vecna.org> - 1.6.7-1
+- Updated to version 1.6.7.
+
 * Wed Jul 22 2009 Christoph Maser <cmr@financial.com> - 1.6.3-1
 - Updated to version 1.6.3.
 
