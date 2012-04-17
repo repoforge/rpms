@@ -7,7 +7,7 @@
 Summary: Complete network graphing solution designed on top of RRDTool
 Name: cacti
 Version: 0.8.8
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.cacti.net/
@@ -81,7 +81,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/www/cacti/
 %{__install} -p -m0644 *.php cacti.sql %{buildroot}%{_localstatedir}/www/cacti/
-%{__cp} -av cli/ docs/ images/ include/ install/ lib/ log/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
+%{__cp} -av cli/ docs/ images/ include/ install/ lib/ log/ plugins/ resource/ rra/ scripts/ %{buildroot}%{_localstatedir}/www/cacti/
 
 %{__install} -Dp -m0644 cacti.crontab %{buildroot}%{_sysconfdir}/cron.d/cacti
 %{__install} -Dp -m0644 cacti.httpd %{buildroot}%{_sysconfdir}/httpd/conf.d/cacti.conf
@@ -115,6 +115,7 @@ fi
 %{_localstatedir}/www/cacti/include/
 %{_localstatedir}/www/cacti/install/
 %{_localstatedir}/www/cacti/lib/
+%{_localstatedir}/www/cacti/plugins/
 %{_localstatedir}/www/cacti/resource/
 %{_localstatedir}/www/cacti/scripts/
 
@@ -127,6 +128,10 @@ fi
 %doc docs/*
 
 %changelog
+* Tue Apr 17 2012 David Hrbáč <david@hrbac.cz> - 0.8.8-2
+- added missing plugins folder
+- resolves Cacti #2221 & GH146
+
 * Thu Apr 05 2012 David Hrbáč <david@hrbac.cz> - 0.8.8-1
 - new upstream release
 
