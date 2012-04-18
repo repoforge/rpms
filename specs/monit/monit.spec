@@ -7,7 +7,7 @@
 Summary: Process monitor and restart utility
 Name: monit
 Version: 5.3.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv3
 Group: Applications/Internet
 URL: http://mmonit.com/monit/
@@ -32,12 +32,14 @@ and restart programs not responding.
 %prep
 %setup -q
 
-%{__perl} -pi.orig -e 's|\bmonitrc\b|monit.conf|' monitor.h
+%{__perl} -pi.orig -e 's|\bmonitrc\b|monit.conf|' src/monit.h
 %{__perl} -pi.orig -e 's|^#\s+(include .*)$|$1|' monitrc
 
 # store id and state files in /var/monit
 %{__perl} -pi.orig -e 's|^#(\s+)set (id\|state)file /var/\.monit\.(id\|state)$|set $2file /var/monit/$3|' monitrc
 
+# fix config path in /etc/init.d/monit
+%{__perl} -pi.orig -e 's|monitrc|monit.conf|' contrib/rc.monit
 
 %build
 %configure \
@@ -56,6 +58,9 @@ and restart programs not responding.
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/monit.d/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/monit/
 
+# create folder where state and id are stored
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/monit/
+
 %pre
 if ! /usr/bin/id monit &>/dev/null; then
 	/usr/sbin/useradd -M -r -d %{_localstatedir}/lib/monit -s /bin/sh -c "monit daemon" monit || \
@@ -65,10 +70,10 @@ fi
 %post
 /sbin/chkconfig --add monit
 
-# Moving old style configuration file to upstream's default location
-[ -f %{_sysconfdir}/monit.conf ] &&
-    touch -r %{_sysconfdir}/monitrc %{_sysconfdir}/monit.conf &&
-    mv -f %{_sysconfdir}/monit.conf %{_sysconfdir}/monitrc 2> /dev/null || :
+# Moving old style configuration file to conf standard location
+if [ -f %{_sysconfdir}/monitrc ]; then
+    mv -f %{_sysconfdir}/monitrc %{_sysconfdir}/monit.conf
+fi
 
 %preun
 if [ $1 -eq 0 ]; then
@@ -91,11 +96,18 @@ fi
 %doc %{_mandir}/man?/*
 %{_initrddir}/monit
 %config %{_sysconfdir}/monit.d/
+%config %{_localstatedir}/monit/
 %{_localstatedir}/lib/monit/
 %attr(0755, root, root) %{_bindir}/monit
 %attr(0600, root, root) %config(noreplace) %{_sysconfdir}/monit.conf
 
 %changelog
+* Tue Apr 17 2012 Derek Tamsen <dtamsen@gmail.com> - 5.3.2-3
+- Fixed monitor.h source path so it can be patched to reference /etc/monit.conf instead of /etc/monitrc
+- Updated /etc/init.d/monit so config path is /etc/monit.conf
+- Added /var/monit so the state and id files can be create upon monit startup
+- Updated post section to move /etc/monitrc to /etc/monit.conf for os standardization
+
 * Mon Jan 23 2012 David Hrbáč <david@hrbac.cz> - 5.3.2-2
 - use upstream configuration file location
 
