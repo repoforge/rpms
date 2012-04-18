@@ -9,7 +9,7 @@
 
 Summary: A minimal-effort oriented web application framework
 Name: perl-Dancer
-Version: 1.3091
+Version: 1.3095
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -30,6 +30,7 @@ BuildRequires: perl(LWP)
 BuildRequires: perl(MIME::Types)
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Time::HiRes)
+BuildRequires: perl(Try::Tiny) >= 0.09
 BuildRequires: perl(URI)
 BuildRequires: rpm-macros-rpmforge
 Requires: perl >= 5.8.5
@@ -48,6 +49,7 @@ Requires: perl(LWP)
 Requires: perl(MIME::Types)
 Requires: perl(Template)
 Requires: perl(Time::HiRes)
+Requires: perl(Try::Tiny) >= 0.09
 Requires: perl(URI)
 Requires: perl(XML::Simple)
 Requires: perl(YAML)
@@ -106,6 +108,10 @@ environments.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Tue Mar 10 2012 Steve Huff <shuff@vecna.org> - 1.3095-1
+- Update to version 1.3095.
+- Capture missing perl(Try::Tiny) dependency.
+
 * Wed Jan  4 2012 Steve Huff <shuff@vecna.org> - 1.3091-1
 - Update to version 1.3091.
 

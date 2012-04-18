@@ -3,7 +3,7 @@
 
 Summary: Let ordinary users mount an encrypted file system
 Name: cryptmount
-Version: 3.1
+Version: 4.3
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -65,5 +65,8 @@ device-mapper and loopback devices before mounting.
 %{_bindir}/cryptmount
 
 %changelog
+* Sun Apr 08 2012 Dag Wieers <dag@wieers.com> - 4.3-1
+- Updated to release 4.3.
+
 * Tue Oct 07 2008 Dag Wieers <dag@wieers.com> - 3.1-1
 - Initial package. (using DAR)

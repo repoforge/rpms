@@ -4,7 +4,7 @@
 
 Summary: C compiler for Markdown
 Name: discount
-Version: 2.1.2
+Version: 2.1.3
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Text
@@ -92,6 +92,9 @@ Install this package if you want to develop software that uses the Discount libr
 %{_libdir}/*.a
 
 %changelog
+* Tue Feb 7 2012 Steve Huff <shuff@vecna.org> - 2.1.3-1
+- Updated to version 2.1.3.
+
 * Tue Sep 27 2011 Steve Huff <shuff@vecna.org> - 2.1.2-1
 - Updated to version 2.1.2.
 

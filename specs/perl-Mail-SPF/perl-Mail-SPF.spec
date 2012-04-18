@@ -6,13 +6,18 @@
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
 
+# el < 6 requires a newer Net::DNS
+%{?el5:# Tag: rfx}
+%{?el4:# Tag: rfx}
+%{?el3:# Tag: rfx}
+
 %define real_name Mail-SPF
 
 Summary: Object-oriented implementation of Sender Policy Framework
 Name: perl-Mail-SPF
-Version: 2.007
+Version: 2.8.0
 Release: 1%{?dist}
-License: Artistic/GPL
+License: BSD
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Mail-SPF/
 
@@ -22,15 +27,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(Error)
 BuildRequires: perl(Module::Build) >= 0.2805
-BuildRequires: perl(Net::DNS) >= 0.58
-BuildRequires: perl(Net::DNS::Resolver::Programmable)
+BuildRequires: perl(Net::DNS) >= 0.62
+BuildRequires: perl(Net::DNS::Resolver::Programmable) >= 0.002001
 BuildRequires: perl(NetAddr::IP) >= 4
 BuildRequires: perl(Test::More)
 BuildRequires: perl(URI) >= 1.13
-BuildRequires: perl >= v5.6
+BuildRequires: perl >= 5.6
 BuildRequires: perl(version)
 Requires: perl(Error)
-Requires: perl(Net::DNS) >= 0.58
+Requires: perl(Net::DNS) >= 0.62
 Requires: perl(NetAddr::IP) >= 4
 Requires: perl(URI) >= 1.13
 Requires: perl >= v5.6
@@ -61,7 +66,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGES INSTALL LICENSE MANIFEST MANIFEST.SKIP META.yml README SIGNATURE TODO
+%doc CHANGES INSTALL LICENSE META.yml README SIGNATURE TODO
 %doc %{_mandir}/man1/spfquery.1*
 %doc %{_mandir}/man3/Mail::SPF.3pm*
 %doc %{_mandir}/man3/Mail::SPF::*.3pm*
@@ -71,6 +76,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Mail/SPF.pm
 
 %changelog
+* Wed Mar 14 2012 Steve Huff <shuff@vecna.org> - 2.8.0-1
+- Updated to version 2.8.0.
+
 * Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 2.007-1
 - Updated to version 2.007.
 

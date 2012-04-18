@@ -1,0 +1,41 @@
+From bcb249907be37baabdecc68b8f9889ddaeec21ba Mon Sep 17 00:00:00 2001
+From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+Date: Sat, 15 Nov 2008 12:07:25 +0100
+Subject: [PATCH 4/5] 'va_list' param must be non-const
+
+vasprintf(3) uses a non-const 'va_list ap' parameter.
+Hence, do not accept a 'const' in the wrapper function.
+---
+ include/xmlrpc-c/util.h |    2 +-
+ lib/libutil/error.c     |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/xmlrpc-c/util.h b/include/xmlrpc-c/util.h
+index 30689bc..777ee01 100644
+--- a/include/xmlrpc-c/util.h
++++ b/include/xmlrpc-c/util.h
+@@ -140,7 +140,7 @@ void
+ xmlrpc_set_fault_formatted_v(xmlrpc_env * const envP,
+                              int          const code,
+                              const char * const format,
+-                             va_list      const args);
++                             va_list      args);
+ 
+ /* The same as the above, but using a printf-style format string. */
+ void 
+diff --git a/lib/libutil/error.c b/lib/libutil/error.c
+index 02e66c9..1e0ab12 100644
+--- a/lib/libutil/error.c
++++ b/lib/libutil/error.c
+@@ -88,7 +88,7 @@ void
+ xmlrpc_set_fault_formatted_v(xmlrpc_env * const envP,
+                              int          const code,
+                              const char * const format,
+-                             va_list      const args) {
++                             va_list      args) {
+ 
+     const char * faultDescription;
+ 
+-- 
+1.7.0.1
+

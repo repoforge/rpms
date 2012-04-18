@@ -1,0 +1,90 @@
+From bed9392a732deb08c3af06b4872abb6ebb233591 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Dan=20Hor=C3=A1k?= <dan@danny.cz>
+Date: Mon, 2 Jan 2012 14:24:21 +0100
+Subject: [PATCH] install swatches into datadir instead of libdir
+
+swatches are architecture independent data files and per FHS they should be
+installed into datadir (/usr/share/...)
+---
+ Scribus/resources/swatches/CMakeLists.txt |    2 +-
+ Scribus/scribus/colorsetmanager.cpp       |    4 ++--
+ Scribus/scribus/doc/en/color2.html        |    2 +-
+ Scribus/scribus/doc/it/color2.html        |    2 +-
+ Scribus/scribus/prefsmanager.cpp          |    2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/Scribus/resources/swatches/CMakeLists.txt b/Scribus/resources/swatches/CMakeLists.txt
+index e841c72..88b6691 100644
+--- a/Scribus/resources/swatches/CMakeLists.txt
++++ b/Scribus/resources/swatches/CMakeLists.txt
+@@ -11,5 +11,5 @@ FILE( GLOB RTF_LICENSES *.rtf )
+ SET(TXT_LICENSES "${CMAKE_CURRENT_SOURCE_DIR}/COPYING_RESENE.txt" "${CMAKE_CURRENT_SOURCE_DIR}/Japanese_Traditional_README.txt")
+ 
+ INSTALL(FILES ${GIMP_STYLE_PALETTES} ${XML_PALETTES} ${EPS_PALETTES} ${RTF_LICENSES} ${TXT_LICENSES}
+- DESTINATION ${LIBDIR}swatches
++ DESTINATION ${SHAREDIR}swatches
+ )
+diff --git a/Scribus/scribus/colorsetmanager.cpp b/Scribus/scribus/colorsetmanager.cpp
+index a2744c1..40d64bd 100644
+--- a/Scribus/scribus/colorsetmanager.cpp
++++ b/Scribus/scribus/colorsetmanager.cpp
+@@ -29,7 +29,7 @@ ColorSetManager::~ColorSetManager()
+ 
+ void ColorSetManager::initialiseDefaultPrefs(struct ApplicationPrefs& appPrefs)
+ {
+-	QString pfadC = ScPaths::instance().libDir()+"swatches/";
++	QString pfadC = ScPaths::instance().shareDir()+"swatches/";
+ 	QString pfadC2 = pfadC + "Scribus_Basic.xml";
+ 	QFile fiC(pfadC2);
+ 	if (!fiC.exists())
+@@ -113,7 +113,7 @@ void ColorSetManager::findPaletteLocations()
+ {
+ 	paletteLocations.clear();
+ 	QStringList locations=ScPaths::instance().getSystemCreateSwatchesDirs();
+-	locations << ScPaths::instance().libDir()+"swatches/";
++	locations << ScPaths::instance().shareDir()+"swatches/";
+ 	locations << ScPaths::getApplicationDataDir() + "swatches/locked/";
+ 	locations << ScPaths::getApplicationDataDir() + "swatches/";
+ 	for ( QStringList::Iterator it = locations.begin(); it != locations.end(); ++it )
+diff --git a/Scribus/scribus/doc/en/color2.html b/Scribus/scribus/doc/en/color2.html
+index 8422bbf..07669ca 100644
+--- a/Scribus/scribus/doc/en/color2.html
++++ b/Scribus/scribus/doc/en/color2.html
+@@ -22,7 +22,7 @@
+ 
+ <h4>Linux/UNIX</h4>
+ <p>If you have installed Scribus with a package management system like RPM, DEB or BSD Ports, the palette files need to be copied to either <code>/usr/lib/scribus/swatches</code> or <code>/usr/local/lib/scribus/swatches</code>. The respective location depends on the configuration of a distribution&rsquo;s package manager.</p>
+-<p>Those who compiled Scribus themselves need to copy the palette files to <code>installation_directory/lib/scribus/swatches</code>.</p>
++<p>Those who compiled Scribus themselves need to copy the palette files to <code>installation_directory/share/scribus/swatches</code>.</p>
+ <p>If you don&rsquo;t have root permissions, you can also copy the files to <code>/home/user_name/.scribus/swatches/locked</code>.</p>
+ <p>You have to create the folder <code>locked</code> if doesn&rsquo;t exist.</p>
+ <h4>Mac OS X</h4>
+diff --git a/Scribus/scribus/doc/it/color2.html b/Scribus/scribus/doc/it/color2.html
+index c15764f..9458db3 100644
+--- a/Scribus/scribus/doc/it/color2.html
++++ b/Scribus/scribus/doc/it/color2.html
+@@ -21,7 +21,7 @@
+ 
+ <h4>Linux/UNIX:</h4>
+ <p>Se avete installato Scribus per mezzo di un sistema di gestione dei pacchetti come RPM, DEB o BSD Ports, i file delle raccolte devono essere copiati in <code>/usr/lib/scribus/swatches</code> o <code>/usr/local/lib/scribus/swatches</code>. L'esatta posizione dipende dalla configurazione del gestore di pacchetti di ciascuna distribuzione.</p>
+-<p>Se avete compilato Scribus personalmente dovete copiare i file delle raccolte in <code>installation_directory/lib/scribus/swatches</code>.</p>
++<p>Se avete compilato Scribus personalmente dovete copiare i file delle raccolte in <code>installation_directory/share/scribus/swatches</code>.</p>
+ <p>Se non avete permessi di root, potete anche copiare i file in <code>/home/user_name/.scribus/swatches/locked</code>.</p>
+ <p>Se la cartella <code>locked</code> non esiste, dovrete crearla.</p>
+ <h4>Mac OS X</h4>
+diff --git a/Scribus/scribus/prefsmanager.cpp b/Scribus/scribus/prefsmanager.cpp
+index 7d5e02b..f8e9bc7 100644
+--- a/Scribus/scribus/prefsmanager.cpp
++++ b/Scribus/scribus/prefsmanager.cpp
+@@ -142,7 +142,7 @@ void PrefsManager::initDefaults()
+ 	csm.findPaletteLocations();
+ 	csm.findPalettes();
+ 	/*
+-	QString pfadC = ScPaths::instance().libDir()+"swatches/";
++	QString pfadC = ScPaths::instance().shareDir()+"swatches/";
+ 	QString pfadC2 = pfadC + "Scribus_X11.txt";
+ 	QFile fiC(pfadC2);
+ 	if (!fiC.exists())
+-- 
+1.7.4.4
+

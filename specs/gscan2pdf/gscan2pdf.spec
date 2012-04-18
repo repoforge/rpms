@@ -8,7 +8,7 @@
 
 Summary: Graphical tool for producing a multipage PDF from a scan
 Name: gscan2pdf
-Version: 1.0.0
+Version: 1.0.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Publishing
@@ -92,6 +92,12 @@ touch --no-create %{_datadir}/icons/hicolor || :
 %{_datadir}/pixmaps/gscan2pdf.svg
 
 %changelog
+* Sun Apr 08 2012 Dag Wieers <dag@wieers.com> - 1.0.2-1
+- Updated to release 1.0.2.
+
+* Tue Feb 07 2012 Dag Wieers <dag@wieers.com> - 1.0.1-1
+- Updated to release 1.0.1.
+
 * Thu Nov 03 2011 Dag Wieers <dag@wieers.com> - 1.0.0-1
 - Updated to release 1.0.0.
 

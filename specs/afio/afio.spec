@@ -3,13 +3,13 @@
 
 Summary: Archiver program which writer CPIO-format archives
 Name: afio
-Version: 2.5
-Release: 2%{?dist}
+Version: 2.5.1
+Release: 1%{?dist}
 License: LGPL
 Group: Applications/Archiving
 URL: http://www.ibiblio.org/pub/Linux/system/backup/
 
-Source: http://www.ibiblio.org/pub/Linux/system/backup/afio-%{version}.tgz
+Source: http://members.brabant.chello.nl/~k.holtman/afio-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -40,6 +40,9 @@ in a backup script.
 %{_bindir}/afio
 
 %changelog
+* Sun Feb 05 2012 Dag Wieers <dag@wieers.com> - 2.5.1-1
+- Updated to release 2.5.1.
+
 * Sun Nov 11 2007 Dag Wieers <dag@wieers.com> - 2.5-2
 - Fix group tag.
 

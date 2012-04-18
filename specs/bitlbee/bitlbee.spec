@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 3.0.3
+Version: 3.0.5
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -68,24 +68,17 @@ CFLAGS="%{optflags}" ./configure \
     --datadir="%{_datadir}/bitlbee" \
     --config="%{_localstatedir}/lib/bitlbee" \
     --pcdir="%{_libdir}/pkgconfig" \
-    --plugindir="%{_libdir}/%{name}" \
+    --plugindir="%{_libdir}/bitlbee" \
     --strip="0" \
     --plugins="1" \
-%if 0%{?fedora}%{?rhel}
     --ssl="gnutls"
-%else
-    --ssl="openssl"
-%endif
 %{__make} %{?_smp_mflags}
 ### FIXME: Documentation needs old sgmltools tool, deprecated.
 #%{__make} -C doc
 
 %install
 %{__rm} -rf %{buildroot}
-### FIXME: makeinstall-phase doesn't use autotool dirs and wants to change ownerships.
-%makeinstall DATADIR="%{buildroot}%{_datadir}/bitlbee"
-#%{__install} -Dp -m0755 bitlbee %{buildroot}%{_sbindir}/bitlbee
-##%{__install} -Dp -m0644 help.txt %{buildroot}%{_datadir}/bitlbee/help.txt
+%{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
 
 %{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
@@ -100,7 +93,7 @@ CFLAGS="%{optflags}" ./configure \
 %defattr(-, root, root, 0755)
 %doc bitlbee.conf COPYING doc/AUTHORS doc/CHANGES doc/CREDITS motd.txt
 %doc doc/user-guide/*.html doc/user-guide/*.txt doc/FAQ doc/INSTALL doc/README utils/
-%doc %{_mandir}/man5/bitlbee.conf.5*
+#%doc %{_mandir}/man5/bitlbee.conf.5*
 %doc %{_mandir}/man8/bitlbee.8*
 %config %{_sysconfdir}/xinetd.d/bitlbee
 %{_datadir}/bitlbee/
@@ -110,6 +103,9 @@ CFLAGS="%{optflags}" ./configure \
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Tue Feb 21 2012 Dag Wieers <dag@wieers.com> - 3.0.5-1
+- Updated to release 3.0.5.
+
 * Mon Jun 20 2011 Dag Wieers <dag@wieers.com> - 3.0.3-1
 - Updated to release 3.0.3.
 

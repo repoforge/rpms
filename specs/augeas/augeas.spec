@@ -12,8 +12,8 @@
 
 Summary: Configuration API and editing tool
 Name: augeas
-Version: 0.9.0
-Release: 2%{?dist}
+Version: 0.10.0
+Release: 1%{?dist}
 License: LGPLv2+
 Group: System Environment/Base
 URL: http://augeas.net/
@@ -116,6 +116,9 @@ Vim 7 easier.
 %{_datadir}/vim/vim*/*/augeas.vim
 
 %changelog
+* Thu Feb 9 2012 Steve Huff <shuff@vecna.org> - 0.10.0-1
+- Updated to version 0.10.0.
+
 * Mon Sep 26 2011 Yury V. Zaytsev <yury@shurup.com> - 0.9.0-2
 - Made vim-augeas noarch.
 

@@ -9,7 +9,7 @@
 Summary: Apache module that enables running PHP scripts under different users
 Name: mod_suphp
 Version: 0.7.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL/Apache License
 Group: System Environment/Daemons
 URL: http://www.suphp.org/
@@ -59,10 +59,10 @@ errors_to_browser=false
 
 [handlers]
 ;Handler for php-scripts
-x-httpd-php=php:%{_bindir}/php
+x-httpd-php="php:%{_bindir}/php"
 
 ;Handler for CGI-scripts
-x-suphp-cgi=execute:!self
+x-suphp-cgi="execute:!self"
 EOF
 
 %{__cat} <<EOF >suphp.httpd
@@ -148,6 +148,9 @@ EOF
 %{_sbindir}/suphp
 
 %changelog
+* Thu Apr 05 2012 Samuel Stringham <me@samuelstringham.com> - 0.7.1-2
+- Correct syntax in conf file
+
 * Tue Mar 30 2010 Yury V. Zaytsev <yury@shurup.com> - 0.7.1
 - Updated to release 0.7.1 (thanks to Alessandro Iurlano).
 

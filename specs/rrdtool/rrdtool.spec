@@ -22,7 +22,7 @@
 
 Summary: Round Robin Database Tool to store and display time-series data
 Name: rrdtool
-Version: 1.4.5
+Version: 1.4.7
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Databases
@@ -250,6 +250,9 @@ fi
 %{_libdir}/lua/
 
 %changelog
+* Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 1.4.7-1
+- new upstream release
+
 * Tue Dec 13 2011 Arnoud Vermeer <repoforge@freshway.biz> - 1.4.5-1
 - Updated to release 1.4.5.
 

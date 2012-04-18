@@ -4,7 +4,7 @@
 Summary: Archiver for .arj files
 Name: arj
 Version: 3.10.22
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Archiving
 URL: http://arj.sourceforge.net/
@@ -13,6 +13,7 @@ Source0: http://dl.sf.net/sourceforge/arj/arj-%{version}.tar.gz
 Source1: unarj.sh
 Source2: unarj.1
 Patch0: http://ftp.debian.org/debian/pool/main/a/arj/arj_%{version}-2.diff.gz
+Patch1: arj-3.10.22-private_strnlen.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -31,6 +32,7 @@ provided by ARJ Software, Inc.
 for i in debian/patches/00*.patch; do
     patch -p1 < $i
 done
+%patch1 -p1
 
 %build
 pushd gnu
@@ -66,5 +68,8 @@ popd
 %exclude %{_bindir}/arj-register
 
 %changelog
+* Fri Apr 13 2012 Tom G. Christensen <jrpms@jupiterrise.com> - 3.10.22-2
+- Make sure that private strnlen is used when CUSTOM_PRINTF is defined
+
 * Tue Jun 08 2010 Dag Wieers <dag@wieers.com> - 3.10.22-1
 - Initial package. (using DAR)

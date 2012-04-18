@@ -6,7 +6,7 @@
 
 Summary: LAME Ain't an MP3 Encoder... but it's the best of all
 Name: lame
-Version: 3.99.4
+Version: 3.99.5
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Multimedia
@@ -26,6 +26,10 @@ BuildRequires: nasm
 %endif
 Provides: mp3encoder
 
+### Compatibility with ATrpms :-(
+Provides: libmp3lame0 = %{version}-%{release}
+Obsoletes: libmp3lame0 < %{version}-%{release}
+
 %description
 LAME is an educational tool to be used for learning about MP3 encoding.  The
 goal of the LAME project is to use the open source model to improve the
@@ -37,6 +41,10 @@ compression codec for the GNU project.
 Summary: Header files, libraries and development documentation for %{name}.
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
+
+### Compatibility with ATrpms
+Provides: libmp3lame0-devel = %{version}-%{release}
+Obsoletes: libmp3lame0-devel < %{version}-%{release}
 
 %description devel
 This package contains the header files, static libraries and development
@@ -97,6 +105,12 @@ execstack -c %{buildroot}%{_libdir}/*.so.*.*.* || :
 %exclude %{_libdir}/libmp3lame.la
 
 %changelog
+* Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 3.99.5-1
+- Updated to release 3.99.5.
+
+* Tue Jan 31 2012 Dag Wieers <dag@wieers.com> - 3.99.4-2
+- Added compatibility with ATrpms.
+
 * Sun Jan 29 2012 Dag Wieers <dag@wieers.com> - 3.99.4-1
 - Updated to release 3.99.4.
 

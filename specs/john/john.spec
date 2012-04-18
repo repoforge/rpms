@@ -1,11 +1,11 @@
 # $Id$
 # Authority: dag
 
-%define real_version jumbo-7
+%define real_version jumbo-5
 
 Summary: John the Ripper password cracker
 Name: john
-Version: 1.7.8
+Version: 1.7.9
 Release: 1%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -60,7 +60,7 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %{__install} -Dp -m0755 run/john %{buildroot}%{_bindir}/john
 
 %{__install} -d -m0755 %{buildroot}%{_datadir}/john/
-%{__install} -p -m0644 run/*.chr run/password.lst %{buildroot}%{_datadir}/john/
+%{__install} -p -m0644 run/*.chr run/password.lst run/dumb16.conf run/dumb32.conf %{buildroot}%{_datadir}/john/
 
 %{__ln_s} -f john %{buildroot}%{_bindir}/unafs
 %{__ln_s} -f john %{buildroot}%{_bindir}/unique
@@ -88,6 +88,9 @@ CFLAGS="-c %{optflags} -DJOHN_SYSTEMWIDE -fomit-frame-pointer"
 %endif
 
 %changelog
+* Sun Apr 15 2012 Chris Lockfort <clockfort@csh.rit.edu> - 1.7.9-1
+- Bump version to 1.7.9 and allow using the default profile
+
 * Fri Sep 23 2011 Yury V. Zaytsev <yury@shurup.com> - 1.7.8-1
 - Bumped version to 1.7.8-jumbo-7 (Gilles Chauvin, GH-62).
 

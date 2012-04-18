@@ -1,6 +1,7 @@
 # $Id$
 # Authority: dries
 # Upstream: Eugene van der Pijll <pijll$gmx,net>
+# Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -10,7 +11,7 @@
 Summary: Dates in the Christian calendar
 Name: perl-DateTime-Calendar-Christian
 Version: 0.04
-Release: 1.2%{?dist}
+Release: 1.3%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/DateTime-Calendar-Christian/
@@ -52,5 +53,8 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/DateTime/Calendar/Christian.pm
 
 %changelog
+* Mon Mar 26 2012 Steve Huff <shuff@vecna.org> - 0.04-1.3
+- Rebuild as RFX.
+
 * Tue Dec 07 2004 Dries Verachtert <dries@ulyssis.org> - 0.04-1
 - Initial package.
