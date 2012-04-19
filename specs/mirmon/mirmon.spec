@@ -1,6 +1,6 @@
 Summary:        Monitor the state of mirrors
 Name:           mirmon
-Version:        2.4
+Version:        2.5
 Release:        1%{?dist}
 License:        BSD
 Group:          Applications/Internet
@@ -36,7 +36,7 @@ Alias /mirmon /usr/share/mirmon
 #  Deny from all
 #  Allow from 127.0.0.1
 #</Directory>
-6EOF
+EOF
 
 %install
 mkdir -p %buildroot{%_bindir,%_datadir/%name}
@@ -54,6 +54,9 @@ cp -a countries.list icons %buildroot%_datadir/%name/
 %doc *.txt
 
 %changelog
+* Thu Apr 19 2012 David Hrbáč <david@hrbac.cz> - 2.5-1
+- new upstream release
+
 * Tue Jan 31 2012 David Hrbáč <david@hrbac.cz> - 2.4-1
 - new upstream release
 
