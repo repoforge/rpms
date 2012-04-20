@@ -2,7 +2,7 @@
 
 Name:		lv
 Version:	4.51
-Release:	8.1
+Release:	9
 License:	distributable
 URL:		http://www.ff.iij4u.or.jp/~nrt/lv/
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -62,7 +62,10 @@ make install bindir=$RPM_BUILD_ROOT%{_bindir} libdir=$RPM_BUILD_ROOT%{_libdir} m
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - sh: line 0: fg: no job control
+* Fri Apr 20 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
+- first build for Repoforge el6
+
+* Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 4.51-8.1
 - rebuild
 
 * Mon Jun 12 2006 Akira TAGOH <tagoh@redhat.com> - 4.51-8
