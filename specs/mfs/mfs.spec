@@ -5,7 +5,7 @@
 Summary: Fault tolerant, network distributed file system
 Name: mfs
 Version: 1.6.24
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.moosefs.org/
@@ -365,9 +365,11 @@ rm -rf %{buildroot}
 %defattr(-,root,root,0755)
 %doc COPYING INSTALL NEWS README UPGRADE
 %doc %{_mandir}/man?/*
-%exclude %doc %{_mandir}/man1/*
+%exclude %{_mandir}/man1/*
+%exclude %{_mandir}/man8/mfsmount.8.gz
 %{_sbindir}/*
 %{_sysconfdir}/mfs/
+%exclude %{_sysconfdir}/mfs/mfsmount.cfg.dist
 %dir %{_initrddir}
 %attr(0755,root,root) %{_initrddir}/*
 %{_datadir}/mfscgi/
@@ -375,7 +377,9 @@ rm -rf %{buildroot}
 
 %files client
 %doc %{_mandir}/man1/*
+%doc %{_mandir}/man8/mfsmount.8.gz
 %{_bindir}/*
+%{_sysconfdir}/mfs/mfsmount.cfg.dist
 
 %files cgi
 %defattr(-,apache,apache,0755)
@@ -389,6 +393,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Fri Apr 20 2012 Steve Huff <shuff@vecna.org> - 1.6.24-2
+- Move mfsmount-related files to mfs-client package (thanks Ricardo!)
+
 * Thu Mar  5 2012 Steve Huff <shuff@vecna.org> - 1.6.24-1
 - Update to 1.6.24.
 
