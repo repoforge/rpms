@@ -1,0 +1,12 @@
+diff -ruN lv4494.orig/src/Makefile.in lv4494/src/Makefile.in
+--- lv4494.orig/src/Makefile.in	2002-06-19 21:07:10.000000000 +0900
++++ lv4494/src/Makefile.in	2002-06-19 21:07:35.000000000 +0900
+@@ -64,7 +64,7 @@
+ #
+ 
+ install::
+-	$(INSTALL) -s -m 555 lv $(bindir)
++	$(INSTALL) -m 555 lv $(bindir)
+ 	if test -f $(bindir)/lgrep; then \
+ 		/bin/rm -f $(bindir)/lgrep; \
+ 	fi

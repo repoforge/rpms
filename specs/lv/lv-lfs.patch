@@ -1,0 +1,289 @@
+2005-10-30  GOTO Masanori  <gotom@sanori.org>
+
+	* src/command.c: Use offset_t typedef for encapsulating
+	long vs long long on 32bit LFS systems.
+	* src/fetch.c: Likewise.
+	* src/file.c: Likewise.
+	* src/file.h: Likewise.
+	* src/file.c: Use HAVE_FSEEKO to switch whether LFS functions
+	are available or not.  Don't use "0L" style constant
+	initialization, because it conflicts with "long vs long long"
+	issue, and C ensures to expand type from int to large type.
+	* src/file.h: Include stdlib.h for using off_t.
+	* src/version.h: Define version 4.51.a.
+	* src/configure: Update by autoconf 2.50 series.
+	* src/configure.in: Add checks for largefile and fseeko.
+	* src/version.c: Update Copyright date from 2004 to 2005.
+	* relnote.html: Likewise.
+	* index.html: Likewise.
+	* README: Likewise.
+	* relnote.html: Add changelog for 4.51.a.
+
+diff -Nuarp lv-4.51-gotom/src/command.c lv-4.51-gotom/src/command.c
+--- lv-4.51-gotom/src/command.c	2005-10-30 00:26:22.000000000 +0900
++++ lv-4.51-gotom/src/command.c	2005-10-30 00:02:02.000000000 +0900
+@@ -709,7 +709,7 @@ private void CommandBottomOfFile( unsign
+ 
+ private void CommandPoll( unsigned int arg )
+ {
+-  long pos;
++  offset_t pos;
+ 
+   kb_interrupted = FALSE;
+ 
+diff -Nuarp lv-4.51-gotom/src/configure.in lv-4.51-gotom/src/configure.in
+--- lv-4.51-gotom/src/configure.in	2005-10-30 00:26:22.000000000 +0900
++++ lv-4.51-gotom/src/configure.in	2005-10-29 23:57:07.000000000 +0900
+@@ -57,6 +57,10 @@ AC_DEFUN([AM_LANGINFO_CODESET],
+ 
+ AM_LANGINFO_CODESET
+ 
++# Checks for largefile support
++AC_SYS_LARGEFILE
++AC_FUNC_FSEEKO
++
+ AC_MSG_CHECKING(whether fastio is used)
+ AC_ARG_ENABLE(fastio,
+ 	[ --enable-fastio          tries to reduce stdio overhead],
+diff -Nuarp lv-4.51-gotom/src/fetch.c lv-4.51-gotom/src/fetch.c
+--- lv-4.51-gotom/src/fetch.c	2005-10-30 00:26:22.000000000 +0900
++++ lv-4.51-gotom/src/fetch.c	2005-10-30 00:02:10.000000000 +0900
+@@ -147,7 +147,7 @@ private boolean_t LineDecode( file_t *f,
+  * 行数をキャッシュに格納する.
+  */
+ 
+-private void PageLoad( file_t *f, int block, long ptr )
++private void PageLoad( file_t *f, int block, offset_t ptr )
+ {
+   int i;
+ 
+diff -Nuarp lv-4.51-gotom/src/file.c lv-4.51-gotom/src/file.c
+--- lv-4.51-gotom/src/file.c	2005-10-30 00:26:22.000000000 +0900
++++ lv-4.51-gotom/src/file.c	2005-10-30 00:27:47.000000000 +0900
+@@ -92,20 +92,28 @@ public inline int IobufUngetc( int ch, i
+   return ch;
+ }
+ 
+-public long IobufFtell( iobuf_t *iobuf )
++public offset_t IobufFtell( iobuf_t *iobuf )
+ {
+-  long ptr;
++  offset_t ptr;
++# ifdef HAVE_FSEEKO
++  ptr = ftello( iobuf->iop );
++# else
+   ptr = ftell( iobuf->iop );
++# endif
+   if( iobuf->cur == iobuf->last ){
+     return ptr;
+   }
+   return ptr - ( iobuf->last - iobuf->cur );
+ }
+ 
+-public int IobufFseek( iobuf_t *iobuf, long off, int mode )
++public int IobufFseek( iobuf_t *iobuf, offset_t off, int mode )
+ {
+   iobuf->cur = iobuf->last = 0;  /* flush all iobuf */
++# ifdef HAVE_FSEEKO
++  return fseeko( iobuf->iop, off, mode );
++# else
+   return fseek( iobuf->iop, off, mode );
++# endif
+ }
+ 
+ public int IobufFeof( iobuf_t *iobuf )
+@@ -248,7 +256,7 @@ public boolean_t FileStretch( file_t *f,
+ {
+   int ch, count;
+   unsigned int segment, line;
+-  long ptr;
++  offset_t ptr;
+ 
+   if( TRUE == f->done )
+     return FALSE;
+@@ -283,7 +291,7 @@ public boolean_t FileStretch( file_t *f,
+ 	    if( FRAME_SIZE == ++f->lastFrame
+ 	       ||
+ 	       NULL == (f->slot[ f->lastFrame ]
+-			= (long *)malloc( sizeof( long ) * SLOT_SIZE ))
++			= (offset_t *)malloc( sizeof( offset_t ) * SLOT_SIZE ))
+ 	       ){
+ 	      f->done = TRUE;
+ 	      f->truncated = TRUE;
+@@ -322,7 +330,7 @@ public boolean_t FileStretch( file_t *f,
+ 	  if( 0 == Slot( ++segment ) ){
+ 	    if( FRAME_SIZE == ++f->lastFrame
+ 	       || NULL == (f->slot[ f->lastFrame ]
+-			   = (long *)malloc( sizeof( long ) * SLOT_SIZE ))
++			   = (offset_t *)malloc( sizeof( offset_t ) * SLOT_SIZE ))
+ 	       ){
+ 	      f->done = TRUE;
+ 	      f->truncated = TRUE;
+@@ -454,7 +462,7 @@ public file_t *FileAttach( byte *fileNam
+   f->pid		= st->pid;
+   f->lastSegment	= 0;
+   f->totalLines		= 0L;
+-  f->lastPtr		= 0L;
++  f->lastPtr		= 0;
+ 
+   f->lastFrame		= 0;
+ 
+@@ -489,8 +497,8 @@ public void FilePreload( file_t *f )
+   for( i = 0 ; i < FRAME_SIZE ; i++ )
+     f->slot[ i ] = NULL;
+ 
+-  f->slot[ 0 ]		= (long *)Malloc( sizeof( long ) * SLOT_SIZE );
+-  f->slot[ 0 ][ 0 ]	= 0L;
++  f->slot[ 0 ]		= (offset_t *)Malloc( sizeof( offset_t ) * SLOT_SIZE );
++  f->slot[ 0 ][ 0 ]	= 0;
+ 
+   FileCacheInit( f );
+   FileStretch( f, 0 );
+diff -Nuarp lv-4.51-gotom/src/file.h lv-4.51-gotom/src/file.h
+--- lv-4.51-gotom/src/file.h	2005-10-30 00:26:22.000000000 +0900
++++ lv-4.51-gotom/src/file.h	2005-10-30 00:29:16.000000000 +0900
+@@ -9,6 +9,7 @@
+ #define __FILE_H__
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #include <itable.h>
+ #include <ctable.h>
+@@ -78,6 +79,12 @@ typedef struct {
+ #endif
+ } iobuf_t;
+ 
++#ifdef HAVE_FSEEKO
++typedef off_t	offset_t;
++#else
++typedef long	offset_t;
++#endif
++
+ typedef struct {
+   byte		*fileName;
+   i_str_t	*fileNameI18N;
+@@ -96,7 +103,7 @@ typedef struct {
+   unsigned int	lastSegment;
+   unsigned int	lastFrame;
+   unsigned long	totalLines;
+-  long		lastPtr;
++  offset_t	lastPtr;
+   boolean_t	done;
+   boolean_t	eof;
+   boolean_t	top;
+@@ -107,7 +114,7 @@ typedef struct {
+   screen_t	screen;
+   boolean_t	used[ BLOCK_SIZE ];
+   page_t	page[ BLOCK_SIZE ];
+-  long		*slot[ FRAME_SIZE ];
++  offset_t	*slot[ FRAME_SIZE ];
+ } file_t;
+ 
+ #ifdef MSDOS
+@@ -153,14 +160,19 @@ public void FileInit();
+ #ifndef USE_INTERNAL_IOBUF
+ # define IobufGetc( a )		getc( (a)->iop )
+ # define IobufUngetc( a, b )	ungetc( a, (b)->iop )
+-# define IobufFtell( a )	ftell( (a)->iop )
+-# define IobufFseek( a, b, c )	fseek( (a)->iop, b, c)
++# ifdef HAVE_FSEEKO
++#  define IobufFtell( a )	ftello( (a)->iop )
++#  define IobufFseek( a, b, c )	fseeko( (a)->iop, b, c)
++# else
++#  define IobufFtell( a )	ftell( (a)->iop )
++#  define IobufFseek( a, b, c )	fseek( (a)->iop, b, c)
++# endif
+ # define IobufFeof( a )		feof( (a)->iop )
+ #else
+ public inline int IobufGetc( iobuf_t *iobuf );
+ public inline int IobufUngetc( int ch, iobuf_t *iobuf );
+-public long IobufFtell( iobuf_t *iobuf );
+-public int IobufFseek( iobuf_t *iobuf, long off, int mode );
++public offset_t IobufFtell( iobuf_t *iobuf );
++public int IobufFseeko( iobuf_t *iobuf, offset_t off, int mode );
+ public int IobufFeof( iobuf_t *iobuf );
+ #endif
+ #define IobufPutc( a, b )	putc( a, (b)->iop )
+diff -Nuarp lv-4.51-gotom/src/version.c lv-4.51-gotom/src/version.c
+--- lv-4.51-gotom/src/version.c	2004-01-05 16:21:26.000000000 +0900
++++ lv-4.51-gotom/src/version.c	2005-10-30 00:33:23.000000000 +0900
+@@ -30,7 +30,7 @@ public void Banner()
+ {
+   fprintf( stderr,
+ 	  "# lv " VERSION "\n"
+-	  "# All rights reserved. Copyright (C) 1996-2004 by NARITA Tomio\n"
++	  "# All rights reserved. Copyright (C) 1996-2005 by NARITA Tomio\n"
+ 	  "# ABSOLUTELY NO WARRANTY; for details type `lv -h'\n"
+ 	  );
+ }
+diff -Nuarp lv-4.51-gotom/src/version.h lv-4.51-gotom/src/version.h
+--- lv-4.51-gotom/src/version.h	2004-01-16 21:25:57.000000000 +0900
++++ lv-4.51-gotom/src/version.h	2005-10-30 00:37:47.000000000 +0900
+@@ -8,7 +8,7 @@
+ #ifndef __VERSION_H__
+ #define __VERSION_H__
+ 
+-#define VERSION		"v.4.51 (Jan.16th,2004)"
++#define VERSION		"v.4.51.a (Oct.30th,2005)"
+ 
+ public void Banner();
+ 
+diff -Nuarp lv-4.51-gotom/src/version.h~ lv-4.51-gotom/src/version.h~
+--- lv-4.51-gotom/README	2004-01-05 16:43:07.000000000 +0900
++++ lv-4.51-gotom/README	2005-10-30 00:34:58.000000000 +0900
+@@ -6,7 +6,7 @@
+ 
+ ------------------------------------------------------------------------------
+ 
+-   All rights reserved. Copyright (C) 1996-2004 by NARITA Tomio.
++   All rights reserved. Copyright (C) 1996-2005 by NARITA Tomio.
+ 
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+--- lv-4.51-gotom/relnote.html	2004-01-16 21:25:55.000000000 +0900
++++ lv-4.51-gotom/relnote.html	2005-10-30 00:43:51.000000000 +0900
+@@ -11,7 +11,7 @@
+ <BODY BGCOLOR=#ffffe0 TEXT=#c00090 LINK=#0090c0 VLINK=#e000a8 ALINK=#00c090>
+ 
+ <P ALIGN=right>
+-<FONT SIZE=-2>All rights reserved. Copyright (C) 1996-2004 by NARITA Tomio</FONT>
++<FONT SIZE=-2>All rights reserved. Copyright (C) 1996-2005 by NARITA Tomio</FONT>
+ 
+ <HR>
+ 
+@@ -30,6 +30,14 @@ Back to <A HREF="index.html">LV Homepage
+ <HR WIDTH="50%">
+ 
+ <UL>
++<li> ver 4.51.a (Oct.30th,2005) (Masanori GOTO version)<br>
++	<ul>
++	<li> Add largefile support, now lv can handle over 2GB files on 32 bit architectures that conform to Large File Summit.
++	<li> Use newer autoconf to generate configure.
++	<li> Add --enable-fastio configure option in order to accelerate speed and reduce getc calling overhead on some systems whose stdio functions are procedural, not simple inline expansion.
++	<li> Update copyright date to 2005.
++	<li> Add +num option that is useful for specifying line number like vi style.
++	</ul>
+ <li> ver 4.51 (Jan.16th,2004) <br>
+ 	<ul>
+ 	<li> fixed keyboard-interrupt handling while reloading a file to avoid segmentation fault.
+--- lv-4.51-gotom/index.html	2004-01-16 21:29:21.000000000 +0900
++++ lv-4.51-gotom/index.html	2005-10-30 00:34:44.000000000 +0900
+@@ -11,7 +11,7 @@
+ <BODY BGCOLOR=#ffffe0 TEXT=#c00090 LINK=#0090c0 VLINK=#e000a8 ALINK=#00c090>
+ 
+ <P ALIGN=right>
+-<FONT SIZE=-2>All rights reserved. Copyright (C) 1996-2004 by NARITA Tomio</FONT> <BR>
++<FONT SIZE=-2>All rights reserved. Copyright (C) 1996-2005 by NARITA Tomio</FONT> <BR>
+ Last modified at Jan.16th,2004.
+ 
+ <HR>
+@@ -114,7 +114,7 @@ Copyright </H2>
+ 
+ <DL> <DT> <DD>
+ <PRE>
+-All rights reserved. Copyright (C) 1996-2004 by NARITA Tomio.
++All rights reserved. Copyright (C) 1996-2005 by NARITA Tomio.
+ 
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
