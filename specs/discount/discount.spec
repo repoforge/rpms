@@ -5,7 +5,7 @@
 Summary: C compiler for Markdown
 Name: discount
 Version: 2.1.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: Applications/Text
 URL: http://www.pell.portland.or.us/~orc/Code/discount/
@@ -16,6 +16,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: binutils
 BuildRequires: gcc
 BuildRequires: make
+BuildRequires: sed
 
 # we are a Markdown compiler
 Provides: Markdown
@@ -58,6 +59,7 @@ Install this package if you want to develop software that uses the Discount libr
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
     --enable-all-options \
+    --shared \
     --with-fenced-code \
     --with-github-tags \
     --with-id-anchor \
@@ -70,6 +72,10 @@ Install this package if you want to develop software that uses the Discount libr
 %{__install} -d %{buildroot}%{_includedir}
 %{__install} -d %{buildroot}%{_libdir}
 %{__install} -d %{buildroot}%{_mandir}
+
+# librarian.sh cannot run ldconfig when running as nonroot
+%{__sed} -ie '/ldconfig/d' librarian.sh
+
 %{__make} install.everything DESTDIR=%{buildroot}
 
 # fix for stupid strip issue
@@ -84,14 +90,18 @@ Install this package if you want to develop software that uses the Discount libr
 %doc %{_mandir}/man1/*
 %doc %{_mandir}/man7/*
 %{_bindir}/*
+%{_libdir}/*.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/*
 %{_includedir}/*
-%{_libdir}/*.a
+%{_libdir}/*.so
 
 %changelog
+* Mon Apr 23 2012 Steve Huff <shuff@vecna.org> - 2.1.3-2
+- Package shared as well as static library (thanks Phil!)
+
 * Tue Feb 7 2012 Steve Huff <shuff@vecna.org> - 2.1.3-1
 - Updated to version 2.1.3.
 
