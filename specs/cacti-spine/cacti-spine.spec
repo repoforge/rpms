@@ -9,12 +9,13 @@
 Summary: Fast c-based poller for the cacti graphing solution
 Name: cacti-spine
 Version: 0.8.8
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPL
 Group: Applications/System
 URL: http://www.cacti.net/
 
 Source: http://www.cacti.net/downloads/spine/cacti-spine-%{version}.tar.gz
+Patch0: fix-poller-free-r7115.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: mysql-devel, openssl-devel
@@ -33,6 +34,7 @@ to achieve excellent performance.
 
 %prep
 %setup
+%patch0 -p1
 
 ### FIXME: Patch to use /usr/lib64 on 64bit (Please fix upstream)
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure
@@ -59,6 +61,9 @@ autoreconf --force --install --symlink
 %config(noreplace) %{_sysconfdir}/spine.conf
 
 %changelog
+* Wed Apr 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 0.8.8-2
+- fix poller free patch added, r7115, fixes GH149
+
 * Thu Apr 05 2012 David Hrbáč <david@hrbac.cz> - 0.8.8-1
 - new upstream release
 
