@@ -9,13 +9,13 @@
 
 Summary: Lets you build groups of accessors
 Name: perl-Class-Accessor-Grouped
-Version: 0.10003
+Version: 0.10006
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Class-Accessor-Grouped/
 
-Source: http://search.cpan.org/CPAN/authors/id/F/FR/FREW/Class-Accessor-Grouped-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/Class/Class-Accessor-Grouped-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -63,7 +63,7 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST MANIFEST.SKIP META.yml README
+%doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/Class::Accessor::Grouped.3pm*
 %dir %{perl_vendorlib}/Class/
 %dir %{perl_vendorlib}/Class/Accessor/
@@ -71,6 +71,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Class/Accessor/Grouped.pm
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 0.10006-1
+- new upstream release
+
 * Tue May 03 2011 David Hrbáč <david@hrbac.cz> - 0.10003-1
 - new upstream release
 
