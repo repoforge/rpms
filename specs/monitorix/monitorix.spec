@@ -3,7 +3,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 2.5.0
+Version: 2.5.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -27,8 +27,7 @@ Requires: /sbin/service
 Monitorix is a free, open source, lightweight system monitoring tool designed
 to monitor as many services and system resources as possible. It has been
 created to be used under production UNIX/Linux servers, but due to its
-simplicity and small size you may also use it to monitor embedded devices as
-well.
+simplicity and small size may also be used on embedded devices as well.
 
 %prep
 %setup
@@ -102,6 +101,9 @@ fi
 %doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD docs/monitorix-alert.sh
 
 %changelog
+* Wed Apr 25 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.5.1-1
+- Updated to the latest version.
+
 * Thu Mar 22 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.5.0-1
 - Updated to the latest version.
 
