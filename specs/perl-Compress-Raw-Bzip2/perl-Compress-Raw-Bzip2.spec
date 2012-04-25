@@ -9,7 +9,7 @@
 
 Summary: Low-Level Interface to bzip2 compression library
 Name: perl-Compress-Raw-Bzip2
-Version: 2.037
+Version: 2.049
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -40,7 +40,6 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 
 # install the FAQ
 %{__install} -m755 -d %{buildroot}%{perl_vendorlib}/Compress/Raw/Bzip2/
-%{__install} -m644 pod/*.pod %{buildroot}%{perl_vendorlib}/Compress/Raw/Bzip2/
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
@@ -58,9 +57,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %dir %{perl_vendorarch}/Compress/
 %dir %{perl_vendorarch}/Compress/Raw/
 %{perl_vendorarch}/Compress/Raw/Bzip2.pm
-%{perl_vendorlib}/Compress/Raw/Bzip2/*.pod
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 2.049-1
+- new upstream release
+
 * Wed Jul 27 2011 Steve Huff <shuff@vecna.org> - 2.037-1
 - Updated to release 2.037.
 - Installed the FAQ.
