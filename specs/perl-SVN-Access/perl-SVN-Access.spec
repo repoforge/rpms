@@ -11,7 +11,7 @@
 
 Summary: Manipulate SVN access files
 Name: perl-SVN-Access
-Version: 0.07
+Version: 0.08
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -24,7 +24,6 @@ BuildArch: noarch
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(Tie::IxHash) >= 1.21
-BuildRequires: rpm-macros-rpmforge
 Requires: perl
 Requires: perl(Tie::IxHash) >= 1.21
 
@@ -76,5 +75,8 @@ that object-oriented programming interface.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 0.08-1
+- new upstream release
+
 * Tue Feb 7 2012 Steve Huff <shuff@vecna.org> - 0.07-1
 - Initial package.
