@@ -1,3 +1,10 @@
+# $Id$
+# Authority: dfateyev
+# Upstream: NARITA Tomio <nrt$ff,iij4u,or,jp>
+
+### Already presented in repo
+# ExcludeDist: el4 el5
+
 %define vver	451
 
 Name:		lv
@@ -5,8 +12,10 @@ Version:	4.51
 Release:	9
 License:	distributable
 URL:		http://www.ff.iij4u.or.jp/~nrt/lv/
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildPrereq:	libtermcap-devel autoconf
+
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libtermcap-devel
+BuildRequires: autoconf
 
 Source:		http://www.ff.iij4u.or.jp/~nrt/freeware/%{name}%{vver}.tar.gz
 Patch1:		lv-4.49.4-nonstrip.patch
@@ -39,15 +48,15 @@ for text devoration.
 cd src
 autoconf
 %configure --enable-fastio
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 
 cd src
 %{__mkdir_p} $RPM_BUILD_ROOT%{_bindir}
 %{__mkdir_p} $RPM_BUILD_ROOT%{_mandir}/man1
-make install bindir=$RPM_BUILD_ROOT%{_bindir} libdir=$RPM_BUILD_ROOT%{_libdir} mandir=$RPM_BUILD_ROOT%{_mandir}
+%{__make} install bindir=$RPM_BUILD_ROOT%{_bindir} libdir=$RPM_BUILD_ROOT%{_libdir} mandir=$RPM_BUILD_ROOT%{_mandir}
 
 %files
 %defattr(-, root, root)
@@ -59,7 +68,7 @@ make install bindir=$RPM_BUILD_ROOT%{_bindir} libdir=$RPM_BUILD_ROOT%{_libdir} m
 %{_libdir}/lv
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf $RPM_BUILD_ROOT
 
 %changelog
 * Fri Apr 20 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
