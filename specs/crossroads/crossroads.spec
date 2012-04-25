@@ -4,7 +4,7 @@
 
 Summary: Load balance and fail over utility for TCP based services
 Name: crossroads
-Version: 2.77
+Version: 2.78
 Release: 1%{?dist}
 License: GPLv3
 Group: Applications/Utilities
@@ -59,6 +59,9 @@ of other back ends.
 %{_sbindir}/xr
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 2.78-1
+- new upstream release
+
 * Tue Mar 06 2012 David Hrbáč <david@hrbac.cz> - 2.77-1
 - new upstream release
 
