@@ -1,0 +1,228 @@
+2005-05-02  GOTO Masanori  <gotom@debian.or.jp>
+
+	* Add +num and +/pat option.
+
+diff -Nuarp lv451/lv.1 lv451.gotom.+num/lv.1
+--- lv451/lv.1	2004-01-16 21:23:33.000000000 +0900
++++ lv451.gotom.+num/lv.1	2005-05-02 21:17:52.000000000 +0900
+@@ -11,7 +11,7 @@ lv \- a Powerful Multilingual File Viewe
+ -V
+ .br
+ .B lv
+-[-[+]acdfgiklmnqsuvz]
++[-acdfgiklmnqsuvz] [+acdfgiklmnqsuvz]
+ .br
+      [-A\fIcoding-system\fP] [-I\fIcoding-system\fP] [-K\fIcoding-system\fP]
+ .br
+@@ -21,7 +21,9 @@ lv \- a Powerful Multilingual File Viewe
+ .br
+      [-T\fInumber\fP] [-W\fIwidth\fP] [-H\fIheight\fP] [-E'\fIeditor'\fP] [-+]
+ .br
+-     [-] (\fIgrep pattern\fP) [\fIfiles ...\fP]
++     [+\fInumber\fP] [+/\fIgrep-pattern\fP]
++.br
++     [-] (\fIgrep-pattern\fP) [\fIfiles ...\fP]
+ .SH DESCRIPTION
+ .IP "\fIMultilingual file viewer\fP"
+ \fIlv\fP is a powerful multilingual file viewer.
+@@ -223,8 +225,12 @@ You can also turn OFF specified options,
+ using ``+<option>'' like +c, +d, ... +z.
+ .IP "-"
+ Treat the following arguments as filenames
+-.IP "\fIgrep pattern\fP"
++.IP "\fIgrep-pattern\fP"
+ lv works like \fIgrep\fP (1) when its name is \fIlgrep\fP
++.IP "+\fInumber\fP"
++Jump to the specified line immediately when lv is invoked.
++.IP "+/\fIgrep-pattern\fP"
++Search  the specified pattern immediately when lv is invoked.
+ .IP "-V"
+ Show lv version
+ .IP "-h"
+diff -Nuarp lv451/src/command.c lv451.gotom.+num/src/command.c
+--- lv451/src/command.c	2004-01-05 16:42:31.000000000 +0900
++++ lv451.gotom.+num/src/command.c	2005-05-02 20:45:18.000000000 +0900
+@@ -66,8 +66,6 @@
+ #define COM_FILE_PREV		'p'
+ #define COM_FILE_NEXT		'n'
+ 
+-#define IsNumber( c )		( (c) >= '0' && (c) <= '9' )
+-
+ #ifdef MSDOS
+ #define HISTORY_SIZE		2
+ #else
+@@ -145,6 +143,22 @@ private void CommandCopyToHistory( str_t
+     historyIndex = 0;
+ }
+ 
++private int CommandGetChar()
++{
++  int ch;
++
++  if( FALSE == initcmd_mode ){
++    return ConsoleGetChar();
++  }
++
++  ch = initcmd_str[ initcmd_curp++ ];
++  if( initcmd_str[ initcmd_curp ] == NUL ){
++    initcmd_mode = FALSE;
++    free( initcmd_str );
++  }
++  return ch;
++}
++
+ private i_str_t *CommandGetLine( file_t *f, byte prompt )
+ {
+   int ch, ptr, iptr, width, pre_width, index;
+@@ -164,13 +178,14 @@ private i_str_t *CommandGetLine( file_t 
+   pre_width = -1;
+   for( ; ; ){
+     ConsoleFlush();
+-    ch = ConsoleGetChar();
++    ch = CommandGetChar();
+     switch( ch ){
+     case EOF:
+     case BEL: /* C-g */
+       if( NULL != istr )
+ 	IstrFree( istr );
+       return NULL;
++    case LF: /* C-j */
+     case CR: /* C-m */
+       if( NULL == istr )
+ 	return NULL;
+@@ -344,7 +359,7 @@ private boolean_t CommandGetNumber( unsi
+     ConsolePrints( buf );
+ 
+     ConsoleFlush();
+-    ch = ConsoleGetChar();
++    ch = CommandGetChar();
+     if( EOF == ch )
+       return FALSE;
+     else if( BS == ch || DEL == ch ){
+@@ -902,7 +917,7 @@ private void CommandCursor( unsigned int
+   flagLeft = flagRight = flagUp = flagDown = flagPpage = flagNpage = TRUE;
+   step = 1;
+   for( ; ; ){
+-    ch = ConsoleGetChar();
++    ch = CommandGetChar();
+     if( NULL == cur_left || ch != cur_left[ step ] )
+       flagLeft = FALSE;
+     if( NULL == cur_right || ch != cur_right[ step ] )
+@@ -954,7 +969,7 @@ private void CommandColon( unsigned int 
+   stream_t *st;
+   file_list_t *next_target;
+ 
+-  ch = ConsoleGetChar();
++  ch = CommandGetChar();
+ 
+   if( COM_FILE_PREV == ch || COM_FILE_NEXT == ch ){
+     if( 0 < arg ){
+@@ -1179,7 +1194,7 @@ public void Command( file_t *file, byte 
+     }
+ 
+     ConsoleFlush();
+-    com = ConsoleGetChar();
++    com = CommandGetChar();
+     if( com < 0x00 || com > 0x7f )
+       continue;
+ 
+diff -Nuarp lv451/src/command.h lv451.gotom.+num/src/command.h
+--- lv451/src/command.h	2003-11-13 12:08:19.000000000 +0900
++++ lv451.gotom.+num/src/command.h	2005-05-02 20:29:11.000000000 +0900
+@@ -12,6 +12,12 @@
+ 
+ public byte *editor_program;
+ 
++public boolean_t initcmd_mode;
++public char *initcmd_str;
++public int initcmd_curp;
++
++#define IsNumber( c )		( (c) >= '0' && (c) <= '9' )
++
+ public boolean_t CommandInit();
+ public void Command( file_t *file, byte **optional );
+ 
+diff -Nuarp lv451/src/conf.c lv451.gotom.+num/src/conf.c
+--- lv451/src/conf.c	2004-01-05 16:23:29.000000000 +0900
++++ lv451.gotom.+num/src/conf.c	2005-05-02 20:33:44.000000000 +0900
+@@ -313,38 +313,52 @@ private void ConfArg( conf_t *conf, byte
+     }
+   } else if( TRUE == conf->options && '+' == **argv ){
+     s = *argv + 1;
+-    while( *s ){
+-      switch( *s ){
++    if( *s == '/' || IsNumber( *s ) ){
++      size_t initcmd_len = strlen( s );
++      initcmd_mode = TRUE;
++      initcmd_curp = 0;
++      initcmd_str = Malloc( initcmd_len + 2 );
++      strcpy( initcmd_str, s );
++      if( *s == '/' ){
++	initcmd_str[ initcmd_len ] = CR;
++      } else if( IsNumber( *s ) && IsNumber( s[ initcmd_len - 1 ] ) ){
++	initcmd_str[ initcmd_len ] = 'g';
++      }
++      initcmd_str[ initcmd_len + 1 ] = NUL;
++    } else {
++      while( *s ){
++	switch( *s ){
+ #ifndef MSDOS /* IF NOT DEFINED */
+-      case 'm': unimap_iso8859 = FALSE; s++; continue;
++	case 'm': unimap_iso8859 = FALSE; s++; continue;
+ #endif /* MSDOS */
+-      case 'a': adjust_charset = FALSE; s++; continue;
+-      case 'c': allow_ansi_esc = FALSE; s++; continue;
+-      case 'd': casefold_search = FALSE; s++; continue;
+-      case 'i': casefold_search = FALSE; s++; continue;
+-      case 'f': regexp_search = TRUE; s++; continue;
+-      case 'g': grep_mode = FALSE; s++; continue;
+-      case 'k': kana_conv = FALSE; s++; continue;
+-      case 'l': carefully_divide = TRUE; s++; continue;
+-      case 'n': line_number = FALSE; s++; continue;
+-      case 'q': no_scroll = TRUE; s++; continue;
+-      case 's': smooth_paging = FALSE; s++; continue;
+-      case 'u': allow_unify = FALSE; s++; continue;
+-      case 'v': grep_inverted = FALSE; s++; continue;
+-      case 'z': hz_detection = FALSE; s++; continue;
+-      case SP:
+-      case HT:
+-	break;
+-      default:
+-	UnknownOption( s, location );
+-      }
+-      do {
+-	s++;
+-	if( '-' == *s || '+' == *s ){
+-	  s++;
++	case 'a': adjust_charset = FALSE; s++; continue;
++	case 'c': allow_ansi_esc = FALSE; s++; continue;
++	case 'd': casefold_search = FALSE; s++; continue;
++	case 'i': casefold_search = FALSE; s++; continue;
++	case 'f': regexp_search = TRUE; s++; continue;
++	case 'g': grep_mode = FALSE; s++; continue;
++	case 'k': kana_conv = FALSE; s++; continue;
++	case 'l': carefully_divide = TRUE; s++; continue;
++	case 'n': line_number = FALSE; s++; continue;
++	case 'q': no_scroll = TRUE; s++; continue;
++	case 's': smooth_paging = FALSE; s++; continue;
++	case 'u': allow_unify = FALSE; s++; continue;
++	case 'v': grep_inverted = FALSE; s++; continue;
++	case 'z': hz_detection = FALSE; s++; continue;
++	case SP:
++	case HT:
+ 	  break;
++	default:
++	  UnknownOption( s, location );
+ 	}
+-      } while( *s );
++	do {
++	  s++;
++	  if( '-' == *s || '+' == *s ){
++	    s++;
++	    break;
++	  }
++	} while( *s );
++      }
+     }
+   } else {
+     if( TRUE == grep_mode && NULL == conf->pattern )

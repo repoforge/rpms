@@ -1,0 +1,333 @@
+diff -Nuarp -x Makefile -x 'gmon*' -x 'profile*' -x 'lv-*' lv451/src/command.c lv451.gotom/src/command.c
+--- lv451/src/command.c	2004-01-05 16:42:31.000000000 +0900
++++ lv451.gotom/src/command.c	2005-05-06 21:27:02.000000000 +0900
+@@ -497,7 +497,7 @@ private void CommandReload( unsigned int
+   byte defaultCodingSystem;
+   stream_t st;
+ 
+-  if( NULL != f->sp ){
++  if( NULL != f->sp.iop ){
+     label = "cannot reload non-regular files";
+     return;
+   }
+@@ -506,9 +506,9 @@ private void CommandReload( unsigned int
+     label = "cannot reload current file";
+     return;
+   } else {
+-    fclose( f->fp );
++    fclose( f->fp.iop );
+     st.fp = fp;
+-    st.sp = f->sp;
++    st.sp = f->sp.iop;
+     st.pid = f->pid;
+   }
+ 
+@@ -618,7 +618,7 @@ private void CommandEdit( unsigned int a
+   byte *fileName;
+   int lineNumber;
+ 
+-  if( NULL != f->sp ){
++  if( NULL != f->sp.iop ){
+     label = "cannot edit non-regular files";
+     return;
+   }
+@@ -698,7 +698,7 @@ private void CommandPoll( unsigned int a
+ 
+   kb_interrupted = FALSE;
+ 
+-  if( NULL != f->sp ){
++  if( NULL != f->sp.iop ){
+     label = "cannot poll non-regular files";
+     return;
+   }
+@@ -718,8 +718,8 @@ private void CommandPoll( unsigned int a
+     ConsoleSetAttribute( 0 );
+     ConsoleFlush();
+ 
+-    (void)fseek( f->fp, 0, SEEK_END );
+-    pos = ftell( f->fp );
++    (void)IobufFseek( &f->fp, 0, SEEK_END );
++    pos = IobufFtell( &f->fp );
+ 
+     ConsoleEnableInterrupt();
+ 
+@@ -728,8 +728,8 @@ private void CommandPoll( unsigned int a
+       if( kb_interrupted )
+ 	break;
+ 
+-      (void)fseek( f->fp, 0, SEEK_END );
+-      if( ftell( f->fp ) > pos ){
++      (void)IobufFseek( &f->fp, 0, SEEK_END );
++      if( IobufFtell( &f->fp ) > pos ){
+ 	// it grew
+ 	break;
+       }
+diff -Nuarp -x Makefile -x 'gmon*' -x 'profile*' -x 'lv-*' lv451/src/configure.in lv451.gotom/src/configure.in
+--- lv451/src/configure.in	2004-01-05 15:35:44.000000000 +0900
++++ lv451.gotom/src/configure.in	2005-05-06 21:28:07.000000000 +0900
+@@ -57,5 +57,16 @@ AC_DEFUN([AM_LANGINFO_CODESET],
+ 
+ AM_LANGINFO_CODESET
+ 
++AC_MSG_CHECKING(whether fastio is used)
++AC_ARG_ENABLE(fastio,
++	[ --enable-fastio          tries to reduce stdio overhead],
++	[if ! test "$enableval" = no; then
++	 	AC_DEFINE(USE_INTERNAL_IOBUF, 1)
++		AC_MSG_RESULT(yes)
++	 else
++		AC_MSG_RESULT(no)
++	 fi],
++	[AC_MSG_RESULT(no)])
++
+ dnl AC_OUTPUT(Makefile src/Makefile)
+ AC_OUTPUT(Makefile)
+diff -Nuarp -x Makefile -x 'gmon*' -x 'profile*' -x 'lv-*' lv451/src/fetch.c lv451.gotom/src/fetch.c
+--- lv451/src/fetch.c	2004-01-05 16:30:15.000000000 +0900
++++ lv451.gotom/src/fetch.c	2005-05-06 20:03:44.000000000 +0900
+@@ -151,7 +151,7 @@ private void PageLoad( file_t *f, int bl
+ {
+   int i;
+ 
+-  if( fseek( f->fp, ptr, SEEK_SET ) )
++  if( IobufFseek( &f->fp, ptr, SEEK_SET ) )
+     perror( "PageLoad()" ), exit( -1 );
+ 
+   f->eof = FALSE;
+diff -Nuarp -x Makefile -x 'gmon*' -x 'profile*' -x 'lv-*' lv451/src/file.c lv451.gotom/src/file.c
+--- lv451/src/file.c	2004-01-05 16:30:15.000000000 +0900
++++ lv451.gotom/src/file.c	2005-05-06 21:36:20.000000000 +0900
+@@ -68,6 +68,57 @@ public void FileFreeLine( file_t *f )
+   }
+ }
+ 
++#ifdef USE_INTERNAL_IOBUF
++public inline int IobufGetc( iobuf_t *iobuf )
++{
++  if( iobuf->cur >= iobuf->last ){
++    /* no stream buffer, reset and fill now */
++    iobuf->cur = 0;
++    iobuf->last = fread( iobuf->buf, sizeof( byte ), IOBUF_DEFAULT_SIZE, iobuf->iop );
++    if( iobuf->last <= 0 ){
++      return EOF;
++    }
++  }
++  return iobuf->buf[ iobuf->cur++ ];
++}
++
++public inline int IobufUngetc( int ch, iobuf_t *iobuf )
++{
++  if( iobuf->cur == 0 ){
++    /* XXX: it should be tied to fp sanely */
++    return EOF;
++  }
++  iobuf->buf[ --iobuf->cur ] = (byte)ch;
++  return ch;
++}
++
++public long IobufFtell( iobuf_t *iobuf )
++{
++  long ptr;
++  ptr = ftell( iobuf->iop );
++  if( iobuf->cur == iobuf->last ){
++    return ptr;
++  }
++  return ptr - ( iobuf->last - iobuf->cur );
++}
++
++public int IobufFseek( iobuf_t *iobuf, long off, int mode )
++{
++  iobuf->cur = iobuf->last = 0;  /* flush all iobuf */
++  return fseek( iobuf->iop, off, mode );
++}
++
++public int IobufFeof( iobuf_t *iobuf )
++{
++  if( iobuf->cur == iobuf->last ){
++    return feof( iobuf->iop );
++  } else {
++    return 1;
++  }
++}
++#endif
++
++
+ /*
+  * 現在のファイルポインタから 1行を読み込んでバッファに格納する.
+  * コード系の自動判別の対象となる場合, 自動判別を行なう.
+@@ -93,21 +144,21 @@ public byte *FileLoadLine( file_t *f, in
+   count = 0;
+   idx = 0;
+ 
+-  while( EOF != (ch = getc( f->fp )) ){
++  while( EOF != (ch = IobufGetc( &f->fp )) ){
+     len++;
+     load_array[ count ][ idx++ ] = (byte)ch;
+     if( LF == ch ){
+       /* UNIX style */
+       break;
+     } else if( CR == ch ){
+-      if( LF == (ch = getc( f->fp )) ){
++      if( LF == (ch = IobufGetc( &f->fp )) ){
+ 	/* MSDOS style */
+       } else if( EOF == ch ){
+ 	/* need to avoid EOF due to pre-load of that */
+ 	ch = LF;
+       } else {
+ 	/* Mac style */
+-	ungetc( ch, f->fp );
++	IobufUngetc( ch, &f->fp );
+       }
+       load_array[ count ][ idx - 1 ] = LF;
+       break;
+@@ -207,23 +258,23 @@ public boolean_t FileStretch( file_t *f,
+   ptr = f->lastPtr;
+   segment = f->lastSegment;
+ 
+-  if( fseek( f->fp, ptr, SEEK_SET ) )
++  if( IobufFseek( &f->fp, ptr, SEEK_SET ) )
+     perror( "FileStretch()" ), exit( -1 );
+ 
+ #ifndef MSDOS /* IF NOT DEFINED */
+-  if( NULL != f->sp ){
+-    while( EOF != (ch = getc( f->sp )) ){
+-      putc( ch, f->fp );
++  if( NULL != f->sp.iop ){
++    while( EOF != (ch = IobufGetc( &f->sp )) ){
++      IobufPutc( ch, &f->fp );
+       count++;
+       if( LF == ch || CR == ch || count == (LOAD_SIZE * LOAD_COUNT) ){
+ 	if( CR == ch ){
+-	  if( LF != (ch = getc( f->sp )) )
+-	    ungetc( ch, f->sp );
++	  if( LF != (ch = IobufGetc( &f->sp )) )
++	    IobufUngetc( ch, &f->sp );
+ 	  else
+-	    putc( LF, f->fp );
++	    IobufPutc( LF, &f->fp );
+ 	}
+ 	count = 0;
+-	if( 0 > (ptr = ftell( f->fp )) )
++	if( 0 > (ptr = IobufFtell( &f->fp )) )
+ 	  perror( "FileStretch()" ), exit( -1 );
+ 	if( ++line == LV_PAGE_SIZE ){
+ 	  f->totalLines += line;
+@@ -249,21 +300,21 @@ public boolean_t FileStretch( file_t *f,
+ 	  return FALSE;
+       }
+     }
+-    if( -1 != f->pid && feof( f->sp ) ){
++    if( -1 != f->pid && IobufFeof( &f->sp ) ){
+       int status;
+       wait( &status );
+     }
+   } else {
+ #endif /* MSDOS */
+-    while( EOF != (ch = getc( f->fp )) ){
++    while( EOF != (ch = IobufGetc( &f->fp )) ){
+       count++;
+       if( LF == ch || CR == ch || count == (LOAD_SIZE * LOAD_COUNT) ){
+ 	if( CR == ch ){
+-	  if( LF != (ch = getc( f->fp )) )
+-	    ungetc( ch, f->fp );
++	  if( LF != (ch = IobufGetc( &f->fp )) )
++	    IobufUngetc( ch, &f->fp );
+ 	}
+ 	count = 0;
+-	if( 0 > (ptr = ftell( f->fp )) )
++	if( 0 > (ptr = IobufFtell( &f->fp )) )
+ 	  perror( "FileStretch()" ), exit( -1 );
+ 	if( ++line == LV_PAGE_SIZE ){
+ 	  f->totalLines += line;
+@@ -301,7 +352,7 @@ public boolean_t FileStretch( file_t *f,
+       segment++;
+       f->totalLines += line;
+       f->lastSegment = segment;
+-      if( 0 > (f->lastPtr = ftell( f->fp )) )
++      if( 0 > (f->lastPtr = IobufFtell( &f->fp )) )
+ 	perror( "FileStretch()" ), exit( -1 );
+     }
+     f->done = TRUE;
+@@ -325,7 +376,7 @@ public boolean_t FileSeek( file_t *f, un
+     if( FALSE == FileStretch( f, segment ) )
+       return FALSE;
+ 
+-  if( fseek( f->fp, f->slot[ Frame( segment ) ][ Slot( segment ) ], SEEK_SET ) )
++  if( IobufFseek( &f->fp, f->slot[ Frame( segment ) ][ Slot( segment ) ], SEEK_SET ) )
+     perror( "FileSeek()" ), exit( -1 );
+ 
+   return TRUE;
+@@ -392,8 +443,14 @@ public file_t *FileAttach( byte *fileNam
+   f->fileNameI18N	= NULL;
+   f->fileNameLength	= 0;
+ 
+-  f->fp			= st->fp;
+-  f->sp			= st->sp;
++  f->fp.iop		= st->fp;
++  f->sp.iop		= st->sp;
++#ifdef USE_INTERNAL_IOBUF
++  f->fp.cur		= 0;
++  f->fp.last		= 0;
++  f->sp.cur		= 0;
++  f->sp.last		= 0;
++#endif
+   f->pid		= st->pid;
+   f->lastSegment	= 0;
+   f->totalLines		= 0L;
+diff -Nuarp -x Makefile -x 'gmon*' -x 'profile*' -x 'lv-*' lv451/src/file.h lv451.gotom/src/file.h
+--- lv451/src/file.h	2004-01-05 16:30:15.000000000 +0900
++++ lv451.gotom/src/file.h	2005-05-06 21:34:53.000000000 +0900
+@@ -27,6 +27,10 @@
+ #define FRAME_SIZE	4096U
+ #endif /* MSDOS */
+ 
++#ifdef USE_INTERNAL_IOBUF
++# define IOBUF_DEFAULT_SIZE	256
++#endif
++
+ typedef struct {
+   int		ptr;
+   int		width;
+@@ -66,11 +70,20 @@ typedef struct {
+ } find_t;
+ 
+ typedef struct {
++  FILE		*iop;
++#ifdef USE_INTERNAL_IOBUF
++  byte		buf[ IOBUF_DEFAULT_SIZE ];
++  size_t	cur;
++  size_t	last;
++#endif
++} iobuf_t;
++
++typedef struct {
+   byte		*fileName;
+   i_str_t	*fileNameI18N;
+   int		fileNameLength;
+-  FILE		*fp;
+-  FILE		*sp;
++  iobuf_t	fp;
++  iobuf_t	sp;
+   int		pid;
+   byte		inputCodingSystem;
+   byte		outputCodingSystem;
+@@ -137,4 +150,19 @@ public byte *FileName( file_t *f );
+ 
+ public void FileInit();
+ 
++#ifndef USE_INTERNAL_IOBUF
++# define IobufGetc( a )		getc( (a)->iop )
++# define IobufUngetc( a, b )	ungetc( a, (b)->iop )
++# define IobufFtell( a )	ftell( (a)->iop )
++# define IobufFseek( a, b, c )	fseek( (a)->iop, b, c)
++# define IobufFeof( a )		feof( (a)->iop )
++#else
++public inline int IobufGetc( iobuf_t *iobuf );
++public inline int IobufUngetc( int ch, iobuf_t *iobuf );
++public long IobufFtell( iobuf_t *iobuf );
++public int IobufFseek( iobuf_t *iobuf, long off, int mode );
++public int IobufFeof( iobuf_t *iobuf );
++#endif
++#define IobufPutc( a, b )	putc( a, (b)->iop )
++
+ #endif /* __FILE_H__ */
