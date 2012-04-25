@@ -15,7 +15,7 @@
 
 Summary: Digest-HMAC Perl module
 Name: perl-Digest-HMAC
-Version: 1.02
+Version: 1.03
 Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
@@ -70,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Digest/HMAC_*.pm
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 1.03-1
+- new upstream release
+
 * Tue Jan 12 2010 Christoph Maser <cmr@financial.com> - 1.02-1
 - Updated to version 1.02.
 
