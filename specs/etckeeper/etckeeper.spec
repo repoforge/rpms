@@ -8,7 +8,7 @@ Summary:   Store /etc in a SCM system (git, mercurial, bzr or darcs)
 Group:     Applications/System
 License:   GPLv2+
 URL:       http://kitenet.net/~joey/code/etckeeper/
-Source:   http://ftp.debian.org/debian/pool/main/e/etckeeper/%{name}_%{version}.tar.gz
+Source:    http://ftp.debian.org/debian/pool/main/e/%{name}/%{name}_%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Requires:  git >= 1.5.4
