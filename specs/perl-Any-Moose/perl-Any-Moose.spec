@@ -13,7 +13,7 @@
 
 Summary: use Moose or Mouse modules
 Name: perl-Any-Moose
-Version: 0.17
+Version: 0.18
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -25,7 +25,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(Mouse) >= 0.40
 BuildRequires: perl >= 5.006_002
-BuildRequires: perl(ExtUtils::MakeMaker)                                                                                                                           
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(Mouse) >= 0.40
 Requires: perl >= 5.006_002
 
@@ -34,7 +34,10 @@ Requires: perl >= 5.006_002
 
 
 %description
-use Moose or Mouse modules.
+Any::Moose is a Perl module that intelligently loads either Moose or
+Mouse, which provide nearly identical interfaces to the same modern
+object system.  This module takes advantage of the fact that anything
+that works with Mouse should also work with Moose.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -49,6 +52,7 @@ use Moose or Mouse modules.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+find %{buildroot} -type d -depth -exec rmdir {} 2>/dev/null ';'
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -58,10 +62,12 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %doc Changes LICENSE MANIFEST META.yml README
 %doc %{_mandir}/man3/Any::Moose.3pm*
 %dir %{perl_vendorlib}/Any/
-#%{perl_vendorlib}/Any/Moose/
 %{perl_vendorlib}/Any/Moose.pm
 
 %changelog
+* Sat Apr 28 2012 Denis Fateyev <denis@fateyev.com> -0.18-1
+- updated to 0.18
+
 * Mon Dec 05 2011 David Hrbáč <david@hrbac.cz> - 0.17-1
 - new upstream release
 
