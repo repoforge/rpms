@@ -1,0 +1,18 @@
+Roll back apr-0.9.7 requirement to apr-0.9.7, RHEL backported fixes
+seem to have addressed this requirement.
+
+		Nico Kadel-Garcia <nkadel@gmail.com>
+
+--- subversion-1.6.15/configure.ac.apr	2009-10-13 12:09:30.000000000 -0400
++++ subversion-1.6.15/configure.ac	2011-08-14 14:30:27.000000000 -0400
+@@ -72,8 +72,8 @@
+ dnl   them.  Only .7 and later can guarantee repository
+ dnl   integrity with FSFS.
+ 
+-APR_VER_REGEXES=["0\.9\.[7-9] 0\.9\.1[0-9] 1\."]
+-APU_VER_REGEXES=["0\.9\.[7-9] 0\.9\.1[0-9] 1\."]
++APR_VER_REGEXES=["0\.9\.[4-9] 0\.9\.1[0-9] 1\."]
++APU_VER_REGEXES=["0\.9\.[4-9] 0\.9\.1[0-9] 1\."]
+ 
+ SVN_LIB_APR($APR_VER_REGEXES)
+ SVN_LIB_APRUTIL($APU_VER_REGEXES)

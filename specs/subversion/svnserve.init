@@ -1,0 +1,109 @@
+#!/bin/bash
+#
+# svnserve        Startup script for the Subversion svnserve daemon
+#
+# chkconfig: - 85 15
+# description: The svnserve daemon allows access to Subversion repositories \
+#              using the svn network protocol.
+# processname: svnserve
+# config: /etc/sysconfig/svnserve
+# pidfile: /var/run/svnserve.pid
+#
+### BEGIN INIT INFO
+# Provides: svnserve
+# Required-Start: $local_fs $remote_fs $network
+# Required-Stop: $local_fs $remote_fs $network
+# Short-Description: start and stop the svnserve daemon
+# Description: The svnserve daemon allows access to Subversion
+#   repositories using the svn network protocol.
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+if [ -f /etc/sysconfig/svnserve ]; then
+        . /etc/sysconfig/svnserve
+fi
+
+exec=/usr/bin/svnserve
+prog=svnserve
+pidfile=${PIDFILE-/var/run/svnserve.pid}
+lockfile=${LOCKFILE-/var/lock/subsys/svnserve}
+args="--daemon --pid-file=${pidfile} $OPTIONS"
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+lockfile=/var/lock/subsys/$prog
+
+start() {
+    [ -x $exec ] || exit 5
+    [ -f $config ] || exit 6
+    echo -n $"Starting $prog: "
+    daemon --pidfile=${pidfile} $exec $args
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc -p ${pidfile} $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    restart
+}
+
+force_reload() {
+    restart
+}
+
+rh_status() {
+    # run checks to determine if the service is running or use generic status
+    status -p ${pidfile} $prog
+}
+
+rh_status_q() {
+    rh_status >/dev/null 2>&1
+}
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
+exit $?
