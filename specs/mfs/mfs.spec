@@ -4,8 +4,8 @@
 
 Summary: Fault tolerant, network distributed file system
 Name: mfs
-Version: 1.6.24
-Release: 2%{?dist}
+Version: 1.6.25
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.moosefs.org/
@@ -393,6 +393,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Wed May 02 2012 David Hrbáč <david@hrbac.cz> - 1.6.25-1
+- new upstream release
+
 * Fri Apr 20 2012 Steve Huff <shuff@vecna.org> - 1.6.24-2
 - Move mfsmount-related files to mfs-client package (thanks Ricardo!)
 
