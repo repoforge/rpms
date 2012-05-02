@@ -10,7 +10,7 @@
 
 Summary: Fast, lightweight Source Control Management system
 Name: mercurial
-Version: 2.1.2
+Version: 2.2
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -102,6 +102,9 @@ CFLAGS="%{optflags}" %{__make} %{?_smp_mflags} all
 %{_bindir}/hg-ssh
 
 %changelog
+* Wed May 02 2012 David Hrbáč <david@hrbac.cz> - 2.2-1
+- new upstream release
+
 * Thu Apr 05 2012 David Hrbáč <david@hrbac.cz> - 2.1.2-1
 - new upstream release
 
