@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.10
+Version: 1.7.10.1
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -401,6 +401,9 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %{perl_vendorlib}/Git/I18N.pm
 
 %changelog
+* Wed May 02 2012 David Hrbáč <david@hrbac.cz> - 1.7.10.1-1
+- new upstream release
+
 * Sat Apr 07 2012 David Hrbáč <david@hrbac.cz> - 1.7.10-1
 - new upstream release
 
