@@ -4,7 +4,7 @@
 
 Summary:	Handle the administration of MySQL over the World Wide Web
 Name:		phpMyAdmin
-Version:	3.4.10.2
+Version:	3.5.1
 Release:	1%{?dist}
 License:	GPLv2+
 Group:		Applications/Internet
@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc ChangeLog README LICENSE CREDITS TODO Documentation.txt
+%doc ChangeLog README LICENSE Documentation.txt
 %{_datadir}/%{pkgname}/
 %dir %{_sysconfdir}/%{pkgname}/
 %config(noreplace) %{_sysconfdir}/%{pkgname}/config.inc.php
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(0755,apache,apache) %{_localstatedir}/lib/%{pkgname}/config
 
 %changelog
+* Fri May 04 2012 David Hrbáč <david@hrbac.cz> - 3.5.1-1
+- new upstream release
+
 * Mon Apr 02 2012 David Hrbáč <david@hrbac.cz> - 3.4.10.2-1
 - new upstream release
 
