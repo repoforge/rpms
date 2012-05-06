@@ -1,5 +1,5 @@
 # $Id$
-# Authority: The OpenDKIM Project
+# Authority: dfateyev
 # Upstream: http://www.opendkim.org/
 
 Summary: A DomainKeys Identified Mail (DKIM) milter to sign and/or verify mail
@@ -19,11 +19,11 @@ BuildRequires: openssl-devel
 BuildRequires: pkgconfig
 BuildRequires: rpm-macros-rpmforge
 
-Requires: lib%{name} = %{version}-%{release}
-Requires (pre): shadow-utils
-Requires (post): chkconfig
-Requires (preun): chkconfig, initscripts
-Requires (postun): initscripts
+Requires: libopendkim = %{version}-%{release}
+Requires(pre): shadow-utils
+Requires(post): chkconfig
+Requires(preun): chkconfig, initscripts
+Requires(postun): initscripts
 
 %description
 OpenDKIM allows signing and/or verification of email through an open source
@@ -49,22 +49,22 @@ This package contains the static libraries, headers, and other support files
 required for developing applications against libopendkim.
 
 %prep
-%setup -q
+%setup
 %patch0 -p1
 
 %build
 %configure --enable-stats
-sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
-sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+%{__sed} -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+%{__sed} -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
-make DESTDIR=%{buildroot} install %{?_smp_mflags}
-mkdir -p %{buildroot}%{_sysconfdir}
-mkdir -p %{buildroot}%{_initrddir}
-install -m 0755 contrib/init/redhat/opendkim %{buildroot}%{_initrddir}/%{name}
-cat > %{buildroot}%{_sysconfdir}/%{name}.conf << 'EOF'
+%{__make} DESTDIR=%{buildroot} install %{?_smp_mflags}
+%{__mkdir_p} %{buildroot}%{_sysconfdir}
+%{__mkdir_p} %{buildroot}%{_initrddir}
+%{__install} -m 0755 contrib/init/redhat/opendkim %{buildroot}%{_initrddir}/%{name}
+%{__cat} > %{buildroot}%{_sysconfdir}/%{name}.conf << 'EOF'
 ## BASIC OPENDKIM CONFIGURATION FILE
 ## See opendkim.conf(5) or %{_docdir}/%{name}-%{version}/%{name}.conf.sample for more
 
@@ -142,8 +142,8 @@ KeyFile	%{_sysconfdir}/%{name}/keys/default.private
 #InternalHosts	refile:%{_sysconfdir}/%{name}/TrustedHosts
 EOF
 
-mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
-cat > %{buildroot}%{_sysconfdir}/sysconfig/%{name} << 'EOF'
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/sysconfig
+%{__cat} > %{buildroot}%{_sysconfdir}/sysconfig/%{name} << 'EOF'
 # Uncomment the following line to disable automatic DKIM key creation
 #AUTOCREATE_DKIM_KEYS=NO
 #
@@ -154,8 +154,8 @@ cat > %{buildroot}%{_sysconfdir}/sysconfig/%{name} << 'EOF'
 #DKIM_KEYDIR=/etc/opendkim/keys
 EOF
 
-mkdir -p %{buildroot}%{_sysconfdir}/%{name}
-cat > %{buildroot}%{_sysconfdir}/%{name}/SigningTable << 'EOF'
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/%{name}
+%{__cat} > %{buildroot}%{_sysconfdir}/%{name}/SigningTable << 'EOF'
 # The following wildcard will work only if
 # refile:%{_sysconfdir}/%{name}/SigningTable is included
 # in %{_sysconfdir}/%{name}.conf.
@@ -172,7 +172,7 @@ cat > %{buildroot}%{_sysconfdir}/%{name}/SigningTable << 'EOF'
 #example.com default._domainkey.example.com
 EOF
 
-cat > %{buildroot}%{_sysconfdir}/%{name}/KeyTable << 'EOF'
+%{__cat} > %{buildroot}%{_sysconfdir}/%{name}/KeyTable << 'EOF'
 # To use this file, uncomment the #KeyTable option in %{_sysconfdir}/%{name}.conf,
 # then uncomment the following line and replace example.com with your domain
 # name, then restart OpenDKIM. Additional keys may be added on separate lines.
@@ -180,7 +180,7 @@ cat > %{buildroot}%{_sysconfdir}/%{name}/KeyTable << 'EOF'
 #default._domainkey.example.com example.com:default:%{_sysconfdir}/%{name}/keys/default.private
 EOF
 
-cat > %{buildroot}%{_sysconfdir}/%{name}/TrustedHosts << 'EOF'
+%{__cat} > %{buildroot}%{_sysconfdir}/%{name}/TrustedHosts << 'EOF'
 # To use this file, uncomment the #ExternalIgnoreList and/or the #InternalHosts
 # option in %{_sysconfdir}/%{name}.conf then restart OpenDKIM. Additional hosts
 # may be added on separate lines (IP addresses, hostnames, or CIDR ranges).
@@ -188,25 +188,25 @@ cat > %{buildroot}%{_sysconfdir}/%{name}/TrustedHosts << 'EOF'
 127.0.0.1
 EOF
 
-install -p -d %{buildroot}%{_sysconfdir}/tmpfiles.d
-cat > %{buildroot}%{_sysconfdir}/tmpfiles.d/%{name}.conf <<'EOF'
+%{__install} -p -d %{buildroot}%{_sysconfdir}/tmpfiles.d
+%{__cat} > %{buildroot}%{_sysconfdir}/tmpfiles.d/%{name}.conf <<'EOF'
 D %{_localstatedir}/run/%{name} 0700 %{name} %{name} -
 EOF
 
-rm -r %{buildroot}%{_prefix}/share/doc/%{name}
-rm %{buildroot}%{_libdir}/*.a
-rm %{buildroot}%{_libdir}/*.la
+%{__rm} -r %{buildroot}%{_prefix}/share/doc/%{name}
+%{__rm} %{buildroot}%{_libdir}/*.a
+%{__rm} %{buildroot}%{_libdir}/*.la
 
-mkdir -p %{buildroot}%{_localstatedir}/spool/%{name}
-mkdir -p %{buildroot}%{_localstatedir}/run/%{name}
-mkdir -p %{buildroot}%{_sysconfdir}/%{name}
-mkdir %{buildroot}%{_sysconfdir}/%{name}/keys
+%{__mkdir_p} %{buildroot}%{_localstatedir}/spool/%{name}
+%{__mkdir_p} %{buildroot}%{_localstatedir}/run/%{name}
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/%{name}
+%{__mkdir} %{buildroot}%{_sysconfdir}/%{name}/keys
 
-install -m 0755 contrib/stats/%{name}-reportstats %{buildroot}%{_prefix}/bin/%{name}-reportstats
-sed -i 's|^OPENDKIMSTATSDIR="/var/db/opendkim"|OPENDKIMSTATSDIR="%{_localstatedir}/spool/%{name}"|g' %{buildroot}%{_prefix}/bin/%{name}-reportstats
-sed -i 's|^OPENDKIMDATOWNER="mailnull:mailnull"|OPENDKIMDATOWNER="%{name}:%{name}"|g' %{buildroot}%{_prefix}/bin/%{name}-reportstats
+%{__install} -m 0755 contrib/stats/%{name}-reportstats %{buildroot}%{_prefix}/bin/%{name}-reportstats
+%{__sed} -i 's|^OPENDKIMSTATSDIR="/var/db/opendkim"|OPENDKIMSTATSDIR="%{_localstatedir}/spool/%{name}"|g' %{buildroot}%{_prefix}/bin/%{name}-reportstats
+%{__sed} -i 's|^OPENDKIMDATOWNER="mailnull:mailnull"|OPENDKIMDATOWNER="%{name}:%{name}"|g' %{buildroot}%{_prefix}/bin/%{name}-reportstats
 
-chmod 0644 contrib/convert/convert_keylist.sh
+%{__chmod} 0644 contrib/convert/convert_keylist.sh
 
 %pre
 getent group %{name} >/dev/null || groupadd -r %{name}
@@ -237,7 +237,7 @@ exit 0
 
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -275,7 +275,7 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
-* Sun May  6 2012 Kouhei Sutou <kou@clear-code.com>
+* Sun May  6 2012 Kouhei Sutou <kou@clear-code.com> - 2.5.2-1
 - Imported from EPEL.
 - Upgraded to 2.5.2.
 
