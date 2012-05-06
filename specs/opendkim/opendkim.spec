@@ -1,24 +1,30 @@
-# Copyright (c) 2010, 2011, The OpenDKIM Project.
-#
-# $Id: opendkim.spec.in,v 1.2 2010/10/25 17:13:47 cm-msk Exp $
+# $Id$
+# Authority: The OpenDKIM Project
+# Upstream: http://www.opendkim.org/
 
 Summary: A DomainKeys Identified Mail (DKIM) milter to sign and/or verify mail
 Name: opendkim
 Version: 2.4.2
 Release: 6%{?dist}
 License: BSD and Sendmail
-URL: http://opendkim.org/
 Group: System Environment/Daemons
+URL: http://opendkim.org/
+
+Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0: %{name}-%{version}-initscript.patch
+Patch1: %{name}-%{version}-installreadme.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires: sendmail-devel
+BuildRequires: openssl-devel
+BuildRequires: pkgconfig
+BuildRequires: rpm-macros-rpmforge
+
 Requires: lib%{name} = %{version}-%{release}
 Requires (pre): shadow-utils
 Requires (post): chkconfig
 Requires (preun): chkconfig, initscripts
 Requires (postun): initscripts
-BuildRequires: sendmail-devel, openssl-devel, pkgconfig
-Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0: %{name}-%{version}-initscript.patch
-Patch1: %{name}-%{version}-installreadme.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 OpenDKIM allows signing and/or verification of email through an open source
@@ -271,6 +277,9 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sun May  6 2012 Kouhei Sutou <kou@clear-code.com>
+- Import from EPEL.
+
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.4.2-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
