@@ -1,15 +1,23 @@
+# $Id$
+# Authority: SUZUKI Takahiko
+# Upstream: http://enma.sourceforge.net/
+
 Summary: A milter program for domain authentication technologies
 Name: enma
 Version: 1.2.0
-Release: 1
+Release: 1%{?dist}
 License: BSD
+Group: System Environment/Daemons
 URL: http://enma.sourceforge.net/
-Group: Applications/Internet
-Source0: enma-1.2.0.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
 BuildRequires: ldns-devel >= 1.6.0
 BuildRequires: sendmail-devel
 BuildRequires: openssl-devel >= 0.9.8
+BuildRequires: rpm-macros-rpmforge
+
 Requires: ldns >= 1.6.0
 Requires: openssl >= 0.9.8
 Requires(post): chkconfig
@@ -57,16 +65,19 @@ fi
 %files
 %defattr(-, root, root, -)
 %doc ChangeLog LICENSE LICENSE.ja README README.ja INSTALL INSTALL.ja
+%doc %{_mandir}/man?/*
+%doc %{_mandir}/*/man?/*
 %{_bindir}/*
 %{_libdir}/*
 %{_libexecdir}/*
-%{_mandir}/*/*
-%{_mandir}/ja*/*/*
 %{_initrddir}/enma
 %config %{_sysconfdir}/enma.conf
 %attr(0750, daemon, daemon) %dir %{_localstatedir}/run/enma/
 
 %changelog
+* Sun May 6 2012 Kouhei Sutou <kou@clear-code.com>
+- Imported the official spec.
+
 * Tue Jan 31 2012 SUZUKI Takahiko <takahiko@iij.ad.jp>
 - (1.2.0-1)
 - new upstream release
