@@ -15,7 +15,7 @@
  
  Note that there is a difference between "OpenDKIM" and "opendkim".
  "OpenDKIM" is a package containing a library, a filter and some tools to
-@@ -23,167 +23,100 @@
+@@ -23,163 +23,99 @@
  
  The opendkim filter program incorporates the libopendkim library and works
  with recent versions of sendmail and Postfix or any other MTA that supports
@@ -56,10 +56,6 @@
 -		include, library path and libary name where the default 
 -		locations of --with-db are not enough.
 +Sendmail users, see: http://www.sendmail.com/sm/partners/milter_partners/
- 
----with-domainkeys
--		Sendmail's "libdk" include file and library for verifying
--		messages signed with the older DomainKeys specification.
  
 ---with-libgcrypt
 -		Location of GNU's libgcrypt includes and library.

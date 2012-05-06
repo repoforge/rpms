@@ -4,15 +4,14 @@
 
 Summary: A DomainKeys Identified Mail (DKIM) milter to sign and/or verify mail
 Name: opendkim
-Version: 2.4.2
-Release: 6%{?dist}
+Version: 2.5.2
+Release: 1%{?dist}
 License: BSD and Sendmail
 Group: System Environment/Daemons
 URL: http://opendkim.org/
 
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0: %{name}-%{version}-initscript.patch
-Patch1: %{name}-%{version}-installreadme.patch
+Patch0: %{name}-%{version}-installreadme.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: sendmail-devel
@@ -52,7 +51,6 @@ required for developing applications against libopendkim.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %configure --enable-stats
@@ -278,7 +276,8 @@ rm -rf %{buildroot}
 
 %changelog
 * Sun May  6 2012 Kouhei Sutou <kou@clear-code.com>
-- Import from EPEL.
+- Imported from EPEL.
+- Upgraded to 2.5.2.
 
 * Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.4.2-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
