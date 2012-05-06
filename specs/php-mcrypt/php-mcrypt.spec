@@ -2,8 +2,9 @@
 # Authority: shuff
 # Upstream: John Smith <imipak$sourceforge,net>
 
-%define real_name mcrypt
+# ExcludeDist: el2 el3
 
+%define real_name mcrypt
 
 %{?el4:%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | echo 4.3.9)}
 %{?el5:%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | echo 5.1.6)}
@@ -19,7 +20,11 @@ License: GPL
 Group: Development/Languages
 URL: http://www.php.net/manual/en/book.mcrypt.php
 
-Source:  http://www.php.net/distributions/php-%{pversion}.tar.gz
+# All those php version are considered as outdated
+%{?el4:Source:  http://museum.php.net/php4/php-%{pversion}.tar.gz}
+%{?el5:Source:  http://museum.php.net/php5/php-%{pversion}.tar.gz}
+%{?el6:Source:  http://museum.php.net/php5/php-%{pversion}.tar.gz}
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
