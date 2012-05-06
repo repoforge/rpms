@@ -14,7 +14,7 @@ Summary:	UDP-to-HTTP multicast traffic relay daemon
 Group:		Applications/Internet
 License:	GPLv3+
 URL:		http://sourceforge.net/projects/udpxy/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}.%{major_version}.%{minor_version}-%{rel_version}-prod.tgz
+Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/Chipmunk-1.0/%{name}.%{major_version}.%{minor_version}-%{rel_version}-prod.tgz
 Source1:	udpxy.init
 Source2:	udpxy.sysconfig
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
