@@ -1,0 +1,94 @@
+--- opendkim-2.4.2/contrib/init/redhat/opendkim.in	2011-08-05 21:09:35.000000000 -0700
++++ opendkim-2.4.2p/contrib/init/redhat/opendkim.in	2011-09-22 10:59:20.765451439 -0700
+@@ -2,7 +2,7 @@
+ #
+ # opendkim    Start and stop OpenDKIM.
+ 
+-# chkconfig: 2345 41 61
++# chkconfig: - 41 59
+ # description: OpenDKIM implements the DomainKeys Identified Mail (DKIM)
+ #              service and a milter-based filter application that can plug
+ #              in to any milter-aware MTA.
+@@ -11,33 +11,73 @@
+ 
+ ### BEGIN INIT INFO
+ # Provides: opendkim
+-# Required-Start: opendkim
+-# Required-Stop: opendkim
+ # Short-Description: Start and stop OpenDKIM
+ # Description:	OpenDKIM implements the DomainKeys Identified Mail
+ #		(DKIM) service and a milter-based filter application
+ #		that can plug in to any milter-aware MTA.
+ ### END INIT INFO
+ 
+-# OpenDKIM startup script v1.3 for RHEL/CentOS/Fedora
+-# by Steve Jenkins (SteveJenkins.com) - 02-15-2011
+-# Based on a script by Andrew Colin Kissa (TopDog) for dkim-milter - 28-05-2009
++# OpenDKIM startup script v1.7 for RHEL/CentOS/Fedora
++# by Steve Jenkins (SteveJenkins.com) - 09-22-2011
++# Based on a script by Andrew Colin Kissa (TopDog) for dkim-milter - 05-28-2009
+ # - Additional functionality to prevent multiple instances and a reload
+-#   handler by Chris LaJoie - 11-01-2011
++#   handler by Chris LaJoie - 01-11-2011
+ # - Added notification (along with with current PID) if "start" is issued when
+ #   OpenDKIM is already running - 02-15-2011
++# - Added support to generate default keys on start - 08-22-2011
++# - Added support for /etc/sysconfig/opendkim override of default init script
++#   setup parameters - 09-19-2011
++# - Changed default stop priority - 09-19-2011
++# - Updated success and warning outputs for default key generation - 09-20-2011
++# - Changed default key directory ownership and permissions - 09-22-2011
+ 
+ . /etc/rc.d/init.d/functions
+ 
+ prefix=@prefix@
+ exec_prefix=@exec_prefix@
+ 
+-DAEMON=@sbindir@/opendkim
+-CONF_FILE=@sysconfdir@/opendkim.conf
+-PID_FILE=@localstatedir@/run/opendkim/opendkim.pid
+ RETVAL=0
++prog="opendkim"
++
++DAEMON=@sbindir@/$prog
++CONF_FILE=@sysconfdir@/$prog.conf
++PID_FILE=@localstatedir@/run/$prog/$prog.pid
++KEYGEN=@exec_prefix@/bin/opendkim-genkey
++DKIM_KEYDIR=@sysconfdir@/$prog/keys
++DKIM_SELECTOR=default
++AUTOCREATE_DKIM_KEYS=yes
++
++if [ -f /etc/sysconfig/opendkim ]; then
++    . /etc/sysconfig/opendkim
++fi
++
++do_dkim_keygen() {
++	if [ ! -s $DKIM_KEYDIR/$DKIM_SELECTOR.private ]; then
++		echo -n $"Generating default DKIM keys: "
++		if [ "x`hostname --domain`" = "x" ]; then
++			echo_warning
++			echo
++			echo $"Cannot determine host's domain name, so skipping default key generation."
++		else
++			mkdir -p $DKIM_KEYDIR
++                        $KEYGEN -D $DKIM_KEYDIR -s $DKIM_SELECTOR -d `hostname --domain`
++                        chown root:$prog $DKIM_KEYDIR
++			chown $prog:$prog $DKIM_KEYDIR/$DKIM_SELECTOR.{private,txt}
++                        chmod 600 $DKIM_KEYDIR/$DKIM_SELECTOR.private
++                        chmod 644 $DKIM_KEYDIR/$DKIM_SELECTOR.txt
++			echo_success
++			echo
++	                echo Default DKIM keys for `hostname --domain` created in $DKIM_KEYDIR.
++                fi
++	fi
++}
+ 
+ start() {
++	# Create keys if necessary
++	if [ "x${AUTOCREATE_DKIM_KEYS}" != xNO ]; then
++		do_dkim_keygen
++	fi
++
+ 	echo -n $"Starting OpenDKIM Milter: "
+ 	if [ -f $PID_FILE ]; then
+ 		PID=`cat $PID_FILE`
