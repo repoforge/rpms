@@ -9,12 +9,12 @@
 Summary: Scan ssh server logs and block hosts
 Name: denyhosts
 Version: 2.6
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://denyhosts.sourceforge.net/
 
-Source: http://dl.sf.net/denyhosts/%{real_name}-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/%{name}/%{real_name}-%{version}.tar.gz
 
 Patch0: denyhosts-2.6-regex.patch
 
@@ -74,6 +74,9 @@ fi
 /etc/init.d/denyhosts
 
 %changelog
+* Mon May 7 2012 Kouhei Sutou <kou@clear-code.com> - 2.6-5
+- Fixed download URL at SF.net.
+
 * Wed Sep 09 2009 Steve Huff <shuff@vecna.org> - 2.6-4
 - imported regex security patch from Fedora
   https://bugzilla.redhat.com/show_bug.cgi?id=244943
