@@ -70,6 +70,7 @@ fi
 %doc CHANGELOG.txt daemon-control-dist denyhosts.cfg-dist LICENSE.txt README.txt
 %{_bindir}/denyhosts.py*
 %{python_sitearch}/DenyHosts/
+%{python_sitearch}/DenyHosts-*.egg-info
 %config (noreplace) /etc/denyhosts/denyhosts.cfg
 /etc/init.d/denyhosts
 
@@ -77,6 +78,7 @@ fi
 * Mon May 7 2012 Kouhei Sutou <kou@clear-code.com> - 2.6-5
 - Fixed download URL at SF.net.
 - Added missing imported regex security patch from Fedora.
+- Added .egg-info into .rpm.
 
 * Wed Sep 09 2009 Steve Huff <shuff@vecna.org> - 2.6-4
 - imported regex security patch from Fedora
