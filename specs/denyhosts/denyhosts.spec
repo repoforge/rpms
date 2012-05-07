@@ -76,6 +76,7 @@ fi
 %changelog
 * Mon May 7 2012 Kouhei Sutou <kou@clear-code.com> - 2.6-5
 - Fixed download URL at SF.net.
+- Added missing imported regex security patch from Fedora.
 
 * Wed Sep 09 2009 Steve Huff <shuff@vecna.org> - 2.6-4
 - imported regex security patch from Fedora
