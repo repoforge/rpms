@@ -1,0 +1,41 @@
+From 80047d74644eeda55c451aea59951eb502649cf4 Mon Sep 17 00:00:00 2001
+From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+Date: Thu, 29 Jul 2010 19:43:08 +0200
+Subject: [PATCH 7/8] check vasprintf return value
+
+---
+ lib/libutil/asprintf.c |    3 ++-
+ lib/util/casprintf.c   |    3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/lib/libutil/asprintf.c b/lib/libutil/asprintf.c
+index a79cd81..5a06f0f 100644
+--- a/lib/libutil/asprintf.c
++++ b/lib/libutil/asprintf.c
+@@ -121,7 +121,8 @@ xmlrpc_vasprintf(const char ** const retvalP,
+     char * string;
+ 
+ #if HAVE_ASPRINTF
+-    vasprintf(&string, fmt, varargs);
++    if (vasprintf(&string, fmt, varargs) < 0)
++        string = NULL;
+ #else
+     simpleVasprintf(&string, fmt, varargs);
+ #endif
+diff --git a/lib/util/casprintf.c b/lib/util/casprintf.c
+index 643f145..9139253 100644
+--- a/lib/util/casprintf.c
++++ b/lib/util/casprintf.c
+@@ -99,7 +99,8 @@ cvasprintf(const char ** const retvalP,
+     char * string;
+ 
+ #if HAVE_ASPRINTF
+-    vasprintf(&string, fmt, varargs);
++    if (vasprintf(&string, fmt, varargs) < 0)
++        string = NULL;
+ #else
+     simpleVasprintf(&string, fmt, varargs);
+ #endif
+-- 
+1.7.3.4
+

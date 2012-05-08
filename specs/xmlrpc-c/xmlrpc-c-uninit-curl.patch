@@ -1,7 +1,7 @@
-From 0b4f92b8ebaf4c6c57b5f68f7a944ee8f4b6e964 Mon Sep 17 00:00:00 2001
+From 6affc342b968ec042d9efe84ca0ea40c8d88e8bf Mon Sep 17 00:00:00 2001
 From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
 Date: Sat, 21 Nov 2009 14:12:41 +0100
-Subject: [PATCH 5/5] fixed unitialized variable
+Subject: [PATCH 4/5] fixed unitialized variable
 
 Reported by Nikola Pajkovsky <npajkovs AT redhat.com>:
 
@@ -12,10 +12,10 @@ Reported by Nikola Pajkovsky <npajkovs AT redhat.com>:
  1 files changed, 1 insertions(+), 0 deletions(-)
 
 diff --git a/lib/curl_transport/curltransaction.c b/lib/curl_transport/curltransaction.c
-index 019c401..4e592da 100644
+index 59cb6ab..3c75010 100644
 --- a/lib/curl_transport/curltransaction.c
 +++ b/lib/curl_transport/curltransaction.c
-@@ -605,6 +605,7 @@ curlTransaction_create(xmlrpc_env *               const envP,
+@@ -641,6 +641,7 @@ curlTransaction_create(xmlrpc_env *               const envP,
          curlTransactionP->curlSessionP = curlSessionP;
          curlTransactionP->userContextP = userContextP;
          curlTransactionP->progress     = progress;
@@ -24,5 +24,5 @@ index 019c401..4e592da 100644
          curlTransactionP->serverUrl = strdup(serverP->serverUrl);
          if (curlTransactionP->serverUrl == NULL)
 -- 
-1.7.0.1
+1.7.1.1
 
