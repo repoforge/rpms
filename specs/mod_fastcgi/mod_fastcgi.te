@@ -1,0 +1,33 @@
+# Increment for changes
+module mod_fastcgi 1.0.0;
+
+require {
+        type devpts_t;
+        type httpd_t;
+        type httpd_log_t;
+        type httpd_suexec_t;
+        type httpd_sys_script_t;
+        type httpd_var_run_t;
+        class chr_file { ioctl };
+        class dir { setattr create };
+        class file { ioctl };
+        class process { siginh rlimitinh noatsecure };
+        class sock_file { getattr setattr read write unlink create };
+        class unix_stream_socket { read write };
+};
+
+# Allow mod_fastcgi to manipulate sockets
+allow httpd_t httpd_var_run_t:sock_file { getattr setattr read write unlink create };
+allow httpd_sys_script_t httpd_var_run_t:sock_file { getattr setattr read write unlink create };
+
+# fastcgi is wrapped in suexec, so we need to allow some suexec stuff too
+allow httpd_suexec_t httpd_t:unix_stream_socket { read write };
+allow httpd_suexec_t httpd_suexec_t:process { siginh rlimitinh noatsecure };
+allow httpd_suexec_t httpd_sys_script_t:process { siginh rlimitinh noatsecure };
+ 
+# Allow httpd to create and use files and sockets for communicating with mod_fastcgi
+allow httpd_t httpd_var_run_t:dir { setattr create };
+
+# These are probably leaked file descriptors (per Atomic mod_fcgi-selinux RPM)
+dontaudit httpd_t devpts_t:chr_file ioctl;
+dontaudit httpd_sys_script_t httpd_log_t:file ioctl;
