@@ -1,6 +1,6 @@
 # $Id$
-# Authority: SUZUKI Takahiko
-# Upstream: http://enma.sourceforge.net/
+# Authority: dfateyev
+# Upstream: SUZUKI Takahiko <takahiko$iij,ad,jp>
 
 Summary: A milter program for domain authentication technologies
 Name: enma
@@ -16,7 +16,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: ldns-devel >= 1.6.0
 BuildRequires: sendmail-devel
 BuildRequires: openssl-devel >= 0.9.8
-BuildRequires: rpm-macros-rpmforge
 
 Requires: ldns >= 1.6.0
 Requires: openssl >= 0.9.8
@@ -29,24 +28,24 @@ message senders with SPF, Sender ID, DKIM and/or DKIM ADSP and inserts
 the Authentication-Results: field with authentication results.
 
 %prep
-%setup -q
+%setup
 
 %build
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%{__rm} -rf %{buildroot}
+%{__make} install DESTDIR=%{buildroot}
 
-mkdir -p %{buildroot}%{_initrddir}
-install -m 755 enma/etc/rc.enma-centos %{buildroot}%{_initrddir}/enma
-install -m 644 enma/etc/enma.conf.sample %{buildroot}%{_sysconfdir}/enma.conf
+%{__mkdir_p} %{buildroot}%{_initrddir}
+%{__install} -m 755 enma/etc/rc.enma-centos %{buildroot}%{_initrddir}/enma
+%{__install} -m 644 enma/etc/enma.conf.sample %{buildroot}%{_sysconfdir}/enma.conf
 
-mkdir -p %{buildroot}%{_localstatedir}/run/enma/
+%{__mkdir_p} %{buildroot}%{_localstatedir}/run/enma/
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 
 %post
 /sbin/chkconfig --add enma
@@ -75,7 +74,7 @@ fi
 %attr(0750, daemon, daemon) %dir %{_localstatedir}/run/enma/
 
 %changelog
-* Sun May 6 2012 Kouhei Sutou <kou@clear-code.com>
+* Sun May 6 2012 Kouhei Sutou <kou@clear-code.com> - 1.2.0-1
 - Imported the official spec.
 
 * Tue Jan 31 2012 SUZUKI Takahiko <takahiko@iij.ad.jp>
