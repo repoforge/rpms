@@ -1,11 +1,11 @@
 # $Id$
-# Authority: Axel Thimm
-# Upstream: http://www.libspf2.org/
+# Authority: dfateyev
+# Upstream: Wayne Schlitt <contact$anarres,org>
 
 Summary: An implemenation of the Sender Policy Framework
 Name: libspf2
 Version: 1.2.9
-Release: 7%{?dist}
+Release: 1%{?dist}
 License: GPL/BSD dual license
 Group: System Environment/Libraries
 URL: http://www.libspf2.org/
@@ -15,7 +15,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext
 BuildRequires: gcc-c++
-BuildRequires: rpm-macros-rpmforge
 
 %description
 libspf2 implements the Sender Policy Framework, a part of the SPF/SRS
@@ -48,10 +47,10 @@ to install %{name}-devel.
 ac_cv_func___ns_get16=no
 export ac_cv_func___ns_get16
 %configure
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
 %post
@@ -76,7 +75,7 @@ rm -rf %{buildroot}
 %{_libdir}/*.la
 
 %changelog
-* Sun May 6 2012 Kouhei Sutou <kou@clear-code.com> - 1.2.9-7
+* Sun May 6 2012 Kouhei Sutou <kou@clear-code.com> - 1.2.9-1
 - Imported from ATrpms.
 
 * Tue Mar  1 2011 Axel Thimm <Axel.Thimm@ATrpms.net> - 1.2.9-6
