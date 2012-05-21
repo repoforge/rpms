@@ -4,9 +4,9 @@
 
 Summary: Text-mode interface for git
 Name: tig
-Version: 0.18
+Version: 1.0
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 Group: Development/Tools
 URL: http://jonas.nitro.dk/tig/
 
@@ -20,7 +20,6 @@ BuildRequires: docbook-utils
 BuildRequires: gcc
 BuildRequires: git-core
 BuildRequires: ncurses-devel
-BuildRequires: rpm-macros-rpmforge
 BuildRequires: xmlto
 BuildRequires: /usr/bin/iconv
 Requires: bash-completion
@@ -60,12 +59,15 @@ with the log message, diffstat, and the diff.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING INSTALL NEWS* README* SITES TODO VERSION contrib/ tigdocs/
+%doc BUGS COPYING INSTALL NEWS* README* SITES contrib/ tigdocs/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_sysconfdir}/bash_completion.d/tig
 
 %changelog
+* Mon May 21 2012 Yury V. Zaytsev <yury@shurup.com> - 1.0-1
+- Updated to version 1.0.
+
 * Tue Aug 30 2011 Steve Huff <shuff@vecna.org> - 0.18-1
 - Updated to version 0.18.
 
