@@ -16,7 +16,7 @@
 Summary: Mail virus-scanner
 Name: amavisd-new
 Version: 2.6.6
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -262,7 +262,9 @@ case "$1" in
     ;;
   status)
     status $prog
-    status $prog2
+    if [ "$MILTER_SOCKET" -a -x "%{_sbindir}/$prog2" ]; then
+        status $prog2
+    fi
     RETVAL=$?
     ;;
   *)
@@ -494,6 +496,10 @@ fi
 %{_sbindir}/amavisd-snmp-subagent
 
 %changelog
+* Tue May 22 2012 Dave Miller <justdave@mozilla.com> - 2.6.6-3
+- initscript status command shouldn't fail if amavis-milter isn't configured
+  (issue 171)
+
 * Sun Jan 15 2012 David Hrbáč <david@hrbac.cz> - 2.6.6-2
 - first attempt to fix EL6 build
 
