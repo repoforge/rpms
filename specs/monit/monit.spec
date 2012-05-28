@@ -6,8 +6,8 @@
 
 Summary: Process monitor and restart utility
 Name: monit
-Version: 5.3.2
-Release: 3%{?dist}
+Version: 5.4
+Release: 1%{?dist}
 License: GPLv3
 Group: Applications/Internet
 URL: http://mmonit.com/monit/
@@ -102,6 +102,9 @@ fi
 %attr(0600, root, root) %config(noreplace) %{_sysconfdir}/monit.conf
 
 %changelog
+* Mon May 28 2012 David Hrbáč <david@hrbac.cz> - 5.4-1
+- new upstream release
+
 * Tue Apr 17 2012 Derek Tamsen <dtamsen@gmail.com> - 5.3.2-3
 - Fixed monitor.h source path so it can be patched to reference /etc/monit.conf instead of /etc/monitrc
 - Updated /etc/init.d/monit so config path is /etc/monit.conf
