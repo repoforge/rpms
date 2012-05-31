@@ -11,7 +11,7 @@
 Summary: Smart decoder for uuencode, xxencode, Base64 and BinHex
 Name: uudeview
 Version: 0.5.20
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://www.fpx.de/fp/Software/UUDeview/
@@ -19,6 +19,7 @@ URL: http://www.fpx.de/fp/Software/UUDeview/
 Source: http://www.fpx.de/fp/Software/UUDeview/download/uudeview-%{version}.tar.gz
 Patch0: uudeview-shared.patch
 Patch1: uudeview-latex-psfig-deprecated.patch
+Patch2: uudeview-debian-patches.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf, libtool
@@ -57,6 +58,7 @@ you will need to install %{name}-devel.
 %setup
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize} --force --copy
@@ -82,7 +84,7 @@ you will need to install %{name}-devel.
 %doc HISTORY IAFA-PACKAGE README* doc uudeview.lsm
 %doc %{_mandir}/man1/uudeview.1*
 %doc %{_mandir}/man1/uuenview.1*
-#%{_bindir}/minews
+%{_bindir}/minews
 %{_bindir}/uudeview
 %{_bindir}/uuenview
 %{_libdir}/libuu.so.*
@@ -103,6 +105,10 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libuu.la
 
 %changelog
+* Wed Mar 28 2012 Tom G. Christensen <tgc@statsbiblioteket.dk> - 0.5.20-2
+- Fix shared library generation for newer libtool
+- Add patches from Debian (via Fedora)
+
 * Thu Nov 29 2007 Dries Verachtert <dries@ulyssis.org> - 0.5.20-1
 - Added patch for the latex docs, thanks to Nicolas Thierry-Mieg.
 
