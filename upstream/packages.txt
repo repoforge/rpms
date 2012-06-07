@@ -22,6 +22,7 @@ git git-([0-9.]*?).tar.gz GOOGLE-DEFAULT:git-core
 htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
+lambdamoo DEFAULT SF-DEFAULT
 ldns DEFAULT http://www.nlnetlabs.nl/downloads/ldns/
 lha DEFAULT DEFAULT
 libspf2 DEFAULT http://www.libspf2.org/spf/
@@ -124,8 +125,8 @@ re2c DEFAULT SF-DEFAULT
 ripole DEFAULT http://www.pldaniels.com/ripole
 rkhunter DEFAULT SF-DEFAULT
 rrdtool DEFAULT http://oss.oetiker.ch/rrdtool/pub/
-rtorrent DEFAULT http://libtorrent.rakshasa.no/downloads/
 rsync DEFAULT http://rsync.samba.org/
+rtorrent DEFAULT http://libtorrent.rakshasa.no/downloads/
 siege DEFAULT http://www.joedog.org/pub/siege/
 snappy DEFAULT GOOGLE-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/
