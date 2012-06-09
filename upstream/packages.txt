@@ -15,6 +15,7 @@ denyhosts DEFAULT SF-DEFAULT
 discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
 dnsmasq DEFAULT http://www.thekelleys.org.uk/dnsmasq/
 enma DEFAULT SF-DEFAULT
+freetds DEFAULT ftp://ftp.ibiblio.org/pub/Linux/ALPHA/freetds/stable/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 fuse-rdiff-backup-fs DEFAULT:rdiff-backup-fs GOOGLE-DEFAULT
 ganglia DEFAULT SF-DEFAULT
