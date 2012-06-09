@@ -14,7 +14,7 @@
 
 Summary: Perl module named DBD-Sybase
 Name: perl-DBD-Sybase
-Version: 1.10
+Version: 1.14
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -75,6 +75,9 @@ find eg/ -type f -exec %{__chmod} a-x {} \;
 %exclude %{perl_vendorarch}/DBD/dbd-sybase.pod
 
 %changelog
+* Sat Jun 09 2012 David Hrbáč <david@hrbac.cz> - 1.14-1
+- new upstream release
+
 * Tue Jan 25 2011 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 
