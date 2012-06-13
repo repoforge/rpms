@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.2.2.36
+Version: 0.2.2.37
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -116,6 +116,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Wed Jun 13 2012 David Hrbáč <david@hrbac.cz> - 0.2.2.37-1
+- new upstream release
+
 * Thu Jun 07 2012 David Hrbáč <david@hrbac.cz> - 0.2.2.36-1
 - new upstream release
 
