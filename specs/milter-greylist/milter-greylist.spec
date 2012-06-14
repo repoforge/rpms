@@ -7,7 +7,7 @@
 Summary: Stand-alone milter written in C that implements greylist filtering
 Name: milter-greylist
 Version: 4.2.7
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://hcpnet.free.fr/milter-greylist/
@@ -38,7 +38,8 @@ before the second attempt.
 
 %build
 %configure \
-  --with-user=%{user}
+  --with-user=%{user} \
+  --enable-dnsrbl
 %{__make}
 
 %install
@@ -77,9 +78,11 @@ fi
 
 %defattr(-, %{user}, %{user}, 0755)
 %dir %{_localstatedir}/milter-greylist/
-%attr(0600, %{user}, %{user}) %ghost %{_localstatedir}/milter-greylist/greylist.db
 
 %changelog
+* Thu Jun 14 2012 David Hrbáč <david@hrbac.cz> - 4.2.7-2
+- enable dnsrbl
+
 * Sat May 5 2012 2012 Kouhei Sutou <kou@clear-code.com> - 4.2.7-1
 - Upgrade to 4.2.7.
 
