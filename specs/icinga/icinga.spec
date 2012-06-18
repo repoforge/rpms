@@ -20,7 +20,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.7.0
+Version: 1.7.1
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -382,6 +382,9 @@ fi
 
 
 %changelog
+* Mon Jun 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-1
+- bump to 1.7.1
+
 * Sun May 06 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.0-1
 - drop idoutils, add idoutils-libdbi-mysql and idoutils-libdbi-pgsql
 - add requires for libdbi drivers mysql and pgsql
