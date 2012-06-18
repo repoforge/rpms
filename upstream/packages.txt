@@ -15,6 +15,7 @@ denyhosts DEFAULT SF-DEFAULT
 discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
 dnsmasq DEFAULT http://www.thekelleys.org.uk/dnsmasq/
 enma DEFAULT SF-DEFAULT
+freetds DEFAULT ftp://ftp.ibiblio.org/pub/Linux/ALPHA/freetds/stable/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 fuse-rdiff-backup-fs DEFAULT:rdiff-backup-fs GOOGLE-DEFAULT
 ganglia DEFAULT SF-DEFAULT
@@ -22,6 +23,7 @@ git git-([0-9.]*?).tar.gz GOOGLE-DEFAULT:git-core
 htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
+lambdamoo DEFAULT SF-DEFAULT
 ldns DEFAULT http://www.nlnetlabs.nl/downloads/ldns/
 lha DEFAULT DEFAULT
 libspf2 DEFAULT http://www.libspf2.org/spf/
@@ -58,6 +60,7 @@ perl-Convert-BinHex CPAN-DEFAULT CPAN-DEFAULT
 perl-Convert-TNEF CPAN-DEFAULT CPAN-DEFAULT
 perl-Convert-UUlib CPAN-DEFAULT CPAN-DEFAULT
 perl-Crypt-OpenSSL-RSA CPAN-DEFAULT CPAN-DEFAULT
+perl-DBD-Sybase CPAN-DEFAULT CPAN-DEFAULT
 perl-DBI CPAN-DEFAULT CPAN-DEFAULT
 perl-DB_File CPAN-DEFAULT CPAN-DEFAULT
 perl-Dancer CPAN-DEFAULT CPAN-DEFAULT
@@ -101,8 +104,11 @@ perl-Pod-Escapes CPAN-DEFAULT CPAN-DEFAULT
 perl-Pod-Simple CPAN-DEFAULT CPAN-DEFAULT
 perl-SQL-Abstract CPAN-DEFAULT CPAN-DEFAULT
 perl-SVN-Access CPAN-DEFAULT CPAN-DEFAULT
+perl-Test-Deep CPAN-DEFAULT CPAN-DEFAULT
 perl-Test-Exception CPAN-DEFAULT CPAN-DEFAULT
+perl-Test-NoWarnings CPAN-DEFAULT CPAN-DEFAULT
 perl-Test-Pod CPAN-DEFAULT CPAN-DEFAULT
+perl-Test-Tester CPAN-DEFAULT CPAN-DEFAULT
 perl-Tie-IxHash CPAN-DEFAULT CPAN-DEFAULT
 perl-Time-HiRes CPAN-DEFAULT CPAN-DEFAULT
 perl-Unix-PID CPAN-DEFAULT CPAN-DEFAULT
@@ -124,8 +130,8 @@ re2c DEFAULT SF-DEFAULT
 ripole DEFAULT http://www.pldaniels.com/ripole
 rkhunter DEFAULT SF-DEFAULT
 rrdtool DEFAULT http://oss.oetiker.ch/rrdtool/pub/
-rtorrent DEFAULT http://libtorrent.rakshasa.no/downloads/
 rsync DEFAULT http://rsync.samba.org/
+rtorrent DEFAULT http://libtorrent.rakshasa.no/downloads/
 siege DEFAULT http://www.joedog.org/pub/siege/
 snappy DEFAULT GOOGLE-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/

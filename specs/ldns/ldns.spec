@@ -7,7 +7,7 @@
 
 Summary: DNS(SEC) library based on Net::DNS
 Name: ldns
-Version: 1.6.12
+Version: 1.6.13
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
@@ -23,7 +23,6 @@ BuildRequires: libpcap-devel
 BuildRequires: make
 BuildRequires: openssl-devel
 BuildRequires: python-devel
-BuildRequires: rpm-macros-rpmforge
 BuildRequires: swig
 
 %description
@@ -61,6 +60,10 @@ This package contains Python support for %{name}.
     --with-pyldnsx \
     --with-drill \
     --with-examples \
+    --disable-ecdsa \
+%if 0%{?rhel} > 5 
+     --disable-ecdsa \
+%endif
     --with-ssl
 
 %{__make} %{?_smp_mflags}
@@ -110,5 +113,8 @@ make %{?_smp_mflags} doc
 %exclude %{python_sitearch}/*.la
 
 %changelog
+* Tue May 22 2012 David Hrbáč <david@hrbac.cz> - 1.6.13-1
+- new upstream release
+
 * Wed Mar 7 2012 Steve Huff <shuff@vecna.org> - 1.6.12-1
 - Initial package (ported from spec in dist).

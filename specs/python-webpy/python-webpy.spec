@@ -10,7 +10,7 @@
 %define real_name web.py
 
 Name: python-webpy
-Version: 0.35
+Version: 0.36
 Release: 1%{?dist}
 Summary: Simple, powerful Python web framework
 Group: Development/Languages
@@ -18,6 +18,7 @@ License: Public Domain
 URL: http://webpy.org/
 
 Source: http://webpy.org/static/web.py-%{version}.tar.gz
+Patch0: webpy-python2.4.3.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
@@ -38,6 +39,7 @@ absolutely no restrictions.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p0 -b .python
 
 %build
 %{__python} setup.py build
@@ -57,5 +59,9 @@ rm -rf %{buildroot}
 # %{python_sitearch}/*
 
 %changelog
+* Mon May 28 2012 David Hrbáč <david@hrbac.cz> - 0.36-1
+- new upstream release
+- patch to run on python 2.4.3
+
 * Mon Mar 12 2012 Steve Huff <shuff@vecna.org> - 0.35-1
 - Initial package.

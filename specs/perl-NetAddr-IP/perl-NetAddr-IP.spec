@@ -15,7 +15,7 @@
 
 Summary: Manages IPv4 and IPv6 addresses and subnets
 Name: perl-NetAddr-IP
-Version: 4.059
+Version: 4.062
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -62,6 +62,12 @@ find docs/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/auto/NetAddr/IP/
 
 %changelog
+* Thu Jun 14 2012 David Hrbáč <david@hrbac.cz> - 4.062-1
+- new upstream release
+
+* Tue May 22 2012 David Hrbáč <david@hrbac.cz> - 4.061-1
+- new upstream release
+
 * Thu Mar 08 2012 David Hrbáč <david@hrbac.cz> - 4.059-1
 - new upstream release
 

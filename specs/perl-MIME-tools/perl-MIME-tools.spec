@@ -19,8 +19,8 @@
 
 Summary: Tools to manipulate MIME messages
 Name: perl-MIME-tools
-Version: 5.502
-Release: 2%{?dist}
+Version: 5.503
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/MIME-tools/
@@ -43,7 +43,6 @@ BuildRequires: perl(Mail::Internet) >= 1.0203
 BuildRequires: perl(Test::Deep)
 BuildRequires: perl(Test::More)
 BuildRequires: perl >= 5.8.0
-BuildRequires: rpm-macros-rpmforge
 Requires: perl(File::Path) >= 1
 Requires: perl(File::Spec) >= 0.6
 Requires: perl(File::Temp) >= 0.18
@@ -94,6 +93,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/MIME/
 
 %changelog
+* Mon Jun 11 2012 David Hrbáč <david@hrbac.cz> - 5.503-1
+- new upstream release
+
 * Wed Apr 13 2011 Steve Huff <shuff@vecna.org> - 5.502-2
 - This package needs to be rfx; we need some dependencies we can't satisfy
   with stock el.

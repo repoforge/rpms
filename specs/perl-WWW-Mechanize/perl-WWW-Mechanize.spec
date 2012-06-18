@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dries
-# Upstream: Andy Lester <andy$petdance,com>
+# Upstream: Jesse Vincent <jesse$bestpractical,com>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -9,17 +9,18 @@
 
 Summary: Handy web browsing in a Perl object
 Name: perl-WWW-Mechanize
-Version: 1.66
+Version: 1.68
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize/
 
-Source: http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/WWW-Mechanize-%{version}.tar.gz
+Source: http://www.cpan.org/modules/by-module/WWW/WWW-Mechanize-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(ExtUtils::Manifest)
 BuildRequires: perl(Carp)
 BuildRequires: perl(File::Temp)
 BuildRequires: perl(FindBin)
@@ -108,6 +109,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize.pm
 
 %changelog
+* Mon Jun 11 2012 Olivier Bilodeau <obilodeau@inverse.ca> - 1.68-1
+- Updated to version 1.68.
+
 * Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 1.66-1
 - Updated to version 1.66.
 

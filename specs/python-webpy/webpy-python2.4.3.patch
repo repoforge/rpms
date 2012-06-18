@@ -1,0 +1,11 @@
+--- web/application.py.orig	2012-05-30 14:59:45.000000000 +0200
++++ web/application.py	2012-05-30 15:00:26.000000000 +0200
+@@ -636,7 +636,7 @@
+     if so, reloads them.
+     """
+ 
+-    SUFFIX = '$py.class' if sys.platform.startswith('java') else '.pyc'
++    SUFFIX = sys.platform.startswith('java') and '$py.class' or '.pyc'
+     """File suffix of compiled modules."""
+ 
+     def __init__(self):
