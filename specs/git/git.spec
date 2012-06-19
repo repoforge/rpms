@@ -13,7 +13,7 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.10.4
+Version: 1.7.11
 Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
@@ -397,10 +397,23 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/Git.3pm*
 %doc %{_mandir}/man3/Git::I18N.3pm*
+%doc %{_mandir}/man3/Git::SVN::Editor.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Fetcher.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Memoize::YAML.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Prompt.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Ra.3pm.gz
 %{perl_vendorlib}/Git.pm
 %{perl_vendorlib}/Git/I18N.pm
+%{perl_vendorlib}/Git/SVN/Editor.pm
+%{perl_vendorlib}/Git/SVN/Fetcher.pm
+%{perl_vendorlib}/Git/SVN/Memoize/YAML.pm
+%{perl_vendorlib}/Git/SVN/Prompt.pm
+%{perl_vendorlib}/Git/SVN/Ra.pm
 
 %changelog
+* Tue Jun 19 2012 David Hrbáč <david@hrbac.cz> - 1.7.11-1
+- new upstream release
+
 * Mon Jun 04 2012 David Hrbáč <david@hrbac.cz> - 1.7.10.4-1
 - new upstream release
 
