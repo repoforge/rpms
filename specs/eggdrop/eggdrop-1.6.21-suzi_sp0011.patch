@@ -1,0 +1,601 @@
+--- eggdrop1.6.21/SUZI						1970-01-01 01:00:00.000000000 +0100
++++ eggdrop1.6.21/SUZI.suzi_sp0011				2006-08-04 20:24:59.000000000 +0200
+@@ -0,0 +1,237 @@
++﻿        Eggdrop and non-latin characters.
++
++Introduction.
++
++  It is known that popular irc-bot eggdrop (http://eggheads.org) has some troubles with non-latin characters. You can see a lot of messages on www.egghelp.org forum (http://forum.egghelp.org) under titles like "Some characters aren't correctly handled by the eggdrop".
++  Also I asked eggdrop's users, whose alphabet in general has Latin characters and in addition has Latin characters with diacritic signs (cedilla, diaeresis, caron, acute, etc.), about problem with these characters (for example: there are 'ÁČĎÉĚÍŇÓŘŠŤÚŮÝŽáčďéěíňóřšťúůýž' characters in Czech alphabet). Many of them said that they don't have any problems, because they can easily replace these characters with Latin characters without diacritic signs. One french-speaking friend said that the word 'garçon' (boy, fr.) can be written as 'garcon'. On the other hand, many people, whose native alphabet is Cyrillic or Greek answered positively. They have some problems with case sensitive binds that contains non-latin characters and sometimes bot even outputs 'trash' instead of expected characters.
++
++1. Suzi project patch.
++
++The patch intends to avoid problems listed below:
++  - problem with get/send/process strings which contain non-Latin characters in TCL interpreter when encoding system is not iso8859-1 (also there are problems even if encoding system is iso8859-1)
++  - problem with 'case sensitive' and 'not matching' binds, which contains non-Latin characters in match part
++  - problem with 'set nick "non-Latin-characters"'
++  - problem with stripping characters with code 255 in party line or DCC chat
++  - problem with DCC commands '.chhandle' and '.handle' and their TCL analogs
++  - problem with detecting locale encoding
++
++Although, this problems have the relationship between themselves and if you fix one also will be fixed the other, I've separated and sorted them by 'severity'.
++
++Of course, the patch is not revolutionary, ideas implemented by the patch were discussed many times in various forums. But I've not seen the realization yet. This patch replaces calls TCL API function which requires well formed utf-8 strings as input/output arguments to wrappers that convert strings which come in locale encoding to utf-8 and back.
++
++After applying patch you avoid ALL problems described below and your bots will work as expected at any test.
++
++2. Problem details
++
++So, if you haven't believed me yet, follow the detailed explanation of each problem.
++
++I have bot installed in '~/eggdrop' compiled from original sources (without any patch). Version of eggdrop is 1.8.16, TCL is 8.4.13.
++
++2.1. Problem with get/send/process strings which contain non-Latin characters.
++
++  This problem has long history, but it's not still solved. There is a particular solution for some languages, but I haven't seen really universal one. Problem has appeared when TCL's developers changed internal and external API of TCL library to Unicode (since version 8.1.0, but I'm not sure). Now functions of TCL library require well formed utf-8 strings as input argument and return also utf-8 encoded string (with some exception). Alas, eggdrop internals do not meet this requirement. It has been changed partially, but not at all.
++  Let users on some IRC server use cp1251 encoding for chat. We have configured the bot connected to an IRC server and a small script for testing purposes that was loaded via 'source scripts/test.cp1251.tcl' command in eggdrop’s configuration file:
++
++  'scripts/test.cp1251.tcl' (script contains characters in cp1251 encoding):
++  +-------
++  | bind pub -|- {!test} test_handler
++  | bind pub -|- {!тест} test_handler
++  | proc test_handler { unick uhost uhandle uchannel utext } {
++  |   set text [string toupper "$unick on $uchannel, you said (ты сказал): $utext ([encoding system])"]
++  |   putserv "PRIVMSG $channel :$text"
++  | }
++
++  Test it on channel #eggtes (bot run in locale en_US.iso8859-1)
++  +------
++  | < lynxy> !test abcd абвг
++  | <eggbot> LYNXY ON #EGGTEST, YOU SAID (ТЫ СКАЗАЛ): ABCD абвг (ISO8859-1)
++  | < lynxy> !tEsT abcd абвг
++  | <eggbot> LYNXY ON #EGGTEST, YOU SAID (ТЫ СКАЗАЛ): ABCD абвг (ISO8859-1)
++  | < lynxy> !тест abcd абвг
++  | < lynxy> !тЕсТ abcd абвг
++
++  There are two problems. The first problem is that 'bind' for '!тест' does not work and the second one is that 'string toupper' converts both Latin and Cyrillic characters which are in the body of the script, but Cyrillic characters in the input string are left unchanged.
++
++  Why does 'bind' not work?
++  Go to bot's party line and type '.binds'
++  +------
++  | .binds
++  | [13:26] tcl: builtin dcc call: *dcc:binds lynxy 7
++  | [13:26] #lynxy# binds
++  | Command bindings:
++  | TYPE FLGS     COMMAND              HITS BINDING (TCL)
++  |   evnt -|-      init-server             1 evnt:init_server
++  |   pub  -|-      !B5AB                   0 test_handler
++  |   pub  -|-      !test                   2 test_handler
++
++  Wow! The second bind is wrong! I wrote '!тест' for match, but I've got strange '!B5AB' sequence. Look at the table below: the first two columns are Cyrillic letter and corresponding Unicode code, the second two columns are Latin letter and its Unicode code:
++
++  +---+------+---+------+
++  | 1 | uni  | 2 | uni  |
++  +---+------+---+------+
++  | т | 0442 | B | 0042 |
++  | е | 0435 | 5 | 0035 |
++  | с | 0441 | A | 0041 |
++  | т | 0442 | B | 0042 |
++  +---+------+---+------+
++
++  Seems that 'bind' just takes only the lower byte of each Unicode character.
++
++  Why 'string toupper' does not work properly with non-Latin characters?
++  The string is received from IRC server in cp1251 encoding and when eggdrop's core sets values of TCL variables and calls the handler it does not convert this string from cp1251 to utf-8 (as required by TCL API) and TCL function 'string toupper' can't process these characters properly.
++  Ok, now I know why it happens. Let's change the script by applying 'encoding convertfrom' to string that is passed to TCL interpreter by eggdrop's C-code and 'encoding convertto' to string that is sent to C-code.
++  Also we must run bot in locale with proper encoding, because eggdrop uses functions from C library like 'strcasecmp()', 'tolower()', 'toupper()' with locale depended behaviour.
++
++  'scripts/test.cp1251.tcl':
++  +-------
++  | bind pub -|- {!test} test_handler
++  | bind pub -|- [encoding convertto {!тест}] test_handler
++  | proc test_handler { unick uhost uhandle uchannel utext } {
++  |   set nick      [encoding convertfrom $unick]
++  |   set channel   [encoding convertfrom $uchannel]
++  |   set text      [encoding convertfrom $utext]
++  |   set str [string toupper "$nick on $channel, you said (ты сказал): $text ([encoding system])"]
++  |   putserv [encoding convertto "PRIVMSG $channel :$text"]
++  | }
++
++  And run bot in locale with cp1251 encoding:
++  +-------
++  | user@sys:~/eggdrop> LANG=ru_RU.cp1251 ./eggdrop
++
++  Test:
++  +-------
++  | < lynxy> !test SoMe TeXt нЕкИй ТеКсТ
++  | <eggbot> LYNXY ON #EGGTEST, YOU SAID (ТЫ СКАЗАЛ): SOME TEXT НЕКИЙ ТЕКСТ (CP1251)
++  | < lynxy> !tEsT SoMe TeXt нЕкИй ТеКсТ
++  | <eggbot> LYNXY ON #EGGTEST, YOU SAID (ТЫ СКАЗАЛ): SOME TEXT НЕКИЙ ТЕКСТ (CP1251)
++  | < lynxy> !тест SoMe TeXt нЕкИй ТеКсТ
++  | <eggbot> LYNXY ON #EGGTEST, YOU SAID (ТЫ СКАЗАЛ): SOME TEXT НЕКИЙ ТЕКСТ (CP1251)
++  | <lynxy> !тЕсТ SoMe TeXt нЕкИй ТеКсТ
++  | <eggbot> LYNXY ON #EGGTEST, YOU SAID (ТЫ СКАЗАЛ): SOME TEXT НЕКИЙ ТЕКСТ (CP1251)
++
++  Wow! It works! But the body of handler proc generally contains 'encoding ...' lines, of course I could write an alias for 'bind', 'putserv' and other functions like this:
++  +-------
++  | proc i18bind {type flags name handler} {
++  |   bind $type $flag [encoding convertto $name] $handler
++  | }
++
++  It solves many encoding problems, but not them all.
++  
++  I think that passing locale encoded string as byte array to TCL interpreter and getting back was intended by eggdrop's developers, but this idea seems a bit useless. I haven't seen any scripts yet that required byte array rather than a string. Why I must use 'encoding ...' in scripts when it is task of eggdrop's C-code? You can use Suzi project patch and forget about 'encoding ...' hell or do not use patch and use 'encoding ...' everywhere. It is your choice.
++
++  Problem with 'set nick "non-Latin-chars"' has similar solution.
++
++2.2. Problem with stripping characters with code 255 in party line or DCC chat.
++
++  There are two types of clients which can connect to bot:
++  1. IRC clients working via DCC chat
++  2. Telnet clients
++
++  Telnet protocol has some control sequences which starts with code 255 and eggdrop silently strips it from incoming strings:
++
++  encoding system is cp1251
++  +-------
++  | .say #eggtest меня зовут Настя
++  | [14:20] tcl: builtin dcc call: *dcc:say lynxy 7 #eggtest мен зовут Наст
++  | [14:20] #lynxy# (#eggtest) say мен зовут Наст
++  | Said to #eggtest: мен зовут Наст
++
++  Stripped letter 'я' (code 255 in cp1251), this letter very often appears in Russian words.
++
++  encoding system iso8859-1 (letter 'ÿ' has code 255 in iso8859-1)
++  +-------
++  | .say #eggtest saÿ ÿo-ÿo
++  | [14:24] tcl: builtin dcc call: *dcc:say lynxy 7 #eggtest sa o-o
++  | [14:24] #lynxy# (#eggtest) say sa o-o
++  | Said to #eggtest: sa o-o
++
++  Also stripped (I don't know how often this letter is used, but it is stripped!)
++
++  There is a solution. Telnet clients send some control sequences while establishing the connection, but IRC clients do not. If control sequences are sent while the connection establishes stripping will be enabled and if there are no any control sequences, stripping will be disabled. This allows to avoid the problem.
++
++2.3. Problem with DCC commands '.chhandle' and '.handle' and their TCL analogs
++  Bugs in DCC commands 'chhandle','handle' lead to substitution of non-Latin characters by '?'. Although you can add handle with non-Latin characters, but DCC commands 'chhandle', 'handle' and their analogs for TCL replace all the characters of the code above 127 to '?' (question mark)
++  
++  +-------
++  | .+user LamoЮзер
++  | [14:37] tcl: builtin dcc call: *dcc:+user lynxy 7 LamoЮзер
++  | [14:37] #lynxy# +user LamoЮзер
++  | Added LamoЮзер (no host) with no password and no flags.
++  | .chhandle LamoЮзер ЛамоЮзер
++  | [14:37] tcl: builtin dcc call: *dcc:chhandle lynxy 7 LamoЮзер ЛамоЮзер
++  | [14:37] Switched 0 notes from LamoЮзер to ????????.
++  | [14:37] #lynxy# chhandle LamoЮзер ????????
++  | Changed.
++
++  The problem is located in 'cmd_handle', 'cmd_chhandle' and 'tcl_chhandle' functions, that treat all the characters with code not in range from 32 to 127 as bad. Other procedures related to user handles don't have such problems.
++
++2.4. Problem with detecting locale encoding.
++  This problem has very low severity, but I'll describe it.
++
++  Create small configuration file 'eggenc.conf':
++  +-------
++  | user@sys:~/eggdrop> echo -e "putlog \"eggdrop encoding: [encoding system]\"; die;" > eggenc.conf
++
++  And test:
++  +-------
++  | user@sys:~/eggdrop> echo $LANG
++  | ru_RU.cp1251
++  | user@sys:~/eggdrop> ./eggdrop eggenc.conf
++  | Eggdrop v1.6.18 (C) 1997 Robey Pointer (C) 2006 Eggheads
++  | [10:48] --- Loading eggdrop v1.6.18 (Sat Jul 22 2006)
++  | [10:48] eggdrop encoding: cp1251
++  | [10:48] * EXIT
++
++  Ok.
++
++  Now run in locale ru_RU.koi8-r:
++  +-------
++  | user@sys:~/eggdrop> LANG=ru_RU.koi8-r ./eggdrop eggenc.conf
++  | Eggdrop v1.6.18 (C) 1997 Robey Pointer (C) 2006 Eggheads
++  | [10:57] --- Loading eggdrop v1.6.18 (Sat Jul 22 2006)
++  | [10:57] eggdrop encoding: iso8859-1
++  | [10:57] * EXIT
++
++  Wrong.
++
++  Next:
++  +-------
++  | user@sys:~/eggdrop> LANG=ko_KR.euckr ./eggdrop eggenc.conf
++  | Eggdrop v1.6.18 (C) 1997 Robey Pointer (C) 2006 Eggheads
++  | [10:58] --- Loading eggdrop v1.6.18 (Sat Jul 22 2006)
++  | [10:58] eggdrop encoding: iso8859-1
++  | [10:58] * EXIT
++  
++  Wrong again!
++
++  You can force setting appropriate locale encoding by placing at the begin of eggdrop's configuration file something like this:
++  +-------
++  | encoding system koi8-r
++
++  Or:
++  +-------
++  | encoding system euc-kr
++
++  But if I run 'tclsh', it detects locale encoding properly:
++  +-------
++  | user@sys:~/eggdrop> LANG=ru_RU.koi8r tclsh
++  | % encoding system; exit
++  | koi8-r
++  | user@sys:~/eggdrop> LANG=ko_KR.euckr tclsh
++  | % encoding system; exit
++  | euc-kr
++
++  When eggdrop initializes TCL interpreter it also tries to detect locale encoding and then set it for the interpreter. But eggdrop's code has some errors in encoding detection and doesn't always detect encoding properly. In comments written to this code in 'src/tcl.c' is said that the code is grabbed from TCL sources, but it seems to be very old. Furthermore now there is no need of this code because TCL library detects locale encoding while perform self-initialization. Patch just removes this strange code from eggdrop and now it detects ALL the encodings that I have on my system.
++
++3. Windows and Eggdrop
++
++  Eggdrop compiled with Cygwin environment (also known as Windrop) has the same problems and even more.
++  As I know Cygwin does not support any locale encoding except ASCII and UTF-8, but it is useless in many cases. So case insensetive binds does not work with non-latin characters (see test 2.1). I also include separate patch to make Windrop use Windows API locale depended routines for case of insensetive string comparision instead their Cygwin's analogs.
++
++P.S. Sorry for bad english.
++
++-----
++Date:           2006-Jul-26
++Author:         Anastasia Zemina a.k.a. lynxy (WeNet irc.wenet.ru:6667, #eggtest), Suzi project team
++Thanks to:      ZemIn, Buster, Yxaaaaaaa.
++URL:            Forum (russian): http://xirc.ru/plugins/forum/forum_viewforum.php?15
+--- eggdrop1.6.21/src/mod/module.h				2011-07-09 19:07:48.000000000 +0400
++++ eggdrop1.6.21/src/mod/module.h.suzi_sp0011			2011-11-03 11:03:02.000000000 +0400
+@@ -490,6 +490,15 @@
+ #define increase_socks_max ((int (*)(void))global[297])
+ #define LOG_TS ((char *)(global[298]))
+ #define nstrdup(x) (((char *(*)())global[299])((x),MODULE_NAME,__FILE__,__LINE__))
++#ifdef USE_TCL_BYTE_ARRAYS
++#define Tcl_EggSetVar ((CONST char *(*) (Tcl_Interp *, CONST char *, CONST char *newValue, int))global[300])
++#define Tcl_EggSetVar2 ((CONST char *(*) (Tcl_Interp *, CONST char *, CONST char *, CONST char *, int))global[301])
++#define Tcl_EggAppendResult ((void (*) TCL_VARARGS_DEF(Tcl_Interp *,arg1))global[302])
++#define Tcl_EggAppendElement ((void (*) (Tcl_Interp *, CONST char *))global[303])
++#define Tcl_EggEval ((int (*) (Tcl_Interp *interp, CONST char *script))global[304])
++#define Tcl_EggGlobalEval ((int (*) (Tcl_Interp *interp, CONST char *script))global[305])
++#define Tcl_EggNewStringObj ((Tcl_Obj *(*) (CONST char *bytes, int length))global[306])
++#endif /* USE_TCL_BYTE_ARRAYS */
+ 
+ /* hostmasking */
+ #define maskhost(a,b) maskaddr((a),(b),3)
+--- eggdrop1.6.21/src/mod/server.mod/server.c			2011-10-25 20:45:08.000000000 +0400
++++ eggdrop1.6.21/src/mod/server.mod/server.c.suzi_sp0011	2011-11-03 11:08:13.000000000 +0400
+@@ -1164,7 +1164,16 @@
+       Tcl_TraceVar(irp, name1, TCL_TRACE_READS | TCL_TRACE_WRITES |
+                    TCL_TRACE_UNSETS, nick_change, cdata);
+   } else {                        /* writes */
++#ifdef USE_TCL_ENCODING
++    Tcl_DString dstr;
++#endif
+     new = Tcl_GetVar2(interp, name1, name2, TCL_GLOBAL_ONLY);
++#ifdef USE_TCL_ENCODING
++  /* properly convert string to system encoding. */
++  Tcl_DStringInit(&dstr);
++  Tcl_UtfToExternalDString(NULL, new, -1, &dstr);
++  new = Tcl_DStringValue(&dstr);
++#endif
+     if (strcmp(origbotname, (char *) new)) {
+       if (origbotname[0]) {
+         putlog(LOG_MISC, "*", "* IRC NICK CHANGE: %s -> %s", origbotname, new);
+@@ -1174,6 +1183,9 @@
+       if (server_online)
+         dprintf(DP_SERVER, "NICK %s\n", origbotname);
+     }
++#ifdef USE_TCL_ENCODING
++  Tcl_DStringFree(&dstr);
++#endif
+   }
+   return NULL;
+ }
+@@ -1861,6 +1873,9 @@
+ char *server_start(Function *global_funcs)
+ {
+   EGG_CONST char *s;
++#ifdef USE_TCL_ENCODING
++  Tcl_DString dstr;
++#endif
+ 
+   global = global_funcs;
+ 
+@@ -1932,8 +1947,17 @@
+   tcl_eggserver(NULL, interp, "servers", NULL, 0);
+   tcl_traceserver("servers", NULL);
+   s = Tcl_GetVar(interp, "nick", TCL_GLOBAL_ONLY);
++#ifdef USE_TCL_ENCODING
++  /* properly convert string to system encoding. */
++  Tcl_DStringInit(&dstr);
++  Tcl_UtfToExternalDString(NULL, s, -1, &dstr);
++  s = Tcl_DStringValue(&dstr);
++#endif
+   if (s)
+     strncpyz(origbotname, s, NICKLEN);
++#ifdef USE_TCL_ENCODING
++  Tcl_DStringFree(&dstr);
++#endif
+   Tcl_TraceVar(interp, "nick",
+                TCL_TRACE_READS | TCL_TRACE_WRITES | TCL_TRACE_UNSETS,
+                nick_change, NULL);
+--- eggdrop1.6.21/src/modules.c					2011-07-09 19:07:48.000000000 +0400
++++ eggdrop1.6.21/src/modules.c.suzi_sp0011			2011-11-03 11:10:05.000000000 +0400
+@@ -577,7 +577,24 @@
+   (Function) check_conflags,
+   (Function) increase_socks_max,
+   (Function) log_ts,
+-  (Function) mod_strdup
++  (Function) mod_strdup,
++#ifdef USE_TCL_BYTE_ARRAYS
++  (Function) Tcl_EggSetVar,        /* 300 */
++  (Function) Tcl_EggSetVar2,       /* 301 */
++  (Function) Tcl_EggAppendResult,  /* 302 */
++  (Function) Tcl_EggAppendElement, /* 303 */
++  (Function) Tcl_EggEval,          /* 304 */
++  (Function) Tcl_EggGlobalEval,    /* 305 */
++  (Function) Tcl_EggNewStringObj   /* 306 */
++#else
++  (Function) 0,                    /* 300 */
++  (Function) 0,                    /* 301 */
++  (Function) 0,                    /* 302 */
++  (Function) 0,                    /* 303 */
++  (Function) 0,                    /* 304 */
++  (Function) 0,                    /* 305 */
++  (Function) 0                     /* 306 */
++#endif /* USE_TCL_BYTE_ARRAYS */
+ };
+ 
+ void init_modules(void)
+--- eggdrop1.6.21/src/tcl.c					2011-09-10 01:37:53.000000000 +0400
++++ eggdrop1.6.21/src/tcl.c.suzi_sp0011				2011-11-03 11:20:40.000000000 +0400
+@@ -279,17 +279,31 @@
+       Tcl_Obj *obj;
+       unsigned char *bytes;
+       int len;
++      Tcl_DString ds;
++      int binary;
+ 
+       obj = Tcl_GetVar2Ex(interp, name1, name2, 0);
+       if (!obj)
+         return NULL;
+       len = 0;
+-      bytes = Tcl_GetByteArrayFromObj(obj, &len);
+-      if (!bytes)
+-        return NULL;
++      binary = 0;
++      if (obj->typePtr != NULL)  
++        if (strcmp(obj->typePtr->name, "bytearray") == 0)
++          binary = 1; 
++      if (!binary) {
++        char *strptr = Tcl_GetStringFromObj(obj, &len);
++        bytes = (unsigned char *)Tcl_UtfToExternalDString(NULL, strptr, len, &ds);
++      }
++      else {
++        bytes = Tcl_GetByteArrayFromObj(obj, &len);
++        if (!bytes)
++          return NULL;
++      }
+       s = malloc(len + 1);
+       egg_memcpy(s, bytes, len);
+       s[len] = 0;
++      if (!binary)
++        Tcl_DStringFree(&ds);
+     }
+ #else
+     s = (char *) Tcl_GetVar2(interp, name1, name2, 0);
+@@ -333,6 +347,8 @@
+   void **callback_data;
+   Function func;
+   ClientData cd;
++  Tcl_DString ds;
++  int binary;
+ 
+   objc += 5;
+   strings = (char **) nmalloc(sizeof(char *) * objc);
+@@ -341,11 +357,23 @@
+   utftot += sizeof(char *) * objc;
+   objc -= 5;
+   for (i = 0; i < objc; i++) {
+-    byteptr = (char *) Tcl_GetByteArrayFromObj(objv[i], &len);
++    binary = 0;
++    if (objv[i]->typePtr != NULL)  
++      if (strcmp(objv[i]->typePtr->name, "bytearray") == 0)
++        binary = 1;       
++    if (!binary) {
++      char *strptr = Tcl_GetStringFromObj(objv[i], &len);
++      byteptr = Tcl_UtfToExternalDString(NULL, strptr, len, &ds);
++    }
++    else {
++      byteptr = (char *)Tcl_GetByteArrayFromObj(objv[i], &len);
++    }
+     strings[i] = (char *) nmalloc(len + 1);
+     utftot += len + 1;
+     strncpy(strings[i], byteptr, len);
+     strings[i][len] = 0;
++    if (!binary)
++      Tcl_DStringFree(&ds);
+   }
+   callback_data = (void **) cdata;
+   func = (Function) callback_data[0];
+@@ -505,6 +533,7 @@
+   {"logfile-suffix",  logfile_suffix, 20,                      0},
+   {"timestamp-format",log_ts,         32,                      0},
+   {"pidfile",         pid_file,       120,           STR_PROTECT},
++  {"sp_version",      "0011",         0,                       0},
+   {NULL,              NULL,           0,                       0}
+ };
+ 
+--- eggdrop1.6.21/src/tclhash.c					2011-07-09 19:07:48.000000000 +0400
++++ eggdrop1.6.21/src/tclhash.c.suzi_sp0011			2011-11-03 11:27:54.000000000 +0400
+@@ -717,7 +717,21 @@
+    */
+   Tcl_SetVar(interp, "lastbind", (char *) mask, TCL_GLOBAL_ONLY);
+ 
+-  x = Tcl_VarEval(interp, proc, param, NULL);
++  {
++    char *cstr;
++    int len0 = proc ? strlen(proc) : 0;
++    int len1 = param ? strlen(param) : 0;
++    cstr = (char *)nmalloc(len0 + len1 + 1);
++    *cstr = '\0';
++    if (proc)
++    {
++      strcpy(cstr, proc);
++      if (len1)
++        strcat(cstr, param);
++    }
++    x = Tcl_Eval(interp, cstr);
++    nfree(cstr);
++  }
+   Context;
+ 
+   if (x == TCL_ERROR) {
+@@ -1024,8 +1038,19 @@
+   if (x == BIND_EXECUTED || x == BIND_EXEC_LOG) {
+     if (tcl_resultempty())
+       return "";
+-    else
++    else {
++#ifdef USE_TCL_ENCODING
++      static char result[512];
++      int dstWroteBytes;
++      Tcl_UtfToExternal(interp, NULL, tcl_resultstring(), -1, 0, NULL,
++                       result, sizeof(result), NULL, &dstWroteBytes, NULL);
++      if (dstWroteBytes == 0)
++        return "";
++      return result;
++#else
+       return tcl_resultstring();
++#endif
++    }
+   } else
+     return text;
+ }
+@@ -1294,3 +1319,104 @@
+     nfree(l);
+   }
+ }
++
++#ifdef USE_TCL_BYTE_ARRAYS
++#undef Tcl_SetVar2
++#undef Tcl_AppendResult
++#undef Tcl_AppendElement
++#undef Tcl_Eval
++#undef Tcl_GlobalEval
++#undef Tcl_NewStringObj
++
++void Tcl_EggAppendResult TCL_VARARGS_DEF(Tcl_Interp *, arg1)
++{
++  Tcl_Interp *interp;
++  va_list argList;
++  Tcl_DString ds;
++  char *param;
++  char *string;
++  interp = TCL_VARARGS_START(Tcl_Interp *,arg1,argList);
++  while (1) {
++    string = va_arg(argList, char *);
++
++    if (string == NULL) break;
++      param = (char *) Tcl_ExternalToUtfDString(NULL, string, -1, &ds);
++      Tcl_AppendResult(interp, param, NULL);
++      Tcl_DStringFree(&ds);
++  }
++  va_end(argList);
++}
++
++void Tcl_EggAppendElement(Tcl_Interp *interp, CONST char *string)
++{
++  Tcl_DString ds;
++  char *param;
++  param = (char *) Tcl_ExternalToUtfDString(NULL, string, -1, &ds);
++  Tcl_AppendElement(interp, param);
++  Tcl_DStringFree(&ds);
++}
++
++CONST char *Tcl_EggSetVar(Tcl_Interp *interp, CONST char *varName, 
++       CONST char *newValue, int flags)
++{
++  Tcl_DString ds;
++  char *ret;
++  ret = (char *) Tcl_SetVar2(interp, varName, (char *) NULL, 
++                  (char *) Tcl_ExternalToUtfDString(NULL, newValue, -1, &ds), flags);
++  Tcl_DStringFree(&ds);
++  return ret;
++}
++
++CONST char *Tcl_EggSetVar2(Tcl_Interp *interp, CONST char *part1, CONST char *part2, 
++             CONST char *newValue, int flags)
++{
++  Tcl_DString ds;
++  char *ret;
++  ret = (char *) Tcl_SetVar2(interp, part1, part2, 
++   (char *) Tcl_ExternalToUtfDString(NULL, newValue, -1, &ds), flags);
++  Tcl_DStringFree(&ds);
++  return ret;
++}
++
++int Tcl_EggEval(Tcl_Interp *interp, CONST char *script)
++{
++  Tcl_DString ds;
++  int ret;
++  ret = Tcl_Eval(interp, (char *) Tcl_ExternalToUtfDString(NULL, script, -1, &ds));
++  Tcl_DStringFree(&ds);
++  return ret;
++}
++
++int Tcl_EggGlobalEval(Tcl_Interp *interp, CONST char *script)
++{
++  Tcl_DString ds;
++  int ret;
++  ret = Tcl_GlobalEval(interp, (char *) Tcl_ExternalToUtfDString(NULL, script, -1, &ds));
++  Tcl_DStringFree(&ds);
++  return ret;
++}
++
++Tcl_Obj *Tcl_EggNewStringObj(CONST char *bytes, int length) 
++{
++  Tcl_DString ds;
++  Tcl_Obj *ret;
++  int len;
++  char *ptr;
++
++  ptr = Tcl_ExternalToUtfDString(NULL, bytes, length, &ds);
++  len = Tcl_DStringLength(&ds);
++
++  ret = Tcl_NewStringObj(ptr, len);
++
++  Tcl_DStringFree(&ds);
++  return ret;
++}
++
++#define Tcl_SetVar2 Tcl_EggSetVar2
++#define Tcl_AppendResult Tcl_EggAppendResult
++#define Tcl_AppendElement Tcl_EggAppendElement
++#define Tcl_Eval Tcl_EggEval
++#define Tcl_GlobalEval Tcl_EggGlobalEval
++#define Tcl_NewStringObj Tcl_EggNewStringObj
++
++#endif /* USE_TCL_BYTE_ARRAYS */
+--- eggdrop1.6.21/src/tclhash.h					2011-08-01 00:15:06.000000000 +0400
++++ eggdrop1.6.21/src/tclhash.h.suzi_sp0011			2011-11-03 11:28:29.000000000 +0400
+@@ -25,6 +25,25 @@
+ #ifndef _EGG_TCLHASH_H
+ #define _EGG_TCLHASH_H
+ 
++#ifdef USE_TCL_BYTE_ARRAYS
++
++#define Tcl_SetVar          Tcl_EggSetVar
++#define Tcl_SetVar2         Tcl_EggSetVar2
++#define Tcl_AppendResult    Tcl_EggAppendResult
++#define Tcl_AppendElement   Tcl_EggAppendElement
++#define Tcl_Eval            Tcl_EggEval
++#define Tcl_GlobalEval      Tcl_EggGlobalEval
++#define Tcl_NewStringObj    Tcl_EggNewStringObj
++
++CONST char *Tcl_EggSetVar(Tcl_Interp *, CONST char *, CONST char *newValue, int);
++CONST char *Tcl_EggSetVar2(Tcl_Interp *, CONST char *, CONST char *, CONST char *, int);
++void Tcl_EggAppendResult TCL_VARARGS_DEF(Tcl_Interp *,arg1);
++void Tcl_EggAppendElement(Tcl_Interp *, CONST char *);
++int Tcl_EggEval(Tcl_Interp *interp, CONST char *script);
++int Tcl_EggGlobalEval(Tcl_Interp *interp, CONST char *script);
++Tcl_Obj * Tcl_EggNewStringObj(CONST char *bytes, int length);
++
++#endif /* USE_TCL_BYTE_ARRAYS */
+ 
+ #define TC_DELETED   0x0001     /* This command/trigger was deleted. */
+ 

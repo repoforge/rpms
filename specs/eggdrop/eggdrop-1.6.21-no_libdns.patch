@@ -1,0 +1,69 @@
+Patch by Robert Scheck <robert@fedoraproject.org> for eggdrop >= 1.6.21,
+which makes the configure script looking for gethostbyname() in libc rather
+in libdns. The problem especially comes up, once bind-devel gets added into
+buildroot at the build system (#433111). In difference to the suggestion by
+Adam Tkac <atkac@redhat.com>, the configure script itself gets patched, as
+autoconf, as shipped with Red Hat Enterprise Linux 4 (including downstreams
+and derivates), is unfortunately too old since eggdrop >= 1.6.20.
+
+--- eggdrop1.6.21/aclocal.m4		2011-10-26 04:00:10.000000000 +0200
++++ eggdrop1.6.21/aclocal.m4.no_libdns	2012-01-08 20:47:11.000000000 +0100
+@@ -808,7 +808,7 @@
+   else
+     AC_CHECK_LIB(socket, socket)
+     AC_CHECK_LIB(nsl, connect)
+-    AC_CHECK_LIB(dns, gethostbyname)
++    AC_CHECK_LIB(c, gethostbyname)
+     AC_CHECK_LIB(dl, dlopen)
+     AC_CHECK_LIB(m, tan, EGG_MATH_LIB="-lm")
+ 
+--- eggdrop1.6.21/configure		2011-10-26 04:00:10.000000000 +0200
++++ eggdrop1.6.21/configure.no_libdns	2012-01-08 20:50:39.000000000 +0100
+@@ -4642,13 +4642,13 @@
+ 
+ fi
+ 
+-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gethostbyname in -ldns" >&5
+-$as_echo_n "checking for gethostbyname in -ldns... " >&6; }
+-if ${ac_cv_lib_dns_gethostbyname+:} false; then :
++    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gethostbyname in -lc" >&5
++$as_echo_n "checking for gethostbyname in -lc... " >&6; }
++if ${ac_cv_lib_c_gethostbyname+:} false; then :
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-ldns  $LIBS"
++LIBS="-lc  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -4668,22 +4668,22 @@
+ }
+ _ACEOF
+ if ac_fn_c_try_link "$LINENO"; then :
+-  ac_cv_lib_dns_gethostbyname=yes
++  ac_cv_lib_c_gethostbyname=yes
+ else
+-  ac_cv_lib_dns_gethostbyname=no
++  ac_cv_lib_c_gethostbyname=no
+ fi
+ rm -f core conftest.err conftest.$ac_objext \
+     conftest$ac_exeext conftest.$ac_ext
+ LIBS=$ac_check_lib_save_LIBS
+ fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_dns_gethostbyname" >&5
+-$as_echo "$ac_cv_lib_dns_gethostbyname" >&6; }
+-if test "x$ac_cv_lib_dns_gethostbyname" = xyes; then :
++{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_c_gethostbyname" >&5
++$as_echo "$ac_cv_lib_c_gethostbyname" >&6; }
++if test "x$ac_cv_lib_c_gethostbyname" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+-#define HAVE_LIBDNS 1
++#define HAVE_LIBC 1
+ _ACEOF
+ 
+-  LIBS="-ldns $LIBS"
++  LIBS="-lc $LIBS"
+ 
+ fi
+ 

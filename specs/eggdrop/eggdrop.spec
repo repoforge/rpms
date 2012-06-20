@@ -11,14 +11,15 @@
 Summary: IRC bot
 Name: eggdrop
 Version: 1.6.21
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.eggheads.org/
 
 Source: ftp://ftp.eggheads.org/pub/eggdrop/GNU/stable/eggdrop%{version}.tar.bz2
-#Patch0: eggdrop1.6.17-lib64.patch
-#Patch1: eggdrop1.6.17-64bit-fixes.patch
+Patch0: eggdrop-1.6.17-langdir.patch
+Patch1: eggdrop-1.6.21-no_libdns.patch
+Patch2: eggdrop-1.6.21-suzi_sp0011.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: tcl, perl
@@ -35,8 +36,9 @@ privileged users and let them gain ops, etc.
 
 %prep
 %setup -n %{name}%{version}
-#patch0 -p1 -b .lib64
-#%patch1 -p1 -b .64bit-fixes
+%patch0 -p1 -b .langdir
+%patch1 -p1 -b .no_libdns
+%patch2 -p1 -b .suzi_sp0010
 
 # _smp_mflags removed, compile fails on multiprocessor system  
 %build
@@ -70,6 +72,9 @@ perl -pi -e 's|/path/to/executable/eggdrop|%{_libdir}/eggdrop/eggdrop|' eggdrop.
 %{_libdir}/eggdrop/
 
 %changelog
+* Wed Jun 20 2012 David Hrbáč <david@hrbac.cz> - 1.6.21-2
+- a few Fedora patches
+
 * Mon Jun 18 2012 Shawn Sterling <shawn@systemtemplar.org> - 1.6.21-1
 - Updated to release 1.6.21.
 
