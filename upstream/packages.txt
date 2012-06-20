@@ -14,6 +14,7 @@ crossroads DEFAULT http://crossroads.e-tunity.com/downloads/versions/
 denyhosts DEFAULT SF-DEFAULT
 discount DEFAULT http://www.pell.portland.or.us/~orc/Code/discount/
 dnsmasq DEFAULT http://www.thekelleys.org.uk/dnsmasq/
+eggdrop eggdrop([0-9.]*?).tar.gz ftp://ftp.eggheads.org/pub/eggdrop/GNU/stable/
 enma DEFAULT SF-DEFAULT
 freetds DEFAULT ftp://ftp.ibiblio.org/pub/Linux/ALPHA/freetds/stable/
 freeze DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
