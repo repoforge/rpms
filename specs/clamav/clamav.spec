@@ -13,15 +13,17 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.97.4
+Version: 0.97.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
 
-Source: http://dl.sf.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
+Source10: http://db.local.clamav.net/main-54.cvd
+Source11: http://db.local.clamav.net/daily-15050.cvd
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel
@@ -244,7 +246,14 @@ EOF
 touch %{buildroot}%{_localstatedir}/log/clamav/freshclam.log
 touch %{buildroot}%{_localstatedir}/log/clamav/clamd.log
 
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/clamav/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
+
+touch %{buildroot}%{_localstatedir}/clamav/daily.cld
+touch %{buildroot}%{_localstatedir}/clamav/main.cld
+
+%{__install} -Dp -m0644 %SOURCE10 %{buildroot}%{_localstatedir}/clamav/main.cvd
+%{__install} -Dp -m0644 %SOURCE11 %{buildroot}%{_localstatedir}/clamav/daily.cvd
 
 %post
 /sbin/ldconfig
@@ -349,7 +358,7 @@ fi
 %dir %{_localstatedir}/clamav/
 %dir %{_localstatedir}/log/clamav/
 %ghost %{_localstatedir}/log/clamav/clamd.log
-%exclude %{_localstatedir}/clamav/*
+#exclude %{_localstatedir}/clamav/*
 
 %if %{!?_without_milter:1}0
 %files milter
@@ -384,6 +393,10 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Thu Jun 21 2012 David Hrbáč <david@hrbac.cz> - 0.97.5-1
+- corrected missing DBs
+- new upstream release
+
 * Thu Mar 15 2012 Dag Wieers <dag@wieers.com> - 0.97.4-1
 - Updated to release 0.97.4.
 
