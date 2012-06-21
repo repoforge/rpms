@@ -10,7 +10,7 @@
 Summary: A minimal-effort oriented web application framework
 Name: perl-Dancer
 Version: 1.3095
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://perldancer.org/
@@ -81,6 +81,9 @@ environments.
 %prep
 %setup -n %{real_name}-%{version}
 
+# fix the EXE_FILES metadata
+%{__perl} -pi -e $'s|\'script/dancer\'|$&, \'script/wallflower\'|;' Makefile.PL
+
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
@@ -98,7 +101,7 @@ environments.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGES LICENSE META.yml README TODO
+%doc AUTHORS CHANGES LICENSE META.json META.yml README TODO
 %doc examples/
 %doc %{_mandir}/man?/*
 %{_bindir}/*
@@ -108,6 +111,9 @@ environments.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Thu Jun 21 2012 Steve Huff <shuff@vecna.org> - 1.3095-2
+- Patch Makefile.PL to include wallflower script.
+
 * Tue Mar 10 2012 Steve Huff <shuff@vecna.org> - 1.3095-1
 - Update to version 1.3095.
 - Capture missing perl(Try::Tiny) dependency.
