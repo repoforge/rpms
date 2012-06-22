@@ -1,38 +1,41 @@
 # $Id$
-# Authority: REPOFORGE_COMMITTER
-# Upstream: UPSTREAMTAG
+# Authority: shuff
+# Upstream: Rocco Caputo <rcaputo$cpan,org>
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
 
-%define real_name NNAAMMEE
+%define real_name Lexical-Persistence
 
 %define perl_prefix %{buildroot}%{_prefix}
 
-Summary: 
-Name: perl-NNAAMMEE
-Version: 
+Summary: Persistent contexts for lexical variables
+Name: perl-Lexical-Persistence
+Version: 1.020
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
-URL: http://search.cpan.org/dist/NNAAMMEE/
+URL: http://search.cpan.org/dist/Lexical-Persistence/
 
-Source: NNAAMMEE-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RC/RCAPUTO/Lexical-Persistence-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: perl
+BuildRequires: perl(Devel::LexAlias) >= 0.04
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(PadWalker) >= 1.1
 BuildRequires: rpm-macros-rpmforge
+Requires: perl
+Requires: perl(Devel::LexAlias) >= 0.04
+Requires: perl(PadWalker) >= 1.1
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
 %filter_setup
 
-# don't scan the examples for autoreq/prov
-%filter_requires_in %{_docdir}
-%filter_provides_in %{_docdir}
-
 %description
+Lexical::Persistence lets your code access persistent data through lexical variables.
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -57,18 +60,13 @@ BuildRequires: rpm-macros-rpmforge
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes META.yml META.json README
+%doc CHANGES META.yml README eg/
 %doc %{_mandir}/man?/*
-#%{perl_vendorlib}/NAMEDIR.pm
-#%{perl_vendorlib}/NAMEDIR/*
+%{perl_vendorlib}/Lexical/Persistence.pm
+#%{perl_vendorlib}/Lexical/Persistence/*
 #%exclude %{perl_archlib}/perllocal.pod
-#%exclude %{perl_vendorarch}/auto/*/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
+%exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
-* Thu Nov 10 2005 Dries Verachtert <dries@ulyssis.org> - 
+* Fri Jun 22 2012 Steve Huff <shuff@vecna.org> - 1.020-1
 - Initial package.
