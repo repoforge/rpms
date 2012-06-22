@@ -117,6 +117,7 @@ perl-Unix-Syslog CPAN-DEFAULT CPAN-DEFAULT
 perl-VCS-Lite CPAN-DEFAULT CPAN-DEFAULT
 perl-Variable-Magic CPAN-DEFAULT CPAN-DEFAULT
 perl-WWW-Mediawiki-Client CPAN-DEFAULT CPAN-DEFAULT
+perl-WebService-Pushover CPAN-DEFAULT CPAN-DEFAULT
 perl-version CPAN-DEFAULT CPAN-DEFAULT
 phpMyAdmin phpMyAdmin-(3.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
 phpmyadmin phpMyAdmin-(2.*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
