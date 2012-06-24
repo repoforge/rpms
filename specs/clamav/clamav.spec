@@ -397,6 +397,9 @@ fi
 - corrected missing DBs
 - new upstream release
 
+* Sat Jun 16 2012 Dag Wieers <dag@wieers.com> - 0.97.5-1
+- Updated to release 0.97.5.
+
 * Thu Mar 15 2012 Dag Wieers <dag@wieers.com> - 0.97.4-1
 - Updated to release 0.97.4.
 
