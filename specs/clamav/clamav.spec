@@ -22,8 +22,8 @@ URL: http://www.clamav.net/
 Source: http://downloads.sourceforge.net/project/clamav/clamav/%{version}/clamav-%{version}.tar.gz
 Source1: clamav.init
 Source2: clamav-milter.init
-Source10: http://db.local.clamav.net/main-54.cvd
-Source11: http://db.local.clamav.net/daily-15050.cvd
+Source10: http://db.local.clamav.net/main.cvd
+Source11: http://db.local.clamav.net/daily.cvd
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: bzip2-devel
