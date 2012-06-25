@@ -9,7 +9,7 @@
 
 Name:		lv
 Version:	4.51
-Release:	10%{?dist}
+Release:	9%{?dist}
 License:	distributable
 URL:		http://www.ff.iij4u.or.jp/~nrt/lv/
 
@@ -71,10 +71,8 @@ cd src
 %{__rm} -rf $RPM_BUILD_ROOT
 
 %changelog
-* Mon Jun 25 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-10
-- add %%{?dist} macro in Relase number
-
-* Fri Apr 20 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
+* Mon Jun 25 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
+- add %%{?dist} macro in Release number
 - first build for Repoforge el6
 
 * Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 4.51-8.1
