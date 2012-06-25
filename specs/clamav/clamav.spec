@@ -14,7 +14,7 @@
 Summary: Anti-virus software
 Name: clamav
 Version: 0.97.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.clamav.net/
@@ -249,8 +249,8 @@ touch %{buildroot}%{_localstatedir}/log/clamav/clamd.log
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/clamav/
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/clamav/
 
-touch %{buildroot}%{_localstatedir}/clamav/daily.cld
-touch %{buildroot}%{_localstatedir}/clamav/main.cld
+#touch %{buildroot}%{_localstatedir}/clamav/daily.cld
+#touch %{buildroot}%{_localstatedir}/clamav/main.cld
 
 %{__install} -Dp -m0644 %SOURCE10 %{buildroot}%{_localstatedir}/clamav/main.cvd
 %{__install} -Dp -m0644 %SOURCE11 %{buildroot}%{_localstatedir}/clamav/daily.cvd
@@ -393,6 +393,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Mon Jun 25 2012 David Hrbáč <david@hrbac.cz> - 0.97.5-2
+- removed missing *.cld files (#183)
+
 * Thu Jun 21 2012 David Hrbáč <david@hrbac.cz> - 0.97.5-1
 - corrected missing DBs
 - new upstream release
