@@ -6,7 +6,7 @@
 
 Summary: Apache Rivet lets you use the Tcl scripting language to create dynamic web sites
 Name: mod_rivet
-Version: 2.0.4
+Version: 2.0.5
 Release: 1%{?dist}
 License: Apache License Version 2.0
 Group: Development/Languages
@@ -88,6 +88,9 @@ EOT
 
 
 %changelog
+* Tue Jun 26 2012 Jeff Lawson <jeff@bovine.net> - 2.0.4-1
+- Updated to release 2.0.5.
+
 * Thu Oct 6 2011 Jeff Lawson <jeff@bovine.net> - 2.0.4-1
 - Updated to release 2.0.4.
 
