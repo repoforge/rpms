@@ -23,6 +23,7 @@ ganglia DEFAULT SF-DEFAULT
 git git-([0-9.]*?).tar.gz GOOGLE-DEFAULT:git-core
 htop DEFAULT SF-DEFAULT
 icinga DEFAULT SF-DEFAULT
+icinga-web DEFAULT http://sourceforge.net/projects/icinga/files/icinga-web/
 iftop DEFAULT http://www.ex-parrot.com/~pdw/iftop/download/
 lambdamoo DEFAULT SF-DEFAULT
 ldns DEFAULT http://www.nlnetlabs.nl/downloads/ldns/
@@ -41,6 +42,7 @@ mod_fastcgi DEFAULT http://www.fastcgi.com/dist/
 monit DEFAULT http://mmonit.com/monit/dist/
 monitorix DEFAULT http://www.monitorix.org/
 nagios DEFAULT SF-DEFAULT
+nagios-plugins DEFAULT http://sourceforge.net/projects/nagiosplug/files/nagiosplug/
 netperf DEFAULT ftp://ftp.netperf.org/netperf/
 nload DEFAULT http://www.roland-riegel.de/nload/
 nmap nmap-([0-9.]*?).tgz http://nmap.org/dist/
