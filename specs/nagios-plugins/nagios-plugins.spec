@@ -2,6 +2,8 @@
 # Authority: dag
 # Upstream: <nagiosplug-devel$lists,sf,net>
 
+%define revision 1
+
 %{?el5:%define _with_apt 1}
 
 %{?el4:%define _with_apt 1}
@@ -20,17 +22,15 @@
 
 %define extraplugins ide_smart ldap pgsql
 
-Summary: Host/service/network monitoring program plugins for Nagios
+Summary: Host/service/network monitoring program plugins for Nagios/Icinga
 Name: nagios-plugins
-Version: 1.4.15
-Release: 2%{?dist}
+Version: 1.4.16
+Release: %{revision}%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://nagiosplug.sourceforge.net/
 
 Source: http://downloads.sourceforge.net/project/nagiosplug/nagiosplug/%{version}/nagios-plugins-%{version}.tar.gz
-Patch0: nagios-plugins-1.4.3-ntpd.patch
-Patch1: nagios-plugins-1.4.4-check_ide_smart.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 AutoReq: no
@@ -67,8 +67,8 @@ Requires: perl(Net::SNMP)
 
 %description
 This package contains the basic plugins necessary for use with the
-Nagios package. This package should install cleanly on almost any
-RPM-based system.
+Nagios/Icinga package. This package should install cleanly on
+almost any RPM-based system.
 
 But you may need additional packages. Depending on what plugins you
 use, the following packages may be required:
@@ -78,7 +78,7 @@ use, the following packages may be required:
     qstat, radiusclient-ng, samba-client, sendmail
 
 %package setuid
-Summary: Host/service/network monitoring program plugins for Nagios requiring setuid
+Summary: Host/service/network monitoring program plugins for Nagios/Icinga requiring setuid
 Group: Applications/System
 
 Obsoletes: nagios-plugins-icmp <= %{version}-%{release}
@@ -86,12 +86,10 @@ Obsoletes: nagios-plugins-dhcp <= %{version}-%{release}
 
 %description setuid
 This package contains the setuid plugins necessary for use with the
-Nagios package.
+Nagios/Icinga package.
 
 %prep
 %setup
-%patch0 -p0
-#patch1 -p1
 
 ### FIXME: Change to real perl and plugins location. (Please fix upstream)
 find contrib -type f -exec %{__perl} -pi -e '
@@ -322,6 +320,10 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Mon Jul 02 2012 <michael.friedrich@univie.ac.at> - 1.4.16-1
+- new upstream release 1.4.16
+- remove old patches, verified upstream included
+
 * Fri Nov 26 2010 Dag Wieers <dag@wieers.com> - 14.15-2
 - Rebuild against radiusclient-ng 0.5.6.
 
