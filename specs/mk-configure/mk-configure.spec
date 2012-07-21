@@ -1,5 +1,5 @@
 Name: mk-configure
-Version: 0.21.2
+Version: 0.22.0
 Release: 1%{?dist}
 
 Summary: Lightweight replacement for GNU autotools
@@ -12,7 +12,7 @@ Packager: Aleksey Cheusov <vle@gmx.net>
 
 BuildArch: noarch
 
-# for build
+Requires: bmake
 BuildRequires: bmake
 
 # for check
@@ -47,7 +47,7 @@ rm -rf %{buildroot}%{_docdir}/%{name}
 %check
 # PREFIX=/usr/local	# this one to be fixed upstream
 unset MAKEFLAGS
-env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_reqd' bmake test
+env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
 
 %files
 %doc ChangeLog NEWS README TODO doc/presentation.pdf
@@ -59,6 +59,10 @@ env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_reqd' bmake test
 %{_mandir}/man7/*
 
 %changelog
+* Sat Jul 21 2012 Aleksey Cheusov <vle@gmx.net> 0.22.0-1
+- update to 0.22.0
+- add missing run-time dependency on bmake
+
 * Mon Jan  2 2012 Aleksey Cheusov <vle@gmx.net> 0.21.2-1
 - adapted for repoforge
 
