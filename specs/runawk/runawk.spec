@@ -1,5 +1,5 @@
 Name: runawk
-Version: 1.4.0
+Version: 1.4.1
 Release: 1%{?dist}
 
 Summary: Wrapper for AWK providing modules
@@ -10,7 +10,7 @@ Url: http://runawk.sourceforge.net
 Source: http://prdownloads.sf.net/%{name}/%{name}-%{version}.tar.gz
 Packager: Aleksey Cheusov <vle@gmx.net>
 
-BuildPreReq: mk-configure >= 0.21.0
+BuildPreReq: mk-configure >= 0.23.0
 
 BuildRequires: bmake mk-configure
 
@@ -68,6 +68,9 @@ mkcmake install
 #   (uses runawk, isn't used by runawk)
 
 %changelog
+* Sun Jul 22 2012 Aleksey Cheusov <vle@gmx.net> 1.4.1-1
+- updated to 1.4.1
+
 * Mon Jan  2 2012 Aleksey Cheusov <vle@gmx.net> 1.3.2-1
 - adapted for repoforge
 
@@ -77,4 +80,3 @@ mkcmake install
 * Mon Nov 07 2011 Michael Shigorin <mike@altlinux.org> 1.3.2-alt1
 - built for ALT Linux (new paexec dependency)
   + thanks Aleksey Cheusov for outstanding upstream support
-
