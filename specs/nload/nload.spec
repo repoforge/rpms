@@ -3,7 +3,7 @@
 
 Summary: Console application which monitors network traffic and bandwidth usage in real time
 Name: nload
-Version: 0.7.3
+Version: 0.7.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -42,6 +42,9 @@ network usage.
 %{_bindir}/nload
 
 %changelog
+* Tue Feb 07 2012 Dag Wieers <dag@wieers.com> - 0.7.4-1
+- Updated to release 0.7.4.
+
 * Mon Jun 20 2011 Dag Wieers <dag@wieers.com> - 0.7.3-1
 - Updated to release 0.7.3.
 

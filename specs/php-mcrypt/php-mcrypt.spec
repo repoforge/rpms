@@ -2,19 +2,29 @@
 # Authority: shuff
 # Upstream: John Smith <imipak$sourceforge,net>
 
+# ExcludeDist: el2 el3
+
 %define real_name mcrypt
-%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | tail -1)
+
+%{?el4:%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | echo 4.3.9)}
+%{?el5:%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | echo 5.1.6)}
+%{?el6:%define pversion %(rpm -q php-devel --qf '%{RPMTAG_VERSION}' | echo 5.3.3)}
+
 %define php_extdir %(php-config --extension-dir 2>/dev/null || echo %{_libdir}/php4)
 
 Summary: PHP module for using MCrypt encryption library
 Name: php-mcrypt
 Version: %{pversion}
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/Languages
 URL: http://www.php.net/manual/en/book.mcrypt.php
 
-Source:  http://www.php.net/distributions/php-%{pversion}.tar.gz
+# All those php version are considered as outdated
+%{?el4:Source:  http://museum.php.net/php4/php-%{pversion}.tar.gz}
+%{?el5:Source:  http://museum.php.net/php5/php-%{pversion}.tar.gz}
+%{?el6:Source:  http://museum.php.net/php5/php-%{pversion}.tar.gz}
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
@@ -22,6 +32,7 @@ BuildRequires: gcc
 BuildRequires: libmcrypt-devel >= 2.5.6
 BuildRequires: make
 BuildRequires: php-devel = %{pversion}
+BuildRequires: re2c
 Requires: libmcrypt >= 2.5.6
 Requires: php = %{pversion}
 
@@ -71,5 +82,8 @@ EOF
 %config(noreplace) %{_sysconfdir}/php.d/mcrypt.ini
 
 %changelog
+* Fri Mar 09 2012 Bjarne Saltbaek <arnebjarne72@hotmail.com>
+- Hardcoded PHP versions for EL4-6 to satisfy mock :-(
+
 * Fri Oct 29 2010 Steve Huff <shuff@vecna.org>
 - Initial package.

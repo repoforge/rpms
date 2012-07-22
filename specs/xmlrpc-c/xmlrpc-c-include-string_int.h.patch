@@ -1,0 +1,32 @@
+From df68067713ab58bf14ac1e75eace9fac45dba7d9 Mon Sep 17 00:00:00 2001
+From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+Date: Thu, 30 Dec 2010 20:44:06 +0100
+Subject: [PATCH 8/8] include missing <xmlrpc-c/string_int.h>
+
+gives
+
+| /tmp/xmlrpc-c/src/xmlrpc_libxml2.c: In function 'end_element':
+| /tmp/xmlrpc-c/src/xmlrpc_libxml2.c:303:2: warning: implicit declaration of function 'xmlrpc_streq'
+| ...
+| ../src/libxmlrpc.so.3.25: undefined reference to `xmlrpc_streq'
+
+else.
+---
+ src/xmlrpc_libxml2.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+diff --git a/src/xmlrpc_libxml2.c b/src/xmlrpc_libxml2.c
+index 57ae06b..ef073d4 100644
+--- a/src/xmlrpc_libxml2.c
++++ b/src/xmlrpc_libxml2.c
+@@ -38,6 +38,7 @@
+ 
+ #include "xmlrpc-c/base.h"
+ #include "xmlrpc-c/base_int.h"
++#include "xmlrpc-c/string_int.h"
+ #include "xmlrpc-c/xmlparser.h"
+ 
+ /* Define the contents of our internal structure. */
+-- 
+1.7.3.4
+

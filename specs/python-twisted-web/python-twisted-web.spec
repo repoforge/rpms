@@ -7,13 +7,13 @@
 
 Summary: Twisted web server, programmable in Python
 Name: python-twisted-web
-Version: 8.1.0
+Version: 8.2.0
 Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://twistedmatrix.com/trac/wiki/TwistedWeb
 
-Source: http://tmrc.mit.edu/mirror/twisted/Web/8.1/TwistedWeb-%{version}.tar.bz2
+Source: http://tmrc.mit.edu/mirror/twisted/Web/8.2/TwistedWeb-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: python-devel
@@ -56,5 +56,8 @@ pages, also.
 %{python_sitearch}/twisted/plugins/twisted_web.py*
 
 %changelog
-* Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 0.8.1-1
+* Mon Apr 23 2012 Steve Huff <shuff@vecna.org> - 8.2.0-1
+- Update to 8.2.0.
+
+* Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 8.1.0-1
 - Initial package. (based on fedora)

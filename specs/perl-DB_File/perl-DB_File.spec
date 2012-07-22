@@ -14,7 +14,7 @@
 
 Summary: Perl5 access to Berkeley DB version 1.x
 Name: perl-DB_File
-Version: 1.822
+Version: 1.826
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -57,6 +57,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorarch}/DB_File.pm
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 1.826-1
+- new upstream release
+
 * Mon Mar 14 2011 David Hrbáč <david@hrbac.cz> - 1.822-1
 - new upstream release
 

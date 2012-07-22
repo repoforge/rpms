@@ -10,13 +10,13 @@
 
 Summary: Asynchronous networking framework written in Python
 Name: python-twisted-core
-Version: 8.1.0
+Version: 8.2.0
 Release: 1%{?dist}
 License: MIT
 Group: Development/Libraries
 URL: http://twistedmatrix.com/trac/wiki/TwistedCore
 
-Source0: http://tmrc.mit.edu/mirror/twisted/Core/8.1/%{real_name}-%{version}.tar.bz2
+Source0: http://tmrc.mit.edu/mirror/twisted/Core/8.2/%{real_name}-%{version}.tar.bz2
 Source1: twisted-dropin-cache
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -91,7 +91,6 @@ chmod a-x doc/howto/listings/pb/copy_receiver.tac
 %{_bindir}/manhole
 %{_bindir}/mktap
 %{_bindir}/pyhtmlizer
-%{_bindir}/t-im
 %{_bindir}/tap2deb
 %{_bindir}/tap2rpm
 %{_bindir}/tapconvert
@@ -105,5 +104,8 @@ chmod a-x doc/howto/listings/pb/copy_receiver.tac
 %doc doc/*
 
 %changelog
+* Mon Apr 23 2012 Steve Huff <shuff@vecna.org> - 8.2.0-1
+- Update to version 8.2.0.
+
 * Wed Dec 10 2008 Dag Wieers <dag@wieers.com> - 8.1.0-1
 - Initial package. (based on fedora)

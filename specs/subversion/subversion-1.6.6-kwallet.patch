@@ -1,0 +1,25 @@
+
+The first half of this is certainly upstream-worthy, but the second half is presumably
+some Fedora-specific KDE packaging thing.  It's not obvious how to get
+kde4-config to report the directory which contains the .so files.
+
+--- subversion-1.6.6/build/ac-macros/kwallet.m4.kwallet
++++ subversion-1.6.6/build/ac-macros/kwallet.m4
+@@ -47,14 +47,14 @@ AC_DEFUN(SVN_LIB_KWALLET,
+                     fi
+                   done
+                   qt_include_dirs="`$PKG_CONFIG --cflags-only-I QtCore QtDBus QtGui`"
+-                  kde_dir="`$kde4_config --prefix`"
+-                  SVN_KWALLET_INCLUDES="$DBUS_CPPFLAGS $qt_include_dirs -I$kde_dir/include"
++                  kde_include_dirs="-I`$kde4_config --path include`"
++                  SVN_KWALLET_INCLUDES="$DBUS_CPPFLAGS $qt_include_dirs $kde_include_dirs"
+                   qt_libs_other_options="`$PKG_CONFIG --libs-only-other QtCore QtDBus QtGui`"
+                   SVN_KWALLET_LIBS="$DBUS_LIBS -lQtCore -lQtDBus -lQtGui -lkdecore -lkdeui $qt_libs_other_options"
+                   CXXFLAGS="$CXXFLAGS $SVN_KWALLET_INCLUDES"
+                   LIBS="$LIBS $SVN_KWALLET_LIBS"
+                   qt_lib_dirs="`$PKG_CONFIG --libs-only-L QtCore QtDBus QtGui`"
+-                  LDFLAGS="$old_LDFLAGS $qt_lib_dirs -L$kde_dir/lib`$kde4_config --libsuffix`"
++                  LDFLAGS="$old_LDFLAGS $qt_lib_dirs -L$libdir/kde4/devel"
+                   AC_LANG(C++)
+                   AC_LINK_IFELSE([
+ #include <kwallet.h>

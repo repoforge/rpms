@@ -4,12 +4,13 @@
 Summary: Stylus oriented notetaking
 Name: xournal
 Version: 0.4.5
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Productivity
 URL: http://xournal.sourceforge.net/
 
 Source: http://dl.sf.net/xournal/xournal-%{version}.tar.gz
+Patch0:		xournal-0.4.5-xoprint-len.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -28,6 +29,7 @@ Windows Journal or to other alternatives such as Jarnal, Gournal, and NoteLab.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 ./autogen.sh --prefix="%{_prefix}"
@@ -67,6 +69,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Wed Apr 25 2012 He Jian <hejian.he@gmail.com> 0.4.5-2
+- Added xournal-0.4.5-xoprint-len.patch to fix 64 bit systems
+
 * Sun Nov 21 2010 Dag Wieers <dag@wieers.com> - 0.4.5-1
 - Updated to release 0.4.5.
 

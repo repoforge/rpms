@@ -3,7 +3,7 @@
 
 Summary: The skarnet.org development library
 Name: skalibs
-Version: 0.45
+Version: 1.2.6
 Release: 1%{?dist}
 License: BSD
 Group: Development/Other
@@ -55,5 +55,8 @@ done
 %{_libdir}/skalibs/
 
 %changelog
+* Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 1.2.6-1
+- Updated to release 1.2.6.
+
 * Mon Jan 29 2007 Dag Wieers <dag@wieers.com> - 0.45-1
 - Initial package. (using DAR)

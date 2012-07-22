@@ -1,0 +1,14 @@
+diff -up arj-3.10.22/fardata.c.orig arj-3.10.22/fardata.c
+--- arj-3.10.22/fardata.c.orig	2004-04-17 13:39:42.000000000 +0200
++++ arj-3.10.22/fardata.c	2012-04-13 20:08:49.962934526 +0200
+@@ -190,7 +190,9 @@ int msg_sprintf(char *str, FMSG *fmt, ..
+ 
+ /* Length-limited strlen() */
+ 
+-static int strnlen(const char FAR *s, int count)
++#undef strnlen
++#define strnlen arj_strnlen
++static int arj_strnlen(const char FAR *s, int count)
+ {
+  const char FAR *sc;
+ 

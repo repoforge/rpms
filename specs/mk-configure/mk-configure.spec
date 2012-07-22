@@ -1,3 +1,7 @@
+# $Id$
+# Authoruty: dfateyev
+# Upstream: Aleksey Cheusov <vle$gmx,net>
+
 Name: mk-configure
 Version: 0.23.0
 Release: 1%{?dist}
@@ -10,6 +14,7 @@ Url: http://sourceforge.net/projects/mk-configure/
 Source: http://prdownloads.sf.net/%{name}/%{name}-%{version}.tar.gz
 Packager: Aleksey Cheusov <vle@gmx.net>
 
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
 
 Requires: bmake
@@ -33,7 +38,7 @@ export MANDIR=%{_mandir}
 
 # examples are built and tested either,
 # let's keep a pristine copy
-cp -al examples doc
+%{__cp} -al examples doc
 
 %build
 %env
@@ -42,12 +47,14 @@ bmake all
 %install
 %env
 bmake install DESTDIR=%{buildroot}
-rm -rf %{buildroot}%{_docdir}/%{name}
+%{__rm} -rf %{buildroot}%{_docdir}/%{name}
 
 %check
-# PREFIX=/usr/local	# this one to be fixed upstream
 unset MAKEFLAGS
 env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
+
+%clean
+%{__rm} -rf %{buildroot}
 
 %files
 %doc ChangeLog NEWS README TODO doc/presentation.pdf
@@ -62,9 +69,8 @@ env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
 * Sat Jul 22 2012 Aleksey Cheusov <vle@gmx.net> 0.23.0-1
 - update to 0.23.0
 
-* Sat Jul 21 2012 Aleksey Cheusov <vle@gmx.net> 0.22.0-1
-- update to 0.22.0
-- add missing run-time dependency on bmake
+* Sun Apr  8 2012 Denis Fateyev <denis@fateyev.com> - 0.22.0-1
+- Bump to 0.22.0
 
 * Mon Jan  2 2012 Aleksey Cheusov <vle@gmx.net> 0.21.2-1
 - adapted for repoforge

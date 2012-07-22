@@ -12,7 +12,7 @@
 
 Summary: Perl extension for SHA-1/224/256/384/512
 Name: perl-Digest-SHA
-Version: 5.50
+Version: 5.71
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -60,6 +60,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Digest/SHA.pm
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 5.71-1
+- new upstream release
+
 * Sun Jan 30 2011 David Hrbáč <david@hrbac.cz> - 5.50-1
 - new upstream release
 

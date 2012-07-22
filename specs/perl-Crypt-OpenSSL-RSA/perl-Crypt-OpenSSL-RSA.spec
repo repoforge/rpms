@@ -12,13 +12,13 @@
 
 Summary: RSA encoding and decoding
 Name: perl-Crypt-OpenSSL-RSA
-Version: 0.26
+Version: 0.28
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Crypt-OpenSSL-RSA/
 
-Source: http://search.cpan.org/CPAN/authors/id/I/IR/IROBERTS/Crypt-OpenSSL-RSA-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/P/PE/PERLER/%{real_name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl
@@ -65,6 +65,9 @@ CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildr
 %{perl_vendorarch}/auto/Crypt/OpenSSL/RSA/
 
 %changelog
+* Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 0.28-1
+- new upstream release
+
 * Thu Dec 31 2009 Christoph Maser <cmr@financial.com> - 0.26-1
 - Updated to version 0.26.
 

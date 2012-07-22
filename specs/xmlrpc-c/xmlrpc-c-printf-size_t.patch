@@ -1,0 +1,48 @@
+From c06a722a77198ae42fb79b67d185556ac6c1e246 Mon Sep 17 00:00:00 2001
+From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+Date: Mon, 25 Feb 2008 17:48:25 +0100
+Subject: [PATCH 2/7] fixed broken format string modifiers
+
+---
+ examples/json.c                         |    4 ++--
+ tools/xmlrpc_pstream/xmlrpc_pstream.cpp |    2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/examples/json.c b/examples/json.c
+index 89fe82b..91ea50d 100644
+--- a/examples/json.c
++++ b/examples/json.c
+@@ -41,7 +41,7 @@ printAsXml(xmlrpc_value * const valP) {
+     printf("XML-RPC XML:\n");
+ 
+     printf("%.*s\n",
+-           XMLRPC_MEMBLOCK_SIZE(char, &out),
++           (int)XMLRPC_MEMBLOCK_SIZE(char, &out),
+            XMLRPC_MEMBLOCK_CONTENTS(char, &out));
+ 
+     XMLRPC_MEMBLOCK_CLEAN(char, &out);
+@@ -70,7 +70,7 @@ printAsJson(xmlrpc_value * const valP) {
+     printf("JSON:\n");
+ 
+     printf("%.*s\n",
+-           XMLRPC_MEMBLOCK_SIZE(char, &out),
++           (int)XMLRPC_MEMBLOCK_SIZE(char, &out),
+            XMLRPC_MEMBLOCK_CONTENTS(char, &out));
+ 
+     XMLRPC_MEMBLOCK_CLEAN(char, &out);
+diff --git a/tools/xmlrpc_pstream/xmlrpc_pstream.cpp b/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
+index 1417708..0d6ec11 100644
+--- a/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
++++ b/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
+@@ -103,7 +103,7 @@ bytestringValFromParm(string const& valueString) {
+ 
+     if (valueString.length() / 2 * 2 != valueString.length())
+         throwf("Hexadecimal text is not an even "
+-               "number of characters (it is %u characters)",
++               "number of characters (it is %zu characters)",
+                valueString.length());
+     else {
+         vector<unsigned char> byteString(valueString.length() / 2);
+-- 
+1.7.2.3
+

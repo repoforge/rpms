@@ -20,6 +20,7 @@
 %{?el6:%define _without_glide 1}
 %{?el6:%define _without_jack 1}
 %{?el6:%define _without_lirc 1}
+%{?el6:%define _without_xcb 1}
 %{?el6:%define _without_xosd 1}
 
 %{?el5:%define mozilla xulrunner-devel nspr-devel}
@@ -58,13 +59,13 @@
 
 Summary: The VideoLAN client, also a very good standalone video player
 Name: vlc
-Version: 1.1.13
+Version: 2.0.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://www.videolan.org/
 
-Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.bz2
+Source0: http://downloads.videolan.org/pub/videolan/vlc/%{version}/vlc-%{version}.tar.xz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -81,7 +82,6 @@ BuildRequires: libv4l-devel
 BuildRequires: libva-devel
 BuildRequires: libxml2-devel
 BuildRequires: live555-devel
-BuildRequires: xcb-util-devel
 %{?_with_mozilla:BuildRequires: %{mozilla}}
 %{!?_without_modxorg:BuildRequires: libGLU-devel, libXt-devel, libXv-devel, libXinerama-devel, libXxf86vm-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
@@ -141,6 +141,7 @@ BuildRequires: xcb-util-devel
 %{!?_without_vcd:BuildRequires: vcdimager-devel}
 %{!?_without_vorbis:BuildRequires: libvorbis-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
+%{!?_without_xcb:BuildRequires: xcb-util-devel}
 %{!?_without_xosd:BuildRequires: xosd-devel}
 %{!?_without_zvbi:BuildRequires: zvbi-devel}
 Obsoletes: videolan-client < 0.8.5-4
@@ -284,6 +285,7 @@ export QTLIB="$QTDIR/lib"
 %{?_without_v4l2:--disable-v4l2} \
 %{?_without_vorbis:--disable-vorbis} \
 %{?_without_x264:--disable-x264} \
+%{?_without_xcb:--disable-xcb} \
 %{!?_without_xosd:--enable-xosd} \
 #{!?_without_dc1394:--enable-dc1394} \
 #{!?_without_goom:--enable-goom} \
@@ -357,6 +359,9 @@ export QTLIB="$QTDIR/lib"
 %exclude %{_libdir}/mozilla/plugins/libvlcplugin.la
 
 %changelog
+* Tue Feb 21 2012 Dag Wieers <dag@wieers.com> - 2.0.0-1
+- Updated to release 2.0.0.
+
 * Sun Jan 22 2012 Dag Wieers <dag@wieers.com> - 1.1.13-1
 - Updated to release 1.1.13.
 

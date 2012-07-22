@@ -9,7 +9,7 @@
 
 Summary: IO-Multiplex module for perl
 Name: perl-IO-Multiplex
-Version: 1.10
+Version: 1.13
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -55,6 +55,9 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Multiplex.pm
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 1.13-1
+- new upstream release
+
 * Wed Oct 08 2008 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 

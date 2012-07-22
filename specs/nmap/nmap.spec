@@ -23,7 +23,7 @@
 
 Summary: Network exploration tool and security scanner
 Name: nmap
-Version: 5.51.6
+Version: 6.01
 Release: 1%{?dist}
 Epoch: 2
 License: GPL
@@ -129,6 +129,12 @@ desktop-file-install --delete-original \
 %endif
 
 %changelog
+* Tue Jun 19 2012 David Hrbáč <david@hrbac.cz> - 2:6.01-1
+- new upstream release
+
+* Mon May 28 2012 David Hrbáč <david@hrbac.cz> - 2:6.00-1
+- new upstream release
+
 * Sat Jan 21 2012 David Hrbáč <david@hrbac.cz> - 2:5.51.6-1
 - new upstream release
 

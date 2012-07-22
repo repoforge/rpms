@@ -1,0 +1,10 @@
+--- spine/spine.c	2012/04/10 22:17:02	7114
++++ spine/spine.c	2012/04/14 19:55:56	7115
+@@ -759,8 +759,6 @@
+ 		}
+ 	}
+ 
+-	free(poller_details);
+-
+ 	/* tell Spine that it is now parent */
+ 	set.parent_fork = SPINE_PARENT;

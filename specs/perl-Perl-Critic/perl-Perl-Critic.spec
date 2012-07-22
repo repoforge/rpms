@@ -12,8 +12,8 @@
 
 Summary: Critique Perl source code for best-practices
 Name: perl-Perl-Critic
-Version: 1.105
-Release: 3%{?dist}
+Version: 1.117
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Perl-Critic/
@@ -98,12 +98,32 @@ Requires: perl(warnings)
 %filter_from_requires /^perl*/d
 %filter_setup
 
-
 %description
-Critique Perl source code for best-practices.
+Perl::Critic is an extensible framework for creating and applying coding
+standards to Perl source code. Essentially, it is a static source code
+analysis engine. Perl::Critic is distributed with a number of
+Perl::Critic::Policy modules that attempt to enforce various coding
+guidelines. Most Policy modules are based on Damian Conway's book Perl
+Best Practices. However, Perl::Critic is not limited to PBP and will
+even support Policies that contradict Conway. You can enable, disable,
+and customize those Polices through the Perl::Critic interface. You can
+also create new Policy modules that suit your own tastes.
 
+%package -n perl-Test-Perl-Critic-Policy
+Summary:    A framework for testing your custom Policies
+Group:      Development/Libraries
+License:    GPL+ or Artistic
+
+%description -n perl-Test-Perl-Critic-Policy
+This module provides a framework for function-testing your custom
+Perl::Critic::Policy modules. Policy testing usually involves feeding it a
+string of Perl code and checking its behavior. In the old days, those strings
+of Perl code were mixed directly in the test script. That sucked.
 %prep
 %setup -n %{real_name}-%{version}
+
+# Drop exec bits from samples/docs to avoid dependency bloat
+find tools examples -type f -exec chmod -c -x {} ';'
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -135,7 +155,14 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Perl/Critic.pm
 %{perl_vendorlib}/Perl/TODO.pod
 
+%files -n perl-Test-Perl-Critic-Policy
+%{perl_vendorlib}/Test/
+%{_mandir}/man3/Test::Perl::Critic::Policy.3pm*
+
 %changelog
+* Thu Apr 19 2012 David Hrbáč <david@hrbac.cz> - 1.117-1
+- new upstream release
+
 * Wed Dec 09 2009 Christoph Maser <cmr@financial.com> - 1.105-3
 - disable autodeps
 

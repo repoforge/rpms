@@ -2,49 +2,69 @@
 # Authority: yury
 # Upstream: Jari "Rakshasa" Sundell <sundell,software$gmail,com>
 
-%{?el5:%define curl_version 7.19.6}
+### Only build for RHEL5,6
+# ExcludeDist: el2 el3 el4
 
-Summary: Console-based BitTorrent client
+# more unification with curl version (7.19.7 shipped with el6)
+%define curl_version 7.19.7
+
+%{?el5:%define _with_curl_static 1}
+
+
 Name: rtorrent
-Version: 0.8.9
-Release: 1%{?dist}
-License: GPL
+# OpenSSL exception, see README
+License: GPLv2+ with exceptions
 Group: Applications/Internet
+Version: 0.9.2
+Release: 1%{?dist}
+Summary: BitTorrent client based on libtorrent
 URL: http://libtorrent.rakshasa.no/
 
-Source0: http://libtorrent.rakshasa.no/downloads/rtorrent-%{version}.tar.gz
-%{?curl_version:Source1: http://curl.haxx.se/download/curl-%{curl_version}.tar.bz2}
+Source0: http://libtorrent.rakshasa.no/downloads/%{name}-%{version}.tar.gz
+Source3: http://curl.haxx.se/download/curl-%{curl_version}.tar.bz2
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
-BuildRequires: libsigc++20-devel
-BuildRequires: libtorrent-devel >= 0.12.5
-BuildRequires: ncurses-devel
+%{!?_with_curl_static:BuildRequires: curl-devel}
 
-### Curl BuildRequires from Rawhide (no stunnel!)
-BuildRequires: krb5-devel
-BuildRequires: libidn-devel
-BuildRequires: nss-devel
-BuildRequires: openldap-devel
-BuildRequires: openssh-clients
-BuildRequires: openssh-server
+BuildRequires: libstdc++-devel
+BuildRequires: libsigc++20-devel
+BuildRequires: libtorrent-devel >= 0.13.2
+BuildRequires: ncurses-devel
 BuildRequires: pkgconfig
-BuildRequires: valgrind
-BuildRequires: zlib-devel
+BuildRequires: libxml2-devel
+BuildRequires: xmlrpc-c-devel >= 1.22
+%{?el6:BuildRequires: cppunit}
+%{?el6:BuildRequires: cppunit-devel}
+
+Requires: libsigc++20
+Requires: libtorrent >= 0.13.2
+Requires: xmlrpc-c >= 1.22
+Requires: xmlrpc-c-apps >= 1.22
+
+%if %{?_with_curl_static:1}0
+BuildRequires: openssl-devel
+BuildRequires: libtool
+BuildRequires: libidn-devel
+%endif
+
 
 %description
-rTorrent is a console-based BitTorrent client. It aims to be a
-fully-featured and efficient client with the ability to run in the 
-background using screen. It supports fast-resume and session
-management.
+A BitTorrent client using libtorrent, which on high-bandwidth connections is 
+able to seed at 3 times the speed of the official client. Using
+ncurses its ideal for use with screen or dtach. It supports 
+saving of sessions and allows the user to add and remove torrents and scanning
+of directories for torrent files to seed and/or download.
+
 
 %prep
 %setup
-%{?curl_version:%setup -T -D -a 1}
+%{?_with_curl_static:%setup -T -D -a 3}
+
 
 %build
-%if %{?curl_version:1}0
-### Build curl
+%if %{?_with_curl_static:1}0
+# Build curl
 pushd curl-%{curl_version}
 RESULT_DIR="$(pwd)/result"
 
@@ -54,40 +74,51 @@ RESULT_DIR="$(pwd)/result"
     --disable-manual \
     --disable-shared \
     --enable-ipv6 \
-    --enable-ldaps \
     --enable-static \
     --without-libssh2 \
     --without-ssl \
-    --with-ca-bundle="%{_sysconfdir}/pki/tls/certs/ca-bundle.crt" \
     --with-gssapi="%{_prefix}/kerberos" \
-    --with-libidn \
-    --with-nss
-#    --libdir="$RESULT_DIR/usr/%{_lib}" \
+    --with-libidn
 
 %{__make} %{?_smp_mflags} CFLAGS="%{optflags}" install
 popd
 
-# Build rtorrent
-PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
+# Append pkgconfig info
+PKG_CONFIG_PATH="$RESULT_DIR/lib/pkgconfig:$PKG_CONFIG_PATH" ; export PKG_CONFIG_PATH
 %endif
 
-%configure
-%{__make} %{?_smp_mflags} CFLAGS="%{optflags}"
+# avoid gcc-4.1 bug
+%ifarch i386
+    %{?el5:export CFLAGS="$CFLAGS -pthread -march=i486"}
+    %{?el5:export CXXFLAGS="$CXXFLAGS -pthread -march=i486"}
+%endif
+
+%configure --with-xmlrpc-c
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+%{__make} install DESTDIR=%{buildroot}
+
+# manually install the man page to correct location for this release
+%{__install} -p -m 0644 -D ./doc/rtorrent.1 %{buildroot}/%{_mandir}/man1/rtorrent.1
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
-#%doc %{_mandir}/man1/rtorrent.1*
+%defattr(-,root,root,-)
+%doc AUTHORS COPYING INSTALL README doc/faq.xml doc/rtorrent.rc
 %{_bindir}/rtorrent
+%{_mandir}/man1/rtorrent*
 
 %changelog
+* Mon May 07 2012 Denis Fateyev <denis@fateyev.com> - 0.9.2-1
+- update to 0.9.2 version
+
+* Thu Aug 18 2011 Denis Fateyev <denis@fateyev.com> - 0.8.9-2
+- Some fixes in spec for rtorrent-0.8.9
+
 * Mon Aug 01 2011 Dag Wieers <dag@wieers.com> - 0.8.9-1
 - Updated to release 0.8.9.
 
@@ -111,7 +142,7 @@ PKG_CONFIG_PATH="$RESULT_DIR/usr/%{_lib}/pkgconfig:$PKG_CONFIG_PATH" ; export PK
 * Sun Jul 19 2009 Dag Wieers <dag@wieers.com> - 0.8.4-2
 - Rebuild against libtorrent.
 
-* Thu Jan  1 2009 Dries Verachtert <dries@ulyssis.org> - 0.8.4-1
+* Thu Jan 1 2009 Dries Verachtert <dries@ulyssis.org> - 0.8.4-1
 - Updated to release 0.8.4.
 
 * Tue Jan 29 2008 Dries Verachtert <dries@ulyssis.org> - 0.8.0-1

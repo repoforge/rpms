@@ -19,7 +19,7 @@
 
 Summary: IO Interface to compressed data files/buffers
 Name: perl-IO-Compress
-Version: 2.037
+Version: 2.049
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -69,7 +69,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 
 %files
 %defattr(-, root, root, 0755)
+%{_bindir}/zipdetails
 %doc Changes MANIFEST META.yml README examples/
+%doc %{_mandir}/man1/zipdetails.1*
 %doc %{_mandir}/man3/Compress::Zlib.3pm*
 %doc %{_mandir}/man3/File::GlobMapper.3pm*
 %doc %{_mandir}/man3/IO::Compress*.3pm*
@@ -82,6 +84,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/IO/Uncompress/
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 2.049-1
+- new upstream release
+
 * Thu Jul 28 2011 Philip J Perry <phil@elrepo.org> - 2.037-1
 - new upstream release
 

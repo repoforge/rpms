@@ -1,0 +1,52 @@
+diff --git a/gmetad/conf.c.in b/gmetad/conf.c.in
+index c6fd338..27ae87c 100644
+--- a/gmetad/conf.c.in
++++ b/gmetad/conf.c.in
+@@ -274,7 +274,7 @@ set_defaults (gmetad_config_t *config)
+    config->trusted_hosts = NULL;
+    config->debug_level = 0;
+    config->should_setuid = 1;
+-   config->setuid_username = "nobody";
++   config->setuid_username = "@setuid_user@";
+    config->rrd_rootdir = "@varstatedir@/ganglia/rrds";
+    config->scalable_mode = 1;
+    config->all_trusted = 0;
+diff --git a/gmetad/gmetad.conf.in b/gmetad/gmetad.conf.in
+index 4e75246..67920eb 100644
+--- a/gmetad/gmetad.conf.in
++++ b/gmetad/gmetad.conf.in
+@@ -88,9 +88,9 @@ data_source "my cluster" localhost
+ # setuid off
+ #
+ #-------------------------------------------------------------------------------
+-# User gmetad will setuid to (defaults to "nobody")
+-# default: "nobody"
+-# setuid_username "nobody"
++# User gmetad will setuid to (defaults to "@setuid_user@")
++# default: "@setuid_user@"
++# setuid_username "@setuid_user@"
+ #
+ #-------------------------------------------------------------------------------
+ # The port gmetad will answer requests for XML
+diff --git a/scripts/fixconfig.in b/scripts/fixconfig.in
+index 9208c22..b666b6b 100644
+--- a/scripts/fixconfig.in
++++ b/scripts/fixconfig.in
+@@ -33,6 +33,8 @@ LDFLAGS="`echo '@LDFLAGS@' | $AWK '{ gsub(/,/, "\\\\,"); print }'`"
+ LIBS="@LIBS@"
+ VERSION="@VERSION@"
+ host_cpu="@host_cpu@"
++setuid_user="@setuid_user@"
++setgid_group="@setgid_group@"
+ 
+ # Additional paths specific to Ganglia.
+ moduledir="@moduledir@"
+@@ -84,5 +86,7 @@ $SED -e "s,@prefix[@],$prefix,g" \
+      -e "s,@GANGLIA_MINOR_VERSION[@],$GANGLIA_MINOR_VERSION,g" \
+      -e "s,@GANGLIA_VERSION[@],$GANGLIA_VERSION,g" \
+      -e "s,@REL[@],$REL,g" \
++     -e "s,@setuid_user[@],$setuid_user,g" \
++     -e "s,@setgid_group[@],$setgid_group,g" \
+       < "$input" > "$output"
+ 
+

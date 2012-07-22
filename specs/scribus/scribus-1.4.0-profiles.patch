@@ -1,0 +1,39 @@
+From 38694e19e0c8015a58b71f9b97f551ec0fd14b9e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Dan=20Hor=C3=A1k?= <dan@danny.cz>
+Date: Mon, 2 Jan 2012 14:34:41 +0100
+Subject: [PATCH] install profiles into datadir instead of libdir
+
+profiles are architecture independent data files and per FHS they should be
+installed into datadir (/usr/share/...)
+---
+ Scribus/scribus/profiles/CMakeLists.txt |    2 +-
+ Scribus/scribus/scribuscore.cpp         |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Scribus/scribus/profiles/CMakeLists.txt b/Scribus/scribus/profiles/CMakeLists.txt
+index e53b253..3fe9614 100644
+--- a/Scribus/scribus/profiles/CMakeLists.txt
++++ b/Scribus/scribus/profiles/CMakeLists.txt
+@@ -8,5 +8,5 @@ GenericCMYK.txt
+ Readme
+ sRGB.icm
+ srgb.license
+-  DESTINATION ${LIBDIR}profiles
++  DESTINATION ${SHAREDIR}profiles
+ )
+diff --git a/Scribus/scribus/scribuscore.cpp b/Scribus/scribus/scribuscore.cpp
+index 83fbb65..8d14abd 100644
+--- a/Scribus/scribus/scribuscore.cpp
++++ b/Scribus/scribus/scribuscore.cpp
+@@ -332,7 +332,7 @@ void ScribusCore::getCMSProfiles(bool showInfo)
+ 	PrinterProfiles.clear();
+ 	InputProfiles.clear();
+ 	InputProfilesCMYK.clear();
+-	QString pfad = ScPaths::instance().libDir();
++	QString pfad = ScPaths::instance().shareDir();
+ 	pfad += "profiles/";
+ 	profDirs = ScPaths::getSystemProfilesDirs();
+ 	profDirs.prepend( prefsManager->appPrefs.ProfileDir );
+-- 
+1.7.4.4
+

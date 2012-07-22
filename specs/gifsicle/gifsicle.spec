@@ -14,7 +14,7 @@
 
 Summary: Powerful program for manipulating GIF images and animations
 Name: gifsicle
-Version: 1.48
+Version: 1.67
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -24,6 +24,12 @@ Source: http://www.lcdf.org/gifsicle/gifsicle-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{!?_without_modxorg:BuildRequires: libX11-devel, libICE-devel, libSM-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
+
+BuildRequires: binutils
+BuildRequires: gcc
+BuildRequires: make
+
+Conflicts: ungifsicle
 
 %description
 Gifsicle manipulates GIF image files on the
@@ -59,15 +65,14 @@ appearance.
 
 %files
 %defattr(-, root, root, 0755)
-%doc NEWS README
-%doc %{_mandir}/man1/gifdiff.1*
-%doc %{_mandir}/man1/gifsicle.1*
-%doc %{_mandir}/man1/gifview.1*
-%{_bindir}/gifdiff
-%{_bindir}/gifsicle
-%{_bindir}/gifview
+%doc COPYING INSTALL NEWS README
+%doc %{_mandir}/man?/*
+%{_bindir}/*
 
 %changelog
+* Mon May 21 2012 Steve Huff <shuff@vecna.org> - 1.67-1
+- Updated to release 1.67.
+
 * Sun Sep 16 2007 Dries Verachtert <dries@ulyssis.org> - 1.48-1
 - Updated to release 1.48.
 

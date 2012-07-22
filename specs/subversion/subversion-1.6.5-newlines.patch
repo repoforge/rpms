@@ -1,0 +1,273 @@
+diff -up svn2cl-0.11/svn2cl.xsl~ svn2cl-0.11/svn2cl.xsl
+--- svn2cl-0.11/svn2cl.xsl~	2008-12-21 17:41:20.000000000 +0200
++++ svn2cl-0.11/svn2cl.xsl	2009-11-02 22:29:34.000000000 +0200
+@@ -55,12 +55,6 @@
+ 
+ -->
+ 
+-<!DOCTYPE xsl:stylesheet [
+- <!ENTITY tab "&#9;">
+- <!ENTITY newl "&#38;#xA;">
+- <!ENTITY space "&#32;">
+-]>
+-
+ <xsl:stylesheet
+   version="1.0"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+@@ -119,7 +113,7 @@
+    </xsl:otherwise>
+   </xsl:choose>
+   <!-- add newlines at the end of the changelog -->
+-  <xsl:text>&newl;</xsl:text>
++  <xsl:text>&#10;</xsl:text>
+  </xsl:template>
+ 
+  <!-- format one entry from the log -->
+@@ -149,33 +143,33 @@
+     <xsl:if test="($prevdate!=$date) or ($prevauthor!=$author)">
+      <!-- add newline -->
+      <xsl:if test="not(position()=1)">
+-      <xsl:text>&newl;</xsl:text>
++      <xsl:text>&#10;</xsl:text>
+      </xsl:if>
+      <!-- date -->
+      <xsl:value-of select="$date" />
+      <!-- two spaces -->
+-     <xsl:text>&space;&space;</xsl:text>
++     <xsl:text>&#32;&#32;</xsl:text>
+      <!-- author's name -->
+      <xsl:apply-templates select="author" />
+      <!-- two newlines -->
+-     <xsl:text>&newl;</xsl:text>
+-     <xsl:if test="$separate-daylogs!='yes'"><xsl:text>&newl;</xsl:text></xsl:if>
++     <xsl:text>&#10;</xsl:text>
++     <xsl:if test="$separate-daylogs!='yes'"><xsl:text>&#10;</xsl:text></xsl:if>
+     </xsl:if>
+    </xsl:when>
+    <!-- write the log header -->
+    <xsl:otherwise>
+     <!-- add newline -->
+     <xsl:if test="not(position()=1)">
+-     <xsl:text>&newl;</xsl:text>
++     <xsl:text>&#10;</xsl:text>
+     </xsl:if>
+     <!-- date -->
+     <xsl:apply-templates select="date" />
+     <!-- two spaces -->
+-    <xsl:text>&space;&space;</xsl:text>
++    <xsl:text>&#32;&#32;</xsl:text>
+     <!-- author's name -->
+     <xsl:apply-templates select="author" />
+     <!-- two newlines -->
+-    <xsl:text>&newl;&newl;</xsl:text>
++    <xsl:text>&#10;&#10;</xsl:text>
+    </xsl:otherwise>
+   </xsl:choose>
+   <!-- get paths string -->
+@@ -187,7 +181,7 @@
+    <xsl:if test="$include-rev='yes'">
+     <xsl:text>[r</xsl:text>
+     <xsl:value-of select="@revision" />
+-    <xsl:text>]&space;</xsl:text>
++    <xsl:text>]&#32;</xsl:text>
+    </xsl:if>
+   </xsl:variable>
+   <!-- trim trailing newlines -->
+@@ -195,7 +189,7 @@
+    <!-- add a line break before the log message -->
+    <xsl:choose>
+     <xsl:when test="$breakbeforemsg='yes'">
+-     <xsl:text>&newl;</xsl:text>
++     <xsl:text>&#10;</xsl:text>
+     </xsl:when>
+     <xsl:when test="number($breakbeforemsg)&gt;0">
+      <xsl:call-template name="newlines">
+@@ -208,14 +202,14 @@
+    </xsl:call-template>
+   </xsl:variable>
+   <!-- add newline here if separate-daylogs is in effect -->
+-  <xsl:if test="$groupbyday='yes' and $separate-daylogs='yes'"><xsl:text>&newl;</xsl:text></xsl:if>
++  <xsl:if test="$groupbyday='yes' and $separate-daylogs='yes'"><xsl:text>&#10;</xsl:text></xsl:if>
+   <!-- first line is indented (other indents are done in wrap template) -->
+-  <xsl:text>&tab;*&space;</xsl:text>
++  <xsl:text>&#9;*&#32;</xsl:text>
+   <!-- set up the text to wrap -->
+   <xsl:variable name="txt">
+    <xsl:value-of select="$rev" />
+    <xsl:if test="$paths!=''">
+-    <xsl:value-of select="concat($paths,':&space;')" />
++    <xsl:value-of select="concat($paths,':&#32;')" />
+    </xsl:if>
+    <xsl:value-of select="$msg" />
+   </xsl:variable>
+@@ -232,7 +226,7 @@
+   <xsl:value-of select="substring($date,1,10)" />
+   <!-- output time part -->
+   <xsl:if test="$groupbyday!='yes'">
+-   <xsl:text>&space;</xsl:text>
++   <xsl:text>&#32;</xsl:text>
+    <xsl:value-of select="substring($date,12,5)" />
+   </xsl:if>
+  </xsl:template>
+@@ -306,7 +300,7 @@
+      <xsl:sort select="normalize-space(.)" data-type="text" />
+      <!-- unless we are the first entry, add a comma -->
+      <xsl:if test="not(position()=1)">
+-      <xsl:text>,&space;</xsl:text>
++      <xsl:text>,&#32;</xsl:text>
+      </xsl:if>
+      <!-- print the path name -->
+      <xsl:call-template name="printpath">
+@@ -324,7 +318,7 @@
+      <xsl:sort select="normalize-space(.)" data-type="text" />
+      <!-- unless we are the first entry, add a comma -->
+      <xsl:if test="not(position()=1)">
+-      <xsl:text>,&space;</xsl:text>
++      <xsl:text>,&#32;</xsl:text>
+      </xsl:if>
+      <!-- print the path name -->
+      <xsl:value-of select="normalize-space(.)" />
+@@ -382,23 +376,23 @@
+   <xsl:param name="txt" />
+   <xsl:variable name="normtxt" select="normalize-space($txt)" />
+   <xsl:choose>
+-   <xsl:when test="contains($txt,'&newl;')">
++   <xsl:when test="contains($txt,'&#10;')">
+      <!-- text contains newlines, do the first line -->
+      <xsl:call-template name="wrap">
+-      <xsl:with-param name="txt" select="substring-before($txt,'&newl;')" />
++      <xsl:with-param name="txt" select="substring-before($txt,'&#10;')" />
+      </xsl:call-template>
+      <!-- print tab -->
+-     <xsl:text>&tab;&space;&space;</xsl:text>
++     <xsl:text>&#9;&#32;&#32;</xsl:text>
+      <!-- wrap the rest of the text -->
+      <xsl:call-template name="wrap">
+-      <xsl:with-param name="txt" select="substring-after($txt,'&newl;')" />
++      <xsl:with-param name="txt" select="substring-after($txt,'&#10;')" />
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="(string-length($normtxt) &lt; (($linelen)-9)) or not(contains($normtxt,' '))">
+     <!-- this is easy, nothing to do -->
+     <xsl:value-of select="$normtxt" />
+     <!-- add newline -->
+-    <xsl:text>&newl;</xsl:text>
++    <xsl:text>&#10;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+     <!-- find the first line -->
+@@ -420,7 +414,7 @@
+     <!-- print line -->
+     <xsl:value-of select="$line" />
+     <!-- print newline and tab -->
+-    <xsl:text>&newl;&tab;&space;&space;</xsl:text>
++    <xsl:text>&#10;&#9;&#32;&#32;</xsl:text>
+     <!-- wrap the rest of the text -->
+     <xsl:call-template name="wrap">
+      <xsl:with-param name="txt" select="normalize-space(substring($normtxt,string-length($line)+1))" />
+@@ -449,26 +443,26 @@
+   <xsl:param name="txt" />
+   <xsl:choose>
+    <!-- find starting newlines -->
+-   <xsl:when test="substring($txt,1,1) = '&newl;'">
++   <xsl:when test="substring($txt,1,1) = '&#10;'">
+     <xsl:call-template name="trim-newln">
+      <xsl:with-param name="txt" select="substring($txt,2)" />
+     </xsl:call-template>
+    </xsl:when>
+    <!-- find trailing newlines -->
+-   <xsl:when test="substring($txt,string-length($txt),1) = '&newl;'">
++   <xsl:when test="substring($txt,string-length($txt),1) = '&#10;'">
+     <xsl:call-template name="trim-newln">
+      <xsl:with-param name="txt" select="substring($txt,1,string-length($txt)-1)" />
+     </xsl:call-template>
+    </xsl:when>
+    <!-- if the message has paragrapgs, find the first one -->
+-   <xsl:when test="$reparagraph='yes' and contains($txt,'&newl;&newl;')">
++   <xsl:when test="$reparagraph='yes' and contains($txt,'&#10;&#10;')">
+      <!-- remove newlines from first paragraph -->
+-     <xsl:value-of select="normalize-space(substring-before($txt,'&newl;&newl;'))" />
++     <xsl:value-of select="normalize-space(substring-before($txt,'&#10;&#10;'))" />
+      <!-- paragraph separator -->
+-     <xsl:text>&newl;&newl;</xsl:text>
++     <xsl:text>&#10;&#10;</xsl:text>
+      <!-- do the rest of the text -->
+      <xsl:call-template name="trim-newln">
+-      <xsl:with-param name="txt" select="substring-after($txt,'&newl;&newl;')" />
++      <xsl:with-param name="txt" select="substring-after($txt,'&#10;&#10;')" />
+      </xsl:call-template>
+    </xsl:when>
+    <!-- remove more single newlines -->
+@@ -485,7 +479,7 @@
+  <!-- insert a number of newlines -->
+  <xsl:template name="newlines">
+   <xsl:param name="count" />
+-  <xsl:text>&newl;</xsl:text>
++  <xsl:text>&#10;</xsl:text>
+   <xsl:if test="$count&gt;1">
+    <xsl:call-template name="newlines">
+     <xsl:with-param name="count" select="($count)-1" />
+diff -up svn2cl-0.11/svn2html.xsl~ svn2cl-0.11/svn2html.xsl
+--- svn2cl-0.11/svn2html.xsl~	2008-12-21 17:41:20.000000000 +0200
++++ svn2cl-0.11/svn2html.xsl	2009-11-02 22:30:11.000000000 +0200
+@@ -47,11 +47,6 @@
+ 
+ -->
+ 
+-<!DOCTYPE xsl:stylesheet [
+- <!ENTITY newl "&#38;#xA;">
+- <!ENTITY space "&#32;">
+-]>
+-
+ <xsl:stylesheet
+   version="1.0"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+@@ -134,7 +129,7 @@
+      <li class="changelog_entry">
+       <!-- date -->
+       <span class="changelog_date"><xsl:value-of select="$date" /></span>
+-      <xsl:text>&space;</xsl:text>
++      <xsl:text>&#32;</xsl:text>
+       <!-- author's name -->
+       <span class="changelog_author"><xsl:apply-templates select="author" /></span>
+      </li>
+@@ -145,7 +140,7 @@
+     <li class="changelog_entry">
+      <!-- date -->
+      <span class="changelog_date"><xsl:apply-templates select="date" /></span>
+-     <xsl:text>&space;</xsl:text>
++     <xsl:text>&#32;</xsl:text>
+      <!-- author's name -->
+      <span class="changelog_author"><xsl:apply-templates select="author" /></span>
+     </li>
+@@ -167,10 +162,10 @@
+    <span class="changelog_revision">
+     <a id="r{@revision}" href="{$revlink}">[r<xsl:value-of select="@revision" />]</a>
+    </span>
+-   <xsl:text>&space;</xsl:text>
++   <xsl:text>&#32;</xsl:text>
+    <!-- get paths string -->
+    <span class="changelog_files"><xsl:apply-templates select="paths" /></span>
+-   <xsl:text>&space;</xsl:text>
++   <xsl:text>&#32;</xsl:text>
+    <!-- get message text -->
+    <xsl:variable name="msg">
+     <xsl:call-template name="trim-newln">
+@@ -189,14 +184,14 @@
+  <xsl:template name="newlinestobr">
+   <xsl:param name="txt" />
+   <xsl:choose>
+-   <xsl:when test="contains($txt,'&newl;')">
++   <xsl:when test="contains($txt,'&#10;')">
+     <!-- text contains newlines, do the first line -->
+-    <xsl:value-of select="substring-before($txt,'&newl;')" />
++    <xsl:value-of select="substring-before($txt,'&#10;')" />
+     <!-- print new line -->
+     <br />
+     <!-- wrap the rest of the text -->
+     <xsl:call-template name="newlinestobr">
+-     <xsl:with-param name="txt" select="substring-after($txt,'&newl;')" />
++     <xsl:with-param name="txt" select="substring-after($txt,'&#10;')" />
+     </xsl:call-template>
+    </xsl:when>
+    <xsl:otherwise>

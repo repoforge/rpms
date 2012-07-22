@@ -1,0 +1,2004 @@
+From 045f8f7a446ea738b229478ef618a2705ee19aef Mon Sep 17 00:00:00 2001
+From: Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+Date: Sat, 5 Apr 2008 10:55:02 +0200
+Subject: [PATCH 1/8] make -> cmake transition
+
+cmake: updated
+---
+ CMakeLists.txt                              |  284 +++++++++++++++++++++++++++
+ cmake/try-attr.cc                           |    3 +
+ cmake/va-list-is-array.c                    |    9 +
+ examples/CMakeLists.txt                     |   60 ++++++
+ examples/config.h                           |    1 +
+ examples/cpp/CMakeLists.txt                 |   34 ++++
+ include/CMakeLists.txt                      |    3 +
+ include/xmlrpc-c/CMakeLists.txt             |   74 +++++++
+ include/xmlrpc-c/config.h.cmake             |   32 +++
+ lib/CMakeLists.txt                          |   12 ++
+ lib/abyss/CMakeLists.txt                    |    3 +
+ lib/abyss/src/CMakeLists.txt                |   66 ++++++
+ lib/abyss/src/xmlrpc_abyss.pc.cmake         |   12 ++
+ lib/curl_transport/CMakeLists.txt           |   20 ++
+ lib/expat/CMakeLists.txt                    |    9 +
+ lib/expat/gennmtab/CMakeLists.txt           |    3 +
+ lib/expat/xmlparse/CMakeLists.txt           |    7 +
+ lib/expat/xmlparse/xmlrpc_xmlparse.pc.cmake |   12 ++
+ lib/expat/xmltok/CMakeLists.txt             |   23 +++
+ lib/expat/xmltok/xmlrpc_xmltok.pc.cmake     |    9 +
+ lib/libutil/CMakeLists.txt                  |   26 +++
+ lib/libutil/xmlrpc_util.pc.cmake            |   10 +
+ lib/libwww_transport/CMakeLists.txt         |    7 +
+ lib/util/CMakeLists.txt                     |   17 ++
+ lib/wininet_transport/CMakeLists.txt        |    7 +
+ src/CMakeLists.txt                          |  122 ++++++++++++
+ src/cpp/CMakeLists.txt                      |   70 +++++++
+ src/cpp/test/CMakeLists.txt                 |   18 ++
+ src/cpp/xmlrpc++.pc.cmake                   |   12 ++
+ src/cpp/xmlrpc_client++.pc.cmake            |   12 ++
+ src/cpp/xmlrpc_cpp.pc.cmake                 |   12 ++
+ src/cpp/xmlrpc_packetsocket.pc.cmake        |   12 ++
+ src/cpp/xmlrpc_server++.pc.cmake            |   12 ++
+ src/cpp/xmlrpc_server_abyss++.pc.cmake      |   12 ++
+ src/cpp/xmlrpc_server_cgi++.pc.cmake        |   12 ++
+ src/cpp/xmlrpc_server_pstream++.pc.cmake    |   12 ++
+ src/test/CMakeLists.txt                     |   39 ++++
+ src/xmlrpc.pc.cmake                         |   12 ++
+ src/xmlrpc_client.pc.cmake                  |   12 ++
+ src/xmlrpc_server.pc.cmake                  |   12 ++
+ src/xmlrpc_server_abyss.pc.cmake            |   12 ++
+ src/xmlrpc_server_cgi.pc.cmake              |   12 ++
+ tools/CMakeLists.txt                        |   21 ++
+ tools/binmode-rpc-kit/CMakeLists.txt        |    1 +
+ tools/lib/CMakeLists.txt                    |    1 +
+ tools/turbocharger/CMakeLists.txt           |    1 +
+ tools/xml-rpc-api2cpp/CMakeLists.txt        |   15 ++
+ tools/xml-rpc-api2txt/CMakeLists.txt        |    7 +
+ tools/xmlrpc/CMakeLists.txt                 |   17 ++
+ tools/xmlrpc/config.h                       |    1 +
+ tools/xmlrpc_cpp_proxy/CMakeLists.txt       |   17 ++
+ tools/xmlrpc_pstream/CMakeLists.txt         |   16 ++
+ tools/xmlrpc_transport/CMakeLists.txt       |    9 +
+ tools/xmlrpc_transport/config.h             |    1 +
+ transport_config.h.cmake                    |   16 ++
+ version.h.cmake                             |    5 +
+ xmlrpc-c-config                             |  105 ++++++++++
+ xmlrpc_config.h.cmake                       |  147 ++++++++++++++
+ 58 files changed, 1528 insertions(+), 0 deletions(-)
+ create mode 100644 CMakeLists.txt
+ create mode 100644 cmake/try-attr.cc
+ create mode 100644 cmake/va-list-is-array.c
+ create mode 100644 examples/CMakeLists.txt
+ create mode 100644 examples/config.h
+ create mode 100644 examples/cpp/CMakeLists.txt
+ create mode 100644 include/CMakeLists.txt
+ create mode 100644 include/xmlrpc-c/CMakeLists.txt
+ create mode 100644 include/xmlrpc-c/config.h.cmake
+ create mode 100644 lib/CMakeLists.txt
+ create mode 100644 lib/abyss/CMakeLists.txt
+ create mode 100644 lib/abyss/src/CMakeLists.txt
+ create mode 100644 lib/abyss/src/xmlrpc_abyss.pc.cmake
+ create mode 100644 lib/curl_transport/CMakeLists.txt
+ create mode 100644 lib/expat/CMakeLists.txt
+ create mode 100644 lib/expat/gennmtab/CMakeLists.txt
+ create mode 100644 lib/expat/xmlparse/CMakeLists.txt
+ create mode 100644 lib/expat/xmlparse/xmlrpc_xmlparse.pc.cmake
+ create mode 100644 lib/expat/xmltok/CMakeLists.txt
+ create mode 100644 lib/expat/xmltok/xmlrpc_xmltok.pc.cmake
+ create mode 100644 lib/libutil/CMakeLists.txt
+ create mode 100644 lib/libutil/xmlrpc_util.pc.cmake
+ create mode 100644 lib/libwww_transport/CMakeLists.txt
+ create mode 100644 lib/util/CMakeLists.txt
+ create mode 100644 lib/wininet_transport/CMakeLists.txt
+ create mode 100644 src/CMakeLists.txt
+ create mode 100644 src/cpp/CMakeLists.txt
+ create mode 100644 src/cpp/test/CMakeLists.txt
+ create mode 100644 src/cpp/xmlrpc++.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_client++.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_cpp.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_packetsocket.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_server++.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_server_abyss++.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_server_cgi++.pc.cmake
+ create mode 100644 src/cpp/xmlrpc_server_pstream++.pc.cmake
+ create mode 100644 src/test/CMakeLists.txt
+ create mode 100644 src/xmlrpc.pc.cmake
+ create mode 100644 src/xmlrpc_client.pc.cmake
+ create mode 100644 src/xmlrpc_server.pc.cmake
+ create mode 100644 src/xmlrpc_server_abyss.pc.cmake
+ create mode 100644 src/xmlrpc_server_cgi.pc.cmake
+ create mode 100644 tools/CMakeLists.txt
+ create mode 100644 tools/binmode-rpc-kit/CMakeLists.txt
+ create mode 100644 tools/lib/CMakeLists.txt
+ create mode 100644 tools/turbocharger/CMakeLists.txt
+ create mode 100644 tools/xml-rpc-api2cpp/CMakeLists.txt
+ create mode 100644 tools/xml-rpc-api2txt/CMakeLists.txt
+ create mode 100644 tools/xmlrpc/CMakeLists.txt
+ create mode 100644 tools/xmlrpc/config.h
+ create mode 100644 tools/xmlrpc_cpp_proxy/CMakeLists.txt
+ create mode 100644 tools/xmlrpc_pstream/CMakeLists.txt
+ create mode 100644 tools/xmlrpc_transport/CMakeLists.txt
+ create mode 100644 tools/xmlrpc_transport/config.h
+ create mode 100644 transport_config.h.cmake
+ create mode 100644 version.h.cmake
+ create mode 100755 xmlrpc-c-config
+ create mode 100644 xmlrpc_config.h.cmake
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..c3204fe
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,284 @@
++## -*- cmake -*-
++project(xmlrpc-c)
++include(FindPkgConfig)
++include(CheckIncludeFile)
++include(CheckFunctionExists)
++
++cmake_minimum_required(VERSION 2.4)
++
++if(COMMAND cmake_policy)
++  cmake_policy(SET CMP0003 NEW)
++endif()
++
++
++set(XMLRPC_C_VERSION_MAJOR "1"  CACHE STRING "Version (major) of xmlrpc-c")
++set(XMLRPC_C_VERSION_MINOR "25" CACHE STRING "Version (minor) of xmlrpc-c")
++set(XMLRPC_C_VERSION_POINT "1"  CACHE STRING "Version (point) of xmlrpc-c")
++
++set(XMLRPC_C_VERSION
++  "${XMLRPC_C_VERSION_MAJOR}.${XMLRPC_C_VERSION_MINOR}.${XMLRPC_C_VERSION_POINT}"
++  CACHE STRING "Version of xmlrpc-c")
++
++set(XMLRPC_C_LIBVERSION "3.${XMLRPC_C_VERSION_MINOR}")
++set(XMLRPC_C_SOVERSION  "3")
++
++set(XMLRPC_CXX_LIBVERSION "7.${XMLRPC_C_VERSION_MINOR}")
++set(XMLRPC_CXX_SOVERSION  "7")
++
++string(REGEX REPLACE "^0+" "" XMLRPC_C_VERSION_MAJOR_NUM "${XMLRPC_C_VERSION_MAJOR}")
++string(REGEX REPLACE "^0+" "" XMLRPC_C_VERSION_MINOR_NUM "${XMLRPC_C_VERSION_MINOR}")
++string(REGEX REPLACE "^0+(.)" "\\1" XMLRPC_C_VERSION_POINT_NUM "${XMLRPC_C_VERSION_POINT}")
++
++
++macro(ensc_set_bool NAME VALUE DESC)
++  set(${NAME} ${VALUE} CACHE BOOL ${DESC})
++  if(${NAME})
++    set(_${NAME} 1)
++  else(${NAME})
++    set(_${NAME} 0)
++  endif(${NAME})
++endmacro(ensc_set_bool)
++
++macro(ensc_pkgconfig COMP)
++  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${COMP}.pc.cmake
++    ${CMAKE_CURRENT_BINARY_DIR}/${COMP}.pc
++    @ONLY)
++  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${COMP}.pc
++    DESTINATION ${pkgconfdir})
++endmacro(ensc_pkgconfig)
++
++macro(ensc_pkgconfig_lib TARGET LIBS)
++  get_target_property(libtype ${TARGET} TYPE)
++  if("${libtype}" STREQUAL "STATIC_LIBRARY")
++    list(APPEND ${TARGET}_pkgconfig_libs "${LIBS}")
++  endif("${libtype}" STREQUAL "STATIC_LIBRARY")
++endmacro(ensc_pkgconfig_lib)
++
++macro(ensc_set_link_exe_flags)
++  ## HACK: libwww has broken inter-lib dependencies and '-Wl,--as-needed' fails with it
++  if(NOT MUST_BUILD_LIBWWW_CLIENT)
++    set_target_properties(${ARGV}
++      PROPERTIES
++      LINK_FLAGS ${XMLRPC_LINKER_FLAGS})
++  endif(NOT MUST_BUILD_LIBWWW_CLIENT)
++endmacro(ensc_set_link_exe_flags)
++
++###########
++if(WIN32)
++  find_program(WININET_CONFIG_EXECUTABLE wininet-config)
++
++  if(DEFINED MUST_BUILD_WININET_CLIENT)
++    set(tmp ${MUST_BUILD_WININET_CLIENT})
++  else(DEFINED MUST_BUILD_WININET_CLIENT)
++    if(WININET_CONFIG_EXECUTABLE)
++      set(tmp 1)
++    else(WININET_CONFIG_EXECUTABLE)
++      set(tmp 0)
++    endif(WININET_CONFIG_EXECUTABLE)
++  endif(DEFINED MUST_BUILD_WININET_CLIENT)
++else(WIN32)
++  set(tmp 0)
++endif(WIN32)
++
++if(tmp)
++  set(MUST_BUILD_CLIENT 1)
++  exec_program(${WININET_CONFIG_EXECUTABLE} ARGS --version OUTPUT_VARIABLE WININET_VERSION)
++  exec_program(${WININET_CONFIG_EXECUTABLE} ARGS --cflags  OUTPUT_VARIABLE WININET_CFLAGS)
++  exec_program(${WININET_CONFIG_EXECUTABLE} ARGS --libs    OUTPUT_VARIABLE WININET_LDADD)
++  message(STATUS "Using WinInet ${WININET_VERSION} transport")
++endif(tmp)
++
++ensc_set_bool(MUST_BUILD_WININET_CLIENT ${tmp} "Set iff WinInet client transport shall be built")
++set(wininet_srcdir ${xmlrpc-c_SOURCE_DIR}/lib/wininet_transport)
++
++###########
++if(DEFINED MUST_BUILD_CURL_CLIENT)
++  set(tmp REQUIRED)
++else(DEFINED MUST_BUILD_CURL_CLIENT)
++  set(tmp)
++endif(DEFINED MUST_BUILD_CURL_CLIENT)
++
++pkg_check_modules(CURL ${tmp} libcurl)
++
++ensc_set_bool(MUST_BUILD_CURL_CLIENT ${CURL_FOUND} "Set iff Curl client transport shall be built")
++set(curl_srcdir ${xmlrpc-c_SOURCE_DIR}/lib/curl_transport)
++
++if(MUST_BUILD_CURL_CLIENT)
++  set(MUST_BUILD_CLIENT 1)
++endif(MUST_BUILD_CURL_CLIENT)
++
++###########
++find_program(LIBWWW_CONFIG_EXECUTABLE libwww-config)
++if(DEFINED MUST_BUILD_LIBWWW_CLIENT)
++  set(tmp ${MUST_BUILD_LIBWWW_CLIENT})
++else(DEFINED MUST_BUILD_LIBWWW_CLIENT)
++  if(LIBWWW_CONFIG_EXECUTABLE)
++    set(tmp 1)
++  else(LIBWWW_CONFIG_EXECUTABLE)
++    set(tmp 0)
++  endif(LIBWWW_CONFIG_EXECUTABLE)
++endif(DEFINED MUST_BUILD_LIBWWW_CLIENT)
++
++if(tmp)
++  set(MUST_BUILD_CLIENT 1)
++  exec_program(${LIBWWW_CONFIG_EXECUTABLE} ARGS --version OUTPUT_VARIABLE LIBWWW_VERSION)
++  exec_program(${LIBWWW_CONFIG_EXECUTABLE} ARGS --libs    OUTPUT_VARIABLE LIBWWW_LIBS)
++  exec_program(${LIBWWW_CONFIG_EXECUTABLE} ARGS --cflags  OUTPUT_VARIABLE LIBWWW_CFLAGS)
++  message(STATUS "Using libwww ${LIBWWW_VERSION} transport")
++endif(tmp)
++ensc_set_bool(MUST_BUILD_LIBWWW_CLIENT ${tmp} "Set iff LibWWW client transport shall be built")
++set(libwww_srcdir ${xmlrpc-c_SOURCE_DIR}/lib/libwww_transport)
++
++############
++
++set(ENABLE_CGI_SERVER      1 CACHE BOOL "Set iff CGI server shall be enabled")
++set(ENABLE_CPLUSPLUS       1 CACHE BOOL "Set iff C++ part shall be enabled")
++set(ENABLE_ABYSS_SERVER    1 CACHE BOOL "Set iff Abyss server shall be enabled")
++set(ENABLE_LIBXML2_BACKEND 1 CACHE BOOL "Set iff libxml2 backend shall be used")
++set(ENABLE_ABYSS_SERVER    1 CACHE BOOL "Set iff abyss server shall be enabled")
++set(ENABLE_ABYSS_THREADS   1 CACHE BOOL "Use pthread")
++
++if(ENABLE_LIBXML2_BACKEND)
++  pkg_check_modules(LIBXML2 libxml-2.0)
++
++  if(LIBXML2_FOUND)
++    set(libxml_pkgconfig libxml-2.0)  # TODO: add more alternative modules
++  endif(LIBXML2_FOUND)
++endif(ENABLE_LIBXML2_BACKEND)
++
++###########
++
++set(ENABLE_TOOLS           0 CACHE BOOL "Build the tools")
++pkg_check_modules(NCURSES ncurses)
++find_library(READLINE readline)
++
++if (ENABLE_TOOLS)
++  message(STATUS "Building tools")
++  if (MUST_BUILD_LIBWWW_CLIENT OR MUST_BUILD_WININET_CLIENT OR MUST_BUILD_CURL_CLIENT)
++    if (NCURSES_FOUND AND READLINE)
++      set(BUILD_XMLRPC_PSTREAM 1)
++      message(STATUS "Building xmlrpc_pstream tool")
++    endif()
++    set(BUILD_TOOLS 1)
++  endif()
++endif()
++
++####  <wchar.h> tests
++check_include_file(wchar.h _have_wchar_h)
++if(_have_wchar_h)
++  set(HAVE_WCHAR_H 1)
++else(_have_wchar_h)
++  set(HAVE_WCHAR_H 1)
++endif(_have_wchar_h)
++set(XMLRPC_HAVE_WCHAR   ${HAVE_WCHAR_H})
++set(HAVE_WCHAR_H_DEFINE ${HAVE_WCHAR_H})
++
++
++#######
++set(LINKER_AS_NEEDED  1 CACHE BOOL "Use the --as-needed linker option")
++if(LINKER_AS_NEEDED)
++  set(XMLRPC_LINKER_FLAGS "-Wl,--as-needed")
++endif(LINKER_AS_NEEDED)
++
++
++try_compile(HAVE_ATTR_UNUSED
++  ${CMAKE_BINARY_DIR}/
++  ${xmlrpc-c_SOURCE_DIR}/cmake/try-attr.cc
++  CMAKE_FLAGS -DCOMPILE_DEFINITIONS:STRING=-DCMAKE_TEST_ATTR=__unused__)
++
++try_compile(VA_LIST_IS_NOT_ARRAY
++  ${CMAKE_BINARY_DIR}/
++  ${xmlrpc-c_SOURCE_DIR}/cmake/va-list-is-array.c)
++
++if(VA_LIST_IS_NOT_ARRAY)
++  set(VA_LIST_IS_ARRAY 0)
++  message(STATUS "va_list is not an array")
++else(VA_LIST_IS_NOT_ARRAY)
++  set(VA_LIST_IS_ARRAY 1)
++  message(STATUS "va_list is an array")
++endif(VA_LIST_IS_NOT_ARRAY)
++
++
++if(HAVE_ATTR_UNUSED)
++  set(ATTR_UNUSED "__attribute__((__unused__))")
++endif(HAVE_ATTR_UNUSED)
++
++if(WIN32)
++  set(DIRECTORY_SEPARATOR "\\")
++else(WIN32)
++  set(DIRECTORY_SEPARATOR "/")
++endif(WIN32)
++
++check_include_file(sys/filio.h  HAVE_SYS_FILIO_H)
++check_include_file(sys/ioctl.h  HAVE_SYS_IOCTL_H)
++check_include_file(sys/select.h HAVE_SYS_SELECT_H)
++check_function_exists(setenv		HAVE_SETENV)
++check_function_exists(strcasecmp	HAVE_STRCASECMP)
++check_function_exists(_stricmp		HAVE__STRICMP)
++check_function_exists(stricmp		HAVE_STRICMP)
++check_function_exists(strtoll		HAVE_STRTOLL)
++check_function_exists(__strtoll		HAVE___STRTOLL)
++check_function_exists(strtoull		HAVE_STRTOULL)
++check_function_exists(__strtoull	HAVE___STRTOULL)
++check_function_exists(strtoq		HAVE_STRTOQ)
++check_function_exists(strtouq		HAVE_STRTOUQ)
++check_function_exists(gettimeofday	HAVE_GETTIMEOFDAY)
++check_function_exists(setgroups		HAVE_SETGROUPS)
++check_function_exists(asprintf		HAVE_ASPRINTF)
++check_function_exists(pselect		HAVE_PSELECT)
++check_function_exists(wcsncmp		HAVE_WCSNCMP)
++check_function_exists(localtime_r	HAVE_LOCALTIME_R)
++check_function_exists(gmtime_r		HAVE_GMTIME_R)
++
++
++configure_file(${xmlrpc-c_SOURCE_DIR}/xmlrpc_config.h.cmake
++               ${xmlrpc-c_BINARY_DIR}/xmlrpc_config.h
++	       ESCAPE_QUOTES @ONLY)
++
++configure_file(${xmlrpc-c_SOURCE_DIR}/version.h.cmake
++               ${xmlrpc-c_BINARY_DIR}/version.h
++	       ESCAPE_QUOTES @ONLY)
++
++configure_file(${xmlrpc-c_SOURCE_DIR}/transport_config.h.cmake
++               ${xmlrpc-c_BINARY_DIR}/transport_config.h
++	       ESCAPE_QUOTES @ONLY)
++
++configure_file(${xmlrpc-c_SOURCE_DIR}/include/xmlrpc-c/config.h.cmake
++               ${xmlrpc-c_BINARY_DIR}/include/xmlrpc-c/config.h
++	       ESCAPE_QUOTES @ONLY)
++
++
++include_directories(${xmlrpc-c_SOURCE_DIR}/include)
++include_directories(${xmlrpc-c_BINARY_DIR}/include)
++include_directories(${xmlrpc-c_SOURCE_DIR}/lib/util/include)
++include_directories(${xmlrpc-c_BINARY_DIR})
++
++add_custom_target(dist
++  rm -rf _dist && mkdir -p _dist/xmlrpc-c-${XMLRPC_C_VERSION}
++  COMMAND cp -a ${xmlrpc-c_SOURCE_DIR}/* _dist/xmlrpc-c-${XMLRPC_C_VERSION}/
++  COMMAND cd _dist && tar cjf ../xmlrpc-c-${XMLRPC_C_VERSION}.tar.bz2 xmlrpc-c-${XMLRPC_C_VERSION} --exclude=.git --exclude=CVS --exclude=.svn
++  )
++
++set(_lib       lib CACHE STRING "Basename of the library-directory; usually 'lib' or 'lib64' (on multilib archs)")
++set(_bin       bin CACHE STRING "Basename of the bin-directory; usually 'bin'")
++set(prefix     ${CMAKE_INSTALL_PREFIX})
++set(libdir     "${prefix}/${_lib}")
++set(bindir     "${prefix}/${_bin}")
++set(mandir     "${prefix}/share/man")
++set(pkgconfdir "${libdir}/pkgconfig")
++set(includedir "${prefix}/include")
++
++#############
++
++install(PROGRAMS xmlrpc-c-config DESTINATION ${_bin})
++
++enable_testing()
++
++add_subdirectory(lib)
++add_subdirectory(examples)
++add_subdirectory(include)
++add_subdirectory(src)
++
++if (BUILD_TOOLS)
++  add_subdirectory(tools)
++endif()
+diff --git a/cmake/try-attr.cc b/cmake/try-attr.cc
+new file mode 100644
+index 0000000..4668c5b
+--- /dev/null
++++ b/cmake/try-attr.cc
+@@ -0,0 +1,3 @@
++int x __attribute__((CMAKE_TEST_ATTR));
++
++int main() {}
+diff --git a/cmake/va-list-is-array.c b/cmake/va-list-is-array.c
+new file mode 100644
+index 0000000..1ad0bab
+--- /dev/null
++++ b/cmake/va-list-is-array.c
+@@ -0,0 +1,9 @@
++#include <stdarg.h>
++
++void foo()
++{
++  va_list list1, list2;
++  list1 = list2;
++}
++
++int main() {}
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+new file mode 100644
+index 0000000..cfe9f52
+--- /dev/null
++++ b/examples/CMakeLists.txt
+@@ -0,0 +1,60 @@
++# -*- cmake -*-
++
++include_directories(${CMAKE_CURRENT_BINARY_DIR})
++
++macro(ensc_add_example name ext class)
++  # HACK: avoid name collision of c and c++ program
++  if("${ext}" STREQUAL "cpp")
++    set(_target ${name}++)
++  else("${ext}" STREQUAL "cpp")
++    set(_target ${name})
++  endif("${ext}" STREQUAL "cpp")
++
++  add_executable(${_target} ${name}.${ext})
++  target_link_libraries(${_target} ${${class}_LIBS})
++  list(APPEND ${class}_TARGETS ${_target})
++  list(APPEND example_TARGETS ${_target})
++endmacro(ensc_add_example)
++
++if(ENABLE_CPLUSPLUS)
++  add_subdirectory(cpp)
++endif(ENABLE_CPLUSPLUS)
++
++
++set(base_LIBS xmlrpc)
++ensc_add_example(json               c base)
++ensc_add_example(gen_sample_add_xml c base)
++
++if(MUST_BUILD_CLIENT)
++  set(client_LIBS xmlrpc_client)
++
++  ensc_add_example(auth_client              c client)
++  ensc_add_example(synch_client             c client)
++  ensc_add_example(xmlrpc_sample_add_client c client)
++  ensc_add_example(xmlrpc_asynch_client     c client)
++endif(MUST_BUILD_CLIENT)
++
++if(MUST_BUILD_CURL_CLIENT)
++  set(client_LIBS xmlrpc_client)
++
++  ensc_add_example(interrupted_client       c client)
++endif(MUST_BUILD_CURL_CLIENT)
++
++if(ENABLE_CGI_SERVER)
++  set(cgi_server_LIBS xmlrpc_server_cgi)
++
++  ensc_add_example(xmlrpc_sample_add_server_cgi c cgi_server)
++endif(ENABLE_CGI_SERVER)
++
++if(ENABLE_ABYSS_SERVER)
++  set(abyss_server_LIBS xmlrpc_server_abyss)
++
++  ensc_add_example(interrupted_server       c abyss_server)
++  ensc_add_example(xmlrpc_inetd_server      c abyss_server)
++  ensc_add_example(xmlrpc_socket_server     c abyss_server)
++  ensc_add_example(xmlrpc_loop_server       c abyss_server)
++  ensc_add_example(xmlrpc_sample_add_server c abyss_server)
++  ensc_add_example(xmlrpc_server_validatee  c abyss_server)
++endif(ENABLE_ABYSS_SERVER)
++
++ensc_set_link_exe_flags(${example_TARGETS})
+diff --git a/examples/config.h b/examples/config.h
+new file mode 100644
+index 0000000..31d5f9b
+--- /dev/null
++++ b/examples/config.h
+@@ -0,0 +1 @@
++#include "../xmlrpc_config.h"
+diff --git a/examples/cpp/CMakeLists.txt b/examples/cpp/CMakeLists.txt
+new file mode 100644
+index 0000000..093a75d
+--- /dev/null
++++ b/examples/cpp/CMakeLists.txt
+@@ -0,0 +1,34 @@
++# -*- cmake -*-
++
++if(ENABLE_ABYSS_SERVER)
++  set(abyss_serverxx_LIBS xmlrpc_server_abyss++)
++
++  ensc_add_example(xmlrpc_inetd_server cpp abyss_serverxx)
++  ensc_add_example(xmlrpc_loop_server  cpp abyss_serverxx)
++  ensc_add_example(xmlrpc_sample_add_server cpp abyss_serverxx)
++  ensc_add_example(callinfo_abyss_server    cpp abyss_serverxx)
++endif(ENABLE_ABYSS_SERVER)
++
++if (ENABLE_CGI_SERVER)
++  set(cgi_serverxx_LIBS xmlrpc_server_cgi++)
++
++  ensc_add_example(xmlrpc_sample_add_server_cgi cpp cgi_serverxx)
++endif(ENABLE_CGI_SERVER)
++
++if(MUST_BUILD_CLIENT)
++  set(abyss_clientxx_LIBS        xmlrpc_client++)
++
++  ensc_add_example(xmlrpc_sample_add_client  cpp abyss_clientxx)
++  ensc_add_example(sample_add_client_complex cpp abyss_clientxx)
++  ensc_add_example(asynch_client             cpp abyss_clientxx)
++
++  ensc_add_example(pstream_client            cpp abyss_clientxx)
++endif(MUST_BUILD_CLIENT)
++
++set(pstream_serverxx_LIBS	xmlrpc_server_pstream++)
++ensc_add_example(pstream_inetd_server  cpp pstream_serverxx)
++ensc_add_example(pstream_serial_server cpp pstream_serverxx)
++
++
++
++ensc_set_link_exe_flags(${example_TARGETS})
+diff --git a/include/CMakeLists.txt b/include/CMakeLists.txt
+new file mode 100644
+index 0000000..ebfdba5
+--- /dev/null
++++ b/include/CMakeLists.txt
+@@ -0,0 +1,3 @@
++# -*- cmake -*-
++
++add_subdirectory(xmlrpc-c)
+diff --git a/include/xmlrpc-c/CMakeLists.txt b/include/xmlrpc-c/CMakeLists.txt
+new file mode 100644
+index 0000000..b9386b8
+--- /dev/null
++++ b/include/xmlrpc-c/CMakeLists.txt
+@@ -0,0 +1,74 @@
++# -*- cmake -*-
++
++macro(ensc_install_symlink src dst)
++  install(CODE "EXECUTE_PROCESS(COMMAND ln -s xmlrpc-c/${src} \$ENV{DESTDIR}${includedir}/${dst})")
++endmacro(ensc_install_symlink)
++
++list(APPEND headers
++  ${CMAKE_CURRENT_BINARY_DIR}/config.h
++  inttypes.h
++  c_util.h
++  util.h
++  base.h
++  json.h
++  abyss.h
++  abyss_unixsock.h
++  abyss_winsock.h
++  server.h
++  server_abyss.h
++  server_w32httpsys.h
++  oldxmlrpc.h)
++
++list(APPEND compat_links "oldxmlrpc.h         xmlrpc.h")
++list(APPEND compat_links "server.h            xmlrpc_server.h")
++list(APPEND compat_links "server_abyss.h      xmlrpc_abyss.h")
++list(APPEND compat_links "server_w32httpsys.h xmlrpc_server_w32httpsys.h")
++
++
++if(ENABLE_CPLUSPLUS)
++  list(APPEND headers
++    oldcppwrapper.hpp
++    girerr.hpp
++    girmem.hpp
++    base.hpp
++    timeout.hpp
++    xml.hpp
++    registry.hpp
++    server_abyss.hpp
++    packetsocket.hpp
++    server_pstream.hpp)
++
++  list(APPEND compat_links "oldcppwrapper.hpp XmlRpcCpp.h")
++endif(ENABLE_CPLUSPLUS)
++
++if(MUST_BUILD_CLIENT)
++  list(APPEND headers
++    client.h
++    transport.h
++    client_global.h)
++
++  list(APPEND compat_links "client.h xmlrpc_client.h")
++
++  if(ENABLE_CPLUSPLUS)
++    list(APPEND headers
++      client.hpp
++      client_transport.hpp
++      client_simple.hpp)
++  endif(ENABLE_CPLUSPLUS)
++endif(MUST_BUILD_CLIENT)
++
++if(ENABLE_CGI_SERVER)
++  list(APPEND headers
++    server_cgi.h)
++
++  list(APPEND compat_links "server_cgi.h xmlrpc_cgi.h")
++endif(ENABLE_CGI_SERVER)
++
++install(FILES
++  ${headers}
++  DESTINATION ${includedir}/xmlrpc-c)
++
++foreach (ln ${compat_links})
++  separate_arguments(ln)
++  ensc_install_symlink(${ln})
++endforeach(ln)
+diff --git a/include/xmlrpc-c/config.h.cmake b/include/xmlrpc-c/config.h.cmake
+new file mode 100644
+index 0000000..80892e5
+--- /dev/null
++++ b/include/xmlrpc-c/config.h.cmake
+@@ -0,0 +1,32 @@
++/* --*- c -*-- */
++#ifndef XMLRPC_C_CONFIG_H_INCLUDED
++#define XMLRPC_C_CONFIG_H_INCLUDED
++
++/* This file, part of XML-RPC For C/C++, is meant to
++   define characteristics of this particular installation
++   that the other <xmlrpc-c/...> header files need in
++   order to compile correctly when #included in Xmlrpc-c
++   user code.
++
++   Those header files #include this one.
++
++   This file was created by a make rule.
++*/
++#define XMLRPC_HAVE_WCHAR		@HAVE_WCHAR_H@
++#ifdef WIN32
++  /* SOCKET is a type defined by <winsock.h>.  Anyone who
++     uses XMLRPC_SOCKET on a WIN32 system must #include
++     <winsock.h>
++  */
++  #define XMLRPC_SOCKET SOCKET
++  #define XMLRPC_HAVE_TIMEVAL 0
++  #define XMLRPC_HAVE_TIMESPEC 0
++  #define XMLRPC_HAVE_PTHREAD 0
++#else
++  #define XMLRPC_SOCKET int
++  #define XMLRPC_HAVE_TIMEVAL 1
++  #define XMLRPC_HAVE_TIMESPEC 1
++  #define XMLRPC_HAVE_PTHREAD 1
++#endif
++
++#endif
+diff --git a/lib/CMakeLists.txt b/lib/CMakeLists.txt
+new file mode 100644
+index 0000000..7f8f912
+--- /dev/null
++++ b/lib/CMakeLists.txt
+@@ -0,0 +1,12 @@
++## -*- cmake -*-
++
++add_subdirectory(abyss)
++add_subdirectory(libutil)
++add_subdirectory(util)
++add_subdirectory(curl_transport)
++add_subdirectory(libwww_transport)
++add_subdirectory(wininet_transport)
++
++if(NOT ENABLE_LIBXML2_BACKEND)
++  add_subdirectory(expat)
++endif(NOT ENABLE_LIBXML2_BACKEND)
+diff --git a/lib/abyss/CMakeLists.txt b/lib/abyss/CMakeLists.txt
+new file mode 100644
+index 0000000..2358061
+--- /dev/null
++++ b/lib/abyss/CMakeLists.txt
+@@ -0,0 +1,3 @@
++## -*- cmake -*-
++
++SUBDIRS(src)
+diff --git a/lib/abyss/src/CMakeLists.txt b/lib/abyss/src/CMakeLists.txt
+new file mode 100644
+index 0000000..e7f89bf
+--- /dev/null
++++ b/lib/abyss/src/CMakeLists.txt
+@@ -0,0 +1,66 @@
++## -*- cmake -*-
++
++set(xmlrpc_abyss_SOURCES
++  abyss_info.h
++  channel.c
++  channel.h
++  chanswitch.c
++  chanswitch.h
++  conf.c
++  conn.c
++  conn.h
++  data.c
++  data.h
++  date.c
++  date.h
++  file.c
++  file.h
++  handler.c
++  handler.h
++  http.c
++  http.h
++  init.c
++  response.c
++  server.c
++  server.h
++  session.c
++  session.h
++  socket.c
++  socket.h
++  socket_unix.c
++  socket_unix.h
++  thread.h
++  token.c
++  token.h
++  trace.c
++  trace.h)
++
++add_definitions(-D_UNIX)
++
++if(ENABLE_ABYSS_THREADS)
++  list(APPEND xmlrpc_abyss_SOURCES thread_pthread.c)
++else(ENABLE_ABYSS_THREADS)
++  list(APPEND xmlrpc_abyss_SOURCES thread_fork.c)
++endif(ENABLE_ABYSS_THREADS)
++
++add_library(xmlrpc_abyss SHARED ${xmlrpc_abyss_SOURCES})
++target_link_libraries(xmlrpc_abyss xmlrpc_util)
++
++if(ENABLE_ABYSS_THREADS)
++  set_target_properties(xmlrpc_abyss PROPERTIES DEFINE_SYMBOL _THREAD)
++  target_link_libraries(xmlrpc_abyss pthread)
++  ensc_pkgconfig_lib(xmlrpc_abyss "-lpthread")
++endif(ENABLE_ABYSS_THREADS)
++
++install(TARGETS xmlrpc_abyss
++  RUNTIME DESTINATION ${_bin}
++  LIBRARY DESTINATION ${_lib}
++  ARCHIVE DESTINATION ${_lib})
++
++set_target_properties(xmlrpc_abyss
++  PROPERTIES
++  LINK_FLAGS ${XMLRPC_LINKER_FLAGS}
++  VERSION    ${XMLRPC_C_LIBVERSION}
++  SOVERSION  ${XMLRPC_C_SOVERSION})
++
++ensc_pkgconfig(xmlrpc_abyss)
+diff --git a/lib/abyss/src/xmlrpc_abyss.pc.cmake b/lib/abyss/src/xmlrpc_abyss.pc.cmake
+new file mode 100644
+index 0000000..fae7af3
+--- /dev/null
++++ b/lib/abyss/src/xmlrpc_abyss.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_abyss
++Description: XMLRPC Abyss base library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_abyss @xmlrpc_abyss_pkgconfig_libs@
++Cflags:
+diff --git a/lib/curl_transport/CMakeLists.txt b/lib/curl_transport/CMakeLists.txt
+new file mode 100644
+index 0000000..4224a13
+--- /dev/null
++++ b/lib/curl_transport/CMakeLists.txt
+@@ -0,0 +1,20 @@
++# -*- cmake -*-
++
++if(MUST_BUILD_CURL_CLIENT)
++  list(APPEND transport_SOURCES
++    ${CMAKE_CURRENT_SOURCE_DIR}/xmlrpc_curl_transport.c
++
++    ${CMAKE_CURRENT_SOURCE_DIR}/curltransaction.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/curltransaction.h
++
++    ${CMAKE_CURRENT_SOURCE_DIR}/curlmulti.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/curlmulti.h
++
++    ${CMAKE_CURRENT_SOURCE_DIR}/lock.h
++
++    ${CMAKE_CURRENT_SOURCE_DIR}/lock_pthread.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/lock_pthread.h
++
++    ${CMAKE_CURRENT_SOURCE_DIR}/curlversion.h
++    )
++endif(MUST_BUILD_CURL_CLIENT)
+diff --git a/lib/expat/CMakeLists.txt b/lib/expat/CMakeLists.txt
+new file mode 100644
+index 0000000..7397f52
+--- /dev/null
++++ b/lib/expat/CMakeLists.txt
+@@ -0,0 +1,9 @@
++# -*- cmake -*-
++
++
++INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/xmltok)
++
++add_subdirectory(gennmtab)
++add_subdirectory(xmlparse)
++add_subdirectory(xmltok)
++add_subdirectory(xmlwf)
+diff --git a/lib/expat/gennmtab/CMakeLists.txt b/lib/expat/gennmtab/CMakeLists.txt
+new file mode 100644
+index 0000000..48a44da
+--- /dev/null
++++ b/lib/expat/gennmtab/CMakeLists.txt
+@@ -0,0 +1,3 @@
++# -*- cmake -*-
++
++ADD_EXECUTABLE(gennmtab gennmtab.c)
+diff --git a/lib/expat/xmlparse/CMakeLists.txt b/lib/expat/xmlparse/CMakeLists.txt
+new file mode 100644
+index 0000000..f87008a
+--- /dev/null
++++ b/lib/expat/xmlparse/CMakeLists.txt
+@@ -0,0 +1,7 @@
++# -*- cmake -*-
++
++add_library(xmlrpc_xmlparse STATIC
++  xmlparse.c)
++target_link_libraries(xmlrpc_xmlparse xmlrpc_xmltok)
++
++ensc_pkgconfig(xmlrpc_xmlparse)
+diff --git a/lib/expat/xmlparse/xmlrpc_xmlparse.pc.cmake b/lib/expat/xmlparse/xmlrpc_xmlparse.pc.cmake
+new file mode 100644
+index 0000000..5b2a7e4
+--- /dev/null
++++ b/lib/expat/xmlparse/xmlrpc_xmlparse.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_xmlparse
++Description: XMLRPC xmlparse library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_xmltok
++Libs:   		-L${libdir} -lxmlrpc_xmlparse
++Cflags:
+diff --git a/lib/expat/xmltok/CMakeLists.txt b/lib/expat/xmltok/CMakeLists.txt
+new file mode 100644
+index 0000000..42406fb
+--- /dev/null
++++ b/lib/expat/xmltok/CMakeLists.txt
+@@ -0,0 +1,23 @@
++# -*- cmake -*-
++
++include_directories(${CMAKE_CURRENT_BINARY_DIR})
++
++add_definitions(-DXML_BYTE_ORDER=0)
++
++add_library(xmlrpc_xmltok STATIC
++  xmltok.c xmlrole.c xmltok_impl.c
++  ${CMAKE_CURRENT_BINARY_DIR}/nametab.h)
++
++set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/nametab.h
++  PROPERTIES
++  OBJECT_DEPENDS gennmtab
++  GENERATED true)
++
++
++get_target_property(GENNMTAB_EXECUTABLE gennmtab LOCATION)
++add_custom_command(
++  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/nametab.h
++  COMMAND ${GENNMTAB_EXECUTABLE} >nametab.h || { rm -f nametab.h\; false\; }
++  DEPENDS gennmtab)
++
++ensc_pkgconfig(xmlrpc_xmltok)
+diff --git a/lib/expat/xmltok/xmlrpc_xmltok.pc.cmake b/lib/expat/xmltok/xmlrpc_xmltok.pc.cmake
+new file mode 100644
+index 0000000..88e7ad8
+--- /dev/null
++++ b/lib/expat/xmltok/xmlrpc_xmltok.pc.cmake
+@@ -0,0 +1,9 @@
++prefix=@prefix@
++libdir=@libdir@
++
++Name:        xmlrpc_xmltok
++Description: XMLRPC xmltok library
++Version:     @XMLRPC_C_VERSION@
++
++Libs:   	-L${libdir}
++Cflags:
+diff --git a/lib/libutil/CMakeLists.txt b/lib/libutil/CMakeLists.txt
+new file mode 100644
+index 0000000..25ba487
+--- /dev/null
++++ b/lib/libutil/CMakeLists.txt
+@@ -0,0 +1,26 @@
++# -*- cmake -*-
++
++add_library(xmlrpc_util SHARED
++  asprintf.c
++  base64.c
++  error.c
++  make_printable.c
++  memblock.c
++  select.c
++  sleep.c
++  string_number.c
++  time.c
++  utf8.c)
++
++set_target_properties(xmlrpc_util
++  PROPERTIES
++  LINK_FLAGS ${XMLRPC_LINKER_FLAGS}
++  VERSION    ${XMLRPC_C_LIBVERSION}
++  SOVERSION  ${XMLRPC_C_SOVERSION})
++
++install(TARGETS xmlrpc_util
++  RUNTIME DESTINATION ${_bin}
++  LIBRARY DESTINATION ${_lib}
++  ARCHIVE DESTINATION ${_lib})
++
++ensc_pkgconfig(xmlrpc_util)
+diff --git a/lib/libutil/xmlrpc_util.pc.cmake b/lib/libutil/xmlrpc_util.pc.cmake
+new file mode 100644
+index 0000000..3d2968e
+--- /dev/null
++++ b/lib/libutil/xmlrpc_util.pc.cmake
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_util
++Description: XMLRPC utility library
++Version:     @XMLRPC_C_VERSION@
++
++Libs:   	-L${libdir} -lxmlrpc_util
++Cflags:		-I${includedir}
+diff --git a/lib/libwww_transport/CMakeLists.txt b/lib/libwww_transport/CMakeLists.txt
+new file mode 100644
+index 0000000..aa52d9e
+--- /dev/null
++++ b/lib/libwww_transport/CMakeLists.txt
+@@ -0,0 +1,7 @@
++# -*- cmake -*-
++
++if(MUST_BUILD_LIBWWW_CLIENT)
++  list(APPEND transport_SOURCES
++    ${CMAKE_CURRENT_SOURCE_DIR}/xmlrpc_libwww_transport.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/xmlrpc_libwww_transport.h)
++endif(MUST_BUILD_LIBWWW_CLIENT)
+diff --git a/lib/util/CMakeLists.txt b/lib/util/CMakeLists.txt
+new file mode 100644
+index 0000000..80696d9
+--- /dev/null
++++ b/lib/util/CMakeLists.txt
+@@ -0,0 +1,17 @@
++## -*- cmake -*-
++
++set(util_SOURCES
++  casprintf.c
++  cmdline_parser.c
++  cmdline_parser_cpp.cpp
++  getoptx.c
++  getoptx.h
++  stripcaseeq.c
++  string_parser.c
++)
++
++if(WIN32)
++  list(APPEND util_SOURCES pthreadx_win32.c)
++endif(WIN32)
++
++add_library(util STATIC ${util_SOURCES})
+diff --git a/lib/wininet_transport/CMakeLists.txt b/lib/wininet_transport/CMakeLists.txt
+new file mode 100644
+index 0000000..17535ab
+--- /dev/null
++++ b/lib/wininet_transport/CMakeLists.txt
+@@ -0,0 +1,7 @@
++# -*- cmake -*-
++
++if(MUST_BUILD_WININET_CLIENT)
++  list(APPEND transport_SOURCES
++    ${CMAKE_CURRENT_SOURCE_DIR}/xmlrpc_wininet_transport.c
++    ${CMAKE_CURRENT_SOURCE_DIR}/xmlrpc_wininet_transport.h)
++endif(MUST_BUILD_WININET_CLIENT)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+new file mode 100644
+index 0000000..7ac88b0
+--- /dev/null
++++ b/src/CMakeLists.txt
+@@ -0,0 +1,122 @@
++# -*- cmake -*-
++
++if(ENABLE_LIBXML2_BACKEND)
++  set(xmlrpc_xml_parser xmlrpc_libxml2.c)
++  set(libxml_INCLUDES ${LIBXML2_CFLAGS})
++  set(libxml_LIBS     ${LIBXML2_LDFLAGS})
++  set(xmlrpc_pkgconfig_req ${libxml_pkgconfig})
++else(ENABLE_LIBXML2_BACKEND)
++  set(xmlrpc_xml_parser xmlrpc_expat.c)
++  set(libxml_INCLUDES -I${xmlrpc-c_SOURCE_DIR}/lib/expat/xmlparse)
++  set(libxml_LIBS xmlrpc_xmlparse)
++  set(xmlrpc_pkgconfig_req xmlrpc_xmlparse)
++endif(ENABLE_LIBXML2_BACKEND)
++
++if(MUST_BUILD_WININET_CLIENT)
++  set(client_wininet_CFLAGS "")
++  set(client_wininet_LIBS   "${WININET_LDADD}" pthread)
++  list(APPEND transport_SOURCES
++    ${wininet_srcdir}/xmlrpc_wininet_transport.c ${wininet_srcdir}/xmlrpc_wininet_transport.h)
++endif(MUST_BUILD_WININET_CLIENT)
++
++if(MUST_BUILD_LIBWWW_CLIENT)
++  set(client_libwww_CFLAGS "${LIBWWW_CFLAGS}")
++  set(client_libwww_LIBS   "${LIBWWW_LIBS}")
++  list(APPEND transport_SOURCES ${libwww_srcdir}/xmlrpc_libwww_transport.c ${libwww_srcdir}/xmlrpc_libwww_transport.h)
++endif(MUST_BUILD_LIBWWW_CLIENT)
++
++if(MUST_BUILD_CURL_CLIENT)
++  set(client_curl_CFLAGS ${CURL_CFLAGS})
++  set(client_curl_LIBS   ${CURL_LDFLAGS} pthread)
++  set(xmlrpc_client_pkgconfig_req libcurl)
++  list(APPEND transport_SOURCES
++    ${curl_srcdir}/xmlrpc_curl_transport.c
++    ${curl_srcdir}/curltransaction.c
++    ${curl_srcdir}/curltransaction.h
++    ${curl_srcdir}/curlmulti.c
++    ${curl_srcdir}/curlmulti.h
++    ${curl_srcdir}/lock.h
++    ${curl_srcdir}/lock_pthread.c
++    ${curl_srcdir}/lock_pthread.h
++    ${curl_srcdir}/curlversion.h
++    )
++endif(MUST_BUILD_CURL_CLIENT)
++
++set(client_CFLAGS "-I${wininet_srcdir} -I${libwww_srcdir} -I${curl_srcdir} ${client_wininet_CFLAGS} ${client_libwww_CFLAGS} ${client_curl_CFLAGS}")
++set(client_LIBS   ${client_wininet_LIBS} ${client_libwww_LIBS} ${client_curl_LIBS})
++
++
++add_subdirectory(cpp)
++add_subdirectory(test)
++
++
++
++### libxmlrpc.so
++add_library(xmlrpc SHARED
++  double.c parse_datetime.c parse_value.c resource.c trace.c version.c
++  json.c
++  ${xmlrpc_xml_parser}
++  xmlrpc_data.c xmlrpc_datetime.c xmlrpc_string.c
++  xmlrpc_array.c xmlrpc_struct.c
++  xmlrpc_build.c xmlrpc_decompose.c xmlrpc_parse.c xmlrpc_serialize.c
++  xmlrpc_base64.c xmlrpc_authcookie.c)
++
++set_target_properties(xmlrpc
++  PROPERTIES
++  COMPILE_FLAGS ${libxml_INCLUDES})
++
++ensc_pkgconfig(xmlrpc)
++target_link_libraries(xmlrpc ${libxml_LIBS} xmlrpc_util)
++list(APPEND lib_TARGETS xmlrpc)
++
++### libxmlrpc_client.so
++add_library(xmlrpc_client SHARED
++  xmlrpc_client.c xmlrpc_client_global.c xmlrpc_server_info.c ${transport_SOURCES})
++
++target_link_libraries(xmlrpc_client xmlrpc ${client_LIBS})
++set_target_properties(xmlrpc_client
++  PROPERTIES
++  COMPILE_FLAGS "${client_CFLAGS}")
++list(APPEND lib_TARGETS xmlrpc_client)
++ensc_pkgconfig(xmlrpc_client)
++
++### libxmlrpc_server.so
++add_library(xmlrpc_server SHARED
++  registry.c method.c system_method.c)
++target_link_libraries(xmlrpc_server xmlrpc)
++list(APPEND lib_TARGETS xmlrpc_server)
++ensc_pkgconfig(xmlrpc_server)
++
++
++### libxmlrpc_server_abyss.so
++if(ENABLE_ABYSS_SERVER)
++  add_library(xmlrpc_server_abyss SHARED
++    xmlrpc_server_abyss.c)
++  target_link_libraries(xmlrpc_server_abyss xmlrpc_abyss xmlrpc_server)
++  list(APPEND lib_TARGETS xmlrpc_server_abyss)
++  ensc_pkgconfig(xmlrpc_server_abyss)
++endif(ENABLE_ABYSS_SERVER)
++
++
++
++### libxmlrpc_server_cgi.so
++if(ENABLE_CGI_SERVER)
++  add_library(xmlrpc_server_cgi SHARED
++    xmlrpc_server_cgi)
++  target_link_libraries(xmlrpc_server_cgi xmlrpc_server)
++  list(APPEND lib_TARGETS xmlrpc_server_cgi)
++  ensc_pkgconfig(xmlrpc_server_cgi)
++endif(ENABLE_CGI_SERVER)
++
++install(TARGETS ${lib_TARGETS}
++  RUNTIME DESTINATION ${_bin}
++  LIBRARY DESTINATION ${_lib})
++
++set_target_properties(${lib_TARGETS}
++  PROPERTIES
++  LINK_FLAGS ${XMLRPC_LINKER_FLAGS}
++  VERSION    ${XMLRPC_C_LIBVERSION}
++  SOVERSION  ${XMLRPC_C_SOVERSION})
++
++
++enable_testing()
+diff --git a/src/cpp/CMakeLists.txt b/src/cpp/CMakeLists.txt
+new file mode 100644
+index 0000000..3171156
+--- /dev/null
++++ b/src/cpp/CMakeLists.txt
+@@ -0,0 +1,70 @@
++# -*- cmake -*-
++
++####### libxmlrpc++.so
++add_library(xmlrpc++ SHARED
++  base64.cpp env_wrap.cpp fault.cpp girerr.cpp girmem.cpp
++  outcome.cpp param_list.cpp value.cpp xml.cpp)
++target_link_libraries(xmlrpc++ xmlrpc pthread)
++list(APPEND lib_TARGETS xmlrpc++)
++ensc_pkgconfig(xmlrpc++)
++
++####### libxmlrpc_cpp.so
++add_library(xmlrpc_cpp            SHARED XmlRpcCpp)
++target_link_libraries(xmlrpc_cpp xmlrpc xmlrpc_server xmlrpc_client)
++list(APPEND lib_TARGETS xmlrpc_cpp)
++ensc_pkgconfig(xmlrpc_cpp)
++
++####### libxmlrpc_server++.so
++add_library(xmlrpc_server++       SHARED registry.cpp)
++target_link_libraries(xmlrpc_server++ xmlrpc++ xmlrpc_server)
++list(APPEND lib_TARGETS xmlrpc_server++)
++ensc_pkgconfig(xmlrpc_server++)
++
++####### libxmlrpc_server_abyss++.so
++if(ENABLE_ABYSS_SERVER)
++  add_library(xmlrpc_server_abyss++ SHARED server_abyss.cpp)
++  target_link_libraries(xmlrpc_server_abyss++ xmlrpc_server++ xmlrpc_server_abyss)
++  list(APPEND lib_TARGETS xmlrpc_server_abyss++)
++  ensc_pkgconfig(xmlrpc_server_abyss++)
++endif(ENABLE_ABYSS_SERVER)
++
++####### libxmlrpc_server_cgi++.so
++if(ENABLE_CGI_SERVER)
++  add_library(xmlrpc_server_cgi++ SHARED server_cgi.cpp)
++  target_link_libraries(xmlrpc_server_cgi++ xmlrpc_server++)
++  list(APPEND lib_TARGETS xmlrpc_server_cgi++)
++  ensc_pkgconfig(xmlrpc_server_cgi++)
++endif(ENABLE_CGI_SERVER)
++
++####### libxmlrpc_server_pstream++.so
++add_library(xmlrpc_server_pstream++ SHARED server_pstream.cpp server_pstream_conn)
++target_link_libraries(xmlrpc_server_pstream++ xmlrpc_server++ xmlrpc_packetsocket)
++list(APPEND lib_TARGETS xmlrpc_server_pstream++)
++ensc_pkgconfig(xmlrpc_server_pstream++)
++
++####### libxmlrpc_packetsocket.so
++add_library(xmlrpc_packetsocket SHARED packetsocket.cpp)
++target_link_libraries(xmlrpc_packetsocket xmlrpc++)
++list(APPEND lib_TARGETS xmlrpc_packetsocket)
++ensc_pkgconfig(xmlrpc_packetsocket)
++
++####### libxmlrpc_client++.so
++add_library(xmlrpc_client++       SHARED
++  client.cpp client_simple.cpp curl.cpp libwww.cpp wininet.cpp pstream.cpp)
++set_target_properties(xmlrpc_client++
++  PROPERTIES
++  COMPILE_FLAGS "-I${wininet_srcdir} -I${libwww_srcdir} -I${curl_srcdir}")
++target_link_libraries(xmlrpc_client++ xmlrpc++ xmlrpc_client xmlrpc_packetsocket)
++list(APPEND lib_TARGETS xmlrpc_client++)
++ensc_pkgconfig(xmlrpc_client++)
++
++
++install(TARGETS ${lib_TARGETS}
++  RUNTIME DESTINATION ${_bin}
++  LIBRARY DESTINATION ${_lib})
++
++set_target_properties(${lib_TARGETS}
++  PROPERTIES
++  LINK_FLAGS ${XMLRPC_LINKER_FLAGS}
++  VERSION    ${XMLRPC_CXX_LIBVERSION}
++  SOVERSION  ${XMLRPC_CXX_SOVERSION})
+diff --git a/src/cpp/test/CMakeLists.txt b/src/cpp/test/CMakeLists.txt
+new file mode 100644
+index 0000000..dffd36c
+--- /dev/null
++++ b/src/cpp/test/CMakeLists.txt
+@@ -0,0 +1,18 @@
++# -*- cmake -*-
++
++set(test_SOURCES
++  test.cpp base64.cpp registry.cpp server_abyss.cpp
++  server_pstream.cpp tools.cpp value.cpp xml.cpp )
++
++if(MUST_BUILD_CLIENT)
++  list(APPEND test_SOURCES testclient.cpp)
++  list(APPEND test_LIBS    xmlrpc_client++)
++else(MUST_BUILD_CLIENT)
++  list(APPEND test_SOURCES testclient_dummy.c)
++endif(MUST_BUILD_CLIENT)
++
++add_executable(src-test ${test_SOURCES})
++target_link_libraries(src-test xmlrpc_server_abyss++ util ${test_LIBS})
++
++enable_testing()
++add_test(runtests src-test)
+diff --git a/src/cpp/xmlrpc++.pc.cmake b/src/cpp/xmlrpc++.pc.cmake
+new file mode 100644
+index 0000000..3bfa992
+--- /dev/null
++++ b/src/cpp/xmlrpc++.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc++
++Description: XMLRPC C++ Base library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc++
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_client++.pc.cmake b/src/cpp/xmlrpc_client++.pc.cmake
+new file mode 100644
+index 0000000..bd6766b
+--- /dev/null
++++ b/src/cpp/xmlrpc_client++.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_client++
++Description: XMLRPC C++ Client library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc++ xmlrpc_client xmlrpc_packetsocket xmlrpc xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_client++
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_cpp.pc.cmake b/src/cpp/xmlrpc_cpp.pc.cmake
+new file mode 100644
+index 0000000..8acc22f
+--- /dev/null
++++ b/src/cpp/xmlrpc_cpp.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_cpp
++Description: XMLRPC CPP library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc xmlrpc_server xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_cpp
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_packetsocket.pc.cmake b/src/cpp/xmlrpc_packetsocket.pc.cmake
+new file mode 100644
+index 0000000..4a8aedc
+--- /dev/null
++++ b/src/cpp/xmlrpc_packetsocket.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_packetsocket
++Description: XMLRPC C++ packsetsocket library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc++
++Libs:   		-L${libdir} -lxmlrpc_packetsocket
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_server++.pc.cmake b/src/cpp/xmlrpc_server++.pc.cmake
+new file mode 100644
+index 0000000..c769d54
+--- /dev/null
++++ b/src/cpp/xmlrpc_server++.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server++
++Description: XMLRPC C++ Server library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc++ xmlrpc_server xmlrpc xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_server++
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_server_abyss++.pc.cmake b/src/cpp/xmlrpc_server_abyss++.pc.cmake
+new file mode 100644
+index 0000000..b325eff
+--- /dev/null
++++ b/src/cpp/xmlrpc_server_abyss++.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server_abyss++
++Description: XMLRPC C++ Abyss-Server library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_server++ xmlrpc_server_abyss xmlrpc++ xmlrpc_abyss xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_server_abyss++
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_server_cgi++.pc.cmake b/src/cpp/xmlrpc_server_cgi++.pc.cmake
+new file mode 100644
+index 0000000..72a3726
+--- /dev/null
++++ b/src/cpp/xmlrpc_server_cgi++.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server_cgi++
++Description: XMLRPC C++ CGI-Server library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_server++ xmlrpc++ xmlrpc
++Libs:   		-L${libdir} -lxmlrpc_server_cgi++
++Cflags:			-I${includedir}
+diff --git a/src/cpp/xmlrpc_server_pstream++.pc.cmake b/src/cpp/xmlrpc_server_pstream++.pc.cmake
+new file mode 100644
+index 0000000..da5639d
+--- /dev/null
++++ b/src/cpp/xmlrpc_server_pstream++.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server_pstream++
++Description: XMLRPC C++ pstream-Server library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_server++ xmlrpc_packetsocket xmlrpc++
++Libs:   		-L${libdir} -lxmlrpc_server_pstream++
++Cflags:			-I${includedir}
+diff --git a/src/test/CMakeLists.txt b/src/test/CMakeLists.txt
+new file mode 100644
+index 0000000..fdc6869
+--- /dev/null
++++ b/src/test/CMakeLists.txt
+@@ -0,0 +1,39 @@
++# -*- cmake -*-
++
++set(test_SOURCES
++  abyss.c
++  abyss.h
++  test.c
++  cgi.c
++  method_registry.c
++  parse_xml.c
++  serialize.c
++  serialize_value.c
++  server_abyss.c
++  testtool.c
++  testtool.h
++  value.c
++  value_datetime.c
++  xml_data.c)
++
++if(MUST_BUILD_CLIENT)
++  list(APPEND test_SOURCES client.c)
++  list(APPEND test_LIBS xmlrpc_client)
++else(MUST_BUILD_CLIENT)
++  list(APPEND test_SOURCES client_dummy.c)
++endif(MUST_BUILD_CLIENT)
++
++
++add_executable(src-test ${test_SOURCES})
++target_link_libraries(src-test xmlrpc_server_abyss util ${test_LIBS})
++
++add_executable(src-cgitest1 cgitest1.c testtool.c testtool.h)
++target_link_libraries(src-cgitest1 xmlrpc_server_cgi)
++
++add_custom_command(TARGET src-test
++  POST_BUILD
++  COMMAND rm -f ${CMAKE_CURRENT_BINARY_DIR}/data
++  COMMAND ln -s ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR})
++
++enable_testing()
++add_test(runtests src-test)
+diff --git a/src/xmlrpc.pc.cmake b/src/xmlrpc.pc.cmake
+new file mode 100644
+index 0000000..4c92f93
+--- /dev/null
++++ b/src/xmlrpc.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc
++Description: XMLRPC base library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	@xmlrpc_pkgconfig_req@ xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc @xmlrpc_pkgconfig_libs@
++Cflags:			-I${includedir}
+diff --git a/src/xmlrpc_client.pc.cmake b/src/xmlrpc_client.pc.cmake
+new file mode 100644
+index 0000000..7f28a15
+--- /dev/null
++++ b/src/xmlrpc_client.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_client
++Description: XMLRPC client library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc @xmlrpc_client_pkgconfig_req@ xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_client @client_libwww_LIBS@ @client_wininet_LIBS@
++Cflags:			-I${includedir}
+diff --git a/src/xmlrpc_server.pc.cmake b/src/xmlrpc_server.pc.cmake
+new file mode 100644
+index 0000000..d5c334e
+--- /dev/null
++++ b/src/xmlrpc_server.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server
++Description: XMLRPC Server library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_server
++Cflags:			-I${includedir}
+diff --git a/src/xmlrpc_server_abyss.pc.cmake b/src/xmlrpc_server_abyss.pc.cmake
+new file mode 100644
+index 0000000..48fa0b1
+--- /dev/null
++++ b/src/xmlrpc_server_abyss.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server_abyss
++Description: XMLRPC Server Abyss library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_server xmlrpc_abyss xmlrpc xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_server_abyss
++Cflags:			-I${includedir}
+diff --git a/src/xmlrpc_server_cgi.pc.cmake b/src/xmlrpc_server_cgi.pc.cmake
+new file mode 100644
+index 0000000..4d174ef
+--- /dev/null
++++ b/src/xmlrpc_server_cgi.pc.cmake
+@@ -0,0 +1,12 @@
++bindir=@bindir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name:        xmlrpc_server_cgi
++Description: XMLRPC CGI-Server library
++Version:     @XMLRPC_C_VERSION@
++
++Requires.private:	xmlrpc_server xmlrpc xmlrpc_util
++Libs:   		-L${libdir} -lxmlrpc_server_cgi
++Cflags:			-I${includedir}
+diff --git a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+new file mode 100644
+index 0000000..0bc45a9
+--- /dev/null
++++ b/tools/CMakeLists.txt
+@@ -0,0 +1,21 @@
++# -*- cmake -*-
++
++add_subdirectory(lib)
++add_subdirectory(binmode-rpc-kit)
++add_subdirectory(turbocharger)
++
++if (MUST_BUILD_CLIENT)
++  add_subdirectory(xmlrpc)
++  add_subdirectory(xmlrpc_transport)
++
++
++  if (ENABLE_CPLUSPLUS)
++    add_subdirectory(xml-rpc-api2cpp)
++    add_subdirectory(xml-rpc-api2txt)
++    add_subdirectory(xmlrpc_cpp_proxy)
++
++    if (BUILD_XMLRPC_PSTREAM AND ENABLE_CGI_SERVER)
++      add_subdirectory(xmlrpc_pstream)
++    endif()
++  endif()
++endif()
+diff --git a/tools/binmode-rpc-kit/CMakeLists.txt b/tools/binmode-rpc-kit/CMakeLists.txt
+new file mode 100644
+index 0000000..342423d
+--- /dev/null
++++ b/tools/binmode-rpc-kit/CMakeLists.txt
+@@ -0,0 +1 @@
++# -*- cmake -*-
+diff --git a/tools/lib/CMakeLists.txt b/tools/lib/CMakeLists.txt
+new file mode 100644
+index 0000000..342423d
+--- /dev/null
++++ b/tools/lib/CMakeLists.txt
+@@ -0,0 +1 @@
++# -*- cmake -*-
+diff --git a/tools/turbocharger/CMakeLists.txt b/tools/turbocharger/CMakeLists.txt
+new file mode 100644
+index 0000000..342423d
+--- /dev/null
++++ b/tools/turbocharger/CMakeLists.txt
+@@ -0,0 +1 @@
++# -*- cmake -*-
+diff --git a/tools/xml-rpc-api2cpp/CMakeLists.txt b/tools/xml-rpc-api2cpp/CMakeLists.txt
+new file mode 100644
+index 0000000..1e9134a
+--- /dev/null
++++ b/tools/xml-rpc-api2cpp/CMakeLists.txt
+@@ -0,0 +1,15 @@
++# -*- cmake -*-
++
++add_executable(xml-rpc-api2cpp
++  xml-rpc-api2cpp.cpp
++  DataType.cpp
++  XmlRpcFunction.cpp
++  XmlRpcClass.cpp
++  SystemProxy.cpp)
++target_link_libraries(xml-rpc-api2cpp xmlrpc_cpp xmlrpc_client)
++
++install(TARGETS xml-rpc-api2cpp
++  RUNTIME DESTINATION bin)
++
++install(FILES xml-rpc-api2cpp.1
++  DESTINATION ${mandir}/man1)
+diff --git a/tools/xml-rpc-api2txt/CMakeLists.txt b/tools/xml-rpc-api2txt/CMakeLists.txt
+new file mode 100644
+index 0000000..5b01824
+--- /dev/null
++++ b/tools/xml-rpc-api2txt/CMakeLists.txt
+@@ -0,0 +1,7 @@
++# -*- cmake -*-
++
++install(PROGRAMS xml-rpc-api2txt
++  DESTINATION ${bindir})
++
++install(FILES xml-rpc-api2txt.1
++  DESTINATION ${mandir}/man1)
+diff --git a/tools/xmlrpc/CMakeLists.txt b/tools/xmlrpc/CMakeLists.txt
+new file mode 100644
+index 0000000..da01ec3
+--- /dev/null
++++ b/tools/xmlrpc/CMakeLists.txt
+@@ -0,0 +1,17 @@
++# -*- cmake -*-
++
++#set_directory_properties(PROPERTIES INCLUDE_DIRECTORIES ../lib/include)
++
++include_directories(../lib/include)
++add_executable(tool-xmlrpc
++  xmlrpc.c
++  ../lib/dumpvalue.c)
++target_link_libraries(tool-xmlrpc xmlrpc_client util)
++
++set_target_properties(tool-xmlrpc
++  PROPERTIES OUTPUT_NAME xmlrpc)
++
++install(TARGETS tool-xmlrpc
++  DESTINATION ${_bin})
++
++ensc_set_link_exe_flags(tool-xmlrpc)
+diff --git a/tools/xmlrpc/config.h b/tools/xmlrpc/config.h
+new file mode 100644
+index 0000000..7409aed
+--- /dev/null
++++ b/tools/xmlrpc/config.h
+@@ -0,0 +1 @@
++#include <xmlrpc_config.h>
+diff --git a/tools/xmlrpc_cpp_proxy/CMakeLists.txt b/tools/xmlrpc_cpp_proxy/CMakeLists.txt
+new file mode 100644
+index 0000000..4166023
+--- /dev/null
++++ b/tools/xmlrpc_cpp_proxy/CMakeLists.txt
+@@ -0,0 +1,17 @@
++# -*- cmake -*-
++
++add_executable(xmlrpc_cpp_proxy
++  proxyClass.cpp
++  proxyClass.hpp
++  systemProxy.cpp
++  systemProxy.hpp
++  xmlrpcMethod.cpp
++  xmlrpcMethod.hpp
++  xmlrpcType.cpp
++  xmlrpcType.hpp
++  xmlrpc_cpp_proxy.cpp
++)
++target_link_libraries(xmlrpc_cpp_proxy xmlrpc_client++)
++
++install(TARGETS xmlrpc_cpp_proxy
++  RUNTIME DESTINATION bin)
+diff --git a/tools/xmlrpc_pstream/CMakeLists.txt b/tools/xmlrpc_pstream/CMakeLists.txt
+new file mode 100644
+index 0000000..b277bc8
+--- /dev/null
++++ b/tools/xmlrpc_pstream/CMakeLists.txt
+@@ -0,0 +1,16 @@
++# -*- cmake -*-
++
++add_executable(xmlrpc_pstream
++  xmlrpc_pstream.cpp
++  ../lib/dumpvalue.c)
++
++target_link_libraries(xmlrpc_pstream
++  ${READLINE}
++  ${NCURSES_LIBRARIES}
++  xmlrpc_client++
++  util)
++
++include_directories(../lib/include)
++
++install(TARGETS xmlrpc_pstream
++  RUNTIME DESTINATION bin)
+diff --git a/tools/xmlrpc_transport/CMakeLists.txt b/tools/xmlrpc_transport/CMakeLists.txt
+new file mode 100644
+index 0000000..b73d7c0
+--- /dev/null
++++ b/tools/xmlrpc_transport/CMakeLists.txt
+@@ -0,0 +1,9 @@
++# -*- cmake -*-
++
++add_executable(xmlrpc_transport xmlrpc_transport.c)
++target_link_libraries(xmlrpc_transport xmlrpc_client util)
++
++install(TARGETS xmlrpc_transport
++  DESTINATION ${_bin})
++
++ensc_set_link_exe_flags(xmlrpc_transport)
+diff --git a/tools/xmlrpc_transport/config.h b/tools/xmlrpc_transport/config.h
+new file mode 100644
+index 0000000..7409aed
+--- /dev/null
++++ b/tools/xmlrpc_transport/config.h
+@@ -0,0 +1 @@
++#include <xmlrpc_config.h>
+diff --git a/transport_config.h.cmake b/transport_config.h.cmake
+new file mode 100644
+index 0000000..1ec3cf6
+--- /dev/null
++++ b/transport_config.h.cmake
+@@ -0,0 +1,16 @@
++/* -*- c -*- */
++#define MUST_BUILD_WININET_CLIENT	@_MUST_BUILD_WININET_CLIENT@
++#define MUST_BUILD_LIBWWW_CLIENT	@_MUST_BUILD_LIBWWW_CLIENT@
++#define MUST_BUILD_CURL_CLIENT		@_MUST_BUILD_CURL_CLIENT@
++
++static char const * const XMLRPC_DEFAULT_TRANSPORT =
++#if MUST_BUILD_LIBWWW_CLIENT
++  "libwww"
++#elif MUST_BUILD_CURL_CLIENT
++  "curl"
++#elif MUST_BUILD_WININET_CLIENT
++  "wininet"
++#else
++#  error "no client XML transport configured"
++#endif
++  ;
+diff --git a/version.h.cmake b/version.h.cmake
+new file mode 100644
+index 0000000..0c964a3
+--- /dev/null
++++ b/version.h.cmake
+@@ -0,0 +1,5 @@
++/* This file was generated by a make rule */
++#define XMLRPC_C_VERSION	"@XMLRPC_C_VERSION@"
++#define XMLRPC_VERSION_MAJOR	@XMLRPC_C_VERSION_MAJOR_NUM@
++#define XMLRPC_VERSION_MINOR	@XMLRPC_C_VERSION_MINOR_NUM@
++#define XMLRPC_VERSION_POINT	@XMLRPC_C_VERSION_POINT_NUM@
+diff --git a/xmlrpc-c-config b/xmlrpc-c-config
+new file mode 100755
+index 0000000..50577fd
+--- /dev/null
++++ b/xmlrpc-c-config
+@@ -0,0 +1,105 @@
++#! /bin/sh
++
++comp=
++
++need_cxx=
++need_client=
++need_server=
++need_abyss=
++need_pstream=
++need_packetsocket=
++need_cgi=
++
++show_help() {
++    cat <<EOF
++Usage: xmlrpc-c-config <feature> ... <option> ...
++
++The features are:
++  c++            legacy C++ wrapper API
++  c++2           modern C++ API
++  client         client functions
++  cgi-server     CGI-based server functions
++  abyss-server   ABYSS-based server functions
++  pstream-server pstream-based server functions
++  server-util    basic server functions (implied by *-server)
++
++Options are:
++  --version      The version number of the package
++  --features     List all features (aka modules) currently installed
++  --cflags       C compiler flags to use when '#include'ing package headers
++  --libs         Libraries and flags to use when linking programs normally
++  --ldadd        Libraries to use with automake
++  --ldflags      Flags to use with automake & libtool
++  --prefix       The prefix under which the package was installed
++EOF
++    exit $1
++}
++
++test $# -ne 0 || show_help 1 >&2
++
++while test $# -gt 0; do
++    case $1 in
++      (c++)			comp="$comp xmlrpc_cpp";;
++      (server-util)		need_server=1;;
++      (cgi-server)		need_cgi=1;;
++      (c++2)			need_cxx=1;;
++      (abyss-server)		need_abyss=1;;
++      (pstream-server)		need_pstream=1;;
++      (packetsocket)		need_packetsocket=1;;
++      (client|libwww-client)	need_client=1;;
++      (--help)			show_help 0;;
++      (--) shift; break;;
++      (--*) break;;
++      (*)
++      echo "Unrecognized token '$1'"
++      exit 1
++      ;;
++    esac
++    shift
++done
++
++if test -z "$need_cxx"; then
++    test -z "$need_client" || comp="$comp xmlrpc_client"
++    test -z "$need_abyss"  || comp="$comp xmlrpc_server_abyss"
++    test -z "$need_server" || comp="$comp xmlrpc_server"
++    test -z "$need_cgi"    || comp="$comp xmlrpc_server_cgi"
++else
++    test -z "$need_client" || comp="$comp xmlrpc_client++"
++    test -z "$need_abyss"  || comp="$comp xmlrpc_server_abyss++"
++    test -z "$need_server" || comp="$comp xmlrpc_server++"
++    test -z "$need_cgi"    || comp="$comp xmlrpc_server_cgi++"
++fi
++
++test -z "$need_pstream"      || comp="$comp xmlrpc_server_pstream++"
++test -z "$need_packetsocket" || comp="$comp xmlrpc_packetsocket"
++test -n "$comp"              || comp="xmlrpc xmlrpc_util"
++
++case $1 in
++  (--features|--modules)
++  echo "c++ abyss-server curl-client"
++  exit 0
++  ;;
++  (--version)
++  comp=xmlrpc
++  set -- --modversion
++  ;;
++  (--exec-prefix)
++  comp=xmlrpc
++  set -- --variable=prefix
++  ;;
++  (--*dir|--prefix)
++  comp=xmlrpc
++  set -- --variable=${1##--}
++  ;;
++  (--ldflags)
++  set -- --libs-only-L
++  ;;
++  (--ldadd)
++  set -- --libs-only-l
++  ;;
++  (--cflags)
++  set -- "$1"
++  ;;
++esac
++
++exec pkg-config "$@" $comp
+diff --git a/xmlrpc_config.h.cmake b/xmlrpc_config.h.cmake
+new file mode 100644
+index 0000000..2859749
+--- /dev/null
++++ b/xmlrpc_config.h.cmake
+@@ -0,0 +1,147 @@
++/* -*- c -*- */
++
++#ifndef H_XMLRPC_C_CONFIG_H
++
++#define HAVE_SYS_IOCTL_H		0@HAVE_SYS_IOCTL_H@
++#define HAVE_SYS_SELECT_H_DEFINE	0@HAVE_SYS_IOCTL_H@
++
++#define VA_LIST_IS_ARRAY	@VA_LIST_IS_ARRAY@
++#define XMLRPC_HAVE_WCHAR	@XMLRPC_HAVE_WCHAR@
++#define ATTR_UNUSED		@ATTR_UNUSED@
++#define DIRECTORY_SEPARATOR	"@DIRECTORY_SEPARATOR@"
++
++#cmakedefine HAVE_SYS_SELECT_H	1
++#cmakedefine HAVE_WCHAR_H	1
++#cmakedefine HAVE_SETENV	1
++#cmakedefine HAVE_STRCASECMP	1
++#cmakedefine HAVE__STRICMP	1
++#cmakedefine HAVE_STRICMP	1
++#cmakedefine HAVE_GETTIMEOFDAY	1
++#cmakedefine HAVE_SETGROUPS	1
++#cmakedefine HAVE_ASPRINTF	1
++#cmakedefine HAVE_PSELECT	1
++#cmakedefine HAVE_WCSNCMP	1
++#cmakedefine HAVE_LOCALTIME_R	1
++#cmakedefine HAVE_GMTIME_R	1
++#cmakedefine HAVE_STRTOLL	1
++#cmakedefine HAVE___STRTOLL	1
++#cmakedefine HAVE_STRTOULL	1
++#cmakedefine HAVE___STRTOULL	1
++#cmakedefine HAVE_STRTOQ	1
++#cmakedefine HAVE_STRTOUQ	1
++
++#define HAVE_UNICODE_WCHAR	HAVE_WCHAR_H
++
++/*  Xmlrpc-c code uses __inline__ to declare functions that should
++    be compiled as inline code.  GNU C recognizes the __inline__ keyword.
++    Others recognize 'inline' or '__inline' or nothing at all to say
++    a function should be inlined.
++
++    We could make 'configure' simply do a trial compile to figure out
++    which one, but for now, this approximation is easier:
++*/
++#if (!defined(__GNUC__))
++  #if (!defined(__inline__))
++    #if (defined(__sgi) || defined(_AIX) || defined(_MSC_VER))
++      #define __inline__ __inline
++    #else
++      #define __inline__
++    #endif
++  #endif
++#endif
++
++/* MSVCRT means we're using the Microsoft Visual C++ runtime library */
++
++#ifdef _MSC_VER
++/* The compiler is Microsoft Visual C++. */
++  #define MSVCRT _MSC_VER
++#else
++  #define MSVCRT 0
++#endif
++
++#if MSVCRT
++  /* The MSVC runtime library _does_ have a 'struct timeval', but it is
++     part of the Winsock interface (along with select(), which is probably
++     its intended use), so isn't intended for use for general timekeeping.
++  */
++  #define HAVE_TIMEVAL 0
++  #define HAVE_TIMESPEC 0
++#else
++  #define HAVE_TIMEVAL 1
++  /* timespec is Posix.1b.  If we need to work on a non-Posix.1b non-Windows
++     system, we'll have to figure out how to make Configure determine this.
++  */
++  #define HAVE_TIMESPEC 1
++#endif
++
++#if MSVCRT
++  #define HAVE_WINDOWS_THREAD 1
++#else
++  #define HAVE_WINDOWS_THREAD 0
++#endif
++
++#define HAVE_PTHREAD 1
++
++#if MSVCRT
++  #define XMLRPC_VSNPRINTF _vsnprintf
++#else
++  #define XMLRPC_VSNPRINTF vsnprintf
++#endif
++
++#if MSVCRT
++  #define HAVE_REGEX 0
++#else
++  #define HAVE_REGEX 1
++#endif
++
++#if MSVCRT
++  #define XMLRPC_SOCKETPAIR xmlrpc_win32_socketpair
++  #define XMLRPC_CLOSESOCKET closesocket
++#else
++  #define XMLRPC_SOCKETPAIR socketpair
++  #define XMLRPC_CLOSESOCKET close
++#endif
++
++#if defined(_MSC_VER)
++/* Starting with MSVC 8, the runtime library defines various POSIX functions
++   such as strdup() whose names violate the ISO C standard (the standard
++   says the strXXX names are reserved for the standard), but warns you of
++   the standards violation.  That warning is 4996, along with other warnings
++   that tell you you're using a function that Microsoft thinks you
++   shouldn't.
++
++   Well, POSIX is more important than that element of ISO C, so we disable
++   that warning.
++
++   FYI, msvcrt also defines _strdup(), etc, which doesn't violate the
++   naming standard.  But since other environments don't define _strdup(),
++   we can't use it in portable code.
++*/
++#pragma warning(disable:4996)
++#endif
++
++#if HAVE_STRTOLL
++  # define XMLRPC_STRTOLL strtoll
++#elif HAVE_STRTOQ
++  # define XMLRPC_STRTOLL strtoq /* Interix */
++#elif HAVE___STRTOLL
++  # define XMLRPC_STRTOLL __strtoll /* HP-UX <= 11.11 */
++#elif HAVE__STRTOUI64
++  #define XMLRPC_STRTOLL _strtoui64  /* Windows MSVC */
++#endif
++
++#if HAVE_STRTOULL
++  # define XMLRPC_STRTOULL strtoull
++#elif HAVE_STRTOUQ
++  # define XMLRPC_STRTOULL strtouq /* Interix */
++#elif HAVE___STRTOULL
++  # define XMLRPC_STRTOULL __strtoull /* HP-UX <= 11.11 */
++#elif HAVE__STRTOUI64
++  #define XMLRPC_STRTOULL _strtoui64  /* Windows MSVC */
++#endif
++
++#define XMLRPC_INT64  int64_t
++#define XMLRPC_PRId64 PRId64
++
++
++#endif
+-- 
+1.7.3.4
+

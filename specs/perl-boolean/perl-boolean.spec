@@ -8,8 +8,8 @@
 %define real_name boolean
 
 Summary: Boolean support for Perl
-Name: perl-boolean
-Version: 0.20
+Name: perl-%{real_name}
+Version: 0.28
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -20,10 +20,17 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl >= 5.005003
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 5.005003
 
++### remove autoreq Perl dependencies
+%filter_from_requires /^perl.*/d
+%filter_setup
+
 %description
-Boolean support for Perl.
+Most programming languages have a native "Boolean" data type. Perl does
+not.  This module provides basic Boolean support, by defining two
+special objects: "true" and "false".
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -38,6 +45,7 @@ Boolean support for Perl.
 
 ### Clean up buildroot
 find %{buildroot} -name .packlist -exec %{__rm} {} \;
+find %{buildroot} -type d -depth -exec rmdir {} 2>/dev/null ';'
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -46,9 +54,11 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %defattr(-, root, root, 0755)
 %doc Changes MANIFEST META.yml README
 %doc %{_mandir}/man3/boolean.3pm*
-#%{perl_vendorlib}/boolean/
 %{perl_vendorlib}/boolean.pm
 
 %changelog
+* Sat Apr 28 2012 Denis Fateyev <denis@fateyev.com> - 0.28-1
+- Update to version 0.28
+ 
 * Fri Dec 11 2009 Christoph Maser <cmr@financial.com> - 0.20-1
 - Initial package. (using DAR)

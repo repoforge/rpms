@@ -1,0 +1,12 @@
+diff -up subversion-1.6.17/subversion/bindings/swig/perl/native/Makefile.PL.in.eemm subversion-1.6.17/subversion/bindings/swig/perl/native/Makefile.PL.in
+--- subversion-1.6.17/subversion/bindings/swig/perl/native/Makefile.PL.in.eemm	2011-07-01 17:56:05.861063423 +0200
++++ subversion-1.6.17/subversion/bindings/swig/perl/native/Makefile.PL.in	2011-07-01 17:56:28.675942207 +0200
+@@ -43,7 +43,7 @@ chomp $apr_shlib_path_var;
+ my %config = (
+     ABSTRACT => 'Perl bindings for Subversion',
+     DEFINE => $cppflags,
+-    CCFLAGS => $cflags,
++    CCFLAGS => join(' ', $cflags, $Config{ccflags}),
+     INC  => join(' ',$apr_cflags, $apu_cflags, 
+                  " -I$swig_srcdir/perl/libsvn_swig_perl",
+                  " -I$svnlib_srcdir/include",

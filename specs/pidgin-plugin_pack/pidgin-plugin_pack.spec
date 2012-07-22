@@ -5,18 +5,19 @@
 
 %{?el6:%define _without_xmms 1}
 
-%define real_name purple-plugin_pack
+%define real_name purple-plugin-pack
 
 Summary: Plugin Pack for Pidgin
 Name: pidgin-plugin_pack
-Version: 2.5.1
+Version: 2.7.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://plugins.guifications.org/trac/
 
+Source: https://www.guifications.org/attachments/download/201/purple-plugin-pack-2.7.0.tar.bz2
 #Source: http://plugins.guifications.org/trac/downloads/22
-Source: purple-plugin_pack-2.5.1.tar.bz2
+#Source: purple-plugin_pack-2.7.0.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext
@@ -66,6 +67,7 @@ Plugin Pack is a collection of plugins for libpurple and derived IM clients.
 #%{_datadir}/pixmaps/pidgin/plugin_pack/
 %dir %{_datadir}/pixmaps/pidgin/protocols/
 %{_datadir}/pixmaps/pidgin/protocols/*/napster.png
+%{!?_without_xmms:%{_datadir}/pixmaps/pidgin/plugin_pack/}
 %exclude %{_libdir}/pidgin/*.la
 
 %files -n purple-plugin_pack -f plugin_pack.lang
@@ -76,6 +78,9 @@ Plugin Pack is a collection of plugins for libpurple and derived IM clients.
 %exclude %{_libdir}/purple-2/*.la
 
 %changelog
+* Thu Feb 16 2012 Dag Wieers <dag@wieers.com> - 2.7.0-1
+- Updated to release 2.7.0.
+
 * Tue Jul 14 2009 Dag Wieers <dag@wieers.com> - 2.5.1-1
 - Updated to release 2.5.1.
 

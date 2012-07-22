@@ -1,0 +1,11 @@
+diff -ruN lv451.orig/src/raw.c lv451/src/raw.c
+--- lv451.orig/src/raw.c	2004-01-05 16:23:29.000000000 +0900
++++ lv451/src/raw.c	2005-07-11 13:57:25.000000000 +0900
+@@ -42,6 +42,7 @@
+       DecodeAddControl( ch );
+     } else {
+       c[ 0 ] = ch;
++      c[ 1 ] = 0; /* silence silly gcc */
+       DecodeAddChar( ASCII, c, 0 );
+     }
+   }

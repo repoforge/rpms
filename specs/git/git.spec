@@ -13,8 +13,8 @@
 
 Summary: Git core and tools
 Name: git
-Version: 1.7.8.2
-Release: 2%{?dist}
+Version: 1.7.11.2
+Release: 1%{?dist}
 License: GPL
 Group: Development/Tools
 URL: http://git-scm.com/
@@ -311,7 +311,7 @@ find contrib -type f | xargs chmod -x
 
 ### Clean up buildroot
 find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {} \;
-%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch}
+%{__rm} -rf %{buildroot}%{perl_archlib} %{buildroot}%{perl_vendorarch} %{buildroot}%{_datadir}/locale/*
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -396,9 +396,63 @@ find %{buildroot}%{_bindir} -type f -exec %{__perl} -pi -e 's|^%{buildroot}||' {
 %files -n perl-Git
 %defattr(-, root, root, 0755)
 %doc %{_mandir}/man3/Git.3pm*
+%doc %{_mandir}/man3/Git::I18N.3pm*
+%doc %{_mandir}/man3/Git::SVN::Editor.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Fetcher.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Memoize::YAML.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Prompt.3pm.gz
+%doc %{_mandir}/man3/Git::SVN::Ra.3pm.gz
 %{perl_vendorlib}/Git.pm
+%{perl_vendorlib}/Git/I18N.pm
+%{perl_vendorlib}/Git/SVN/Editor.pm
+%{perl_vendorlib}/Git/SVN/Fetcher.pm
+%{perl_vendorlib}/Git/SVN/Memoize/YAML.pm
+%{perl_vendorlib}/Git/SVN/Prompt.pm
+%{perl_vendorlib}/Git/SVN/Ra.pm
 
 %changelog
+* Sat Jul 14 2012 David Hrbáč <david@hrbac.cz> - 1.7.11.2-1
+- new upstream release
+
+* Fri Jun 22 2012 David Hrbáč <david@hrbac.cz> - 1.7.11.1-1
+- new upstream release
+
+* Tue Jun 19 2012 David Hrbáč <david@hrbac.cz> - 1.7.11-1
+- new upstream release
+
+* Mon Jun 04 2012 David Hrbáč <david@hrbac.cz> - 1.7.10.4-1
+- new upstream release
+
+* Mon May 28 2012 David Hrbáč <david@hrbac.cz> - 1.7.10.3-1
+- new upstream release
+
+* Tue May 22 2012 David Hrbáč <david@hrbac.cz> - 1.7.10.2-1
+- new upstream release
+
+* Wed May 02 2012 David Hrbáč <david@hrbac.cz> - 1.7.10.1-1
+- new upstream release
+
+* Sat Apr 07 2012 David Hrbáč <david@hrbac.cz> - 1.7.10-1
+- new upstream release
+
+* Thu Apr  5 2012 Steve Huff <shuff@vecna.org> - 1.7.9.6-1
+- new upstream release
+
+* Fri Mar 30 2012 David Hrbáč <david@hrbac.cz> - 1.7.9.5-1
+- new upstream release
+
+* Sat Mar 17 2012 David Hrbáč <david@hrbac.cz> - 1.7.9.4-1
+- new upstream release
+
+* Tue Mar 06 2012 David Hrbáč <david@hrbac.cz> - 1.7.9.3-1
+- new upstream release
+
+* Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 1.7.9.2-1
+- new upstream release
+
+* Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 1.7.9.1-1
+- new upstream release
+
 * Wed Jan  4 2012 Steve Huff <shuff@vecna.org> - 1.7.8.2-1
 - Updated to release 1.7.8.2.
 

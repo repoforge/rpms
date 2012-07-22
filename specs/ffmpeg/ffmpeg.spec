@@ -26,6 +26,7 @@
 %{?el4:%define _without_texi2html 1}
 %{?el4:%define _without_theora 1}
 %{?el4:%define _without_v4l2 1}
+%{?el4:%define _without_vdpau 1}
 
 %{?el3:%define _without_dc1394 1}
 %{?el3:%define _without_dirac 1}
@@ -35,11 +36,12 @@
 %{?el3:%define _without_texi2html 1}
 %{?el3:%define _without_theora 1}
 %{?el3:%define _without_v4l2 1}
+%{?el3:%define _without_vdpau 1}
 
 Summary: Utilities and libraries to record, convert and stream audio and video
 Name: ffmpeg
-Version: 0.6.1
-Release: 2%{?dist}
+Version: 0.6.5
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://ffmpeg.org/
@@ -65,6 +67,7 @@ BuildRequires: zlib-devel
 %{!?_without_schroedinger:BuildRequires: schroedinger-devel}
 %{!?_without_texi2html:BuildRequires: texi2html}
 %{!?_without_theora:BuildRequires: libogg-devel, libtheora-devel}
+%{!?_without_vdpau:BuildRequires: libvdpau-devel}
 %{!?_without_vorbis:BuildRequires: libogg-devel, libvorbis-devel}
 %{!?_without_vpx:BuildRequires: libvpx-devel}
 %{!?_without_x264:BuildRequires: x264-devel}
@@ -181,7 +184,7 @@ export CFLAGS="%{optflags}"
     --enable-pthreads \
     --enable-shared \
     --enable-swscale \
-    --enable-vdpau \
+%{!?_without_vdpau:--enable-vdpau} \
     --enable-version3 \
     --enable-x11grab
 
@@ -269,6 +272,9 @@ chcon -t textrel_shlib_t %{_libdir}/libav{codec,device,format,util}.so.*.*.* &>/
 %{_libdir}/pkgconfig/libpostproc.pc
 
 %changelog
+* Sun Jan 29 2012 Dag Wieers <dag@wieers.com> - 0.6.5-1
+- Updated to release 0.6.5.
+
 * Sat Dec 04 2010 Dag Wieers <dag@wieers.com> - 0.6.1-1
 - Updated to release 0.6.1.
 

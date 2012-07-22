@@ -2,7 +2,6 @@
 # Authority: dag
 # Upstream: Massimiliano Ghilardi <max$Linuz,sns,it>
 
-
 %{?fc4:%define _without_modxorg 1}
 %{?el4:%define _without_modxorg 1}
 %{?fc3:%define _without_modxorg 1}
@@ -19,14 +18,13 @@
 
 Summary: Textmode windowing environment
 Name: twin
-Version: 0.6.0
+Version: 0.6.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://linuz.sns.it/~max/twin/
 
-#Source: http://dl.sf.net/twin/twin-%{version}.tar.gz
-Source: http://linuz.sns.it/~max/twin/twin-%{version}.tar.gz
+Source: http://dl.sf.net/twin/twin-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: autoconf, ncurses-devel, automake, gtk+-devel
 BuildRequires: libtermcap-devel
@@ -104,6 +102,9 @@ you will need to install %{name}-devel.
 %{_libdir}/libTw.so
 
 %changelog
+* Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 0.6.2-1
+- Updated to release 0.6.2.
+
 * Sun Dec 02 2007 Dag Wieers <dag@wieers.com> - 0.6.0-1
 - Updated to release 0.6.0.
 

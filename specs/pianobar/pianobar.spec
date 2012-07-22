@@ -4,7 +4,7 @@
 
 Summary: console Pandora.com client
 Name: pianobar
-Version: 2011.09.22
+Version: 2012.04.24
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -18,7 +18,6 @@ BuildRequires: gcc
 BuildRequires: libao-devel
 BuildRequires: libmad-devel
 BuildRequires: make
-BuildRequires: rpm-macros-rpmforge
 
 %description
 Features:
@@ -91,6 +90,12 @@ you will need to install libpiano-devel.
 %exclude %{_libdir}/*.a
 
 %changelog
+* Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 2012.04.24-1
+- new upstream release
+
+* Thu Feb 16 2012 Steve Huff <shuff@vecna.org> - 2012.01.10-1
+- Updated to pianobar-2012.01.10
+
 * Fri Sep 23 2011 Steve Huff <shuff@vecna.org> - 2011.09.22-1
 - Updated to pianobar-2011.09.22
 

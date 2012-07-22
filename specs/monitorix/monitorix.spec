@@ -3,7 +3,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 2.4.1
+Version: 2.5.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -18,6 +18,7 @@ Requires: perl
 Requires: perl-libwww-perl
 Requires: perl-MailTools
 Requires: perl-MIME-Lite
+Requires: perl-DBI
 
 Requires: /sbin/chkconfig
 Requires: /sbin/service
@@ -26,8 +27,7 @@ Requires: /sbin/service
 Monitorix is a free, open source, lightweight system monitoring tool designed
 to monitor as many services and system resources as possible. It has been
 created to be used under production UNIX/Linux servers, but due to its
-simplicity and small size you may also use it to monitor embedded devices as
-well.
+simplicity and small size may also be used on embedded devices as well.
 
 %prep
 %setup
@@ -37,11 +37,11 @@ well.
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_initrddir}
-install -m 0755 monitorix.init %{buildroot}%{_initrddir}/monitorix
+install -m 0755 docs/monitorix.init %{buildroot}%{_initrddir}/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
-install -m 0644 monitorix-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/monitorix.conf
+install -m 0644 docs/monitorix-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/monitorix.conf
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
-install -m 0644 monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
+install -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}
 install -m 0644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
 mkdir -p %{buildroot}%{_bindir}
@@ -98,9 +98,18 @@ fi
 %{_localstatedir}/lib/monitorix/reports/send_reports
 %doc %{_mandir}/man5/monitorix.conf.5.gz
 %doc %{_mandir}/man8/monitorix.8.gz
-%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD monitorix-alert.sh
+%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD docs/monitorix-alert.sh
 
 %changelog
+* Tue May 22 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.5.2-1
+- Updated to the latest version.
+
+* Wed Apr 25 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.5.1-1
+- Updated to the latest version.
+
+* Thu Mar 22 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.5.0-1
+- Updated to the latest version.
+
 * Tue Jan 17 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.4.1-1
 - Updated to the latest version.
 

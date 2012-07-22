@@ -28,6 +28,10 @@ BuildRequires: rpm-macros-rpmforge
 %filter_from_requires /^perl.*/d
 %filter_setup
 
+# don't scan the examples for autoreq/prov
+%filter_requires_in %{_docdir}
+%filter_provides_in %{_docdir}
+
 %description
 
 %prep

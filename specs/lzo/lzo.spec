@@ -3,18 +3,18 @@
 # Upstream: Markus F.X.J. Oberhumer <markus$oberhumer,com>
 
 ### EL6 ships with lzo-2.03-3.1.el6
-# ExclusiveDist: el2 el3 el4 el5
+%{?el6:# Tag: rfx}
 
 Summary: Portable lossless data compression library
 Name: lzo
-Version: 2.04
+Version: 2.06
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
 URL: http://www.oberhumer.com/opensource/lzo/
 
 Source: http://www.oberhumer.com/opensource/lzo/download/lzo-%{version}.tar.gz
-Patch0: lzo-2.02-exec-stack.patch
+Patch0: lzo-2.06-configure.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -41,18 +41,43 @@ This package contains the header files, static libraries and development
 documentation for %{name}. If you like to develop programs using %{name},
 you will need to install %{name}-devel.
 
+%package minilzo
+Summary: Mini version of lzo for apps which don't need the full version
+Group: System Environment/Libraries
+
+%description minilzo
+A small (mini) version of lzo for embedding into applications which don't need
+full blown lzo compression support.
+
 %prep
 %setup
+%patch0 -p1 -z .configure
 
 %build
 %configure \
+    --disable-dependency-tracking \
     --disable-static \
     --enable-shared
 %{__make} %{?_smp_mflags}
 
+# build minilzo too (bz 439979)
+gcc %{optflags} -fpic -Iinclude/lzo -o minilzo/minilzo.o -c minilzo/minilzo.c
+gcc -g -shared -o libminilzo.so.0 -Wl,-soname,libminilzo.so.0 minilzo/minilzo.o
+
+
 %install
-%{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
+find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+install -m 755 libminilzo.so.0 $RPM_BUILD_ROOT%{_libdir}
+ln -s libminilzo.so.0 $RPM_BUILD_ROOT%{_libdir}/libminilzo.so
+install -p -m 644 minilzo/minilzo.h $RPM_BUILD_ROOT%{_includedir}/lzo
+
+#Remove doc
+rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/lzo
+
+%check
+make check test
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -62,17 +87,27 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS BUGS ChangeLog NEWS README THANKS
+%doc AUTHORS COPYING THANKS NEWS
 %{_libdir}/liblzo2.so.*
 
 %files devel
 %defattr(-, root, root, 0755)
-%doc doc/
+%doc doc/LZOAPI.TXT doc/LZO.FAQ doc/LZO.TXT
 %{_includedir}/lzo/
 %{_libdir}/liblzo2.so
-%exclude %{_libdir}/liblzo2.la
+
+%files minilzo
+%defattr(-,root,root,-)
+%doc minilzo/README.LZO
+%{_libdir}/libminilzo.so*
 
 %changelog
+* Tue Feb 28 2012 David Hrbáč <david@hrbac.cz> - 2.06-1
+- new upstream release
+- rfxed for EL6
+- added minilzo subpackage
+- added patch from Nicolas Chauvet
+
 * Wed Nov 10 2010 Dag Wieers <dag@wieers.com> - 2.04-1
 - Updated to release 2.04.
 
