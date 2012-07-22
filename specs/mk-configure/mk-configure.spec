@@ -1,5 +1,5 @@
 Name: mk-configure
-Version: 0.22.0
+Version: 0.23.0
 Release: 1%{?dist}
 
 Summary: Lightweight replacement for GNU autotools
@@ -59,6 +59,9 @@ env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
 %{_mandir}/man7/*
 
 %changelog
+* Sat Jul 22 2012 Aleksey Cheusov <vle@gmx.net> 0.23.0-1
+- update to 0.23.0
+
 * Sat Jul 21 2012 Aleksey Cheusov <vle@gmx.net> 0.22.0-1
 - update to 0.22.0
 - add missing run-time dependency on bmake
