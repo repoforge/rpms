@@ -21,8 +21,8 @@ Requires: bmake
 BuildRequires: bmake
 
 # for check
-BuildRequires: perl texinfo lua-devel pkgconfig bison
-BuildRequires: flex gcc-c++ glib2-devel groff zlib-devel
+BuildRequires: perl, texinfo, lua-devel, pkgconfig, bison
+BuildRequires: flex, gcc-c++, glib2-devel, groff, zlib-devel
 
 %description
 mk-configure is a lightweight replacement for GNU autotools, written in
