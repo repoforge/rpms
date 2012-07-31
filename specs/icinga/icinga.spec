@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 1
+%define revision 2
 
 %define logmsg logger -t %{name}/rpm
 
@@ -205,6 +205,20 @@ then
     cp /var/icinga/objects.precache %{spooldir}/objects.precache
     rm /var/icinga/objects.precache
 fi
+
+# we must then check all changed config locations (and we enforce that change to icinga.cfg only once)
+# cgi.cfg luckily knows where icinga.cfg is and does not need an update
+# retention.dat, objects.cache, objects.precache, status.dat, cmdfile, pidfile, checkresults
+%{__perl} -pi -e '
+        s|/var/icinga/retention.dat|%{spooldir}/retention.dat|;
+        s|/var/icinga/objects.precache|%{spooldir}/objects.precache|;
+        s|/var/icinga/objects.cache|%{spooldir}/objects.cache|;
+        s|/var/icinga/status.dat|%{spooldir}/status.dat|;
+        s|/var/icinga/rw/icinga.cmd|%{spooldir}/cmd/icinga.cmd|;
+        s|/var/icinga/icinga.pid|/var/run/icinga.pid|;
+        s|/var/icinga/checkresults|%{spooldir}/checkresults|;
+   ' /etc/icinga/icinga.cfg
+
 # start icinga
 /sbin/service icinga start &>/dev/null || :
 fi
@@ -382,6 +396,10 @@ fi
 
 
 %changelog
+* Tue Jul 31 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-2
+- we must enforce package path changes to icinga.cfg once to upgrade safely
+- see upstream https://dev.icinga.org/issues/2923
+
 * Mon Jun 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-1
 - bump to 1.7.1
 
