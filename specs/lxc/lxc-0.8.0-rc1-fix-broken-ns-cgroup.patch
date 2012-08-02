@@ -1,0 +1,155 @@
+From fc3c7f7f6e9d8adfc4be943160e4ef902436a25d Mon Sep 17 00:00:00 2001
+From: Serge Hallyn <serge.hallyn@canonical.com>
+Date: Mon, 5 Mar 2012 23:53:14 +0100
+Subject: [PATCH] cgroups: fix broken support for deprecated ns cgroup
+
+when using ns cgroup, use /cgroup/<init-cgroup> rather than
+/cgroup/<init-cgroup>/lxc
+
+At least lxc-start, lxc-stop, lxc-cgroup, lxc-console and lxc-ls work
+with this patch.  I've tested this in a 2.6.35 kernel with ns cgroup,
+and in a 3.2 kernel without ns cgroup.
+
+Note also that because of the check for container reboot support,
+if we're using the ns cgroup we now end up with a /cgroup/<container>/2
+cgroup created, empty, by the clone(CLONE_NEWPID).  I'm really not
+sure how much time we want to spend cleaning such things up since
+ns cgroup is deprecated in kernel.
+
+Signed-off-by: Serge Hallyn <serge@hallyn.com>
+Signed-off-by: Daniel Lezcano <dlezcano@fr.ibm.com>
+---
+ src/lxc/cgroup.c  |   60 +++++++++++++++++++++++++++++++---------------------
+ src/lxc/lxc-ls.in |    6 ++++-
+ 2 files changed, 41 insertions(+), 25 deletions(-)
+
+diff --git a/src/lxc/cgroup.c b/src/lxc/cgroup.c
+index cc3910a..9af199d 100644
+--- a/src/lxc/cgroup.c
++++ b/src/lxc/cgroup.c
+@@ -137,6 +137,21 @@ found:
+ 	return dsg;
+ }
+ 
++static int get_cgroup_flags(struct mntent *mntent)
++{
++	int flags = 0;
++
++
++	if (hasmntopt(mntent, "ns"))
++		flags |= CGROUP_NS_CGROUP;
++
++	if (hasmntopt(mntent, "clone_children"))
++		flags |= CGROUP_CLONE_CHILDREN;
++
++	DEBUG("cgroup %s has flags 0x%x", mntent->mnt_dir, flags);
++	return flags;
++}
++
+ static int get_cgroup_mount(const char *subsystem, char *mnt)
+ {
+ 	struct mntent *mntent;
+@@ -155,10 +170,12 @@ static int get_cgroup_mount(const char *subsystem, char *mnt)
+ 			continue;
+ 		if (!subsystem || hasmntopt_multiple(mntent, subsystem)) {
+ 			int ret;
+-			ret = snprintf(mnt, MAXPATHLEN, "%s%s/lxc",
++			int flags = get_cgroup_flags(mntent);
++			ret = snprintf(mnt, MAXPATHLEN, "%s%s%s",
+ 				       mntent->mnt_dir,
+ 				       get_init_cgroup(subsystem, NULL,
+-						       initcgroup));
++						       initcgroup),
++				       (flags & CGROUP_NS_CGROUP) ? "" : "/lxc");
+ 			if (ret < 0 || ret >= MAXPATHLEN)
+ 				goto fail;
+ 			fclose(file);
+@@ -183,33 +200,26 @@ int lxc_ns_is_mounted(void)
+ 	return (get_cgroup_mount("ns", buf) == 0);
+ }
+ 
+-static int get_cgroup_flags(struct mntent *mntent)
+-{
+-	int flags = 0;
+-
+-
+-	if (hasmntopt(mntent, "ns"))
+-		flags |= CGROUP_NS_CGROUP;
+-
+-	if (hasmntopt(mntent, "clone_children"))
+-		flags |= CGROUP_CLONE_CHILDREN;
+-
+-	DEBUG("cgroup %s has flags 0x%x", mntent->mnt_dir, flags);
+-	return flags;
+-}
+-
+ static int cgroup_rename_nsgroup(const char *mnt, const char *name, pid_t pid)
+ {
+ 	char oldname[MAXPATHLEN];
++	char newname[MAXPATHLEN];
++	int ret;
++
++	ret = snprintf(oldname, MAXPATHLEN, "%s/%d", mnt, pid);
++	if (ret >= MAXPATHLEN)
++		return -1;
+ 
+-	snprintf(oldname, MAXPATHLEN, "%s/%d", mnt, pid);
++	ret = snprintf(newname, MAXPATHLEN, "%s/%s", mnt, name);
++	if (ret >= MAXPATHLEN)
++		return -1;
+ 
+-	if (rename(oldname, name)) {
+-		SYSERROR("failed to rename cgroup %s->%s", oldname, name);
++	if (rename(oldname, newname)) {
++		SYSERROR("failed to rename cgroup %s->%s", oldname, newname);
+ 		return -1;
+ 	}
+ 
+-	DEBUG("'%s' renamed to '%s'", oldname, name);
++	DEBUG("'%s' renamed to '%s'", oldname, newname);
+ 
+ 	return 0;
+ }
+@@ -321,7 +331,7 @@ static int lxc_one_cgroup_create(const char *name,
+ 	/* Do we have the deprecated ns_cgroup subsystem? */
+ 	if (flags & CGROUP_NS_CGROUP) {
+ 		WARN("using deprecated ns_cgroup");
+-		return cgroup_rename_nsgroup(cgparent, cgname, pid);
++		return cgroup_rename_nsgroup(cginit, name, pid);
+ 	}
+ 
+ 	ret = snprintf(clonechild, MAXPATHLEN, "%s/cgroup.clone_children",
+@@ -464,9 +474,11 @@ int lxc_one_cgroup_destroy(struct mntent *mntent, const char *name)
+ {
+ 	char cgname[MAXPATHLEN], initcgroup[MAXPATHLEN];
+ 	char *cgmnt = mntent->mnt_dir;
++	int flags = get_cgroup_flags(mntent);
+ 
+-	snprintf(cgname, MAXPATHLEN, "%s%s/lxc/%s", cgmnt,
+-		get_init_cgroup(NULL, mntent, initcgroup), name);
++	snprintf(cgname, MAXPATHLEN, "%s%s%s/%s", cgmnt,
++		get_init_cgroup(NULL, mntent, initcgroup),
++		(flags & CGROUP_NS_CGROUP) ? "" : "/lxc", name);
+ 	DEBUG("destroying %s\n", cgname);
+ 	if (recursive_rmdir(cgname)) {
+ 		SYSERROR("failed to remove cgroup '%s'", cgname);
+diff --git a/src/lxc/lxc-ls.in b/src/lxc/lxc-ls.in
+index d200509..a1ad642 100644
+--- a/src/lxc/lxc-ls.in
++++ b/src/lxc/lxc-ls.in
+@@ -33,7 +33,11 @@ if test -n "$active"; then
+ 	if test -n "$mount_point"; then
+ 		# get cgroup for init
+ 		init_cgroup=`cat /proc/1/cgroup | awk -F: '{ print $3 }' | head -1`
+-		cd $mount_point/$init_cgroup/lxc
++		if [ ! -d $mount_point/$init_cgroup/lxc  ]; then
++			cd $mount_point/$init_cgroup
++		else
++			cd $mount_point/$init_cgroup/lxc
++		fi
+ 		ls "$@" -d $active
+ 	fi
+ fi
+-- 
+1.7.4.1
+
