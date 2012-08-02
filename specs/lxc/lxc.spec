@@ -20,6 +20,7 @@ BuildRequires:  docbook-utils-pdf
 BuildRequires:  kernel-headers
 BuildRequires:  libcap-devel
 BuildRequires:  libtool
+Requires:       %{name} = %{version}-%{release}
 
 %description
 Linux Resource Containers provide process and resource isolation without the
