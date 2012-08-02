@@ -20,7 +20,7 @@
 
 Summary: Perl module that implements Uniform Resource Identifiers (absolute and relative)
 Name: perl-URI
-Version: 1.58
+Version: 1.60
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -32,9 +32,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: perl(MIME::Base64) >= 2
-BuildRequires: perl >= 5.006001
+BuildRequires: perl >= 5.008001
 Requires: perl(MIME::Base64) >= 2
-Requires: perl >= 5.006001
+Requires: perl >= 5.008001
 
 %filter_from_requires /^perl*/d
 %filter_setup
@@ -63,13 +63,16 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README 
+%doc Changes MANIFEST META.yml README uri-test
 %doc %{_mandir}/man3/URI.3pm*
 %doc %{_mandir}/man3/URI::*.3pm*
 %{perl_vendorlib}/URI/
 %{perl_vendorlib}/URI.pm
 
 %changelog
+* Thu Aug  2 2012 Steve Huff <shuff@vecna.org> - 1.60-1
+- Updated to version 1.60.
+
 * Mon Feb  7 2011 Christoph Maser <cmaser@gmx.de> - 1.58-1
 - Updated to version 1.58.
 
