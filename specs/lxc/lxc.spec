@@ -1,9 +1,11 @@
+# $Id$
+# Upstream:  lxc Linux Containers
+
 %define gitdate 20120105
 Name:           lxc
 Version:        0.8.0
-Release:        0.rc1%{?_dist_release}
+Release:        1.rc1%{?dist}
 Summary:        Linux Resource Containers
-Summary(ja):    Linux リソースコンテナ
 
 Group:          Applications/System
 License:        LGPLv2+
@@ -14,14 +16,10 @@ Patch1:		lxc-0.8.0-rc1-fix-broken-ns-cgroup.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  automake
-BuildRequires:  docbook-utils
+BuildRequires:  docbook-utils-pdf
 BuildRequires:  kernel-headers
 BuildRequires:  libcap-devel
 BuildRequires:  libtool
-
-Vendor: Project Vine
-Distribution: Vine Linux
-Packager: daisuke
 
 %description
 Linux Resource Containers provide process and resource isolation without the
@@ -29,7 +27,6 @@ overhead of full virtualization.
 
 %package        libs
 Summary:        Runtime library files for %{name}
-Summary(ja):    %{name} のランタイムライブラリ
 Group:          System Environment/Libraries
 Requires:       %{name} = %{version}-%{release}
 
@@ -41,7 +38,6 @@ The %{name}-libs package contains libraries for running %{name} applications.
 
 %package        templates
 Summary:        Templates for %{name}
-Summary(ja):    %{name} 用のテンプレート
 Group:          System Environment/Libraries
 Requires:       %{name} = %{version}-%{release}
 Requires:       debootstrap
@@ -54,7 +50,6 @@ The %{name}-template package contains templates for creating containers.
 
 %package        devel
 Summary:        Development files for %{name}
-Summary(ja):    %{name} の開発ライブラリ
 Group:          Development/Libraries
 Requires:       %{name} = %{version}-%{release}
 Requires:       pkgconfig
@@ -68,7 +63,6 @@ developing applications that use %{name}.
 
 %package        doc
 Summary:        Documentation for %{name}
-Summary(ja):    %{name} のドキュメント
 Group:          Documentation
 Requires:       %{name} = %{version}-%{release}
 
@@ -135,6 +129,9 @@ find %{buildroot} -name '*.la' -delete
 %{_docdir}/%{name}
 
 %changelog
+* Thu Aug  2 2012 IWAI, Masaharu <iwaim.sub@gmail.com> 0.8.0-1.rc1
+- build for CentOS
+
 * Wed Apr 25 2012 Daisuke SUZUKI <daisuke@linux.or.jp> 0.8.0-0.rc1
 - new upstream release 
 
