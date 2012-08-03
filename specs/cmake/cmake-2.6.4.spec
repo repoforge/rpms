@@ -1,22 +1,22 @@
 # $Id$
 # Authority: dag
-# Tag: rfx
-# ExcludeDist: el3 el4
+
+### EL6 ships with cmake-2.6.4-5.el6
+# ExclusiveDist: el2 el3 el4 el5
 
 %{?el4:%define _without_modxorg 1}
-
-%define major_version 2.8
+%{?el3:%define _without_modxorg 1}
 
 Summary: Cross-platform make system
 Name: cmake
-Version: %{major_version}.8
+Version: 2.6.4
 Release: 1%{?dist}
 License: BSD
 Group: Development/Tools
 URL: http://www.cmake.org/
 
-Source0: http://www.cmake.org/files/v%{major_version}/cmake-%{version}.tar.gz
-Source1: macros.cmake
+Source0: http://www.cmake.org/files/v2.6/cmake-%{version}.tar.gz
+Source1: macros.cmake-2.6.4
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: curl-devel
@@ -68,19 +68,27 @@ find %{buildroot}%{_datadir}/cmake/Modules/ -type f | xargs chmod -x
 
 %files
 %defattr(-, root, root, 0755)
-%doc doc-rpm/* Example/ Readme.txt
-%doc %{_mandir}/man?/*
+%doc doc-rpm/* Example/
+%doc %{_mandir}/man1/cmake.1*
+%doc %{_mandir}/man1/ccmake.1*
+%doc %{_mandir}/man1/cmakecommands.1*
+%doc %{_mandir}/man1/cmakecompat.1*
+%doc %{_mandir}/man1/cmakemodules.1*
+%doc %{_mandir}/man1/cmakepolicies.1*
+%doc %{_mandir}/man1/cmakeprops.1*
+%doc %{_mandir}/man1/cmakevars.1*
+%doc %{_mandir}/man1/cpack.1*
+%doc %{_mandir}/man1/ctest.1*
 %config(noreplace) %{_sysconfdir}/rpm/macros.cmake
-%{_bindir}/*
+%{_bindir}/ccmake
+%{_bindir}/cmake
+%{_bindir}/cpack
+%{_bindir}/ctest
 %{_datadir}/cmake/
-%{_datadir}/aclocal/*
 %dir %{_datadir}/emacs/
 %dir %{_datadir}/emacs/site-lisp/
 %{_datadir}/emacs/site-lisp/cmake-mode.el
 
 %changelog
-* Fri Aug 03 2012 Steve Huff <shuff@vecna.org> - 2.8.8-1
-- Update to version 2.8.8 (moved to RFX).
-
-* Sat May 05 2007 Dag Wieers <dag@wieers.com> - 2.6.4-1
+* Sat May 05 2007 Dag Wieers <dag@wieers.com> - 2.4.6-1
 - Initial package. (using DAR)
