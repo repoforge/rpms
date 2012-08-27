@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 2
+%define revision 1
 
 %define logmsg logger -t %{name}/rpm
 
@@ -20,7 +20,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.7.1
+Version: 1.7.2
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -216,7 +216,7 @@ fi
         s|/var/icinga/status.dat|%{spooldir}/status.dat|;
         s|/var/icinga/rw/icinga.cmd|%{spooldir}/cmd/icinga.cmd|;
         s|/var/icinga/icinga.pid|/var/run/icinga.pid|;
-        s|/var/icinga/checkresults|%{spooldir}/checkresults|;
+	s|/var/icinga/checkresults|%{spooldir}/checkresults|;
    ' /etc/icinga/icinga.cfg
 
 # start icinga
@@ -374,7 +374,7 @@ fi
 %defattr(-,root,root,-)
 %doc README LICENSE Changelog UPGRADING module/idoutils/db README.RHEL README.RHEL.idoutils
 %attr(755,-,-) %{_initrddir}/ido2db
-%config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
+%attr(660,root,root) %config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/idomod.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/modules/idoutils.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/objects/ido2db_check_proc.cfg
@@ -386,7 +386,7 @@ fi
 %defattr(-,root,root,-)
 %doc README LICENSE Changelog UPGRADING module/idoutils/db README.RHEL README.RHEL.idoutils
 %attr(755,-,-) %{_initrddir}/ido2db
-%config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
+%attr(660,root,root) %config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/idomod.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/modules/idoutils.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/objects/ido2db_check_proc.cfg
@@ -396,9 +396,10 @@ fi
 
 
 %changelog
-* Tue Jul 31 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-2
-- we must enforce package path changes to icinga.cfg once to upgrade safely
-- see upstream https://dev.icinga.org/issues/2923
+* Tue Aug 21 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-1
+- bump version
+- forgot to check on old icinga.cfg entries not matching - enforce that once
+- change permissions on ido2db.cfg, not being world readable (Aaron Russo) #2987
 
 * Mon Jun 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-1
 - bump to 1.7.1
