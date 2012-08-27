@@ -13,13 +13,13 @@
 
 Summary: Edit configuration files through Augeas C library
 Name: perl-Config-Augeas
-Version: 0.701
+Version: 0.903
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Config-Augeas/
 
-Source: http://search.cpan.org/CPAN/authors/id/D/DD/DDUMONT/Config-Augeas-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/R/RA/RAPHINK/Config-Augeas-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: augeas-devel
@@ -76,7 +76,7 @@ edition library with a more "perlish" API than Augeas C counterpart.
 
 %files
 %defattr(-, root, root, 0755)
-%doc ChangeLog META.yml README
+%doc ChangeLog META.json README
 %doc %{_mandir}/man?/*
 %{perl_vendorarch}/Config/Augeas.pm
 %{perl_vendorarch}/auto/*
@@ -84,5 +84,8 @@ edition library with a more "perlish" API than Augeas C counterpart.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Fri Aug 03 2012 Steve Huff <shuff@vecna.org> - 0.903-1
+- Updated to version 0.903.
+
 * Tue Feb 01 2011 Steve Huff <shuff@vecna.org> - 0.701-1
 - Initial package.

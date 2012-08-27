@@ -14,7 +14,7 @@
 
 Summary: High-performance preforking PSGI web server
 Name: perl-Starman
-Version: 0.2013
+Version: 0.3001
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -131,5 +131,8 @@ UNIX only
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
-* Thu Sep 01 2011 Steve Huff <shuff@vecna.org> - 0.2013-1
+* Thu Aug  2 2012 Steve Huff <shuff@vecna.org> - 0.3001-1
+- Updated to version 0.3001.
+
+* Thu Sep  1 2011 Steve Huff <shuff@vecna.org> - 0.2013-1
 - Initial package.

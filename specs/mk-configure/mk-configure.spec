@@ -3,20 +3,21 @@
 # Upstream: Aleksey Cheusov <vle$gmx,net>
 
 Name: mk-configure
-Version: 0.22.0
+Version: 0.23.0
 Release: 1%{?dist}
 
 Summary: Lightweight replacement for GNU autotools
 License: BSD
 Group: Development/Tools
 
-URL: http://sourceforge.net/projects/mk-configure/
+Url: http://sourceforge.net/projects/mk-configure/
 Source: http://prdownloads.sf.net/%{name}/%{name}-%{version}.tar.gz
+Packager: Aleksey Cheusov <vle@gmx.net>
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildArch: noarch
 
-# for build
+Requires: bmake
 BuildRequires: bmake
 
 # for check
@@ -65,6 +66,9 @@ env LEXLIB=-lfl NOSUBDIR='hello_lua hello_lua2 hello_lua3 hello_reqd' bmake test
 %{_mandir}/man7/*
 
 %changelog
+* Sat Jul 22 2012 Aleksey Cheusov <vle@gmx.net> 0.23.0-1
+- update to 0.23.0
+
 * Sun Apr  8 2012 Denis Fateyev <denis@fateyev.com> - 0.22.0-1
 - Bump to 0.22.0
 

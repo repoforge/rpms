@@ -17,7 +17,7 @@
 
 Summary: Perl Superglue for Web frameworks and servers (PSGI toolkit)
 Name: perl-Plack
-Version: 0.9986
+Version: 1.0001
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -43,7 +43,7 @@ BuildRequires: perl(Test::TCP) >= 0.11
 BuildRequires: perl(Test::More)
 BuildRequires: perl(Test::Requires)
 BuildRequires: perl(Try::Tiny)
-BuildRequires: perl(URI) >= 1.36
+BuildRequires: perl(URI) >= 1.59
 BuildRequires: perl(parent)
 BuildRequires: rpm-macros-rpmforge
 Requires: perl >= 5.8.1
@@ -58,7 +58,7 @@ Requires: perl(LWP) >= 5.814
 Requires: perl(Pod::Usage)
 Requires: perl(Test::TCP) >= 0.11
 Requires: perl(Try::Tiny)
-Requires: perl(URI) >= 1.36
+Requires: perl(URI) >= 1.59
 Requires: perl(parent)
 
 ### remove autoreq Perl dependencies
@@ -96,7 +96,7 @@ are and why we need them.
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes META.yml README
+%doc Changes META.yml README eg/
 %doc %{_mandir}/man?/*
 %doc eg/dot-psgi/ benchmarks/
 %{perl_vendorlib}/Plack.pm
@@ -109,6 +109,9 @@ are and why we need them.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Thu Aug  2 2012 Steve Huff <shuff@vecna.org> - 1.0001-1
+- Updated to version 1.0001.
+
 * Tue Mar 10 2012 Steve Huff <shuff@vecna.org> - 0.9986-1
 - Updated to version 0.9986.
 

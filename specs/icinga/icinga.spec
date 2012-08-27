@@ -20,7 +20,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.7.1
+Version: 1.7.2
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -205,6 +205,20 @@ then
     cp /var/icinga/objects.precache %{spooldir}/objects.precache
     rm /var/icinga/objects.precache
 fi
+
+# we must then check all changed config locations (and we enforce that change to icinga.cfg only once)
+# cgi.cfg luckily knows where icinga.cfg is and does not need an update
+# retention.dat, objects.cache, objects.precache, status.dat, cmdfile, pidfile, checkresults
+%{__perl} -pi -e '
+        s|/var/icinga/retention.dat|%{spooldir}/retention.dat|;
+        s|/var/icinga/objects.precache|%{spooldir}/objects.precache|;
+        s|/var/icinga/objects.cache|%{spooldir}/objects.cache|;
+        s|/var/icinga/status.dat|%{spooldir}/status.dat|;
+        s|/var/icinga/rw/icinga.cmd|%{spooldir}/cmd/icinga.cmd|;
+        s|/var/icinga/icinga.pid|/var/run/icinga.pid|;
+	s|/var/icinga/checkresults|%{spooldir}/checkresults|;
+   ' /etc/icinga/icinga.cfg
+
 # start icinga
 /sbin/service icinga start &>/dev/null || :
 fi
@@ -360,7 +374,7 @@ fi
 %defattr(-,root,root,-)
 %doc README LICENSE Changelog UPGRADING module/idoutils/db README.RHEL README.RHEL.idoutils
 %attr(755,-,-) %{_initrddir}/ido2db
-%config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
+%attr(660,root,root) %config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/idomod.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/modules/idoutils.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/objects/ido2db_check_proc.cfg
@@ -372,7 +386,7 @@ fi
 %defattr(-,root,root,-)
 %doc README LICENSE Changelog UPGRADING module/idoutils/db README.RHEL README.RHEL.idoutils
 %attr(755,-,-) %{_initrddir}/ido2db
-%config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
+%attr(660,root,root) %config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/idomod.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/modules/idoutils.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/objects/ido2db_check_proc.cfg
@@ -382,6 +396,11 @@ fi
 
 
 %changelog
+* Tue Aug 21 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-1
+- bump version
+- forgot to check on old icinga.cfg entries not matching - enforce that once
+- change permissions on ido2db.cfg, not being world readable (Aaron Russo) #2987
+
 * Mon Jun 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-1
 - bump to 1.7.1
 
