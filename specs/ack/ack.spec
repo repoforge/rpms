@@ -8,7 +8,7 @@
 
 Summary: Grep-like text search tool
 Name: ack
-Version: 1.94
+Version: 1.96
 Release: 1%{?dist}
 License: Artistic
 Group: Applications/Text
@@ -58,6 +58,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/App/Ack/
 
 %changelog
+* Wed May 09 2012 Dag Wieers <dag@wieers.com> - 1.96-1
+- Updated to release 1.96.
+
 * Wed Nov 17 2010 Steve Huff <shuff@vecna.org> - 1.94-1
 - Update to version 1.94.
 
