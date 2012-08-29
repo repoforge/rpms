@@ -12,21 +12,18 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 11.1.102.63
-%define real_version 11_1r102_63
-Release: 0.1%{?dist}
+Version: 11.2.202.236
+Release: 0.2%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
 ### More information wrt. downloads: http://kb2.adobe.com/cps/142/tn_14266.html
 %ifarch %{ix86}
-#Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.i386.tar.gz
-Source0: flashplayer%{real_version}_linux.i386.tar.gz
+Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.i386.tar.gz
 %endif
 %ifarch x86_64
-#Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.%{_arch}.tar.gz
-Source0: flashplayer%{real_version}_linux.%{_arch}.tar.gz
+Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.%{_arch}.tar.gz
 %endif
 Source1: README
 Source2: LICENSE
@@ -36,6 +33,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: mozilla-flash <= %{version}-%{release}
 #Requires: %{_libdir}/mozilla/plugins/
+
+%filter_requires_in %{_libdir}/kde4/kcm_adobe_flash_player\.so$
+%filter_setup
 
 %description
 Macromedia Flash Player
@@ -93,6 +93,9 @@ fi
 %endif
 
 %changelog
+* Sun Jun 10 2012 Dag Wieers <dag@wieers.com> - 11.2.202.236-0.1
+- Updated to release 11.2.202.236.
+
 * Thu Mar 15 2012 Dag Wieers <dag@wieers.com> - 11.1.102.63-0.1
 - Updated to release 11.1.102.63.
 
