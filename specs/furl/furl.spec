@@ -1,11 +1,10 @@
 # $Id$
 # Authority: dries
-# Upstream:
 
 Summary: Display the HTTP headers returned by webservers
 Name: furl
 Version: 2.1
-Release: 1.2%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.gumbynet.org.uk/software/furl.html
@@ -28,7 +27,7 @@ in response to client requests.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -36,11 +35,11 @@ in response to client requests.
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING INSTALL NEWS README
-%{_bindir}/*
+%{_bindir}/furl
 
 %changelog
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 2.1-1.2
-- Rebuild for Fedora Core 5.
+* Wed May 09 2012 Dag Wieers <dag@wieers.com> - 2.1-2
+- Cosmetic changes.
 
 * Fri Jun 11 2004 Dries Verachtert <dries@ulyssis.org> - 2.1-1
 - Update to version 2.1.
