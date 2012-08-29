@@ -20,6 +20,7 @@ URL: http://search.cpan.org/dist/Text-Markdown-Discount/
 Source: http://search.cpan.org/CPAN/authors/id/S/SE/SEKIMURA/Text-Markdown-Discount-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: discount-devel
 BuildRequires: perl
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: rpm-macros-rpmforge
@@ -59,14 +60,9 @@ Parsons.
 %doc Changes META.yml README
 %doc %{_mandir}/man?/*
 %{perl_vendorarch}/Text/Markdown/Discount.pm
-%{perl_vendorarch}/Text/Markdown/Discount/*
+%{perl_vendorarch}/auto/Text/Markdown/Discount/*
 #%exclude %{perl_archlib}/perllocal.pod
 %exclude %{perl_vendorarch}/auto/*/*/*/.packlist
-
-# perl_vendorlib: /usr/lib/perl5/vendor_perl/5.8.0
-# perl_vendorarch: /usr/lib/perl5/vendor_perl/5.8.0/i386-linux-thread-multi
-# perl_archlib: /usr/lib/perl5/5.8.0/i386-linux-thread-multi
-# perl_privlib: /usr/lib/perl5/5.8.0
 
 %changelog
 * Mon Apr 23 2012 Steve Huff <shuff@vecna.org> - 0.02-1
