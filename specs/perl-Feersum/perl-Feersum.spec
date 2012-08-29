@@ -2,9 +2,9 @@
 # Authority: shuff
 # Upstream: Jeremy Stashewsky <jstash+cpan$gmail,com>
 
-# Plack is RFX on el6 and el5
-%{?el6: # Tag: rfx}
-%{?el5: # Tag: rfx}
+### Requires perl(Plack) >= 0:0.995 from Extras
+%{?el6:# Tag: rfx}
+%{?el5:# Tag: rfx}
 
 %define perl_vendorlib %(eval "`perl -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`perl -V:installvendorarch`"; echo $installvendorarch)
