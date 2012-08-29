@@ -10,7 +10,7 @@
 Summary: Perl module named SNMP-NPAdmin
 Name: perl-SNMP-NPAdmin
 Version: 1.0
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/SNMP-NPAdmin/
