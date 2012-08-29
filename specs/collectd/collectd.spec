@@ -313,6 +313,7 @@ fi
 %{_libdir}/collectd/interface.so
 %{!?el4:%{_libdir}/collectd/ipmi.so}
 %{!?el4:%{_libdir}/collectd/iptables.so}
+%{_libdir}/collectd/ipvs.so
 %{_libdir}/collectd/irq.so
 %{_libdir}/collectd/load.so
 %{_libdir}/collectd/logfile.so
