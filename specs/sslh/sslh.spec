@@ -1,9 +1,11 @@
 # $Id$
 # Authority: dag
 
+%{?el5:%define _without_libwrap 1}
+
 Summary: ssl/ssh multiplexer
 Name: sslh
-Version: 1.7a
+Version: 1.12
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
@@ -11,6 +13,10 @@ URL: http://www.rutschle.net/tech/sslh.shtml
 
 Source: http://www.rutschle.net/tech/sslh-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+#%{!?_without_libwrap:BuildRequires: tcpwrapper-devel}
+#BuildRequires: tcp_wrappers
+#BuildRequires: tcp_wrappers-devel
 
 %description
 sslh lets one accept both HTTPS and SSH connections on the same port.
@@ -21,11 +27,15 @@ inside a corporate firewall) while still serving HTTPS on that port.
 %setup
 
 %build
-%{__cc} %{optflags} -DLIBWRAP -lwrap -o sslh sslh.c
+#%{__cc} %{optflags} -DLIBWRAP -lwrap -o sslh sslh.c
+%{__make} %{?_smp_mflags} USELIBWRAP=%{!?_without_libwrap:y} USELIBCONFIG=
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -Dp -m0755 sslh %{buildroot}%{_sbindir}/sslh
+#%{__make} install DESTDIR="%{buildroot}"
+#%{__install} -Dp -m0755 sslh %{buildroot}%{_sbindir}/sslh
+%{__install} -Dp -m0755 sslh-fork %{buildroot}%{_sbindir}/sslh
+%{__install} -Dp -m0644 sslh.8.gz %{buildroot}%{_mandir}/man8/sslh.8.gz
 
 ### FIXME: Fix initscript to use success / fail
 %{__install} -Dp -m0644 scripts/etc.default.sslh %{buildroot}%{_sysconfdir}/sysconfig/sslh
@@ -48,10 +58,15 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
+%doc ChangeLog README
+%doc %{_mandir}/man8/sslh.8*
 %config %{_initrddir}/sslh
 %config(noreplace) %{_sysconfdir}/sysconfig/sslh
 %{_sbindir}/sslh
 
 %changelog
+* Fri May 11 2012 Dag Wieers <dag@wieers.com> - 1.12-1
+- Updated to release 1.12.
+
 * Sun Jul 04 2010 Dag Wieers <dag@wieers.com> - 1.7a-1
 - Initial package. (using DAR)
