@@ -6,12 +6,14 @@
 
 %{?el6:%define _without_inews 1}
 
+%define _default_patch_fuzz 2
+
 %define real_name re-alpine
 
 Summary: Alternative Pine mail user agent implementation
 Name: alpine
 Version: 2.02
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Apache License
 Group: Applications/Internet
 URL: http://www.washington.edu/alpine/
@@ -19,16 +21,26 @@ URL: http://www.washington.edu/alpine/
 Source0: http://dl.sf.net/project/%{real_name}/%{real_name}-%{version}.tar.bz2
 Source1: pine.conf
 Source2: pine.conf.fixed
-### http://staff.washington.edu/chappa/alpine/patches/
-#Patch0: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/maildir.patch.gz
-Patch0: alpine-2.00-maildir.patch
-#Patch1: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/fillpara.patch.gz
-Patch1: alpine-2.00-fillpara.patch
-#Patch2: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/rules.patch.gz
-Patch2: alpine-2.00-rules.patch
-#Patch3: http://staff.washington.edu/chappa/alpine/patches/alpine-2.00/searchheader.patch.gz
-Patch3: alpine-2.00-searchheader.patch
+### http://patches.freeiz.com/alpine/info/maildir.html
+Patch0: alpine-2.01-maildir.patch
+### http://patches.freeiz.com/alpine/info/rules.html
+Patch1: alpine-2.01-rules.patch
+### http://patches.freeiz.com/alpine/info/fillpara.html
+Patch2: alpine-2.01-fillpara.patch
+### http://patches.freeiz.com/alpine/info/searchheader.html
+Patch3: alpine-2.01-searchheader.patch
 Patch4: alpine-1.10-select-bold-x.patch
+### http://patches.freeiz.com/alpine/info/colorfolder.html
+Patch5: alpine-2.01-colorfolder.patch
+### http://patches.freeiz.com/alpine/info/longurl.html
+Patch6: alpine-2.01-longurl.patch
+### http://patches.freeiz.com/alpine/info/tokencolor.html
+Patch7: alpine-2.01-tokencolor.patch
+### http://patches.freeiz.com/alpine/info/outgoing.html
+Patch8: alpine-2.01-outgoing.patch
+### http://patches.freeiz.com/alpine/info/fancy.html
+Patch9: alpine-2.01-fancy.patch
+Patch10: alpine-2.02-openssl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: aspell
@@ -63,6 +75,12 @@ personal-preference options.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p0 -b .orig
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+#patch9 -p1
+%patch10 -p1
 
 #%{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' configure */Makefile */*/Makefile imap/src/osdep/unix/Makefile.gss
 %{__perl} -pi.orig -e 's|/lib\b|/%{_lib}|g' imap/src/osdep/unix/Makefile.gss
@@ -135,7 +153,10 @@ fi
 %{_sbindir}/mlock
 
 %changelog
-* Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 2.01-1
+* Thu May 03 2012 Dag Wieers <dag@wieers.com> - 2.02-2
+- Added more alpine patches from Eduardo Chappa.
+
+* Tue Oct 05 2010 Dag Wieers <dag@wieers.com> - 2.02-1
 - Updated to release 2.02 (re-alpine).
 
 * Sat May 23 2009 Dag Wieers <dag@wieers.com> - 2.00-2
