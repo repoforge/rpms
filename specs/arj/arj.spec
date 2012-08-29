@@ -14,9 +14,10 @@ Source1: unarj.sh
 Source2: unarj.1
 Patch0: http://ftp.debian.org/debian/pool/main/a/arj/arj_%{version}-2.diff.gz
 Patch1: arj-3.10.22-private_strnlen.patch
+Patch2: arj-3.10.22-quotes.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: autoconf
+BuildRequires: autoconf >= 2.53
 Provides: unarj = %{version}-%{release}
 Obsoletes: unarj < 3
 
@@ -33,6 +34,7 @@ for i in debian/patches/00*.patch; do
     patch -p1 < $i
 done
 %patch1 -p1
+%patch2 -p1
 
 %build
 pushd gnu
