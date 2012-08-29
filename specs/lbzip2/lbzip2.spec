@@ -45,7 +45,7 @@ compression to overlap with disk usage to a greater extent than bzip2 does.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
+%defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog INSTALL NEWS COPYING README
 %doc %{_mandir}/man1/lbunzip2.1*
 %doc %{_mandir}/man1/lbzcat.1*
