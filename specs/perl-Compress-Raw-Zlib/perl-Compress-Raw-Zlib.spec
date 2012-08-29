@@ -12,7 +12,7 @@
 
 Summary: Low-Level Interface to zlib compression library
 Name: perl-Compress-Raw-Zlib
-Version: 2.051
+Version: 2.052
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -28,7 +28,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 Low-Level Interface to zlib compression library.
 
 %prep
-%setup -q -n %{real_name}-%{version}
+%setup -n %{real_name}-%{version}
 
 %build
 CFLAGS="%{optflags}" %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
@@ -62,6 +62,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Compress/Raw/Zlib.pm
 
 %changelog
+* Thu May 03 2012 Dag Wieers <dag@wieers.com> - 2.052-1
+- Updated to release 2.052.
+
 * Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 2.051-1
 - new upstream release
 
