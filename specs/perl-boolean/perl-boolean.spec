@@ -23,7 +23,7 @@ BuildRequires: perl >= 5.005003
 BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl >= 5.005003
 
-+### remove autoreq Perl dependencies
+### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
 %filter_setup
 
