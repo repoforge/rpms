@@ -4,13 +4,13 @@
 
 Summary: Utility to ping multiple hosts at once
 Name: fping
-Version: 3.2
-Release: 1.b2.3%{?dist}
+Version: 3.3
+Release: 1%{?dist}
 License: distributable
 Group: Applications/Internet
-URL: http://www.fping.com/
+URL: http://www.fping.org/
 
-Source: http://www.fping.com/download/fping-%{version}.tar.gz
+Source: http://fping.org/dist/fping-%{version}.tar.gz
 Patch0: fping-ac_fixes.patch
 Patch1: fping-ipv6.patch
 Patch2: fping-ipv6-ac.patch
@@ -34,27 +34,29 @@ will be considered unreachable.
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake} --add-missing
+#patch0 -p1
+#patch1 -p1
+#patch2 -p1
+#patch3 -p1
+#{__aclocal}
+#{__autoconf}
+#{__autoheader}
+#{__automake} --add-missing
 
 %build
-%configure
+%configure --program-prefix="%{?_program_prefix}"
 %{__make} %{?_smp_mflags}
-%{__mv} -f fping fping6
+%{__mv} -f src/fping src/fping6
 
-%configure --disable-ipv6
+%configure \
+    --program-prefix="%{?_program_prefix}" \
+    --disable-ipv6
 %{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m4755 fping6 %{buildroot}%{_sbindir}/fping6
+%{__install} -Dp -m4755 src/fping6 %{buildroot}%{_sbindir}/fping6
 %{__ln_s} -f fping.8 %{buildroot}%{_mandir}/man8/fping6.8
 
 %clean
@@ -71,6 +73,9 @@ will be considered unreachable.
 %{_sbindir}/fping6
 
 %changelog
+* Thu Aug 30 2012 Dag Wieers <dag@wieers.com> - 3.3-1
+- Updated to release 3.3.
+
 * Fri Jun 08 2012 Dag Wieers <dag@wieers.com> - 3.2-1
 - Updated to release 3.2.
 
