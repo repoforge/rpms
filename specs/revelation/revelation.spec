@@ -7,7 +7,7 @@
 
 Summary: Graphical password manager
 Name: revelation
-Version: 0.4.12
+Version: 0.4.14
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Productivity
@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?el6:BuildRequires: cracklib-devel, gnome-python2-devel}
 BuildRequires: cracklib-dicts
+BuildRequires: cracklib-python
 BuildRequires: GConf2-devel
 BuildRequires: gnome-keyring-devel
 BuildRequires: gnome-panel-devel
@@ -35,6 +36,7 @@ BuildRequires: python-crypto >= 1.9
 BuildRequires: python-devel >= 2.3
 Requires: cracklib
 Requires: cracklib-dicts
+Requires: cracklib-python
 Requires: gnome-python2-applet
 Requires: gnome-python2-bonobo
 Requires: gnome-python2-canvas
@@ -68,8 +70,7 @@ a tree structure, and stores them as AES-encrypted XML files.
 
 %post
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null
-gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}-applet.schemas &>/dev/null
+gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null || :
 update-mime-database %{_datadir}/mime &>/dev/null || :
 update-desktop-database -q || :
 gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
@@ -77,7 +78,6 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 %preun
 export GCONF_CONFIG_SOURCE="$(gconftool-2 --get-default-source)"
 gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}.schemas &>/dev/null || :
-gconftool-2 --makefile-uninstall-rule %{_sysconfdir}/gconf/schemas/%{name}-applet.schemas &>/dev/null || :
 
 %postun
 update-mime-database %{_datadir}/mime &>/dev/null || :
@@ -102,6 +102,12 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/mime/packages/revelation.xml
 
 %changelog
+* Sun Jul 15 2012 Dag Wieers <dag@wieers.com> - 0.4.14-1
+- Updated to release 0.4.14.
+
+* Fri Jun 08 2012 Dag Wieers <dag@wieers.com> - 0.4.13-1
+- Updated to release 0.4.13.
+
 * Tue Nov 15 2011 Dag Wieers <dag@wieers.com> - 0.4.12-1
 - Updated to release 0.4.12.
 
