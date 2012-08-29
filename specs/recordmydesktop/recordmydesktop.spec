@@ -1,7 +1,6 @@
 # $Id$
 # Authority: dag
 
-
 %{?el4:%define _without_modxorg 1}
 %{?el3:%define _without_modxorg 1}
 
@@ -20,7 +19,7 @@ BuildRequires: alsa-lib-devel
 BuildRequires: libtheora-devel
 BuildRequires: libvorbis-devel
 BuildRequires: zlib-devel
-%{!?_without_modxorg:BuildRequires: libSM-devel, libXdamage-devel, libXext-devel}
+%{!?_without_modxorg:BuildRequires: libSM-devel, libXdamage-devel, libXext-devel, xorg-x11-proto-devel}
 %{?_without_modxorg:BuildRequires: XFree86-devel}
 
 %description
@@ -33,6 +32,8 @@ exposes the program functionality in a usable way.
 
 %prep
 %setup
+
+%{?el6:%{__perl} -pi.orig -e 's|/shmstr.h|/shmproto.h|g' src/rmd_getzpixmap.c src/rmd_update_image.c}
 
 %build
 %configure
