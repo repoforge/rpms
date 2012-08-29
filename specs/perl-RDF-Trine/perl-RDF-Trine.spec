@@ -1,5 +1,7 @@
 # $Id$
 # Upstream: Gregory Todd Williams <gwilliams@cpan.org>
+
+### Requires perl(URI) >= 0:1.52 from Extras
 # Tag: rfx
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
