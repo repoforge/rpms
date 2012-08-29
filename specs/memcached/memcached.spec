@@ -15,7 +15,7 @@
 
 Summary: Distributed memory object caching system
 Name: memcached
-Version: 1.4.7
+Version: 1.4.14
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
@@ -54,98 +54,6 @@ CACHESIZE="64"
 OPTIONS=""
 EOF
 
-%{__cat} <<'EOF' >memcached.sysv
-#!/bin/bash
-#
-# Init file for memcached
-#
-# Written by Dag Wieërs <dag@wieers.com>
-#
-# chkconfig: - 80 12
-# description: Distributed memory caching daemon
-#
-# processname: memcached
-# config: /etc/sysconfig/memcached
-# config: /etc/memcached.conf
-
-source %{_sysconfdir}/rc.d/init.d/functions
-
-### Default variables
-PORT="11211"
-USER="nobody"
-MAXCONN="1024"
-CACHESIZE="64"
-OPTIONS=""
-SYSCONFIG="%{_sysconfdir}/sysconfig/memcached"
-
-### Read configuration
-[ -r "$SYSCONFIG" ] && source "$SYSCONFIG"
-
-RETVAL=0
-prog="memcached"
-desc="Distributed memory caching"
-
-start() {
-	echo -n $"Starting $desc ($prog): "
-	daemon $prog -d -p $PORT -u $USER -c $MAXCONN -m $CACHESIZE $OPTIONS
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
-}
-
-stop() {
-	echo -n $"Shutting down $desc ($prog): "
-	killproc $prog
-	RETVAL=$?
-	echo
-	[ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-	return $RETVAL
-}
-
-restart() {
-	stop
-	start
-}
-
-reload() {
-	echo -n $"Reloading $desc ($prog): "
-	killproc $prog -HUP
-	RETVAL=$?
-	echo
-	return $RETVAL
-}
-
-case "$1" in
-  start)
-	start
-	;;
-  stop)
-	stop
-	;;
-  restart)
-	restart
-	;;
-  condrestart)
-	[ -e %{_localstatedir}/lock/subsys/$prog ] && restart
-	RETVAL=$?
-	;;
-  reload)
-	reload
-	;;
-  status)
-	status $prog
-	RETVAL=$?
-	;;
-   *)
-	echo $"Usage: $0 {start|stop|restart|condrestart|status}"
-	RETVAL=1
-esac
-
-exit $RETVAL
-EOF
-
-
 %build
 %configure \
 	--program-prefix="%{?_program_prefix}" \
@@ -159,10 +67,11 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 
-%{__install} -Dp -m0755 memcached.sysv %{buildroot}%{_sysconfdir}/rc.d/init.d/memcached
+%{__install} -Dp -m0755 scripts/memcached.sysv %{buildroot}%{_sysconfdir}/rc.d/init.d/memcached
 %{__install} -Dp -m0644 memcached.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/memcached
 
 %{__install} -Dp -m0755 scripts/memcached-tool %{buildroot}%{_bindir}
+%{__install} -Dp -m0755 scripts/mc_slab_mover %{buildroot}%{_bindir}
 
 %{__install} -Dp -m0755 scripts/damemtop %{buildroot}%{_bindir}
 %{__install} -Dp -m0644 scripts/damemtop.yaml %{buildroot}%{_sysconfdir}
@@ -184,7 +93,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS ChangeLog COPYING doc/*.txt scripts/README.damemtop NEWS README
+%doc AUTHORS COPYING ChangeLog doc/*.txt NEWS scripts/README.damemtop
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/sysconfig/memcached
 %config(noreplace) %{_sysconfdir}/damemtop.yaml
@@ -192,11 +101,17 @@ fi
 %{_bindir}/damemtop
 %{_bindir}/memcached
 %{_bindir}/memcached-tool
+%{_bindir}/mc_slab_mover
 
 %files devel
 %{_includedir}/memcached
 
 %changelog
+* Wed Aug 22 2012 Steve Huff <shuff@vecna.org> - 1.4.14-1
+- Updated to 1.4.14.
+- Replace custom SysV init script with stock.
+- Install mc_slab_mover utility.
+
 * Thu Aug 25 2011 Steve Huff <shuff@vecna.org> - 1.4.7-1
 - Updated to 1.4.7.
 - Install damemtop in a sensible place.

@@ -68,7 +68,8 @@ autoconf
 %{__rm} -rf %{buildroot}
 
 %changelog
-* Fri Apr 20 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
+* Mon Jun 25 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
+- add %%{?dist} macro in Release number
 - first build for Repoforge el6
 
 * Wed Jul 12 2006 Jesse Keating <jkeating@redhat.com> - 4.51-8.1

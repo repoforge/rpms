@@ -1,0 +1,78 @@
+diff -Naur vramsteg-1.0.0-orig/demo/script vramsteg-1.0.0/demo/script
+--- vramsteg-1.0.0-orig/demo/script	2012-04-12 09:57:49.000000000 -0400
++++ vramsteg-1.0.0/demo/script	2012-04-12 10:17:17.000000000 -0400
+@@ -1,60 +1,60 @@
+ echo You are watching an automated vramsteg demo.  Vramsteg is an
+ echo open source standalone progress bar utility for use by anything
+ echo that runs at the command line.
+-echo 
++echo
+ sleep 3
+ 
+ echo Here is a simple example:
+ for i in {0..6}
+ do
+-  ../src/vramsteg --width 60 --style text --min 0 --max 6 --current $i
++  vramsteg --width 60 --style text --min 0 --max 6 --current $i
+   sleep 1
+ done
+-../src/vramsteg --width 60 --remove
++vramsteg --width 60 --remove
+ 
+ sleep 1
+ echo Here is another that includes percentage completion, a label,
+ echo and estimated remaining time:
+ sleep 2
+-START=$(../src/vramsteg --now)
++START=$(vramsteg --now)
+ for i in {0..6}
+ do
+-  ../src/vramsteg --width 60 --style text --min 0 --max 6 --current $i --label Demo --percentage --start $START --estimate
++  vramsteg --width 60 --style text --min 0 --max 6 --current $i --label Demo --percentage --start $START --estimate
+   sleep 1
+ done
+-../src/vramsteg --width 60 --remove
++vramsteg --width 60 --remove
+ 
+ sleep 1
+ echo Here is an example that uses a solid bar and elapsed time:
+ sleep 2
+-START=$(../src/vramsteg --now)
++START=$(vramsteg --now)
+ for i in {0..6}
+ do
+-  ../src/vramsteg --width 60 --style mono --min 0 --max 6 --current $i --label Demo --percentage --start $START --elapsed
++  vramsteg --width 60 --style mono --min 0 --max 6 --current $i --label Demo --percentage --start $START --elapsed
+   sleep 1
+ done
+-../src/vramsteg --width 60 --remove
++vramsteg --width 60 --remove
+ 
+ sleep 1
+ echo Here is an example that uses the full screen width;
+ sleep 2
+-START=$(../src/vramsteg --now)
++START=$(vramsteg --now)
+ for i in {0..6}
+ do
+-  ../src/vramsteg --style mono --min 0 --max 6 --current $i --label Demo --percentage --start $START --elapsed
++  vramsteg --style mono --min 0 --max 6 --current $i --label Demo --percentage --start $START --elapsed
+   sleep 1
+ done
+-../src/vramsteg --remove
++vramsteg --remove
+ 
+ sleep 1
+ echo Here is a more colorful version, uses less space, and is
+ echo not removed from the screen after it is done:
+ echo
+ sleep 2
+-START=$(../src/vramsteg --now)
++START=$(vramsteg --now)
+ for i in {0..6}
+ do
+-  ../src/vramsteg --width 40 --min 0 --max 6 --current $i --label Demo --percentage --start $START --elapsed
++  vramsteg --width 40 --min 0 --max 6 --current $i --label Demo --percentage --start $START --elapsed
+   sleep 1
+ done
+ echo
