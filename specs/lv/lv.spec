@@ -5,27 +5,26 @@
 ### Already presented in repo
 # ExcludeDist: el4 el5
 
-%define vver	451
+Summary: Powerful Multilingual File Viewer
+Name: lv
+%define real_version 451
+Version: 4.51
+Release: 1%{?dist}
+License: distributable
+Group: Applications/Text
+URL: http://www.ff.iij4u.or.jp/~nrt/lv/
 
-Name:		lv
-Version:	4.51
-Release:	9
-License:	distributable
-URL:		http://www.ff.iij4u.or.jp/~nrt/lv/
+Source: http://www.ff.iij4u.or.jp/~nrt/freeware/lv%{real_version}.tar.gz
+Patch1: lv-4.49.4-nonstrip.patch
+Patch2: lv-4.51-162372.patch
+Patch3: lv-+num-option.patch
+Patch4: lv-fastio.patch
+Patch5: lv-lfs.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libtermcap-devel
 BuildRequires: autoconf
+BuildRequires: libtermcap-devel
 
-Source:		http://www.ff.iij4u.or.jp/~nrt/freeware/%{name}%{vver}.tar.gz
-Patch1:		lv-4.49.4-nonstrip.patch
-Patch2:		lv-4.51-162372.patch
-Patch3:		lv-+num-option.patch
-Patch4:		lv-fastio.patch
-Patch5:		lv-lfs.patch
-
-Summary:	A Powerful Multilingual File Viewer
-Group:		Applications/Text
 %description
 lv is a powerful file viewer like less.
 lv can decode and encode multilingual streams through
@@ -37,7 +36,7 @@ In addition, lv can recognize ANSI escape sequences
 for text devoration.
 
 %prep
-%setup -q -n %{name}%{vver}
+%setup -n %{name}%{real_version}
 %patch1 -p1 -b .nonstrip
 %patch2 -p1 -b .162372
 %patch3 -p1 -b .num
@@ -45,30 +44,28 @@ for text devoration.
 %patch5 -p1 -b .lfs
 
 %build
-cd src
+cd src/
 autoconf
 %configure --enable-fastio
 %{__make} %{?_smp_mflags}
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
-
-cd src
-%{__mkdir_p} $RPM_BUILD_ROOT%{_bindir}
-%{__mkdir_p} $RPM_BUILD_ROOT%{_mandir}/man1
-%{__make} install bindir=$RPM_BUILD_ROOT%{_bindir} libdir=$RPM_BUILD_ROOT%{_libdir} mandir=$RPM_BUILD_ROOT%{_mandir}
+%{__rm} -rf %{buildroot}
+%{__install} -d -m0755 %{buildroot}%{_bindir}
+%{__install} -d -m0755 %{buildroot}%{_mandir}/man1/
+%{__make} -C src install bindir="%{buildroot}%{_bindir}" libdir="%{buildroot}%{_libdir}" mandir="%{buildroot}%{_mandir}"
 
 %files
-%defattr(-, root, root)
-%doc GPL.txt README build hello.sample hello.sample.gif index.html
+%defattr(-, root, root, 0755)
+%doc GPL.txt README build/ hello.sample hello.sample.gif index.html
 %doc relnote.html
+%doc %{_mandir}/man1/lv.1*
 %{_bindir}/lv
 %{_bindir}/lgrep
-%{_mandir}/man1/lv.1.gz
-%{_libdir}/lv
+%{_libdir}/lv/
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %changelog
 * Fri Apr 20 2012 IWAI, Masaharu <iwaim.sub@gmail.com> - 4.51-9
