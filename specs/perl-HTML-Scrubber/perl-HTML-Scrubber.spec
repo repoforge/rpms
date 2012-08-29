@@ -20,8 +20,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
 BuildRequires: perl
-BuildRequires: perl
-BuildRequires: perl(ExtUtils::MakeMaker)-HTML-Parser
+BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(HTML::Parser)
 
 %description
 Perl extension for scrubbing/sanitizing html.
