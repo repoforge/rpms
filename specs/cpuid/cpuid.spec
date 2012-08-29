@@ -4,9 +4,9 @@
 
 Summary: Provide processor CPUID information
 Name: cpuid
-%define real_version 20110305
+%define real_version 20120601
 Version: 0.0
-Release: 20110305.1%{?dist}
+Release: 20120601.1%{?dist}
 License: BSD
 Group: System Environment/Base
 URL: http://www.etallen.com/cpuid.html
@@ -41,6 +41,9 @@ instruction, and also determines the exact model of CPU(s).
 %{_sbindir}/cpuid
 
 %changelog
+* Fri Jun 08 2012 Dag Wieers <dag@wieers.com> - 0.0-20120601.1
+- Updated to release 20120601.
+
 * Wed Mar 09 2011 Dag Wieers <dag@wieers.com> - 0.0-20110325.1
 - Updated to release 20110325.
 
