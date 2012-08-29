@@ -1,37 +1,83 @@
 # $Id$
 # Authority: dag
 
-%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+%define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
+
+%define _tftpbootdir /var/lib/tftpboot
+%{?el5:%define tftpbootdir /tftpboot}
+
+%{?el5:%define _without_pyegg 1}
+
+#define _binaries_in_noarch_packages_terminate_build 0
 
 Summary: Boot server configurator
 Name: cobbler
-Version: 0.5.0
+%define real_version cobbler-96ee39b
+Version: 2.2.2
 Release: 1%{?dist}
-License: GPL
+License: GPLv2+
 Group: Applications/System
-URL: http://cobbler.et.redhat.com/
+URL: http://cobbler.github.com/
 
-Source: http://cobbler.et.redhat.com/download/cobbler-%{version}.tar.gz
+Source: https://github.com/downloads/cobbler/cobbler/cobbler-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildArch: noarch
-BuildRequires: python-devel >= 2.3
-Requires: python-devel >= 2.3, python-cheetah, httpd, mod_python
-Requires: tftp-server, createrepo, yum-utils
+#AutoReq: no
+
+BuildRequires: python-cheetah
+BuildRequires: python-setuptools
+BuildRequires: python-yaml
+BuildRequires: redhat-rpm-config
+Requires: createrepo
+Requires: httpd
+Requires: mod_wsgi
+Requires: python >= 2.3
+Requires: python-cheetah
+Requires: python-netaddr
+Requires: python-simplejson
+Requires: python-urlgrabber
+Requires: python-yaml
+Requires: rsync
+Requires: tftp-server
+%{?el6:Requires: genisoimage}
+%{?el5:Requires: mkisofs}
+%{?el5:Requires: yum-utils}
+Requires(post):  /sbin/chkconfig
+Requires(preun): /sbin/chkconfig
+Requires(preun): /sbin/service
 
 %description
-Cobbler is a command line tool for configuration of network boot and update
-servers. It is also available as a Python library. Cobbler supports PXE,
-provisioning virtualized images and reinstalling machines that are already
-running (over SSH).
+Cobbler is a network install server.  Cobbler supports PXE, virtualized
+installs, and re-installing existing Linux machines.  The last two modes
+use a helper tool, 'koan', that integrates with cobbler.  There is also
+a web interface 'cobbler-web'.  Cobbler's advanced features include
+importing distributions from DVDs and rsync mirrors, kickstart templating,
+integrated yum mirroring, and built-in DHCP/DNS Management.  Cobbler has
+a XMLRPC API for integration with other applications.
 
-The last two modes require a helper tool called 'koan' that integrates with
-cobbler. Cobbler's advanced features include importing distributions from
-rsync mirrors, kickstart templating, integrated yum mirroring, kickstart
-monitoring, and auto-managing dhcpd.conf.
+%package -n cobbler-web
+Summary: Web interface for Cobbler
+Group: Applications/System
+Requires: cobbler
+Requires: python-django
+
+%description -n cobbler-web
+Web interface for Cobbler that allows visiting
+http://server/cobbler_web to configure the install server.
+
+%package -n koan
+Summary: Helper tool that performs cobbler orders on remote machines
+Group: Applications/System
+Requires: python >= 2.0
+Requires: python-simplejson
+
+%description -n koan
+Koan stands for kickstart-over-a-network and allows for both
+network installation of new virtualized guests and reinstallation
+of an existing system.  For use with a boot-server configured with Cobbler
 
 %prep
-%setup
+%setup -n %{name}-%{real_version}
 
 %build
 %{__python} setup.py build
@@ -40,77 +86,72 @@ monitoring, and auto-managing dhcpd.conf.
 %{__rm} -rf %{buildroot}
 %{__python} setup.py install -O1 --skip-build --root="%{buildroot}" --prefix="%{_prefix}"
 
+%{__install} -Dp -m0644 config/cobbler.conf %{buildroot}/etc/httpd/conf.d/cobbler.conf
+%{__install} -Dp -m0644 config/cobbler_web.conf %{buildroot}/etc/httpd/conf.d/cobbler_web.conf
+
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/spool/koan/
+%{__install} -d -m0755 %{buildroot}%{_tftpbootdir}/images/
+
+### Clean up buildroot
+%{__rm} -f %{buildroot}/etc/cobbler/cobblerd
+
 %post
-/sbin/chkconfig --add cobblerd
+if (( $1 == 1 )); then
+    chkconfig --add cobblerd
+fi
 
 %preun
-if [ $1 -eq 0 ]; then
-	/sbin/service cobblerd stop &>/dev/null || :
-	chkconfig --del cobblerd
+if (( $1 == 0 )); then
+    service cobblerd stop &>/dev/null || :
+    chkconfig --del cobblerd || :
 fi
 
 %postun
-if [ $1 -ge 1 ]; then
-	/sbin/service cobblerd condrestart &>/dev/null || :
+if (( $1 >= 1 )); then
+    service cobblerd condrestart &>/dev/null || :
+    service httpd condrestart &>/dev/null || :
 fi
-
-%clean
-%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS CHANGELOG COPYING NEWS README
+%doc AUTHORS CHANGELOG COPYING README
 %doc %{_mandir}/man1/cobbler.1*
 %config(noreplace) %{_sysconfdir}/cobbler/
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/cobbler.conf
-#%config %{_initrddir}/cobblerd
+%config(noreplace) %{_localstatedir}/lib/cobbler/
 %config %{_sysconfdir}/init.d/cobblerd
-%dir /tftpboot/
-%dir /tftpboot/pxelinux.cfg/
-%dir /tftpboot/images/
 %{_bindir}/cobbler
+%{_bindir}/cobbler-ext-nodes
 %{_bindir}/cobblerd
+%{_sbindir}/tftpd.py*
 %{python_sitelib}/cobbler/
-%ghost %{python_sitelib}/cobbler/*.pyo
-%{python_sitelib}/cobbler/yaml/
-%ghost %{python_sitelib}/cobbler/yaml/*.pyo
-%dir %{_localstatedir}/log/cobbler/syslog/
+%{_localstatedir}/log/cobbler/
+%{_localstatedir}/www/cobbler/
+%{!?_without_pyegg:%{python_sitelib}/cobbler-%{version}-py*.egg-info}
+%{_tftpbootdir}/images/
 
-%defattr(0644, root, root 2550)
-%dir %{_localstatedir}/lib/cobbler/
-%{_localstatedir}/lib/cobbler/elilo-3.6-ia64.efi
-%{_localstatedir}/lib/cobbler/menu.c32
-%dir %{_localstatedir}/lib/cobbler/triggers/
-%dir %{_localstatedir}/lib/cobbler/triggers/add/
-%dir %{_localstatedir}/lib/cobbler/triggers/add/distro/
-%dir %{_localstatedir}/lib/cobbler/triggers/add/profile/
-%dir %{_localstatedir}/lib/cobbler/triggers/add/repo/
-%dir %{_localstatedir}/lib/cobbler/triggers/add/system/
-%dir %{_localstatedir}/lib/cobbler/triggers/delete/
-%dir %{_localstatedir}/lib/cobbler/triggers/delete/distro/
-%dir %{_localstatedir}/lib/cobbler/triggers/delete/profile/
-%dir %{_localstatedir}/lib/cobbler/triggers/delete/repo/
-%dir %{_localstatedir}/lib/cobbler/triggers/delete/system/
+%files -n koan
+%defattr(-, root, root, 0755)
+%doc AUTHORS CHANGELOG COPYING README
+%doc %{_mandir}/man1/koan.1*
+%doc %{_mandir}/man1/cobbler-register.1*
+%{_bindir}/cobbler-register
+%{_bindir}/koan
+%{python_sitelib}/koan/
+%dir %{_localstatedir}/lib/koan/config/
+%dir %{_localstatedir}/log/koan/
+%dir %{_localstatedir}/spool/koan/
 
-%defattr(-, apache, apache, 2755)
-%dir %{_localstatedir}/log/cobbler/
-%dir %{_localstatedir}/log/cobbler/kicklog/
-%dir %{_localstatedir}/www/cobbler/
-%dir %{_localstatedir}/www/cobbler/distros/
-%dir %{_localstatedir}/www/cobbler/images/
-%dir %{_localstatedir}/www/cobbler/kickstarts/
-%dir %{_localstatedir}/www/cobbler/kickstarts_sys/
-%dir %{_localstatedir}/www/cobbler/ks_mirror/
-%dir %{_localstatedir}/www/cobbler/ks_mirror/config/
-%dir %{_localstatedir}/www/cobbler/links/
-%dir %{_localstatedir}/www/cobbler/localmirror/
-%dir %{_localstatedir}/www/cobbler/profiles/
-%dir %{_localstatedir}/www/cobbler/repo_mirror/
-%dir %{_localstatedir}/www/cobbler/systems/
+%files -n cobbler-web
+%defattr(-, root, root, 0755)
+%doc AUTHORS COPYING CHANGELOG README
+%config(noreplace) /etc/httpd/conf.d/cobbler_web.conf
+
+%defattr(-, apache, apache, 0755)
+%{_datadir}/cobbler/web/
+%{_localstatedir}/www/cobbler_webui_content/
+%dir %{_localstatedir}/lib/cobbler/webui_sessions/
 
 %changelog
-* Mon Jul 02 2007 Dag Wieers <dag@wieers.com> - 0.5.0-1
-- Updated to release 0.5.0.
-
-* Sat May 12 2007 Dag Wieers <dag@wieers.com> - 0.4.8-1
+* Fri May 11 2012 Dag Wieers <dag@wieers.com> - 2.2.2-1
 - Initial package. (using DAR)
