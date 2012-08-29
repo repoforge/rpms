@@ -10,7 +10,7 @@
 Summary: Perl module to extract search strings from more referrers
 Name: perl-URI-ParseSearchString-More
 Version: 0.13
-Release: 1
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/URI-ParseSearchString-More/
