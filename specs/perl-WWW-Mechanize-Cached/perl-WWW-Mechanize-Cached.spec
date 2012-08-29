@@ -9,13 +9,13 @@
 
 Summary: Cache response to be polite
 Name: perl-WWW-Mechanize-Cached
-Version: 1.35
+Version: 1.40
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/WWW-Mechanize-Cached/
 
-Source: http://www.cpan.org/modules/by-module/WWW/WWW-Mechanize-Cached-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS/WWW-Mechanize-Cached-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -70,6 +70,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/WWW/Mechanize/Cached.pm
 
 %changelog
+* Wed May 09 2012 Dag Wieers <dag@wieers.com> - 1.40-1
+- Updated to release 1.40.
+
 * Tue Nov 24 2009 Christoph Maser <cmr@financial.com> - 1.35-1
 - Updated to version 1.35.
 
