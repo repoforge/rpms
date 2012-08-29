@@ -4,6 +4,9 @@
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
+%{?el5:%define _without_egginfo 1}
+%{?el4:%define _without_egginfo 1}
+
 Summary: Notification script which can be used as subversion hook
 Name: svnmailer
 Version: 1.0.8
@@ -16,7 +19,9 @@ Source: http://storage.perlig.de/svnmailer/svnmailer-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
-BuildRequires: python >= 2.3, subversion, python-devel
+BuildRequires: python >= 2.3
+BuildRequires: python-devel
+BuildRequires: subversion
 Requires: python >= 2.3
 
 %description
@@ -53,7 +58,8 @@ python setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 %defattr(-, root, root, 0755)
 %doc CREDITS LICENSE NOTICE README docs/
 %{_bindir}/svn-mailer
-%{python_sitelib}/svnmailer
+%{python_sitelib}/svnmailer/
+%{!?_without_egginfo:%{python_sitelib}/*.egg-info}
 
 %changelog
 * Thu Jun 28 2007 Dag Wieers <dag@wieers.com> - 1.0.8-2
@@ -63,9 +69,6 @@ python setup.py install --root="%{buildroot}" --prefix="%{_prefix}"
 
 * Fri Apr 21 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.8-1
 - Updated to release 1.0.8.
-
-* Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1.2
-- Rebuild for Fedora Core 5.
 
 * Wed Mar 01 2006 Dries Verachtert <dries@ulyssis.org> - 1.0.7-1
 - Updated to release 1.0.7.
