@@ -59,10 +59,12 @@ with the log message, diffstat, and the diff.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING INSTALL NEWS* README* SITES contrib/ tigdocs/
-%doc %{_mandir}/man?/*
-%{_bindir}/*
+%doc BUGS COPYING INSTALL NEWS* README* SITES TODO VERSION contrib/ tigdocs/
+%doc %{_mandir}/man1/tig.1*
+%doc %{_mandir}/man5/tigrc.5*
+%doc %{_mandir}/man7/tigmanual.7*
 %{_sysconfdir}/bash_completion.d/tig
+%{_bindir}/tig
 
 %changelog
 * Mon May 21 2012 Yury V. Zaytsev <yury@shurup.com> - 1.0-1
