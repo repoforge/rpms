@@ -1,6 +1,8 @@
 # $Id$
 # Authority: dag
 # Upstream: <trac$lists,edgewall,com>
+
+### Requires python-genshi >= 0:0.6 from Extras
 # Tag: rfx
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
