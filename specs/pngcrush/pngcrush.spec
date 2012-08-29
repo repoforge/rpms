@@ -4,13 +4,14 @@
 
 Summary: Optimizer for PNG (Portable Network Graphics) files
 Name: pngcrush
-Version: 1.7.20
+Version: 1.7.35
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
 URL: http://pmt.sourceforge.net/pngcrush/
 
-Source: http://dl.sf.net/pmt/pngcrush-%{version}.tar.bz2
+#Source: http://dl.sf.net/pmt/pngcrush-%{version}.tar.bz2
+Source: http://dl.sf.net/pmt/pngcrush/%{version}/pngcrush-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpng-devel, zlib-devel
@@ -44,6 +45,9 @@ tRNS, iCCP, and textual chunks.
 %{_bindir}/pngcrush
 
 %changelog
+* Wed Aug 01 2012 Dag Wieers <dag@wieers.com> - 1.7.35-1
+- Updated to release 1.7.35.
+
 * Mon Oct 24 2011 Dag Wieers <dag@wieers.com> - 1.7.20-1
 - Updated to release 1.7.20.
 
