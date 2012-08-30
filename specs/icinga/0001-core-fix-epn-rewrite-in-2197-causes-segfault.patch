@@ -1,0 +1,27 @@
+From cedcb4a3f9fd34e2a72988e560a884fb0d8891af Mon Sep 17 00:00:00 2001
+From: Michael Friedrich <michael.friedrich@gmail.com>
+Date: Tue, 28 Aug 2012 10:27:33 +0200
+Subject: [PATCH] core: fix epn rewrite in #2197 causes segfault
+
+thanks dennis lichtenthaeler for the fix.
+
+fixes #3027
+---
+ base/utils.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/base/utils.c b/base/utils.c
+index b1891b9..c174a8a 100644
+--- a/base/utils.c
++++ b/base/utils.c
+@@ -3601,6 +3601,7 @@ int file_uses_embedded_perl(char *fname) {
+ 	/* grab the first line - we should see Perl. go home if not */
+ 	if (fgets(buf, 80, fp) == NULL || strstr(buf, "/bin/perl") == NULL) {
+ 		fclose(fp);
++		return FALSE;
+ 	}
+ 
+ 	/* epn directives must be found in first ten lines of plugin */
+-- 
+1.7.11.1
+

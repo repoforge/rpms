@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 1
+%define revision 2
 
 %define logmsg logger -t %{name}/rpm
 
@@ -28,6 +28,9 @@ URL: http://www.icinga.org/
 
 Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+# after 1.7.2 fix for epn foo
+Patch0: 0001-core-fix-epn-rewrite-in-2197-causes-segfault.patch
 
 BuildRequires: gcc
 BuildRequires: gd-devel > 1.8
@@ -95,6 +98,8 @@ Documentation for %{name}
 
 %prep
 %setup -qn %{name}-%{version}
+# epn fix
+%patch0 -p1
 
 %build
 %configure \
@@ -396,6 +401,9 @@ fi
 
 
 %changelog
+* Thu Aug 30 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-2
+- include a fix for epn failure from upstream
+
 * Tue Aug 21 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-1
 - bump version
 - forgot to check on old icinga.cfg entries not matching - enforce that once
