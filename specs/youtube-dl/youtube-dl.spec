@@ -2,7 +2,10 @@
 # Authority: dries
 # Upstream: Ricardo Garcia Gonzalez <sarbalap$gmail,com>
 
-%define real_version 2009.09.13
+### Requires python >= 2.5
+# ExcludeDist: el3 el4 el5
+
+%define real_version 2012.02.27
 
 Summary: Download videos from YouTube.com
 Name: youtube-dl
@@ -10,26 +13,28 @@ Version: 0
 Release: 0.%{real_version}%{?dist}
 License: GPL
 Group: Applications/Internet
-URL: http://bitbucket.org/rg3/youtube-dl/wiki/Home
+URL: http://rg3.github.com/youtube-dl/
+Source0: http://raw.github.com/rg3/youtube-dl/%{real_version}/youtube-dl
+Source1: youtube-dl.conf
 
-Source: http://bitbucket.org/rg3/youtube-dl/get/%{real_version}.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Buildarch: noarch
-Requires: python >= 2.4
+Requires: python >= 2.5
 
 %description
 youtube-dl is a small command-line program for downloading videos from
 YouTube.com.
 
 %prep
-%setup -n youtube-dl
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
-%{__install} -p -m0755 -D youtube-dl %{buildroot}%{_bindir}/youtube-dl
+%{__mkdir_p} %{buildroot}%{_bindir} %{buildroot}%{_sysconfdir}
+%{__install} -p -m0755 %{SOURCE0} %{buildroot}%{_bindir}
+%{__install} -p -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -37,8 +42,13 @@ YouTube.com.
 %files
 %defattr(-, root, root, 0755)
 %{_bindir}/youtube-dl
+%config %{_sysconfdir}/youtube-dl.conf
+
 
 %changelog
+* Fri Aug 31 2012 Denis Fateyev <denis@fateyev.com> - 2012.2.27-1
+- Updated to 2012.02.27
+
 * Tue Dec 15 2009 Yury V. Zaytsev <yury@shurup.com> - 2009.09.13-2
 - Fixed the changelog entry.
 
