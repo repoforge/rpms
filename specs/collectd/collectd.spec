@@ -27,7 +27,7 @@
 
 Summary: Statistics collection daemon for filling RRD files
 Name: collectd
-Version: 5.0.3
+Version: 5.1.0
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -39,12 +39,13 @@ Source2: collection3.conf
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: curl-devel
+BuildRequires: iptables-devel
 BuildRequires: krb5-devel
 BuildRequires: libpcap
 %{!?_without_libpcapdevel:BuildRequires:libpcap-devel}
 BuildRequires: libxml2-devel
 %{!?_without_lmsensors:BuildRequires: lm_sensors-devel}
-BuildRequires: perl
+#BuildRequires: perl
 BuildRequires: python-devel
 BuildRequires: rrdtool-devel
 BuildRequires: which
@@ -144,6 +145,7 @@ Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
 Requires: mysql
 BuildRequires: mysql-devel
+BuildRequires: mysql-libs
 %description mysql
 This plugin collects status variable data from mysql
 
@@ -165,6 +167,10 @@ Summary: Perl bindings for collectd
 Group: System Environment/Daemons
 Requires: collectd = %{version}-%{release}
 Requires: perl
+BuildRequires: perl
+BuildRequires: perl-libs
+BuildRequires: perl-devel
+BuildRequires: perl-ExtUtils-Embed
 %description -n perl-Collectd
 This package contains Perl bindings and plugin for collectd.
 
@@ -306,6 +312,7 @@ fi
 %{_libdir}/collectd/dns.so
 %{_libdir}/collectd/email.so
 %{_libdir}/collectd/entropy.so
+%{_libdir}/collectd/ethstat.so
 %{_libdir}/collectd/exec.so
 %{_libdir}/collectd/filecount.so
 %{_libdir}/collectd/fscache.so
@@ -324,6 +331,7 @@ fi
 %{_libdir}/collectd/match_timediff.so
 %{_libdir}/collectd/match_value.so
 %{_libdir}/collectd/mbmon.so
+%{_libdir}/collectd/md.so
 %{_libdir}/collectd/memcached.so
 %{_libdir}/collectd/memory.so
 %{_libdir}/collectd/multimeter.so
@@ -331,9 +339,9 @@ fi
 %{_libdir}/collectd/nfs.so
 %{_libdir}/collectd/nginx.so
 %{_libdir}/collectd/ntpd.so
+%{_libdir}/collectd/numa.so
 %{_libdir}/collectd/olsrd.so
 %{_libdir}/collectd/openvpn.so
-%{_libdir}/collectd/perl.so
 %{_libdir}/collectd/powerdns.so
 %{_libdir}/collectd/processes.so
 %{_libdir}/collectd/protocols.so
@@ -361,6 +369,7 @@ fi
 %{_libdir}/collectd/vmem.so
 %{_libdir}/collectd/vserver.so
 %{_libdir}/collectd/wireless.so
+%{_libdir}/collectd/write_graphite.so
 %{_libdir}/collectd/write_http.so
 %{_libdir}/libcollectdclient.so.*
 %{_sbindir}/collectd
@@ -428,6 +437,9 @@ fi
 %endif
 
 %changelog
+* Thu Aug 30 2012 Dag Wieers <dag@wieers.com> - 5.1.0-1
+- Updated to release 5.1.0.
+
 * Sun Mar 11 2012 Dag Wieers <dag@wieers.com> - 5.0.3-1
 - Updated to release 5.0.3.
 
