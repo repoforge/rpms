@@ -5,7 +5,7 @@
 
 Summary: Command Line XML Toolkit
 Name: xmlstarlet
-Version: 1.3.1
+Version: 1.4.0
 Release: 1%{?dist}
 License: MIT
 Group: Applications/Text
@@ -35,14 +35,16 @@ commands.
 %{__perl} -pi.orig -e 's|\bxml(\s)|xmlstarlet$1|g' Makefile* xmlstarlet.spec* src/*.c
 %{__perl} -pi.orig -e 's|\bxml(\s)|xmlstarlet$1|g' doc/gen-doc doc/*.xml
 
-pushd doc
-xmlto man xmlstarlet-man.xml
-xmlto html-nochunks xmlstarlet-ug.xml
-./gen-doc >xmlstarlet.txt
-popd
+#pushd doc
+#xmlto man xmlstarlet-man.xml
+#xmlto html-nochunks xmlstarlet-ug.xml
+#./gen-doc >xmlstarlet.txt
+#popd
 
 %build
-%configure --disable-static-libs
+%configure \
+    --disable-static-libs \
+    --docdir="%{_docdir}/%{name}-%{version}"
 %{__make} %{?_smp_mflags} EXEEXT="starlet"
 
 %install
@@ -60,6 +62,9 @@ popd
 %{_bindir}/xmlstarlet
 
 %changelog
+* Thu Aug 30 2012 Dag Wieers <dag@wieers.com> - 1.4.0-1
+- Updated to release 1.4.0.
+
 * Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 1.3.1-1
 - Updated to release 1.3.1.
 
