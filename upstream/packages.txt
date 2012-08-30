@@ -127,6 +127,7 @@ pianobar DEFAULT http://6xq.net/static/projects/pianobar/
 pnp4nagios DEFAULT SF-DEFAULT
 postgrey DEFAULT http://postgrey.schweikert.ch/pub/
 proftpd DEFAULT ftp://ftp.proftpd.org/distrib/source/
+pure-ftpd DEFAULT http://download.pureftpd.org/pub/pure-ftpd/releases/
 pydb DEFAULT SF-DEFAULT
 python-webpy DEFAULT:web.py http://webpy.org/static/
 razor-agents razor-agents-(.*?).tar.bz2 http://sourceforge.net/projects/razor/files/

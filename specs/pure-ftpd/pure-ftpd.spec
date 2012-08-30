@@ -256,6 +256,9 @@ fi
 %endif
 
 %changelog
+* Thu Aug 30 2012 Denis Fateyev <denis@fateyev.com> - 1.0.36-1
+- Updated to release 1.0.36
+
 * Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 1.0.21-1
 - Updated to release 1.0.21. (rebased on Fedora)
 
