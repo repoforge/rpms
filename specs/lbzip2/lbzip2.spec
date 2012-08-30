@@ -3,7 +3,7 @@
 
 Summary: Fast, multi-threaded bzip2 utility
 Name: lbzip2
-Version: 2.1
+Version: 2.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -55,6 +55,9 @@ compression to overlap with disk usage to a greater extent than bzip2 does.
 %{_bindir}/lbzip2
 
 %changelog
+* Thu Aug 30 2012 Dag Wieers <dag@wieers.com> - 2.2-1
+- Updated to release 2.2.
+
 * Thu Nov 24 2011 Dag Wieers <dag@wieers.com> - 2.1-1
 - Updated to release 2.1.
 
