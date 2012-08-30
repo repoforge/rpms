@@ -1,17 +1,21 @@
 # $Id$
-# Upstream:  lxc Linux Containers
+# Authority: dfateyev
+# Upstream:  Daniel Lezcano <dlezcano$fr,ibm,com>
 
-%define gitdate 20120105
+### LXC works only with kernel >= 2.6.27
+# ExcludeDist: el3 el4 el5
+
+%define real_version 0.8.0-rc2
+
 Name:           lxc
 Version:        0.8.0
-Release:        1.rc1%{?dist}
+Release:        1%{?dist}
 Summary:        Linux Resource Containers
 
 Group:          Applications/System
 License:        LGPLv2+
 URL:            http://lxc.sourceforge.net
-Source0:        http://lxc.sourceforge.net/download/lxc/%{name}-%{version}-rc1.tar.gz
-Patch1:		lxc-0.8.0-rc1-fix-broken-ns-cgroup.patch
+Source0:        http://lxc.sourceforge.net/download/lxc/%{name}-%{real_version}.tar.gz
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -20,7 +24,6 @@ BuildRequires:  docbook-utils-pdf
 BuildRequires:  kernel-headers
 BuildRequires:  libcap-devel
 BuildRequires:  libtool
-Requires:       %{name} = %{version}-%{release}
 
 %description
 Linux Resource Containers provide process and resource isolation without the
@@ -71,11 +74,9 @@ Requires:       %{name} = %{version}-%{release}
 This package contains documentation for %{name}.
 
 %prep
-%setup -q -n %{name}-%{version}-rc1
-%patch1 -p1
+%setup -n %{name}-%{real_version}
 
 %build
-./autogen.sh
 %configure F77=no
 # Fix binary-or-shlib-defines-rpath error
 %{__sed} -i '/AM_LDFLAGS = -Wl,-E -Wl,-rpath -Wl,$(libdir)/d' src/lxc/Makefile.in
@@ -85,7 +86,7 @@ This package contains documentation for %{name}.
 %{__make} check
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
 %{__make} DESTDIR=%{buildroot} install
 find %{buildroot} -name '*.la' -delete
 %{__mkdir} -p %{buildroot}%{_sharedstatedir}/%{name}
@@ -130,7 +131,7 @@ find %{buildroot} -name '*.la' -delete
 %{_docdir}/%{name}
 
 %changelog
-* Thu Aug  2 2012 IWAI, Masaharu <iwaim.sub@gmail.com> 0.8.0-1.rc1
+* Thu Aug  2 2012 IWAI, Masaharu <iwaim.sub@gmail.com> 0.8.0-1.rc2
 - build for CentOS
 
 * Wed Apr 25 2012 Daisuke SUZUKI <daisuke@linux.or.jp> 0.8.0-0.rc1
