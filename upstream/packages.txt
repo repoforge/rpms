@@ -5,6 +5,7 @@ arc DEFAULT SF-DEFAULT
 arj DEFAULT SF-DEFAULT
 augeas DEFAULT http://augeas.net/download/
 awstats DEFAULT SF-DEFAULT
+bashdb DEFAULT SF-DEFAULT
 cabextract DEFAULT http://www.cabextract.org.uk/
 cacti DEFAULT http://www.cacti.net/downloads/
 cacti-spine DEFAULT http://www.cacti.net/downloads/spine/
@@ -53,6 +54,7 @@ openvpn DEFAULT http://swupdate.openvpn.org/community/releases/
 p7zip p7zip_([\d\.]+)_src_all.tar.bz SF-DEFAULT
 perl-Apache2-AuthenNIS CPAN-DEFAULT CPAN-DEFAULT
 perl-Archive-Zip CPAN-DEFAULT CPAN-DEFAULT
+perl-Array-Columnize CPAN-DEFAULT CPAN-DEFAULT
 perl-BerkeleyDB CPAN-DEFAULT CPAN-DEFAULT
 perl-Class-Accessor-Grouped CPAN-DEFAULT CPAN-DEFAULT
 perl-Compress-Raw-Bzip2 CPAN-DEFAULT CPAN-DEFAULT
@@ -128,10 +130,11 @@ pnp4nagios DEFAULT SF-DEFAULT
 postgrey DEFAULT http://postgrey.schweikert.ch/pub/
 proftpd DEFAULT ftp://ftp.proftpd.org/distrib/source/
 pure-ftpd DEFAULT http://download.pureftpd.org/pub/pure-ftpd/releases/
-pydb DEFAULT SF-DEFAULT
+pydb DEFAULT http://bashdb.sourceforge.net/pydb/
 python-webpy DEFAULT:web.py http://webpy.org/static/
 razor-agents razor-agents-(.*?).tar.bz2 http://sourceforge.net/projects/razor/files/
 re2c DEFAULT SF-DEFAULT
+remake DEFAULT http://bashdb.sourceforge.net/remake/
 ripole DEFAULT http://www.pldaniels.com/ripole
 rkhunter DEFAULT SF-DEFAULT
 rrdtool DEFAULT http://oss.oetiker.ch/rrdtool/pub/

@@ -1,4 +1,6 @@
-# Upstream: Rocky Bernstein <rocky@scpan.org>
+# $Id$
+# Authority: dfateyev
+# Upstream: Rocky Bernstein <rocky$scpan,org>
 
 %define perl_vendorlib %(eval "`%{__perl} -V:installvendorlib`"; echo $installvendorlib)
 %define perl_vendorarch %(eval "`%{__perl} -V:installvendorarch`"; echo $installvendorarch)
@@ -7,7 +9,7 @@
 
 Summary: Arrange list data in columns
 Name: perl-%{real_name}
-Version: v0.3.8
+Version: 1.02
 Release: 1%{?dist}
 License: GPL
 Group: Applications/CPAN
@@ -60,5 +62,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Array/Columnize/options.pm
 
 %changelog
+* Sat Sep 01 2012 Denis Fateyev <denis@fateyev.com> - 1.02-1
+- Small spec cleanup
+- Update to 1.02 release
+
 * Sat Nov 05 2011 Rocky Bernstein <rocky@cpan.org> - 0.38-1
 - Initial package.
