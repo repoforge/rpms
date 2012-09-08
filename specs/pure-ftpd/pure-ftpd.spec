@@ -134,7 +134,6 @@ touch selinux/pureftpd.if
     --with-diraliases \
 %{!?_without_extauth:--with-extauth} \
     --with-ftpwho \
-    --with-largefile \
 %{!?_without_ldap:--with-ldap} \
 %{!?_without_mysql:--with-mysql} \
     --with-pam \
