@@ -3,7 +3,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 2.5.2
+Version: 2.6.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -19,6 +19,7 @@ Requires: perl-libwww-perl
 Requires: perl-MailTools
 Requires: perl-MIME-Lite
 Requires: perl-DBI
+Requires: perl-XML-Simple
 
 Requires: /sbin/chkconfig
 Requires: /sbin/service
@@ -42,6 +43,8 @@ mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
 install -m 0644 docs/monitorix-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/monitorix.conf
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
 install -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
+mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
+install -m 0644 docs/monitorix.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}
 install -m 0644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
 mkdir -p %{buildroot}%{_bindir}
@@ -86,6 +89,7 @@ fi
 %{_initrddir}/monitorix
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/monitorix.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/monitorix
+%config(noreplace) %{_sysconfdir}/sysconfig/monitorix
 %config(noreplace) %{_sysconfdir}/monitorix.conf
 %{_bindir}/monitorix
 %{_datadir}/monitorix/logo_top.png
@@ -98,9 +102,12 @@ fi
 %{_localstatedir}/lib/monitorix/reports/send_reports
 %doc %{_mandir}/man5/monitorix.conf.5.gz
 %doc %{_mandir}/man8/monitorix.8.gz
-%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD docs/monitorix-alert.sh
+%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-lighttpd.conf
 
 %changelog
+* Thu Sep 20 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.6.0-1
+- Updated to the latest version.
+
 * Tue May 22 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.5.2-1
 - Updated to the latest version.
 
