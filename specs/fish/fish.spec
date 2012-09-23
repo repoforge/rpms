@@ -7,13 +7,13 @@
 
 Summary: Friendly interactive shell
 Name: fish
-Version: 1.23.1
+Version: 2.0.0r2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
-URL: http://fishshell.org
+URL: http://ridiculousfish.com/shell
 
-Source: http://fishshell.com/files/%{version}/fish-%{version}.tar.bz2
+Source: http://ridiculousfish.com/shell/files/fishfish.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: autoconf
@@ -38,9 +38,10 @@ focused on user friendliness and discoverability. The language syntax
 is simple but incompatible with other shell languages.
 
 %prep
-%setup
+%setup -n fishfish
 
 %build
+%{__autoconf}
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -72,7 +73,7 @@ AUGEAS
 
 %files -f %{name}.lang
 %defattr(-, root, root, 0755)
-%doc *.html doc_src/*.txt ChangeLog INSTALL README user_doc/html/
+%doc *.html doc_src/*.txt INSTALL README user_doc/html/
 %doc %{_mandir}/man1/fish.1*
 %doc %{_mandir}/man1/fish_indent.1*
 %doc %{_mandir}/man1/fish_pager.1*
@@ -89,13 +90,13 @@ AUGEAS
 %{_bindir}/set_color
 %{_bindir}/xsel
 %{_datadir}/fish/
-%exclude %{_docdir}/ChangeLog
-%exclude %{_docdir}/*.css
-%exclude %{_docdir}/*.gif
-%exclude %{_docdir}/*.html
-%exclude %{_docdir}/*.png
+%exclude %{_docdir}/fish/*
 
 %changelog
+* Tue Sep 18 2012 Rickard von Essen <rickard.von.essen@gmail.com> - 2.0.0r2-1
+- Updated to release 2.0.0 beta r2 of fishfish
+- Changed the source to http://ridiculousfish.com since http://fishshell.com is out of action since a long time.
+
 * Thu Feb 17 2011 Steve Huff <shuff@vecna.org> - 1.23.1-1
 - Updated to release 1.23.1.
 - Changed source URL.
