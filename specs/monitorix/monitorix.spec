@@ -1,4 +1,5 @@
 # $Id$
+# Authority: dfateyev
 # Upstream: Jordi Sanfeliu <jordi$fibranet,cat>
 
 Summary: Monitorix is a system monitoring tool
@@ -36,34 +37,34 @@ simplicity and small size may also be used on embedded devices as well.
 %build
 
 %install
-rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_initrddir}
-install -m 0755 docs/monitorix.init %{buildroot}%{_initrddir}/monitorix
-mkdir -p %{buildroot}%{_sysconfdir}/httpd/conf.d
-install -m 0644 docs/monitorix-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/monitorix.conf
-mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
-install -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
-mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
-install -m 0644 docs/monitorix.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/monitorix
-mkdir -p %{buildroot}%{_sysconfdir}
-install -m 0644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
-mkdir -p %{buildroot}%{_bindir}
-install -m 0755 monitorix %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/monitorix
-install -m 0644 logo_top.png %{buildroot}%{_datadir}/monitorix
-install -m 0644 logo_bot.png %{buildroot}%{_datadir}/monitorix
-install -m 0644 monitorixico.png %{buildroot}%{_datadir}/monitorix
-mkdir -p %{buildroot}%{_datadir}/monitorix/imgs
-mkdir -p %{buildroot}%{_datadir}/monitorix/cgi-bin
-install -m 0755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi-bin
-mkdir -p %{buildroot}%{_localstatedir}/lib/monitorix/reports
-install -m 0644 reports/*.html %{buildroot}%{_localstatedir}/lib/monitorix/reports
-install -m 0755 reports/send_reports %{buildroot}%{_localstatedir}/lib/monitorix/reports
-mkdir -p %{buildroot}%{_localstatedir}/lib/monitorix/usage
-mkdir -p %{buildroot}%{_mandir}/man5
-mkdir -p %{buildroot}%{_mandir}/man8
-install -m 0644 man/man5/monitorix.conf.5 %{buildroot}%{_mandir}/man5
-install -m 0644 man/man8/monitorix.8 %{buildroot}%{_mandir}/man8
+%{__rm} -rf %{buildroot}
+%{__mkdir_p} %{buildroot}%{_initrddir}
+%{__install} -m 0755 docs/monitorix.init %{buildroot}%{_initrddir}/monitorix
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/httpd/conf.d
+%{__install} -m 0644 docs/monitorix-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/monitorix.conf
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/logrotate.d
+%{__install} -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/sysconfig
+%{__install} -m 0644 docs/monitorix.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/monitorix
+%{__mkdir_p} %{buildroot}%{_sysconfdir}
+%{__install} -m 0644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__install} -m 0755 monitorix %{buildroot}%{_bindir}
+%{__mkdir_p} %{buildroot}%{_datadir}/monitorix
+%{__install} -m 0644 logo_top.png %{buildroot}%{_datadir}/monitorix
+%{__install} -m 0644 logo_bot.png %{buildroot}%{_datadir}/monitorix
+%{__install} -m 0644 monitorixico.png %{buildroot}%{_datadir}/monitorix
+%{__mkdir_p} %{buildroot}%{_datadir}/monitorix/imgs
+%{__mkdir_p} %{buildroot}%{_datadir}/monitorix/cgi-bin
+%{__install} -m 0755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi-bin
+%{__mkdir_p} %{buildroot}%{_localstatedir}/lib/monitorix/reports
+%{__install} -m 0644 reports/*.html %{buildroot}%{_localstatedir}/lib/monitorix/reports
+%{__install} -m 0755 reports/send_reports %{buildroot}%{_localstatedir}/lib/monitorix/reports
+%{__mkdir_p} %{buildroot}%{_localstatedir}/lib/monitorix/usage
+%{__mkdir_p} %{buildroot}%{_mandir}/man5
+%{__mkdir_p} %{buildroot}%{_mandir}/man8
+%{__install} -m 0644 man/man5/monitorix.conf.5 %{buildroot}%{_mandir}/man5
+%{__install} -m 0644 man/man8/monitorix.8 %{buildroot}%{_mandir}/man8
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -102,7 +103,7 @@ fi
 %{_localstatedir}/lib/monitorix/reports/send_reports
 %doc %{_mandir}/man5/monitorix.conf.5.gz
 %doc %{_mandir}/man8/monitorix.8.gz
-%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-lighttpd.conf
+%doc Changes COPYING README README.nginx docs/monitorix-alert.sh docs/monitorix-lighttpd.conf
 
 %changelog
 * Thu Sep 20 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.6.0-1
