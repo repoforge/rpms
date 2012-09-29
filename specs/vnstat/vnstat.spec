@@ -4,7 +4,7 @@
 
 Summary: Console-based network traffic monitor
 Name: vnstat
-Version: 1.10
+Version: 1.11
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -79,6 +79,9 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
+* Sat Sep 29 2012 Denis Fateyev <denis@fateyev.com> - 1.11-1
+- Updated to release 1.11
+
 * Wed Apr 14 2010 Dag Wieers <dag@wieers.com> - 1.10-1
 - Updated to release 1.10.
 
