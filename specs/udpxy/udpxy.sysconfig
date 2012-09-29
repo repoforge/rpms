@@ -1,0 +1,2 @@
+# Options for udpxy
+OPTIONS="-S -p 4022"
