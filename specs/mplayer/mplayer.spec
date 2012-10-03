@@ -64,13 +64,13 @@ Summary: MPlayer, the Movie Player for Linux
 Name: mplayer
 Version: 1.0
 %define real_version 2010-07-03
-Release: 0.47.svn20100703%{?dist}
+Release: 0.48.svn20100703%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://mplayerhq.hu/
 
 Source0: http://www.mplayerhq.hu/MPlayer/releases/mplayer-export-%{real_version}.tar.bz2
-Source1: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.7.tar.bz2
+Source1: http://www.mplayerhq.hu/MPlayer/skins/Blue-1.8.tar.bz2
 Source10: mplayer-snapshot.sh
 Patch2: mplayer-config.patch
 Patch8: mplayer-manlinks.patch
@@ -406,6 +406,9 @@ desktop-file-install \
 %{_datadir}/mplayer/*.fp
 
 %changelog
+* Wed Oct 03 2012 Denis Fateyev <denis@fateyev.com> - 1.0-0.48.svn20100703
+- Updated default skin URL
+
 * Tue Oct 11 2011 Aleksey Cheusov <vle@gmx.net> - 1.0-0.47.svn20100703
 - Enable support for VDPAU.
 
