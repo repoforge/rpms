@@ -21,7 +21,7 @@
 Summary: Frontend for the xine multimedia library
 Name: gxine
 Version: 0.5.905
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://xinehq.de/
@@ -57,7 +57,8 @@ Available rpmbuild rebuild options :
 
 %build
 %configure \
-%{?_without_lirc:--disable-lirc} \
+    %{?_without_lirc:--disable-lirc} \
+    --with-spidermonkey=%{_prefix} \
     --with-dbus \
     --with-logo-format="auto"
 %{__make} %{?_smp_mflags}
@@ -92,6 +93,9 @@ Available rpmbuild rebuild options :
 %exclude %{_libdir}/gxine/*.la
 
 %changelog
+* Wed Oct 03 2012 Denis Fateyev <denis@fateyev.com> - 0.5.905-2
+- Library dependencies fix
+
 * Mon Jan 11 2010 Dag Wieers <dag@wieers.com> - 0.5.905-1
 - Updated to release 0.5.905.
 
