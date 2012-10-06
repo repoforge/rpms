@@ -9,7 +9,7 @@ Summary: Friendly interactive shell
 Name: fish
 Version: 2.0.0r2
 Release: 1%{?dist}
-License: GPL
+License: GPLv2
 Group: System Environment/Shells
 URL: http://ridiculousfish.com/shell
 
