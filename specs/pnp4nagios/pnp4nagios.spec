@@ -1,7 +1,7 @@
 # $Id:$
 # Upstream:     pnp4nagios-devel@lists.sourceforge.net
 Name:		pnp4nagios
-Version: 	0.6.18
+Version: 	0.6.19
 Release:	1
 Summary: 	PNP is not PerfParse. A Nagios/Icinga perfdata graphing solution
 
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Oct 11 2012 David Hrbáč <david@hrbac.cz> - 0.6.19-1
+- new upstream release
+
 * Sun Jul 01 2012 David Hrbáč <david@hrbac.cz> - 0.6.18-1
 - new upstream release
 
