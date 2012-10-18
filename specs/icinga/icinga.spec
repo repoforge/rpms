@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 2
+%define revision 1
 
 %define logmsg logger -t %{name}/rpm
 
@@ -20,7 +20,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.7.2
+Version: 1.8.0
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -28,9 +28,6 @@ URL: http://www.icinga.org/
 
 Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-
-# after 1.7.2 fix for epn foo
-Patch0: 0001-core-fix-epn-rewrite-in-2197-causes-segfault.patch
 
 BuildRequires: gcc
 BuildRequires: gd-devel > 1.8
@@ -65,6 +62,15 @@ Requires: %{name}-doc
 %description gui
 This package contains the webgui (html,css,cgi etc.) for %{name}
 
+%package devel
+Summary: Provides include files that Icinga-related applications may compile against
+Group: Development/Libraries/C and C++
+Requires: %{name} = %{version}
+
+%description devel
+This package provides include files that Icinga-related applications
+may compile against.
+
 %package idoutils-libdbi-mysql
 Summary: database broker module for %{name}
 Group: Applications/System
@@ -98,8 +104,6 @@ Documentation for %{name}
 
 %prep
 %setup -qn %{name}-%{version}
-# epn fix
-%patch0 -p1
 
 %build
 %configure \
@@ -112,19 +116,18 @@ Documentation for %{name}
     --libdir="%{_libdir}/%{name}" \
     --sbindir="%{_libdir}/%{name}/cgi" \
     --sysconfdir="%{_sysconfdir}/%{name}" \
-    --with-cgiurl="/%{name}/cgi-bin" \
     --with-command-user="icinga" \
     --with-command-group="icingacmd" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
+    --with-cgiurl="/%{name}/cgi-bin" \
+    --with-mainurl="/%{name}/cgi-bin/status.cgi?host=all&type=detail&servicestatustypes=29" \
     --with-init-dir="%{_initrddir}" \
     --with-lockfile="%{_localstatedir}/run/%{name}.pid" \
     --with-mail="/bin/mail" \
     --with-icinga-user="icinga" \
     --with-icinga-group="icinga" \
-    --with-template-objects \
-    --with-template-extinfo \
     --enable-event-broker \
     --enable-embedded-perl \
     --enable-idoutils \
@@ -180,6 +183,10 @@ install -D -m 0644 icinga.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{nam
 
 # install sample htpasswd file
 install -D -m 0644 icinga.htpasswd %{buildroot}%{_sysconfdir}/%{name}/passwd
+
+# install headers for development package
+install -d -m0755 "%{buildroot}%{_includedir}/%{name}/"
+install -m0644 include/*.h "%{buildroot}%{_includedir}/%{name}"
 
 %pre
 # Add icinga user
@@ -353,13 +360,10 @@ fi
 %{_libdir}/%{name}/cgi/showlog.cgi
 %{_libdir}/%{name}/cgi/status.cgi
 %{_libdir}/%{name}/cgi/statusmap.cgi
-%{_libdir}/%{name}/cgi/statuswml.cgi
-%{_libdir}/%{name}/cgi/statuswrl.cgi
 %{_libdir}/%{name}/cgi/summary.cgi
 %{_libdir}/%{name}/cgi/tac.cgi
 %{_libdir}/%{name}/cgi/trends.cgi
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/contexthelp
 %{_datadir}/%{name}/images
 %{_datadir}/%{name}/index.html
 %{_datadir}/%{name}/js
@@ -367,13 +371,16 @@ fi
 %{_datadir}/%{name}/media
 %{_datadir}/%{name}/menu.html
 %{_datadir}/%{name}/robots.txt
-%{_datadir}/%{name}/sidebar.html
 %{_datadir}/%{name}/ssi
 %{_datadir}/%{name}/stylesheets
+%{_datadir}/%{name}/jquery-ui
 %attr(2775,icinga,icingacmd) %dir %{logdir}/gui
 %attr(664,icinga,icingacmd) %{logdir}/gui/index.htm
 %attr(664,icinga,icingacmd) %{logdir}/gui/.htaccess
 
+%files devel
+%defattr(-,root,root)
+%{_includedir}/%{name}/
 
 %files idoutils-libdbi-mysql
 %defattr(-,root,root,-)
@@ -401,13 +408,20 @@ fi
 
 
 %changelog
+* Thu Oct 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.8.0-1
+- bump version
+- add devel package, installing header files to include/
+- use --with-mainurl from upstream to set the default to /icinga/cgi-bin/status.cgi?host=all&type=detail&servicestatustypes=29
+- forgot to check on old icinga.cfg entries not matching - enforce that once
+- change permissions on ido2db.cfg, not being world readable (Aaron Russo) #2987
+- drop unsupported configure options causing warnings #3037
+- fix new jquery-ui files from icinga-gui datetime picker #3009
+
 * Thu Aug 30 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-2
 - include a fix for epn failure from upstream
 
 * Tue Aug 21 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-1
 - bump version
-- forgot to check on old icinga.cfg entries not matching - enforce that once
-- change permissions on ido2db.cfg, not being world readable (Aaron Russo) #2987
 
 * Mon Jun 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-1
 - bump to 1.7.1
