@@ -3,7 +3,7 @@
 # Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
 # ExcludeDist: el4 el3
 
-%define revision 2
+%define revision 1
 
 %define logdir %{_localstatedir}/log/%{name}
 %define cachedir %{_localstatedir}/cache/%{name}
@@ -30,7 +30,7 @@
 
 Summary: Open Source host, service and network monitoring Web UI
 Name: icinga-web
-Version: 1.7.2
+Version: 1.8.0
 Release: %{revision}%{?dist}
 License: GPLv3
 Group: Applications/System
@@ -42,9 +42,6 @@ AutoReqProv: Off
 
 # Source0: icinga-web-%{version}.tar.gz
 Source0: https://downloads.sourceforge.net/project/icinga/icinga-web/%{version}/icinga-web-%{version}.tar.gz
-
-# after 1.7.2 fix for sql schema
-Patch0: 0001-Fixes-schema-upgrade-from-1.7.1-to-1.7.2.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -90,8 +87,6 @@ PNP Integration module for Icinga Web
 %prep
 ##############################
 %setup -n %{name}-%{version}
-
-%patch0 -p1
 
 ##############################
 %build
@@ -218,8 +213,8 @@ fi
 ##############################
 %changelog
 ##############################
-* Mon Aug 27 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-2
-- include upstream fix for sql schemas
+* Mon Sep 24 2012 Michael Friedrich <michael.friedrich@gmail.com> - 1.8.0-1
+- bump to 1.8.0
 
 * Tue Aug 7 2012 Marius Hein <marius.hein@netways.de> - 1.7.2-1
 - bump to 1.7.2
