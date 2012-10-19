@@ -11,11 +11,11 @@
 %{?_has_webkit:%define _use_webhelper 1}
 
 # update this when a new minor version of Geany comes out
-%define geany_basever 0.20
+%define geany_basever 1.22
 
 Summary: Collection of plugins for Geany
 Name: geany-plugins
-Version: 0.20
+Version: 1.22
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Editors
@@ -50,32 +50,40 @@ Requires: geany >= %{geany_basever}
 This package is a combined release of the following plugins:
 
 * Addons
-* CodeNav
-* GeanyCFP
-* GeanyDoc
-* GeanyExtraSel
-* GeanyGDB
-* GeanyInsertNum
-* GeanyLaTeX
-* GeanyLipsum
-* GeanyPrj
-* GeanySendMail
-* GeanyVC
-* Pretty-Printer
-* Shiftcolumn
-* TableConvert
-* TreeBrowser
-%{?_use_webkit:* WebHelper}
-%{?_use_lua:* Spell Check}
-%{?_use_lua:* GeanyLua}
+* Codenav
+* Debugger
+* Devhelp
+* Geanydoc
+* Geanyextrasel
+* Geanygdb
 %{?_use_gendoc:* GeanyGenDoc}
+* Geanyinsertnum
+* Geanylatex
+* Geanylipsum
+%{?_use_lua:* GeanyLua}
+* Geanymacro
+* Geanyminiscript
+* Geanynumberedbookmarks
+* Geanypg
+* Geanyprj
+* Geanysendmail
+* Geanyvc
+* Geniuspaste
+* Gproject
+* Multiterm
+* Shiftcolumn
+%{?_use_lua:* Spell Check}
+* Tableconvert
+* Treebrowser
+%{?_use_webkit:* WebHelper}
+* Xmlsnippets
 
 %prep
 %setup
 
 %build
-export LUA_CFLAGS="-I%{_includedir}" 
-export LUA_LIBS="-L%{_libdir}" 
+export LUA_CFLAGS="-I%{_includedir}"
+export LUA_LIBS="-L%{_libdir}"
 %configure --disable-dependency-tracking \
             --disable-updatechecker %{?!_has_sufficient_lua:--disable-geanylua} %{?!_has_sufficient_gio:--disable-geanygendoc}
 %{__make} %{?_smp_mflags}
@@ -95,15 +103,19 @@ export LUA_LIBS="-L%{_libdir}"
 %defattr(-, root, root, 0755)
 %doc NEWS README README.waf
 %doc geany-plugins-doc/*
-%dir %{_libexecdir}/geany-plugins/
+%dir %{_libdir}/geany-plugins/
 %{?_use_gendoc:%{_datadir}/geany-plugins/geanygendoc}
 %{?_use_lua:%{_datadir}/geany-plugins/geanylua}
-%{?_use_lua:%{_libdir}/geany-plugins/*}
-%{_libexecdir}/geany-plugins/*
+%{_libdir}/geany-plugins/*
 %{_libdir}/geany/*.so
+%{_datadir}/geany-plugins/debugger/
+%{_datadir}/icons/hicolor/16x16/apps/gproject*.png
 %exclude %{_libdir}/geany/*.la
 
 %changelog
+* Fri Oct 19 2012 Laurent Wandrebeck <lw@hygeos.com> - 1.22-1
+- Updated to version 1.22.
+
 * Thu Feb 24 2011 Steve Huff <shuff@vecna.org> - 0.20-1
 - Updated to version 0.20.
 - Fixed dependencies.
