@@ -2,7 +2,7 @@
 %{?el4:%define _without_bzr 1}
 
 Name:      etckeeper
-Version:   0.63
+Version:   0.64
 Release:   1%{?dist}
 Summary:   Store /etc in a SCM system (git, mercurial, bzr or darcs)
 Group:     Applications/System
@@ -44,6 +44,7 @@ etckeeper with bzr backend, install this package.
 %{__perl} -pi -e '
     s|HIGHLEVEL_PACKAGE_MANAGER=apt|HIGHLEVEL_PACKAGE_MANAGER=yum|;
     s|LOWLEVEL_PACKAGE_MANAGER=dpkg|LOWLEVEL_PACKAGE_MANAGER=rpm|;
+    s|#AVOID_DAILY_AUTOCOMMITS=1|AVOID_DAILY_AUTOCOMMITS=1|;
     ' etckeeper.conf
 %{__sed} -i -e '1d' yum-etckeeper.py
 
@@ -97,6 +98,10 @@ fi
 %endif
 
 %changelog
+* Wed Oct 31 2012 David Hrbáč <david@hrbac.cz> - 0.64-1
+- enabled AVOID_DAILY_AUTOCOMMITS
+- new upstream release
+
 * Wed Jun 20 2012 David Hrbáč <david@hrbac.cz> - 0.63-1
 - new upstream release
 
