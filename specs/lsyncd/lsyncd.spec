@@ -4,7 +4,7 @@
 
 Summary:        Live syncing (mirroring) daemon
 Name:           lsyncd
-Version:        2.1.2
+Version:        2.1.3
 Release:        1%{?dist}
 License:        GPL
 Group:          Applications/File
@@ -18,8 +18,8 @@ Source4:        %{name}.logrotate
 
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-# Use systemd unit files on Fedora 19 and above.
-%if 0%{?fedora} >= 19 || 0%{?rhel} >= 7
+# Use systemd unit files on Fedora 15 and above.
+%if 0%{?fedora} >= 15 || 0%{?rhel} >= 7
   %global _with_systemd 1
 %endif
 
