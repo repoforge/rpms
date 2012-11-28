@@ -20,7 +20,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.8.1
+Version: 1.8.2
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -408,6 +408,9 @@ fi
 
 
 %changelog
+* Tue Oct 30 2012 Michael Friedrich <michael.friedrich@gmail.com> - 1.8.2-1
+- 1.8.2 bump
+
 * Thu Oct 25 2012 Michael Friedrich <michael.friedrich@gmail.com> - 1.8.1-1
 - 1.8.1 release with a quickfix for faulty macros
 
