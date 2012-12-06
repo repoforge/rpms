@@ -30,7 +30,7 @@
 
 Summary: Open Source host, service and network monitoring Web UI
 Name: icinga-web
-Version: 1.8.0
+Version: 1.8.1
 Release: %{revision}%{?dist}
 License: GPLv3
 Group: Applications/System
@@ -213,6 +213,9 @@ fi
 ##############################
 %changelog
 ##############################
+* Wed Dec 5 2012 Marius Hein <marius.hein@netways.de> - 1.8.1-1
+- bump to 1.8.1
+
 * Mon Sep 24 2012 Michael Friedrich <michael.friedrich@gmail.com> - 1.8.0-1
 - bump to 1.8.0
 
