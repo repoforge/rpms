@@ -4,7 +4,7 @@
 
 Summary:        Live syncing (mirroring) daemon
 Name:           lsyncd
-Version:        2.1.3
+Version:        2.1.4
 Release:        1%{?dist}
 License:        GPL
 Group:          Applications/File
@@ -125,8 +125,8 @@ fi
 %exclude %{_docdir}/lsyncd
 
 %changelog
-* Wed Nov 05 2012 Troxor Zero <troxor0@yahoo.com> - 2.1.2-1
-- Updated to release 2.1.2
+* Wed Dec 13 2012 Troy C <troxor0@yahoo.com> - 2.1.4-1
+- Updated to release 2.1.4
 - Added a systemd service file
 - Added a logrotate config file
 
