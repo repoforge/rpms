@@ -7,7 +7,7 @@
 
 Summary: DNS(SEC) library based on Net::DNS
 Name: ldns
-Version: 1.6.13
+Version: 1.6.16
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Libraries
@@ -113,6 +113,9 @@ make %{?_smp_mflags} doc
 %exclude %{python_sitearch}/*.la
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 1.6.16-1
+- new upstream release
+
 * Tue May 22 2012 David Hrbáč <david@hrbac.cz> - 1.6.13-1
 - new upstream release
 
