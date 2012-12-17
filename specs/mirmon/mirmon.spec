@@ -1,6 +1,6 @@
 Summary:        Monitor the state of mirrors
 Name:           mirmon
-Version:        2.6
+Version:        2.7
 Release:        1%{?dist}
 License:        BSD
 Group:          Applications/Internet
@@ -54,6 +54,9 @@ cp -a countries.list icons %buildroot%_datadir/%name/
 %doc *.txt
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 2.7-1
+- new upstream release
+
 * Mon May 28 2012 David Hrbáč <david@hrbac.cz> - 2.6-1
 - new upstream release
 
