@@ -12,7 +12,7 @@
 
 Summary: Error/exception handling in an OO-ish way
 Name: perl-Error
-Version: 0.17017
+Version: 0.17019
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -67,6 +67,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Error.pm
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 0.17019-1
+- new upstream release
+
 * Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 0.17017-1
 - new upstream release
 
