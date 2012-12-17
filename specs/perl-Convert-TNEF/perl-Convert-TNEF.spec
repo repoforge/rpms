@@ -8,8 +8,8 @@
 
 Summary: Convert-TNEF module for perl
 Name: perl-Convert-TNEF
-Version: 0.17
-Release: 3.2%{?dist}
+Version: 0.18
+Release: 1%{?dist}
 License: distributable
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Convert-TNEF/
@@ -50,6 +50,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %{perl_vendorlib}/Convert/TNEF.pm
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 0.18-1
+- new upstream release
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.17-3.2
 - Rebuild for Fedora Core 5.
 
