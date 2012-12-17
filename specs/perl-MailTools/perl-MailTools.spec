@@ -12,7 +12,7 @@
 
 Summary: Various Mail related modules
 Name: perl-MailTools
-Version: 2.09
+Version: 2.11
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -75,6 +75,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Mail/
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 2.11-1
+- new upstream release
+
 * Mon Feb 27 2012 David Hrbáč <david@hrbac.cz> - 2.09-1
 - new upstream release
 
