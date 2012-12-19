@@ -1,0 +1,10 @@
+--- src/carp.c~	2010-01-31 15:59:12.000000000 -0600
++++ src/carp.c	2012-10-25 09:25:54.949976635 -0500
+@@ -762,6 +762,7 @@
+     
+     if (shutdown_at_exit != 0) {
+         (void) signal(SIGINT, sighandler_exit);
++        (void) signal(SIGHUP, sighandler_exit);
+         (void) signal(SIGQUIT, sighandler_exit);
+         (void) signal(SIGTERM, sighandler_exit);
+     }
