@@ -9,7 +9,7 @@
 Summary: Nagios Remote Plug-ins Execution daemon
 Name: nagios-nrpe
 Version: 2.12
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -35,7 +35,7 @@ from check_nrpe on this hosts.
 %package -n nagios-plugins-nrpe
 Summary: Nagios plug-in for NRPE
 Group: Applications/Internet
-Requires: nagios, nagios-plugins
+Requires: nagios-plugins
 Obsoletes: nrpe-plugins
 
 %description -n nagios-plugins-nrpe
@@ -217,6 +217,9 @@ fi
 %{_libdir}/nagios/plugins/
 
 %changelog
+* Thu Dec 20 2012 Michael Friedrich <michael.friedrich@netways.de> - 2.12-2
+- remove requires nagios, there's other cores too
+
 * Tue Mar  3 2009 Ville Mattila <vmattila@csc.fi> - 2.12-1
 - Updated to release 2.12.
 
