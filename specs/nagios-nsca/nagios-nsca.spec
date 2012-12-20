@@ -10,7 +10,7 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.7.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
@@ -21,7 +21,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{?!rh62:BuildRequires: libmcrypt-devel}
 Provides: nsca
 Obsoletes: nsca, netsaint-nsca
-Requires: bash, nagios, libmcrypt, xinetd, nagios-nsca-client
+Requires: bash, libmcrypt, xinetd, nagios-nsca-client
 
 %description
 The purpose of this addon is to allow you to execute NetSaint/Nagios
@@ -196,6 +196,9 @@ fi
 %defattr(-, nagios, apache, 2755)
 
 %changelog
+* Thu Dec 20 2012 Michael Friedrich <michael.friedrich@netways.de> - 2.7.2-4
+- remove requires nagios, there's other cores too
+
 * Mon Nov 03 2008 Christoph Maser <cmr@financial.com> - 2.7.2-3
 - Fix permissions on %{_sysconfdir}/nagios when installing client only
 
