@@ -92,7 +92,7 @@ then
 
 	# now fix all the paths and users
 	sed -i -e 's/Nagios Access/Icinga Access/g;
-		s/\/usr\/local\/nagios\/etc\/htpasswd.users/\/etc\/icinga\/htpasswd/g
+		s/\/usr\/local\/nagios\/etc\/htpasswd.users/\/etc\/icinga\/passwd/g
 		' %{_sysconfdir}/httpd/conf.d/pnp4nagios.conf
 	sed -i -e 's/\/nagios\/cgi-bin/\/icinga\/cgi-bin/g' %{_sysconfdir}/%{name}/config.php
 	sed -i -e 's/user = nagios/user = icinga/g;
