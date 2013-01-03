@@ -11,12 +11,13 @@
 Summary: Port-knocking server
 Name: knock
 Version: 0.5
-Release: 1%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.zeroflux.org/knock/
 
 Source: http://www.zeroflux.org/knock/files/knock-%{version}.tar.gz
+%{?el6:Patch0: knock-el6-compilation-error.patch}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
@@ -35,6 +36,7 @@ holes in a firewall for quick access.
 
 %prep
 %setup
+%{?el6:%patch0 -p1}
 
 %build
 %configure
@@ -56,7 +58,10 @@ holes in a firewall for quick access.
 %{_sbindir}/knockd
 
 %changelog
-* Fri Dec 16 2011 Jan Horacek <jahor@jhr.cz> - 0.5-2.jhr.1
+* Thu Jan 03 2013 Jan Horacek <jahor@jhr.cz> - 0.5-3
+- patch for building on EL6
+
+* Fri Dec 16 2011 Jan Horacek <jahor@jhr.cz> - 0.5-2
 - EL6 has libpcap-devel
 
 * Tue Sep 26 2006 Dries Verachtert <dries@ulyssis.org> - 0.5-1
