@@ -41,6 +41,7 @@ libtorrent DEFAULT http://libtorrent.rakshasa.no/downloads/
 lshw lshw-B.([\d.]*?).tar.gz http://ezix.org/software/files/
 lzo DEFAULT http://www.oberhumer.com/opensource/lzo/download/
 lzop DEFAULT http://www.lzop.org/download/
+maven apache-maven-([\d.]+?)-bin.tar.gz http://maven.apache.org/download.cgi
 mercurial DEFAULT http://mercurial.selenic.com/release/
 mfs DEFAULT http://www.moosefs.org/download.html
 milter-greylist DEFAULT http://ftp.espci.fr/pub/milter-greylist/
