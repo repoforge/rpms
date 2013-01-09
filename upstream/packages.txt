@@ -157,6 +157,7 @@ spinner DEFAULT http://downloads.laffeycomputer.com/current_builds/spinner/
 subversion DEFAULT http://subversion.apache.org/download/
 swish-e DEFAULT http://swish-e.org/download/index.html
 syslinux DEFAULT http://www.kernel.org/pub/linux/utils/boot/syslinux/
+task DEFAULT http://taskwarrior.org/projects/show/taskwarrior
 tig DEFAULT http://jonas.nitro.dk/tig/releases/
 tinc tinc-([\d.]*?).tar.gz http://www.tinc-vpn.org/packages/
 tmux DEFAULT SF-DEFAULT
