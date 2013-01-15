@@ -102,9 +102,6 @@ alerting purposes.
 %prep
 %setup -q -n amavisd-new-%{version}
 
-### FIXME: Some versions of install fail to change permissions when failing to change ownership. (Please fix upstream)
-#%{__perl} -pi.orig -e 's| -o root | |g' helper-progs/Makefile.in
-
 %{__cat} <<EOF >amavisd.logrotate
 %{_localstatedir}/log/amavis.log {
     create 600 amavis amavis
