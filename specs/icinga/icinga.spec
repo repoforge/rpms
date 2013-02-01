@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 1
+%define revision 2
 
 %define logmsg logger -t %{name}/rpm
 
@@ -26,7 +26,7 @@ License: GPLv2
 Group: Applications/System
 URL: http://www.icinga.org/
 
-Source0: http://dl.sf.net/icinga/icinga-%{version}.tar.gz
+Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc
@@ -408,6 +408,9 @@ fi
 
 
 %changelog
+* Fri Feb 01 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-2
+- fix sf.net url
+
 * Sun Jan 13 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-1
 - 1.8.4 bump
 
