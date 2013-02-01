@@ -130,6 +130,7 @@ perl-Variable-Magic CPAN-DEFAULT CPAN-DEFAULT
 perl-WWW-Mechanize CPAN-DEFAULT CPAN-DEFAULT
 perl-WWW-Mediawiki-Client CPAN-DEFAULT CPAN-DEFAULT
 perl-WebService-Pushover CPAN-DEFAULT CPAN-DEFAULT
+perl-WebService-Smartling CPAN-DEFAULT CPAN-DEFAULT
 perl-rlib CPAN-DEFAULT CPAN-DEFAULT
 perl-version CPAN-DEFAULT CPAN-DEFAULT
 phpMyAdmin phpMyAdmin-([\d.]*?)-all-languages.tar.bz2 http://www.phpmyadmin.net/home_page/downloads.php
