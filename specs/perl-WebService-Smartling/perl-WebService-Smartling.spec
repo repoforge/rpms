@@ -11,7 +11,7 @@
 
 Summary: Smartling API access
 Name: perl-WebService-Smartling
-Version: 0.01
+Version: 0.0.4
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -82,5 +82,8 @@ and project Id before you'll be able to do anything with this module.
 %exclude %{perl_vendorarch}/auto/*/*/.packlist
 
 %changelog
+* Sun Feb  3 2013 Steve Huff <shuff@vecna.org> - 0.0.4-1
+New version format.
+
 * Fri Feb  1 2013 Steve Huff <shuff@vecna.org> - 0.01-1
 - Initial package.
