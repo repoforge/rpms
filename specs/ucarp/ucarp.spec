@@ -8,7 +8,7 @@
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp
 Version: 1.5.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.ucarp.org/
@@ -103,6 +103,9 @@ fi
 %{_sbindir}/ucarp
 
 %changelog
+* Thu Feb 07 2013 David Hrbáč <david@hrbac.cz> - 1.5.2-3
+- new init script by Filip Valder
+
 * Wed Dec 19 2012 David Hrbáč <david@hrbac.cz> - 1.5.2-2
 - Patch to fix crash, BZ 693762.
 
