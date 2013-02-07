@@ -3,14 +3,14 @@
 
 Summary: General-purpose stream-handling tool
 Name: cstream
-Version: 2.7.4
-Release: 3%{?dist}
+Version: 3.1.0
+Release: 1%{?dist}
 License: MIT
 Group: Applications/System
 URL: http://www.cons.org/cracauer/cstream.html
 
 Source: http://www.cons.org/cracauer/download/cstream-%{version}.tar.gz
-Patch2: cstream-2.7.4-Wextra.patch
+Patch2: cstream-3.1.0-Wextra.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -44,6 +44,9 @@ Data limits and throughput rate calculation will work for files > 4 GB.
 %{_bindir}/cstream
 
 %changelog
+* Thu Feb 07 2013 Hiroaki Nakamura <hnakamur@gmail.com> - 3.1.0-1
+- Update to upstream version 3.1.0.
+
 * Fri Feb 08 2008 Hans Ulrich Niedermann <hun@n-dimensional.de> - 2.7.4-3
 - More compile warnings (-Wall -Wextra -Werror).
 - Redacted description down to the most important points.
