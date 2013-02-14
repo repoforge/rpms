@@ -6,7 +6,7 @@
 
 Name:		pnp4nagios
 Version: 	0.6.19
-Release:	2
+Release:	3
 Summary: 	PNP is not PerfParse. A Nagios/Icinga perfdata graphing solution
 
 Group:	 	Applications/System
@@ -129,7 +129,7 @@ fi
 
 
 %files
-%defattr(-,nagios,nagios,-)
+%defattr(-,root,root,-)
 %doc AUTHORS
 %doc ChangeLog
 %doc COPYING
@@ -165,6 +165,9 @@ fi
 
 
 %changelog
+* Thu Feb 14 2013 Michael Friedrich <michael.friedrich@netways.de> - 0.6.19-3
+- fix permissions on docs (root instead of nagios)
+
 * Fri Dec 28 2012 Michael Friedrich <michael.friedrich@netways.de> - 0.6.19-2
 - add logmsg
 - mv misccommands.cfg-sample to misccommands.cfg-sample-{nagios,icinga}
