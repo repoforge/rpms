@@ -1,31 +1,30 @@
 # $Id:$
-# Upstream:     pnp4nagios-devel@lists.sourceforge.net
+# Upstream:	pnp4nagios-devel@lists.sourceforge.net
 
 
 %define logmsg logger -t %{name}/rpm
 
 Name:		pnp4nagios
-Version: 	0.6.19
-Release:	3
-Summary: 	PNP is not PerfParse. A Nagios/Icinga perfdata graphing solution
+Version:	0.6.19
+Release:	4
+Summary:	PNP is not PerfParse. A Nagios/Icinga perfdata graphing solution
 
-Group:	 	Applications/System
+Group:		Applications/System
 License:	GPLv2
 URL:		http://www.pnp4nagios.org/
-Source: 	http://downloads.sourceforge.net/pnp4nagios/%{name}-%{version}.tar.gz
+Source:		http://downloads.sourceforge.net/pnp4nagios/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:	rrdtool-devel
-BuildRequires:  perl-rrdtool
+BuildRequires:	perl-rrdtool
 Requires:	rrdtool
 Requires:	perl-rrdtool
-Obsoletes:	pnp
 
 %description
 PNP is an addon to Nagios/Icinga which analyzes performance data provided by plugins and stores them automatically into RRD-databases.
 
 %prep
-%setup
+%setup -q
 
 
 %build
@@ -83,9 +82,23 @@ rm -f %{buildroot}%{_sysconfdir}/%{name}/config_local.php
 %pre
 
 %post
+
+# do that on fresh installs only
+if [ $1 -eq 1 ] ; then
+
 # check wether icinga or nagios rpm is installed, and their users
-if [ -f /etc/icinga/icinga.cfg ] && [ -f /usr/bin/icinga ]
-then
+if [ -f /etc/nagios/nagios.cfg ] && [ -f /usr/bin/nagios ] ; then
+		# otherwise, stick with nagios
+	getent group nagios >/dev/null || %{_sbindir}/groupadd nagios
+	getent group nagiocmd >/dev/null || %{_sbindir}/groupadd nagiocmd
+	getent passwd nagios >/dev/null || %{_sbindir}/useradd -c "nagios" -s /sbin/nologin -r -d %{_localstatedir}/log/nagios -G nagiocmd -g nagios nagios
+
+	# some paths are really broken for nagios as well
+	sed -i -e 's/\/usr\/local\/nagios\/etc\/htpasswd.users/\/etc\/nagios\/htpasswd.users/g' %{_sysconfdir}/httpd/conf.d/pnp4nagios.conf
+
+	%logmsg "Detected Nagios Package, adjusted configuration to match it."
+	%logmsg "(see /etc/httpd/conf.d/pnp4nagios.conf, /etc/pnp4nagios/{config.php,npcd.cfg,process_perfdata.cfg}, /etc/rc.d/init.d/npcd)."
+else
 	getent group icinga >/dev/null || %{_sbindir}/groupadd icinga
 	getent group icingacmd >/dev/null || %{_sbindir}/groupadd icingacmd
 	getent passwd icinga >/dev/null || %{_sbindir}/useradd -c "icinga" -s /sbin/nologin -r -d %{_localstatedir}/spool/icinga -G icingacmd -g icinga icinga
@@ -108,24 +121,13 @@ then
 
 	%logmsg "Detected Icinga Package, adjusted configuration to match it."
 	%logmsg "(see /etc/httpd/conf.d/pnp4nagios.conf, /etc/pnp4nagios/{config.php,npcd.cfg,process_perfdata.cfg}, /etc/rc.d/init.d/npcd)."
-	
-else
-# otherwise, stick with nagios
-        getent group nagios >/dev/null || %{_sbindir}/groupadd nagios
-        getent group nagiocmd >/dev/null || %{_sbindir}/groupadd nagiocmd
-        getent passwd nagios >/dev/null || %{_sbindir}/useradd -c "nagios" -s /sbin/nologin -r -d %{_localstatedir}/log/nagios -G nagiocmd -g nagios nagios
-
-	# some paths are really broken for nagios as well
-	sed -i -e 's/\/usr\/local\/nagios\/etc\/htpasswd.users/\/etc\/nagios\/htpasswd.users/g' %{_sysconfdir}/httpd/conf.d/pnp4nagios.conf
-
-	%logmsg "Detected Nagios Package, adjusted configuration to match it."
-	%logmsg "(see /etc/httpd/conf.d/pnp4nagios.conf, /etc/pnp4nagios/{config.php,npcd.cfg,process_perfdata.cfg}, /etc/rc.d/init.d/npcd)."
+fi
 fi
 
 
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 
 %files
@@ -165,6 +167,11 @@ fi
 
 
 %changelog
+* Fri Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 0.6.19-4
+- if nagios is installed, use default config, otherwise fallback to icinga
+- only sed config in sysconfdir on fresh installs, upgrades are not-to-be overridden
+- fix rpmlint warnings
+
 * Thu Feb 14 2013 Michael Friedrich <michael.friedrich@netways.de> - 0.6.19-3
 - fix permissions on docs (root instead of nagios)
 
@@ -203,21 +210,21 @@ fi
 * Tue Aug 31 2010 Christoph Maser <cmr@financial.com> - 0.6.6-1
 - Updated to version 0.6.6.
 
-* Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -  0.6.2 - 2
+* Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -	0.6.2 - 2
 - add --with-perfdata-spool-dir and --with-perfdata--dir
 - mark httpd-config snippet as config file
 
-* Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -  0.6.2 - 1
+* Thu Dec 24 2009 Christoph Maser <cmr@financial.com> -	0.6.2 - 1
 - Update to version 0.6.2
 - Rename to pnp4nagios
 
-* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -  0.4.14 - 2
+* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -	0.4.14 - 2
 - Update to version 0.4.14
 
-* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -  0.4.13 - 2
+* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -	0.4.13 - 2
 - modify log path
 - add documentation files
 
-* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -  0.4.13 - 1
+* Mon Mar 23 2009 Christoph Maser <cmr@financial.com> -	0.4.13 - 1
 - Initial package (using brain ;)
 
