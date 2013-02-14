@@ -292,7 +292,7 @@ fi
 ##############################
 %changelog
 ##############################
-* Thu Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.2-2
+* Fri Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.2-2
 - fix rpmlint errors/warnings
 
 * Wed Feb 11 2013 Markus Frosch <markus.frosch@netways.de> - 1.8.2-1
