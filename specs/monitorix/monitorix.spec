@@ -4,7 +4,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 2.6.0
+Version: 3.0.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -21,6 +21,8 @@ Requires: perl-MailTools
 Requires: perl-MIME-Lite
 Requires: perl-DBI
 Requires: perl-XML-Simple
+Requires: perl-Config-General
+Requires: perl-HTTP-Server-Simple
 
 Requires: /sbin/chkconfig
 Requires: /sbin/service
@@ -40,8 +42,6 @@ simplicity and small size may also be used on embedded devices as well.
 %{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_initrddir}
 %{__install} -m 0755 docs/monitorix.init %{buildroot}%{_initrddir}/monitorix
-%{__mkdir_p} %{buildroot}%{_sysconfdir}/httpd/conf.d
-%{__install} -m 0644 docs/monitorix-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf.d/monitorix.conf
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/logrotate.d
 %{__install} -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/sysconfig
@@ -50,16 +50,17 @@ simplicity and small size may also be used on embedded devices as well.
 %{__install} -m 0644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
 %{__mkdir_p} %{buildroot}%{_bindir}
 %{__install} -m 0755 monitorix %{buildroot}%{_bindir}
+%{__mkdir_p} %{buildroot}%{_libdir}/monitorix
+%{__install} -m 0644 lib/*.pm %{buildroot}%{_libdir}/monitorix
 %{__mkdir_p} %{buildroot}%{_datadir}/monitorix
 %{__install} -m 0644 logo_top.png %{buildroot}%{_datadir}/monitorix
 %{__install} -m 0644 logo_bot.png %{buildroot}%{_datadir}/monitorix
 %{__install} -m 0644 monitorixico.png %{buildroot}%{_datadir}/monitorix
 %{__mkdir_p} %{buildroot}%{_datadir}/monitorix/imgs
 %{__mkdir_p} %{buildroot}%{_datadir}/monitorix/cgi-bin
-%{__install} -m 0755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi-bin
+%{__install} -m 0755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi
 %{__mkdir_p} %{buildroot}%{_localstatedir}/lib/monitorix/reports
 %{__install} -m 0644 reports/*.html %{buildroot}%{_localstatedir}/lib/monitorix/reports
-%{__install} -m 0755 reports/send_reports %{buildroot}%{_localstatedir}/lib/monitorix/reports
 %{__mkdir_p} %{buildroot}%{_localstatedir}/lib/monitorix/usage
 %{__mkdir_p} %{buildroot}%{_mandir}/man5
 %{__mkdir_p} %{buildroot}%{_mandir}/man8
@@ -88,24 +89,26 @@ fi
 %files
 %defattr(-, root, root)
 %{_initrddir}/monitorix
-%config(noreplace) %{_sysconfdir}/httpd/conf.d/monitorix.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/monitorix
 %config(noreplace) %{_sysconfdir}/sysconfig/monitorix
 %config(noreplace) %{_sysconfdir}/monitorix.conf
 %{_bindir}/monitorix
+%{_libdir}/monitorix/*.pm
 %{_datadir}/monitorix/logo_top.png
 %{_datadir}/monitorix/logo_bot.png
 %{_datadir}/monitorix/monitorixico.png
-%{_datadir}/monitorix/cgi-bin/monitorix.cgi
-%attr(777,apache,apache) %{_datadir}/monitorix/imgs
+%{_datadir}/monitorix/cgi/monitorix.cgi
+%attr(777,root,root) %{_datadir}/monitorix/imgs
 %attr(755,root,root) %{_localstatedir}/lib/monitorix/usage
 %config(noreplace) %{_localstatedir}/lib/monitorix/reports/*.html
-%{_localstatedir}/lib/monitorix/reports/send_reports
 %doc %{_mandir}/man5/monitorix.conf.5.gz
 %doc %{_mandir}/man8/monitorix.8.gz
-%doc Changes COPYING README README.nginx docs/monitorix-alert.sh docs/monitorix-lighttpd.conf
+%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf
 
 %changelog
+* Thu Feb 21 2013 Jordi Sanfeliu <jordi@fibranet.cat> - 3.0.0-1
+- Updated to the latest version.
+
 * Thu Sep 20 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.6.0-1
 - Updated to the latest version.
 
