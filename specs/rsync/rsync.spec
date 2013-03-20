@@ -16,12 +16,14 @@
 Summary: Program for synchronizing files over a network
 Name: rsync
 Version: 3.0.9
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://rsync.samba.org/
 
 Source: http://rsync.samba.org/ftp/rsync/rsync-%{version}.tar.gz
+Patch0: http://tobi.oetiker.ch/patches/rsync-3.0.9-3-fadvise.patch
+Patch1: rsync-3.0.9-direct-io.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{!?_without_acl:BuildRequires: libacl-devel}
@@ -38,6 +40,8 @@ package.
 
 %prep
 %setup
+%patch0 -p1 -b .fadvise
+%patch1 -p0 -b .direct-io
 
 %{__cat} <<EOF >rsync.xinet
 # default: off
@@ -76,6 +80,9 @@ EOF
 %{_bindir}/rsync
 
 %changelog
+* Thu Feb 14 2013 Dag Wieers <dag@wieers.com> - 3.0.9-2
+- Added fadvise patch.
+
 * Sat Sep 24 2011 Dag Wieers <dag@wieers.com> - 3.0.9-1
 - Updated to release 3.0.9.
 
