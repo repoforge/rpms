@@ -4,7 +4,7 @@
 
 Summary: I/O benchmark and stress/hardware verification tool
 Name: fio
-Version: 2.0.13
+Version: 2.0.14
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -53,6 +53,9 @@ utilization, and more. It supports Linux, FreeBSD, and OpenSolaris.
 #%{_libdir}/fio/
 
 %changelog
+* Wed Mar 20 2013 Dag Wieers <dag@wieers.com> - 2.0.14-1
+- Updated to release 2.0.14.
+
 * Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 2.0.13-1
 - Updated to release 2.0.13.
 
