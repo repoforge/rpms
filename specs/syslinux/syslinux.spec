@@ -14,7 +14,7 @@
 
 Summary: Kernel bootloader for FAT or ISO9660 filesystems or PXE networks
 Name: syslinux
-Version: 4.05
+Version: 5.00
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -27,6 +27,7 @@ ExclusiveArch: %{ix86} x86_64
 BuildRequires: nasm
 BuildRequires: netpbm-progs
 BuildRequires: perl
+BuildRequires: upx
 Requires: mtools
 
 Obsoletes: syslinux-devel <= %{version}-%{release}
@@ -42,8 +43,10 @@ MEMDISK, which loads legacy operating systems from these media.
 %setup
 
 %build
-%{__make} clean
-%{__make} %{?_smp_mflags} installer
+%{__make} CC="%{__cc}" clean
+%{__make} spotless
+%{__make}
+%{__make} CC="%{__cc}" installer
 
 %install
 %{__rm} -rf %{buildroot}
@@ -91,6 +94,12 @@ MEMDISK, which loads legacy operating systems from these media.
 /boot/extlinux/
 
 %changelog
+* Thu Dec 06 2012 Dag Wieers <dag@wieers.com> - 5.00-1
+- Updated to release 5.00.
+
+* Tue Nov 20 2012 Dag Wieers <dag@wieers.com> - 4.06-1
+- Updated to release 4.06.
+
 * Sat Dec 10 2011 Dag Wieers <dag@wieers.com> - 4.05-1
 - Updated to release 4.05.
 
