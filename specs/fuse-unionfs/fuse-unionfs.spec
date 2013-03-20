@@ -7,13 +7,13 @@
 
 Summary: Fuse-based user-space union filesystem
 Name: fuse-unionfs
-Version: 0.25
+Version: 0.26
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Kernel
 URL: http://podgorny.cz/moin/UnionFsFuse
 
-Source: http://podgorny.cz/unionfs-fuse/releases/unionfs-fuse-%{version}.tar.bz2
+Source: http://podgorny.cz/unionfs-fuse/releases/unionfs-fuse-%{version}.tar.xz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: fuse-devel >= 2.2
@@ -57,6 +57,9 @@ unionfs is a FUSE-base user-space union filesystem.
 %{_sbindir}/mount.unionfs
 
 %changelog
+* Sun Sep 23 2012 Dag Wieers <dag@wieers.com> - 0.26-1
+- Updated to release 0.26.
+
 * Sun Feb 05 2012 Dag Wieers <dag@wieers.com> - 0.25-1
 - Updated to release 0.25.
 
