@@ -3,7 +3,8 @@
 
 ### EL6 ships with ccid-1.3.9-3.el6
 ### EL5 ships with ccid-1.3.8-1.el5
-# ExclusiveDist: el2 el3 el4
+# Tag: rfx
+## ExclusiveDist: el2 el3 el4
 
 %define usbdropdir %(pkg-config libpcsclite --variable="usbdropdir" 2>/dev/null)
 %define real_name ccid
@@ -18,6 +19,7 @@ URL: http://pcsclite.alioth.debian.org/ccid.html
 
 ### Source is a fixed address per file, substituting version doesn't work.
 Source: http://alioth.debian.org/download.php/2924/ccid-%{version}.tar.bz2
+Patch0: ccid-1.3.10-dectel.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libusb-devel >= 0.1.7
@@ -36,6 +38,7 @@ PC/SC Lite daemon.
 
 %prep
 %setup -n %{real_name}-%{version}
+%patch0 -p0
 
 %build
 %configure --enable-twinserial
