@@ -12,23 +12,19 @@
 
 Summary: Macromedia Flash Player
 Name: flash-plugin
-Version: 11.2.202.236
+Version: 11.2.202.238
 Release: 0.2%{?dist}
 License: Commercial
 Group: Applications/Internet
 URL: http://www.macromedia.com/downloads/
 
 ### More information wrt. downloads: http://kb2.adobe.com/cps/142/tn_14266.html
-%ifarch %{ix86}
 Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.i386.tar.gz
-%endif
-%ifarch x86_64
-Source0: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.%{_arch}.tar.gz
-%endif
-Source1: README
+Source1: http://fpdownload.macromedia.com/get/flashplayer/pdc/%{version}/install_flash_player_11_linux.x86_64.tar.gz
 Source2: LICENSE
-Source3: homecleanup
-Source4: setup64
+Source3: README
+Source4: homecleanup
+Source5: setup64
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Obsoletes: mozilla-flash <= %{version}-%{release}
@@ -43,19 +39,24 @@ Macromedia Flash Player
 By downloading and installing this package you agree to the included LICENSE.
 
 %prep
-%setup -c
-%{__install} -Dp -m0644 %{SOURCE1} LICENSE
-%{__install} -Dp -m0644 %{SOURCE2} README
+%ifarch %{ix86}
+%setup -cT -a0
+%endif
+%ifarch x86_64
+%setup -cT -a1
+%endif
+%{__install} -Dp -m0644 %{SOURCE2} LICENSE
+%{__install} -Dp -m0644 %{SOURCE3} README
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -Dp -m0755 libflashplayer.so %{buildroot}%{_libdir}/flash-plugin/libflashplayer.so
-%{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_libdir}/flash-plugin/LICENSE
-%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_libdir}/flash-plugin/README
-%{__install} -Dp -m0755 %{SOURCE3} %{buildroot}%{_libdir}/flash-plugin/homecleanup
-%{__install} -Dp -m0755 %{SOURCE4} %{buildroot}%{_libdir}/flash-plugin/setup
+%{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_libdir}/flash-plugin/LICENSE
+%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_libdir}/flash-plugin/README
+%{__install} -Dp -m0755 %{SOURCE4} %{buildroot}%{_libdir}/flash-plugin/homecleanup
+%{__install} -Dp -m0755 %{SOURCE5} %{buildroot}%{_libdir}/flash-plugin/setup
 %{__install} -Dp -m0755 usr/bin/flash-player-properties %{buildroot}%{_bindir}/flash-player-properties
 %{__cp} -auvx usr/share/. %{buildroot}%{_datadir}
 %{__cp} -auvx usr/%{_lib}/. %{buildroot}%{_libdir}
@@ -93,6 +94,9 @@ fi
 %endif
 
 %changelog
+* Sun Sep 23 2012 Dag Wieers <dag@wieers.com> - 11.2.202.238-0.1
+- Updated to release 11.2.202.238
+
 * Sun Jun 10 2012 Dag Wieers <dag@wieers.com> - 11.2.202.236-0.1
 - Updated to release 11.2.202.236.
 
