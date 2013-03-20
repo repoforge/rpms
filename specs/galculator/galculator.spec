@@ -4,7 +4,7 @@
 
 Summary: Graphical scientific calculator
 Name: galculator
-Version: 1.3.4
+Version: 2.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -33,7 +33,7 @@ Reverse Polish Notation.
 %{__perl} -pi -e 's|Icon=gnome-calc2.png|Icon=galculator|' galculator.desktop.in
 
 %build
-%configure
+%configure --disable-gtk3
 %{__make} %{?_smp_mflags}
 
 %install
@@ -51,11 +51,14 @@ Reverse Polish Notation.
 %{_bindir}/galculator
 %{_datadir}/applications/galculator.desktop
 %{_datadir}/galculator/
-%{_datadir}/pixmaps/galculator.png
-%{_datadir}/pixmaps/galculator.svg
 %{_datadir}/pixmaps/galculator.xpm
+%{_datadir}/icons/hicolor/*/apps/galculator.png
+%{_datadir}/icons/hicolor/*/apps/galculator.svg
 
 %changelog
+* Thu Oct 25 2012 Dag Wieers <dag@wieers.com> - 2.0-1
+- Updated to release 2.0.
+
 * Sun Feb 08 2009 Dag Wieers <dag@wieers.com> - 1.3.4-1
 - Updated to release 1.3.4.
 
