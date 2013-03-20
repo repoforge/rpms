@@ -10,7 +10,7 @@
 
 Summary: Tool to provide statistics based on the output of diff
 Name: diffstat
-Version: 1.55
+Version: 1.56
 Release: 1%{?dist}
 License: MIT
 Group: Development/Tools
@@ -50,10 +50,13 @@ diff command's output.
 %files
 %defattr(-, root, root, 0755)
 %doc CHANGES COPYING README
-%doc %{_mandir}/*/*
+%doc %{_mandir}/man1/diffstat.1*
 %{_bindir}/diffstat
 
 %changelog
+* Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 1.56-1
+- Updated to release 1.56.
+
 * Fri Jan 20 2012 Dag Wieers <dag@wieers.com> - 1.55-1
 - Updated to release 1.55.
 
