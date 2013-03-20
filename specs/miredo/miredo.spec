@@ -1,16 +1,16 @@
 # $Id$
-# Authority: dries
+# Authority: dag
 # Upstream: Rémi Denis-Courmont <rdenis$simphalempin,com>
 
 Summary: Tunneling of Ipv6 over UDP through NATs
 Name: miredo
-Version: 1.1.7
+Version: 1.2.5
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
-URL: http://www.simphalempin.com/dev/miredo/
+URL: http://www.remlab.net/miredo/
 
-Source: http://www.remlab.net/files/miredo/v0.8/miredo-%{version}.tar.bz2
+Source: http://www.remlab.net/files/miredo/miredo-%{version}.tar.xz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -38,7 +38,7 @@ you will need to install %{name}-devel.
 %setup
 
 %build
-%configure
+%configure --disable-static
 %{__make} %{?_smp_mflags}
 
 %install
@@ -72,8 +72,10 @@ you will need to install %{name}-devel.
 %{_bindir}/teredo-mire
 %{_libdir}/libteredo.so.*
 %{_libdir}/libtun6.so.*
-%dir %{_libdir}/miredo/
-%{_libdir}/miredo/miredo-privproc
+%dir %{_libdir}/systemd/
+%dir %{_libdir}/systemd/system/
+%{_libdir}/systemd/system/miredo.service
+%{_libexecdir}/miredo/miredo-privproc
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -81,12 +83,13 @@ you will need to install %{name}-devel.
 %{_includedir}/libtun6/
 %{_libdir}/libteredo.so
 %{_libdir}/libtun6.so
-%{_libdir}/libteredo.a
-%{_libdir}/libtun6.a
 %exclude %{_libdir}/libteredo.la
 %exclude %{_libdir}/libtun6.la
 
 %changelog
+* Tue Jan 29 2013 Dag Wieers <dag@wieers.com> - 1.2.5-1
+- Updated to release 1.2.5.
+
 * Tue Jul 21 2009 Dries Verachtert <dries@ulyssis.org> - 1.1.7-1
 - Updated to release 1.1.7.
 
