@@ -5,7 +5,7 @@
 
 Summary: Units conversion utility
 Name: gonvert
-Version: 0.2.23
+Version: 0.2.32
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -39,15 +39,7 @@ your own units.
 
 %install
 %{__rm} -rf %{buildroot}
-%{__make} install DESTDIR="%{buildroot}"
-
-%if %{!?_without_freedesktop:1}0
-    %{__install} -d -m0755 %{buildroot}%{_datadir}/applications/
-    desktop-file-install --vendor gnome --delete-original \
-        --dir %{buildroot}%{_datadir}/applications    \
-        --add-category X-Red-Hat-Base                 \
-        %{buildroot}%{_datadir}/gnome/apps/Utilities/gonvert.desktop
-%endif
+%{__make} install DESTDIR="%{buildroot}" prefix="%{_prefix}" datadir="%{_datadir}"
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -57,12 +49,14 @@ your own units.
 %doc doc/*
 %{_bindir}/gonvert
 %{_datadir}/gonvert/
-%{!?_without_freedesktop:%{_datadir}/applications/gnome-gonvert.desktop}
-%{?_without_freedesktop:%{_datadir}/gnome/apps/Utilities/gonvert.desktop}
+%{_datadir}/gnome/apps/Utilities/gonvert.desktop
 %{_datadir}/pixmaps/*.png
 %exclude %{_docdir}/gonvert/
 
 %changelog
+* Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 0.2.32-1
+- Updated to release 0.2.32.
+
 * Thu Oct 22 2009 Dag Wieers <dag@wieers.com> - 0.2.23-1
 - Updated to release 0.2.23.
 
