@@ -88,6 +88,7 @@ desktop-file-install --delete-original \
 %doc %{_mandir}/man1/ncat.1*
 %{!?_without_python24:%doc %{_mandir}/man1/ndiff.1*}
 %doc %{_mandir}/man1/nmap.1*
+%doc %{_mandir}/man1/nmap-update.1*
 %lang(de) %{_mandir}/de/man1/nmap.1*
 %lang(es) %{_mandir}/es/man1/nmap.1*
 %lang(fr) %{_mandir}/fr/man1/nmap.1*
@@ -103,10 +104,10 @@ desktop-file-install --delete-original \
 %lang(sk) %{_mandir}/sk/man1/nmap.1*
 %lang(zh) %{_mandir}/zh/man1/nmap.1*
 %doc %{_mandir}/man1/nping.1*
-
 %{_bindir}/ncat
 %{!?_without_python24:%{_bindir}/ndiff}
 %{_bindir}/nmap
+%{_bindir}/nmap-update
 %{_bindir}/nping
 %{_datadir}/ncat/
 %{_datadir}/nmap/
