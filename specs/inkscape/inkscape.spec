@@ -19,8 +19,8 @@
 
 Summary: Vector drawing application
 Name: inkscape
-Version: 0.48.0
-Release: 2%{?dist}
+Version: 0.48.2
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://inkscape.sourceforge.net/
@@ -114,6 +114,9 @@ Inkscape is an SVG based generic vector-drawing program.
 %{_datadir}/inkscape/
 
 %changelog
+* Fri Dec 21 2012 Dag Wieers <dag@wieers.com> - 0.48.2-1
+- Updated to release 0.48.2.
+
 * Thu Dec 09 2010 Steve Huff <shuff@vecna.org> - 0.48-2
 - Tag as rfx due to gsl dependency.
 
