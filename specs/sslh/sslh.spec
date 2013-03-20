@@ -5,7 +5,7 @@
 
 Summary: ssl/ssh multiplexer
 Name: sslh
-Version: 1.12
+Version: 1.14
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Shells
@@ -65,6 +65,9 @@ fi
 %{_sbindir}/sslh
 
 %changelog
+* Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 1.14-1
+- Updated to release 1.14.
+
 * Fri May 11 2012 Dag Wieers <dag@wieers.com> - 1.12-1
 - Updated to release 1.12.
 
