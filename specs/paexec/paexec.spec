@@ -1,5 +1,5 @@
 Name: paexec
-Version: 0.16.1
+Version: 0.17.0
 Release: 1%{?dist}
 
 Summary: Distribute performing the given tasks across several CPUs or machines in a network
