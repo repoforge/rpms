@@ -4,7 +4,7 @@
 
 Summary: Text-mode interface for git
 Name: tig
-Version: 1.0
+Version: 1.1
 Release: 1%{?dist}
 License: GPLv2+
 Group: Development/Tools
@@ -59,7 +59,7 @@ with the log message, diffstat, and the diff.
 
 %files
 %defattr(-, root, root, 0755)
-%doc BUGS COPYING INSTALL NEWS* README* SITES TODO VERSION contrib/ tigdocs/
+%doc BUGS COPYING INSTALL NEWS* README* SITES contrib/ tigdocs/
 %doc %{_mandir}/man1/tig.1*
 %doc %{_mandir}/man5/tigrc.5*
 %doc %{_mandir}/man7/tigmanual.7*
@@ -67,6 +67,9 @@ with the log message, diffstat, and the diff.
 %{_bindir}/tig
 
 %changelog
+* Thu Oct 25 2012 Dag Wieers <dag@wieers.com> - 1.1-1
+- Updated to release 1.1.
+
 * Mon May 21 2012 Yury V. Zaytsev <yury@shurup.com> - 1.0-1
 - Updated to version 1.0.
 
