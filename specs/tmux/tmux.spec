@@ -5,7 +5,7 @@
 
 Summary: Terminal multiplexer program
 Name: tmux
-Version: 1.6
+Version: 1.7
 Release: 1%{?dist}
 License: BSD
 Group: Applications/System
@@ -37,7 +37,7 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 %setup
 #patch0 -p1 -b .location
 #patch1 -p1 -b .sockethandling
-%patch2 -p1 -b .dropprivs
+#patch2 -p1 -b .dropprivs
 %patch3 -p1 -b .writehard
 
 %build
@@ -58,13 +58,16 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 getent group tmux >/dev/null || groupadd -r tmux
 
 %files
-%defattr(-,root,root,-)
+%defattr(-, root, root, 0755)
 %doc CHANGES FAQ NOTES TODO examples/
 %doc %{_mandir}/man1/tmux.1.*
-%attr(2755,root,tmux) %{_bindir}/tmux
-%attr(775,root,tmux) %{_localstatedir}/run/tmux/
+%attr(2755, root, tmux) %{_bindir}/tmux
+%attr(0775, root, tmux) %{_localstatedir}/run/tmux/
 
 %changelog
+* Thu Oct 25 2012 Dag Wieers <dag@wieers.com> - 1.7-1
+- Updated to release 1.7.
+
 * Mon Jan 23 2012 David Hrbáč <david@hrbac.cz> - 1.6-1
 - new upstream release
 
