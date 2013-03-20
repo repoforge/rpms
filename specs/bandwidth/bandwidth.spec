@@ -4,13 +4,13 @@
 
 Summary: Artificial benchmark for measuring memory bandwidth
 Name: bandwidth
-Version: 0.26c
+Version: 0.30a
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
-URL: http://home.comcast.net/~fbui/bandwidth.html
+URL: http://zsmith.co/bandwidth.html
 
-Source: http://home.comcast.net/~fbui/bandwidth-%{version}.tar.bz2
+Source: http://zsmith.co/archives/bandwidth-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -47,6 +47,9 @@ useful for identifying a computer's weak areas.
 %{_bindir}/bandwidth
 
 %changelog
+* Thu Oct 25 2012 Dag Wieers <dag@wieers.com> - 0.30a-1
+- Updated to release 0.30a.
+
 * Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 0.26c-1
 - Updated to release 0.26c.
 
