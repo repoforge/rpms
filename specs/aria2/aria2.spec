@@ -4,7 +4,7 @@
 
 Summary: Download utility with BitTorrent and Metalink support
 Name: aria2
-Version: 1.16.3
+Version: 1.16.4
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -53,6 +53,9 @@ Supported protocols are HTTP/HTTPS/FTP/BitTorrent/Metalink.
 %{_bindir}/aria2c
 
 %changelog
+* Wed Mar 20 2013 Dag Wieers <dag@wieers.com> - 1.16.4-1
+- Updated to release 1.16.4.
+
 * Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 1.16.3-1
 - Updated to release 1.16.3.
 
