@@ -4,7 +4,7 @@
 
 Summary: Utility to ping multiple hosts at once
 Name: fping
-Version: 3.3
+Version: 3.4
 Release: 1%{?dist}
 License: distributable
 Group: Applications/Internet
@@ -73,6 +73,9 @@ will be considered unreachable.
 %{_sbindir}/fping6
 
 %changelog
+* Sun Sep 23 2012 Dag Wieers <dag@wieers.com> - 3.4-1
+- Updated to release 3.4.
+
 * Thu Aug 30 2012 Dag Wieers <dag@wieers.com> - 3.3-1
 - Updated to release 3.3.
 
