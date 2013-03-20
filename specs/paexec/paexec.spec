@@ -1,5 +1,5 @@
 Name: paexec
-Version: 0.17.0
+Version: 0.18.0
 Release: 1%{?dist}
 
 Summary: Distribute performing the given tasks across several CPUs or machines in a network
@@ -64,6 +64,9 @@ mkcmake install
 # - investigate and re-enable tests
 
 %changelog
+* Wed Mar 20 2013 Dag Wieers <dag@wieers.com> - 0.18.0-1
+- Updated to release 0.18.0.
+
 * Mon Jan 02 2012 Aleksey Cheusov <vle@gmx.net> 0.16.1-1
 - adapted to repoforge
 
