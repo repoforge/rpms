@@ -5,7 +5,7 @@
 
 Summary: High-performance event loop library
 Name: libev
-Version: 4.11
+Version: 4.15
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
@@ -66,5 +66,8 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libev.la
 
 %changelog
+* Wed Mar 20 2013 Dag Wieers <dag@wieers.com> - 4.15-1
+- Updated to release 4.15.
+
 * Fri Jan 04 2012 Steve Huff <shuff@vecna.org> - 4.11-1
 - Initial package.
