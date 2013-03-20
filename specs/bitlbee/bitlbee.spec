@@ -4,7 +4,7 @@
 
 Summary: IRC to other chat networks gateway
 Name: bitlbee
-Version: 3.0.5
+Version: 3.2
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -30,16 +30,6 @@ networks like MSN/ICQ/Jabber.
 %prep
 %setup
 #patch0 -p1 -b .libresolv
-
-%{__perl} -pi.orig -e '
-        s|\$\(BINDIR\)|\$(sbindir)|g;
-        s|\$\(DATADIR\)|\$(datadir)/bitlbee|g;
-        s|\$\(ETCDIR\)|\$(sysconfdir)/bitlbee|g;
-        s|\$\(MANDIR\)|\$(mandir)|g;
-        s|\$\(INCLUDEDIR\)|\$(includedir)/bitlbee|g;
-        s|\$\(PCDIR\)|\$(libdir)/pkgconfig|g;
-        s|install -m|install -p -m|g;
-    ' Makefile */Makefile
 
 %{__cat} <<EOF >bitlbee.xinet
 # default: off
@@ -70,9 +60,11 @@ CFLAGS="%{optflags}" ./configure \
     --pcdir="%{_libdir}/pkgconfig" \
     --plugindir="%{_libdir}/bitlbee" \
     --strip="0" \
+    --otr="1" \
     --plugins="1" \
     --ssl="gnutls"
-%{__make} %{?_smp_mflags}
+#    --purple="1" \
+%{__make} %{?_smp_mflags} mandir="%{_mandir}"
 ### FIXME: Documentation needs old sgmltools tool, deprecated.
 #%{__make} -C doc
 
@@ -80,9 +72,6 @@ CFLAGS="%{optflags}" ./configure \
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0644 bitlbee.xinet %{buildroot}%{_sysconfdir}/xinetd.d/bitlbee
-
-%{__install} -d -m0755 %{buildroot}%{_mandir}/man8/
-%{__install} -p -m0644 doc/*.8 %{buildroot}%{_mandir}/man8/
 
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/bitlbee/
 
@@ -93,7 +82,7 @@ CFLAGS="%{optflags}" ./configure \
 %defattr(-, root, root, 0755)
 %doc bitlbee.conf COPYING doc/AUTHORS doc/CHANGES doc/CREDITS motd.txt
 %doc doc/user-guide/*.html doc/user-guide/*.txt doc/FAQ doc/INSTALL doc/README utils/
-#%doc %{_mandir}/man5/bitlbee.conf.5*
+%doc %{_mandir}/man5/bitlbee.conf.5*
 %doc %{_mandir}/man8/bitlbee.8*
 %config %{_sysconfdir}/xinetd.d/bitlbee
 %{_datadir}/bitlbee/
@@ -103,6 +92,9 @@ CFLAGS="%{optflags}" ./configure \
 %{_localstatedir}/lib/bitlbee/
 
 %changelog
+* Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 3.2-1
+- Updated to release 3.2.
+
 * Tue Feb 21 2012 Dag Wieers <dag@wieers.com> - 3.0.5-1
 - Updated to release 3.0.5.
 
