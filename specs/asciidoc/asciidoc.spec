@@ -11,8 +11,8 @@
 
 Summary: Tool to convert AsciiDoc text files to DocBook, HTML or Unix man pages
 Name: asciidoc
-Version: 8.6.7
-Release: 2%{?dist}
+Version: 8.6.8
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Text
 URL: http://www.methods.co.nz/asciidoc/
@@ -45,10 +45,10 @@ DocBook markups using the asciidoc(1) command.
 %{__make} install DESTDIR="%{buildroot}"
 
 ### rest to datadir; symlinks so asciidoc works
-%{__mkdir_p} %{buildroot}%{_datadir}/asciidoc
+%{__mkdir} -p %{buildroot}%{_datadir}/asciidoc/
 for dir in docbook-xsl/ images/ javascripts/ stylesheets/; do
-    %{__mv} -t %{buildroot}%{_datadir}/asciidoc %{buildroot}%{_sysconfdir}/asciidoc/$dir
-    %{__ln_s} %{_datadir}/asciidoc/$dir %{buildroot}%{_sysconfdir}/asciidoc/
+    %{__mv} -v %{buildroot}%{_sysconfdir}/asciidoc/$dir %{buildroot}%{_datadir}/asciidoc/
+    %{__ln_s} -vf %{_datadir}/asciidoc/$dir %{buildroot}%{_sysconfdir}/asciidoc/
 done
 
 ### Python API
@@ -111,8 +111,8 @@ done
 %exclude %{_sysconfdir}/asciidoc/filters/*/*.py[co]
 
 %changelog
-* Sat Sep 29 2012 Denis Fateyev <denis@fateyev.com> - 8.6.7-2
-- Broken directory symlink fix
+* Fri Nov 02 2012 Dag Wieers <dag@wieers.com> - 8.6.8-1
+- Updated to release 8.6.8.
 
 * Tue Apr 03 2012 Dag Wieers <dag@wieers.com> - 8.6.7-1
 - Updated to release 8.6.7.
