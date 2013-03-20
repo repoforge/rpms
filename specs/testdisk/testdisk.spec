@@ -21,7 +21,7 @@
 
 Summary: Tools to check and undelete partition or recover deleted files
 Name: testdisk
-Version: 6.12
+Version: 6.13
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -76,6 +76,9 @@ export CFLAGS="%{optflags} -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFI
 %{_bindir}/testdisk
 
 %changelog
+* Wed Nov 21 2012 Dag Wieers <dag@wieers.com> - 6.13-1
+- Updated to release 6.13.
+
 * Thu May 19 2011 Dag Wieers <dag@wieers.com> - 6.12-1
 - Updated to release 6.12.
 
