@@ -2,13 +2,14 @@
 # Authority: dag
 
 ### EL6 ships with iotop-0.3.2-3.el6
+%{?el6:# Tag: rfx}
 ### ExclusiveDist: el5
 
 %define python_sitelib %(%{__python} -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')
 
 Summary: Per process I/O bandwidth monitor
 Name: iotop
-Version: 0.3
+Version: 0.5
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -41,11 +42,14 @@ process is the I/O going on.
 %files
 %defattr(-, root, root, 0755)
 %doc ChangeLog COPYING NEWS THANKS
-%doc %{_mandir}/man1/iotop.1*
+%doc %{_mandir}/man8/iotop.8*
 %{_bindir}/iotop
 %{python_sitelib}/iotop/
 %exclude %{python_sitelib}/*.egg-info/
 
 %changelog
+* Tue Feb 12 2013 Dag Wieers <dag@wieers.com> - 0.5-1
+- Updated to release 0.5.
+
 * Fri May 08 2009 Dag Wieers <dag@wieers.com> - 0.3-1
 - Initial package. (using DAR)
