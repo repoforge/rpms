@@ -2,6 +2,10 @@
 # Authority: dag
 # Upstream: Frank Pilhofer <fp$fpx,de>
 
+%{?el5:%define _without_minews 1}
+%{?el4:%define _without_minews 1}
+%{?el3:%define _without_minews 1}
+%{?el2:%define _without_minews 1}
 
 %{?rh9:%define _without_tcltk_devel 1}
 %{?rh8:%define _without_tcltk_devel 1}
@@ -84,7 +88,7 @@ you will need to install %{name}-devel.
 %doc HISTORY IAFA-PACKAGE README* doc uudeview.lsm
 %doc %{_mandir}/man1/uudeview.1*
 %doc %{_mandir}/man1/uuenview.1*
-%{_bindir}/minews
+%{!?_without_minews:%{_bindir}/minews}
 %{_bindir}/uudeview
 %{_bindir}/uuenview
 %{_libdir}/libuu.so.*
