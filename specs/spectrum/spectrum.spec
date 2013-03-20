@@ -7,14 +7,14 @@
 
 Summary: Multi-protocol XMPP transport gateway
 Name: spectrum
-Version: 1.4.7
+Version: 1.4.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://spectrum.im/
 
 # this changes every release :(
-Source: https://github.com/downloads/hanzz/spectrum/spectrum-%{version}.tar.gz
+Source: https://github.com/downloads/hanzz/libtransport/spectrum-%{version}.tar.gz
 Patch0: spectrum-1.4.7_cmake.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -24,6 +24,7 @@ BuildRequires: cppunit-devel
 BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: gloox-devel >= 1.0
+BuildRequires: libev-devel
 BuildRequires: libpurple-devel >= 2.6.0
 BuildRequires: poco-devel >= 1.3.3
 BuildRequires: python-devel
@@ -133,6 +134,9 @@ fi
 %config(noreplace) %{_sysconfdir}/logrotate.d/spectrum
 
 %changelog
+* Fri Jan 04 2012 Steve Huff <shuff@vecna.org> - 1.4.8-1
+- Update to version 1.4.8.
+
 * Wed Aug 03 2011 Steve Huff <shuff@vecna.org> - 1.4.7-1
 - Initial package (ported from EPEL).
 

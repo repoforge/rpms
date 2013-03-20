@@ -6,7 +6,7 @@
 
 Summary: Multi-object file format for scientific data
 Name: hdf4
-Version: 4.2.6
+Version: 4.2.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Engineering
@@ -47,7 +47,7 @@ you will need to install %{name}-devel.
 %build
 %configure \
     --disable-dependency-tracking \
-    --enable-static=no \
+    --enable-static=yes \
     --enable-shared=yes \
     --enable-netcdf=no \
     --enable-fortran=no 
@@ -82,6 +82,7 @@ you will need to install %{name}-devel.
 %doc %{_mandir}/man?/*
 %{_bindir}/*
 %{_libdir}/*.so.*
+%{_libdir}/*.a
 
 %files devel
 %defattr(-, root, root, 0755)
@@ -91,6 +92,10 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Mon Oct 22 2012 Laurent Wandrebeck <lw@hygeos.com> - 4.2.8-1
+- Update to 4.2.8.
+- Add static build.
+
 * Tue Aug 02 2011 Steve Huff <shuff@vecna.org> - 4.2.6-1
 - Initial package.
 - Disable NetCDF support because we already have a netcdf package.

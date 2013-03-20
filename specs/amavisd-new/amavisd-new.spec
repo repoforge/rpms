@@ -7,16 +7,12 @@
 
 ##ExclusiveDist: fc1 fc2 fc3 el4
 
-%{?el6:%define _without_milter 1}
-%{?el5:%define _without_milter 0}
-%{?el4:%define _without_milter 0}
-
 %define logmsg logger -t %{name}/rpm
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.6.6
-Release: 3%{?dist}
+Version: 2.8.0
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://www.ijs.si/software/amavisd/
@@ -25,8 +21,6 @@ Source: http://www.ijs.si/software/amavisd/amavisd-new-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: perl >= 5.8.1
-#BuildRequires: sendmail
-#BuildRequires: sendmail-devel >= 8.12
 Requires: altermime
 Requires: arc >= 5.21e
 Requires: bzip2
@@ -81,19 +75,6 @@ performance and robustness features. It's partly based on
 work being done on the official amavisd branch. Please see the
 README.amavisd-new-RELNOTES file for a detailed description.
 
-%if ! 0%{?_without_milter}
-%package milter
-Summary: The Amavisd-new sendmail-milter Daemon
-Group: Applications/System
-Requires: amavisd-new = %{version}-%{release}
-Requires: sendmail
-BuildRequires: sendmail
-BuildRequires: sendmail-devel >= 8.12
-
-%description milter
-The Amavisd-new sendmail-milter Daemon
-%endif
-
 %package snmp
 Group:          Applications/System
 Summary:        Exports amavisd SNMP data
@@ -117,9 +98,6 @@ alerting purposes.
 
 %prep
 %setup -q -n amavisd-new-%{version}
-
-### FIXME: Some versions of install fail to change permissions when failing to change ownership. (Please fix upstream)
-%{__perl} -pi.orig -e 's| -o root | |g' helper-progs/Makefile.in
 
 %{__cat} <<EOF >amavisd.logrotate
 %{_localstatedir}/log/amavis.log {
@@ -193,17 +171,9 @@ SYSCONFIG="%{_sysconfdir}/sysconfig/amavisd"
 
 RETVAL=0
 prog="amavisd"
-prog2="amavis-milter"
 desc="Mail Virus Scanner"
 
 start() {
-    if [ "$MILTER_SOCKET" -a -x "%{_sbindir}/$prog2" ]; then
-        echo -n $"Starting $desc ($prog2): "
-        daemon --user "$AMAVIS_USER" %{_sbindir}/$prog2 -p "$MILTER_SOCKET" $MILTER_FLAGS
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && touch %{_localstatedir}/lock/subsys/$prog2
-    fi
     echo -n $"Starting $desc ($prog): "
     daemon --user "$AMAVIS_USER" %{_sbindir}/$prog -c "$CONFIG_FILE"
     RETVAL=$?
@@ -219,13 +189,6 @@ stop() {
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog
-    if [ "$MILTER_SOCKET" -o -f %{_localstatedir}/lock/subsys/$prog2 ]; then
-        echo -n $"Shutting down $desc ($prog2): "
-        killproc $prog2
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && rm -f %{_localstatedir}/lock/subsys/$prog2
-    fi
     return $RETVAL
 }
 
@@ -262,9 +225,6 @@ case "$1" in
     ;;
   status)
     status $prog
-    if [ "$MILTER_SOCKET" -a -x "%{_sbindir}/$prog2" ]; then
-        status $prog2
-    fi
     RETVAL=$?
     ;;
   *)
@@ -347,26 +307,10 @@ esac
 exit $RETVAL
 EOF
 
-%build
-%if ! 0%{?_without_milter} 
-cd helper-progs
-%configure \
-    --enable-postfix \
-    --enable-all \
-    --with-milterlib="%{_libdir}" \
-    --with-runtime-dir="%{_localstatedir}/amavis" \
-    --with-sockname="%{_localstatedir}/amavis/amavisd.sock" \
-    --with-user="amavis"
-%{__make} %{?_smp_mflags}
-%endif
 
 %install
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_sbindir}
-
-%if ! 0%{?_without_milter}
-%makeinstall -C helper-progs
-%endif
 
 %{__perl} -pi.orig -e '
         s|=\s*'\''vscan'\''|= "amavis"|;
@@ -385,6 +329,7 @@ cd helper-progs
 %{__install} -Dp -m0755 amavisd-release %{buildroot}%{_sbindir}/amavisd-release
 %{__install} -Dp -m0755 amavisd-snmp-subagent %{buildroot}%{_sbindir}/amavisd-snmp-subagent
 %{__install} -Dp -m0755 p0f-analyzer.pl %{buildroot}%{_sbindir}/p0f-analyzer
+
 %{__install} -Dp -m0755 amavisd.sysv %{buildroot}%{_initrddir}/amavisd
 %{__install} -Dp -m0755 amavisd-snmp.sysv %{buildroot}%{_initrddir}/amavisd-snmp
 
@@ -424,15 +369,6 @@ for file in /etc/postfix/aliases /etc/mail/aliases /etc/aliases; do
     fi
 done
 
-%if ! 0%{?_without_milter}
-%post milter
-if [ -f /etc/mail/sendmail.mc ]; then
-    if ! grep -q "milter-amavis" /etc/mail/sendmail.mc; then
-        echo -e "\ndnl define(\`MILTER', 1)\ndnl INPUT_MAIL_FILTER(\`milter-amavis', \`S=local:/var/amavis/amavis-milter.sock, F=T, T=S:10m;R:10m;E:10m')" >>/etc/mail/sendmail.mc
-    fi
-fi
-%endif
-
 %preun
 if [ $1 -eq 0 ] ; then
     /sbin/service amavisd stop &>/dev/null || :
@@ -459,7 +395,7 @@ fi
 
 %files
 %defattr(-, root, root, 0755)
-%doc AAAREADME.first LDAP.schema LICENSE MANIFEST README_FILES/* RELEASE_NOTES
+%doc AAAREADME.first INSTALL LDAP.schema LICENSE MANIFEST README_FILES/* RELEASE_NOTES
 %doc amavisd.conf* test-messages/
 %config %{_initrddir}/amavisd
 %config %{_sysconfdir}/openldap/schema/*.schema
@@ -483,19 +419,17 @@ fi
 %dir %{_localstatedir}/virusmails/
 %ghost %{_localstatedir}/log/amavis.log
 
-%if ! 0%{?_without_milter}
-%files milter
-%defattr(-, root, root, 0755)
-%{_sbindir}/amavis
-%{_sbindir}/amavis-milter
-%endif
-
 %files snmp
 %defattr(-,root,root)
 %attr(755,root,root) %{_initrddir}/amavisd-snmp
 %{_sbindir}/amavisd-snmp-subagent
 
 %changelog
+* Tue Jan 15 2013 Tomáš Brandýský <tomas.brandysky@gmail.com> - 2.8.0-1
+- new upstream release
+- removed support for helper programs amavis.c and amavis-milter.c as they are not longer distributed
+  with the package
+
 * Tue May 22 2012 Dave Miller <justdave@mozilla.com> - 2.6.6-3
 - initscript status command shouldn't fail if amavis-milter isn't configured
   (issue 171)

@@ -18,13 +18,13 @@
 
 Summary: Perl DNS resolver module
 Name: perl-Net-DNS
-Version: 0.68
+Version: 0.71
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Net-DNS/
 
-Source: http://www.cpan.org/authors/id/O/OL/OLAF/Net-DNS-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/N/NL/NLNETLABS/Net-DNS-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -64,9 +64,17 @@ find contrib/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorarch}/Net/DNS.pm
 
 ### Remove this file because it generates an rpm dependency for Win32::Registry
-%exclude %{perl_vendorarch}/Net/DNS/Resolver/Win32.pm
+%exclude %{perl_vendorarch}/Net/DNS/Resolver/cygwin.pm
+%exclude %{perl_vendorarch}/Net/DNS/Resolver/MSWin32.pm
+%exclude %{_mandir}/man3/Net::DNS::Resolver::cygwin.3*
+%exclude %{_mandir}/man3/Net::DNS::Resolver::MSWin32.3*
+%exclude %{perl_vendorarch}/Net/DNS/Nameserver.pm
+%exclude %{_mandir}/man3/Net::DNS::Nameserver*
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 0.71-1
+- new upstream release
+
 * Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 0.68-1
 - new upstream release
 

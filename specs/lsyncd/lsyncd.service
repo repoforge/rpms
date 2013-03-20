@@ -1,0 +1,14 @@
+[Unit]
+Description=Live Syncing (Mirror) Daemon
+After=network.target
+
+[Service]
+Type=forking
+Nice=19
+EnvironmentFile=-/etc/sysconfig/lsyncd
+ExecStart=/usr/bin/lsyncd $OPTIONS -pidfile /var/run/lsyncd.pid /etc/lsyncd.conf
+PIDFile=/var/run/lsyncd.pid
+
+[Install]
+WantedBy=multi-user.target
+

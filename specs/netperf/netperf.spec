@@ -4,7 +4,7 @@
 
 Summary: Performance testing tool for TCP/UDP
 Name: netperf
-Version: 2.5.0
+Version: 2.6.0
 Release: 1%{?dist}
 License: HP non-commercial
 Group: Applications/Internet
@@ -54,6 +54,9 @@ fi
 %{_bindir}/netserver
 
 %changelog
+* Sat Sep 29 2012 Denis Fateyev <denis@fateyev.com> - 2.6.0-1
+- Updated to release 2.6.0
+
 * Thu Feb 23 2012 Gerd v. Egidy <gerd@egidy.de> - 2.5.0-1
 - Updated to release 2.5.0
 - License tag changed to reflect COPYING file as included in source

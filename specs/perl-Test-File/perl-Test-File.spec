@@ -9,7 +9,7 @@
 
 Summary: Check file attributes
 Name: perl-Test-File
-Version: 1.29
+Version: 1.34
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -54,6 +54,9 @@ find examples/ -type f -exec %{__chmod} a-x {} \;
 %{perl_vendorlib}/Test/File.pm
 
 %changelog
+* Thu Sep 20 2012 Peter Eisentraut <peter@eisentraut.org> - 1.34-1
+- Updated to version 1.34.
+
 * Fri Jun 12 2009 Christoph Maser <cmr@financial.com> - 1.29-1
 - Updated to version 1.29.
 

@@ -4,8 +4,8 @@
 
 Summary: RPMforge release file and RPM repository configuration
 Name: rpmforge-release
-Version: 0.5.2
-Release: 2%{?dist}
+Version: 0.5.3
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://rpmforge.net/
@@ -87,7 +87,7 @@ EOF
 [rpmforge]
 name = RHEL \$releasever - RPMforge.net - $builder
 baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/rpmforge
-mirrorlist = http://apt.sw.be/redhat/el$version/en/mirrors-rpmforge
+mirrorlist = http://mirrorlist.repoforge.org/el$version/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
 protect = 0
@@ -97,7 +97,7 @@ gpgcheck = 1
 [rpmforge-extras]
 name = RHEL \$releasever - RPMforge.net - extras
 baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/extras
-mirrorlist = http://apt.sw.be/redhat/el$version/en/mirrors-rpmforge-extras
+mirrorlist = http://mirrorlist.repoforge.org/el$version/mirrors-rpmforge-extras
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge-extras
 enabled = 0
 protect = 0
@@ -107,7 +107,7 @@ gpgcheck = 1
 [rpmforge-testing]
 name = RHEL \$releasever - RPMforge.net - testing
 baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/testing
-mirrorlist = http://apt.sw.be/redhat/el$version/en/mirrors-rpmforge-testing
+mirrorlist = http://mirrorlist.repoforge.org/el$version/mirrors-rpmforge-testing
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge-testing
 enabled = 0
 protect = 0
@@ -194,6 +194,9 @@ rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/p
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Wed Mar 20 2013 David Hrbáč <david@hrbac.cz> - 0.5.3-1
+- moving mirrorlists to GitHub 
+
 * Sat Nov 13 2010 Dag Wieers <dag@wieers.com> - 0.5.2-2
 - Added entries for extras repository.
 

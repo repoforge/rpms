@@ -4,14 +4,13 @@
 
 Summary: A DomainKeys Identified Mail (DKIM) milter to sign and/or verify mail
 Name: opendkim
-Version: 2.5.2
+Version: 2.6.7
 Release: 1%{?dist}
 License: BSD and Sendmail
 Group: System Environment/Daemons
 URL: http://opendkim.org/
 
 Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0: %{name}-%{version}-installreadme.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: sendmail-devel
@@ -50,7 +49,6 @@ required for developing applications against libopendkim.
 
 %prep
 %setup
-%patch0 -p1
 
 %build
 %configure --enable-stats
@@ -202,7 +200,7 @@ EOF
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/%{name}
 %{__mkdir} %{buildroot}%{_sysconfdir}/%{name}/keys
 
-%{__install} -m 0755 contrib/stats/%{name}-reportstats %{buildroot}%{_prefix}/bin/%{name}-reportstats
+%{__install} -m 0755 stats/%{name}-reportstats %{buildroot}%{_prefix}/bin/%{name}-reportstats
 %{__sed} -i 's|^OPENDKIMSTATSDIR="/var/db/opendkim"|OPENDKIMSTATSDIR="%{_localstatedir}/spool/%{name}"|g' %{buildroot}%{_prefix}/bin/%{name}-reportstats
 %{__sed} -i 's|^OPENDKIMDATOWNER="mailnull:mailnull"|OPENDKIMDATOWNER="%{name}:%{name}"|g' %{buildroot}%{_prefix}/bin/%{name}-reportstats
 
@@ -275,6 +273,9 @@ exit 0
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Sep  1 2012 Denis Fateyev <denis@fateyev.com> - 2.6.7-1
+- Updated to 2.6.7
+
 * Sun May  6 2012 Kouhei Sutou <kou@clear-code.com> - 2.5.2-1
 - Imported from EPEL.
 - Upgraded to 2.5.2.

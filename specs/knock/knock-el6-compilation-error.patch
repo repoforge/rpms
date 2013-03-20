@@ -1,0 +1,12 @@
+diff --git a/src/list.h b/src/list.h
+index 1453b66..6874454 100644
+--- a/src/list.h
++++ b/src/list.h
+@@ -21,6 +21,7 @@
+ #ifndef _PAC_LIST_H
+ #define _PAC_LIST_H
+ 
++#include <limits.h>
+ #define FREELIST(p) { list_free(p); p = NULL; }
+ 
+ /* your average linked list */

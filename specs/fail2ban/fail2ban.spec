@@ -6,13 +6,13 @@
 
 Summary: Scan logfiles and ban ip addresses with too many password failures
 Name: fail2ban
-Version: 0.8.2
-Release: 3%{?dist}
+Version: 0.8.7.1
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
 URL: http://fail2ban.sourceforge.net/
 
-Source: http://dl.sf.net/fail2ban/fail2ban-%{version}.tar.bz2
+Source: https://github.com/downloads/%{name}/%{name}/%{name}_%{version}.orig.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -93,6 +93,9 @@ fi
 %dir %{_var}/run/fail2ban
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 0.8.7.1-1
+- new upstream release
+
 * Wed Oct 29 2008 Dag Wieers <dag@wieers.com> - 0.8.2-3
 - Fix group.
 

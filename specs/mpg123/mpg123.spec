@@ -9,6 +9,7 @@
 %{?el5:%define audio alsa esd oss}
 %{?el5:%define _without_jack 1}
 %{?el5:%define _without_nas 1}
+%{?el4:%define _without_ltdl_devel 1}
 
 %{?el4:%define audio alsa esd oss}
 %{?el4:%define _without_jack 1}
@@ -22,7 +23,7 @@
 Summary: MPEG audio player
 Name: mpg123
 Version: 1.14.4
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL/LGPL
 Group: Applications/Multimedia
 URL: http://mpg123.org/
@@ -38,6 +39,9 @@ BuildRequires: SDL-devel
 %{!?_without_esound:BuildRequires: esound-devel}
 %{!?_without_nas:BuildRequires: nas-devel}
 %{!?_without_alsa:BuildRequires: alsa-lib-devel}
+%{!?_without_ltdl_devel:BuildRequires: libtool-ltdl-devel}
+%{?_without_ltdl_devel:BuildRequires: libtool}
+
 Obsoletes: mpg321 <= 0.2.10-9
 
 %description
@@ -93,6 +97,9 @@ export SDL_LIBS="$(sdl-config --libs)"
 %exclude %{_libdir}/libmpg123.la
 
 %changelog
+* Fri Aug 31 2012 Tom G. Christensen <tgc@jupiterrise.com> - 1.14.4-2
+- Plugins need libltdl from libtool
+
 * Wed Aug 01 2012 Dag Wieers <dag@wieers.com> - 1.14.4-1
 - Updated to release 1.14.4.
 

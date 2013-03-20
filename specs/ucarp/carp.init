@@ -15,7 +15,7 @@
 [ ${NETWORKING} = "no" ] && exit 0
 
 get_files() {
-    FILES=`find /etc/sysconfig/carp -type f -name 'vip-*.conf' -maxdepth 1 \
+    FILES=`find /etc/sysconfig/carp -maxdepth 1 -type f -name 'vip-*.conf' \
            -printf "%f\n" | LC_COLLATE="C" sort`
 }
 
@@ -35,7 +35,7 @@ start() {
             # Check that the file name gives us an ID between 1 and 255
             ID=`echo ${FILE}| sed 's/^vip-\(.*\).conf/\1/'`
             if [ ${ID} -lt 1 -o ${ID} -gt 255 ]; then
-                initlog $INITLOG_ARGS -n carp -s "configuration file name ${FILE} gave us a bad ID of ${ID}:" -e 2
+                logger $INITLOG_ARGS -t carp "configuration file name ${FILE} gave us a bad ID of ${ID}:"
                 RETVAL=1
                 break
             fi
@@ -47,14 +47,14 @@ start() {
             if [ -f /etc/sysconfig/network-scripts/ifcfg-${BIND_INTERFACE} ]; then
                 . /etc/sysconfig/network-scripts/ifcfg-${BIND_INTERFACE}
             else
-                initlog $INITLOG_ARGS -n carp -s $"no ifcfg-${BIND_INTERFACE} file found for carp ${FILE} configuration:" -e 2
+                logger $INITLOG_ARGS -t carp $"no ifcfg-${BIND_INTERFACE} file found for carp ${FILE} configuration:"
                 RETVAL=1
                 break
             fi
             # Check that the ifcfg-<if> file does have an IPADDR
-            BIND_ADDRESS=${IPADDR}
+            BIND_ADDRESS="`ifconfig ${BIND_INTERFACE} | sed -n 's/.*inet addr:\([^ ]*\) .*/\1/p' | head -n 1`"
             if [ -z "${BIND_ADDRESS}" ]; then
-                initlog $INITLOG_ARGS -n carp -s $"no IPADDR found in interface file ifcfg-${BIND_INTERFACE}:" -e 2
+                logger $INITLOG_ARGS -t carp $"no IPADDR found in interface file ifcfg-${BIND_INTERFACE}:"
                 RETVAL=1
                 break
             fi
@@ -63,14 +63,14 @@ start() {
             if [ -f /etc/sysconfig/network-scripts/ifcfg-${VIP_INTERFACE} ]; then
                 . /etc/sysconfig/network-scripts/ifcfg-${VIP_INTERFACE}
             else
-                initlog $INITLOG_ARGS -n carp -s $"no ifcfg-${VIP_INTERFACE} file found for carp ${FILE} configuration:" -e 2
+                logger $INITLOG_ARGS -t carp $"no ifcfg-${VIP_INTERFACE} file found for carp ${FILE} configuration:"
                 RETVAL=1
                 break
             fi
             # Check that the ifcfg-<if> file does have an IPADDR
             VIP_ADDRESS=${IPADDR}
             if [ -z "${VIP_ADDRESS}" ]; then
-                initlog $INITLOG_ARGS -n carp -s "no IPADDR found in interface file ifcfg-${VIP_INTERFACE}:" -e 2
+                logger $INITLOG_ARGS -t carp "no IPADDR found in interface file ifcfg-${VIP_INTERFACE}:"
                 RETVAL=1
                 break
             fi
@@ -104,9 +104,9 @@ stop() {
         # Check that we have the ifcfg-<if> file for the virtual interface
         if [ -f /etc/sysconfig/network-scripts/ifcfg-${VIP_INTERFACE} ]; then
             if /sbin/ifconfig ${VIP_INTERFACE} down >/dev/null 2>&1; then
-                initlog $INITLOG_ARGS -n carp -s $"bringing down carp managed interface ${VIP_INTERFACE}:" -e 1
+                logger $INITLOG_ARGS -t carp $"bringing down carp managed interface ${VIP_INTERFACE}:"
             else
-                initlog $INITLOG_ARGS -n carp -s $"bringing down carp managed interface ${VIP_INTERFACE}:" -e 2
+                logger $INITLOG_ARGS -t carp $"bringing down carp managed interface ${VIP_INTERFACE}:"
             fi
         fi
     done

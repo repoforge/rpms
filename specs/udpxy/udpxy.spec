@@ -2,22 +2,21 @@
 # Authority: dfateyev
 # Upstream: Pavel V. Cherenkov <pcherenkov$gmail,com>
 
-%define		major_version 1.0
-%define		minor_version 21
-%define		rel_version 2
+%define major_version 1.0.23
+%define minor_version 0
 
-Name:		udpxy
-Version:	%{major_version}.%{minor_version}
-Release:	1%{?dist}
-Summary:	UDP-to-HTTP multicast traffic relay daemon
+Name: udpxy
+Version: %{major_version}
+Release: 1%{?dist}
+Summary: UDP-to-HTTP multicast traffic relay daemon
 
-Group:		Applications/Internet
-License:	GPLv3+
-URL:		http://sourceforge.net/projects/udpxy/
-Source0:	http://downloads.sourceforge.net/project/%{name}/%{name}/Chipmunk-1.0/%{name}.%{major_version}.%{minor_version}-%{rel_version}-prod.tgz
-Source1:	udpxy.init
-Source2:	udpxy.sysconfig
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
+Group: Applications/Internet
+License: GPLv3+
+URL: http://sourceforge.net/projects/udpxy/
+Source0: http://downloads.sourceforge.net/%{name}/%{name}.%{major_version}-%{minor_version}-prod.tar.gz
+Source1: udpxy.init
+Source2: udpxy.sysconfig
+BuildRoot: %{_tmppath}/%{name}-%{major_version}-%{minor_version}-%{release}-root
 
 Requires: chkconfig
 Requires: initscripts
@@ -28,7 +27,7 @@ it forwards UDP traffic from a given multicast subscription
 to the requesting HTTP client.
 
 %prep
-%setup -n %{name}-%{major_version}.%{minor_version}-%{rel_version}
+%setup -n %{name}-%{major_version}-%{minor_version}
 
 %{__chmod} a-x CHANGES
 
@@ -63,12 +62,15 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc README CHANGES gpl.txt udpxy-manual-RU.rtf
+%doc README CHANGES gpl.txt
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %{_initrddir}/%{name}
 %{_bindir}/%{name}
 %{_bindir}/udpxrec
 
 %changelog
+* Sat Sep 29 2012 Denis Fateyev <denis@fateyev.com> - 1.0.23-1
+- Update to 1.0.23 release
+
 * Fri Mar 16 2012 Denis Fateyev <denis@fateyev.com> - 1.0.21-1
 - Initial rpm release

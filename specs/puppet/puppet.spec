@@ -13,7 +13,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.9
+Version: 2.7.20
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
@@ -23,14 +23,14 @@ Source0: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz
 Source1: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz.asc
 Patch0: puppet-2.6.5_rackup.patch
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: facter >= 1.5
 BuildRequires: ruby >= 1.8.1
 
 %if 0%{?fedora} || 0%{?rhel} >= 5
 BuildArch: noarch
-Requires: ruby(abi) = 1.8
+Requires: ruby(abi) >= 1.8
 Requires: ruby-shadow
 %endif
 
@@ -93,14 +93,14 @@ Vim support for editing Puppet files.
 %patch0 -p1
 patch -s -p1 < conf/redhat/rundir-perms.patch
 
-%{__perl} -pi -e 's|^#!.*$|#!/usr/bin/ruby|' bin/*
+#{__perl} -pi -e 's|^#!.*$|#!/usr/bin/ruby|' bin/*
 
 %build
 
 # Fix some rpmlint complaints
 for f in mac_dscl.pp mac_dscl_revert.pp \
          mac_pkgdmg.pp ; do
-  sed -i -e'1d' examples/$f
+  %{__sed} -i -e'1d' examples/$f
   %{__chmod} a-x examples/$f
 done
 
@@ -108,33 +108,31 @@ for f in external/nagios.rb network/http_server/mongrel.rb relationship.rb; do
   %{__sed} -i -e '1d' lib/puppet/$f
 done
 
-%{__chmod} +x ext/puppetstoredconfigclean.rb
-
-find examples/ -type f -empty | xargs rm
-find examples/ -type f | xargs chmod a-x
+find examples/ -type f -empty | xargs %{__rm}
+find examples/ -type f | xargs %{__chmod} a-x
 
 # puppet-queue.conf is more of an example, used for stompserver
 %{__mv} conf/puppet-queue.conf examples/etc/puppet/
 
 %install
 %{__rm} -rf %{buildroot}
-ruby install.rb --destdir=%{buildroot} --quick --no-rdoc
+ruby install.rb --destdir=%{buildroot} --quick --no-rdoc --sitelibdir=%{ruby_sitelibdir}
 
-install -d -m0755 %{buildroot}%{_sysconfdir}/puppet/manifests
-install -d -m0755 %{buildroot}%{_datadir}/%{name}/modules
-install -d -m0755 %{buildroot}%{_localstatedir}/lib/puppet
-install -d -m0755 %{buildroot}%{_localstatedir}/run/puppet
-install -d -m0750 %{buildroot}%{_localstatedir}/log/puppet
-install -Dp -m0644 %{confdir}/client.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/puppet
-install -Dp -m0755 %{confdir}/client.init %{buildroot}%{_initrddir}/puppet
-install -Dp -m0644 %{confdir}/server.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/puppetmaster
-install -Dp -m0755 %{confdir}/server.init %{buildroot}%{_initrddir}/puppetmaster
-install -Dp -m0644 %{confdir}/fileserver.conf %{buildroot}%{_sysconfdir}/puppet/fileserver.conf
-install -Dp -m0644 %{confdir}/puppet.conf %{buildroot}%{_sysconfdir}/puppet/puppet.conf
-install -Dp -m0644 %{confdir}/logrotate %{buildroot}%{_sysconfdir}/logrotate.d/puppet
+%{__install} -d -m0755 %{buildroot}%{_sysconfdir}/puppet/manifests
+%{__install} -d -m0755 %{buildroot}%{_datadir}/%{name}/modules
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/puppet
+%{__install} -d -m0755 %{buildroot}%{_localstatedir}/run/puppet
+%{__install} -d -m0750 %{buildroot}%{_localstatedir}/log/puppet
+%{__install} -Dp -m0644 %{confdir}/client.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/puppet
+%{__install} -Dp -m0755 %{confdir}/client.init %{buildroot}%{_initrddir}/puppet
+%{__install} -Dp -m0644 %{confdir}/server.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/puppetmaster
+%{__install} -Dp -m0755 %{confdir}/server.init %{buildroot}%{_initrddir}/puppetmaster
+%{__install} -Dp -m0644 %{confdir}/fileserver.conf %{buildroot}%{_sysconfdir}/puppet/fileserver.conf
+%{__install} -Dp -m0644 %{confdir}/puppet.conf %{buildroot}%{_sysconfdir}/puppet/puppet.conf
+%{__install} -Dp -m0644 %{confdir}/logrotate %{buildroot}%{_sysconfdir}/logrotate.d/puppet
 
 # Example auth.conf file, it mimics the puppetmasterd defaults
-install -Dp -m0644 conf/auth.conf %{buildroot}%{_sysconfdir}/puppet/auth.conf
+%{__install} -Dp -m0644 conf/auth.conf %{buildroot}%{_sysconfdir}/puppet/auth.conf
 
 # We need something for these ghosted files, otherwise rpmbuild
 # will complain loudly. They won't be included in the binary packages
@@ -143,28 +141,31 @@ touch %{buildroot}%{_sysconfdir}/puppet/puppetca.conf
 touch %{buildroot}%{_sysconfdir}/puppet/puppetd.conf
 
 # Install the ext/ directory to %%{_datadir}/%%{name}
-install -d %{buildroot}%{_datadir}/%{name}
-cp -a ext/ %{buildroot}%{_datadir}/%{name}
+%{__install} -d %{buildroot}%{_datadir}/%{name}
+%{__cp} -a ext/ %{buildroot}%{_datadir}/%{name}
 # emacs and vim bits are installed elsewhere
-rm -rf %{buildroot}%{_datadir}/%{name}/ext/{emacs,vim}
+%{__rm} -rf %{buildroot}%{_datadir}/%{name}/ext/{emacs,vim}
 
 # Install emacs mode files
 emacsdir=%{buildroot}%{_datadir}/emacs/site-lisp
-install -Dp -m0644 ext/emacs/puppet-mode.el $emacsdir/puppet-mode.el
-install -Dp -m0644 ext/emacs/puppet-mode-init.el \
+%{__install} -Dp -m0644 ext/emacs/puppet-mode.el $emacsdir/puppet-mode.el
+%{__install} -Dp -m0644 ext/emacs/puppet-mode-init.el \
     $emacsdir/site-start.d/puppet-mode-init.el
 
 # Install vim syntax files
 vimdir=%{buildroot}%{_datadir}/vim/vimfiles
-install -Dp -m0644 ext/vim/ftdetect/puppet.vim $vimdir/ftdetect/puppet.vim
-install -Dp -m0644 ext/vim/syntax/puppet.vim $vimdir/syntax/puppet.vim
+%{__install} -Dp -m0644 ext/vim/ftdetect/puppet.vim $vimdir/ftdetect/puppet.vim
+%{__install} -Dp -m0644 ext/vim/syntax/puppet.vim $vimdir/syntax/puppet.vim
 
 ### Clean up buildroot
 find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %{__chmod} a-x
 
+# Create puppet modules directory for puppet module tool
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/%{name}/modules
+
 %files
 %defattr(-, root, root, 0755)
-%doc CHANGELOG LICENSE README.md examples/
+%doc CHANGELOG LICENSE README.md examples
 %doc %{_mandir}/man?/filebucket.?.gz
 %doc %{_mandir}/man?/pi.?.gz
 %doc %{_mandir}/man?/puppet.conf.?.gz
@@ -173,6 +174,8 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 %doc %{_mandir}/man?/puppet-*.?.gz
 %doc %{_mandir}/man?/puppet.?.gz
 %doc %{_mandir}/man?/ralsh.?.gz
+%dir %{_sysconfdir}/puppet
+%dir %{_sysconfdir}/%{name}/modules
 %config(noreplace) %{_sysconfdir}/logrotate.d/puppet
 %config(noreplace) %{_sysconfdir}/puppet/auth.conf
 %config(noreplace) %{_sysconfdir}/puppet/puppet.conf
@@ -187,7 +190,8 @@ find %{buildroot}%{ruby_sitelibdir} -type f -perm +ugo+x -print0 | xargs -0 -r %
 %{_initrddir}/puppet
 %{ruby_sitelibdir}/*
 %{_sbindir}/puppetd
-
+# These need to be owned by puppet so the server can
+# write to them
 %defattr(-, puppet, puppet, 0755)
 %{_localstatedir}/lib/puppet/
 %{_localstatedir}/log/puppet/
@@ -283,6 +287,18 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Wed Nov 21 2012 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.20-1
+- Updated to release 2.7.20.
+
+* Mon Oct 08 2012 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.19-2
+- Sync with upstream specfile
+
+* Fri Sep 21 2012 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.19-1
+- Updated to release 2.7.19.
+
+* Thu May 31 2012 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.14-1
+- Updated to release 2.7.14.
+
 * Thu Jan 12 2012 Yury V. Zaytsev <yury@shurup.com> - 2.7.9-1
 - Updated to release 2.7.9.
 

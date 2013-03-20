@@ -11,10 +11,13 @@
 Summary: IRC bot
 Name: eggdrop
 Version: 1.6.21
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.eggheads.org/
+
+Packager: Dag Wieers <dag@wieers.com>
+Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
 
 Source: ftp://ftp.eggheads.org/pub/eggdrop/GNU/stable/eggdrop%{version}.tar.bz2
 Patch0: eggdrop-1.6.17-langdir.patch
@@ -38,7 +41,7 @@ privileged users and let them gain ops, etc.
 %setup -n %{name}%{version}
 %patch0 -p1 -b .langdir
 %patch1 -p1 -b .no_libdns
-%patch2 -p1 -b .suzi_sp0010
+%patch2 -p1 -b .suzi_sp0011
 
 # _smp_mflags removed, compile fails on multiprocessor system  
 %build
@@ -53,10 +56,27 @@ privileged users and let them gain ops, etc.
 %{__install} -d -m0755 %{buildroot}%{_libdir}/eggdrop/
 %{__make} install prefix="%{buildroot}%{_libdir}/eggdrop"
 
+%{__install} -D -m 755 eggdrop %{buildroot}%{_bindir}/eggdrop
 %{__install} -Dp -m0644 doc/man1/eggdrop.1 %{buildroot}%{_mandir}/man1/eggdrop.1
 
-perl -pi -e 's|/path/to/executable/eggdrop|%{_libdir}/eggdrop/eggdrop|' eggdrop.conf
+# Fix paths of example eggdrop.conf
+%{__sed} -e '2d' -e '1s@^.*@#!%{_bindir}/%{name}@' \
+	-e 's@scripts/@%{_datadir}/%{name}/scripts/@g' \
+	-e 's@help/@%{_datadir}/%{name}/help/@g' \
+	-e 's@modules/@%{_libdir}/%{name}/@g' \
+	eggdrop.conf > eggdrop.conf.mod
+touch -c -r eggdrop.conf eggdrop.conf.mod
+%{__mv} -f eggdrop.conf.mod eggdrop.conf
 %{__install} -Dp -m0644 eggdrop.conf %{buildroot}%{_libdir}/eggdrop/eggdrop.conf
+
+# Convert everything to UTF-8
+iconv -f iso-8859-1 -t utf-8 -o doc/KNOWN-PROBLEMS.utf8 doc/KNOWN-PROBLEMS
+touch -c -r doc/KNOWN-PROBLEMS doc/KNOWN-PROBLEMS.utf8
+%{__mv} -f doc/KNOWN-PROBLEMS.utf8 doc/KNOWN-PROBLEMS
+
+iconv -f iso-8859-1 -t utf-8 -o doc/Changes1.6.utf8 doc/Changes1.6
+touch -c -r doc/Changes1.6 doc/Changes1.6.utf8
+%{__mv} -f doc/Changes1.6.utf8 doc/Changes1.6
 
 ### Clean up buildroot
 %{__rm} -rf %{buildroot}%{_libdir}/eggdrop/{doc,filesys,README}
@@ -66,12 +86,16 @@ perl -pi -e 's|/path/to/executable/eggdrop|%{_libdir}/eggdrop/eggdrop|' eggdrop.
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-, root, root, 0755)
-%doc ChangeLog COPYING FEATURES INSTALL NEWS README doc/* *.conf
+%defattr(-,root,root,-)
+%doc COPYING FEATURES NEWS README SUZI doc/* eggdrop.conf
+%{_bindir}/eggdrop
+%{_libdir}/eggdrop
 %doc %{_mandir}/man1/eggdrop.1*
-%{_libdir}/eggdrop/
 
 %changelog
+* Sat Sep 29 2012 Denis Fateyev <denis@fateyev.com> - 1.6.21-3
+- Some spec cleanup
+
 * Wed Jun 20 2012 David Hrbáč <david@hrbac.cz> - 1.6.21-2
 - a few Fedora patches
 

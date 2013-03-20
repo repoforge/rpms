@@ -1,5 +1,5 @@
 Name: runawk
-Version: 1.4.1
+Version: 1.4.4
 Release: 1%{?dist}
 
 Summary: Wrapper for AWK providing modules
@@ -58,6 +58,7 @@ mkcmake install
 %doc doc/*
 %{_bindir}/*
 %{_mandir}/man1/*
+%{_mandir}/man3/*
 %{_datadir}/%{name}/
 
 %files examples
@@ -68,6 +69,9 @@ mkcmake install
 #   (uses runawk, isn't used by runawk)
 
 %changelog
+* Sun Nov 18 2012 Aleksey Cheusov <vle@gmx.net> 1.4.4-1
+- updated to 1.4.4
+
 * Sun Jul 22 2012 Aleksey Cheusov <vle@gmx.net> 1.4.1-1
 - updated to 1.4.1
 

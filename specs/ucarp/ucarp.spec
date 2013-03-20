@@ -8,7 +8,7 @@
 Summary: Common Address Redundancy Protocol (CARP) for Unix
 Name: ucarp
 Version: 1.5.2
-Release: 1%{?dist}
+Release: 3%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://www.ucarp.org/
@@ -16,6 +16,8 @@ URL: http://www.ucarp.org/
 Source: http://download.pureftpd.org/pub/ucarp/ucarp-%{version}.tar.bz2
 Source1: carp.init
 Source2: vip-001.conf.example
+Patch0: ucarp-1.5.2-sighup.patch
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: gettext
@@ -36,6 +38,7 @@ need for any dedicated extra network link between redundant hosts.
 
 %prep
 %setup
+%patch0 -p0
 
 %build
 %configure
@@ -100,6 +103,12 @@ fi
 %{_sbindir}/ucarp
 
 %changelog
+* Thu Feb 07 2013 David Hrbáč <david@hrbac.cz> - 1.5.2-3
+- new init script by Filip Valder
+
+* Wed Dec 19 2012 David Hrbáč <david@hrbac.cz> - 1.5.2-2
+- Patch to fix crash, BZ 693762.
+
 * Tue Mar 23 2010 Dag Wieers <dag@wieers.com> - 1.5.2-1
 - Updated to release 1.5.2.
 

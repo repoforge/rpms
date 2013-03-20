@@ -4,7 +4,7 @@
 
 Summary: Fault tolerant, network distributed file system
 Name: mfs
-Version: 1.6.25
+Version: 1.6.26
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -393,6 +393,9 @@ rm -rf %{buildroot}
 %config %{_localstatedir}/www/html/mfs/logomini.png
 
 %changelog
+* Mon Dec 17 2012 David Hrbáč <david@hrbac.cz> - 1.6.26-1
+- new upstream release
+
 * Wed May 02 2012 David Hrbáč <david@hrbac.cz> - 1.6.25-1
 - new upstream release
 

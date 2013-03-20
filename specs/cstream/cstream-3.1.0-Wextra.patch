@@ -1,0 +1,27 @@
+--- cstream-3.1.0/cstream.c.orig	2013-01-23 08:22:02.000000000 +0900
++++ cstream-3.1.0/cstream.c	2013-02-07 20:45:05.571466039 +0900
+@@ -101,12 +101,15 @@
+ #ifdef HAVE_LINUX_SOUNDCARD_H
+ #include <linux/soundcard.h>
+ #define WANT_SOUND 1
+-#include <sys/ioctl.h>
+ #endif /* linux/soundcard.h */
+ #endif /* either soundcard.h */
+ #endif /* either soundcard.h */
+ #endif /* ndef NOSOUND */
+ 
++#ifdef WANT_SOUND
++#include <sys/ioctl.h>
++#endif
++
+ #ifndef HAVE_SYS_SOCKET_H
+ #define NOTCP
+ #endif
+@@ -277,7 +280,6 @@
+ static void
+ sighup(int signal)
+ {
+-  int meh = write(2, "SIGHUP\n", sizeof("SIGHUP\n") - 1);
+   n_sighups++;
+ }
+ 

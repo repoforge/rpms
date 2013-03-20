@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 Summary: GNU Make with comprehensible tracing and a debugger
 Name: remake
-Version: 3.82+dbg0.8
+Version: 3.82+dbg0.9
 Release: 1%{?dist}
 License: GPLv3
 Group: Development/Tools
 URL: http://bashdb.sf.net/remake/
 
-Source: https://github.com/downloads/rocky/remake/remake-3.82+dbg0.8.tar.gz 
+Source: http://bashdb.sf.net/remake-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: readline-devel
 Requires(post): /sbin/install-info
@@ -60,5 +60,7 @@ fi
 %{_infodir}/*.info*
 
 %changelog
+* Thu Dec 27 2012 Rocky Bernstein <rocky@gnu.org>
+- Update to 3.82+dbg0.9
 * Fri Sep 23 2011 Rocky Bernstein <rocky@gnu.org> - 1:3.81-19
 - First cut via CentOS6 spec

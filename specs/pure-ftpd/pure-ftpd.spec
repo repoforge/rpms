@@ -13,7 +13,7 @@
 
 Summary: Lightweight, fast and secure FTP server
 Name: pure-ftpd
-Version: 1.0.21
+Version: 1.0.36
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
@@ -23,9 +23,8 @@ Source0: http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-%{version
 Source1: pure-ftpd.init
 Source6: pure-ftpd.README.SELinux
 Source7: pure-ftpd.pureftpd.te
-Patch0: pure-ftpd-1.0.21-config.patch
-Patch1: pure-ftpd-1.0.20-libdir.patch
-Patch2: pure-ftpd-paminclude.patch
+Patch0: pure-ftpd-1.0.27-config.patch
+Patch1: pure-ftpd-paminclude.patch
 Provides: ftpserver
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -74,8 +73,7 @@ Pure-FTPd to be protected in the same way other FTP servers are in Fedora
 %prep
 %setup
 %patch0 -p0 -b .config
-%patch1 -p0 -b .libdir
-%patch2 -p0 -b .paminclude
+%patch1 -p0 -b .paminclude
 
 %{__cat} <<EOF >pure-ftpd.logrotate
 /var/log/pureftpd.log {
@@ -133,11 +131,9 @@ touch selinux/pureftpd.if
     --with-altlog \
     --with-capabilities \
     --with-cookie \
-    --with-cork \
     --with-diraliases \
 %{!?_without_extauth:--with-extauth} \
     --with-ftpwho \
-    --with-largefile \
 %{!?_without_ldap:--with-ldap} \
 %{!?_without_mysql:--with-mysql} \
     --with-pam \
@@ -259,6 +255,9 @@ fi
 %endif
 
 %changelog
+* Thu Aug 30 2012 Denis Fateyev <denis@fateyev.com> - 1.0.36-1
+- Updated to release 1.0.36
+
 * Mon Oct 06 2008 Dag Wieers <dag@wieers.com> - 1.0.21-1
 - Updated to release 1.0.21. (rebased on Fedora)
 
