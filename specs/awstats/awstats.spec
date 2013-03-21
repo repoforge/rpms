@@ -3,7 +3,7 @@
 
 Summary: Powerful and fullfeatured server logfile analyzer
 Name: awstats
-Version: 7.1
+Version: 7.1.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -116,6 +116,9 @@ dos2unix wwwroot/cgi-bin/awredir.pl
 %{_localstatedir}/www/awstats/
 
 %changelog
+* Thu Mar 21 2013 David Hrbáč <david@hrbac.cz> - 7.1.1-1
+- new upstream release
+
 * Sat Dec 08 2012 David Hrbáč <david@hrbac.cz> - 7.1-1
 - new upstream release
 
