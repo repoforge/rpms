@@ -3,7 +3,7 @@
 # Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
 # ExcludeDist: el4 el3
 
-%define revision 2
+%define revision 1
 
 %define logdir %{_localstatedir}/log/%{name}
 %define cachedir %{_localstatedir}/cache/%{name}
@@ -44,7 +44,7 @@
 
 Summary: Open Source host, service and network monitoring Web UI
 Name: icinga-web
-Version: 1.8.2
+Version: 1.8.3
 Release: %{revision}%{?dist}
 License: GPLv3
 Group: Applications/System
@@ -292,7 +292,10 @@ fi
 ##############################
 %changelog
 ##############################
-* Fri Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.2-2
+* Mon Mar 18 2013 Markus Frosch <markus.frosch@netways.de> - 1.8.3-1
+- bump to 1.8.3
+
+* Thu Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.2-2
 - fix rpmlint errors/warnings
 
 * Wed Feb 11 2013 Markus Frosch <markus.frosch@netways.de> - 1.8.2-1
