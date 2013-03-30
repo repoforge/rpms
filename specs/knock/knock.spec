@@ -11,13 +11,14 @@
 Summary: Port-knocking server
 Name: knock
 Version: 0.5
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.zeroflux.org/knock/
 
 Source: http://www.zeroflux.org/knock/files/knock-%{version}.tar.gz
 %{?el6:Patch0: knock-el6-compilation-error.patch}
+Source1: knockd.initd
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: libpcap
@@ -45,6 +46,7 @@ holes in a firewall for quick access.
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+%{__install} -Dp -m0755 %{SOURCE1} %{buildroot}%{_initrddir}/knockd
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,10 +56,25 @@ holes in a firewall for quick access.
 %doc ChangeLog COPYING  README TODO
 %doc %{_mandir}/man?/*
 %config(noreplace) %{_sysconfdir}/knockd.conf
+%config %{_initrddir}/knockd
 %{_bindir}/knock
 %{_sbindir}/knockd
 
+%post
+if [ $1 = 1 ]; then
+    /sbin/chkconfig --add knockd
+fi
+
+%preun
+if [ $1 = 0 ]; then
+    /sbin/service knockd stop > /dev/null 2>&1 || :
+    /sbin/chkconfig --del knockd
+fi
+
 %changelog
+* Thu Mar 30 2013 Aleks Bunin <sbunin@gmail.com> - 0.5-4
+- Added initd script
+
 * Thu Jan 03 2013 Jan Horacek <jahor@jhr.cz> - 0.5-3
 - patch for building on EL6
 
