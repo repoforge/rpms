@@ -13,14 +13,14 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.20
+Version: 2.7.21
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
 URL: http://puppetlabs.com/projects/puppet/
 
-Source0: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz
-Source1: http://puppetlabs.com/downloads/%{name}/%{name}-%{version}.tar.gz.asc
+Source0: http://downloads.puppetlabs.com/%{name}/%{name}-%{version}.tar.gz
+Source1: http://downloads.puppetlabs.com/%{name}/%{name}-%{version}.tar.gz.asc
 Patch0: puppet-2.6.5_rackup.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -145,6 +145,8 @@ touch %{buildroot}%{_sysconfdir}/puppet/puppetd.conf
 %{__cp} -a ext/ %{buildroot}%{_datadir}/%{name}
 # emacs and vim bits are installed elsewhere
 %{__rm} -rf %{buildroot}%{_datadir}/%{name}/ext/{emacs,vim}
+# Metadata for creating rpms and debs are not needed
+%{__rm} -rf %{buildroot}%{_datadir}/%{name}/ext/{redhat,debian}
 
 # Install emacs mode files
 emacsdir=%{buildroot}%{_datadir}/emacs/site-lisp
@@ -287,6 +289,9 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Fri Apr 05 2013 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.21-1
+- Updated to release 2.7.21.
+
 * Wed Nov 21 2012 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.20-1
 - Updated to release 2.7.20.
 
