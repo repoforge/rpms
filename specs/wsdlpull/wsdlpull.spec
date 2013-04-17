@@ -3,17 +3,17 @@
 
 Summary: C++  web services client library
 Name: wsdlpull
-Version: 1.20
+Version: 1.24
 Release: 1%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://wsdlpull.sourceforge.net/
 
-Source: http://dl.sf.net/wsdlpull/wsdlpull-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/wsdlpull/wsdlpull/wsdlpull%20%{version}/wsdlpull-%{version}.tar.bz2
 #Patch: wsdlpull-1.14-gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++
+BuildRequires: gcc-c++, doxygen
 
 %description
 wsdlpull is a C++ web services client library. It includes a WSDL
@@ -45,7 +45,8 @@ you will need to install %{name}-devel.
 
 %install
 %{__rm} -rf %{buildroot}
-%makeinstall
+#makeinstall
+%{__make} install DESTDIR="%{buildroot}"
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -55,29 +56,27 @@ you will need to install %{name}-devel.
 
 %files
 %defattr(-, root, root, 0755)
-%doc AUTHORS.txt CHANGES.txt COPYING.txt INSTALL.txt README.txt TODO.txt
-%{_bindir}/schema
-%{_bindir}/wsdl
+%doc AUTHORS ChangeLog CHANGES COPYING INSTALL NEWS README
+%{_bindir}/wsdlpull-schema
+%{_bindir}/wsdlpull
 %{_datadir}/wsdlpull/
-%{_libdir}/libschema.so.*
-%{_libdir}/libwsdl.so.*
-%{_libdir}/libxmlpull.so.*
-%exclude %{_prefix}/docs/*
+%{_libdir}/libwsdlpullschema.so.*
+%{_libdir}/libwsdlpull.so.*
+%{_libdir}/libwsdlpullxml.so.*
+%{_mandir}/man1/wsdlpull*
 
 %files devel
 %defattr(-, root, root, 0755)
-%{_includedir}/schemaparser/
-%{_includedir}/wsdlparser/
-%{_includedir}/xmlpull/
-%exclude %{_libdir}/libschema.a
-%{_libdir}/libschema.so
-%exclude %{_libdir}/libwsdl.a
-%{_libdir}/libwsdl.so
-%exclude %{_libdir}/libxmlpull.a
-%{_libdir}/libxmlpull.so
+%{_includedir}/wsdlpull/
+%{_libdir}/libwsdlpullschema.so
+%{_libdir}/libwsdlpull.so
+%{_libdir}/libwsdlpullxml.so
 %exclude %{_libdir}/*.la
 
 %changelog
+* Wed Apr 17 2013 Dries Verachtert <dries.verachtert@dries.eu> - 1.24-1
+- Updated to release 1.24.
+
 * Mon Aug 11 2008 Dries Verachtert <dries@ulyssis.org> - 1.20-1
 - Updated to release 1.20.
 
