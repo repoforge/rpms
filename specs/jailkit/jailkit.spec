@@ -3,7 +3,7 @@
 
 Summary: Utilities to limit user accounts to specific files using chroot()
 Name: jailkit
-Version: 2.11
+Version: 2.15
 Release: 1%{?dist}
 License: Open Source
 Group: System Environment/Base
@@ -35,6 +35,7 @@ are in a chroot.
 #%{__perl} -pi.orig -e 's|>>||g' Makefile.in
 
 %build
+export LIBS="-pthread"
 %configure
 %{__make} %{?_smp_mflags}
 
@@ -65,6 +66,9 @@ are in a chroot.
 %{_datadir}/jailkit/
 
 %changelog
+* Wed Apr 17 2013 David Hrbáč <david@hrbac.cz> - 2.15-1
+- new upstream release
+
 * Wed Jun 02 2010 Steve Huff <shuff@vecna.org> - 2.11-1
 - Updated to release 2.11.
 
