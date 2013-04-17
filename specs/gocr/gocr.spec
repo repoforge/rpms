@@ -3,7 +3,7 @@
 
 Summary: Optical Character Recognition (OCR) program
 Name: gocr
-Version: 0.49
+Version: 0.50
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
@@ -45,6 +45,9 @@ pgm, ppm, some pcx and tga image files) and outputs a text file.
 %{_bindir}/gocr.tcl
 
 %changelog
+* Wed Apr 17 2013 David Hrbáč <david@hrbac.cz> - 0.50-1
+- new upstream release
+
 * Fri Nov 19 2010 Dag Wieers <dag@wieers.com> - 0.49-1
 - Updated to release 0.49.
 
