@@ -1,11 +1,13 @@
 # $Id$
 # Authority: dag
 
+# ExcludeDist: el3 el4 el5
+
 %define _default_patch_fuzz 2
 
 Summary: Terminal multiplexer program
 Name: tmux
-Version: 1.7
+Version: 1.8
 Release: 1%{?dist}
 License: BSD
 Group: Applications/System
@@ -38,7 +40,7 @@ a simple, modern, BSD-licensed alternative to programs such as GNU screen.
 #patch0 -p1 -b .location
 #patch1 -p1 -b .sockethandling
 #patch2 -p1 -b .dropprivs
-%patch3 -p1 -b .writehard
+#%patch3 -p1 -b .writehard
 
 %build
 %configure
@@ -65,6 +67,9 @@ getent group tmux >/dev/null || groupadd -r tmux
 %attr(0775, root, tmux) %{_localstatedir}/run/tmux/
 
 %changelog
+* Wed Apr 17 2013 David Hrbáč <david@hrbac.cz> - 1.8-1
+- new upstream release
+
 * Thu Oct 25 2012 Dag Wieers <dag@wieers.com> - 1.7-1
 - Updated to release 1.7.
 
