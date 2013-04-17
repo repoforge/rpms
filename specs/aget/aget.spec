@@ -5,14 +5,13 @@
 
 Summary: Console download accelerator
 Name: aget
-Version: 0.4
-Release: 5.2%{?dist}
+Version: 0.4.1
+Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.enderunix.org/aget/
 
 Source: http://www.enderunix.org/aget/aget-%{version}.tar.gz
-Patch0: errno-include.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -21,10 +20,9 @@ and can be run from the console.
 
 %prep
 %setup
-%patch0 -p1 -b .errno
 
 %build
-%{__make} %{?_smp_mflags}
+%{__make} %{?_smp_mflags} CFLAGS="%{optflags} -D_GNU_SOURCE"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -39,6 +37,9 @@ and can be run from the console.
 %{_bindir}/aget
 
 %changelog
+* Tue Apr 16 2013 Dries Verachtert <dries.verachtert@dries.eu> - 0.4.1-1
+- Updated to release 4.1.
+
 * Sat Apr 08 2006 Dries Verachtert <dries@ulyssis.org> - 0.4-5.2
 - Rebuild for Fedora Core 5.
 
