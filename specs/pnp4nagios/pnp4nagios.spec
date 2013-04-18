@@ -5,8 +5,8 @@
 %define logmsg logger -t %{name}/rpm
 
 Name:		pnp4nagios
-Version:	0.6.19
-Release:	4
+Version:	0.6.21
+Release:	1
 Summary:	PNP is not PerfParse. A Nagios/Icinga perfdata graphing solution
 
 Group:		Applications/System
@@ -167,6 +167,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Apr 18 2013 David Hrbáč <david@hrbac.cz> - 0.6.21-1
+- new upstream release
+
 * Fri Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 0.6.19-4
 - if nagios is installed, use default config, otherwise fallback to icinga
 - only sed config in sysconfdir on fresh installs, upgrades are not-to-be overridden
