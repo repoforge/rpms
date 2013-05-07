@@ -14,7 +14,7 @@
 
 Summary: Powerful program for manipulating GIF images and animations
 Name: ungifsicle
-Version: 1.67
+Version: 1.70
 Release: 1%{?dist}
 License: GPL
 Group: Applications/File
@@ -72,5 +72,8 @@ http://www.gnu.org/philosophy/gif.html
 %{_bindir}/*
 
 %changelog
+* Tue May 07 2013 David Hrbáč <david@hrbac.cz> - 1.70-1
+- new upstream release
+
 * Mon May 21 2012 Steve Huff <shuff@vecna.org> - 1.67-1
 - Initial package (ported from gifsicle spec).
