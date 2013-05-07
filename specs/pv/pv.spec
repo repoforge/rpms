@@ -4,7 +4,7 @@
 
 Summary: Monitor the progress of data through a pipe
 Name: pv
-Version: 1.4.4
+Version: 1.4.6
 Release: 1%{?dist}
 License: Artistic
 Group: Development/Tools
@@ -53,6 +53,9 @@ will be until completion.
 %{_bindir}/pv
 
 %changelog
+* Tue May 07 2013 David Hrbáč <david@hrbac.cz> - 1.4.6-1
+- new upstream release
+
 * Sun Dec 23 2012 David Hrbáč <david@hrbac.cz> - 1.4.4-1
 - new upstream release
 
