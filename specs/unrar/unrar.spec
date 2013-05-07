@@ -4,7 +4,7 @@
 
 Summary: Extract, test and view RAR archives
 Name: unrar
-Version: 4.2.4
+Version: 5.0.2
 Release: 1%{?dist}
 License: Freeware
 Group: Applications/Archiving
@@ -23,11 +23,11 @@ archives created with the RAR archiver version 1.50 and above.
 
 %prep
 %setup -q -n %{name}
-## Remove stripping to get useful debuginfo package
-%{__perl} -pi -e 's|^STRIP=.*|STRIP=true|g' makefile.unix
+### Remove stripping to get useful debuginfo package
+#%{__perl} -pi -e 's|^STRIP=.*|STRIP=true|g' makefile.unix
 
 %build
-%{__make} %{?_smp_mflags} -f makefile.unix CXXFLAGS="%{optflags}"
+%{__make} %{?_smp_mflags} CXXFLAGS="%{optflags}"
 
 %install
 %{__rm} -rf %{buildroot}
@@ -44,6 +44,9 @@ archives created with the RAR archiver version 1.50 and above.
 %{_bindir}/unrar
 
 %changelog
+* Tue May 07 2013 David Hrbáč <david@hrbac.cz> - 5.0.2-1
+- new upstream release
+
 * Thu Jun 14 2012 David Hrbáč <david@hrbac.cz> - 4.2.4-1
 - new upstream release
 
