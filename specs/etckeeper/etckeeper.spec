@@ -2,7 +2,7 @@
 %{?el4:%define _without_bzr 1}
 
 Name:      etckeeper
-Version:   0.64
+Version:   1.1
 Release:   1%{?dist}
 Summary:   Store /etc in a SCM system (git, mercurial, bzr or darcs)
 Group:     Applications/System
@@ -98,6 +98,9 @@ fi
 %endif
 
 %changelog
+* Tue May 07 2013 David Hrbáč <david@hrbac.cz> - 1.1-1
+- new upstream release
+
 * Wed Oct 31 2012 David Hrbáč <david@hrbac.cz> - 0.64-1
 - enabled AVOID_DAILY_AUTOCOMMITS
 - new upstream release
