@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 4
+%define revision 1
 
 %define logmsg logger -t %{name}/rpm
 
@@ -20,7 +20,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.8.4
+Version: 1.9.0
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -209,6 +209,9 @@ install -D -m 0644 icinga.htpasswd %{buildroot}%{_sysconfdir}/%{name}/passwd
 install -d -m0755 "%{buildroot}%{_includedir}/%{name}/"
 install -m0644 include/*.h "%{buildroot}%{_includedir}/%{name}"
 
+# create perfdata dir by default
+install -d -m0755 "%{buildroot}%{_localstatedir}/spool/%{name}/perfdata"
+
 %pre
 # Add icinga user
 %{_sbindir}/groupadd icinga 2> /dev/null || :
@@ -352,9 +355,10 @@ fi
 %attr(755,-,-) %{_libdir}/icinga/p1.pl
 %{_libdir}/%{name}/eventhandlers
 %defattr(-,icinga,icinga,-)
-%{logdir}
-%{logdir}/archives
+%dir %{logdir}
+%dir %{logdir}/archives
 %dir %{_localstatedir}/spool/%{name}
+%dir %{_localstatedir}/spool/%{name}/perfdata
 %dir %{_localstatedir}/spool/%{name}/checkresults
 %attr(2755,icinga,icingacmd) %{_localstatedir}/spool/%{name}/cmd
 
@@ -395,6 +399,7 @@ fi
 %{_datadir}/%{name}/ssi
 %{_datadir}/%{name}/stylesheets
 %{_datadir}/%{name}/jquery-ui
+%{_datadir}/%{name}/jquery-ui-addon
 %attr(2775,icinga,icingacmd) %dir %{logdir}/gui
 %attr(664,icinga,icingacmd) %{logdir}/gui/index.htm
 %attr(664,icinga,icingacmd) %{logdir}/gui/.htaccess
@@ -433,6 +438,12 @@ fi
 
 
 %changelog
+* Tue May 07 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.9.0-1
+- bump 1.9.0
+
+* Tue Mar 05 2013 Rene Koch <r.koch@ovido.at> - 1.8.4-5
+- fixed double logdir/gui/ definitions in icinga and icinga-gui
+
 * Fri Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-4
 - fix rpmlint errors/warnings
 
