@@ -4,7 +4,7 @@
 
 Summary: Command-line todo task manager
 Name: task
-Version: 2.1.1
+Version: 2.2.0
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Utilities
@@ -18,7 +18,6 @@ BuildRequires: gcc-c++
 BuildRequires: libstdc++-devel
 BuildRequires: lua-devel >= 5.1
 BuildRequires: ncurses-devel
-BuildRequires: rpm-macros-rpmforge
 Requires: vramsteg
 
 %description
@@ -113,5 +112,8 @@ This package provides Bash completion support for TaskWarrior.
 %{_sysconfdir}/bash_completion.d/task
 
 %changelog
+* Tue May 07 2013 David Hrbáč <david@hrbac.cz> - 2.2.0
+- new upstream release
+
 * Fri Aug  3 2012 Steve Huff <shuff@vecna.org> - 2.1.1-1
 - Initial package.
