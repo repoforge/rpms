@@ -17,8 +17,10 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:	rrdtool-devel
 BuildRequires:	perl-rrdtool
+BuildRequires:	perl(Time::HiRes)
 Requires:	rrdtool
 Requires:	perl-rrdtool
+Requires: 	perl(Time::HiRes)
 
 %description
 PNP is an addon to Nagios/Icinga which analyzes performance data provided by plugins and stores them automatically into RRD-databases.
