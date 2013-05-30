@@ -10,12 +10,12 @@
 Summary: Nagios Service Check Acceptor
 Name: nagios-nsca
 Version: 2.7.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://www.nagios.org/
 
-Source: http://dl.sf.net/nagios/nsca-%{version}.tar.gz
+Source: http://sourceforge.net/projects/nagios/files/nsca-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %{?!rh62:BuildRequires: libmcrypt-devel}
@@ -196,6 +196,9 @@ fi
 %defattr(-, nagios, apache, 2755)
 
 %changelog
+* Thu May 30 2013 Sebastien Andre <swaeku@gmx.com> - 2.7.2-5
+- Fixed broken source URL
+
 * Thu Dec 20 2012 Michael Friedrich <michael.friedrich@netways.de> - 2.7.2-4
 - remove requires nagios, there's other cores too
 
