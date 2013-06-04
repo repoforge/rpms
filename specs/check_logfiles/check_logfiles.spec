@@ -2,13 +2,13 @@
 
 Summary: Logfile check  plugin for nagios
 Name: check_logfiles
-Version: 3.4.2
+Version: 3.5.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://sourceforge.net/projects/check-logfiles
 
-Source: http://labs.consol.de/wp-content/uploads/2010/06/check_logfiles-%{version}.tar.gz
+Source: http://labs.consol.de/download/shinken-nagios-plugins/check_logfiles-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 
@@ -33,8 +33,13 @@ check_logfiles is a plugin for Nagios which searches for patterns in logfiles. I
 %files
 %defattr(-, root, root, 0755)
 %{_libdir}/nagios/plugins/check_logfiles
+%doc AUTHORS ChangeLog README TODO
 
 %changelog
+* Fri Apr 05 2013 Christopher J Kucera <pez@apocalyptech.com> - 3.5.1-1
+- Update to version 3.5.1.
+- Added documentation files.
+
 * Thu Sep 16 2010 Christoph Maser <cmaser@gmx.de> - 3.4.2-1
 - Update to version 3.4.2.
 
