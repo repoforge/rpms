@@ -4,16 +4,17 @@
 Summary: C++  web services client library
 Name: wsdlpull
 Version: 1.24
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: LGPL
 Group: Applications/Internet
 URL: http://wsdlpull.sourceforge.net/
 
 Source: http://downloads.sourceforge.net/project/wsdlpull/wsdlpull/wsdlpull%20%{version}/wsdlpull-%{version}.tar.bz2
-#Patch: wsdlpull-1.14-gcc.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, doxygen
+BuildRequires: libcurl-devel
+BuildRequires: gcc-c++
+BuildRequires: doxygen
 
 %description
 wsdlpull is a C++ web services client library. It includes a WSDL
@@ -37,7 +38,6 @@ you will need to install %{name}-devel.
 
 %prep
 %setup
-#patch -p1
 
 %build
 %configure
@@ -74,6 +74,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/*.la
 
 %changelog
+* Sun Jun 16 2013 Denis Fateyev <denis@fateyev.com> - 1.24-2
+- Some spec cleanup
+
 * Wed Apr 17 2013 Dries Verachtert <dries.verachtert@dries.eu> - 1.24-1
 - Updated to release 1.24.
 
