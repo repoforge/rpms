@@ -7,25 +7,32 @@
 
 Summary: Robust and highly flexible VPN daemon
 Name: openvpn
-Version: 2.2.2
+Version: 2.3.2
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
 URL: http://openvpn.net/
 
 Source: http://swupdate.openvpn.net/community/releases/%{name}-%{version}.tar.gz
-Patch:  openvpn-%{version}-initscript.patch
+Patch:  openvpn-2.3.1-initscript.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: lzo-devel >= 2.03
 BuildRequires: openssl-devel >= 0.9.6
 BuildRequires: pkgconfig
 BuildRequires: pam-devel
-%{?_with_pkcs11:BuildRequires: pkcs11-helper-devel}
+%if 0%{?_with_pkcs11}
+BuildRequires: pkcs11-helper-devel
+Requires: pkcs11-helper
+%endif
 Requires: lzo
 Requires: openssl
 Requires: /sbin/chkconfig
 Requires: /sbin/service
+# For /sbin/ip
+BuildRequires: iproute
+# For /sbin/ip
+Requires: iproute
 
 %description
 OpenVPN is a robust and highly flexible tunneling application.
@@ -41,48 +48,41 @@ most major OS platforms.
 ### Fix provided initscript
 %patch -p0
 
+### Fix provided man-file
+%{__sed} -i -e 's,%{_datadir}/openvpn/plugin,%{_libdir}/openvpn/plugin,' doc/openvpn.8
+
 %build
 if pkg-config openssl; then
     export CFLAGS="%{optflags} $(pkg-config --cflags openssl)"
     export LDFLAGS="$LDFLAGS $(pkg-config --libs-only-L openssl)"
 fi
 %configure \
-    --disable-dependency-tracking \
     --program-prefix="%{?_program_prefix}" \
     --enable-iproute2 \
-    %{?_with_pkcs11:--enable-pkcs11} \
-    %{!?_with_pkcs11:--disable-pkcs11} \
+    %if 0%{?_with_pkcs11}
+    --enable-pkcs11 \
+    %else
+    --disable-pkcs11 \
+    %endif
     --enable-password-save \
-    --enable-pthread
+    --enable-plugins \
+    --enable-plugin-down-root \
+    --enable-plugin-auth-pam
 %{__make} %{?_smp_mflags}
-
-### Build plugins
-for pi in auth-pam down-root; do
-    %{__make} %{?_smp_mflags} -C plugin/$pi
-done
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
+find %{buildroot} -name '*.la' | xargs rm -f
 
 ### Install provided init script
-%{__install} -Dp -m0755 sample-scripts/openvpn.init %{buildroot}%{_initrddir}/openvpn
+%{__install} -Dp -m0755 distro/rpm/openvpn.init.d.rhel %{buildroot}%{_initrddir}/openvpn
 
 ### Install empty configuration directory
 %{__install} -d -m0755 %{buildroot}%{_sysconfdir}/openvpn/
 
-### Install plugins and move plugin documentation
-for pi in auth-pam down-root; do
-    %{__mv} -f plugin/$pi/README plugin/README.$pi
-    %{__install} -Dp -m0755 plugin/$pi/openvpn-$pi.so %{buildroot}%{_datadir}/openvpn/plugin/lib/openvpn-$pi.so
-done
-%{__mv} -f plugin/README plugin/README.plugins
-
 ### Disable find-requires for documentation
-find contrib/ easy-rsa/ sample-*/ -type f -exec %{__chmod} -x {} \;
-
-### Clean up any straggling documentation
-%{__rm} -rf %{buildroot}%{_docdir}/openvpn
+find contrib/ sample/ -type f -exec %{__chmod} -x {} \;
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -112,14 +112,19 @@ fi
 %files
 %defattr(-, root, root, 0755)
 %doc AUTHORS ChangeLog COPYING COPYRIGHT.GPL INSTALL NEWS PORTS README
-%doc contrib/ easy-rsa/ plugin/README.* sample-*/ management/*
+%doc contrib src/plugins/*/README.* doc/README.plugins sample
 %doc %{_mandir}/man8/openvpn.8*
-%dir %{_sysconfdir}/openvpn/
+%config %dir %{_sysconfdir}/openvpn/
 %config %{_initrddir}/openvpn
-%{_datadir}/openvpn/
+%{_includedir}/openvpn-plugin.h
+%{_libdir}/openvpn/
 %{_sbindir}/openvpn
+%exclude %{_datadir}/doc/openvpn
 
 %changelog
+* Sat Jun 08 2013 Denis Fateyev <denis@fateyev.com> - 2.3.2-1
+- Updated to version 2.3.2
+
 * Fri Mar 16 2012 Denis Fateyev <denis@fateyev.com> - 2.2.2-1
 - Updated to version 2.2.2
 

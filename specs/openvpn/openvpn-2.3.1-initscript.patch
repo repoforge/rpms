@@ -1,5 +1,5 @@
---- sample-scripts/openvpn.init.orig	2011-11-25 03:32:00.000000000 +0600
-+++ sample-scripts/openvpn.init		2012-02-25 19:15:00.000000000 +0600
+--- distro/rpm/openvpn.init.d.rhel
++++ distro/rpm/openvpn.init.d.rhel
 @@ -3,13 +3,28 @@
  # openvpn       This shell script takes care of starting and stopping
  #               openvpn on RedHat or other chkconfig-based system.
