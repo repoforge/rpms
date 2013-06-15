@@ -1,4 +1,5 @@
-# vim: set sw=4 ts=4 et nu:
+# $Id$
+# Authority: dfateyev
 
 Name:               reposurgeon
 Version:            2.20
@@ -9,7 +10,8 @@ URL:                http://www.catb.org/~esr/reposurgeon/
 Group:              Development/Tools/Version Control
 License:            BSD License
 BuildRoot:          %{_tmppath}/build-%{name}-%{version}
-BuildRequires:      make xmlto
+BuildRequires:      make
+BuildRequires:      xmlto
 BuildArch:          noarch
 Requires:           python
 # not actually required, but to make the build fail if it isn't
@@ -23,17 +25,17 @@ works with any version control system that can export and import git
 fast-import streams, including git, hg, and bzr.
 
 %prep
-%setup -q
+%setup
 
 %build
-%__make
+%{__make}
 
 %install
-%__install -D -m0755 reposurgeon "%{buildroot}%{_bindir}/reposurgeon"
-%__install -D -m0644 reposurgeon.1 "%{buildroot}%{_mandir}/man1/reposurgeon.1"
+%{__install} -D -m0755 reposurgeon "%{buildroot}%{_bindir}/reposurgeon"
+%{__install} -D -m0644 reposurgeon.1 "%{buildroot}%{_mandir}/man1/reposurgeon.1"
 
 %clean
-%{?buildroot:%__rm -rf "%{buildroot}"}
+%{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
@@ -46,6 +48,7 @@ fast-import streams, including git, hg, and bzr.
 - Update to 2.20
 - Change Python dependency to just "python", not "python-base > 2.7" for
   OpenSuSE.
+
 * Thu Nov  3 2011 pascal.bleser@opensuse.org
 - update to 1.6:
   * fix Python 3.2 compatibility problem
@@ -59,5 +62,6 @@ fast-import streams, including git, hg, and bzr.
   * 'checkout' command allows filling a specified directory with a revision
   * 'diff' commant allows examining diffs between commits
   * new [ ] syntax for selecting commits containing a specified path
+
 * Sat Oct 29 2011 pascal.bleser@opensuse.org
 - initial version (1.4)
