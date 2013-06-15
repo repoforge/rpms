@@ -7,6 +7,7 @@ arj DEFAULT SF-DEFAULT
 augeas DEFAULT http://augeas.net/download/
 awstats DEFAULT SF-DEFAULT
 bashdb DEFAULT SF-DEFAULT
+bmake DEFAULT ftp://ftp.netbsd.org/pub/NetBSD/misc/sjg/
 cabextract DEFAULT http://www.cabextract.org.uk/
 cacti DEFAULT http://www.cacti.net/downloads/
 cacti-spine DEFAULT http://www.cacti.net/downloads/spine/
@@ -60,6 +61,7 @@ nomarch DEFAULT http://www.ibiblio.org/pub/Linux/utils/compress/
 opendkim opendkim-([\d.]*?).tar.gz SF-DEFAULT
 openvpn DEFAULT http://swupdate.openvpn.org/community/releases/
 p7zip p7zip_([\d\.]+)_src_all.tar.bz SF-DEFAULT
+paexec DEFAULT SF-DEFAULT
 perl-Apache2-AuthenNIS CPAN-DEFAULT CPAN-DEFAULT
 perl-Archive-Zip CPAN-DEFAULT CPAN-DEFAULT
 perl-Array-Columnize CPAN-DEFAULT CPAN-DEFAULT
@@ -152,6 +154,7 @@ rkhunter DEFAULT SF-DEFAULT
 rrdtool DEFAULT http://oss.oetiker.ch/rrdtool/pub/
 rsync DEFAULT http://rsync.samba.org/
 rtorrent DEFAULT http://libtorrent.rakshasa.no/downloads/
+runawk DEFAULT SF-DEFAULT
 siege DEFAULT http://www.joedog.org/pub/siege/
 snappy DEFAULT GOOGLE-DEFAULT
 spamassassin Mail-SpamAssassin-(.*?).tar.bz2 http://www.apache.org/dist/spamassassin/source/
