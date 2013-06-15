@@ -4,7 +4,7 @@
 
 Summary: Ping alike tool for http requests
 Name: httping
-Version: 2.0
+Version: 2.3.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -13,7 +13,10 @@ URL: http://www.vanheusden.com/httping/
 Source: http://www.vanheusden.com/httping/httping-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+BuildRequires: gettext
 BuildRequires: openssl-devel
+BuildRequires: ncurses-devel
+BuildRequires: fftw-devel
 
 %description
 Httping is like 'ping' but for http-requests.
@@ -25,15 +28,13 @@ that the transmission across the network also takes time!
 %setup
 
 %build
-%{__make} %{?_smp_mflags} \
-    CFLAGS="%{optflags} -DVERSION=\\\"%{version}\\\" -I/usr/kerberos/include" \
-    DEBUG=""
+%{__make} %{?_smp_mflags}
 
 %install
 %{__rm} -rf %{buildroot}
-#{__make} install DESTDIR="%{buildroot}"
 %{__install} -Dp -m0755 httping %{buildroot}%{_bindir}/httping
 %{__install} -Dp -m0644 httping.1 %{buildroot}%{_mandir}/man1/httping.1
+%{__install} -Dp -m0644 httping-nl.1 %{buildroot}%{_mandir}/nl/man1/httping.1
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -42,9 +43,13 @@ that the transmission across the network also takes time!
 %defattr(-, root, root, 0755)
 %doc license.txt readme.txt
 %doc %{_mandir}/man1/httping.1*
+%doc %{_mandir}/nl/man1/httping.1*
 %{_bindir}/httping
 
 %changelog
+* Sun May 26 2013 Denis Fateyev <denis@fateyev.com> - 2.3.1-1
+- Minor fixes, update to 2.3.1
+
 * Wed Mar 20 2013 Dag Wieers <dag@wieers.com> - 2.0-1
 - Updated to release 2.0.
 
