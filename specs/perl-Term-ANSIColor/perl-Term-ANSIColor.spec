@@ -9,7 +9,7 @@
 Summary: Color output using ANSI escape sequences
 Name: perl-Term-ANSIColor
 Version: 3.00
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://search.cpan.org/dist/Term-ANSIColor/
@@ -19,6 +19,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
 BuildRequires: perl(ExtUtils::MakeMaker)
+BuildRequires: perl(Test::More)
 
 ### remove autoreq Perl dependencies
 %filter_from_requires /^perl.*/d
@@ -26,7 +27,7 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 
 
 %description
-
+Color output using ANSI escape sequences
 
 %prep
 %setup -n %{real_name}-%{version}
@@ -34,7 +35,6 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 %build
 %{__perl} Makefile.PL INSTALLDIRS="vendor" PREFIX="%{buildroot}%{_prefix}"
 %{__make} %{?_smp_mflags}
-%{__make} %{?_smp_mflags} test
 
 %install
 %{__rm} -rf %{buildroot}
@@ -42,6 +42,9 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 
 %clean
 %{__rm} -rf %{buildroot}
+
+%check
+%{__make} %{?_smp_mflags} test
 
 %files
 %defattr(-, root, root, 0755)
@@ -52,5 +55,10 @@ BuildRequires: perl(ExtUtils::MakeMaker)
 %exclude %{perl_vendorarch}/auto/Term/ANSIColor/.packlist
 
 %changelog
+* Wed Mar 27 2013 IWAI, Masaharu <iwaim.sub@gmail.com> - 3.00-2
+- add BuildRequires: perl(Test::More)
+- create 'check' section
+- add description
+
 * Tue Feb 08 2011 Christoph Maser <cmaser.gmx.de> - 3.00-1
 - initial package
