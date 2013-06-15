@@ -3,16 +3,18 @@
 
 Summary: Configuration handling library
 Name: varconf
-Version: 0.6.6
+Version: 0.6.7
 Release: 1%{?dist}
 License: LGPL
 Group: Development/Libraries
 URL: http://www.worldforge.org/dev/eng/libraries/varconf
 
-Source: http://dl.sf.net/worldforge/varconf-%{version}.tar.bz2
+Source: http://downloads.sourceforge.net/worldforge/varconf-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires: gcc-c++, pkgconfig, libsigc++20-devel
+BuildRequires: gcc-c++
+BuildRequires: pkgconfig
+BuildRequires: libsigc++20-devel
 
 %description
 Varconf is configuration handling library required by many WorldForge
@@ -60,6 +62,9 @@ you will need to install %{name}-devel.
 %{_libdir}/pkgconfig/varconf-1.0.pc
 
 %changelog
+* Fri Apr 19 2013 Dries Verachtert <dries.verachtert@dries.eu> - 0.6.7-1
+- Updated to release 0.6.7.
+
 * Mon Mar 23 2009 Dries Verachtert <dries@ulyssis.org> - 0.6.6-1
 - Updated to release 0.6.6.
 
