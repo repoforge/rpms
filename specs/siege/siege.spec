@@ -1,70 +1,83 @@
 # $Id$
 # Authority: dag
+# Upstream: Jeffrey Fulmer <jeff$joedog,org>
 
-Summary: HTTP regression testing and benchmarking utility
 Name: siege
-Version: 2.72
+Version: 3.0.1
 Release: 1%{?dist}
-License: GPL
-Group: Development/Tools
-URL: http://www.joedog.org/JoeDog/Siege/
+Summary: HTTP regression testing and benchmarking utility
 
-Source: http://www.joedog.org/pub/siege/siege-%{version}.tar.gz
-Patch0: siege-2.69-good.patch
+Group: Development/Tools
+License: GPLv2+
+URL: http://www.joedog.org/JoeDog/Siege
+Source0: ftp://ftp.joedog.org/pub/siege/beta/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: openssl-devel
 
 %description
-Siege is an http regression testing and benchmarking utility. 
+Siege is an HTTP regression testing and benchmarking utility. 
 It was designed to let web developers measure the performance of their code 
 under duress, to see how it will stand up to load on the internet. 
 Siege supports basic authentication, cookies, HTTP and HTTPS protocols. 
 It allows the user hit a web server with a configurable number of concurrent 
-simulated users. Those users place the webserver "under siege."
+simulated users. Those users place the web-server "under siege."
 
 %prep
-%setup 
+%setup -c
 
-%patch0 -p1 -b .good
+cd %{name}-%{version}
 
 # better default for log file (Bug 644631)
-sed -i.orig doc/siegerc.in -e 's/^# logfile = *$/logfile = ${HOME}\/siege.log/'
+%{__sed} -i.orig doc/siegerc.in -e 's/^# logfile = *$/logfile = ${HOME}\/siege.log/'
 
 %build
+cd %{name}-%{version}
 
 %configure --sysconfdir=/etc/siege
-make %{?_smp_mflags}
+%{__make} %{?_smp_mflags}
+
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-# Create /etc/siege/urls.txt
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/siege
-install -m 644 doc/urls.txt $RPM_BUILD_ROOT%{_sysconfdir}/siege/
-# Create /etc/siege/siegerc
-install -m 644 doc/siegerc $RPM_BUILD_ROOT%{_sysconfdir}/siege/
+cd %{name}-%{version}
+%{__rm} -rf %{buildroot}
+%{__mkdir_p} %{buildroot}%{_sysconfdir}/siege
+%{__make} install DESTDIR=%{buildroot}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
+
 
 %files
-%config(noreplace) %{_sysconfdir}/siege/siegerc
-%config(noreplace) %{_sysconfdir}/siege/urls.txt
-%defattr(-, root, root, 0755)
-%doc %{_mandir}/man1/bombardment.1*
-%doc %{_mandir}/man1/siege.1*
-%doc %{_mandir}/man1/siege.config*
-%doc %{_mandir}/man1/siege2csv.1*
-%doc %{_mandir}/man5/urls_txt.5*
-%doc %{_mandir}/man7/layingsiege.7*
-%doc AUTHORS ChangeLog COPYING KNOWNBUGS MACHINES NEWS PLATFORM README*
+%defattr(-,root,root,-)
+%doc %{name}-%{version}/AUTHORS
+%doc %{name}-%{version}/ChangeLog
+%doc %{name}-%{version}/COPYING
+%doc %{name}-%{version}/KNOWNBUGS
+%doc %{name}-%{version}/MACHINES
+%doc %{name}-%{version}/NEWS
+%doc %{name}-%{version}/PLATFORM
+%doc %{name}-%{version}/README
+%doc %{name}-%{version}/README.https
 %{_bindir}/bombardment
 %{_bindir}/siege
 %{_bindir}/siege.config
 %{_bindir}/siege2csv.pl
+%{_mandir}/man1/bombardment.1.gz
+%{_mandir}/man1/siege.1.gz
+%{_mandir}/man1/siege.config.1.gz
+%{_mandir}/man1/siege2csv.1.gz
+%{_mandir}/man5/urls_txt.5.gz
+%{_mandir}/man7/layingsiege.7.gz
+%dir %{_sysconfdir}/siege
+%config(noreplace) %{_sysconfdir}/siege/urls.txt
+%config(noreplace) %{_sysconfdir}/siege/siegerc
+
 
 %changelog
+* Sun Jun 16 2013 Denis Fateyev <denis@fateyev.com> - 3.0.1-1
+- Update to version 3.0.1, synced with fedora spec
+
 * Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 2.72-1
 - new upstream release
 
