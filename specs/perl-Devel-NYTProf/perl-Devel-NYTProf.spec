@@ -9,7 +9,7 @@
 
 Summary: Powerful fast feature-rich perl source code profiler
 Name: perl-%{real_name}
-Version: 4.04
+Version: 4.25
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -65,16 +65,20 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 
 %files
 %defattr(-, root, root, 0755)
-%doc Changes MANIFEST META.yml README demo/
+%doc Changes MANIFEST META.yml README.md demo/
 %doc %{_mandir}/man?/*
 %dir %{perl_vendorarch}/Devel/NYTProf/
 %{perl_vendorarch}/Devel/NYTProf.pm
+%{perl_vendorarch}/Devel/MemoryProfiling.pod
 %{perl_vendorarch}/Devel/NYTProf/*
 %{perl_vendorarch}/Devel/auto/Devel/*
 %{perl_vendorarch}/auto/Devel/*
 %{_bindir}/*
 
 %changelog
+* Sun Jun 16 2013 Denis Fateyev <denis@fateyev.com> - 4.25-1
+- Updated to release 4.25.
+
 * Thu Jul 29 2010 Steve Huff <shuff@vecna.org> - 4.04-1
 - Updated to release 4.04.
 
