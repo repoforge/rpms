@@ -9,10 +9,7 @@ License: GPL
 Group: Applications/File
 URL: http://ssdeep.sourceforge.net/
 
-Packager: Dag Wieers <dag@wieers.com>
-Vendor: Dag Apt Repository, http://dag.wieers.com/apt/
-
-Source: http://dl.sf.net/project/ssdeep/ssdeep-%{version}/ssdeep-%{version}.tar.gz
+Source: http://http://downloads.sourceforge.net/project/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++
@@ -34,7 +31,7 @@ Input from standard input is not supported.
 
 %install
 %{__rm} -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+%{__make} DESTDIR=%{buildroot} install
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -50,5 +47,3 @@ make DESTDIR=%{buildroot} install
 %changelog
 * Fri Oct 19 2012 Richard Harman <rpm+ssdeep@richardharman.com>
 - Update to ssdeep 2.9 and build/install shared libraries
-* Wed Feb 16 2011 Dag Wieers <dag@wieers.com> - 2.6-1
-- Initial package. (using DAR)
