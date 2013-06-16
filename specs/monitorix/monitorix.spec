@@ -4,7 +4,7 @@
 
 Summary: Monitorix is a system monitoring tool
 Name: monitorix
-Version: 3.0.0
+Version: 3.2.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -106,7 +106,7 @@ fi
 %doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf
 
 %changelog
-* Thu Feb 21 2013 Jordi Sanfeliu <jordi@fibranet.cat> - 3.0.0-1
+* Thu Feb 21 2013 Jordi Sanfeliu <jordi@fibranet.cat> - 3.2.1-1
 - Updated to the latest version.
 
 * Thu Sep 20 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.6.0-1

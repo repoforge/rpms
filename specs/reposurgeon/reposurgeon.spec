@@ -7,7 +7,7 @@ Release:            0.1%{?dist}
 Summary:            SCM Repository Manipulation Tool
 Source:             http://www.catb.org/~esr/reposurgeon/reposurgeon-%{version}.tar.gz
 URL:                http://www.catb.org/~esr/reposurgeon/
-Group:              Development/Tools/Version Control
+Group:              Development/Tools
 License:            BSD License
 BuildRoot:          %{_tmppath}/build-%{name}-%{version}
 BuildRequires:      make

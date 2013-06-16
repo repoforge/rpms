@@ -170,7 +170,7 @@ fi
 
 * Wed Oct  6 2004 Matthias Saou <http://freshrpms.net/> 2.0-0.beta11.1
 - Update to 2.0_beta11.
-- Add cleaner dev entries to %file instead of using mknod in post.
+- Add cleaner dev entries to "file" instead of using mknod in post.
 - Add openssl krb5 include error workaround for older releases.
 
 * Tue May 11 2004 Dag Wieers <dag@wieers.com> - 1.6.0-1

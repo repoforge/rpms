@@ -9,7 +9,7 @@ License: GPL
 Group: Applications/File
 URL: http://ssdeep.sourceforge.net/
 
-Source: http://http://downloads.sourceforge.net/project/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/root-%{name}-%{version}-%{release}-root
 
 BuildRequires: gcc-c++

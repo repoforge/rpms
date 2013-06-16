@@ -12,7 +12,7 @@ Epoch:     2
 License:   GPLv2
 Group:     System Environment/Shells
 
-Source:    http://www.midnight-commander.org/downloads/mc-%{version}.tar.bz2
+Source:    http://ftp.midnight-commander.org/mc-%{version}.tar.bz2
 URL:       http://www.midnight-commander.org/
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
