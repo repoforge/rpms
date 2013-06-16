@@ -57,7 +57,7 @@ simplicity and small size may also be used on embedded devices as well.
 %{__install} -m 0644 logo_bot.png %{buildroot}%{_datadir}/monitorix
 %{__install} -m 0644 monitorixico.png %{buildroot}%{_datadir}/monitorix
 %{__mkdir_p} %{buildroot}%{_datadir}/monitorix/imgs
-%{__mkdir_p} %{buildroot}%{_datadir}/monitorix/cgi-bin
+%{__mkdir_p} %{buildroot}%{_datadir}/monitorix/cgi
 %{__install} -m 0755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi
 %{__mkdir_p} %{buildroot}%{_localstatedir}/lib/monitorix/reports
 %{__install} -m 0644 reports/*.html %{buildroot}%{_localstatedir}/lib/monitorix/reports
@@ -103,10 +103,10 @@ fi
 %config(noreplace) %{_localstatedir}/lib/monitorix/reports/*.html
 %doc %{_mandir}/man5/monitorix.conf.5.gz
 %doc %{_mandir}/man8/monitorix.8.gz
-%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf
+%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf docs/monitorix.service docs/htpasswd.pl
 
 %changelog
-* Thu Feb 21 2013 Jordi Sanfeliu <jordi@fibranet.cat> - 3.2.1-1
+* Thu Jun 16 2013 Jordi Sanfeliu <jordi@fibranet.cat> - 3.2.1-1
 - Updated to the latest version.
 
 * Thu Sep 20 2012 Jordi Sanfeliu <jordi@fibranet.cat> - 2.6.0-1
