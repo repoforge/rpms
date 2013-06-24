@@ -4,7 +4,7 @@
 
 Summary: Library for parsing, writing and creating XML
 Name: libnxml
-Version: 0.18.2
+Version: 0.18.3
 Release: 1%{?dist}
 License: GPL
 Group: Development/Libraries
@@ -61,6 +61,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libnxml.la
 
 %changelog
+* Mon Jun 24 2013 David Hrbáč <david@hrbac.cz> - 0.18.3-1
+- new upstream release
+
 * Thu Feb 28 2008 Dag Wieers <dag@wieers.com> - 0.18.2-1
 - Updated to release 0.18.2.
 
