@@ -4,7 +4,7 @@
 
 Summary: Console RSS reader
 Name: rsstail
-Version: 1.5
+Version: 1.8
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Internet
@@ -39,6 +39,9 @@ detects a new entry, it will emit only that new entry.
 %{_bindir}/rsstail
 
 %changelog
+* Mon Jun 24 2013 David Hrbáč <david@hrbac.cz> - 1.8-1
+- new upstream release
+
 * Thu Jan  1 2009 Dries Verachtert <dries@ulyssis.org> - 1.5-1
 - Updated to release 1.5.
 

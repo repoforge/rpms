@@ -22,8 +22,10 @@ BuildArch: noarch
 BuildRequires: perl(Encode) >= 1.98
 BuildRequires: perl(Test::More)
 BuildRequires: perl >= 5.005
+BuildRequires: perl(ExtUtils::MakeMaker)
 Requires: perl(Encode) >= 1.98
 Requires: perl >= 5.005
+Requires: perl(ExtUtils::MakeMaker)
 
 %filter_from_requires /^perl*/d
 %filter_setup
