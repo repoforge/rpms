@@ -13,7 +13,7 @@
 
 Summary: Network tool for managing many disparate systems
 Name: puppet
-Version: 2.7.21
+Version: 2.7.22
 Release: 1%{?dist}
 License: Apache License 2.0
 Group: System Environment/Base
@@ -289,6 +289,9 @@ fi
 %{__rm} -rf %{buildroot}
 
 %changelog
+* Tue Jul 02 2013 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.22-1
+- Updated to release 2.7.22.
+
 * Fri Apr 05 2013 Tom G. Christensen <tgc@statsbiblioteket.dk> - 2.7.21-1
 - Updated to release 2.7.21.
 
