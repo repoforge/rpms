@@ -9,7 +9,7 @@
 
 Summary: Encapsulate SQL queries and rows in simple perl objects
 Name: perl-DBIx-SearchBuilder
-Version: 1.56
+Version: 1.65
 Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
@@ -73,6 +73,9 @@ find %{buildroot} -name .packlist -exec %{__rm} {} \;
 %exclude %{perl_vendorlib}/DBIx/SearchBuilder/Handle/Oracle.pm
 
 %changelog
+* Tue Jul 16 2013 Christopher J Kucera <pez@apocalyptech.com> - 1.65-1
+- Updated to version 1.65.
+
 * Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 1.56-1
 - Updated to version 1.56.
 
