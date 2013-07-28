@@ -4,17 +4,18 @@
 
 Summary: console Pandora.com client
 Name: pianobar
-Version: 2012.04.24
+Version: 2013.05.19
 Release: 1%{?dist}
 License: GPL
 Group: Applications/Multimedia
 URL: http://6xq.net/html/00/17.html
 
-Source: http://6xq.net/static/projects/pianobar/pianobar-%{version}.tar.bz2
+Source: http://6xq.net/projects/pianobar/pianobar-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires: binutils
 BuildRequires: gcc
+BuildRequires: json-c-devel
 BuildRequires: libao-devel
 BuildRequires: libmad-devel
 BuildRequires: make
@@ -90,6 +91,9 @@ you will need to install libpiano-devel.
 %exclude %{_libdir}/*.a
 
 %changelog
+* Sun Jul 28 2013 Steve Huff <shuff@vecna.org> - 2013.05.19-1
+- Updated to pianobar-2013.05.19
+
 * Wed Apr 25 2012 David Hrbáč <david@hrbac.cz> - 2012.04.24-1
 - new upstream release
 
