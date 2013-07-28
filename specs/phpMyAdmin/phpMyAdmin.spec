@@ -4,7 +4,7 @@
 
 Summary:	Handle the administration of MySQL over the World Wide Web
 Name:		phpMyAdmin
-Version:	3.5.8.1
+Version:	3.5.8.2
 Release:	1%{?dist}
 License:	GPLv2+
 Group:		Applications/Internet
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %attr(0755,apache,apache) %{_localstatedir}/lib/%{pkgname}/config
 
 %changelog
+* Sun Jul 28 2013 David Hrbáč <david@hrbac.cz> - 3.5.8.2-1
+- new upstream release
+
 * Tue May 07 2013 David Hrbáč <david@hrbac.cz> - 3.5.8.1-1
 - new upstream release
 
