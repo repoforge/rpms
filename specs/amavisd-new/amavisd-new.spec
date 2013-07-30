@@ -11,7 +11,7 @@
 
 Summary: Mail virus-scanner
 Name: amavisd-new
-Version: 2.8.0
+Version: 2.8.1
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Daemons
@@ -425,6 +425,9 @@ fi
 %{_sbindir}/amavisd-snmp-subagent
 
 %changelog
+* Tue Jul 30 2013 David Hrbáč <david@hrbac.cz> - 2.8.1-1
+- new upstream release
+
 * Tue Jan 15 2013 Tomáš Brandýský <tomas.brandysky@gmail.com> - 2.8.0-1
 - new upstream release
 - removed support for helper programs amavis.c and amavis-milter.c as they are not longer distributed
