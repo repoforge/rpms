@@ -9,7 +9,7 @@
 Summary: Open Source host, service and network monitoring program
 Name: nagios
 Version: 3.2.3
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://www.nagios.org/
@@ -24,6 +24,7 @@ BuildRequires: gd-devel > 1.8
 BuildRequires: zlib-devel
 BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
+BuildRequires: perl(ExtUtils::Embed)
 Obsoletes: nagios-www <= %{version}
 Requires: httpd
 Requires: php
@@ -210,6 +211,9 @@ fi
 %{_includedir}/nagios/
 
 %changelog
+* Tue Aug 13 2013 David Hrbáč <david@hrbac.cz> - 3.2.3-5
+- added build requires: perl(ExtUtils::Embed)
+
 * Thu Feb 17 2011 Christoph Maser <cmaser@gmx.de> - 3.2.3-4
 - match selinux policy shipped in rhel5
 - move logs to /var/log/nagios
