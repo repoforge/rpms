@@ -36,7 +36,7 @@
 
 Summary:        Open Source host, service and network monitoring Web UI
 Name:           icinga-web
-Version:        1.9.0
+Version:        1.9.1
 Release:        %{revision}%{?dist}
 License:        GPLv3
 Group:          Applications/System
@@ -52,6 +52,7 @@ Source0:        https://downloads.sourceforge.net/project/icinga/icinga-web/%{ve
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:  %{phpname} >= 5.2.3
+BuildRequires:  %{phpname}-devel >= 5.2.3
 BuildRequires:  %{phpname}-gd
 BuildRequires:  %{phpname}-ldap
 BuildRequires:  %{phpname}-pdo
@@ -61,7 +62,6 @@ BuildRequires:  %{phpname}-xml
 BuildRequires:  php-pear
 %endif
 %if "%{_vendor}" == "suse"
-BuildRequires:  %{phpname}-devel >= 5.2.3 
 BuildRequires:  %{phpname}-json
 BuildRequires:  %{phpname}-sockets
 BuildRequires:  %{phpname}-xsl
@@ -244,6 +244,9 @@ fi
 %{_datadir}/%{name}/app/modules/BPAddon
 
 %changelog
+* Tue Sep 08 2013 Markus Frosch <markus@lazyfrosch.de> - 1.9.1-1
+- release 1.9.1
+
 * Tue May 07 2013 Markus Frosch <markus@lazyfrosch.de> - 1.9.0-1
 - release 1.9.0
 
