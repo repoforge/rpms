@@ -17,7 +17,7 @@
 %endif
 
 # el5 requires newer php53 rather than php (5.1)
-%if 0%{?el5}
+%if 0%{?el5} || 0%{?rhel} == 5 || "%{?dist}" == ".el5"
 %define phpname php53
 %endif
 
@@ -36,7 +36,7 @@
 
 Summary:        Open Source host, service and network monitoring Web UI
 Name:           icinga-web
-Version:        1.9.1
+Version:        1.9.2
 Release:        %{revision}%{?dist}
 License:        GPLv3
 Group:          Applications/System
@@ -108,7 +108,6 @@ PNP Integration module for Icinga Web
 %package module-nagiosbp
 Summary:        Nagios Business Process Addon Integration module for Icinga Web
 Group:          Applications/System
-Requires:       nagios-business-process-addon-icinga
 Requires:       %{name} = %{version}-%{release}
 
 %description module-nagiosbp
@@ -244,6 +243,9 @@ fi
 %{_datadir}/%{name}/app/modules/BPAddon
 
 %changelog
+* Mon Oct 07 2013 Markus Frosch <markus@lazyfrosch.de> - 1.9.2-1
+- release 1.9.2
+
 * Tue Sep 08 2013 Markus Frosch <markus@lazyfrosch.de> - 1.9.1-1
 - release 1.9.1
 
