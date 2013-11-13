@@ -6,7 +6,7 @@
 #
 # ExclusiveDist: el5 el6
 
-%define revision 1
+%define revision 0
 
 %define logmsg logger -t %{name}/rpm
 
@@ -14,13 +14,47 @@
 %define spooldir %{_localstatedir}/spool/%{name}
 %define plugindir %{_libdir}/nagios/plugins
 
-%define apacheconfdir  %{_sysconfdir}/httpd/conf.d
+%if "%{_vendor}" == "suse"
+%define apacheuser wwwrun
+%define apachegroup www
+%define apachename apache2
+%define apacheconfdir  %{_sysconfdir}/%{apachename}/conf.d
+%define extcmdfile %{_localstatedir}/icinga/rw/icinga.cmd
+%define extcmdfiledir %{_localstatedir}/icinga/rw
+%define readme README.SUSE
+%define readmeido README.SUSE.idoutils
+%endif
+%if "%{_vendor}" == "redhat"
+%define apachename httpd
+%define apacheconfdir %{_sysconfdir}/%{apachename}/conf.d
 %define apacheuser apache
 %define apachegroup apache
+%define extcmdfile %{_localstatedir}/spool/icinga/cmd/icinga.cmd
+%define extcmdfiledir %{_localstatedir}/spool/icinga/cmd
+%define readme README.RHEL
+%define readmeido README.RHEL.idoutils
+%endif
+
+# Systemd support for Fedora >= 15
+%if 0%{?fedora} >= 15
+%define using_systemd 1
+%else
+%define using_sysvinit 1
+%endif
+
+# Check to see if we're allowed to use macroized systemd scriptlets, as
+# introduced in Fedora 18.
+%if 0%{?using_systemd}
+%if 0%{?fedora} >= 18
+%define systemd_macro_scriptlet 1
+%else
+%define systemd_macro_scriptlet 0
+%endif  # Fedora >= 18
+%endif  # using_systemd
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.9.3
+Version: 1.10.1
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -29,15 +63,26 @@ URL: http://www.icinga.org/
 Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
+%if 0%{?using_systemd}
+Requires(post): systemd-units
+Requires(preun): systemd-units
+Requires(postun): systemd-units
+%endif
+
 BuildRequires: gcc
 BuildRequires: gd-devel > 1.8
-BuildRequires: httpd
 BuildRequires: zlib-devel
 BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libdbi-devel
 BuildRequires: perl(ExtUtils::Embed)
 ### Requires: nagios-plugins
+BuildRequires: %{apachename}
+%if "%{_vendor}" == "suse"
+BuildRequires: libopenssl-devel
+%endif
+
+
 
 %description
 Icinga is an application, system and network monitoring application.
@@ -53,14 +98,26 @@ which return the status of the checks to Icinga.
 Icinga is a fork of the nagios project.
 
 %package gui
-Summary: Web content for %{name}
+Summary: Classic UI for %{name}
 Group: Applications/System
-Requires: %{name} = %{version}-%{release}
-Requires: httpd
+Requires: %{apachename}
 Requires: %{name}-doc
+Requires: %{name}-classicui-config
 
 %description gui
-This package contains the webgui (html,css,cgi etc.) for %{name}
+This package contains the Classic UI for %{name}. Requires %{name}-doc
+for the documentation module.
+
+%package gui-config
+Summary: Classic UI configuration for %{name}
+Group: Applications/System
+Requires: %{apachename}
+Provides: %{name}-classicui-config
+Conflicts: icinga2-classicui-config
+
+%description gui-config
+This packages contains the classic ui configuration for %{name}.
+
 
 %package devel
 Summary: Provides include files that Icinga-related applications may compile against
@@ -73,7 +130,7 @@ may compile against.
 
 %package idoutils
 Summary: transitional package, use idoutils-libdbi-* instead
-Group: Applications/System 
+Group: Applications/System
 Requires: %{name} = %{version}-%{release}
 Requires: %{name}-idoutils-libdbi-mysql
 
@@ -137,8 +194,6 @@ EOF
     --libdir="%{_libdir}/%{name}" \
     --sbindir="%{_libdir}/%{name}/cgi" \
     --sysconfdir="%{_sysconfdir}/%{name}" \
-    --with-command-user="icinga" \
-    --with-command-group="icingacmd" \
     --with-gd-lib="%{_libdir}" \
     --with-gd-inc="%{_includedir}" \
     --with-htmurl="/icinga" \
@@ -153,7 +208,6 @@ EOF
     --enable-embedded-perl \
     --enable-idoutils \
     --with-httpd-conf=%{apacheconfdir} \
-    --with-init-dir=%{_initrddir} \
     --with-log-dir=%{logdir} \
     --enable-cgi-log \
     --with-cgi-log-dir=%{logdir}/gui \
@@ -161,7 +215,7 @@ EOF
     --with-eventhandler-dir="%{_libdir}/%{name}/eventhandlers" \
     --with-p1-file-dir="%{_libdir}/%{name}" \
     --with-checkresult-dir="%{spooldir}/checkresults" \
-    --with-ext-cmd-file-dir="%{spooldir}/cmd" \
+    --with-ext-cmd-file-dir="%{extcmdfiledir}" \
     --with-http-auth-file="%{_sysconfdir}/%{name}/passwd" \
     --with-icinga-chkfile="%{spooldir}/icinga.chk" \
     --with-ido2db-lockfile="%{_localstatedir}/run/ido2db.pid" \
@@ -174,8 +228,19 @@ EOF
 %install
 %{__rm} -rf %{buildroot}
 %{__mkdir} -p %{buildroot}/%{apacheconfdir}
+
+# Our make install invocation will differ depending on whether or not we're
+# using systemd.
+#   without:  make ... install-init ...
+#   with:     make ... install-systemd ...
+%if 0%{?using_systemd}
+%define init_install systemd
+%else
+%define init_install init
+%endif
+
 %{__make} install-unstripped \
-    install-init \
+    install-%{init_install} \
     install-commandmode \
     install-config \
     install-webconf \
@@ -220,9 +285,24 @@ install -d -m0755 "%{buildroot}%{_localstatedir}/spool/%{name}/perfdata"
 
 
 %post
+
+%if 0%{?using_systemd}
+%if 0%{?systemd_macro_scriptlet}
+%systemd_post icinga.service
+%else
+# manual systemd scriptlet
+if [ $1 -eq 1 ] ; then
+    # Initial installation
+    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
+fi
+%endif
+%else
+# No systemd, just plain old sysvinit
 /sbin/chkconfig --add icinga
+%endif
+
 # restart httpd for auth change
-/sbin/service httpd condrestart > /dev/null 2>&1 || :
+/sbin/service %{apachename} condrestart > /dev/null 2>&1 || :
 
 # if this is an upgrade, and we found an old retention.dat, copy it to new location before starting icinga
 if [ $1 -eq 2 ]
@@ -250,7 +330,7 @@ fi
 	s|/var/icinga/objects.precache|%{spooldir}/objects.precache|;
 	s|/var/icinga/objects.cache|%{spooldir}/objects.cache|;
 	s|/var/icinga/status.dat|%{spooldir}/status.dat|;
-	s|/var/icinga/rw/icinga.cmd|%{spooldir}/cmd/icinga.cmd|;
+	s|/var/icinga/rw/icinga.cmd|%{extcmdfile}|;
 	s|/var/icinga/icinga.pid|/var/run/icinga.pid|;
 	s|/var/icinga/checkresults|%{spooldir}/checkresults|;
 	' /etc/icinga/icinga.cfg
@@ -260,13 +340,28 @@ fi
 fi
 
 %preun
+
+%if 0%{?using_systemd}
+%if 0%{?systemd_macro_scriptlet}
+%systemd_preun icinga.service
+%else
 if [ $1 -eq 0 ]; then
+    # manual systemd scriptlet
+    # Package removal, not upgrade
+    /bin/systemctl --no-reload disable icinga.service > /dev/null 2>&1 || :
+    /bin/systemctl stop icinga.service > /dev/null 2>&1 || :
+fi
+%endif
+%else
+if [ $1 -eq 0 ]; then
+    # No systemd, just plain old sysvinit
     /sbin/service icinga stop &>/dev/null || :
     /sbin/chkconfig --del icinga
 fi
+%endif
 
 %postun
-/sbin/service httpd condrestart > /dev/null 2>&1 || :
+/sbin/service %{apachename} condrestart > /dev/null 2>&1 || :
 
 %pre gui
 # Add apacheuser in the icingacmd group
@@ -274,7 +369,21 @@ fi
 
 
 %post idoutils-libdbi-mysql
+
+%if 0%{?using_systemd}
+%if 0%{?systemd_macro_scriptlet}
+%systemd_post ido2db.service
+%else
+# manual systemd scriptlet
+if [ $1 -eq 1 ] ; then
+    # Initial installation
+    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
+fi
+%endif
+%else
+# No systemd, just plain old sysvinit
 /sbin/chkconfig --add ido2db
+%endif
 
 # delete old bindir/idomod.o if it exists
 if [ -f %{_bindir}/idomod.o ]
@@ -282,16 +391,46 @@ then
     rm -f %{_bindir}/idomod.o
 fi
 
-%logmsg "idoutils-libdbi-mysql installed. don't forget to install/upgrade db schema, check README.RHEL.idoutils"
+%logmsg "idoutils-libdbi-mysql installed. don't forget to install/upgrade db schema, check %{readmeido}"
 
 %preun idoutils-libdbi-mysql
+
+%if 0%{?using_systemd}
+%if 0%{?systemd_macro_scriptlet}
+%systemd_preun ido2db.service
+%else
 if [ $1 -eq 0 ]; then
+    # manual systemd scriptlet
+    # Package removal, not upgrade
+    /bin/systemctl --no-reload disable ido2db.service > /dev/null 2>&1 || :
+    /bin/systemctl stop ido2db.service > /dev/null 2>&1 || :
+fi
+%endif
+%else
+if [ $1 -eq 0 ]; then
+    # No systemd, just plain old sysvinit
     /sbin/service ido2db stop &>/dev/null || :
     /sbin/chkconfig --del ido2db
 fi
+%endif
 
 %post idoutils-libdbi-pgsql
+
+%if 0%{?using_systemd}
+%if 0%{?systemd_macro_scriptlet}
+%systemd_post ido2db.service
+%else
+# manual systemd scriptlet
+if [ $1 -eq 1 ] ; then
+    # Initial installation
+    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
+fi
+%endif
+%else
+# No systemd, just plain old sysvinit
 /sbin/chkconfig --add ido2db
+%endif
+
 # delete old bindir/idomod.o if it exists
 if [ -f %{_bindir}/idomod.o ]
 then
@@ -317,14 +456,29 @@ then
 		' %{_sysconfdir}/icinga/ido2db.cfg
 fi
 
-%logmsg "idoutils-libdbi-pgsql installed. don't forget to install/upgrade db schema, check README.RHEL.idoutils"
+%logmsg "idoutils-libdbi-pgsql installed. don't forget to install/upgrade db schema, check %{readmeido}"
 
 
 %preun idoutils-libdbi-pgsql
+
+%if 0%{?using_systemd}
+%if 0%{?systemd_macro_scriptlet}
+%systemd_preun ido2db.service
+%else
 if [ $1 -eq 0 ]; then
+    # manual systemd scriptlet
+    # Package removal, not upgrade
+    /bin/systemctl --no-reload disable ido2db.service > /dev/null 2>&1 || :
+    /bin/systemctl stop ido2db.service > /dev/null 2>&1 || :
+fi
+%endif
+%else
+if [ $1 -eq 0 ]; then
+    # No systemd, just plain old sysvinit
     /sbin/service ido2db stop &>/dev/null || :
     /sbin/chkconfig --del ido2db
 fi
+%endif
 
 
 %clean
@@ -332,8 +486,13 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%doc README LICENSE Changelog UPGRADING README.RHEL
+%doc README LICENSE Changelog UPGRADING %{readme}
+%if 0%{?using_systemd}
+%attr(755,-,-)  %{_unitdir}/icinga.service
+%attr(644,-,-)  %{_sysconfdir}/sysconfig/icinga
+%else
 %attr(755,-,-) %{_initrddir}/icinga
+%endif
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/modules
 %config(noreplace) %{_sysconfdir}/%{name}/icinga.cfg
@@ -360,20 +519,16 @@ fi
 %dir %{_localstatedir}/spool/%{name}
 %dir %{_localstatedir}/spool/%{name}/perfdata
 %dir %{_localstatedir}/spool/%{name}/checkresults
-%attr(2755,icinga,icingacmd) %{_localstatedir}/spool/%{name}/cmd
+%attr(2755,icinga,icingacmd) %{extcmdfiledir}
 
 %files doc
 %defattr(-,root,root,-)
-%doc README LICENSE Changelog UPGRADING README.RHEL
+%doc README LICENSE Changelog UPGRADING %{readme}
 %{_datadir}/%{name}/docs
 
 %files gui
 %defattr(-,root,root,-)
-%doc README LICENSE Changelog UPGRADING README.RHEL
-%config(noreplace) %{apacheconfdir}/icinga.conf
-%config(noreplace) %{_sysconfdir}/%{name}/cgi.cfg
-%config(noreplace) %{_sysconfdir}/%{name}/cgiauth.cfg
-%attr(0640,root,apache) %config(noreplace) %{_sysconfdir}/%{name}/passwd
+%doc README LICENSE Changelog UPGRADING %{readme}
 %{_libdir}/%{name}/cgi/avail.cgi
 %{_libdir}/%{name}/cgi/cmd.cgi
 %{_libdir}/%{name}/cgi/config.cgi
@@ -404,6 +559,15 @@ fi
 %attr(664,icinga,icingacmd) %{logdir}/gui/index.htm
 %attr(664,icinga,icingacmd) %{logdir}/gui/.htaccess
 
+%files gui-config
+%defattr(-,root,root,-)
+%doc README LICENSE Changelog UPGRADING %{readme}
+%config(noreplace) %{_sysconfdir}/%{name}/cgi.cfg
+%config(noreplace) %{_sysconfdir}/%{name}/cgiauth.cfg
+%config(noreplace) %{apacheconfdir}/icinga.conf
+%config(noreplace) %attr(0640,root,%{apachegroup}) %{_sysconfdir}/%{name}/passwd
+
+
 %files devel
 %defattr(-,root,root)
 %{_includedir}/%{name}/
@@ -414,8 +578,12 @@ fi
 
 %files idoutils-libdbi-mysql
 %defattr(-,root,root,-)
-%doc README LICENSE Changelog UPGRADING module/idoutils/db README.RHEL README.RHEL.idoutils
+%doc README LICENSE Changelog UPGRADING module/idoutils/db %{readme} %{readmeido}
+%if 0%{?using_systemd}
+%attr(644,-,-)  %{_unitdir}/ido2db.service
+%else
 %attr(755,-,-) %{_initrddir}/ido2db
+%endif
 %attr(660,root,root) %config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/idomod.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/modules/idoutils.cfg
@@ -426,8 +594,12 @@ fi
 
 %files idoutils-libdbi-pgsql
 %defattr(-,root,root,-)
-%doc README LICENSE Changelog UPGRADING module/idoutils/db README.RHEL README.RHEL.idoutils
+%doc README LICENSE Changelog UPGRADING module/idoutils/db %{readme} %{readmeido}
+%if 0%{?using_systemd}
+%attr(644,-,-)  %{_unitdir}/ido2db.service
+%else
 %attr(755,-,-) %{_initrddir}/ido2db
+%endif
 %attr(660,root,root) %config(noreplace) %{_sysconfdir}/%{name}/ido2db.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/idomod.cfg
 %config(noreplace) %{_sysconfdir}/%{name}/modules/idoutils.cfg
@@ -438,6 +610,12 @@ fi
 
 
 %changelog
+* Mon Nov 04 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.10.1-1
+- bump 1.10.1
+
+* Wed Oct 16 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.10.0-1
+- bump 1.10.0
+
 * Sun Jul 07 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.9.3-1
 - bump 1.9.3
 
