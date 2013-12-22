@@ -3,13 +3,13 @@
 
 Summary: Library and tool to control NAT in UPnP-enabled routers
 Name: miniupnpc
-Version: 1.5
+Version: 1.8.20131209
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Libraries
-URL: http://miniupnp.tuxfamily.org/
+URL: http://miniupnp.free.fr/
 
-Source: http://miniupnp.tuxfamily.org/files/miniupnpc-%{version}.tar.gz
+Source: http://miniupnp.free.fr/files/miniupnpc-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -62,6 +62,9 @@ you will need to install %{name}-devel.
 %exclude %{_libdir}/libminiupnpc.a
 
 %changelog
+* Sun Dec 22 2013 Steve Huff <shuff@vecna.org> - 1.8.20131209-1
+- Updated to release 1.8.20131209.
+
 * Sun Jun 19 2011 Dag Wieers <dag@wieers.com> - 1.5-1
 - Updated to release 1.5.
 
