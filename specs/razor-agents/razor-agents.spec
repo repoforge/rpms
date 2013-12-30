@@ -7,7 +7,7 @@
 Summary: Use the Razor catalog server to filter spam messages
 Name: razor-agents
 Version: 2.85
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Artistic
 Group: Applications/Internet
 URL: http://razor.sourceforge.net/
@@ -37,6 +37,7 @@ can be blocked out by the rest of the Filtering Agents on the network.
 Group: Applications/CPAN
 Summary: perl-Razor Perl module
 Requires: perl(Net::DNS)
+Provides: perl(Razor::Agent)
 Obsoletes: razor-agents-sdk, perl-Razor
 
 %description -n perl-Razor-Agent
@@ -93,6 +94,9 @@ pod2text Changes.pod > Changes
 %{perl_vendorarch}/auto/Razor2/
 
 %changelog
+* Mon Dec 30 2013 Steve Huff <shuff@vecna.org> - 2.85-2
+- Added perl(Razor::Agent) provide.
+
 * Thu Feb 16 2012 David Hrbáč <david@hrbac.cz> - 2.85-1
 - new upstream release
 - use Digest::SHA instead of Digest::SHA1
