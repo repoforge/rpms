@@ -1,6 +1,6 @@
 # $Id$
 # Authority: dag
-# Upstream: <nagiosplug-devel$lists,sf,net>
+# Upstream: <devel@monitoring-plugins.org>
 
 %define revision 1
 
@@ -28,9 +28,9 @@ Version: 1.4.16
 Release: %{revision}%{?dist}
 License: GPL
 Group: Applications/System
-URL: http://nagiosplug.sourceforge.net/
+URL: https://www.monitoring-plugins.org
 
-Source: http://downloads.sourceforge.net/project/nagiosplug/nagiosplug/%{version}/nagios-plugins-%{version}.tar.gz
+Source: https://www.monitoring-plugins.org/download/nagios-plugins-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 AutoReq: no
