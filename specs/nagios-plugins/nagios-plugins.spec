@@ -4,6 +4,8 @@
 
 %define revision 1
 
+%define logmsg logger -t %{name}/rpm
+
 %{?el5:%define _with_apt 1}
 
 %{?el4:%define _with_apt 1}
@@ -24,7 +26,7 @@
 
 Summary: Host/service/network monitoring program plugins for Nagios/Icinga
 Name: nagios-plugins
-Version: 1.4.16
+Version: 1.5
 Release: %{revision}%{?dist}
 License: GPL
 Group: Applications/System
@@ -91,13 +93,6 @@ Nagios/Icinga package.
 %prep
 %setup
 
-### FIXME: Change to real perl and plugins location. (Please fix upstream)
-find contrib -type f -exec %{__perl} -pi -e '
-        s|^#!/.*bin/perl|#!%{__perl}|i;
-        s|/usr/local/nagios/libexec/|%{_libdir}/nagios/plugins/|;
-        s|/usr/libexec/nagios/plugins/|%{_libdir}/nagios/plugins/|;
-    ' {} \;
-
 %build
 PATH="/sbin:%{_sbindir}:$PATH" \
 %configure \
@@ -108,13 +103,9 @@ PATH="/sbin:%{_sbindir}:$PATH" \
 #   --with-nagios-group="nagios" \
 %{__make} %{?_smp_mflags}
 
-### Build some extra and contrib plugins
+### Build some extra plugins
 for plugin in %{extraplugins}; do
     %{__make} -C plugins check_$plugin
-done
-
-for plugin in contrib/*.c; do
-    ${CC:-%{__cc}} %{optflags} -I. -Iplugins/ -I%{_datadir}/gettext/ -o ${plugin%.c} $plugin || :
 done
 
 %install
@@ -123,16 +114,11 @@ done
 %{__make} install  DESTDIR="%{buildroot}" AM_INSTALL_PROGRAM_FLAGS=""
 %find_lang %{name}
 
-%{__install} -d -m0755 %{buildroot}%{_libdir}/nagios/plugins/contrib/
 %{__install} -m0755 plugins/check_* %{buildroot}%{_libdir}/nagios/plugins/
 %{__install} -m4755 plugins-root/check_* %{buildroot}%{_libdir}/nagios/plugins/
-%{__install} -m0755 contrib/check_* %{buildroot}%{_libdir}/nagios/plugins/contrib/
 
 %{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{perl_vendorlib}/utils.pm
 %{__install} -Dp -m0644 plugins-scripts/utils.pm %{buildroot}%{_libdir}/nagios/plugins/plugins.pm
-%{__install} -Dp -m0644 contrib/utils.py %{buildroot}%{_libdir}/nagios/plugins/utils.py
-
-%{__install} -Dp -m0644 command.cfg %{buildroot}%{_sysconfdir}/nagios/command-plugins.cfg
 
 ### Generate normal (.pyc) and optimized (.pyo) byte-compiled files.
 %{__python} -c 'import compileall; compileall.compile_dir("%{buildroot}", 10, "/", 1)' 
@@ -141,7 +127,14 @@ done
 
 ### Clean up buildroot
 %{__rm} -f %{buildroot}%{_libdir}/nagios/plugins/*.{c,o}
-%{__rm} -f %{buildroot}%{_libdir}/nagios/plugins/contrib/*.orig
+
+%post
+# check for upgrade
+if [ $1 -eq 2 ]
+then
+        %logmsg "Warning: Upstream removed contrib plugins in release 1.5"
+fi
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -149,9 +142,8 @@ done
 %files -f %{name}.lang
 #%defattr(-, nagios, nagios, 0755)
 %defattr(-, root, root, 0755)
-%doc ACKNOWLEDGEMENTS AUTHORS BUGS ChangeLog CODING COPYING FAQ INSTALL LEGAL
-%doc NEWS README REQUIREMENTS SUPPORT THANKS command.cfg
-%config(noreplace) %{_sysconfdir}/nagios/
+%doc ACKNOWLEDGEMENTS AUTHORS ChangeLog CODING COPYING FAQ INSTALL LEGAL
+%doc NEWS README REQUIREMENTS SUPPORT THANKS
 %dir %{_libdir}/nagios/
 %dir %{_libdir}/nagios/plugins/
 %{_libdir}/nagios/plugins/check_apt
@@ -159,6 +151,7 @@ done
 %{_libdir}/nagios/plugins/check_by_ssh
 %{_libdir}/nagios/plugins/check_clamd
 %{_libdir}/nagios/plugins/check_cluster
+%{_libdir}/nagios/plugins/check_dbi
 %{_libdir}/nagios/plugins/check_dig
 %{_libdir}/nagios/plugins/check_disk
 %{_libdir}/nagios/plugins/check_disk_smb
@@ -217,96 +210,10 @@ done
 %{_libdir}/nagios/plugins/check_ups
 %{_libdir}/nagios/plugins/check_users
 %{_libdir}/nagios/plugins/check_wave
-%dir %{_libdir}/nagios/plugins/contrib/
-%{_libdir}/nagios/plugins/contrib/check_adptraid.sh
-%{_libdir}/nagios/plugins/contrib/check_apache.pl
-%{_libdir}/nagios/plugins/contrib/check_apc_ups.pl
-%{_libdir}/nagios/plugins/contrib/check_appletalk.pl
-%{_libdir}/nagios/plugins/contrib/check_arping.pl
-%{_libdir}/nagios/plugins/contrib/check_asterisk.pl
-%{_libdir}/nagios/plugins/contrib/check_axis.sh
-%{_libdir}/nagios/plugins/contrib/check_backup.pl
-%{_libdir}/nagios/plugins/contrib/check_bgpstate.pl
-%{_libdir}/nagios/plugins/contrib/check_breeze.pl
-%{_libdir}/nagios/plugins/contrib/check_cluster
-%{_libdir}/nagios/plugins/contrib/check_cluster.c
-%{_libdir}/nagios/plugins/contrib/check_cluster2
-%{_libdir}/nagios/plugins/contrib/check_cluster2.README
-%{_libdir}/nagios/plugins/contrib/check_cluster2.c
-%{_libdir}/nagios/plugins/contrib/check_compaq_insight.pl
-%{_libdir}/nagios/plugins/contrib/check_cpqarray.c
-%{_libdir}/nagios/plugins/contrib/check_digitemp.pl
-%{_libdir}/nagios/plugins/contrib/check_dlswcircuit.pl
-%{_libdir}/nagios/plugins/contrib/check_dns_random.pl
-%{_libdir}/nagios/plugins/contrib/check_email_loop.pl
-%{_libdir}/nagios/plugins/contrib/check_fan_cpq_present
-%{_libdir}/nagios/plugins/contrib/check_fan_fsc_present
-%{_libdir}/nagios/plugins/contrib/check_flexlm.pl
-%{_libdir}/nagios/plugins/contrib/check_frontpage
-%{_libdir}/nagios/plugins/contrib/check_hltherm.c
-%{_libdir}/nagios/plugins/contrib/check_hprsc.pl
-%{_libdir}/nagios/plugins/contrib/check_http-with-client-certificate.c
-%{_libdir}/nagios/plugins/contrib/check_hw.sh
-%{_libdir}/nagios/plugins/contrib/check_ica_master_browser.pl
-%{_libdir}/nagios/plugins/contrib/check_ica_metaframe_pub_apps.pl
-%{_libdir}/nagios/plugins/contrib/check_ica_program_neigbourhood.pl
-%{_libdir}/nagios/plugins/contrib/check_inodes-freebsd.pl
-%{_libdir}/nagios/plugins/contrib/check_inodes.pl
-%{_libdir}/nagios/plugins/contrib/check_ipxping.c
-%{_libdir}/nagios/plugins/contrib/check_javaproc.pl
-%{_libdir}/nagios/plugins/contrib/check_joy.sh
-%{_libdir}/nagios/plugins/contrib/check_linux_raid.pl
-%{_libdir}/nagios/plugins/contrib/check_lmmon.pl
-%{_libdir}/nagios/plugins/contrib/check_log2.pl
-%{_libdir}/nagios/plugins/contrib/check_lotus.pl
-%{_libdir}/nagios/plugins/contrib/check_maxchannels.pl
-%{_libdir}/nagios/plugins/contrib/check_maxwanstate.pl
-%{_libdir}/nagios/plugins/contrib/check_mem.pl
-%{_libdir}/nagios/plugins/contrib/check_ms_spooler.pl
-%{_libdir}/nagios/plugins/contrib/check_mssql.sh
-%{_libdir}/nagios/plugins/contrib/check_nagios.pl
-%{_libdir}/nagios/plugins/contrib/check_nagios_db.pl
-%{_libdir}/nagios/plugins/contrib/check_nagios_db_pg.pl
-%{_libdir}/nagios/plugins/contrib/check_netapp.pl
-%{_libdir}/nagios/plugins/contrib/check_nmap.py
-%{_libdir}/nagios/plugins/contrib/check_nmap.pyc
-%ghost %{_libdir}/nagios/plugins/contrib/check_nmap.pyo
-%{_libdir}/nagios/plugins/contrib/check_ora_table_space.pl
-%{_libdir}/nagios/plugins/contrib/check_oracle_instance.pl
-%{_libdir}/nagios/plugins/contrib/check_oracle_tbs
-%{_libdir}/nagios/plugins/contrib/check_pcpmetric.py
-%{_libdir}/nagios/plugins/contrib/check_pcpmetric.pyc
-%ghost %{_libdir}/nagios/plugins/contrib/check_pcpmetric.pyo
-%{_libdir}/nagios/plugins/contrib/check_pfstate
-%{_libdir}/nagios/plugins/contrib/check_qmailq.pl
-%{_libdir}/nagios/plugins/contrib/check_rbl.c
-%{_libdir}/nagios/plugins/contrib/check_remote_nagios_status.pl
-%{_libdir}/nagios/plugins/contrib/check_rrd_data.pl
-%{_libdir}/nagios/plugins/contrib/check_sap.sh
-%{_libdir}/nagios/plugins/contrib/check_smart.pl
-%{_libdir}/nagios/plugins/contrib/check_smb.sh
-%{_libdir}/nagios/plugins/contrib/check_snmp_disk_monitor.pl
-%{_libdir}/nagios/plugins/contrib/check_snmp_printer.pl
-%{_libdir}/nagios/plugins/contrib/check_snmp_process_monitor.pl
-%{_libdir}/nagios/plugins/contrib/check_snmp_procs.pl
-%{_libdir}/nagios/plugins/contrib/check_sockets.pl
-%{_libdir}/nagios/plugins/contrib/check_temp_cpq
-%{_libdir}/nagios/plugins/contrib/check_temp_fsc
-%{_libdir}/nagios/plugins/contrib/check_timeout
-%{_libdir}/nagios/plugins/contrib/check_timeout.c
-%{_libdir}/nagios/plugins/contrib/check_traceroute-pure_perl.pl
-%{_libdir}/nagios/plugins/contrib/check_traceroute.pl
-%{_libdir}/nagios/plugins/contrib/check_uptime.c
-%{_libdir}/nagios/plugins/contrib/check_vcs.pl
-%{_libdir}/nagios/plugins/contrib/check_wave.pl
-%{_libdir}/nagios/plugins/contrib/check_wins.pl
 %{_libdir}/nagios/plugins/negate
 %{_libdir}/nagios/plugins/plugins.pm
 %{_libdir}/nagios/plugins/urlize
 %{_libdir}/nagios/plugins/utils.pm
-%{_libdir}/nagios/plugins/utils.py
-%{_libdir}/nagios/plugins/utils.pyc
-%ghost %{_libdir}/nagios/plugins/utils.pyo
 %{_libdir}/nagios/plugins/utils.sh
 %{perl_vendorlib}/utils.pm
 %exclude %{_libdir}/nagios/plugins/check_dhcp
@@ -320,6 +227,12 @@ done
 %{_libdir}/nagios/plugins/check_icmp
 
 %changelog
+* Wed Jan 15 2014 <michael.friedrich@netways.de> - 1.5-1
+- new upstream release 1.5
+- upstream removed all plugins shipped below contrib/
+- upstream removed command.cfg, BUGS
+- add check_dbi
+
 * Mon Jul 02 2012 <michael.friedrich@univie.ac.at> - 1.4.16-1
 - new upstream release 1.4.16
 - remove old patches, verified upstream included
