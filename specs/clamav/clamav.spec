@@ -13,7 +13,7 @@
 
 Summary: Anti-virus software
 Name: clamav
-Version: 0.98
+Version: 0.98.1
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -403,6 +403,9 @@ fi
 %exclude %{_libdir}/libclamunrar_iface.la
 
 %changelog
+* Mon Jan 20 2014 David Hrbáč <david@hrbac.cz> - 0.98.1-1
+- new upstream release
+
 * Thu Sep 19 2013 David Hrbáč <david@hrbac.cz> - 0.98-1
 - new upstream release
 
