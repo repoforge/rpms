@@ -9,13 +9,13 @@
 
 Summary: A minimal-effort oriented web application framework
 Name: perl-Dancer
-Version: 1.3095
-Release: 2%{?dist}
+Version: 1.3099
+Release: 1%{?dist}
 License: Artistic/GPL
 Group: Applications/CPAN
 URL: http://perldancer.org/
 
-Source: http://www.cpan.org/modules/by-module/Dancer/Dancer-%{version}.tar.gz
+Source: http://search.cpan.org/CPAN/authors/id/X/XS/XSAWYERX/Dancer-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildArch: noarch
@@ -111,6 +111,9 @@ environments.
 %exclude %{perl_vendorarch}/auto/*/.packlist
 
 %changelog
+* Fri Jan 31 2014 Steve Huff <shuff@vecna.org> - 1.3099-1
+Update to version 1.3099.
+
 * Thu Jun 21 2012 Steve Huff <shuff@vecna.org> - 1.3095-2
 - Patch Makefile.PL to include wallflower script.
 
