@@ -1,6 +1,6 @@
 # $Id$
-# Authority: The icinga devel team <icinga-devel at lists.sourceforge.net>
-# Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
+# Authority: The icinga devel team <icinga-devel at lists.icinga.org>
+# Upstream: The icinga devel team <icinga-devel at lists.icinga.org>
 # ExcludeDist: el4 el3
 
 %define revision 1
@@ -9,16 +9,17 @@
 %define cachedir %{_localstatedir}/cache/%{name}
 %define reportingcachedir %{_localstatedir}/cache/%{name}/reporting
 
-%if "%{_vendor}" == "suse"
-%define phpname php5
-%endif
-%if "%{_vendor}" == "redhat"
 %define phpname php
-%endif
 
 # el5 requires newer php53 rather than php (5.1)
 %if 0%{?el5} || 0%{?rhel} == 5 || "%{?dist}" == ".el5"
 %define phpname php53
+%endif
+
+%define phpbuildname %{phpname}
+
+%if "%{_vendor}" == "suse"
+%define phpbuildname php5
 %endif
 
 %if "%{_vendor}" == "suse"
@@ -36,7 +37,7 @@
 
 Summary:        Open Source host, service and network monitoring Web UI
 Name:           icinga-web
-Version:        1.10.0
+Version:        1.11.0
 Release:        %{revision}%{?dist}
 License:        GPLv3
 Group:          Applications/System
@@ -47,31 +48,29 @@ BuildArch:      noarch
 AutoReqProv:    Off
 %endif
 
-Source0:        https://downloads.sourceforge.net/project/icinga/icinga-web/%{version}/icinga-web-%{version}.tar.gz
+Source0:	https://github.com/Icinga/icinga-web/releases/download/v%{version}/icinga-web-%{version}.tar.gz
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
-BuildRequires:  %{phpname} >= 5.2.3
-BuildRequires:  %{phpname}-devel >= 5.2.3
-BuildRequires:  %{phpname}-gd
-BuildRequires:  %{phpname}-ldap
-BuildRequires:  %{phpname}-pdo
+BuildRequires:  %{phpbuildname} >= 5.2.3
+BuildRequires:  %{phpbuildname}-devel >= 5.2.3
+BuildRequires:  %{phpbuildname}-gd
+BuildRequires:  %{phpbuildname}-ldap
+BuildRequires:  %{phpbuildname}-pdo
 
 %if "%{_vendor}" == "redhat"
-BuildRequires:  %{phpname}-xml
+BuildRequires:  %{phpbuildname}-xml
 BuildRequires:  php-pear
 %endif
 %if "%{_vendor}" == "suse"
-Requires:       %{phpname}-devel >= 5.2.3
-BuildRequires:  %{phpname}-json
-BuildRequires:  %{phpname}-sockets
-BuildRequires:  %{phpname}-xsl
-BuildRequires:  %{phpname}-dom
-BuildRequires:  %{phpname}-pear
+BuildRequires:  %{phpbuildname}-json
+BuildRequires:  %{phpbuildname}-sockets
+BuildRequires:  %{phpbuildname}-xsl
+BuildRequires:  %{phpbuildname}-dom
+BuildRequires:  %{phpbuildname}-pear
 %endif
 
 Requires:       pcre >= 7.6
-Requires:       perl(Locale::PO)
 Requires:       %{phpname} >= 5.2.3
 Requires:       %{phpname}-gd
 Requires:       %{phpname}-ldap
@@ -90,7 +89,7 @@ Requires:       %{phpname}-gettext
 Requires:       %{phpname}-ctype
 Requires:       %{phpname}-json
 Requires:       %{phpname}-pear
-Requires:       apache2-mod_php5
+Requires:       mod_php_any
 %endif
 
 
@@ -204,11 +203,22 @@ sed -e "s#%%USER%%#icinga#;s#%%PATH%%#%{_datadir}/%{name}#" etc/scheduler/icinga
 getent group icingacmd > /dev/null
 
 if [ $? -eq 0 ]; then
+%if "%{_vendor}" == "suse"
+%{_sbindir}/usermod -G icingacmd %{apacheuser}
+%else
 %{_sbindir}/usermod -a -G icingacmd %{apacheuser}
+%endif
 fi
 
 # uncomment if building from git
 # %{__rm} -rf %{buildroot}%{_datadir}/icinga-web/.git
+
+%if "%{_vendor}" == "suse"
+a2enmod rewrite
+if service apache2 status; then
+  service apache2 restart
+fi
+%endif
 
 %preun
 
@@ -271,6 +281,8 @@ fi
 %attr(2775,%{apacheuser},%{apachegroup}) %dir %{logdir}
 %attr(-,%{apacheuser},%{apachegroup}) %{cachedir}
 %attr(-,%{apacheuser},%{apachegroup}) %{cachedir}/config
+# data directory writable for web server
+%attr(-,%{apacheuser},%{apachegroup})  %{_datadir}/%{name}/app/data/tmp
 # binaries
 %defattr(-,root,root)
 %{_bindir}/%{name}-clearcache
@@ -298,6 +310,13 @@ fi
 %attr(-,icinga,icinga) %{_localstatedir}/log/icingaCron
 
 %changelog
+* Thu Mar 13 2014 Michael Friedrich <michael.friedrich@netways.de> - 1.11.0-1
+- bump to 1.11.0
+
+* Wed Feb 19 2014 Markus Frosch <markus@lazyfrosch.de> - 1.10.1-1
+- release 1.10.1
+- fixes for SLES builds
+
 * Mon Oct 21 2013 Markus Frosch <markus@lazyfrosch.de> - 1.10.0-1
 - release 1.10
 - added scheduler package
