@@ -1,6 +1,6 @@
 # $Id$
 # Authority: cmr
-# Upstream: The icinga devel team <icinga-devel at lists.sourceforge.net>
+# Upstream: The icinga devel team <icinga-devel at lists.icinga.org>
 #
 # Needs libdbi
 #
@@ -54,13 +54,13 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.10.1
+Version: 1.11.0
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
 URL: http://www.icinga.org/
 
-Source0: http://downloads.sourceforge.net/project/%{name}/%{name}/%{version}/%{name}-%{version}.tar.gz
+Source0: https://github.com/Icinga/icinga-core/releases/download/v%{version}/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %if 0%{?using_systemd}
@@ -145,7 +145,12 @@ files and nothing depends on it.
 Summary: database broker module for %{name}
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
+%if 0%{?suse_version} >= 1210
+# opensuse
+Requires: libdbi-drivers-dbd-mysql
+%else
 Requires: libdbi-dbd-mysql
+%endif
 Conflicts: %{name}-idoutils-libdbi-pgsql
 
 %description idoutils-libdbi-mysql
@@ -156,7 +161,12 @@ database storage via libdbi and mysql.
 Summary: database broker module for %{name}
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
+%if 0%{?suse_version} >= 1210
+# opensuse
+Requires: libdbi-drivers-dbd-pgsql
+%else
 Requires: libdbi-dbd-pgsql
+%endif
 Conflicts: %{name}-idoutils-libdbi-mysql
 
 %description idoutils-libdbi-pgsql
@@ -304,40 +314,8 @@ fi
 # restart httpd for auth change
 /sbin/service %{apachename} condrestart > /dev/null 2>&1 || :
 
-# if this is an upgrade, and we found an old retention.dat, copy it to new location before starting icinga
-if [ $1 -eq 2 ]
-then
-# stop icinga
-/sbin/service icinga stop &>/dev/null || :
-# check for retention.dat
-if [ -f /var/icinga/retention.dat ]
-then
-    cp /var/icinga/retention.dat %{spooldir}/retention.dat
-    rm /var/icinga/retention.dat
-fi
-# same for objects.precache
-if [ -f /var/icinga/objects.precache ]
-then
-    cp /var/icinga/objects.precache %{spooldir}/objects.precache
-    rm /var/icinga/objects.precache
-fi
-
-# we must then check all changed config locations (and we enforce that change to icinga.cfg only once)
-# cgi.cfg luckily knows where icinga.cfg is and does not need an update
-# retention.dat, objects.cache, objects.precache, status.dat, cmdfile, pidfile, checkresults
-%{__perl} -pi -e '
-	s|/var/icinga/retention.dat|%{spooldir}/retention.dat|;
-	s|/var/icinga/objects.precache|%{spooldir}/objects.precache|;
-	s|/var/icinga/objects.cache|%{spooldir}/objects.cache|;
-	s|/var/icinga/status.dat|%{spooldir}/status.dat|;
-	s|/var/icinga/rw/icinga.cmd|%{extcmdfile}|;
-	s|/var/icinga/icinga.pid|/var/run/icinga.pid|;
-	s|/var/icinga/checkresults|%{spooldir}/checkresults|;
-	' /etc/icinga/icinga.cfg
-
 # start icinga
 /sbin/service icinga start &>/dev/null || :
-fi
 
 %preun
 
@@ -365,8 +343,19 @@ fi
 
 %pre gui
 # Add apacheuser in the icingacmd group
-  %{_sbindir}/usermod -a -G icingacmd %{apacheuser}
+# If the group exists, add the apacheuser in the icingacmd group.
+# It is not neccessary that icinga-cgi is installed on the same system as
+# icinga 1.x and only on systems with icinga installed the icingacmd
+# group exists.
+getent group icingacmd > /dev/null
 
+if [ $? -eq 0 ]; then
+%if "%{_vendor}" == "suse"
+  %{_sbindir}/usermod -G icingacmd %{apacheuser}
+%else
+  %{_sbindir}/usermod -a -G icingacmd %{apacheuser}
+%endif
+fi
 
 %post idoutils-libdbi-mysql
 
@@ -384,12 +373,6 @@ fi
 # No systemd, just plain old sysvinit
 /sbin/chkconfig --add ido2db
 %endif
-
-# delete old bindir/idomod.o if it exists
-if [ -f %{_bindir}/idomod.o ]
-then
-    rm -f %{_bindir}/idomod.o
-fi
 
 %logmsg "idoutils-libdbi-mysql installed. don't forget to install/upgrade db schema, check %{readmeido}"
 
@@ -431,11 +414,6 @@ fi
 /sbin/chkconfig --add ido2db
 %endif
 
-# delete old bindir/idomod.o if it exists
-if [ -f %{_bindir}/idomod.o ]
-then
-    rm -f %{_bindir}/idomod.o
-fi
 ### change ido2db.cfg to match pgsql config
 # check if this is an upgrade
 if [ $1 -eq 2 ]
@@ -610,6 +588,15 @@ fi
 
 
 %changelog
+* Thu Mar 13 2014 Michael Friedrich <michael.friedrich@netways.de> - 1.11.0-1
+- bump 1.11.0
+
+* Tue Feb 11 2014 Michael Friedrich <michael.friedrich@netways.de> - 1.10.3-1
+- bump 1.10.3
+
+* Thu Dec 05 2013 Ricardo Bartels <ricardo@bitchbrothers.com> - 1.10.2-1
+- bump 1.10.2
+
 * Mon Nov 04 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.10.1-1
 - bump 1.10.1
 
