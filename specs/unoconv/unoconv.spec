@@ -6,7 +6,7 @@
 
 %{?el4:%define _with_openoffice2 1}
 
-Summary: Tool to convert between any document format supported by OpenOffice
+Summary: Tool to convert between any document format supported by LibreOffice
 Name: unoconv
 Version: 0.4
 Release: 1%{?dist}
@@ -20,12 +20,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 BuildRequires: python >= 2.0
 Requires: python >= 2.0
-%{!?_with_openoffice2:Requires:openoffice.org-pyuno >= 2.0}
-%{?_with_openoffice2:Requires:openoffice.org2-pyuno >= 2.0}
+%{!?_with_openoffice2:Requires:libreoffice-pyuno >= 2.0}
+%{?_with_openoffice2:Requires:libreoffice-pyuno >= 2.0}
 
 %description
-unoconv converts between any document format that OpenOffice understands.
-It uses OpenOffice's UNO bindings for non-interactive conversion of
+unoconv converts between any document format that LibreOffice understands.
+It uses LibreOffice's UNO bindings for non-interactive conversion of
 documents.
 
 Supported document formats include Open Document Format (.odf),
