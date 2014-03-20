@@ -289,8 +289,8 @@ install -d -m0755 "%{buildroot}%{_localstatedir}/spool/%{name}/perfdata"
 
 %pre
 # Add icinga user
-%{_sbindir}/groupadd icinga 2> /dev/null || :
-%{_sbindir}/groupadd icingacmd 2> /dev/null || :
+%{_sbindir}/groupadd -r icinga 2> /dev/null || :
+%{_sbindir}/groupadd -r icingacmd 2> /dev/null || :
 %{_sbindir}/useradd -c "icinga" -s /sbin/nologin -r -d %{_localstatedir}/spool/%{name} -G icingacmd -g icinga icinga 2> /dev/null || :
 
 
