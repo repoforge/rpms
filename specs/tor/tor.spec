@@ -8,7 +8,7 @@
 
 Summary: Send network traffic through virtual tunnels to improve your privacy
 Name: tor
-Version: 0.2.4.19
+Version: 0.2.5.10
 Release: 1%{?dist}
 License: BSD
 Group: Applications/Internet
@@ -58,14 +58,16 @@ export CPPFLAGS="-I/usr/kerberos/include"
     --enable-nat-pmp \
     --enable-upnp
 %{__make} %{?_smp_mflags}
-%{__perl} -pi -e "s|# chkconfig: 2345|# chkconfig: -|g;" contrib/tor.sh
+%{__perl} -pi -e "s|# chkconfig: 2345|# chkconfig: -|g;" contrib/dist/tor.sh
 
 %install
 %{__rm} -rf %{buildroot}
 %{__make} install DESTDIR="%{buildroot}"
-%{__install} -Dp -m755 contrib/torctl %{buildroot}%{_bindir}/torctl
-%{__install} -Dp -m755 contrib/tor.sh %{buildroot}%{_initrddir}/tor
-%{__install} -Dp -m644 contrib/tor.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/tor
+%{__install} -Dp -m755 contrib/dist/torctl %{buildroot}%{_bindir}/torctl
+%{__install} -Dp -m755 contrib/dist/tor.sh %{buildroot}%{_initrddir}/tor
+%{__install} -Dp -m644 contrib/operator-tools/tor.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/tor
+%{__install} -Dp -m644 contrib/operator-tools/tor-exit-notice.html %{buildroot}%{_sysconfdir}/tor/tor-exit-notice.html
+%{__install} -Dp -m755 contrib/or-tools/exitlist %{buildroot}%{_bindir}/tor-exitlist
 %{__mv} -f %{buildroot}%{_sysconfdir}/tor/torrc.sample %{buildroot}%{_sysconfdir}/tor/torrc
 %{__install} -d %{buildroot}%{_localstatedir}/lib/tor/
 %{__install} -d %{buildroot}%{_localstatedir}/log/tor/
@@ -114,6 +116,9 @@ fi
 %defattr(-, root, %{torgroup}, 0640)
 %config(noreplace) %{_sysconfdir}/tor/torrc
 
+%defattr(-, root, %{torgroup}, 0644)
+%config(noreplace) %{_sysconfdir}/tor/tor-exit-notice.html
+
 %defattr(-, %{toruser}, %{torgroup}, 0700)
 %dir %{_localstatedir}/lib/tor
 
@@ -122,6 +127,9 @@ fi
 %dir %{_localstatedir}/log/tor
 
 %changelog
+* Thu Dec 11 2014 Steve Huff <shuff@vecna.org> - 0.2.5.10-1
+- Updated to release 0.2.5.10.
+
 * Mon Dec 22 2013 Steve Huff <shuff@vecna.org> - 0.2.4.19-1
 - Updated to release 0.2.4.19.
 - Added BuildConflicts libev-devel.
