@@ -54,7 +54,7 @@
 
 Summary: Open Source host, service and network monitoring program
 Name: icinga
-Version: 1.11.0
+Version: 1.12.2
 Release: %{revision}%{?dist}
 License: GPLv2
 Group: Applications/System
@@ -62,6 +62,10 @@ URL: http://www.icinga.org/
 
 Source0: https://github.com/Icinga/icinga-core/releases/download/v%{version}/icinga-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%if "%{_vendor}" == "redhat"
+Requires(pre): shadow-utils
+%endif
 
 %if 0%{?using_systemd}
 Requires(post): systemd-units
@@ -76,6 +80,7 @@ BuildRequires: libpng-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libdbi-devel
 BuildRequires: perl(ExtUtils::Embed)
+BuildRequires: make
 ### Requires: nagios-plugins
 BuildRequires: %{apachename}
 %if "%{_vendor}" == "suse"
@@ -101,8 +106,8 @@ Icinga is a fork of the nagios project.
 Summary: Classic UI for %{name}
 Group: Applications/System
 Requires: %{apachename}
-Requires: %{name}-doc
-Requires: %{name}-classicui-config
+Requires: %{name}-doc = %{version}-%{release}
+Requires: %{name}-classicui-config = %{version}-%{release}
 
 %description gui
 This package contains the Classic UI for %{name}. Requires %{name}-doc
@@ -122,7 +127,7 @@ This packages contains the classic ui configuration for %{name}.
 %package devel
 Summary: Provides include files that Icinga-related applications may compile against
 Group: Development/Libraries
-Requires: %{name} = %{version}
+Requires: %{name} = %{version}-%{release}
 
 %description devel
 This package provides include files that Icinga-related applications
@@ -132,7 +137,7 @@ may compile against.
 Summary: transitional package, use idoutils-libdbi-* instead
 Group: Applications/System
 Requires: %{name} = %{version}-%{release}
-Requires: %{name}-idoutils-libdbi-mysql
+Requires: %{name}-idoutils-libdbi-mysql = %{version}-%{release}
 
 %description idoutils
 Transitional package. Idoutils has been splitted into
@@ -588,246 +593,3 @@ fi
 
 
 %changelog
-* Thu Mar 13 2014 Michael Friedrich <michael.friedrich@netways.de> - 1.11.0-1
-- bump 1.11.0
-
-* Tue Feb 11 2014 Michael Friedrich <michael.friedrich@netways.de> - 1.10.3-1
-- bump 1.10.3
-
-* Thu Dec 05 2013 Ricardo Bartels <ricardo@bitchbrothers.com> - 1.10.2-1
-- bump 1.10.2
-
-* Mon Nov 04 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.10.1-1
-- bump 1.10.1
-
-* Wed Oct 16 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.10.0-1
-- bump 1.10.0
-
-* Sun Jul 07 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.9.3-1
-- bump 1.9.3
-
-* Sun Jun 30 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.9.2-1
-- bump 1.9.2
-
-* Wed May 22 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.9.1-1
-- bump 1.9.1
-
-* Tue May 07 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.9.0-1
-- bump 1.9.0
-
-* Tue Mar 05 2013 Rene Koch <r.koch@ovido.at> - 1.8.4-5
-- fixed double logdir/gui/ definitions in icinga and icinga-gui
-
-* Fri Feb 15 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-4
-- fix rpmlint errors/warnings
-
-* Wed Feb 06 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-3
-- add idoutils as transitional package (thx Stefan Marx, Michael Grüner)
-
-* Fri Feb 01 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-2
-- fix sf.net url
-
-* Sun Jan 13 2013 Michael Friedrich <michael.friedrich@netways.de> - 1.8.4-1
-- 1.8.4 bump
-
-* Wed Dec 12 2012 Michael Friedrich <michael.friedrich@netways.de> - 1.8.3-1
-- 1.8.3 bump
-
-* Tue Oct 30 2012 Michael Friedrich <michael.friedrich@gmail.com> - 1.8.2-1
-- 1.8.2 bump
-
-* Thu Oct 25 2012 Michael Friedrich <michael.friedrich@gmail.com> - 1.8.1-1
-- 1.8.1 release with a quickfix for faulty macros
-
-* Thu Oct 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.8.0-1
-- bump version
-- add devel package, installing header files to include/
-- use --with-mainurl from upstream to set the default to /icinga/cgi-bin/status.cgi?host=all&type=detail&servicestatustypes=29
-- forgot to check on old icinga.cfg entries not matching - enforce that once
-- change permissions on ido2db.cfg, not being world readable (Aaron Russo) #2987
-- drop unsupported configure options causing warnings #3037
-- fix new jquery-ui files from icinga-gui datetime picker #3009
-
-* Thu Aug 30 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-2
-- include a fix for epn failure from upstream
-
-* Tue Aug 21 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.2-1
-- bump version
-
-* Mon Jun 18 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.1-1
-- bump to 1.7.1
-
-* Sun May 06 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.7.0-1
-- drop idoutils, add idoutils-libdbi-mysql and idoutils-libdbi-pgsql
-- add requires for libdbi drivers mysql and pgsql
-- add conflicts vice versa to mysql and pgsql libdbi package
-- sed ido2db.cfg for idoutils-libdbi-pgsql to match pgsql config on upgrade
-- log info message for idoutils to create db
-- use the _sbindir macro instead of hardcoded /usr/sbin
-- move pid file to _localstatedir/run/icinga.pid
-- use name macro instead of hardcoded "icinga" everywhere
-- introduce plugindir macro for global usage
-- install icinga.logrotate example
-- move ext cmd file location to _localstatedir/spool/icinga/cmd/icinga.cmd
-- set icinga user's home to _localstatedir/spool/icinga
-- move checkresults to _localstatedir/spool/icinga/checkresults
-- use --with-http-auth-file from #2533
-- add default /etc/icinga/passwd with icingaadmin:icingaadmin default login
-- use ido2db.lock, ido.sock, idomod.tmp, icinga.chk location change from configure params #1856
-- use --with-state-dir=$spooldir for status.dat, objects.cache etc
-- kick provides: nagios again, as this will cause dependency problems. addons must be fixed.
-- copy old retention.dat and objects.precache if found #2585
-- add most valuable changes to README.RHEL*
-- delete old bindir/idomod.o if found
-
-* Sat Feb 25 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.1-5
-- add README.RHEL README.RHEL.idoutils to docs, thx Michael Gruener, Stefan Marx #2212
-- use newly introduced --with-eventhandler-dir and make install-eventhandlers
-- install sample eventhandlers to {_libdir}/icinga/eventhandlers
-- use --enable-cgi-log from upstream instead of manual sed
-- add {_sysconfdir}/icinga/conf.d because upstream will include that with cfg_dir
-
-* Fri Feb 24 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.1-4
-- rename idomod.o to idomod.so - see #2354
-- use --libdir={_libdir}/icinga to install idomod.so instead of {_bindir} - see #2346
-- list {_libdir}/icinga/cgi/ cgis one by one, removing build warnings
-- remove macros in changelog warnings from rpmlint
-- use custom revision macro, don't forget that on spec updates
-- drop webuser/group, was used only by deprecated icinga-api (thx Michael Gruener) #2356
-- change ownership of docs to root (thx Michael Gruener)
-- add "README LICENSE Changelog UPGRADING" to all packages as docs (thx Michael Gruener) #2212
-- change permissions of resource.cfg to icinga:icinga 640 (thx Michael Gruener)
-- users who use cgi.cfg authorized_for_full_command_resolution must add apache user to group themselves (security risk)
-- put module/idoutils/db into docs instead of manually copying to /etc/icinga/idoutils (thx Michael Gruener) #2357
-- revamp the file permissions based on proposals by Michael Gruener <michael.gruener@topalis.com>
-
-* Thu Feb 23 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.1-3
-- use --with-plugin-dir instead of --libexexdir for nagios plugins dir introduced in #2344
-
-* Wed Feb 22 2012 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.1-2
-- re-add provides nagios for compatibility reasons
-
-* Fri Dec 02 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.1-1
-- bump to 1.6.1
-
-* Sun Nov 27 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.6.0-1
-- set to 1.6.0 target
-- add --with-web-user/group
-- add objects/ido2db_check_proc.cfg
-- drop api package as this is now deprecated and not shipped anymore with icinga package
-- remove provides nagios, inaccurate
-- enable cmd.cgi logging by default, {logdir}/gui used
-- fix --libexecdir to point to possible location of nagios-plugins in resource.cfg:$USER1$
-
-* Fri Sep 09 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.5.1-1
-- bump to 1.5.1
-
-* Wed Jun 29 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.5.0-1
-- set to 1.5.0 target, remove provides nagios version, set idoutils.cfg-sample
-- move all logging to one location https://bugzilla.redhat.com/show_bug.cgi?id=693608
-- add log-dir, cgi-log-dir, phpapi-log-dir to configure, remove the manual creation
-- remove manual logdir creation and movings, as no longer needed
-- add objects/notifications.cfg for further examples
-- fix file perms and locations of cfgs
-- fix group for doc
-
-* Wed May 11 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-2
-- undo changes on icinga-cmd group, use icingacmd like before
-
-* Thu Apr 28 2011 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.4.0-1
-- update for release 1.4.0
-- remove perl subst for eventhandler submit_check_result, this is now done by configure
-- remove top.html, doxygen
-- set cgi log permissions to apache user
-- honour modules/ in icinga cfg and modules/idoutils.cfg for neb definitions
-- add /icinga/log for cmd.cgi logging, includes .htaccess
-
-* Tue Mar 31 2011 Christoph Maser <cmaser@gmx.de> - 1.3.1-1
-- update for release 1.3.1
-
-* Tue Feb 15 2011 Christoph Maser <cmaser@gmx.de> - 1.3.0-2
-- move cgis to libdir
-- remove suse suppot (packages available at opensuse build system)
-- add doxygen docs
-
-* Wed Nov 03 2010 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.3.0-1
-- prepared 1.3.0, added log2ido for idoutils install
-
-* Mon Oct 25 2010 Christoph Maser <cmaser@gmx.de> - 1.2.1-1
-- update for release 1.2.1
-- add build dep for httpd
-- set INSTALL_OPTS_WEB=""
-
-* Thu Sep 30 2010 Christoph Maser <cmaser@gmx.de> - 1.2.0-1
-- update for release 1.2.0
-
-* Mon Sep 20 2010 Michael Friedrich <michael.friedrich@univie.ac.at> - 1.0.3-4
-- remove php depency for classic gui
-
-* Wed Sep 01 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-3
-- Put documentation in a separate package
-
-* Tue Aug 31 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-2
-- Set icinga-api logdir ownership to apache user 
-- add php dependency for icinga-gui subpackage
-
-* Wed Aug 18 2010 Christoph Maser <cmaser@gmx.de> - 1.0.3-1
-- Update to 1.0.3-1
-
-* Thu Jul 05 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-2
-- Enable debuginfo
-
-* Thu Jun 24 2010 Christoph Maser <cmaser@gmx.de> - 1.0.2-1
-- Update to 1.0.2-1
-
-* Wed Mar 03 2010 Christoph Maser <cmr@financial.com> - 1.0.1-1
-- Update to 1.0.1-1
-
-* Tue Dec 15 2009 Christoph Maser <cmr@financial.com> - 1.0-1
-- Update to 1.0-1
-
-* Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 1.0-0.RC1.2
-- Split out icinga-api in sub package
-
-* Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 1.0-0.RC1.1
-- Update to 1.0-RC1
-- Correct checkconfig --del in idoutils #preun
-
-* Mon Oct 26 2009 Christoph Maser <cmr@financial.com> - 0.8.4-3
-- Use icinga-cmd group and add apache user to that group instead
-  of using apachegroup as icinga command group.
-
-* Wed Oct 07 2009 Christoph Maser <cmr@financial.com> - 0.8.4-2
-- make packages openSUSE compatible
-- add #apachecondir, #apacheuser, #apachegroup depending on vendor
-- configure add --with-httpd-conf=#{apacheconfdir} 
-- configure add --with-init-dir=#{_initrddir}
-
-* Wed Sep 16 2009 Christoph Maser <cmr@financial.com> - 0.8.4-1
-- Update to version 0.8.4.
-
-* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0.8.3-3
-- Apply patch from 
-  https://git.icinga.org/index?p=icinga-core.git;a=commit;h=8b3505883856310472979b152b9960f81cdbaad7
-
-* Tue Sep 15 2009 Christoph Maser <cmr@financial.com> - 0.8.3-2
-- Apply patch from 
-  https://git.icinga.org/index?p=icinga-core.git;a=commit;h=068baf7bfc99a2a5a88b64d06df49d7395008b40
-
-* Wed Sep 09 2009 Christoph Maser <cmr@financial.com> - 0.8.3-1
-- Update to version 0.8.3.
-
-* Thu Aug 27 2009 Christoph Maser <cmr@financial.com> - 0.8.2-3
-- fix dir name ndoutils -> idoutils
-
-* Thu Aug 27 2009 Christoph Maser <cmr@financial.com> - 0.8.2-2
-- fix idututils post script
-- copy database scripts from source to sysconfigdir
-
-* Sat Aug 22 2009 Christoph Maser <cmr@financial.com> - 0.8.2-1
-- Update to release 0.8.2.
-- remove idoutils-init, init-script for ido2db is shipped now 
-
-* Sun Jul 19 2009 Christoph Maser <cmr@financial.com> - 0.8.1-1
-- initial package
-
