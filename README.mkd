@@ -1,28 +1,21 @@
-# Welcome to Repoforge!
+# Welcome to RepoForge!
 
-*Repoforge is the new name of the RPMforge project.*
-
-Repoforge is a project that maintains RPM packages for Red Hat Enterprise Linux (RHEL), CentOS and Scientific Linux.
+RepoForge is a project that maintains RPM packages for Red Hat Enterprise Linux (RHEL), CentOS and Scientific Linux.
 It consists of a set of repositories compatible with various RHEL versions.
 
 ## For Users
 
-To configure your system to install packages from Repoforge, install the appropriate `rpmforge-release` package for your distribution:
+To configure your system to install packages from RepoForge, install the appropriate`rpmforge-release`package for your distribution:
 
 * EL 7: [x86_64](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm)
 * EL 6: [i686](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.i686.rpm), [x86_64](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm)
 * EL 5: [i386](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.i386.rpm), [x86_64](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.x86_64.rpm), [ppc](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.1-1.el5.rf.ppc.rpm)
-* EL 4: [i386](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el4.rf.i386.rpm), [x86_64](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el4.rf.x86_64.rpm), [ppc](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.1-1.el4.rf.ppc.rpm)
-* EL 3: [i386](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el3.rf.i386.rpm), [x86_64](http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el3.rf.x86_64.rpm)
-
-More detailed instructions and recommendations are available on the [CentOS wiki](http://wiki.centos.org/AdditionalResources/Repositories/RPMForge).
 
 ## For Contributors
 
-Repoforge welcomes contributions! To contribute a new package, or a fix to an existing package, use the following procedure:
+RepoForge welcomes contributions! To contribute a new package, or a fix to an existing package, use the following procedure:
 
 1. Create an account on [GitHub](https://github.com/).
 2. [Fork](https://help.github.com/articles/fork-a-repo) our [git repository](https://github.com/repoforge/rpms).
 3. Make changes and commit them to your fork.
 4. Submit a [pull request](https://help.github.com/articles/using-pull-requests) when your contribution is ready.
-
