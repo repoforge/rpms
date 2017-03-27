@@ -4,7 +4,7 @@
 
 Summary: Console-based network traffic monitor
 Name: vnstat
-Version: 1.11
+Version: 1.17
 Release: 1%{?dist}
 License: GPL
 Group: Applications/System
@@ -57,7 +57,7 @@ EOF
 %{__rm} -rf %{buildroot}
 %{__install} -d -m0755 %{buildroot}%{_localstatedir}/lib/vnstat/
 %{__install} -Dp -m0644 man/vnstat.1 %{buildroot}%{_mandir}/man1/vnstat.1
-%{__install} -Dp -m0755 src/vnstat %{buildroot}%{_bindir}/vnstat
+%{__install} -Dp -m0755 vnstat %{buildroot}%{_bindir}/vnstat
 %{__install} -Dp -m0755 vnstat.cron %{buildroot}%{_sbindir}/vnstat.cron
 %{__install} -Dp -m0644 vnstat.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/vnstat
 %{__install} -Dp -m0644 vnstat.crond %{buildroot}%{_sysconfdir}/cron.d/vnstat
@@ -79,6 +79,9 @@ EOF
 %{_localstatedir}/lib/vnstat/
 
 %changelog
+* Mon Mar 27 2017 Carlos Suarez <crsuarez@icloud.com> - 1.17-1
+- Updated to release 1.17
+
 * Sat Sep 29 2012 Denis Fateyev <denis@fateyev.com> - 1.11-1
 - Updated to release 1.11
 
