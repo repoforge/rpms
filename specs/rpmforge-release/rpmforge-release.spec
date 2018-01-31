@@ -4,7 +4,7 @@
 
 Summary: RPMforge release file and RPM repository configuration
 Name: rpmforge-release
-Version: 0.5.3
+Version: 0.5.4
 Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -13,6 +13,7 @@ URL: http://rpmforge.net/
 Source0: mirrors-rpmforge
 Source1: RPM-GPG-KEY-rpmforge-dag
 Source2: RPM-GPG-KEY-rpmforge-fabian
+Source3: RPM-GPG-KEY-RepoForge-Sign-Key-1
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -86,7 +87,7 @@ EOF
 ### URL: http://rpmforge.net/
 [rpmforge]
 name = RHEL \$releasever - RPMforge.net - $builder
-baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/rpmforge
+#baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/rpmforge
 mirrorlist = http://mirrorlist.repoforge.org/el$version/mirrors-rpmforge
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge
 enabled = 1
@@ -96,7 +97,7 @@ gpgcheck = 1
 
 [rpmforge-extras]
 name = RHEL \$releasever - RPMforge.net - extras
-baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/extras
+#baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/extras
 mirrorlist = http://mirrorlist.repoforge.org/el$version/mirrors-rpmforge-extras
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge-extras
 enabled = 0
@@ -106,7 +107,7 @@ gpgcheck = 1
 
 [rpmforge-testing]
 name = RHEL \$releasever - RPMforge.net - testing
-baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/testing
+#baseurl = http://apt.sw.be/redhat/el$version/en/\$basearch/testing
 mirrorlist = http://mirrorlist.repoforge.org/el$version/mirrors-rpmforge-testing
 #mirrorlist = file:///etc/yum.repos.d/mirrors-rpmforge-testing
 enabled = 0
@@ -147,7 +148,7 @@ done
 
 %{__install} -Dp -m0644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
 %{__install} -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian
-#%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-matthias
+%{__install} -Dp -m0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-RepoForge-Sign-Key-1
 
 %{__install} -Dp -m0644 rpmforge.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge.list
 %{__install} -Dp -m0644 rpmforge-extras.apt %{buildroot}%{_sysconfdir}/apt/sources.list.d/rpmforge-extras.list
@@ -169,12 +170,14 @@ rpm -q gpg-pubkey-59b9897b-461fe38c &>/dev/null || rpm --import %{_sysconfdir}/p
 %else
 rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag || :
 %endif
+rpm -q gpg-pubkey-3f087c2b-587a3406 &>/dev/null || rpm --import %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-RepoForge-Sign-Key-1 || :
 
 %files
 %defattr(-, root, root, 0755)
 %doc mirrors-rpmforge.yum RPM-GPG-KEY-rpmforge-* rpmforge.*
 %pubkey RPM-GPG-KEY-rpmforge-dag
 %pubkey RPM-GPG-KEY-rpmforge-fabian
+%pubkey RPM-GPG-KEY-RepoForge-Sign-Key-1
 %dir %{_sysconfdir}/apt/
 %dir %{_sysconfdir}/apt/sources.list.d/
 %config(noreplace) %{_sysconfdir}/apt/sources.list.d/rpmforge.list
@@ -194,8 +197,12 @@ rpm -q gpg-pubkey-6b8d79e6-3f49313d &>/dev/null || rpm --import %{_sysconfdir}/p
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-*
 
 %changelog
+* Wed Jan 31 2018 David Hrbáč <david@hrbac.cz> - 0.5.4-1
+- disabled baseurl
+- added repoforge key
+
 * Wed Mar 20 2013 David Hrbáč <david@hrbac.cz> - 0.5.3-1
-- moving mirrorlists to GitHub 
+- moving mirrorlists to GitHub
 
 * Sat Nov 13 2010 Dag Wieers <dag@wieers.com> - 0.5.2-2
 - Added entries for extras repository.
